@@ -56,14 +56,14 @@ const val ORANGE_THEME_NAME = "Orange"
  * OrangeTheme(
  *     orangeFontFamily = OrangeFontFamily(
  *         latin = OrangeHelveticaNeueLatin.Bundled(
- *             R.font.helvetica_neue_latin_regular,
+ *             R.font.helvetica_neue_latin_roman,
  *             R.font.helvetica_neue_latin_medium,
  *             R.font.helvetica_neue_latin_bold
  *         ),
  *         arabic = OrangeHelveticaNeueArabic.Bundled(
  *             R.font.helvetica_neue_arabic_light,
- *             R.font.helvetica_neue_arabic_regular,
- *             R.font.helvetica_neue_arabic_medium,
+ *             R.font.helvetica_neue_arabic_roman,
+ *             R.font.helvetica_neue_arabic_bold,
  *         )
  *     )
  * )

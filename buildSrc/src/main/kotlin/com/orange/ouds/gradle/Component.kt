@@ -17,12 +17,14 @@ import org.gradle.api.Project
 
 enum class Component {
     Badge,
+    Bar,
+    BulletList,
     Button,
     Checkbox,
     Chip,
     Divider,
     Link,
-    Bar,
+    PasswordInput,
     RadioButton,
     Switch,
     Tag,
@@ -32,12 +34,14 @@ enum class Component {
         get() = with(OudsVersion.Component) {
             when (this@Component) {
                 Component.Badge -> Badge
+                Component.Bar -> Bar
+                Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
                 Component.Chip -> Chip
                 Component.Divider -> Divider
                 Component.Link -> Link
-                Component.Bar -> Bar
+                Component.PasswordInput -> PasswordInput
                 Component.RadioButton -> RadioButton
                 Component.Switch -> Switch
                 Component.Tag -> Tag
@@ -48,12 +52,14 @@ enum class Component {
     fun getSourceFilePaths(project: Project): List<String> {
         val filenames = when (this) {
             Badge -> listOf("OudsBadge")
+            Bar -> listOf("OudsNavigationBar", "OudsTopAppBar")
+            BulletList -> listOf("OudsBulletList")
             Button -> listOf("OudsButton")
             Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
             Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")
             Divider -> listOf("OudsDivider")
             Link -> listOf("OudsLink")
-            Bar -> listOf("OudsNavigationBar", "OudsTopAppBar")
+            PasswordInput -> listOf("OudsPasswordInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")
             Tag -> listOf("OudsTag", "OudsInputTag")

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
+import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
@@ -24,8 +25,10 @@ import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
 import com.orange.ouds.app.ui.components.chip.SuggestionChipDemoScreen
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoScreen
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
+import com.orange.ouds.app.ui.components.floatingactionbutton.FloatingActionButtonDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
+import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -58,6 +61,13 @@ sealed class Component(
         R.string.app_components_badge_description_text,
         { BadgeIllustration() },
         demoScreen = { BadgeDemoScreen() }
+    )
+
+    data object BulletList : Component(
+        R.string.app_components_bulletList_label,
+        R.string.app_components_bulletList_description_text,
+        { BulletListIllustration() },
+        demoScreen = { BulletListDemoScreen() }
     )
 
     data object Button : Component(
@@ -95,6 +105,13 @@ sealed class Component(
         listOf(Variant.HorizontalDivider, Variant.VerticalDivider)
     )
 
+    data object FloatingActionButton : Component(
+        R.string.app_components_floatingActionButton_label,
+        R.string.app_components_floatingActionButton_description_text,
+        { FloatingActionButtonIllustration() },
+        demoScreen = { FloatingActionButtonDemoScreen() }
+    )
+
     data object Link : Component(
         R.string.app_components_link_label,
         R.string.app_components_link_description_text,
@@ -107,6 +124,13 @@ sealed class Component(
         R.string.app_components_navigationBar_description_text,
         { NavigationBarIllustration() },
         demoScreen = { NavigationBarDemoScreen() }
+    )
+
+    data object PasswordInput : Component(
+        R.string.app_components_passwordInput_label,
+        R.string.app_components_passwordInput_description_text,
+        { PasswordInputIllustration() },
+        demoScreen = { PasswordInputDemoScreen() }
     )
 
     data object RadioButton : Component(

@@ -50,6 +50,8 @@ import kotlin.enums.enumEntries
 import kotlin.math.ceil
 
 internal val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewGridRow = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewGridColumn = staticCompositionLocalOf<Any?> { null }
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -105,9 +107,13 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
 internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrangeFontFamily())
 
 @Composable
-internal inline fun <reified T> getPreviewEnumEntry(): T? {
-    return LocalPreviewEnumEntry.current as? T
-}
+internal inline fun <reified T> getPreviewEnumEntry(): T? = LocalPreviewEnumEntry.current as? T
+
+@Composable
+internal inline fun <reified T> getPreviewGridRow(): T? = LocalPreviewGridRow.current as? T
+
+@Composable
+internal inline fun <reified T> getPreviewGridColumn(): T? = LocalPreviewGridColumn.current as? T
 
 @Composable
 internal fun <T, S> PreviewGrid(
@@ -136,7 +142,12 @@ internal fun <T, S> PreviewGrid(
                         row != null && column == null -> DimensionTitle(rowTitle(row))
                         row != null && column != null -> {
                             Box {
-                                content(column, row)
+                                CompositionLocalProvider(
+                                    LocalPreviewGridRow provides row,
+                                    LocalPreviewGridColumn provides column
+                                ) {
+                                    content(column, row)
+                                }
                             }
                         }
                     }

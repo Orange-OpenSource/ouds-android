@@ -20,11 +20,28 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 interface OudsDrawableResources {
+    val communication: Communication
     val component: Component
     val functional: Functional
 
+    interface Communication {
+        val accessibility: Accessibility
+        val securityAndSafety: SecurityAndSafety
+
+        interface Accessibility {
+            @get:DrawableRes
+            val vision: Int
+        }
+
+        interface SecurityAndSafety {
+            @get:DrawableRes
+            val lock: Int
+        }
+    }
+
     interface Component {
         val alert: Alert
+        val bulletList: BulletList
         val checkbox: Checkbox
         val chip: Chip
         val link: Link
@@ -47,6 +64,20 @@ interface OudsDrawableResources {
 
             @get:DrawableRes
             val warningInternalShape: Int
+        }
+
+        interface BulletList {
+            @get:DrawableRes
+            val level0: Int
+
+            @get:DrawableRes
+            val level1: Int
+
+            @get:DrawableRes
+            val level2: Int
+
+            @get:DrawableRes
+            val tick: Int
         }
 
         interface Checkbox {
@@ -89,6 +120,7 @@ interface OudsDrawableResources {
     interface Functional {
         val actions: Actions
         val navigation: Navigation
+        val settingsAndTools: SettingsAndTools
 
         interface Actions {
             @get:DrawableRes
@@ -101,6 +133,11 @@ interface OudsDrawableResources {
 
             @get:DrawableRes
             val menu: Int
+        }
+
+        interface SettingsAndTools {
+            @get:DrawableRes
+            val hide: Int
         }
     }
 }

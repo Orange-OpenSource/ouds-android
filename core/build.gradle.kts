@@ -18,6 +18,10 @@ plugins {
     alias(libs.plugins.paparazzi)
 }
 
+// Temporary workaround for https://issuetracker.google.com/issues/476936389
+val dokkaKotlinAdapter = objects.newInstance(org.jetbrains.dokka.gradle.adapters.KotlinAdapter::class)
+dokkaKotlinAdapter.apply(project)
+
 android {
     namespace = "com.orange.ouds.core"
 
@@ -28,7 +32,10 @@ android {
 
     kotlin {
         compilerOptions {
-            freeCompilerArgs.add("-opt-in=com.orange.ouds.foundation.InternalOudsApi")
+            freeCompilerArgs.addAll(
+                "-opt-in=com.orange.ouds.foundation.ExperimentalOudsApi",
+                "-opt-in=com.orange.ouds.foundation.InternalOudsApi"
+            )
         }
     }
 }
@@ -39,6 +46,7 @@ dependencies {
     api(project(":theme-contract"))
     // compileOnly dependencies on themes are needed for previews
     compileOnly(project(":theme-orange"))
+    compileOnly(project(":theme-orange-business-tools"))
     compileOnly(project(":theme-sosh"))
     compileOnly(project(":theme-wireframe"))
 

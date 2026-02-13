@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -35,17 +37,22 @@ import com.orange.ouds.app.ui.utilities.composable.Illustration
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsBulletList
+import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.component.OudsFloatingActionButton
+import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
+import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
@@ -55,6 +62,7 @@ import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.isOudsInDarkTheme
+import com.orange.ouds.foundation.ExperimentalOudsApi
 
 @Composable
 fun BadgeIllustration() = ComponentIllustration {
@@ -63,6 +71,15 @@ fun BadgeIllustration() = ComponentIllustration {
         status = OudsBadgeStatus.Negative,
         size = OudsBadgeSize.Large
     )
+}
+
+@Composable
+fun BulletListIllustration() = ComponentIllustration {
+    OudsBulletList(modifier = Modifier.padding(end = 16.dp), type = OudsBulletListType.Unordered()) {
+        repeat(2) {
+            item(label = "Label")
+        }
+    }
 }
 
 @Composable
@@ -128,6 +145,17 @@ fun DividerIllustration() = ComponentIllustration {
 }
 
 @Composable
+fun FloatingActionButtonIllustration() = ComponentIllustration {
+    OudsFloatingActionButton(
+        icon = OudsFloatingActionButtonIcon(
+            painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
+            contentDescription = ""
+        ),
+        onClick = {}
+    )
+}
+
+@Composable
 fun LinkIllustration() = ComponentIllustration {
     OudsLink(
         label = stringResource(id = R.string.app_components_common_label_label),
@@ -149,6 +177,18 @@ fun NavigationBarIllustration() = ComponentIllustration {
     OudsNavigationBar(
         items = items,
         modifier = Modifier.padding(horizontal = 12.dp)
+    )
+}
+
+@OptIn(ExperimentalOudsApi::class)
+@Composable
+fun PasswordInputIllustration() = ComponentIllustration {
+    OudsPasswordInput(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        value = "",
+        onValueChange = {},
+        label = stringResource(id = R.string.app_components_passwordInput_password_label),
+        helperText = stringResource(id = R.string.app_components_passwordInputHelperText_label)
     )
 }
 
@@ -214,11 +254,12 @@ fun TopAppBarIllustration() = ComponentIllustration {
 
 @Composable
 private fun ComponentIllustration(content: @Composable () -> Unit) {
+    // Do not take user font scale into account
+    val configuration = Configuration(LocalConfiguration.current).apply { fontScale = 1f }
+    val density = Density(LocalDensity.current.density, 1f)
     CompositionLocalProvider(
-        value = LocalDensity provides Density(
-            LocalDensity.current.density,
-            1f // Do not take user font scale into account
-        )
+        LocalDensity provides density,
+        LocalConfiguration provides configuration
     ) {
         Illustration(content = content)
     }

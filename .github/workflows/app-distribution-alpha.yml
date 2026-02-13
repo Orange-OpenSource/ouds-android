@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
@@ -47,6 +47,6 @@ jobs:
           group: 'ouds-android-alpha'
 
       - name: Publish Firebase App Distribution QR code
-        run: ./gradlew publishAppDistributionQrCode -Pvariant=alphaRelease
+        run: ./gradlew publishAppDistributionQrCode -PapplicationId=com.orange.ouds.alpha.app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

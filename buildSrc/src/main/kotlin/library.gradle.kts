@@ -17,7 +17,6 @@ private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/i
 
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
     id("maven-central-publish")
 }
 
@@ -26,11 +25,17 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
-        val targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        testOptions.targetSdk = targetSdk
-        lint.targetSdk = targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
+    }
+
+    val targetSdk = libs.versions.androidTargetSdk.get().toInt()
+    lint.targetSdk = targetSdk
+    testOptions {
+        this.targetSdk = targetSdk
+        val javaLauncher = javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+        unitTests.all { it.javaLauncher.set(javaLauncher) }
     }
 
     buildTypes {
@@ -61,7 +66,7 @@ android {
 
     sourceSets {
         named("main") {
-            res.srcDirs("src/main/res", "src/main/res-public")
+            res.directories.add("src/main/res-public")
         }
     }
 }

@@ -137,11 +137,17 @@
     <string name="app_components_common_none_label" translatable="false">None</string>
     <string name="app_components_common_onColoredBackground_label" translatable="false">On colored background</string>
     <string name="app_components_common_outlined_label" translatable="false">Outlined</string>
+    <string name="app_components_common_placeholder_label" translatable="false">Placeholder</string>
+    <string name="app_components_common_prefix_label" translatable="false">Prefix</string>
     <string name="app_components_common_readOnly_label" translatable="false">Read only</string>
     <string name="app_components_common_size_label" translatable="false">Size</string>
+    <string name="app_components_common_smallSize_label" translatable="false">Small</string>
+    <string name="app_components_common_mediumSize_label" translatable="false">Medium</string>
+    <string name="app_components_common_largeSize_label" translatable="false">Large</string>
     <string name="app_components_common_status_label" translatable="false">Status</string>
     <string name="app_components_common_textOnlyLayout_label" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_label" translatable="false">Text + icon</string>
+    <string name="app_components_common_type_label" translatable="false">Type</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">No unread message</item>
         <item quantity="one">%d unread message</item>
@@ -150,15 +156,24 @@
     <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
     <string name="app_components_common_version_label">Component design version</string>
     <string name="app_components_textInputHelperText_label" translatable="false">Helper text.</string>
+    <string name="app_components_passwordInputHelperText_label" translatable="false">Your password must be at least 8 characters.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label" translatable="false">Badge</string>
     <string name="app_components_badge_description_text">Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.</string>
-    <string name="app_components_badge_type_label" translatable="false">Type</string>
     <string name="app_components_badge_standardType_label" translatable="false">Standard</string>
     <string name="app_components_badge_countType_label" translatable="false">Count</string>
     <string name="app_components_badge_iconType_label" translatable="false">Icon</string>
     <string name="app_components_badge_count_label" translatable="false">Count</string>
+
+    <!-- Components: bullet list -->
+    <string name="app_components_bulletList_label" translatable="false">Bullet list</string>
+    <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>
+    <string name="app_components_bulletList_fontSize_label" translatable="false">Font size</string>
+    <string name="app_components_bulletList_fontWeight_label" translatable="false">Font weight</string>
+    <string name="app_components_bulletList_unorderedAsset_label" translatable="false">Unordered asset</string>
+    <string name="app_components_bulletList_unorderedAssetBrandColor_label" translatable="false">Unordered asset brand color</string>
+    <string name="app_components_bulletList_levelCount_label" translatable="false">Level count</string>
 
     <!-- Components: button -->
     <string name="app_components_button_label" translatable="false">Button</string>
@@ -199,6 +214,11 @@
     <string name="app_components_divider_horizontalDivider_label" translatable="false">Horizontal divider</string>
     <string name="app_components_divider_verticalDivider_label" translatable="false">Vertical divider</string>
 
+    <!-- Components: floating action button -->
+    <string name="app_components_floatingActionButton_label" translatable="false">Floating action button</string>
+    <string name="app_components_floatingActionButton_description_text">Floating action button (also known as FAB) represents the most important action on a screen. It puts key actions within reach.</string>
+    <string name="app_components_floatingActionButton_expanded_label" translatable="false">Expanded</string>
+
     <!-- Components: link -->
     <string name="app_components_link_label" translatable="false">Link</string>
     <string name="app_components_link_description_text">Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.</string>
@@ -215,6 +235,12 @@
     <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
     <string name="app_components_navigationBar_accountItem_label">Account</string>
     <string name="app_components_navigationBar_settingsItem_label">Settings</string>
+
+    <!-- Components: password input -->
+    <string name="app_components_passwordInput_label" translatable="false">Password input</string>
+    <string name="app_components_passwordInput_description_text">Password input is a UI element that allows to securely and confidentially capture a user\’s password.</string>
+    <string name="app_components_passwordInput_lockIcon_label" translatable="false">Lock icon</string>
+    <string name="app_components_passwordInput_password_label" translatable="false">Password</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label" translatable="false">Radio button</string>
@@ -245,9 +271,7 @@
     <string name="app_components_textInput_leadingIcon_label" translatable="false">Leading icon</string>
     <string name="app_components_textInput_trailingAction_label" translatable="false">Trailing action</string>
     <string name="app_components_textInput_trailingAction_a11y">Trailing action content description</string>
-    <string name="app_components_textInput_prefix_label" translatable="false">Prefix</string>
     <string name="app_components_textInput_suffix_label" translatable="false">Suffix</string>
-    <string name="app_components_textInput_placeholder_label" translatable="false">Placeholder</string>
     <string name="app_components_textInput_helperLink_label" translatable="false">Helper link</string>
 
     <!-- Components: top app bar -->
@@ -256,9 +280,6 @@
     <string name="app_components_topAppBar_firstAction_a11y">First action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
     <string name="app_components_topAppBar_thirdAction_a11y">Third action</string>
-    <string name="app_components_topAppBar_smallSize_label" translatable="false">Small</string>
-    <string name="app_components_topAppBar_mediumSize_label" translatable="false">Medium</string>
-    <string name="app_components_topAppBar_largeSize_label" translatable="false">Large</string>
     <string name="app_components_topAppBar_centerAligned_label" translatable="false">Center aligned</string>
     <string name="app_components_topAppBar_navigationIcon_label" translatable="false">Navigation icon</string>
     <string name="app_components_topAppBar_backNavigationIcon_label" translatable="false">Back</string>

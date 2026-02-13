@@ -97,6 +97,9 @@
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
 
+    <!-- Components: bullet list -->
+    <string name="app_components_bulletList_description_text">Bullet list هي عنصر واجهة مستخدم يساعد على عرض عناصر نصية فردية ذات صلة مجمعة معًا؛ عادةً ما تبدأ برقم أو برمز نقطي.</string>
+
     <!-- Components: button -->
     <string name="app_components_button_description_text">Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.</string>
 
@@ -115,6 +118,9 @@
     <!-- Components: divider -->
     <string name="app_components_divider_description_text">Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا</string>
 
+    <!-- Components: floating action button -->
+    <string name="app_components_floatingActionButton_description_text">Floating action button (أو زر الإجراء العائم) يمثل الإجراء الأهم على الشاشة. يسلط الضوء على الإجراءات الرئيسية.</string>
+
     <!-- Components: link -->
     <string name="app_components_link_description_text">Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي</string>
 
@@ -125,6 +131,9 @@
     <string name="app_components_navigationBar_notificationsItem_label">الإشعارات</string>
     <string name="app_components_navigationBar_accountItem_label">الحساب</string>
     <string name="app_components_navigationBar_settingsItem_label">الإعدادات</string>
+
+    <!-- Components: password input -->
+    <string name="app_components_passwordInput_description_text"> Password Input هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.</string>

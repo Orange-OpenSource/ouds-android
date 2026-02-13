@@ -12,7 +12,9 @@
 
 package com.orange.ouds.app.ui.components.textinput
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -109,13 +111,13 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_textInput_placeholder_label),
+            label = stringResource(R.string.app_components_common_placeholder_label),
             value = placeholder,
             onValueChange = { value -> placeholder = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_textInput_prefix_label),
+            label = stringResource(R.string.app_components_common_prefix_label),
             value = prefix,
             onValueChange = { value -> prefix = value }
         )
@@ -147,6 +149,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
 
 @Composable
 private fun TextInputDemoContent(state: TextInputDemoState) {
+    val focusManager = LocalFocusManager.current
     with(state) {
         OudsTextInput(
             value = value,
@@ -178,7 +181,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             suffix = suffix,
             helperText = helperText,
             helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
-            constrainedMaxWidth = constrainedMaxWidth
+            constrainedMaxWidth = constrainedMaxWidth,
+            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
         )
     }
 }
@@ -231,6 +235,11 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                 }
             }
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
+            constructorCallArgument<KeyboardActions>("keyboardActions") {
+                lambdaArgument("onDone") {
+                    functionCall("focusManager.clearFocus")
+                }
+            }
         }
     }
 }

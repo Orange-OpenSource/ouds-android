@@ -1,0 +1,380 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OudsThemeContract</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.theme/-ouds-theme-contract/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="1.2.0"><span class="versions-dropdown-button-text">1.2.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.2.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">1.2.0</span></a><a href="../../../older/1.1.0/theme-contract/com.orange.ouds.theme/-ouds-theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.1.0</span></a><a href="../../../older/1.0.0/theme-contract/com.orange.ouds.theme/-ouds-theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.0.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.0.0</span></a><a href="../../../older/0.4.0/theme-contract/com.orange.ouds.theme/-ouds-theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../older/0.3.0/theme-contract/com.orange.ouds.theme/-ouds-theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../older/0.2.0/theme-contract/com.orange.ouds.theme/-ouds-theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../older/0.1.0/theme-contract/com.orange.ouds.theme/-ouds-theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-contract/release">release</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-contract/release" data-filter=":theme-contract/release">
+                                <span class="checkbox--icon"></span>
+                                release
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="theme-contract::com.orange.ouds.theme/OudsThemeContract///PointingToDeclaration//1080220898">
+  <div class="breadcrumbs"><a href="../../index.html">theme-contract</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.theme</a><span class="delimiter">/</span><span class="current">OudsThemeContract</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ouds</span><wbr><span>Theme</span><wbr><span><span>Contract</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">OudsThemeContract</a></div><p class="paragraph">An interface to create an OUDS supported theme.</p><p class="paragraph">Implementations of this interface define the look and feel of the application by providing specific token values (colors, typography, spacing, etc.). Any values not explicitly set will generally rely on abstract definitions, but typical implementations should provide full sets of tokens.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-1723975870%2FProperties%2F1080220898" anchor-label="borderTokens" id="-1723975870%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="border-tokens.html"><span>border</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1723975870%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="border-tokens.html">borderTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsBorderSemanticTokens///PointingToDeclaration/">OudsBorderSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of border-related tokens (width, radius, style) used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="799375477%2FProperties%2F1080220898" anchor-label="colorTokens" id="799375477%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="color-tokens.html"><span>color</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="799375477%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="color-tokens.html">colorTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsColorSemanticTokens///PointingToDeclaration/">OudsColorSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of semantic color tokens used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-929825384%2FProperties%2F1080220898" anchor-label="componentsTokens" id="-929825384%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="components-tokens.html"><span>components</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-929825384%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="components-tokens.html">componentsTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.components/OudsComponentsTokens///PointingToDeclaration/">OudsComponentsTokens</span></div><div class="brief "><p class="paragraph">Specific tokens for customizing the internal behavior or style of OUDS components.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="840685483%2FProperties%2F1080220898" anchor-label="drawableResources" id="840685483%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="drawable-resources.html"><span>drawable</span><wbr><span><span>Resources</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="840685483%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="drawable-resources.html">drawableResources</a><span class="token operator">: </span><a href="../../../theme-contract/com.orange.ouds.theme/-ouds-drawable-resources/index.html">OudsDrawableResources</a></div><div class="brief "><p class="paragraph">Allows customization of drawable resources used explicitly by OUDS components.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1034192189%2FProperties%2F1080220898" anchor-label="effectTokens" id="1034192189%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="effect-tokens.html"><span>effect</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1034192189%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="effect-tokens.html">effectTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsEffectSemanticTokens///PointingToDeclaration/">OudsEffectSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of visual effect tokens (e.g., blurs) used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-365387845%2FProperties%2F1080220898" anchor-label="elevationTokens" id="-365387845%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="elevation-tokens.html"><span>elevation</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-365387845%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="elevation-tokens.html">elevationTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsElevationSemanticTokens///PointingToDeclaration/">OudsElevationSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of elevation tokens (z-index, shadows) used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-762959115%2FProperties%2F1080220898" anchor-label="fontFamily" id="-762959115%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="font-family.html"><span>font</span><wbr><span><span>Family</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-762959115%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="font-family.html"><strike>fontFamily</strike></a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/font/FontFamily.html">FontFamily</a></div><div class="brief "><p class="paragraph">The font family used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1381550463%2FProperties%2F1080220898" anchor-label="fontTokens" id="1381550463%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="font-tokens.html"><span>font</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1381550463%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="font-tokens.html">fontTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsFontSemanticTokens///PointingToDeclaration/">OudsFontSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of typography semantic tokens (font sizes, weights, line heights) used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2018913192%2FProperties%2F1080220898" anchor-label="gridTokens" id="2018913192%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grid-tokens.html"><span>grid</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2018913192%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="grid-tokens.html">gridTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsGridSemanticTokens///PointingToDeclaration/">OudsGridSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of grid layout tokens used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-433140420%2FProperties%2F1080220898" anchor-label="materialColorTokens" id="-433140420%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="material-color-tokens.html"><span>material</span><wbr><span>Color</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-433140420%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="material-color-tokens.html">materialColorTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.material/OudsMaterialColorTokens///PointingToDeclaration/">OudsMaterialColorTokens</span></div><div class="brief "><p class="paragraph">The mapping of OUDS tokens to standard Material 3 color roles. This ensures compatibility with standard Material components.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="354672701%2FProperties%2F1080220898" anchor-label="name" id="354672701%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="name.html"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="354672701%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="name.html">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The display name of the theme (e.g., "Orange", "Sosh").</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1594869363%2FProperties%2F1080220898" anchor-label="opacityTokens" id="-1594869363%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="opacity-tokens.html"><span>opacity</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1594869363%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="opacity-tokens.html">opacityTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsOpacitySemanticTokens///PointingToDeclaration/">OudsOpacitySemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of opacity tokens used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1710804005%2FProperties%2F1080220898" anchor-label="settings" id="1710804005%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="settings.html"><span><span>settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1710804005%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="settings.html">settings</a><span class="token operator">: </span><a href="../-ouds-theme-settings/index.html">OudsThemeSettings</a></div><div class="brief "><p class="paragraph">The general settings for the theme configuration.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="132448141%2FProperties%2F1080220898" anchor-label="sizeTokens" id="132448141%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="size-tokens.html"><span>size</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="132448141%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="size-tokens.html">sizeTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsSizeSemanticTokens///PointingToDeclaration/">OudsSizeSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of size tokens (icons, constraints) used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1770277490%2FProperties%2F1080220898" anchor-label="spaceTokens" id="1770277490%2FProperties%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="space-tokens.html"><span>space</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1770277490%2FProperties%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="space-tokens.html">spaceTokens</a><span class="token operator">: </span><span data-unresolved-link="com.orange.ouds.theme.tokens.semantic/OudsSpaceSemanticTokens///PointingToDeclaration/">OudsSpaceSemanticTokens</span></div><div class="brief "><p class="paragraph">The collection of spacing tokens (padding, margins, gaps) used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-2043457105%2FFunctions%2F1080220898" anchor-label="getFontFamily" id="-2043457105%2FFunctions%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-font-family.html"><span>get</span><wbr><span>Font</span><wbr><span><span>Family</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2043457105%2FFunctions%2F1080220898"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-font-family.html"><span class="token function">getFontFamily</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">locale<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Locale.html">Locale</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/font/FontFamily.html">FontFamily</a></div><div class="brief "><p class="paragraph">The font family used in the theme.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

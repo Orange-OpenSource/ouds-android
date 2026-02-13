@@ -27,7 +27,6 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.asOrNull
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.tryOrNull
 import kotlin.properties.Delegates
 
@@ -192,15 +191,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
             }
             is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButtonAppearance.Strong instead of Strong
             is Formattable -> value.format(context)
-            else -> {
-                val valueClass = value?.let { it::class }.orElse { null }
-                if (valueClass?.previewCompatibleClass?.isData == true) {
-                    // Displays OudsButtonStyle.Loading(progress = null) instead of Loading(progress=null)
-                    "${valueClass.java.nestedName.substringBeforeLast(".")}.${value.toString().replace("=", " = ")}"
-                } else {
-                    value.toString()
-                }
-            }
+            else -> value.toString()
         }
 
         return if (name?.isNotBlank() == true) "$name = $valueString" else valueString
