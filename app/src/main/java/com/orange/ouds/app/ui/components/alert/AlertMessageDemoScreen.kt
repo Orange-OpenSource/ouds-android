@@ -100,6 +100,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             label = stringResource(R.string.app_components_alert_alertMessage_statusIcon_label),
             checked = hasStatusIcon,
             onCheckedChange = { hasStatusIcon = it },
+            enabled = statusIconSwitchEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_alert_alertMessage_closeButton_label),
@@ -169,7 +170,7 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             } else {
                 null
             },
-            actionLink = actionLink.takeIf { !it.isNullOrEmpty() }?.let { actionLinkLabel ->
+            actionLink = actionLink?.let { actionLinkLabel ->
                 OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
             },
             bulletList = bulletList?.toSortedMap()?.values?.toList()

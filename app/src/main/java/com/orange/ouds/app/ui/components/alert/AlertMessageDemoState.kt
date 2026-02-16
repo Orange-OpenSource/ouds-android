@@ -64,6 +64,13 @@ class AlertMessageDemoState(
     companion object {
         const val MaxBulletCount = 3
 
+        private val FunctionalStatuses = listOf(
+            OudsAlertMessageStatus.Info,
+            OudsAlertMessageStatus.Negative,
+            OudsAlertMessageStatus.Positive,
+            OudsAlertMessageStatus.Warning
+        )
+
         val Saver = listSaver(
             save = { state ->
                 with(state) {
@@ -97,7 +104,15 @@ class AlertMessageDemoState(
         )
     }
 
-    var status: OudsAlertMessageStatus by mutableStateOf(status)
+    private var _status: OudsAlertMessageStatus by mutableStateOf(status)
+    var status: OudsAlertMessageStatus
+        get() = _status
+        set(value) {
+            _status = value
+            if (status in FunctionalStatuses) {
+                hasStatusIcon = true
+            }
+        }
 
     var hasStatusIcon: Boolean by mutableStateOf(hasStatusIcon)
 
@@ -111,8 +126,11 @@ class AlertMessageDemoState(
 
     var actionLinkPosition: OudsAlertMessageActionLinkPosition by mutableStateOf(actionLinkPosition)
 
+    val statusIconSwitchEnabled: Boolean
+        get() = status !in FunctionalStatuses
+
     val actionLinkPositionChipsEnabled: Boolean
-        get() = !actionLink.isNullOrEmpty()
+        get() = actionLink?.isNotBlank() == true
 
     var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
 }
