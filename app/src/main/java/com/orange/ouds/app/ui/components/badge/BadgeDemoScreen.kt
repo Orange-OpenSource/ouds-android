@@ -192,7 +192,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     OudsIconBadgeStatus.Warning,
                     OudsIconBadgeStatus.Info,
                     OudsIconBadgeStatus.Negative -> {
-                        typedArgument(statusParameterName, badgeWithIconStatus)
+                        rawArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName)
                     }
                 }
             } else {

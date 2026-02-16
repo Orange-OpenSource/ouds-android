@@ -217,17 +217,18 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
             enabledArgument(enabled)
             typedArgument("size", size)
             functionCallArgument("status", status::class.java.nestedName) {
+                val assetParameterName = "asset"
                 when (layout) {
                     TagDemoState.Layout.TextOnly -> {}
-                    TagDemoState.Layout.TextAndBullet -> typedArgument("asset", OudsTagAsset.Bullet)
+                    TagDemoState.Layout.TextAndBullet -> rawArgument(assetParameterName, OudsTagAsset.Bullet::class.java.nestedName)
                     TagDemoState.Layout.TextAndIcon -> {
                         when (status) {
                             is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
-                                constructorCallArgument<OudsTagAsset.Icon>("asset") {
+                                constructorCallArgument<OudsTagAsset.Icon>(assetParameterName) {
                                     painterArgument(themeDrawableResources.tipsAndTricks)
                                 }
                             is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
-                                typedArgument("asset", OudsTagAsset.Icon.Default)
+                                rawArgument(assetParameterName, OudsTagAsset.Icon.Default::class.java.nestedName)
                         }
                     }
                 }
