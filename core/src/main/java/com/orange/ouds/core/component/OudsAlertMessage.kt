@@ -259,6 +259,8 @@ enum class OudsAlertMessageActionLinkPosition {
  * The status of an [OudsAlertMessage]. Each status is designed to convey a specific meaning and ensure clarity in communication.
  * It determines the background and the icon colors of the alert message.
  * It also carries the optional icon to be displayed in the alert message. Depending on the status, this icon can be customizable or be a status dedicated icon.
+ *
+ * @property icon The icon to be displayed in the alert message, or `null` if there is no icon.
  */
 sealed class OudsAlertMessageStatus(val icon: OudsAlertMessageIcon? = null) {
 

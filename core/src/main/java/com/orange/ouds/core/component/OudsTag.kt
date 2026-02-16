@@ -533,6 +533,8 @@ enum class OudsTagSize {
  * It determines the background and the content colors of the tag.
  * It also carries the optional asset to be displayed in the tag: bullet or icon. Depending on the status, this icon can be customizable or be a status
  * dedicated icon.
+ *
+ * @property asset The asset to be displayed in the tag, or `null` if there is no asset.
  */
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
