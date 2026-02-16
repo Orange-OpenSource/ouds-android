@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.textinput
 
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -152,8 +151,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
     val focusManager = LocalFocusManager.current
     with(state) {
         OudsTextInput(
-            value = value,
-            onValueChange = { value = it },
+            textFieldState = textFieldState,
             label = label,
             placeholder = placeholder,
             outlined = outlined,
@@ -182,7 +180,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             helperText = helperText,
             helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
             constrainedMaxWidth = constrainedMaxWidth,
-            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
+            onKeyboardAction = { focusManager.clearFocus() }
         )
     }
 }
@@ -190,10 +188,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
 private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsTextInput") {
-            typedArgument("value", value)
-            lambdaArgument("onValueChange") {
-                comment("Update value")
-            }
+            functionCallArgument("textFieldState", "rememberTextFieldState")
             if (label.isNotEmpty()) typedArgument("label", label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
@@ -235,10 +230,8 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                 }
             }
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
-            constructorCallArgument<KeyboardActions>("keyboardActions") {
-                lambdaArgument("onDone") {
-                    functionCall("focusManager.clearFocus")
-                }
+            lambdaArgument("onKeyboardAction") {
+                functionCall("focusManager.clearFocus")
             }
         }
     }

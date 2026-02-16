@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.passwordinput
 
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -118,6 +117,11 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_passwordInput_passwordHidden_label),
+            checked = passwordInputState.isPasswordHidden,
+            onCheckedChange = { passwordInputState.isPasswordHidden = it }
+        )
     }
 }
 
@@ -127,8 +131,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     val focusManager = LocalFocusManager.current
     with(state) {
         OudsPasswordInput(
-            value = value,
-            onValueChange = { value = it },
+            state = passwordInputState,
             label = label,
             placeholder = placeholder,
             outlined = outlined,
@@ -140,7 +143,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             prefix = prefix,
             helperText = helperText,
             constrainedMaxWidth = constrainedMaxWidth,
-            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
+            onKeyboardAction = { focusManager.clearFocus() }
         )
     }
 }
@@ -148,7 +151,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
 private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoState) {
     with(state) {
         functionCall("OudsPasswordInput") {
-            typedArgument("value", value)
+            functionCallArgument("state", "rememberOudsPasswordInputState")
             lambdaArgument("onValueChange") {
                 comment("Update value")
             }
@@ -171,10 +174,8 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
-            constructorCallArgument<KeyboardActions>("keyboardActions") {
-                lambdaArgument("onDone") {
-                    functionCall("focusManager.clearFocus")
-                }
+            lambdaArgument("onKeyboardAction") {
+                functionCall("focusManager.clearFocus")
             }
         }
     }

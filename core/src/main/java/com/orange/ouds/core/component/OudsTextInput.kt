@@ -106,6 +106,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -131,6 +134,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
  *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
@@ -231,6 +237,9 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -257,6 +266,9 @@ fun OudsTextInput(
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
@@ -350,6 +362,9 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -376,6 +391,9 @@ fun OudsTextInput(
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
@@ -673,7 +691,11 @@ private fun OudsTextInputDecorator(
                                 )
                             }
                         } else {
-                            trailingIconButton?.Content(extraParameters = OudsTextInputTrailingIconButton.ExtraParameters(enabled = state != OudsTextInputState.Disabled))
+                            trailingIconButton?.Content(
+                                extraParameters = OudsTextInputTrailingIconButton.ExtraParameters(
+                                    enabled = state !in listOf(OudsTextInputState.Disabled, OudsTextInputState.ReadOnly)
+                                )
+                            )
                         }
                     }
                 }

@@ -20,10 +20,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsPasswordInputState
 
 @Composable
 fun rememberPasswordInputDemoState(
-    value: String = "",
+    passwordInputState: OudsPasswordInputState = OudsPasswordInputState(),
     label: String = stringResource(id = R.string.app_components_passwordInput_password_label),
     placeholder: String = "",
     outlined: Boolean = false,
@@ -37,7 +38,7 @@ fun rememberPasswordInputDemoState(
     helperText: String = "",
     constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
-    value,
+    passwordInputState,
     label,
     placeholder,
     outlined,
@@ -53,7 +54,7 @@ fun rememberPasswordInputDemoState(
     saver = PasswordInputDemoState.Saver
 ) {
     PasswordInputDemoState(
-        value,
+        passwordInputState,
         label,
         placeholder,
         outlined,
@@ -70,7 +71,7 @@ fun rememberPasswordInputDemoState(
 }
 
 class PasswordInputDemoState(
-    value: String,
+    passwordInputState: OudsPasswordInputState,
     label: String,
     placeholder: String,
     outlined: Boolean,
@@ -90,7 +91,7 @@ class PasswordInputDemoState(
             save = { state ->
                 with(state) {
                     listOf(
-                        value,
+                        with(OudsPasswordInputState.Saver) { save(passwordInputState) },
                         label,
                         placeholder,
                         outlined,
@@ -107,8 +108,9 @@ class PasswordInputDemoState(
                 }
             },
             restore = { list: List<Any?> ->
+                val passwordInputState = list[0]?.let { OudsPasswordInputState.Saver.restore(it) }
                 PasswordInputDemoState(
-                    list[0] as String,
+                    passwordInputState as OudsPasswordInputState,
                     list[1] as String,
                     list[2] as String,
                     list[3] as Boolean,
@@ -126,7 +128,7 @@ class PasswordInputDemoState(
         )
     }
 
-    var value: String by mutableStateOf(value)
+    var passwordInputState: OudsPasswordInputState by mutableStateOf(passwordInputState)
 
     var label: String by mutableStateOf(label)
 
@@ -165,5 +167,5 @@ class PasswordInputDemoState(
         get() = !error && !hasLoader
 
     val loaderSwitchEnabled: Boolean
-        get() = enabled && !readOnly && !error && value.isNotEmpty()
+        get() = enabled && !readOnly && !error && passwordInputState.text.isNotEmpty()
 }
