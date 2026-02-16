@@ -18,7 +18,7 @@ tasks.register<DefaultTask>("publishToGitHub") {
         val ref = Environment.getVariables("GITHUB_REF").first()
         val tag = ref.substringAfter("refs/tags/")
         gitHubRestApi {
-            publishRelease(tag, draft = true, prerelease = true)
+            publishRelease(tag, draft = true, prerelease = false)
         }
     }
 }
