@@ -181,20 +181,23 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
 private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsAlertMessage") {
-            functionCallArgument("status", status::class.java.nestedName) {
-                when (status) {
-                    is OudsAlertMessageStatus.Neutral,
-                    is OudsAlertMessageStatus.Accent -> {
-                        constructorCallArgument<OudsAlertMessageIcon>("icon") {
-                            painterArgument(themeDrawableResources.tipsAndTricks)
+            val statusParameterName = "status"
+            when (status) {
+                is OudsAlertMessageStatus.Accent,
+                is OudsAlertMessageStatus.Neutral -> {
+                    functionCallArgument(statusParameterName, status::class.java.nestedName) {
+                        if (hasStatusIcon) {
+                            constructorCallArgument<OudsAlertMessageIcon>("icon") {
+                                painterArgument(themeDrawableResources.tipsAndTricks)
+                            }
                         }
                     }
-                    is OudsAlertMessageStatus.Positive,
-                    is OudsAlertMessageStatus.Warning,
-                    is OudsAlertMessageStatus.Info,
-                    is OudsAlertMessageStatus.Negative -> {
-                        typedArgument("showIcon", hasStatusIcon)
-                    }
+                }
+                OudsAlertMessageStatus.Info,
+                OudsAlertMessageStatus.Negative,
+                OudsAlertMessageStatus.Positive,
+                OudsAlertMessageStatus.Warning -> {
+                    rawArgument(statusParameterName, status::class.java.nestedName)
                 }
             }
             typedArgument("label", label)

@@ -290,7 +290,7 @@ sealed class OudsAlertMessageStatus(val icon: OudsAlertMessageIcon? = null) {
      * Positive status indicates that a task or process has been completed successfully. These alerts reassure users and confirm that no further action is needed.
      * This status displays a dedicated default icon.
      */
-    object Positive : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+    data object Positive : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
         override val defaultIconPainter: Painter?
             @Composable
             get() = painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
@@ -301,7 +301,7 @@ sealed class OudsAlertMessageStatus(val icon: OudsAlertMessageIcon? = null) {
      * messages where users simply need to stay informed.
      * This status displays a dedicated default icon.
      */
-    object Info : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+    data object Info : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
         override val defaultIconPainter: Painter?
             @Composable
             get() = painterResource(OudsTheme.drawableResources.component.alert.infoFill)
@@ -312,7 +312,7 @@ sealed class OudsAlertMessageStatus(val icon: OudsAlertMessageIcon? = null) {
      * typically do not block actions.
      * This status displays a dedicated default icon.
      */
-    object Warning : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+    data object Warning : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
         override val defaultIconPainter: Painter?
             @Composable
             get() {
@@ -331,7 +331,7 @@ sealed class OudsAlertMessageStatus(val icon: OudsAlertMessageIcon? = null) {
      * the problem is fixed or dismissed by the user.
      * This status displays a dedicated default icon.
      */
-    object Negative : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
+    data object Negative : OudsAlertMessageStatus(OudsAlertMessageIcon.Default) {
         override val defaultIconPainter: Painter?
             @Composable
             get() = painterResource(OudsTheme.drawableResources.component.alert.importantFill)
