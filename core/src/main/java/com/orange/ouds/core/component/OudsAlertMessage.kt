@@ -100,7 +100,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsAlertMessageFunctionalWithTopEndLinkSample
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageFunctionalWithTopEndActionLinkSample
  */
 @Composable
 fun OudsAlertMessage(

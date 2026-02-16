@@ -204,7 +204,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 }
             }
             if (!actionLink.isNullOrEmpty()) {
-                functionCallArgument("link", OudsAlertMessageActionLink::class.java.name) {
+                functionCallArgument("actionLink", OudsAlertMessageActionLink::class.java.name) {
                     typedArgument("label", actionLink)
                     lambdaArgument("onClick") {
                         comment("Implement click")

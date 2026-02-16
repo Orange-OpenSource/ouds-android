@@ -30,19 +30,19 @@ class OudsAlertMessageTest {
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun oudsAlertMessage_linkClick_succeeds() {
+    fun oudsAlertMessage_actionLinkClick_succeeds() {
         with(composeTestRule) {
-            val linkLabel = "Action"
+            val actionLinkLabel = "Action"
             val onClick = mock<() -> Unit>()
 
             setOudsContent {
                 OudsAlertMessage(
                     label = "Label",
-                    actionLink = OudsAlertMessageActionLink(linkLabel, onClick = onClick)
+                    actionLink = OudsAlertMessageActionLink(actionLinkLabel, onClick = onClick)
                 )
             }
 
-            onNodeWithText(linkLabel).performClick()
+            onNodeWithText(actionLinkLabel).performClick()
             verify(onClick).invoke()
         }
     }
@@ -65,17 +65,17 @@ class OudsAlertMessageTest {
     }
 
     @Test
-    fun oudsAlertMessage_blankLinkLabel_linkNotDisplayed() {
+    fun oudsAlertMessage_blankActionLinkLabel_actionLinkNotDisplayed() {
         with(composeTestRule) {
-            val linkLabel = "   "
+            val actionLinkLabel = "   "
             setOudsContent {
                 OudsAlertMessage(
                     label = "Label",
-                    actionLink = OudsAlertMessageActionLink(label = linkLabel, onClick = {})
+                    actionLink = OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {})
                 )
             }
 
-            onNodeWithText(linkLabel).assertDoesNotExist()
+            onNodeWithText(actionLinkLabel).assertDoesNotExist()
         }
     }
 }
