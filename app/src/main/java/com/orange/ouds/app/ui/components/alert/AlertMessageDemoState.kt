@@ -130,7 +130,7 @@ class AlertMessageDemoState(
         get() = status !in FunctionalStatuses
 
     val actionLinkPositionChipsEnabled: Boolean
-        get() = !actionLink.isNullOrEmpty()
+        get() = actionLink?.isNotBlank() == true
 
     var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
 }
