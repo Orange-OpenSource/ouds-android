@@ -51,6 +51,7 @@ import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -385,6 +386,7 @@ internal fun OudsButton(
                     Text(
                         text = label,
                         color = contentColor.value,
+                        textAlign = TextAlign.Center,
                         style = OudsTheme.typography.label.strong.large
                     )
                 }
@@ -838,6 +840,20 @@ internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int
             iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
         )
     }
+}
+
+@Preview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsButtonOnTwoLines() = PreviewOudsButtonOnTwoLines(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsButton(
+        nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+        nullableLabel = "Button\non two lines",
+        onClick = {},
+    )
 }
 
 internal data class OudsButtonPreviewParameter(
