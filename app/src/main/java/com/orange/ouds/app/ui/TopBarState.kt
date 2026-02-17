@@ -35,6 +35,6 @@ class TopBarState(
 }
 
 @Composable
-fun rememberTopBarState(navigationState: AppNavigationState, themeState: ThemeState) = remember(navigationState) {
+fun rememberTopBarState(navigationState: AppNavigationState, themeState: ThemeState) = remember(navigationState, themeState) {
     TopBarState(navigationState, themeState)
 }
