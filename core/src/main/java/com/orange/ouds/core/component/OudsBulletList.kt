@@ -290,7 +290,6 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
             Text(
                 modifier = Modifier.widthIn(width * scale),
                 text = text,
-                softWrap = false,
                 style = textStyle.toTextStyle(),
                 color = OudsTheme.colorScheme.content.default,
                 textAlign = TextAlign.End
