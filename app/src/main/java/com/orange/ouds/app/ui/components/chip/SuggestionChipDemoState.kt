@@ -22,7 +22,7 @@ import com.orange.ouds.app.R
 fun rememberSuggestionChipDemoState(
     enabled: Boolean = true,
     layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
-    label: String = stringResource(R.string.app_components_common_label_label)
+    label: String = stringResource(R.string.app_components_common_label_tech)
 ) = rememberSaveable(enabled, layout, saver = SuggestionChipDemoState.Saver) {
     SuggestionChipDemoState(enabled, layout, label)
 }

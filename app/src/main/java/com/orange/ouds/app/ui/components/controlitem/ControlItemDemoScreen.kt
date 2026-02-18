@@ -151,7 +151,7 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )

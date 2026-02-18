@@ -84,6 +84,7 @@
     <string name="app_components_common_textInputClearIcon_a11y">مسح المدخلات</string>
     <string name="app_components_common_error_a11y">الحد الأقصى للعرض</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
+    <string name="app_components_common_label_label">تسمية</string>
     <string name="app_components_common_unreadNotificationsBadge_a11y">الإشعارات غير المقروءة</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">لا توجد رسائل غير مقروءة</item>
