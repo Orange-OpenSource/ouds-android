@@ -153,6 +153,10 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -278,6 +282,10 @@ fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -403,6 +411,10 @@ fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputErrorSample
  */
 @Composable
 fun OudsTextInput(
