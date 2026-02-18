@@ -53,7 +53,7 @@ class WireframeTheme : OudsThemeContract {
         get() = WIREFRAME_THEME_NAME
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons = null)
+        get() = OudsThemeSettings()
 
     @Suppress("OVERRIDE_DEPRECATION")
     override val fontFamily: FontFamily

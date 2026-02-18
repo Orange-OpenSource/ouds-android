@@ -1,0 +1,36 @@
+/*
+ * Software Name: OUDS Android
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Android library of reusable graphical components
+ */
+
+package com.orange.ouds.theme.orangebusinesstools.tokens.components
+
+import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.components.OudsAlertTokens
+import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
+
+class OrangeBusinessToolsAlertTokens(
+    override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
+    override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Large,
+    override val borderWidth: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.None,
+    override val sizeIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
+    override val sizeMinHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
+    override val sizeMinHeightBottomActionPlacement: Float = OudsDimensionRawTokens.Dimension1250,
+    override val sizeMinWidth: Float = OudsDimensionRawTokens.Dimension2000,
+    override val spaceColumnGap: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Medium,
+    override val spaceColumnGapAction: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Small,
+    override val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
+    override val spacePaddingInline: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Large,
+    override val spaceRowGap: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.Small,
+    override val spaceRowGapAction: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.TwoExtraSmall,
+    override val spaceRowGapBullet: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None
+) : OudsAlertTokens

@@ -165,17 +165,21 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
     with(state) {
         functionCall("OudsBulletList") {
             trailingLambda = true
+            val typeParameterName = "type"
             if (type is OudsBulletListType.Unordered) {
-                functionCallArgument("type", type::class.java.nestedName) {
-                    functionCallArgument("asset", unorderedAssetClassName.nestedName) {
-                        if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+                functionCallArgument(typeParameterName, type::class.java.nestedName) {
+                    val assetParameterName = "asset"
+                    if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+                        functionCallArgument(assetParameterName, unorderedAssetClassName.nestedName) {
                             painterArgument(themeDrawableResources.tipsAndTricks)
                         }
+                    } else {
+                        rawArgument(assetParameterName, unorderedAssetClassName.nestedName)
                     }
                     if (unorderedAssetBrandColor) typedArgument("brandColor", unorderedAssetBrandColor)
                 }
             } else {
-                functionCallArgument("type", type::class.java.nestedName)
+                rawArgument(typeParameterName, type::class.java.nestedName)
             }
             if (fontSize != OudsBulletListDefaults.TextStyle.fontSize || fontWeight != OudsBulletListDefaults.TextStyle.fontWeight) {
                 constructorCallArgument<OudsBulletListTextStyle>("textStyle") {

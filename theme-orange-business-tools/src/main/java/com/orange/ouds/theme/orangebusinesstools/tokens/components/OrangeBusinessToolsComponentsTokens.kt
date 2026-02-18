@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orangebusinesstools.tokens.components
 
+import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
@@ -32,6 +33,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class OrangeBusinessToolsComponentsTokens(
+    override val alert: OudsAlertTokens = OrangeBusinessToolsAlertTokens(),
     override val badge: OudsBadgeTokens = OrangeBusinessToolsBadgeTokens(),
     override val bar: OudsBarTokens = OrangeBusinessToolsBarTokens(),
     override val bulletList: OudsBulletListTokens = OrangeBusinessToolsBulletListTokens(),

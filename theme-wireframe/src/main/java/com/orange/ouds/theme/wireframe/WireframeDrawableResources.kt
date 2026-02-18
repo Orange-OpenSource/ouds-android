@@ -35,6 +35,7 @@ internal class WireframeDrawableResources : OudsDrawableResources {
     class Component : OudsDrawableResources.Component {
         override val alert = Alert()
         override val bulletList = BulletList()
+        override val button = Button()
         override val checkbox = Checkbox()
         override val chip = Chip()
         override val link = Link()
@@ -55,6 +56,10 @@ internal class WireframeDrawableResources : OudsDrawableResources {
             override val level1 = R.drawable.ic_wireframe_component_bullet_list_level1
             override val level2 = R.drawable.ic_wireframe_component_bullet_list_level2
             override val tick = R.drawable.ic_wireframe_component_bullet_list_tick
+        }
+
+        class Button : OudsDrawableResources.Component.Button {
+            override val expurge = R.drawable.ic_wireframe_component_button_expurge
         }
 
         class Checkbox : OudsDrawableResources.Component.Checkbox {

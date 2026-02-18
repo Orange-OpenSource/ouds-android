@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
@@ -32,6 +33,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class OrangeComponentsTokens(
+    override val alert: OudsAlertTokens = OrangeAlertTokens(),
     override val badge: OudsBadgeTokens = OrangeBadgeTokens(),
     override val bar: OudsBarTokens = OrangeBarTokens(),
     override val bulletList: OudsBulletListTokens = OrangeBulletListTokens(),

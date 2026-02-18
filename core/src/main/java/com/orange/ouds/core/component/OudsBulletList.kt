@@ -323,13 +323,13 @@ sealed class OudsBulletListType {
      * Collects related items with numeric order or sequence. Numbering starts at 1 with the first list item and increases by increments of 1 for each
      * successive ordered list item.
      */
-    object Ordered : OudsBulletListType()
+    data object Ordered : OudsBulletListType()
 
     /**
      * An unordered list without any bullet or alphanumeric sequence. It sill has left-padding, so list items will appear indented. This is the default and
      * is also known as undecorated "Unstyled" list.
      */
-    object Bare : OudsBulletListType()
+    data object Bare : OudsBulletListType()
 }
 
 /**
@@ -378,7 +378,7 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
      * - **Level 1**: An outlined square bullet.
      * - **Level 2**: A dash.
      */
-    object Bullet : OudsBulletListUnorderedAsset,
+    data object Bullet : OudsBulletListUnorderedAsset,
         OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Bullet>(
             OudsBulletListUnorderedAsset.ExtraParameters::class.java,
             {
@@ -404,7 +404,7 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
     /**
      * A bullet represented by a tick (check) icon.
      */
-    object Tick : OudsBulletListUnorderedAsset, OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Tick>(
+    data object Tick : OudsBulletListUnorderedAsset, OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Tick>(
         OudsBulletListUnorderedAsset.ExtraParameters::class.java,
         { painterResource(OudsTheme.drawableResources.component.bulletList.tick) },
         { "" }

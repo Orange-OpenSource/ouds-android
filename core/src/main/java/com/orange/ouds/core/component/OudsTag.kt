@@ -533,6 +533,8 @@ enum class OudsTagSize {
  * It determines the background and the content colors of the tag.
  * It also carries the optional asset to be displayed in the tag: bullet or icon. Depending on the status, this icon can be customizable or be a status
  * dedicated icon.
+ *
+ * @property asset The asset to be displayed in the tag, or `null` if there is no asset.
  */
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
@@ -694,13 +696,15 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      */
     @Composable
     fun color(): Color {
-        return when (this) {
-            is Neutral -> OudsTheme.colorScheme.surface.inverseHigh
-            is Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
-            is Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
-            is Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
-            is Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
-            is Info -> OudsTheme.colorScheme.surface.status.info.emphasized
+        return with(OudsTheme.colorScheme.surface) {
+            when (this@OudsTagStatus) {
+                is Neutral -> inverseHigh
+                is Accent -> status.accent.emphasized
+                is Positive -> status.positive.emphasized
+                is Warning -> status.warning.emphasized
+                is Negative -> status.negative.emphasized
+                is Info -> status.info.emphasized
+            }
         }
     }
 
@@ -709,13 +713,15 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      */
     @Composable
     fun mutedColor(): Color {
-        return when (this) {
-            is Neutral -> OudsTheme.colorScheme.surface.secondary
-            is Accent -> OudsTheme.colorScheme.surface.status.accent.muted
-            is Positive -> OudsTheme.colorScheme.surface.status.positive.muted
-            is Warning -> OudsTheme.colorScheme.surface.status.warning.muted
-            is Negative -> OudsTheme.colorScheme.surface.status.negative.muted
-            is Info -> OudsTheme.colorScheme.surface.status.info.muted
+        return with(OudsTheme.colorScheme.surface) {
+            when (this@OudsTagStatus) {
+                is Neutral -> secondary
+                is Accent -> status.accent.muted
+                is Positive -> status.positive.muted
+                is Warning -> status.warning.muted
+                is Negative -> status.negative.muted
+                is Info -> status.info.muted
+            }
         }
     }
 }

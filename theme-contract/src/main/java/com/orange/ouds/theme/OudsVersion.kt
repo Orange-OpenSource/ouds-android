@@ -16,6 +16,7 @@ package com.orange.ouds.theme
 
 object OudsVersion {
     object Component {
+        const val AlertMessage = "1.0.0"
         const val Badge = "1.2.0"
         const val Bar = "1.0.0"
         const val BulletList = "1.0.0"

@@ -34,6 +34,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoStateDefaults
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.Illustration
+import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
@@ -63,6 +64,15 @@ import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
+
+@Composable
+fun AlertIllustration() = ComponentIllustration {
+    OudsAlertMessage(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        label = stringResource(id = R.string.app_components_common_label_label),
+        onClose = {},
+    )
+}
 
 @Composable
 fun BadgeIllustration() = ComponentIllustration {

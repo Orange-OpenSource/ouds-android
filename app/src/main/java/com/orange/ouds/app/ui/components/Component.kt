@@ -16,6 +16,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.alert.AlertMessageDemoScreen
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
@@ -55,6 +56,13 @@ sealed class Component(
     }
 
     val id: Long = Component::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
+
+    data object Alert : Component(
+        R.string.app_components_alert_label,
+        R.string.app_components_alert_description_text,
+        { AlertIllustration() },
+        listOf(Variant.AlertMessage)
+    )
 
     data object Badge : Component(
         R.string.app_components_badge_label,
@@ -179,6 +187,9 @@ sealed class Variant(
     }
 
     val id: Long = Variant::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
+
+    // Alert
+    data object AlertMessage : Variant(R.string.app_components_alert_alertMessage_label, { AlertMessageDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })

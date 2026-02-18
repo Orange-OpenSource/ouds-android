@@ -163,7 +163,7 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_controlItem_description_label),
+            label = stringResource(R.string.app_components_common_description_label),
             value = description.orEmpty(),
             onValueChange = { value -> description = value }
         )

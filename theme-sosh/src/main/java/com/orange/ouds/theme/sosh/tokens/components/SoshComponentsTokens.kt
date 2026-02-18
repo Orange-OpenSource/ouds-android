@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.sosh.tokens.components
 
+import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
@@ -32,6 +33,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class SoshComponentsTokens(
+    override val alert: OudsAlertTokens = SoshAlertTokens(),
     override val badge: OudsBadgeTokens = SoshBadgeTokens(),
     override val bar: OudsBarTokens = SoshBarTokens(),
     override val bulletList: OudsBulletListTokens = SoshBulletListTokens(),

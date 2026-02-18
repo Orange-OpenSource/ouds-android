@@ -92,6 +92,10 @@
     <string name="app_components_common_unreadNotificationsBadge_a11y">Notifications non lues</string>
     <string name="app_components_common_version_label">Version design du composant</string>
 
+    <!-- Components: alert -->
+    <string name="app_components_alert_description_text">Les composants d\'alerte sont des éléments d\'interface utilisateur qui affichent des informations, des retours système ou des changements d\'état.</string>
+    <string name="app_components_alert_alertMessage_description_text">Un Alert message (ou message d\'alerte) est un élément d\'interface utilisateur qui affiche des informations système, des changements d\'état ou une action requise&#160;; le tout grâce à une communication détaillée, visible, persistante et exploitable.</string>
+
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
 
@@ -110,7 +114,7 @@
     <string name="app_components_chip_description_text">Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.</string>
 
     <!-- Components: colored background -->
-    <string name="app_components_coloredBackground_description_text">Un Colored Background (ou fond coloré) utilise des couleurs spécifiques pour maximiser le contraste avec son contenu. Plusieurs composants tels que les Buttons ou les Links adaptent leur affichage en conséquence lorsqu\'ils sont présentés sur des fonds colorés.</string>
+    <string name="app_components_coloredBackground_description_text">Un Colored background (ou fond coloré) utilise des couleurs spécifiques pour maximiser le contraste avec son contenu. Plusieurs composants tels que les Buttons ou les Links adaptent leur affichage en conséquence lorsqu\'ils sont présentés sur des fonds colorés.</string>
     <string name="app_components_coloredBackground_unsupportedColor_text">Le thème courant ne prend pas en charge la couleur \"%s\".</string>
 
     <!-- Components: divider -->

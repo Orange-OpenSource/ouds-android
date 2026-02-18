@@ -34,7 +34,7 @@ abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1)
         deviceConfig = with(DeviceConfig.NEXUS_5) {
             copy(
                 screenWidth = if (widthDp > 0) (widthDp * density.dpiValue / 160f).toInt() else screenWidth,
-                screenHeight = screenHeight * 2
+                screenHeight = screenHeight * 3
             )
         },
         useDeviceResolution = true,

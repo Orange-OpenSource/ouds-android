@@ -13,6 +13,8 @@
 package com.orange.ouds.core.utilities
 
 import androidx.compose.runtime.Composable
+import com.orange.ouds.core.component.OudsAlertMessagePreviewParameter
+import com.orange.ouds.core.component.OudsAlertMessagePreviewParameterProvider
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameter
@@ -62,6 +64,7 @@ import com.orange.ouds.core.component.OudsTextInputPreviewParameter
 import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
+import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBulletList
@@ -127,6 +130,22 @@ interface OudsPreviewableComponent {
 
     @Composable
     fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?)
+
+    object AlertMessage : OudsPreviewableComponent {
+
+        const val PreviewHeightDp = 1230
+
+        override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsAlertMessage(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsAlertMessagePreviewParameter
+            )
+        }
+    }
 
     object Badge {
 
