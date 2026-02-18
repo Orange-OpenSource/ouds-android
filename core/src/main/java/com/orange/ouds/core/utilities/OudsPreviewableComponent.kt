@@ -69,6 +69,7 @@ import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsButton
+import com.orange.ouds.core.component.PreviewOudsButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
@@ -232,6 +233,18 @@ interface OudsPreviewableComponent {
                     theme = theme,
                     count = parameter as Int
                 )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object OnTwoLines : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsButtonOnTwoLines(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
