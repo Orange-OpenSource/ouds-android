@@ -47,6 +47,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -493,7 +494,9 @@ private fun PreviewOudsBulletList(@PreviewParameter(OudsBulletListPreviewParamet
     PreviewOudsBulletList(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
+@Preview
 @Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBulletListRtl(@PreviewParameter(OudsBulletListPreviewParameterProvider::class) parameter: OudsBulletListPreviewParameter) {
     PreviewOudsBulletListRtl(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
