@@ -1209,11 +1209,13 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
 @Composable
 @Deprecated(
     "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
-    ReplaceWith("OudsTextInput(textFieldState = textFieldState, modifier = modifier, label = label, placeholder = placeholder, " +
-            "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
-            "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
-            "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
-            "interactionSource = interactionSource)")
+    ReplaceWith(
+        "OudsTextInput(textFieldState = textFieldState, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, inputTransformation = inputTransformation, " +
+                "outputTransformation = outputTransformation, interactionSource = interactionSource)"
+    )
 )
 fun OudsTextField(
     textFieldState: TextFieldState,
@@ -1271,11 +1273,13 @@ fun OudsTextField(
 @Composable
 @Deprecated(
     "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
-    ReplaceWith("OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
-            "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
-            "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
-            "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
-            "interactionSource = interactionSource)")
+    ReplaceWith(
+        "OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
+                "interactionSource = interactionSource)"
+    )
 )
 fun OudsTextField(
     value: String,
@@ -1333,10 +1337,13 @@ fun OudsTextField(
 @Composable
 @Deprecated(
     "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
-    ReplaceWith("OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
-            "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
-            "error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, keyboardOptions = keyboardOptions, " +
-            "keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, interactionSource = interactionSource)")
+    ReplaceWith(
+        "OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
+                "interactionSource = interactionSource)"
+    )
 )
 fun OudsTextField(
     value: TextFieldValue,
