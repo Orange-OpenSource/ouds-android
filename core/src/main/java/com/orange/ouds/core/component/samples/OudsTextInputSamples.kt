@@ -67,7 +67,22 @@ internal fun OudsTextInputValueBasedSample() {
 }
 
 @Composable
-internal fun OudsTextInputErrorSample() {
+internal fun OudsTextInputStateBasedErrorSample() {
+    OudsTextInput(
+        textFieldState = rememberTextFieldState(),
+        label = "Label",
+        placeholder = "Placeholder",
+        trailingIconButton = OudsTextInputTrailingIconButton(
+            imageVector = Icons.Filled.DateRange,
+            contentDescription = "Display calendar",
+            onClick = { }),
+        outlined = true,
+        error = OudsError(message = "This field can't be empty.")
+    )
+}
+
+@Composable
+internal fun OudsTextInputValueBasedErrorSample() {
     var value by remember { mutableStateOf("") }
     OudsTextInput(
         value = value,

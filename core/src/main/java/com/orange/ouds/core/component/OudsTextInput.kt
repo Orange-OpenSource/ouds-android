@@ -156,7 +156,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsTextInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -285,7 +285,7 @@ fun OudsTextInput(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsTextInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -414,7 +414,7 @@ fun OudsTextInput(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  *
- * @sample com.orange.ouds.core.component.samples.OudsTextInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
 @Composable
 fun OudsTextInput(
