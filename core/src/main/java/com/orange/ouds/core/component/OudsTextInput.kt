@@ -1202,3 +1202,195 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
             OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = helperText)
         )
     }
+
+/**
+ * @see OudsTextInput
+ */
+@Composable
+@Deprecated(
+    "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
+    ReplaceWith(
+        "OudsTextInput(textFieldState = textFieldState, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, inputTransformation = inputTransformation, " +
+                "outputTransformation = outputTransformation, interactionSource = interactionSource)"
+    )
+)
+fun OudsTextField(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * @see OudsTextInput
+ */
+@Composable
+@Deprecated(
+    "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
+    ReplaceWith(
+        "OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
+                "interactionSource = interactionSource)"
+    )
+)
+fun OudsTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * @see OudsTextInput
+ */
+@Composable
+@Deprecated(
+    "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
+    ReplaceWith(
+        "OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
+                "interactionSource = interactionSource)"
+    )
+)
+fun OudsTextField(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
