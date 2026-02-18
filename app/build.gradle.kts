@@ -123,7 +123,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
-    implementation(project(":theme-orange-business-tools"))
+    implementation(project(":theme-orange-compact"))
     implementation(project(":theme-sosh"))
     implementation(project(":theme-wireframe"))
 
