@@ -41,7 +41,6 @@ class InlineAlertDemoState(
     status: OudsInlineAlertStatus
 ) {
 
-    @Suppress("UNCHECKED_CAST")
     companion object {
         val Saver = listSaver(
             save = { state ->
