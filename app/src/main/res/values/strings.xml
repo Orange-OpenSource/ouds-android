@@ -253,7 +253,7 @@
     <string name="app_components_passwordInput_description_text">Password input is a UI element that allows to securely and confidentially capture a user\’s password.</string>
     <string name="app_components_passwordInput_lockIcon_label" translatable="false">Lock icon</string>
     <string name="app_components_passwordInput_password_label" translatable="false">Password</string>
-    <string name="app_components_passwordInput_passwordHidden_label" translatable="false">Password hidden</string>
+    <string name="app_components_passwordInput_textObfuscationMode_label" translatable="false">Text obfuscation mode</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_label" translatable="false">Radio button</string>

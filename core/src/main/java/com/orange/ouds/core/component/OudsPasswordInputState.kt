@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.foundation.text.input.UndoState
 import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
@@ -28,6 +29,7 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.TextRange
+import com.orange.ouds.foundation.extensions.orElse
 
 /**
  * Create and remember an [OudsPasswordInputState]. The state is remembered using [rememberSaveable] and so
@@ -42,18 +44,18 @@ import androidx.compose.ui.text.TextRange
  * @param initialSelection The initial selection state. If a different value is passed in a
  *   subsequent recomposition, the value of the state will _not_ be updated. To update the state
  *   after it's initialized, call methods on [OudsPasswordInputState].
- * @param initialIsPasswordHidden Whether the password should initially be hidden (masked). Defaults to `true`.
+ * @param initialTextObfuscationMode The initial method used to obscure the input text.
  *   If a different value is passed in a subsequent recomposition, the value of the state will _not_
- *   be updated. To update the state after it's initialized, call [OudsPasswordInputState.isPasswordHidden].
+ *   be updated. To update the state after it's initialized, call [OudsPasswordInputState.textObfuscationMode].
  */
 @Composable
 fun rememberOudsPasswordInputState(
     initialText: String = "",
     initialSelection: TextRange = TextRange(initialText.length),
-    initialIsPasswordHidden: Boolean = true
+    initialTextObfuscationMode: TextObfuscationMode = OudsPasswordInputDefaults.TextObfuscationMode
 ) = rememberSaveable(saver = OudsPasswordInputState.Saver) {
     val textFieldState = TextFieldState(initialText, initialSelection)
-    OudsPasswordInputState(textFieldState, initialIsPasswordHidden)
+    OudsPasswordInputState(textFieldState, initialTextObfuscationMode)
 }
 
 /**
@@ -73,7 +75,7 @@ fun rememberOudsPasswordInputState(
 @Stable
 class OudsPasswordInputState internal constructor(
     @PublishedApi internal val textFieldState: TextFieldState,
-    initialIsPasswordHidden: Boolean
+    initialTextObfuscationMode: TextObfuscationMode
 ) {
 
     companion object {
@@ -86,15 +88,17 @@ class OudsPasswordInputState internal constructor(
                 with(state) {
                     listOf(
                         with(TextFieldState.Saver) { save(textFieldState) },
-                        isPasswordHidden
+                        textObfuscationMode.value
                     )
                 }
             },
             restore = { list: List<Any?> ->
                 val textFieldState = list[0]?.let { TextFieldState.Saver.restore(it) }
+                val textObfuscationModes = with(TextObfuscationMode.Companion) { listOf(Visible, RevealLastTyped, Hidden) }
+                val textObfuscationMode = textObfuscationModes.firstOrNull { it.value == list[1] }.orElse { OudsPasswordInputDefaults.TextObfuscationMode }
                 OudsPasswordInputState(
                     textFieldState as TextFieldState,
-                    list[1] as Boolean
+                    textObfuscationMode
                 )
             }
         )
@@ -105,13 +109,13 @@ class OudsPasswordInputState internal constructor(
      *
      * @param initialText The initial text state.
      * @param initialSelection The initial selection state.
-     * @param initialIsPasswordHidden Whether the password should initially be hidden (masked). Defaults to `true`.
+     * @param initialTextObfuscationMode The initial method used to obscure the input text.
      */
     constructor(
         initialText: String = "",
         initialSelection: TextRange = TextRange(initialText.length),
-        initialIsPasswordHidden: Boolean = true
-    ) : this(TextFieldState(initialText, initialSelection), initialIsPasswordHidden)
+        initialTextObfuscationMode: TextObfuscationMode = OudsPasswordInputDefaults.TextObfuscationMode
+    ) : this(TextFieldState(initialText, initialSelection), initialTextObfuscationMode)
 
     /**
      * The current text content. This value will automatically update when the user enters text or
@@ -168,9 +172,9 @@ class OudsPasswordInputState internal constructor(
     val undoState: UndoState = textFieldState.undoState
 
     /**
-     * Indicates if the password is hidden (masked).
+     * The method used to obscure the input text.
      */
-    var isPasswordHidden: Boolean by mutableStateOf(initialIsPasswordHidden)
+    var textObfuscationMode: TextObfuscationMode by mutableStateOf(initialTextObfuscationMode)
 }
 
 /**

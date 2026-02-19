@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.passwordinput
 
+import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -23,14 +24,17 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsPasswordInput
+import com.orange.ouds.core.component.OudsPasswordInputDefaults
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
+import kotlin.reflect.full.declaredMemberProperties
 
 @Composable
 fun PasswordInputDemoScreen() {
@@ -117,15 +121,20 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_passwordInput_passwordHidden_label),
-            checked = passwordInputState.isPasswordHidden,
-            onCheckedChange = { passwordInputState.isPasswordHidden = it }
+        val textObfuscationModeProperties = TextObfuscationMode.Companion::class.declaredMemberProperties.toList()
+        val textObfuscationModes = textObfuscationModeProperties.map { it.get(TextObfuscationMode.Companion) as TextObfuscationMode }
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_passwordInput_textObfuscationMode_label),
+            chipLabels = textObfuscationModeProperties.map { it.name.toSentenceCase() },
+            selectedChipIndex = textObfuscationModes.indexOf(passwordInputState.textObfuscationMode),
+            onSelectionChange = { index ->
+                passwordInputState.textObfuscationMode = textObfuscationModes[index]
+            }
         )
     }
 }
 
-@OptIn(ExperimentalOudsApi::class)
 @Composable
 private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     val focusManager = LocalFocusManager.current
@@ -143,6 +152,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             prefix = prefix,
             helperText = helperText,
             constrainedMaxWidth = constrainedMaxWidth,
+            keyboardOptions = OudsPasswordInputDefaults.KeyboardOptions.copy(showKeyboardOnFocus = false),
             onKeyboardAction = { focusManager.clearFocus() }
         )
     }
