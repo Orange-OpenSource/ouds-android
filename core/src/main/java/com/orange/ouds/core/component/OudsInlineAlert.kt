@@ -59,7 +59,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *   These alerts follow strict semantic conventions for icon, color, and tone — ensuring clear, accessible communication across all digital products.
  *   Each type has a dedicated, standardized icon that expresses its meaning clearly.
  *
- *   @sample TODO
+ * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalStatusSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsInlineAlertFunctionalStatusSample
  */
 @Composable
 fun OudsInlineAlert(
@@ -119,8 +121,8 @@ sealed class OudsInlineAlertStatus(status: Companion.Status, val icon: OudsAlert
      */
     class Neutral(icon: OudsAlertIcon) : OudsInlineAlertStatus(Companion.Status.Neutral, icon) {
         override val defaultIconPainter
-        @Composable
-        get() = painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartEmpty)
+            @Composable
+            get() = painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartEmpty)
     }
 
     /**
