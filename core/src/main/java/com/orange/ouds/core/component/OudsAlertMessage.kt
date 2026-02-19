@@ -303,7 +303,7 @@ sealed class OudsAlertMessageStatus(status: Companion.Status, val icon: OudsAler
     data object Negative : OudsAlertMessageStatus(Companion.Status.Negative, OudsAlertIcon.Default)
 
     /**
-     * The color associated with this status.
+     * The background color associated with this status.
      */
     @Composable
     fun backgroundColor(): Color {

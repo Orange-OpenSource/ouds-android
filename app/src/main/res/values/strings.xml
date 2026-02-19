@@ -170,6 +170,8 @@
     <string name="app_components_alert_alertMessage_actionLink_label" translatable="false">Action link</string>
     <string name="app_components_alert_alertMessage_actionLinkPosition_label" translatable="false">Action link position</string>
     <string name="app_components_alert_alertMessage_bullet_label" translatable="false">Bullet %d</string>
+    <string name="app_components_alert_inlineAlert_label" translatable="false">Inline alert</string>
+    <string name="app_components_alert_inlineAlert_description_text">Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_label" translatable="false">Badge</string>

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoScreen
+import com.orange.ouds.app.ui.components.alert.InlineAlertDemoScreen
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
@@ -61,7 +62,7 @@ sealed class Component(
         R.string.app_components_alert_label,
         R.string.app_components_alert_description_text,
         { AlertIllustration() },
-        listOf(Variant.AlertMessage)
+        listOf(Variant.AlertMessage, Variant.InlineAlert)
     )
 
     data object Badge : Component(
@@ -190,6 +191,7 @@ sealed class Variant(
 
     // Alert
     data object AlertMessage : Variant(R.string.app_components_alert_alertMessage_label, { AlertMessageDemoScreen() })
+    data object InlineAlert : Variant(R.string.app_components_alert_inlineAlert_label, { InlineAlertDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })

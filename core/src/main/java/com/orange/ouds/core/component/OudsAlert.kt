@@ -42,7 +42,7 @@ abstract class OudsAlertStatus(private val status: Status) {
         }
     }
 
-    val defaultIconPainter: Painter?
+    open val defaultIconPainter: Painter?
         @Composable
         get() = when (this@OudsAlertStatus.status) {
             Status.Negative -> painterResource(OudsTheme.drawableResources.component.alert.importantFill)
@@ -60,8 +60,11 @@ abstract class OudsAlertStatus(private val status: Status) {
             else -> null
         }
 
+    /**
+     * The asset color associated with this status.
+     */
     @Composable
-    internal fun assetColor(): Color {
+    fun assetColor(): Color {
         return with(OudsTheme.colorScheme.content) {
             when (this@OudsAlertStatus.status) {
                 Status.Neutral -> default

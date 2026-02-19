@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -116,7 +117,11 @@ sealed class OudsInlineAlertStatus(status: Companion.Status, val icon: OudsAlert
      *
      * @property icon Icon to be displayed in the inline alert.
      */
-    class Neutral(icon: OudsAlertIcon) : OudsInlineAlertStatus(Companion.Status.Neutral, icon)
+    class Neutral(icon: OudsAlertIcon) : OudsInlineAlertStatus(Companion.Status.Neutral, icon) {
+        override val defaultIconPainter
+        @Composable
+        get() = painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartEmpty)
+    }
 
     /**
      * Accent status uses brand colours to draw attention to promotional or highlighted information while remaining non-critical. Ideal for marketing content,
@@ -152,8 +157,11 @@ sealed class OudsInlineAlertStatus(status: Companion.Status, val icon: OudsAlert
      */
     object Negative : OudsInlineAlertStatus(Companion.Status.Negative, OudsAlertIcon.Default)
 
+    /**
+     * The text color associated with this status.
+     */
     @Composable
-    internal fun textColor(): Color {
+    fun textColor(): Color {
         return with(OudsTheme.colorScheme.content) {
             when (this@OudsInlineAlertStatus) {
                 is Neutral, is Accent -> default
