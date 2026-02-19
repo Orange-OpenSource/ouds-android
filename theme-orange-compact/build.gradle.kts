@@ -57,3 +57,10 @@ dependencies {
 
     testImplementation(project(":core-test"))
 }
+
+mavenCentralPublish {
+    relocation {
+        oldArtifactId = "ouds-theme-orange-business-tools"
+        message = "Orange Business Tools theme has been renamed to Orange Compact."
+    }
+}

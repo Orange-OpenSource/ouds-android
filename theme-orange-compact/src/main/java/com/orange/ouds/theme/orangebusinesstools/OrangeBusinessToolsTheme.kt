@@ -23,7 +23,8 @@ import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
 import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
 
 @Deprecated(
-    "The Orange Business Tools theme has been renamed to Orange Compact, please use ORANGE_BUSINESS_TOOLS_THEME_NAME instead.",
+    "The Orange Business Tools theme has been renamed to Orange Compact, please use ORANGE_COMPACT_THEME_NAME instead " +
+            "and update your Gradle dependency to \"com.orange.ouds.android:ouds-theme-orange-compact\".",
     ReplaceWith("ORANGE_COMPACT_THEME_NAME")
 )
 const val ORANGE_BUSINESS_TOOLS_THEME_NAME = ORANGE_COMPACT_THEME_NAME
@@ -108,7 +109,8 @@ const val ORANGE_BUSINESS_TOOLS_THEME_NAME = ORANGE_COMPACT_THEME_NAME
  * @param roundedCornerAlertMessages Whether or not alert messages have rounded corners.
  */
 @Deprecated(
-    "The Orange Business Tools theme has been renamed to Orange Compact, please use OrangeCompactTheme constructor instead.",
+    "The Orange Business Tools theme has been renamed to Orange Compact, please use OrangeCompactTheme constructor instead " +
+            "and update your Gradle dependency to \"com.orange.ouds.android:ouds-theme-orange-compact\".",
     ReplaceWith("OrangeCompactTheme(orangeFontFamily, roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages)")
 )
 open class OrangeBusinessToolsTheme(
