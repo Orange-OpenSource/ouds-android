@@ -23,7 +23,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
@@ -71,7 +70,7 @@ fun OudsInlineAlert(
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
-        Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)) {
+        Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)) {
             status.icon.Content(
                 modifier = Modifier
                     .size(sizeIcon.value * scale),
@@ -210,4 +209,4 @@ internal fun PreviewOudsInlineAlert(
 }
 
 internal class OudsInlineAlertPreviewParameterProvider :
-    BasicPreviewParameterProvider<String>("Label", "Label with a very long name that need more than one line to be displayed")
+    BasicPreviewParameterProvider<String>("Label", "Label with a very long name that need more than one line to be displayed.")
