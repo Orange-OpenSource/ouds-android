@@ -27,6 +27,9 @@ import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
+ * Base class for defining the semantic status of an alert component ([OudsInlineAlert] or [OudsAlertMessage]).
+ * It holds the common logic for determining the colors and default icons.
+ *
  * @suppress
  */
 @InternalOudsApi
@@ -42,6 +45,10 @@ abstract class OudsAlertStatus(private val status: Status) {
         }
     }
 
+    /**
+     * The default painter associated with a functional status (e.g., success, warning).
+     * Returns `null` for non-functional statuses like Accent or Neutral, which do not have a default icon.
+     */
     open val defaultIconPainter: Painter?
         @Composable
         get() = when (this@OudsAlertStatus.status) {
@@ -82,7 +89,7 @@ abstract class OudsAlertStatus(private val status: Status) {
  * Represents a non-clickable icon to be displayed within an [OudsAlertMessage] or an [OudsInlineAlert].
  *
  * This class handles the creation of the icon from different sources like [Painter], [ImageVector], or [ImageBitmap].
- * An accessibility description is not required as the alert's main `label` should provide the necessary context.
+ * An accessibility description is not required, as the alert's main `label` should provide the necessary context.
  */
 open class OudsAlertIcon private constructor(graphicsObjectProvider: @Composable (OudsAlertIcon) -> Any) :
     OudsComponentIcon<OudsAlertIcon.ExtraParameters, OudsAlertIcon>(
