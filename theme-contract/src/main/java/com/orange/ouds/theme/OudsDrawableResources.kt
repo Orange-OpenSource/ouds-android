@@ -127,6 +127,7 @@ interface OudsDrawableResources {
         val actions: Actions
         val navigation: Navigation
         val settingsAndTools: SettingsAndTools
+        val socialAndEngagement: SocialAndEngagement
 
         interface Actions {
             @get:DrawableRes
@@ -144,6 +145,11 @@ interface OudsDrawableResources {
         interface SettingsAndTools {
             @get:DrawableRes
             val hide: Int
+        }
+
+        interface SocialAndEngagement {
+            @get:DrawableRes
+            val heartEmpty: Int
         }
     }
 }

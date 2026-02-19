@@ -35,10 +35,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
+import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
-import com.orange.ouds.core.component.OudsAlertMessageIcon
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -152,7 +152,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
-    val icon = OudsAlertMessageIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+    val icon = OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
     with(state) {
         OudsAlertMessage(
             label = label,
@@ -187,7 +187,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         if (hasStatusIcon) {
-                            constructorCallArgument<OudsAlertMessageIcon>("icon") {
+                            constructorCallArgument<OudsAlertIcon>("icon") {
                                 painterArgument(themeDrawableResources.tipsAndTricks)
                             }
                         }

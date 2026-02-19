@@ -98,6 +98,7 @@ class OrangeDrawableResources : OudsDrawableResources {
         override val actions = Actions()
         override val navigation = Navigation()
         override val settingsAndTools = SettingsAndTools()
+        override val socialAndEngagement = SocialAndEngagement()
 
         class Actions : OudsDrawableResources.Functional.Actions {
             override val delete = R.drawable.ic_orange_functional_actions_delete
@@ -110,6 +111,10 @@ class OrangeDrawableResources : OudsDrawableResources {
 
         class SettingsAndTools : OudsDrawableResources.Functional.SettingsAndTools {
             override val hide = R.drawable.ic_orange_functional_settings_and_tools_hide
+        }
+
+        class SocialAndEngagement : OudsDrawableResources.Functional.SocialAndEngagement {
+            override val heartEmpty = R.drawable.ic_orange_functional_social_and_engagement_heart_empty
         }
     }
 }
