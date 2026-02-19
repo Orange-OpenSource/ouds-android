@@ -17,16 +17,15 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsAlertMessageTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.AlertMessage,
+internal class OudsInlineAlertTest(parameter: Any) : OudsComponentSnapshotTest(
+    OudsPreviewableComponent.InlineAlert,
     parameter,
-    OudsComponentTestSuite.theme,
-    heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp
+    OudsComponentTestSuite.theme
 ) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.AlertMessage.parameters
+        internal fun data() = OudsPreviewableComponent.InlineAlert.parameters
     }
 }

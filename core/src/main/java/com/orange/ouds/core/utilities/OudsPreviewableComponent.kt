@@ -40,6 +40,7 @@ import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
 import com.orange.ouds.core.component.OudsFloatingActionButtonPreviewParameterProvider
+import com.orange.ouds.core.component.OudsInlineAlertPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
@@ -85,6 +86,7 @@ import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
+import com.orange.ouds.core.component.PreviewOudsInlineAlert
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
@@ -492,6 +494,20 @@ interface OudsPreviewableComponent {
                     appearance = parameter as OudsFloatingActionButtonAppearance
                 )
             }
+        }
+    }
+
+    object InlineAlert : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsInlineAlertPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsInlineAlert(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                label = parameter as String
+            )
         }
     }
 
