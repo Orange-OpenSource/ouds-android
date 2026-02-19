@@ -255,7 +255,7 @@ enum class OudsAlertMessageActionLinkPosition {
  * It determines the background and the icon colors of the alert message.
  * It also carries the optional icon to be displayed in the alert message. Depending on the status, this icon can be customizable or be a status dedicated icon.
  *
- * @property icon The icon to be displayed in the alert message, or `null` if there is no icon.
+ * @property icon The [OudsAlertIcon] to be displayed in the alert message, or `null` if there is no icon.
  */
 sealed class OudsAlertMessageStatus(status: Companion.Status, val icon: OudsAlertIcon? = null) : OudsAlertStatus(status) {
 
@@ -263,7 +263,7 @@ sealed class OudsAlertMessageStatus(status: Companion.Status, val icon: OudsAler
      * Neutral status can be used for generic informational messages that provide context but carry no semantic meaning.
      * Ideal for subtle notices, contextual help, or content highlights within pages.
      *
-     * @property icon Icon to be displayed at the start of the inline alert.
+     * @property icon The optional [OudsAlertIcon] to be displayed at the start of the inline alert.
      */
     class Neutral(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(Companion.Status.Neutral, icon)
 
@@ -271,7 +271,7 @@ sealed class OudsAlertMessageStatus(status: Companion.Status, val icon: OudsAler
      * Accent status uses brand colours and can include decorative icons to draw attention to key marketing or communication content.
      * Perfect for promotional, inspirational, or brand-driven highlights that engage the user positively.
      *
-     * @property icon Icon to be displayed at the start of the inline alert.
+     * @property icon The optional [OudsAlertIcon] to be displayed at the start of the inline alert.
      */
     class Accent(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(Companion.Status.Accent, icon)
 

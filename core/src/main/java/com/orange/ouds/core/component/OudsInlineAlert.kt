@@ -104,10 +104,9 @@ object OudsInlineAlertDefaults {
 /**
  * The status of an [OudsInlineAlert]. Each status is designed to convey a specific meaning and ensure clarity in communication.
  * It determines the text and the icon colors of the inline alert.
- * It also carries the optional icon to be displayed in the alert message. Depending on the status, this icon can be customizable or be a status dedicated icon.
+ * It also carries the icon to be displayed in the inline alert. Depending on the status, this icon can be customizable or be a status dedicated icon.
  *
- *
- * @property icon The icon to be displayed in the inline alert.
+ * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
  */
 sealed class OudsInlineAlertStatus(status: Companion.Status, val icon: OudsAlertIcon) : OudsAlertStatus(status) {
 
@@ -116,7 +115,7 @@ sealed class OudsInlineAlertStatus(status: Companion.Status, val icon: OudsAlert
      * tips, general information, or descriptive labels — where no specific feedback or urgency is required. Appropriate for help sections, dashboards, or
      * onboarding flows.
      *
-     * @property icon Icon to be displayed in the inline alert.
+     * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
     class Neutral(icon: OudsAlertIcon) : OudsInlineAlertStatus(Companion.Status.Neutral, icon) {
         override val defaultIconPainter
@@ -134,20 +133,20 @@ sealed class OudsInlineAlertStatus(status: Companion.Status, val icon: OudsAlert
     class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(Companion.Status.Accent, icon)
 
     /**
-     * Positive status confirms that an action was completed successfully. Uses a green color and the standard success icon.
-     * This status displays a dedicated default icon.
+     * Positive status confirms that an action was completed successfully.
+     * It uses a green color and the standard success icon.
      */
     object Positive : OudsInlineAlertStatus(Companion.Status.Positive, OudsAlertIcon.Default)
 
     /**
-     * Info status provides neutral information or updates about the system or account status. Uses blue for neutrality and clarity.
-     * This status displays a dedicated default icon.
+     * Info status provides neutral information or updates about the system or account status.
+     * It uses blue for neutrality and clarity and a dedicated default icon.
      */
     object Info : OudsInlineAlertStatus(Companion.Status.Info, OudsAlertIcon.Default)
 
     /**
-     * Warning status draws attention to potential issues or upcoming changes. Uses yellow to signal caution while remaining non-blocking.
-     * This status displays a dedicated default icon.
+     * Warning status draws attention to potential issues or upcoming changes.
+     * It uses yellow to signal caution while remaining non-blocking and a dedicated default icon.
      */
     object Warning : OudsInlineAlertStatus(Companion.Status.Warning, OudsAlertIcon.Default)
 
