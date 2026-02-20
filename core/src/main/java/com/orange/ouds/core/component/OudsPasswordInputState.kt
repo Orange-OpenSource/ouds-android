@@ -54,8 +54,7 @@ fun rememberOudsPasswordInputState(
     initialSelection: TextRange = TextRange(initialText.length),
     initialTextObfuscationMode: TextObfuscationMode = OudsPasswordInputDefaults.TextObfuscationMode
 ) = rememberSaveable(saver = OudsPasswordInputState.Saver) {
-    val textFieldState = TextFieldState(initialText, initialSelection)
-    OudsPasswordInputState(textFieldState, initialTextObfuscationMode)
+    OudsPasswordInputState(initialText, initialSelection, initialTextObfuscationMode)
 }
 
 /**
@@ -75,10 +74,15 @@ fun rememberOudsPasswordInputState(
 @Stable
 class OudsPasswordInputState internal constructor(
     @PublishedApi internal val textFieldState: TextFieldState,
-    initialTextObfuscationMode: TextObfuscationMode
+    initialTextObfuscationMode: TextObfuscationMode,
+    initialLastNonVisibleTextObfuscationMode: TextObfuscationMode
 ) {
 
     companion object {
+
+        private val DefaultLastNonVisibleTextObfuscationMode = OudsPasswordInputDefaults.TextObfuscationMode
+            .takeIf { it != TextObfuscationMode.Visible }
+            .orElse { TextObfuscationMode.RevealLastTyped }
 
         /**
          * Saves and restores an [OudsPasswordInputState] for [rememberSaveable].
@@ -88,7 +92,8 @@ class OudsPasswordInputState internal constructor(
                 with(state) {
                     listOf(
                         with(TextFieldState.Saver) { save(textFieldState) },
-                        textObfuscationMode.value
+                        textObfuscationMode.value,
+                        lastNonVisibleTextObfuscationMode.value
                     )
                 }
             },
@@ -96,9 +101,12 @@ class OudsPasswordInputState internal constructor(
                 val textFieldState = list[0]?.let { TextFieldState.Saver.restore(it) }
                 val textObfuscationModes = with(TextObfuscationMode.Companion) { listOf(Visible, RevealLastTyped, Hidden) }
                 val textObfuscationMode = textObfuscationModes.firstOrNull { it.value == list[1] }.orElse { OudsPasswordInputDefaults.TextObfuscationMode }
+                val lastNonVisibleTextObfuscationMode =
+                    textObfuscationModes.firstOrNull { it.value == list[2] }.orElse { DefaultLastNonVisibleTextObfuscationMode }
                 OudsPasswordInputState(
                     textFieldState as TextFieldState,
-                    textObfuscationMode
+                    textObfuscationMode,
+                    lastNonVisibleTextObfuscationMode
                 )
             }
         )
@@ -115,7 +123,11 @@ class OudsPasswordInputState internal constructor(
         initialText: String = "",
         initialSelection: TextRange = TextRange(initialText.length),
         initialTextObfuscationMode: TextObfuscationMode = OudsPasswordInputDefaults.TextObfuscationMode
-    ) : this(TextFieldState(initialText, initialSelection), initialTextObfuscationMode)
+    ) : this(
+        TextFieldState(initialText, initialSelection),
+        initialTextObfuscationMode,
+        initialTextObfuscationMode.takeIf { it != TextObfuscationMode.Visible }.orElse { DefaultLastNonVisibleTextObfuscationMode }
+    )
 
     /**
      * The current text content. This value will automatically update when the user enters text or
@@ -171,10 +183,22 @@ class OudsPasswordInputState internal constructor(
     @ExperimentalFoundationApi
     val undoState: UndoState = textFieldState.undoState
 
+    private var _textObfuscationMode: TextObfuscationMode by mutableStateOf(initialTextObfuscationMode)
+
     /**
      * The method used to obscure the input text.
      */
-    var textObfuscationMode: TextObfuscationMode by mutableStateOf(initialTextObfuscationMode)
+    var textObfuscationMode: TextObfuscationMode
+        get() = _textObfuscationMode
+        set(value) {
+            if (value != TextObfuscationMode.Visible) {
+                lastNonVisibleTextObfuscationMode = value
+            }
+            _textObfuscationMode = value
+        }
+
+    internal var lastNonVisibleTextObfuscationMode: TextObfuscationMode by mutableStateOf(initialLastNonVisibleTextObfuscationMode)
+        private set
 }
 
 /**

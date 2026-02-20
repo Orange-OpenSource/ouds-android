@@ -34,7 +34,6 @@ import com.orange.ouds.core.component.OudsPasswordInputDefaults
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.theme.OudsVersion
-import kotlin.reflect.full.declaredMemberProperties
 
 @Composable
 fun PasswordInputDemoScreen() {
@@ -121,8 +120,8 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
-        val textObfuscationModeProperties = TextObfuscationMode.Companion::class.declaredMemberProperties.toList()
-        val textObfuscationModes = textObfuscationModeProperties.map { it.get(TextObfuscationMode.Companion) as TextObfuscationMode }
+        val textObfuscationModeProperties = with(TextObfuscationMode.Companion) { listOf(::Visible, ::RevealLastTyped, ::Hidden) }
+        val textObfuscationModes = textObfuscationModeProperties.map { it.get() }
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_passwordInput_textObfuscationMode_label),

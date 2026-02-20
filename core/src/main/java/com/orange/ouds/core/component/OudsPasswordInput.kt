@@ -22,9 +22,7 @@ import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,7 +39,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -123,13 +120,6 @@ fun OudsPasswordInput(
 
     val emptyText = state.text.isEmpty()
 
-    var lastNonVisibleTextObfuscationMode by remember {
-        mutableStateOf(
-            state.textObfuscationMode.takeIf { it != TextObfuscationMode.Visible }
-                .orElse { OudsPasswordInputDefaults.TextObfuscationMode.takeIf { it != TextObfuscationMode.Visible } }
-                .orElse { TextObfuscationMode.RevealLastTyped })
-    }
-
     OudsTextInput(
         state = passwordInputState,
         emptyText = emptyText,
@@ -159,11 +149,10 @@ fun OudsPasswordInput(
                         leadingIcon = if (lockIcon) textInputLockIcon() else null,
                         trailingIconButton = trailingIconButton(isPasswordHidden = state.textObfuscationMode != TextObfuscationMode.Visible) {
                             with(state) {
-                                if (textObfuscationMode == TextObfuscationMode.Visible) {
-                                    textObfuscationMode = lastNonVisibleTextObfuscationMode
+                                textObfuscationMode = if (textObfuscationMode == TextObfuscationMode.Visible) {
+                                    lastNonVisibleTextObfuscationMode
                                 } else {
-                                    lastNonVisibleTextObfuscationMode = textObfuscationMode
-                                    textObfuscationMode = TextObfuscationMode.Visible
+                                    TextObfuscationMode.Visible
                                 }
                             }
                         },
