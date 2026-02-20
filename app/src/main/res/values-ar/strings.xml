@@ -124,7 +124,7 @@
     <string name="app_components_coloredBackground_description_text">تستخدم Colored backgrounds ألوانًا محددة لتعزيز التباين مع المحتوى. يتكيف العديد من المكونات مثل الأزرار أو الروابط مع العرض وفقًا لذلك عند عرضها على خلفيات ملونة.</string>
     <string name="app_components_coloredBackground_unsupportedColor_text">السمة الحالية لا تدعم لون "%s".</string>
     <string name="app_components_coloredBackground_button_label">زر</string>
-    <string name="app_components_coloredBackground_link_label">Link</string> <!-- TODO -->
+    <string name="app_components_coloredBackground_link_label">رابط</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_description_text">Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا</string>
