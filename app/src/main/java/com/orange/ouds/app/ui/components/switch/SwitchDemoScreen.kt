@@ -65,7 +65,8 @@ private fun SwitchDemoContent(state: SwitchDemoState) {
             },
             checked = checked,
             onCheckedChange = { checked = it },
-            enabled = enabled
+            enabled = enabled,
+            readOnly = readOnly
         )
     }
 }
