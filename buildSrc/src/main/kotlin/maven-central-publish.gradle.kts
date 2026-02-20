@@ -43,12 +43,34 @@ afterEvaluate {
     if (pluginExtension?.enabled == true) {
         publishing {
             publications {
+                val groupId = "com.orange.ouds.android"
+                val artifactId = pluginExtension?.artifactId ?: project.artifactId
+                val version = project.version.toString()
+
+                pluginExtension?.relocation?.let { relocation ->
+                    create<MavenPublication>("relocation") {
+                        this.groupId = groupId
+                        this.artifactId = requireNotNull(relocation.oldArtifactId) { "Relocation oldArtifactId cannot be null." }
+                        this.version = version
+                        pom {
+                            distributionManagement {
+                                relocation {
+                                    this.groupId = groupId
+                                    this.artifactId = artifactId
+                                    this.version = version
+                                    message = relocation.message.orEmpty()
+                                }
+                            }
+                        }
+                    }
+                }
+
                 create<MavenPublication>(MavenCentralPublishPluginExtension.VARIANT) {
                     from(components["release"])
-                    groupId = "com.orange.ouds.android"
-                    artifactId = pluginExtension?.artifactId ?: project.artifactId
+                    this.groupId = groupId
+                    this.artifactId = artifactId
                     this.version = version
-                    
+
                     if (tasks.findByName("dokkaGenerate") != null) {
                         val dokkaJar = layout.buildDirectory.file("outputs/${project.name}-${project.version}-javadoc.jar")
                         val dokkaArtifact = this@afterEvaluate.artifacts.add("default", dokkaJar) {

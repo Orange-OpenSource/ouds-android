@@ -26,8 +26,8 @@ import com.orange.ouds.theme.orange.OrangeFontFamily
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orangebusinesstools.ORANGE_BUSINESS_TOOLS_THEME_NAME
-import com.orange.ouds.theme.orangebusinesstools.OrangeBusinessToolsTheme
+import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
+import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
 import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
@@ -38,7 +38,7 @@ fun rememberThemeState(
     settings: OudsThemeSettings = OudsThemeSettings(),
     themeNames: List<String> = listOf(
         ORANGE_THEME_NAME,
-        ORANGE_BUSINESS_TOOLS_THEME_NAME,
+        ORANGE_COMPACT_THEME_NAME,
         SOSH_THEME_NAME,
         WIREFRAME_THEME_NAME
     ),
@@ -120,7 +120,7 @@ class ThemeState(
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )
-                    ORANGE_BUSINESS_TOOLS_THEME_NAME -> OrangeBusinessToolsTheme(
+                    ORANGE_COMPACT_THEME_NAME -> OrangeCompactTheme(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
