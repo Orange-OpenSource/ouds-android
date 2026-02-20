@@ -82,7 +82,7 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
         }
         CustomizationDropdownMenu(
             applyTopPadding = false,
-            label = stringResource(id = R.string.app_components_common_status_label),
+            label = stringResource(id = R.string.app_components_common_status_tech),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
                     label = status::class.simpleName.orEmpty().toSentenceCase(),

@@ -56,33 +56,33 @@ fun ButtonDemoScreen() {
 private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_onColoredBackground_label),
+            label = stringResource(R.string.app_components_common_onColoredBackground_tech),
             checked = onColoredBox,
             onCheckedChange = { onColoredBox = it },
             enabled = onColoredBoxSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_appearance_label),
+            label = stringResource(R.string.app_components_common_appearance_tech),
             chipLabels = OudsButtonAppearance.entries.map { it.name },
             selectedChipIndex = OudsButtonAppearance.entries.indexOf(appearance),
             onSelectionChange = { index -> appearance = OudsButtonAppearance.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_loader_label),
+            label = stringResource(R.string.app_components_common_loader_tech),
             checked = hasLoader,
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_label),
+            label = stringResource(R.string.app_components_common_layout_tech),
             chipLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = ButtonDemoState.Layout.entries[index] }

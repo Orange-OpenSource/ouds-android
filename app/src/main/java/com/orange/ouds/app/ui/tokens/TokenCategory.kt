@@ -45,14 +45,14 @@ sealed class TokenCategory<T>(
         ?.let { "${OudsTheme::class.simpleName}.$it" }
 
     data object Border : TokenCategory<Border>(
-        R.string.app_tokens_border_label,
+        R.string.app_tokens_border_tech,
         { R.drawable.ic_border },
         R.string.app_tokens_border_description_text,
         listOf(TokenProperty.BorderWidth, TokenProperty.BorderRadius, TokenProperty.BorderStyle),
     )
 
     data object Color : TokenCategory<Color>(
-        R.string.app_tokens_color_label,
+        R.string.app_tokens_color_tech,
         { it.palette },
         R.string.app_tokens_color_description_text,
         listOf(
@@ -68,13 +68,13 @@ sealed class TokenCategory<T>(
     )
 
     data object Dimension : TokenCategory<Dimension>(
-        R.string.app_tokens_dimension_label,
+        R.string.app_tokens_dimension_tech,
         { R.drawable.ic_dimension },
         R.string.app_tokens_dimension_description_text,
         subcategories = listOf(Space, Size)
     ) {
         data object Space : TokenCategory<Space>(
-            R.string.app_tokens_dimension_space_label,
+            R.string.app_tokens_dimension_space_tech,
             { R.drawable.ic_dimension },
             R.string.app_tokens_dimension_space_description_text,
             listOf(
@@ -89,7 +89,7 @@ sealed class TokenCategory<T>(
         )
 
         data object Size : TokenCategory<Size>(
-            R.string.app_tokens_dimension_size_label,
+            R.string.app_tokens_dimension_size_tech,
             { R.drawable.ic_dimension },
             R.string.app_tokens_dimension_size_description_text,
             listOf(TokenProperty.SizeMinInteractiveArea, TokenProperty.SizeIconDecorative, TokenProperty.SizeIconWithText, TokenProperty.SizeMaxWidth),
@@ -97,28 +97,28 @@ sealed class TokenCategory<T>(
     }
 
     data object Elevation : TokenCategory<Elevation>(
-        R.string.app_tokens_elevation_label,
+        R.string.app_tokens_elevation_tech,
         { R.drawable.ic_layers },
         R.string.app_tokens_elevation_description_text,
         listOf(TokenProperty.Elevation)
     )
 
     data object Grid : TokenCategory<Grid>(
-        R.string.app_tokens_grid_label,
+        R.string.app_tokens_grid_tech,
         { it.menuGrid },
         R.string.app_tokens_grid_description_text,
         listOf(TokenProperty.Grid)
     )
 
     data object Opacity : TokenCategory<Opacity>(
-        R.string.app_tokens_opacity_label,
+        R.string.app_tokens_opacity_tech,
         { R.drawable.ic_filter_effects },
         R.string.app_tokens_opacity_description_text,
         listOf(TokenProperty.Opacity)
     )
 
     data object Typography : TokenCategory<Typography>(
-        R.string.app_tokens_typography_label,
+        R.string.app_tokens_typography_tech,
         { R.drawable.ic_typography },
         R.string.app_tokens_typography_description_text,
         listOf(TokenProperty.Typography)

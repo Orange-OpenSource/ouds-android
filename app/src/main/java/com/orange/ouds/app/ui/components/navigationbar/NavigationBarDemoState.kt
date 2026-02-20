@@ -70,9 +70,9 @@ class NavigationBarDemoState(
         get() = Item.entries.take(itemCount)
 
     enum class ItemBadge(@StringRes val labelRes: Int) {
-        None(R.string.app_components_common_none_label),
-        Standard(R.string.app_components_badge_standardType_label),
-        Count(R.string.app_components_badge_countType_label)
+        None(R.string.app_components_common_none_tech),
+        Standard(R.string.app_components_badge_standardType_tech),
+        Count(R.string.app_components_badge_countType_tech)
     }
 
     enum class Item(val iconResourceProvider: ThemeDrawableResourceProvider, @StringRes val labelRes: Int) {

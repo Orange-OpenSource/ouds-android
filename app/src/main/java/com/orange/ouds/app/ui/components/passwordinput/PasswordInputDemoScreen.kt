@@ -51,42 +51,42 @@ fun PasswordInputDemoScreen() {
 private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_outlined_label),
+            label = stringResource(R.string.app_components_common_outlined_tech),
             checked = outlined,
             onCheckedChange = { outlined = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_passwordInput_lockIcon_label),
+            label = stringResource(R.string.app_components_passwordInput_lockIcon_tech),
             checked = lockIcon,
             onCheckedChange = { lockIcon = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_loader_label),
+            label = stringResource(R.string.app_components_common_loader_tech),
             checked = hasLoader,
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_tech),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_error_label),
+            label = stringResource(R.string.app_components_common_error_tech),
             checked = error,
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_errorMessage_label),
+            label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
             enabled = errorMessageTextInputEnabled
@@ -99,24 +99,24 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_placeholder_label),
+            label = stringResource(R.string.app_components_common_placeholder_tech),
             value = placeholder,
             onValueChange = { value -> placeholder = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_prefix_label),
+            label = stringResource(R.string.app_components_common_prefix_tech),
             value = prefix,
             onValueChange = { value -> prefix = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_helperText_label),
+            label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText,
             onValueChange = { value -> helperText = value }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_tech),
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )

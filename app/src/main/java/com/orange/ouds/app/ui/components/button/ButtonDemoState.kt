@@ -26,7 +26,7 @@ import com.orange.ouds.core.component.OudsButtonDefaults
 
 @Composable
 fun rememberButtonDemoState(
-    label: String = stringResource(id = R.string.app_components_button_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
@@ -107,8 +107,8 @@ class ButtonDemoState(
         get() = layout != Layout.IconOnly
 
     enum class Layout(@StringRes val labelRes: Int) {
-        TextOnly(R.string.app_components_common_textOnlyLayout_label),
-        TextAndIcon(R.string.app_components_common_textAndIconLayout_label),
-        IconOnly(R.string.app_components_common_iconOnlyLayout_label)
+        TextOnly(R.string.app_components_common_textOnlyLayout_tech),
+        TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
+        IconOnly(R.string.app_components_common_iconOnlyLayout_tech)
     }
 }

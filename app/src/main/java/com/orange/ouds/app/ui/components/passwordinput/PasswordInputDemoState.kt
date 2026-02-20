@@ -25,7 +25,7 @@ import com.orange.ouds.core.component.OudsPasswordInputState
 @Composable
 fun rememberPasswordInputDemoState(
     passwordInputState: OudsPasswordInputState = OudsPasswordInputState(),
-    label: String = stringResource(id = R.string.app_components_passwordInput_password_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     placeholder: String = "",
     outlined: Boolean = false,
     lockIcon: Boolean = false,

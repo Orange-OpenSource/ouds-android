@@ -70,20 +70,20 @@ fun BadgeDemoScreen() {
 private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_type_label),
+            label = stringResource(R.string.app_components_common_type_tech),
             chipLabels = BadgeDemoState.Type.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = BadgeDemoState.Type.entries.indexOf(type),
             onSelectionChange = { index -> type = BadgeDemoState.Type.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_size_label),
+            label = stringResource(R.string.app_components_common_size_tech),
             chips = OudsBadgeSize.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = it in enabledSizes) },
             selectedChipIndex = OudsBadgeSize.entries.indexOf(size),
             onSelectionChange = { index -> size = OudsBadgeSize.entries[index] }
@@ -91,7 +91,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         val statuses = OudsBadgeStatus.entries
         CustomizationDropdownMenu(
             applyTopPadding = true,
-            label = stringResource(id = R.string.app_components_common_status_label),
+            label = stringResource(id = R.string.app_components_common_status_tech),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
                     label = status.name.toSentenceCase(),
@@ -109,7 +109,7 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_badge_count_label),
+            label = stringResource(R.string.app_components_badge_count_tech),
             value = TextFieldValue(count.toString(), TextRange(count.toString().length)),
             onValueChange = { value ->
                 val filteredCount = value.text
