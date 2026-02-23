@@ -135,7 +135,7 @@ interface OudsPreviewableComponent {
 
     object AlertMessage : OudsPreviewableComponent {
 
-        const val PreviewHeightDp = 1230
+        const val PreviewHeightDp = 1470
 
         override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
 
@@ -185,6 +185,9 @@ interface OudsPreviewableComponent {
     object BulletList {
 
         object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 730
+
             override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
 
             @Composable
@@ -198,6 +201,9 @@ interface OudsPreviewableComponent {
         }
 
         object Rtl : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 730
+
             override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
 
             @Composable
@@ -273,6 +279,8 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 880
+
             override val parameters: List<Any> = OudsCheckboxItemPreviewParameterProvider().values.toList()
 
             @Composable
@@ -316,6 +324,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 790
 
             override val parameters: List<Any> = emptyList()
 
@@ -596,6 +606,8 @@ interface OudsPreviewableComponent {
 
     object PasswordInput : OudsPreviewableComponent {
 
+        const val PreviewHeightDp = 840
+
         override val parameters: List<Any> = OudsPasswordInputPreviewParameterProvider().values.toList()
 
         @Composable
@@ -611,6 +623,8 @@ interface OudsPreviewableComponent {
     object RadioButtonItem {
 
         object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 880
 
             override val parameters: List<Any> = OudsRadioButtonItemPreviewParameterProvider().values.toList()
 
@@ -655,6 +669,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 880
 
             override val parameters: List<Any> = emptyList()
 
@@ -719,6 +735,8 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 880
+
             override val parameters: List<Any> = OudsSwitchItemPreviewParameterProvider().values.toList()
 
             @Composable
@@ -745,6 +763,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 820
 
             override val parameters: List<Any> = emptyList()
 
@@ -801,9 +821,10 @@ interface OudsPreviewableComponent {
 
     object TextInput {
 
-        const val PreviewHeightDp = 1100
 
         object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1100
 
             override val parameters: List<Any> = OudsTextInputPreviewParameterProvider().values.toList()
 
@@ -818,6 +839,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithRoundedCorners : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 670
 
             override val parameters: List<Any> = emptyList()
 

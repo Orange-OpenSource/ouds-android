@@ -60,6 +60,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -472,8 +473,8 @@ private fun OudsAlertMessageBulletListItem(label: String) {
     }
 }
 
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsAlertMessage(@PreviewParameter(OudsAlertMessagePreviewParameterProvider::class) parameter: OudsAlertMessagePreviewParameter) {

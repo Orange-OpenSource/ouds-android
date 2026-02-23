@@ -23,7 +23,8 @@ internal class OudsBulletListTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.BulletList.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.BulletList.Default.PreviewHeightDp
     ) {
         companion object {
             @JvmStatic
@@ -36,7 +37,8 @@ internal class OudsBulletListTest {
     class Rtl(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.BulletList.Rtl,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.BulletList.Rtl.PreviewHeightDp
     ) {
         companion object {
             @JvmStatic

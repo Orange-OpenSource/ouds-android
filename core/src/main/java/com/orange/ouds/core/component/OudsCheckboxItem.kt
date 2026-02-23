@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -27,13 +29,14 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -229,7 +232,13 @@ fun OudsTriStateCheckboxItem(
     )
 }
 
-@PreviewLightDark
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.CheckboxItem.Default.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.CheckboxItem.Default.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItem(@PreviewParameter(OudsCheckboxItemPreviewParameterProvider::class) parameter: OudsCheckboxItemPreviewParameter) {
@@ -259,7 +268,7 @@ internal fun PreviewOudsCheckboxItem(
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {
@@ -288,7 +297,7 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     }
 }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItemWithLongDescription() = PreviewOudsCheckboxItemWithLongDescription(theme = getPreviewTheme())
@@ -304,7 +313,7 @@ internal fun PreviewOudsCheckboxItemWithLongDescription(theme: OudsThemeContract
     )
 }
 
-@Preview
+@Preview(heightDp = OudsPreviewableComponent.CheckboxItem.WithEdgeToEdgeDisabled.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled() = PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
@@ -324,7 +333,7 @@ internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContr
     }
 }
 
-@Preview(widthDp = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp)
+@Preview(widthDp = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {

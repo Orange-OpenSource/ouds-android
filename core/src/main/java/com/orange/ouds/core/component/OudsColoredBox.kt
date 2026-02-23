@@ -25,7 +25,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.filter
@@ -36,6 +35,7 @@ import com.orange.ouds.core.theme.OudsThemeTweak
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -239,7 +239,7 @@ enum class OudsColoredBoxColor {
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 private fun PreviewOudsColoredBox(@PreviewParameter(OudsColoredBoxPreviewParameterProvider::class) color: OudsColoredBoxColor) {
     PreviewOudsColoredBox(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), color = color)

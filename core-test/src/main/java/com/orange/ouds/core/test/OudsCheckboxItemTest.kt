@@ -24,7 +24,8 @@ internal class OudsCheckboxItemTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.CheckboxItem.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.CheckboxItem.Default.PreviewHeightDp
     ) {
 
         companion object {
@@ -57,7 +58,8 @@ internal class OudsCheckboxItemTest {
     class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
         OudsPreviewableComponent.CheckboxItem.WithEdgeToEdgeDisabled,
         parameter = null,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.CheckboxItem.WithEdgeToEdgeDisabled.PreviewHeightDp
     )
 
     @RunWith(Parameterized::class)
