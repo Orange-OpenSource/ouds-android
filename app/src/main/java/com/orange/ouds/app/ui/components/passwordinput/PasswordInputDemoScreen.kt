@@ -123,7 +123,7 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
         val textObfuscationModes = textObfuscationModeProperties.map { it.get() }
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_passwordInput_textObfuscationMode_label),
+            label = stringResource(R.string.app_components_passwordInput_textObfuscationMode_tech),
             chipLabels = textObfuscationModeProperties.map { it.name.toSentenceCase() },
             selectedChipIndex = textObfuscationModes.indexOf(passwordInputState.textObfuscationMode),
             onSelectionChange = { index ->
