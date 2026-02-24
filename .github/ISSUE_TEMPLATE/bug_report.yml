@@ -1,6 +1,5 @@
 name: Bug report
 description: Tell us about a bug or issue you may have identified in OUDS Android
-title: "[Bug] "
 labels: [ "🐞 bug", "🔍 triage" ]
 projects: [ "⚛️ [OUDS] Project" ]
 assignees: [ "florentmaitre", "paulinea" ]
