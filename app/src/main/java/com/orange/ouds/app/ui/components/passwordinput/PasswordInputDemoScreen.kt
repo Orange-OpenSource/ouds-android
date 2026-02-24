@@ -30,7 +30,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsPasswordInput
-import com.orange.ouds.core.component.OudsPasswordInputDefaults
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.theme.OudsVersion
@@ -151,7 +150,6 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             prefix = prefix,
             helperText = helperText,
             constrainedMaxWidth = constrainedMaxWidth,
-            keyboardOptions = OudsPasswordInputDefaults.KeyboardOptions.copy(showKeyboardOnFocus = false),
             onKeyboardAction = { focusManager.clearFocus() }
         )
     }
