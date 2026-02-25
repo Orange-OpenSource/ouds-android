@@ -206,4 +206,4 @@ internal fun PreviewOudsInlineAlert(
 }
 
 internal class OudsInlineAlertPreviewParameterProvider :
-    BasicPreviewParameterProvider<String>("Label", "Label with a very long name that need more than one line to be displayed.")
+    BasicPreviewParameterProvider<String>("Label", "Very long label that needs more than one line to be displayed.")
