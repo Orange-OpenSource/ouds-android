@@ -53,7 +53,7 @@ enum class Component {
 
     fun getSourceFilePaths(project: Project): List<String> {
         val filenames = when (this) {
-            Alert -> listOf("OudsAlertMessage")
+            Alert -> listOf("OudsAlertMessage", "OudsInlineAlert")
             Badge -> listOf("OudsBadge")
             Bar -> listOf("OudsNavigationBar", "OudsTopAppBar")
             BulletList -> listOf("OudsBulletList")
