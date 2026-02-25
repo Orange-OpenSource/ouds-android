@@ -24,7 +24,8 @@ internal class OudsSwitchItemTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.SwitchItem.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.SwitchItem.Default.PreviewHeightDp
     ) {
 
         companion object {
@@ -43,7 +44,8 @@ internal class OudsSwitchItemTest {
     class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
         OudsPreviewableComponent.SwitchItem.WithEdgeToEdgeDisabled,
         parameter = null,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.SwitchItem.WithEdgeToEdgeDisabled.PreviewHeightDp
     )
 
     @RunWith(Parameterized::class)

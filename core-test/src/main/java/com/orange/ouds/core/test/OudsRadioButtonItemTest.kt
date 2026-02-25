@@ -24,7 +24,8 @@ internal class OudsRadioButtonItemTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.RadioButtonItem.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.RadioButtonItem.Default.PreviewHeightDp
     ) {
 
         companion object {
@@ -57,7 +58,8 @@ internal class OudsRadioButtonItemTest {
     class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
         OudsPreviewableComponent.RadioButtonItem.WithEdgeToEdgeDisabled,
         parameter = null,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.RadioButtonItem.WithEdgeToEdgeDisabled.PreviewHeightDp
     )
 
     @RunWith(Parameterized::class)

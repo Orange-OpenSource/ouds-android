@@ -39,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
@@ -50,6 +49,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -237,7 +237,7 @@ internal enum class OudsInputTagState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsInputTag() {

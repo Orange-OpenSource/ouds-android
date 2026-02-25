@@ -24,7 +24,8 @@ internal class OudsTextInputTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.TextInput.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp
     ) {
 
         companion object {
@@ -37,7 +38,8 @@ internal class OudsTextInputTest {
     class WithRoundedCorners : OudsComponentSnapshotTest(
         OudsPreviewableComponent.TextInput.WithRoundedCorners,
         parameter = null,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.TextInput.WithRoundedCorners.PreviewHeightDp
     )
 
     class WithLongLabels : OudsComponentSnapshotTest(

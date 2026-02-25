@@ -52,8 +52,6 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -70,6 +68,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -768,7 +767,7 @@ internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButton(@PreviewParameter(OudsButtonPreviewParameterProvider::class) parameter: OudsButtonPreviewParameter) {
@@ -804,7 +803,7 @@ internal fun PreviewOudsButton(
     }
 }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRoundedCorners(theme = getPreviewTheme())
@@ -823,7 +822,7 @@ internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
         }
     }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconBadgePreviewParameterProvider::class) count: Int) =
@@ -842,7 +841,7 @@ internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int
     }
 }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButtonOnTwoLines() = PreviewOudsButtonOnTwoLines(getPreviewTheme())

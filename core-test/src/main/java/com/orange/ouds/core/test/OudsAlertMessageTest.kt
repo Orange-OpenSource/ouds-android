@@ -20,7 +20,8 @@ import org.junit.runners.Parameterized
 internal class OudsAlertMessageTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.AlertMessage,
     parameter,
-    OudsComponentTestSuite.theme
+    OudsComponentTestSuite.theme,
+    heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp
 ) {
 
     companion object {

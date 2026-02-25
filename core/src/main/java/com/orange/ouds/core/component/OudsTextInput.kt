@@ -88,6 +88,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
@@ -1064,8 +1065,13 @@ class OudsTextInputTrailingIconButton private constructor(
         get() = extraParameters.enabled
 }
 
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextInput.PreviewHeightDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.TextInput.PreviewHeightDp)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInput(@PreviewParameter(OudsTextInputPreviewParameterProvider::class) parameter: OudsTextInputPreviewParameter) {
@@ -1097,7 +1103,7 @@ internal fun PreviewOudsTextInput(
     }
 }
 
-@Preview
+@Preview(heightDp = OudsPreviewableComponent.TextInput.WithRoundedCorners.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithRoundedCorners(theme = getPreviewTheme())
@@ -1115,7 +1121,7 @@ internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
         }
     }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInputWithLongLabels() = PreviewOudsTextInputWithLongLabels(theme = getPreviewTheme())
@@ -1140,7 +1146,7 @@ internal fun PreviewOudsTextInputWithLongLabels(theme: OudsThemeContract) = Ouds
     }
 }
 
-@Preview(widthDp = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp)
+@Preview(widthDp = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 internal fun PreviewOudsTextInputConstrainedMaxWidth(@PreviewParameter(OudsTextInputConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
