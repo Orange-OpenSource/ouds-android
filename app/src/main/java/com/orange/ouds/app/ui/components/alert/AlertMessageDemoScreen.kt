@@ -53,7 +53,7 @@ fun AlertMessageDemoScreen() {
         bottomSheetContent = { AlertMessageDemoBottomSheetContent(state = state) },
         codeSnippet = { alertMessageDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { AlertMessageDemoContent(state = state) },
-        version = OudsVersion.Component.AlertMessage
+        version = OudsVersion.Component.Alert
     )
 }
 
