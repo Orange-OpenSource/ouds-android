@@ -50,7 +50,7 @@ fun InlineAlertDemoScreen() {
         bottomSheetContent = { InlineAlertDemoBottomSheetContent(state = state) },
         codeSnippet = { inlineAlertDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { InlineAlertDemoContent(state = state) },
-        version = OudsVersion.Component.AlertMessage
+        version = OudsVersion.Component.Alert
     )
 }
 
