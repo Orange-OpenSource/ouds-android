@@ -90,7 +90,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.backgroundColor())
+                                .background(status.backgroundColor)
                         )
                     }
                 )

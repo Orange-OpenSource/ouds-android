@@ -89,7 +89,7 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.assetColor().takeIf { it != Color.Unspecified }.orElse { status.textColor() })
+                                .background(status.assetColor.takeIf { it != Color.Unspecified }.orElse { status.textColor })
                         )
                     }
                 )

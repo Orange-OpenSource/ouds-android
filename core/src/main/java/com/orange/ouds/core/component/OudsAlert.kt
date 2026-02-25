@@ -23,25 +23,51 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
-import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
  * Base class for defining the semantic status of an alert component ([OudsInlineAlert] or [OudsAlertMessage]).
  * It holds the common logic for determining the colors and default icons.
- *
- * @suppress
  */
-@InternalOudsApi
-abstract class OudsAlertStatus(private val status: Status) {
+internal sealed class OudsAlertStatus(private val defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?)) {
+
+    class Accent(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
+    class Neutral(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
+    class Positive(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
+    class Warning(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
+    class Negative(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
+    class Info(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
 
     companion object {
-        /**
-         * @suppress
-         */
-        @InternalOudsApi
-        enum class Status {
-            Accent, Info, Negative, Neutral, Positive, Warning
+
+        @Composable
+        protected fun getDefaultIconPainter(status: OudsAlertStatus): Painter? {
+            return when (status) {
+                is Negative -> painterResource(OudsTheme.drawableResources.component.alert.importantFill)
+                is Positive -> painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
+                is Info -> painterResource(OudsTheme.drawableResources.component.alert.infoFill)
+                is Warning -> {
+                    val iconTokens = OudsTheme.componentsTokens.icon
+                    LayeredTintedPainter(
+                        backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                        backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                        frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                    )
+                }
+                else -> null
+            }
         }
     }
 
@@ -49,23 +75,9 @@ abstract class OudsAlertStatus(private val status: Status) {
      * The default painter associated with a functional status (e.g., success, warning).
      * Returns `null` for non-functional statuses like Accent or Neutral, which do not have a default icon.
      */
-    open val defaultIconPainter: Painter?
+    val defaultIconPainter: Painter?
         @Composable
-        get() = when (this@OudsAlertStatus.status) {
-            Status.Negative -> painterResource(OudsTheme.drawableResources.component.alert.importantFill)
-            Status.Positive -> painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
-            Status.Info -> painterResource(OudsTheme.drawableResources.component.alert.infoFill)
-            Status.Warning -> {
-                val iconTokens = OudsTheme.componentsTokens.icon
-                LayeredTintedPainter(
-                    backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                    backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                    frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                    frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
-                )
-            }
-            Status.Neutral, Status.Accent -> null
-        }
+        get() = defaultIconPainterProvider(this)
 
     /**
      * The asset color associated with this status.
@@ -73,13 +85,13 @@ abstract class OudsAlertStatus(private val status: Status) {
     @Composable
     fun assetColor(): Color {
         return with(OudsTheme.colorScheme.content) {
-            when (this@OudsAlertStatus.status) {
-                Status.Neutral -> default
-                Status.Accent -> status.accent
-                Status.Positive -> status.positive
-                Status.Warning -> Color.Unspecified
-                Status.Negative -> status.negative
-                Status.Info -> status.info
+            when (this@OudsAlertStatus) {
+                is Neutral -> default
+                is Accent -> status.accent
+                is Positive -> status.positive
+                is Warning -> Color.Unspecified
+                is Negative -> status.negative
+                is Info -> status.info
             }
         }
     }
