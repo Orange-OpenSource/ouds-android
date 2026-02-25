@@ -134,11 +134,11 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
                             rawArgument("color", "OudsTheme.colorScheme.content.default")
                         }
                         functionCall("OudsButton") {
-                            labelArgument(R.string.app_components_button_tech)
+                            labelArgument(R.string.app_components_coloredBackground_button_label)
                             onClickArgument {}
                         }
                         functionCall("OudsLink") {
-                            labelArgument(R.string.app_components_link_tech)
+                            labelArgument(R.string.app_components_coloredBackground_link_label)
                             typedArgument("chevron", OudsLinkChevron.Next)
                             onClickArgument {}
                         }
