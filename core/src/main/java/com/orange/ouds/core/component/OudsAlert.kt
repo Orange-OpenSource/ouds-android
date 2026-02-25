@@ -64,7 +64,7 @@ abstract class OudsAlertStatus(private val status: Status) {
                     frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                 )
             }
-            else -> null
+            Status.Neutral, Status.Accent -> null
         }
 
     /**
