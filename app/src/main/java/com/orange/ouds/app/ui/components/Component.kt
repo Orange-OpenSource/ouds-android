@@ -191,7 +191,7 @@ sealed class Variant(
 
     // Alert
     data object AlertMessage : Variant(R.string.app_components_alert_alertMessage_label, { AlertMessageDemoScreen() })
-    data object InlineAlert : Variant(R.string.app_components_alert_inlineAlert_label, { InlineAlertDemoScreen() })
+    data object InlineAlert : Variant(R.string.app_components_alert_inlineAlert_tech, { InlineAlertDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
