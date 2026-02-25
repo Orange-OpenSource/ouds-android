@@ -21,6 +21,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
@@ -162,7 +163,7 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             lambdaArgument("onValueChange") {
                 comment("Update value")
             }
-            if (label.isNotEmpty()) typedArgument("label", label)
+            if (label.isNotEmpty()) labelArgument(label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (lockIcon) typedArgument("lockIcon", lockIcon)

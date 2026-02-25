@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -202,7 +203,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     rawArgument(statusParameterName, status::class.java.nestedName)
                 }
             }
-            typedArgument("label", label)
+            labelArgument(label)
             description?.let { typedArgument("description", description) }
             if (hasCloseButton) {
                 lambdaArgument("onClose") {
@@ -211,7 +212,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
             }
             if (!actionLink.isNullOrEmpty()) {
                 functionCallArgument("actionLink", OudsAlertMessageActionLink::class.java.simpleName) {
-                    typedArgument("label", actionLink)
+                    labelArgument(actionLink)
                     lambdaArgument("onClick") {
                         comment("Implement click")
                     }
