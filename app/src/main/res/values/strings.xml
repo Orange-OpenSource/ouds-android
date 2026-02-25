@@ -68,7 +68,7 @@
     <string name="app_tokens_color_opacity_tech" translatable="false">Opacity</string>
     <string name="app_tokens_color_overlay_tech" translatable="false">Overlay</string>
     <string name="app_tokens_color_surface_tech" translatable="false">Surface</string>
-    <string name="app_tokens_color_unspecified_label">Unspecified</string>
+    <string name="app_tokens_color_unspecified_tech" translatable="false">Unspecified</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_tech" translatable="false">Dimension</string>

@@ -37,7 +37,7 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
         get() = when (val value = value()) {
             is Color -> {
                 if (value.isUnspecified) {
-                    stringResource(id = R.string.app_tokens_color_unspecified_label)
+                    stringResource(id = R.string.app_tokens_color_unspecified_tech)
                 } else {
                     stringResource(
                         id = R.string.app_tokens_colorFormat_tech,

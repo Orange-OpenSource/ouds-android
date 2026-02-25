@@ -50,7 +50,6 @@
 
     <!-- Tokens: color -->
     <string name="app_tokens_color_description_text">La couleur renforce notre identité de marque et garantit une expérience utilisateur cohérente sur tous nos produits. Les tokens sémantiques décrits ici sont ceux à utiliser lors du développement d\'une application mobile.</string>
-    <string name="app_tokens_color_unspecified_label">Non spécifié</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_description_text">La dimension propose des tailles et des espacements standardisés afin de garantir une cohérence visuelle dans l\'interface utilisateur.</string>

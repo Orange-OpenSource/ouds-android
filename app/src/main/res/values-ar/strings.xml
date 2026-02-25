@@ -50,7 +50,6 @@
 
     <!-- Tokens: color -->
     <string name="app_tokens_color_description_text">اللون يعزز هويتنا البصرية ويضمن التناسق عبر تجارب المنتجات.</string>
-    <string name="app_tokens_color_unspecified_label">غير محدد</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_description_text"> توفر الأبعاد مقاسات وتباعدًا موحدًا لضمان الاتساق البصري في واجهة المستخدم.</string>
