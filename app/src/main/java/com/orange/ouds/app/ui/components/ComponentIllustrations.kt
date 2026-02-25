@@ -62,8 +62,8 @@ import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
+import com.orange.ouds.core.component.rememberOudsPasswordInputState
 import com.orange.ouds.core.theme.isOudsInDarkTheme
-import com.orange.ouds.foundation.ExperimentalOudsApi
 
 @Composable
 fun AlertIllustration() = ComponentIllustration {
@@ -191,13 +191,11 @@ fun NavigationBarIllustration() = ComponentIllustration {
     )
 }
 
-@OptIn(ExperimentalOudsApi::class)
 @Composable
 fun PasswordInputIllustration() = ComponentIllustration {
     OudsPasswordInput(
         modifier = Modifier.padding(horizontal = 12.dp),
-        value = "",
-        onValueChange = {},
+        state = rememberOudsPasswordInputState(),
         label = stringResource(id = R.string.app_components_passwordInput_password_label),
         helperText = stringResource(id = R.string.app_components_passwordInputHelperText_label)
     )

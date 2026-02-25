@@ -13,10 +13,6 @@
 package com.orange.ouds.core.component.samples
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.common.OudsError
@@ -24,7 +20,7 @@ import com.orange.ouds.core.component.rememberOudsPasswordInputState
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
-internal fun OudsPasswordInputStateBasedSample() {
+internal fun OudsPasswordInputSample() {
     OudsPasswordInput(
         state = rememberOudsPasswordInputState(),
         lockIcon = true,
@@ -34,7 +30,7 @@ internal fun OudsPasswordInputStateBasedSample() {
 }
 
 @Composable
-internal fun OudsPasswordInputStateBasedErrorSample() {
+internal fun OudsPasswordInputErrorSample() {
     OudsPasswordInput(
         state = rememberOudsPasswordInputState(),
         label = "Password",
@@ -42,49 +38,14 @@ internal fun OudsPasswordInputStateBasedErrorSample() {
     )
 }
 
+@PreviewLightDark
 @Composable
-internal fun OudsPasswordInputValueBasedSample() {
-    var value by remember { mutableStateOf("") }
-    OudsPasswordInput(
-        value = value,
-        onValueChange = { value = it },
-        lockIcon = true,
-        label = "Password",
-        helperText = "Your password must be between 8 and 20 characters long.",
-    )
-}
-
-@Composable
-internal fun OudsPasswordInputValueBasedErrorSample() {
-    var value by remember { mutableStateOf("abc123") }
-    OudsPasswordInput(
-        value = value,
-        onValueChange = { value = it },
-        label = "Password",
-        error = OudsError("Password must be at least 8 characters.")
-    )
+private fun PreviewOudsPasswordInputSample() = OudsPreview {
+    OudsPasswordInputSample()
 }
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsPasswordInputStateBasedSample() = OudsPreview {
-    OudsPasswordInputStateBasedSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsPasswordInputStateBasedErrorSample() = OudsPreview {
-    OudsPasswordInputStateBasedErrorSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsPasswordInputValueBasedSample() = OudsPreview {
-    OudsPasswordInputValueBasedSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsPasswordInputValueBasedErrorSample() = OudsPreview {
-    OudsPasswordInputValueBasedErrorSample()
+private fun PreviewOudsPasswordInputErrorSample() = OudsPreview {
+    OudsPasswordInputErrorSample()
 }

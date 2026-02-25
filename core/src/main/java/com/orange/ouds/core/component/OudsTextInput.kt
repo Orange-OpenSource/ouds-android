@@ -196,13 +196,13 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.semantic(label),
+                modifier = modifier.textInputSemantic(label),
                 state = textFieldState,
-                enabled = textFieldEnabled(state = state),
+                enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(state = state),
+                textStyle = textInputTextStyle(state = state),
                 lineLimits = TextFieldLineLimits.SingleLine,
-                cursorBrush = cursorBrush(state = state, error = error != null),
+                cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
                 onTextLayout = onTextLayout,
@@ -325,14 +325,14 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.semantic(label),
+                modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                enabled = textFieldEnabled(state = state),
+                enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(state = state),
+                textStyle = textInputTextStyle(state = state),
                 singleLine = true,
-                cursorBrush = cursorBrush(state = state, error = error != null),
+                cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onTextLayout = onTextLayout,
@@ -454,14 +454,14 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.semantic(label),
+                modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                enabled = textFieldEnabled(state = state),
+                enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(state = state),
+                textStyle = textInputTextStyle(state = state),
                 singleLine = true,
-                cursorBrush = cursorBrush(state = state, error = error != null),
+                cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onTextLayout = onTextLayout,
@@ -491,7 +491,7 @@ fun OudsTextInput(
     )
 }
 
-private fun Modifier.semantic(label: String?): Modifier = this.semantics {
+internal fun Modifier.textInputSemantic(label: String?): Modifier = this.semantics {
     contentDescription = label.orEmpty()
 }
 
@@ -503,7 +503,6 @@ internal fun OudsTextInput(
     error: OudsError?,
     basicTextField: @Composable () -> Unit
 ) {
-
     val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error != null)) || (error != null && state in listOf(
         OudsTextInputState.ReadOnly,
         OudsTextInputState.Disabled
@@ -534,7 +533,7 @@ internal fun OudsTextInput(
 }
 
 @Composable
-private fun OudsTextInputDecorator(
+internal fun OudsTextInputDecorator(
     innerTextField: @Composable () -> Unit,
     value: String,
     state: OudsTextInputState,
@@ -748,7 +747,7 @@ private fun OudsTextInputDecorator(
 }
 
 @Composable
-private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
+internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
     return getPreviewEnumEntry<OudsTextInputState>().orElse {
         if (loader != null) {
             OudsTextInputState.Loading
@@ -796,7 +795,7 @@ private fun contentColor(state: OudsTextInputState) =
     if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
-private fun cursorBrush(state: OudsTextInputState, error: Boolean) =
+internal fun textInputCursorBrush(state: OudsTextInputState, error: Boolean) =
     SolidColor(if (error) errorContentColor(state = state) else contentColor(state))
 
 @Composable
@@ -934,10 +933,10 @@ private fun decorativeContentColor(state: OudsTextInputState) =
     if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
-private fun textFieldTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
+internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
 
 @Composable
-private fun textFieldEnabled(state: OudsTextInputState) =
+internal fun textInputEnabled(state: OudsTextInputState) =
     state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
 
 internal enum class OudsTextInputState {
