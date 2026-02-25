@@ -305,7 +305,7 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
 
     internal val assetColor
         @Composable
-        get() = value.assetColor()
+        get() = value.assetColor
 
     /**
      * The background color associated with this status.

@@ -158,7 +158,7 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
 
     val assetColor
         @Composable
-        get() = value.assetColor()
+        get() = value.assetColor
 
     /**
      * The text color associated with this status.

@@ -82,9 +82,9 @@ internal sealed class OudsAlertStatus(private val defaultIconPainterProvider: (@
     /**
      * The asset color associated with this status.
      */
-    @Composable
-    fun assetColor(): Color {
-        return with(OudsTheme.colorScheme.content) {
+    val assetColor
+        @Composable
+        get() = with(OudsTheme.colorScheme.content) {
             when (this@OudsAlertStatus) {
                 is Neutral -> default
                 is Accent -> status.accent
@@ -94,7 +94,6 @@ internal sealed class OudsAlertStatus(private val defaultIconPainterProvider: (@
                 is Info -> status.info
             }
         }
-    }
 }
 
 /**
