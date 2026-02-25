@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.sosh.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
+import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 
 internal data class SoshCheckboxTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,

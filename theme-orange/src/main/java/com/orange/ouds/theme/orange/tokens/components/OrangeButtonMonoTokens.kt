@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
+import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 internal data class OrangeButtonMonoTokens(
     override val colorBgDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,

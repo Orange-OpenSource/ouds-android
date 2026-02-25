@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.orangecompact.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
+import com.orange.ouds.theme.tokens.components.OudsIconTokens
 
 internal data class OrangeCompactIconTokens(
     override val colorContentDefault: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.Lower),

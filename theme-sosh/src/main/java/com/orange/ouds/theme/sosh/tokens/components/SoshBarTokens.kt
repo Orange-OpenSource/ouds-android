@@ -16,11 +16,11 @@
 package com.orange.ouds.theme.sosh.tokens.components
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.tokens.components.OudsBarTokens
-import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
+import com.orange.ouds.theme.tokens.components.OudsBarTokens
+import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 

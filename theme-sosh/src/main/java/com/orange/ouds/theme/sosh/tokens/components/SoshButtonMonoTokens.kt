@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.sosh.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
+import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 internal data class SoshButtonMonoTokens(
     override val colorBgDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
