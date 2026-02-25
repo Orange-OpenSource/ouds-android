@@ -37,16 +37,16 @@ internal sealed class OudsAlertStatus(private val defaultIconPainterProvider: (@
     class Neutral(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
         OudsAlertStatus(defaultIconPainterProvider)
 
-    class Positive(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
-        OudsAlertStatus(defaultIconPainterProvider)
-
-    class Warning(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
-        OudsAlertStatus(defaultIconPainterProvider)
-
     class Negative(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
         OudsAlertStatus(defaultIconPainterProvider)
 
+    class Positive(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
     class Info(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
+        OudsAlertStatus(defaultIconPainterProvider)
+
+    class Warning(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
         OudsAlertStatus(defaultIconPainterProvider)
 
     companion object {

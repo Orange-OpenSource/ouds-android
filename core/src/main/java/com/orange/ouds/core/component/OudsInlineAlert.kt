@@ -130,6 +130,12 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
     class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(OudsAlertStatus.Accent(), icon)
 
     /**
+     * Negative status indicates a failure, error, or blocking issue that needs user attention.
+     * It uses the red “error” color and includes the standardized error icon.
+     */
+    object Negative : OudsInlineAlertStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
+
+    /**
      * Positive status confirms that an action was completed successfully.
      * It uses a green color and the standard success icon.
      */
@@ -146,12 +152,6 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      * It uses yellow to signal caution while remaining non-blocking and a dedicated default icon.
      */
     object Warning : OudsInlineAlertStatus(OudsAlertStatus.Warning(), OudsAlertIcon.Default)
-
-    /**
-     * Negative status indicates a failure, error, or blocking issue that needs user attention.
-     * It uses the red “error” color and includes the standardized error icon.
-     */
-    object Negative : OudsInlineAlertStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
 
     val assetColor
         @Composable

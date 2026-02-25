@@ -279,6 +279,13 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
     class Accent(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Accent(), icon)
 
     /**
+     * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved.
+     * These alerts remain visible until the problem is fixed or dismissed by the user.
+     * This status displays a dedicated default icon.
+     */
+    data object Negative : OudsAlertMessageStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
+
+    /**
      * Positive status indicates that a task or process has been completed successfully.
      * These alerts reassure users and confirm that no further action is needed.
      * This status displays a dedicated default icon.
@@ -298,13 +305,6 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
      * This status displays a dedicated default icon.
      */
     data object Warning : OudsAlertMessageStatus(OudsAlertStatus.Warning(), OudsAlertIcon.Default)
-
-    /**
-     * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved.
-     * These alerts remain visible until the problem is fixed or dismissed by the user.
-     * This status displays a dedicated default icon.
-     */
-    data object Negative : OudsAlertMessageStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
 
     internal val assetColor
         @Composable
