@@ -111,9 +111,8 @@ object OudsInlineAlertDefaults {
 sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon: OudsAlertIcon) {
 
     /**
-     * Neutral status can be used as a generic informative alert without semantic meaning or colour association. Suitable for a wide range of contexts — such as
-     * tips, general information, or descriptive labels — where no specific feedback or urgency is required. Appropriate for help sections, dashboards, or
-     * onboarding flows.
+     * Neutral status can be used for generic informational messages that provide context but carry no semantic meaning.
+     * Ideal for subtle notices, contextual help, or content highlights within pages.
      *
      * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
@@ -123,9 +122,8 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
     )
 
     /**
-     * Accent status uses brand colours to draw attention to promotional or highlighted information while remaining non-critical. Ideal for marketing content,
-     * announcements, or feature highlights, where you want to subtly engage users without introducing functional semantics. Ideal for promotional banners,
-     * product updates, or customer engagement moments.
+     * Accent status uses brand colours and can include decorative icons to draw attention to key marketing or communication content.
+     * Perfect for promotional, inspirational, or brand-driven highlights that engage the user positively.
      *
      * @property icon Icon to be displayed in the inline alert.
      */
@@ -139,7 +137,7 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
 
     /**
      * Info status provides neutral information or updates about the system or account status.
-     * It uses blue for neutrality and clarity and a dedicated default icon.
+     * It uses blue for neutrality and clarity, and a dedicated default icon.
      */
     object Info : OudsInlineAlertStatus(OudsAlertStatus.Info(), OudsAlertIcon.Default)
 
@@ -150,9 +148,8 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
     object Warning : OudsInlineAlertStatus(OudsAlertStatus.Warning(), OudsAlertIcon.Default)
 
     /**
-     * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved. These alerts remain visible until
-     * the problem is fixed or dismissed by the user.
-     * This status displays a dedicated default icon.
+     * Negative status indicates a failure, error, or blocking issue that needs user attention.
+     * It uses the red “error” color and includes the standardized error icon.
      */
     object Negative : OudsInlineAlertStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
 

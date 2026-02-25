@@ -261,44 +261,47 @@ enum class OudsAlertMessageActionLinkPosition {
 sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val icon: OudsAlertIcon? = null) {
 
     /**
-     * Neutral status can be used for generic informational messages that provide context but carry no semantic meaning.
-     * Ideal for subtle notices, contextual help, or content highlights within pages.
+     * Neutral status can be used as a generic informative alert without semantic meaning or colour association.
+     * Suitable for a wide range of contexts — such as tips, general information, or descriptive labels — where no specific feedback or urgency is required.
+     * Appropriate for help sections, dashboards, or onboarding flows.
      *
      * @property icon The optional [OudsAlertIcon] to be displayed at the start of the alert message.
      */
     class Neutral(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Neutral(), icon)
 
     /**
-     * Accent status uses brand colours and can include decorative icons to draw attention to key marketing or communication content.
-     * Perfect for promotional, inspirational, or brand-driven highlights that engage the user positively.
+     * Accent status uses brand colours to draw attention to promotional or highlighted information while remaining non-critical.
+     * Ideal for marketing content, announcements, or feature highlights, where you want to subtly engage users without introducing functional semantics.
+     * Ideal for promotional banners, product updates, or customer engagement moments.
      *
      * @property icon The optional [OudsAlertIcon] to be displayed at the start of the alert message.
      */
     class Accent(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Accent(), icon)
 
     /**
-     * Positive status indicates that a task or process has been completed successfully. These alerts reassure users and confirm that no further action is needed.
+     * Positive status indicates that a task or process has been completed successfully.
+     * These alerts reassure users and confirm that no further action is needed.
      * This status displays a dedicated default icon.
      */
     data object Positive : OudsAlertMessageStatus(OudsAlertStatus.Positive(), OudsAlertIcon.Default)
 
     /**
-     * Info status is used to share neutral system information or service updates that do not require immediate action. Ideal for background processes or status
-     * messages where users simply need to stay informed.
+     * Info status is used to share neutral system information or service updates that do not require immediate action.
+     * Ideal for background processes or status messages where users simply need to stay informed.
      * This status displays a dedicated default icon.
      */
     data object Info : OudsAlertMessageStatus(OudsAlertStatus.Info(), OudsAlertIcon.Default)
 
     /**
-     * Used to draw attention to potential issues or upcoming changes that might affect the user’s service or experience. Warnings encourage awareness but
-     * typically do not block actions.
+     * Used to draw attention to potential issues or upcoming changes that might affect the user’s service or experience.
+     * Warnings encourage awareness but typically do not block actions.
      * This status displays a dedicated default icon.
      */
     data object Warning : OudsAlertMessageStatus(OudsAlertStatus.Warning(), OudsAlertIcon.Default)
 
     /**
-     * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved. These alerts remain visible until
-     * the problem is fixed or dismissed by the user.
+     * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved.
+     * These alerts remain visible until the problem is fixed or dismissed by the user.
      * This status displays a dedicated default icon.
      */
     data object Negative : OudsAlertMessageStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
