@@ -15,10 +15,10 @@
 
 package com.orange.ouds.theme.wireframe.tokens.components
 
+import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
-import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 internal data class WireframeAlertTokens(
