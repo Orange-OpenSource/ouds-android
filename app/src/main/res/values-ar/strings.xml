@@ -94,9 +94,9 @@
         <item quantity="many">%d رسائل غير مقروءة</item>
     </plurals>
     <string name="app_components_common_version_label">نسخة تصميم المكون</string>
-    <string name="app_components_textInputHelperText_label">Helper text.</string> <!-- TODO -->
-    <string name="app_components_passwordInputHelperText_label">Your password must be at least 8 characters.</string> <!-- TODO -->
-    
+    <string name="app_components_textInputHelperText_label">نص مساعد.</string>
+    <string name="app_components_passwordInputHelperText_label">يجب ألا يقلّ password عن 8 أحرف.</string>
+
     <!-- Components: alert -->
     <string name="app_components_alert_description_text">مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.</string>
     <string name="app_components_alert_alertMessage_description_text">Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.</string>
