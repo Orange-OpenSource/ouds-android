@@ -90,7 +90,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
             )
         ) {
             item {
-                val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
+                val version = stringResource(R.string.app_about_version_tech, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
                 val issueNumbers: IntArray? = BuildConfig.ISSUE_NUMBERS
                 ListItem(
                     modifier = Modifier.listItemHorizontalPadding(),
