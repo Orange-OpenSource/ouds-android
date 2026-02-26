@@ -23,17 +23,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -97,7 +90,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
             )
         ) {
             item {
-                val version = stringResource(R.string.app_about_version_label, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
+                val version = stringResource(R.string.app_about_version_tech, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE.toLong())
                 val issueNumbers: IntArray? = BuildConfig.ISSUE_NUMBERS
                 ListItem(
                     modifier = Modifier.listItemHorizontalPadding(),
@@ -107,7 +100,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                             Text(text = version, style = OudsTheme.typography.body.default.large)
                             if (issueNumbers != null) {
                                 val issues = buildAnnotatedString {
-                                    append(pluralStringResource(R.plurals.app_about_issues_label, issueNumbers.count()))
+                                    append(pluralStringResource(R.plurals.app_about_issues_tech, issueNumbers.count()))
                                     issueNumbers.forEachIndexed { index, issueNumber ->
                                         if (index >= 1) {
                                             append(" ")

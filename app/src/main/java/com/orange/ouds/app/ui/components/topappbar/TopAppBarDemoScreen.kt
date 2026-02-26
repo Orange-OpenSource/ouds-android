@@ -67,55 +67,55 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_common_size_label),
+            label = stringResource(R.string.app_components_common_size_tech),
             chipLabels = TopAppBarDemoState.Size.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TopAppBarDemoState.Size.entries.indexOf(size),
             onSelectionChange = { index -> size = TopAppBarDemoState.Size.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_topAppBar_centerAligned_label),
+            label = stringResource(R.string.app_components_topAppBar_centerAligned_tech),
             checked = centerAligned,
             onCheckedChange = { centerAligned = it },
             enabled = centerAlignedSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_navigationIcon_label),
+            label = stringResource(R.string.app_components_topAppBar_navigationIcon_tech),
             chipLabels = TopAppBarDemoState.NavigationIcon.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TopAppBarDemoState.NavigationIcon.entries.indexOf(navigationIcon),
             onSelectionChange = { index -> navigationIcon = TopAppBarDemoState.NavigationIcon.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_title_label),
+            label = stringResource(R.string.app_components_topAppBar_title_tech),
             value = title,
             onValueChange = { value -> title = value }
         )
         val actionCountOptions = (TopAppBarDemoState.MinActionCount..TopAppBarDemoState.MaxActionCount).toList()
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_actionCount_label),
+            label = stringResource(R.string.app_components_topAppBar_actionCount_tech),
             chipLabels = actionCountOptions.map { it.toString() },
             selectedChipIndex = actionCountOptions.indexOf(actionCount),
             onSelectionChange = { index -> actionCount = actionCountOptions[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_lastActionIconBadge_label),
+            label = stringResource(R.string.app_components_topAppBar_lastActionIconBadge_tech),
             chips = TopAppBarDemoState.ActionIconBadge.entries.map { CustomizationFilterChip(it.name, lastActionIconBadgeFilterChipsEnabled) },
             selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(lastActionIconBadge),
             onSelectionChange = { index -> lastActionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[index] },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_actionAvatar_label),
+            label = stringResource(R.string.app_components_topAppBar_actionAvatar_tech),
             chips = TopAppBarDemoState.ActionAvatar.entries.map { CustomizationFilterChip(stringResource(it.labelRes), actionAvatarFilterChipsEnabled) },
             selectedChipIndex = TopAppBarDemoState.ActionAvatar.entries.indexOf(actionAvatar),
             onSelectionChange = { index -> actionAvatar = TopAppBarDemoState.ActionAvatar.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_topAppBar_actionAvatarMonogram_label),
+            label = stringResource(R.string.app_components_topAppBar_actionAvatarMonogram_tech),
             value = actionAvatarMonogram.toString().trim(),
             onValueChange = { value -> actionAvatarMonogram = value.firstOrNull().orElse { ' ' } },
             enabled = actionAvatarMonogramTextInputEnabled

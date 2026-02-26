@@ -41,7 +41,7 @@ fun InputTagDemoScreen() {
 private fun InputTagDemoBottomSheetContent(state: InputTagDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
         )

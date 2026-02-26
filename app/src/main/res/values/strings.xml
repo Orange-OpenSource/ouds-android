@@ -16,13 +16,13 @@
     <!-- Common -->
     <string name="app_common_copyCode_a11y">Copy code</string>
     <string name="app_common_codeCopied_text">Code copied to the clipboard</string>
-    <string name="app_common_codeClipData_label" translatable="false">OUDS code</string>
+    <string name="app_common_codeClipData_tech" translatable="false">OUDS code</string>
     <string name="app_common_collapsed_a11y">Collapsed</string>
     <string name="app_common_expanded_a11y">Expanded</string>
     <string name="app_common_bottomSheetExpanded_a11y">Bottom sheet expanded</string>
     <string name="app_common_bottomSheetCollapsed_a11y">Bottom sheet collapsed</string>
     <string name="app_common_customize_label">Customize</string>
-    <string name="app_common_enabled_label" translatable="false">Enabled</string>
+    <string name="app_common_enabled_tech" translatable="false">Enabled</string>
 
     <!-- Top bar -->
     <string name="app_topBar_theme_button_a11y">Change theme</string>
@@ -46,110 +46,111 @@
     <string name="app_bottomBar_about_label">About</string>
 
     <!-- Tokens -->
-    <string name="app_tokens_colorFormat_label" translatable="false">\u200e#%s</string>
+    <string name="app_tokens_colorFormat_tech" translatable="false">\u200e#%s</string>
     <string name="app_tokens_common_viewCodeExample_label">View token code example</string>
 
     <!-- Tokens: border -->
-    <string name="app_tokens_border_label" translatable="false">Border</string>
+    <string name="app_tokens_border_tech" translatable="false">Border</string>
     <string name="app_tokens_border_description_text">Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.</string>
-    <string name="app_tokens_border_width_label" translatable="false">Width</string>
-    <string name="app_tokens_border_radius_label" translatable="false">Radius</string>
-    <string name="app_tokens_border_style_label" translatable="false">Style</string>
+    <string name="app_tokens_border_width_tech" translatable="false">Width</string>
+    <string name="app_tokens_border_radius_tech" translatable="false">Radius</string>
+    <string name="app_tokens_border_style_tech" translatable="false">Style</string>
 
     <!-- Tokens: color -->
-    <string name="app_tokens_color_label" translatable="false">Color</string>
+    <string name="app_tokens_color_tech" translatable="false">Color</string>
     <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described here are the ones you should use when building a mobile app.</string>
-    <string name="app_tokens_color_action_label" translatable="false">Action</string>
-    <string name="app_tokens_color_always_label" translatable="false">Always</string>
-    <string name="app_tokens_color_background_label" translatable="false">Background</string>
-    <string name="app_tokens_color_border_label" translatable="false">Border</string>
-    <string name="app_tokens_color_brand_label" translatable="false">Brand</string>
-    <string name="app_tokens_color_content_label" translatable="false">Content</string>
-    <string name="app_tokens_color_opacity_label" translatable="false">Opacity</string>
-    <string name="app_tokens_color_overlay_label" translatable="false">Overlay</string>
-    <string name="app_tokens_color_surface_label" translatable="false">Surface</string>
-    <string name="app_tokens_color_unspecified_label">Unspecified</string>
+    <string name="app_tokens_color_action_tech" translatable="false">Action</string>
+    <string name="app_tokens_color_always_tech" translatable="false">Always</string>
+    <string name="app_tokens_color_background_tech" translatable="false">Background</string>
+    <string name="app_tokens_color_border_tech" translatable="false">Border</string>
+    <string name="app_tokens_color_brand_tech" translatable="false">Brand</string>
+    <string name="app_tokens_color_content_tech" translatable="false">Content</string>
+    <string name="app_tokens_color_opacity_tech" translatable="false">Opacity</string>
+    <string name="app_tokens_color_overlay_tech" translatable="false">Overlay</string>
+    <string name="app_tokens_color_surface_tech" translatable="false">Surface</string>
+    <string name="app_tokens_color_unspecified_tech" translatable="false">Unspecified</string>
 
     <!-- Tokens: dimension -->
-    <string name="app_tokens_dimension_label" translatable="false">Dimension</string>
+    <string name="app_tokens_dimension_tech" translatable="false">Dimension</string>
     <string name="app_tokens_dimension_description_text">Dimension provides standard sizing and spacing to ensure visual consistency across the UI.</string>
 
     <!-- Tokens: dimension/space -->
-    <string name="app_tokens_dimension_space_label" translatable="false">Space</string>
+    <string name="app_tokens_dimension_space_tech" translatable="false">Space</string>
     <string name="app_tokens_dimension_space_description_text">Space refers to the measurements used to define the spacing between UI elements.</string>
-    <string name="app_tokens_dimension_space_scaled_label" translatable="false">Scaled</string>
+    <string name="app_tokens_dimension_space_scaled_tech" translatable="false">Scaled</string>
     <string name="app_tokens_dimension_space_scaledHeader_text">Scaled spacing refers to spacing that adjusts dynamically based on factors like container size, screen resolution, or layout elements.</string>
-    <string name="app_tokens_dimension_space_fixed_label" translatable="false">Fixed</string>
+    <string name="app_tokens_dimension_space_fixed_tech" translatable="false">Fixed</string>
     <string name="app_tokens_dimension_space_fixedHeader_text">Fixed spacing refers to a constant distance between elements that remains the same regardless of factors like container size, screen resolution, or layout changes.</string>
-    <string name="app_tokens_dimension_space_paddingInline_label" translatable="false">Padding inline</string>
+    <string name="app_tokens_dimension_space_paddingInline_tech" translatable="false">Padding inline</string>
     <string name="app_tokens_dimension_space_paddingInlineHeader_text">Padding inline includes the left and right padding of an object or a group of objects.</string>
-    <string name="app_tokens_dimension_space_paddingBlock_label" translatable="false">Padding block</string>
+    <string name="app_tokens_dimension_space_paddingBlock_tech" translatable="false">Padding block</string>
     <string name="app_tokens_dimension_space_paddingBlockHeader_text">Padding block includes the top and bottom padding.</string>
-    <string name="app_tokens_dimension_space_inset_label" translatable="false">Inset</string>
+    <string name="app_tokens_dimension_space_inset_tech" translatable="false">Inset</string>
     <string name="app_tokens_dimension_space_insetHeader_text">Insets include the left, right, top, and bottom padding, with all parameters being equal.</string>
-    <string name="app_tokens_dimension_space_columnGap_label" translatable="false">Column gap</string>
+    <string name="app_tokens_dimension_space_columnGap_tech" translatable="false">Column gap</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">Column gap is the horizontal spacing between elements.</string>
-    <string name="app_tokens_dimension_space_rowGap_label" translatable="false">Row gap</string>
+    <string name="app_tokens_dimension_space_rowGap_tech" translatable="false">Row gap</string>
     <string name="app_tokens_dimension_space_rowGapHeader_text">Row gap is the vertical spacing between elements.</string>
 
     <!-- Tokens: dimension/size -->
-    <string name="app_tokens_dimension_size_label" translatable="false">Size</string>
+    <string name="app_tokens_dimension_size_tech" translatable="false">Size</string>
     <string name="app_tokens_dimension_size_description_text">Size refers to the specific measurements used to define the dimensions of UI elements within the design system.</string>
-    <string name="app_tokens_dimension_size_iconDecorative_label" translatable="false">Icon decorative</string>
-    <string name="app_tokens_dimension_size_iconWith_label" translatable="false">Icon with</string>
-    <string name="app_tokens_dimension_size_maxWidth_label" translatable="false">Max width</string>
-    <string name="app_tokens_dimension_size_minInteractiveArea_label" translatable="false">Min interactive area</string>
+    <string name="app_tokens_dimension_size_iconDecorative_tech" translatable="false">Icon decorative</string>
+    <string name="app_tokens_dimension_size_iconWith_tech" translatable="false">Icon with</string>
+    <string name="app_tokens_dimension_size_maxWidth_tech" translatable="false">Max width</string>
+    <string name="app_tokens_dimension_size_minInteractiveArea_tech" translatable="false">Min interactive area</string>
 
     <!-- Tokens: elevation -->
-    <string name="app_tokens_elevation_label" translatable="false">Elevation</string>
+    <string name="app_tokens_elevation_tech" translatable="false">Elevation</string>
     <string name="app_tokens_elevation_description_text">Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.</string>
 
     <!-- Tokens: grid -->
-    <string name="app_tokens_grid_label" translatable="false">Grid</string>
+    <string name="app_tokens_grid_tech" translatable="false">Grid</string>
     <string name="app_tokens_grid_description_text">Grids are used to position content and create consistent page layouts.</string>
 
     <!-- Tokens: opacity -->
-    <string name="app_tokens_opacity_label" translatable="false">Opacity</string>
+    <string name="app_tokens_opacity_tech" translatable="false">Opacity</string>
     <string name="app_tokens_opacity_description_text">Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.</string>
 
     <!-- Tokens: typography -->
-    <string name="app_tokens_typography_label" translatable="false">Typography</string>
+    <string name="app_tokens_typography_tech" translatable="false">Typography</string>
     <string name="app_tokens_typography_description_text">Typography is our system of fonts and text styles. It enhances communication and reinforces the brand style.</string>
-    <string name="app_tokens_typography_size_label" translatable="false">Size: %s sp</string>
-    <string name="app_tokens_typography_weight_label" translatable="false">Weight: %s</string>
-    <string name="app_tokens_typography_letterSpacing_label" translatable="false">Letter spacing: %s sp</string>
-    <string name="app_tokens_typography_lineHeight_label" translatable="false">Line height: %s sp</string>
+    <string name="app_tokens_typography_size_tech" translatable="false">Size: %s sp</string>
+    <string name="app_tokens_typography_weight_tech" translatable="false">Weight: %s</string>
+    <string name="app_tokens_typography_letterSpacing_tech" translatable="false">Letter spacing: %s sp</string>
+    <string name="app_tokens_typography_lineHeight_tech" translatable="false">Line height: %s sp</string>
 
     <!-- Components -->
-    <string name="app_components_common_appearance_label" translatable="false">Appearance</string>
-    <string name="app_components_common_color_label" translatable="false">Color</string>
-    <string name="app_components_common_constrainedMaxWidth_label" translatable="false">Constrained max width</string>
-    <string name="app_components_common_description_label" translatable="false">Description</string>
+    <string name="app_components_common_appearance_tech" translatable="false">Appearance</string>
+    <string name="app_components_common_color_tech" translatable="false">Color</string>
+    <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
+    <string name="app_components_common_description_tech" translatable="false">Description</string>
     <string name="app_components_common_error_a11y">Error message</string>
-    <string name="app_components_common_error_label" translatable="false">Error</string>
-    <string name="app_components_common_errorMessage_label" translatable="false">Error message</string>
-    <string name="app_components_common_helperText_label" translatable="false">Helper text</string>
+    <string name="app_components_common_error_tech" translatable="false">Error</string>
+    <string name="app_components_common_errorMessage_label">@string/app_components_common_errorMessage_tech</string>
+    <string name="app_components_common_errorMessage_tech" translatable="false">Error message</string>
+    <string name="app_components_common_helperText_tech" translatable="false">Helper text</string>
     <string name="app_components_common_icon_a11y">Icon</string>
-    <string name="app_components_common_iconOnlyLayout_label" translatable="false">Icon only</string>
-    <string name="app_components_common_label_label">Label</string>
+    <string name="app_components_common_iconOnlyLayout_tech" translatable="false">Icon only</string>
+    <string name="app_components_common_label_label">@string/app_components_common_label_tech</string>
     <string name="app_components_common_label_tech" translatable="false">Label</string>
-    <string name="app_components_common_layout_label" translatable="false">Layout</string>
-    <string name="app_components_common_loader_label" translatable="false">Loader</string>
-    <string name="app_components_common_none_label" translatable="false">None</string>
-    <string name="app_components_common_onColoredBackground_label" translatable="false">On colored background</string>
-    <string name="app_components_common_outlined_label" translatable="false">Outlined</string>
-    <string name="app_components_common_placeholder_label" translatable="false">Placeholder</string>
-    <string name="app_components_common_prefix_label" translatable="false">Prefix</string>
-    <string name="app_components_common_readOnly_label" translatable="false">Read only</string>
-    <string name="app_components_common_size_label" translatable="false">Size</string>
-    <string name="app_components_common_smallSize_label" translatable="false">Small</string>
-    <string name="app_components_common_mediumSize_label" translatable="false">Medium</string>
-    <string name="app_components_common_largeSize_label" translatable="false">Large</string>
-    <string name="app_components_common_status_label" translatable="false">Status</string>
+    <string name="app_components_common_layout_tech" translatable="false">Layout</string>
+    <string name="app_components_common_loader_tech" translatable="false">Loader</string>
+    <string name="app_components_common_none_tech" translatable="false">None</string>
+    <string name="app_components_common_onColoredBackground_tech" translatable="false">On colored background</string>
+    <string name="app_components_common_outlined_tech" translatable="false">Outlined</string>
+    <string name="app_components_common_placeholder_tech" translatable="false">Placeholder</string>
+    <string name="app_components_common_prefix_tech" translatable="false">Prefix</string>
+    <string name="app_components_common_readOnly_tech" translatable="false">Read only</string>
+    <string name="app_components_common_size_tech" translatable="false">Size</string>
+    <string name="app_components_common_smallSize_tech" translatable="false">Small</string>
+    <string name="app_components_common_mediumSize_tech" translatable="false">Medium</string>
+    <string name="app_components_common_largeSize_tech" translatable="false">Large</string>
+    <string name="app_components_common_status_tech" translatable="false">Status</string>
     <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
-    <string name="app_components_common_textOnlyLayout_label" translatable="false">Text only</string>
-    <string name="app_components_common_textAndIconLayout_label" translatable="false">Text + icon</string>
-    <string name="app_components_common_type_label" translatable="false">Type</string>
+    <string name="app_components_common_textOnlyLayout_tech" translatable="false">Text only</string>
+    <string name="app_components_common_textAndIconLayout_tech" translatable="false">Text + icon</string>
+    <string name="app_components_common_type_tech" translatable="false">Type</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">No unread message</item>
         <item quantity="one">%d unread message</item>
@@ -157,93 +158,96 @@
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
     <string name="app_components_common_version_label">Component design version</string>
-    <string name="app_components_textInputHelperText_label" translatable="false">Helper text.</string>
-    <string name="app_components_passwordInputHelperText_label" translatable="false">Your password must be at least 8 characters.</string>
+    <string name="app_components_textInputHelperText_label">Helper text.</string>
+    <string name="app_components_passwordInputHelperText_label">Your password must be at least 8 characters.</string>
 
     <!-- Components: alert -->
-    <string name="app_components_alert_label" translatable="false">Alert</string>
+    <string name="app_components_alert_tech" translatable="false">Alert</string>
     <string name="app_components_alert_description_text">Alert components are UI elements that display information, system feedback or status changes.</string>
-    <string name="app_components_alert_alertMessage_label" translatable="false">Alert message</string>
+    <string name="app_components_alert_alertMessage_tech" translatable="false">Alert message</string>
     <string name="app_components_alert_alertMessage_description_text">Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.</string>
-    <string name="app_components_alert_alertMessage_closeButton_label" translatable="false">Close button</string>
-    <string name="app_components_alert_alertMessage_statusIcon_label" translatable="false">Status icon</string>
-    <string name="app_components_alert_alertMessage_actionLink_label" translatable="false">Action link</string>
-    <string name="app_components_alert_alertMessage_actionLinkPosition_label" translatable="false">Action link position</string>
-    <string name="app_components_alert_alertMessage_bullet_label" translatable="false">Bullet %d</string>
+    <string name="app_components_alert_alertMessage_closeButton_tech" translatable="false">Close button</string>
+    <string name="app_components_alert_alertMessage_statusIcon_tech" translatable="false">Status icon</string>
+    <string name="app_components_alert_alertMessage_actionLink_tech" translatable="false">Action link</string>
+    <string name="app_components_alert_alertMessage_actionLinkPosition_tech" translatable="false">Action link position</string>
+    <string name="app_components_alert_alertMessage_bullet_tech" translatable="false">Bullet %d</string>
     <string name="app_components_alert_inlineAlert_tech" translatable="false">Inline alert</string>
     <string name="app_components_alert_inlineAlert_description_text">Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.</string>
 
     <!-- Components: badge -->
-    <string name="app_components_badge_label" translatable="false">Badge</string>
+    <string name="app_components_badge_tech" translatable="false">Badge</string>
     <string name="app_components_badge_description_text">Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.</string>
-    <string name="app_components_badge_standardType_label" translatable="false">Standard</string>
-    <string name="app_components_badge_countType_label" translatable="false">Count</string>
-    <string name="app_components_badge_iconType_label" translatable="false">Icon</string>
-    <string name="app_components_badge_count_label" translatable="false">Count</string>
+    <string name="app_components_badge_standardType_tech" translatable="false">Standard</string>
+    <string name="app_components_badge_countType_tech" translatable="false">Count</string>
+    <string name="app_components_badge_iconType_tech" translatable="false">Icon</string>
+    <string name="app_components_badge_count_tech" translatable="false">Count</string>
 
     <!-- Components: bullet list -->
-    <string name="app_components_bulletList_label" translatable="false">Bullet list</string>
+    <string name="app_components_bulletList_tech" translatable="false">Bullet list</string>
     <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>
-    <string name="app_components_bulletList_fontSize_label" translatable="false">Font size</string>
-    <string name="app_components_bulletList_fontWeight_label" translatable="false">Font weight</string>
-    <string name="app_components_bulletList_unorderedAsset_label" translatable="false">Unordered asset</string>
-    <string name="app_components_bulletList_unorderedAssetBrandColor_label" translatable="false">Unordered asset brand color</string>
-    <string name="app_components_bulletList_levelCount_label" translatable="false">Level count</string>
+    <string name="app_components_bulletList_fontSize_tech" translatable="false">Font size</string>
+    <string name="app_components_bulletList_fontWeight_tech" translatable="false">Font weight</string>
+    <string name="app_components_bulletList_unorderedAsset_tech" translatable="false">Unordered asset</string>
+    <string name="app_components_bulletList_unorderedAssetBrandColor_tech" translatable="false">Unordered asset brand color</string>
+    <string name="app_components_bulletList_levelCount_tech" translatable="false">Level count</string>
 
     <!-- Components: button -->
-    <string name="app_components_button_label" translatable="false">Button</string>
+    <string name="app_components_button_tech" translatable="false">Button</string>
     <string name="app_components_button_description_text">Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.</string>
 
     <!-- Components: checkbox -->
-    <string name="app_components_checkbox_label" translatable="false">Checkbox</string>
+    <string name="app_components_checkbox_tech" translatable="false">Checkbox</string>
     <string name="app_components_checkbox_description_text">Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices.</string>
-    <string name="app_components_checkbox_checkbox_label" translatable="false">Checkbox</string>
+    <string name="app_components_checkbox_checkbox_tech" translatable="false">Checkbox</string>
     <string name="app_components_checkbox_checkbox_a11y">%s checkbox content description</string>
-    <string name="app_components_checkbox_checkboxItem_label" translatable="false">Checkbox item</string>
-    <string name="app_components_checkbox_indeterminateCheckbox_label" translatable="false">Indeterminate checkbox</string>
+    <string name="app_components_checkbox_checkboxItem_tech" translatable="false">Checkbox item</string>
+    <string name="app_components_checkbox_indeterminateCheckbox_tech" translatable="false">Indeterminate checkbox</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">%s indeterminate checkbox content description</string>
-    <string name="app_components_checkbox_indeterminateCheckboxItem_label" translatable="false">Indeterminate checkbox item</string>
+    <string name="app_components_checkbox_indeterminateCheckboxItem_tech" translatable="false">Indeterminate checkbox item</string>
 
     <!-- Components: chip -->
-    <string name="app_components_chip_label" translatable="false">Chip</string>
+    <string name="app_components_chip_tech" translatable="false">Chip</string>
     <string name="app_components_chip_description_text">Chip helps people enter information, make selections, filter content, or trigger actions.</string>
-    <string name="app_components_chip_filterChip_label" translatable="false">Filter chip</string>
-    <string name="app_components_chip_suggestionChip_label" translatable="false">Suggestion chip</string>
+    <string name="app_components_chip_filterChip_tech" translatable="false">Filter chip</string>
+    <string name="app_components_chip_suggestionChip_tech" translatable="false">Suggestion chip</string>
 
     <!-- Components: colored background -->
-    <string name="app_components_coloredBackground_label" translatable="false">Colored background</string>
+    <string name="app_components_coloredBackground_tech" translatable="false">Colored background</string>
     <string name="app_components_coloredBackground_description_text">Colored background uses specific colors to maximize the contrast with content. Several components such as buttons or links adapt their display accordingly when they are displayed on colored backgrounds.</string>
-    <string name="app_components_coloredBackground_color_label" translatable="false">Color</string>
+    <string name="app_components_coloredBackground_color_tech" translatable="false">Color</string>
     <string name="app_components_coloredBackground_unsupportedColor_text">Current theme does not support \"%s\" color.</string>
+    <string name="app_components_coloredBackground_button_label">Button</string>
+    <string name="app_components_coloredBackground_link_label">Link</string>
+
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_icon_label" translatable="false">Icon</string>
-    <string name="app_components_controlItem_edgeToEdge_label" translatable="false">Edge to edge</string>
-    <string name="app_components_controlItem_divider_label" translatable="false">Divider</string>
-    <string name="app_components_controlItem_reversed_label" translatable="false">Reversed</string>
+    <string name="app_components_controlItem_icon_tech" translatable="false">Icon</string>
+    <string name="app_components_controlItem_edgeToEdge_tech" translatable="false">Edge to edge</string>
+    <string name="app_components_controlItem_divider_tech" translatable="false">Divider</string>
+    <string name="app_components_controlItem_reversed_tech" translatable="false">Reversed</string>
 
     <!-- Components: divider -->
-    <string name="app_components_divider_label" translatable="false">Divider</string>
+    <string name="app_components_divider_tech" translatable="false">Divider</string>
     <string name="app_components_divider_description_text">Divider is a UI element that allows to structure the content by visually separating the content zones.</string>
-    <string name="app_components_divider_horizontalDivider_label" translatable="false">Horizontal divider</string>
-    <string name="app_components_divider_verticalDivider_label" translatable="false">Vertical divider</string>
+    <string name="app_components_divider_horizontalDivider_tech" translatable="false">Horizontal divider</string>
+    <string name="app_components_divider_verticalDivider_tech" translatable="false">Vertical divider</string>
 
     <!-- Components: floating action button -->
-    <string name="app_components_floatingActionButton_label" translatable="false">Floating action button</string>
+    <string name="app_components_floatingActionButton_tech" translatable="false">Floating action button</string>
     <string name="app_components_floatingActionButton_description_text">Floating action button (also known as FAB) represents the most important action on a screen. It puts key actions within reach.</string>
-    <string name="app_components_floatingActionButton_expanded_label" translatable="false">Expanded</string>
+    <string name="app_components_floatingActionButton_expanded_tech" translatable="false">Expanded</string>
 
     <!-- Components: link -->
-    <string name="app_components_link_label" translatable="false">Link</string>
+    <string name="app_components_link_tech" translatable="false">Link</string>
     <string name="app_components_link_description_text">Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.</string>
-    <string name="app_components_link_backLayout_label" translatable="false">Back</string>
-    <string name="app_components_link_nextLayout_label" translatable="false">Next</string>
+    <string name="app_components_link_backLayout_tech" translatable="false">Back</string>
+    <string name="app_components_link_nextLayout_tech" translatable="false">Next</string>
 
     <!-- Components: navigation bar -->
-    <string name="app_components_navigationBar_label" translatable="false">Navigation bar</string>
+    <string name="app_components_navigationBar_tech" translatable="false">Navigation bar</string>
     <string name="app_components_navigationBar_description_text">Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.</string>
-    <string name="app_components_navigationBar_itemCount_label" translatable="false">Item count</string>
-    <string name="app_components_navigationBar_lastItemBadge_label" translatable="false">Last item badge</string>
+    <string name="app_components_navigationBar_itemCount_tech" translatable="false">Item count</string>
+    <string name="app_components_navigationBar_lastItemBadge_tech" translatable="false">Last item badge</string>
     <string name="app_components_navigationBar_homeItem_label">Home</string>
     <string name="app_components_navigationBar_shopItem_label">Shop</string>
     <string name="app_components_navigationBar_notificationsItem_label">Notifications</string>
@@ -251,67 +255,68 @@
     <string name="app_components_navigationBar_settingsItem_label">Settings</string>
 
     <!-- Components: password input -->
-    <string name="app_components_passwordInput_label" translatable="false">Password input</string>
+    <string name="app_components_passwordInput_tech" translatable="false">Password input</string>
     <string name="app_components_passwordInput_description_text">Password input is a UI element that allows to securely and confidentially capture a user\’s password.</string>
-    <string name="app_components_passwordInput_lockIcon_label" translatable="false">Lock icon</string>
-    <string name="app_components_passwordInput_password_label" translatable="false">Password</string>
+    <string name="app_components_passwordInput_lockIcon_tech" translatable="false">Lock icon</string>
+    <string name="app_components_passwordInput_password_tech" translatable="false">Password</string>
     <string name="app_components_passwordInput_textObfuscationMode_tech" translatable="false">Text obfuscation mode</string>
 
     <!-- Components: radio button -->
-    <string name="app_components_radioButton_label" translatable="false">Radio button</string>
+    <string name="app_components_radioButton_tech" translatable="false">Radio button</string>
     <string name="app_components_radioButton_description_text">Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices.</string>
-    <string name="app_components_radioButton_radioButton_label" translatable="false">Radio button</string>
-    <string name="app_components_radioButton_radioButtonItem_label" translatable="false">Radio button item</string>
-    <string name="app_components_radioButton_radioButtonItem_extraLabel_label" translatable="false">Extra label</string>
+    <string name="app_components_radioButton_radioButton_tech" translatable="false">Radio button</string>
+    <string name="app_components_radioButton_radioButtonItem_tech" translatable="false">Radio button item</string>
+    <string name="app_components_radioButton_radioButtonItem_extraLabel_tech" translatable="false">Extra label</string>
     <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
 
     <!-- Components: switch -->
-    <string name="app_components_switch_label" translatable="false">Switch</string>
+    <string name="app_components_switch_tech" translatable="false">Switch</string>
     <string name="app_components_switch_description_text">Switch is a UI element that allows to toggle between two states, typically \“On\” and \“Off\”, and used to enable or disable features, options or settings.</string>
-    <string name="app_components_switch_switch_label" translatable="false">Switch</string>
+    <string name="app_components_switch_switch_tech" translatable="false">Switch</string>
     <string name="app_components_switch_switch_a11y">Switch content description</string>
-    <string name="app_components_switch_switchItem_label" translatable="false">Switch item</string>
+    <string name="app_components_switch_switchItem_tech" translatable="false">Switch item</string>
 
     <!-- Components: tag -->
-    <string name="app_components_tag_label" translatable="false">Tag</string>
+    <string name="app_components_tag_tech" translatable="false">Tag</string>
     <string name="app_components_tag_description_text">Tag is a UI element that displays short information such as a label, a keyword or a category.</string>
-    <string name="app_components_tag_textAndBulletLayout_label" translatable="false">Text + bullet</string>
-    <string name="app_components_tag_tag_label" translatable="false">Tag</string>
-    <string name="app_components_tag_inputTag_label" translatable="false">Input tag</string>
-    <string name="app_components_tag_roundedCorners_label" translatable="false">Rounded corners</string>
+    <string name="app_components_tag_textAndBulletLayout_tech" translatable="false">Text + bullet</string>
+    <string name="app_components_tag_tag_tech" translatable="false">Tag</string>
+    <string name="app_components_tag_inputTag_tech" translatable="false">Input tag</string>
+    <string name="app_components_tag_roundedCorners_tech" translatable="false">Rounded corners</string>
 
     <!-- Components: text input -->
-    <string name="app_components_textInput_label" translatable="false">Text input</string>
+    <string name="app_components_textInput_tech" translatable="false">Text input</string>
     <string name="app_components_textInput_description_text">Text input is a UI element that allows to type, edit, or select single line of textual data, such as names, emails or search queries.</string>
-    <string name="app_components_textInput_leadingIcon_label" translatable="false">Leading icon</string>
-    <string name="app_components_textInput_trailingAction_label" translatable="false">Trailing action</string>
+    <string name="app_components_textInput_leadingIcon_tech" translatable="false">Leading icon</string>
+    <string name="app_components_textInput_trailingAction_tech" translatable="false">Trailing action</string>
     <string name="app_components_textInput_trailingAction_a11y">Trailing action content description</string>
-    <string name="app_components_textInput_suffix_label" translatable="false">Suffix</string>
-    <string name="app_components_textInput_helperLink_label" translatable="false">Helper link</string>
+    <string name="app_components_textInput_suffix_tech" translatable="false">Suffix</string>
+    <string name="app_components_textInput_helperLink_tech" translatable="false">Helper link</string>
 
     <!-- Components: top app bar -->
-    <string name="app_components_topAppBar_label" translatable="false">Top app bar</string>
+    <string name="app_components_topAppBar_tech" translatable="false">Top app bar</string>
     <string name="app_components_topAppBar_description_text">App bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.</string>
     <string name="app_components_topAppBar_firstAction_a11y">First action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Second action</string>
     <string name="app_components_topAppBar_thirdAction_a11y">Third action</string>
-    <string name="app_components_topAppBar_centerAligned_label" translatable="false">Center aligned</string>
-    <string name="app_components_topAppBar_navigationIcon_label" translatable="false">Navigation icon</string>
-    <string name="app_components_topAppBar_backNavigationIcon_label" translatable="false">Back</string>
-    <string name="app_components_topAppBar_closeNavigationIcon_label" translatable="false">Close</string>
-    <string name="app_components_topAppBar_menuNavigationIcon_label" translatable="false">Menu</string>
-    <string name="app_components_topAppBar_customNavigationIcon_label" translatable="false">Custom</string>
-    <string name="app_components_topAppBar_title_label" translatable="false">Title</string>
-    <string name="app_components_topAppBar_actionCount_label" translatable="false">Action count</string>
-    <string name="app_components_topAppBar_lastActionIconBadge_label" translatable="false">Last action icon badge</string>
-    <string name="app_components_topAppBar_actionAvatar_label" translatable="false">Action avatar</string>
-    <string name="app_components_topAppBar_imageActionAvatar_label" translatable="false">Image</string>
-    <string name="app_components_topAppBar_monogramActionAvatar_label" translatable="false">Monogram</string>
-    <string name="app_components_topAppBar_actionAvatarMonogram_label" translatable="false">Action avatar monogram</string>
+    <string name="app_components_topAppBar_centerAligned_tech" translatable="false">Center aligned</string>
+    <string name="app_components_topAppBar_navigationIcon_tech" translatable="false">Navigation icon</string>
+    <string name="app_components_topAppBar_backNavigationIcon_tech" translatable="false">Back</string>
+    <string name="app_components_topAppBar_closeNavigationIcon_tech" translatable="false">Close</string>
+    <string name="app_components_topAppBar_menuNavigationIcon_tech" translatable="false">Menu</string>
+    <string name="app_components_topAppBar_customNavigationIcon_tech" translatable="false">Custom</string>
+    <string name="app_components_topAppBar_title_label">@string/app_components_topAppBar_title_tech</string>
+    <string name="app_components_topAppBar_title_tech" translatable="false">Title</string>
+    <string name="app_components_topAppBar_actionCount_tech" translatable="false">Action count</string>
+    <string name="app_components_topAppBar_lastActionIconBadge_tech" translatable="false">Last action icon badge</string>
+    <string name="app_components_topAppBar_actionAvatar_tech" translatable="false">Action avatar</string>
+    <string name="app_components_topAppBar_imageActionAvatar_tech" translatable="false">Image</string>
+    <string name="app_components_topAppBar_monogramActionAvatar_tech" translatable="false">Monogram</string>
+    <string name="app_components_topAppBar_actionAvatarMonogram_tech" translatable="false">Action avatar monogram</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
-    <plurals name="app_about_issues_label" translatable="false">
+    <plurals name="app_about_issues_tech" translatable="false">
         <item quantity="one">Issue\u0020</item>
         <item quantity="other">Issues\u0020</item>
     </plurals>

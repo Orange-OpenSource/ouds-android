@@ -61,7 +61,7 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
         val colors = OudsColoredBoxColor.entries.filter { it.isSupported }
         CustomizationDropdownMenu(
             applyTopPadding = false,
-            label = stringResource(id = R.string.app_components_coloredBackground_color_label),
+            label = stringResource(id = R.string.app_components_coloredBackground_color_tech),
             items = colors.map { color ->
                 CustomizationDropdownMenuItem(
                     label = color.name.toSentenceCase(),
@@ -107,11 +107,11 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                     color = OudsTheme.colorScheme.content.default
                 )
                 OudsButton(
-                    label = stringResource(id = R.string.app_components_button_label),
+                    label = stringResource(id = R.string.app_components_coloredBackground_button_label),
                     onClick = {}
                 )
                 OudsLink(
-                    label = stringResource(id = R.string.app_components_link_label),
+                    label = stringResource(id = R.string.app_components_coloredBackground_link_label),
                     chevron = OudsLinkChevron.Next,
                     onClick = {},
                 )
@@ -134,11 +134,11 @@ private fun Code.Builder.coloredBackgroundDemoCodeSnippet(state: ColoredBackgrou
                             rawArgument("color", "OudsTheme.colorScheme.content.default")
                         }
                         functionCall("OudsButton") {
-                            labelArgument(R.string.app_components_button_label)
+                            labelArgument(R.string.app_components_coloredBackground_button_label)
                             onClickArgument {}
                         }
                         functionCall("OudsLink") {
-                            labelArgument(R.string.app_components_link_label)
+                            labelArgument(R.string.app_components_coloredBackground_link_label)
                             typedArgument("chevron", OudsLinkChevron.Next)
                             onClickArgument {}
                         }

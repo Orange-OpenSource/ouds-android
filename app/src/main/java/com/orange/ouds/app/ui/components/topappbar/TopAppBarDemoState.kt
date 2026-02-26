@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 
 @Composable
@@ -26,7 +27,7 @@ fun rememberTopAppBarDemoState(
     size: TopAppBarDemoState.Size = TopAppBarDemoState.Size.Small,
     centerAligned: Boolean = false,
     navigationIcon: TopAppBarDemoState.NavigationIcon = TopAppBarDemoState.NavigationIcon.None,
-    title: String = "Title",
+    title: String = stringResource(id = R.string.app_components_topAppBar_title_label),
     actionCount: Int = 2,
     lastActionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
     actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
@@ -133,28 +134,28 @@ class TopAppBarDemoState(
         get() = actions.contains(Action.Avatar) && actionAvatar == ActionAvatar.Monogram
 
     enum class Size(@StringRes val labelRes: Int) {
-        Small(R.string.app_components_common_smallSize_label),
-        Medium(R.string.app_components_common_mediumSize_label),
-        Large(R.string.app_components_common_largeSize_label)
+        Small(R.string.app_components_common_smallSize_tech),
+        Medium(R.string.app_components_common_mediumSize_tech),
+        Large(R.string.app_components_common_largeSize_tech)
     }
 
     enum class NavigationIcon(@StringRes val labelRes: Int) {
-        None(R.string.app_components_common_none_label),
-        Back(R.string.app_components_topAppBar_backNavigationIcon_label),
-        Close(R.string.app_components_topAppBar_closeNavigationIcon_label),
-        Menu(R.string.app_components_topAppBar_menuNavigationIcon_label),
-        Custom(R.string.app_components_topAppBar_customNavigationIcon_label)
+        None(R.string.app_components_common_none_tech),
+        Back(R.string.app_components_topAppBar_backNavigationIcon_tech),
+        Close(R.string.app_components_topAppBar_closeNavigationIcon_tech),
+        Menu(R.string.app_components_topAppBar_menuNavigationIcon_tech),
+        Custom(R.string.app_components_topAppBar_customNavigationIcon_tech)
     }
 
     enum class ActionIconBadge(@StringRes val labelRes: Int) {
-        None(R.string.app_components_common_none_label),
-        Standard(R.string.app_components_badge_standardType_label),
-        Count(R.string.app_components_badge_countType_label)
+        None(R.string.app_components_common_none_tech),
+        Standard(R.string.app_components_badge_standardType_tech),
+        Count(R.string.app_components_badge_countType_tech)
     }
 
     enum class ActionAvatar(@StringRes val labelRes: Int) {
-        Image(R.string.app_components_topAppBar_imageActionAvatar_label),
-        Monogram(R.string.app_components_topAppBar_monogramActionAvatar_label)
+        Image(R.string.app_components_topAppBar_imageActionAvatar_tech),
+        Monogram(R.string.app_components_topAppBar_monogramActionAvatar_tech)
     }
 
     enum class Action {

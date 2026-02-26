@@ -69,14 +69,14 @@ private fun NavigationBarDemoBottomSheetContent(state: NavigationBarDemoState) {
         val itemCountOptions = remember { (MinItemCount..MaxItemCount).toList() }
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_navigationBar_itemCount_label),
+            label = stringResource(R.string.app_components_navigationBar_itemCount_tech),
             chipLabels = itemCountOptions.map { it.toString() },
             selectedChipIndex = itemCountOptions.indexOf(itemCount),
             onSelectionChange = { index -> itemCount = itemCountOptions[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_navigationBar_lastItemBadge_label),
+            label = stringResource(R.string.app_components_navigationBar_lastItemBadge_tech),
             chipLabels = NavigationBarDemoState.ItemBadge.entries.map { it.name },
             selectedChipIndex = NavigationBarDemoState.ItemBadge.entries.indexOf(lastItemBadge),
             onSelectionChange = { index -> lastItemBadge = NavigationBarDemoState.ItemBadge.entries[index] }

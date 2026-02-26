@@ -24,7 +24,7 @@ import com.orange.ouds.app.R
 
 @Composable
 fun rememberInputTagDemoState(
-    label: String = stringResource(id = R.string.app_components_tag_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     enabled: Boolean = true,
 ) = rememberSaveable(label, enabled, saver = InputTagDemoState.Saver) {
     InputTagDemoState(label, enabled)

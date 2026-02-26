@@ -69,34 +69,34 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         val unorderedAssetClasses = getUnorderedAssetClasses()
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_common_type_label),
+            label = stringResource(R.string.app_components_common_type_tech),
             chipLabels = types.map { it::class.simpleName.orEmpty().toSentenceCase() },
             selectedChipIndex = types.indexOfFirst { it::class.qualifiedName == type::class.qualifiedName },
             onSelectionChange = { type = types[it] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_unorderedAsset_label),
+            label = stringResource(R.string.app_components_bulletList_unorderedAsset_tech),
             chips = unorderedAssetClasses.map { CustomizationFilterChip(it.java.simpleName.toSentenceCase(), enabled = unorderedAssetChipsEnabled) },
             selectedChipIndex = unorderedAssetClasses.indexOfFirst { it.java.name == unorderedAssetClassName },
             onSelectionChange = { unorderedAssetClassName = unorderedAssetClasses[it].java.name }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bulletList_unorderedAssetBrandColor_label),
+            label = stringResource(R.string.app_components_bulletList_unorderedAssetBrandColor_tech),
             checked = unorderedAssetBrandColor,
             onCheckedChange = { unorderedAssetBrandColor = it },
             enabled = unorderedAssetBrandColorSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_fontSize_label),
+            label = stringResource(R.string.app_components_bulletList_fontSize_tech),
             chipLabels = OudsBulletListFontSize.entries.map { it.name.toSentenceCase() },
             selectedChipIndex = OudsBulletListFontSize.entries.indexOf(fontSize),
             onSelectionChange = { id -> fontSize = OudsBulletListFontSize.entries[id] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_fontWeight_label),
+            label = stringResource(R.string.app_components_bulletList_fontWeight_tech),
             chipLabels = OudsBulletListFontWeight.entries.map { it.name.toSentenceCase() },
             selectedChipIndex = OudsBulletListFontWeight.entries.indexOf(fontWeight),
             onSelectionChange = { id -> fontWeight = OudsBulletListFontWeight.entries[id] }
@@ -104,7 +104,7 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         val levelCountOptions = remember { (MinLevelCount..MaxLevelCount).toList() }
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_levelCount_label),
+            label = stringResource(R.string.app_components_bulletList_levelCount_tech),
             chipLabels = levelCountOptions.map { it.toString() },
             selectedChipIndex = levelCountOptions.indexOf(levelCount),
             onSelectionChange = { index -> levelCount = levelCountOptions[index] }

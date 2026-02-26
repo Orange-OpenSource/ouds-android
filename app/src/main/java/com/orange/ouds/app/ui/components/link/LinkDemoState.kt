@@ -26,7 +26,7 @@ import com.orange.ouds.core.component.OudsLinkSize
 
 @Composable
 fun rememberLinkDemoState(
-    label: String = stringResource(R.string.app_components_link_label),
+    label: String = stringResource(R.string.app_components_common_label_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     size: OudsLinkSize = OudsLinkDefaults.Size,
@@ -84,9 +84,9 @@ class LinkDemoState(
     var layout: Layout by mutableStateOf(layout)
 
     enum class Layout(@StringRes val labelRes: Int) {
-        TextOnly(R.string.app_components_common_textOnlyLayout_label),
-        TextAndIcon(R.string.app_components_common_textAndIconLayout_label),
-        ChevronBack(R.string.app_components_link_backLayout_label),
-        ChevronNext(R.string.app_components_link_nextLayout_label)
+        TextOnly(R.string.app_components_common_textOnlyLayout_tech),
+        TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
+        ChevronBack(R.string.app_components_link_backLayout_tech),
+        ChevronNext(R.string.app_components_link_nextLayout_tech)
     }
 }

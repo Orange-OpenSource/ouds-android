@@ -25,7 +25,7 @@ import com.orange.ouds.app.R
 @Composable
 fun rememberTextInputDemoState(
     textFieldState: TextFieldState = TextFieldState(),
-    label: String = stringResource(id = R.string.app_components_common_label_tech),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     placeholder: String = "",
     outlined: Boolean = false,
     leadingIcon: Boolean = false,

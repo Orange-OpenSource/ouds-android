@@ -83,7 +83,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
         }
         CustomizationDropdownMenu(
             applyTopPadding = false,
-            label = stringResource(id = R.string.app_components_common_status_label),
+            label = stringResource(id = R.string.app_components_common_status_tech),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
                     label = status::class.simpleName.orEmpty().toSentenceCase(),
@@ -100,37 +100,37 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_alert_alertMessage_statusIcon_label),
+            label = stringResource(R.string.app_components_alert_alertMessage_statusIcon_tech),
             checked = hasStatusIcon,
             onCheckedChange = { hasStatusIcon = it },
             enabled = statusIconSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_alert_alertMessage_closeButton_label),
+            label = stringResource(R.string.app_components_alert_alertMessage_closeButton_tech),
             checked = hasCloseButton,
             onCheckedChange = { hasCloseButton = it },
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_description_label),
+            label = stringResource(R.string.app_components_common_description_tech),
             value = description.orEmpty(),
             onValueChange = { value -> description = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_alert_alertMessage_actionLink_label),
+            label = stringResource(R.string.app_components_alert_alertMessage_actionLink_tech),
             value = actionLink.orEmpty(),
             onValueChange = { value -> actionLink = value },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_alert_alertMessage_actionLinkPosition_label),
+            label = stringResource(R.string.app_components_alert_alertMessage_actionLinkPosition_tech),
             chips = OudsAlertMessageActionLinkPosition.entries.map {
                 CustomizationFilterChip(
                     it.name.toSentenceCase(),
@@ -143,7 +143,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
         for (id in 1..MaxBulletCount) {
             CustomizationTextInput(
                 applyTopPadding = true,
-                label = stringResource(R.string.app_components_alert_alertMessage_bullet_label, id),
+                label = stringResource(R.string.app_components_alert_alertMessage_bullet_tech, id),
                 value = bulletList?.get(id).orEmpty(),
                 onValueChange = { value ->
                     bulletList = bulletList.orEmpty().toMutableMap().apply { put(id, value) }

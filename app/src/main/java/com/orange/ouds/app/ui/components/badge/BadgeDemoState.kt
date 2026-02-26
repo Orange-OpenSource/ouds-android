@@ -117,8 +117,8 @@ class BadgeDemoState(
         get() = type == Type.Count
 
     enum class Type(@StringRes val labelRes: Int) {
-        Standard(R.string.app_components_badge_standardType_label),
-        Count(R.string.app_components_badge_count_label),
-        Icon(R.string.app_components_badge_iconType_label)
+        Standard(R.string.app_components_badge_standardType_tech),
+        Count(R.string.app_components_badge_count_tech),
+        Icon(R.string.app_components_badge_iconType_tech)
     }
 }

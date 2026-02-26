@@ -29,7 +29,7 @@ fun rememberFloatingActionButtonDemoState(
     size: FloatingActionButtonDemoState.Size = FloatingActionButtonDemoState.Size.Medium,
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     layout: FloatingActionButtonDemoState.Layout = FloatingActionButtonDemoState.Layout.entries.first(),
-    label: String = stringResource(id = R.string.app_components_floatingActionButton_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     expanded: Boolean = true
 ) = rememberSaveable(size, appearance, layout, label, expanded, saver = FloatingActionButtonDemoState.Saver) {
     FloatingActionButtonDemoState(size, appearance, layout, label, expanded)
@@ -111,14 +111,14 @@ class FloatingActionButtonDemoState(
         get() = layout == Layout.TextAndIcon
 
     enum class Size(@StringRes val labelRes: Int) {
-        Small(R.string.app_components_common_smallSize_label),
-        Medium(R.string.app_components_common_mediumSize_label),
-        Large(R.string.app_components_common_largeSize_label)
+        Small(R.string.app_components_common_smallSize_tech),
+        Medium(R.string.app_components_common_mediumSize_tech),
+        Large(R.string.app_components_common_largeSize_tech)
     }
 
     enum class Layout(@StringRes val labelRes: Int) {
-        IconOnly(R.string.app_components_common_iconOnlyLayout_label),
-        TextAndIcon(R.string.app_components_common_textAndIconLayout_label),
-        TextOnly(R.string.app_components_common_textOnlyLayout_label),
+        IconOnly(R.string.app_components_common_iconOnlyLayout_tech),
+        TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
+        TextOnly(R.string.app_components_common_textOnlyLayout_tech),
     }
 }

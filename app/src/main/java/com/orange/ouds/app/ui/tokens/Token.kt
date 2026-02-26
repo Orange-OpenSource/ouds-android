@@ -37,10 +37,10 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
         get() = when (val value = value()) {
             is Color -> {
                 if (value.isUnspecified) {
-                    stringResource(id = R.string.app_tokens_color_unspecified_label)
+                    stringResource(id = R.string.app_tokens_color_unspecified_tech)
                 } else {
                     stringResource(
-                        id = R.string.app_tokens_colorFormat_label,
+                        id = R.string.app_tokens_colorFormat_tech,
                         value.toArgb().toHexString().uppercase().let { if (it.startsWith("FF")) it.drop(2) else it }
                     )
                 }
@@ -50,10 +50,10 @@ data class Token<T>(val name: String, val relativeName: String, val value: @Comp
             is Dp -> "\u200e${value.value.normalized} dp"
             is TextStyle -> {
                 listOfNotNull(
-                    stringResource(R.string.app_tokens_typography_size_label, value.fontSize.value.normalized.toString()),
-                    value.fontWeight?.weight?.let { stringResource(R.string.app_tokens_typography_weight_label, it) },
-                    stringResource(R.string.app_tokens_typography_letterSpacing_label, value.letterSpacing.value.normalized.toString()),
-                    stringResource(R.string.app_tokens_typography_lineHeight_label, value.lineHeight.value.normalized.toString())
+                    stringResource(R.string.app_tokens_typography_size_tech, value.fontSize.value.normalized.toString()),
+                    value.fontWeight?.weight?.let { stringResource(R.string.app_tokens_typography_weight_tech, it) },
+                    stringResource(R.string.app_tokens_typography_letterSpacing_tech, value.letterSpacing.value.normalized.toString()),
+                    stringResource(R.string.app_tokens_typography_lineHeight_tech, value.lineHeight.value.normalized.toString())
                 ).joinToString("\n")
             }
             is Enum<*> -> value.name
