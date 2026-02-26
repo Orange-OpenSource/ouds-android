@@ -96,6 +96,7 @@
     <!-- Components: alert -->
     <string name="app_components_alert_description_text">Les composants d\'alerte sont des éléments d\'interface utilisateur qui affichent des informations, des retours système ou des changements d\'état.</string>
     <string name="app_components_alert_alertMessage_description_text">Un Alert message (ou message d\'alerte) est un élément d\'interface utilisateur qui affiche des informations système, des changements d\'état ou une action requise&#160;; le tout grâce à une communication détaillée, visible, persistante et exploitable.</string>
+    <string name="app_components_alert_inlineAlert_description_text">Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>

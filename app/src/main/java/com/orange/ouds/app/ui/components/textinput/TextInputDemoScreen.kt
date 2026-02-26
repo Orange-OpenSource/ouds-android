@@ -22,6 +22,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
@@ -189,7 +190,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
     with(state) {
         functionCall("OudsTextInput") {
             functionCallArgument("textFieldState", "rememberTextFieldState")
-            if (label.isNotEmpty()) typedArgument("label", label)
+            if (label.isNotEmpty()) labelArgument(label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (leadingIcon) {

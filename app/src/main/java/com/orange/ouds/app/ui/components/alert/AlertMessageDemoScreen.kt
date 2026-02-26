@@ -20,12 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
@@ -35,10 +38,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.toSentenceCase
+import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
-import com.orange.ouds.core.component.OudsAlertMessageIcon
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -88,7 +91,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.backgroundColor())
+                                .background(status.backgroundColor)
                         )
                     }
                 )
@@ -152,7 +155,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
-    val icon = OudsAlertMessageIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+    val icon = OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
     with(state) {
         OudsAlertMessage(
             label = label,
@@ -187,7 +190,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         if (hasStatusIcon) {
-                            constructorCallArgument<OudsAlertMessageIcon>("icon") {
+                            constructorCallArgument<OudsAlertIcon>("icon") {
                                 painterArgument(themeDrawableResources.tipsAndTricks)
                             }
                         }
@@ -200,7 +203,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     rawArgument(statusParameterName, status::class.java.nestedName)
                 }
             }
-            typedArgument("label", label)
+            labelArgument(label)
             description?.let { typedArgument("description", description) }
             if (hasCloseButton) {
                 lambdaArgument("onClose") {
@@ -209,7 +212,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
             }
             if (!actionLink.isNullOrEmpty()) {
                 functionCallArgument("actionLink", OudsAlertMessageActionLink::class.java.simpleName) {
-                    typedArgument("label", actionLink)
+                    labelArgument(actionLink)
                     lambdaArgument("onClick") {
                         comment("Implement click")
                     }
@@ -225,4 +228,10 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
             }
         }
     }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewAlertMessageDemoScreen() = AppPreview {
+    AlertMessageDemoScreen()
 }

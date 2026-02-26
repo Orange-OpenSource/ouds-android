@@ -30,4 +30,3 @@ internal class OudsAlertMessageTest(parameter: Any) : OudsComponentSnapshotTest(
         internal fun data() = OudsPreviewableComponent.AlertMessage.parameters
     }
 }
-

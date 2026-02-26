@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -151,7 +152,7 @@ private fun Code.Builder.floatingActionButtonDemoCodeSnippet(state: FloatingActi
         }
         functionCall(functionName) {
             if (layout != FloatingActionButtonDemoState.Layout.IconOnly) {
-                typedArgument("label", label)
+                labelArgument(label)
             }
             if (layout != FloatingActionButtonDemoState.Layout.TextOnly) {
                 constructorCallArgument<OudsFloatingActionButtonIcon>("icon") {

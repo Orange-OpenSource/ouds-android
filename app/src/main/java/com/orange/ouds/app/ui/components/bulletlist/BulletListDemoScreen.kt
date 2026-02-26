@@ -24,6 +24,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MaxLevelCount
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -216,7 +217,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
 private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.() -> Unit)? = null) = functionCall("item") {
     trailingLambda = true
     isMultiline = false
-    typedArgument("label", label)
+    labelArgument(label)
     content?.let {
         lambdaArgument("builder") {
             content()
