@@ -377,7 +377,12 @@ private fun OudsAlertMessageBulletListItem(label: String) {
 }
 
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp, device = OudsPreviewDevice)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsAlertMessage(@PreviewParameter(OudsAlertMessagePreviewParameterProvider::class) parameter: OudsAlertMessagePreviewParameter) {
@@ -396,10 +401,10 @@ internal fun PreviewOudsAlertMessage(
             listOf(
                 OudsAlertMessageStatus.Neutral(icon),
                 OudsAlertMessageStatus.Accent(icon),
-                OudsAlertMessageStatus.Positive,
-                OudsAlertMessageStatus.Warning,
                 OudsAlertMessageStatus.Negative,
-                OudsAlertMessageStatus.Info
+                OudsAlertMessageStatus.Positive,
+                OudsAlertMessageStatus.Info,
+                OudsAlertMessageStatus.Warning
             ).forEach { status ->
                 OudsAlertMessage(
                     modifier = Modifier.padding(all = 10.dp),

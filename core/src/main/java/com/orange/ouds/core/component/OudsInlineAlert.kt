@@ -191,10 +191,10 @@ internal fun PreviewOudsInlineAlert(
         listOf(
             OudsInlineAlertStatus.Neutral(icon),
             OudsInlineAlertStatus.Accent(icon),
-            OudsInlineAlertStatus.Positive,
-            OudsInlineAlertStatus.Warning,
             OudsInlineAlertStatus.Negative,
-            OudsInlineAlertStatus.Info
+            OudsInlineAlertStatus.Positive,
+            OudsInlineAlertStatus.Info,
+            OudsInlineAlertStatus.Warning
         ).forEach { status ->
             OudsInlineAlert(
                 modifier = Modifier.padding(all = 10.dp),
