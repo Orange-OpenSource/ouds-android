@@ -66,7 +66,8 @@ internal sealed class OudsAlertStatus(private val defaultIconPainterProvider: (@
                         frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                     )
                 }
-                else -> null
+                is Accent,
+                is Neutral -> null
             }
         }
     }
