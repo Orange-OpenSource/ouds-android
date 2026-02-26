@@ -12,8 +12,6 @@
 
 package com.orange.ouds.core.component.samples
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsAlertIcon
@@ -25,7 +23,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 internal fun OudsInlineAlertNonFunctionalStatusSample() {
     OudsInlineAlert(
         label = "Label",
-        status = OudsInlineAlertStatus.Accent(OudsAlertIcon(imageVector = Icons.Filled.FavoriteBorder))
+        status = OudsInlineAlertStatus.Accent(OudsAlertIcon.Default)
     )
 }
 

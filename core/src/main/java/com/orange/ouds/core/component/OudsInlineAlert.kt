@@ -125,9 +125,12 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      * Accent status uses brand colours and can include decorative icons to draw attention to key marketing or communication content.
      * Perfect for promotional, inspirational, or brand-driven highlights that engage the user positively.
      *
-     * @property icon Icon to be displayed in the inline alert.
+     * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
-    class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(OudsAlertStatus.Accent(), icon)
+    class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(
+        OudsAlertStatus.Accent({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartEmpty) }),
+        icon
+    )
 
     /**
      * Negative status indicates a failure, error, or blocking issue that needs user attention.
