@@ -15,10 +15,10 @@
 
 package com.orange.ouds.theme.orangecompact.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 internal data class OrangeCompactTagTokens(

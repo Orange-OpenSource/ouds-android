@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
+import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 
 internal data class OrangeRadioButtonTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
