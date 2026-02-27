@@ -52,7 +52,7 @@ jobs:
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: docs
           path: docs
@@ -93,7 +93,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Download artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: docs
           path: docs
