@@ -70,3 +70,9 @@ android {
         }
     }
 }
+
+// Temporary workaround for Gradle 9.3.0 compatibility with Paparazzi 2.0.0-alpha04
+// Disable HTML report generation for test tasks to avoid NoSuchMethodError with TestResultsProvider
+tasks.withType<Test>().configureEach {
+    reports.html.required = false
+}
