@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.tag
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -26,6 +27,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsInputTag
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputTagDemoScreen() {
     val state = rememberInputTagDemoState()

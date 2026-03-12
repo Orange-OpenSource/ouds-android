@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.button
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,6 +39,7 @@ import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ButtonDemoScreen() {
     val state = rememberButtonDemoState()

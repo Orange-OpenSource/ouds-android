@@ -28,7 +28,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -62,6 +61,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -92,11 +92,10 @@ fun CustomizationBottomSheetScaffold(
             bottomSheetScaffoldState.bottomSheetState.partialExpand()
         }
     }
-    BottomSheetScaffold(
+    OudsBottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         sheetSwipeEnabled = false,
-        sheetDragHandle = null,
-        containerColor = OudsTheme.colorScheme.background.primary,
+        sheetDragHandle = false,
         sheetContent = {
             Row(
                 modifier = Modifier
