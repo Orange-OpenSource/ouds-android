@@ -142,6 +142,13 @@ sealed class Component(
         demoScreen = { PasswordInputDemoScreen() }
     )
 
+    data object PinCodeInput : Component(
+        R.string.app_components_pinCodeInput_tech,
+        R.string.app_components_passwordInput_description_text,
+        { PasswordInputIllustration() },
+        demoScreen = { PasswordInputDemoScreen() }
+    )
+
     data object RadioButton : Component(
         R.string.app_components_radioButton_tech,
         R.string.app_components_radioButton_description_text,
