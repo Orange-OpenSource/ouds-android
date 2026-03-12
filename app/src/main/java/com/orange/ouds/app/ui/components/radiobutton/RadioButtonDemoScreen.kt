@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.radiobutton
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -34,6 +35,7 @@ import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RadioButtonDemoScreen() {
     val state = rememberRadioButtonDemoState()

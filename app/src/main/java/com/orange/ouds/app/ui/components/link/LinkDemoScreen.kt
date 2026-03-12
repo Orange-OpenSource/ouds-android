@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.link
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,6 +38,7 @@ import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkSize
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LinkDemoScreen() {
     val state = rememberLinkDemoState()

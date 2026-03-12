@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.switch
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,6 +29,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SwitchDemoScreen() {
     val state = rememberSwitchDemoState()

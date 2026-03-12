@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.chip
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
@@ -22,6 +23,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSuggestionChip
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SuggestionChipDemoScreen() {
     val state = rememberSuggestionChipDemoState()
