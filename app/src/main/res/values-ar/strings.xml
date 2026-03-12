@@ -105,6 +105,11 @@
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
 
+    <!-- Components: bottom sheet -->
+    <string name="app_components_bottomSheet_description_text">Bottom sheets show secondary content anchored to the bottom of the screen.</string> <!-- TODO -->
+    <string name="app_components_bottomSheet_bottomSheetScaffold_description_text">Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_modalBottomSheet_description_text">Modal bottom sheet displays content that temporarily blocks interaction with the main screen.</string>  <!-- TODO -->
+
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_description_text">Bullet list هي عنصر واجهة مستخدم يساعد على عرض عناصر نصية فردية ذات صلة مجمعة معًا؛ عادةً ما تبدأ برقم أو برمز نقطي.</string>
 

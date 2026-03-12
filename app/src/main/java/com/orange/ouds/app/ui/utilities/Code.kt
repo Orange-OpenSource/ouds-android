@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
@@ -190,6 +191,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
                 if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
             }
             is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButtonAppearance.Strong instead of Strong
+            is Dp -> "${value.value.toInt()}.dp"
             is Formattable -> value.format(context)
             else -> value.toString()
         }
@@ -245,6 +247,7 @@ internal fun PreviewCode() = AppPreview {
             typedArgument("int", 1234)
             typedArgument("boolean", true)
             typedArgument("enum", BottomBarItem.Tokens)
+            typedArgument("dp", Dp(12.0f))
             typedArgument<String?>("null", null)
             lambdaArgument("content") {
                 comment("Single line comment")

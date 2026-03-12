@@ -182,6 +182,17 @@
     <string name="app_components_badge_iconType_tech" translatable="false">Icon</string>
     <string name="app_components_badge_count_tech" translatable="false">Count</string>
 
+    <!-- Components: bottom sheet -->
+    <string name="app_components_bottomSheet_tech" translatable="false">Bottom sheet</string>
+    <string name="app_components_bottomSheet_description_text">Bottom sheets show secondary content anchored to the bottom of the screen.</string> <!-- TODO -->
+    <string name="app_components_bottomSheet_sheetPeekHeight_tech" translatable="false">Sheet peak height</string>
+    <string name="app_components_bottomSheet_sheetDragHandle_tech" translatable="false">Sheet drag handle</string>
+    <string name="app_components_bottomSheet_sheetSwipeEnabled_tech" translatable="false">Sheet swipe enabled</string>
+    <string name="app_components_bottomSheet_bottomSheetScaffold_tech" translatable="false">Bottom sheet scaffold</string>
+    <string name="app_components_bottomSheet_bottomSheetScaffold_description_text">Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_modalBottomSheet_tech" translatable="false">Modal bottom sheet</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_description_text">Modal bottom sheet displays content that temporarily blocks interaction with the main screen.</string>  <!-- TODO -->
+
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_tech" translatable="false">Bullet list</string>
     <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>
