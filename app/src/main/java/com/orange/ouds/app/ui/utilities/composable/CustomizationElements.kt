@@ -150,7 +150,7 @@ fun CustomizationTextInput(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
@@ -176,7 +176,8 @@ fun CustomizationTextInput(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    suffix: String? = null
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
@@ -200,6 +201,7 @@ fun CustomizationTextInput(
         } else {
             null
         },
+        suffix = suffix,
         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
     )
 }

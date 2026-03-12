@@ -103,6 +103,11 @@
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
 
+    <!-- Components: bottom sheet -->
+    <string name="app_components_bottomSheet_description_text">Une Bottom sheet affiche un contenu secondaire ancré en bas de l\'écran.</string> <!-- TODO -->
+    <string name="app_components_bottomSheet_bottomSheetScaffold_description_text">Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_modalBottomSheet_description_text">Modal bottom sheet displays content that temporarily blocks interaction with the main screen.</string>  <!-- TODO -->
+
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_description_text">La Bullet list (ou liste à puces) est un élément d\'interface utilisateur qui permet de visualiser des éléments de texte individuels liés, regroupés par ordre alphabétique ; ces éléments commencent généralement par un chiffre ou une puce.</string>
 

@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -59,8 +58,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
-import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
@@ -159,17 +156,7 @@ fun CustomizationBottomSheetScaffold(
             }
         },
         content = { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                    .consumeWindowInsets(innerPadding)
-                    .padding(innerPadding)
-                    .consumeTopBarsTopWindowInsets()
-                    .padding(top = topBarsTopPadding),
-            ) {
-                content()
-            }
+            ScreenMainContentColumn(paddingValues = innerPadding, content = content)
         }
     )
 
