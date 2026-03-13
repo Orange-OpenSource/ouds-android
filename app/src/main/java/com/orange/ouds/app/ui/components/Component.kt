@@ -20,6 +20,7 @@ import com.orange.ouds.app.ui.components.alert.AlertMessageDemoScreen
 import com.orange.ouds.app.ui.components.alert.InlineAlertDemoScreen
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.bottomsheet.BottomSheetScaffoldDemoScreen
+import com.orange.ouds.app.ui.components.bottomsheet.ModalBottomSheetDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
@@ -78,7 +79,7 @@ sealed class Component(
         R.string.app_components_bottomSheet_tech,
         R.string.app_components_bottomSheet_description_text,
         { BottomSheetIllustration() },
-        listOf(Variant.BottomSheetScaffold)
+        listOf(Variant.BottomSheetScaffold, Variant.ModalBottomSheet)
     )
 
     data object BulletList : Component(
@@ -211,6 +212,7 @@ sealed class Variant(
 
     // Bottom sheet
     data object BottomSheetScaffold : Variant(R.string.app_components_bottomSheet_bottomSheetScaffold_tech, { BottomSheetScaffoldDemoScreen() })
+    data object ModalBottomSheet : Variant(R.string.app_components_bottomSheet_modalBottomSheet_tech, { ModalBottomSheetDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_tech, { CheckboxDemoScreen() })

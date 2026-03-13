@@ -24,15 +24,15 @@ import androidx.compose.ui.unit.Dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun rememberBottomSheetDemoState(
+fun rememberBottomSheetScaffoldDemoState(
     sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight,
     sheetDragHandle: Boolean = true,
     sheetSwipeEnabled: Boolean = true
-) = rememberSaveable(sheetPeekHeight, sheetDragHandle, sheetSwipeEnabled, saver = BottomSheetDemoState.Saver) {
-    BottomSheetDemoState(sheetPeekHeight, sheetDragHandle, sheetSwipeEnabled)
+) = rememberSaveable(sheetPeekHeight, sheetDragHandle, sheetSwipeEnabled, saver = BottomSheetScaffoldDemoState.Saver) {
+    BottomSheetScaffoldDemoState(sheetPeekHeight, sheetDragHandle, sheetSwipeEnabled)
 }
 
-class BottomSheetDemoState(
+class BottomSheetScaffoldDemoState(
     sheetPeakHeight: Dp,
     sheetDragHandle: Boolean,
     sheetSwipeEnabled: Boolean
@@ -47,7 +47,7 @@ class BottomSheetDemoState(
                 )
             },
             restore = { list ->
-                BottomSheetDemoState(
+                BottomSheetScaffoldDemoState(
                     Dp(list[0] as Float),
                     list[1] as Boolean,
                     list[2] as Boolean
