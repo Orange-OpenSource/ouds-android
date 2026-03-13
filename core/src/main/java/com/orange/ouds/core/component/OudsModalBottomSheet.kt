@@ -30,7 +30,6 @@ import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -49,7 +48,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design version: 1.0.0
  *
- * @param onDismissRequest Callback executed when the user clicks outside of the bottom sheet, after sheet animates to [Hidden].
+ * @param onDismissRequest Callback executed when the user clicks outside the bottom sheet, after sheet animates to [Hidden].
  * @param modifier Optional [Modifier] for the modal bottom sheet.
  * @param sheetState The state of the bottom sheet, which controls its visibility and allows for programmatic control. See [rememberModalBottomSheetState].
  * @param sheetGesturesEnabled Whether the bottom sheet can be interacted with by gestures.
@@ -78,21 +77,19 @@ fun OudsModalBottomSheet(
         onDismissRequest = onDismissRequest,
         modifier = modifier,
         sheetState = sheetState,
-        sheetMaxWidth = BottomSheetDefaults.SheetMaxWidth, // TODO token ?
         sheetGesturesEnabled = sheetGesturesEnabled,
-        shape = BottomSheetDefaults.ExpandedShape,
-        containerColor = OudsTheme.colorScheme.surface.primary, //TODO To be confirmed
-        contentColor = OudsTheme.colorScheme.content.default, //TODO To be confirmed
-        tonalElevation = 0.dp, //TODO To be confirmed
-        scrimColor = OudsTheme.colorScheme.overlay.modal, //TODO To be confirmed
+        containerColor = OudsTheme.colorScheme.overlay.modal,
+        contentColor = OudsTheme.colorScheme.content.default,
+        //tonalElevation = 6.dp, //TODO To be confirmed
+        scrimColor = OudsTheme.colorScheme.always.black.copy(alpha = 0.64f),
         dragHandle = if (dragHandle) {
-            { BottomSheetDefaults.DragHandle() }
+            { OudsBottomSheetDefaults.DragHandle() }
         } else {
             null
-        }, //TODO To be confirmed if it is always present or not, ask what should be displayed
+        },
         contentWindowInsets = contentWindowInsets,
         properties = properties,
-        content = content,
+        content = content
     )
 }
 
