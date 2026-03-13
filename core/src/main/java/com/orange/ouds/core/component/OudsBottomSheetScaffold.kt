@@ -34,7 +34,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -89,20 +88,20 @@ fun OudsBottomSheetScaffold(
         sheetPeekHeight = sheetPeekHeight,
         sheetMaxWidth = BottomSheetDefaults.SheetMaxWidth,
         sheetShape = BottomSheetDefaults.ExpandedShape,
-        sheetContainerColor = OudsTheme.colorScheme.surface.primary.compositeOver(OudsTheme.colorScheme.background.primary), //TODO To be confirmed
-        sheetContentColor = OudsTheme.colorScheme.content.default, //TODO To be confirmed
+        sheetContainerColor = OudsTheme.colorScheme.overlay.modal,
+        sheetContentColor = OudsTheme.colorScheme.content.default,
         sheetTonalElevation = 0.dp, //TODO To be confirmed
-        sheetShadowElevation = BottomSheetDefaults.Elevation, //TODO To be confirmed
+        sheetShadowElevation = 6.dp, //TODO To be confirmed
         sheetDragHandle = if (sheetDragHandle) {
-            { BottomSheetDefaults.DragHandle() }
+            { OudsBottomSheetDefaults.DragHandle() }
         } else {
             null
-        }, //TODO To be confirmed if it is always present or not, ask what should be displayed
+        },
         sheetSwipeEnabled = sheetSwipeEnabled,
         topBar = topBar,
         snackbarHost = snackbarHost,
-        containerColor = Color.Transparent, //TODO To be confirmed
-        contentColor = OudsTheme.colorScheme.content.default, //TODO To be confirmed
+        containerColor = Color.Transparent, //TODO Needed for illustration to be displayed correctly, impact?
+        contentColor = OudsTheme.colorScheme.content.default,
         content = content
     )
 }
