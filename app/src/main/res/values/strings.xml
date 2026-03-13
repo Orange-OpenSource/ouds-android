@@ -185,13 +185,15 @@
     <!-- Components: bottom sheet -->
     <string name="app_components_bottomSheet_tech" translatable="false">Bottom sheet</string>
     <string name="app_components_bottomSheet_description_text">Bottom sheets show secondary content anchored to the bottom of the screen.</string> <!-- TODO -->
-    <string name="app_components_bottomSheet_sheetPeekHeight_tech" translatable="false">Sheet peak height</string>
-    <string name="app_components_bottomSheet_sheetDragHandle_tech" translatable="false">Sheet drag handle</string>
-    <string name="app_components_bottomSheet_sheetSwipeEnabled_tech" translatable="false">Sheet swipe enabled</string>
     <string name="app_components_bottomSheet_bottomSheetScaffold_tech" translatable="false">Bottom sheet scaffold</string>
     <string name="app_components_bottomSheet_bottomSheetScaffold_description_text">Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_bottomSheetScaffold_sheetPeekHeight_tech" translatable="false">Sheet peak height</string>
+    <string name="app_components_bottomSheet_bottomSheetScaffold_sheetDragHandle_tech" translatable="false">Sheet drag handle</string>
+    <string name="app_components_bottomSheet_bottomSheetScaffold_sheetSwipeEnabled_tech" translatable="false">Sheet swipe enabled</string>
     <string name="app_components_bottomSheet_modalBottomSheet_tech" translatable="false">Modal bottom sheet</string>
     <string name="app_components_bottomSheet_modalBottomSheet_description_text">Modal bottom sheet displays content that temporarily blocks interaction with the main screen.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_modalBottomSheet_dragHandle_tech" translatable="false">Drag handle</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_sheetGesturesEnabled_tech" translatable="false">Sheet gestures enabled</string>
 
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_tech" translatable="false">Bullet list</string>

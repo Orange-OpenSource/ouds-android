@@ -40,7 +40,7 @@ import com.orange.ouds.core.theme.OudsTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomSheetScaffoldDemoScreen() {
-    val state = rememberBottomSheetDemoState()
+    val state = rememberBottomSheetScaffoldDemoState()
     with(state) {
         Screen {
             OudsBottomSheetScaffold(
@@ -81,12 +81,12 @@ private fun BottomSheetContent() {
 }
 
 @Composable
-private fun BottomSheetScaffoldCustomization(state: BottomSheetDemoState) {
+private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState) {
     with(state) {
         val sheetPeakHeightForDisplay = sheetPeekHeight.value.toInt().toString()
         CustomizationTextInput(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_bottomSheet_sheetPeekHeight_tech),
+            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetPeekHeight_tech),
             value = TextFieldValue(
                 text = sheetPeakHeightForDisplay,
                 selection = TextRange(sheetPeakHeightForDisplay.length)
@@ -103,25 +103,29 @@ private fun BottomSheetScaffoldCustomization(state: BottomSheetDemoState) {
             suffix = "dp"
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bottomSheet_sheetDragHandle_tech),
+            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetDragHandle_tech),
             checked = sheetDragHandle,
             onCheckedChange = { sheetDragHandle = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bottomSheet_sheetSwipeEnabled_tech),
+            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetSwipeEnabled_tech),
             checked = sheetSwipeEnabled,
             onCheckedChange = { sheetSwipeEnabled = it },
         )
     }
 }
 
-private fun Code.Builder.bottomSheetScaffoldDemoCodeSnippet(state: BottomSheetDemoState) {
+private fun Code.Builder.bottomSheetScaffoldDemoCodeSnippet(state: BottomSheetScaffoldDemoState) {
     functionCall("OudsBottomSheetScaffold") {
+        trailingLambda = true
         typedArgument("sheetPeekHeight", state.sheetPeekHeight)
         typedArgument("sheetDragHandle", state.sheetDragHandle)
         typedArgument("sheetSwipeEnabled", state.sheetSwipeEnabled)
         lambdaArgument("sheetContent") {
             comment("sheet content")
+        }
+        lambdaArgument(null) {
+            comment("main content")
         }
     }
 }
