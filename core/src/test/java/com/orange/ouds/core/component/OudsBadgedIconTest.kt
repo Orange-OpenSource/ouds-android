@@ -20,8 +20,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-internal class OudsBadgedIconTest(val parameter: OudsBadgedIconPreviewParameter) :
-    OudsSnapshotTest(theme = OrangeTheme(getPreviewOrangeFontFamily())) {
+internal class OudsBadgedIconTest(val parameter: OudsBadgedIconPreviewParameter) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily())) {
 
     companion object {
         @JvmStatic
