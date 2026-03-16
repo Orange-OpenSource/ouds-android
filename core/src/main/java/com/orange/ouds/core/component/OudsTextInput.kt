@@ -48,12 +48,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -78,6 +74,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -570,7 +567,7 @@ internal fun OudsTextInputDecorator(
         } else {
             // filled
             Modifier
-                .bottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = hasError)
+                .textInputBottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = hasError)
                 .background(
                     color = backgroundColor(state = state, outlined = outlined, error = hasError),
                     shape = shape
@@ -820,77 +817,14 @@ private fun errorIconColor(state: OudsTextInputState) = when (state) {
  * Color and thickness of the border are provided by [state].
  */
 @Composable
-private fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
-    val thickness = borderWidth(state)
-    val color = borderColor(state = state, outlined = outlined, error = error)
+private fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
+    val width = borderWidth(state)
 
-    return drawWithContent {
-        drawContent()
-        if (thickness != null) {
-            if (cornerRadius > 0.dp) {
-                val cornerRadiusPx = cornerRadius.toPx()
-                val path = Path().apply {
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = 0f,
-                            bottom = size.height,
-                            right = 2 * cornerRadiusPx
-                        ),
-                        startAngleDegrees = 180f,
-                        sweepAngleDegrees = -90f,
-                        forceMoveTo = false
-                    )
-
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = size.width - 2 * cornerRadiusPx,
-                            bottom = size.height,
-                            right = size.width,
-                        ),
-                        startAngleDegrees = 90f,
-                        sweepAngleDegrees = -90f,
-                        forceMoveTo = false
-                    )
-
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = size.width - 2 * cornerRadiusPx,
-                            bottom = size.height - thickness.toPx(),
-                            right = size.width,
-                        ),
-                        startAngleDegrees = 0f,
-                        sweepAngleDegrees = 90f,
-                        forceMoveTo = false
-                    )
-
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = 0f,
-                            right = 2 * cornerRadiusPx,
-                            bottom = size.height - thickness.toPx()
-                        ),
-                        startAngleDegrees = 90f,
-                        sweepAngleDegrees = 90f,
-                        forceMoveTo = false
-                    )
-
-                    close()
-                }
-                drawPath(path, color = color)
-            } else {
-                val lineY = size.height - (thickness.toPx() / 2)
-                drawLine(
-                    color = color,
-                    start = Offset(0f, lineY),
-                    end = Offset(size.width, lineY),
-                    strokeWidth = thickness.toPx()
-                )
-            }
-        }
+    return if (width != null) {
+        val color = borderColor(state = state, outlined = outlined, error = error)
+        bottomBorder(width = width, color = color, cornerRadius = cornerRadius)
+    } else {
+        Modifier
     }
 }
 

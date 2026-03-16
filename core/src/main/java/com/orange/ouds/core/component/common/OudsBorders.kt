@@ -14,9 +14,15 @@ package com.orange.ouds.core.component.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
@@ -41,5 +47,74 @@ internal fun <T : Enum<T>> Modifier.outerBorder(state: T, shape: Shape = Rectang
         }
     } else {
         this
+    }
+}
+
+internal fun Modifier.bottomBorder(width: Dp, color: Color, cornerRadius: Dp): Modifier {
+    return drawWithContent {
+        drawContent()
+        if (cornerRadius > 0.dp) {
+            val cornerRadiusPx = cornerRadius.toPx()
+            val path = Path().apply {
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = 0f,
+                        bottom = size.height,
+                        right = 2 * cornerRadiusPx
+                    ),
+                    startAngleDegrees = 180f,
+                    sweepAngleDegrees = -90f,
+                    forceMoveTo = false
+                )
+
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = size.width - 2 * cornerRadiusPx,
+                        bottom = size.height,
+                        right = size.width,
+                    ),
+                    startAngleDegrees = 90f,
+                    sweepAngleDegrees = -90f,
+                    forceMoveTo = false
+                )
+
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = size.width - 2 * cornerRadiusPx,
+                        bottom = size.height - width.toPx(),
+                        right = size.width,
+                    ),
+                    startAngleDegrees = 0f,
+                    sweepAngleDegrees = 90f,
+                    forceMoveTo = false
+                )
+
+                arcTo(
+                    rect = Rect(
+                        top = size.height - 2 * cornerRadiusPx,
+                        left = 0f,
+                        right = 2 * cornerRadiusPx,
+                        bottom = size.height - width.toPx()
+                    ),
+                    startAngleDegrees = 90f,
+                    sweepAngleDegrees = 90f,
+                    forceMoveTo = false
+                )
+
+                close()
+            }
+            drawPath(path, color = color)
+        } else {
+            val lineY = size.height - (width.toPx() / 2)
+            drawLine(
+                color = color,
+                start = Offset(0f, lineY),
+                end = Offset(size.width, lineY),
+                strokeWidth = width.toPx()
+            )
+        }
     }
 }
