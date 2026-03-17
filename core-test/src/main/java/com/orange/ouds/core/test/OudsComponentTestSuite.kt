@@ -20,6 +20,7 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
     OudsAlertMessageTest::class,
     OudsBadgeTest::class,
+    OudsBottomSheetScaffoldTest::class,
     OudsBulletListTest::class,
     OudsButtonTest::class,
     OudsCheckboxItemTest::class,
