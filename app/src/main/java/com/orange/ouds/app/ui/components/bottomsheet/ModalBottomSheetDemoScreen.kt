@@ -14,12 +14,10 @@ package com.orange.ouds.app.ui.components.bottomsheet
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -78,7 +76,7 @@ fun ModalBottomSheetDemoScreen() {
                         onDismissRequest = { modalBottomSheetVisible = false },
                         sheetState = sheetState
                     ) {
-                        ModalBottomSheetContent()
+                        BottomSheetContent()
                     }
                 }
             }
@@ -87,28 +85,15 @@ fun ModalBottomSheetDemoScreen() {
 }
 
 @Composable
-private fun ModalBottomSheetContent() {
-    Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                vertical = OudsTheme.spaces.fixed.medium,
-                horizontal = OudsTheme.grids.margin
-            ),
-        text = "Bottom sheet content."
-    )
-}
-
-@Composable
 private fun ModalBottomSheetCustomization(state: ModalBottomSheetDemoState, onButtonClick: () -> Unit) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetDragHandle_tech),
+            label = stringResource(R.string.app_components_bottomSheet_modalBottomSheet_dragHandle_tech),
             checked = dragHandle,
             onCheckedChange = { dragHandle = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetSwipeEnabled_tech),
+            label = stringResource(R.string.app_components_bottomSheet_modalBottomSheet_sheetGesturesEnabled_tech),
             checked = sheetGesturesEnabled,
             onCheckedChange = { sheetGesturesEnabled = it },
         )
@@ -125,7 +110,7 @@ private fun Code.Builder.modalBottomSheetDemoCodeSnippet(state: ModalBottomSheet
         trailingLambda = true
         typedArgument("dragHandle", state.dragHandle)
         typedArgument("sheetGesturesEnabled", state.sheetGesturesEnabled)
-        functionCallArgument("sheetState", "rememberStandardBottomSheetState")
+        functionCallArgument("sheetState", "rememberModalBottomSheetState")
         lambdaArgument("onDismissRequest") {
             comment("do something on dismiss")
         }
@@ -138,5 +123,5 @@ private fun Code.Builder.modalBottomSheetDemoCodeSnippet(state: ModalBottomSheet
 @PreviewLightDark
 @Composable
 private fun PreviewBottomSheetDemoScreen() = AppPreview {
-    BottomSheetScaffoldDemoScreen()
+    ModalBottomSheetDemoScreen()
 }

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.utilities.composable
 
+import android.R.attr.label
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
@@ -86,7 +88,8 @@ fun CustomizationFilterChips(
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    bottomSheetLocation: Boolean = true
 ) {
     CustomizationFilterChips(
         label = label,
@@ -94,7 +97,8 @@ fun CustomizationFilterChips(
         selectedChipIndex = selectedChipIndex,
         onSelectionChange = onSelectionChange,
         applyTopPadding = applyTopPadding,
-        modifier = modifier
+        modifier = modifier,
+        bottomSheetLocation = bottomSheetLocation
     )
 }
 
@@ -106,7 +110,8 @@ fun CustomizationFilterChips(
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    bottomSheetLocation: Boolean = true
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
@@ -120,13 +125,15 @@ fun CustomizationFilterChips(
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
         // That is why we set canFocus here again
-        val sheetValue = LocalCustomizationBottomSheetValue.current
+        val chipsRowCanFocus = if (bottomSheetLocation) {
+            LocalCustomizationBottomSheetValue.current == SheetValue.Expanded
+        } else true
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .focusProperties { canFocus = sheetValue == SheetValue.Expanded }
+                .focusProperties { canFocus = chipsRowCanFocus }
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
@@ -177,7 +184,8 @@ fun CustomizationTextInput(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    suffix: String? = null
+    suffix: String? = null,
+    resetValue: String = ""
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
@@ -196,7 +204,7 @@ fun CustomizationTextInput(
                 painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_component_tag_close),
                 contentDescription = stringResource(R.string.app_components_common_textInputClearIcon_a11y),
                 onClick = {
-                    onValueChange(value.copy(text = ""))
+                    onValueChange(value.copy(text = resetValue))
                 })
         } else {
             null
