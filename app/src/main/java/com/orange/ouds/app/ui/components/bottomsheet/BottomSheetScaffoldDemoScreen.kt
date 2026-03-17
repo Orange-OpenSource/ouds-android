@@ -12,12 +12,15 @@
 
 package com.orange.ouds.app.ui.components.bottomsheet
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.BottomSheetDefaults
+import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
@@ -29,21 +32,31 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.composable.ScreenMainContentColumn
+import com.orange.ouds.app.ui.utilities.toIntString
+import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.theme.OudsTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomSheetScaffoldDemoScreen() {
     val state = rememberBottomSheetScaffoldDemoState()
+    val scaffoldState = rememberBottomSheetScaffoldState()
+    val coroutineScope = rememberCoroutineScope()
+
     with(state) {
         Screen {
             OudsBottomSheetScaffold(
+                scaffoldState = scaffoldState,
                 sheetPeekHeight = sheetPeekHeight,
                 sheetSwipeEnabled = sheetSwipeEnabled,
                 sheetDragHandle = sheetDragHandle,
@@ -54,7 +67,11 @@ fun BottomSheetScaffoldDemoScreen() {
                         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
                         description = stringResource(id = R.string.app_components_bottomSheet_bottomSheetScaffold_description_text)
                     )
-                    BottomSheetScaffoldCustomization(state = state)
+                    BottomSheetScaffoldCustomization(
+                        state = state,
+                        scaffoldState = scaffoldState,
+                        coroutineScope = coroutineScope
+                    )
                     CodeSnippet(
                         modifier = Modifier
                             .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
@@ -67,40 +84,28 @@ fun BottomSheetScaffoldDemoScreen() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun BottomSheetContent() {
-    Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                vertical = OudsTheme.spaces.fixed.medium,
-                horizontal = OudsTheme.grids.margin
-            ),
-        text = "Bottom sheet content."
-    )
-}
-
-@Composable
-private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState) {
+private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState, scaffoldState: BottomSheetScaffoldState, coroutineScope: CoroutineScope) {
     with(state) {
-        val sheetPeakHeightForDisplay = sheetPeekHeight.value.toInt().toString()
-        CustomizationTextInput(
+        CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetPeekHeight_tech),
-            value = TextFieldValue(
-                text = sheetPeakHeightForDisplay,
-                selection = TextRange(sheetPeakHeightForDisplay.length)
-            ),
-            onValueChange = { value ->
-                val filteredValue = value.text.filter { it.isDigit() }.take(3)
-                sheetPeekHeight = if (filteredValue.isEmpty()) {
-                    0.dp
-                } else {
-                    filteredValue.toInt().dp
+            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_state_tech),
+            chips = BottomSheetScaffoldDemoState.SheetState.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
+            selectedChipIndex = when (scaffoldState.bottomSheetState.targetValue) {
+                SheetValue.Hidden, SheetValue.PartiallyExpanded -> BottomSheetScaffoldDemoState.SheetState.entries.indexOf(BottomSheetScaffoldDemoState.SheetState.PartiallyExpanded)
+                SheetValue.Expanded -> BottomSheetScaffoldDemoState.SheetState.entries.indexOf(BottomSheetScaffoldDemoState.SheetState.Expanded)
+            },
+            onSelectionChange = { index ->
+                sheetState = BottomSheetScaffoldDemoState.SheetState.entries[index]
+                coroutineScope.launch {
+                    when (sheetState) {
+                        BottomSheetScaffoldDemoState.SheetState.Expanded -> scaffoldState.bottomSheetState.expand()
+                        BottomSheetScaffoldDemoState.SheetState.PartiallyExpanded -> scaffoldState.bottomSheetState.partialExpand()
+                    }
                 }
             },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            suffix = "dp"
+            bottomSheetLocation = false
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetDragHandle_tech),
@@ -111,6 +116,21 @@ private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState
             label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetSwipeEnabled_tech),
             checked = sheetSwipeEnabled,
             onCheckedChange = { sheetSwipeEnabled = it },
+        )
+        CustomizationTextInput(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetPeekHeight_tech),
+            value = TextFieldValue(
+                text = sheetPeekHeightDisplayValue,
+                selection = TextRange(sheetPeekHeightDisplayValue.length)
+            ),
+            onValueChange = { textFieldValue ->
+                val text = textFieldValue.text.filter { it.isDigit() }.take(3)
+                sheetPeekHeight = (text.toIntOrNull() ?: 0).dp
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            suffix = "dp",
+            resetValue = BottomSheetDefaults.SheetPeekHeight.toIntString()
         )
     }
 }

@@ -21,42 +21,57 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.app.ui.components.bottomsheet.BottomSheetScaffoldDemoState.SheetState
+import com.orange.ouds.app.ui.utilities.toIntString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberBottomSheetScaffoldDemoState(
-    sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight,
+    sheetState: SheetState = SheetState.PartiallyExpanded,
     sheetDragHandle: Boolean = true,
-    sheetSwipeEnabled: Boolean = true
-) = rememberSaveable(sheetPeekHeight, sheetDragHandle, sheetSwipeEnabled, saver = BottomSheetScaffoldDemoState.Saver) {
-    BottomSheetScaffoldDemoState(sheetPeekHeight, sheetDragHandle, sheetSwipeEnabled)
+    sheetSwipeEnabled: Boolean = true,
+    sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight
+) = rememberSaveable(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight, saver = BottomSheetScaffoldDemoState.Saver) {
+    BottomSheetScaffoldDemoState(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight)
 }
 
 class BottomSheetScaffoldDemoState(
-    sheetPeakHeight: Dp,
+    sheetState: SheetState,
     sheetDragHandle: Boolean,
-    sheetSwipeEnabled: Boolean
+    sheetSwipeEnabled: Boolean,
+    sheetPeakHeight: Dp
 ) {
     companion object {
         val Saver = listSaver(
             save = { state ->
                 listOf(
-                    state.sheetPeekHeight.value,
+                    state.sheetState,
                     state.sheetDragHandle,
-                    state.sheetSwipeEnabled
+                    state.sheetSwipeEnabled,
+                    state.sheetPeekHeight.value
                 )
             },
-            restore = { list ->
+            restore = { list: List<Any?> ->
                 BottomSheetScaffoldDemoState(
-                    Dp(list[0] as Float),
+                    list[0] as SheetState,
                     list[1] as Boolean,
-                    list[2] as Boolean
+                    list[2] as Boolean,
+                    Dp(list[3] as Float)
                 )
             }
         )
     }
 
-    var sheetPeekHeight: Dp by mutableStateOf(sheetPeakHeight)
     var sheetDragHandle: Boolean by mutableStateOf(sheetDragHandle)
+    var sheetPeekHeight: Dp by mutableStateOf(sheetPeakHeight)
     var sheetSwipeEnabled: Boolean by mutableStateOf(sheetSwipeEnabled)
+    var sheetState: SheetState by mutableStateOf(sheetState)
+
+    val sheetPeekHeightDisplayValue
+        @Composable
+        get() = sheetPeekHeight.toIntString()
+
+    enum class SheetState {
+        Expanded, PartiallyExpanded,
+    }
 }

@@ -41,10 +41,10 @@ class ModalBottomSheetDemoState(
                     state.sheetGesturesEnabled
                 )
             },
-            restore = { list ->
+            restore = { list: List<Any?> ->
                 ModalBottomSheetDemoState(
-                    list[0],
-                    list[1]
+                    list[0] as Boolean,
+                    list[1] as Boolean
                 )
             }
         )
