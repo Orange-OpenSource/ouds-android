@@ -93,7 +93,7 @@ fun OudsBottomSheetScaffold(
         sheetContainerColor = OudsTheme.colorScheme.overlay.modal,
         sheetContentColor = OudsTheme.colorScheme.content.default,
         sheetTonalElevation = 0.dp, //TODO To be confirmed
-        sheetShadowElevation = 6.dp, //TODO To be confirmed
+        sheetShadowElevation = 16.dp, //TODO To be confirmed
         sheetDragHandle = if (sheetDragHandle) {
             { OudsBottomSheetDefaults.DragHandle() }
         } else {
