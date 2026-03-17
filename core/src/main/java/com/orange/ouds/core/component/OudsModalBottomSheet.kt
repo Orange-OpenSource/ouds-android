@@ -110,7 +110,7 @@ internal fun PreviewOudsModalBottomSheet(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsModalBottomSheet(
         onDismissRequest = { },
-        sheetState = rememberStandardBottomSheetState()
+        sheetState = rememberModalBottomSheetState()
     ) {
         Column(modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)) {
             Text(text = "Modal bottom sheet content.")
