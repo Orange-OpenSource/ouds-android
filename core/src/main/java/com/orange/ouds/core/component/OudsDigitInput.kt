@@ -321,7 +321,7 @@ private fun getDigitInputState(enabled: Boolean, readOnly: Boolean, interactionS
     }
 }
 
-private enum class OudsDigitInputState {
+internal enum class OudsDigitInputState {
     Enabled, Hovered, Focused, ReadOnly, Disabled
 }
 

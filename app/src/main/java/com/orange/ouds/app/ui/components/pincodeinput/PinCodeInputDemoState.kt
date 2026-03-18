@@ -14,92 +14,75 @@ package com.orange.ouds.app.ui.components.pincodeinput
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsPinCodeInputDefaults
+import com.orange.ouds.core.component.OudsPinCodeInputLength
 
 @Composable
 fun rememberPinCodeInputDemoState(
-    code: String = "",
-    length: Int = 6,
+    value: String = "",
+    length: OudsPinCodeInputLength = OudsPinCodeInputDefaults.Length,
     outlined: Boolean = false,
-    obscureText: Boolean = true,
-    enabled: Boolean = true,
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     helperText: String = ""
-) = rememberSaveable(
-    code,
-    length,
-    outlined,
-    obscureText,
-    enabled,
-    error,
-    errorMessage,
-    helperText,
-    saver = PinCodeInputDemoState.Saver
-) {
-    PinCodeInputDemoState(
-        code,
-        length,
-        outlined,
-        obscureText,
-        enabled,
-        error,
-        errorMessage,
-        helperText
-    )
+) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, saver = PinCodeInputDemoState.Saver) {
+    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText)
 }
 
 class PinCodeInputDemoState(
-    code: String,
-    length: Int,
+    value: String,
+    length: OudsPinCodeInputLength,
     outlined: Boolean,
-    obscureText: Boolean,
-    enabled: Boolean,
     error: Boolean,
     errorMessage: String,
     helperText: String
 ) {
-    var code by mutableStateOf(code)
-    var length by mutableIntStateOf(length)
-    var outlined by mutableStateOf(outlined)
-    var obscureText by mutableStateOf(obscureText)
-    var enabled by mutableStateOf(enabled)
-    var error by mutableStateOf(error)
-    var errorMessage by mutableStateOf(errorMessage)
-    var helperText by mutableStateOf(helperText)
 
     companion object {
-        val Saver = listSaver<PinCodeInputDemoState, Any>(
-            save = {
-                listOf(
-                    it.code,
-                    it.length,
-                    it.outlined,
-                    it.obscureText,
-                    it.enabled,
-                    it.error,
-                    it.errorMessage,
-                    it.helperText
-                )
+        val Saver = listSaver(
+            save = { state ->
+                with(state) {
+                    listOf(
+                        value,
+                        length,
+                        outlined,
+                        error,
+                        errorMessage,
+                        helperText
+                    )
+                }
             },
-            restore = {
+            restore = { list: List<Any?> ->
                 PinCodeInputDemoState(
-                    code = it[0] as String,
-                    length = it[1] as Int,
-                    outlined = it[2] as Boolean,
-                    obscureText = it[3] as Boolean,
-                    enabled = it[4] as Boolean,
-                    error = it[5] as Boolean,
-                    errorMessage = it[6] as String,
-                    helperText = it[7] as String
+                    list[0] as String,
+                    list[1] as OudsPinCodeInputLength,
+                    list[2] as Boolean,
+                    list[3] as Boolean,
+                    list[4] as String,
+                    list[5] as String
                 )
             }
         )
     }
+
+    var value by mutableStateOf(value)
+
+    var length: OudsPinCodeInputLength by mutableStateOf(length)
+
+    var outlined: Boolean by mutableStateOf(outlined)
+
+    var error: Boolean by mutableStateOf(error)
+
+    var errorMessage: String by mutableStateOf(errorMessage)
+
+    var helperText: String by mutableStateOf(helperText)
+
+    val errorMessageTextInputEnabled: Boolean
+        get() = error
 }

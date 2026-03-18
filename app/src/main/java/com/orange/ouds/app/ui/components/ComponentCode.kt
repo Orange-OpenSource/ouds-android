@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.toArgb
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
+import com.orange.ouds.core.component.common.OudsError
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
     if (onColoredBox) {
@@ -61,6 +62,11 @@ fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes id: Int, count: 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
 fun FunctionCall.Builder.errorArgument(value: Boolean) = typedArgument(Argument.Error, value)
+fun FunctionCall.Builder.errorArgument(message: String) {
+    constructorCallArgument<OudsError>(Argument.Error) {
+        typedArgument("message", message)
+    }
+}
 
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
 fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgument(Argument.Label, id)

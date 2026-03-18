@@ -21,6 +21,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -160,9 +161,6 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
     with(state) {
         functionCall("OudsPasswordInput") {
             functionCallArgument("state", "rememberOudsPasswordInputState")
-            lambdaArgument("onValueChange") {
-                comment("Update value")
-            }
             if (label.isNotEmpty()) labelArgument(label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
@@ -174,11 +172,7 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             }
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
-            if (error) {
-                constructorCallArgument<OudsError>("error") {
-                    typedArgument("message", errorMessage)
-                }
-            }
+            if (error) errorArgument(errorMessage)
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
