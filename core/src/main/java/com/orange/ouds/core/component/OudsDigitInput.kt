@@ -12,57 +12,33 @@
 
 package com.orange.ouds.core.component
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.indication
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicSecureTextField
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.input.InputTransformation
-import androidx.compose.foundation.text.input.KeyboardActionHandler
-import androidx.compose.foundation.text.input.TextObfuscationMode
-import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.platform.LocalCursorBlinkEnabled
-import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.bottomBorder
-import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
-import com.orange.ouds.core.utilities.LocalPreviewEnumEntry
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -74,139 +50,58 @@ import com.orange.ouds.theme.OudsThemeContract
 @Composable
 internal fun OudsDigitInput(
     digit: Char?,
-    onDigitChange: ((Char?) -> Unit)?,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
+    state: OudsDigitInputState = OudsDigitInputState.Enabled,
     outlined: Boolean = false,
     error: Boolean = false,
-    placeholder: Boolean = true,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    onKeyboardAction: KeyboardActionHandler? = null
+    placeholder: Boolean = true
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getDigitInputState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    @Suppress("NAME_SHADOWING") val state = getPreviewEnumEntry<OudsDigitInputState>().orElse { state }
 
     val isForbidden = error && state in listOf(OudsDigitInputState.ReadOnly, OudsDigitInputState.Disabled)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
-            val parameter = if (readOnly) "readOnly" else "disabled"
+            val parameter = if (state == OudsDigitInputState.ReadOnly) "readOnly" else "disabled"
             "An OudsDigitInput set to $parameter with an error is not allowed."
         }
     ) {
         val textInputTokens = OudsTheme.componentsTokens.textInput
         val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
 
-        val backgroundColor = rememberInteractionColor(interactionState = interactionState) { digitInputInteractionState ->
-            val digitInputState = getDigitInputState(enabled = enabled, readOnly = readOnly, interactionState = digitInputInteractionState)
-            backgroundColor(state = digitInputState, outlined = outlined, error = error)
-        }
+        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = error)
+        val borderColor = borderColor(state = state, outlined = outlined, error = error)
+        val borderWidth = borderWidth(state = state, outlined = outlined)
 
-        val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { digitInputInteractionState ->
-            val digitInputState = getDigitInputState(enabled = enabled, readOnly = readOnly, interactionState = digitInputInteractionState)
-            borderColor(state = digitInputState, outlined = outlined, error = error)
-        }
-
-        val borderWidth = rememberInteractionValue(
-            interactionState = interactionState,
-            toAnimatableFloat = { it?.value.orElse { 0f } },
-            fromAnimatableFloat = { it.dp }
-        ) { digitInputInteractionState ->
-            val digitInputState = getDigitInputState(enabled = enabled, readOnly = readOnly, interactionState = digitInputInteractionState)
-            borderWidth(state = digitInputState, outlined = outlined)
-        }
-
-        val indication = InteractionValuesIndication(backgroundColor, borderColor, borderWidth)
-
-        val textFieldState = rememberTextFieldState(initialText = digit?.toString().orEmpty())
-
-        LaunchedEffect(textFieldState) {
-            snapshotFlow { textFieldState.text }
-                .collect { newText ->
-                    val newDigit = newText.lastOrNull { it.isDigit() }
-                    if (newDigit != digit) {
-                        onDigitChange?.invoke(newDigit)
-                    }
-                }
-        }
-
-        LaunchedEffect(digit) {
-            val text = digit?.takeIf { it.isDigit() }?.toString().orEmpty()
-            if (textFieldState.text != text) {
-                textFieldState.setTextAndPlaceCursorAtEnd(text)
+        Row(
+            modifier = modifier
+                .heightIn(min = textInputTokens.sizeMinHeight.dp)
+                .widthIn(min = pinCodeInputTokens.sizeMinWidth.dp, max = pinCodeInputTokens.sizeMaxWidth.dp)
+                .background(color = backgroundColor, shape = shape())
+                .digitInputBorder(
+                    borderWidth = borderWidth,
+                    borderColor = borderColor,
+                    state = state,
+                    outlined = outlined
+                )
+                .padding(
+                    horizontal = textInputTokens.spacePaddingInlineDefault.value,
+                    vertical = textInputTokens.spacePaddingBlockDefault.value
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            val text = when {
+                digit?.isDigit() == true -> OudsPasswordInputTextObfuscationCharacter.toString()
+                placeholder && state != OudsDigitInputState.Focused -> "-"
+                else -> ""
             }
-        }
-
-        val textStyle = OudsTheme.typography.label.default.large
-
-        var focusRequester: FocusRequester? = null
-        val requestFocus = LocalInspectionMode.current && getPreviewEnumEntry<OudsDigitInputState>() == OudsDigitInputState.Focused
-        if (requestFocus) {
-            focusRequester = remember { FocusRequester() }
-            LaunchedEffect(Unit) {
-                focusRequester.requestFocus()
+            val textStyle = OudsTheme.typography.label.default.large
+            val textColor = if (digit != null) textColor(state = state) else placeholderColor(state = state)
+            Text(text = text, style = textStyle, color = textColor)
+            if (state == OudsDigitInputState.Focused) {
+                Text(text = "|", style = textStyle, color = cursorColor(error = error))
             }
-        }
-
-        val basicSecureTextField = @Composable {
-            BasicSecureTextField(
-                modifier = modifier
-                    .run { if (focusRequester != null) focusRequester(focusRequester) else this }
-                    .indication(interactionSource = interactionSource, indication = indication)
-                    .heightIn(min = textInputTokens.sizeMinHeight.dp)
-                    .widthIn(min = pinCodeInputTokens.sizeMinWidth.dp, max = pinCodeInputTokens.sizeMaxWidth.dp)
-                    .background(color = backgroundColor.value, shape = shape())
-                    .digitInputBorder(
-                        borderWidth = borderWidth.value,
-                        borderColor = borderColor.value,
-                        state = state,
-                        outlined = outlined
-                    )
-                    .padding(
-                        horizontal = textInputTokens.spacePaddingInlineDefault.value,
-                        vertical = textInputTokens.spacePaddingBlockDefault.value
-                    ),
-                interactionSource = interactionSource,
-                state = textFieldState,
-                enabled = state !in listOf(OudsDigitInputState.Disabled, OudsDigitInputState.ReadOnly),
-                readOnly = readOnly,
-                inputTransformation = InputTransformation {
-                    val digits = asCharSequence().lastOrNull { it.isDigit() }?.toString().orEmpty()
-                    replace(0, length, digits)
-                },
-                textStyle = textStyle.copy(textAlign = TextAlign.Center, color = textColor(state = state)),
-                keyboardOptions = keyboardOptions,
-                onKeyboardAction = onKeyboardAction,
-                cursorBrush = cursorBrush(error = error),
-                textObfuscationMode = TextObfuscationMode.Hidden,
-                textObfuscationCharacter = OudsPasswordInputTextObfuscationCharacter,
-                decorator = { innerTextField ->
-                    Box(contentAlignment = Alignment.Center) {
-                        if (placeholder && textFieldState.text.isEmpty() && state != OudsDigitInputState.Focused) {
-                            Text(
-                                text = "-",
-                                color = placeholderColor(state = state),
-                                textAlign = TextAlign.Center,
-                                style = textStyle
-                            )
-                        }
-                        innerTextField()
-                    }
-                }
-            )
-        }
-
-        if (requestFocus) {
-            CompositionLocalProvider(
-                LocalCursorBlinkEnabled provides false,
-                LocalPreviewEnumEntry provides OudsDigitInputState.Focused
-            ) {
-                basicSecureTextField()
-            }
-        } else {
-            basicSecureTextField()
         }
     }
 }
@@ -278,9 +173,8 @@ private fun borderWidth(state: OudsDigitInputState, outlined: Boolean): Dp? {
 }
 
 @Composable
-private fun cursorBrush(error: Boolean): Brush {
-    val cursorColor = if (error) OudsTheme.colorScheme.action.negative.pressed else OudsTheme.colorScheme.content.default
-    return SolidColor(cursorColor)
+private fun cursorColor(error: Boolean): Color {
+    return if (error) OudsTheme.colorScheme.action.negative.pressed else OudsTheme.colorScheme.content.default
 }
 
 @Composable
@@ -308,32 +202,11 @@ private fun shape(): Shape {
     return RoundedCornerShape(borderRadius())
 }
 
-@Composable
-private fun getDigitInputState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsDigitInputState {
-    return getPreviewEnumEntry<OudsDigitInputState>().orElse {
-        when {
-            !enabled -> OudsDigitInputState.Disabled
-            readOnly -> OudsDigitInputState.ReadOnly
-            interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-            interactionState == InteractionState.Focused -> OudsDigitInputState.Focused
-            else -> OudsDigitInputState.Enabled
-        }
-    }
-}
-
 internal enum class OudsDigitInputState {
     Enabled, Hovered, Focused, ReadOnly, Disabled
 }
 
-internal const val OudsDigitInputPreviewWidthDp = 380
-
-@Preview(name = "Light", widthDp = OudsDigitInputPreviewWidthDp, device = OudsPreviewDevice)
-@Preview(
-    name = "Dark",
-    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = OudsDigitInputPreviewWidthDp,
-    device = OudsPreviewDevice
-)
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInput(@PreviewParameter(OudsDigitInputPreviewParameterProvider::class) parameter: OudsDigitInputPreviewParameter) = OudsPreview {
@@ -350,7 +223,6 @@ internal fun PreviewOudsDigitInput(
         PreviewEnumEntries<OudsDigitInputState> {
             OudsDigitInput(
                 digit = digit,
-                onDigitChange = null,
                 outlined = outlined,
                 error = error
             )
@@ -375,7 +247,7 @@ private val previewParameterValues: List<OudsDigitInputPreviewParameter>
         ).flatMap { listOf(it, it.copy(outlined = true)) }
     }
 
-@Preview(name = "Light", widthDp = OudsDigitInputPreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Light", device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInputWithRoundedCorners(@PreviewParameter(OudsDigitInputWithRoundedCornersPreviewParameterProvider::class) outlined: Boolean) =
@@ -387,7 +259,6 @@ internal fun PreviewOudsDigitInputWithRoundedCorners(theme: OudsThemeContract, o
         PreviewEnumEntries<OudsDigitInputState> {
             OudsDigitInput(
                 digit = '1',
-                onDigitChange = null,
                 outlined = outlined
             )
         }

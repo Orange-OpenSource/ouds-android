@@ -12,26 +12,13 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
-import androidx.compose.ui.test.assertIsNotEnabled
-import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTextInput
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.any
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.never
-import org.mockito.kotlin.verify
 
 internal class OudsDigitInputTest {
 
@@ -39,43 +26,13 @@ internal class OudsDigitInputTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsDigitInput_digitChange_succeeds() {
+    fun oudsDigitInput_digit_displayed() {
         with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-            val onDigitChange = mock<(Char?) -> Unit>()
-
             setOudsContent {
-                OudsDigitInput(
-                    digit = null,
-                    onDigitChange = onDigitChange,
-                    modifier = Modifier.testTag(testTag)
-                )
+                OudsDigitInput(digit = '7')
             }
 
-            onNodeWithTag(testTag).performClick()
-            onNodeWithTag(testTag).performTextInput("5")
-            // Wait for LaunchedEffect and snapshotFlow to complete
-            waitForIdle()
-            verify(onDigitChange).invoke('5')
-        }
-    }
-
-    @Test
-    fun oudsDigitInput_initialDigit_displayed() {
-        with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-
-            setOudsContent {
-                OudsDigitInput(
-                    digit = '7',
-                    onDigitChange = {},
-                    modifier = Modifier.testTag(testTag)
-                )
-            }
-
-            // The semantic text contains the actual digit (for accessibility)
-            // even though it's visually obfuscated as '•'
-            onNodeWithTag(testTag).assertTextEquals("7")
+            onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertIsDisplayed()
             onNodeWithText("-").assertIsNotDisplayed()
         }
     }
@@ -84,12 +41,21 @@ internal class OudsDigitInputTest {
     fun oudsDigitInput_emptyDigit_showsPlaceholder() {
         with(composeTestRule) {
             setOudsContent {
-                OudsDigitInput(
-                    digit = null,
-                    onDigitChange = {}
-                )
+                OudsDigitInput(digit = null)
             }
 
+            onNodeWithText("-").assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsDigitInput_onlyDigits_displayed() {
+        with(composeTestRule) {
+            setOudsContent {
+                OudsDigitInput(digit = 'a')
+            }
+
+            onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertIsNotDisplayed()
             onNodeWithText("-").assertIsDisplayed()
         }
     }
@@ -97,111 +63,56 @@ internal class OudsDigitInputTest {
     @Test
     fun oudsDigitInput_focused_hidesPlaceholder() {
         with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-            var focusManager: FocusManager? = null
-
             setOudsContent {
-                focusManager = LocalFocusManager.current
                 OudsDigitInput(
                     digit = null,
-                    onDigitChange = {},
-                    modifier = Modifier.testTag(testTag)
+                    state = OudsDigitInputState.Focused
                 )
             }
 
-            onNodeWithText("-").assertIsDisplayed()
-
-            onNodeWithTag(testTag).performClick()
-            waitForIdle()
             onNodeWithText("-").assertDoesNotExist()
-
-            runOnIdle {
-                focusManager?.clearFocus()
-            }
-            waitForIdle()
-            onNodeWithText("-").assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsDigitInput_onlyDigits_accepted() {
+    fun oudsDigitInput_focused_showsCursor() {
         with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-            val onDigitChange = mock<(Char?) -> Unit>()
-
             setOudsContent {
                 OudsDigitInput(
-                    digit = null,
-                    onDigitChange = onDigitChange,
-                    modifier = Modifier.testTag(testTag)
+                    digit = '5',
+                    state = OudsDigitInputState.Focused
                 )
             }
 
-            onNodeWithTag(testTag).performClick()
-            onNodeWithTag(testTag).performTextInput("a")
-            // Wait for LaunchedEffect and snapshotFlow to complete
-            waitForIdle()
-            verify(onDigitChange, never()).invoke(any())
-            onNodeWithText("-").assertIsNotDisplayed()
+            onNodeWithText("|").assertIsDisplayed()
         }
     }
 
     @Test
-    fun oudsDigitInput_singleDigit_accepted() {
+    fun oudsDigitInput_notFocused_hidesCursor() {
         with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-            val onDigitChange = mock<(Char?) -> Unit>()
-
             setOudsContent {
                 OudsDigitInput(
-                    digit = null,
-                    onDigitChange = onDigitChange,
-                    modifier = Modifier.testTag(testTag)
+                    digit = '5',
+                    state = OudsDigitInputState.Enabled
                 )
             }
 
-            onNodeWithTag(testTag).performClick()
-            onNodeWithTag(testTag).performTextInput("123")
-            // Wait for LaunchedEffect and snapshotFlow to complete
-            waitForIdle()
-            onNodeWithTag(testTag).assertTextEquals("3")
-            verify(onDigitChange).invoke('3')
+            onNodeWithText("|").assertDoesNotExist()
         }
     }
 
     @Test
-    fun oudsDigitInput_disabled_notEnabled() {
+    fun oudsDigitInput_placeholderDisabled_noPlaceholderWhenEmpty() {
         with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-
             setOudsContent {
                 OudsDigitInput(
                     digit = null,
-                    onDigitChange = {},
-                    enabled = false,
-                    modifier = Modifier.testTag(testTag)
+                    placeholder = false
                 )
             }
 
-            onNodeWithTag(testTag).assertIsNotEnabled()
-        }
-    }
-
-    @Test
-    fun oudsDigitInput_readOnly_notEnabled() {
-        with(composeTestRule) {
-            val testTag = "OudsDigitInput"
-
-            setOudsContent {
-                OudsDigitInput(
-                    digit = null,
-                    onDigitChange = {},
-                    readOnly = true,
-                    modifier = Modifier.testTag(testTag)
-                )
-            }
-
-            onNodeWithTag(testTag).assertIsNotEnabled()
+            onNodeWithText("-").assertDoesNotExist()
         }
     }
 }

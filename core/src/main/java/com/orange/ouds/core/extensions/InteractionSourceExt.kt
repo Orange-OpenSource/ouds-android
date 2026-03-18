@@ -35,9 +35,9 @@ internal fun InteractionSource.collectInteractionStateAsState(): State<Interacti
     return remember {
         derivedStateOf {
             when {
+                isFocused -> InteractionState.Focused
                 isPressed -> InteractionState.Pressed
                 isHovered -> InteractionState.Hovered
-                isFocused -> InteractionState.Focused
                 else -> InteractionState.None
             }
         }
