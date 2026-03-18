@@ -24,7 +24,7 @@ import org.junit.runners.Parameterized
 internal class OudsDigitInputTest {
 
     @RunWith(Parameterized::class)
-    class Default(val parameter: OudsDigitInputPreviewParameter) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily()), OudsDigitInputPreviewWidthDp) {
+    class Default(val parameter: OudsDigitInputPreviewParameter) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily())) {
 
         companion object {
             @JvmStatic
@@ -43,7 +43,7 @@ internal class OudsDigitInputTest {
     }
 
     @RunWith(Parameterized::class)
-    class WithRoundedCorners(val parameter: Boolean) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily()), OudsDigitInputPreviewWidthDp) {
+    class WithRoundedCorners(val parameter: Boolean) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily())) {
 
         companion object {
             @JvmStatic

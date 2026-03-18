@@ -12,19 +12,24 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
+import androidx.compose.foundation.text.input.maxLength
+import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.then
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -32,9 +37,10 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.core.utilities.LocalPreviewEnumEntry
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -52,83 +58,77 @@ fun OudsPinCodeInput(
     error: OudsError? = null,
     helperText: String? = null,
     keyboardOptions: KeyboardOptions = OudsPinCodeInputDefaults.KeyboardOptions,
-    onKeyboardAction: KeyboardActionHandler? = null
+    onKeyboardAction: KeyboardActionHandler? = null,
+    interactionSource: MutableInteractionSource? = null
 ) {
+    @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
+    val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
-    val focusRequesters = remember { List(length.value) { FocusRequester() } }
-    val focusManager = LocalFocusManager.current
+    val textFieldState = rememberTextFieldState()
 
-    ConstraintLayout(modifier = modifier) {
-        val (row, helperTextErrorMessage) = createRefs()
-        Row(
-            modifier = Modifier
-                .constrainAs(row) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                },
-            horizontalArrangement = Arrangement.spacedBy(pinCodeInputTokens.spaceColumnGapDigitInput.value)
-        ) {
-            repeat(length.value) { index ->
-                val digitInput = @Composable {
-                    OudsDigitInput(
-                        modifier = Modifier.focusRequester(focusRequesters[index]),
-                        digit = value.getOrNull(index),
-                        onDigitChange = { newDigit ->
-                            val newValue = buildString {
-                                append(value.take(index))
-                                if (newDigit != null) {
-                                    append(newDigit)
-                                }
-                                if (index < value.length - 1) {
-                                    append(value.substring(index + 1))
-                                }
-                            }
-                            onValueChange(newValue)
+    LaunchedEffect(textFieldState) {
+        snapshotFlow { textFieldState.text }
+            .collect { text ->
+                onValueChange(text.toString())
+            }
+    }
 
-//                            // Auto-advance to next digit if current is filled
-//                            if (newDigit != null && index < length.value - 1) {
-//                                focusRequesters[index + 1].requestFocus()
-//                            } else if (newDigit != null && index == length.value - 1) {
-//                                // Last digit filled, clear focus
-//                                focusManager.clearFocus()
-//                            }
+    BasicSecureTextField(
+        modifier = modifier,
+        state = textFieldState,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        inputTransformation = InputTransformation
+            .then {
+                val digits = asCharSequence().filter { it.isDigit() }
+                replace(0, this.length, digits)
+            }
+            .maxLength(length.value),
+        interactionSource = interactionSource,
+        decorator = {
+            ConstraintLayout {
+                val (row, helperTextErrorMessage) = createRefs()
+                Row(
+                    modifier = Modifier
+                        .constrainAs(row) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
                         },
-                        enabled = true,
-                        readOnly = false,
-                        outlined = outlined,
-                        error = error != null,
-                        placeholder = error == null,
-                        keyboardOptions = keyboardOptions,
-                        onKeyboardAction = onKeyboardAction
-                    )
+                    horizontalArrangement = Arrangement.spacedBy(pinCodeInputTokens.spaceColumnGapDigitInput.value)
+                ) {
+                    repeat(length.value) { index ->
+                        val isNonErrorPreview = LocalInspectionMode.current && error == null
+                        val focusedDigitIndex = value.length.coerceIn(0, length.value - 1)
+                        val digitInputState = when {
+                            (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+                            interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+                            else -> OudsDigitInputState.Enabled
+                        }
+                        OudsDigitInput(
+                            digit = value.getOrNull(index),
+                            state = digitInputState,
+                            outlined = outlined,
+                            error = error != null,
+                            placeholder = error == null
+                        )
+                    }
                 }
-                if (LocalInspectionMode.current && index == value.length && error == null) {
-                    CompositionLocalProvider(value = LocalPreviewEnumEntry provides OudsDigitInputState.Focused, content = digitInput)
-                } else {
-                    digitInput()
-                }
+                OudsTextInputHelperTextErrorMessage(
+                    modifier = Modifier.constrainAs(helperTextErrorMessage) {
+                        top.linkTo(row.bottom)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(row.start)
+                        end.linkTo(row.end)
+                        width = Dimension.fillToConstraints
+                    },
+                    enabled = true,
+                    error = error,
+                    helperText = helperText
+                )
             }
         }
-        OudsTextInputHelperTextErrorMessage(
-            modifier = Modifier.constrainAs(helperTextErrorMessage) {
-                top.linkTo(row.bottom)
-                bottom.linkTo(parent.bottom)
-                start.linkTo(row.start)
-                end.linkTo(row.end)
-                width = Dimension.fillToConstraints
-            },
-            enabled = true,
-            error = error,
-            helperText = helperText
-        )
-
-//        // Request focus on first empty digit when component is composed
-//        LaunchedEffect(value) {
-//            val firstEmptyIndex = value.length.coerceIn(0, length.value - 1)
-//            focusRequesters[firstEmptyIndex].requestFocus()
-//        }
-    }
+    )
 }
 
 enum class OudsPinCodeInputLength(val value: Int) {
