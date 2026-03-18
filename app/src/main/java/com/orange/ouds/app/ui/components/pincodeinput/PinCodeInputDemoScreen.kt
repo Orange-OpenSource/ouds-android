@@ -14,8 +14,18 @@ package com.orange.ouds.app.ui.components.pincodeinput
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.toSentenceCase
+import com.orange.ouds.core.component.OudsPinCodeInput
+import com.orange.ouds.core.component.OudsPinCodeInputLength
+import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -33,84 +43,67 @@ fun PinCodeInputDemoScreen() {
 @Composable
 private fun PinCodeInputDemoBottomSheetContent(state: PinCodeInputDemoState) {
     with(state) {
-//        CustomizationDropdownMenu(
-//            label = stringResource(R.string.app_components_pinCodeInput_length_label),
-//            items = PinCodeInputLength.entries.map { it.displayName },
-//            selectedItemIndex = PinCodeInputLength.entries.indexOfFirst { it.value == length },
-//            onItemSelected = { index, _ ->
-//                length = PinCodeInputLength.entries[index].value
-//                code = "" // Reset code when length changes
-//            }
-//        )
-//        CustomizationSwitchItem(
-//            label = stringResource(R.string.app_components_common_outlined_label),
-//            checked = outlined,
-//            onCheckedChange = { outlined = it }
-//        )
-//        CustomizationSwitchItem(
-//            label = stringResource(R.string.app_components_pinCodeInput_obscureText_label),
-//            checked = obscureText,
-//            onCheckedChange = { obscureText = it }
-//        )
-//        CustomizationSwitchItem(
-//            label = stringResource(R.string.app_common_enabled_label),
-//            checked = enabled,
-//            onCheckedChange = { enabled = it }
-//        )
-//        CustomizationSwitchItem(
-//            label = stringResource(R.string.app_components_common_error_label),
-//            checked = error,
-//            onCheckedChange = { error = it }
-//        )
-//        CustomizationTextInput(
-//            applyTopPadding = true,
-//            label = stringResource(R.string.app_components_common_errorMessage_label),
-//            value = errorMessage,
-//            onValueChange = { value -> errorMessage = value },
-//            enabled = error
-//        )
-//        CustomizationTextInput(
-//            applyTopPadding = true,
-//            label = stringResource(R.string.app_components_common_helperText_label),
-//            value = helperText,
-//            onValueChange = { value -> helperText = value }
-//        )
+        CustomizationFilterChips(
+            applyTopPadding = false,
+            label = stringResource(R.string.app_components_pinCodeInput_length_tech),
+            chipLabels = OudsPinCodeInputLength.entries.map { it.name.toSentenceCase() },
+            selectedChipIndex = OudsPinCodeInputLength.entries.indexOf(length),
+            onSelectionChange = { index -> length = OudsPinCodeInputLength.entries[index] }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_outlined_tech),
+            checked = outlined,
+            onCheckedChange = { outlined = it }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_error_tech),
+            checked = error,
+            onCheckedChange = { error = it }
+        )
+        CustomizationTextInput(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_errorMessage_tech),
+            value = errorMessage,
+            onValueChange = { value -> errorMessage = value },
+            enabled = errorMessageTextInputEnabled
+        )
+        CustomizationTextInput(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_helperText_tech),
+            value = helperText,
+            onValueChange = { value -> helperText = value }
+        )
     }
 }
 
 @Composable
 private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
     with(state) {
-//        OudsPinCodeInput(
-//            value = code,
-//            onValueChange = { code = it },
-//            length = length,
-//            outlined = outlined,
-//            obscureText = obscureText,
-//            enabled = enabled,
-//            error = if (error) OudsError(errorMessage) else null,
-//            helperText = if (!error && helperText.isNotBlank()) helperText else null,
-//            onComplete = {
-//                // Handle PIN code completion
-//            }
-//        )
+        OudsPinCodeInput(
+            value = value,
+            onValueChange = { value = it },
+            length = length,
+            outlined = outlined,
+            error = if (error) OudsError(errorMessage) else null,
+            helperText = helperText
+        )
     }
 }
 
-//@Composable
-private fun pinCodeInputDemoCodeSnippet(state: PinCodeInputDemoState) = with(state) {
-//    PinCodeInput(
-//        length = length,
-//        outlined = outlined,
-//        obscureText = obscureText,
-//        enabled = enabledArgument(enabled),
-//        error = if (error) """OudsError("$errorMessage")""" else null,
-//        helperText = if (!error && helperText.isNotBlank()) """"$helperText"""" else null
-//    )
-}
+private fun Code.Builder.pinCodeInputDemoCodeSnippet(state: PinCodeInputDemoState) {
+    with(state) {
+        functionCall("OudsPinCodeInput") {
+            typedArgument("value", value)
+            lambdaArgument("onValueChange") {
+                comment("Update value")
+            }
+            typedArgument("length", length)
+            if (outlined) typedArgument("outlined", outlined)
+            if (error) {
+                errorArgument(errorMessage)
+            }
+            if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
+        }
+    }
 
-private enum class PinCodeInputLength(val value: Int, val displayName: String) {
-    Four(4, "4"),
-    Six(6, "6"),
-    Eight(8, "8")
 }

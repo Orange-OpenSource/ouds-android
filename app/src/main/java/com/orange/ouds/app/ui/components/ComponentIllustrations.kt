@@ -54,6 +54,8 @@ import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.component.OudsPasswordInput
+import com.orange.ouds.core.component.OudsPinCodeInput
+import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
@@ -198,6 +200,16 @@ fun PasswordInputIllustration() = ComponentIllustration {
         state = rememberOudsPasswordInputState(),
         label = stringResource(id = R.string.app_components_common_label_label),
         helperText = stringResource(id = R.string.app_components_passwordInputHelperText_label)
+    )
+}
+
+@Composable
+fun PinCodeInputIllustration() = ComponentIllustration {
+    OudsPinCodeInput(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        value = "1234",
+        onValueChange = {},
+        length = OudsPinCodeInputLength.Four
     )
 }
 

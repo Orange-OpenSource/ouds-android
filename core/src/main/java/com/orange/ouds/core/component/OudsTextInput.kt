@@ -553,6 +553,7 @@ internal fun OudsTextInputDecorator(
         val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
         val shape = RoundedCornerShape(borderRadius)
 
+        // Voir si on peut utiliser rememberInteractionColor
         val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
             // outlined
             borderWidth(state)?.let { borderWidth ->
@@ -711,24 +712,12 @@ internal fun OudsTextInputDecorator(
             }
 
             // Helper text / Error description
-            if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = spacePaddingBlockTopHelperText.value)
-                        .padding(horizontal = spacePaddingInlineDefault.value)
-                        .clearAndSetSemantics {
-                            if (hasError) {
-                                error(error.message)
-                            } else {
-                                contentDescription = helperText.orEmpty()
-                            }
-                        },
-                    text = if (hasError) error.message else helperText.orEmpty(),
-                    style = OudsTheme.typography.label.default.medium,
-                    color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(state = state)
-                )
-            }
+            OudsTextInputHelperTextErrorMessage(
+                modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
+                enabled = state != OudsTextInputState.Disabled,
+                error = error,
+                helperText = helperText
+            )
 
             // Helper link
             if (!helperLink?.text.isNullOrBlank()) {
@@ -740,6 +729,30 @@ internal fun OudsTextInputDecorator(
                     enabled = state != OudsTextInputState.Disabled
                 )
             }
+        }
+    }
+}
+
+@Composable
+internal fun OudsTextInputHelperTextErrorMessage(enabled: Boolean, error: OudsError?, helperText: String?, modifier: Modifier = Modifier) {
+    with(OudsTheme.componentsTokens.textInput) {
+        val hasError = error != null
+        if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
+            Text(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = spacePaddingBlockTopHelperText.value)
+                    .clearAndSetSemantics {
+                        if (hasError) {
+                            error(error.message)
+                        } else {
+                            contentDescription = helperText.orEmpty()
+                        }
+                    },
+                text = if (hasError) error.message else helperText.orEmpty(),
+                style = OudsTheme.typography.label.default.medium,
+                color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
+            )
         }
     }
 }
@@ -864,8 +877,10 @@ private fun labelColor(state: OudsTextInputState, error: Boolean): Color {
 }
 
 @Composable
-private fun decorativeContentColor(state: OudsTextInputState) =
-    if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
+private fun decorativeContentColor(enabled: Boolean) = if (enabled) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.action.disabled
+
+@Composable
+private fun decorativeContentColor(state: OudsTextInputState) = decorativeContentColor(state != OudsTextInputState.Disabled)
 
 @Composable
 internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))

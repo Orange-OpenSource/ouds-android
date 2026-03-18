@@ -12,328 +12,208 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Text
+import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.error
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.LocalPreviewEnumEntry
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import com.orange.ouds.theme.OudsThemeContract
 
-/**
- * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes,
- * such as a four, six or eight-digit personal identification number (PIN).
- *
- * PIN code input is presented as a series of individual input fields or boxes, each representing a single digit, to enhance readability and encourage
- * accurate input, while supporting smooth keyboard navigation and secured input masking if needed.
- *
- * Rounded corners can be enabled or disabled using [com.orange.ouds.theme.OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme
- * provided when calling the [OudsTheme] method.
- *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
- *
- * > Design version: 1.2.0
- *
- * @param value Current PIN code value entered by the user.
- * @param onValueChange Callback that is triggered when the PIN code changes.
- * @param length Number of digits in the PIN code. Supports 4, 6, or 8 digits. Defaults to 6.
- * @param modifier [Modifier] applied to the PIN code input.
- * @param outlined Controls the style of the PIN code input. When `true`, it displays a minimalist input with a transparent background and a visible
- *   stroke outlining each field. When `false`, it shows a subtle background fill with a visible bottom border.
- * @param error Optional [OudsError] to indicate that the user input does not meet validation rules. The error state must be triggered by an explicit
- *   validation (submission, API response), not in real time with each keystroke. Pass `null` if there is no error.
- * @param helperText An optional helper text displayed below the PIN code input. It conveys additional information about the input, such as
- *   "Enter the 6-digit code sent to your phone." It should ideally only take up a single line.
- * @param enabled Controls the enabled state of the PIN code input. When `false`, the input will not be focusable and will not react to input events.
- *   True by default.
- * @param obscureText When `true`, the entered digits are masked (displayed as bullets). When `false`, the digits are visible. Defaults to `true`.
- * @param onComplete Callback that is triggered when all digits have been entered.
- * @param keyboardActions When the input service emits an IME action, the corresponding callback is called.
- *
- * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
- */
 @Composable
 fun OudsPinCodeInput(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    length: Int = 6,
+    length: OudsPinCodeInputLength = OudsPinCodeInputDefaults.Length,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
-    enabled: Boolean = true,
-    obscureText: Boolean = true,
-    onComplete: (() -> Unit)? = null,
-    keyboardActions: KeyboardActions = KeyboardActions.Default
+    keyboardOptions: KeyboardOptions = OudsPinCodeInputDefaults.KeyboardOptions,
+    onKeyboardAction: KeyboardActionHandler? = null
 ) {
-    require(length in listOf(4, 6, 8)) { "PIN code length must be 4, 6, or 8" }
-
-    val focusRequester = remember { FocusRequester() }
-    val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()
-
-    val textInputTokens = OudsTheme.componentsTokens.textInput
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
+    val focusRequesters = remember { List(length.value) { FocusRequester() } }
+    val focusManager = LocalFocusManager.current
 
-    LaunchedEffect(value) {
-        if (value.length == length) {
-            onComplete?.invoke()
-        }
-    }
-
-    Column(
-        modifier = modifier.semantics {
-            if (error != null) {
-                this.error(error.message)
-            }
-            contentDescription = "PIN code input with $length digits"
-        }
-    ) {
-        // Hidden text field for keyboard input
-        BasicTextField(
-            value = value,
-            onValueChange = { newValue ->
-                if (newValue.length <= length && newValue.all { it.isDigit() }) {
-                    onValueChange(newValue)
-                }
-            },
-            modifier = Modifier
-                .width(0.dp)
-                .height(0.dp)
-                .focusRequester(focusRequester),
-            enabled = enabled,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.NumberPassword,
-                imeAction = ImeAction.Done
-            ),
-            keyboardActions = keyboardActions,
-            interactionSource = interactionSource,
-            cursorBrush = SolidColor(Color.Transparent)
-        )
-
-        // Visible PIN code digit boxes
+    ConstraintLayout(modifier = modifier) {
+        val (row, helperTextErrorMessage) = createRefs()
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .clickable(enabled = enabled) {
-                    focusRequester.requestFocus()
+                .constrainAs(row) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
                 },
             horizontalArrangement = Arrangement.spacedBy(pinCodeInputTokens.spaceColumnGapDigitInput.value)
         ) {
-            repeat(length) { index ->
-                DigitBox(
-                    digit = value.getOrNull(index)?.toString(),
-                    isFocused = isFocused && value.length == index,
-                    outlined = outlined,
-                    hasError = error != null,
-                    obscureText = obscureText,
-                    textInputTokens = textInputTokens,
-                    modifier = Modifier.weight(1f)
-                )
-            }
-        }
+            repeat(length.value) { index ->
+                val digitInput = @Composable {
+                    OudsDigitInput(
+                        modifier = Modifier.focusRequester(focusRequesters[index]),
+                        digit = value.getOrNull(index),
+                        onDigitChange = { newDigit ->
+                            val newValue = buildString {
+                                append(value.take(index))
+                                if (newDigit != null) {
+                                    append(newDigit)
+                                }
+                                if (index < value.length - 1) {
+                                    append(value.substring(index + 1))
+                                }
+                            }
+                            onValueChange(newValue)
 
-        // Helper text or error message
-        val displayText = error?.message ?: helperText
-        if (displayText != null) {
-            Text(
-                text = displayText,
-                style = OudsTheme.typography.label.default.medium,
-                color = if (error != null) {
-                    OudsTheme.colorScheme.content.status.negative
-                } else {
-                    OudsTheme.colorScheme.content.muted
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = textInputTokens.spacePaddingBlockTopHelperText.value)
-            )
-        }
-    }
-
-    LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
-    }
-}
-
-@Composable
-private fun DigitBox(
-    digit: String?,
-    isFocused: Boolean,
-    outlined: Boolean,
-    hasError: Boolean,
-    obscureText: Boolean,
-    textInputTokens: com.orange.ouds.theme.tokens.components.OudsTextInputTokens,
-    modifier: Modifier = Modifier
-) {
-    val roundedCorner = LocalThemeSettings.current.roundedCornerTextInputs == true
-    val colors = OudsTheme.colorScheme
-    val typography = OudsTheme.typography
-
-    val backgroundColor = when {
-        outlined -> Color.Transparent
-        hasError -> colors.surface.status.negative.muted
-        isFocused -> colors.action.support.pressed
-        else -> colors.action.support.enabled
-    }
-
-    val borderColor = when {
-        hasError -> colors.action.negative.enabled
-        isFocused -> textInputTokens.colorBorderFocus.value
-        else -> textInputTokens.colorBorderEnabled.value
-    }
-
-    val borderWidth = if (isFocused) {
-        textInputTokens.borderWidthFocus.value
-    } else {
-        textInputTokens.borderWidthDefault.value
-    }
-
-    val shape = if (roundedCorner) {
-        RoundedCornerShape(textInputTokens.borderRadiusRounded.value)
-    } else {
-        RoundedCornerShape(0.dp)
-    }
-
-    Box(
-        modifier = modifier
-            .height(textInputTokens.sizeMinHeight.dp)
-            .widthIn(min = 44.dp, max = 56.dp)
-            .then(
-                if (outlined) {
-                    Modifier.border(
-                        width = borderWidth,
-                        color = borderColor,
-                        shape = shape
+//                            // Auto-advance to next digit if current is filled
+//                            if (newDigit != null && index < length.value - 1) {
+//                                focusRequesters[index + 1].requestFocus()
+//                            } else if (newDigit != null && index == length.value - 1) {
+//                                // Last digit filled, clear focus
+//                                focusManager.clearFocus()
+//                            }
+                        },
+                        enabled = true,
+                        readOnly = false,
+                        outlined = outlined,
+                        error = error != null,
+                        placeholder = error == null,
+                        keyboardOptions = keyboardOptions,
+                        onKeyboardAction = onKeyboardAction
                     )
-                } else {
-                    Modifier
-                        .background(backgroundColor, shape)
-                        .border(
-                            width = borderWidth,
-                            color = borderColor,
-                            shape = RoundedCornerShape(
-                                topStart = if (roundedCorner) textInputTokens.borderRadiusRounded.value else 0.dp,
-                                topEnd = if (roundedCorner) textInputTokens.borderRadiusRounded.value else 0.dp,
-                                bottomStart = 0.dp,
-                                bottomEnd = 0.dp
-                            )
-                        )
                 }
-            )
-            .clip(shape)
-            .padding(
-                horizontal = textInputTokens.spacePaddingInlineDefault.value,
-                vertical = textInputTokens.spacePaddingBlockDefault.value
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        when {
-            digit != null -> {
-                Text(
-                    text = if (obscureText) "●" else digit,
-                    style = typography.label.default.large,
-                    color = colors.content.default,
-                    textAlign = TextAlign.Center
-                )
-            }
-            isFocused -> {
-                Text(
-                    text = "|",
-                    style = typography.label.default.large,
-                    color = colors.content.default,
-                    textAlign = TextAlign.Center
-                )
-            }
-            else -> {
-                Text(
-                    text = "-",
-                    style = typography.label.default.large,
-                    color = colors.content.muted,
-                    textAlign = TextAlign.Center
-                )
+                if (LocalInspectionMode.current && index == value.length && error == null) {
+                    CompositionLocalProvider(value = LocalPreviewEnumEntry provides OudsDigitInputState.Focused, content = digitInput)
+                } else {
+                    digitInput()
+                }
             }
         }
+        OudsTextInputHelperTextErrorMessage(
+            modifier = Modifier.constrainAs(helperTextErrorMessage) {
+                top.linkTo(row.bottom)
+                bottom.linkTo(parent.bottom)
+                start.linkTo(row.start)
+                end.linkTo(row.end)
+                width = Dimension.fillToConstraints
+            },
+            enabled = true,
+            error = error,
+            helperText = helperText
+        )
+
+//        // Request focus on first empty digit when component is composed
+//        LaunchedEffect(value) {
+//            val firstEmptyIndex = value.length.coerceIn(0, length.value - 1)
+//            focusRequesters[firstEmptyIndex].requestFocus()
+//        }
     }
 }
 
-@Preview
+enum class OudsPinCodeInputLength(val value: Int) {
+    Four(4),
+    Six(6),
+    Eight(8)
+}
+
+/**
+ * Default values for [OudsPinCodeInput].
+ */
+object OudsPinCodeInputDefaults {
+
+    /**
+     * Default length of an [OudsPinCodeInput].
+     */
+    val Length = OudsPinCodeInputLength.Six
+
+    /**
+     * Default keyboard options for an [OudsPinCodeInput].
+     */
+    val KeyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
+}
+
+@Suppress("PreviewShouldNotBeCalledRecursively")
+@OudsPreviewLightDark
 @Composable
-private fun OudsPinCodeInputPreview() {
-    OudsPreview {
-        var code by remember { mutableStateOf("") }
+private fun PreviewOudsPinCodeInput(@PreviewParameter(OudsPinCodeInputPreviewParameterProvider::class) parameter: OudsPinCodeInputPreviewParameter) {
+    PreviewOudsPinCodeInput(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsPinCodeInput(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    parameter: OudsPinCodeInputPreviewParameter
+) = OudsPreview(modifier = Modifier.padding(16.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
         OudsPinCodeInput(
-            value = code,
-            onValueChange = { code = it },
-            length = 4,
-            helperText = "Enter the 4-digit code sent to your phone."
+            value = value,
+            onValueChange = {},
+            length = OudsPinCodeInputLength.Four,
+            outlined = outlined,
+            error = error,
+            helperText = helperText
         )
     }
 }
 
-@Preview
-@Composable
-private fun OudsPinCodeInputErrorPreview() {
-    OudsPreview {
-        var code by remember { mutableStateOf("1234") }
-        OudsPinCodeInput(
-            value = code,
-            onValueChange = { code = it },
-            length = 4,
-            error = OudsError("Verification failed. Check and enter the correct code.")
-        )
+internal data class OudsPinCodeInputPreviewParameter(
+    val value: String,
+    val outlined: Boolean = false,
+    val error: OudsError? = null,
+    val helperText: String? = null
+)
+
+internal class OudsPinCodeInputPreviewParameterProvider :
+    BasicPreviewParameterProvider<OudsPinCodeInputPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OudsPinCodeInputPreviewParameter>
+    get() {
+        return listOf(
+            OudsPinCodeInputPreviewParameter(value = "12", helperText = "Enter the 4-digit code sent to your phone."),
+            OudsPinCodeInputPreviewParameter(value = "12", error = OudsError("Verification failed. Check and enter the correct code."))
+        ).flatMap { listOf(it, it.copy(outlined = true)) }
     }
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsPinCodeInputWithRoundedCorners(@PreviewParameter(OudsPinCodeInputWithRoundedCornersPreviewParameterProvider::class) outlined: Boolean) =
+    PreviewOudsPinCodeInputWithRoundedCorners(theme = getPreviewTheme(), outlined = outlined)
+
+@Composable
+internal fun PreviewOudsPinCodeInputWithRoundedCorners(
+    theme: OudsThemeContract,
+    outlined: Boolean
+) = OudsPreview(modifier = Modifier.padding(16.dp), theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
+    val value = "12"
+    OudsPinCodeInput(
+        value = value,
+        onValueChange = {},
+        length = OudsPinCodeInputLength.Four,
+        outlined = outlined
+    )
 }
 
-@Preview
-@Composable
-private fun OudsPinCodeInputOutlinedPreview() {
-    OudsPreview {
-        var code by remember { mutableStateOf("12") }
-        OudsPinCodeInput(
-            value = code,
-            onValueChange = { code = it },
-            length = 6,
-            outlined = true,
-            helperText = "Enter the 6-digit code sent to your phone."
-        )
-    }
-}
+internal class OudsPinCodeInputWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)

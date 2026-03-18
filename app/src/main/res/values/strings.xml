@@ -262,13 +262,9 @@
     <string name="app_components_passwordInput_textObfuscationMode_tech" translatable="false">Text obfuscation mode</string>
 
     <!-- Components: PIN code input -->
-    <string name="app_components_pinCodeInput_tech" translatable="false">pinCode input</string>
-    <string name="app_components_pinCodeInput_description_text">pinCode input is a UI element that allows to securely and confidentially capture a user\’s pinCode.</string>
-    <string name="app_components_pinCodeInput_lockIcon_label" translatable="false">Lock icon</string>
-    <string name="app_components_pinCodeInput_pinCode_label" translatable="false">pinCode</string>
-    <string name="app_components_pinCodeInput_pinCodeHidden_label" translatable="false">pinCode hidden</string>
-    <string name="app_components_pinCodeInput_length_label" translatable="false">Length</string>
-    <string name="app_components_pinCodeInput_obscureText_label" translatable="false">Obscure</string>
+    <string name="app_components_pinCodeInput_tech" translatable="false">PIN code input</string>
+    <string name="app_components_pinCodeInput_description_text">PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a four, six or eight-digit personal identification number (PIN).</string>
+    <string name="app_components_pinCodeInput_length_tech" translatable="false">Length</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_tech" translatable="false">Radio button</string>
