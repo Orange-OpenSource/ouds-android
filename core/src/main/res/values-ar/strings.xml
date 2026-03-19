@@ -15,6 +15,16 @@
 
     <string name="core_alertMessage_close_a11y">إغلاق alert message</string>
 
+    <string name="core_bulletList_level_a11y">المستوى %1$d</string>
+    <plurals name="core_bulletList_subitems_a11y">
+        <item quantity="zero">%1$d عنصر فرعي</item>
+        <item quantity="one">%1$d عنصر فرعي</item>
+        <item quantity="two">%1$d عنصران فرعيان</item>
+        <item quantity="few">%1$d عناصر فرعية</item>
+        <item quantity="many">%1$d عنصرًا فرعيًا</item>
+        <item quantity="other">%1$d عنصر فرعي</item>
+    </plurals>
+
     <string name="core_inputTag_remove_a11y">يزيل</string>
 
     <string name="core_topAppBar_backNavigationIcon_a11y">رجوع</string>

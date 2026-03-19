@@ -45,8 +45,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.CollectionInfo
+import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.collectionInfo
+import androidx.compose.ui.semantics.collectionItemInfo
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,6 +62,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset.Bullet.extraParameters
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -105,14 +114,21 @@ fun OudsBulletList(
         OudsBulletListBuilder().apply(builder).build()
     }
 
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .semantics {
+                collectionInfo = CollectionInfo(
+                    rowCount = items.size,
+                    columnCount = 1
+                )
+            }) {
         items.forEachIndexed { index, item ->
             OudsBulletListItem(
                 item = item,
                 currentType = type,
                 currentTextStyle = textStyle,
                 index = index,
-                parentTypes = emptyList()
+                parentNodes = emptyList()
             )
         }
     }
@@ -158,7 +174,7 @@ private fun OudsBulletListItem(
     currentType: OudsBulletListType,
     currentTextStyle: OudsBulletListTextStyle,
     index: Int,
-    parentTypes: List<OudsBulletListType>,
+    parentNodes: List<BulletListParentNode>,
     modifier: Modifier = Modifier,
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
@@ -175,25 +191,73 @@ private fun OudsBulletListItem(
             }
         }
 
-        val level = parentTypes.count()
+        val level = parentNodes.count()
         val paddingStart = when (level) {
             0 -> spacePaddingInlineLevel0
             1 -> spacePaddingInlineLevel1
             else -> spacePaddingInlineLevel2
         }.dp
 
+        // Build a11y vocalization according the current type
+        // For unordered and bare lists, TalkBack reads: "label, level <level number>, <number of subitems> subitems"
+        // For ordered lists, TalkBack reads the ordered hierarchy (ex: "1. a. label, <number of subitems> subitems")
+        val resources = LocalResources.current
+        val itemDescription = buildString {
+            when (currentType) {
+                is OudsBulletListType.Unordered, OudsBulletListType.Bare -> {
+                    append(item.label)
+                    append(", ")
+                    append(stringResource(R.string.core_bulletList_level_a11y, level + 1))
+                }
+                OudsBulletListType.Ordered -> {
+                    val layoutDirection = LocalLayoutDirection.current
+                    // Add parent indexes hierarchy
+                    parentNodes.forEachIndexed { level, node ->
+                        if (node.type is OudsBulletListType.Ordered) {
+                            append(formatOrderedBulletText(node.index, level, layoutDirection))
+                            append(". ")
+                        }
+                    }
+                    // Add current index
+                    append(formatOrderedBulletText(index, level, layoutDirection))
+                    append(". ")
+                    // Add label
+                    append(item.label)
+                }
+            }
+            if (item.subListItems.isNotEmpty()) {
+                append(", ")
+                append(
+                    resources.getQuantityString(
+                        R.plurals.core_bulletList_subitems_a11y,
+                        item.subListItems.size,
+                        item.subListItems.size
+                    )
+                )
+            }
+        }
+
         Row(
             modifier = modifier
                 .height(IntrinsicSize.Min)
                 .padding(start = paddingStart)
-                .padding(vertical = verticalPadding),
+                .padding(vertical = verticalPadding)
+                .semantics(mergeDescendants = true) {
+                    collectionItemInfo = CollectionItemInfo(
+                        rowIndex = index,
+                        rowSpan = 1,
+                        columnIndex = 0,
+                        columnSpan = 1
+                    )
+                    contentDescription = itemDescription
+                },
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
             Bullet(
                 type = currentType,
                 textStyle = currentTextStyle,
                 index = index,
-                parentTypes = parentTypes
+                parentNodes = parentNodes
             )
             val textMaxWidth = when (currentTextStyle.fontSize) {
                 OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.type.body.large
@@ -203,7 +267,8 @@ private fun OudsBulletListItem(
                 modifier = Modifier
                     .fillMaxHeight()
                     .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                    .widthIn(max = textMaxWidth),
+                    .widthIn(max = textMaxWidth)
+                    .clearAndSetSemantics {},
                 text = item.label,
                 style = currentTextStyle.toTextStyle(),
                 color = OudsTheme.colorScheme.content.default
@@ -222,7 +287,7 @@ private fun OudsBulletListItem(
                         currentType = nextType,
                         currentTextStyle = nextTextStyle,
                         index = index,
-                        parentTypes = parentTypes + currentType
+                        parentNodes = parentNodes + BulletListParentNode(currentType, index)
                     )
                 }
             } else {
@@ -241,8 +306,18 @@ internal data class BulletListItem(
     val subListItems: List<BulletListItem> = emptyList()
 )
 
+private data class BulletListParentNode(
+    val type: OudsBulletListType,
+    val index: Int
+)
+
 @Composable
-private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle, index: Int, parentTypes: List<OudsBulletListType>) {
+private fun Bullet(
+    type: OudsBulletListType,
+    textStyle: OudsBulletListTextStyle,
+    index: Int,
+    parentNodes: List<BulletListParentNode>
+) {
     val scale = LocalConfiguration.current.fontScale
     val width = when (textStyle.fontSize) {
         OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.icon.withBody.medium.sizeMedium
@@ -270,30 +345,18 @@ private fun Bullet(type: OudsBulletListType, textStyle: OudsBulletListTextStyle,
                         modifier = Modifier
                             .size(iconSize * scale)
                             .clearAndSetSemantics {},
-                        extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentTypes)
+                        extraParameters = OudsBulletListUnorderedAsset.ExtraParameters(tint, parentNodes.map { it.type })
                     )
                 }
             }
         }
         OudsBulletListType.Ordered -> {
-            val level = parentTypes.count()
-            val text = when {
-                level == 0 -> "${index + 1}." // Level 0 is always digital
-                LocalLayoutDirection.current == LayoutDirection.Rtl -> {
-                    // RTL case for level 1 and higher
-                    val bulletChar = arabicLetters[index % arabicLetters.size]
-                    if (level == 1) "$bulletChar." else "($bulletChar)."
-                }
-                else -> {
-                    // LTR case for level 1 and higher
-                    val startingChar = if (level == 1) 'A' else 'a'
-                    "${startingChar + index % 26}."
-                }
-            }
-
+            val level = parentNodes.count()
             Text(
-                modifier = Modifier.widthIn(width * scale),
-                text = text,
+                modifier = Modifier
+                    .widthIn(width * scale)
+                    .clearAndSetSemantics {},
+                text = formatOrderedBulletText(index, level, LocalLayoutDirection.current) + ".",
                 style = textStyle.toTextStyle(),
                 color = OudsTheme.colorScheme.content.default,
                 textAlign = TextAlign.End
@@ -340,7 +403,7 @@ sealed class OudsBulletListType {
     data object Ordered : OudsBulletListType()
 
     /**
-     * An unordered list without any bullet or alphanumeric sequence. It sill has left-padding, so list items will appear indented. This is the default and
+     * An unordered list without any bullet or alphanumeric sequence. It still has left-padding, so list items will appear indented. This is the default and
      * is also known as undecorated "Unstyled" list.
      */
     data object Bare : OudsBulletListType()
@@ -488,6 +551,22 @@ enum class OudsBulletListFontWeight {
 
     /** Bold font weight. */
     Bold
+}
+
+private fun formatOrderedBulletText(index: Int, level: Int, layoutDirection: LayoutDirection): String {
+    return when {
+        level == 0 -> "${index + 1}" // Level 0 is always digital
+        layoutDirection == LayoutDirection.Rtl -> {
+            // RTL case for level 1 and higher
+            val bulletChar = arabicLetters[index % arabicLetters.size]
+            if (level == 1) bulletChar else "($bulletChar)"
+        }
+        else -> {
+            // LTR case for level 1 and higher
+            val startingChar = if (level == 1) 'A' else 'a'
+            "${startingChar + index % 26}"
+        }
+    }
 }
 
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.BulletList.Default.PreviewHeightDp, device = OudsPreviewDevice)
