@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -50,6 +51,7 @@ import com.orange.ouds.theme.OudsThemeContract
 @Composable
 internal fun OudsDigitInput(
     digit: Char?,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     state: OudsDigitInputState = OudsDigitInputState.Enabled,
     outlined: Boolean = false,
@@ -75,6 +77,11 @@ internal fun OudsDigitInput(
 
         Row(
             modifier = modifier
+                .clickable(
+                    onClick = onClick,
+                    interactionSource = null,
+                    indication = null
+                )
                 .heightIn(min = textInputTokens.sizeMinHeight.dp)
                 .widthIn(min = pinCodeInputTokens.sizeMinWidth.dp, max = pinCodeInputTokens.sizeMaxWidth.dp)
                 .background(color = backgroundColor, shape = shape())
@@ -93,7 +100,7 @@ internal fun OudsDigitInput(
         ) {
             val text = when {
                 digit?.isDigit() == true -> OudsPasswordInputTextObfuscationCharacter.toString()
-                placeholder && state != OudsDigitInputState.Focused -> "-"
+                placeholder && state != OudsDigitInputState.Focused -> OudsDigitInputPlaceholder.toString()
                 else -> ""
             }
             val textStyle = OudsTheme.typography.label.default.large
@@ -202,6 +209,8 @@ private fun shape(): Shape {
     return RoundedCornerShape(borderRadius())
 }
 
+internal const val OudsDigitInputPlaceholder = '-'
+
 internal enum class OudsDigitInputState {
     Enabled, Hovered, Focused, ReadOnly, Disabled
 }
@@ -223,6 +232,7 @@ internal fun PreviewOudsDigitInput(
         PreviewEnumEntries<OudsDigitInputState> {
             OudsDigitInput(
                 digit = digit,
+                onClick = {},
                 outlined = outlined,
                 error = error
             )
@@ -259,6 +269,7 @@ internal fun PreviewOudsDigitInputWithRoundedCorners(theme: OudsThemeContract, o
         PreviewEnumEntries<OudsDigitInputState> {
             OudsDigitInput(
                 digit = '1',
+                onClick = {},
                 outlined = outlined
             )
         }
