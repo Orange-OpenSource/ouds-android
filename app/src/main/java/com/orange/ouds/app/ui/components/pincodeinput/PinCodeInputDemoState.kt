@@ -71,7 +71,7 @@ class PinCodeInputDemoState(
         )
     }
 
-    var value by mutableStateOf(value)
+    var value: String by mutableStateOf(value)
 
     var length: OudsPinCodeInputLength by mutableStateOf(length)
 

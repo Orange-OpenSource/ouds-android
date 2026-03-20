@@ -73,7 +73,7 @@ fun OudsPinCodeInput(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
-    val paddedValue = value.padEnd(length.value, OudsDigitInputPlaceholder)
+    val paddedValue = value.take(length.value).padEnd(length.value, OudsDigitInputPlaceholder)
     val textFieldState = rememberTextFieldState(
         initialText = paddedValue,
         initialSelection = TextRange((value.length + 1).coerceIn(0, length.value))
@@ -82,8 +82,9 @@ fun OudsPinCodeInput(
     if (paddedValue != textFieldState.text) {
         textFieldState.edit {
             val cursorPosition = selection.end.coerceIn(0, length.value)
-            replace(0, length.value, paddedValue)
-            // Set the cursor to its position before the replacement, because the replace method moves the cursor
+            delete(0, this.length)
+            append(paddedValue)
+            // Set the cursor to its position before the text replacement
             placeCursorBeforeCharAt(cursorPosition)
         }
     }

@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.components.pincodeinput
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
@@ -78,6 +79,7 @@ private fun PinCodeInputDemoBottomSheetContent(state: PinCodeInputDemoState) {
 
 @Composable
 private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
+    val focusManager = LocalFocusManager.current
     with(state) {
         OudsPinCodeInput(
             value = value,
@@ -85,7 +87,8 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
             length = length,
             outlined = outlined,
             error = if (error) OudsError(errorMessage) else null,
-            helperText = helperText
+            helperText = helperText,
+            onKeyboardAction = { focusManager.clearFocus() }
         )
     }
 }
@@ -99,9 +102,7 @@ private fun Code.Builder.pinCodeInputDemoCodeSnippet(state: PinCodeInputDemoStat
             }
             typedArgument("length", length)
             if (outlined) typedArgument("outlined", outlined)
-            if (error) {
-                errorArgument(errorMessage)
-            }
+            if (error) errorArgument(errorMessage)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
         }
     }
