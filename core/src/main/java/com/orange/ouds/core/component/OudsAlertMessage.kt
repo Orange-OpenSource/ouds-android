@@ -40,6 +40,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -67,7 +68,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-alert-message)
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
  * @param modifier [Modifier] applied to the alert message.
@@ -144,21 +145,21 @@ fun OudsAlertMessage(
                     Text(
                         modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
                         text = label,
-                        color = OudsTheme.colorScheme.content.default,
+                        color = status.contentColor,
                         style = OudsTheme.typography.label.moderate.large
                     )
                     description?.let {
                         Text(
                             modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
                             text = description,
-                            color = OudsTheme.colorScheme.content.muted,
+                            color = status.contentColor,
                             style = OudsTheme.typography.label.default.medium
                         )
                     }
                     bulletList?.let { list ->
                         Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
                             list.forEach { label ->
-                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label)
+                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
                             }
                         }
                     }
@@ -326,6 +327,22 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
             }
         }
 
+    /**
+     * The content color associated with this status.
+     */
+    val contentColor
+        @Composable
+        get() = with(OudsTheme.colorScheme.content) {
+            when (this@OudsAlertMessageStatus) {
+                is Neutral -> default
+                is Accent -> onStatus.accent.muted
+                is Positive -> onStatus.positive.muted
+                is Warning -> onStatus.warning.muted
+                is Negative -> onStatus.negative.muted
+                is Info -> onStatus.info.muted
+            }
+        }
+
     internal val borderColor
         @Composable
         get() = with(OudsTheme.colorScheme.border) {
@@ -341,7 +358,7 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
 }
 
 @Composable
-private fun OudsAlertMessageBulletListItem(label: String) {
+private fun OudsAlertMessageBulletListItem(label: String, color: Color) {
     val scale = LocalConfiguration.current.fontScale
     Row(
         modifier = Modifier
@@ -361,7 +378,7 @@ private fun OudsAlertMessageBulletListItem(label: String) {
                     .size(OudsTheme.sizes.icon.withLabel.medium.sizeSmall * scale),
                 painter = painterResource(OudsTheme.drawableResources.component.bulletList.level0),
                 contentDescription = null,
-                tint = OudsTheme.colorScheme.content.muted
+                tint = color
             )
         }
         Text(
@@ -371,7 +388,7 @@ private fun OudsAlertMessageBulletListItem(label: String) {
                 .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
             text = label,
             style = OudsTheme.typography.label.default.medium,
-            color = OudsTheme.colorScheme.content.muted
+            color = color
         )
     }
 }
