@@ -12,13 +12,19 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 
 internal class OudsDigitInputTest {
 
@@ -26,10 +32,32 @@ internal class OudsDigitInputTest {
     val composeTestRule = createComposeRule()
 
     @Test
+    fun oudsDigitInput_click_succeeds() {
+        with(composeTestRule) {
+            val testTag = "OudsDigitInput"
+            val onClick = mock<() -> Unit>()
+
+            setOudsContent {
+                OudsDigitInput(
+                    digit = null,
+                    onClick = onClick,
+                    modifier = Modifier.testTag(testTag)
+                )
+            }
+
+            onNodeWithTag(testTag).performClick()
+            verify(onClick).invoke()
+        }
+    }
+
+    @Test
     fun oudsDigitInput_digit_displayed() {
         with(composeTestRule) {
             setOudsContent {
-                OudsDigitInput(digit = '7')
+                OudsDigitInput(
+                    digit = '7',
+                    onClick = {}
+                )
             }
 
             onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertIsDisplayed()
@@ -41,7 +69,9 @@ internal class OudsDigitInputTest {
     fun oudsDigitInput_emptyDigit_showsPlaceholder() {
         with(composeTestRule) {
             setOudsContent {
-                OudsDigitInput(digit = null)
+                OudsDigitInput(
+                    digit = null,
+                    onClick = {})
             }
 
             onNodeWithText("-").assertIsDisplayed()
@@ -52,7 +82,9 @@ internal class OudsDigitInputTest {
     fun oudsDigitInput_onlyDigits_displayed() {
         with(composeTestRule) {
             setOudsContent {
-                OudsDigitInput(digit = 'a')
+                OudsDigitInput(
+                    digit = 'a',
+                    onClick = {})
             }
 
             onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertIsNotDisplayed()
@@ -66,6 +98,7 @@ internal class OudsDigitInputTest {
             setOudsContent {
                 OudsDigitInput(
                     digit = null,
+                    onClick = {},
                     state = OudsDigitInputState.Focused
                 )
             }
@@ -80,6 +113,7 @@ internal class OudsDigitInputTest {
             setOudsContent {
                 OudsDigitInput(
                     digit = '5',
+                    onClick = {},
                     state = OudsDigitInputState.Focused
                 )
             }
@@ -94,6 +128,7 @@ internal class OudsDigitInputTest {
             setOudsContent {
                 OudsDigitInput(
                     digit = '5',
+                    onClick = {},
                     state = OudsDigitInputState.Enabled
                 )
             }
@@ -108,6 +143,7 @@ internal class OudsDigitInputTest {
             setOudsContent {
                 OudsDigitInput(
                     digit = null,
+                    onClick = {},
                     placeholder = false
                 )
             }

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +22,9 @@ import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
-import androidx.compose.foundation.text.input.maxLength
+import androidx.compose.foundation.text.input.delete
+import androidx.compose.foundation.text.input.forEachChangeReversed
+import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.text.input.then
 import androidx.compose.runtime.Composable
@@ -30,8 +33,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.substring
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -48,6 +56,7 @@ import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OudsPinCodeInput(
     value: String,
@@ -64,7 +73,20 @@ fun OudsPinCodeInput(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
-    val textFieldState = rememberTextFieldState()
+    val paddedValue = value.padEnd(length.value, OudsDigitInputPlaceholder)
+    val textFieldState = rememberTextFieldState(
+        initialText = paddedValue,
+        initialSelection = TextRange((value.length + 1).coerceIn(0, length.value))
+    )
+
+    if (paddedValue != textFieldState.text) {
+        textFieldState.edit {
+            val cursorPosition = selection.end.coerceIn(0, length.value)
+            replace(0, length.value, paddedValue)
+            // Set the cursor to its position before the replacement, because the replace method moves the cursor
+            placeCursorBeforeCharAt(cursorPosition)
+        }
+    }
 
     LaunchedEffect(textFieldState) {
         snapshotFlow { textFieldState.text }
@@ -73,17 +95,44 @@ fun OudsPinCodeInput(
             }
     }
 
+    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     BasicSecureTextField(
-        modifier = modifier,
+        modifier = modifier.focusRequester(focusRequester),
         state = textFieldState,
         keyboardOptions = keyboardOptions,
         onKeyboardAction = onKeyboardAction,
         inputTransformation = InputTransformation
             .then {
-                val digits = asCharSequence().filter { it.isDigit() }
-                replace(0, this.length, digits)
-            }
-            .maxLength(length.value),
+                changes.forEachChangeReversed { range, originalRange ->
+                    // Insertion
+                    if (range.length > 0) {
+                        // Retrieve added text
+                        val addedText = asCharSequence().substring(range)
+                        // Delete the added text to roll back to the original text
+                        delete(range.min, range.max)
+                        // Replace the original text with the added text
+                        replace(range.min - 1, range.max - 1, addedText)
+                        placeCursorAfterCharAt((range.max - 1).coerceIn(0, length.value - 1))
+                    }
+                    // Deletion
+                    else {
+                        // Insert placeholder digits to replace the deleted text
+                        val padText = OudsDigitInputPlaceholder.toString().repeat(originalRange.length)
+                        insert(originalRange.start, padText)
+                        // Get the first character of the deleted text
+                        // If that character was not a digit (i.e. a placeholder was displayed in the digit input)
+                        // then replace the previous character with a placeholder
+                        val firstDeletedChar = originalText[originalRange.start]
+                        val previousChar = asCharSequence().getOrNull(range.start - 1)
+                        if (!firstDeletedChar.isDigit() && previousChar != null) {
+                            replace(range.start - 1, range.start, OudsDigitInputPlaceholder.toString())
+                            placeCursorAfterCharAt(range.start - 1)
+                        }
+                    }
+                }
+            },
         interactionSource = interactionSource,
         decorator = {
             ConstraintLayout {
@@ -99,7 +148,7 @@ fun OudsPinCodeInput(
                 ) {
                     repeat(length.value) { index ->
                         val isNonErrorPreview = LocalInspectionMode.current && error == null
-                        val focusedDigitIndex = value.length.coerceIn(0, length.value - 1)
+                        val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
                         val digitInputState = when {
                             (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
                             interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
@@ -107,6 +156,12 @@ fun OudsPinCodeInput(
                         }
                         OudsDigitInput(
                             digit = value.getOrNull(index),
+                            onClick = {
+                                focusRequester.requestFocus()
+                                // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
+                                keyboardController?.show()
+                                textFieldState.edit { placeCursorAfterCharAt(index) }
+                            },
                             state = digitInputState,
                             outlined = outlined,
                             error = error != null,
