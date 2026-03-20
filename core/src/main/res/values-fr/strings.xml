@@ -12,6 +12,7 @@
 
 <resources>
     <string name="core_common_loading_a11y">Chargement</string>
+    <string name="core_common_warning_a11y">Avertissement</string>
 
     <string name="core_alertMessage_close_a11y">Fermer le message d\'alerte</string>
 
@@ -28,7 +29,7 @@
     <string name="core_topAppBar_menuNavigationIcon_a11y">Menu</string>
 
     <string name="core_textInput_empty_a11y">Vide</string>
-    <string name="core_textInput_error_a11y">Erreur</string>
+    <string name="core_common_error_a11y">Erreur</string>
 
     <string name="core_passwordInput_showPassword_a11y">Afficher le mot de passe</string>
     <string name="core_passwordInput_hidePassword_a11y">Masquer le mot de passe</string>

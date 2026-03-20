@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -38,7 +39,7 @@ import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent,
- * persistent and non actionable communication. Inline alert includes functional icon and semantic colour, and does not include a close button and/or action
+ * persistent and non-actionable communication. Inline alert includes functional icon and semantic colour, and does not include a close button and/or action
  * link. Inline alert does not disappear and remains visible.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-inline-alert)
@@ -69,7 +70,10 @@ fun OudsInlineAlert(
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
-        Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)) {
+        Row(
+            modifier = modifier.semantics(mergeDescendants = true) {},
+            horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
+        ) {
             status.icon.Content(
                 modifier = Modifier
                     .size(sizeIcon.value * scale),

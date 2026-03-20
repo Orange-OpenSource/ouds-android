@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -124,7 +125,8 @@ fun OudsAlertMessage(
                         border(width = it, color = status.borderColor, shape = shape)
                     } ?: this
                 }
-                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
+                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value)
+                .semantics(mergeDescendants = true) {},
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
             status.icon?.Content(

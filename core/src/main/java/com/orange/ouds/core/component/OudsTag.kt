@@ -156,10 +156,7 @@ fun OudsTag(
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
                 if (hasAsset) {
-                    Box(
-                        modifier = Modifier
-                            .semantics { hideFromAccessibility() }
-                    ) {
+                    Box {
                         if (hasLoader) {
                             ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
                         } else {
@@ -479,7 +476,8 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
 
         /**
          * The default icon of an [OudsTag].
-         * This icon is non-clickable. No content description is needed because a tag always contains a label.
+         * This icon is non-clickable. A content description is only set for Warning and Error statuses to provide context. No content description is needed
+         * for other statuses because the tag's `label` should provide the necessary context.
          */
         data object Default : OudsTagAsset, OudsComponentIcon<OudsTagAsset.ExtraParameters, Default>(
             OudsTagAsset.ExtraParameters::class.java,
@@ -490,7 +488,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
                     }
                 }
             },
-            { "" }
+            { icon -> icon.extraParameters.status.getDefaultIconContentDescription() }
         ) {
 
             override val tint: Color?
@@ -540,6 +538,9 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
     @Composable
     internal open fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
+
+    @Composable
+    internal open fun getDefaultIconContentDescription(): String = ""
 
     /**
      * Default or inactive status. Used for standard labels, categories, or when no specific status needs to be communicated.
@@ -665,6 +666,9 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
                 )
             }
         }
+
+        @Composable
+        override fun getDefaultIconContentDescription() = stringResource(id = R.string.core_common_warning_a11y)
     }
 
     /**
@@ -689,6 +693,9 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
         @Composable
         override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.component.alert.importantFill)
+
+        @Composable
+        override fun getDefaultIconContentDescription() = stringResource(id = R.string.core_common_error_a11y)
     }
 
     /**

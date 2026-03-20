@@ -12,7 +12,8 @@
 
 <resources>
     <string name="core_common_loading_a11y">جاري التحميل</string>
-
+    <string name="core_common_warning_a11y">تحذير</string>
+    
     <string name="core_alertMessage_close_a11y">إغلاق alert message</string>
 
     <string name="core_bulletList_level_a11y">المستوى %1$d</string>
@@ -32,7 +33,7 @@
     <string name="core_topAppBar_menuNavigationIcon_a11y">القائمة</string>
 
     <string name="core_textInput_empty_a11y">فارغ</string>
-    <string name="core_textInput_error_a11y">خطأ</string>
+    <string name="core_common_error_a11y">خطأ</string>
 
     <string name="core_passwordInput_showPassword_a11y">Show password</string>
     <string name="core_passwordInput_hidePassword_a11y">Hide password</string>

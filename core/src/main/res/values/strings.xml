@@ -12,6 +12,8 @@
 
 <resources>
     <string name="core_common_loading_a11y">Loading</string>
+    <string name="core_common_error_a11y">Error</string>
+    <string name="core_common_warning_a11y">Warning</string>
 
     <string name="core_alertMessage_close_a11y">Close alert message</string>
 
@@ -28,7 +30,6 @@
     <string name="core_topAppBar_menuNavigationIcon_a11y">Menu</string>
 
     <string name="core_textInput_empty_a11y">Empty</string>
-    <string name="core_textInput_error_a11y">Error</string>
 
     <string name="core_passwordInput_showPassword_a11y">Show password</string>
     <string name="core_passwordInput_hidePassword_a11y">Hide password</string>
