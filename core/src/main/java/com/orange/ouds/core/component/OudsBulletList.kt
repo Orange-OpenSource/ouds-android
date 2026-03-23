@@ -198,7 +198,7 @@ private fun OudsBulletListItem(
             else -> spacePaddingInlineLevel2
         }.dp
 
-        // Build a11y vocalization according the current type
+        // Build a11y vocalization according to the current type
         // For unordered and bare lists, TalkBack reads: "label, level <level number>, <number of subitems> subitems"
         // For ordered lists, TalkBack reads the ordered hierarchy (ex: "1. a. label, <number of subitems> subitems")
         val resources = LocalResources.current
