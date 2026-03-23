@@ -48,11 +48,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.CollectionInfo
-import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.collectionInfo
-import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
@@ -114,14 +110,7 @@ fun OudsBulletList(
         OudsBulletListBuilder().apply(builder).build()
     }
 
-    Column(
-        modifier = modifier
-            .semantics {
-                collectionInfo = CollectionInfo(
-                    rowCount = items.size,
-                    columnCount = 1
-                )
-            }) {
+    Column(modifier = modifier) {
         items.forEachIndexed { index, item ->
             OudsBulletListItem(
                 item = item,
@@ -244,12 +233,6 @@ private fun OudsBulletListItem(
                 .padding(start = paddingStart)
                 .padding(vertical = verticalPadding)
                 .semantics(mergeDescendants = true) {
-                    collectionItemInfo = CollectionItemInfo(
-                        rowIndex = index,
-                        rowSpan = 1,
-                        columnIndex = 0,
-                        columnSpan = 1
-                    )
                     contentDescription = itemContentDescription
                 },
             horizontalArrangement = Arrangement.spacedBy(columnGap)
