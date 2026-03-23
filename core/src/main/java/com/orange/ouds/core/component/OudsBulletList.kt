@@ -203,10 +203,11 @@ private fun OudsBulletListItem(
         // For ordered lists, TalkBack reads the ordered hierarchy (ex: "1. a. label, <number of subitems> subitems")
         val resources = LocalResources.current
         val itemContentDescription = buildString {
+            val vocalSeparator = ", "
             when (currentType) {
                 is OudsBulletListType.Unordered, OudsBulletListType.Bare -> {
                     append(item.label)
-                    append(", ")
+                    append(vocalSeparator)
                     append(stringResource(R.string.core_bulletList_level_a11y, level + 1))
                 }
                 OudsBulletListType.Ordered -> {
@@ -215,18 +216,18 @@ private fun OudsBulletListItem(
                     parentNodes.forEachIndexed { level, node ->
                         if (node.type is OudsBulletListType.Ordered) {
                             append(formatOrderedBulletText(node.index, level, layoutDirection))
-                            append(". ")
+                            append(vocalSeparator)
                         }
                     }
                     // Add current index
                     append(formatOrderedBulletText(index, level, layoutDirection))
-                    append(". ")
+                    append(vocalSeparator)
                     // Add label
                     append(item.label)
                 }
             }
             if (item.subListItems.isNotEmpty()) {
-                append(", ")
+                append(vocalSeparator)
                 append(
                     resources.getQuantityString(
                         R.plurals.core_bulletList_subitems_a11y,
