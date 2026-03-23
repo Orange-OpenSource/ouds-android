@@ -197,6 +197,10 @@ Always consider that changes affect multiple brands. Test components with:
 - Avoid unnecessary recompositions
 - Optimize preview rendering
 
+### 5. Miscellaneous
+
+- Any hardcoded string must be avoided; use stringResource.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
