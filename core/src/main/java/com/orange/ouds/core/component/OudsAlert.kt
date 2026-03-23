@@ -44,8 +44,8 @@ internal sealed class OudsAlertStatus(
 
     class Negative(
         defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) },
-        defaultContentDescriptionProvider: (@Composable (OudsAlertStatus) -> String) = { stringResource(R.string.core_common_error_a11y) }
-    ) : OudsAlertStatus(defaultIconPainterProvider, defaultContentDescriptionProvider)
+        defaultIconContentDescriptionProvider: (@Composable (OudsAlertStatus) -> String) = { stringResource(R.string.core_common_error_a11y) }
+    ) : OudsAlertStatus(defaultIconPainterProvider, defaultIconContentDescriptionProvider)
 
     class Positive(defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) }) :
         OudsAlertStatus(defaultIconPainterProvider)
@@ -55,9 +55,9 @@ internal sealed class OudsAlertStatus(
 
     class Warning(
         defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) },
-        defaultContentDescriptionProvider: (@Composable (OudsAlertStatus) -> String) = { stringResource(R.string.core_common_warning_a11y) }
+        defaultIconContentDescriptionProvider: (@Composable (OudsAlertStatus) -> String) = { stringResource(R.string.core_common_warning_a11y) }
     ) :
-        OudsAlertStatus(defaultIconPainterProvider, defaultContentDescriptionProvider)
+        OudsAlertStatus(defaultIconPainterProvider, defaultIconContentDescriptionProvider)
 
     companion object {
 
