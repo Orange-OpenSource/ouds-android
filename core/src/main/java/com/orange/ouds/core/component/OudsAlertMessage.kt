@@ -125,8 +125,8 @@ fun OudsAlertMessage(
                         border(width = it, color = status.borderColor, shape = shape)
                     } ?: this
                 }
-                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value)
-                .semantics(mergeDescendants = true) {},
+                .semantics(mergeDescendants = true) {}
+                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
             status.icon?.Content(
