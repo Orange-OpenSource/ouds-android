@@ -86,8 +86,8 @@ Components follow a consistent pattern:
 
 ### Code Style
 
-2. **Compose Best Practices**: Use modern Jetpack Compose patterns
-1. **Coding Conventions**: Follow [Style guidelines for Jetpack Compose APIs](https://developer.android.com/develop/ui/compose/api-guidelines) which basically includes:
+1. **Compose Best Practices**: Use modern Jetpack Compose patterns
+2. **Coding Conventions**: Follow [Style guidelines for Jetpack Compose APIs](https://developer.android.com/develop/ui/compose/api-guidelines) which basically includes:
    - The [API Guidelines for Jetpack Compose](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md) (based on [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html))
    - The [API Guidelines for @Composable components in Jetpack Compose](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-component-api-guidelines.md)
 3. **Naming**: 
