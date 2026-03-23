@@ -26,7 +26,6 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue.Hidden
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -35,7 +34,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
-// TODO Replace description and design guideline link when available
+// TODO Add description and design guideline link when available
 /**
  * The bottom sheets show secondary content anchored to the bottom of the screen.
  * [OudsModalBottomSheet] displays content that temporarily blocks interaction with the main screen.
@@ -43,10 +42,6 @@ import com.orange.ouds.theme.OudsThemeContract
  * dismissed, or a required action has been taken.
  *
  * For a bottom sheet that co-exists with the main screen content, use [OudsBottomSheetScaffold].
- *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/73c701-components)
- *
- * > Design version: 1.0.0
  *
  * @param onDismissRequest Callback executed when the user clicks outside the bottom sheet, after sheet animates to [Hidden].
  * @param modifier Optional [Modifier] for the modal bottom sheet.
