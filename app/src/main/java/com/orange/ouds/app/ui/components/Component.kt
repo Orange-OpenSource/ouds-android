@@ -203,7 +203,7 @@ sealed class Variant(
     data object InlineAlert : Variant(R.string.app_components_alert_inlineAlert_tech, { InlineAlertDemoScreen() })
 
     // Bottom sheet
-    data object BottomSheetScaffold : Variant(R.string.app_components_bottomSheet_bottomSheetScaffold_tech, { BottomSheetScaffoldDemoScreen() })
+    data object BottomSheetScaffold : Variant(R.string.app_components_bottomSheet_standardBottomSheet_tech, { BottomSheetScaffoldDemoScreen() })
     data object ModalBottomSheet : Variant(R.string.app_components_bottomSheet_modalBottomSheet_tech, { ModalBottomSheetDemoScreen() })
 
     // Checkbox
