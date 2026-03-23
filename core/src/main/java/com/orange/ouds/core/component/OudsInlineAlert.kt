@@ -43,7 +43,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-inline-alert)
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param label Label displayed in the inline alert. Main message that should be short, clear, and readable at a glance.
  * @param modifier [Modifier] applied to the inline alert.
