@@ -65,7 +65,7 @@ fun BottomSheetScaffoldDemoScreen() {
                 ScreenMainContentColumn(paddingValues = innerPadding) {
                     DetailScreenDescription(
                         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
-                        description = stringResource(id = R.string.app_components_bottomSheet_bottomSheetScaffold_description_text)
+                        description = stringResource(id = R.string.app_components_bottomSheet_standardBottomSheet_description_text)
                     )
                     BottomSheetScaffoldCustomization(
                         state = state,
@@ -90,7 +90,7 @@ private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_state_tech),
+            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_state_tech),
             chips = BottomSheetScaffoldDemoState.SheetState.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
             selectedChipIndex = when (scaffoldState.bottomSheetState.targetValue) {
                 SheetValue.Hidden, SheetValue.PartiallyExpanded -> BottomSheetScaffoldDemoState.SheetState.entries.indexOf(BottomSheetScaffoldDemoState.SheetState.PartiallyExpanded)
@@ -108,18 +108,18 @@ private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState
             bottomSheetLocation = false
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetDragHandle_tech),
+            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech),
             checked = sheetDragHandle,
             onCheckedChange = { sheetDragHandle = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetSwipeEnabled_tech),
+            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech),
             checked = sheetSwipeEnabled,
             onCheckedChange = { sheetSwipeEnabled = it },
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bottomSheet_bottomSheetScaffold_sheetPeekHeight_tech),
+            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech),
             value = TextFieldValue(
                 text = sheetPeekHeightDisplayValue,
                 selection = TextRange(sheetPeekHeightDisplayValue.length)
