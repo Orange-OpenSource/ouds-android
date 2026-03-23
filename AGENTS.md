@@ -114,6 +114,7 @@ When adding new components:
 6. Add snapshot tests in `:core-test` module and generate snapshots for each theme
 7. Add instrumented Compose UI tests for user interactions such as clicks
 8. Add demo screen in `:app` module
+9. Update `Component.kt` in `:buildSrc` as well as the component KDoc so that it references the design guidelines link and version
 
 ### State Management
 
