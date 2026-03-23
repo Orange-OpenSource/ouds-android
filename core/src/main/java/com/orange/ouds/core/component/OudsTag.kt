@@ -488,7 +488,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
                     }
                 }
             },
-            { icon -> icon.extraParameters.status.getDefaultIconContentDescription() }
+            { icon -> icon.extraParameters.status.defaultIconContentDescription }
         ) {
 
             override val tint: Color?
@@ -539,8 +539,9 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
     @Composable
     internal open fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
 
-    @Composable
-    internal open fun getDefaultIconContentDescription(): String = ""
+    internal open val defaultIconContentDescription: String
+        @Composable
+        get() = ""
 
     /**
      * Default or inactive status. Used for standard labels, categories, or when no specific status needs to be communicated.
@@ -667,8 +668,9 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
             }
         }
 
-        @Composable
-        override fun getDefaultIconContentDescription() = stringResource(id = R.string.core_common_warning_a11y)
+        override val defaultIconContentDescription
+            @Composable
+            get() = stringResource(id = R.string.core_common_warning_a11y)
     }
 
     /**
@@ -694,8 +696,9 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         @Composable
         override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.component.alert.importantFill)
 
-        @Composable
-        override fun getDefaultIconContentDescription() = stringResource(id = R.string.core_common_error_a11y)
+        override val defaultIconContentDescription
+            @Composable
+            get() = stringResource(id = R.string.core_common_error_a11y)
     }
 
     /**
