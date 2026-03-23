@@ -364,7 +364,7 @@ private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, larg
         modifier = Modifier
             .size(iconSize * iconScale)
             .semantics {
-                contentDescription = icon.contentDescription.takeIf { it.isNotBlank() }.orElse { label }.orEmpty()
+                contentDescription = if (label.isNullOrBlank().not()) label else icon.contentDescription
             }
     )
 }
