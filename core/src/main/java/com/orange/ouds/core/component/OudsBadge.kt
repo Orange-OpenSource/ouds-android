@@ -180,7 +180,7 @@ fun OudsBadge(
  *   - Non-functional statuses: [OudsIconBadgeStatus.Neutral] or [OudsIconBadgeStatus.Accent]
  *   Using a non-functional status, you can provide a custom icon related to the badge’s context to enhance recognition by providing an [OudsBadgeIcon]
  *   as the icon of the status.
- *   - Functional statuses: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative], [OudsTagStatus.Info].
+ *   - Functional statuses: [OudsIconBadgeStatus.Positive], [OudsIconBadgeStatus.Warning], [OudsIconBadgeStatus.Negative], [OudsIconBadgeStatus.Info].
  *   Each functional status has its dedicated functional icon that matches the meaning of the badge.
  * @param size The size of this badge. The icon is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
