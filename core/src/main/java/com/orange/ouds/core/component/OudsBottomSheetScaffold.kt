@@ -44,17 +44,13 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
-// TODO Replace description and design guideline link when available
+// TODO Add description and design guideline link when available
 /**
  * Bottom sheets show secondary content anchored to the bottom of the screen.
  * [OudsBottomSheetScaffold] lays out screen content with a standard bottom sheet anchored to the bottom. Standard bottom sheets co-exist with the main screen
  * content, allowing users to interact with both simultaneously.
  *
  * For a bottom sheet that appears in front of app content and requires user action to be dismissed (a modal behavior), consider using [OudsModalBottomSheet].
- *
- * > Design guidelines: [unified-design-system.orange.com](https://unified-design-system.orange.com/472794e18/p/73c701-components)
- *
- * > Design version: 1.0.0
  *
  * @param sheetContent The content of the bottom sheet.
  * @param modifier The [Modifier] to be applied to the entire scaffold.
@@ -91,9 +87,7 @@ fun OudsBottomSheetScaffold(
         sheetMaxWidth = BottomSheetDefaults.SheetMaxWidth,
         sheetShape = BottomSheetDefaults.ExpandedShape,
         sheetContainerColor = OudsTheme.colorScheme.overlay.modal,
-        sheetContentColor = OudsTheme.colorScheme.content.default,
-        sheetTonalElevation = 0.dp, //TODO To be confirmed
-        sheetShadowElevation = 16.dp, //TODO To be confirmed
+        sheetShadowElevation = OudsTheme.elevations.emphasized,
         sheetDragHandle = if (sheetDragHandle) {
             { OudsBottomSheetDefaults.DragHandle() }
         } else {
@@ -102,7 +96,7 @@ fun OudsBottomSheetScaffold(
         sheetSwipeEnabled = sheetSwipeEnabled,
         topBar = topBar,
         snackbarHost = snackbarHost,
-        containerColor = Color.Transparent, //TODO Needed for illustration to be displayed correctly, impact?
+        containerColor = Color.Transparent,
         contentColor = OudsTheme.colorScheme.content.default,
         content = content
     )
