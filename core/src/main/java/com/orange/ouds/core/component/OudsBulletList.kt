@@ -202,7 +202,7 @@ private fun OudsBulletListItem(
         // For unordered and bare lists, TalkBack reads: "label, level <level number>, <number of subitems> subitems"
         // For ordered lists, TalkBack reads the ordered hierarchy (ex: "1. a. label, <number of subitems> subitems")
         val resources = LocalResources.current
-        val itemDescription = buildString {
+        val itemContentDescription = buildString {
             when (currentType) {
                 is OudsBulletListType.Unordered, OudsBulletListType.Bare -> {
                     append(item.label)
@@ -249,7 +249,7 @@ private fun OudsBulletListItem(
                         columnIndex = 0,
                         columnSpan = 1
                     )
-                    contentDescription = itemDescription
+                    contentDescription = itemContentDescription
                 },
             horizontalArrangement = Arrangement.spacedBy(columnGap)
         ) {
