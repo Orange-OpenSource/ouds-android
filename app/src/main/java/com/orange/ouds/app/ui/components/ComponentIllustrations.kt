@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalCursorBlinkEnabled
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
@@ -206,7 +207,10 @@ fun PasswordInputIllustration() = ComponentIllustration {
 
 @Composable
 fun PinCodeInputIllustration() = ComponentIllustration {
-    CompositionLocalProvider(LocalInspectionMode provides true) {
+    CompositionLocalProvider(
+        LocalInspectionMode provides true,
+        LocalCursorBlinkEnabled provides false
+    ) {
         OudsPinCodeInput(
             modifier = Modifier.padding(horizontal = 12.dp),
             value = "12",
