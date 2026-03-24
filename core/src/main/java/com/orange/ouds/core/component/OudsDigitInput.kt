@@ -56,7 +56,8 @@ internal fun OudsDigitInput(
     state: OudsDigitInputState = OudsDigitInputState.Enabled,
     outlined: Boolean = false,
     error: Boolean = false,
-    placeholder: Boolean = true
+    placeholder: Boolean = true,
+    horizontalPadding: Dp = OudsDigitInputDefaults.horizontalPadding
 ) {
     @Suppress("NAME_SHADOWING") val state = getPreviewEnumEntry<OudsDigitInputState>().orElse { state }
 
@@ -93,7 +94,7 @@ internal fun OudsDigitInput(
                     outlined = outlined
                 )
                 .padding(
-                    horizontal = textInputTokens.spacePaddingInlineDefault.value,
+                    horizontal = horizontalPadding,
                     vertical = textInputTokens.spacePaddingBlockDefault.value
                 ),
             verticalAlignment = Alignment.CenterVertically,
@@ -214,6 +215,13 @@ internal const val OudsDigitInputPlaceholder = '-'
 
 internal enum class OudsDigitInputState {
     Enabled, Hovered, Focused, ReadOnly, Disabled
+}
+
+internal object OudsDigitInputDefaults {
+
+    val horizontalPadding: Dp
+        @Composable
+        get() = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value
 }
 
 @OudsPreviewLightDark
