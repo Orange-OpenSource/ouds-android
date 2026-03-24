@@ -31,6 +31,7 @@ import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
+import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class WireframeComponentsTokens(
@@ -52,5 +53,6 @@ internal data class WireframeComponentsTokens(
     override val radioButton: OudsRadioButtonTokens = WireframeRadioButtonTokens(),
     override val switch: OudsSwitchTokens = WireframeSwitchTokens(),
     override val tag: OudsTagTokens = WireframeTagTokens(),
+    override val textArea: OudsTextAreaTokens = WireframeTextAreaTokens(),
     override val textInput: OudsTextInputTokens = WireframeTextInputTokens()
 ) : OudsComponentsTokens
