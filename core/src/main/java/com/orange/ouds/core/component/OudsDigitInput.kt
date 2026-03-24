@@ -76,7 +76,7 @@ internal fun OudsDigitInput(
         val borderWidth = borderWidth(state = state, outlined = outlined)
 
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .clickable(
                     onClick = onClick,
                     interactionSource = null,
@@ -84,6 +84,7 @@ internal fun OudsDigitInput(
                 )
                 .heightIn(min = textInputTokens.sizeMinHeight.dp)
                 .widthIn(min = pinCodeInputTokens.sizeMinWidth.dp, max = pinCodeInputTokens.sizeMaxWidth.dp)
+                .then(modifier) // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
                 .background(color = backgroundColor, shape = shape())
                 .digitInputBorder(
                     borderWidth = borderWidth,

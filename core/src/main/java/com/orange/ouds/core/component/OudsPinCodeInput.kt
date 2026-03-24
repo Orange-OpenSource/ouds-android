@@ -16,8 +16,11 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
@@ -32,6 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -100,7 +104,9 @@ fun OudsPinCodeInput(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     BasicSecureTextField(
-        modifier = modifier.focusRequester(focusRequester),
+        modifier = modifier
+            .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+            .focusRequester(focusRequester),
         state = textFieldState,
         keyboardOptions = keyboardOptions,
         onKeyboardAction = onKeyboardAction,
@@ -136,52 +142,57 @@ fun OudsPinCodeInput(
             },
         interactionSource = interactionSource,
         decorator = {
-            ConstraintLayout {
-                val (row, helperTextErrorMessage) = createRefs()
-                Row(
-                    modifier = Modifier
-                        .constrainAs(row) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        },
-                    horizontalArrangement = Arrangement.spacedBy(pinCodeInputTokens.spaceColumnGapDigitInput.value)
-                ) {
-                    repeat(length.value) { index ->
-                        val isNonErrorPreview = LocalInspectionMode.current && error == null
-                        val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
-                        val digitInputState = when {
-                            (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
-                            interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-                            else -> OudsDigitInputState.Enabled
-                        }
-                        OudsDigitInput(
-                            digit = value.getOrNull(index),
-                            onClick = {
-                                focusRequester.requestFocus()
-                                // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
-                                keyboardController?.show()
-                                textFieldState.edit { placeCursorAfterCharAt(index) }
+            BoxWithConstraints(contentAlignment = Alignment.Center) {
+                val totalSpacing = pinCodeInputTokens.spaceColumnGapDigitInput.value * (length.value - 1)
+                val digitWidth = (maxWidth - totalSpacing) / length.value
+                ConstraintLayout {
+                    val (row, helperTextErrorMessage) = createRefs()
+                    Row(
+                        modifier = Modifier
+                            .constrainAs(row) {
+                                top.linkTo(parent.top)
+                                start.linkTo(parent.start)
+                                end.linkTo(parent.end)
                             },
-                            state = digitInputState,
-                            outlined = outlined,
-                            error = error != null,
-                            placeholder = error == null
-                        )
+                        horizontalArrangement = Arrangement.spacedBy(pinCodeInputTokens.spaceColumnGapDigitInput.value)
+                    ) {
+                        repeat(length.value) { index ->
+                            val isNonErrorPreview = LocalInspectionMode.current && error == null
+                            val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
+                            val digitInputState = when {
+                                (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+                                interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+                                else -> OudsDigitInputState.Enabled
+                            }
+                            OudsDigitInput(
+                                modifier = Modifier.width(digitWidth),
+                                digit = value.getOrNull(index),
+                                onClick = {
+                                    focusRequester.requestFocus()
+                                    // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
+                                    keyboardController?.show()
+                                    textFieldState.edit { placeCursorAfterCharAt(index) }
+                                },
+                                state = digitInputState,
+                                outlined = outlined,
+                                error = error != null,
+                                placeholder = error == null
+                            )
+                        }
                     }
+                    OudsTextInputHelperTextErrorMessage(
+                        modifier = Modifier.constrainAs(helperTextErrorMessage) {
+                            top.linkTo(row.bottom)
+                            bottom.linkTo(parent.bottom)
+                            start.linkTo(row.start)
+                            end.linkTo(row.end)
+                            width = Dimension.fillToConstraints
+                        },
+                        enabled = true,
+                        error = error,
+                        helperText = helperText
+                    )
                 }
-                OudsTextInputHelperTextErrorMessage(
-                    modifier = Modifier.constrainAs(helperTextErrorMessage) {
-                        top.linkTo(row.bottom)
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(row.start)
-                        end.linkTo(row.end)
-                        width = Dimension.fillToConstraints
-                    },
-                    enabled = true,
-                    error = error,
-                    helperText = helperText
-                )
             }
         }
     )
