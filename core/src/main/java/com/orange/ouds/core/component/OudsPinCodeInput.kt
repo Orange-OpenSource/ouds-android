@@ -143,8 +143,9 @@ fun OudsPinCodeInput(
         interactionSource = interactionSource,
         decorator = {
             BoxWithConstraints(contentAlignment = Alignment.Center) {
-                val totalSpacing = pinCodeInputTokens.spaceColumnGapDigitInput.value * (length.value - 1)
-                val digitWidth = (maxWidth - totalSpacing) / length.value
+                val horizontalSpace = if (length == OudsPinCodeInputLength.Eight) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
+                val totalSpace = horizontalSpace * (length.value - 1)
+                val digitWidth = (maxWidth - totalSpace) / length.value
                 ConstraintLayout {
                     val (row, helperTextErrorMessage) = createRefs()
                     Row(
@@ -154,7 +155,7 @@ fun OudsPinCodeInput(
                                 start.linkTo(parent.start)
                                 end.linkTo(parent.end)
                             },
-                        horizontalArrangement = Arrangement.spacedBy(pinCodeInputTokens.spaceColumnGapDigitInput.value)
+                        horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
                     ) {
                         repeat(length.value) { index ->
                             val isNonErrorPreview = LocalInspectionMode.current && error == null
@@ -176,7 +177,8 @@ fun OudsPinCodeInput(
                                 state = digitInputState,
                                 outlined = outlined,
                                 error = error != null,
-                                placeholder = error == null
+                                placeholder = error == null,
+                                horizontalPadding = if (length == OudsPinCodeInputLength.Eight) 0.dp else OudsDigitInputDefaults.horizontalPadding
                             )
                         }
                     }
