@@ -30,6 +30,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
+import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class OrangeComponentsTokens(
@@ -50,5 +51,6 @@ internal data class OrangeComponentsTokens(
     override val radioButton: OudsRadioButtonTokens = OrangeRadioButtonTokens(),
     override val switch: OudsSwitchTokens = OrangeSwitchTokens(),
     override val tag: OudsTagTokens = OrangeTagTokens(),
+    override val textArea: OudsTextAreaTokens = OrangeTextAreaTokens(),
     override val textInput: OudsTextInputTokens = OrangeTextInputTokens()
 ) : OudsComponentsTokens

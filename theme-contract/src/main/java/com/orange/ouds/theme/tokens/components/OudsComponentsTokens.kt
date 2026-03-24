@@ -34,5 +34,6 @@ interface OudsComponentsTokens {
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
     val tag: OudsTagTokens
+    val textArea: OudsTextAreaTokens
     val textInput: OudsTextInputTokens
 }
