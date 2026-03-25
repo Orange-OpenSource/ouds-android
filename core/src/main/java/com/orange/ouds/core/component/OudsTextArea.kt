@@ -30,7 +30,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -49,7 +48,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -726,36 +724,26 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(theme: OudsThemeContract, co
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsTextAreaMultiLine() = PreviewOudsTextAreaMultiLine(theme = getPreviewTheme())
+private fun PreviewOudsTextAreaMultiLineValue() = PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsTextAreaMultiLine(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val modifier = Modifier.padding(all = 10.dp)
+internal fun PreviewOudsTextAreaMultiLineValue(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     Column {
-        OudsTextArea(
-            modifier = modifier,
-            textFieldState = rememberTextFieldState(getInitialText(3)),
-            label = "3 lines",
-            loader = OudsTextInputLoader(progress = 0.75f)
-        )
-        OudsTextArea(
-            modifier = modifier,
-            textFieldState = rememberTextFieldState(getInitialText(5)),
-            label = "5 lines",
-            loader = OudsTextInputLoader(progress = 0.75f)
-        )
-        OudsTextArea(
-            modifier = modifier,
-            textFieldState = rememberTextFieldState(getInitialText(12)),
-            label = "12 lines (scrollable)",
-            loader = OudsTextInputLoader(progress = 0.75f)
-        )
+        MultiLineValueTextArea(3)
+        MultiLineValueTextArea(5)
+        MultiLineValueTextArea(12)
     }
 }
 
-private fun getInitialText(lines: Int) = List(lines) {
-    "Line ${it + 1}"
-}.joinToString("\n")
+@Composable
+private fun MultiLineValueTextArea(lineCount: Int) {
+    OudsTextArea(
+        modifier = Modifier.padding(all = 10.dp),
+        textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
+        label = "$lineCount lines",
+        loader = OudsTextInputLoader(progress = 0.75f)
+    )
+}
 
 internal data class OudsTextAreaPreviewParameter(
     val value: String,

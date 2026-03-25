@@ -122,7 +122,7 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.core.component.PreviewOudsTextArea
 import com.orange.ouds.core.component.PreviewOudsTextAreaConstrainedMaxWidth
-import com.orange.ouds.core.component.PreviewOudsTextAreaMultiLine
+import com.orange.ouds.core.component.PreviewOudsTextAreaMultiLineValue
 import com.orange.ouds.core.component.PreviewOudsTextAreaWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsTextInput
 import com.orange.ouds.core.component.PreviewOudsTextInputConstrainedMaxWidth
@@ -953,13 +953,13 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
 
-        object MultiLine : OudsPreviewableComponent {
+        object MultiLineValue : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsTextAreaMultiLine(theme = theme)
+                PreviewOudsTextAreaMultiLineValue(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
