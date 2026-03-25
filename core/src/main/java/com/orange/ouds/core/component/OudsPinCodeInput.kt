@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -73,8 +74,41 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.OudsThemeSettings
 import kotlinx.coroutines.launch
 
+/**
+ * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a
+ * four, six or height-digit personal identification number (PIN). PIN code input is presented as a series of individual input fields or boxes, each
+ * representing a single digit, to enhance readability and encourage accurate input, while supporting smooth keyboard navigation and secured input masking if
+ * needed.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
+ *
+ * > Design version: 1.2.0
+ *
+ * @param value The current pin code value as a string of digits. The value is automatically truncated to the specified [length].
+ * @param onValueChange Callback invoked when the pin code value changes. The updated pin code value comes as a parameter of the callback.
+ * @param modifier [Modifier] applied to the pin code input.
+ * @param length The number of digits in the pin code. Defaults to [OudsPinCodeInputDefaults.Length].
+ * @param outlined Controls the style of the pin code input. When `true`, it displays a minimalist pin code input with a transparent background and a visible
+ *   stroke outlining each digit box.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An optional helper text displayed below the pin code input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
+ *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [androidx.compose.ui.text.input.ImeAction.Done] would close the keyboard,
+ *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this pin code input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
+ */
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun OudsPinCodeInput(
@@ -258,9 +292,26 @@ fun OudsPinCodeInput(
     )
 }
 
+/**
+ * Represents the supported lengths for [OudsPinCodeInput].
+ *
+ * @property value The number of digits in the pin code.
+ */
 enum class OudsPinCodeInputLength(val value: Int) {
+
+    /**
+     * Four-digit pin code.
+     */
     Four(4),
+
+    /**
+     * Six-digit pin code.
+     */
     Six(6),
+
+    /**
+     * Eight-digit pin code.
+     */
     Eight(8)
 }
 
@@ -321,8 +372,9 @@ private val previewParameterValues: List<OudsPinCodeInputPreviewParameter>
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsPinCodeInputWithRoundedCorners(@PreviewParameter(OudsPinCodeInputWithRoundedCornersPreviewParameterProvider::class) outlined: Boolean) =
+private fun PreviewOudsPinCodeInputWithRoundedCorners(@PreviewParameter(OudsPinCodeInputWithRoundedCornersPreviewParameterProvider::class) outlined: Boolean) {
     PreviewOudsPinCodeInputWithRoundedCorners(theme = getPreviewTheme(), outlined = outlined)
+}
 
 @Composable
 internal fun PreviewOudsPinCodeInputWithRoundedCorners(
