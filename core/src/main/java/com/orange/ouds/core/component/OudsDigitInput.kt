@@ -130,7 +130,7 @@ internal fun OudsDigitInput(
             if (state == OudsDigitInputState.Focused) {
                 Text(
                     modifier = Modifier.alpha(if (cursorVisible) 1.0f else 0.0f),
-                    text = "|",
+                    text = OudsDigitInputCursor.toString(),
                     style = textStyle,
                     color = cursorColor(error = error)
                 )
@@ -236,6 +236,7 @@ private fun shape(): Shape {
 }
 
 internal const val OudsDigitInputPlaceholder = '-'
+internal const val OudsDigitInputCursor = '|'
 
 internal enum class OudsDigitInputState {
     Enabled, Hovered, Focused, ReadOnly, Disabled

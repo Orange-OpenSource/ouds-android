@@ -117,10 +117,11 @@ fun OudsPinCodeInput(
                     if (range.length > 0) {
                         // Retrieve added text
                         val addedText = asCharSequence().substring(range)
-                        // Delete the added text to roll back to the original text
-                        delete(range.min, range.max)
+                        // Roll back to the original text
+                        delete(0, this.length)
+                        insert(0, originalText.toString())
                         // Replace the original text with the added text
-                        replace(range.min - 1, range.max - 1, addedText)
+                        replace((range.min - 1).coerceIn(0, length.value), (range.max - 1).coerceIn(0, length.value), addedText)
                         placeCursorAfterCharAt((range.max - 1).coerceIn(0, length.value - 1))
                     }
                     // Deletion
