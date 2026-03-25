@@ -40,6 +40,7 @@ import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
 import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
 import com.orange.ouds.app.ui.components.tag.TagDemoScreen
+import com.orange.ouds.app.ui.components.textarea.TextAreaDemoScreen
 import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
 import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
@@ -178,6 +179,13 @@ sealed class Component(
         R.string.app_components_tag_description_text,
         { TagIllustration() },
         listOf(Variant.Tag, Variant.InputTag)
+    )
+
+    data object TextArea : Component(
+        R.string.app_components_textArea_tech,
+        R.string.app_components_textArea_description_text,
+        { TextAreaIllustration() },
+        demoScreen = { TextAreaDemoScreen() }
     )
 
     data object TextInput : Component(

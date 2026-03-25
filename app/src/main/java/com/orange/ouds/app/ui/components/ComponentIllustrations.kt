@@ -66,6 +66,7 @@ import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
@@ -269,6 +270,16 @@ fun SwitchIllustration() = ComponentIllustration {
 @Composable
 fun TagIllustration() = ComponentIllustration {
     OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive())
+}
+
+@Composable
+fun TextAreaIllustration() = ComponentIllustration {
+    OudsTextArea(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        textFieldState = rememberTextFieldState(),
+        label = stringResource(id = R.string.app_components_common_label_label),
+        helperText = stringResource(id = R.string.app_components_textAreaHelperText_label)
+    )
 }
 
 @Composable

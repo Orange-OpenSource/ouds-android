@@ -94,6 +94,7 @@
         <item quantity="many">%d رسائل غير مقروءة</item>
     </plurals>
     <string name="app_components_common_version_label">نسخة تصميم المكون</string>
+    <string name="app_components_textAreaHelperText_label">لديك 180 حرفًا متبقيًا.</string>
     <string name="app_components_textInputHelperText_label">نص مساعد.</string>
     <string name="app_components_passwordInputHelperText_label">يجب ألا يقلّ password عن 8 أحرف.</string>
 
@@ -166,6 +167,9 @@
 
     <!-- Components: tag -->
     <string name="app_components_tag_description_text">Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة.</string>
+
+    <!-- Components: text area -->
+    <string name="app_components_textArea_description_text">Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding vertically and offering more space to input text.</string> <!-- TODO -->
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.</string>
