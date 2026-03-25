@@ -22,11 +22,16 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -44,6 +49,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -558,7 +564,8 @@ internal fun OudsTextAreaDecorator(
         Column {
             Row(
                 modifier = styleModifier
-                    .sizeIn(maxWidth = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
+                    .height(IntrinsicSize.Max)
+                    .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(vertical = textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value),
                 verticalAlignment = Alignment.Top,
@@ -602,11 +609,9 @@ internal fun OudsTextAreaDecorator(
                 // Trailing elements (error icon or loader)
                 Box(
                     modifier = Modifier
-                        .sizeIn(
-                            minWidth = OudsTheme.componentsTokens.button.sizeMinWidth.value,
-                            minHeight = OudsTheme.componentsTokens.button.sizeMinHeight.value,
-                            maxHeight = textAreaTokens.sizeMaxHeightAssetsContainer.dp
-                        )
+                        .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidth.value)
+                        .heightIn(min = OudsTheme.componentsTokens.button.sizeMinHeight.value, max = textAreaTokens.sizeMaxHeightAssetsContainer.dp)
+                        .fillMaxHeight()
                         .padding(all = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value),
                     contentAlignment = Alignment.Center
                 ) {
@@ -726,16 +731,19 @@ internal fun PreviewOudsTextAreaMultiLine(theme: OudsThemeContract) = OudsPrevie
             modifier = modifier,
             textFieldState = rememberTextFieldState(getInitialText(3)),
             label = "3 lines",
+            loader = OudsTextInputLoader(progress = 0.75f)
         )
         OudsTextArea(
             modifier = modifier,
             textFieldState = rememberTextFieldState(getInitialText(5)),
             label = "5 lines",
+            loader = OudsTextInputLoader(progress = 0.75f)
         )
         OudsTextArea(
             modifier = modifier,
             textFieldState = rememberTextFieldState(getInitialText(12)),
             label = "12 lines (scrollable)",
+            loader = OudsTextInputLoader(progress = 0.75f)
         )
     }
 }
