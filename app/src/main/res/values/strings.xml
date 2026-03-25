@@ -158,6 +158,7 @@
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Unread notifications</string>
     <string name="app_components_common_version_label">Component design version</string>
+    <string name="app_components_textAreaHelperText_label">You have 180 characters remaining.</string>
     <string name="app_components_textInputHelperText_label">Helper text.</string>
     <string name="app_components_passwordInputHelperText_label">Your password must be at least 8 characters.</string>
 
@@ -283,6 +284,10 @@
     <string name="app_components_tag_tag_tech" translatable="false">Tag</string>
     <string name="app_components_tag_inputTag_tech" translatable="false">Input tag</string>
     <string name="app_components_tag_roundedCorners_tech" translatable="false">Rounded corners</string>
+
+    <!-- Components: text area -->
+    <string name="app_components_textArea_tech" translatable="false">Text area</string>
+    <string name="app_components_textArea_description_text">Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding vertically and offering more space to input text.</string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_tech" translatable="false">Text input</string>
