@@ -85,7 +85,6 @@ fun OudsPinCodeInput(
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
-    keyboardOptions: KeyboardOptions = OudsPinCodeInputDefaults.KeyboardOptions,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -123,7 +122,7 @@ fun OudsPinCodeInput(
             .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
             .focusRequester(focusRequester),
         state = textFieldState,
-        keyboardOptions = keyboardOptions,
+        keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
         onKeyboardAction = onKeyboardAction,
         inputTransformation = InputTransformation.then {
             changes.forEachChangeReversed { range, originalRange ->
@@ -274,11 +273,6 @@ object OudsPinCodeInputDefaults {
      * Default length of an [OudsPinCodeInput].
      */
     val Length = OudsPinCodeInputLength.Six
-
-    /**
-     * Default keyboard options for an [OudsPinCodeInput].
-     */
-    val KeyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
