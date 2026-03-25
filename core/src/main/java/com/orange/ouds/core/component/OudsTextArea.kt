@@ -645,7 +645,7 @@ internal fun OudsTextAreaDecorator(
 
 }
 
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextArea.Default.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
@@ -678,7 +678,7 @@ internal fun PreviewOudsTextArea(
     }
 }
 
-@Preview(heightDp = OudsPreviewableComponent.TextInput.WithRoundedCorners.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(heightDp = OudsPreviewableComponent.TextArea.WithRoundedCorners.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextAreaWithRoundedCorners() = PreviewOudsTextAreaWithRoundedCorners(theme = getPreviewTheme())
@@ -695,32 +695,7 @@ internal fun PreviewOudsTextAreaWithRoundedCorners(theme: OudsThemeContract) =
         }
     }
 
-@OudsPreview
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsTextAreaWithLongLabels() = PreviewOudsTextAreaWithLongLabels(theme = getPreviewTheme())
-
-@Composable
-internal fun PreviewOudsTextAreaWithLongLabels(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val labels = listOf("Two lines\nlabel", "Three\nlines\nlabel")
-    val modifier = Modifier.padding(all = 10.dp)
-    Column {
-        labels.forEach { label ->
-            OudsTextArea(
-                modifier = modifier,
-                textFieldState = rememberTextFieldState(),
-                label = label,
-            )
-            OudsTextArea(
-                modifier = modifier,
-                textFieldState = rememberTextFieldState("text"),
-                label = label,
-            )
-        }
-    }
-}
-
-@Preview(widthDp = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(widthDp = OudsPreviewableComponent.TextArea.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 internal fun PreviewOudsTextAreaConstrainedMaxWidth(@PreviewParameter(OudsTextAreaConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {

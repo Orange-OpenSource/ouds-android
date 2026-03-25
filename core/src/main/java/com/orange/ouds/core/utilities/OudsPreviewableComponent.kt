@@ -60,6 +60,9 @@ import com.orange.ouds.core.component.OudsSwitchItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTagPreviewParameter
 import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextAreaConstrainedMaxWidthPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextAreaPreviewParameter
+import com.orange.ouds.core.component.OudsTextAreaPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputPreviewParameter
 import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
@@ -110,6 +113,10 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsTag
+import com.orange.ouds.core.component.PreviewOudsTextArea
+import com.orange.ouds.core.component.PreviewOudsTextAreaConstrainedMaxWidth
+import com.orange.ouds.core.component.PreviewOudsTextAreaMultiLine
+import com.orange.ouds.core.component.PreviewOudsTextAreaWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsTextInput
 import com.orange.ouds.core.component.PreviewOudsTextInputConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
@@ -832,6 +839,65 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsTagPreviewParameter
             )
+        }
+    }
+
+    object TextArea {
+
+        object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1390
+
+            override val parameters: List<Any> = OudsTextAreaPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextArea(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTextAreaPreviewParameter
+                )
+            }
+        }
+
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 900
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextAreaWithRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object ConstrainedMaxWidth : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 800
+
+            override val parameters: List<Any> = OudsTextAreaConstrainedMaxWidthPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextAreaConstrainedMaxWidth(theme = theme, constrainedMaxWidth = parameter as Boolean)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object MultiLine : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextAreaMultiLine(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
