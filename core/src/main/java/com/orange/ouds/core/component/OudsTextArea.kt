@@ -558,14 +558,10 @@ internal fun OudsTextAreaDecorator(
         Column {
             Row(
                 modifier = styleModifier
-                    .sizeIn(
-                        minWidth = sizeMinWidth.dp,
-                        maxWidth = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified,
-                        minHeight = sizeMinHeight.dp
-                    )
+                    .sizeIn(maxWidth = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(vertical = textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
             ) {
                 // Central content
@@ -574,7 +570,7 @@ internal fun OudsTextAreaDecorator(
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
                     // Small label on top
-                    if (!label.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
+                    if (!label.isNullOrBlank()) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -587,28 +583,17 @@ internal fun OudsTextAreaDecorator(
                         )
                     }
 
-                    // Placeholder Label Value
+                    // Placeholder or Value
                     Box(modifier = Modifier.fillMaxWidth()) {
-                        if (value.isEmpty()) {
-                            if (!placeholder.isNullOrBlank()) {
-                                Text(
-                                    modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
-                                    text = placeholder,
-                                    style = OudsTheme.typography.label.default.large,
-                                    color = decorativeContentColor(state = state),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            } else if (!label.isNullOrBlank() && state != OudsTextInputState.Focused) {
-                                Text(
-                                    modifier = Modifier.semantics { hideFromAccessibility() },
-                                    text = label,
-                                    style = OudsTheme.typography.label.default.large,
-                                    color = labelColor(state = state, error = hasError),
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            }
+                        if (value.isEmpty() && !placeholder.isNullOrBlank()) {
+                            Text(
+                                modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
+                                text = placeholder,
+                                style = OudsTheme.typography.label.default.large,
+                                color = decorativeContentColor(state = state),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
                         }
                         innerTextField()
                     }
