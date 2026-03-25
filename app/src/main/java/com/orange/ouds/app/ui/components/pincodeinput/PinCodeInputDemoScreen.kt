@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.pincodeinput
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -28,7 +27,6 @@ import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -39,7 +37,6 @@ fun PinCodeInputDemoScreen() {
         bottomSheetContent = { PinCodeInputDemoBottomSheetContent(state = state) },
         codeSnippet = { pinCodeInputDemoCodeSnippet(state = state) },
         demoContent = { PinCodeInputDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.PinCodeInput
     )
 }

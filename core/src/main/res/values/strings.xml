@@ -28,6 +28,8 @@
     <string name="core_passwordInput_hidePassword_a11y">Hide password</string>
     <string name="core_passwordInput_showPassword_a11y">Show password</string>
 
+    <string name="core_pinCodeInput_paste_label">Paste</string>
+
     <string name="core_textInput_empty_a11y">Empty</string>
 
     <string name="core_topAppBar_backNavigationIcon_a11y">Back</string>
