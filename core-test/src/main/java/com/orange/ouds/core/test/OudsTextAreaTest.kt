@@ -56,8 +56,8 @@ internal class OudsTextAreaTest {
         }
     }
 
-    class MultiLine : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.TextArea.MultiLine,
+    class MultiLineValue : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextArea.MultiLineValue,
         parameter = null,
         OudsComponentTestSuite.theme
     )
