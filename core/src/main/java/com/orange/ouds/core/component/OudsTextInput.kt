@@ -50,6 +50,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -550,33 +551,15 @@ internal fun OudsTextInputDecorator(
 ) {
     val hasError = error != null
     with(OudsTheme.componentsTokens.textInput) {
-        val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
-        val shape = RoundedCornerShape(borderRadius)
-        
-        val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
-            // outlined
-            borderWidth(state)?.let { borderWidth ->
-                Modifier.border(
-                    width = borderWidth,
-                    color = borderColor(state = state, outlined = outlined, error = hasError),
-                    shape = shape
-                )
-            }.orElse {
-                Modifier
-            }
-        } else {
-            // filled
-            Modifier
-                .textInputBottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = hasError)
-                .background(
-                    color = backgroundColor(state = state, outlined = outlined, error = hasError),
-                    shape = shape
-                )
-        }
+        val borderWidth = borderWidth(state)
+        val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
+        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column {
             Row(
-                modifier = styleModifier
+                modifier = Modifier
+                    .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
+                    .background(color = backgroundColor, shape = textInputShape)
                     .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified, minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
@@ -824,6 +807,19 @@ private fun errorIconColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
 }
 
+@Composable
+private fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, state: OudsTextInputState, outlined: Boolean, error: OudsError?): Modifier {
+    return if (borderWidth != null && borderColor != null) {
+        if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
+            border(width = borderWidth, color = borderColor, shape = textInputShape)
+        } else {
+            textInputBottomBorder(state = state, outlined = outlined, cornerRadius = textInputBorderRadius, error = error != null)
+        }
+    } else {
+        this
+    }
+}
+
 /**
  * Draws a bottom border on the text input by respecting [cornerRadius] provided.
  * Color and thickness of the border are provided by [state].
@@ -887,6 +883,16 @@ internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typograph
 @Composable
 internal fun textInputEnabled(state: OudsTextInputState) =
     state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
+
+internal val textInputBorderRadius: Dp
+    @Composable
+    get() = with(OudsTheme.componentsTokens.textInput) {
+        if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded else borderRadiusDefault
+    }.value
+
+private val textInputShape: Shape
+    @Composable
+    get() = RoundedCornerShape(textInputBorderRadius)
 
 internal enum class OudsTextInputState {
     Enabled, Hovered, Disabled, Focused, ReadOnly, Loading

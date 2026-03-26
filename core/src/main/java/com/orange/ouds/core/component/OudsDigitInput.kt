@@ -39,7 +39,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.bottomBorder
-import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -105,13 +104,8 @@ internal fun OudsDigitInput(
                 .heightIn(min = textInputTokens.sizeMinHeight.dp)
                 .widthIn(min = pinCodeInputTokens.sizeMinWidth.dp, max = pinCodeInputTokens.sizeMaxWidth.dp)
                 .then(modifier) // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
-                .background(color = backgroundColor, shape = shape())
-                .digitInputBorder(
-                    borderWidth = borderWidth,
-                    borderColor = borderColor,
-                    state = state,
-                    outlined = outlined
-                )
+                .background(color = backgroundColor, shape = digitInputShape)
+                .digitInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined)
                 .padding(
                     horizontal = horizontalPadding,
                     vertical = textInputTokens.spacePaddingBlockDefault.value
@@ -212,25 +206,17 @@ private fun Modifier.digitInputBorder(borderWidth: Dp?, borderColor: Color?, sta
     return if (borderWidth != null && borderColor != null) {
         when {
             outlined && state == OudsDigitInputState.ReadOnly -> this
-            !outlined && state != OudsDigitInputState.ReadOnly -> bottomBorder(borderWidth, borderColor, borderRadius())
-            else -> border(borderWidth, borderColor, shape())
+            !outlined && state != OudsDigitInputState.ReadOnly -> bottomBorder(borderWidth, borderColor, textInputBorderRadius)
+            else -> border(borderWidth, borderColor, digitInputShape)
         }
     } else {
         this
     }
 }
 
-@Composable
-private fun borderRadius(): Dp {
-    return with(OudsTheme.componentsTokens.textInput) {
-        if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded else borderRadiusDefault
-    }.value
-}
-
-@Composable
-private fun shape(): Shape {
-    return RoundedCornerShape(borderRadius())
-}
+private val digitInputShape: Shape
+    @Composable
+    get() = RoundedCornerShape(textInputBorderRadius)
 
 internal const val OudsDigitInputPlaceholder = '-'
 
