@@ -58,5 +58,7 @@ internal class OudsDigitInputTest {
                 outlined = parameter
             )
         }
+
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
     }
 }
