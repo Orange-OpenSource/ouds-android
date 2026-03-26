@@ -74,7 +74,7 @@ internal class OudsDigitInputTest {
                     onClick = {})
             }
 
-            onNodeWithText("-").assertIsDisplayed()
+            onNodeWithText(OudsDigitInputPlaceholder.toString()).assertIsDisplayed()
         }
     }
 
@@ -84,11 +84,12 @@ internal class OudsDigitInputTest {
             setOudsContent {
                 OudsDigitInput(
                     digit = 'a',
-                    onClick = {})
+                    onClick = {}
+                )
             }
 
             onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertIsNotDisplayed()
-            onNodeWithText("-").assertIsDisplayed()
+            onNodeWithText(OudsDigitInputPlaceholder.toString()).assertIsDisplayed()
         }
     }
 
@@ -103,7 +104,7 @@ internal class OudsDigitInputTest {
                 )
             }
 
-            onNodeWithText("-").assertDoesNotExist()
+            onNodeWithText(OudsDigitInputPlaceholder.toString()).assertIsNotDisplayed()
         }
     }
 
@@ -118,7 +119,7 @@ internal class OudsDigitInputTest {
                 )
             }
 
-            onNodeWithText("|").assertIsDisplayed()
+            onNodeWithText(OudsDigitInputCursor.toString()).assertIsDisplayed()
         }
     }
 
@@ -133,7 +134,7 @@ internal class OudsDigitInputTest {
                 )
             }
 
-            onNodeWithText("|").assertDoesNotExist()
+            onNodeWithText(OudsDigitInputCursor.toString()).assertIsNotDisplayed()
         }
     }
 
@@ -148,7 +149,7 @@ internal class OudsDigitInputTest {
                 )
             }
 
-            onNodeWithText("-").assertDoesNotExist()
+            onNodeWithText(OudsDigitInputPlaceholder.toString()).assertDoesNotExist()
         }
     }
 }

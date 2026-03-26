@@ -552,8 +552,7 @@ internal fun OudsTextInputDecorator(
     with(OudsTheme.componentsTokens.textInput) {
         val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
         val shape = RoundedCornerShape(borderRadius)
-
-        // Voir si on peut utiliser rememberInteractionColor
+        
         val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
             // outlined
             borderWidth(state)?.let { borderWidth ->
@@ -837,7 +836,7 @@ private fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined: 
         val color = borderColor(state = state, outlined = outlined, error = error)
         bottomBorder(width = width, color = color, cornerRadius = cornerRadius)
     } else {
-        Modifier
+        this
     }
 }
 

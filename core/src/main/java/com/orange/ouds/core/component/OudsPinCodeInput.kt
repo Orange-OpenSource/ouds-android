@@ -224,7 +224,7 @@ private fun OudsPinCodeInputTooltipBox(textFieldState: TextFieldState, length: O
 }
 
 @Composable
-fun OudsPinCodeInputDecorator(
+private fun OudsPinCodeInputDecorator(
     textFieldState: TextFieldState,
     length: OudsPinCodeInputLength,
     outlined: Boolean,
@@ -250,9 +250,9 @@ fun OudsPinCodeInputDecorator(
                     },
                 horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
             ) {
+                val isNonErrorPreview = LocalInspectionMode.current && error == null
+                val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
                 repeat(length.value) { index ->
-                    val isNonErrorPreview = LocalInspectionMode.current && error == null
-                    val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
                     val digitInputState = when {
                         (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
                         interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
@@ -417,9 +417,8 @@ internal fun PreviewOudsPinCodeInputWithRoundedCorners(
     theme: OudsThemeContract,
     outlined: Boolean
 ) = OudsPreview(modifier = Modifier.padding(16.dp), theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-    val value = "12"
     OudsPinCodeInput(
-        value = value,
+        value = "12",
         onValueChange = {},
         length = OudsPinCodeInputLength.Four,
         outlined = outlined
