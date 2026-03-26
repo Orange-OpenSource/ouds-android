@@ -30,6 +30,7 @@ enum class Component {
     RadioButton,
     Switch,
     Tag,
+    TextArea,
     TextInput;
 
     val version: String
@@ -49,6 +50,7 @@ enum class Component {
                 Component.RadioButton -> RadioButton
                 Component.Switch -> Switch
                 Component.Tag -> Tag
+                Component.TextArea -> TextArea
                 Component.TextInput -> TextInput
             }
         }
@@ -69,6 +71,7 @@ enum class Component {
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")
             Tag -> listOf("OudsTag", "OudsInputTag")
+            TextArea -> listOf("OudsTextArea")
             TextInput -> listOf("OudsTextInput")
         }
 
