@@ -121,7 +121,7 @@ internal class OudsPinCodeInputTest {
             var pinCode = ""
 
             setOudsContent {
-                var value by remember { mutableStateOf("") }
+                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
                     value = value,
                     onValueChange = {
@@ -149,6 +149,7 @@ internal class OudsPinCodeInputTest {
             onNodeWithTag(testTag).performTextInput("4")
             waitForIdle()
             Assert.assertEquals("1234", pinCode)
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
         }
     }
 
@@ -156,10 +157,10 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_maxLengthReached_replacesLastDigit() {
         with(composeTestRule) {
             val testTag = "OudsPinCodeInput"
-            var pinCode = ""
+            var pinCode = "1234"
 
             setOudsContent {
-                var value by remember { mutableStateOf("1234") }
+                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
                     value = value,
                     onValueChange = {
@@ -175,6 +176,7 @@ internal class OudsPinCodeInputTest {
             onNodeWithTag(testTag).performTextInput("5")
             waitForIdle()
             Assert.assertEquals("1235", pinCode)
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
         }
     }
 
@@ -213,7 +215,7 @@ internal class OudsPinCodeInputTest {
 
             setOudsContent {
                 focusManager = LocalFocusManager.current
-                var value by remember { mutableStateOf("") }
+                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
                     value = value,
                     onValueChange = {
@@ -259,6 +261,7 @@ internal class OudsPinCodeInputTest {
             onNodeWithTag(testTag).performTextReplacement("567890")
             waitForIdle()
             Assert.assertEquals("5678", pinCode)
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
         }
     }
 
@@ -312,6 +315,7 @@ internal class OudsPinCodeInputTest {
             placeholderNodes[0].performClick()
             waitForIdle()
             onNodeWithTag(testTag).assertIsFocused()
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(2)
             onNodeWithText(OudsDigitInputCursor.toString()).assertIsDisplayed()
             onAllNodesWithText(OudsDigitInputPlaceholder.toString()).assertCountEquals(1)
         }
@@ -338,6 +342,7 @@ internal class OudsPinCodeInputTest {
             obfuscationCharacterNodes[0].performClick()
             waitForIdle()
             onNodeWithTag(testTag).assertIsFocused()
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(2)
             onNode(hasTextExactly(OudsPasswordInputTextObfuscationCharacter.toString(), OudsDigitInputCursor.toString())).assertIsDisplayed()
             onAllNodesWithText(OudsDigitInputPlaceholder.toString()).assertCountEquals(2)
         }
@@ -384,14 +389,12 @@ internal class OudsPinCodeInputTest {
     @Test
     fun oudsPinCodeInput_withError_hidesPlaceholders() {
         with(composeTestRule) {
-            val errorMessage = "Invalid code"
-
             setOudsContent {
                 OudsPinCodeInput(
                     value = "12",
                     onValueChange = {},
                     length = OudsPinCodeInputLength.Four,
-                    error = OudsError(errorMessage)
+                    error = OudsError("Invalid code")
                 )
             }
 

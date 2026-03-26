@@ -151,19 +151,16 @@ private fun placeholderColor(state: OudsDigitInputState): Color {
 
 @Composable
 private fun backgroundColor(state: OudsDigitInputState, outlined: Boolean, error: Boolean): Color {
-    return if (error) {
-        if (outlined) Color.Transparent else OudsTheme.colorScheme.surface.status.negative.muted
-    } else {
-        if (outlined) {
-            if (state == OudsDigitInputState.ReadOnly) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
-        } else {
-            when (state) {
-                OudsDigitInputState.Enabled -> OudsTheme.colorScheme.action.support.enabled
-                OudsDigitInputState.Hovered -> OudsTheme.colorScheme.action.support.hover
-                OudsDigitInputState.Focused -> OudsTheme.colorScheme.action.support.pressed
-                OudsDigitInputState.ReadOnly -> Color.Transparent
-                OudsDigitInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
-            }
+    return when {
+        error && outlined -> Color.Transparent
+        error && !outlined -> OudsTheme.colorScheme.surface.status.negative.muted
+        outlined -> if (state == OudsDigitInputState.ReadOnly) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
+        else -> when (state) {
+            OudsDigitInputState.Enabled -> OudsTheme.colorScheme.action.support.enabled
+            OudsDigitInputState.Hovered -> OudsTheme.colorScheme.action.support.hover
+            OudsDigitInputState.Focused -> OudsTheme.colorScheme.action.support.pressed
+            OudsDigitInputState.ReadOnly -> Color.Transparent
+            OudsDigitInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
         }
     }
 }
@@ -236,6 +233,7 @@ private fun shape(): Shape {
 }
 
 internal const val OudsDigitInputPlaceholder = '-'
+
 internal const val OudsDigitInputCursor = '|'
 
 internal enum class OudsDigitInputState {
