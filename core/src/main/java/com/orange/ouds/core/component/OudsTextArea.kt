@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
@@ -31,6 +32,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -48,6 +50,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -170,6 +176,8 @@ fun OudsTextArea(
     val density = LocalDensity.current
     val fontScale = LocalConfiguration.current.fontScale
 
+    val scrollState = rememberScrollState()
+
     val (minLines, maxLines) = remember(textAreaTokens, textStyle, density, fontScale) {
         computeTextAreaLines(
             minHeightDp = textAreaTokens.sizeMinHeightInput,
@@ -212,9 +220,11 @@ fun OudsTextArea(
                         error = error,
                         helperText = helperText,
                         helperLink = helperLink,
-                        constrainedMaxWidth = constrainedMaxWidth
+                        constrainedMaxWidth = constrainedMaxWidth,
+                        scrollState = scrollState,
                     )
-                }
+                },
+                scrollState = scrollState
             )
         }
     )
@@ -474,7 +484,7 @@ fun OudsTextArea(
                         error = error,
                         helperText = helperText,
                         helperLink = helperLink,
-                        constrainedMaxWidth = constrainedMaxWidth
+                        constrainedMaxWidth = constrainedMaxWidth,
                     )
                 }
             )
@@ -530,6 +540,7 @@ internal fun OudsTextAreaDecorator(
     helperText: String?,
     helperLink: OudsTextInputHelperLink?,
     constrainedMaxWidth: Boolean,
+    scrollState: ScrollState = rememberScrollState(),
 ) {
     val hasError = error != null
     val textInputTokens = OudsTheme.componentsTokens.textInput
@@ -565,7 +576,8 @@ internal fun OudsTextAreaDecorator(
                     .height(IntrinsicSize.Max)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(vertical = textAreaTokens.spacePaddingBlock.value)
-                    .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value),
+                    .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
+                    .verticalScrollbar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
             ) {
@@ -650,7 +662,35 @@ internal fun OudsTextAreaDecorator(
             OptionalHelperLink(state = state, helperLink = helperLink)
         }
     }
+}
 
+@Composable
+private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
+    val scrollBarColor = OudsTheme.colorScheme.action.disabled
+    val scrollbarWidth = 4.dp
+
+    return if (scrollState.maxValue > 0) {
+        drawWithContent {
+            drawContent()
+
+            val viewportHeight = this.size.height
+            val viewportWidth = this.size.width
+            val totalContentHeight = scrollState.maxValue.toFloat() + viewportHeight
+            if (totalContentHeight > viewportHeight) {
+                val scrollBarHeight = (viewportHeight / totalContentHeight) * viewportHeight
+                val scrollBarStartOffset = (scrollState.value.toFloat() / totalContentHeight) * viewportHeight
+
+                drawRoundRect(
+                    color = scrollBarColor,
+                    cornerRadius = CornerRadius(10f, 10f),
+                    topLeft = Offset(viewportWidth - scrollbarWidth.toPx(), scrollBarStartOffset),
+                    size = Size(scrollbarWidth.toPx(), scrollBarHeight)
+                )
+            }
+        }
+    } else {
+        this
+    }
 }
 
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.TextArea.Default.PreviewHeightDp, device = OudsPreviewDevice)
