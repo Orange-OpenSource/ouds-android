@@ -156,7 +156,7 @@ private fun Code.Builder.checkboxDemoCodeSnippet(state: CheckboxDemoState, indet
             }
             enabledArgument(enabled)
             readOnlyArgument(readOnly)
-            errorArgument(error)
+            if (error) errorArgument(R.string.app_components_common_error_a11y)
         }
     }
 }

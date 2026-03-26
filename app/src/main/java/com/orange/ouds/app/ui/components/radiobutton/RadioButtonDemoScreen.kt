@@ -103,7 +103,7 @@ private fun Code.Builder.radioButtonDemoCodeSnippet(state: RadioButtonDemoState)
             }
             enabledArgument(enabled)
             readOnlyArgument(readOnly)
-            errorArgument(error)
+            if (error) errorArgument(R.string.app_components_common_error_a11y)
         }
     }
 }

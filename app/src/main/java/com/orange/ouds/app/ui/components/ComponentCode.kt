@@ -34,9 +34,9 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
     }
 }
 
-fun FunctionCall.Builder.painterArgument(@DrawableRes id: Int) {
+fun FunctionCall.Builder.painterArgument(@DrawableRes resId: Int) {
     functionCallArgument(Argument.Painter, "painterResource") {
-        typedArgument(Argument.Id, id)
+        typedArgument(Argument.Id, resId)
     }
 }
 
@@ -47,29 +47,34 @@ fun FunctionCall.Builder.colorArgument(name: String, color: Color) {
     }
 }
 
-fun FunctionCall.Builder.stringArgument(name: String, @StringRes id: Int) = formattableArgument(name) { "\"${it.getString(id)}\"" }
+fun FunctionCall.Builder.stringArgument(name: String, @StringRes resId: Int) = formattableArgument(name) { "\"${it.getString(resId)}\"" }
 
 fun FunctionCall.Builder.constrainedMaxWidthArgument(value: Boolean) = typedArgument(Argument.ConstrainedMaxWidth, value)
 
-fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int) = stringArgument(Argument.ContentDescription, id)
-fun FunctionCall.Builder.contentDescriptionArgument(@StringRes id: Int, vararg formatArgs: Any) =
-    stringResourceArgument(Argument.ContentDescription, id, *formatArgs)
+fun FunctionCall.Builder.contentDescriptionArgument(@StringRes resId: Int) = stringArgument(Argument.ContentDescription, resId)
+fun FunctionCall.Builder.contentDescriptionArgument(@StringRes resId: Int, vararg formatArgs: Any) =
+    stringResourceArgument(Argument.ContentDescription, resId, *formatArgs)
 
-fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes id: Int, count: Int, vararg formatArgs: Any) =
-    pluralStringResourceArgument(Argument.ContentDescription, id, count, *formatArgs)
+fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes resId: Int, count: Int, vararg formatArgs: Any) =
+    pluralStringResourceArgument(Argument.ContentDescription, resId, count, *formatArgs)
 
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
-fun FunctionCall.Builder.errorArgument(value: Boolean) = typedArgument(Argument.Error, value)
 fun FunctionCall.Builder.errorArgument(message: String) {
     constructorCallArgument<OudsError>(Argument.Error) {
         typedArgument("message", message)
     }
 }
 
+fun FunctionCall.Builder.errorArgument(@StringRes messageResId: Int) {
+    constructorCallArgument<OudsError>(Argument.Error) {
+        stringResourceArgument("message", messageResId)
+    }
+}
+
 fun FunctionCall.Builder.labelArgument(label: String?) = typedArgument(Argument.Label, label)
-fun FunctionCall.Builder.labelArgument(@StringRes id: Int) = stringResourceArgument(Argument.Label, id)
+fun FunctionCall.Builder.labelArgument(@StringRes resId: Int) = stringResourceArgument(Argument.Label, resId)
 
 fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = lambdaArgument(Argument.OnClick, init)
 
