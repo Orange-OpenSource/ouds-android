@@ -50,6 +50,7 @@ import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 import kotlin.enums.enumEntries
 import kotlin.math.ceil
+import kotlin.math.min
 
 internal val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 internal val LocalPreviewGridRow = staticCompositionLocalOf<Any?> { null }
@@ -168,12 +169,14 @@ internal fun <T, S> PreviewGrid(
 internal inline fun <reified T> PreviewEnumEntries(
     columnCount: Int = enumEntries<T>().count(),
     edgeToEdge: Boolean = false,
+    filter: (T) -> Boolean = { true },
     crossinline content: @Composable (T) -> Unit
 ) where T : Enum<T> {
-    val chunkedEnumEntries = enumEntries<T>().chunked(columnCount)
+    val filteredEnumEntries = enumEntries<T>().filter(filter)
+    val chunkedEnumEntries = filteredEnumEntries.chunked(columnCount)
     Box(modifier = Modifier.padding(vertical = PreviewPaddingDefault, horizontal = if (edgeToEdge) 0.dp else PreviewPaddingDefault)) {
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            repeat(columnCount) { columnIndex ->
+            repeat(min(columnCount, filteredEnumEntries.count())) { columnIndex ->
                 val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
                 Column {
                     columnEnumEntries.forEachIndexed { rowIndex, enumEntry ->

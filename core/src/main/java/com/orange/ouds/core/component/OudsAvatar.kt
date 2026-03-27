@@ -13,22 +13,17 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.IndicationNodeFactory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.ripple.RippleAlpha
-import androidx.compose.material.ripple.createRippleModifierNode
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,8 +33,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.node.DelegatableNode
-import androidx.compose.ui.node.DelegatingNode
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -47,16 +40,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.component.common.outerBorder
-import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -145,8 +133,6 @@ internal fun OudsAvatar(
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val avatarState = getAvatarState(interactionState)
 
     Box(
         modifier = modifier
@@ -155,7 +141,7 @@ internal fun OudsAvatar(
                 if (onClick != null) {
                     clickable(
                         interactionSource = interactionSource,
-                        indication = avatarRipple(OudsTheme.colorScheme.action.pressed),
+                        indication = null,
                         onClick = onClick,
                         role = Role.Button
                     )
@@ -165,8 +151,15 @@ internal fun OudsAvatar(
             },
         contentAlignment = Alignment.Center
     ) {
+        OudsButton(
+            nullableIcon = null,
+            nullableLabel = null,
+            onClick = {},
+            appearance = OudsButtonAppearance.Minimal,
+            interactionSource = interactionSource
+        )
+
         val contentModifier = Modifier
-            .outerBorder(state = avatarState, shape = CircleShape)
             .clip(CircleShape)
             .size(AvatarSize)
         if (graphicsObject != null) {
@@ -213,63 +206,7 @@ internal fun OudsAvatar(
     }
 }
 
-@Composable
-private fun getAvatarState(interactionState: InteractionState): OudsAvatarState {
-    return getPreviewEnumEntry<OudsAvatarState>().orElse {
-        when (interactionState) {
-            InteractionState.Hovered -> OudsAvatarState.Hovered
-            InteractionState.Pressed -> OudsAvatarState.Pressed
-            InteractionState.Focused -> OudsAvatarState.Focused
-            else -> OudsAvatarState.Enabled
-        }
-    }
-}
-
 private val AvatarSize = 32.dp
-
-private enum class OudsAvatarState {
-    Enabled, Hovered, Pressed, Focused
-}
-
-private fun avatarRipple(color: Color) = AvatarRippleNodeFactory(color)
-
-private data class AvatarRippleNodeFactory(private val color: Color) : IndicationNodeFactory {
-
-    override fun create(interactionSource: InteractionSource): DelegatableNode {
-        return DelegatingAvatarRippleNode(interactionSource, color)
-    }
-}
-
-private class DelegatingAvatarRippleNode(private val interactionSource: InteractionSource, private val color: Color) : DelegatingNode() {
-
-    private var rippleNode: DelegatableNode? = null
-
-    override fun onAttach() {
-        if (rippleNode == null) {
-            rippleNode = delegate(
-                createRippleModifierNode(
-                    interactionSource = interactionSource,
-                    bounded = true,
-                    radius = AvatarSize / 2,
-                    color = { color },
-                    rippleAlpha = {
-                        RippleAlpha(
-                            pressedAlpha = 1f,
-                            focusedAlpha = 0f,
-                            draggedAlpha = 0f,
-                            hoveredAlpha = 0f
-                        )
-                    }
-                )
-            )
-        }
-    }
-
-    override fun onDetach() {
-        rippleNode?.let { undelegate(it) }
-        rippleNode = null
-    }
-}
 
 @PreviewLightDark
 @Composable
@@ -284,7 +221,7 @@ internal fun PreviewOudsAvatar(
     darkThemeEnabled: Boolean,
     isMonogram: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsAvatarState> {
+    PreviewEnumEntries<OudsButtonState>(filter = { it !in listOf(OudsButtonState.Loading, OudsButtonState.Disabled) }) {
         if (isMonogram) {
             OudsAvatar(
                 monogram = 'A',
