@@ -29,8 +29,8 @@
 
     <string name="core_inputTag_remove_a11y">يزيل</string>
 
-    <string name="core_passwordInput_hidePassword_a11y">Hide password</string>
-    <string name="core_passwordInput_showPassword_a11y">Show password</string>
+    <string name="core_passwordInput_hidePassword_a11y">إخفاء كلمة المرو</string>
+    <string name="core_passwordInput_showPassword_a11y">عرض كلمة المرور</string>
 
     <string name="core_textInput_empty_a11y">فارغ</string>
 
