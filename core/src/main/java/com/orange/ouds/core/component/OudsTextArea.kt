@@ -493,6 +493,11 @@ fun OudsTextArea(
 }
 
 /**
+ * Minimum lines displayed in an OUDS Text Area.
+ */
+private const val MinLines = 3
+
+/**
  * Calculates the minimum and maximum number of lines for a text area based on design tokens and font scale.
  * This ensures the text area adapts to accessibility settings (e.g., larger font sizes).
  *
@@ -520,7 +525,7 @@ private fun computeTextAreaLines(
         }
 
         // Compute number of lines that fit in the given heights
-        val minLines = (minHeightDp / lineHeightDp).toInt().coerceAtLeast(1)
+        val minLines = (minHeightDp / lineHeightDp).toInt().coerceAtLeast(MinLines)
         val maxLines = (maxHeightDp / lineHeightDp).toInt().coerceAtLeast(minLines)
 
         return minLines to maxLines
