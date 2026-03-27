@@ -763,7 +763,7 @@ data class OudsButtonLoader(val progress: Float?)
 
 internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
 
-private enum class OudsButtonState {
+internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
 }
 
