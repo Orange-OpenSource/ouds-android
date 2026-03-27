@@ -1,6 +1,7 @@
 # OUDS Android
 
 [![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Orange-OpenSource/ouds-android/badge)](https://scorecard.dev/viewer/?uri=github.com/Orange-OpenSource/ouds-android)
 [![License](https://img.shields.io/github/license/Orange-OpenSource/ouds-android)](LICENSE)
 [![Documentation](https://img.shields.io/badge/documentation-7F52FF?logo=kotlin&logoColor=white)](https://android.unified-design-system.orange.com/)
 
