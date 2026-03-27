@@ -633,7 +633,7 @@ internal fun OudsTextAreaDecorator(
                         Icon(
                             modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                             painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                            contentDescription = if (error.message.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
+                            contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
                         )
                     }
