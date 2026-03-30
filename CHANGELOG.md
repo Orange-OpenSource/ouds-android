@@ -5,6 +5,50 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.2.0...1.3.0) (2026-03-30)
+
+### Features
+
+- **alert-message** update to design version 1.1.0 ([#1169](https://github.com/Orange-OpenSource/ouds-android/issues/1169))
+- create component - inline alert ([#1118](https://github.com/Orange-OpenSource/ouds-android/issues/1118))
+- update OudsPasswordInput API to stable version ([#1120](https://github.com/Orange-OpenSource/ouds-android/issues/1120))
+- change &quot;Orange Business Tools&quot; name to &quot;Orange Compact&quot; ([#1119](https://github.com/Orange-OpenSource/ouds-android/issues/1119))
+- **bullet-list** add RTL support ([#1095](https://github.com/Orange-OpenSource/ouds-android/issues/1095))
+- **text-input** add OudsTextInput samples ([#1111](https://github.com/Orange-OpenSource/ouds-android/issues/1111))
+- add OudsTextField alias to OudsTextInput ([#1107](https://github.com/Orange-OpenSource/ouds-android/issues/1107))
+- create component - alert message ([#1081](https://github.com/Orange-OpenSource/ouds-android/issues/1081))
+
+### Bug Fixes
+
+- **deps** update dependency androidx.compose:compose-bom to v2026.03.01 ([#1185](https://github.com/Orange-OpenSource/ouds-android/issues/1185))
+- **deps** update dependency androidx.browser:browser to v1.10.0 ([#1186](https://github.com/Orange-OpenSource/ouds-android/issues/1186))
+- **deps** update dokka to v2.2.0 ([#1187](https://github.com/Orange-OpenSource/ouds-android/issues/1187))
+- **alert-message** **inline-alert** **tag** add contentDescription for error and warning default icons ([#1167](https://github.com/Orange-OpenSource/ouds-android/issues/1167))
+- **bullet-list** improve `OudsBulletList` accessibility ([#1163](https://github.com/Orange-OpenSource/ouds-android/issues/1163))
+- **floating-action-button** [a11y] Talkback now reads label of the FAB if icon and label are present ([#1151](https://github.com/Orange-OpenSource/ouds-android/issues/1151))
+- **deps** update grpc-java monorepo to v1.80.0 ([#1170](https://github.com/Orange-OpenSource/ouds-android/issues/1170))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.11.0 ([#1172](https://github.com/Orange-OpenSource/ouds-android/issues/1172))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.3.0 ([#1173](https://github.com/Orange-OpenSource/ouds-android/issues/1173))
+- **deps** update kotlin monorepo to v2.3.20 ([#1165](https://github.com/Orange-OpenSource/ouds-android/issues/1165))
+- **deps** update dependency androidx.compose:compose-bom to v2026.03.00 ([#1155](https://github.com/Orange-OpenSource/ouds-android/issues/1155))
+- **deps** update dependency androidx.activity:activity-compose to v1.13.0 ([#1154](https://github.com/Orange-OpenSource/ouds-android/issues/1154))
+- **deps** update dependency androidx.core:core to v1.18.0 ([#1156](https://github.com/Orange-OpenSource/ouds-android/issues/1156))
+- **deps** update dependency org.mockito:mockito-android to v5.23.0 ([#1157](https://github.com/Orange-OpenSource/ouds-android/issues/1157))
+- **deps** update dependency androidx.datastore:datastore-preferences to v1.2.1 ([#1152](https://github.com/Orange-OpenSource/ouds-android/issues/1152))
+- **deps** update gradle to v9.1.0 ([#1147](https://github.com/Orange-OpenSource/ouds-android/issues/1147))
+- **deps** update dependency androidx.compose:compose-bom to v2026.02.01 ([#1143](https://github.com/Orange-OpenSource/ouds-android/issues/1143))
+- **deps** update dependency org.mockito:mockito-android to v5.22.0 ([#1140](https://github.com/Orange-OpenSource/ouds-android/issues/1140))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.10.0 ([#1139](https://github.com/Orange-OpenSource/ouds-android/issues/1139))
+- **deps** update hilt to v2.59.2 ([#1130](https://github.com/Orange-OpenSource/ouds-android/issues/1130))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.43.0 ([#1128](https://github.com/Orange-OpenSource/ouds-android/issues/1128))
+- **link** chevrons are not oriented correctly in RTL ([#1124](https://github.com/Orange-OpenSource/ouds-android/issues/1124))
+- **button** text in OudsButton should be centered ([#1116](https://github.com/Orange-OpenSource/ouds-android/issues/1116))
+- **deps** update gradle to v9.0.1 ([#1113](https://github.com/Orange-OpenSource/ouds-android/issues/1113))
+- **password-input** hide/show button in PasswordInput must be disabled in read only state and the API should allow to set password hidden or visible by default ([#1092](https://github.com/Orange-OpenSource/ouds-android/issues/1092))
+- **deps** update dependency androidx.compose:compose-bom to v2026.02.00 ([#1106](https://github.com/Orange-OpenSource/ouds-android/issues/1106))
+- **deps** update dependency androidx.activity:activity-compose to v1.12.4 ([#1105](https://github.com/Orange-OpenSource/ouds-android/issues/1105))
+- **deps** update dependency dev.chrisbanes.haze:haze to v1.7.2 ([#1104](https://github.com/Orange-OpenSource/ouds-android/issues/1104))
+
 ## [1.2.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.1.0...1.2.0) (2026-02-13)
 
 ### Features
