@@ -101,6 +101,8 @@ import com.orange.ouds.theme.OudsThemeSettings
  * It is recommended to use state-based text areas rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text area.
  *
+ * This variant, unlike the others, enables a vertical scrollbar when the input text exceeds the text area's maximum capacity.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
  * > Design version: 1.1.0
@@ -241,6 +243,9 @@ fun OudsTextArea(
  * It is recommended to use state-based text areas rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text area.
  *
+ * Note: This variant does not support a vertical scrollbar. For scrollbar functionality when text exceeds the available space, please use the state-based
+ * version of [OudsTextArea].
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
  * > Design version: 1.1.0
@@ -372,6 +377,9 @@ fun OudsTextArea(
  * It is recommended to use state-based text areas rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text area.
  *
+ * Note: This variant does not support a vertical scrollbar. For scrollbar functionality when text exceeds the available space, please use the state-based
+ * version of [OudsTextArea].
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
  * > Design version: 1.1.0
@@ -494,6 +502,8 @@ fun OudsTextArea(
 
 /**
  * Minimum lines displayed in an OUDS Text Area.
+ * This value ensures that the text area is large enough to be recognized as a multi-line input while maintaining a consistent minimum height across different
+ * font scales.
  */
 private const val MinLines = 3
 
