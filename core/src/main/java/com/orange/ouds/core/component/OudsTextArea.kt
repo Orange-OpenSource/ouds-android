@@ -707,7 +707,7 @@ private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp,
+    heightDp = OudsPreviewableComponent.TextArea.Default.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable
