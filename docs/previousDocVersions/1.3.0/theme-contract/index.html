@@ -1,0 +1,152 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>theme-contract</title>
+<link href="../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
+<link href="../styles/style.css" rel="Stylesheet">
+<link href="../styles/main.css" rel="Stylesheet">
+<link href="../styles/prism.css" rel="Stylesheet">
+<link href="../styles/logo-styles.css" rel="Stylesheet">
+<link href="../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../scripts/main.js" defer></script>
+<script type="text/javascript" src="../scripts/prism.js" async></script>
+<script type="text/javascript" src="../ui-kit/ui-kit.min.js" defer></script>
+<link href="../images/logo-icon.svg">
+<link href="../images/banner.png">
+<link href="../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="1.3.0"><span class="versions-dropdown-button-text">1.3.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.3.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">1.3.0</span></a><a href="../older/1.2.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.2.0</span></a><a href="../older/1.1.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.1.0</span></a><a href="../older/1.0.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.0.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.0.0</span></a><a href="../older/0.4.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../older/0.3.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../older/0.2.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../older/0.1.0/theme-contract/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":theme-contract/release">release</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":theme-contract/release" data-filter=":theme-contract/release">
+                                <span class="checkbox--icon"></span>
+                                release
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" id="content" pageids="theme-contract::////PointingToDeclaration//1080220898">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>theme-contract</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":theme-contract/release"><p class="paragraph">The <strong>OUDS Theme Contract</strong> module is the cornerstone of the design system's theming architecture. It defines the <strong>abstract interfaces</strong> that all concrete themes (Orange, Sosh, Wireframe, etc.) must implement.</p><p class="paragraph">It enforces a strict separation of concerns:</p><ul><li><p class="paragraph"><strong>The Contract</strong> defines <i>what</i> can be styled (e.g., "Brand Primary Color").</p></li><li><p class="paragraph"><strong>The Implementation</strong> defines <i>how</i> it looks (e.g., "Orange #FF7900").</p></li></ul><h2 class="">Purpose</h2><p class="paragraph">This module guarantees consistency across applications. By coding against these interfaces rather than specific implementations, developers can switch themes dynamically without changing a single line of UI code.</p><h2 class="">Contract Structure</h2><p class="paragraph"><strong>Package:</strong> <code class="lang-kotlin">com.orange.ouds.theme.contract</code></p><p class="paragraph">This module does not contain any values (hex codes, dp sizes). It only contains:</p><ol><li><p class="paragraph"><strong>Interfaces:</strong> <code class="lang-kotlin">OudsThemeContract</code>, <code class="lang-kotlin">OudsColorSemanticTokens</code>, <code class="lang-kotlin">OudsFontSemanticTokens</code>.</p></li><li><p class="paragraph"><strong>Token Objects:</strong> Abstract representations of semantic tokens.</p></li></ol><h3 class="">Color Contract</h3><p class="paragraph">Defines semantic color roles available in the system.</p><ul><li><p class="paragraph"><strong>Interface:</strong> <code class="lang-kotlin">OudsColorSemanticTokens</code></p></li><li><p class="paragraph"><strong>Purpose:</strong> Ensures every theme provides colors for Brand, Surface, Content, Status, etc.</p></li><li><p class="paragraph"><strong>Example:</strong> Defines that a <code class="lang-kotlin">brand.primary</code> color <i>must</i> exist, but doesn't say it is <code class="lang-kotlin">#FF7900</code>.</p></li></ul><h3 class="">Material Color Contract</h3><p class="paragraph">Defines the mapping required to bridge OUDS tokens to the standard Material Design 3 color slots.</p><ul><li><p class="paragraph"><strong>Interface:</strong> <code class="lang-kotlin">OudsMaterialColorTokens</code></p></li><li><p class="paragraph"><strong>Purpose:</strong> Ensures that native Material Compose components (like <code class="lang-kotlin">Button</code>, <code class="lang-kotlin">TextField</code>, <code class="lang-kotlin">Surface</code>) automatically pick up the correct OUDS colors without needing manual overrides.</p></li></ul><h3 class="">Typography Contract</h3><p class="paragraph">Defines the text styles.</p><ul><li><p class="paragraph"><strong>Interface:</strong> <code class="lang-kotlin">OudsFontSemanticTokens</code></p></li><li><p class="paragraph"><strong>Purpose:</strong> Ensures existence of Display, Heading, Title, Body, and Label styles.</p></li><li><p class="paragraph"><strong>Example:</strong> Defines that a <code class="lang-kotlin">heading.large</code> style exists with properties for font, weight, and size.</p></li></ul><h3 class="">Dimension Contracts</h3><p class="paragraph">Defines abstract sizes, spaces, and borders.</p><ul><li><p class="paragraph"><strong>Interfaces:</strong> <code class="lang-kotlin">OudsBorderSemanticTokens</code>, <code class="lang-kotlin">OudsSizeSemanticTokens</code>, <code class="lang-kotlin">OudsSpaceSemanticTokens</code>.</p></li><li><p class="paragraph"><strong>Example:</strong> Defines that a <code class="lang-kotlin">spaces.fixed.medium</code> token exists.</p></li></ul><h3 class="">Component Tokens Contract</h3><p class="paragraph">Defines tokens specifically scoped to OUDS custom components.</p><ul><li><p class="paragraph"><strong>Interface:</strong> <code class="lang-kotlin">OudsComponentsTokens</code></p></li><li><p class="paragraph"><strong>Purpose:</strong> Allows overriding default values for specific components without altering the global semantic theme.</p></li><li><p class="paragraph"><strong>Example:</strong> Defines specific tokens for an <code class="lang-kotlin">OudsButton</code> (e.g., specific background color) independent of the generic theme.</p></li></ul><h3 class="">Other Contracts</h3><p class="paragraph">Includes interfaces for <code class="lang-kotlin">OudsElevationSemanticTokens</code>, <code class="lang-kotlin">OudsGridSemanticTokens</code>, and <code class="lang-kotlin">OudsOpacitySemanticTokens</code>.</p><h2 class="">Usage</h2><h3 class="">For Application Developers</h3><p class="paragraph"><strong>You typically do not interact with this module directly.</strong> You will use concrete implementations of this contract (like <code class="lang-kotlin">OrangeTheme</code>, <code class="lang-kotlin">SoshTheme</code>, etc.) via the <code class="lang-kotlin">OudsTheme</code> composable provided by the <code class="lang-kotlin">core</code> module. However, understanding this contract helps you know which semantic tokens are guaranteed to exist regardless of the chosen theme.</p><h3 class="">For Theme Creators</h3><p class="paragraph">If you are creating a custom theme implementation (e.g., for a specific sub-brand) while maintaining full compatibility with OUDS components, you must implement <code class="lang-kotlin">OudsThemeContract</code>.</p><h2 class="">Relationship with other modules</h2><div class="table--container"><table><thead><tr><th>Module</th><th>Role</th><th>Analogy</th></tr></thead><tbody><tr><td><strong>global-raw-tokens</strong></td><td>The Ingredients</td><td>"Flour", "Eggs", "Milk" (The raw values like <code class="org.jetbrains.dokka.pages.commenttable@50e3fd63 lang-kotlin">#FF7900</code>, <code class="org.jetbrains.dokka.pages.commenttable@50e3fd63 lang-kotlin">16dp</code>)</td></tr><tr><td><strong>theme-contract</strong></td><td><strong>The Recipe Template</strong></td><td><strong>"A cake must have a base, a filling, and icing" (The rules defining what a theme is)</strong></td></tr><tr><td><strong>theme-orange</strong> / <strong>theme-sosh</strong> / ...</td><td>The Concrete Cakes</td><td>"The Orange Cake" or "The Sosh Cake" (Specific implementations of the template)</td></tr><tr><td><strong>core</strong></td><td>The Bakery Window</td><td>The access point (<code class="org.jetbrains.dokka.pages.commenttable@50e3fd63 lang-kotlin">OudsTheme</code>) that serves the chosen cake to the customer</td></tr></tbody></table></div><h2 class="">Tokens versions</h2><table>
+<tbody><tr><td>Android system</td><td>1.2.0</td></tr>
+<tr><td>Orange brand</td><td>2.3.0</td></tr>
+</tbody></table><blockquote class="quotation"><p class="paragraph">🤖 <strong>Note:</strong> Files in <code class="lang-kotlin">tokens</code> packages are <strong>automatically generated by Tokenator</strong> based on the design definitions.</p><p class="paragraph">Any manual changes to these files will be lost during the next synchronization.</p></blockquote></div></div>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="-242530491%2FPackages%2F1080220898" anchor-label="com.orange.ouds.theme" id="-242530491%2FPackages%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":theme-contract/release" data-filterable-set=":theme-contract/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.orange.ouds.theme/index.html">com.orange.ouds.theme</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-242530491%2FPackages%2F1080220898"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">release</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-242530491%2FPackages%2F1080220898" anchor-label="com.orange.ouds.theme" id="-242530491%2FPackages%2F1080220898" data-filterable-set=":theme-contract/release"></a>
+            <p class="paragraph">This is the root package of the contract module. It primarily defines the <code class="lang-kotlin">OudsThemeContract</code> interface. This interface is the central point of the design system's abstraction. It aggregates all the specific sub-contracts (colors, typography, borders, spaces, etc.) into a single object that represents a complete theme. Any class claiming to be an OUDS Theme (like <code class="lang-kotlin">OrangeTheme</code>) must implement this contract.</p>
+          </span></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
