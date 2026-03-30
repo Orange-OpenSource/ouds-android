@@ -38,7 +38,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 8
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 9
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -123,7 +123,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
     implementation(project(":theme-orange"))
-    implementation(project(":theme-orange-business-tools"))
+    implementation(project(":theme-orange-compact"))
     implementation(project(":theme-sosh"))
     implementation(project(":theme-wireframe"))
 

@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
@@ -44,6 +43,7 @@ import androidx.compose.ui.unit.isUnspecified
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.outerBorder
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -130,7 +130,7 @@ internal fun OudsBadgedIcon(
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadgedIcon(@PreviewParameter(OudsBadgedIconPreviewParameterProvider::class) parameter: OudsBadgedIconPreviewParameter) {

@@ -24,6 +24,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MaxLevelCount
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -68,34 +69,34 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         val unorderedAssetClasses = getUnorderedAssetClasses()
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_common_type_label),
+            label = stringResource(R.string.app_components_common_type_tech),
             chipLabels = types.map { it::class.simpleName.orEmpty().toSentenceCase() },
             selectedChipIndex = types.indexOfFirst { it::class.qualifiedName == type::class.qualifiedName },
             onSelectionChange = { type = types[it] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_unorderedAsset_label),
+            label = stringResource(R.string.app_components_bulletList_unorderedAsset_tech),
             chips = unorderedAssetClasses.map { CustomizationFilterChip(it.java.simpleName.toSentenceCase(), enabled = unorderedAssetChipsEnabled) },
             selectedChipIndex = unorderedAssetClasses.indexOfFirst { it.java.name == unorderedAssetClassName },
             onSelectionChange = { unorderedAssetClassName = unorderedAssetClasses[it].java.name }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_bulletList_unorderedAssetBrandColor_label),
+            label = stringResource(R.string.app_components_bulletList_unorderedAssetBrandColor_tech),
             checked = unorderedAssetBrandColor,
             onCheckedChange = { unorderedAssetBrandColor = it },
             enabled = unorderedAssetBrandColorSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_fontSize_label),
+            label = stringResource(R.string.app_components_bulletList_fontSize_tech),
             chipLabels = OudsBulletListFontSize.entries.map { it.name.toSentenceCase() },
             selectedChipIndex = OudsBulletListFontSize.entries.indexOf(fontSize),
             onSelectionChange = { id -> fontSize = OudsBulletListFontSize.entries[id] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_fontWeight_label),
+            label = stringResource(R.string.app_components_bulletList_fontWeight_tech),
             chipLabels = OudsBulletListFontWeight.entries.map { it.name.toSentenceCase() },
             selectedChipIndex = OudsBulletListFontWeight.entries.indexOf(fontWeight),
             onSelectionChange = { id -> fontWeight = OudsBulletListFontWeight.entries[id] }
@@ -103,14 +104,14 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
         val levelCountOptions = remember { (MinLevelCount..MaxLevelCount).toList() }
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_bulletList_levelCount_label),
+            label = stringResource(R.string.app_components_bulletList_levelCount_tech),
             chipLabels = levelCountOptions.map { it.toString() },
             selectedChipIndex = levelCountOptions.indexOf(levelCount),
             onSelectionChange = { index -> levelCount = levelCountOptions[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )
@@ -165,17 +166,21 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
     with(state) {
         functionCall("OudsBulletList") {
             trailingLambda = true
+            val typeParameterName = "type"
             if (type is OudsBulletListType.Unordered) {
-                functionCallArgument("type", type::class.java.nestedName) {
-                    functionCallArgument("asset", unorderedAssetClassName.nestedName) {
-                        if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+                functionCallArgument(typeParameterName, type::class.java.nestedName) {
+                    val assetParameterName = "asset"
+                    if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
+                        functionCallArgument(assetParameterName, unorderedAssetClassName.nestedName) {
                             painterArgument(themeDrawableResources.tipsAndTricks)
                         }
+                    } else {
+                        rawArgument(assetParameterName, unorderedAssetClassName.nestedName)
                     }
                     if (unorderedAssetBrandColor) typedArgument("brandColor", unorderedAssetBrandColor)
                 }
             } else {
-                functionCallArgument("type", type::class.java.nestedName)
+                rawArgument(typeParameterName, type::class.java.nestedName)
             }
             if (fontSize != OudsBulletListDefaults.TextStyle.fontSize || fontWeight != OudsBulletListDefaults.TextStyle.fontWeight) {
                 constructorCallArgument<OudsBulletListTextStyle>("textStyle") {
@@ -212,7 +217,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
 private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.() -> Unit)? = null) = functionCall("item") {
     trailingLambda = true
     isMultiline = false
-    typedArgument("label", label)
+    labelArgument(label)
     content?.let {
         lambdaArgument("builder") {
             content()

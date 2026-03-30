@@ -56,7 +56,7 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
 private fun ControlItemIconCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_icon_label),
+            label = stringResource(R.string.app_components_controlItem_icon_tech),
             checked = icon,
             onCheckedChange = { icon = it },
         )
@@ -67,7 +67,7 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
 private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_edgeToEdge_label),
+            label = stringResource(R.string.app_components_controlItem_edgeToEdge_tech),
             checked = edgeToEdge,
             onCheckedChange = { edgeToEdge = it },
         )
@@ -79,7 +79,7 @@ private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
 private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_divider_label),
+            label = stringResource(R.string.app_components_controlItem_divider_tech),
             checked = divider,
             onCheckedChange = { divider = it },
         )
@@ -90,7 +90,7 @@ private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
 private fun ControlItemReversedCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_reversed_label),
+            label = stringResource(R.string.app_components_controlItem_reversed_tech),
             checked = reversed,
             onCheckedChange = { reversed = it },
         )
@@ -101,7 +101,7 @@ private fun ControlItemReversedCustomization(state: ControlItemDemoState) {
 private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
@@ -113,7 +113,7 @@ private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
 private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_tech),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
@@ -125,7 +125,7 @@ private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
 private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_error_label),
+            label = stringResource(R.string.app_components_common_error_tech),
             checked = error,
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
@@ -138,7 +138,7 @@ private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_errorMessage_label),
+            label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
             enabled = errorMessageTextInputEnabled
@@ -151,7 +151,7 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )
@@ -163,7 +163,7 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_controlItem_description_label),
+            label = stringResource(R.string.app_components_common_description_tech),
             value = description.orEmpty(),
             onValueChange = { value -> description = value }
         )
@@ -174,7 +174,7 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
 private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_tech),
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )

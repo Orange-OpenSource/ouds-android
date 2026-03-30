@@ -42,6 +42,7 @@ interface OudsDrawableResources {
     interface Component {
         val alert: Alert
         val bulletList: BulletList
+        val button: Button
         val checkbox: Checkbox
         val chip: Chip
         val link: Link
@@ -78,6 +79,11 @@ interface OudsDrawableResources {
 
             @get:DrawableRes
             val tick: Int
+        }
+
+        interface Button {
+            @get:DrawableRes
+            val expurge: Int
         }
 
         interface Checkbox {
@@ -121,6 +127,7 @@ interface OudsDrawableResources {
         val actions: Actions
         val navigation: Navigation
         val settingsAndTools: SettingsAndTools
+        val socialAndEngagement: SocialAndEngagement
 
         interface Actions {
             @get:DrawableRes
@@ -138,6 +145,11 @@ interface OudsDrawableResources {
         interface SettingsAndTools {
             @get:DrawableRes
             val hide: Int
+        }
+
+        interface SocialAndEngagement {
+            @get:DrawableRes
+            val heartEmpty: Int
         }
     }
 }

@@ -16,6 +16,7 @@ package com.orange.ouds.theme
 
 object OudsVersion {
     object Component {
+        const val Alert = "1.1.0"
         const val Badge = "1.2.0"
         const val Bar = "1.0.0"
         const val BulletList = "1.0.0"
@@ -37,7 +38,7 @@ object OudsVersion {
         const val AndroidSystem = "1.2.0"
         const val OrangeCore = "1.2.0"
         const val OrangeBrand = "2.3.0"
-        const val OrangeBusinessToolsBrand = "2.3.0"
+        const val OrangeCompactBrand = "2.3.0"
         const val SoshCore = "1.2.0"
         const val SoshBrand = "2.3.0"
         const val WireframeCore = "1.3.0"

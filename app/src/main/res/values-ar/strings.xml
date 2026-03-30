@@ -50,7 +50,6 @@
 
     <!-- Tokens: color -->
     <string name="app_tokens_color_description_text">اللون يعزز هويتنا البصرية ويضمن التناسق عبر تجارب المنتجات.</string>
-    <string name="app_tokens_color_unspecified_label">غير محدد</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_description_text"> توفر الأبعاد مقاسات وتباعدًا موحدًا لضمان الاتساق البصري في واجهة المستخدم.</string>
@@ -83,7 +82,9 @@
     <!-- Components -->
     <string name="app_components_common_textInputClearIcon_a11y">مسح المدخلات</string>
     <string name="app_components_common_error_a11y">الحد الأقصى للعرض</string>
+    <string name="app_components_common_errorMessage_label">الحد الأقصى للعرض</string>
     <string name="app_components_common_icon_a11y">أيقون</string>
+    <string name="app_components_common_label_label">تسمية</string>
     <string name="app_components_common_unreadNotificationsBadge_a11y">الإشعارات غير المقروءة</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">لا توجد رسائل غير مقروءة</item>
@@ -93,6 +94,13 @@
         <item quantity="many">%d رسائل غير مقروءة</item>
     </plurals>
     <string name="app_components_common_version_label">نسخة تصميم المكون</string>
+    <string name="app_components_textInputHelperText_label">نص مساعد.</string>
+    <string name="app_components_passwordInputHelperText_label">يجب ألا يقلّ password عن 8 أحرف.</string>
+
+    <!-- Components: alert -->
+    <string name="app_components_alert_description_text">مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.</string>
+    <string name="app_components_alert_alertMessage_description_text">Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.</string>
+    <string name="app_components_alert_inlineAlert_description_text">Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
@@ -114,6 +122,8 @@
     <!-- Components: colored background -->
     <string name="app_components_coloredBackground_description_text">تستخدم Colored backgrounds ألوانًا محددة لتعزيز التباين مع المحتوى. يتكيف العديد من المكونات مثل الأزرار أو الروابط مع العرض وفقًا لذلك عند عرضها على خلفيات ملونة.</string>
     <string name="app_components_coloredBackground_unsupportedColor_text">السمة الحالية لا تدعم لون "%s".</string>
+    <string name="app_components_coloredBackground_button_label">زر</string>
+    <string name="app_components_coloredBackground_link_label">رابط</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_description_text">Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا</string>
@@ -155,6 +165,7 @@
     <string name="app_components_topAppBar_firstAction_a11y">الإجراء الأول</string>
     <string name="app_components_topAppBar_secondAction_a11y">الإجراء الثاني</string>
     <string name="app_components_topAppBar_thirdAction_a11y">الإجراء الثالث</string>
+    <string name="app_components_topAppBar_title_label">عنوان</string>
 
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>

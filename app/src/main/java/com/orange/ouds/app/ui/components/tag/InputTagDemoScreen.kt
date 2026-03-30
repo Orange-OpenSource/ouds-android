@@ -41,13 +41,13 @@ fun InputTagDemoScreen() {
 private fun InputTagDemoBottomSheetContent(state: InputTagDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )

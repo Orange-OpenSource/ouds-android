@@ -64,14 +64,14 @@ fun TagDemoScreen() {
 private fun TagDemoBottomSheetContent(state: TagDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_appearance_label),
+            label = stringResource(R.string.app_components_common_appearance_tech),
             chipLabels = OudsTagAppearance.entries.map { it.name },
             selectedChipIndex = OudsTagAppearance.entries.indexOf(appearance),
             onSelectionChange = { index -> appearance = OudsTagAppearance.entries[index] }
@@ -96,7 +96,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         }
         CustomizationDropdownMenu(
             applyTopPadding = true,
-            label = stringResource(id = R.string.app_components_common_status_label),
+            label = stringResource(id = R.string.app_components_common_status_tech),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
                     label = status::class.simpleName.orEmpty().toSentenceCase(),
@@ -119,32 +119,32 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_label),
+            label = stringResource(R.string.app_components_common_layout_tech),
             chipLabels = TagDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TagDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = TagDemoState.Layout.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_loader_label),
+            label = stringResource(R.string.app_components_common_loader_tech),
             checked = hasLoader,
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_tag_roundedCorners_label),
+            label = stringResource(R.string.app_components_tag_roundedCorners_tech),
             checked = roundedCorners,
             onCheckedChange = { roundedCorners = it },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_size_label),
+            label = stringResource(R.string.app_components_common_size_tech),
             chipLabels = OudsTagSize.entries.map { it.name },
             selectedChipIndex = OudsTagSize.entries.indexOf(size),
             onSelectionChange = { index -> size = OudsTagSize.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )
@@ -217,17 +217,18 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
             enabledArgument(enabled)
             typedArgument("size", size)
             functionCallArgument("status", status::class.java.nestedName) {
+                val assetParameterName = "asset"
                 when (layout) {
                     TagDemoState.Layout.TextOnly -> {}
-                    TagDemoState.Layout.TextAndBullet -> typedArgument("asset", OudsTagAsset.Bullet)
+                    TagDemoState.Layout.TextAndBullet -> rawArgument(assetParameterName, OudsTagAsset.Bullet::class.java.nestedName)
                     TagDemoState.Layout.TextAndIcon -> {
                         when (status) {
                             is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
-                                constructorCallArgument<OudsTagAsset.Icon>("asset") {
+                                constructorCallArgument<OudsTagAsset.Icon>(assetParameterName) {
                                     painterArgument(themeDrawableResources.tipsAndTricks)
                                 }
                             is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
-                                typedArgument("asset", OudsTagAsset.Icon.Default)
+                                rawArgument(assetParameterName, OudsTagAsset.Icon.Default::class.java.nestedName)
                         }
                     }
                 }

@@ -43,12 +43,12 @@ fun SwitchDemoScreen() {
 private fun SwitchDemoBottomSheetContent(state: SwitchDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_tech),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
         )
@@ -65,7 +65,8 @@ private fun SwitchDemoContent(state: SwitchDemoState) {
             },
             checked = checked,
             onCheckedChange = { checked = it },
-            enabled = enabled
+            enabled = enabled,
+            readOnly = readOnly
         )
     }
 }

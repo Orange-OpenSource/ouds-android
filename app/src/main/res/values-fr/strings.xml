@@ -50,7 +50,6 @@
 
     <!-- Tokens: color -->
     <string name="app_tokens_color_description_text">La couleur renforce notre identité de marque et garantit une expérience utilisateur cohérente sur tous nos produits. Les tokens sémantiques décrits ici sont ceux à utiliser lors du développement d\'une application mobile.</string>
-    <string name="app_tokens_color_unspecified_label">Non spécifié</string>
 
     <!-- Tokens: dimension -->
     <string name="app_tokens_dimension_description_text">La dimension propose des tailles et des espacements standardisés afin de garantir une cohérence visuelle dans l\'interface utilisateur.</string>
@@ -83,7 +82,9 @@
     <!-- Components -->
     <string name="app_components_common_textInputClearIcon_a11y">Effacer la valeur</string>
     <string name="app_components_common_error_a11y">Message d\'erreur</string>
+    <string name="app_components_common_errorMessage_label">Message d\'erreur</string>
     <string name="app_components_common_icon_a11y">Icône</string>
+    <string name="app_components_common_label_label">Label</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="one">%d message non lu</item>
         <item quantity="many">%d messages non lus</item>
@@ -91,6 +92,13 @@
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Notifications non lues</string>
     <string name="app_components_common_version_label">Version design du composant</string>
+    <string name="app_components_textInputHelperText_label">Texte d\'aide.</string>
+    <string name="app_components_passwordInputHelperText_label">Votre mot de passe doit contenir 8 caractères minimum.</string>
+
+    <!-- Components: alert -->
+    <string name="app_components_alert_description_text">Les composants d\'alerte sont des éléments d\'interface utilisateur qui affichent des informations, des retours système ou des changements d\'état.</string>
+    <string name="app_components_alert_alertMessage_description_text">Un Alert message (ou message d\'alerte) est un élément d\'interface utilisateur qui affiche des informations système, des changements d\'état ou une action requise&#160;; le tout grâce à une communication détaillée, visible, persistante et exploitable.</string>
+    <string name="app_components_alert_inlineAlert_description_text">Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.</string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
@@ -110,8 +118,10 @@
     <string name="app_components_chip_description_text">Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.</string>
 
     <!-- Components: colored background -->
-    <string name="app_components_coloredBackground_description_text">Un Colored Background (ou fond coloré) utilise des couleurs spécifiques pour maximiser le contraste avec son contenu. Plusieurs composants tels que les Buttons ou les Links adaptent leur affichage en conséquence lorsqu\'ils sont présentés sur des fonds colorés.</string>
+    <string name="app_components_coloredBackground_description_text">Un Colored background (ou fond coloré) utilise des couleurs spécifiques pour maximiser le contraste avec son contenu. Plusieurs composants tels que les Buttons ou les Links adaptent leur affichage en conséquence lorsqu\'ils sont présentés sur des fonds colorés.</string>
     <string name="app_components_coloredBackground_unsupportedColor_text">Le thème courant ne prend pas en charge la couleur \"%s\".</string>
+    <string name="app_components_coloredBackground_button_label">Bouton</string>
+    <string name="app_components_coloredBackground_link_label">Lien</string>
 
     <!-- Components: divider -->
     <string name="app_components_divider_description_text">Un Divider (ou séparateur) est un élément d\'interface utilisateur qui permet de structurer le contenu en séparant visuellement les zones de contenu.</string>
@@ -153,6 +163,7 @@
     <string name="app_components_topAppBar_firstAction_a11y">Première action</string>
     <string name="app_components_topAppBar_secondAction_a11y">Deuxième action</string>
     <string name="app_components_topAppBar_thirdAction_a11y">Troisième action</string>
+    <string name="app_components_topAppBar_title_label">Titre</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>

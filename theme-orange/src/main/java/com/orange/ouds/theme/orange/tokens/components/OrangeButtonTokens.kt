@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 
 internal data class OrangeButtonTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,

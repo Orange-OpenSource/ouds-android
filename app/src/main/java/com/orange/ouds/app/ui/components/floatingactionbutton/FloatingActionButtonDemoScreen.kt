@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -54,34 +55,34 @@ private fun FloatingActionButtonDemoBottomSheetContent(state: FloatingActionButt
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_common_size_label),
+            label = stringResource(R.string.app_components_common_size_tech),
             chipLabels = FloatingActionButtonDemoState.Size.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = FloatingActionButtonDemoState.Size.entries.indexOf(size),
             onSelectionChange = { index -> size = FloatingActionButtonDemoState.Size.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_appearance_label),
+            label = stringResource(R.string.app_components_common_appearance_tech),
             chipLabels = OudsFloatingActionButtonAppearance.entries.map { it.name },
             selectedChipIndex = OudsFloatingActionButtonAppearance.entries.indexOf(appearance),
             onSelectionChange = { index -> appearance = OudsFloatingActionButtonAppearance.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_label),
+            label = stringResource(R.string.app_components_common_layout_tech),
             chips = FloatingActionButtonDemoState.Layout.entries.map { CustomizationFilterChip(stringResource(it.labelRes), enabled = it in enabledLayouts) },
             selectedChipIndex = FloatingActionButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = FloatingActionButtonDemoState.Layout.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_floatingActionButton_expanded_label),
+            label = stringResource(R.string.app_components_floatingActionButton_expanded_tech),
             checked = expanded,
             onCheckedChange = { expanded = it },
             enabled = expandedSwitchEnabled
@@ -151,7 +152,7 @@ private fun Code.Builder.floatingActionButtonDemoCodeSnippet(state: FloatingActi
         }
         functionCall(functionName) {
             if (layout != FloatingActionButtonDemoState.Layout.IconOnly) {
-                typedArgument("label", label)
+                labelArgument(label)
             }
             if (layout != FloatingActionButtonDemoState.Layout.TextOnly) {
                 constructorCallArgument<OudsFloatingActionButtonIcon>("icon") {

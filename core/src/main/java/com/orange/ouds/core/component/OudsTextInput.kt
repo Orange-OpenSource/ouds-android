@@ -88,6 +88,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
@@ -105,6 +106,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
@@ -131,6 +135,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
  *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
@@ -147,6 +154,10 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -186,13 +197,13 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.semantic(label),
+                modifier = modifier.textInputSemantic(label),
                 state = textFieldState,
-                enabled = textFieldEnabled(state = state),
+                enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(state = state),
+                textStyle = textInputTextStyle(state = state),
                 lineLimits = TextFieldLineLimits.SingleLine,
-                cursorBrush = cursorBrush(state = state, error = error != null),
+                cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
                 onTextLayout = onTextLayout,
@@ -231,6 +242,9 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -257,6 +271,9 @@ fun OudsTextInput(
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
@@ -266,6 +283,10 @@ fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -305,14 +326,14 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.semantic(label),
+                modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                enabled = textFieldEnabled(state = state),
+                enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(state = state),
+                textStyle = textInputTextStyle(state = state),
                 singleLine = true,
-                cursorBrush = cursorBrush(state = state, error = error != null),
+                cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onTextLayout = onTextLayout,
@@ -350,6 +371,9 @@ fun OudsTextInput(
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design version: 1.3.0
@@ -376,6 +400,9 @@ fun OudsTextInput(
  * @param helperText An optional helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
  * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
  *   you specified in [KeyboardOptions.imeAction].
@@ -385,6 +412,10 @@ fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
 @Composable
 fun OudsTextInput(
@@ -424,14 +455,14 @@ fun OudsTextInput(
         error = error,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.semantic(label),
+                modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                enabled = textFieldEnabled(state = state),
+                enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textFieldTextStyle(state = state),
+                textStyle = textInputTextStyle(state = state),
                 singleLine = true,
-                cursorBrush = cursorBrush(state = state, error = error != null),
+                cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onTextLayout = onTextLayout,
@@ -461,7 +492,7 @@ fun OudsTextInput(
     )
 }
 
-private fun Modifier.semantic(label: String?): Modifier = this.semantics {
+internal fun Modifier.textInputSemantic(label: String?): Modifier = this.semantics {
     contentDescription = label.orEmpty()
 }
 
@@ -473,7 +504,6 @@ internal fun OudsTextInput(
     error: OudsError?,
     basicTextField: @Composable () -> Unit
 ) {
-
     val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error != null)) || (error != null && state in listOf(
         OudsTextInputState.ReadOnly,
         OudsTextInputState.Disabled
@@ -504,7 +534,7 @@ internal fun OudsTextInput(
 }
 
 @Composable
-private fun OudsTextInputDecorator(
+internal fun OudsTextInputDecorator(
     innerTextField: @Composable () -> Unit,
     value: String,
     state: OudsTextInputState,
@@ -651,7 +681,7 @@ private fun OudsTextInputDecorator(
                                 Icon(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
                                     painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                                    contentDescription = if (error.message.isBlank()) stringResource(R.string.core_textInput_error_a11y) else null,
+                                    contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                                     tint = errorIconColor(state = state)
                                 )
                             }
@@ -673,7 +703,11 @@ private fun OudsTextInputDecorator(
                                 )
                             }
                         } else {
-                            trailingIconButton?.Content(extraParameters = OudsTextInputTrailingIconButton.ExtraParameters(enabled = state != OudsTextInputState.Disabled))
+                            trailingIconButton?.Content(
+                                extraParameters = OudsTextInputTrailingIconButton.ExtraParameters(
+                                    enabled = state !in listOf(OudsTextInputState.Disabled, OudsTextInputState.ReadOnly)
+                                )
+                            )
                         }
                     }
                 }
@@ -714,7 +748,7 @@ private fun OudsTextInputDecorator(
 }
 
 @Composable
-private fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
+internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
     return getPreviewEnumEntry<OudsTextInputState>().orElse {
         if (loader != null) {
             OudsTextInputState.Loading
@@ -762,7 +796,7 @@ private fun contentColor(state: OudsTextInputState) =
     if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.default
 
 @Composable
-private fun cursorBrush(state: OudsTextInputState, error: Boolean) =
+internal fun textInputCursorBrush(state: OudsTextInputState, error: Boolean) =
     SolidColor(if (error) errorContentColor(state = state) else contentColor(state))
 
 @Composable
@@ -900,10 +934,10 @@ private fun decorativeContentColor(state: OudsTextInputState) =
     if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
-private fun textFieldTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
+internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
 
 @Composable
-private fun textFieldEnabled(state: OudsTextInputState) =
+internal fun textInputEnabled(state: OudsTextInputState) =
     state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
 
 internal enum class OudsTextInputState {
@@ -1031,8 +1065,13 @@ class OudsTextInputTrailingIconButton private constructor(
         get() = extraParameters.enabled
 }
 
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextInput.PreviewHeightDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = OudsPreviewableComponent.TextInput.PreviewHeightDp)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.TextInput.Default.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInput(@PreviewParameter(OudsTextInputPreviewParameterProvider::class) parameter: OudsTextInputPreviewParameter) {
@@ -1064,7 +1103,7 @@ internal fun PreviewOudsTextInput(
     }
 }
 
-@Preview
+@Preview(heightDp = OudsPreviewableComponent.TextInput.WithRoundedCorners.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithRoundedCorners(theme = getPreviewTheme())
@@ -1082,7 +1121,7 @@ internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
         }
     }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTextInputWithLongLabels() = PreviewOudsTextInputWithLongLabels(theme = getPreviewTheme())
@@ -1107,7 +1146,7 @@ internal fun PreviewOudsTextInputWithLongLabels(theme: OudsThemeContract) = Ouds
     }
 }
 
-@Preview(widthDp = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp)
+@Preview(widthDp = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 internal fun PreviewOudsTextInputConstrainedMaxWidth(@PreviewParameter(OudsTextInputConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
@@ -1180,3 +1219,195 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
             OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = helperText)
         )
     }
+
+/**
+ * @see OudsTextInput
+ */
+@Composable
+@Deprecated(
+    "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
+    ReplaceWith(
+        "OudsTextInput(textFieldState = textFieldState, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, inputTransformation = inputTransformation, " +
+                "outputTransformation = outputTransformation, interactionSource = interactionSource)"
+    )
+)
+fun OudsTextField(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * @see OudsTextInput
+ */
+@Composable
+@Deprecated(
+    "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
+    ReplaceWith(
+        "OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
+                "interactionSource = interactionSource)"
+    )
+)
+fun OudsTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * @see OudsTextInput
+ */
+@Composable
+@Deprecated(
+    "Please use OudsTextInput composable instead, which is the equivalent of Material TextField in OUDS Android.",
+    ReplaceWith(
+        "OudsTextInput(value = value, onValueChange = onValueChange, modifier = modifier, label = label, placeholder = placeholder, " +
+                "leadingIcon = leadingIcon, trailingIconButton = trailingIconButton, prefix = prefix, suffix = suffix, enabled = enabled, readOnly = readOnly, " +
+                "loader = loader, outlined = outlined, error = error, helperText = helperText, helperLink = helperLink, constrainedMaxWidth = constrainedMaxWidth, " +
+                "keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, onTextLayout = onTextLayout, visualTransformation = visualTransformation, " +
+                "interactionSource = interactionSource)"
+    )
+)
+fun OudsTextField(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}

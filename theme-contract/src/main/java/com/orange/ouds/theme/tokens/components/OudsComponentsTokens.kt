@@ -17,6 +17,7 @@ import com.orange.ouds.foundation.InternalOudsApi
 /** @suppress */
 @InternalOudsApi
 interface OudsComponentsTokens {
+    val alert: OudsAlertTokens
     val badge: OudsBadgeTokens
     val bar: OudsBarTokens
     val bulletList: OudsBulletListTokens

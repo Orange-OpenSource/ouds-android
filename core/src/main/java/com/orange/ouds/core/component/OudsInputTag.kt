@@ -39,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
@@ -50,6 +49,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -168,43 +168,6 @@ fun OudsInputTag(
     }
 }
 
-/**
- * Input tag is a UI element that allows to enter multiple values, each represented as a tag. As users type
- * and submit values (usually by pressing enter, comma, or tab), each value is transformed into a tag.
- * Input tag is often used for adding labels, categories, or participants.
- *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-input-tag)
- *
- * > Design version: 1.4.0
- *
- * @param label The text label displayed inside the input tag.
- * @param onClick Called when the input tag is clicked.
- * @param modifier [Modifier] applied to the input tag.
- * @param enabled Controls the enabled state of this input tag. When `false`, this component will not
- *   respond to user input, and it will appear visually disabled and disabled to accessibility
- *   services.
- * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
- *   emitting [Interaction]s for this input tag. You can use this to change the input tag's appearance or
- *   preview the input tag in different states. Note that if `null` is provided, interactions will still
- *   happen internally.
- *
- * @sample com.orange.ouds.core.component.samples.OudsInputTagSample
- */
-@Composable
-@Deprecated(
-    "Please use OudsInputTag composable instead, which is the equivalent of Material InputChip in OUDS Android.",
-    ReplaceWith("OudsInputTag(label = label, onClick = onClick, modifier = modifier, enabled = enabled, interactionSource = interactionSource)")
-)
-fun OudsInputChip(
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsInputTag(label = label, onClick = onClick, modifier = modifier, enabled = enabled, interactionSource = interactionSource)
-}
-
 @Composable
 private fun getInputTagState(interactionState: InteractionState, enabled: Boolean): OudsInputTagState {
     return getPreviewEnumEntry<OudsInputTagState>().orElse {
@@ -274,7 +237,7 @@ internal enum class OudsInputTagState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsInputTag() {
@@ -288,3 +251,21 @@ internal fun PreviewOudsInputTag(theme: OudsThemeContract, darkThemeEnabled: Boo
             OudsInputTag(label = "Label", onClick = {})
         }
     }
+
+/**
+ * @see OudsInputTag
+ */
+@Composable
+@Deprecated(
+    "Please use OudsInputTag composable instead, which is the equivalent of Material InputChip in OUDS Android.",
+    ReplaceWith("OudsInputTag(label = label, onClick = onClick, modifier = modifier, enabled = enabled, interactionSource = interactionSource)")
+)
+fun OudsInputChip(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsInputTag(label = label, onClick = onClick, modifier = modifier, enabled = enabled, interactionSource = interactionSource)
+}

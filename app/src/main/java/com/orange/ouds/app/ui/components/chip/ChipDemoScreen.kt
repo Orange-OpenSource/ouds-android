@@ -38,20 +38,20 @@ import com.orange.ouds.core.theme.OudsTheme
 fun ChipDemoBottomSheetContent(state: ChipDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_label),
+            label = stringResource(R.string.app_components_common_layout_tech),
             chipLabels = ChipDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ChipDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = ChipDemoState.Layout.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled

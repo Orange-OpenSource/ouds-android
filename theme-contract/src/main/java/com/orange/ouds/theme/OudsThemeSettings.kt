@@ -23,18 +23,25 @@ import kotlinx.parcelize.Parcelize
  *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
  *   For standard or business-oriented journeys, keep the default corners.
  *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
- *   Set to `null` if this setting has no effect on the associated theme.
+ *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
  * @property roundedCornerTextInputs Indicates if rounded corners should be applied to every text inputs.
  *   Set to `false` for a square finish, or `true` for a finish with rounded corner.
  *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
  *   For standard or business-oriented journeys, keep the default corners.
  *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
- *   Set to `null` if this setting has no effect on the associated theme.
+ *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
+ * @property roundedCornerAlertMessages Indicates if rounded corners should be applied to every alert messages.
+ *   Set to `false` for a square finish, or `true` for a finish with rounded corner.
+ *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
+ *   For standard or business-oriented journeys, keep the default corners.
+ *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
+ *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
  *
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
 data class OudsThemeSettings(
     val roundedCornerButtons: Boolean? = null,
-    val roundedCornerTextInputs: Boolean? = null
+    val roundedCornerTextInputs: Boolean? = null,
+    val roundedCornerAlertMessages: Boolean? = null
 ) : Parcelable

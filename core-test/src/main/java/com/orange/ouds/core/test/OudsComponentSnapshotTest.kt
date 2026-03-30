@@ -20,8 +20,9 @@ internal abstract class OudsComponentSnapshotTest(
     val previewableComponent: OudsPreviewableComponent,
     val parameter: Any?,
     theme: OudsThemeContract,
-    widthDp: Int = -1
-) : OudsSnapshotTest(theme, widthDp) {
+    widthDp: Int = -1,
+    heightDp: Int = -1
+) : OudsSnapshotTest(theme, widthDp, heightDp) {
 
     @Composable
     override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {

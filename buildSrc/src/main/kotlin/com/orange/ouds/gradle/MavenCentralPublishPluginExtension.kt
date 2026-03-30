@@ -22,4 +22,19 @@ abstract class MavenCentralPublishPluginExtension {
     var artifactId: String? = null
 
     var enabled: Boolean = true
+
+    var relocation: Relocation? = null
+        private set
+
+    fun relocation(action: Relocation.() -> Unit) {
+        if (relocation == null) {
+            relocation = Relocation()
+        }
+        relocation?.apply(action)
+    }
 }
+
+class Relocation(
+    var oldArtifactId: String? = null,
+    var message: String? = null
+)

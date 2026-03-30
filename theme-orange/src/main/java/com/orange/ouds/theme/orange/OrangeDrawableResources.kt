@@ -40,6 +40,7 @@ class OrangeDrawableResources : OudsDrawableResources {
     class Component : OudsDrawableResources.Component {
         override val alert = Alert()
         override val bulletList = BulletList()
+        override val button = Button()
         override val checkbox = Checkbox()
         override val chip = Chip()
         override val link = Link()
@@ -60,6 +61,10 @@ class OrangeDrawableResources : OudsDrawableResources {
             override val level1 = R.drawable.ic_orange_component_bullet_list_level1
             override val level2 = R.drawable.ic_orange_component_bullet_list_level2
             override val tick = R.drawable.ic_orange_component_bullet_list_tick
+        }
+
+        class Button : OudsDrawableResources.Component.Button {
+            override val expurge = R.drawable.ic_orange_component_button_expurge
         }
 
         class Checkbox : OudsDrawableResources.Component.Checkbox {
@@ -93,6 +98,7 @@ class OrangeDrawableResources : OudsDrawableResources {
         override val actions = Actions()
         override val navigation = Navigation()
         override val settingsAndTools = SettingsAndTools()
+        override val socialAndEngagement = SocialAndEngagement()
 
         class Actions : OudsDrawableResources.Functional.Actions {
             override val delete = R.drawable.ic_orange_functional_actions_delete
@@ -105,6 +111,10 @@ class OrangeDrawableResources : OudsDrawableResources {
 
         class SettingsAndTools : OudsDrawableResources.Functional.SettingsAndTools {
             override val hide = R.drawable.ic_orange_functional_settings_and_tools_hide
+        }
+
+        class SocialAndEngagement : OudsDrawableResources.Functional.SocialAndEngagement {
+            override val heartEmpty = R.drawable.ic_orange_functional_social_and_engagement_heart_empty
         }
     }
 }

@@ -18,15 +18,17 @@ import org.junit.runners.Suite
 
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
+    OudsAlertMessageTest::class,
     OudsBadgeTest::class,
     OudsBulletListTest::class,
     OudsButtonTest::class,
     OudsCheckboxItemTest::class,
     OudsCheckboxTest::class,
     OudsColoredBoxTest::class,
+    OudsDividerTest::class,
     OudsFloatingActionButtonTest::class,
     OudsFilterChipTest::class,
-    OudsDividerTest::class,
+    OudsInlineAlertTest::class,
     OudsInputTagTest::class,
     OudsLinkTest::class,
     OudsNavigationBarTest::class,

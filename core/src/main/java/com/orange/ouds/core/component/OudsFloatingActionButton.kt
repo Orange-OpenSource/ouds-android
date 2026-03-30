@@ -46,7 +46,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -55,6 +54,8 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewGrid
@@ -363,7 +364,7 @@ private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, larg
         modifier = Modifier
             .size(iconSize * iconScale)
             .semantics {
-                contentDescription = icon.contentDescription.takeIf { it.isNotBlank() }.orElse { label }.orEmpty()
+                contentDescription = if (label.isNullOrBlank().not()) label else icon.contentDescription
             }
     )
 }
@@ -508,7 +509,7 @@ internal enum class OudsFloatingActionButtonState {
     Enabled, Hovered, Pressed, Focused
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsFloatingActionButton(@PreviewParameter(OudsFloatingActionButtonPreviewParameterProvider::class) appearance: OudsFloatingActionButtonAppearance) {
@@ -530,7 +531,7 @@ internal fun PreviewOudsFloatingActionButton(
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSmallFloatingActionButton(@PreviewParameter(OudsFloatingActionButtonPreviewParameterProvider::class) appearance: OudsFloatingActionButtonAppearance) {
@@ -552,8 +553,13 @@ internal fun PreviewOudsSmallFloatingActionButton(
     }
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.FloatingActionButton.Large.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.FloatingActionButton.Large.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.FloatingActionButton.Large.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.FloatingActionButton.Large.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsLargeFloatingActionButton(@PreviewParameter(OudsFloatingActionButtonPreviewParameterProvider::class) appearance: OudsFloatingActionButtonAppearance) {
@@ -575,8 +581,17 @@ internal fun PreviewOudsLargeFloatingActionButton(
     }
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.FloatingActionButton.Extended.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.FloatingActionButton.Extended.PreviewWidthDp)
+@Preview(
+    name = "Light",
+    widthDp = OudsPreviewableComponent.FloatingActionButton.Extended.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.FloatingActionButton.Extended.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsExtendedFloatingActionButton(@PreviewParameter(OudsFloatingActionButtonPreviewParameterProvider::class) appearance: OudsFloatingActionButtonAppearance) {

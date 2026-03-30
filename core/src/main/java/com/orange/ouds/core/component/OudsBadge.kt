@@ -52,6 +52,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewGrid
@@ -179,7 +180,7 @@ fun OudsBadge(
  *   - Non-functional statuses: [OudsIconBadgeStatus.Neutral] or [OudsIconBadgeStatus.Accent]
  *   Using a non-functional status, you can provide a custom icon related to the badge’s context to enhance recognition by providing an [OudsBadgeIcon]
  *   as the icon of the status.
- *   - Functional statuses: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative], [OudsTagStatus.Info].
+ *   - Functional statuses: [OudsIconBadgeStatus.Positive], [OudsIconBadgeStatus.Warning], [OudsIconBadgeStatus.Negative], [OudsIconBadgeStatus.Info].
  *   Each functional status has its dedicated functional icon that matches the meaning of the badge.
  * @param size The size of this badge. The icon is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
  *
@@ -554,8 +555,8 @@ enum class OudsBadgeSize {
     }
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadge(@PreviewParameter(OudsBadgePreviewParameterProvider::class) parameter: OudsBadgePreviewParameter) {
@@ -590,8 +591,8 @@ internal data class OudsBadgePreviewParameter(
     val enabled: Boolean = true
 )
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsBadgeWithIcon(@PreviewParameter(OudsBadgeWithIconPreviewParameterProvider::class) parameter: OudsBadgeWithIconPreviewParameter) {

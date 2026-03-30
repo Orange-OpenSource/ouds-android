@@ -46,7 +46,7 @@ dependencies {
     api(project(":theme-contract"))
     // compileOnly dependencies on themes are needed for previews
     compileOnly(project(":theme-orange"))
-    compileOnly(project(":theme-orange-business-tools"))
+    compileOnly(project(":theme-orange-compact"))
     compileOnly(project(":theme-sosh"))
     compileOnly(project(":theme-wireframe"))
 

@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.textinput
 
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -23,6 +22,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
@@ -58,89 +58,89 @@ fun TextInputDemoScreen() {
 private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_outlined_label),
+            label = stringResource(R.string.app_components_common_outlined_tech),
             checked = outlined,
             onCheckedChange = { outlined = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_leadingIcon_label),
+            label = stringResource(R.string.app_components_textInput_leadingIcon_tech),
             checked = leadingIcon,
             onCheckedChange = { leadingIcon = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_trailingAction_label),
+            label = stringResource(R.string.app_components_textInput_trailingAction_tech),
             checked = trailingIcon,
             onCheckedChange = { trailingIcon = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_loader_label),
+            label = stringResource(R.string.app_components_common_loader_tech),
             checked = hasLoader,
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_tech),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_error_label),
+            label = stringResource(R.string.app_components_common_error_tech),
             checked = error,
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_errorMessage_label),
+            label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
             enabled = errorMessageTextInputEnabled
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_placeholder_label),
+            label = stringResource(R.string.app_components_common_placeholder_tech),
             value = placeholder,
             onValueChange = { value -> placeholder = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_prefix_label),
+            label = stringResource(R.string.app_components_common_prefix_tech),
             value = prefix,
             onValueChange = { value -> prefix = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_textInput_suffix_label),
+            label = stringResource(R.string.app_components_textInput_suffix_tech),
             value = suffix,
             onValueChange = { value -> suffix = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_helperText_label),
+            label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText,
             onValueChange = { value -> helperText = value }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_textInput_helperLink_label),
+            label = stringResource(R.string.app_components_textInput_helperLink_tech),
             value = helperLink,
             onValueChange = { value -> helperLink = value }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_constrainedMaxWidth_label),
+            label = stringResource(R.string.app_components_common_constrainedMaxWidth_tech),
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
@@ -152,8 +152,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
     val focusManager = LocalFocusManager.current
     with(state) {
         OudsTextInput(
-            value = value,
-            onValueChange = { value = it },
+            textFieldState = textFieldState,
             label = label,
             placeholder = placeholder,
             outlined = outlined,
@@ -182,7 +181,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             helperText = helperText,
             helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
             constrainedMaxWidth = constrainedMaxWidth,
-            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
+            onKeyboardAction = { focusManager.clearFocus() }
         )
     }
 }
@@ -190,11 +189,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
 private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         functionCall("OudsTextInput") {
-            typedArgument("value", value)
-            lambdaArgument("onValueChange") {
-                comment("Update value")
-            }
-            if (label.isNotEmpty()) typedArgument("label", label)
+            functionCallArgument("textFieldState", "rememberTextFieldState")
+            if (label.isNotEmpty()) labelArgument(label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (leadingIcon) {
@@ -235,10 +231,8 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                 }
             }
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
-            constructorCallArgument<KeyboardActions>("keyboardActions") {
-                lambdaArgument("onDone") {
-                    functionCall("focusManager.clearFocus")
-                }
+            lambdaArgument("onKeyboardAction") {
+                functionCall("focusManager.clearFocus")
             }
         }
     }

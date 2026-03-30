@@ -13,19 +13,37 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsBulletListTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.BulletList,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
+internal class OudsBulletListTest {
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.BulletList.Default,
+        parameter,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.BulletList.Default.PreviewHeightDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.BulletList.Default.parameters
+        }
+    }
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.BulletList.parameters
+    @RunWith(Parameterized::class)
+    class Rtl(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.BulletList.Rtl,
+        parameter,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.BulletList.Rtl.PreviewHeightDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.BulletList.Rtl.parameters
+        }
     }
 }

@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.utilities
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -34,6 +36,8 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,8 +46,6 @@ import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import com.orange.ouds.theme.orange.OrangeFontFamily
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 import kotlin.enums.enumEntries
@@ -52,6 +54,11 @@ import kotlin.math.ceil
 internal val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
 internal val LocalPreviewGridRow = staticCompositionLocalOf<Any?> { null }
 internal val LocalPreviewGridColumn = staticCompositionLocalOf<Any?> { null }
+
+/**
+ * The device used in the OUDS preview environment.
+ */
+const val OudsPreviewDevice = Devices.NEXUS_5
 
 /**
  * Configures the Compose OUDS preview environment in Android Studio.
@@ -238,3 +245,20 @@ internal class PreviewCheckerboardPainter(val squareSize: Dp, val primaryColor: 
         }
     }
 }
+
+/**
+ * Preview annotation to display a composable in both light and dark modes.
+ *
+ * The composable will be rendered on a [OudsPreviewDevice].
+ */
+@Preview(name = "Light", device = OudsPreviewDevice)
+@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, device = OudsPreviewDevice)
+annotation class OudsPreviewLightDark
+
+/**
+ * Preview annotation to display a composable in light mode.
+ *
+ * The composable will be rendered on a [OudsPreviewDevice].
+ */
+@Preview(device = OudsPreviewDevice)
+annotation class OudsPreview

@@ -55,33 +55,33 @@ fun LinkDemoScreen() {
 private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_onColoredBackground_label),
+            label = stringResource(R.string.app_components_common_onColoredBackground_tech),
             checked = onColoredBox,
             onCheckedChange = { onColoredBox = it },
         )
         val sizes = OudsLinkSize.entries
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_size_label),
+            label = stringResource(R.string.app_components_common_size_tech),
             chipLabels = sizes.map { it.name },
             selectedChipIndex = sizes.indexOf(size),
             onSelectionChange = { index -> size = sizes[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_label),
+            label = stringResource(R.string.app_components_common_layout_tech),
             chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = LinkDemoState.Layout.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_label),
+            label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )

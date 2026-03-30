@@ -20,7 +20,8 @@ import org.junit.runners.Parameterized
 internal class OudsPasswordInputTest(parameter: Any) : OudsComponentSnapshotTest(
     OudsPreviewableComponent.PasswordInput,
     parameter,
-    OudsComponentTestSuite.theme
+    OudsComponentTestSuite.theme,
+    heightDp = OudsPreviewableComponent.PasswordInput.PreviewHeightDp
 ) {
 
     companion object {

@@ -15,9 +15,9 @@
 
 package com.orange.ouds.theme.sosh.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
+import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 internal data class SoshLinkMonoTokens(
     override val colorContentDisabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.Medium, OudsColorKeyToken.Repository.Opacity.White.Medium),

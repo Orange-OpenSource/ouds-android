@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -26,13 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -140,7 +142,13 @@ fun OudsSwitchItem(
     )
 }
 
-@PreviewLightDark
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.SwitchItem.Default.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.SwitchItem.Default.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitchItem(@PreviewParameter(OudsSwitchItemPreviewParameterProvider::class) parameter: OudsSwitchItemPreviewParameter) {
@@ -170,7 +178,7 @@ internal fun PreviewOudsSwitchItem(
     }
 }
 
-@Preview
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitchItemWithLongDescription() = PreviewOudsSwitchItemWithLongDescription(theme = getPreviewTheme())
@@ -186,7 +194,7 @@ internal fun PreviewOudsSwitchItemWithLongDescription(theme: OudsThemeContract) 
     )
 }
 
-@Preview
+@Preview(heightDp = OudsPreviewableComponent.SwitchItem.WithEdgeToEdgeDisabled.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled() = PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
@@ -206,7 +214,7 @@ internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContrac
     }
 }
 
-@Preview(widthDp = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.PreviewWidthDp)
+@Preview(widthDp = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {

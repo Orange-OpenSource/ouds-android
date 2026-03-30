@@ -16,6 +16,8 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.alert.AlertMessageDemoScreen
+import com.orange.ouds.app.ui.components.alert.InlineAlertDemoScreen
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
@@ -56,113 +58,120 @@ sealed class Component(
 
     val id: Long = Component::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
 
+    data object Alert : Component(
+        R.string.app_components_alert_tech,
+        R.string.app_components_alert_description_text,
+        { AlertIllustration() },
+        listOf(Variant.AlertMessage, Variant.InlineAlert)
+    )
+
     data object Badge : Component(
-        R.string.app_components_badge_label,
+        R.string.app_components_badge_tech,
         R.string.app_components_badge_description_text,
         { BadgeIllustration() },
         demoScreen = { BadgeDemoScreen() }
     )
 
     data object BulletList : Component(
-        R.string.app_components_bulletList_label,
+        R.string.app_components_bulletList_tech,
         R.string.app_components_bulletList_description_text,
         { BulletListIllustration() },
         demoScreen = { BulletListDemoScreen() }
     )
 
     data object Button : Component(
-        R.string.app_components_button_label,
+        R.string.app_components_button_tech,
         R.string.app_components_button_description_text,
         { ButtonIllustration() },
         demoScreen = { ButtonDemoScreen() }
     )
 
     data object Checkbox : Component(
-        R.string.app_components_checkbox_label,
+        R.string.app_components_checkbox_tech,
         R.string.app_components_checkbox_description_text,
         { CheckboxIllustration() },
         listOf(Variant.Checkbox, Variant.CheckboxItem, Variant.IndeterminateCheckbox, Variant.IndeterminateCheckboxItem)
     )
 
     data object Chip : Component(
-        R.string.app_components_chip_label,
+        R.string.app_components_chip_tech,
         R.string.app_components_chip_description_text,
         { ChipIllustration() },
         listOf(Variant.FilterChip, Variant.SuggestionChip)
     )
 
     data object ColoredBackground : Component(
-        R.string.app_components_coloredBackground_label,
+        R.string.app_components_coloredBackground_tech,
         R.string.app_components_coloredBackground_description_text,
         { ColoredBackgroundIllustration() },
         demoScreen = { ColoredBackgroundDemoScreen() }
     )
 
     data object Divider : Component(
-        R.string.app_components_divider_label,
+        R.string.app_components_divider_tech,
         R.string.app_components_divider_description_text,
         { DividerIllustration() },
         listOf(Variant.HorizontalDivider, Variant.VerticalDivider)
     )
 
     data object FloatingActionButton : Component(
-        R.string.app_components_floatingActionButton_label,
+        R.string.app_components_floatingActionButton_tech,
         R.string.app_components_floatingActionButton_description_text,
         { FloatingActionButtonIllustration() },
         demoScreen = { FloatingActionButtonDemoScreen() }
     )
 
     data object Link : Component(
-        R.string.app_components_link_label,
+        R.string.app_components_link_tech,
         R.string.app_components_link_description_text,
         { LinkIllustration() },
         demoScreen = { LinkDemoScreen() }
     )
 
     data object NavigationBar : Component(
-        R.string.app_components_navigationBar_label,
+        R.string.app_components_navigationBar_tech,
         R.string.app_components_navigationBar_description_text,
         { NavigationBarIllustration() },
         demoScreen = { NavigationBarDemoScreen() }
     )
 
     data object PasswordInput : Component(
-        R.string.app_components_passwordInput_label,
+        R.string.app_components_passwordInput_tech,
         R.string.app_components_passwordInput_description_text,
         { PasswordInputIllustration() },
         demoScreen = { PasswordInputDemoScreen() }
     )
 
     data object RadioButton : Component(
-        R.string.app_components_radioButton_label,
+        R.string.app_components_radioButton_tech,
         R.string.app_components_radioButton_description_text,
         { RadioButtonIllustration() },
         listOf(Variant.RadioButton, Variant.RadioButtonItem)
     )
 
     data object Switch : Component(
-        R.string.app_components_switch_label,
+        R.string.app_components_switch_tech,
         R.string.app_components_switch_description_text,
         { SwitchIllustration() },
         listOf(Variant.Switch, Variant.SwitchItem)
     )
 
     data object Tag : Component(
-        R.string.app_components_tag_label,
+        R.string.app_components_tag_tech,
         R.string.app_components_tag_description_text,
         { TagIllustration() },
         listOf(Variant.Tag, Variant.InputTag)
     )
 
     data object TextInput : Component(
-        R.string.app_components_textInput_label,
+        R.string.app_components_textInput_tech,
         R.string.app_components_textInput_description_text,
         { TextInputIllustration() },
         demoScreen = { TextInputDemoScreen() }
     )
 
     data object TopAppBar : Component(
-        R.string.app_components_topAppBar_label,
+        R.string.app_components_topAppBar_tech,
         R.string.app_components_topAppBar_description_text,
         { TopAppBarIllustration() },
         demoScreen = { TopAppBarDemoScreen() }
@@ -180,31 +189,35 @@ sealed class Variant(
 
     val id: Long = Variant::class.previewCompatibleClass.sealedSubclasses.indexOf(this::class).toLong()
 
+    // Alert
+    data object AlertMessage : Variant(R.string.app_components_alert_alertMessage_tech, { AlertMessageDemoScreen() })
+    data object InlineAlert : Variant(R.string.app_components_alert_inlineAlert_tech, { InlineAlertDemoScreen() })
+
     // Checkbox
-    data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_label, { CheckboxDemoScreen() })
-    data object CheckboxItem : Variant(R.string.app_components_checkbox_checkboxItem_label, { CheckboxItemDemoScreen() })
-    data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_label, { CheckboxDemoScreen(indeterminate = true) })
+    data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_tech, { CheckboxDemoScreen() })
+    data object CheckboxItem : Variant(R.string.app_components_checkbox_checkboxItem_tech, { CheckboxItemDemoScreen() })
+    data object IndeterminateCheckbox : Variant(R.string.app_components_checkbox_indeterminateCheckbox_tech, { CheckboxDemoScreen(indeterminate = true) })
     data object IndeterminateCheckboxItem :
-        Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_label, { CheckboxItemDemoScreen(indeterminate = true) })
+        Variant(R.string.app_components_checkbox_indeterminateCheckboxItem_tech, { CheckboxItemDemoScreen(indeterminate = true) })
 
     // Chip
-    data object FilterChip : Variant(R.string.app_components_chip_filterChip_label, { FilterChipDemoScreen() })
-    data object SuggestionChip : Variant(R.string.app_components_chip_suggestionChip_label, { SuggestionChipDemoScreen() })
+    data object FilterChip : Variant(R.string.app_components_chip_filterChip_tech, { FilterChipDemoScreen() })
+    data object SuggestionChip : Variant(R.string.app_components_chip_suggestionChip_tech, { SuggestionChipDemoScreen() })
 
     // Divider
-    data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_label, { DividerDemoScreen() })
-    data object VerticalDivider : Variant(R.string.app_components_divider_verticalDivider_label, { DividerDemoScreen(vertical = true) })
+    data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_tech, { DividerDemoScreen() })
+    data object VerticalDivider : Variant(R.string.app_components_divider_verticalDivider_tech, { DividerDemoScreen(vertical = true) })
 
     // Radio button
-    data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_label, { RadioButtonDemoScreen() })
-    data object RadioButtonItem : Variant(R.string.app_components_radioButton_radioButtonItem_label, { RadioButtonItemDemoScreen() })
+    data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_tech, { RadioButtonDemoScreen() })
+    data object RadioButtonItem : Variant(R.string.app_components_radioButton_radioButtonItem_tech, { RadioButtonItemDemoScreen() })
 
     // Switch
-    data object Switch : Variant(R.string.app_components_switch_switch_label, { SwitchDemoScreen() })
-    data object SwitchItem : Variant(R.string.app_components_switch_switchItem_label, { SwitchItemDemoScreen() })
+    data object Switch : Variant(R.string.app_components_switch_switch_tech, { SwitchDemoScreen() })
+    data object SwitchItem : Variant(R.string.app_components_switch_switchItem_tech, { SwitchItemDemoScreen() })
 
     // Tag
-    data object Tag : Variant(R.string.app_components_tag_tag_label, { TagDemoScreen() })
-    data object InputTag : Variant(R.string.app_components_tag_inputTag_label, { InputTagDemoScreen() })
+    data object Tag : Variant(R.string.app_components_tag_tag_tech, { TagDemoScreen() })
+    data object InputTag : Variant(R.string.app_components_tag_inputTag_tech, { InputTagDemoScreen() })
 
 }

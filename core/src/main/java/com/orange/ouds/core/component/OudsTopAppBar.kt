@@ -58,7 +58,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
@@ -72,6 +71,7 @@ import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -728,7 +728,7 @@ private enum class OudsTopAppBarSize {
     Small, Medium, Large
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTopAppBar(@PreviewParameter(OudsTopAppBarPreviewParameterProvider::class) parameter: OudsTopAppBarPreviewParameter) {
@@ -751,7 +751,7 @@ internal fun PreviewOudsTopAppBar(
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCenterAlignedTopAppBar(@PreviewParameter(OudsTopAppBarPreviewParameterProvider::class) parameter: OudsTopAppBarPreviewParameter) {
@@ -774,7 +774,7 @@ internal fun PreviewOudsCenterAlignedTopAppBar(
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsMediumTopAppBar(@PreviewParameter(OudsTopAppBarPreviewParameterProvider::class) parameter: OudsTopAppBarPreviewParameter) {
@@ -797,7 +797,7 @@ internal fun PreviewOudsMediumTopAppBar(
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsLargeTopAppBar(@PreviewParameter(OudsTopAppBarPreviewParameterProvider::class) parameter: OudsTopAppBarPreviewParameter) {

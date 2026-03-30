@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew dokkaGenerate
 
       - name: Upload documentation artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: docs
           path: docs/dokka
@@ -52,13 +52,13 @@ jobs:
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: docs
           path: docs
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Package and upload Pages artifact
         uses: actions/upload-pages-artifact@v4.0.0
@@ -67,7 +67,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   netlify:
     environment:
@@ -90,10 +90,10 @@ jobs:
           java-version: '21'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Download artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: docs
           path: docs

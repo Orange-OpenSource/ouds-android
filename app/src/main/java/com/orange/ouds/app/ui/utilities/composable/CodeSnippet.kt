@@ -94,7 +94,7 @@ fun CodeSnippet(code: String, modifier: Modifier = Modifier) {
 
 private fun copyCodeToClipboard(context: Context, code: String, clipboard: Clipboard, coroutineScope: CoroutineScope) {
     coroutineScope.launch {
-        val clipData = ClipData.newPlainText(context.getString(R.string.app_common_codeClipData_label), code)
+        val clipData = ClipData.newPlainText(context.getString(R.string.app_common_codeClipData_tech), code)
         clipboard.setClipEntry(ClipEntry(clipData))
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
             Toast.makeText(context, context.getString(R.string.app_common_codeCopied_text), Toast.LENGTH_SHORT).show()

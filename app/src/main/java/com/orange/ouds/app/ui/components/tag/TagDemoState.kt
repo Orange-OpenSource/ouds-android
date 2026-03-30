@@ -29,7 +29,7 @@ import kotlin.reflect.full.createInstance
 
 @Composable
 fun rememberTagDemoState(
-    label: String = stringResource(id = R.string.app_components_tag_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     layout: TagDemoState.Layout = TagDemoState.Layout.TextOnly,
     roundedCorners: Boolean = true,
@@ -110,8 +110,8 @@ class TagDemoState(
         get() = enabled
 
     enum class Layout(@StringRes val labelRes: Int) {
-        TextOnly(R.string.app_components_common_textOnlyLayout_label),
-        TextAndBullet(R.string.app_components_tag_textAndBulletLayout_label),
-        TextAndIcon(R.string.app_components_common_textAndIconLayout_label)
+        TextOnly(R.string.app_components_common_textOnlyLayout_tech),
+        TextAndBullet(R.string.app_components_tag_textAndBulletLayout_tech),
+        TextAndIcon(R.string.app_components_common_textAndIconLayout_tech)
     }
 }

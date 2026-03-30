@@ -43,7 +43,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -57,6 +56,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -156,10 +156,7 @@ fun OudsTag(
                 horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
             ) {
                 if (hasAsset) {
-                    Box(
-                        modifier = Modifier
-                            .semantics { hideFromAccessibility() }
-                    ) {
+                    Box {
                         if (hasLoader) {
                             ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
                         } else {
@@ -479,7 +476,8 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
 
         /**
          * The default icon of an [OudsTag].
-         * This icon is non-clickable. No content description is needed because a tag always contains a label.
+         * This icon is non-clickable. A content description is only set for Warning and Error statuses to provide context. No content description is needed
+         * for other statuses because the tag's `label` should provide the necessary context.
          */
         data object Default : OudsTagAsset, OudsComponentIcon<OudsTagAsset.ExtraParameters, Default>(
             OudsTagAsset.ExtraParameters::class.java,
@@ -490,7 +488,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
                     }
                 }
             },
-            { "" }
+            { icon -> icon.extraParameters.status.defaultIconContentDescription }
         ) {
 
             override val tint: Color?
@@ -533,11 +531,17 @@ enum class OudsTagSize {
  * It determines the background and the content colors of the tag.
  * It also carries the optional asset to be displayed in the tag: bullet or icon. Depending on the status, this icon can be customizable or be a status
  * dedicated icon.
+ *
+ * @property asset The asset to be displayed in the tag, or `null` if there is no asset.
  */
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
     @Composable
     internal open fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
+
+    internal open val defaultIconContentDescription: String
+        @Composable
+        get() = ""
 
     /**
      * Default or inactive status. Used for standard labels, categories, or when no specific status needs to be communicated.
@@ -663,6 +667,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
                 )
             }
         }
+
+        override val defaultIconContentDescription
+            @Composable
+            get() = stringResource(id = R.string.core_common_warning_a11y)
     }
 
     /**
@@ -687,6 +695,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
         @Composable
         override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.component.alert.importantFill)
+
+        override val defaultIconContentDescription
+            @Composable
+            get() = stringResource(id = R.string.core_common_error_a11y)
     }
 
     /**
@@ -694,13 +706,15 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      */
     @Composable
     fun color(): Color {
-        return when (this) {
-            is Neutral -> OudsTheme.colorScheme.surface.inverseHigh
-            is Accent -> OudsTheme.colorScheme.surface.status.accent.emphasized
-            is Positive -> OudsTheme.colorScheme.surface.status.positive.emphasized
-            is Warning -> OudsTheme.colorScheme.surface.status.warning.emphasized
-            is Negative -> OudsTheme.colorScheme.surface.status.negative.emphasized
-            is Info -> OudsTheme.colorScheme.surface.status.info.emphasized
+        return with(OudsTheme.colorScheme.surface) {
+            when (this@OudsTagStatus) {
+                is Neutral -> inverseHigh
+                is Accent -> status.accent.emphasized
+                is Positive -> status.positive.emphasized
+                is Warning -> status.warning.emphasized
+                is Negative -> status.negative.emphasized
+                is Info -> status.info.emphasized
+            }
         }
     }
 
@@ -709,18 +723,20 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
      */
     @Composable
     fun mutedColor(): Color {
-        return when (this) {
-            is Neutral -> OudsTheme.colorScheme.surface.secondary
-            is Accent -> OudsTheme.colorScheme.surface.status.accent.muted
-            is Positive -> OudsTheme.colorScheme.surface.status.positive.muted
-            is Warning -> OudsTheme.colorScheme.surface.status.warning.muted
-            is Negative -> OudsTheme.colorScheme.surface.status.negative.muted
-            is Info -> OudsTheme.colorScheme.surface.status.info.muted
+        return with(OudsTheme.colorScheme.surface) {
+            when (this@OudsTagStatus) {
+                is Neutral -> secondary
+                is Accent -> status.accent.muted
+                is Positive -> status.positive.muted
+                is Warning -> status.warning.muted
+                is Negative -> status.negative.muted
+                is Info -> status.info.muted
+            }
         }
     }
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTag(@PreviewParameter(OudsTagPreviewParameterProvider::class) parameter: OudsTagPreviewParameter) {

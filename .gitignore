@@ -5,6 +5,7 @@
 *.iml
 .idea/caches
 .idea/compiler.xml
+.idea/deviceManager.xml
 .idea/gradle.xml
 .idea/libraries
 .idea/misc.xml

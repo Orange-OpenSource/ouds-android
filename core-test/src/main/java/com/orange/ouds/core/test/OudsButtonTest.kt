@@ -53,4 +53,10 @@ internal class OudsButtonTest {
             internal fun data() = OudsPreviewableComponent.Button.WithIconBadge.parameters
         }
     }
+
+    class OnTwoLines : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.OnTwoLines,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

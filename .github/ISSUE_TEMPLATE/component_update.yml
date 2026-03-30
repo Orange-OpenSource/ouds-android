@@ -1,6 +1,5 @@
 name: Component update
 description: Propose a change for a specific component
-title: "[Component] "
 labels: [ "⚛️ component", "🧰 library", "🔍 triage" ]
 assignees: [ "florentmaitre", "paulinea" ]
 projects: [ "⚛️ [OUDS] Project" ]

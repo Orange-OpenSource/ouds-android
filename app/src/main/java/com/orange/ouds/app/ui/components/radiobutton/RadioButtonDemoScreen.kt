@@ -49,19 +49,19 @@ fun RadioButtonDemoScreen() {
 private fun RadioButtonDemoBottomSheetContent(state: RadioButtonDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_label),
+            label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_readOnly_label),
+            label = stringResource(R.string.app_components_common_readOnly_tech),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_error_label),
+            label = stringResource(R.string.app_components_common_error_tech),
             checked = error,
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled

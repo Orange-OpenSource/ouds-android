@@ -13,6 +13,8 @@
 package com.orange.ouds.core.utilities
 
 import androidx.compose.runtime.Composable
+import com.orange.ouds.core.component.OudsAlertMessagePreviewParameter
+import com.orange.ouds.core.component.OudsAlertMessagePreviewParameterProvider
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameter
@@ -38,6 +40,7 @@ import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
 import com.orange.ouds.core.component.OudsFloatingActionButtonPreviewParameterProvider
+import com.orange.ouds.core.component.OudsInlineAlertPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
@@ -62,10 +65,13 @@ import com.orange.ouds.core.component.OudsTextInputPreviewParameter
 import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
+import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBulletList
+import com.orange.ouds.core.component.PreviewOudsBulletListRtl
 import com.orange.ouds.core.component.PreviewOudsButton
+import com.orange.ouds.core.component.PreviewOudsButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
@@ -80,6 +86,7 @@ import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
+import com.orange.ouds.core.component.PreviewOudsInlineAlert
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
@@ -128,6 +135,22 @@ interface OudsPreviewableComponent {
     @Composable
     fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?)
 
+    object AlertMessage : OudsPreviewableComponent {
+
+        const val PreviewHeightDp = 1470
+
+        override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsAlertMessage(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsAlertMessagePreviewParameter
+            )
+        }
+    }
+
     object Badge {
 
         const val PreviewWidthDp = 420
@@ -161,17 +184,40 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object BulletList : OudsPreviewableComponent {
+    object BulletList {
 
-        override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsBulletList(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsBulletListPreviewParameter
-            )
+            const val PreviewHeightDp = 730
+
+            override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBulletList(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsBulletListPreviewParameter
+                )
+            }
+        }
+
+        object Rtl : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 730
+
+            override val parameters: List<Any> = OudsBulletListPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBulletListRtl(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsBulletListPreviewParameter
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
@@ -217,11 +263,25 @@ interface OudsPreviewableComponent {
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
+
+        object OnTwoLines : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsButtonOnTwoLines(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
     }
 
     object CheckboxItem {
 
         object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 880
 
             override val parameters: List<Any> = OudsCheckboxItemPreviewParameterProvider().values.toList()
 
@@ -266,6 +326,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 790
 
             override val parameters: List<Any> = emptyList()
 
@@ -435,6 +497,20 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object InlineAlert : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsInlineAlertPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsInlineAlert(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                label = parameter as String
+            )
+        }
+    }
+
     object InputTag : OudsPreviewableComponent {
 
         override val parameters: List<Any> = emptyList()
@@ -546,6 +622,8 @@ interface OudsPreviewableComponent {
 
     object PasswordInput : OudsPreviewableComponent {
 
+        const val PreviewHeightDp = 840
+
         override val parameters: List<Any> = OudsPasswordInputPreviewParameterProvider().values.toList()
 
         @Composable
@@ -561,6 +639,8 @@ interface OudsPreviewableComponent {
     object RadioButtonItem {
 
         object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 880
 
             override val parameters: List<Any> = OudsRadioButtonItemPreviewParameterProvider().values.toList()
 
@@ -605,6 +685,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 880
 
             override val parameters: List<Any> = emptyList()
 
@@ -669,6 +751,8 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 880
+
             override val parameters: List<Any> = OudsSwitchItemPreviewParameterProvider().values.toList()
 
             @Composable
@@ -695,6 +779,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 820
 
             override val parameters: List<Any> = emptyList()
 
@@ -751,9 +837,10 @@ interface OudsPreviewableComponent {
 
     object TextInput {
 
-        const val PreviewHeightDp = 1100
 
         object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1100
 
             override val parameters: List<Any> = OudsTextInputPreviewParameterProvider().values.toList()
 
@@ -768,6 +855,8 @@ interface OudsPreviewableComponent {
         }
 
         object WithRoundedCorners : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 670
 
             override val parameters: List<Any> = emptyList()
 

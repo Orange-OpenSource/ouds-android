@@ -15,8 +15,8 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
-import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 internal data class OrangeBadgeTokens(

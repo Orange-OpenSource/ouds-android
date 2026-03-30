@@ -62,7 +62,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -75,6 +74,8 @@ import com.orange.ouds.core.theme.WindowWidthSizeClass
 import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
@@ -442,7 +443,7 @@ internal enum class OudsNavigationBarItemState {
     Enabled, Hovered, Pressed, Focused
 }
 
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
@@ -454,8 +455,13 @@ private fun PreviewOudsNavigationBar(@PreviewParameter(OudsNavigationBarPreviewP
     )
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.NavigationBar.WithHorizontalItems.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNavigationBarPreviewParameterProvider::class) itemCount: Int) {
     PreviewOudsNavigationBar(
@@ -466,8 +472,13 @@ private fun PreviewOudsNavigationBarWithHorizontalItems(@PreviewParameter(OudsNa
     )
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
@@ -479,8 +490,13 @@ private fun PreviewOudsNavigationBarItem(@PreviewParameter(OudsNavigationBarItem
     )
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.NavigationBarItem.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 private fun PreviewOudsNavigationBarHorizontalItem(@PreviewParameter(OudsNavigationBarItemPreviewParameterProvider::class) selected: Boolean) {
     PreviewOudsNavigationBarItem(
