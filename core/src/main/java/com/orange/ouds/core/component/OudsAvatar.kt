@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -23,22 +22,20 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -135,22 +132,22 @@ internal fun OudsAvatar(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
 
     Box(
-        modifier = modifier.size(OudsTheme.sizes.minInteractiveArea),
+        modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
         if (onClick != null) {
             OudsButton(
-                nullableIcon = null,
-                nullableLabel = null,
+                icon = OudsButtonIcon(ColorPainter(Color.Transparent), ""), // Use transparent painter to scale the button with the font
                 onClick = onClick,
                 appearance = OudsButtonAppearance.Minimal,
                 interactionSource = interactionSource
             )
         }
 
+        val scale = LocalConfiguration.current.fontScale
         val contentModifier = Modifier
             .clip(CircleShape)
-            .size(AvatarSize)
+            .size(AvatarSize * scale)
         if (graphicsObject != null) {
             val contentScale = ContentScale.Crop
             when (graphicsObject) {
@@ -178,21 +175,13 @@ internal fun OudsAvatar(
                 modifier = contentModifier.background(monogramBackgroundColor),
                 contentAlignment = Alignment.Center,
             ) {
-                // Do not take user font scale into account
-                val configuration = Configuration(LocalConfiguration.current).apply { fontScale = 1f }
-                val density = Density(LocalDensity.current.density, 1f)
-                CompositionLocalProvider(
-                    LocalDensity provides density,
-                    LocalConfiguration provides configuration
-                ) {
-                    Text(
-                        modifier = Modifier.clearAndSetSemantics {},
-                        text = monogram.uppercase(),
-                        color = monogramColor,
-                        style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
-                        fontFamily = OudsTheme.typography.fontFamily
-                    )
-                }
+                Text(
+                    modifier = Modifier.clearAndSetSemantics {},
+                    text = monogram.uppercase(),
+                    color = monogramColor,
+                    style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
+                    fontFamily = OudsTheme.typography.fontFamily
+                )
             }
         }
     }
