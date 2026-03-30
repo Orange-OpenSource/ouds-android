@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -32,6 +33,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -176,9 +178,12 @@ internal fun OudsAvatar(
                 modifier = contentModifier.background(monogramBackgroundColor),
                 contentAlignment = Alignment.Center,
             ) {
+                // Do not take user font scale into account
+                val configuration = Configuration(LocalConfiguration.current).apply { fontScale = 1f }
+                val density = Density(LocalDensity.current.density, 1f)
                 CompositionLocalProvider(
-                    // Do not take user font scale into account
-                    value = LocalDensity provides Density(LocalDensity.current.density, 1f)
+                    LocalDensity provides density,
+                    LocalConfiguration provides configuration
                 ) {
                     Text(
                         modifier = Modifier.clearAndSetSemantics {},
