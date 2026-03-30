@@ -180,7 +180,7 @@ fun OudsTextArea(
 
     val scrollState = rememberScrollState()
 
-    val (minLines, maxLines) = remember(textAreaTokens, textStyle, density, fontScale) {
+    val (minLines, maxLines) = remember(textAreaTokens, textStyle.lineHeight, density, fontScale) {
         computeTextAreaLines(
             minHeightDp = textAreaTokens.sizeMinHeightInput,
             maxHeightDp = textAreaTokens.sizeMaxHeightInput,
