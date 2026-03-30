@@ -43,26 +43,24 @@ tasks.register<DefaultTask>("publishDocumentationToNetlify") {
             .replace("\\x1B\\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]".toRegex(), "") // Removes ANSI colors from output
             .split("\n")
 
-        // Output displays "Deployed draft to" for draft deployments and "Unique deploy URL" for prod deployments:
+        // Output displays "Draft URL" for draft deployments:
         //
-        // ╭───────────────────────── ⬥  Draft deploy is live ⬥ ──────────────────────────╮
-        // │                                                                               │
-        // │                              Deployed draft to                                │
-        // │          https://687672e116cf5a2cbd949f0a--ouds-android.netlify.app           │
-        // │                                                                               │
-        // ╰───────────────────────────────────────────────────────────────────────────────╯
+        // Draft URL: <https://69ca52507ba84a48e5405841--ouds-android.netlify.app>
         //
-        // ╭──────────────── ⬥  Production deploy is live ⬥ ─────────────────╮
-        // │                                                                  │
-        // │   Deployed to production URL: https://ouds-android.netlify.app   │
-        // │                                                                  │
-        // │                        Unique deploy URL:                        │
-        // │    https://687673f72c25433090a8bc6e--ouds-android.netlify.app    │
-        // │                                                                  │
-        // ╰──────────────────────────────────────────────────────────────────╯
-        val netlifyDeployPreviewUrl = outputLines.indexOfFirst { it.contains("Deployed draft to") || it.contains("Unique deploy URL") }
+        // Build logs: <https://app.netlify.com/projects/ouds-android/deploys/69ca52507ba84a48e5405841>
+        // Function logs: <https://app.netlify.com/projects/ouds-android/logs/functions?scope=deploy:69ca52507ba84a48e5405841>
+        // Edge function logs: <https://app.netlify.com/projects/ouds-android/logs/edge-functions?scope=deployid:69ca52507ba84a48e5405841>
+        // 
+        // and "Unique deploy URL" for prod deployments:
+        //
+        // Production URL: <https://ouds-android.netlify.app>
+        // Unique deploy URL: <https://69ca52a63123710396c64f02--ouds-android.netlify.app>
+        //
+        // Build logs: <https://app.netlify.com/projects/ouds-android/deploys/69ca52a63123710396c64f02>
+        // Function logs: <https://app.netlify.com/projects/ouds-android/logs/functions>
+        // Edge function logs: <https://app.netlify.com/projects/ouds-android/logs/edge-functions>
+        val netlifyDeployPreviewUrl = outputLines.indexOfFirst { it.contains("Draft URL") || it.contains("Unique deploy URL") }
             .takeIf { it != -1 }
-            ?.plus(1) // Deploy preview URL is displayed on the next line
             ?.let { index ->
                 "(https:\\/\\/.*--ouds-android\\.netlify\\.app)".toRegex()
                     .find(outputLines[index])
