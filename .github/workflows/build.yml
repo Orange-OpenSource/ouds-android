@@ -30,7 +30,7 @@ jobs:
           java-version: '21'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -105,7 +105,7 @@ jobs:
           java-version: '21'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -146,7 +146,7 @@ jobs:
           java-version: '21'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -182,7 +182,7 @@ jobs:
           java-version: '21'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Publish release to Google Play Store
         run: |
