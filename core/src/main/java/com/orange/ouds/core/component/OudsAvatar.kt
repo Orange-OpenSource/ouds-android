@@ -14,7 +14,6 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -34,7 +33,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -135,29 +133,18 @@ internal fun OudsAvatar(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
 
     Box(
-        modifier = modifier
-            .size(OudsTheme.sizes.minInteractiveArea)
-            .run {
-                if (onClick != null) {
-                    clickable(
-                        interactionSource = interactionSource,
-                        indication = null,
-                        onClick = onClick,
-                        role = Role.Button
-                    )
-                } else {
-                    this
-                }
-            },
+        modifier = modifier.size(OudsTheme.sizes.minInteractiveArea),
         contentAlignment = Alignment.Center
     ) {
-        OudsButton(
-            nullableIcon = null,
-            nullableLabel = null,
-            onClick = {},
-            appearance = OudsButtonAppearance.Minimal,
-            interactionSource = interactionSource
-        )
+        if (onClick != null) {
+            OudsButton(
+                nullableIcon = null,
+                nullableLabel = null,
+                onClick = onClick,
+                appearance = OudsButtonAppearance.Minimal,
+                interactionSource = interactionSource
+            )
+        }
 
         val contentModifier = Modifier
             .clip(CircleShape)
