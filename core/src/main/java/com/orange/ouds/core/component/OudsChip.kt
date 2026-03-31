@@ -49,6 +49,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -216,12 +217,17 @@ private fun borderWidth(state: OudsChipState, selected: Boolean): Dp? {
 private fun borderColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBorderSelectedEnabled else colorBorderUnselectedEnabled
-            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus else colorBorderUnselectedFocus
-            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover else colorBorderUnselectedHover
-            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed else colorBorderUnselectedPressed
-            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled else colorBorderUnselectedDisabled
-        }.value
+            OudsChipState.Enabled -> when {
+                // In order to reach the a11y AAA level, when high contrast mode is enabled, the enabled chip border color must use `color.content.default` token
+                LocalHighContrastModeEnabled.current -> OudsTheme.colorScheme.content.default
+                selected -> colorBorderSelectedEnabled.value
+                else -> colorBorderUnselectedEnabled.value
+            }
+            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus.value else colorBorderUnselectedFocus.value
+            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover.value else colorBorderUnselectedHover.value
+            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed.value else colorBorderUnselectedPressed.value
+            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled.value else colorBorderUnselectedDisabled.value
+        }
     }
 }
 
@@ -256,12 +262,12 @@ private fun tickColor(state: OudsChipState, selected: Boolean): Color? {
     return with(OudsTheme.componentsTokens.chip) {
         if (selected) {
             when (state) {
-                OudsChipState.Enabled -> colorContentSelectedTickEnabled
-                OudsChipState.Focused -> colorContentSelectedFocus
-                OudsChipState.Hovered -> colorContentSelectedHover
-                OudsChipState.Pressed -> colorContentSelectedPressed
-                OudsChipState.Disabled -> colorContentSelectedDisabled
-            }.value
+                OudsChipState.Enabled -> if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else colorContentSelectedTickEnabled.value
+                OudsChipState.Focused -> colorContentSelectedFocus.value
+                OudsChipState.Hovered -> colorContentSelectedHover.value
+                OudsChipState.Pressed -> colorContentSelectedPressed.value
+                OudsChipState.Disabled -> colorContentSelectedDisabled.value
+            }
         } else {
             null
         }
