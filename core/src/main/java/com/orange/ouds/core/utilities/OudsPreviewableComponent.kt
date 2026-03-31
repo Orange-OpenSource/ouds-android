@@ -36,6 +36,7 @@ import com.orange.ouds.core.component.OudsControlItemConstrainedMaxWidthPreviewP
 import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsDividerOrientation
 import com.orange.ouds.core.component.OudsDividerPreviewParameterProvider
+import com.orange.ouds.core.component.OudsFilterChipHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameter
 import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
@@ -93,6 +94,7 @@ import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
+import com.orange.ouds.core.component.PreviewOudsFilterChipHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsInlineAlert
 import com.orange.ouds.core.component.PreviewOudsInputTag
@@ -115,6 +117,7 @@ import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionT
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
+import com.orange.ouds.core.component.PreviewOudsSuggestionChipHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsSwitch
 import com.orange.ouds.core.component.PreviewOudsSwitchItem
 import com.orange.ouds.core.component.PreviewOudsSwitchItemConstrainedMaxWidth
@@ -448,17 +451,37 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object FilterChip : OudsPreviewableComponent {
+    object FilterChip {
 
-        override val parameters: List<Any> = OudsFilterChipPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsFilterChip(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsFilterChipPreviewParameter
-            )
+            override val parameters: List<Any> = OudsFilterChipPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsFilterChip(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsFilterChipPreviewParameter
+                )
+            }
+        }
+
+        object HighContrastModeEnabled : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsFilterChipHighContrastModePreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsFilterChipHighContrastModeEnabled(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    selected = parameter as Boolean
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
     }
 
@@ -806,17 +829,36 @@ interface OudsPreviewableComponent {
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
     }
 
-    object SuggestionChip : OudsPreviewableComponent {
+    object SuggestionChip {
 
-        override val parameters: List<Any> = OudsSuggestionChipPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsSuggestionChip(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsSuggestionChipPreviewParameter
-            )
+            override val parameters: List<Any> = OudsSuggestionChipPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSuggestionChip(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsSuggestionChipPreviewParameter
+                )
+            }
+        }
+
+        object HighContrastModeEnabled : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsSuggestionChipHighContrastModeEnabled(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
         }
     }
 
