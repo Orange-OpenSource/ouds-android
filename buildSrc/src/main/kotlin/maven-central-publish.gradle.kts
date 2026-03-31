@@ -48,11 +48,13 @@ afterEvaluate {
                 val version = project.version.toString()
 
                 pluginExtension?.relocation?.let { relocation ->
-                    create<MavenPublication>("relocation") {
+                    create<MavenPublication>(MavenCentralPublishPluginExtension.RELOCATION) {
+                        val oldArtifactId = requireNotNull(relocation.oldArtifactId) { "Relocation oldArtifactId cannot be null." }
                         this.groupId = groupId
-                        this.artifactId = requireNotNull(relocation.oldArtifactId) { "Relocation oldArtifactId cannot be null." }
+                        this.artifactId = oldArtifactId
                         this.version = version
                         pom {
+                            configure(oldArtifactId)
                             distributionManagement {
                                 relocation {
                                     this.groupId = groupId
@@ -81,31 +83,7 @@ afterEvaluate {
                     }
 
                     pom {
-                        name.set(artifactId)
-                        description.set("Orange Unified Design System for Android")
-                        val gitHubUrl = "https://github.com/Orange-OpenSource/ouds-android"
-                        url.set(gitHubUrl)
-                        licenses {
-                            license {
-                                name.set("MIT License")
-                                url.set("https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE")
-                            }
-                        }
-                        scm {
-                            url.set(gitHubUrl)
-                            connection.set("scm:git:git://github.com/Orange-OpenSource/ouds-android.git")
-                            developerConnection.set("scm:git:ssh://git@github.com/Orange-OpenSource/ouds-android.git")
-                        }
-                        developers {
-                            developer {
-                                name.set("Pauline Auvray")
-                                email.set("pauline.auvray@orange.com")
-                            }
-                            developer {
-                                name.set("Florent Maitre")
-                                email.set("florent.maitre@orange.com")
-                            }
-                        }
+                        configure(artifactId)
                     }
                 }
             }
@@ -131,7 +109,43 @@ afterEvaluate {
                 "GNUPG_SIGNING_PASSWORD"
             )
             useInMemoryPgpKeys(signingKeyId, signingSecretKey, signingPassword)
-            sign(publishing.publications[MavenCentralPublishPluginExtension.VARIANT])
+            val publications = listOfNotNull(
+                publishing.publications[MavenCentralPublishPluginExtension.VARIANT],
+                pluginExtension?.relocation?.let {
+                    publishing.publications[MavenCentralPublishPluginExtension.RELOCATION]
+                }
+            )
+            sign(*publications.toTypedArray())
         }
     }
 }
+
+private fun MavenPom.configure(artifactId: String) {
+    val description = "Orange Unified Design System for Android"
+    val gitHubUrl = "https://github.com/Orange-OpenSource/ouds-android"
+
+    name.set(artifactId)
+    this.description.set(description)
+    url.set(gitHubUrl)
+    licenses {
+        license {
+            name.set("MIT License")
+            url.set("https://github.com/Orange-OpenSource/ouds-android/blob/main/LICENSE")
+        }
+    }
+    scm {
+        url.set(gitHubUrl)
+        connection.set("scm:git:git://github.com/Orange-OpenSource/ouds-android.git")
+        developerConnection.set("scm:git:ssh://git@github.com/Orange-OpenSource/ouds-android.git")
+    }
+    developers {
+        developer {
+            name.set("Pauline Auvray")
+            email.set("pauline.auvray@orange.com")
+        }
+        developer {
+            name.set("Florent Maitre")
+            email.set("florent.maitre@orange.com")
+        }
+    }
+} 
