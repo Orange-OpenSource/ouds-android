@@ -92,7 +92,7 @@ fun OudsInputTag(
     val state = getInputTagState(enabled = enabled, interactionState = interactionState)
     val shape = RoundedCornerShape(tagTokens.borderRadius.value)
 
-    val backgroundColor = rememberNullableInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
+    val backgroundColor = rememberInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
         val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
         backgroundColor(state = inputTagState)
     }
@@ -123,13 +123,7 @@ fun OudsInputTag(
             modifier = modifier
                 .widthIn(min = tagTokens.sizeMinWidthDefault.dp)
                 .heightIn(min = tagTokens.sizeMinHeightDefault.dp)
-                .run {
-                    backgroundColor.value?.let { color ->
-                        background(color = color, shape = shape)
-                    }.orElse {
-                        this
-                    }
-                }
+                .background(color = backgroundColor.value, shape = shape)
                 .run {
                     borderWidth.value?.let { borderWidth ->
                         border(width = borderWidth, color = borderColor.value, shape = shape)
@@ -141,7 +135,7 @@ fun OudsInputTag(
                 .clickable(
                     enabled = enabled,
                     interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                    indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick,
                     onClickLabel = stringResource(R.string.core_inputTag_remove_a11y),
                     role = Role.Button
@@ -182,14 +176,14 @@ private fun getInputTagState(interactionState: InteractionState, enabled: Boolea
 }
 
 @Composable
-private fun backgroundColor(state: OudsInputTagState): Color? {
+private fun backgroundColor(state: OudsInputTagState): Color {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTagState.Enabled -> colorBgEnabled.value
             OudsInputTagState.Focused -> colorBgFocus.value
             OudsInputTagState.Hovered -> colorBgHover.value
             OudsInputTagState.Pressed -> colorBgPressed.value
-            OudsInputTagState.Disabled -> null
+            OudsInputTagState.Disabled -> Color.Transparent
         }
     }
 }
@@ -233,7 +227,7 @@ private fun contentColor(state: OudsInputTagState): Color {
     }
 }
 
-internal enum class OudsInputTagState {
+private enum class OudsInputTagState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
