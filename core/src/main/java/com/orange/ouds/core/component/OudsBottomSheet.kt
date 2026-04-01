@@ -32,12 +32,12 @@ internal object OudsBottomSheetDefaults {
      */
     @Composable
     fun DragHandle() {
-        val dragHandleDescription = stringResource(id = R.string.core_bottomSheet_dragHandle_a11y)
+        val dragHandleContentDescription = stringResource(id = R.string.core_bottomSheet_dragHandle_a11y)
         Surface(
             modifier = Modifier
                 .padding(vertical = OudsTheme.spaces.fixed.medium)
                 .semantics {
-                    contentDescription = dragHandleDescription
+                    contentDescription = dragHandleContentDescription
                 },
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             shape = MaterialTheme.shapes.extraLarge,
