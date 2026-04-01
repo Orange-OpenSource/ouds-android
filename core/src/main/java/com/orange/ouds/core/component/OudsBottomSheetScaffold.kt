@@ -55,6 +55,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier The [Modifier] to be applied to the entire scaffold.
  * @param scaffoldState The state of the bottom sheet scaffold, which controls its behavior. See [rememberBottomSheetScaffoldState].
  * @param sheetPeekHeight The height of the bottom sheet when it is collapsed.
+ * @param sheetContainerColor The color of the bottom sheet container.
  * @param sheetDragHandle Toggles the visibility of the drag handle at the top of the bottom sheet. Set to `false` to hide it.
  * @param sheetSwipeEnabled Whether the sheet swiping is enabled and should react to the user's input.
  * @param topBar The top app bar of the screen, typically an [OudsTopAppBar].
@@ -72,6 +73,7 @@ fun OudsBottomSheetScaffold(
     modifier: Modifier = Modifier,
     scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight,
+    sheetContainerColor: Color = OudsTheme.colorScheme.overlay.modal,
     sheetDragHandle: Boolean = true,
     sheetSwipeEnabled: Boolean = true,
     topBar: @Composable (() -> Unit)? = null,
@@ -83,9 +85,7 @@ fun OudsBottomSheetScaffold(
         modifier = modifier,
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,
-        sheetMaxWidth = BottomSheetDefaults.SheetMaxWidth,
-        sheetShape = BottomSheetDefaults.ExpandedShape,
-        sheetContainerColor = OudsTheme.colorScheme.overlay.modal,
+        sheetContainerColor = sheetContainerColor,
         sheetShadowElevation = OudsTheme.elevations.emphasized,
         sheetDragHandle = if (sheetDragHandle) {
             { OudsBottomSheetDefaults.DragHandle() }
