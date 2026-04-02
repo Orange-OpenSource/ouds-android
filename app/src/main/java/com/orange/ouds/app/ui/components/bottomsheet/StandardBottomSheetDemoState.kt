@@ -22,7 +22,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoState.SheetValue
-import com.orange.ouds.app.ui.utilities.toIntString
+import com.orange.ouds.app.ui.utilities.toNumberString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -71,7 +71,7 @@ class StandardBottomSheetDemoState(
 
     val sheetPeekHeightDisplayValue
         @Composable
-        get() = sheetPeekHeight.toIntString()
+        get() = sheetPeekHeight.toNumberString()
 
     enum class SheetValue {
         Expanded, PartiallyExpanded,

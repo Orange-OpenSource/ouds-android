@@ -39,7 +39,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.composable.ScreenMainContentColumn
-import com.orange.ouds.app.ui.utilities.toIntString
+import com.orange.ouds.app.ui.utilities.toNumberString
 import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.theme.OudsTheme
@@ -130,7 +130,7 @@ private fun StandardBottomSheetCustomization(state: StandardBottomSheetDemoState
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             suffix = "dp",
-            resetValue = BottomSheetDefaults.SheetPeekHeight.toIntString()
+            resetValue = BottomSheetDefaults.SheetPeekHeight.toNumberString()
         )
     }
 }
