@@ -53,7 +53,7 @@ fun ModalBottomSheetDemoScreen() {
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .consumeTopBarsTopWindowInsets()
-                    .padding(top = topBarsTopPadding, bottom = OudsTheme.spaces.fixed.medium)
+                    .padding(top = topBarsTopPadding)
             ) {
                 DetailScreenDescription(
                     modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
