@@ -129,7 +129,7 @@ private fun StandardBottomSheetDemoCustomization(state: StandardBottomSheetDemoS
                 sheetPeekHeight = (text.toIntOrNull() ?: 0).dp
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            suffix = "dp",
+            suffix = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech),
             resetValue = BottomSheetDefaults.SheetPeekHeight.toNumberString()
         )
     }
