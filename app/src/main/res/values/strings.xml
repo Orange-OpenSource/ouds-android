@@ -191,7 +191,7 @@
     <string name="app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech" translatable="false">Sheet peak height</string>
     <string name="app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech" translatable="false">Sheet drag handle</string>
     <string name="app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech" translatable="false">Sheet swipe enabled</string>
-    <string name="app_components_bottomSheet_standardBottomSheet_state_tech" translatable="false">State</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetValue_tech" translatable="false">Sheet value</string>
     <string name="app_components_bottomSheet_modalBottomSheet_tech" translatable="false">Modal bottom sheet</string>
     <string name="app_components_bottomSheet_modalBottomSheet_description_text">Modal bottom sheet displays content that temporarily blocks interaction with the main screen.</string>  <!-- TODO -->
     <string name="app_components_bottomSheet_modalBottomSheet_dragHandle_tech" translatable="false">Drag handle</string>

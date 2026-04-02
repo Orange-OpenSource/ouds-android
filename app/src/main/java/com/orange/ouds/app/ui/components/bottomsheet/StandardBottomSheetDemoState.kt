@@ -21,22 +21,22 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
-import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoState.SheetState
+import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoState.SheetValue
 import com.orange.ouds.app.ui.utilities.toIntString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberStandardBottomSheetDemoState(
-    sheetState: SheetState = SheetState.PartiallyExpanded,
+    sheetValue: SheetValue = SheetValue.PartiallyExpanded,
     sheetDragHandle: Boolean = true,
     sheetSwipeEnabled: Boolean = true,
     sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight
-) = rememberSaveable(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight, saver = StandardBottomSheetDemoState.Saver) {
-    StandardBottomSheetDemoState(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight)
+) = rememberSaveable(sheetValue, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight, saver = StandardBottomSheetDemoState.Saver) {
+    StandardBottomSheetDemoState(sheetValue, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight)
 }
 
 class StandardBottomSheetDemoState(
-    sheetState: SheetState,
+    sheetValue: SheetValue,
     sheetDragHandle: Boolean,
     sheetSwipeEnabled: Boolean,
     sheetPeakHeight: Dp
@@ -46,7 +46,7 @@ class StandardBottomSheetDemoState(
             save = { state ->
                 with(state) {
                     listOf(
-                        sheetState,
+                        sheetValue,
                         sheetDragHandle,
                         sheetSwipeEnabled,
                         sheetPeekHeight.value
@@ -55,7 +55,7 @@ class StandardBottomSheetDemoState(
             },
             restore = { list: List<Any?> ->
                 StandardBottomSheetDemoState(
-                    list[0] as SheetState,
+                    list[0] as SheetValue,
                     list[1] as Boolean,
                     list[2] as Boolean,
                     Dp(list[3] as Float)
@@ -67,13 +67,13 @@ class StandardBottomSheetDemoState(
     var sheetDragHandle: Boolean by mutableStateOf(sheetDragHandle)
     var sheetPeekHeight: Dp by mutableStateOf(sheetPeakHeight)
     var sheetSwipeEnabled: Boolean by mutableStateOf(sheetSwipeEnabled)
-    var sheetState: SheetState by mutableStateOf(sheetState)
+    var sheetValue: SheetValue by mutableStateOf(sheetValue)
 
     val sheetPeekHeightDisplayValue
         @Composable
         get() = sheetPeekHeight.toIntString()
 
-    enum class SheetState {
+    enum class SheetValue {
         Expanded, PartiallyExpanded,
     }
 }

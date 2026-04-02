@@ -90,18 +90,18 @@ private fun StandardBottomSheetCustomization(state: StandardBottomSheetDemoState
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_state_tech),
-            chips = StandardBottomSheetDemoState.SheetState.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
+            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetValue_tech),
+            chips = StandardBottomSheetDemoState.SheetValue.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
             selectedChipIndex = when (scaffoldState.bottomSheetState.targetValue) {
-                SheetValue.Hidden, SheetValue.PartiallyExpanded -> StandardBottomSheetDemoState.SheetState.entries.indexOf(StandardBottomSheetDemoState.SheetState.PartiallyExpanded)
-                SheetValue.Expanded -> StandardBottomSheetDemoState.SheetState.entries.indexOf(StandardBottomSheetDemoState.SheetState.Expanded)
+                SheetValue.Hidden, SheetValue.PartiallyExpanded -> StandardBottomSheetDemoState.SheetValue.entries.indexOf(StandardBottomSheetDemoState.SheetValue.PartiallyExpanded)
+                SheetValue.Expanded -> StandardBottomSheetDemoState.SheetValue.entries.indexOf(StandardBottomSheetDemoState.SheetValue.Expanded)
             },
             onSelectionChange = { index ->
-                sheetState = StandardBottomSheetDemoState.SheetState.entries[index]
+                sheetValue = StandardBottomSheetDemoState.SheetValue.entries[index]
                 coroutineScope.launch {
-                    when (sheetState) {
-                        StandardBottomSheetDemoState.SheetState.Expanded -> scaffoldState.bottomSheetState.expand()
-                        StandardBottomSheetDemoState.SheetState.PartiallyExpanded -> scaffoldState.bottomSheetState.partialExpand()
+                    when (sheetValue) {
+                        StandardBottomSheetDemoState.SheetValue.Expanded -> scaffoldState.bottomSheetState.expand()
+                        StandardBottomSheetDemoState.SheetValue.PartiallyExpanded -> scaffoldState.bottomSheetState.partialExpand()
                     }
                 }
             },
