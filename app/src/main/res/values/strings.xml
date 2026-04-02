@@ -189,6 +189,7 @@
     <string name="app_components_bottomSheet_standardBottomSheet_tech" translatable="false">Standard bottom sheet</string>
     <string name="app_components_bottomSheet_standardBottomSheet_description_text">Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.</string>  <!-- TODO -->
     <string name="app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech" translatable="false">Sheet peak height</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech" translatable="false">dp</string>
     <string name="app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech" translatable="false">Sheet drag handle</string>
     <string name="app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech" translatable="false">Sheet swipe enabled</string>
     <string name="app_components_bottomSheet_standardBottomSheet_sheetValue_tech" translatable="false">Sheet value</string>
