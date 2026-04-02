@@ -13,12 +13,9 @@
 package com.orange.ouds.app.ui.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -69,7 +66,6 @@ import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.component.rememberOudsPasswordInputState
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.isOudsInDarkTheme
 
 @Composable
@@ -94,7 +90,9 @@ fun BadgeIllustration() = ComponentIllustration {
 @Composable
 fun BottomSheetIllustration() = ComponentIllustration {
     OudsBottomSheetScaffold(
-        modifier = Modifier.clip(RectangleShape).padding(horizontal = 16.dp),
+        modifier = Modifier
+            .clip(RectangleShape)
+            .padding(horizontal = 16.dp),
         sheetPeekHeight = 120.dp,
         sheetContent = {}
     ) {}
