@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.bottomsheet
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +24,6 @@ import com.orange.ouds.core.theme.OudsTheme
 fun BottomSheetContent() {
     Text(
         modifier = Modifier
-            .fillMaxWidth()
             .padding(
                 vertical = OudsTheme.spaces.fixed.medium,
                 horizontal = OudsTheme.grids.margin
