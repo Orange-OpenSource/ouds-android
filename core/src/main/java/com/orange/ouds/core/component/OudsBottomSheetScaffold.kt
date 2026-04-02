@@ -55,11 +55,11 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier The [Modifier] to be applied to the entire scaffold.
  * @param scaffoldState The state of the bottom sheet scaffold, which controls its behavior. See [rememberBottomSheetScaffoldState].
  * @param sheetPeekHeight The height of the bottom sheet when it is collapsed.
- * @param sheetContainerColor The color of the bottom sheet container.
  * @param sheetDragHandle Toggles the visibility of the drag handle at the top of the bottom sheet. Set to `false` to hide it.
  * @param sheetSwipeEnabled Whether the sheet swiping is enabled and should react to the user's input.
  * @param topBar The top app bar of the screen, typically an [OudsTopAppBar].
  * @param snackbarHost The component to host [Snackbar]s that are pushed to be shown via [SnackbarHostState.showSnackbar], typically a [SnackbarHost].
+ * @param containerColor The color used for the background of this scaffold. Defaults to [Color.Transparent] to have no color.
  * @param content The main content of the screen. The lambda receives a [PaddingValues] that should be applied to the content root via [Modifier.padding]
  *   and [Modifier.consumeWindowInsets] to properly offset top and bottom bars. If using [Modifier.verticalScroll], apply this modifier to the child of the
  *   scroll, and not on the scroll itself.
@@ -73,11 +73,11 @@ fun OudsBottomSheetScaffold(
     modifier: Modifier = Modifier,
     scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
     sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight,
-    sheetContainerColor: Color = OudsTheme.colorScheme.overlay.modal,
     sheetDragHandle: Boolean = true,
     sheetSwipeEnabled: Boolean = true,
     topBar: @Composable (() -> Unit)? = null,
     snackbarHost: @Composable (SnackbarHostState) -> Unit = { SnackbarHost(it) },
+    containerColor: Color = Color.Transparent,
     content: @Composable (PaddingValues) -> Unit,
 ) {
     BottomSheetScaffold(
@@ -85,7 +85,7 @@ fun OudsBottomSheetScaffold(
         modifier = modifier,
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,
-        sheetContainerColor = sheetContainerColor,
+        sheetContainerColor = OudsTheme.colorScheme.overlay.modal,
         sheetShadowElevation = OudsTheme.elevations.emphasized,
         sheetDragHandle = if (sheetDragHandle) {
             { OudsBottomSheetDefaults.DragHandle() }
@@ -95,7 +95,7 @@ fun OudsBottomSheetScaffold(
         sheetSwipeEnabled = sheetSwipeEnabled,
         topBar = topBar,
         snackbarHost = snackbarHost,
-        containerColor = Color.Transparent,
+        containerColor = containerColor,
         contentColor = OudsTheme.colorScheme.content.default,
         content = content
     )
