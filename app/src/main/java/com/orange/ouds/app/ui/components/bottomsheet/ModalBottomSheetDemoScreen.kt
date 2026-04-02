@@ -122,6 +122,6 @@ private fun Code.Builder.modalBottomSheetDemoCodeSnippet(state: ModalBottomSheet
 
 @PreviewLightDark
 @Composable
-private fun PreviewBottomSheetDemoScreen() = AppPreview {
+private fun PreviewModalBottomSheetDemoScreen() = AppPreview {
     ModalBottomSheetDemoScreen()
 }
