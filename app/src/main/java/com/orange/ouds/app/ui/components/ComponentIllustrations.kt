@@ -98,6 +98,7 @@ fun BottomSheetIllustration() = ComponentIllustration {
             .clip(RectangleShape)
             .padding(horizontal = 16.dp),
         sheetPeekHeight = 120.dp,
+        sheetSwipeEnabled = false,
         sheetContent = {}
     ) {}
 }
