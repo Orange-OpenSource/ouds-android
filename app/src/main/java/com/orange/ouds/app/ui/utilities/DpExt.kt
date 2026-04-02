@@ -12,8 +12,6 @@
 
 package com.orange.ouds.app.ui.utilities
 
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 
-@Composable
-fun Dp.toIntString() = value.toInt().toString()
+fun Dp.toNumberString() = if (value % 1.0f == 0.0f) value.toInt().toString() else value.toString()

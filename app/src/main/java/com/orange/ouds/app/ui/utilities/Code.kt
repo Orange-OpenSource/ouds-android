@@ -191,7 +191,7 @@ data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : F
                 if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
             }
             is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButtonAppearance.Strong instead of Strong
-            is Dp -> "${value.value.toInt()}.dp"
+            is Dp -> "${value.toNumberString()}.dp"
             is Formattable -> value.format(context)
             else -> value.toString()
         }
