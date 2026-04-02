@@ -48,8 +48,8 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomSheetScaffoldDemoScreen() {
-    val state = rememberBottomSheetScaffoldDemoState()
+fun StandardBottomSheetDemoScreen() {
+    val state = rememberStandardBottomSheetDemoState()
     val scaffoldState = rememberBottomSheetScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -67,7 +67,7 @@ fun BottomSheetScaffoldDemoScreen() {
                         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
                         description = stringResource(id = R.string.app_components_bottomSheet_standardBottomSheet_description_text)
                     )
-                    BottomSheetScaffoldCustomization(
+                    StandardBottomSheetCustomization(
                         state = state,
                         scaffoldState = scaffoldState,
                         coroutineScope = coroutineScope
@@ -76,7 +76,7 @@ fun BottomSheetScaffoldDemoScreen() {
                         modifier = Modifier
                             .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium)
                             .padding(top = OudsTheme.spaces.fixed.medium),
-                        init = { bottomSheetScaffoldDemoCodeSnippet(state = state) }
+                        init = { standardBottomSheetDemoCodeSnippet(state = state) }
                     )
                 }
             }
@@ -86,22 +86,22 @@ fun BottomSheetScaffoldDemoScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState, scaffoldState: BottomSheetScaffoldState, coroutineScope: CoroutineScope) {
+private fun StandardBottomSheetCustomization(state: StandardBottomSheetDemoState, scaffoldState: BottomSheetScaffoldState, coroutineScope: CoroutineScope) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
             label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_state_tech),
-            chips = BottomSheetScaffoldDemoState.SheetState.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
+            chips = StandardBottomSheetDemoState.SheetState.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
             selectedChipIndex = when (scaffoldState.bottomSheetState.targetValue) {
-                SheetValue.Hidden, SheetValue.PartiallyExpanded -> BottomSheetScaffoldDemoState.SheetState.entries.indexOf(BottomSheetScaffoldDemoState.SheetState.PartiallyExpanded)
-                SheetValue.Expanded -> BottomSheetScaffoldDemoState.SheetState.entries.indexOf(BottomSheetScaffoldDemoState.SheetState.Expanded)
+                SheetValue.Hidden, SheetValue.PartiallyExpanded -> StandardBottomSheetDemoState.SheetState.entries.indexOf(StandardBottomSheetDemoState.SheetState.PartiallyExpanded)
+                SheetValue.Expanded -> StandardBottomSheetDemoState.SheetState.entries.indexOf(StandardBottomSheetDemoState.SheetState.Expanded)
             },
             onSelectionChange = { index ->
-                sheetState = BottomSheetScaffoldDemoState.SheetState.entries[index]
+                sheetState = StandardBottomSheetDemoState.SheetState.entries[index]
                 coroutineScope.launch {
                     when (sheetState) {
-                        BottomSheetScaffoldDemoState.SheetState.Expanded -> scaffoldState.bottomSheetState.expand()
-                        BottomSheetScaffoldDemoState.SheetState.PartiallyExpanded -> scaffoldState.bottomSheetState.partialExpand()
+                        StandardBottomSheetDemoState.SheetState.Expanded -> scaffoldState.bottomSheetState.expand()
+                        StandardBottomSheetDemoState.SheetState.PartiallyExpanded -> scaffoldState.bottomSheetState.partialExpand()
                     }
                 }
             },
@@ -135,7 +135,7 @@ private fun BottomSheetScaffoldCustomization(state: BottomSheetScaffoldDemoState
     }
 }
 
-private fun Code.Builder.bottomSheetScaffoldDemoCodeSnippet(state: BottomSheetScaffoldDemoState) {
+private fun Code.Builder.standardBottomSheetDemoCodeSnippet(state: StandardBottomSheetDemoState) {
     functionCall("OudsBottomSheetScaffold") {
         trailingLambda = true
         typedArgument("sheetPeekHeight", state.sheetPeekHeight)
@@ -152,6 +152,6 @@ private fun Code.Builder.bottomSheetScaffoldDemoCodeSnippet(state: BottomSheetSc
 
 @PreviewLightDark
 @Composable
-private fun PreviewBottomSheetDemoScreen() = AppPreview {
-    BottomSheetScaffoldDemoScreen()
+private fun PreviewStandardBottomSheetDemoScreen() = AppPreview {
+    StandardBottomSheetDemoScreen()
 }
