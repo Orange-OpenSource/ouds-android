@@ -60,7 +60,7 @@ fun StandardBottomSheetDemoScreen() {
                 sheetPeekHeight = sheetPeekHeight,
                 sheetSwipeEnabled = sheetSwipeEnabled,
                 sheetDragHandle = sheetDragHandle,
-                sheetContent = { BottomSheetContent() }
+                sheetContent = { BottomSheetDemoContent() }
             ) { innerPadding ->
                 ScreenMainContentColumn(paddingValues = innerPadding) {
                     DetailScreenDescription(
