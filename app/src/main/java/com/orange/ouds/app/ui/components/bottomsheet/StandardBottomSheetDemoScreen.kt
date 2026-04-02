@@ -67,7 +67,7 @@ fun StandardBottomSheetDemoScreen() {
                         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
                         description = stringResource(id = R.string.app_components_bottomSheet_standardBottomSheet_description_text)
                     )
-                    StandardBottomSheetCustomization(
+                    StandardBottomSheetDemoCustomization(
                         state = state,
                         scaffoldState = scaffoldState,
                         coroutineScope = coroutineScope
@@ -86,7 +86,7 @@ fun StandardBottomSheetDemoScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun StandardBottomSheetCustomization(state: StandardBottomSheetDemoState, scaffoldState: BottomSheetScaffoldState, coroutineScope: CoroutineScope) {
+private fun StandardBottomSheetDemoCustomization(state: StandardBottomSheetDemoState, scaffoldState: BottomSheetScaffoldState, coroutineScope: CoroutineScope) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,

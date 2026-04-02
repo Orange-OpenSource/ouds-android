@@ -59,7 +59,7 @@ fun ModalBottomSheetDemoScreen() {
                     modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.medium),
                     description = stringResource(id = R.string.app_components_bottomSheet_modalBottomSheet_description_text)
                 )
-                ModalBottomSheetCustomization(
+                ModalBottomSheetDemoCustomization(
                     state = state,
                     onButtonClick = { modalBottomSheetVisible = true }
                 )
@@ -85,7 +85,7 @@ fun ModalBottomSheetDemoScreen() {
 }
 
 @Composable
-private fun ModalBottomSheetCustomization(state: ModalBottomSheetDemoState, onButtonClick: () -> Unit) {
+private fun ModalBottomSheetDemoCustomization(state: ModalBottomSheetDemoState, onButtonClick: () -> Unit) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_bottomSheet_modalBottomSheet_dragHandle_tech),
