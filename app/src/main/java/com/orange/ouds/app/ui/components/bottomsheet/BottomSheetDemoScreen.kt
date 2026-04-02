@@ -28,6 +28,6 @@ fun BottomSheetContent() {
                 vertical = OudsTheme.spaces.fixed.medium,
                 horizontal = OudsTheme.grids.margin
             ),
-        text = stringResource(R.string.app_components_bottomSheet_sheetContentExample_text)
+        text = stringResource(R.string.app_components_bottomSheet_sheetContent_text)
     )
 }
