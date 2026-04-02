@@ -21,21 +21,21 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.Dp
-import com.orange.ouds.app.ui.components.bottomsheet.BottomSheetScaffoldDemoState.SheetState
+import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoState.SheetState
 import com.orange.ouds.app.ui.utilities.toIntString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun rememberBottomSheetScaffoldDemoState(
+fun rememberStandardBottomSheetDemoState(
     sheetState: SheetState = SheetState.PartiallyExpanded,
     sheetDragHandle: Boolean = true,
     sheetSwipeEnabled: Boolean = true,
     sheetPeekHeight: Dp = BottomSheetDefaults.SheetPeekHeight
-) = rememberSaveable(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight, saver = BottomSheetScaffoldDemoState.Saver) {
-    BottomSheetScaffoldDemoState(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight)
+) = rememberSaveable(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight, saver = StandardBottomSheetDemoState.Saver) {
+    StandardBottomSheetDemoState(sheetState, sheetDragHandle, sheetSwipeEnabled, sheetPeekHeight)
 }
 
-class BottomSheetScaffoldDemoState(
+class StandardBottomSheetDemoState(
     sheetState: SheetState,
     sheetDragHandle: Boolean,
     sheetSwipeEnabled: Boolean,
@@ -52,7 +52,7 @@ class BottomSheetScaffoldDemoState(
                 )
             },
             restore = { list: List<Any?> ->
-                BottomSheetScaffoldDemoState(
+                StandardBottomSheetDemoState(
                     list[0] as SheetState,
                     list[1] as Boolean,
                     list[2] as Boolean,
