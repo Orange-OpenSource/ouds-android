@@ -44,12 +44,14 @@ class StandardBottomSheetDemoState(
     companion object {
         val Saver = listSaver(
             save = { state ->
-                listOf(
-                    state.sheetState,
-                    state.sheetDragHandle,
-                    state.sheetSwipeEnabled,
-                    state.sheetPeekHeight.value
-                )
+                with(state) {
+                    listOf(
+                        sheetState,
+                        sheetDragHandle,
+                        sheetSwipeEnabled,
+                        sheetPeekHeight.value
+                    )
+                }
             },
             restore = { list: List<Any?> ->
                 StandardBottomSheetDemoState(

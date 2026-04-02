@@ -36,10 +36,12 @@ class ModalBottomSheetDemoState(
     companion object {
         val Saver = listSaver(
             save = { state ->
-                listOf(
-                    state.dragHandle,
-                    state.sheetGesturesEnabled
-                )
+                with(state) {
+                    listOf(
+                        dragHandle,
+                        sheetGesturesEnabled
+                    )
+                }
             },
             restore = { list: List<Any?> ->
                 ModalBottomSheetDemoState(
