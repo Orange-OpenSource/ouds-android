@@ -105,7 +105,7 @@ private fun StandardBottomSheetCustomization(state: StandardBottomSheetDemoState
                     }
                 }
             },
-            bottomSheetLocation = false
+            isInBottomSheet = false
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech),

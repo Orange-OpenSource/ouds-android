@@ -87,7 +87,7 @@ fun CustomizationFilterChips(
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
-    bottomSheetLocation: Boolean = true
+    isInBottomSheet: Boolean = true
 ) {
     CustomizationFilterChips(
         label = label,
@@ -96,7 +96,7 @@ fun CustomizationFilterChips(
         onSelectionChange = onSelectionChange,
         applyTopPadding = applyTopPadding,
         modifier = modifier,
-        bottomSheetLocation = bottomSheetLocation
+        isInBottomSheet = isInBottomSheet
     )
 }
 
@@ -109,7 +109,7 @@ fun CustomizationFilterChips(
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
-    bottomSheetLocation: Boolean = true
+    isInBottomSheet: Boolean = true
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
@@ -123,9 +123,12 @@ fun CustomizationFilterChips(
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
         // That is why we set canFocus here again
-        val chipsRowCanFocus = if (bottomSheetLocation) {
+        val chipsRowCanFocus = if (isInBottomSheet) {
             LocalCustomizationBottomSheetValue.current == SheetValue.Expanded
-        } else true
+        } else {
+            true
+        }
+        
         Row(
             modifier = Modifier
                 .fillMaxWidth()
