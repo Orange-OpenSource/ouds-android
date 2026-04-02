@@ -48,7 +48,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBarDemoScreen() {
     val state = rememberTopAppBarDemoState()

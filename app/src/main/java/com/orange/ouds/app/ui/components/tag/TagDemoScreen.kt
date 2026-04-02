@@ -15,7 +15,6 @@ package com.orange.ouds.app.ui.components.tag
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -49,7 +48,6 @@ import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TagDemoScreen() {
     val state = rememberTagDemoState()
