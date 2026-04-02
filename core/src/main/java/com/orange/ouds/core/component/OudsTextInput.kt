@@ -140,7 +140,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   Defaults to `false`.
  * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
- *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
+ *   By default, this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
  *   [ImeAction.Next] would switch the focus to the next focusable item on the screen.
  * @param onTextLayout Callback that is executed when the text layout becomes queryable. The callback receives a function that returns a [TextLayoutResult] if
  *   the layout can be calculated, or null if it cannot. The function reads the layout result from a snapshot state object, and will invalidate its caller when
@@ -280,7 +280,7 @@ fun OudsTextInput(
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
  *   For example, to draw a cursor or selection around the text.
- * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
+ * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -409,7 +409,7 @@ fun OudsTextInput(
  * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
  *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
  *   For example, to draw a cursor or selection around the text.
- * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default no visual transformation is applied.
+ * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -714,35 +714,10 @@ internal fun OudsTextInputDecorator(
             }
 
             // Helper text / Error description
-            if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = spacePaddingBlockTopHelperText.value)
-                        .padding(horizontal = spacePaddingInlineDefault.value)
-                        .clearAndSetSemantics {
-                            if (hasError) {
-                                error(error.message)
-                            } else {
-                                contentDescription = helperText.orEmpty()
-                            }
-                        },
-                    text = if (hasError) error.message else helperText.orEmpty(),
-                    style = OudsTheme.typography.label.default.medium,
-                    color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(state = state)
-                )
-            }
+            OptionalHelperOrErrorText(state = state, hasError = hasError, error = error, helperText = helperText)
 
             // Helper link
-            if (!helperLink?.text.isNullOrBlank()) {
-                OudsLink(
-                    modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
-                    label = helperLink.text,
-                    onClick = helperLink.onClick,
-                    size = OudsLinkSize.Small,
-                    enabled = state != OudsTextInputState.Disabled
-                )
-            }
+            OptionalHelperLink(state = state, helperLink = helperLink)
         }
     }
 }
@@ -765,7 +740,45 @@ internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: Ouds
 }
 
 @Composable
-private fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
+internal fun OptionalHelperOrErrorText(state: OudsTextInputState, hasError: Boolean, error: OudsError?, helperText: String?) {
+    val errorMessage = error?.message.orEmpty()
+    if ((!hasError && !helperText.isNullOrBlank()) || (hasError && errorMessage.isNotBlank())) {
+        with(OudsTheme.componentsTokens.textInput) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = spacePaddingBlockTopHelperText.value)
+                    .padding(horizontal = spacePaddingInlineDefault.value)
+                    .clearAndSetSemantics {
+                        if (hasError) {
+                            error(errorMessage)
+                        } else {
+                            contentDescription = helperText.orEmpty()
+                        }
+                    },
+                text = if (hasError) errorMessage else helperText.orEmpty(),
+                style = OudsTheme.typography.label.default.medium,
+                color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(state = state)
+            )
+        }
+    }
+}
+
+@Composable
+internal fun OptionalHelperLink(state: OudsTextInputState, helperLink: OudsTextInputHelperLink?) {
+    if (!helperLink?.text.isNullOrBlank()) {
+        OudsLink(
+            modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
+            label = helperLink.text,
+            onClick = helperLink.onClick,
+            size = OudsLinkSize.Small,
+            enabled = state != OudsTextInputState.Disabled
+        )
+    }
+}
+
+@Composable
+internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
     val borderWidth = if (state == OudsTextInputState.Focused) borderWidthFocus else borderWidthDefault
     return@with borderWidth.value.takeUnlessHairline
 }
@@ -776,7 +789,7 @@ private fun PrefixSuffixText(text: String, state: OudsTextInputState, modifier: 
 }
 
 @Composable
-private fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
+internal fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
     return if (error) {
         OudsTheme.colorScheme.surface.status.negative.muted
     } else {
@@ -808,7 +821,7 @@ private fun errorContentColor(state: OudsTextInputState) = when (state) {
 }
 
 @Composable
-private fun errorIconColor(state: OudsTextInputState) = when (state) {
+internal fun errorIconColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.negative.enabled
     OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
     OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.focus
@@ -816,11 +829,11 @@ private fun errorIconColor(state: OudsTextInputState) = when (state) {
 }
 
 /**
- * Draws a bottom border on the text input by respecting [cornerRadius] provided.
+ * Draws a bottom border on a text input by respecting [cornerRadius] provided.
  * Color and thickness of the border are provided by [state].
  */
 @Composable
-private fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
+internal fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
     val thickness = borderWidth(state)
     val color = borderColor(state = state, outlined = outlined, error = error)
 
@@ -895,7 +908,7 @@ private fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, 
 }
 
 @Composable
-private fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
+internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
     return if (outlined) {
         if (error) {
             errorContentColor(state = state)
@@ -921,7 +934,7 @@ private fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boo
 }
 
 @Composable
-private fun labelColor(state: OudsTextInputState, error: Boolean): Color {
+internal fun labelColor(state: OudsTextInputState, error: Boolean): Color {
     return when {
         error -> errorContentColor(state = state)
         state == OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
@@ -930,7 +943,7 @@ private fun labelColor(state: OudsTextInputState, error: Boolean): Color {
 }
 
 @Composable
-private fun decorativeContentColor(state: OudsTextInputState) =
+internal fun decorativeContentColor(state: OudsTextInputState) =
     if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
 
 @Composable
@@ -945,7 +958,7 @@ internal enum class OudsTextInputState {
 }
 
 /**
- * An helper link displayed below or in place of the helper text.
+ * A helper link displayed below or in place of the helper text.
  */
 data class OudsTextInputHelperLink(val text: String, val onClick: () -> Unit)
 
@@ -1085,7 +1098,7 @@ internal fun PreviewOudsTextInput(
     parameter: OudsTextInputPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { state ->
+        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
@@ -1111,7 +1124,7 @@ private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithR
 @Composable
 internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { state ->
+        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(""),
                 label = "Label",

@@ -29,6 +29,7 @@ object OudsVersion {
         const val RadioButton = "1.4.0"
         const val Switch = "1.5.0"
         const val Tag = "1.4.0"
+        const val TextArea = "1.1.0"
         const val TextInput = "1.3.0"
     }
 

@@ -40,6 +40,7 @@ import org.junit.runners.Suite
     OudsSwitchItemTest::class,
     OudsSwitchTest::class,
     OudsTagTest::class,
+    OudsTextAreaTest::class,
     OudsTextInputTest::class,
     OudsTopAppBarTest::class
 )
