@@ -21,7 +21,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
-fun BottomSheetContent() {
+fun BottomSheetDemoContent() {
     Text(
         modifier = Modifier
             .padding(

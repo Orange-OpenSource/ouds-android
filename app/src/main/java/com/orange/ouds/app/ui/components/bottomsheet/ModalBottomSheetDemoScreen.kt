@@ -76,7 +76,7 @@ fun ModalBottomSheetDemoScreen() {
                         onDismissRequest = { modalBottomSheetVisible = false },
                         sheetState = sheetState
                     ) {
-                        BottomSheetContent()
+                        BottomSheetDemoContent()
                     }
                 }
             }
