@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.floatingactionbutton
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -39,7 +38,6 @@ import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsLargeFloatingActionButton
 import com.orange.ouds.core.component.OudsSmallFloatingActionButton
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FloatingActionButtonDemoScreen() {
     val state = rememberFloatingActionButtonDemoState()

@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.components.passwordinput
 
 import androidx.compose.foundation.text.input.TextObfuscationMode
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -36,7 +35,6 @@ import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.theme.OudsVersion
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordInputDemoScreen() {
     val state = rememberPasswordInputDemoState()
