@@ -12,7 +12,6 @@
 
 package com.orange.ouds.app.ui.components.bottomsheet
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,7 +19,6 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun rememberModalBottomSheetDemoState(
     dragHandle: Boolean = true,
