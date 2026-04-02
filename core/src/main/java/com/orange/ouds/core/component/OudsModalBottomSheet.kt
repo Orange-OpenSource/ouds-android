@@ -23,12 +23,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.SheetValue.Hidden
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -103,9 +107,17 @@ internal fun PreviewOudsModalBottomSheet(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    val density = LocalDensity.current
     OudsModalBottomSheet(
         onDismissRequest = { },
-        sheetState = rememberModalBottomSheetState()
+        sheetState = remember {
+            SheetState(
+                skipPartiallyExpanded = true,
+                positionalThreshold = { with(density) { 56.dp.toPx() } },
+                velocityThreshold = { with(density) { 125.dp.toPx() } },
+                initialValue = SheetValue.Expanded,
+            )
+        }
     ) {
         Column(modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)) {
             Text(text = "Modal bottom sheet content.")

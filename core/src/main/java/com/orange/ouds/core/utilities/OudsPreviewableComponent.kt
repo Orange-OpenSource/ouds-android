@@ -97,6 +97,7 @@ import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
+import com.orange.ouds.core.component.PreviewOudsModalBottomSheet
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
@@ -190,16 +191,32 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object BottomSheetScaffold : OudsPreviewableComponent {
+    object BottomSheet {
 
-        override val parameters: List<Any> = emptyList()
+        object Standard : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsBottomSheetScaffold(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled
-            )
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBottomSheetScaffold(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        object Modal : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsModalBottomSheet(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
