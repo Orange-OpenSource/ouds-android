@@ -172,11 +172,14 @@ fun OudsPasswordInput(
                         constrainedMaxWidth = constrainedMaxWidth
                     )
                 },
-                textObfuscationCharacter = '\u25cf'
+                textObfuscationCharacter = OudsPasswordInputTextObfuscationCharacter
             )
         }
     )
 }
+
+
+internal const val OudsPasswordInputTextObfuscationCharacter = '\u25cf'
 
 /**
  * Default values for [OudsPasswordInput].

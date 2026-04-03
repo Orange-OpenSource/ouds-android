@@ -48,12 +48,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -78,6 +75,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -553,33 +551,15 @@ internal fun OudsTextInputDecorator(
 ) {
     val hasError = error != null
     with(OudsTheme.componentsTokens.textInput) {
-        val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
-        val shape = RoundedCornerShape(borderRadius)
-
-        val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
-            // outlined
-            borderWidth(state)?.let { borderWidth ->
-                Modifier.border(
-                    width = borderWidth,
-                    color = borderColor(state = state, outlined = outlined, error = hasError),
-                    shape = shape
-                )
-            }.orElse {
-                Modifier
-            }
-        } else {
-            // filled
-            Modifier
-                .bottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = hasError)
-                .background(
-                    color = backgroundColor(state = state, outlined = outlined, error = hasError),
-                    shape = shape
-                )
-        }
+        val borderWidth = borderWidth(state)
+        val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
+        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column {
             Row(
-                modifier = styleModifier
+                modifier = Modifier
+                    .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
+                    .background(color = backgroundColor, shape = textInputShape)
                     .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified, minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
@@ -714,24 +694,12 @@ internal fun OudsTextInputDecorator(
             }
 
             // Helper text / Error description
-            if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = spacePaddingBlockTopHelperText.value)
-                        .padding(horizontal = spacePaddingInlineDefault.value)
-                        .clearAndSetSemantics {
-                            if (hasError) {
-                                error(error.message)
-                            } else {
-                                contentDescription = helperText.orEmpty()
-                            }
-                        },
-                    text = if (hasError) error.message else helperText.orEmpty(),
-                    style = OudsTheme.typography.label.default.medium,
-                    color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(state = state)
-                )
-            }
+            OudsTextInputHelperTextErrorMessage(
+                modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
+                enabled = state != OudsTextInputState.Disabled,
+                error = error,
+                helperText = helperText
+            )
 
             // Helper link
             if (!helperLink?.text.isNullOrBlank()) {
@@ -743,6 +711,30 @@ internal fun OudsTextInputDecorator(
                     enabled = state != OudsTextInputState.Disabled
                 )
             }
+        }
+    }
+}
+
+@Composable
+internal fun OudsTextInputHelperTextErrorMessage(enabled: Boolean, error: OudsError?, helperText: String?, modifier: Modifier = Modifier) {
+    with(OudsTheme.componentsTokens.textInput) {
+        val hasError = error != null
+        if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
+            Text(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = spacePaddingBlockTopHelperText.value)
+                    .clearAndSetSemantics {
+                        if (hasError) {
+                            error(error.message)
+                        } else {
+                            contentDescription = helperText.orEmpty()
+                        }
+                    },
+                text = if (hasError) error.message else helperText.orEmpty(),
+                style = OudsTheme.typography.label.default.medium,
+                color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
+            )
         }
     }
 }
@@ -815,82 +807,32 @@ private fun errorIconColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
 }
 
+@Composable
+private fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, state: OudsTextInputState, outlined: Boolean, error: OudsError?): Modifier {
+    return if (borderWidth != null && borderColor != null) {
+        if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
+            border(width = borderWidth, color = borderColor, shape = textInputShape)
+        } else {
+            textInputBottomBorder(state = state, outlined = outlined, cornerRadius = textInputBorderRadius, error = error != null)
+        }
+    } else {
+        this
+    }
+}
+
 /**
  * Draws a bottom border on the text input by respecting [cornerRadius] provided.
  * Color and thickness of the border are provided by [state].
  */
 @Composable
-private fun Modifier.bottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
-    val thickness = borderWidth(state)
-    val color = borderColor(state = state, outlined = outlined, error = error)
+private fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
+    val width = borderWidth(state)
 
-    return drawWithContent {
-        drawContent()
-        if (thickness != null) {
-            if (cornerRadius > 0.dp) {
-                val cornerRadiusPx = cornerRadius.toPx()
-                val path = Path().apply {
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = 0f,
-                            bottom = size.height,
-                            right = 2 * cornerRadiusPx
-                        ),
-                        startAngleDegrees = 180f,
-                        sweepAngleDegrees = -90f,
-                        forceMoveTo = false
-                    )
-
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = size.width - 2 * cornerRadiusPx,
-                            bottom = size.height,
-                            right = size.width,
-                        ),
-                        startAngleDegrees = 90f,
-                        sweepAngleDegrees = -90f,
-                        forceMoveTo = false
-                    )
-
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = size.width - 2 * cornerRadiusPx,
-                            bottom = size.height - thickness.toPx(),
-                            right = size.width,
-                        ),
-                        startAngleDegrees = 0f,
-                        sweepAngleDegrees = 90f,
-                        forceMoveTo = false
-                    )
-
-                    arcTo(
-                        rect = Rect(
-                            top = size.height - 2 * cornerRadiusPx,
-                            left = 0f,
-                            right = 2 * cornerRadiusPx,
-                            bottom = size.height - thickness.toPx()
-                        ),
-                        startAngleDegrees = 90f,
-                        sweepAngleDegrees = 90f,
-                        forceMoveTo = false
-                    )
-
-                    close()
-                }
-                drawPath(path, color = color)
-            } else {
-                val lineY = size.height - (thickness.toPx() / 2)
-                drawLine(
-                    color = color,
-                    start = Offset(0f, lineY),
-                    end = Offset(size.width, lineY),
-                    strokeWidth = thickness.toPx()
-                )
-            }
-        }
+    return if (width != null) {
+        val color = borderColor(state = state, outlined = outlined, error = error)
+        bottomBorder(width = width, color = color, cornerRadius = cornerRadius)
+    } else {
+        this
     }
 }
 
@@ -930,8 +872,10 @@ private fun labelColor(state: OudsTextInputState, error: Boolean): Color {
 }
 
 @Composable
-private fun decorativeContentColor(state: OudsTextInputState) =
-    if (state == OudsTextInputState.Disabled) OudsTheme.colorScheme.action.disabled else OudsTheme.colorScheme.content.muted
+private fun decorativeContentColor(enabled: Boolean) = if (enabled) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.action.disabled
+
+@Composable
+private fun decorativeContentColor(state: OudsTextInputState) = decorativeContentColor(state != OudsTextInputState.Disabled)
 
 @Composable
 internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
@@ -939,6 +883,16 @@ internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typograph
 @Composable
 internal fun textInputEnabled(state: OudsTextInputState) =
     state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
+
+internal val textInputBorderRadius: Dp
+    @Composable
+    get() = with(OudsTheme.componentsTokens.textInput) {
+        if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded else borderRadiusDefault
+    }.value
+
+private val textInputShape: Shape
+    @Composable
+    get() = RoundedCornerShape(textInputBorderRadius)
 
 internal enum class OudsTextInputState {
     Enabled, Hovered, Disabled, Focused, ReadOnly, Loading

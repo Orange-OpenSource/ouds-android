@@ -134,15 +134,15 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(
                         lambdaArgument("onClick", {})
                         labelArgument(label)
                         functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
-                            painterArgument(id = item.iconResourceProvider.getResource(themeDrawableResources))
+                            painterArgument(resId = item.iconResourceProvider.getResource(themeDrawableResources))
                         }
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
                                 when (lastItemBadge) {
                                     NavigationBarDemoState.ItemBadge.None -> {}
-                                    NavigationBarDemoState.ItemBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                    NavigationBarDemoState.ItemBadge.Standard -> contentDescriptionArgument(resId = R.string.app_components_common_unreadNotificationsBadge_a11y)
                                     NavigationBarDemoState.ItemBadge.Count -> contentDescriptionArgument(
-                                        id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                        resId = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
                                         count = ItemBadgeCount,
                                         ItemBadgeCount
                                     )

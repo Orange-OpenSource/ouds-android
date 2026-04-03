@@ -25,7 +25,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalCursorBlinkEnabled
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Density
@@ -54,6 +56,8 @@ import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.component.OudsPasswordInput
+import com.orange.ouds.core.component.OudsPinCodeInput
+import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
@@ -199,6 +203,21 @@ fun PasswordInputIllustration() = ComponentIllustration {
         label = stringResource(id = R.string.app_components_common_label_label),
         helperText = stringResource(id = R.string.app_components_passwordInputHelperText_label)
     )
+}
+
+@Composable
+fun PinCodeInputIllustration() = ComponentIllustration {
+    CompositionLocalProvider(
+        LocalInspectionMode provides true,
+        LocalCursorBlinkEnabled provides false
+    ) {
+        OudsPinCodeInput(
+            modifier = Modifier.padding(horizontal = 12.dp),
+            value = "12",
+            onValueChange = {},
+            length = OudsPinCodeInputLength.Four
+        )
+    }
 }
 
 @Composable

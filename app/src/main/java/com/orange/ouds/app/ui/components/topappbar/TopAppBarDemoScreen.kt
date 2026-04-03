@@ -268,9 +268,9 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
                                         functionCallArgument("badge", OudsTopAppBarActionBadge::class.simpleName.orEmpty()) {
                                             when (lastActionIconBadge) {
                                                 TopAppBarDemoState.ActionIconBadge.None -> {}
-                                                TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(id = R.string.app_components_common_unreadNotificationsBadge_a11y)
+                                                TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(resId = R.string.app_components_common_unreadNotificationsBadge_a11y)
                                                 TopAppBarDemoState.ActionIconBadge.Count -> contentDescriptionArgument(
-                                                    id = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
+                                                    resId = R.plurals.app_components_common_unreadMessageCountBadge_a11y,
                                                     count = ActionIconBadgeCount,
                                                     ActionIconBadgeCount
                                                 )
