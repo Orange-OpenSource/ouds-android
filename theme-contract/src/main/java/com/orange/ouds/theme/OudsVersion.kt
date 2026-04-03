@@ -16,7 +16,7 @@ package com.orange.ouds.theme
 
 object OudsVersion {
     object Component {
-        const val Alert = "1.1.0"
+        const val Alert = "1.0.0"
         const val Badge = "1.2.0"
         const val Bar = "1.0.0"
         const val BulletList = "1.0.0"
@@ -26,12 +26,13 @@ object OudsVersion {
         const val Divider = "1.0.0"
         const val Link = "2.2.0"
         const val PasswordInput = "1.2.0"
+        const val PinCodeInput = "1.2.0"
         const val RadioButton = "1.4.0"
         const val Switch = "1.5.0"
         const val Tag = "1.4.0"
+        const val TextArea = "1.1.0"
         const val TextInput = "1.3.0"
     }
-
     object Tokens {
         const val OudsCore = "1.9.0"
         const val AndroidCore = "1.0.0"
