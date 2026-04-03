@@ -610,7 +610,6 @@ internal fun OudsTextAreaDecorator(
                                 text = placeholder,
                                 style = OudsTheme.typography.label.default.large,
                                 color = decorativeContentColor(state = state),
-                                maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
                         }
