@@ -55,6 +55,8 @@ import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.hideFromAccessibility
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.substring
@@ -149,20 +151,20 @@ fun OudsPinCodeInput(
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    BasicSecureTextField(
-        modifier = modifier
-            .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
-            .focusRequester(focusRequester),
-        state = textFieldState,
-        keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
-        onKeyboardAction = onKeyboardAction,
-        inputTransformation = inputTransformation(length),
-        interactionSource = interactionSource,
-        decorator = {
-            OudsPinCodeInputTooltipBox(
-                textFieldState = textFieldState,
-                length = length
-            ) {
+    OudsPinCodeInputTooltipBox(
+        textFieldState = textFieldState,
+        length = length
+    ) {
+        BasicSecureTextField(
+            modifier = modifier
+                .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+                .focusRequester(focusRequester),
+            state = textFieldState,
+            keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
+            onKeyboardAction = onKeyboardAction,
+            inputTransformation = inputTransformation(length),
+            interactionSource = interactionSource,
+            decorator = {
                 OudsPinCodeInputDecorator(
                     textFieldState = textFieldState,
                     length = length,
@@ -177,8 +179,8 @@ fun OudsPinCodeInput(
                     interactionSource = interactionSource
                 )
             }
-        }
-    )
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -259,7 +261,8 @@ private fun OudsPinCodeInputDecorator(
                         else -> OudsDigitInputState.Enabled
                     }
                     OudsDigitInput(
-                        modifier = Modifier.width(digitWidth),
+                        modifier = Modifier.width(digitWidth)
+                            .semantics { hideFromAccessibility() },
                         digit = textFieldState.text.getOrNull(index),
                         onClick = {
                             onDigitClick(index)
