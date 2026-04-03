@@ -103,6 +103,12 @@
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
 
+    <!-- Components: bottom sheet -->
+    <string name="app_components_bottomSheet_description_text">Une Bottom sheet affiche un contenu secondaire ancré en bas de l\'écran.</string> <!-- TODO -->
+    <string name="app_components_bottomSheet_sheetContent_text">Contenu de la bottom sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_description_text">Les Bottom sheets standards coexistent avec le contenu de l\'écran principal, permettant aux utilisateurs d\'interagir simultanément avec les deux.</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_description_text">Les Bottom sheet modales affichent un contenu qui bloque temporairement toute interaction avec l\'écran principal.</string>
+
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_description_text">La Bullet list (ou liste à puces) est un élément d\'interface utilisateur qui permet de visualiser des éléments de texte individuels liés, regroupés par ordre alphabétique ; ces éléments commencent généralement par un chiffre ou une puce.</string>
 

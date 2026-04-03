@@ -24,6 +24,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -38,6 +41,7 @@ import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.component.OudsBulletList
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsButton
@@ -81,6 +85,20 @@ fun BadgeIllustration() = ComponentIllustration {
         status = OudsBadgeStatus.Negative,
         size = OudsBadgeSize.Large
     )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BottomSheetIllustration() = ComponentIllustration {
+    OudsBottomSheetScaffold(
+        modifier = Modifier
+            .clip(RectangleShape)
+            .padding(horizontal = 16.dp),
+        sheetPeekHeight = 120.dp,
+        sheetSwipeEnabled = false,
+        sheetContent = {},
+        containerColor = Color.Transparent
+    ) {}
 }
 
 @Composable
