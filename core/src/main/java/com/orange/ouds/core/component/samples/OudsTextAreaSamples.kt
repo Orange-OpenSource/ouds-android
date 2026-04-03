@@ -18,15 +18,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsTextAreaStateBasedSample() {
     OudsTextArea(
-        textFieldState = rememberTextFieldState(),
+        textFieldState = rememberTextFieldState("Text"),
         label = "Label",
         placeholder = "Placeholder",
         loader = OudsTextInputLoader(null),
@@ -37,7 +39,7 @@ internal fun OudsTextAreaStateBasedSample() {
 
 @Composable
 internal fun OudsTextAreaValueBasedSample() {
-    var value by remember { mutableStateOf("Text content") }
+    var value by remember { mutableStateOf("Text") }
     OudsTextArea(
         value = value,
         onValueChange = { value = it },
@@ -71,4 +73,28 @@ internal fun OudsTextAreaValueBasedErrorSample() {
         outlined = true,
         error = OudsError(message = "This field can't be empty.")
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaStateBasedSample() = OudsPreview {
+    OudsTextAreaStateBasedSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaValueBasedSample() = OudsPreview {
+    OudsTextAreaValueBasedSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaStateBasedErrorSample() = OudsPreview {
+    OudsTextAreaStateBasedErrorSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaValueBasedErrorSample() = OudsPreview {
+    OudsTextAreaValueBasedErrorSample()
 }
