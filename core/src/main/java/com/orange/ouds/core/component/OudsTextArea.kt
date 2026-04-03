@@ -573,7 +573,7 @@ internal fun OudsTextAreaDecorator(
                 )
         }
 
-        Column {
+        Column(modifier = Modifier.sizeIn(minWidth = sizeMinWidth.dp)) {
             Row(
                 modifier = styleModifier
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
