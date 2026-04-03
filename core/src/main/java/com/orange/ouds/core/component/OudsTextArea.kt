@@ -576,7 +576,6 @@ internal fun OudsTextAreaDecorator(
         Column {
             Row(
                 modifier = styleModifier
-                    .height(IntrinsicSize.Max)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(vertical = textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
