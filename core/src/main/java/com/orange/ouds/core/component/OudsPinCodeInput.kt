@@ -241,8 +241,8 @@ private fun OudsPinCodeInputDecorator(
     val smallDeviceSpecificRules = smallDeviceSpecificRules(length)
     BoxWithConstraints(contentAlignment = Alignment.Center) {
         val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
-        val totalSpace = horizontalSpace * (length.value - 1)
-        val digitWidth = (maxWidth - totalSpace) / length.value
+        val totalHorizontalSpace = horizontalSpace * (length.value - 1)
+        val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
         ConstraintLayout {
             val (row, helperTextErrorMessage) = createRefs()
             Row(
