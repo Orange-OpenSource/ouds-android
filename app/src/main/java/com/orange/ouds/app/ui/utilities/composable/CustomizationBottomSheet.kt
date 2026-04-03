@@ -187,7 +187,7 @@ private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, sheetState: She
 @Composable
 private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
     val scrollBarColor = OudsTheme.colorScheme.action.disabled
-    val scrollbarWidth = 4.dp
+    val scrollBarWidth = 4.dp
 
     return drawWithContent {
         drawContent()
@@ -200,8 +200,8 @@ private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
 
         drawRect(
             color = scrollBarColor,
-            topLeft = Offset(viewportWidth - scrollbarWidth.toPx(), scrollBarStartOffset),
-            size = Size(scrollbarWidth.toPx(), scrollBarHeight)
+            topLeft = Offset(viewportWidth - scrollBarWidth.toPx(), scrollBarStartOffset),
+            size = Size(scrollBarWidth.toPx(), scrollBarHeight)
         )
     }
 }

@@ -579,7 +579,7 @@ internal fun OudsTextAreaDecorator(
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(vertical = textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
-                    .verticalScrollbar(scrollState = scrollState),
+                    .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
             ) {
@@ -667,9 +667,9 @@ internal fun OudsTextAreaDecorator(
 }
 
 @Composable
-private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
+private fun Modifier.verticalScrollBar(scrollState: ScrollState): Modifier {
     val scrollBarColor = OudsTheme.colorScheme.action.disabled
-    val scrollbarWidth = 4.dp
+    val scrollBarWidth = 4.dp
 
     return if (scrollState.maxValue > 0) {
         drawWithContent {
@@ -685,8 +685,8 @@ private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
                 drawRoundRect(
                     color = scrollBarColor,
                     cornerRadius = CornerRadius(10f, 10f),
-                    topLeft = Offset(viewportWidth - scrollbarWidth.toPx(), scrollBarStartOffset),
-                    size = Size(scrollbarWidth.toPx(), scrollBarHeight)
+                    topLeft = Offset(viewportWidth - scrollBarWidth.toPx(), scrollBarStartOffset),
+                    size = Size(scrollBarWidth.toPx(), scrollBarHeight)
                 )
             }
         }
