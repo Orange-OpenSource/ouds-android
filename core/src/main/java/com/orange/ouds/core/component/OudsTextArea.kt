@@ -23,14 +23,13 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -765,15 +764,11 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(theme: OudsThemeContract, co
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsTextAreaMultiLineValue() = PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme())
+private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMultilineValuePreviewParameterProvider::class) lineCount: Int) = PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme(), lineCount = lineCount)
 
 @Composable
-internal fun PreviewOudsTextAreaMultiLineValue(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    Column {
-        MultiLineValueTextArea(3)
-        MultiLineValueTextArea(5)
-        MultiLineValueTextArea(12)
-    }
+internal fun PreviewOudsTextAreaMultiLineValue(theme: OudsThemeContract, lineCount: Int) = OudsPreview(theme = theme) {
+    MultiLineValueTextArea(lineCount)
 }
 
 @Composable
@@ -798,6 +793,8 @@ internal data class OudsTextAreaPreviewParameter(
 internal class OudsTextAreaPreviewParameterProvider : BasicPreviewParameterProvider<OudsTextAreaPreviewParameter>(*previewParameterValues.toTypedArray())
 
 internal class OudsTextAreaConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+internal class OudsTextAreaMultilineValuePreviewParameterProvider : BasicPreviewParameterProvider<Int>(3, 5, 12)
 
 private val previewParameterValues: List<OudsTextAreaPreviewParameter>
     get() {

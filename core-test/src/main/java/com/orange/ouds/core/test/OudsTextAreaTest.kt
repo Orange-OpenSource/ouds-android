@@ -56,9 +56,16 @@ internal class OudsTextAreaTest {
         }
     }
 
-    class MultiLineValue : OudsComponentSnapshotTest(
+    @RunWith(Parameterized::class)
+    class MultiLineValue(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.TextArea.MultiLineValue,
-        parameter = null,
+        parameter,
         OudsComponentTestSuite.theme
-    )
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.TextArea.MultiLineValue.parameters
+        }
+    }
 }
