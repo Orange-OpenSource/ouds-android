@@ -64,7 +64,7 @@ internal fun OudsDigitInput(
     outlined: Boolean = false,
     error: Boolean = false,
     placeholder: Boolean = true,
-    horizontalPadding: Dp = OudsDigitInputDefaults.horizontalPadding
+    smallDeviceSpecificRules: Boolean = false
 ) {
     @Suppress("NAME_SHADOWING") val state = getPreviewEnumEntry<OudsDigitInputState>().orElse { state }
 
@@ -93,7 +93,8 @@ internal fun OudsDigitInput(
                 }
             }
         }
-
+        val minWidth = if (smallDeviceSpecificRules) Dp.Unspecified else pinCodeInputTokens.sizeMinWidth.dp
+        val horizontalPadding = if (smallDeviceSpecificRules) 0.dp else textInputTokens.spacePaddingInlineDefault.value
         Row(
             modifier = Modifier
                 .clickable(
@@ -102,7 +103,7 @@ internal fun OudsDigitInput(
                     indication = null
                 )
                 .heightIn(min = textInputTokens.sizeMinHeight.dp)
-                .widthIn(min = pinCodeInputTokens.sizeMinWidth.dp, max = pinCodeInputTokens.sizeMaxWidth.dp)
+                .widthIn(min = minWidth, max = pinCodeInputTokens.sizeMaxWidth.dp)
                 .then(modifier) // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
                 .background(color = backgroundColor, shape = digitInputShape)
                 .digitInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined)
@@ -224,13 +225,6 @@ internal const val OudsDigitInputCursor = '|'
 
 internal enum class OudsDigitInputState {
     Enabled, Hovered, Focused, ReadOnly, Disabled
-}
-
-internal object OudsDigitInputDefaults {
-
-    val horizontalPadding: Dp
-        @Composable
-        get() = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value
 }
 
 @OudsPreviewLightDark

@@ -69,6 +69,7 @@ import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -237,8 +238,9 @@ private fun OudsPinCodeInputDecorator(
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
+    val smallDeviceSpecificRules = smallDeviceSpecificRules(length)
     BoxWithConstraints(contentAlignment = Alignment.Center) {
-        val horizontalSpace = if (length == OudsPinCodeInputLength.Eight) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
+        val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
         val totalSpace = horizontalSpace * (length.value - 1)
         val digitWidth = (maxWidth - totalSpace) / length.value
         ConstraintLayout {
@@ -272,7 +274,7 @@ private fun OudsPinCodeInputDecorator(
                         outlined = outlined,
                         error = error != null,
                         placeholder = error == null,
-                        horizontalPadding = if (length == OudsPinCodeInputLength.Eight) 0.dp else OudsDigitInputDefaults.horizontalPadding
+                        smallDeviceSpecificRules = smallDeviceSpecificRules
                     )
                 }
             }
@@ -290,6 +292,11 @@ private fun OudsPinCodeInputDecorator(
             )
         }
     }
+}
+
+@Composable
+private fun smallDeviceSpecificRules(length: OudsPinCodeInputLength): Boolean {
+    return length == OudsPinCodeInputLength.Eight && currentWindowWidth() < 484.dp
 }
 
 @OptIn(ExperimentalFoundationApi::class)
