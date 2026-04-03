@@ -61,6 +61,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -173,29 +174,14 @@ fun OudsTextArea(
 
     val emptyText = textFieldState.text.isEmpty()
 
-    val textAreaTokens = OudsTheme.componentsTokens.textArea
-    val textStyle = textInputTextStyle(state = state)
-    val density = LocalDensity.current
-    val fontScale = LocalConfiguration.current.fontScale
-
     val scrollState = rememberScrollState()
 
-    val (minLines, maxLines) = remember(textAreaTokens, textStyle.lineHeight, density, fontScale) {
-        computeTextAreaLines(
-            minHeightDp = textAreaTokens.sizeMinHeightInput,
-            maxHeightDp = textAreaTokens.sizeMaxHeightInput,
-            lineHeight = textStyle.lineHeight,
-            density = density,
-            fontScale = fontScale
-        )
-    }
-
-    OudsTextInput(
+    OudsTextArea(
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        basicTextField = {
+        basicTextField = { minLines, maxLines, textStyle ->
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
                 state = textFieldState,
@@ -310,27 +296,12 @@ fun OudsTextArea(
 
     val emptyText = value.isEmpty()
 
-    val textAreaTokens = OudsTheme.componentsTokens.textArea
-    val textStyle = textInputTextStyle(state = state)
-    val density = LocalDensity.current
-    val fontScale = LocalConfiguration.current.fontScale
-
-    val (minLines, maxLines) = remember(textAreaTokens, textStyle, density, fontScale) {
-        computeTextAreaLines(
-            minHeightDp = textAreaTokens.sizeMinHeightInput,
-            maxHeightDp = textAreaTokens.sizeMaxHeightInput,
-            lineHeight = textStyle.lineHeight,
-            density = density,
-            fontScale = fontScale
-        )
-    }
-
-    OudsTextInput(
+    OudsTextArea(
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        basicTextField = {
+        basicTextField = { minLines, maxLines, textStyle ->
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
                 value = value,
@@ -444,27 +415,12 @@ fun OudsTextArea(
 
     val emptyText = value.text.isEmpty()
 
-    val textAreaTokens = OudsTheme.componentsTokens.textArea
-    val textStyle = textInputTextStyle(state = state)
-    val density = LocalDensity.current
-    val fontScale = LocalConfiguration.current.fontScale
-
-    val (minLines, maxLines) = remember(textAreaTokens, textStyle, density, fontScale) {
-        computeTextAreaLines(
-            minHeightDp = textAreaTokens.sizeMinHeightInput,
-            maxHeightDp = textAreaTokens.sizeMaxHeightInput,
-            lineHeight = textStyle.lineHeight,
-            density = density,
-            fontScale = fontScale
-        )
-    }
-
-    OudsTextInput(
+    OudsTextArea(
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        basicTextField = {
+        basicTextField = { minLines, maxLines, textStyle ->
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
                 value = value,
@@ -497,6 +453,38 @@ fun OudsTextArea(
                 }
             )
         }
+    )
+}
+
+@Composable
+internal fun OudsTextArea(
+    state: OudsTextInputState,
+    emptyText: Boolean,
+    readOnly: Boolean,
+    error: OudsError?,
+    basicTextField: @Composable (minLines: Int, maxLines: Int, textStyle: TextStyle) -> Unit
+) {
+    val textAreaTokens = OudsTheme.componentsTokens.textArea
+    val textStyle = textInputTextStyle(state = state)
+    val density = LocalDensity.current
+    val fontScale = LocalConfiguration.current.fontScale
+
+    val (minLines, maxLines) = remember(textAreaTokens, textStyle.lineHeight, density, fontScale) {
+        computeTextAreaLines(
+            minHeightDp = textAreaTokens.sizeMinHeightInput,
+            maxHeightDp = textAreaTokens.sizeMaxHeightInput,
+            lineHeight = textStyle.lineHeight,
+            density = density,
+            fontScale = fontScale
+        )
+    }
+
+    OudsTextInput(
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = { basicTextField(minLines, maxLines, textStyle) }
     )
 }
 
