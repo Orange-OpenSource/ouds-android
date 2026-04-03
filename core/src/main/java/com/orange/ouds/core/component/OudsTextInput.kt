@@ -1048,7 +1048,7 @@ internal fun PreviewOudsTextInput(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
                 placeholder = placeholder,
-                //outlined = true,
+                outlined = outlined,
                 leadingIcon = leadingIcon,
                 trailingIconButton = trailingIconButton,
                 prefix = prefix,
@@ -1132,6 +1132,7 @@ internal data class OudsTextInputPreviewParameter(
     val suffix: String? = null,
     val enabled: Boolean = true,
     val readOnly: Boolean = false,
+    val outlined: Boolean = false,
     val error: OudsError? = null,
     val helperText: String? = null,
     val helperLink: OudsTextInputHelperLink? = null
@@ -1174,7 +1175,8 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 helperText = helperText,
                 helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
-            OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = helperText)
+            OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = helperText),
+            OudsTextInputPreviewParameter("", label = label, outlined = true)
         )
     }
 

@@ -718,6 +718,7 @@ internal fun PreviewOudsTextArea(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
                 placeholder = placeholder,
+                outlined = outlined,
                 error = error,
                 helperText = helperText,
                 helperLink = helperLink
@@ -764,7 +765,8 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(theme: OudsThemeContract, co
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMultilineValuePreviewParameterProvider::class) lineCount: Int) = PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme(), lineCount = lineCount)
+private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMultilineValuePreviewParameterProvider::class) lineCount: Int) =
+    PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme(), lineCount = lineCount)
 
 @Composable
 internal fun PreviewOudsTextAreaMultiLineValue(theme: OudsThemeContract, lineCount: Int) = OudsPreview(theme = theme) {
@@ -784,6 +786,7 @@ private fun MultiLineValueTextArea(lineCount: Int) {
 internal data class OudsTextAreaPreviewParameter(
     val value: String,
     val label: String? = null,
+    val outlined: Boolean = false,
     val placeholder: String? = null,
     val error: OudsError? = null,
     val helperText: String? = null,
@@ -817,6 +820,7 @@ private val previewParameterValues: List<OudsTextAreaPreviewParameter>
                 helperText = helperText,
                 helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
-            OudsTextAreaPreviewParameter("Error text", label = label, error = error, helperText = helperText)
+            OudsTextAreaPreviewParameter("Error text", label = label, error = error, helperText = helperText),
+            OudsTextAreaPreviewParameter("", label = label, outlined = true)
         )
     }
