@@ -188,6 +188,7 @@ fun OudsPinCodeInput(
 @Composable
 private fun OudsPinCodeInputTooltipBox(textFieldState: TextFieldState, length: OudsPinCodeInputLength, content: @Composable () -> Unit) {
     val tooltipState = rememberTooltipState(isPersistent = true)
+    // TODO: Replace with OUDS tooltip when available 
     TooltipBox(
         positionProvider = TooltipDefaults.rememberTooltipPositionProvider(
             positioning = TooltipAnchorPosition.Above,
