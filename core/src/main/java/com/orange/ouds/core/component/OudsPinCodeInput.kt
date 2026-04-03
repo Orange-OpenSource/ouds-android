@@ -79,7 +79,7 @@ import kotlinx.coroutines.launch
 
 /**
  * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a
- * four, six or height-digit personal identification number (PIN). PIN code input is presented as a series of individual input fields or boxes, each
+ * four, six or eight-digit personal identification number (PIN). PIN code input is presented as a series of individual input fields or boxes, each
  * representing a single digit, to enhance readability and encourage accurate input, while supporting smooth keyboard navigation and secured input masking if
  * needed.
  *
