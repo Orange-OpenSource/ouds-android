@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalCursorBlinkEnabled
@@ -99,7 +100,8 @@ fun BottomSheetIllustration() = ComponentIllustration {
             .padding(horizontal = 16.dp),
         sheetPeekHeight = 120.dp,
         sheetSwipeEnabled = false,
-        sheetContent = {}
+        sheetContent = {},
+        containerColor = Color.Transparent
     ) {}
 }
 
