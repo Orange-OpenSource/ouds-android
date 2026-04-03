@@ -90,19 +90,19 @@ import kotlinx.coroutines.launch
  *
  * > Design version: 1.2.0
  *
- * @param value The current pin code value as a string of digits. The value is automatically truncated to the specified [length].
- * @param onValueChange Callback invoked when the pin code value changes. The updated pin code value comes as a parameter of the callback.
- * @param modifier [Modifier] applied to the pin code input.
- * @param length The number of digits in the pin code. Defaults to [OudsPinCodeInputDefaults.Length].
- * @param outlined Controls the style of the pin code input. When `true`, it displays a minimalist pin code input with a transparent background and a visible
+ * @param value The current PIN code value as a string of digits. The value is automatically truncated to the specified [length].
+ * @param onValueChange Callback invoked when the PIN code value changes. The updated PIN code value comes as a parameter of the callback.
+ * @param modifier [Modifier] applied to the PIN code input.
+ * @param length The number of digits in the PIN code. Defaults to [OudsPinCodeInputDefaults.Length].
+ * @param outlined Controls the style of the PIN code input. When `true`, it displays a minimalist PIN code input with a transparent background and a visible
  *   stroke outlining each digit box.
  * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
- * @param helperText An optional helper text displayed below the pin code input. It conveys additional information about the input field, such as how it will be
+ * @param helperText An optional helper text displayed below the PIN code input. It conveys additional information about the input field, such as how it will be
  *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
  * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
  *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [androidx.compose.ui.text.input.ImeAction.Done] would close the keyboard,
  *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
- * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this pin code input. Note that if `null`
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this PIN code input. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
@@ -331,22 +331,22 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
 /**
  * Represents the supported lengths for [OudsPinCodeInput].
  *
- * @property value The number of digits in the pin code.
+ * @property value The number of digits in the PIN code.
  */
 enum class OudsPinCodeInputLength(val value: Int) {
 
     /**
-     * Four-digit pin code.
+     * Four-digit PIN code.
      */
     Four(4),
 
     /**
-     * Six-digit pin code.
+     * Six-digit PIN code.
      */
     Six(6),
 
     /**
-     * Eight-digit pin code.
+     * Eight-digit PIN code.
      */
     Eight(8)
 }
