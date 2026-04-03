@@ -186,32 +186,16 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object BottomSheet {
+    object BottomSheetScaffold : OudsPreviewableComponent {
 
-        object Standard : OudsPreviewableComponent {
+        override val parameters: List<Any> = emptyList()
 
-            override val parameters: List<Any> = emptyList()
-
-            @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsBottomSheetScaffold(
-                    theme = theme,
-                    darkThemeEnabled = darkThemeEnabled
-                )
-            }
-        }
-
-        object Modal : OudsPreviewableComponent {
-
-            override val parameters: List<Any> = emptyList()
-
-            @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsModalBottomSheet(
-                    theme = theme,
-                    darkThemeEnabled = darkThemeEnabled
-                )
-            }
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsBottomSheetScaffold(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
         }
     }
 
@@ -584,6 +568,19 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object ModalBottomSheet : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsModalBottomSheet(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
+        }
+    }
+    
     object NavigationBar {
 
         object Default : OudsPreviewableComponent {
