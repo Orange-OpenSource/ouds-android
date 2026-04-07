@@ -5,6 +5,8 @@ on:
     - cron: '31 3 * * MON-FRI'
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   app-distribution-beta:
     runs-on: ubuntu-latest
