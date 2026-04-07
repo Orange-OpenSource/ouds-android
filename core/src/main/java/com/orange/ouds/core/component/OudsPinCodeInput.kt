@@ -264,7 +264,8 @@ private fun OudsPinCodeInputDecorator(
                         else -> OudsDigitInputState.Enabled
                     }
                     OudsDigitInput(
-                        modifier = Modifier.width(digitWidth)
+                        modifier = Modifier
+                            .width(digitWidth)
                             .semantics { hideFromAccessibility() },
                         digit = textFieldState.text.getOrNull(index),
                         onClick = {
@@ -309,14 +310,14 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
                 val pasting = range.length > 1
                 val baseText = if (pasting) OudsDigitInputPlaceholder.toString().repeat(length.value) else originalText.toString()
                 // Retrieve added text
-                val addedText = asCharSequence().substring(range)
+                val addedText = asCharSequence().substring(range).filter { it.isDigit() }
                 // Roll back to the original text or placeholders if pasting
                 delete(0, this.length)
                 insert(0, baseText)
                 // Replace the base text with the added text
                 // When pasting (i.e. range.length > 1), the base text is replaced from the start
                 val start = if (pasting) 0 else range.min - 1
-                val end = if (pasting) addedText.length else range.max - 1
+                val end = start + addedText.length
                 replace(start.coerceIn(0, length.value), end.coerceIn(0, length.value), addedText)
                 placeCursorAfterCharAt(end.coerceIn(0, length.value - 1))
             }
