@@ -79,7 +79,7 @@ internal class OudsDigitInputTest {
     }
 
     @Test
-    fun oudsDigitInput_onlyDigits_displayed() {
+    fun oudsDigitInput_nonDigit_notDisplayed() {
         with(composeTestRule) {
             setOudsContent {
                 OudsDigitInput(
