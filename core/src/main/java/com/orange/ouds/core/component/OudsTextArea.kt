@@ -59,7 +59,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -708,11 +707,6 @@ private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMult
 
 @Composable
 internal fun PreviewOudsTextAreaMultiLineValue(theme: OudsThemeContract, lineCount: Int) = OudsPreview(theme = theme) {
-    MultiLineValueTextArea(lineCount)
-}
-
-@Composable
-private fun MultiLineValueTextArea(lineCount: Int) {
     OudsTextArea(
         modifier = Modifier.padding(all = 10.dp),
         textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
