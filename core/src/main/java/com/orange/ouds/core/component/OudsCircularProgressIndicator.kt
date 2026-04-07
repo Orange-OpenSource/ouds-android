@@ -18,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.foundation.extensions.orElse
 
 /**
  * A temporary circular progress indicator component used internally by several public components.
@@ -35,9 +37,9 @@ internal fun OudsCircularProgressIndicator(color: Color, progress: Float?, modif
     val strokeWidth = 3.dp * scale
     val trackColor = Color.Transparent
     val strokeCap = StrokeCap.Square
-    if (progress != null) {
+    if (progress != null || LocalInspectionMode.current) {
         CircularProgressIndicator(
-            progress = { progress },
+            progress = { progress.orElse { 0.75f } },
             modifier = modifier,
             color = color,
             strokeWidth = strokeWidth,

@@ -79,7 +79,6 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.extensions.orElse
@@ -577,10 +576,9 @@ internal fun OudsTextAreaDecorator(
 
                     // Loader
                     if (state == OudsTextInputState.Loading) {
-                        val progress = if (getPreviewEnumEntry<OudsTextInputState>() == OudsTextInputState.Loading) 0.75f else loader?.progress
                         OudsCircularProgressIndicator(
                             color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                            progress = progress,
+                            progress = loader?.progress,
                             scale = iconScale
                         )
                     }

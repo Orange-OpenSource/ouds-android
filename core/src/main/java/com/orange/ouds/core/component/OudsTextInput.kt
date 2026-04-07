@@ -669,7 +669,6 @@ internal fun OudsTextInputDecorator(
 
                         // Loader
                         if (state == OudsTextInputState.Loading) {
-                            val progress = if (getPreviewEnumEntry<OudsTextInputState>() == OudsTextInputState.Loading) 0.75f else loader?.progress
                             Box(
                                 modifier = Modifier
                                     .widthIn(min = buttonTokens.sizeMinWidth.value)
@@ -678,7 +677,7 @@ internal fun OudsTextInputDecorator(
                             ) {
                                 OudsCircularProgressIndicator(
                                     color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                                    progress = progress,
+                                    progress = loader?.progress,
                                     scale = iconScale
                                 )
                             }
