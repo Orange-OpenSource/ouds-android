@@ -135,7 +135,7 @@ internal fun PreviewOudsBottomSheetScaffold(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsBottomSheetScaffold(
         sheetContent = {
-            Column(modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)) {
+            Column(modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.medium).padding(horizontal = OudsTheme.grids.margin)) {
                 Text(text = "Bottom sheet content")
             }
         },
