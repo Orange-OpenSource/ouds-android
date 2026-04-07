@@ -305,7 +305,7 @@ private fun smallDeviceSpecificRules(length: OudsPinCodeInputLength): Boolean {
 private fun inputTransformation(length: OudsPinCodeInputLength): InputTransformation {
     return InputTransformation {
         changes.forEachChangeReversed { range, originalRange ->
-            // Insertion
+            // Text is inserted with either keyboard inputs or pasting from the clipboard
             if (range.length > 0) {
                 val pasting = range.length > 1
                 val baseText = if (pasting) OudsDigitInputPlaceholder.toString().repeat(length.value) else originalText.toString()
@@ -321,7 +321,7 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
                 replace(start.coerceIn(0, length.value), end.coerceIn(0, length.value), addedText)
                 placeCursorAfterCharAt(end.coerceIn(0, length.value - 1))
             }
-            // Deletion
+            // Text is deleted with the keyboard backspace key
             else {
                 // Insert placeholder digits to replace the deleted text
                 val padText = OudsDigitInputPlaceholder.toString().repeat(originalRange.length)
