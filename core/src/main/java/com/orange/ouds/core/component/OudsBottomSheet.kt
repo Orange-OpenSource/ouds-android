@@ -15,6 +15,8 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.BottomSheetDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -30,12 +32,15 @@ internal object OudsBottomSheetDefaults {
     /**
      * The optional visual marker placed on top of a bottom sheet to indicate it may be dragged.
      */
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun DragHandle() {
         val dragHandleContentDescription = stringResource(id = R.string.core_bottomSheet_dragHandle_a11y)
+        // Compute the bottom padding based on the peek height in order to keep the drag handle total height equal to the default `SheetPeekHeight`
+        val dragHandleBottomPadding = BottomSheetDefaults.SheetPeekHeight - OudsTheme.spaces.fixed.medium
         Surface(
             modifier = Modifier
-                .padding(vertical = OudsTheme.spaces.fixed.medium)
+                .padding(top = OudsTheme.spaces.fixed.medium, bottom = dragHandleBottomPadding)
                 .semantics {
                     contentDescription = dragHandleContentDescription
                 },
