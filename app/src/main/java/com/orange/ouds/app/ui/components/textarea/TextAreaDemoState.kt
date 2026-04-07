@@ -96,7 +96,7 @@ class TextAreaDemoState(
                         enabled,
                         readOnly,
                         error,
-                        this.errorMessage,
+                        errorMessage,
                         helperText,
                         helperLink,
                         constrainedMaxWidth

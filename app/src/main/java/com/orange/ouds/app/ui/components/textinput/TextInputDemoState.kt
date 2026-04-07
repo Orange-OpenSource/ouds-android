@@ -114,7 +114,7 @@ class TextInputDemoState(
                         enabled,
                         readOnly,
                         error,
-                        this.errorMessage,
+                        errorMessage,
                         prefix,
                         suffix,
                         helperText,
