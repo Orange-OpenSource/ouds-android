@@ -54,7 +54,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
@@ -70,7 +69,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
@@ -175,19 +173,19 @@ fun OudsTextArea(
 
     val scrollState = rememberScrollState()
 
-    OudsTextArea(
+    OudsTextInput(
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        basicTextField = { minLines, maxLines, textStyle ->
+        basicTextField = {
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
                 state = textFieldState,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textStyle,
-                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = maxLines),
+                textStyle = textInputTextStyle(state = state),
+                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = MinLines, maxHeightInLines = MaxLines),
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
@@ -295,21 +293,21 @@ fun OudsTextArea(
 
     val emptyText = value.isEmpty()
 
-    OudsTextArea(
+    OudsTextInput(
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        basicTextField = { minLines, maxLines, textStyle ->
+        basicTextField = {
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textStyle,
-                minLines = minLines,
-                maxLines = maxLines,
+                textStyle = textInputTextStyle(state = state),
+                minLines = MinLines,
+                maxLines = MaxLines,
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
@@ -414,21 +412,21 @@ fun OudsTextArea(
 
     val emptyText = value.text.isEmpty()
 
-    OudsTextArea(
+    OudsTextInput(
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        basicTextField = { minLines, maxLines, textStyle ->
+        basicTextField = {
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
-                textStyle = textStyle,
-                minLines = minLines,
-                maxLines = maxLines,
+                textStyle = textInputTextStyle(state = state),
+                minLines = MinLines,
+                maxLines = MaxLines,
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
@@ -455,38 +453,6 @@ fun OudsTextArea(
     )
 }
 
-@Composable
-internal fun OudsTextArea(
-    state: OudsTextInputState,
-    emptyText: Boolean,
-    readOnly: Boolean,
-    error: OudsError?,
-    basicTextField: @Composable (minLines: Int, maxLines: Int, textStyle: TextStyle) -> Unit
-) {
-    val textAreaTokens = OudsTheme.componentsTokens.textArea
-    val textStyle = textInputTextStyle(state = state)
-    val density = LocalDensity.current
-    val fontScale = LocalConfiguration.current.fontScale
-
-    val (minLines, maxLines) = remember(textAreaTokens, textStyle.lineHeight, density, fontScale) {
-        computeTextAreaLines(
-            minHeightDp = textAreaTokens.sizeMinHeightInput,
-            maxHeightDp = textAreaTokens.sizeMaxHeightInput,
-            lineHeight = textStyle.lineHeight,
-            density = density,
-            fontScale = fontScale
-        )
-    }
-
-    OudsTextInput(
-        state = state,
-        emptyText = emptyText,
-        readOnly = readOnly,
-        error = error,
-        basicTextField = { basicTextField(minLines, maxLines, textStyle) }
-    )
-}
-
 /**
  * Minimum lines displayed in an OUDS Text Area.
  * This value ensures that the text area is large enough to be recognized as a multi-line input while maintaining a consistent minimum height across different
@@ -495,39 +461,11 @@ internal fun OudsTextArea(
 private const val MinLines = 3
 
 /**
- * Calculates the minimum and maximum number of lines for a text area based on design tokens and font scale.
- * This ensures the text area adapts to accessibility settings (e.g., larger font sizes).
- *
- * @param minHeightDp Minimum height from design tokens in dp
- * @param maxHeightDp Maximum height from design tokens in dp
- * @param lineHeight Line height of the text style
- * @param density Current density for dp to px conversion
- * @param fontScale Current font scale for accessibility
- * @return Pair of (minLines, maxLines)
+ * Maximum lines displayed in an OUDS Text Area.
+ * This value defines the maximum height the component can reach. If the input exceeds this limit, a vertical scrollbar is enabled (in state-based variants)
+ * to allow navigation through the text.
  */
-private fun computeTextAreaLines(
-    minHeightDp: Float,
-    maxHeightDp: Float,
-    lineHeight: TextUnit,
-    density: Density,
-    fontScale: Float
-): Pair<Int, Int> {
-    with(density) {
-        // Convert line height to dp, accounting for font scale
-        val lineHeightDp = if (lineHeight.isSp) {
-            (lineHeight.value * fontScale).dp.toPx() / this.density
-        } else {
-            // Default line height approximation if lineHeight is not in sp (shouldn't happen normally)
-            24f * fontScale
-        }
-
-        // Compute number of lines that fit in the given heights
-        val minLines = (minHeightDp / lineHeightDp).toInt().coerceAtLeast(MinLines)
-        val maxLines = (maxHeightDp / lineHeightDp).toInt().coerceAtLeast(minLines)
-
-        return minLines to maxLines
-    }
-}
+private const val MaxLines = 10
 
 @Composable
 internal fun OudsTextAreaDecorator(
