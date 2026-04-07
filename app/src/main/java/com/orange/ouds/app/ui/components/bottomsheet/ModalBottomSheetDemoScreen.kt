@@ -76,7 +76,9 @@ fun ModalBottomSheetDemoScreen() {
                         onDismissRequest = { modalBottomSheetVisible = false },
                         sheetState = sheetState
                     ) {
-                        BottomSheetDemoContent()
+                        BottomSheetDemoContent(dragHandle = dragHandle, buttonLabel = stringResource(R.string.app_components_bottomSheet_modalBottomSheet_close_label)) {
+                            modalBottomSheetVisible = false
+                        }
                     }
                 }
             }

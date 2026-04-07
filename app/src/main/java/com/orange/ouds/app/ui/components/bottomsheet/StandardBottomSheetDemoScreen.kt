@@ -60,7 +60,14 @@ fun StandardBottomSheetDemoScreen() {
                 sheetPeekHeight = sheetPeekHeight,
                 sheetSwipeEnabled = sheetSwipeEnabled,
                 sheetDragHandle = sheetDragHandle,
-                sheetContent = { BottomSheetDemoContent() }
+                sheetContent = {
+                    BottomSheetDemoContent(
+                        dragHandle = sheetDragHandle,
+                        buttonLabel = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_collapse_label)
+                    ) {
+                        coroutineScope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                    }
+                }
             ) { innerPadding ->
                 ScreenMainContentColumn(paddingValues = innerPadding) {
                     DetailScreenDescription(
