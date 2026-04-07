@@ -169,7 +169,7 @@
     <string name="app_components_tag_description_text">Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة.</string>
 
     <!-- Components: text area -->
-    <string name="app_components_textArea_description_text">Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding vertically and offering more space to input text.</string> <!-- TODO -->
+    <string name="app_components_textArea_description_text">Text area هي عنصر واجهة مستخدم يتيح للمستخدمين كتابة أو تحرير أو اختيار كتل نصية طويلة، مثل التعليقات أو الرسائل أو الوصف، من خلال التمدد عمودياً وتوفير مساحة أكبر لإدخال النص.</string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.</string>
