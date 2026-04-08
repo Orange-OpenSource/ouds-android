@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
@@ -33,7 +34,11 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -132,17 +137,24 @@ internal fun OudsAvatar(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
 
     Box(
-        modifier = modifier,
+        modifier = modifier.semantics(mergeDescendants = true) {
+            if (onClick != null) {
+                role = Role.Button
+                onClick(null) {
+                    onClick()
+                    true
+                }
+            }
+        },
         contentAlignment = Alignment.Center
     ) {
-        if (onClick != null) {
-            OudsButton(
-                icon = OudsButtonIcon(ColorPainter(Color.Transparent), ""), // Use transparent painter to scale the button with the font
-                onClick = onClick,
-                appearance = OudsButtonAppearance.Minimal,
-                interactionSource = interactionSource
-            )
-        }
+        OudsButton(
+            modifier = Modifier.alpha(if (onClick != null) 1f else 0f), // If onClick is null, draw the button with alpha 0 anyway to get a consistent size for the avatar
+            icon = OudsButtonIcon(ColorPainter(Color.Transparent), ""), // Use transparent painter to scale the button with the font
+            onClick = { onClick?.invoke() },
+            appearance = OudsButtonAppearance.Minimal,
+            interactionSource = interactionSource
+        )
 
         val scale = LocalConfiguration.current.fontScale
         val contentModifier = Modifier
