@@ -778,7 +778,6 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                @Suppress("UNCHECKED_CAST")
                 PreviewOudsSuggestionChipHighContrastModeEnabled(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
