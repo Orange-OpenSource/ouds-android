@@ -39,7 +39,7 @@ class StandardBottomSheetDemoState(
     sheetValue: SheetValue,
     sheetDragHandle: Boolean,
     sheetSwipeEnabled: Boolean,
-    sheetPeakHeight: Dp
+    sheetPeekHeight: Dp
 ) {
     companion object {
         val Saver = listSaver(
@@ -65,7 +65,7 @@ class StandardBottomSheetDemoState(
     }
 
     var sheetDragHandle: Boolean by mutableStateOf(sheetDragHandle)
-    var sheetPeekHeight: Dp by mutableStateOf(sheetPeakHeight)
+    var sheetPeekHeight: Dp by mutableStateOf(sheetPeekHeight)
     var sheetSwipeEnabled: Boolean by mutableStateOf(sheetSwipeEnabled)
     var sheetValue: SheetValue by mutableStateOf(sheetValue)
 
