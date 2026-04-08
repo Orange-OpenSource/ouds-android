@@ -2,8 +2,9 @@
 
 [![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Orange-OpenSource/ouds-android/badge)](https://scorecard.dev/viewer/?uri=github.com/Orange-OpenSource/ouds-android)
-[![License](https://img.shields.io/github/license/Orange-OpenSource/ouds-android)](LICENSE)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12397/badge)](https://www.bestpractices.dev/projects/12397)
 ![Gitleaks](https://img.shields.io/badge/protected%20by-gitleaks-blue)
+[![License](https://img.shields.io/github/license/Orange-OpenSource/ouds-android)](LICENSE)
 [![Documentation](https://img.shields.io/badge/documentation-7F52FF?logo=kotlin&logoColor=white)](https://android.unified-design-system.orange.com/)
 
 This repository contains the OUDS Android library that provides Orange Android components, but also a demo application showcasing these different components.
