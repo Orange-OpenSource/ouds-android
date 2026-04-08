@@ -21,12 +21,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsTextInputStateBasedSample() {
@@ -40,7 +42,6 @@ internal fun OudsTextInputStateBasedSample() {
         ),
         prefix = "Prefix",
         suffix = "Suffix",
-        loader = OudsTextInputLoader(null),
         helperText = "Helper text",
         helperLink = OudsTextInputHelperLink(text = "Helper link", onClick = { })
     )
@@ -96,4 +97,28 @@ internal fun OudsTextInputValueBasedErrorSample() {
         outlined = true,
         error = OudsError(message = "This field can't be empty.")
     )
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputStateBasedSample() = OudsPreview {
+    OudsTextInputStateBasedSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputValueBasedSample() = OudsPreview {
+    OudsTextInputValueBasedSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputStateBasedErrorSample() = OudsPreview {
+    OudsTextInputStateBasedErrorSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputValueBasedErrorSample() = OudsPreview {
+    OudsTextInputValueBasedErrorSample()
 }

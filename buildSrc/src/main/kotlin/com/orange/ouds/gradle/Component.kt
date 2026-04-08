@@ -26,6 +26,7 @@ enum class Component {
     Divider,
     Link,
     PasswordInput,
+    PinCodeInput,
     RadioButton,
     Switch,
     Tag,
@@ -44,6 +45,7 @@ enum class Component {
                 Component.Divider -> Divider
                 Component.Link -> Link
                 Component.PasswordInput -> PasswordInput
+                Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
                 Component.Switch -> Switch
                 Component.Tag -> Tag
@@ -63,6 +65,7 @@ enum class Component {
             Divider -> listOf("OudsDivider")
             Link -> listOf("OudsLink")
             PasswordInput -> listOf("OudsPasswordInput")
+            PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")
             Tag -> listOf("OudsTag", "OudsInputTag")

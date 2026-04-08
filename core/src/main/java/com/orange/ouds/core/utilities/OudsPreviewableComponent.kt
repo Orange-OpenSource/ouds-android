@@ -47,6 +47,9 @@ import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvi
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
 import com.orange.ouds.core.component.OudsPasswordInputPreviewParameter
 import com.orange.ouds.core.component.OudsPasswordInputPreviewParameterProvider
+import com.orange.ouds.core.component.OudsPinCodeInputPreviewParameter
+import com.orange.ouds.core.component.OudsPinCodeInputPreviewParameterProvider
+import com.orange.ouds.core.component.OudsPinCodeInputWithRoundedCornersPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
@@ -96,6 +99,8 @@ import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
+import com.orange.ouds.core.component.PreviewOudsPinCodeInput
+import com.orange.ouds.core.component.PreviewOudsPinCodeInputWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsRadioButton
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemConstrainedMaxWidth
@@ -633,6 +638,38 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsPasswordInputPreviewParameter
             )
+        }
+    }
+
+    object PinCodeInput {
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsPinCodeInputPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsPinCodeInput(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsPinCodeInputPreviewParameter
+                )
+            }
+        }
+
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsPinCodeInputWithRoundedCornersPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsPinCodeInputWithRoundedCorners(
+                    theme = theme,
+                    outlined = parameter as Boolean
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

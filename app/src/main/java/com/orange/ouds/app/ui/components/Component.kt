@@ -31,6 +31,7 @@ import com.orange.ouds.app.ui.components.floatingactionbutton.FloatingActionButt
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
+import com.orange.ouds.app.ui.components.pincodeinput.PinCodeInputDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -140,6 +141,13 @@ sealed class Component(
         R.string.app_components_passwordInput_description_text,
         { PasswordInputIllustration() },
         demoScreen = { PasswordInputDemoScreen() }
+    )
+
+    data object PinCodeInput : Component(
+        R.string.app_components_pinCodeInput_tech,
+        R.string.app_components_pinCodeInput_description_text,
+        { PinCodeInputIllustration() },
+        demoScreen = { PinCodeInputDemoScreen() }
     )
 
     data object RadioButton : Component(
