@@ -18,7 +18,7 @@ on:
 permissions: read-all
 
 jobs:
-  build:
+  build-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -45,7 +45,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
+    needs: build-docs
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
@@ -75,7 +75,7 @@ jobs:
     environment:
       name: netlify
       url: ${{ steps.deployment.outputs.deploy_preview_url }}
-    needs: build
+    needs: build-docs
     runs-on: ubuntu-latest
     if: github.event_name != 'push' || github.ref != 'refs/heads/main'
     permissions:
