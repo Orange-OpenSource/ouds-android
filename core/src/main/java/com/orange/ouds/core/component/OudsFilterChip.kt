@@ -213,6 +213,26 @@ internal fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: B
         }
     }
 
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsFilterChipHighContrastModeEnabled(@PreviewParameter(OudsFilterChipHighContrastModePreviewParameterProvider::class) selected: Boolean) {
+    PreviewOudsFilterChipHighContrastModeEnabled(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        selected = selected
+    )
+}
+
+@Composable
+internal fun PreviewOudsFilterChipHighContrastModeEnabled(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    selected: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    OudsFilterChip(selected = selected, nullableIcon = null, nullableLabel = "Label", onClick = {})
+}
+
 internal data class OudsFilterChipPreviewParameter(
     val selected: Boolean,
     val hasLabel: Boolean,
@@ -230,3 +250,5 @@ private val previewParameterValues: List<OudsFilterChipPreviewParameter>
         OudsFilterChipPreviewParameter(selected = true, hasLabel = false, hasIcon = true),
         OudsFilterChipPreviewParameter(selected = false, hasLabel = false, hasIcon = true)
     )
+
+internal class OudsFilterChipHighContrastModePreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)

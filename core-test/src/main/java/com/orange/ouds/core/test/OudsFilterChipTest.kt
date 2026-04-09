@@ -13,19 +13,37 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsFilterChipTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.FilterChip,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
+internal class OudsFilterChipTest() {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.FilterChip.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.FilterChip.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.FilterChip.Default.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class HighContrastModeEnabled(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.FilterChip.HighContrastModeEnabled,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.FilterChip.HighContrastModeEnabled.parameters
+        }
     }
 }
