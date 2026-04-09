@@ -85,6 +85,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import kotlin.math.floor
 
 /**
  * Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding
@@ -183,7 +184,7 @@ fun OudsTextArea(
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
-                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = MinLines, maxHeightInLines = MaxLines),
+                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = maxLines),
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
@@ -304,8 +305,8 @@ fun OudsTextArea(
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
-                minLines = MinLines,
-                maxLines = MaxLines,
+                minLines = minLines,
+                maxLines = maxLines,
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
@@ -423,8 +424,8 @@ fun OudsTextArea(
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
-                minLines = MinLines,
-                maxLines = MaxLines,
+                minLines = minLines,
+                maxLines = maxLines,
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
@@ -456,14 +457,19 @@ fun OudsTextArea(
  * This value ensures that the text area is large enough to be recognized as a multi-line input while maintaining a consistent minimum height across different
  * font scales.
  */
-private const val MinLines = 3
+private val minLines: Int
+    @Composable
+    get() = (OudsTheme.componentsTokens.textArea.sizeMinHeightInput / OudsTheme.typography.label.default.large.lineHeight.value).toInt()
+
 
 /**
  * Maximum lines displayed in an OUDS Text Area.
  * This value defines the maximum height the component can reach. If the input exceeds this limit, a vertical scrollbar is enabled (in state-based variants)
  * to allow navigation through the text.
  */
-private const val MaxLines = 10
+private val maxLines: Int
+    @Composable
+    get() = (OudsTheme.componentsTokens.textArea.sizeMaxHeightInput / OudsTheme.typography.label.default.large.lineHeight.value).toInt()
 
 @Composable
 internal fun OudsTextAreaDecorator(
