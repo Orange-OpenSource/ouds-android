@@ -85,7 +85,6 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import kotlin.math.floor
 
 /**
  * Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding
@@ -459,7 +458,7 @@ fun OudsTextArea(
  */
 private val minLines: Int
     @Composable
-    get() = (OudsTheme.componentsTokens.textArea.sizeMinHeightInput / OudsTheme.typography.label.default.large.lineHeight.value).toInt()
+    get() = (OudsTheme.componentsTokens.textArea.sizeMinHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
 
 /**
@@ -469,7 +468,7 @@ private val minLines: Int
  */
 private val maxLines: Int
     @Composable
-    get() = (OudsTheme.componentsTokens.textArea.sizeMaxHeightInput / OudsTheme.typography.label.default.large.lineHeight.value).toInt()
+    get() = (OudsTheme.componentsTokens.textArea.sizeMaxHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
 @Composable
 internal fun OudsTextAreaDecorator(
