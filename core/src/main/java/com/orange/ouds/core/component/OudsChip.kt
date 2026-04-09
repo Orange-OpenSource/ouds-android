@@ -119,7 +119,7 @@ internal fun OudsChip(
                 }
                 .outerBorder(state = state, shape = shape)
                 .run {
-                    val indication = InteractionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
+                    val indication = interactionValuesIndication(contentColor, tickColor, backgroundColor, borderColor, borderWidth)
                     if (selectable) {
                         selectable(
                             selected = selected,

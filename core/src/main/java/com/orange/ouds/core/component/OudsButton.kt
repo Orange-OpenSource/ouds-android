@@ -321,7 +321,7 @@ internal fun OudsButton(
                 .clickable(
                     enabled = state !in remember { listOf(OudsButtonState.Disabled, OudsButtonState.Loading) },
                     interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                    indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick
                 ),
             contentAlignment = Alignment.Center

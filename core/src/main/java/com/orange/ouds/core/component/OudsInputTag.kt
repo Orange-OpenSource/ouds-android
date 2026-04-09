@@ -135,7 +135,7 @@ fun OudsInputTag(
                 .clickable(
                     enabled = enabled,
                     interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                    indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick,
                     onClickLabel = stringResource(R.string.core_inputTag_remove_a11y),
                     role = Role.Button
@@ -227,7 +227,7 @@ private fun contentColor(state: OudsInputTagState): Color {
     }
 }
 
-internal enum class OudsInputTagState {
+private enum class OudsInputTagState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 

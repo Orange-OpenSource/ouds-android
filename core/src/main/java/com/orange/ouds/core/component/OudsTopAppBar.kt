@@ -12,16 +12,10 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -29,8 +23,6 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.LocalRippleConfiguration
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -38,28 +30,21 @@ import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
@@ -653,62 +638,16 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                Box(
-                    modifier = Modifier
-                        .size(OudsTheme.sizes.minInteractiveArea)
-                        .run { if (onClick != null) clickable(onClick = onClick, role = Role.Button) else this }
-                        .semantics(mergeDescendants = true) {
-                            contentDescription = this@Avatar.contentDescription
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    val modifier = Modifier
-                        .clip(CircleShape)
-                        .size(32.dp)
-                    val contentScale = ContentScale.Crop
-                    if (graphicsObject != null) {
-                        when (graphicsObject) {
-                            is Painter -> Image(
-                                modifier = modifier,
-                                painter = graphicsObject,
-                                contentDescription = null,
-                                contentScale = contentScale
-                            )
-                            is ImageVector -> Image(
-                                modifier = modifier,
-                                imageVector = graphicsObject,
-                                contentDescription = null,
-                                contentScale = contentScale
-                            )
-                            is ImageBitmap -> Image(
-                                modifier = modifier,
-                                bitmap = graphicsObject,
-                                contentDescription = null,
-                                contentScale = contentScale
-                            )
-                        }
-                    } else if (monogram != null && monogramColor != null && monogramBackgroundColor != null) {
-                        Box(
-                            modifier = modifier.background(monogramBackgroundColor),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            CompositionLocalProvider(
-                                // Do not take user font scale into account
-                                value = LocalDensity provides Density(LocalDensity.current.density, 1f)
-                            ) {
-                                Text(
-                                    modifier = Modifier.clearAndSetSemantics {},
-                                    text = monogram.uppercase(),
-                                    color = monogramColor,
-                                    style = MaterialTheme.typography.titleMedium, // This looks like the most accurate style according to Material specs at https://m3.material.io/components/app-bars/specs#606c6564-ce7d-489d-8852-af2b3b478bc6
-                                    fontFamily = OudsTheme.typography.fontFamily
-                                )
-                            }
-                        }
-                    }
-                }
-            }
+            OudsAvatar(
+                modifier = modifier.semantics {
+                    contentDescription = this@Avatar.contentDescription
+                },
+                graphicsObject = graphicsObject,
+                monogram = monogram,
+                monogramColor = monogramColor,
+                monogramBackgroundColor = monogramBackgroundColor,
+                onClick = onClick
+            )
         }
     }
 }
