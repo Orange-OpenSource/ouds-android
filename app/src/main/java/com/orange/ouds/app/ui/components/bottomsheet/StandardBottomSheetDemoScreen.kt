@@ -12,7 +12,12 @@
 
 package com.orange.ouds.app.ui.components.bottomsheet
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffoldState
@@ -22,6 +27,8 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -42,6 +49,7 @@ import com.orange.ouds.app.ui.utilities.composable.ScreenMainContentColumn
 import com.orange.ouds.app.ui.utilities.toNumberString
 import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
+import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -61,11 +69,17 @@ fun StandardBottomSheetDemoScreen() {
                 sheetSwipeEnabled = sheetSwipeEnabled,
                 sheetDragHandle = sheetDragHandle,
                 sheetContent = {
-                    BottomSheetDemoContent(
-                        dragHandle = sheetDragHandle,
-                        buttonLabel = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_collapse_label)
-                    ) {
-                        coroutineScope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                    val density = LocalDensity.current
+                    val screenHeight = with(density) { LocalWindowInfo.current.containerSize.height.toDp() }
+                    val barsInsetsHeight = with(density) { (WindowInsets.systemBars.getTop(density) + WindowInsets.navigationBars.getBottom(density)).toDp() }
+                    val sheetMaxHeight = screenHeight - OudsNavigationBarHeight - BottomSheetDefaults.SheetPeekHeight - barsInsetsHeight
+                    Column(modifier = Modifier.heightIn(max = sheetMaxHeight)) {
+                        BottomSheetDemoContent(
+                            dragHandle = sheetDragHandle,
+                            buttonLabel = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_collapse_label)
+                        ) {
+                            coroutineScope.launch { scaffoldState.bottomSheetState.partialExpand() }
+                        }
                     }
                 }
             ) { innerPadding ->

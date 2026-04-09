@@ -17,13 +17,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.BottomSheetScaffold
@@ -41,8 +37,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
@@ -88,15 +82,7 @@ fun OudsBottomSheetScaffold(
     content: @Composable (PaddingValues) -> Unit,
 ) {
     BottomSheetScaffold(
-        sheetContent = {
-            val density = LocalDensity.current
-            val screenHeight = with(density) { LocalWindowInfo.current.containerSize.height.toDp() }
-            val barsInsetsHeight = with(density) { (WindowInsets.systemBars.getTop(density) + WindowInsets.navigationBars.getBottom(density)).toDp() }
-            val sheetMaxHeight = screenHeight - OudsNavigationBarHeight - BottomSheetDefaults.SheetPeekHeight - barsInsetsHeight
-            Column(modifier = Modifier.heightIn(max = sheetMaxHeight)) {
-                sheetContent()
-            }
-        },
+        sheetContent = sheetContent,
         modifier = modifier,
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,
@@ -135,7 +121,11 @@ internal fun PreviewOudsBottomSheetScaffold(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsBottomSheetScaffold(
         sheetContent = {
-            Column(modifier = Modifier.padding(bottom = OudsTheme.spaces.fixed.medium).padding(horizontal = OudsTheme.grids.margin)) {
+            Column(
+                modifier = Modifier
+                    .padding(bottom = OudsTheme.spaces.fixed.medium)
+                    .padding(horizontal = OudsTheme.grids.margin)
+            ) {
                 Text(text = "Bottom sheet content")
             }
         },
