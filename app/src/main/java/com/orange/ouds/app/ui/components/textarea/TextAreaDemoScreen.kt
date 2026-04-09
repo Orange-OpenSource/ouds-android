@@ -20,6 +20,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
@@ -152,11 +153,7 @@ private fun Code.Builder.textAreaDemoCodeSnippet(state: TextAreaDemoState) {
             }
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
-            if (error) {
-                constructorCallArgument<OudsError>("error") {
-                    typedArgument("message", errorMessage)
-                }
-            }
+            if (error) errorArgument(errorMessage)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (helperLink.isNotEmpty()) {
                 constructorCallArgument<OudsTextInputHelperLink>("helperLink") {
