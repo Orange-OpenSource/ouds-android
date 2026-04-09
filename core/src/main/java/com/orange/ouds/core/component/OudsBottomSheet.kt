@@ -36,18 +36,20 @@ internal object OudsBottomSheetDefaults {
     @Composable
     fun DragHandle() {
         val dragHandleContentDescription = stringResource(id = R.string.core_bottomSheet_dragHandle_a11y)
+        val dragHandleTopPadding = OudsTheme.spaces.fixed.medium
+        val dragHandleHeight = 4.dp
         // Compute the bottom padding based on the peek height in order to keep the drag handle total height equal to the default `SheetPeekHeight`
-        val dragHandleBottomPadding = BottomSheetDefaults.SheetPeekHeight - OudsTheme.spaces.fixed.medium
+        val dragHandleBottomPadding = BottomSheetDefaults.SheetPeekHeight - dragHandleTopPadding - dragHandleHeight
         Surface(
             modifier = Modifier
-                .padding(top = OudsTheme.spaces.fixed.medium, bottom = dragHandleBottomPadding)
+                .padding(top = dragHandleTopPadding, bottom = dragHandleBottomPadding)
                 .semantics {
                     contentDescription = dragHandleContentDescription
                 },
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             shape = MaterialTheme.shapes.extraLarge,
         ) {
-            Box(Modifier.size(width = 32.dp, height = 4.dp))
+            Box(Modifier.size(width = 32.dp, height = dragHandleHeight))
         }
     }
 }
