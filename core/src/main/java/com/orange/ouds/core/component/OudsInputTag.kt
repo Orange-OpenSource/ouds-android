@@ -241,7 +241,7 @@ private fun PreviewOudsInputTag() {
 @Composable
 internal fun PreviewOudsInputTag(theme: OudsThemeContract, darkThemeEnabled: Boolean) =
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        PreviewEnumEntries<OudsInputTagState>(columnCount = 3) {
+        PreviewEnumEntries<OudsInputTagState>(maxEnumEntriesInEachRow = 3) {
             OudsInputTag(label = "Label", onClick = {})
         }
     }

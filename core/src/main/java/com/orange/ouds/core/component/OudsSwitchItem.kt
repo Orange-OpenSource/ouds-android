@@ -162,7 +162,7 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
@@ -201,7 +201,7 @@ private fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled() = PreviewOudsSwitchIte
 
 @Composable
 internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
         OudsSwitchItem(
             checked = true,
             label = "Label",
