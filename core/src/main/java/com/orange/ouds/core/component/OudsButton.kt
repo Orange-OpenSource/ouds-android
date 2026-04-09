@@ -783,7 +783,7 @@ internal fun PreviewOudsButton(
         val label = if (hasLabel) appearance.name else null
         val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
-            PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+            PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 OudsButton(
                     nullableIcon = icon,
                     nullableLabel = label,
@@ -811,7 +811,7 @@ private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRounded
 internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
         val appearance = OudsButtonAppearance.Default
-        PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+        PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
             OudsButton(
                 nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
                 nullableLabel = appearance.name,
@@ -829,7 +829,7 @@ private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconB
 
 @Composable
 internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+    PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
             nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
             nullableLabel = null,

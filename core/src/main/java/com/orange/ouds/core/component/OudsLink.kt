@@ -454,7 +454,7 @@ internal fun PreviewOudsLink(
     with(parameter) {
         val icon = if (hasIcon) OudsLinkIcon(Icons.Filled.FavoriteBorder) else null
         val linkPreview: @Composable () -> Unit = {
-            PreviewEnumEntries<OudsLinkState>(columnCount = 3) {
+            PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
                 OudsLink(
                     icon = icon,
                     label = "Label",

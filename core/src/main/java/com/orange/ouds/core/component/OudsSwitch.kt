@@ -242,7 +242,7 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 3) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 3) {
         OudsSwitch(
             checked = checked,
             onCheckedChange = {}
