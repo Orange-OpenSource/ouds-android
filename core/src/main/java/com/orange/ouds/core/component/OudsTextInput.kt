@@ -773,15 +773,16 @@ private fun PrefixSuffixText(text: String, state: OudsTextInputState, modifier: 
 
 @Composable
 internal fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
-    return if (error) {
-        OudsTheme.colorScheme.surface.status.negative.muted
-    } else {
-        when (state) {
+    return when {
+        error && outlined -> Color.Transparent
+        error && !outlined -> OudsTheme.colorScheme.surface.status.negative.muted
+        outlined -> if (state == OudsTextInputState.ReadOnly) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
+        else -> when (state) {
             OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.support.enabled
             OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.support.hover
             OudsTextInputState.Focused -> OudsTheme.colorScheme.action.support.pressed
             OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
-            OudsTextInputState.ReadOnly -> if (outlined) OudsTheme.colorScheme.action.support.disabled else Color.Transparent
+            OudsTextInputState.ReadOnly -> Color.Transparent
             OudsTextInputState.Loading -> OudsTheme.colorScheme.action.support.loading
         }
     }
@@ -812,7 +813,7 @@ internal fun errorIconColor(state: OudsTextInputState) = when (state) {
 }
 
 @Composable
-private fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, state: OudsTextInputState, outlined: Boolean, error: OudsError?): Modifier {
+internal fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, state: OudsTextInputState, outlined: Boolean, error: OudsError?): Modifier {
     return if (borderWidth != null && borderColor != null) {
         if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
             border(width = borderWidth, color = borderColor, shape = textInputShape)
@@ -893,7 +894,7 @@ internal val textInputBorderRadius: Dp
         if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded else borderRadiusDefault
     }.value
 
-private val textInputShape: Shape
+internal val textInputShape: Shape
     @Composable
     get() = RoundedCornerShape(textInputBorderRadius)
 

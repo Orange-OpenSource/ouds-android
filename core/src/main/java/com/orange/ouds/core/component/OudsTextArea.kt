@@ -16,7 +16,6 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -32,7 +31,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -72,7 +70,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -81,7 +78,6 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -489,33 +485,15 @@ internal fun OudsTextAreaDecorator(
     val textInputTokens = OudsTheme.componentsTokens.textInput
     val textAreaTokens = OudsTheme.componentsTokens.textArea
     with(textInputTokens) {
-        val borderRadius = if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded.value else borderRadiusDefault.value
-        val shape = RoundedCornerShape(borderRadius)
-
-        val styleModifier = if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
-            // outlined
-            borderWidth(state)?.let { borderWidth ->
-                Modifier.border(
-                    width = borderWidth,
-                    color = borderColor(state = state, outlined = outlined, error = hasError),
-                    shape = shape
-                )
-            }.orElse {
-                Modifier
-            }
-        } else {
-            // filled
-            Modifier
-                .textInputBottomBorder(state = state, outlined = outlined, cornerRadius = borderRadius, error = hasError)
-                .background(
-                    color = backgroundColor(state = state, outlined = outlined, error = hasError),
-                    shape = shape
-                )
-        }
+        val borderWidth = borderWidth(state)
+        val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
+        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(modifier = Modifier.sizeIn(minWidth = sizeMinWidth.dp)) {
             Row(
-                modifier = styleModifier
+                modifier = Modifier
+                    .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
+                    .background(color = backgroundColor, shape = textInputShape)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(vertical = textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
