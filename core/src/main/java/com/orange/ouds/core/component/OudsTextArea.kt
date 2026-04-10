@@ -710,7 +710,7 @@ internal class OudsTextAreaPreviewParameterProvider : BasicPreviewParameterProvi
 
 internal class OudsTextAreaConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
-internal class OudsTextAreaMultilineValuePreviewParameterProvider : BasicPreviewParameterProvider<Int>(3, 5, 12)
+internal class OudsTextAreaMultilineValuePreviewParameterProvider : BasicPreviewParameterProvider<Int>(3, 5, 15)
 
 private val previewParameterValues: List<OudsTextAreaPreviewParameter>
     get() {
