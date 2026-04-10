@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.components.textarea
 
 import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +25,7 @@ import com.orange.ouds.app.R
 
 @Composable
 fun rememberTextAreaDemoState(
-    textFieldState: TextFieldState = TextFieldState(),
+    textFieldState: TextFieldState = rememberTextFieldState(),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     placeholder: String = "",
     outlined: Boolean = false,
