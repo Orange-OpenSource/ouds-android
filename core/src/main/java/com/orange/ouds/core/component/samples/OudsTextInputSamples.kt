@@ -33,7 +33,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 @Composable
 internal fun OudsTextInputStateBasedSample() {
     OudsTextInput(
-        textFieldState = rememberTextFieldState(),
+        textFieldState = rememberTextFieldState("Text"),
         label = "Label",
         placeholder = "Placeholder",
         leadingIcon = OudsTextInputLeadingIcon(
@@ -49,7 +49,7 @@ internal fun OudsTextInputStateBasedSample() {
 
 @Composable
 internal fun OudsTextInputValueBasedSample() {
-    var value by remember { mutableStateOf("Input") }
+    var value by remember { mutableStateOf("Text") }
     OudsTextInput(
         value = value,
         onValueChange = { value = it },

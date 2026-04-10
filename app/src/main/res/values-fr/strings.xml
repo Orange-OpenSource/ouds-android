@@ -92,6 +92,7 @@
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Notifications non lues</string>
     <string name="app_components_common_version_label">Version design du composant</string>
+    <string name="app_components_textAreaHelperText_label">Il vous reste 180 caractères.</string>
     <string name="app_components_textInputHelperText_label">Texte d\'aide.</string>
     <string name="app_components_passwordInputHelperText_label">Votre mot de passe doit contenir 8 caractères minimum.</string>
 
@@ -164,6 +165,9 @@
 
     <!-- Components: tag -->
     <string name="app_components_tag_description_text">Un Tag (ou étiquette) est un élément d\'interface utilisateur qui affiche de courtes informations telles qu\'un libellé, un mot-clé ou une catégorie.</string>
+
+    <!-- Components: text area -->
+    <string name="app_components_textArea_description_text">Un Text area (ou zone de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner des blocs de données textuelles plus longs, tels que des commentaires, des messages ou des descriptions&#160;; en s\'étendant verticalement et en offrant plus d\'espace pour la saisie de texte.</string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Un Text input (ou champ de saisie de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner une seule ligne de données textuelles, telles que des noms, des adresses électroniques ou des requêtes de recherche.</string>

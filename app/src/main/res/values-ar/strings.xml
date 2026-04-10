@@ -35,7 +35,7 @@
     <string name="app_themeSettingsDialog_cancel_label">إلغاء</string>
     <string name="app_themeSettingsDialog_label">تغيير إعدادات السمة</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">زر بزوايا مستديرة</string>
-    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">زر بزوايا مستديرة</string>
+    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">حقول إدخال نص بزوايا مستديرة</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomBar_tokens_label">الرموز</string>
@@ -94,6 +94,7 @@
         <item quantity="many">%d رسائل غير مقروءة</item>
     </plurals>
     <string name="app_components_common_version_label">نسخة تصميم المكون</string>
+    <string name="app_components_textAreaHelperText_label">لديك 180 حرفًا متبقيًا.</string>
     <string name="app_components_textInputHelperText_label">نص مساعد.</string>
     <string name="app_components_passwordInputHelperText_label">يجب ألا يقلّ password عن 8 أحرف.</string>
 
@@ -166,6 +167,9 @@
 
     <!-- Components: tag -->
     <string name="app_components_tag_description_text">Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة.</string>
+
+    <!-- Components: text area -->
+    <string name="app_components_textArea_description_text">Text area هي عنصر واجهة مستخدم يتيح للمستخدمين كتابة أو تحرير أو اختيار كتل نصية طويلة، مثل التعليقات أو الرسائل أو الوصف، من خلال التمدد عمودياً وتوفير مساحة أكبر لإدخال النص.</string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.</string>
