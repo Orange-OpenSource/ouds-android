@@ -244,7 +244,7 @@ internal fun PreviewOudsPasswordInput(
     parameter: OudsPasswordInputPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) {
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) {
             OudsPasswordInput(
                 state = rememberOudsPasswordInputState(initialText),
                 label = label,

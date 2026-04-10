@@ -213,7 +213,7 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -248,7 +248,7 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -284,7 +284,7 @@ private fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled() = PreviewOudsRadi
 
 @Composable
 internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
         OudsRadioButtonItem(
             selected = true,
             label = "Label",
