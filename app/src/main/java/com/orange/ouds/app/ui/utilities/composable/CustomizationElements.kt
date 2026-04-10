@@ -86,7 +86,8 @@ fun CustomizationFilterChips(
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isInBottomSheet: Boolean = true
 ) {
     CustomizationFilterChips(
         label = label,
@@ -94,7 +95,8 @@ fun CustomizationFilterChips(
         selectedChipIndex = selectedChipIndex,
         onSelectionChange = onSelectionChange,
         applyTopPadding = applyTopPadding,
-        modifier = modifier
+        modifier = modifier,
+        isInBottomSheet = isInBottomSheet
     )
 }
 
@@ -106,7 +108,8 @@ fun CustomizationFilterChips(
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isInBottomSheet: Boolean = true
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
@@ -120,13 +123,18 @@ fun CustomizationFilterChips(
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
         // That is why we set canFocus here again
-        val sheetValue = LocalCustomizationBottomSheetValue.current
+        val chipsRowCanFocus = if (isInBottomSheet) {
+            LocalCustomizationBottomSheetValue.current == SheetValue.Expanded
+        } else {
+            true
+        }
+        
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
-                .focusProperties { canFocus = sheetValue == SheetValue.Expanded }
+                .focusProperties { canFocus = chipsRowCanFocus }
                 .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
@@ -150,7 +158,7 @@ fun CustomizationTextInput(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
@@ -176,7 +184,9 @@ fun CustomizationTextInput(
     applyTopPadding: Boolean,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    suffix: String? = null,
+    resetValue: String = ""
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
@@ -195,11 +205,12 @@ fun CustomizationTextInput(
                 painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_component_tag_close),
                 contentDescription = stringResource(R.string.app_components_common_textInputClearIcon_a11y),
                 onClick = {
-                    onValueChange(value.copy(text = ""))
+                    onValueChange(value.copy(text = resetValue))
                 })
         } else {
             null
         },
+        suffix = suffix,
         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
     )
 }

@@ -182,6 +182,24 @@
     <string name="app_components_badge_iconType_tech" translatable="false">Icon</string>
     <string name="app_components_badge_count_tech" translatable="false">Count</string>
 
+    <!-- Components: bottom sheet -->
+    <string name="app_components_bottomSheet_tech" translatable="false">Bottom sheet</string>
+    <string name="app_components_bottomSheet_description_text">Bottom sheets show secondary content anchored to the bottom of the screen.</string> <!-- TODO -->
+    <string name="app_components_bottomSheet_sheetContent_text">Bottom sheet content.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_tech" translatable="false">Standard bottom sheet</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_description_text">Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech" translatable="false">Sheet peek height</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech" translatable="false">dp</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech" translatable="false">Sheet drag handle</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech" translatable="false">Sheet swipe enabled</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_sheetValue_tech" translatable="false">Sheet value</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_collapse_label">Collapse</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_tech" translatable="false">Modal bottom sheet</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_description_text">Modal bottom sheet displays content that temporarily blocks interaction with the main screen.</string>  <!-- TODO -->
+    <string name="app_components_bottomSheet_modalBottomSheet_dragHandle_tech" translatable="false">Drag handle</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_sheetGesturesEnabled_tech" translatable="false">Sheet gestures enabled</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_close_label">Close</string>
+
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_tech" translatable="false">Bullet list</string>
     <string name="app_components_bulletList_description_text">Bullet list is a UI element that helps to view in related individual text items grouped together; items usually starting with a number or a bullet.</string>

@@ -71,6 +71,7 @@ import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
+import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsBulletListRtl
 import com.orange.ouds.core.component.PreviewOudsButton
@@ -96,6 +97,7 @@ import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
+import com.orange.ouds.core.component.PreviewOudsModalBottomSheet
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
@@ -186,6 +188,19 @@ interface OudsPreviewableComponent {
                     parameter = parameter as OudsBadgeWithIconPreviewParameter
                 )
             }
+        }
+    }
+
+    object BottomSheetScaffold : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsBottomSheetScaffold(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
         }
     }
 
@@ -558,6 +573,19 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object ModalBottomSheet : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsModalBottomSheet(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
+        }
+    }
+    
     object NavigationBar {
 
         object Default : OudsPreviewableComponent {

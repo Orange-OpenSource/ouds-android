@@ -17,6 +17,8 @@
 
     <string name="core_alertMessage_close_a11y">إغلاق alert message</string>
 
+    <string name="core_bottomSheet_dragHandle_a11y">مقبض السحب</string>
+
     <string name="core_bulletList_level_a11y">المستوى %1$d</string>
     <plurals name="core_bulletList_subitems_a11y">
         <item quantity="zero">%1$d عنصر فرعي</item>
