@@ -45,7 +45,7 @@ import com.orange.ouds.core.theme.OudsTheme
 fun ModalBottomSheetDemoScreen() {
     val state = rememberModalBottomSheetDemoState()
     var modalBottomSheetVisible by rememberSaveable { mutableStateOf(false) }
-    val sheetState = rememberModalBottomSheetState()
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     with(state) {
         Screen {
             Column(
@@ -76,7 +76,10 @@ fun ModalBottomSheetDemoScreen() {
                         onDismissRequest = { modalBottomSheetVisible = false },
                         sheetState = sheetState
                     ) {
-                        BottomSheetDemoContent(dragHandle = dragHandle, buttonLabel = stringResource(R.string.app_components_bottomSheet_modalBottomSheet_close_label)) {
+                        BottomSheetDemoContent(
+                            dragHandle = dragHandle,
+                            buttonLabel = stringResource(R.string.app_components_bottomSheet_modalBottomSheet_close_label)
+                        ) {
                             modalBottomSheetVisible = false
                         }
                     }
