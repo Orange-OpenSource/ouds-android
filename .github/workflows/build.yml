@@ -33,6 +33,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -114,6 +116,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -157,6 +161,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -193,6 +199,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Publish release to Google Play Store
         run: |
