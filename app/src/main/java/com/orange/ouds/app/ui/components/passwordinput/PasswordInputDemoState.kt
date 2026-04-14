@@ -21,10 +21,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsPasswordInputState
+import com.orange.ouds.core.component.rememberOudsPasswordInputState
 
 @Composable
 fun rememberPasswordInputDemoState(
-    passwordInputState: OudsPasswordInputState = OudsPasswordInputState(),
+    passwordInputState: OudsPasswordInputState = rememberOudsPasswordInputState(),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     placeholder: String = "",
     outlined: Boolean = false,
