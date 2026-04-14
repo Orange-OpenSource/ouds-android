@@ -165,7 +165,7 @@ jobs:
 
   maven-central-release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    #if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     needs: [ build, lint, snapshot-tests, instrumented-tests ]
     environment:
       name: maven-central-release
@@ -208,7 +208,7 @@ jobs:
 
   github-release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    #if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     needs: [ build, lint, snapshot-tests, instrumented-tests ]
     environment:
       name: github-release
@@ -248,7 +248,7 @@ jobs:
 
   google-play-store-release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    #if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     needs: [ build, lint, snapshot-tests, instrumented-tests ]
     environment:
       name: google-play-store-release

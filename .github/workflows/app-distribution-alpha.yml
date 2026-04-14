@@ -51,7 +51,7 @@ jobs:
           variant: 'alphaRelease'
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          group: 'ouds-android-alpha'
+          group: 'ouds-android-development'
 
       - name: Publish Firebase App Distribution QR code
         run: ./gradlew publishAppDistributionQrCode -PapplicationId=com.orange.ouds.alpha.app

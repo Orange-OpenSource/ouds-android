@@ -44,4 +44,4 @@ jobs:
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
           git-tag-prefix: 'ci/beta-app'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          group: 'ouds-android-beta'
+          group: 'ouds-android-development'

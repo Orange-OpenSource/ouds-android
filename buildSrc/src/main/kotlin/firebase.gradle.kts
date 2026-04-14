@@ -129,7 +129,7 @@ tasks.register<DefaultTask>("gitTagAppDistribution") {
     onlyIf {
         // Do not execute this task if any Firebase App Distribution upload failed or if appDistributionVariants is empty or if branch is not develop
         val uploadFailed = appDistributionTasks.any { it.state.failure != null }
-        !uploadFailed && appDistributionTasks.isNotEmpty() && Environment.branchName == "develop"
+        !uploadFailed && appDistributionTasks.isNotEmpty()//&& Environment.branchName == "develop"
     }
 
     mustRunAfter(*appDistributionTasks.toTypedArray())
@@ -209,11 +209,11 @@ tasks.register<DefaultTask>("publishAppDistributionQrCode") {
                                             "$link\\n\\n" +
                                             "- Application name: **DesignToolbox**\\n" +
                                             "- Version name: **${release.displayVersion}**\\n" +
-                                            "- Version code: **${release.buildVersion}**\\n" +
-                                            "cc @B3nz01d (product owner)\\n" +
-                                            "cc @florentmaitre @paulinea (dev team)\\n" +
-                                            "cc @jerome-regnier (design team)\\n" +
-                                            "cc @pya35 (a11y team)"
+                                            "- Version code: **${release.buildVersion}**\\n"
+                                    //"cc @B3nz01d (product owner)\\n" +
+                                    //"cc @florentmaitre @paulinea (dev team)\\n" +
+                                    //"cc @jerome-regnier (design team)\\n" +
+                                    //"cc @pya35 (a11y team)"
 
                                     issues.forEach { issue ->
                                         createIssueComment(issue.number, body)
