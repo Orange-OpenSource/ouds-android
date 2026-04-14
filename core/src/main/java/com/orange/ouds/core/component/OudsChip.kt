@@ -49,8 +49,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.extensions.isTransparent
-import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
+import com.orange.ouds.core.extensions.highContrasted
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -218,7 +217,11 @@ private fun borderWidth(state: OudsChipState, selected: Boolean): Dp? {
 private fun borderColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBorderSelectedEnabled.value.highContrasted() else colorBorderUnselectedEnabled.value
+            OudsChipState.Enabled -> if (selected) {
+                colorBorderSelectedEnabled.value.highContrasted(background = colorBgSelectedEnabled.value.highContrasted())
+            } else {
+                colorBorderUnselectedEnabled.value
+            }
             OudsChipState.Focused -> if (selected) colorBorderSelectedFocus.value else colorBorderUnselectedFocus.value
             OudsChipState.Hovered -> if (selected) colorBorderSelectedHover.value else colorBorderUnselectedHover.value
             OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed.value else colorBorderUnselectedPressed.value
@@ -231,7 +234,11 @@ private fun borderColor(state: OudsChipState, selected: Boolean): Color {
 private fun backgroundColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBgSelectedEnabled.value.highContrasted() else colorBgUnselectedEnabled.value
+            OudsChipState.Enabled -> if (selected) {
+                colorBgSelectedEnabled.value.highContrasted()
+            } else {
+                colorBgUnselectedEnabled.value
+            }
             OudsChipState.Focused -> if (selected) colorBgSelectedFocus.value else colorBgUnselectedFocus.value
             OudsChipState.Hovered -> if (selected) colorBgSelectedHover.value else colorBgUnselectedHover.value
             OudsChipState.Pressed -> if (selected) colorBgSelectedPressed.value else colorBgUnselectedPressed.value
@@ -245,7 +252,7 @@ private fun contentColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
             OudsChipState.Enabled -> if (selected) {
-                colorContentSelectedEnabled.value.highContrasted(onBackground = colorBgSelectedEnabled.value)
+                colorContentSelectedEnabled.value.highContrasted(background = colorBgSelectedEnabled.value.highContrasted())
             } else {
                 colorContentUnselectedEnabled.value
             }
@@ -262,7 +269,7 @@ private fun tickColor(state: OudsChipState, selected: Boolean): Color? {
     return with(OudsTheme.componentsTokens.chip) {
         if (selected) {
             when (state) {
-                OudsChipState.Enabled -> colorContentSelectedTickEnabled.value.highContrasted(onBackground = colorBgSelectedEnabled.value)
+                OudsChipState.Enabled -> colorContentSelectedTickEnabled.value.highContrasted(background = colorBgSelectedEnabled.value.highContrasted())
                 OudsChipState.Focused -> colorContentSelectedFocus.value
                 OudsChipState.Hovered -> colorContentSelectedHover.value
                 OudsChipState.Pressed -> colorContentSelectedPressed.value
@@ -296,31 +303,6 @@ private fun contentPadding(label: String?, icon: OudsChipIcon?, iconPosition: Ou
         val vertical = if (label != null) spacePaddingBlock.value else spacePaddingBlockIconOnly.value
         PaddingValues(start = start, top = vertical, end = end, bottom = vertical)
     }
-}
-
-/**
- * Returns a high contrast color when high contrast mode is enabled.
- *
- * This extension replaces the current color with appropriate high contrast alternatives from the theme's color scheme:
- * - If [onBackground] is provided (color used on a background):
- *   - Returns `background.primary` if the current color is opaque
- *   - Returns `content.default` if the current color is transparent
- * - If [onBackground] is null (color not on a background):
- *   - Returns `content.default` if the current color is opaque
- *   - Returns the current color unchanged if it is transparent
- *
- * When high contrast mode is disabled, the current color is returned unchanged.
- *
- * @param onBackground The background color on which this color will be displayed, or `null` if not applicable.
- * @return The high contrast color when enabled, or the current color otherwise.
- */
-@Composable
-private fun Color.highContrasted(onBackground: Color? = null) = when {
-    !LocalHighContrastModeEnabled.current -> this
-    onBackground != null && onBackground.isTransparent() -> OudsTheme.colorScheme.content.default
-    onBackground != null -> OudsTheme.colorScheme.background.primary
-    isTransparent() -> this
-    else -> OudsTheme.colorScheme.content.default
 }
 
 /**
