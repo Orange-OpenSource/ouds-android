@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
+import com.orange.ouds.core.extensions.highContrasted
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -207,8 +207,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
         } else {
             when (state) {
                 OudsControlState.Enabled -> if (selected) {
-                    // In order to reach the a11y AAA level, when high contrast mode is enabled, the selected radio button must use `color.content.default` token
-                    if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else this.selected
+                    this.selected.highContrasted()
                 } else {
                     OudsTheme.colorScheme.border.emphasized
                 }
