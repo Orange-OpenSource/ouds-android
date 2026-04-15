@@ -27,12 +27,12 @@ class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedS
             append(text)
         }
 
-        override fun addStrong(start: Int, end: Int) = addStrongInternal(start, end)
+        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
-        override fun pushStrong(): Int = pushStrongInternal()
+        override fun pushStrong(): Int = pushStrongImpl()
     }
 }
 
 fun buildOudsAnnotatedErrorMessage(builder: (OudsAnnotatedErrorMessage.Builder).() -> Unit): OudsAnnotatedErrorMessage {
-    return buildOudsAnnotatedString<OudsAnnotatedErrorMessage.Builder, OudsAnnotatedErrorMessage>(builder)
+    return buildOudsAnnotatedString<OudsAnnotatedErrorMessage, OudsAnnotatedErrorMessage.Builder>(builder)
 }

@@ -50,7 +50,7 @@ open class OudsAnnotatedString<T> internal constructor(internal val annotatedStr
 
     open class Builder<T> internal constructor(capacity: Int, private val clazz: Class<T>) : Appendable where T : OudsAnnotatedString<T> {
 
-        internal companion object {
+        private companion object {
 
             val strongStyle = SpanStyle(fontWeight = FontWeight.Bold)
         }
@@ -74,21 +74,21 @@ open class OudsAnnotatedString<T> internal constructor(internal val annotatedStr
             return constructor(builder.toAnnotatedString())
         }
 
-        internal fun addStrongInternal(start: Int, end: Int) {
+        protected fun addStrongImpl(start: Int, end: Int) {
             builder.addStyle(strongStyle, start, end)
         }
 
-        internal fun addLinkInternal(url: OudsLinkAnnotation.Url, start: Int, end: Int) {
+        protected fun addLinkImpl(url: OudsLinkAnnotation.Url, start: Int, end: Int) {
             builder.addLink(url.linkAnnotation, start, end)
         }
 
-        internal fun addLinkInternal(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) {
+        protected fun addLinkImpl(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) {
             builder.addLink(clickable.linkAnnotation, start, end)
         }
 
-        internal fun pushStrongInternal(): Int = builder.pushStyle(strongStyle)
+        protected fun pushStrongImpl(): Int = builder.pushStyle(strongStyle)
 
-        internal fun pushLinkInternal(link: OudsLinkAnnotation): Int = builder.pushLink(link.linkAnnotation)
+        protected fun pushLinkImpl(link: OudsLinkAnnotation): Int = builder.pushLink(link.linkAnnotation)
 
         fun pop(): Unit = builder.pop()
 
@@ -153,8 +153,8 @@ inline fun <R : Any> OudsAnnotatedString.LinkBuilder.withLink(link: OudsLinkAnno
     }
 }
 
-inline fun <reified T, U> buildOudsAnnotatedString(noinline builder: (T).() -> Unit): U where T : OudsAnnotatedString.Builder<U>, U : OudsAnnotatedString<U> {
-    return buildOudsAnnotatedString(T::class.java, builder)
+inline fun <T, reified U> buildOudsAnnotatedString(noinline builder: (U).() -> Unit): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
+    return buildOudsAnnotatedString(U::class.java, builder)
 }
 
 @PublishedApi
