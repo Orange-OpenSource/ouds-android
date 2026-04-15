@@ -26,12 +26,12 @@ class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedStr
             append(text)
         }
 
-        override fun addStrong(start: Int, end: Int) = addStrongInternal(start, end)
+        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
-        override fun pushStrong(): Int = pushStrongInternal()
+        override fun pushStrong(): Int = pushStrongImpl()
     }
 }
 
 fun buildOudsAnnotatedHelperText(builder: (OudsAnnotatedHelperText.Builder).() -> Unit): OudsAnnotatedHelperText {
-    return buildOudsAnnotatedString<OudsAnnotatedHelperText.Builder, OudsAnnotatedHelperText>(builder)
+    return buildOudsAnnotatedString<OudsAnnotatedHelperText, OudsAnnotatedHelperText.Builder>(builder)
 }
