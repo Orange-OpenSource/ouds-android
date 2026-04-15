@@ -39,6 +39,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
@@ -51,6 +52,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -173,7 +175,7 @@ internal fun OudsControlItem(
                 }
             }
             if (error != null && error.message.isNotBlank()) {
-                ErrorMessageText(text = error.message, edgeToEdge = edgeToEdge)
+                ErrorMessageText(error = error, edgeToEdge = edgeToEdge)
             }
         }
     }
@@ -254,20 +256,22 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun ErrorMessageText(text: String, edgeToEdge: Boolean) {
+private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
     with(OudsTheme.componentsTokens.controlItem) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-                .padding(top = spacePaddingBlockTopErrorText.value)
-                .clearAndSetSemantics {
-                    error(text)
-                },
-            text = text,
-            style = OudsTheme.typography.label.default.medium,
-            color = OudsTheme.colorScheme.content.status.negative
-        )
+        val modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+            .padding(top = spacePaddingBlockTopErrorText.value)
+            .clearAndSetSemantics {
+                error(error.message)
+            }
+        val text = error.annotatedMessage?.annotatedString.orElse { error.message }
+        val style = OudsTheme.typography.label.default.medium
+        val color = OudsTheme.colorScheme.content.status.negative
+        when (text) {
+            is AnnotatedString -> Text(modifier = modifier, text = text, style = style, color = color)
+            is String -> Text(modifier = modifier, text = text, style = style, color = color)
+        }
     }
 }
 
