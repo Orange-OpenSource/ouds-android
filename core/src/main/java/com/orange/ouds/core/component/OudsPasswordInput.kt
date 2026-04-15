@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -120,6 +121,145 @@ fun OudsPasswordInput(
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
+    OudsPasswordInput(
+        state = state,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        lockIcon = lockIcon,
+        prefix = prefix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        constrainedMaxWidth = constrainedMaxWidth,
+        inputTransformation = inputTransformation,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Password input is a UI element that allows to securely and confidentially capture a user's password.
+ * Password Input enhances privacy by replacing characters with dots, while they are being typed; and also embeds usability features such as the ability
+ * to show and hide password, and helper text to guide password creation.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
+ *
+ * > Design version: 1.2.0
+ *
+ * @param state The editable text state of the password input, including the text itself, position of the cursor or selection and the text obfuscation mode.
+ * @param modifier [Modifier] applied to the password input.
+ * @param label Label displayed above the password input. It describes the purpose of the input.
+ * @param placeholder Text displayed when the password input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param lockIcon When `true`, a lock icon is displayed at the start of the password input to visually reinforce the security context. Defaults to `false`.
+ * @param prefix Text placed before the user's input. A prefix is not common and is discouraged in a Password Input component. In very specific cases,
+ *   it can provide context or format requirements (e.g., “DEV-” for test accounts, "admin-" as a pattern to define an admin password)
+ * @param enabled Controls the enabled state of the password input. When `false`, this password input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the password input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the password input to indicate an ongoing operation.
+ * @param outlined Controls the style of the password input. When `true`, it displays a minimalist password input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An annotated helper text displayed below the password input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param constrainedMaxWidth When `true`, the password input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [OudsPasswordInputState] made by the user. The transformation
+ *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
+ *   will _not_ be applied when changing the [state] programmatically, or when the transformation is changed. If the transformation is changed on an
+ *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [state].
+ * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
+ * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
+ *   By default this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
+ *   [ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
+ */
+@Composable
+fun OudsPasswordInput(
+    state: OudsPasswordInputState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    lockIcon: Boolean = false,
+    prefix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    constrainedMaxWidth: Boolean = false,
+    inputTransformation: InputTransformation? = null,
+    keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsPasswordInput(
+        state = state,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        lockIcon = lockIcon,
+        prefix = prefix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        constrainedMaxWidth = constrainedMaxWidth,
+        inputTransformation = inputTransformation,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        interactionSource = interactionSource
+    )
+}
+
+@Composable
+private fun OudsPasswordInput(
+    state: OudsPasswordInputState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    lockIcon: Boolean = false,
+    prefix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    annotatedHelperText: OudsAnnotatedHelperText? = null,
+    constrainedMaxWidth: Boolean = false,
+    inputTransformation: InputTransformation? = null,
+    keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val passwordInputState = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
@@ -168,6 +308,7 @@ fun OudsPasswordInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
                         helperLink = null,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
