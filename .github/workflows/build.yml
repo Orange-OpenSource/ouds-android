@@ -33,6 +33,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -41,6 +43,99 @@ jobs:
           store-password: ${{ secrets.SIGNING_STORE_PASSWORD }}
           key-alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           key-password: ${{ secrets.SIGNING_KEY_PASSWORD }}
+
+      - name: Build
+        run: |
+          # Git SHA is equal to github.event.pull_request.head.sha for pull requests
+          # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
+          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
+          ./gradlew assembleProd -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
+
+      - name: Upload app artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: app
+          path: app/build/outputs/apk/*/*/*.apk
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+      - name: Run Android Linter
+        run: ./gradlew lintProdDebug lintProdRelease
+
+      - name: Upload lint reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: lint-reports
+          path: '**/build/reports/lint-*.html'
+
+  snapshot-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+      - name: Run snapshot tests
+        run: ./gradlew verifyPaparazziDebug
+
+      - name: Upload snapshot test artifacts
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: snapshot-tests
+          path: |
+            core/build/paparazzi
+            core/build/reports/paparazzi
+
+  instrumented-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Enable KVM group perms
         run: |
@@ -61,41 +156,17 @@ jobs:
           arch: x86_64
           script: ./gradlew :core:connectedCheck
 
-      - name: Run snapshot tests
-        run: ./gradlew verifyPaparazziDebug
-
-      - name: Run Android Linter
-        run: ./gradlew lintProdDebug lintProdRelease
-
-      - name: Build
-        run: |
-          # Git SHA is equal to github.event.pull_request.head.sha for pull requests
-          # This value is unset if workflow has not been triggered by a pull request, use GITHUB_SHA instead
-          BRANCH_SHA=${{ github.event.pull_request.head.sha }}
-          COMMIT_SHA=${BRANCH_SHA:-$GITHUB_SHA}
-          ./gradlew assembleProd -PversionNameSuffix="-${COMMIT_SHA::7}" -PversionCode=$GITHUB_RUN_NUMBER --stacktrace
-
-      - name: Upload tests artifacts
+      - name: Upload instrumented test artifacts
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: tests
-          path: |
-            core/build/paparazzi
-            core/build/reports/paparazzi
-            core/build/reports/androidTests
-            core/build/reports/tests
-
-      - name: Upload app artifacts
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: app
-          path: app/build/outputs/apk/*/*/*.apk
+          name: instrumented-tests
+          path: core/build/reports/androidTests
 
   maven-central-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: build
+    needs: [ build, lint, snapshot-tests, instrumented-tests ]
     environment:
       name: maven-central-release
       url: https://mvnrepository.com/artifact/com.orange.ouds.android
@@ -114,6 +185,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -136,12 +209,12 @@ jobs:
   github-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: build
+    needs: [ build, lint, snapshot-tests, instrumented-tests ]
     environment:
       name: github-release
       url: https://github.com/Orange-OpenSource/ouds-android/releases
     permissions:
-      contents: write # Required to add release to repository
+      contents: write # Required to create release on repository
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -157,6 +230,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Set up signing configuration
         uses: ./.github/actions/setup-signing
@@ -174,7 +249,7 @@ jobs:
   google-play-store-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: build
+    needs: [ build, lint, snapshot-tests, instrumented-tests ]
     environment:
       name: google-play-store-release
       url: https://play.google.com/store/apps
@@ -193,6 +268,8 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Publish release to Google Play Store
         run: |
