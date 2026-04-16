@@ -1,0 +1,1021 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OudsFontRawTokens</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../images/banner.png">
+<link href="../../../styles/orange-style.css" rel="Stylesheet"></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    OUDS Android
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.orange.ouds.tokens.raw/-ouds-font-raw-tokens/index.html&quot;}"><div class="dropdown versions-dropdown" data-role="dropdown">
+  <div class="button button_dropdown versions-dropdown-button" role="combobox" data-role="dropdown-toggle" aria-controls="versions-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select version" tabindex="0" title="1.4.0"><span class="versions-dropdown-button-text">1.4.0</span></div>
+  <div class="dropdown--list dropdown--list_positioned_left versions-dropdown-data" role="listbox" data-role="dropdown-listbox" aria-label="Versions" id="versions-listbox">
+    <div class="dropdown--header" data-remove-style="true" style="display: none"><span>Select version</span><button class="button" data-role="dropdown-toggle" aria-label="Close versions selection"><i class="ui-kit-icon ui-kit-icon_cross"></i></button></div>
+<a href="index.html" class="dropdown--option dropdown--option_active dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.4.0"><span class="dropdown--option-icon dropdown--option-icon_selected"></span><span class="dropdown--option-text">1.4.0</span></a><a href="../../../older/1.3.0/global-raw-tokens/com.orange.ouds.tokens.raw/-ouds-font-raw-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.3.0</span></a><a href="../../../older/1.2.0/global-raw-tokens/com.orange.ouds.tokens.raw/-ouds-font-raw-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.2.0</span></a><a href="../../../older/1.1.0/global-raw-tokens/com.orange.ouds.tokens.raw/-ouds-font-raw-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.1.0</span></a><a href="../../../older/1.0.0/global-raw-tokens/com.orange.ouds.tokens.raw/-ouds-font-raw-tokens/index.html" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="1.0.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">1.0.0</span></a><a href="../../../not-found-version.html?v=0.4.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.4.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.4.0</span></a><a href="../../../not-found-version.html?v=0.3.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.3.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.3.0</span></a><a href="../../../not-found-version.html?v=0.2.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.2.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.2.0</span></a><a href="../../../not-found-version.html?v=0.1.0" class="dropdown--option dropdown--option-link" style="display: block; padding: 5px; color: #fff" data-remove-style="true" role="option" title="0.1.0"><span class="dropdown--option-icon"></span><span class="dropdown--option-text">0.1.0</span></a></div>
+  <div class="dropdown--overlay"></div>
+</div>
+</dokka-template-command>        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true" data-filter=":global-raw-tokens/release">release</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":global-raw-tokens/release" data-filter=":global-raw-tokens/release">
+                                <span class="checkbox--icon"></span>
+                                release
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    OUDS Android
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="global-raw-tokens::com.orange.ouds.tokens.raw/OudsFontRawTokens///PointingToDeclaration//322467425">
+  <div class="breadcrumbs"><a href="../../index.html">global-raw-tokens</a><span class="delimiter">/</span><a href="../index.html">com.orange.ouds.tokens.raw</a><span class="delimiter">/</span><span class="current">OudsFontRawTokens</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ouds</span><wbr><span>Font</span><wbr><span>Raw</span><wbr><span><span>Tokens</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">OudsFontRawTokens</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1666500187%2FProperties%2F322467425" anchor-label="FontLetterSpacing1050" id="1666500187%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing1050.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing1050</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1666500187%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing1050.html">FontLetterSpacing1050</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1411763642%2FProperties%2F322467425" anchor-label="FontLetterSpacing1150" id="1411763642%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing1150.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing1150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1411763642%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing1150.html">FontLetterSpacing1150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1157027097%2FProperties%2F322467425" anchor-label="FontLetterSpacing1250" id="1157027097%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing1250.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing1250</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1157027097%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing1250.html">FontLetterSpacing1250</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="647554007%2FProperties%2F322467425" anchor-label="FontLetterSpacing1450" id="647554007%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing1450.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing1450</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="647554007%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing1450.html">FontLetterSpacing1450</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="289732953%2FProperties%2F322467425" anchor-label="FontLetterSpacing150" id="289732953%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing150.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="289732953%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing150.html">FontLetterSpacing150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.18f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1926907274%2FProperties%2F322467425" anchor-label="FontLetterSpacing175" id="-1926907274%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing175.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing175</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1926907274%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing175.html">FontLetterSpacing175</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.19f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-371392173%2FProperties%2F322467425" anchor-label="FontLetterSpacing1850" id="-371392173%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing1850.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing1850</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-371392173%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing1850.html">FontLetterSpacing1850</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-478106381%2FProperties%2F322467425" anchor-label="FontLetterSpacing200" id="-478106381%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing200.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-478106381%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing200.html">FontLetterSpacing200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.17f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="34996408%2FProperties%2F322467425" anchor-label="FontLetterSpacing250" id="34996408%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing250.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing250</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="34996408%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing250.html">FontLetterSpacing250</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.2f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-732842926%2FProperties%2F322467425" anchor-label="FontLetterSpacing300" id="-732842926%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing300.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-732842926%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing300.html">FontLetterSpacing300</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.18f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-219740137%2FProperties%2F322467425" anchor-label="FontLetterSpacing350" id="-219740137%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing350.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing350</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-219740137%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing350.html">FontLetterSpacing350</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-474476682%2FProperties%2F322467425" anchor-label="FontLetterSpacing450" id="-474476682%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing450.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing450</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-474476682%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing450.html">FontLetterSpacing450</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-729213227%2FProperties%2F322467425" anchor-label="FontLetterSpacing550" id="-729213227%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing550.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing550</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-729213227%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing550.html">FontLetterSpacing550</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-983949772%2FProperties%2F322467425" anchor-label="FontLetterSpacing650" id="-983949772%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing650.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing650</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-983949772%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing650.html">FontLetterSpacing650</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1238686317%2FProperties%2F322467425" anchor-label="FontLetterSpacing750" id="-1238686317%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing750.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing750</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1238686317%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing750.html">FontLetterSpacing750</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1493422862%2FProperties%2F322467425" anchor-label="FontLetterSpacing850" id="-1493422862%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing850.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing850</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1493422862%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing850.html">FontLetterSpacing850</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1748159407%2FProperties%2F322467425" anchor-label="FontLetterSpacing950" id="-1748159407%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-letter-spacing950.html"><span>Font</span><wbr><span>Letter</span><wbr><span><span>Spacing950</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1748159407%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-letter-spacing950.html">FontLetterSpacing950</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1112809133%2FProperties%2F322467425" anchor-label="FontLineHeight1050" id="-1112809133%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height1050.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height1050</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1112809133%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height1050.html">FontLineHeight1050</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">48</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1367545678%2FProperties%2F322467425" anchor-label="FontLineHeight1150" id="-1367545678%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height1150.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height1150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1367545678%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height1150.html">FontLineHeight1150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">52</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1622282223%2FProperties%2F322467425" anchor-label="FontLineHeight1250" id="-1622282223%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height1250.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height1250</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1622282223%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height1250.html">FontLineHeight1250</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">56</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1877018768%2FProperties%2F322467425" anchor-label="FontLineHeight1350" id="-1877018768%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height1350.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height1350</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1877018768%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height1350.html">FontLineHeight1350</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">60</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2131755313%2FProperties%2F322467425" anchor-label="FontLineHeight1450" id="-2131755313%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height1450.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height1450</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2131755313%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height1450.html">FontLineHeight1450</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">64</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1144265803%2FProperties%2F322467425" anchor-label="FontLineHeight1850" id="1144265803%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height1850.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height1850</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1144265803%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height1850.html">FontLineHeight1850</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">72</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-419707436%2FProperties%2F322467425" anchor-label="FontLineHeight2050" id="-419707436%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height2050.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height2050</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-419707436%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height2050.html">FontLineHeight2050</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">80</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-747395392%2FProperties%2F322467425" anchor-label="FontLineHeight250" id="-747395392%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height250.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height250</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-747395392%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height250.html">FontLineHeight250</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">16</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1002131937%2FProperties%2F322467425" anchor-label="FontLineHeight350" id="-1002131937%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height350.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height350</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1002131937%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height350.html">FontLineHeight350</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1256868482%2FProperties%2F322467425" anchor-label="FontLineHeight450" id="-1256868482%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height450.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height450</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1256868482%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height450.html">FontLineHeight450</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1511605027%2FProperties%2F322467425" anchor-label="FontLineHeight550" id="-1511605027%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height550.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height550</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1511605027%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height550.html">FontLineHeight550</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">28</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1766341572%2FProperties%2F322467425" anchor-label="FontLineHeight650" id="-1766341572%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height650.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height650</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1766341572%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height650.html">FontLineHeight650</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">32</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2021078117%2FProperties%2F322467425" anchor-label="FontLineHeight750" id="-2021078117%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height750.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height750</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2021078117%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height750.html">FontLineHeight750</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">36</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2019152634%2FProperties%2F322467425" anchor-label="FontLineHeight850" id="2019152634%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height850.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height850</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2019152634%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height850.html">FontLineHeight850</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">40</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1764416089%2FProperties%2F322467425" anchor-label="FontLineHeight950" id="1764416089%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-line-height950.html"><span>Font</span><wbr><span>Line</span><wbr><span><span>Height950</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1764416089%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-line-height950.html">FontLineHeight950</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">44</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1073602163%2FProperties%2F322467425" anchor-label="FontSize1050" id="-1073602163%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size1050.html"><span>Font</span><wbr><span><span>Size1050</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1073602163%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size1050.html">FontSize1050</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">48</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1328338708%2FProperties%2F322467425" anchor-label="FontSize1150" id="-1328338708%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size1150.html"><span>Font</span><wbr><span><span>Size1150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1328338708%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size1150.html">FontSize1150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">52</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1583075253%2FProperties%2F322467425" anchor-label="FontSize1250" id="-1583075253%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size1250.html"><span>Font</span><wbr><span><span>Size1250</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1583075253%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size1250.html">FontSize1250</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">56</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2092548343%2FProperties%2F322467425" anchor-label="FontSize1450" id="-2092548343%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size1450.html"><span>Font</span><wbr><span><span>Size1450</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2092548343%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size1450.html">FontSize1450</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">64</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="616984551%2FProperties%2F322467425" anchor-label="FontSize150" id="616984551%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size150.html"><span>Font</span><wbr><span><span>Size150</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="616984551%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size150.html">FontSize150</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">12</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1599655676%2FProperties%2F322467425" anchor-label="FontSize175" id="-1599655676%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size175.html"><span>Font</span><wbr><span><span>Size175</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1599655676%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size175.html">FontSize175</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">13</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1183472773%2FProperties%2F322467425" anchor-label="FontSize1850" id="1183472773%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size1850.html"><span>Font</span><wbr><span><span>Size1850</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1183472773%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size1850.html">FontSize1850</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">72</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-150854783%2FProperties%2F322467425" anchor-label="FontSize200" id="-150854783%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size200.html"><span>Font</span><wbr><span><span>Size200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-150854783%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size200.html">FontSize200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">14</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="362248006%2FProperties%2F322467425" anchor-label="FontSize250" id="362248006%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size250.html"><span>Font</span><wbr><span><span>Size250</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="362248006%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size250.html">FontSize250</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">16</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-405591328%2FProperties%2F322467425" anchor-label="FontSize300" id="-405591328%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size300.html"><span>Font</span><wbr><span><span>Size300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-405591328%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size300.html">FontSize300</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">18</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="107511461%2FProperties%2F322467425" anchor-label="FontSize350" id="107511461%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size350.html"><span>Font</span><wbr><span><span>Size350</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="107511461%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size350.html">FontSize350</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-147225084%2FProperties%2F322467425" anchor-label="FontSize450" id="-147225084%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size450.html"><span>Font</span><wbr><span><span>Size450</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-147225084%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size450.html">FontSize450</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-401961629%2FProperties%2F322467425" anchor-label="FontSize550" id="-401961629%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size550.html"><span>Font</span><wbr><span><span>Size550</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-401961629%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size550.html">FontSize550</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">28</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-656698174%2FProperties%2F322467425" anchor-label="FontSize650" id="-656698174%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size650.html"><span>Font</span><wbr><span><span>Size650</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-656698174%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size650.html">FontSize650</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">32</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-911434719%2FProperties%2F322467425" anchor-label="FontSize750" id="-911434719%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size750.html"><span>Font</span><wbr><span><span>Size750</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-911434719%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size750.html">FontSize750</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">36</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1166171264%2FProperties%2F322467425" anchor-label="FontSize850" id="-1166171264%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size850.html"><span>Font</span><wbr><span><span>Size850</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1166171264%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size850.html">FontSize850</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">40</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1420907809%2FProperties%2F322467425" anchor-label="FontSize950" id="-1420907809%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-size950.html"><span>Font</span><wbr><span><span>Size950</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1420907809%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-size950.html">FontSize950</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">44</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1735959335%2FProperties%2F322467425" anchor-label="FontWeight100" id="-1735959335%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight100.html"><span>Font</span><wbr><span><span>Weight100</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1735959335%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight100.html">FontWeight100</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">100</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1990695880%2FProperties%2F322467425" anchor-label="FontWeight200" id="-1990695880%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight200.html"><span>Font</span><wbr><span><span>Weight200</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1990695880%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight200.html">FontWeight200</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">200</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2049534871%2FProperties%2F322467425" anchor-label="FontWeight300" id="2049534871%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight300.html"><span>Font</span><wbr><span><span>Weight300</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2049534871%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight300.html">FontWeight300</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">300</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1794798326%2FProperties%2F322467425" anchor-label="FontWeight400" id="1794798326%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight400.html"><span>Font</span><wbr><span><span>Weight400</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1794798326%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight400.html">FontWeight400</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">400</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1540061781%2FProperties%2F322467425" anchor-label="FontWeight500" id="1540061781%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight500.html"><span>Font</span><wbr><span><span>Weight500</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1540061781%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight500.html">FontWeight500</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">500</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1285325236%2FProperties%2F322467425" anchor-label="FontWeight600" id="1285325236%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight600.html"><span>Font</span><wbr><span><span>Weight600</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1285325236%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight600.html">FontWeight600</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">600</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1030588691%2FProperties%2F322467425" anchor-label="FontWeight700" id="1030588691%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight700.html"><span>Font</span><wbr><span><span>Weight700</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1030588691%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight700.html">FontWeight700</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">700</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="775852146%2FProperties%2F322467425" anchor-label="FontWeight800" id="775852146%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight800.html"><span>Font</span><wbr><span><span>Weight800</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="775852146%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight800.html">FontWeight800</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">800</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="521115601%2FProperties%2F322467425" anchor-label="FontWeight900" id="521115601%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight900.html"><span>Font</span><wbr><span><span>Weight900</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="521115601%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight900.html">FontWeight900</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">900</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1034218390%2FProperties%2F322467425" anchor-label="FontWeight950" id="1034218390%2FProperties%2F322467425" data-filterable-set=":global-raw-tokens/release"></a>
+          <div class="table-row table-row_content" data-filterable-current=":global-raw-tokens/release" data-filterable-set=":global-raw-tokens/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-font-weight950.html"><span>Font</span><wbr><span><span>Weight950</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1034218390%2FProperties%2F322467425"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":global-raw-tokens/release"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-font-weight950.html">FontWeight950</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">950</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © Orange 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

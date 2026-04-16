@@ -5,6 +5,23 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.3.0...1.4.0) (2026-04-16)
+
+### Features
+
+- create component - text area ([#1178](https://github.com/Orange-OpenSource/ouds-android/issues/1178))
+- create component - bottom sheet ([#1150](https://github.com/Orange-OpenSource/ouds-android/issues/1150))
+- **top-app-bar** top app bar avatar should be a component with its own states ([#981](https://github.com/Orange-OpenSource/ouds-android/issues/981))
+- create component -  pin code input ([#1162](https://github.com/Orange-OpenSource/ouds-android/issues/1162))
+- **navigation-bar** update indicator animation ([#1188](https://github.com/Orange-OpenSource/ouds-android/issues/1188))
+
+### Bug Fixes
+
+- 8-digit PIN code input is not displayed correctly on small devices ([#1219](https://github.com/Orange-OpenSource/ouds-android/issues/1219))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.45.0 ([#1221](https://github.com/Orange-OpenSource/ouds-android/issues/1221))
+- user input in OudsTextInput, OudsPasswordInput and OudsTextArea disappears when theme changes ([#1208](https://github.com/Orange-OpenSource/ouds-android/issues/1208))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.12.0 ([#1212](https://github.com/Orange-OpenSource/ouds-android/issues/1212))
+
 ## [1.3.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.2.0...1.3.0) (2026-03-30)
 
 ### Features

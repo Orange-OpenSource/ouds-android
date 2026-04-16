@@ -16,8 +16,8 @@ library core and the theme you want to use in the `dependencies` section of your
 ```kotlin
 dependencies {
     // ...
-    implementation("com.orange.ouds.android:ouds-core:1.3.0")
-    implementation("com.orange.ouds.android:ouds-theme-orange:1.3.0")
+    implementation("com.orange.ouds.android:ouds-core:1.4.0")
+    implementation("com.orange.ouds.android:ouds-theme-orange:1.4.0")
     // ...
 }
 ```
@@ -30,8 +30,8 @@ dependencies {
 ```shell
 dependencies {
     // ...
-    implementation 'com.orange.ouds.android:ouds-core:1.3.0'
-    implementation 'com.orange.ouds.android:ouds-theme-orange:1.3.0'
+    implementation 'com.orange.ouds.android:ouds-core:1.4.0'
+    implementation 'com.orange.ouds.android:ouds-theme-orange:1.4.0'
     // ...
 }
 ```
