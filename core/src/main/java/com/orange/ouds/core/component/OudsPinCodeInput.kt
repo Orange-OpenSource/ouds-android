@@ -298,7 +298,7 @@ private fun OudsPinCodeInputDecorator(
 
 @Composable
 private fun smallDeviceSpecificRules(length: OudsPinCodeInputLength): Boolean {
-    return length == OudsPinCodeInputLength.Eight && currentWindowWidth() < 390.dp
+    return length == OudsPinCodeInputLength.Eight && currentWindowWidth() < 484.dp
 }
 
 @OptIn(ExperimentalFoundationApi::class)
