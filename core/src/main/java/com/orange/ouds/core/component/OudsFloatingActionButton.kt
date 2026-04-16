@@ -342,7 +342,7 @@ private fun OudsFloatingActionButton(
         val floatingActionButtonState = getFloatingActionButtonState(interactionState = floatingActionButtonInteractionState)
         contentColor(appearance = appearance, state = floatingActionButtonState)
     }
-    val indication = InteractionValuesIndication(containerColor, contentColor)
+    val indication = interactionValuesIndication(containerColor, contentColor)
     val elevation = OudsTheme.elevations.sticky
     val floatingActionButtonElevation = FloatingActionButtonDefaults.elevation(
         defaultElevation = elevation,

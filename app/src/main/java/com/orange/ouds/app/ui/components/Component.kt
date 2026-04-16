@@ -19,6 +19,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoScreen
 import com.orange.ouds.app.ui.components.alert.InlineAlertDemoScreen
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
+import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoScreen
+import com.orange.ouds.app.ui.components.bottomsheet.ModalBottomSheetDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
@@ -31,12 +33,14 @@ import com.orange.ouds.app.ui.components.floatingactionbutton.FloatingActionButt
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
+import com.orange.ouds.app.ui.components.pincodeinput.PinCodeInputDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
 import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
 import com.orange.ouds.app.ui.components.tag.TagDemoScreen
+import com.orange.ouds.app.ui.components.textarea.TextAreaDemoScreen
 import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
 import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
@@ -70,6 +74,13 @@ sealed class Component(
         R.string.app_components_badge_description_text,
         { BadgeIllustration() },
         demoScreen = { BadgeDemoScreen() }
+    )
+
+    data object BottomSheet : Component(
+        R.string.app_components_bottomSheet_tech,
+        R.string.app_components_bottomSheet_description_text,
+        { BottomSheetIllustration() },
+        listOf(Variant.StandardBottomSheet, Variant.ModalBottomSheet)
     )
 
     data object BulletList : Component(
@@ -142,6 +153,13 @@ sealed class Component(
         demoScreen = { PasswordInputDemoScreen() }
     )
 
+    data object PinCodeInput : Component(
+        R.string.app_components_pinCodeInput_tech,
+        R.string.app_components_pinCodeInput_description_text,
+        { PinCodeInputIllustration() },
+        demoScreen = { PinCodeInputDemoScreen() }
+    )
+
     data object RadioButton : Component(
         R.string.app_components_radioButton_tech,
         R.string.app_components_radioButton_description_text,
@@ -161,6 +179,13 @@ sealed class Component(
         R.string.app_components_tag_description_text,
         { TagIllustration() },
         listOf(Variant.Tag, Variant.InputTag)
+    )
+
+    data object TextArea : Component(
+        R.string.app_components_textArea_tech,
+        R.string.app_components_textArea_description_text,
+        { TextAreaIllustration() },
+        demoScreen = { TextAreaDemoScreen() }
     )
 
     data object TextInput : Component(
@@ -192,6 +217,10 @@ sealed class Variant(
     // Alert
     data object AlertMessage : Variant(R.string.app_components_alert_alertMessage_tech, { AlertMessageDemoScreen() })
     data object InlineAlert : Variant(R.string.app_components_alert_inlineAlert_tech, { InlineAlertDemoScreen() })
+
+    // Bottom sheet
+    data object StandardBottomSheet : Variant(R.string.app_components_bottomSheet_standardBottomSheet_tech, { StandardBottomSheetDemoScreen() })
+    data object ModalBottomSheet : Variant(R.string.app_components_bottomSheet_modalBottomSheet_tech, { ModalBottomSheetDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_tech, { CheckboxDemoScreen() })

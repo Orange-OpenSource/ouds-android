@@ -92,6 +92,7 @@
     </plurals>
     <string name="app_components_common_unreadNotificationsBadge_a11y">Notifications non lues</string>
     <string name="app_components_common_version_label">Version design du composant</string>
+    <string name="app_components_textAreaHelperText_label">Il vous reste 180 caractères.</string>
     <string name="app_components_textInputHelperText_label">Texte d\'aide.</string>
     <string name="app_components_passwordInputHelperText_label">Votre mot de passe doit contenir 8 caractères minimum.</string>
 
@@ -102,6 +103,14 @@
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
+
+    <!-- Components: bottom sheet -->
+    <string name="app_components_bottomSheet_description_text">Une Bottom sheet affiche un contenu secondaire ancré en bas de l\'écran.</string> <!-- TODO -->
+    <string name="app_components_bottomSheet_sheetContent_text">Contenu de la bottom sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_description_text">Les Bottom sheets standards coexistent avec le contenu de l\'écran principal, permettant aux utilisateurs d\'interagir simultanément avec les deux.</string>
+    <string name="app_components_bottomSheet_standardBottomSheet_collapse_label">Replier</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_description_text">Les Bottom sheet modales affichent un contenu qui bloque temporairement toute interaction avec l\'écran principal.</string>
+    <string name="app_components_bottomSheet_modalBottomSheet_close_label">Fermer</string>
 
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_description_text">La Bullet list (ou liste à puces) est un élément d\'interface utilisateur qui permet de visualiser des éléments de texte individuels liés, regroupés par ordre alphabétique ; ces éléments commencent généralement par un chiffre ou une puce.</string>
@@ -143,6 +152,9 @@
     <!-- Components: password input -->
     <string name="app_components_passwordInput_description_text">Un Password input (ou champ de saisie de mot de passe) est un élément d\'interface utilisateur qui permet de capturer de manière sécurisée et confidentielle le mot de passe d\'un utilisateur.</string>
 
+    <!-- Components: PIN code input -->
+    <string name="app_components_pinCodeInput_description_text">Un PIN code input (ou champ de saisie de code PIN) est un élément d\'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d\'authentification ou de confirmation, tels qu\'un numéro d\'identification personnel (PIN) à quatre, six ou huit chiffres.</string>
+
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Un Radio button (ou bouton radio) est un élément d\'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.</string>
     <string name="app_components_radioButton_radioButton_a11y">Description du contenu du bouton radio %s</string>
@@ -153,6 +165,9 @@
 
     <!-- Components: tag -->
     <string name="app_components_tag_description_text">Un Tag (ou étiquette) est un élément d\'interface utilisateur qui affiche de courtes informations telles qu\'un libellé, un mot-clé ou une catégorie.</string>
+
+    <!-- Components: text area -->
+    <string name="app_components_textArea_description_text">Un Text area (ou zone de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner des blocs de données textuelles plus longs, tels que des commentaires, des messages ou des descriptions&#160;; en s\'étendant verticalement et en offrant plus d\'espace pour la saisie de texte.</string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Un Text input (ou champ de saisie de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner une seule ligne de données textuelles, telles que des noms, des adresses électroniques ou des requêtes de recherche.</string>

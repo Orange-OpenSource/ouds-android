@@ -47,6 +47,9 @@ import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvi
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
 import com.orange.ouds.core.component.OudsPasswordInputPreviewParameter
 import com.orange.ouds.core.component.OudsPasswordInputPreviewParameterProvider
+import com.orange.ouds.core.component.OudsPinCodeInputPreviewParameter
+import com.orange.ouds.core.component.OudsPinCodeInputPreviewParameterProvider
+import com.orange.ouds.core.component.OudsPinCodeInputWithRoundedCornersPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
@@ -60,6 +63,10 @@ import com.orange.ouds.core.component.OudsSwitchItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTagPreviewParameter
 import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextAreaConstrainedMaxWidthPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextAreaMultilineValuePreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextAreaPreviewParameter
+import com.orange.ouds.core.component.OudsTextAreaPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputPreviewParameter
 import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
@@ -68,6 +75,7 @@ import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
+import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsBulletListRtl
 import com.orange.ouds.core.component.PreviewOudsButton
@@ -93,9 +101,12 @@ import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
+import com.orange.ouds.core.component.PreviewOudsModalBottomSheet
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
+import com.orange.ouds.core.component.PreviewOudsPinCodeInput
+import com.orange.ouds.core.component.PreviewOudsPinCodeInputWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsRadioButton
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemConstrainedMaxWidth
@@ -110,6 +121,10 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsTag
+import com.orange.ouds.core.component.PreviewOudsTextArea
+import com.orange.ouds.core.component.PreviewOudsTextAreaConstrainedMaxWidth
+import com.orange.ouds.core.component.PreviewOudsTextAreaMultiLineValue
+import com.orange.ouds.core.component.PreviewOudsTextAreaWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsTextInput
 import com.orange.ouds.core.component.PreviewOudsTextInputConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
@@ -181,6 +196,19 @@ interface OudsPreviewableComponent {
                     parameter = parameter as OudsBadgeWithIconPreviewParameter
                 )
             }
+        }
+    }
+
+    object BottomSheetScaffold : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsBottomSheetScaffold(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
         }
     }
 
@@ -553,6 +581,19 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object ModalBottomSheet : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsModalBottomSheet(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
+        }
+    }
+    
     object NavigationBar {
 
         object Default : OudsPreviewableComponent {
@@ -633,6 +674,38 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsPasswordInputPreviewParameter
             )
+        }
+    }
+
+    object PinCodeInput {
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsPinCodeInputPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsPinCodeInput(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsPinCodeInputPreviewParameter
+                )
+            }
+        }
+
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsPinCodeInputWithRoundedCornersPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsPinCodeInputWithRoundedCorners(
+                    theme = theme,
+                    outlined = parameter as Boolean
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
@@ -832,6 +905,65 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 parameter = parameter as OudsTagPreviewParameter
             )
+        }
+    }
+
+    object TextArea {
+
+        object Default : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1390
+
+            override val parameters: List<Any> = OudsTextAreaPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextArea(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTextAreaPreviewParameter
+                )
+            }
+        }
+
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 900
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextAreaWithRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object ConstrainedMaxWidth : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 800
+
+            override val parameters: List<Any> = OudsTextAreaConstrainedMaxWidthPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextAreaConstrainedMaxWidth(theme = theme, constrainedMaxWidth = parameter as Boolean)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object MultiLineValue : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsTextAreaMultilineValuePreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextAreaMultiLineValue(theme = theme, lineCount = parameter as Int)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

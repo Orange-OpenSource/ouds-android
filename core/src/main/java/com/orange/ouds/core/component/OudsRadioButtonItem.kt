@@ -116,7 +116,7 @@ fun OudsRadioButtonItem(
             onClick = onClick,
             enabled = enabled && !readOnly,
             interactionSource = interactionSource,
-            indication = InteractionValuesIndication(backgroundColor),
+            indication = interactionValuesIndication(backgroundColor),
             role = Role.RadioButton,
         )
     } else {

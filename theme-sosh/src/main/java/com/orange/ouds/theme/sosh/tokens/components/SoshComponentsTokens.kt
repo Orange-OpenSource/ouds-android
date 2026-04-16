@@ -27,9 +27,11 @@ import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
+import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class SoshComponentsTokens(
@@ -47,8 +49,10 @@ internal data class SoshComponentsTokens(
     override val inputTag: OudsInputTagTokens = SoshInputTagTokens(),
     override val link: OudsLinkTokens = SoshLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = SoshLinkMonoTokens(),
+    override val pinCodeInput: OudsPinCodeInputTokens = SoshPinCodeInputTokens(),
     override val radioButton: OudsRadioButtonTokens = SoshRadioButtonTokens(),
     override val switch: OudsSwitchTokens = SoshSwitchTokens(),
     override val tag: OudsTagTokens = SoshTagTokens(),
+    override val textArea: OudsTextAreaTokens = SoshTextAreaTokens(),
     override val textInput: OudsTextInputTokens = SoshTextInputTokens()
 ) : OudsComponentsTokens

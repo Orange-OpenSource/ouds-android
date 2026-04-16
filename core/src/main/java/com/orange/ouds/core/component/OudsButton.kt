@@ -321,14 +321,13 @@ internal fun OudsButton(
                 .clickable(
                     enabled = state !in remember { listOf(OudsButtonState.Disabled, OudsButtonState.Loading) },
                     interactionSource = interactionSource,
-                    indication = InteractionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                    indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                     onClick = onClick
                 ),
             contentAlignment = Alignment.Center
         ) {
             if (state == OudsButtonState.Loading) {
-                val progress = if (getPreviewEnumEntry<OudsButtonState>() == OudsButtonState.Loading) 0.75f else loader?.progress
-                ProgressIndicator(appearance = appearance, progress = progress, scale = iconScale)
+                ProgressIndicator(appearance = appearance, progress = loader?.progress, scale = iconScale)
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f

@@ -66,7 +66,7 @@ private fun ComponentsScreen(components: List<Component>, onComponentClick: (Lon
 @Composable
 private fun PreviewComponentsScreen() = AppPreview {
     ComponentsScreen(
-        components = listOf(Component.Button, Component.BulletList),
+        components = listOf(Component.Button, Component.BottomSheet),
         onComponentClick = {}
     )
 }

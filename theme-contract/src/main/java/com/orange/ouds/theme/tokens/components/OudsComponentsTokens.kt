@@ -31,8 +31,10 @@ interface OudsComponentsTokens {
     val inputTag: OudsInputTagTokens
     val link: OudsLinkTokens
     val linkMonochrome: OudsLinkMonoTokens
+    val pinCodeInput: OudsPinCodeInputTokens
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
     val tag: OudsTagTokens
+    val textArea: OudsTextAreaTokens
     val textInput: OudsTextInputTokens
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
@@ -25,7 +26,6 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.core.component.OudsControlItemIcon
-import com.orange.ouds.core.component.common.OudsError
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -195,10 +195,6 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         if (reversed) typedArgument("reversed", reversed)
         if (!enabled) enabledArgument(enabled)
         if (readOnly) readOnlyArgument(readOnly)
-        if (error) {
-            constructorCallArgument<OudsError>("error") {
-                typedArgument("message", if (hasErrorMessage) errorMessage else "")
-            }
-        }
+        if (error) errorArgument(if (hasErrorMessage) errorMessage else "")
         if (constrainedMaxWidth) constrainedMaxWidthArgument(constrainedMaxWidth)
     }

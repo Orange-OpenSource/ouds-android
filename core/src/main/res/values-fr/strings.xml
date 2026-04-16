@@ -17,6 +17,8 @@
 
     <string name="core_alertMessage_close_a11y">Fermer le message d\'alerte</string>
 
+    <string name="core_bottomSheet_dragHandle_a11y">Poignée de déplacement</string>
+
     <string name="core_bulletList_level_a11y">Niveau %1$d</string>
     <plurals name="core_bulletList_subitems_a11y">
         <item quantity="one">%1$d sous-élément</item>
@@ -27,6 +29,8 @@
 
     <string name="core_passwordInput_hidePassword_a11y">Masquer le mot de passe</string>
     <string name="core_passwordInput_showPassword_a11y">Afficher le mot de passe</string>
+
+    <string name="core_pinCodeInput_paste_label">Coller</string>
 
     <string name="core_textInput_empty_a11y">Vide</string>
 

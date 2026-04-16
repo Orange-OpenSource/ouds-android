@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -28,7 +27,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -60,8 +58,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
-import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -92,11 +89,10 @@ fun CustomizationBottomSheetScaffold(
             bottomSheetScaffoldState.bottomSheetState.partialExpand()
         }
     }
-    BottomSheetScaffold(
+    OudsBottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         sheetSwipeEnabled = false,
-        sheetDragHandle = null,
-        containerColor = OudsTheme.colorScheme.background.primary,
+        sheetDragHandle = false,
         sheetContent = {
             Row(
                 modifier = Modifier
@@ -160,17 +156,7 @@ fun CustomizationBottomSheetScaffold(
             }
         },
         content = { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                    .consumeWindowInsets(innerPadding)
-                    .padding(innerPadding)
-                    .consumeTopBarsTopWindowInsets()
-                    .padding(top = topBarsTopPadding),
-            ) {
-                content()
-            }
+            ScreenMainContentColumn(paddingValues = innerPadding, content = content)
         }
     )
 
@@ -201,7 +187,7 @@ private fun tryExpandBottomSheet(coroutineScope: CoroutineScope, sheetState: She
 @Composable
 private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
     val scrollBarColor = OudsTheme.colorScheme.action.disabled
-    val scrollbarWidth = 4.dp
+    val scrollBarWidth = 4.dp
 
     return drawWithContent {
         drawContent()
@@ -214,8 +200,8 @@ private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
 
         drawRect(
             color = scrollBarColor,
-            topLeft = Offset(viewportWidth - scrollbarWidth.toPx(), scrollBarStartOffset),
-            size = Size(scrollbarWidth.toPx(), scrollBarHeight)
+            topLeft = Offset(viewportWidth - scrollBarWidth.toPx(), scrollBarStartOffset),
+            size = Size(scrollBarWidth.toPx(), scrollBarHeight)
         )
     }
 }

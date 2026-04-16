@@ -22,6 +22,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
@@ -214,11 +215,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             }
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
-            if (error) {
-                constructorCallArgument<OudsError>("error") {
-                    typedArgument("message", errorMessage)
-                }
-            }
+            if (error) errorArgument(errorMessage)
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)

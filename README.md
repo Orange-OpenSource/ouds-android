@@ -1,6 +1,9 @@
 # OUDS Android
 
 [![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Orange-OpenSource/ouds-android/badge)](https://scorecard.dev/viewer/?uri=github.com/Orange-OpenSource/ouds-android)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12397/badge)](https://www.bestpractices.dev/projects/12397)
+![Gitleaks](https://img.shields.io/badge/protected%20by-gitleaks-blue)
 [![License](https://img.shields.io/github/license/Orange-OpenSource/ouds-android)](LICENSE)
 [![Documentation](https://img.shields.io/badge/documentation-7F52FF?logo=kotlin&logoColor=white)](https://android.unified-design-system.orange.com/)
 
@@ -27,8 +30,8 @@ library core and the theme you want to use in the `dependencies` section of your
 ```kotlin
 dependencies {
     // ...
-    implementation("com.orange.ouds.android:ouds-core:1.3.0")
-    implementation("com.orange.ouds.android:ouds-theme-orange:1.3.0")
+    implementation("com.orange.ouds.android:ouds-core:1.4.0")
+    implementation("com.orange.ouds.android:ouds-theme-orange:1.4.0")
     // ...
 }
 ```
@@ -41,8 +44,8 @@ dependencies {
 ```shell
 dependencies {
     // ...
-    implementation 'com.orange.ouds.android:ouds-core:1.3.0'
-    implementation 'com.orange.ouds.android:ouds-theme-orange:1.3.0'
+    implementation 'com.orange.ouds.android:ouds-core:1.4.0'
+    implementation 'com.orange.ouds.android:ouds-theme-orange:1.4.0'
     // ...
 }
 ```

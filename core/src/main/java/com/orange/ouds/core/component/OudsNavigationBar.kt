@@ -15,7 +15,7 @@ package com.orange.ouds.core.component
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -282,38 +282,33 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
         val indicatorBottomCornersRadius = borderRadiusActiveIndicatorCustomTop.value
         val opacityActiveIndicatorCustomValue = opacityActiveIndicatorCustom.value
 
-        // This is the same animation spec that the NavigationBarItem internally uses to animate the color of the icon and the text
-        val animationSpec = spring<Float>(
-            dampingRatio = 1.0f, // StandardMotionTokens.SpringDefaultEffectsDamping
-            stiffness = 1600.0f // StandardMotionTokens.SpringDefaultEffectsStiffness
-        )
-
-        val indicatorAnimatedAlpha by animateFloatAsState(
+        val indicatorWidthScale by animateFloatAsState(
             targetValue = if (selected || state == OudsNavigationBarItemState.Hovered) 1.0f else 0.0f,
-            animationSpec = animationSpec,
+            animationSpec = tween(200)
         )
 
-        return if (indicatorAnimatedAlpha == 0f || opacityActiveIndicatorCustomValue == 0f) {
+        return if (indicatorWidthScale == 0f || opacityActiveIndicatorCustomValue == 0f) {
             this@indicator
         } else {
             drawWithContent {
-                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityActiveIndicatorCustomValue * indicatorAnimatedAlpha)
+                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityActiveIndicatorCustomValue)
                 val indicatorHeight = sizeHeightActiveIndicatorCustom.dp.toPx()
-                val indicatorWidth: Float
-                val indicatorStartXOffset: Float
+                val indicatorFullWidth: Float
+                val indicatorCenterX: Float
                 when (iconPosition) {
                     NavigationItemIconPosition.Top -> {
-                        indicatorWidth = sizeWidthActiveIndicatorCustomTop.dp.toPx()
-                        indicatorStartXOffset = (size.width - indicatorWidth).coerceAtLeast(0f) / 2
+                        indicatorFullWidth = sizeWidthActiveIndicatorCustomTop.dp.toPx()
+                        indicatorCenterX = size.width / 2
                     }
                     else -> {
                         val horizontalItemIndicatorPaddingStart = 14.dp.toPx() // Constant value defined in Figma
                         val horizontalItemIndicatorPaddingEnd = 10.dp.toPx() // Constant value defined in Figma
-                        indicatorWidth = size.width - (horizontalItemIndicatorPaddingStart + horizontalItemIndicatorPaddingEnd)
-                        indicatorStartXOffset = horizontalItemIndicatorPaddingStart
+                        indicatorFullWidth = size.width - (horizontalItemIndicatorPaddingStart + horizontalItemIndicatorPaddingEnd)
+                        indicatorCenterX = horizontalItemIndicatorPaddingStart + (indicatorFullWidth / 2)
                     }
                 }
-                val indicatorEndXOffset = indicatorStartXOffset + indicatorWidth
+                val indicatorCurrentWidth = indicatorFullWidth * indicatorWidthScale
+                val indicatorStartXOffset = indicatorCenterX - (indicatorCurrentWidth / 2)
 
                 drawContent()
 
@@ -322,7 +317,7 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
                     val path = Path().apply {
                         addRoundRect(
                             RoundRect(
-                                rect = Rect(offset = Offset(indicatorStartXOffset, 0f), size = Size(indicatorWidth, indicatorHeight)),
+                                rect = Rect(offset = Offset(indicatorStartXOffset, 0f), size = Size(indicatorCurrentWidth, indicatorHeight)),
                                 bottomLeft = CornerRadius(bottomCornersRadiusPx),
                                 bottomRight = CornerRadius(bottomCornersRadiusPx)
                             )
@@ -334,7 +329,7 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
                     drawLine(
                         color = indicatorAlphaColor,
                         start = Offset(indicatorStartXOffset, lineY),
-                        end = Offset(indicatorEndXOffset, lineY),
+                        end = Offset(indicatorStartXOffset + indicatorCurrentWidth, lineY),
                         strokeWidth = indicatorHeight
                     )
                 }
@@ -439,7 +434,7 @@ class OudsNavigationBarItemIcon private constructor(
  */
 data class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
 
-internal enum class OudsNavigationBarItemState {
+private enum class OudsNavigationBarItemState {
     Enabled, Hovered, Pressed, Focused
 }
 

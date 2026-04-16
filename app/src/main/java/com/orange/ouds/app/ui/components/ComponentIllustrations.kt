@@ -24,8 +24,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalCursorBlinkEnabled
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Density
@@ -38,6 +43,7 @@ import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.component.OudsBulletList
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsButton
@@ -54,10 +60,13 @@ import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.component.OudsPasswordInput
+import com.orange.ouds.core.component.OudsPinCodeInput
+import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.OudsRadioButton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
@@ -81,6 +90,20 @@ fun BadgeIllustration() = ComponentIllustration {
         status = OudsBadgeStatus.Negative,
         size = OudsBadgeSize.Large
     )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BottomSheetIllustration() = ComponentIllustration {
+    OudsBottomSheetScaffold(
+        modifier = Modifier
+            .clip(RectangleShape)
+            .padding(horizontal = 16.dp),
+        sheetPeekHeight = 120.dp,
+        sheetSwipeEnabled = false,
+        sheetContent = {},
+        containerColor = Color.Transparent
+    ) {}
 }
 
 @Composable
@@ -202,6 +225,21 @@ fun PasswordInputIllustration() = ComponentIllustration {
 }
 
 @Composable
+fun PinCodeInputIllustration() = ComponentIllustration {
+    CompositionLocalProvider(
+        LocalInspectionMode provides true,
+        LocalCursorBlinkEnabled provides false
+    ) {
+        OudsPinCodeInput(
+            modifier = Modifier.padding(horizontal = 12.dp),
+            value = "12",
+            onValueChange = {},
+            length = OudsPinCodeInputLength.Four
+        )
+    }
+}
+
+@Composable
 fun RadioButtonIllustration() = ComponentIllustration {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         OudsRadioButton(
@@ -232,6 +270,16 @@ fun SwitchIllustration() = ComponentIllustration {
 @Composable
 fun TagIllustration() = ComponentIllustration {
     OudsTag(label = stringResource(id = R.string.app_components_common_label_label), status = OudsTagStatus.Positive())
+}
+
+@Composable
+fun TextAreaIllustration() = ComponentIllustration {
+    OudsTextArea(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        textFieldState = rememberTextFieldState(),
+        label = stringResource(id = R.string.app_components_common_label_label),
+        helperText = stringResource(id = R.string.app_components_textAreaHelperText_label)
+    )
 }
 
 @Composable

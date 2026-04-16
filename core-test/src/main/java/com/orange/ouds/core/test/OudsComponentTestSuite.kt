@@ -20,6 +20,7 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
     OudsAlertMessageTest::class,
     OudsBadgeTest::class,
+    OudsBottomSheetScaffoldTest::class,
     OudsBulletListTest::class,
     OudsButtonTest::class,
     OudsCheckboxItemTest::class,
@@ -31,15 +32,18 @@ import org.junit.runners.Suite
     OudsInlineAlertTest::class,
     OudsInputTagTest::class,
     OudsLinkTest::class,
+    OudsModalBottomSheetTest::class,
     OudsNavigationBarTest::class,
     OudsNavigationBarItemTest::class,
     OudsPasswordInputTest::class,
+    OudsPinCodeInputTest::class,
     OudsRadioButtonItemTest::class,
     OudsRadioButtonTest::class,
     OudsSuggestionChipTest::class,
     OudsSwitchItemTest::class,
     OudsSwitchTest::class,
     OudsTagTest::class,
+    OudsTextAreaTest::class,
     OudsTextInputTest::class,
     OudsTopAppBarTest::class
 )
