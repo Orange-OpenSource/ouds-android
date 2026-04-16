@@ -51,6 +51,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,6 +61,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset.Bullet.extraParameters
+import com.orange.ouds.core.component.common.text.OudsAnnotatedBulletListLabel
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
@@ -146,6 +148,36 @@ class OudsBulletListBuilder internal constructor() {
      */
     fun item(
         label: String,
+        subListType: OudsBulletListType? = null,
+        subListTextStyle: OudsBulletListTextStyle? = null,
+        builder: (OudsBulletListBuilder.() -> Unit)? = null
+    ) {
+        item(label as CharSequence, subListType, subListTextStyle, builder)
+    }
+
+    /**
+     * Adds an item to the bullet list.
+     *
+     * This function can also define a nested sub-list by providing a `builder` lambda.
+     *
+     * @param label The annotated text content of the list item.
+     * @param subListType The specific [OudsBulletListType] for the nested sub-list, if any.
+     *   If `null`, the type is inherited from the parent list.
+     * @param subListTextStyle The specific [OudsBulletListTextStyle] for the nested sub-list, if any.
+     *   If `null`, the text style is inherited from the parent list.
+     * @param builder A lambda scope for defining nested list items.
+     */
+    fun item(
+        label: OudsAnnotatedBulletListLabel,
+        subListType: OudsBulletListType? = null,
+        subListTextStyle: OudsBulletListTextStyle? = null,
+        builder: (OudsBulletListBuilder.() -> Unit)? = null
+    ) {
+        item(label.annotatedString, subListType, subListTextStyle, builder)
+    }
+
+    private fun item(
+        label: CharSequence,
         subListType: OudsBulletListType? = null,
         subListTextStyle: OudsBulletListTextStyle? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
@@ -247,16 +279,18 @@ private fun OudsBulletListItem(
                 OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.type.body.large
                 OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.type.body.medium
             }
-            Text(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                    .widthIn(max = textMaxWidth)
-                    .clearAndSetSemantics {},
-                text = item.label,
-                style = currentTextStyle.toTextStyle(),
-                color = OudsTheme.colorScheme.content.default
-            )
+            val textModifier = Modifier
+                .fillMaxHeight()
+                .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
+                .widthIn(max = textMaxWidth)
+                .clearAndSetSemantics {}
+            val text = item.label
+            val textStyle = currentTextStyle.toTextStyle()
+            val textColor = OudsTheme.colorScheme.content.default
+            when (text) {
+                is AnnotatedString -> Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+                is String -> Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+            }
         }
 
         if (item.subListItems.isNotEmpty()) {
@@ -284,7 +318,7 @@ private fun OudsBulletListItem(
 }
 
 internal data class BulletListItem(
-    val label: String,
+    val label: CharSequence,
     val subListType: OudsBulletListType?,
     val subListTextStyle: OudsBulletListTextStyle?,
     val subListItems: List<BulletListItem> = emptyList()
