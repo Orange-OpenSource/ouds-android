@@ -58,6 +58,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -416,25 +417,26 @@ internal fun PreviewOudsAlertMessage(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val icon = if (hasIcon) OudsAlertIcon(Icons.Outlined.FavoriteBorder) else null
-        Column {
-            listOf(
+        PreviewFlowRow(
+            items = listOf(
                 OudsAlertMessageStatus.Neutral(icon),
                 OudsAlertMessageStatus.Accent(icon),
                 OudsAlertMessageStatus.Negative,
                 OudsAlertMessageStatus.Positive,
                 OudsAlertMessageStatus.Info,
                 OudsAlertMessageStatus.Warning
-            ).forEach { status ->
-                OudsAlertMessage(
-                    modifier = Modifier.padding(all = 10.dp),
-                    label = "Label",
-                    status = status,
-                    description = description,
-                    onClose = onClose,
-                    actionLink = actionLink,
-                    bulletList = bulletList
-                )
-            }
+            ),
+            itemName = { it::class.simpleName.orEmpty() },
+            maxItemsInEachRow = 1
+        ) { status ->
+            OudsAlertMessage(
+                label = "Label",
+                status = status,
+                description = description,
+                onClose = onClose,
+                actionLink = actionLink,
+                bulletList = bulletList
+            )
         }
     }
 }

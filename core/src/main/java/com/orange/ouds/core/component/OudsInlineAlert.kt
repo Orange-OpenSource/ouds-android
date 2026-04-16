@@ -14,9 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
@@ -29,10 +27,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -194,21 +192,22 @@ internal fun PreviewOudsInlineAlert(
     label: String
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     val icon = OudsAlertIcon(Icons.Outlined.FavoriteBorder)
-    Column {
-        listOf(
+    PreviewFlowRow(
+        items = listOf(
             OudsInlineAlertStatus.Neutral(icon),
             OudsInlineAlertStatus.Accent(icon),
             OudsInlineAlertStatus.Negative,
             OudsInlineAlertStatus.Positive,
             OudsInlineAlertStatus.Info,
             OudsInlineAlertStatus.Warning
-        ).forEach { status ->
-            OudsInlineAlert(
-                modifier = Modifier.padding(all = 10.dp),
-                label = label,
-                status = status
-            )
-        }
+        ),
+        itemName = { it::class.simpleName.orEmpty() },
+        maxItemsInEachRow = 1
+    ) { status ->
+        OudsInlineAlert(
+            label = label,
+            status = status
+        )
     }
 }
 

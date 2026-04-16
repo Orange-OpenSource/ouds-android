@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.OrangeTheme
@@ -52,7 +53,7 @@ import kotlin.enums.enumEntries
 import kotlin.math.ceil
 import kotlin.math.min
 
-internal val LocalPreviewEnumEntry = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewRowFlowItem = staticCompositionLocalOf<Any?> { null }
 internal val LocalPreviewGridRow = staticCompositionLocalOf<Any?> { null }
 internal val LocalPreviewGridColumn = staticCompositionLocalOf<Any?> { null }
 
@@ -115,13 +116,53 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
 internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrangeFontFamily())
 
 @Composable
-internal inline fun <reified T> getPreviewEnumEntry(): T? = LocalPreviewEnumEntry.current as? T
+internal inline fun <reified T> getPreviewEnumEntry(): T? {
+    return getPreviewFlowRowItem<T>()
+        .orElse { getPreviewGridRow<T>() }
+        .orElse { getPreviewGridColumn<T>() }
+}
+
+@Composable
+internal inline fun <reified T> getPreviewFlowRowItem(): T? = LocalPreviewRowFlowItem.current as? T
 
 @Composable
 internal inline fun <reified T> getPreviewGridRow(): T? = LocalPreviewGridRow.current as? T
 
 @Composable
 internal inline fun <reified T> getPreviewGridColumn(): T? = LocalPreviewGridColumn.current as? T
+
+@Composable
+internal fun <T : Any> PreviewFlowRow(
+    items: List<T>,
+    itemName: (T) -> String,
+    maxItemsInEachRow: Int = items.count(),
+    edgeToEdge: Boolean = false,
+    filter: (T) -> Boolean = { true },
+    content: @Composable (T) -> Unit
+) {
+    val filteredItems = items.filter(filter)
+    val chunkedItems = filteredItems.chunked(maxItemsInEachRow)
+    Box(modifier = Modifier.padding(vertical = PreviewPaddingDefault, horizontal = if (edgeToEdge) 0.dp else PreviewPaddingDefault)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            repeat(min(maxItemsInEachRow, filteredItems.count())) { columnIndex ->
+                val columnItems = chunkedItems.mapNotNull { it.getOrNull(columnIndex) }
+                Column {
+                    columnItems.forEachIndexed { rowIndex, item ->
+                        DimensionTitle(
+                            modifier = Modifier
+                                .padding(top = if (rowIndex == 0) 0.dp else PreviewPaddingDefault, bottom = 8.dp)
+                                .padding(horizontal = if (edgeToEdge) PreviewPaddingDefault else 0.dp),
+                            title = itemName(item)
+                        )
+                        CompositionLocalProvider(LocalPreviewRowFlowItem provides item) {
+                            content(item)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 @Composable
 internal fun <T, S> PreviewGrid(
@@ -167,33 +208,19 @@ internal fun <T, S> PreviewGrid(
 
 @Composable
 internal inline fun <reified T> PreviewEnumEntries(
-    columnCount: Int = enumEntries<T>().count(),
+    maxEnumEntriesInEachRow: Int = enumEntries<T>().count(),
     edgeToEdge: Boolean = false,
-    filter: (T) -> Boolean = { true },
-    crossinline content: @Composable (T) -> Unit
+    noinline filter: (T) -> Boolean = { true },
+    noinline content: @Composable (T) -> Unit
 ) where T : Enum<T> {
-    val filteredEnumEntries = enumEntries<T>().filter(filter)
-    val chunkedEnumEntries = filteredEnumEntries.chunked(columnCount)
-    Box(modifier = Modifier.padding(vertical = PreviewPaddingDefault, horizontal = if (edgeToEdge) 0.dp else PreviewPaddingDefault)) {
-        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            repeat(min(columnCount, filteredEnumEntries.count())) { columnIndex ->
-                val columnEnumEntries = chunkedEnumEntries.mapNotNull { it.getOrNull(columnIndex) }
-                Column {
-                    columnEnumEntries.forEachIndexed { rowIndex, enumEntry ->
-                        DimensionTitle(
-                            modifier = Modifier
-                                .padding(top = if (rowIndex == 0) 0.dp else PreviewPaddingDefault, bottom = 8.dp)
-                                .padding(horizontal = if (edgeToEdge) PreviewPaddingDefault else 0.dp),
-                            title = enumEntry.name
-                        )
-                        CompositionLocalProvider(LocalPreviewEnumEntry provides enumEntry) {
-                            content(enumEntry)
-                        }
-                    }
-                }
-            }
-        }
-    }
+    PreviewFlowRow(
+        items = enumEntries<T>(),
+        itemName = { it.name },
+        maxItemsInEachRow = maxEnumEntriesInEachRow,
+        edgeToEdge = edgeToEdge,
+        filter = filter,
+        content = content
+    )
 }
 
 @Composable
@@ -208,7 +235,7 @@ internal inline fun <reified T, reified S> PreviewEnumEntries(noinline content: 
 }
 
 @Composable
-private fun <T> DimensionTitle(title: String, modifier: Modifier = Modifier) where T : Enum<T> {
+private fun DimensionTitle(title: String, modifier: Modifier = Modifier) {
     Text(
         modifier = modifier,
         text = title,
