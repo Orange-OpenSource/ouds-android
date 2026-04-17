@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component.common.text
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 
 class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedString: AnnotatedString) :
@@ -29,18 +30,24 @@ class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedStr
             append(text)
         }
 
-        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
+        @Composable
+        override fun AddStrong(start: Int, end: Int) = AddStrongImpl(start, end)
 
+        @Composable
         override fun pushStrong(): Int = pushStrongImpl()
 
-        override fun addLink(url: OudsLinkAnnotation.Url, start: Int, end: Int) = addLinkImpl(url, start, end)
+        @Composable
+        override fun AddLink(url: OudsLinkAnnotation.Url, start: Int, end: Int) = AddLinkImpl(url, start, end)
 
-        override fun addLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) = addLinkImpl(clickable, start, end)
+        @Composable
+        override fun AddLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) = AddLinkImpl(clickable, start, end)
 
+        @Composable
         override fun pushLink(link: OudsLinkAnnotation): Int = pushLinkImpl(link)
     }
 }
 
-fun buildOudsAnnotatedAlertMessageBulletListLabel(builder: (OudsAnnotatedAlertMessageBulletListLabel.Builder).() -> Unit): OudsAnnotatedAlertMessageBulletListLabel {
+@Composable
+fun buildOudsAnnotatedAlertMessageBulletListLabel(builder: @Composable ((OudsAnnotatedAlertMessageBulletListLabel.Builder).() -> Unit)): OudsAnnotatedAlertMessageBulletListLabel {
     return buildOudsAnnotatedString<OudsAnnotatedAlertMessageBulletListLabel, OudsAnnotatedAlertMessageBulletListLabel.Builder>(builder)
 }

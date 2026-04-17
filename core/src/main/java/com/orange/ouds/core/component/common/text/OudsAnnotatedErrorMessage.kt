@@ -12,6 +12,7 @@
 
 package com.orange.ouds.core.component.common.text
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 
 class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedString) : OudsAnnotatedString<OudsAnnotatedErrorMessage>(annotatedString) {
@@ -27,12 +28,15 @@ class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedS
             append(text)
         }
 
-        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
+        @Composable
+        override fun AddStrong(start: Int, end: Int) = AddStrongImpl(start, end)
 
+        @Composable
         override fun pushStrong(): Int = pushStrongImpl()
     }
 }
 
-fun buildOudsAnnotatedErrorMessage(builder: (OudsAnnotatedErrorMessage.Builder).() -> Unit): OudsAnnotatedErrorMessage {
+@Composable
+fun buildOudsAnnotatedErrorMessage(builder: @Composable ((OudsAnnotatedErrorMessage.Builder).() -> Unit)): OudsAnnotatedErrorMessage {
     return buildOudsAnnotatedString<OudsAnnotatedErrorMessage, OudsAnnotatedErrorMessage.Builder>(builder)
 }
