@@ -207,7 +207,7 @@ private fun OudsLink(
     val monochrome = LocalColorMode.current?.monochrome == true
     val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        contentColor(state = linkState, monochrome = monochrome)
+        linkContentColor(state = linkState, monochrome = monochrome)
     }
 
     val chevronColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
@@ -310,7 +310,7 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 }
 
 @Composable
-private fun contentColor(state: OudsLinkState, monochrome: Boolean): Color {
+internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color {
     return if (monochrome) {
         with(OudsTheme.componentsTokens.linkMonochrome) {
             when (state) {
@@ -338,7 +338,7 @@ private fun contentColor(state: OudsLinkState, monochrome: Boolean): Color {
 private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
     return with(OudsTheme.componentsTokens.link) {
         if (monochrome) {
-            contentColor(state = state, monochrome = true)
+            linkContentColor(state = state, monochrome = true)
         } else {
             when (state) {
                 OudsLinkState.Enabled -> colorChevronEnabled.value
@@ -434,7 +434,7 @@ open class OudsLinkIcon private constructor(
         get() = extraParameters.tint
 }
 
-private enum class OudsLinkState {
+internal enum class OudsLinkState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 

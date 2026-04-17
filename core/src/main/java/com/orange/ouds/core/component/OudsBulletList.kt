@@ -51,7 +51,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -152,7 +151,7 @@ class OudsBulletListBuilder internal constructor() {
         subListTextStyle: OudsBulletListTextStyle? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     ) {
-        item(label as CharSequence, subListType, subListTextStyle, builder)
+        item(label, null, subListType, subListTextStyle, builder)
     }
 
     /**
@@ -173,17 +172,18 @@ class OudsBulletListBuilder internal constructor() {
         subListTextStyle: OudsBulletListTextStyle? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     ) {
-        item(label.annotatedString, subListType, subListTextStyle, builder)
+        item(null, label, subListType, subListTextStyle, builder)
     }
 
     private fun item(
-        label: CharSequence,
+        label: String?,
+        annotatedLabel: OudsAnnotatedBulletListLabel?,
         subListType: OudsBulletListType? = null,
         subListTextStyle: OudsBulletListTextStyle? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     ) {
         val subListItems = builder?.let { OudsBulletListBuilder().apply(it).build() }.orEmpty()
-        items.add(BulletListItem(label, subListType, subListTextStyle, subListItems))
+        items.add(BulletListItem(label, annotatedLabel, subListType, subListTextStyle, subListItems))
     }
 
     internal fun build(): List<BulletListItem> = items
@@ -284,12 +284,12 @@ private fun OudsBulletListItem(
                 .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
                 .widthIn(max = textMaxWidth)
                 .clearAndSetSemantics {}
-            val text = item.label
             val textStyle = currentTextStyle.toTextStyle()
             val textColor = OudsTheme.colorScheme.content.default
-            when (text) {
-                is AnnotatedString -> Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
-                is String -> Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+            if (item.annotatedLabel != null) {
+                Text(modifier = textModifier, text = item.annotatedLabel.annotatedString, style = textStyle, color = textColor)
+            } else if (item.label != null) {
+                Text(modifier = textModifier, text = item.label, style = textStyle, color = textColor)
             }
         }
 
@@ -318,7 +318,8 @@ private fun OudsBulletListItem(
 }
 
 internal data class BulletListItem(
-    val label: CharSequence,
+    val label: String?,
+    val annotatedLabel: OudsAnnotatedBulletListLabel?,
     val subListType: OudsBulletListType?,
     val subListTextStyle: OudsBulletListTextStyle?,
     val subListItems: List<BulletListItem> = emptyList()

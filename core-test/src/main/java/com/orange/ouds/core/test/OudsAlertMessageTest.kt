@@ -13,20 +13,31 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsAlertMessageTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.AlertMessage,
-    parameter,
-    OudsComponentTestSuite.theme,
-    heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp
-) {
+@RunWith(Enclosed::class)
+internal class OudsAlertMessageTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.AlertMessage.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.AlertMessage.Default,
+        parameter,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.AlertMessage.Default.PreviewHeightDp
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.AlertMessage.Default.parameters
+        }
     }
+
+    class WithRichText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.AlertMessage.WithRichText,
+        null,
+        OudsComponentTestSuite.theme
+    )
 }

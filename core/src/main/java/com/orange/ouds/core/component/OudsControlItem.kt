@@ -39,7 +39,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
@@ -52,7 +51,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
 /**
@@ -265,12 +263,12 @@ private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
             .clearAndSetSemantics {
                 error(error.message)
             }
-        val text = error.annotatedMessage?.annotatedString.orElse { error.message }
         val style = OudsTheme.typography.label.default.medium
         val color = OudsTheme.colorScheme.content.status.negative
-        when (text) {
-            is AnnotatedString -> Text(modifier = modifier, text = text, style = style, color = color)
-            is String -> Text(modifier = modifier, text = text, style = style, color = color)
+        if (error.annotatedMessage != null) {
+            Text(modifier = modifier, text = error.annotatedMessage.annotatedString, style = style, color = color)
+        } else {
+            Text(modifier = modifier, text = error.message, style = style, color = color)
         }
     }
 }

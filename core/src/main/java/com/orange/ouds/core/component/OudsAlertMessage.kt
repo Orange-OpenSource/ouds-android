@@ -45,13 +45,18 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescription
+import com.orange.ouds.core.component.common.text.OudsAnnotatedString
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.theme.LocalThemeSettings
@@ -60,6 +65,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -239,12 +245,12 @@ private fun OudsAlertMessage(
                         style = OudsTheme.typography.label.moderate.large
                     )
                     val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium)
-                    val descriptionText = annotatedDescription?.annotatedString.orElse { description }
                     val descriptionColor = status.contentColor
                     val descriptionStyle = OudsTheme.typography.label.default.medium
-                    when (descriptionText) {
-                        is AnnotatedString -> Text(modifier = descriptionModifier, text = descriptionText, color = descriptionColor, style = descriptionStyle)
-                        is String -> Text(modifier = descriptionModifier, text = descriptionText, color = descriptionColor, style = descriptionStyle)
+                    if (annotatedDescription != null) {
+                        Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString, color = descriptionColor, style = descriptionStyle)
+                    } else if (description != null) {
+                        Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
                     annotatedBulletList.orElse { bulletList }?.let { list ->
                         Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
@@ -477,17 +483,17 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
             .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium)
         val style = OudsTheme.typography.label.default.medium
         when (label) {
-            is AnnotatedString -> Text(modifier = modifier, text = label, color = color, style = style)
+            is OudsAnnotatedString<*> -> Text(modifier = modifier, text = label.annotatedString, color = color, style = style)
             is String -> Text(modifier = modifier, text = label, color = color, style = style)
         }
     }
 }
 
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.Default.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp,
+    heightDp = OudsPreviewableComponent.AlertMessage.Default.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -525,6 +531,42 @@ internal fun PreviewOudsAlertMessage(
             }
         }
     }
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsAlertMessageWithRichText() {
+    PreviewOudsAlertMessageWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsAlertMessageWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    val description = buildOudsAnnotatedAlertMessageDescription {
+        append("Here is a description that contains a ")
+        withStrong { append("strong") }
+        append(" text and a ")
+        withLink(OudsLinkAnnotation.Clickable("")) { append("link") }
+    }
+    val bulletList = listOf(
+        buildOudsAnnotatedAlertMessageBulletListLabel { append("Bullet 1") },
+        buildOudsAnnotatedAlertMessageBulletListLabel {
+            append("Bullet 2 is a bullet that contains a ")
+            withStrong { append("strong") }
+            append(" text and a ")
+            withLink(OudsLinkAnnotation.Clickable("link")) { append("link") }
+        },
+        buildOudsAnnotatedAlertMessageBulletListLabel { append("Bullet 3") }
+    )
+    OudsAlertMessage(
+        modifier = Modifier.padding(all = 10.dp),
+        label = "Label",
+        description = description,
+        bulletList = bulletList
+    )
 }
 
 internal data class OudsAlertMessagePreviewParameter(

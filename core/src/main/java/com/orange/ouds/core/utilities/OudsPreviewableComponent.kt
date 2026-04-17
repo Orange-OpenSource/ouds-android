@@ -73,6 +73,7 @@ import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsAlertMessage
+import com.orange.ouds.core.component.PreviewOudsAlertMessageWithRichText
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
@@ -150,19 +151,35 @@ interface OudsPreviewableComponent {
     @Composable
     fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?)
 
-    object AlertMessage : OudsPreviewableComponent {
+    object AlertMessage {
 
-        const val PreviewHeightDp = 1470
+        object Default : OudsPreviewableComponent {
 
-        override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
+            const val PreviewHeightDp = 1470
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsAlertMessage(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsAlertMessagePreviewParameter
-            )
+            override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsAlertMessage(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsAlertMessagePreviewParameter
+                )
+            }
+        }
+
+        object WithRichText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsAlertMessageWithRichText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
@@ -593,7 +610,7 @@ interface OudsPreviewableComponent {
             )
         }
     }
-    
+
     object NavigationBar {
 
         object Default : OudsPreviewableComponent {

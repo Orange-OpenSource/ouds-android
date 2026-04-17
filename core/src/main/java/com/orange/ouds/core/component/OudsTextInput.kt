@@ -62,7 +62,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -1219,14 +1218,12 @@ internal fun OudsTextInputHelperTextErrorMessage(
                 }
             val textStyle = OudsTheme.typography.label.default.medium
             val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
-            val text = if (hasError) {
-                error.annotatedMessage?.annotatedString.orElse { error.message }
-            } else {
-                annotatedHelperText?.annotatedString.orElse { helperText.orEmpty() }
-            }
-            when (text) {
-                is AnnotatedString -> Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
-                is String -> Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+            val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
+            val text = if (hasError) error.message else helperText
+            if (annotatedText != null) {
+                Text(modifier = textModifier, text = annotatedText.annotatedString, style = textStyle, color = textColor)
+            } else if (text != null) {
+                Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
             }
         }
     }
