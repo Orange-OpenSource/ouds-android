@@ -37,56 +37,48 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         const val StrongAnnotation = "OudsAnnotatedString.StrongAnnotation"
     }
 
-    protected open val strongStyle: TextStyle
-        @Composable
-        get() = OudsTheme.typography.label.strong.medium
-
-    protected open val linkStyle: TextStyle
-        @Composable
-        get() = OudsTheme.typography.label.strong.medium
-
     private val _annotatedString = annotatedString
 
     // The link colors depend on the current light / dark mode as well as the current OudsColorMode
     // Thus this property must be accessed at the call site of the Text composable it is displayed into
     // If it is accessed elsewhere in the hierarchy, the light / dark mode or the OudsColorMode might be different
-    internal val annotatedString: AnnotatedString
-        @Composable
-        get() {
-            val monochrome = LocalColorMode.current?.monochrome == true
-            val linkColor = linkContentColor(state = OudsLinkState.Enabled, monochrome = monochrome)
-            val linkFocusedColor = linkContentColor(state = OudsLinkState.Focused, monochrome = monochrome)
-            val linkHoveredColor = linkContentColor(state = OudsLinkState.Hovered, monochrome = monochrome)
-            val linkPressedColor = linkContentColor(state = OudsLinkState.Pressed, monochrome = monochrome)
-            val linkStyle = linkStyle
-            val strongStyle = strongStyle
+    @Composable
+    internal fun annotatedString(
+        strongStyle: TextStyle = OudsTheme.typography.label.strong.medium,
+        linkStyle: TextStyle = OudsTheme.typography.label.strong.medium
+    ): AnnotatedString {
+        val monochrome = LocalColorMode.current?.monochrome == true
+        val linkColor = linkContentColor(state = OudsLinkState.Enabled, monochrome = monochrome)
+        val linkFocusedColor = linkContentColor(state = OudsLinkState.Focused, monochrome = monochrome)
+        val linkHoveredColor = linkContentColor(state = OudsLinkState.Hovered, monochrome = monochrome)
+        val linkPressedColor = linkContentColor(state = OudsLinkState.Pressed, monochrome = monochrome)
 
-            return _annotatedString.mapAnnotations { annotation ->
-                when (val item = annotation.item) {
-                    is LinkAnnotation -> {
-                        val spanStyle = linkStyle.toSpanStyle().copy(textDecoration = TextDecoration.Underline)
-                        val styles = with(spanStyle) {
-                            TextLinkStyles(
-                                style = copy(color = linkColor),
-                                focusedStyle = copy(color = linkFocusedColor),
-                                hoveredStyle = copy(color = linkHoveredColor),
-                                pressedStyle = copy(color = linkPressedColor)
-                            )
-                        }
-                        val linkAnnotation = when (item) {
-                            is LinkAnnotation.Url -> item.copy(styles = styles)
-                            is LinkAnnotation.Clickable -> item.copy(styles = styles)
-                            else -> item
-                        }
-                        with(annotation) { AnnotatedString.Range(linkAnnotation, start, end, tag) }
+        return _annotatedString.mapAnnotations { annotation ->
+            when (val item = annotation.item) {
+                is LinkAnnotation -> {
+                    val spanStyle = linkStyle.toSpanStyle().copy(textDecoration = TextDecoration.Underline)
+                    val styles = with(spanStyle) {
+                        TextLinkStyles(
+                            style = copy(color = linkColor),
+                            focusedStyle = copy(color = linkFocusedColor),
+                            hoveredStyle = copy(color = linkHoveredColor),
+                            pressedStyle = copy(color = linkPressedColor)
+                        )
                     }
-                    is StringAnnotation if item.value == StrongAnnotation -> {
-                        with(annotation) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end, tag) }
+                    val linkAnnotation = when (item) {
+                        is LinkAnnotation.Url -> item.copy(styles = styles)
+                        is LinkAnnotation.Clickable -> item.copy(styles = styles)
+                        else -> item
                     }
-                    else -> annotation
+                    with(annotation) { AnnotatedString.Range(linkAnnotation, start, end, tag) }
                 }
+                is StringAnnotation if item.value == StrongAnnotation -> {
+                    with(annotation) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end, tag) }
+                }
+                else -> annotation
             }
         }
+    }
 
     val text: String = annotatedString.text
 
