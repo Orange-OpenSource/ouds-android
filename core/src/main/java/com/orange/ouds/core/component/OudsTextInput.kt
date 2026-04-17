@@ -1221,7 +1221,7 @@ internal fun OudsTextInputHelperTextErrorMessage(
             val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
             val text = if (hasError) error.message else helperText
             if (annotatedText != null) {
-                Text(modifier = textModifier, text = annotatedText.annotatedString, style = textStyle, color = textColor)
+                Text(modifier = textModifier, text = annotatedText.annotatedString(), style = textStyle, color = textColor)
             } else if (text != null) {
                 Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
             }

@@ -248,7 +248,7 @@ private fun OudsAlertMessage(
                     val descriptionColor = status.contentColor
                     val descriptionStyle = OudsTheme.typography.label.default.medium
                     if (annotatedDescription != null) {
-                        Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString, color = descriptionColor, style = descriptionStyle)
+                        Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
                     } else if (description != null) {
                         Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
@@ -483,7 +483,7 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
             .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium)
         val style = OudsTheme.typography.label.default.medium
         when (label) {
-            is OudsAnnotatedString<*> -> Text(modifier = modifier, text = label.annotatedString, color = color, style = style)
+            is OudsAnnotatedString<*> -> Text(modifier = modifier, text = label.annotatedString(), color = color, style = style)
             is String -> Text(modifier = modifier, text = label, color = color, style = style)
         }
     }
@@ -557,7 +557,7 @@ internal fun PreviewOudsAlertMessageWithRichText(
             append("Bullet 2 is a bullet that contains a ")
             withStrong { append("strong") }
             append(" text and a ")
-            withLink(OudsLinkAnnotation.Clickable("link")) { append("link") }
+            withLink(OudsLinkAnnotation.Clickable("")) { append("link") }
         },
         buildOudsAnnotatedAlertMessageBulletListLabel { append("Bullet 3") }
     )

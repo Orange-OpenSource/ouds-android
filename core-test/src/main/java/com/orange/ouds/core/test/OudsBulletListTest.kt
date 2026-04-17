@@ -46,4 +46,10 @@ internal class OudsBulletListTest {
             internal fun data() = OudsPreviewableComponent.BulletList.Rtl.parameters
         }
     }
+
+    class WithRichText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.BulletList.WithRichText,
+        null,
+        OudsComponentTestSuite.theme
+    )
 }
