@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component.common.text
 
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 
 class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedString) : OudsAnnotatedString<OudsAnnotatedHelperText>(annotatedString) {
@@ -27,15 +26,12 @@ class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedStr
             append(text)
         }
 
-        @Composable
-        override fun AddStrong(start: Int, end: Int) = AddStrongImpl(start, end)
+        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
-        @Composable
         override fun pushStrong(): Int = pushStrongImpl()
     }
 }
 
-@Composable
-fun buildOudsAnnotatedHelperText(builder: @Composable ((OudsAnnotatedHelperText.Builder).() -> Unit)): OudsAnnotatedHelperText {
+fun buildOudsAnnotatedHelperText(builder: (OudsAnnotatedHelperText.Builder).() -> Unit): OudsAnnotatedHelperText {
     return buildOudsAnnotatedString<OudsAnnotatedHelperText, OudsAnnotatedHelperText.Builder>(builder)
 }

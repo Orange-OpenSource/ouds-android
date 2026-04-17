@@ -15,16 +15,35 @@ package com.orange.ouds.core.component.common.text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.StringAnnotation
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.decapitalize
 import androidx.compose.ui.text.intl.LocaleList
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.text.toUpperCase
+import com.orange.ouds.core.component.OudsLinkState
+import com.orange.ouds.core.component.linkContentColor
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 
 open class OudsAnnotatedString<T> internal constructor(annotatedString: AnnotatedString) : CharSequence by annotatedString
         where T : OudsAnnotatedString<T> {
+
+    internal companion object {
+
+        const val StrongAnnotation = "OudsAnnotatedString.StrongAnnotation"
+    }
+
+    protected open val strongStyle: TextStyle
+        @Composable
+        get() = OudsTheme.typography.label.strong.medium
+
+    protected open val linkStyle: TextStyle
+        @Composable
+        get() = OudsTheme.typography.label.strong.medium
 
     private val _annotatedString = annotatedString
 
@@ -34,20 +53,37 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     internal val annotatedString: AnnotatedString
         @Composable
         get() {
-            val textLinkColors = getTextLinkColors()
+            val monochrome = LocalColorMode.current?.monochrome == true
+            val linkColor = linkContentColor(state = OudsLinkState.Enabled, monochrome = monochrome)
+            val linkFocusedColor = linkContentColor(state = OudsLinkState.Focused, monochrome = monochrome)
+            val linkHoveredColor = linkContentColor(state = OudsLinkState.Hovered, monochrome = monochrome)
+            val linkPressedColor = linkContentColor(state = OudsLinkState.Pressed, monochrome = monochrome)
+            val linkStyle = linkStyle
+            val strongStyle = strongStyle
+
             return _annotatedString.mapAnnotations { annotation ->
-                val item = annotation.item
-                if (item is LinkAnnotation) {
-                    val styles = item.styles?.updateColors(textLinkColors)
-                    val linkAnnotation = when (item) {
-                        is LinkAnnotation.Url -> item.copy(styles = styles)
-                        is LinkAnnotation.Clickable -> item.copy(styles = styles)
-                        else -> item
+                when (val item = annotation.item) {
+                    is LinkAnnotation -> {
+                        val spanStyle = linkStyle.toSpanStyle().copy(textDecoration = TextDecoration.Underline)
+                        val styles = with(spanStyle) {
+                            TextLinkStyles(
+                                style = copy(color = linkColor),
+                                focusedStyle = copy(color = linkFocusedColor),
+                                hoveredStyle = copy(color = linkHoveredColor),
+                                pressedStyle = copy(color = linkPressedColor)
+                            )
+                        }
+                        val linkAnnotation = when (item) {
+                            is LinkAnnotation.Url -> item.copy(styles = styles)
+                            is LinkAnnotation.Clickable -> item.copy(styles = styles)
+                            else -> item
+                        }
+                        with(annotation) { AnnotatedString.Range(linkAnnotation, start, end, tag) }
                     }
-                    @Suppress("UNCHECKED_CAST")
-                    (annotation as AnnotatedString.Range<LinkAnnotation>).copy(item = linkAnnotation)
-                } else {
-                    annotation
+                    is StringAnnotation if item.value == StrongAnnotation -> {
+                        with(annotation) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end, tag) }
+                    }
+                    else -> annotation
                 }
             }
         }
@@ -79,14 +115,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
     open class Builder<T> internal constructor(capacity: Int, private val clazz: Class<T>) : Appendable where T : OudsAnnotatedString<T> {
 
-        protected open val strongStyle: TextStyle
-            @Composable
-            get() = OudsTheme.typography.label.strong.medium
-
-        protected open val linkStyle: TextStyle
-            @Composable
-            get() = OudsTheme.typography.label.strong.medium
-
         private val builder = AnnotatedString.Builder(capacity)
 
         override fun append(char: Char): Builder<T> = apply { builder.append(char) }
@@ -106,26 +134,21 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
             return constructor(builder.toAnnotatedString())
         }
 
-        @Composable
-        protected fun AddStrongImpl(start: Int, end: Int) {
-            builder.addStyle(strongStyle.toSpanStyle(), start, end)
+        protected fun addStrongImpl(start: Int, end: Int) {
+            builder.addStringAnnotation("", StrongAnnotation, start, end)
         }
 
-        @Composable
-        protected fun AddLinkImpl(url: OudsLinkAnnotation.Url, start: Int, end: Int) {
-            builder.addLink(url.linkAnnotation.withStyle(linkStyle), start, end)
+        protected fun addLinkImpl(url: OudsLinkAnnotation.Url, start: Int, end: Int) {
+            builder.addLink(url.linkAnnotation, start, end)
         }
 
-        @Composable
-        protected fun AddLinkImpl(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) {
-            builder.addLink(clickable.linkAnnotation.withStyle(linkStyle), start, end)
+        protected fun addLinkImpl(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) {
+            builder.addLink(clickable.linkAnnotation, start, end)
         }
 
-        @Composable
-        protected fun pushStrongImpl(): Int = builder.pushStyle(strongStyle.toSpanStyle())
+        protected fun pushStrongImpl(): Int = builder.pushStringAnnotation("", StrongAnnotation)
 
-        @Composable
-        protected fun pushLinkImpl(link: OudsLinkAnnotation): Int = builder.pushLink(link.linkAnnotation.withStyle(linkStyle))
+        protected fun pushLinkImpl(link: OudsLinkAnnotation): Int = builder.pushLink(link.linkAnnotation)
 
         fun pop(): Unit = builder.pop()
 
@@ -141,27 +164,21 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
     interface StrongBuilder : BaseBuilder {
 
-        @Composable
-        fun AddStrong(start: Int, end: Int)
+        fun addStrong(start: Int, end: Int)
 
-        @Composable
         fun pushStrong(): Int
     }
 
     interface LinkBuilder : BaseBuilder {
 
-        @Composable
-        fun AddLink(url: OudsLinkAnnotation.Url, start: Int, end: Int)
+        fun addLink(url: OudsLinkAnnotation.Url, start: Int, end: Int)
 
-        @Composable
-        fun AddLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int)
+        fun addLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int)
 
-        @Composable
         fun pushLink(link: OudsLinkAnnotation): Int
     }
 }
 
-@Composable
 inline fun <R : Any> OudsAnnotatedString.StrongBuilder.withStrong(block: OudsAnnotatedString.StrongBuilder.() -> R): R {
     val index = pushStrong()
     return try {
@@ -171,7 +188,6 @@ inline fun <R : Any> OudsAnnotatedString.StrongBuilder.withStrong(block: OudsAnn
     }
 }
 
-@Composable
 inline fun <R : Any> OudsAnnotatedString.LinkBuilder.withLink(link: OudsLinkAnnotation, block: OudsAnnotatedString.LinkBuilder.() -> R): R {
     val index = pushLink(link)
     return try {
@@ -181,16 +197,14 @@ inline fun <R : Any> OudsAnnotatedString.LinkBuilder.withLink(link: OudsLinkAnno
     }
 }
 
-@Composable
-inline fun <T, reified U> buildOudsAnnotatedString(noinline builder: @Composable ((U).() -> Unit)): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
+inline fun <T, reified U> buildOudsAnnotatedString(noinline builder: (U).() -> Unit): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
     return buildOudsAnnotatedString(U::class.java, builder)
 }
 
 @PublishedApi
-@Composable
 internal fun <T, U> buildOudsAnnotatedString(
     builderClass: Class<T>,
-    builder: @Composable ((T).() -> Unit)
+    builder: (T).() -> Unit
 ): U where T : OudsAnnotatedString.Builder<U>, U : OudsAnnotatedString<U> {
     val constructor: () -> T = { builderClass.getConstructor().newInstance() }
     return constructor().apply { builder() }.toAnnotatedString()

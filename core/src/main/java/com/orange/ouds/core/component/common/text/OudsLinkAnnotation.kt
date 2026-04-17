@@ -12,17 +12,8 @@
 
 package com.orange.ouds.core.component.common.text
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.LinkInteractionListener
-import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextDecoration
-import com.orange.ouds.core.component.OudsLinkState
-import com.orange.ouds.core.component.linkContentColor
-import com.orange.ouds.core.theme.LocalColorMode
-import com.orange.ouds.foundation.extensions.orElse
 
 abstract class OudsLinkAnnotation {
 
@@ -92,41 +83,3 @@ abstract class OudsLinkAnnotation {
         }
     }
 }
-
-internal fun <T> T.withStyle(style: TextStyle): T where T : LinkAnnotation {
-    val spanStyle = style.toSpanStyle().copy(textDecoration = TextDecoration.Underline)
-    val styles = TextLinkStyles(style = spanStyle)
-    @Suppress("UNCHECKED_CAST")
-    return when (this) {
-        is LinkAnnotation.Url -> copy(styles = styles)
-        is LinkAnnotation.Clickable -> copy(styles = styles)
-        else -> this
-    } as T
-}
-
-internal fun TextLinkStyles.updateColors(colors: TextLinkColors): TextLinkStyles {
-    return TextLinkStyles(
-        style = colors.color?.let { style?.copy(color = it) },
-        focusedStyle = colors.focusedColor?.let { focusedStyle.orElse { style }?.copy(color = it) },
-        hoveredStyle = colors.hoveredColor?.let { hoveredStyle.orElse { style }?.copy(color = it) },
-        pressedStyle = colors.pressedColor?.let { pressedStyle.orElse { style }?.copy(color = it) }
-    )
-}
-
-@Composable
-internal fun getTextLinkColors(): TextLinkColors {
-    val monochrome = LocalColorMode.current?.monochrome == true
-    return TextLinkColors(
-        color = linkContentColor(state = OudsLinkState.Enabled, monochrome = monochrome),
-        focusedColor = linkContentColor(state = OudsLinkState.Focused, monochrome = monochrome),
-        hoveredColor = linkContentColor(state = OudsLinkState.Hovered, monochrome = monochrome),
-        pressedColor = linkContentColor(state = OudsLinkState.Pressed, monochrome = monochrome),
-    )
-}
-
-internal class TextLinkColors(
-    val color: Color? = null,
-    val focusedColor: Color? = null,
-    val hoveredColor: Color? = null,
-    val pressedColor: Color? = null,
-)

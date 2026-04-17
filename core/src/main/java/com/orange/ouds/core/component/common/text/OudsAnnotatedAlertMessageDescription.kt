@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component.common.text
 
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 
 class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString: AnnotatedString) :
@@ -30,24 +29,18 @@ class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString:
             append(text)
         }
 
-        @Composable
-        override fun AddStrong(start: Int, end: Int) = AddStrongImpl(start, end)
+        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
-        @Composable
         override fun pushStrong(): Int = pushStrongImpl()
 
-        @Composable
-        override fun AddLink(url: OudsLinkAnnotation.Url, start: Int, end: Int) = AddLinkImpl(url, start, end)
+        override fun addLink(url: OudsLinkAnnotation.Url, start: Int, end: Int) = addLinkImpl(url, start, end)
 
-        @Composable
-        override fun AddLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) = AddLinkImpl(clickable, start, end)
+        override fun addLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) = addLinkImpl(clickable, start, end)
 
-        @Composable
         override fun pushLink(link: OudsLinkAnnotation): Int = pushLinkImpl(link)
     }
 }
 
-@Composable
-fun buildOudsAnnotatedAlertMessageDescription(builder: @Composable ((OudsAnnotatedAlertMessageDescription.Builder).() -> Unit)): OudsAnnotatedAlertMessageDescription {
+fun buildOudsAnnotatedAlertMessageDescription(builder: (OudsAnnotatedAlertMessageDescription.Builder).() -> Unit): OudsAnnotatedAlertMessageDescription {
     return buildOudsAnnotatedString<OudsAnnotatedAlertMessageDescription, OudsAnnotatedAlertMessageDescription.Builder>(builder)
 }
