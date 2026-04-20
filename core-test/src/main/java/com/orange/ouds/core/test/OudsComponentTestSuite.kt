@@ -35,6 +35,7 @@ import org.junit.runners.Suite
     OudsModalBottomSheetTest::class,
     OudsNavigationBarTest::class,
     OudsNavigationBarItemTest::class,
+    OudsNavigationButtonTest::class,
     OudsPasswordInputTest::class,
     OudsPinCodeInputTest::class,
     OudsRadioButtonItemTest::class,
