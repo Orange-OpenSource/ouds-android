@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoScre
 import com.orange.ouds.app.ui.components.bottomsheet.ModalBottomSheetDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
+import com.orange.ouds.app.ui.components.button.NavigationButtonDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
@@ -94,7 +95,7 @@ sealed class Component(
         R.string.app_components_button_tech,
         R.string.app_components_button_description_text,
         { ButtonIllustration() },
-        demoScreen = { ButtonDemoScreen() }
+        listOf(Variant.Button, Variant.NavigationButton)
     )
 
     data object Checkbox : Component(
@@ -221,6 +222,10 @@ sealed class Variant(
     // Bottom sheet
     data object StandardBottomSheet : Variant(R.string.app_components_bottomSheet_standardBottomSheet_tech, { StandardBottomSheetDemoScreen() })
     data object ModalBottomSheet : Variant(R.string.app_components_bottomSheet_modalBottomSheet_tech, { ModalBottomSheetDemoScreen() })
+
+    // Button
+    data object Button : Variant(R.string.app_components_button_button_tech, { ButtonDemoScreen() })
+    data object NavigationButton : Variant(R.string.app_components_button_navigationButton_tech, { NavigationButtonDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_tech, { CheckboxDemoScreen() })
