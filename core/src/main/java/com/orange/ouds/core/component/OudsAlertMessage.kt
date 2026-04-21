@@ -49,6 +49,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageBulletListLabel
+import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescription
+import com.orange.ouds.core.component.common.text.OudsAnnotatedString
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.theme.LocalThemeSettings
@@ -57,8 +65,10 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -108,6 +118,90 @@ fun OudsAlertMessage(
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null
 ) {
+    OudsAlertMessage(
+        label = label,
+        modifier = modifier,
+        status = status,
+        description = description,
+        annotatedDescription = null,
+        onClose = onClose,
+        actionLink = actionLink,
+        bulletList = bulletList,
+        annotatedBulletList = null
+    )
+}
+
+/**
+ * Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable
+ * communication. Alert message includes functional icon and semantic colour, and may include as well a close button and/or action link.
+ * Alert Message does not disappear automatically and remains visible until dismissed or resolved by the user.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-alert-message)
+ *
+ * > Design version: 1.1.0
+ *
+ * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
+ * @param modifier [Modifier] applied to the alert message.
+ * @param status The status of the alert message. Its background color and its icon color are based on this status.
+ *   There are two types of statuses:
+ *   - Non-functional statuses ([OudsAlertMessageStatus.Neutral] or [OudsAlertMessageStatus.Accent]) used for informational or decorative alert messages. They
+ *   provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
+ *   success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
+ *   - Functional statuses communicate specific system statuses, results, or user feedback: [OudsAlertMessageStatus.Positive], [OudsAlertMessageStatus.Warning],
+ *   [OudsAlertMessageStatus.Negative], [OudsAlertMessageStatus.Info].
+ *   Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
+ *   Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
+ *   messages carry functional meaning and help guide user response or acknowledgment.
+ * @param description Annotated supplementary text in an alert message. Use only when additional detail or guidance is needed beyond the label. It should remain
+ *   short, clear and scannable, helping the user to understand what happened and what he can do next.
+ * @param onClose Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert message remains visible until
+ *   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
+ *   allowing the user to dismiss it when he has acknowledged the message.
+ *   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
+ * @param actionLink An optional link to be displayed in the alert message. It can be used to trigger an action.
+ * @param bulletList A list of annotated bullet points to be displayed in the alert message following the label or the optional [description].
+ *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
+ *   as a clear phrase or fragment — avoid long sentences or complex structures.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageFunctionalWithTopEndActionLinkSample
+ */
+@Composable
+fun OudsAlertMessage(
+    label: String,
+    modifier: Modifier = Modifier,
+    status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
+    description: OudsAnnotatedAlertMessageDescription,
+    onClose: (() -> Unit)? = null,
+    actionLink: OudsAlertMessageActionLink? = null,
+    bulletList: List<OudsAnnotatedAlertMessageBulletListLabel>?
+) {
+    OudsAlertMessage(
+        label = label,
+        modifier = modifier,
+        status = status,
+        description = null,
+        annotatedDescription = description,
+        onClose = onClose,
+        actionLink = actionLink,
+        bulletList = null,
+        annotatedBulletList = bulletList
+    )
+}
+
+@Composable
+private fun OudsAlertMessage(
+    label: String,
+    modifier: Modifier = Modifier,
+    status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
+    description: String? = null,
+    annotatedDescription: OudsAnnotatedAlertMessageDescription? = null,
+    onClose: (() -> Unit)? = null,
+    actionLink: OudsAlertMessageActionLink? = null,
+    bulletList: List<String>? = null,
+    annotatedBulletList: List<OudsAnnotatedAlertMessageBulletListLabel>? = null
+) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
         val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
@@ -150,15 +244,15 @@ fun OudsAlertMessage(
                         color = status.contentColor,
                         style = OudsTheme.typography.label.moderate.large
                     )
-                    description?.let {
-                        Text(
-                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
-                            text = description,
-                            color = status.contentColor,
-                            style = OudsTheme.typography.label.default.medium
-                        )
+                    val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium)
+                    val descriptionColor = status.contentColor
+                    val descriptionStyle = OudsTheme.typography.label.default.medium
+                    if (annotatedDescription != null) {
+                        Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
+                    } else if (description != null) {
+                        Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
-                    bulletList?.let { list ->
+                    annotatedBulletList.orElse { bulletList }?.let { list ->
                         Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
                             list.forEach { label ->
                                 if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
@@ -360,7 +454,7 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
 }
 
 @Composable
-private fun OudsAlertMessageBulletListItem(label: String, color: Color) {
+private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
     val scale = LocalConfiguration.current.fontScale
     Row(
         modifier = Modifier
@@ -383,23 +477,23 @@ private fun OudsAlertMessageBulletListItem(label: String, color: Color) {
                 tint = color
             )
         }
-        Text(
-            modifier = Modifier
-                .fillMaxHeight()
-                .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
-            text = label,
-            style = OudsTheme.typography.label.default.medium,
-            color = color
-        )
+        val modifier = Modifier
+            .fillMaxHeight()
+            .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
+            .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium)
+        val style = OudsTheme.typography.label.default.medium
+        when (label) {
+            is OudsAnnotatedString<*> -> Text(modifier = modifier, text = label.annotatedString(), color = color, style = style)
+            is String -> Text(modifier = modifier, text = label, color = color, style = style)
+        }
     }
 }
 
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.AlertMessage.Default.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = OudsPreviewableComponent.AlertMessage.PreviewHeightDp,
+    heightDp = OudsPreviewableComponent.AlertMessage.Default.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -437,6 +531,42 @@ internal fun PreviewOudsAlertMessage(
             }
         }
     }
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsAlertMessageWithRichText() {
+    PreviewOudsAlertMessageWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsAlertMessageWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    val description = buildOudsAnnotatedAlertMessageDescription {
+        append("Here is a description that contains a ")
+        withStrong { append("strong") }
+        append(" text and a ")
+        withLink(OudsLinkAnnotation.Clickable("")) { append("link") }
+    }
+    val bulletList = listOf(
+        buildOudsAnnotatedAlertMessageBulletListLabel { append("Bullet 1") },
+        buildOudsAnnotatedAlertMessageBulletListLabel {
+            append("Bullet 2 is a bullet that contains a ")
+            withStrong { append("strong") }
+            append(" text and a ")
+            withLink(OudsLinkAnnotation.Clickable("")) { append("link") }
+        },
+        buildOudsAnnotatedAlertMessageBulletListLabel { append("Bullet 3") }
+    )
+    OudsAlertMessage(
+        modifier = Modifier.padding(all = 10.dp),
+        label = "Label",
+        description = description,
+        bulletList = bulletList
+    )
 }
 
 internal data class OudsAlertMessagePreviewParameter(

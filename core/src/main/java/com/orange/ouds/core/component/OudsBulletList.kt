@@ -60,6 +60,11 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset.Bullet.extraParameters
+import com.orange.ouds.core.component.common.text.OudsAnnotatedBulletListLabel
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBulletListLabel
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
@@ -68,6 +73,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -150,8 +156,39 @@ class OudsBulletListBuilder internal constructor() {
         subListTextStyle: OudsBulletListTextStyle? = null,
         builder: (OudsBulletListBuilder.() -> Unit)? = null
     ) {
+        item(label, null, subListType, subListTextStyle, builder)
+    }
+
+    /**
+     * Adds an item to the bullet list.
+     *
+     * This function can also define a nested sub-list by providing a `builder` lambda.
+     *
+     * @param label The annotated text content of the list item.
+     * @param subListType The specific [OudsBulletListType] for the nested sub-list, if any.
+     *   If `null`, the type is inherited from the parent list.
+     * @param subListTextStyle The specific [OudsBulletListTextStyle] for the nested sub-list, if any.
+     *   If `null`, the text style is inherited from the parent list.
+     * @param builder A lambda scope for defining nested list items.
+     */
+    fun item(
+        label: OudsAnnotatedBulletListLabel,
+        subListType: OudsBulletListType? = null,
+        subListTextStyle: OudsBulletListTextStyle? = null,
+        builder: (OudsBulletListBuilder.() -> Unit)? = null
+    ) {
+        item(null, label, subListType, subListTextStyle, builder)
+    }
+
+    private fun item(
+        label: String?,
+        annotatedLabel: OudsAnnotatedBulletListLabel?,
+        subListType: OudsBulletListType? = null,
+        subListTextStyle: OudsBulletListTextStyle? = null,
+        builder: (OudsBulletListBuilder.() -> Unit)? = null
+    ) {
         val subListItems = builder?.let { OudsBulletListBuilder().apply(it).build() }.orEmpty()
-        items.add(BulletListItem(label, subListType, subListTextStyle, subListItems))
+        items.add(BulletListItem(label, annotatedLabel, subListType, subListTextStyle, subListItems))
     }
 
     internal fun build(): List<BulletListItem> = items
@@ -247,16 +284,20 @@ private fun OudsBulletListItem(
                 OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.type.body.large
                 OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.type.body.medium
             }
-            Text(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                    .widthIn(max = textMaxWidth)
-                    .clearAndSetSemantics {},
-                text = item.label,
-                style = currentTextStyle.toTextStyle(),
-                color = OudsTheme.colorScheme.content.default
-            )
+            val textModifier = Modifier
+                .fillMaxHeight()
+                .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
+                .widthIn(max = textMaxWidth)
+                .clearAndSetSemantics {}
+            val textStyle = currentTextStyle.toTextStyle()
+            val textColor = OudsTheme.colorScheme.content.default
+            if (item.annotatedLabel != null) {
+                val strongAndLinkStyle = currentTextStyle.toTextStyle(forceStrong = true)
+                val text = item.annotatedLabel.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle)
+                Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+            } else if (item.label != null) {
+                Text(modifier = textModifier, text = item.label, style = textStyle, color = textColor)
+            }
         }
 
         if (item.subListItems.isNotEmpty()) {
@@ -284,7 +325,8 @@ private fun OudsBulletListItem(
 }
 
 internal data class BulletListItem(
-    val label: String,
+    val label: String?,
+    val annotatedLabel: OudsAnnotatedBulletListLabel?,
     val subListType: OudsBulletListType?,
     val subListTextStyle: OudsBulletListTextStyle?,
     val subListItems: List<BulletListItem> = emptyList()
@@ -493,14 +535,16 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
 data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fontWeight: OudsBulletListFontWeight) {
 
     @Composable
-    internal fun toTextStyle(): TextStyle {
+    internal fun toTextStyle(forceStrong: Boolean = false): TextStyle {
         return when (fontSize) {
             OudsBulletListFontSize.BodyLarge -> when (fontWeight) {
-                OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.large
+                OudsBulletListFontWeight.Normal if !forceStrong -> OudsTheme.typography.body.default.large
+                OudsBulletListFontWeight.Normal,
                 OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.large
             }
             OudsBulletListFontSize.BodyMedium -> when (fontWeight) {
-                OudsBulletListFontWeight.Normal -> OudsTheme.typography.body.default.medium
+                OudsBulletListFontWeight.Normal if !forceStrong -> OudsTheme.typography.body.default.medium
+                OudsBulletListFontWeight.Normal,
                 OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.medium
             }
         }
@@ -566,13 +610,6 @@ private fun PreviewOudsBulletList(@PreviewParameter(OudsBulletListPreviewParamet
     PreviewOudsBulletList(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
-@Preview(heightDp = OudsPreviewableComponent.BulletList.Rtl.PreviewHeightDp, device = OudsPreviewDevice)
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsBulletListRtl(@PreviewParameter(OudsBulletListPreviewParameterProvider::class) parameter: OudsBulletListPreviewParameter) {
-    PreviewOudsBulletListRtl(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
-}
-
 @Composable
 internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBulletListPreviewParameter) {
     val customBullet = rememberVectorPainter(Icons.Outlined.FavoriteBorder)
@@ -625,10 +662,52 @@ internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: B
     }
 }
 
+@Preview(heightDp = OudsPreviewableComponent.BulletList.Rtl.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsBulletListRtl(@PreviewParameter(OudsBulletListPreviewParameterProvider::class) parameter: OudsBulletListPreviewParameter) {
+    PreviewOudsBulletListRtl(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
 @Composable
 internal fun PreviewOudsBulletListRtl(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBulletListPreviewParameter) {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
         PreviewOudsBulletList(theme = theme, darkThemeEnabled = darkThemeEnabled, parameter = parameter)
+    }
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsBulletListWithRichText() {
+    PreviewOudsBulletListWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsBulletListWithRichText(theme: OudsThemeContract, darkThemeEnabled: Boolean) {
+    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+        OudsBulletList {
+            item(label = "First item")
+            item(
+                label = buildOudsAnnotatedBulletListLabel {
+                    append("Second item with a ")
+                    withStrong { append("strong") }
+                    append(" text and a ")
+                    withLink(OudsLinkAnnotation.Clickable("")) { append("link") }
+                },
+                subListTextStyle = OudsBulletListTextStyle(OudsBulletListFontSize.BodyMedium, OudsBulletListFontWeight.Normal)
+            ) {
+                item(label = "First subitem")
+                item(
+                    label = buildOudsAnnotatedBulletListLabel {
+                        append("Second subitem with a ")
+                        withStrong { append("strong") }
+                        append(" text and a ")
+                        withLink(OudsLinkAnnotation.Clickable("")) { append("link") }
+                    }
+                )
+            }
+        }
     }
 }
 

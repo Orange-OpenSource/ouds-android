@@ -12,9 +12,19 @@
 
 package com.orange.ouds.core.component.common
 
+import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
+import com.orange.ouds.foundation.extensions.orElse
+
 /**
- * An OUDS error that takes accessibility into account.
- *
- * @param message A mandatory localized message explaining the error.
+ * An OUDS error that takes accessibility into account and supports rich text messages.
  */
-class OudsError(val message: String)
+class OudsError private constructor(message: String?, annotatedMessage: OudsAnnotatedErrorMessage?) {
+
+    val message = message.orElse { annotatedMessage?.text }.orEmpty()
+
+    val annotatedMessage = annotatedMessage
+
+    constructor(message: String) : this(message, null)
+
+    constructor(annotatedMessage: OudsAnnotatedErrorMessage) : this(null, annotatedMessage)
+}

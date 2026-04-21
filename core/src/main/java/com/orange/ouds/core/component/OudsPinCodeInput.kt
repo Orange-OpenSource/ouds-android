@@ -66,6 +66,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
@@ -112,7 +113,6 @@ import kotlinx.coroutines.launch
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
  */
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun OudsPinCodeInput(
     value: String,
@@ -122,6 +122,91 @@ fun OudsPinCodeInput(
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsPinCodeInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        length = length,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        onKeyboardAction = onKeyboardAction,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a
+ * four, six or eight-digit personal identification number (PIN). PIN code input is presented as a series of individual input fields or boxes, each
+ * representing a single digit, to enhance readability and encourage accurate input, while supporting smooth keyboard navigation and secured input masking if
+ * needed.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
+ *
+ * > Design version: 1.2.0
+ *
+ * @param value The current PIN code value as a string of digits. The value is automatically truncated to the specified [length].
+ * @param onValueChange Callback invoked when the PIN code value changes. The updated PIN code value comes as a parameter of the callback.
+ * @param modifier [Modifier] applied to the PIN code input.
+ * @param length The number of digits in the PIN code. Defaults to [OudsPinCodeInputDefaults.Length].
+ * @param outlined Controls the style of the PIN code input. When `true`, it displays a minimalist PIN code input with a transparent background and a visible
+ *   stroke outlining each digit box.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An annotated helper text displayed below the PIN code input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
+ *   By default, this parameter is null, and would execute the default behavior for a received IME Action e.g., [androidx.compose.ui.text.input.ImeAction.Done] would close the keyboard,
+ *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this PIN code input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
+ */
+@Composable
+fun OudsPinCodeInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    length: OudsPinCodeInputLength = OudsPinCodeInputDefaults.Length,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsPinCodeInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        length = length,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        onKeyboardAction = onKeyboardAction,
+        interactionSource = interactionSource
+    )
+}
+
+@Composable
+private fun OudsPinCodeInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    length: OudsPinCodeInputLength = OudsPinCodeInputDefaults.Length,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    annotatedHelperText: OudsAnnotatedHelperText? = null,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -172,6 +257,7 @@ fun OudsPinCodeInput(
                     outlined = outlined,
                     error = error,
                     helperText = helperText,
+                    annotatedHelperText = annotatedHelperText,
                     onDigitClick = {
                         focusRequester.requestFocus()
                         // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
@@ -234,6 +320,7 @@ private fun OudsPinCodeInputDecorator(
     outlined: Boolean,
     error: OudsError?,
     helperText: String?,
+    annotatedHelperText: OudsAnnotatedHelperText?,
     onDigitClick: (Int) -> Unit,
     interactionSource: MutableInteractionSource
 ) {
@@ -290,7 +377,8 @@ private fun OudsPinCodeInputDecorator(
                 },
                 enabled = true,
                 error = error,
-                helperText = helperText
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText
             )
         }
     }

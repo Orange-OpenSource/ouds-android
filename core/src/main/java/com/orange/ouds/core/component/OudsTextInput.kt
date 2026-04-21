@@ -76,6 +76,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.bottomBorder
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -182,6 +183,171 @@ fun OudsTextInput(
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+ * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+ * while supporting labels, placeholders, icons, descriptions, and validation feedback.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
+ *
+ * > Design version: 1.3.0
+ *
+ * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
+ * @param modifier [Modifier] applied to the text input.
+ * @param label Label displayed above the text input. It describes the purpose of the input.
+ * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
+ *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
+ * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
+ *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g., kg, %, cm).
+ * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
+ * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An annotated helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param keyboardOptions Software keyboard options that contain configurations such as [KeyboardType] and [ImeAction].
+ * @param onKeyboardAction Called when the user presses the action button in the input method editor (IME), or by pressing the enter key on a hardware keyboard.
+ *   By default, this parameter is null, and would execute the default behavior for a received IME Action e.g., [ImeAction.Done] would close the keyboard,
+ *   [ImeAction.Next] would switch the focus to the next focusable item on the screen.
+ * @param onTextLayout Callback that is executed when the text layout becomes queryable. The callback receives a function that returns a [TextLayoutResult] if
+ *   the layout can be calculated, or null if it cannot. The function reads the layout result from a snapshot state object, and will invalidate its caller when
+ *   the layout result changes. A [TextLayoutResult] object contains paragraph information, size of the text, baselines and other details. The callback can be
+ *   used to add additional decoration or functionality to the text. For example, to draw a cursor or selection around the text. [Density] scope is the one that
+ *   was used while creating the given text layout.
+ * @param inputTransformation An optional [InputTransformation] that will be used to transform changes to the [TextFieldState] made by the user. The transformation
+ *   will be applied to changes made by hardware and software keyboard events, pasting or dropping text, accessibility services, and tests. The transformation
+ *   will _not_ be applied when changing the [textFieldState] programmatically, or when the transformation is changed. If the transformation is changed on an
+ *   existing text field, it will be applied to the next user edit. The transformation will not immediately affect the current [textFieldState].
+ * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
+ */
+@Composable
+fun OudsTextInput(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+@Composable
+private fun OudsTextInput(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    annotatedHelperText: OudsAnnotatedHelperText? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
@@ -223,6 +389,7 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
                         helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
@@ -311,6 +478,165 @@ fun OudsTextInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null
 ) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+ * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+ * while supporting labels, placeholders, icons, descriptions, and validation feedback.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
+ *
+ * > Design version: 1.3.0
+ *
+ * @param value Input text to be shown in the text field.
+ * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
+ * @param modifier [Modifier] applied to the text input.
+ * @param label Label displayed above the text input. It describes the purpose of the input.
+ * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
+ *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
+ * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
+ *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g., kg, %, cm).
+ * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
+ * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An annotated helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
+ * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
+ *   you specified in [KeyboardOptions.imeAction].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
+ * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
+ */
+@Composable
+fun OudsTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+@Composable
+private fun OudsTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    annotatedHelperText: OudsAnnotatedHelperText? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
@@ -352,6 +678,7 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
                         helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
@@ -440,6 +767,165 @@ fun OudsTextInput(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null
 ) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+ * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+ * while supporting labels, placeholders, icons, descriptions, and validation feedback.
+ *
+ * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
+ * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
+ * the state of a text input.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
+ *
+ * > Design version: 1.3.0
+ *
+ * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
+ * @param onValueChange Called when the input service updates the values in [TextFieldValue].
+ * @param modifier [Modifier] applied to the text input.
+ * @param label Label displayed above the text input. It describes the purpose of the input.
+ * @param placeholder Text displayed when the text input is empty. It provides a hint or guidance inside the field to suggest expected input.
+ * @param leadingIcon An optional leading icon displayed at the start of the text input. It helps indicate the purpose of the input (magnifying glass for search,
+ *   envelope for email, etc.). Only use a leading icon if it adds clear functional or contextual value.
+ * @param trailingIconButton An optional trailing icon button displayed at the end of the text input. It is used to provide actions related to the field:
+ *   clear input, toggle password visibility, etc. It can also indicate status or feedback (error checkmark, loading spinner).
+ * @param prefix Text placed before the user's input. Commonly used to indicate expected formatting such as a country code or a unit.
+ * @param suffix Text placed after the user's input, often used to display a currency or a unit (e.g., kg, %, cm).
+ * @param enabled Controls the enabled state of the text input. When `false`, this text input will not be focusable and will not react to input events.
+ *   True by default.
+ * @param readOnly Controls the read-only state of the text input. When `true`, the text is visible but not editable.
+ *   False by default.
+ * @param loader An optional loading progress indicator displayed in the text input to indicate an ongoing operation.
+ * @param outlined Controls the style of the text input. When `true`, it displays a minimalist text input with a transparent background and a visible
+ *   stroke outlining the field.
+ * @param error Optional [OudsError] to indicate that the user input does not meet validation rules or expected formatting. Pass `null` if there is no error.
+ * @param helperText An annotated helper text displayed below the text input. It conveys additional information about the input field, such as how it will be
+ *   used. It should ideally only take up a single line, though it may wrap to multiple lines if required.
+ * @param helperLink An optional helper link displayed below or in place of the helper text.
+ * @param constrainedMaxWidth When `true`, the text input width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param keyboardOptions Software keyboard options that contain configuration such as [KeyboardType] and [ImeAction].
+ * @param keyboardActions When the input service emits an IME action, the corresponding callback is called. Note that this IME action may be different from what
+ *   you specified in [KeyboardOptions.imeAction].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A [TextLayoutResult] object that callback provides contains paragraph
+ *   information, size of the text, baselines and other details. The callback can be used to add additional decoration or functionality to the text.
+ *   For example, to draw a cursor or selection around the text.
+ * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
+ */
+@Composable
+fun OudsTextInput(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+@Composable
+private fun OudsTextInput(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    annotatedHelperText: OudsAnnotatedHelperText? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null
+) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
@@ -481,6 +967,7 @@ fun OudsTextInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
                         helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
@@ -546,6 +1033,7 @@ internal fun OudsTextInputDecorator(
     outlined: Boolean,
     error: OudsError?,
     helperText: String?,
+    annotatedHelperText: OudsAnnotatedHelperText?,
     helperLink: OudsTextInputHelperLink?,
     constrainedMaxWidth: Boolean,
 ) {
@@ -697,7 +1185,8 @@ internal fun OudsTextInputDecorator(
                 modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
                 enabled = state != OudsTextInputState.Disabled,
                 error = error,
-                helperText = helperText
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText
             )
 
             // Helper link
@@ -707,25 +1196,35 @@ internal fun OudsTextInputDecorator(
 }
 
 @Composable
-internal fun OudsTextInputHelperTextErrorMessage(enabled: Boolean, error: OudsError?, helperText: String?, modifier: Modifier = Modifier) {
+internal fun OudsTextInputHelperTextErrorMessage(
+    enabled: Boolean,
+    error: OudsError?,
+    helperText: String?,
+    annotatedHelperText: OudsAnnotatedHelperText?,
+    modifier: Modifier = Modifier
+) {
     with(OudsTheme.componentsTokens.textInput) {
         val hasError = error != null
         if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
-            Text(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(top = spacePaddingBlockTopHelperText.value)
-                    .clearAndSetSemantics {
-                        if (hasError) {
-                            error(error.message)
-                        } else {
-                            contentDescription = helperText.orEmpty()
-                        }
-                    },
-                text = if (hasError) error.message else helperText.orEmpty(),
-                style = OudsTheme.typography.label.default.medium,
-                color = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
-            )
+            val textModifier = modifier
+                .fillMaxWidth()
+                .padding(top = spacePaddingBlockTopHelperText.value)
+                .clearAndSetSemantics {
+                    if (hasError) {
+                        error(error.message)
+                    } else {
+                        contentDescription = helperText.orEmpty()
+                    }
+                }
+            val textStyle = OudsTheme.typography.label.default.medium
+            val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
+            val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
+            val text = if (hasError) error.message else helperText
+            if (annotatedText != null) {
+                Text(modifier = textModifier, text = annotatedText.annotatedString(), style = textStyle, color = textColor)
+            } else if (text != null) {
+                Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+            }
         }
     }
 }
