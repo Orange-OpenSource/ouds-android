@@ -43,7 +43,7 @@ fun NavigationButtonDemoScreen() {
         codeSnippet = { navigationButtonDemoCodeSnippet(state = state) },
         demoContent = { NavigationButtonDemoContent(state = state) },
         demoContentOnColoredBox = state.onColoredBox,
-        version = OudsVersion.Component.Button
+        version = OudsVersion.Component.NavigationButton
     )
 }
 
