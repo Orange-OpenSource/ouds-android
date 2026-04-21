@@ -45,46 +45,40 @@ class NavigationButtonDemoState(
     appearance: OudsNavigationButtonAppearance,
     layout: OudsNavigationButtonLayout,
     iconOnly: Boolean
-) {
+) : BaseButtonDemoState(label, enabled, onColoredBox, hasLoader) {
 
     companion object {
+
         private val ForbiddenAppearancesOnColoredBox = listOf(OudsNavigationButtonAppearance.Brand)
 
+        @Suppress("UNCHECKED_CAST")
         val Saver = listSaver(
             save = { state ->
                 with(state) {
                     listOf(
-                        label,
-                        enabled,
-                        onColoredBox,
-                        hasLoader,
                         appearance,
                         layout,
-                        this.iconOnly
+                        iconOnly,
+                        with(BaseButtonDemoState.Saver) { save(state) }
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                NavigationButtonDemoState(
-                    list[0] as String,
-                    list[1] as Boolean,
-                    list[2] as Boolean,
-                    list[3] as Boolean,
-                    list[4] as OudsNavigationButtonAppearance,
-                    list[5] as OudsNavigationButtonLayout,
-                    list[6] as Boolean
-                )
+                val baseButtonDemoState = list[1]?.let { BaseButtonDemoState.Saver.restore(it) }
+                baseButtonDemoState?.run {
+                    NavigationButtonDemoState(
+                        label,
+                        enabled,
+                        onColoredBox,
+                        hasLoader,
+                        list[0] as OudsNavigationButtonAppearance,
+                        list[1] as OudsNavigationButtonLayout,
+                        list[2] as Boolean
+                    )
+                }
             }
         )
     }
-
-    var label: String by mutableStateOf(label)
-
-    var enabled: Boolean by mutableStateOf(enabled)
-
-    var onColoredBox: Boolean by mutableStateOf(onColoredBox)
-
-    var hasLoader: Boolean by mutableStateOf(hasLoader)
 
     private var _appearance: OudsNavigationButtonAppearance by mutableStateOf(appearance)
     var appearance: OudsNavigationButtonAppearance
@@ -100,14 +94,8 @@ class NavigationButtonDemoState(
 
     var iconOnly: Boolean by mutableStateOf(iconOnly)
 
-    val enabledSwitchEnabled: Boolean
-        get() = !hasLoader
-
     val onColoredBoxSwitchEnabled: Boolean
         get() = appearance !in ForbiddenAppearancesOnColoredBox
-
-    val loaderSwitchEnabled: Boolean
-        get() = enabled
 
     val labelTextInputEnabled: Boolean
         get() = !iconOnly

@@ -64,6 +64,13 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
         )
         CustomizationFilterChips(
             applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_layout_tech),
+            chipLabels = OudsNavigationButtonLayout.entries.map { it.name },
+            selectedChipIndex = OudsNavigationButtonLayout.entries.indexOf(layout),
+            onSelectionChange = { index -> layout = OudsNavigationButtonLayout.entries[index] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_appearance_tech),
             chipLabels = OudsNavigationButtonAppearance.entries.map { it.name },
             selectedChipIndex = OudsNavigationButtonAppearance.entries.indexOf(appearance),
@@ -74,13 +81,6 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
             checked = hasLoader,
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
-        )
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_tech),
-            chipLabels = OudsNavigationButtonLayout.entries.map { it.name },
-            selectedChipIndex = OudsNavigationButtonLayout.entries.indexOf(layout),
-            onSelectionChange = { index -> layout = OudsNavigationButtonLayout.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_iconOnlyLayout_tech),
