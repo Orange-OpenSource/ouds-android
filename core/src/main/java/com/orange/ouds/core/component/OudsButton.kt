@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -341,7 +342,10 @@ internal fun OudsButton(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (label != null && component is OudsButtonComponent.NavigationButton && component.layout == OudsNavigationButtonLayout.Next) {
-                    ButtonText(label = label, color = contentColor.value)
+                    ButtonText(
+                        label = label,
+                        color = contentColor.value
+                    )
                 }
 
                 if (icon != null) {
@@ -385,8 +389,15 @@ internal fun OudsButton(
                     }
                 }
 
-                if (label != null && (component is OudsButtonComponent.Button || (component is OudsButtonComponent.NavigationButton && component.layout == OudsNavigationButtonLayout.Previous))) {
+                if (label != null && component is OudsButtonComponent.Button) {
                     ButtonText(label = label, color = contentColor.value)
+                }
+
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.layout == OudsNavigationButtonLayout.Previous) {
+                    ButtonText(
+                        label = label,
+                        color = contentColor.value
+                    )
                 }
             }
         }
@@ -394,12 +405,13 @@ internal fun OudsButton(
 }
 
 @Composable
-private fun ButtonText(label: String, color: Color) {
+private fun RowScope.ButtonText(label: String, color: Color) {
     Text(
+        modifier = Modifier.weight(1f, fill = false),
         text = label,
         color = color,
         textAlign = TextAlign.Center,
-        style = OudsTheme.typography.label.strong.large
+        style = OudsTheme.typography.label.strong.large,
     )
 }
 
@@ -646,21 +658,21 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
     return with(OudsTheme.componentsTokens.button) {
         when (component) {
             is OudsButtonComponent.Button -> when {
-                    icon != null && label != null -> PaddingValues(
-                        start = spacePaddingInlineIconStart.value,
-                        top = spacePaddingBlock.value,
-                        end = spacePaddingInlineEndIconStart.value,
-                        bottom = spacePaddingBlock.value
-                    )
-                    icon != null && label == null -> PaddingValues(
-                        horizontal = spaceInsetIconOnly.value,
-                        vertical = spacePaddingBlock.value
-                    )
-                    else -> PaddingValues(
-                        horizontal = spacePaddingInlineIconNone.value,
-                        vertical = spacePaddingBlock.value
-                    )
-                }
+                icon != null && label != null -> PaddingValues(
+                    start = spacePaddingInlineIconStart.value,
+                    top = spacePaddingBlock.value,
+                    end = spacePaddingInlineEndIconStart.value,
+                    bottom = spacePaddingBlock.value
+                )
+                icon != null && label == null -> PaddingValues(
+                    horizontal = spaceInsetIconOnly.value,
+                    vertical = spacePaddingBlock.value
+                )
+                else -> PaddingValues(
+                    horizontal = spacePaddingInlineIconNone.value,
+                    vertical = spacePaddingBlock.value
+                )
+            }
             is OudsButtonComponent.NavigationButton -> when {
                 label != null -> {
                     val startPadding: Dp

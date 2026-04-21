@@ -13,19 +13,30 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsNavigationButtonTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.NavigationButton,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.NavigationButton.parameters
+internal class OudsNavigationButtonTest {
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationButton.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.NavigationButton.Default.parameters
+        }
     }
+
+    class OnTwoLines : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationButton.OnTwoLines,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

@@ -107,6 +107,7 @@ import com.orange.ouds.core.component.PreviewOudsModalBottomSheet
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsNavigationButton
+import com.orange.ouds.core.component.PreviewOudsNavigationButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
 import com.orange.ouds.core.component.PreviewOudsPinCodeInput
 import com.orange.ouds.core.component.PreviewOudsPinCodeInputWithRoundedCorners
@@ -596,7 +597,7 @@ interface OudsPreviewableComponent {
             )
         }
     }
-    
+
     object NavigationBar {
 
         object Default : OudsPreviewableComponent {
@@ -664,17 +665,32 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object NavigationButton : OudsPreviewableComponent {
+    object NavigationButton {
 
-        override val parameters: List<Any> = OudsNavigationButtonPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsNavigationButton(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsNavigationButtonPreviewParameter
-            )
+            override val parameters: List<Any> = OudsNavigationButtonPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationButton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsNavigationButtonPreviewParameter
+                )
+            }
+        }
+
+        object OnTwoLines : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationButtonOnTwoLines(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

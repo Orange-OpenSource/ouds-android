@@ -12,9 +12,12 @@
 
 package com.orange.ouds.core.component
 
+import android.R.attr.label
 import androidx.annotation.StringRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -270,6 +273,20 @@ internal fun PreviewOudsNavigationButton(
             content()
         }
     }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsNavigationButtonOnTwoLines() = PreviewOudsNavigationButtonOnTwoLines(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsNavigationButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsNavigationButton(
+        label = "Navigation button\non two lines",
+        layout = OudsNavigationButtonLayout.Next,
+        onClick = {},
+    )
 }
 
 internal data class OudsNavigationButtonPreviewParameter(
