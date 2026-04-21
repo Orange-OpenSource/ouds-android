@@ -32,6 +32,7 @@ enum class Component {
     InputTag,
     Link,
     NavigationBar,
+    NavigationButton,
     PasswordInput,
     PinCodeInput,
     RadioButton,
@@ -60,6 +61,7 @@ enum class Component {
                 Component.InputTag -> InputTag
                 Component.Link -> Link
                 Component.NavigationBar -> NavigationBar
+                Component.NavigationButton -> NavigationButton
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
@@ -96,6 +98,7 @@ enum class Component {
             InputTag -> listOf("OudsInputTag")
             Link -> listOf("OudsLink")
             NavigationBar -> listOf("OudsNavigationBar")
+            NavigationButton -> listOf("OudsNavigationButton")
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
