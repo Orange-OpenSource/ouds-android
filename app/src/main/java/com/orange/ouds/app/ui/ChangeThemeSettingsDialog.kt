@@ -14,7 +14,9 @@ package com.orange.ouds.app.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -58,12 +60,14 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
         getSupportedThemeSettings(themeState.currentTheme).forEach { themeSetting ->
             OudsSwitchItem(
                 checked = when (themeSetting) {
+                    ThemeSetting.RoundedCornerAlertMessages -> themeSettings.roundedCornerAlertMessages.orElse { false }
                     ThemeSetting.RoundedCornerButtons -> themeSettings.roundedCornerButtons.orElse { false }
                     ThemeSetting.RoundedCornerTextInputs -> themeSettings.roundedCornerTextInputs.orElse { false }
                 },
                 label = stringResource(themeSetting.titleResId),
                 onCheckedChange = { checked ->
                     themeSettings = when (themeSetting) {
+                        ThemeSetting.RoundedCornerAlertMessages -> themeSettings.copy(roundedCornerAlertMessages = checked)
                         ThemeSetting.RoundedCornerButtons -> themeSettings.copy(roundedCornerButtons = checked)
                         ThemeSetting.RoundedCornerTextInputs -> themeSettings.copy(roundedCornerTextInputs = checked)
                     }
@@ -72,20 +76,21 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
             )
         }
 
-        Row(
+        Column(
             modifier = Modifier
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.large)
-                .align(Alignment.End),
-            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
+                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.large),
+            verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
             OudsButton(
+                modifier = Modifier.fillMaxWidth(),
+                label = stringResource(R.string.app_themeSettingsDialog_apply_label),
+                onClick = { onThemeSettingsChange(themeSettings) }
+            )
+            OudsButton(
+                modifier = Modifier.fillMaxWidth(),
                 label = stringResource(R.string.app_themeSettingsDialog_cancel_label),
                 appearance = OudsButtonAppearance.Minimal,
                 onClick = { onThemeSettingsChange(themeState.currentTheme.settings) }
-            )
-            OudsButton(
-                label = stringResource(R.string.app_themeSettingsDialog_apply_label),
-                onClick = { onThemeSettingsChange(themeSettings) }
             )
         }
     }
@@ -95,6 +100,7 @@ private fun getSupportedThemeSettings(theme: OudsThemeContract): List<ThemeSetti
     return ThemeSetting.entries.filter { themeSetting ->
         with(theme.settings) {
             when (themeSetting) {
+                ThemeSetting.RoundedCornerAlertMessages -> roundedCornerAlertMessages != null
                 ThemeSetting.RoundedCornerButtons -> roundedCornerButtons != null
                 ThemeSetting.RoundedCornerTextInputs -> roundedCornerTextInputs != null
             }
@@ -111,11 +117,12 @@ object ChangeThemeSettingsDialog {
 
 private enum class ThemeSetting {
 
-    RoundedCornerButtons, RoundedCornerTextInputs;
+    RoundedCornerAlertMessages, RoundedCornerButtons, RoundedCornerTextInputs;
 
     val titleResId: Int
         @StringRes
         get() = when (this) {
+            RoundedCornerAlertMessages -> R.string.app_themeSettingsDialog_roundedCornerAlertMessages_label
             RoundedCornerButtons -> R.string.app_themeSettingsDialog_roundedCornerButtons_label
             RoundedCornerTextInputs -> R.string.app_themeSettingsDialog_roundedCornerTextInputs_label
         }
