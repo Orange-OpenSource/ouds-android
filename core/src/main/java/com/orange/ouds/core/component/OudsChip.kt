@@ -49,6 +49,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.highContrasted
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -216,12 +217,16 @@ private fun borderWidth(state: OudsChipState, selected: Boolean): Dp? {
 private fun borderColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBorderSelectedEnabled else colorBorderUnselectedEnabled
-            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus else colorBorderUnselectedFocus
-            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover else colorBorderUnselectedHover
-            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed else colorBorderUnselectedPressed
-            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled else colorBorderUnselectedDisabled
-        }.value
+            OudsChipState.Enabled -> if (selected) {
+                colorBorderSelectedEnabled.value.highContrasted(background = colorBgSelectedEnabled.value.highContrasted())
+            } else {
+                colorBorderUnselectedEnabled.value
+            }
+            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus.value else colorBorderUnselectedFocus.value
+            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover.value else colorBorderUnselectedHover.value
+            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed.value else colorBorderUnselectedPressed.value
+            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled.value else colorBorderUnselectedDisabled.value
+        }
     }
 }
 
@@ -229,12 +234,16 @@ private fun borderColor(state: OudsChipState, selected: Boolean): Color {
 private fun backgroundColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBgSelectedEnabled else colorBgUnselectedEnabled
-            OudsChipState.Focused -> if (selected) colorBgSelectedFocus else colorBgUnselectedFocus
-            OudsChipState.Hovered -> if (selected) colorBgSelectedHover else colorBgUnselectedHover
-            OudsChipState.Pressed -> if (selected) colorBgSelectedPressed else colorBgUnselectedPressed
-            OudsChipState.Disabled -> if (selected) colorBgSelectedDisabled else colorBgUnselectedDisabled
-        }.value
+            OudsChipState.Enabled -> if (selected) {
+                colorBgSelectedEnabled.value.highContrasted()
+            } else {
+                colorBgUnselectedEnabled.value
+            }
+            OudsChipState.Focused -> if (selected) colorBgSelectedFocus.value else colorBgUnselectedFocus.value
+            OudsChipState.Hovered -> if (selected) colorBgSelectedHover.value else colorBgUnselectedHover.value
+            OudsChipState.Pressed -> if (selected) colorBgSelectedPressed.value else colorBgUnselectedPressed.value
+            OudsChipState.Disabled -> if (selected) colorBgSelectedDisabled.value else colorBgUnselectedDisabled.value
+        }
     }
 }
 
@@ -242,12 +251,16 @@ private fun backgroundColor(state: OudsChipState, selected: Boolean): Color {
 private fun contentColor(state: OudsChipState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorContentSelectedEnabled else colorContentUnselectedEnabled
-            OudsChipState.Focused -> if (selected) colorContentSelectedFocus else colorContentUnselectedFocus
-            OudsChipState.Hovered -> if (selected) colorContentSelectedHover else colorContentUnselectedHover
-            OudsChipState.Pressed -> if (selected) colorContentSelectedPressed else colorContentUnselectedPressed
-            OudsChipState.Disabled -> if (selected) colorContentSelectedDisabled else colorContentUnselectedDisabled
-        }.value
+            OudsChipState.Enabled -> if (selected) {
+                colorContentSelectedEnabled.value.highContrasted(background = colorBgSelectedEnabled.value.highContrasted())
+            } else {
+                colorContentUnselectedEnabled.value
+            }
+            OudsChipState.Focused -> if (selected) colorContentSelectedFocus.value else colorContentUnselectedFocus.value
+            OudsChipState.Hovered -> if (selected) colorContentSelectedHover.value else colorContentUnselectedHover.value
+            OudsChipState.Pressed -> if (selected) colorContentSelectedPressed.value else colorContentUnselectedPressed.value
+            OudsChipState.Disabled -> if (selected) colorContentSelectedDisabled.value else colorContentUnselectedDisabled.value
+        }
     }
 }
 
@@ -256,12 +269,12 @@ private fun tickColor(state: OudsChipState, selected: Boolean): Color? {
     return with(OudsTheme.componentsTokens.chip) {
         if (selected) {
             when (state) {
-                OudsChipState.Enabled -> colorContentSelectedTickEnabled
-                OudsChipState.Focused -> colorContentSelectedFocus
-                OudsChipState.Hovered -> colorContentSelectedHover
-                OudsChipState.Pressed -> colorContentSelectedPressed
-                OudsChipState.Disabled -> colorContentSelectedDisabled
-            }.value
+                OudsChipState.Enabled -> colorContentSelectedTickEnabled.value.highContrasted(background = colorBgSelectedEnabled.value.highContrasted())
+                OudsChipState.Focused -> colorContentSelectedFocus.value
+                OudsChipState.Hovered -> colorContentSelectedHover.value
+                OudsChipState.Pressed -> colorContentSelectedPressed.value
+                OudsChipState.Disabled -> colorContentSelectedDisabled.value
+            }
         } else {
             null
         }

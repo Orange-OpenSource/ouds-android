@@ -46,7 +46,7 @@ import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
+import com.orange.ouds.core.extensions.highContrasted
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -278,8 +278,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
         } else {
             when (state) {
                 OudsControlState.Enabled -> if (selected) {
-                    // In order to reach the a11y AAA level, when high contrast mode is enabled, the selected checkbox must use `color.content.default` token
-                    if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else this.selected
+                    this.selected.highContrasted()
                 } else {
                     enabled
                 }
@@ -315,7 +314,12 @@ private fun backgroundColor(state: OudsControlState): Color {
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp, device = OudsPreviewDevice)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterProvider::class) parameter: OudsCheckboxPreviewParameter) {
@@ -323,7 +327,12 @@ private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterPr
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp, device = OudsPreviewDevice)
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxHighContrastModePreviewParameterProvider::class) parameter: ToggleableState) {
     PreviewOudsCheckbox(
