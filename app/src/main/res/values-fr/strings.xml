@@ -34,6 +34,7 @@
     <string name="app_themeSettingsDialog_apply_label">Appliquer</string>
     <string name="app_themeSettingsDialog_cancel_label">Annuler</string>
     <string name="app_themeSettingsDialog_label">Changer les réglages du thème</string>
+    <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Messages d\'alerte avec coins arrondis</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">Buttons avec coins arrondis</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Text Inputs avec coins arrondis</string>
 

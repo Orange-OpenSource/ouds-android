@@ -117,11 +117,13 @@ class ThemeState(
                 when (name) {
                     ORANGE_THEME_NAME -> OrangeTheme(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
+                        roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )
                     ORANGE_COMPACT_THEME_NAME -> OrangeCompactTheme(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
+                        roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )
