@@ -27,6 +27,9 @@
 
     <string name="core_inputTag_remove_a11y">Supprimer</string>
 
+    <string name="core_navigationButton_next_a11y">Suivant</string>
+    <string name="core_navigationButton_previous_a11y">Précédent</string>
+
     <string name="core_passwordInput_hidePassword_a11y">Masquer le mot de passe</string>
     <string name="core_passwordInput_showPassword_a11y">Afficher le mot de passe</string>
 

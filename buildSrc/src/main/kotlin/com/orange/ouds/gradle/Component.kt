@@ -25,6 +25,7 @@ enum class Component {
     Chip,
     Divider,
     Link,
+    NavigationButton,
     PasswordInput,
     PinCodeInput,
     RadioButton,
@@ -45,6 +46,7 @@ enum class Component {
                 Component.Chip -> Chip
                 Component.Divider -> Divider
                 Component.Link -> Link
+                Component.NavigationButton -> NavigationButton
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
@@ -66,6 +68,7 @@ enum class Component {
             Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")
             Divider -> listOf("OudsDivider")
             Link -> listOf("OudsLink")
+            NavigationButton -> listOf("OudsNavigationButton")
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")

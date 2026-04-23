@@ -84,6 +84,12 @@ interface OudsDrawableResources {
         interface Button {
             @get:DrawableRes
             val expurge: Int
+
+            @get:DrawableRes
+            val next: Int
+
+            @get:DrawableRes
+            val previous: Int
         }
 
         interface Checkbox {

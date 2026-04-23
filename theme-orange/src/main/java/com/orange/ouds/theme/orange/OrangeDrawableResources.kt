@@ -65,6 +65,8 @@ class OrangeDrawableResources : OudsDrawableResources {
 
         class Button : OudsDrawableResources.Component.Button {
             override val expurge = R.drawable.ic_orange_component_button_expurge
+            override val next = R.drawable.ic_orange_component_button_next
+            override val previous = R.drawable.ic_orange_component_button_previous
         }
 
         class Checkbox : OudsDrawableResources.Component.Checkbox {

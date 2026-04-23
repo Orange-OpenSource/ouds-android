@@ -25,6 +25,7 @@ object OudsVersion {
         const val Chip = "1.3.0"
         const val Divider = "1.0.0"
         const val Link = "2.2.0"
+        const val NavigationButton = "3.2.0"
         const val PasswordInput = "1.2.0"
         const val PinCodeInput = "1.2.0"
         const val RadioButton = "1.4.0"
