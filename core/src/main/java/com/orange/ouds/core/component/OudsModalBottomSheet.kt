@@ -81,9 +81,9 @@ fun OudsModalBottomSheet(
         modifier = modifier,
         sheetState = sheetState,
         sheetGesturesEnabled = sheetGesturesEnabled,
-        containerColor = OudsTheme.colorScheme.overlay.modal,
+        containerColor = OudsTheme.colorScheme.overlay.modalSheet,
         contentColor = OudsTheme.colorScheme.content.default,
-        scrimColor = OudsTheme.colorScheme.always.black.copy(alpha = 0.64f),
+        scrimColor = OudsTheme.colorScheme.overlay.backdrop,
         dragHandle = if (dragHandle) {
             { OudsBottomSheetDefaults.DragHandle() }
         } else {

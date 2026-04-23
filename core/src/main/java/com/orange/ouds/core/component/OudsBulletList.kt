@@ -246,8 +246,8 @@ private fun OudsBulletListItem(
                 parentNodes = parentNodes
             )
             val textMaxWidth = when (currentTextStyle.fontSize) {
-                OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.type.body.large
-                OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.type.body.medium
+                OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.body.large
+                OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.body.medium
             }
             Text(
                 modifier = Modifier

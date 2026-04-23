@@ -147,14 +147,14 @@ fun OudsAlertMessage(
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
                     Text(
-                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
+                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
                         text = label,
                         color = status.contentColor,
                         style = OudsTheme.typography.label.moderate.large
                     )
                     description?.let {
                         Text(
-                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium),
                             text = description,
                             color = status.contentColor,
                             style = OudsTheme.typography.label.default.medium
@@ -389,7 +389,7 @@ private fun OudsAlertMessageBulletListItem(label: String, color: Color) {
             modifier = Modifier
                 .fillMaxHeight()
                 .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+                .widthIn(max = OudsTheme.sizes.maxWidth.label.medium),
             text = label,
             style = OudsTheme.typography.label.default.medium,
             color = color

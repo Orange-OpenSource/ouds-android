@@ -71,5 +71,19 @@ internal data class WireframeControlItemTokens(
     override val spacePaddingBlockDensityDefaultTopAlignmentTopTextContainer: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.FourExtraSmall,
     override val spacePaddingBlockTopHelperText: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall,
     override val spacePaddingInline: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Large,
-    override val spaceRowGap: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None
+    override val spaceRowGap: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None,
+
+    // TODO Keep the following tokens until the new control items are implemented, then remove them.
+    override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
+    override val borderRadiusItemOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
+    override val colorBgFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Focus,
+    override val colorBgHover: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Hover,
+    override val colorBgLoading: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Loading,
+    override val colorBgPressed: OudsColorKeyToken = OudsColorKeyToken.Action.Support.Pressed,
+    override val colorContentLoader: OudsColorKeyToken = OudsColorKeyToken.Action.Loading,
+    override val sizeErrorIcon: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
+    override val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
+    override val sizeMaxHeightAssetsContainer: Float = OudsDimensionRawTokens.Dimension1200,
+    override val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.Medium,
+    override val spacePaddingInlineErrorIcon: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.FourExtraSmall
 ) : OudsControlItemTokens

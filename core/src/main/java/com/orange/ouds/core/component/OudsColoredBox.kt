@@ -134,9 +134,9 @@ enum class OudsColoredBoxColor {
 
         fun fromKeyToken(keyToken: OudsColorKeyToken.Overlay): OudsColoredBoxColor {
             return when (keyToken) {
-                OudsColorKeyToken.Overlay.Drag -> error("OudsColoredBox does not support this color.")
+                OudsColorKeyToken.Overlay.Backdrop, OudsColorKeyToken.Overlay.Drag -> error("OudsColoredBox does not support this color.")
                 OudsColorKeyToken.Overlay.Dropdown -> OverlayDropdown
-                OudsColorKeyToken.Overlay.Modal -> OverlayModal
+                OudsColorKeyToken.Overlay.ModalSheet -> OverlayModal
                 OudsColorKeyToken.Overlay.Tooltip -> OverlayTooltip
             }
         }
@@ -178,7 +178,7 @@ enum class OudsColoredBoxColor {
                 BrandSecondary -> OudsColorKeyToken.Surface.Brand.Secondary
                 BrandTertiary -> OudsColorKeyToken.Surface.Brand.Tertiary
                 OverlayDropdown -> OudsColorKeyToken.Overlay.Dropdown
-                OverlayModal -> OudsColorKeyToken.Overlay.Modal
+                OverlayModal -> OudsColorKeyToken.Overlay.ModalSheet
                 OverlayTooltip -> OudsColorKeyToken.Overlay.Tooltip
                 StatusAccentEmphasized -> OudsColorKeyToken.Surface.Status.Accent.Emphasized
                 StatusAccentMuted -> OudsColorKeyToken.Surface.Status.Accent.Muted
