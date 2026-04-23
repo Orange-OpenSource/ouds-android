@@ -16,18 +16,25 @@ import com.orange.ouds.theme.OudsVersion
 import org.gradle.api.Project
 
 enum class Component {
-    Alert,
+    AlertMessage,
     Badge,
-    Bar,
+    BadgeCount,
+    BadgeIcon,
+    BottomSheet,
     BulletList,
     Button,
     Checkbox,
-    Chip,
     Divider,
+    Fab,
+    FilterChip,
+    InlineAlert,
+    InputTag,
     Link,
+    NavigationBar,
     PasswordInput,
     PinCodeInput,
     RadioButton,
+    SuggestionChip,
     Switch,
     Tag,
     TextArea,
@@ -36,18 +43,25 @@ enum class Component {
     val version: String
         get() = with(OudsVersion.Component) {
             when (this@Component) {
-                Component.Alert -> Alert
+                Component.AlertMessage -> AlertMessage
                 Component.Badge -> Badge
-                Component.Bar -> Bar
+                Component.BadgeCount -> BadgeCount
+                Component.BadgeIcon -> BadgeIcon
+                Component.BottomSheet -> BottomSheet
                 Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
-                Component.Chip -> Chip
                 Component.Divider -> Divider
+                Component.Fab -> Fab
+                Component.FilterChip -> FilterChip
+                Component.InlineAlert -> InlineAlert
+                Component.InputTag -> InputTag
                 Component.Link -> Link
+                Component.NavigationBar -> NavigationBar
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
+                Component.SuggestionChip -> SuggestionChip
                 Component.Switch -> Switch
                 Component.Tag -> Tag
                 Component.TextArea -> TextArea
@@ -55,22 +69,38 @@ enum class Component {
             }
         }
 
+    val designName: String
+        get() {
+            // Convert enum name to design name (e.g., "BadgeIcon" -> "Badge Icon")
+            return this.name
+                .replace(Regex("([a-z])([A-Z])"), "$1 $2")
+                .replace("Pin", "PIN")
+                .replace("Fab", "FAB")
+        }
+
     fun getSourceFilePaths(project: Project): List<String> {
         val filenames = when (this) {
-            Alert -> listOf("OudsAlertMessage", "OudsInlineAlert")
+            AlertMessage -> listOf("OudsAlertMessage")
             Badge -> listOf("OudsBadge")
-            Bar -> listOf("OudsNavigationBar", "OudsTopAppBar")
+            BadgeCount -> listOf("OudsBadge")
+            BadgeIcon -> listOf("OudsBadge")
+            BottomSheet -> listOf("OudsBottomSheetScaffold", "OudsModalBottomSheet")
             BulletList -> listOf("OudsBulletList")
             Button -> listOf("OudsButton")
             Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
-            Chip -> listOf("OudsFilterChip", "OudsSuggestionChip")
             Divider -> listOf("OudsDivider")
+            Fab -> listOf("OudsFloatingActionButton")
+            FilterChip -> listOf("OudsFilterChip")
+            InlineAlert -> listOf("OudsInlineAlert")
+            InputTag -> listOf("OudsInputTag")
             Link -> listOf("OudsLink")
+            NavigationBar -> listOf("OudsNavigationBar") // TODO Waiting for a specific version number for TopAppBar (in Maxime's TODO)
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
+            SuggestionChip -> listOf("OudsSuggestionChip")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")
-            Tag -> listOf("OudsTag", "OudsInputTag")
+            Tag -> listOf("OudsTag")
             TextArea -> listOf("OudsTextArea")
             TextInput -> listOf("OudsTextInput")
         }

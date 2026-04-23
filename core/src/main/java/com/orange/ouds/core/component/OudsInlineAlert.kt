@@ -44,7 +44,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-inline-alert)
  *
- * > Design version: 1.1.0
+ * > Design name: Inline Alert
+ *
+ * > Design version: 1.0.0
  *
  * @param label Label displayed in the inline alert. Main message that should be short, clear, and readable at a glance.
  * @param modifier [Modifier] applied to the inline alert.
@@ -83,7 +85,7 @@ fun OudsInlineAlert(
                 )
             )
             Text(
-                modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
+                modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
                 text = label,
                 color = status.textColor,
                 style = OudsTheme.typography.label.moderate.large

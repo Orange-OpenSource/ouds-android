@@ -73,6 +73,10 @@ import kotlin.enums.enumEntries
  * FAB typically contains an icon, for a FAB with text and an icon, see
  * [OudsExtendedFloatingActionButton].
  *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.

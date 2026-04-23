@@ -42,6 +42,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-divider)
  *
+ * > Design name: Divider
+ *
  * > Design version: 1.0.0
  *
  * @param modifier [Modifier] applied to the divider.
@@ -67,6 +69,8 @@ fun OudsHorizontalDivider(
  * Note that a divider border width token set to 0 dp will produce a single pixel divider regardless of screen density.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-divider)
+ *
+ * > Design name: Divider
  *
  * > Design version: 1.0.0
  *

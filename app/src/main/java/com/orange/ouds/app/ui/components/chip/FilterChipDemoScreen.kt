@@ -30,7 +30,7 @@ fun FilterChipDemoScreen() {
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
         codeSnippet = { filterChipDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { FilterChipDemoContent(state = state) },
-        version = OudsVersion.Component.Chip
+        version = OudsVersion.Component.FilterChip
     )
 }
 
