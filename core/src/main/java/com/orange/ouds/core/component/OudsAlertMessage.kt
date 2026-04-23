@@ -69,6 +69,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-alert-message)
  *
+ * > Design name: Alert Message
+ *
  * > Design version: 1.1.0
  *
  * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.

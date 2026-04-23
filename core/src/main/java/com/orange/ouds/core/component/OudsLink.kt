@@ -70,6 +70,8 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
  *
+ * > Design name: Link
+ *
  * > Design version: 2.2.0
  *
  * @param label Label describing what is being linked to.
@@ -108,6 +110,8 @@ fun OudsLink(
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
  *
  * > Design version: 2.2.0
  *
@@ -151,6 +155,8 @@ fun OudsLink(
  * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
  *
  * > Design version: 2.2.0
  *

@@ -68,6 +68,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-radio-button)
  *
+ * > Design name: Radio Button
+ *
  * > Design version: 1.4.0
  *
  * @see [OudsRadioButtonItem] If you want to use a radio button with an associated label and other optional elements.

@@ -30,7 +30,7 @@ fun SuggestionChipDemoScreen() {
         bottomSheetContent = { ChipDemoBottomSheetContent(state = state) },
         codeSnippet = { suggestionChipDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { SuggestionChipDemoContent(state = state) },
-        version = OudsVersion.Component.Chip
+        version = OudsVersion.Component.SuggestionChip
     )
 }
 

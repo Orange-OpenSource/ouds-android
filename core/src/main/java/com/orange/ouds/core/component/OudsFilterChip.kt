@@ -132,7 +132,9 @@ fun OudsFilterChip(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
  *
- * > Design version: 1.3.0
+ * > Design name: Filter Chip
+ *
+ * > Design version: 1.4.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.

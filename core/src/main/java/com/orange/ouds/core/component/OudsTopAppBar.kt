@@ -81,6 +81,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
+ * > Design name: App Bar
+ *
  * > Design version: 1.0.0
  *
  * @param title The title to be displayed in the top app bar.
@@ -151,6 +153,8 @@ fun OudsTopAppBar(
  * that will have the height of [OudsCenterAlignedTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
  *
  * > Design version: 1.0.0
  *
@@ -223,6 +227,8 @@ fun OudsCenterAlignedTopAppBar(
  * that will have the height of [OudsMediumTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
  *
  * > Design version: 1.0.0
  *
@@ -306,6 +312,8 @@ fun OudsMediumTopAppBar(
  * that will have the height of [OudsLargeTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
  *
  * > Design version: 1.0.0
  *

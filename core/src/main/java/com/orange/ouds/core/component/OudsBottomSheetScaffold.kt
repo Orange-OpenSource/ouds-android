@@ -52,6 +52,10 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * For a bottom sheet that appears in front of app content and requires user action to be dismissed (a modal behavior), consider using [OudsModalBottomSheet].
  *
+ * > Design name: Bottom Sheet
+ *
+ * > Design version: Draft
+ *
  * @param sheetContent The content of the bottom sheet.
  * @param modifier The [Modifier] to be applied to the entire scaffold.
  * @param scaffoldState The state of the bottom sheet scaffold, which controls its behavior. See [rememberBottomSheetScaffoldState].

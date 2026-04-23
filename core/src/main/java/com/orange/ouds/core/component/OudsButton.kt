@@ -95,6 +95,8 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
+ * > Design name: Button
+ *
  * > Design version: 3.2.0
  *
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
@@ -149,6 +151,8 @@ fun OudsButton(
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
  *
  * > Design version: 3.2.0
  *
@@ -205,6 +209,8 @@ fun OudsButton(
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
  *
  * > Design version: 3.2.0
  *

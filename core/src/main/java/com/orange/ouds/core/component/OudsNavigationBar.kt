@@ -115,6 +115,8 @@ val OudsNavigationBarHeight = 80.dp
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
  *
+ * > Design name: Navigation Bar
+ *
  * > Design version: 1.0.0
  *
  * @param items List of [OudsNavigationBarItem] to display in the navigation bar.
@@ -185,6 +187,8 @@ fun OudsNavigationBar(
  *  - **On compact screens** (width < 600dp): The icon is positioned on top of the label.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
+ *
+ * > Design name: Navigation Bar
  *
  * > Design version: 1.0.0
  *
