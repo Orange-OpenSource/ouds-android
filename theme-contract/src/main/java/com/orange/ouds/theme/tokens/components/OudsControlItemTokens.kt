@@ -72,4 +72,18 @@ interface OudsControlItemTokens {
     val spacePaddingBlockTopHelperText: OudsSpaceKeyToken.PaddingBlock
     val spacePaddingInline: OudsSpaceKeyToken.PaddingInline
     val spaceRowGap: OudsSpaceKeyToken.RowGap
+
+    // TODO Keep the following tokens until the new control items are implemented, then remove them.
+    val borderRadius: OudsBorderKeyToken.Radius
+    val borderRadiusItemOnly: OudsBorderKeyToken.Radius
+    val colorBgFocus: OudsColorKeyToken
+    val colorBgHover: OudsColorKeyToken
+    val colorBgLoading: OudsColorKeyToken
+    val colorBgPressed: OudsColorKeyToken
+    val colorContentLoader: OudsColorKeyToken
+    val sizeErrorIcon: OudsSizeKeyToken.Icon
+    val sizeLoader: OudsSizeKeyToken.Icon
+    val sizeMaxHeightAssetsContainer: Float
+    val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingInlineErrorIcon: OudsSpaceKeyToken.PaddingInline
 }

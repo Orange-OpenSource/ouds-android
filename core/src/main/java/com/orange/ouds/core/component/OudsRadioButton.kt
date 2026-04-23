@@ -161,7 +161,7 @@ internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean
 
     Box(
         modifier = Modifier
-            .size(radioButtonTokens.sizeIndicator.value)
+            .size(OudsTheme.componentsTokens.controlItem.sizeControlIndicator.value)
             .clip(shape)
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {

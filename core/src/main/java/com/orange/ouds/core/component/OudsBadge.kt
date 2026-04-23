@@ -331,7 +331,7 @@ private fun contentPadding(size: OudsBadgeSize, count: Int?, icon: OudsBadgeIcon
         when {
             count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
             count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
-            icon != null && size in OudsBadgeSize.iconEntries -> PaddingValues(all = spaceInset.dp * scale)
+            icon != null && size in OudsBadgeSize.iconEntries -> PaddingValues(all = spaceInsetMediumLarge.dp * scale)
             else -> PaddingValues(all = 0.dp)
         }
     }

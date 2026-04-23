@@ -90,7 +90,7 @@ fun OudsBottomSheetScaffold(
         modifier = modifier,
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,
-        sheetContainerColor = OudsTheme.colorScheme.overlay.modal,
+        sheetContainerColor = OudsTheme.colorScheme.overlay.modalSheet,
         sheetContentColor = OudsTheme.colorScheme.content.default,
         sheetShadowElevation = OudsTheme.elevations.emphasized,
         sheetDragHandle = if (sheetDragHandle) {

@@ -126,7 +126,7 @@ internal fun OudsControlItem(
             Box(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
-                    .heightIn(min = controlItemTokens.sizeMinHeight.dp)
+                    .heightIn(min = controlItemTokens.sizeMinHeightDefault.dp)
                     .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) controlItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .background(color = backgroundColor, shape = shape)
                     .then(contentModifier)
@@ -223,7 +223,7 @@ class OudsControlItemIcon private constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeIcon.value))
+        super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value))
     }
 }
 
@@ -260,7 +260,7 @@ private fun ErrorMessageText(text: String, edgeToEdge: Boolean) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-                .padding(top = spacePaddingBlockTopErrorText.value)
+                .padding(top = spacePaddingBlockTopHelperText.value)
                 .clearAndSetSemantics {
                     error(text)
                 },
