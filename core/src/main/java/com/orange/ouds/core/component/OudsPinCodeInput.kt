@@ -91,7 +91,9 @@ import kotlinx.coroutines.launch
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
  *
- * > Design version: 1.2.0
+ * > Design name: PIN Code Input
+ *
+ * > Design version: 1.3.0
  *
  * @param value The current PIN code value as a string of digits. The value is automatically truncated to the specified [length].
  * @param onValueChange Callback invoked when the PIN code value changes. The updated PIN code value comes as a parameter of the callback.

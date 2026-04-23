@@ -70,6 +70,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
  *
+ * > Design name: Checkbox
+ *
  * > Design version: 2.4.0
  *
  * @see [OudsTriStateCheckbox] If you require support for an indeterminate state.
@@ -123,6 +125,8 @@ fun OudsCheckbox(
  * within another component and an alternative label is provided.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
+ *
+ * > Design name: Checkbox
  *
  * > Design version: 2.4.0
  *

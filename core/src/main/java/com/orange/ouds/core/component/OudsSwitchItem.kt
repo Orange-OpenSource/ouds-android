@@ -52,6 +52,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-switch)
  *
+ * > Design name: Switch
+ *
  * > Design version: 1.5.0
  *
  * @see [OudsSwitch] If you want to use a standalone switch.

@@ -53,6 +53,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
  *
+ * > Design name: Checkbox
+ *
  * > Design version: 2.4.0
  *
  * @see [OudsTriStateCheckboxItem] If you need an indeterminate state for the item's checkbox.

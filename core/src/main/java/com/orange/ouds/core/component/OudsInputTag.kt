@@ -63,7 +63,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-input-tag)
  *
- * > Design version: 1.4.0
+ * > Design name: Input Tag
+ *
+ * > Design version: 1.2.0
  *
  * @param label The text label displayed inside the input tag.
  * @param onClick Called when the input tag is clicked.

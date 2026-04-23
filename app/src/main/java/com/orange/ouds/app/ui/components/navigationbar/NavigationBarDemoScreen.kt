@@ -59,7 +59,7 @@ fun NavigationBarDemoScreen() {
         },
         demoContent = { NavigationBarDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
-        version = OudsVersion.Component.Bar
+        version = OudsVersion.Component.NavigationBar
     )
 }
 

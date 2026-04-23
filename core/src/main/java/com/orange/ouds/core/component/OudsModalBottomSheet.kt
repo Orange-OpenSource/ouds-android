@@ -47,6 +47,10 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * For a bottom sheet that co-exists with the main screen content, use [OudsBottomSheetScaffold].
  *
+ * > Design name: Bottom Sheet
+ *
+ * > Design version: Draft
+ *
  * @param onDismissRequest Callback executed when the user clicks outside the bottom sheet, after sheet animates to [Hidden].
  * @param modifier Optional [Modifier] for the modal bottom sheet.
  * @param sheetState The state of the bottom sheet, which controls its visibility and allows for programmatic control. See [rememberModalBottomSheetState].
