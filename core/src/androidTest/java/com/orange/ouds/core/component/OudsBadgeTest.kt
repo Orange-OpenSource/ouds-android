@@ -12,7 +12,7 @@
 
 package com.orange.ouds.core.component
 
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import com.orange.ouds.core.extension.setOudsContent
 import org.junit.Rule
