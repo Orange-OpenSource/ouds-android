@@ -18,7 +18,7 @@ tasks.register<DefaultTask>("updatePaparazziFailures") {
     group = "verification"
     // Clean failures directory first to avoid copying old failures
     dependsOn(tasks["cleanPaparazziFailures"])
-    // Using finalizedBy in cunjunction with mustRunAfter allows to run verifyPaparazzi and copyPaparazziFailures
+    // Using finalizedBy in conjunction with mustRunAfter allows to run verifyPaparazzi and copyPaparazziFailures
     // in that order even if verifyPaparazzi fails
     tasks["cleanPaparazziFailures"].finalizedBy("verifyPaparazzi", "copyPaparazziFailures")
     tasks["copyPaparazziFailures"].mustRunAfter(tasks["verifyPaparazzi"])
