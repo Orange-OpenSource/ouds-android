@@ -38,6 +38,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -347,6 +348,28 @@ internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContr
 @Suppress("PreviewShouldNotBeCalledRecursively")
 internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(@PreviewParameter(OudsControlItemConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
     PreviewOudsCheckboxItemConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCheckboxItemWithRichText() {
+    PreviewOudsCheckboxItemWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsCheckboxItemWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsCheckboxItem(
+        modifier = Modifier.padding(all = 10.dp),
+        checked = true,
+        label = "Label",
+        onCheckedChange = {},
+        divider = true,
+        error = OudsError(buildPreviewAnnotatedErrorMessage()),
+    )
 }
 
 @Composable

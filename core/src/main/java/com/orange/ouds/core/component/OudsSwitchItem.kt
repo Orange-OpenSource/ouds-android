@@ -35,8 +35,10 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -236,6 +238,29 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(theme: OudsThemeContract, 
         divider = true
     )
 }
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSwitchItemWithRichText() {
+    PreviewOudsSwitchItemWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsSwitchItemWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsSwitchItem(
+        modifier = Modifier.padding(all = 10.dp),
+        checked = true,
+        label = "Label",
+        onCheckedChange = {},
+        divider = true,
+        error = OudsError(buildPreviewAnnotatedErrorMessage()),
+    )
+}
+
 
 internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
 

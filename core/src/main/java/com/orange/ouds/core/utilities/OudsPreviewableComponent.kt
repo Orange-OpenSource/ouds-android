@@ -93,6 +93,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
+import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
@@ -119,6 +120,7 @@ import com.orange.ouds.core.component.PreviewOudsRadioButtonItemConstrainedMaxWi
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionText
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled
+import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
 import com.orange.ouds.core.component.PreviewOudsSwitch
@@ -126,6 +128,7 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItem
 import com.orange.ouds.core.component.PreviewOudsSwitchItemConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
+import com.orange.ouds.core.component.PreviewOudsSwitchItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.core.component.PreviewOudsTextArea
 import com.orange.ouds.core.component.PreviewOudsTextAreaConstrainedMaxWidth
@@ -416,6 +419,19 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithRichText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCheckboxItemWithRichText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
@@ -853,6 +869,18 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
 
+        object WithRichText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsRadioButtonItemWithRichText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
     }
 
     object RadioButton : OudsPreviewableComponent {
@@ -945,6 +973,19 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithRichText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSwitchItemWithRichText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 

@@ -41,6 +41,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
@@ -114,6 +116,12 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
 }
 
 internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrangeFontFamily())
+
+internal fun buildPreviewAnnotatedErrorMessage() = buildOudsAnnotatedErrorMessage {
+    append("Error message with ")
+    withStrong { append("strong") }
+    append(" text")
+}
 
 @Composable
 internal inline fun <reified T> getPreviewEnumEntry(): T? {

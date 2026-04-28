@@ -41,6 +41,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -324,6 +325,28 @@ internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(theme: OudsThemeContr
         edgeToEdge = false,
         divider = true,
         constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsRadioButtonItemWithRichText() {
+    PreviewOudsRadioButtonItemWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonItemWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsRadioButtonItem(
+        modifier = Modifier.padding(all = 10.dp),
+        selected = true,
+        label = "Label",
+        onClick = {},
+        divider = true,
+        error = OudsError(buildPreviewAnnotatedErrorMessage()),
     )
 }
 
