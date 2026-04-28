@@ -548,7 +548,7 @@ private fun PreviewOudsAlertMessageWithRichText() {
 internal fun PreviewOudsAlertMessageWithRichText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     val description = buildOudsAnnotatedAlertMessageDescription {
         append("Here is a description that contains a ")
         withStrong { append("strong") }

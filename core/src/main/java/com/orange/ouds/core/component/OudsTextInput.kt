@@ -91,6 +91,7 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
@@ -1587,18 +1588,17 @@ internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
 private fun PreviewOudsTextInputWithLongLabels() = PreviewOudsTextInputWithLongLabels(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsTextInputWithLongLabels(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+internal fun PreviewOudsTextInputWithLongLabels(
+    theme: OudsThemeContract
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
     val labels = listOf("Two lines\nlabel", "Three\nlines\nlabel")
-    val modifier = Modifier.padding(all = 10.dp)
-    Column {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         labels.forEach { label ->
             OudsTextInput(
-                modifier = modifier,
                 textFieldState = rememberTextFieldState(),
                 label = label,
             )
             OudsTextInput(
-                modifier = modifier,
                 textFieldState = rememberTextFieldState("text"),
                 label = label,
             )
@@ -1617,7 +1617,7 @@ internal fun PreviewOudsTextInputConstrainedMaxWidth(@PreviewParameter(OudsTextI
 internal fun PreviewOudsTextInputConstrainedMaxWidth(
     theme: OudsThemeContract,
     constrainedMaxWidth: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme) {
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
     OudsTextInput(
         textFieldState = rememberTextFieldState(),
         label = "Label",
@@ -1638,7 +1638,7 @@ internal fun PreviewOudsTextInputWithRichText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     error: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsTextInput(
         textFieldState = rememberTextFieldState(),
         label = "Label",

@@ -74,6 +74,7 @@ import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -478,7 +479,7 @@ internal fun PreviewOudsPinCodeInput(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsPinCodeInputPreviewParameter
-) = OudsPreview(modifier = Modifier.padding(all = 16.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsPinCodeInput(
             value = value,
@@ -502,7 +503,7 @@ private fun PreviewOudsPinCodeInputWithRoundedCorners(@PreviewParameter(OudsPinC
 internal fun PreviewOudsPinCodeInputWithRoundedCorners(
     theme: OudsThemeContract,
     outlined: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 16.dp), theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
     OudsPinCodeInput(
         value = "12",
         onValueChange = {},
@@ -523,7 +524,7 @@ internal fun PreviewOudsPinCodeInputWithRichText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     error: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsPinCodeInput(
         value = "12",
         onValueChange = {},

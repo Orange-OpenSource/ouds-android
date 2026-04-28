@@ -17,7 +17,6 @@ import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
@@ -35,7 +34,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
@@ -414,7 +412,7 @@ internal fun PreviewOudsPasswordInputWithRichText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     error: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsPasswordInput(
         state = rememberOudsPasswordInputState(""),
         label = "Password",

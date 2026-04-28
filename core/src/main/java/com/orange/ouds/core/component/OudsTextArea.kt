@@ -76,6 +76,7 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -1128,7 +1129,7 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(@PreviewParameter(OudsTextAr
 internal fun PreviewOudsTextAreaConstrainedMaxWidth(
     theme: OudsThemeContract,
     constrainedMaxWidth: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme) {
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
     OudsTextArea(
         textFieldState = rememberTextFieldState(),
         label = "Label",
@@ -1147,7 +1148,7 @@ private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMult
 internal fun PreviewOudsTextAreaMultiLineValue(
     theme: OudsThemeContract,
     lineCount: Int
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme) {
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
     OudsTextArea(
         textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
         label = "$lineCount lines",
@@ -1167,7 +1168,7 @@ internal fun PreviewOudsTextAreaWithRichText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     error: Boolean
-) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsTextArea(
         textFieldState = rememberTextFieldState(),
         label = "Label",
