@@ -13,20 +13,39 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsPasswordInputTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.PasswordInput,
-    parameter,
-    OudsComponentTestSuite.theme,
-    heightDp = OudsPreviewableComponent.PasswordInput.PreviewHeightDp
-) {
+@RunWith(Enclosed::class)
+internal class OudsPasswordInputTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.PasswordInput.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.PasswordInput.Default,
+        parameter,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.PasswordInput.Default.PreviewHeightDp
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.PasswordInput.Default.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class WithRichText(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.PasswordInput.WithRichText,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.PasswordInput.WithRichText.parameters
+        }
     }
 }

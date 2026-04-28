@@ -88,8 +88,11 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
@@ -1212,7 +1215,8 @@ internal fun OudsTextInputHelperTextErrorMessage(
 ) {
     with(OudsTheme.componentsTokens.textInput) {
         val hasError = error != null
-        if ((!hasError && !helperText.isNullOrBlank()) || (hasError && error.message.isNotBlank())) {
+        val isHelperTextNullOrBlank = annotatedHelperText?.text.orElse { helperText }.isNullOrBlank()
+        if ((!hasError && !isHelperTextNullOrBlank) || (hasError && error.message.isNotBlank())) {
             val textModifier = modifier
                 .fillMaxWidth()
                 .padding(top = spacePaddingBlockTopHelperText.value)
@@ -1610,13 +1614,36 @@ internal fun PreviewOudsTextInputConstrainedMaxWidth(@PreviewParameter(OudsTextI
 }
 
 @Composable
-internal fun PreviewOudsTextInputConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+internal fun PreviewOudsTextInputConstrainedMaxWidth(
+    theme: OudsThemeContract,
+    constrainedMaxWidth: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme) {
     OudsTextInput(
-        modifier = Modifier.padding(all = 10.dp),
         textFieldState = rememberTextFieldState(),
         label = "Label",
         placeholder = "Placeholder",
         constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTextInputWithRichText(@PreviewParameter(OudsTextInputWithRichTextPreviewParameterProvider::class) error: Boolean) {
+    PreviewOudsTextInputWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), error = error)
+}
+
+@Composable
+internal fun PreviewOudsTextInputWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    error: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsTextInput(
+        textFieldState = rememberTextFieldState(),
+        label = "Label",
+        error = if (error) OudsError(buildPreviewAnnotatedErrorMessage()) else null,
+        helperText = buildPreviewAnnotatedHelperText(),
     )
 }
 
@@ -1639,6 +1666,8 @@ internal data class OudsTextInputPreviewParameter(
 internal class OudsTextInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsTextInputPreviewParameter>(*previewParameterValues.toTypedArray())
 
 internal class OudsTextInputConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+internal class OudsTextInputWithRichTextPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 private val previewParameterValues: List<OudsTextInputPreviewParameter>
     get() {

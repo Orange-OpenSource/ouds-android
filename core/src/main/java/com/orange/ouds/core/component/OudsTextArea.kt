@@ -73,8 +73,11 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -1122,9 +1125,11 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(@PreviewParameter(OudsTextAr
 }
 
 @Composable
-internal fun PreviewOudsTextAreaConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+internal fun PreviewOudsTextAreaConstrainedMaxWidth(
+    theme: OudsThemeContract,
+    constrainedMaxWidth: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme) {
     OudsTextArea(
-        modifier = Modifier.padding(all = 10.dp),
         textFieldState = rememberTextFieldState(),
         label = "Label",
         placeholder = "Placeholder",
@@ -1139,12 +1144,35 @@ private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMult
     PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme(), lineCount = lineCount)
 
 @Composable
-internal fun PreviewOudsTextAreaMultiLineValue(theme: OudsThemeContract, lineCount: Int) = OudsPreview(theme = theme) {
+internal fun PreviewOudsTextAreaMultiLineValue(
+    theme: OudsThemeContract,
+    lineCount: Int
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme) {
     OudsTextArea(
-        modifier = Modifier.padding(all = 10.dp),
         textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
         label = "$lineCount lines",
         loader = OudsTextInputLoader(progress = 0.75f)
+    )
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTextAreaWithRichText(@PreviewParameter(OudsTextAreaWithRichTextPreviewParameterProvider::class) error: Boolean) {
+    PreviewOudsTextAreaWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), error = error)
+}
+
+@Composable
+internal fun PreviewOudsTextAreaWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    error: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsTextArea(
+        textFieldState = rememberTextFieldState(),
+        label = "Label",
+        error = if (error) OudsError(buildPreviewAnnotatedErrorMessage()) else null,
+        helperText = buildPreviewAnnotatedHelperText(),
     )
 }
 
@@ -1163,6 +1191,8 @@ internal class OudsTextAreaPreviewParameterProvider : BasicPreviewParameterProvi
 internal class OudsTextAreaConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 internal class OudsTextAreaMultilineValuePreviewParameterProvider : BasicPreviewParameterProvider<Int>(3, 5, 15)
+
+internal class OudsTextAreaWithRichTextPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 private val previewParameterValues: List<OudsTextAreaPreviewParameter>
     get() {

@@ -17,6 +17,7 @@ import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
@@ -31,11 +32,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
@@ -43,8 +43,11 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -364,14 +367,11 @@ private fun trailingIconButton(isPasswordHidden: Boolean, onClick: () -> Unit): 
     )
 }
 
-private fun visualTransformation(isPasswordHidden: Boolean) =
-    if (isPasswordHidden) PasswordVisualTransformation(mask = '\u25cf') else VisualTransformation.None
-
-@Preview(name = "Light", heightDp = OudsPreviewableComponent.PasswordInput.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.PasswordInput.Default.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = OudsPreviewableComponent.PasswordInput.PreviewHeightDp,
+    heightDp = OudsPreviewableComponent.PasswordInput.Default.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -402,6 +402,27 @@ internal fun PreviewOudsPasswordInput(
     }
 }
 
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsPasswordInputWithRichText(@PreviewParameter(OudsPasswordInputWithRichTextPreviewParameterProvider::class) error: Boolean) {
+    PreviewOudsPasswordInputWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), error = error)
+}
+
+@Composable
+internal fun PreviewOudsPasswordInputWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    error: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsPasswordInput(
+        state = rememberOudsPasswordInputState(""),
+        label = "Password",
+        error = if (error) OudsError(buildPreviewAnnotatedErrorMessage()) else null,
+        helperText = buildPreviewAnnotatedHelperText(),
+    )
+}
+
 internal data class OudsPasswordInputPreviewParameter(
     val initialText: String,
     val label: String? = null,
@@ -416,6 +437,8 @@ internal data class OudsPasswordInputPreviewParameter(
 
 internal class OudsPasswordInputPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsPasswordInputPreviewParameter>(*previewParameterValues.toTypedArray())
+
+internal class OudsPasswordInputWithRichTextPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 private val previewParameterValues: List<OudsPasswordInputPreviewParameter>
     get() {

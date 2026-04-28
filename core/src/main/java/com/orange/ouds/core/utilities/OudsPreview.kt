@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
@@ -119,6 +120,12 @@ internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrange
 
 internal fun buildPreviewAnnotatedErrorMessage() = buildOudsAnnotatedErrorMessage {
     append("Error message with ")
+    withStrong { append("strong") }
+    append(" text")
+}
+
+internal fun buildPreviewAnnotatedHelperText() = buildOudsAnnotatedHelperText {
+    append("Helper text with ")
     withStrong { append("strong") }
     append(" text")
 }

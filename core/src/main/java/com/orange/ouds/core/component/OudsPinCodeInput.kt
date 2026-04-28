@@ -74,6 +74,8 @@ import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -476,7 +478,7 @@ internal fun PreviewOudsPinCodeInput(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsPinCodeInputPreviewParameter
-) = OudsPreview(modifier = Modifier.padding(16.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(modifier = Modifier.padding(all = 16.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsPinCodeInput(
             value = value,
@@ -489,24 +491,6 @@ internal fun PreviewOudsPinCodeInput(
     }
 }
 
-internal data class OudsPinCodeInputPreviewParameter(
-    val value: String,
-    val outlined: Boolean = false,
-    val error: OudsError? = null,
-    val helperText: String? = null
-)
-
-internal class OudsPinCodeInputPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsPinCodeInputPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewParameterValues: List<OudsPinCodeInputPreviewParameter>
-    get() {
-        return listOf(
-            OudsPinCodeInputPreviewParameter(value = "12", helperText = "Enter the 4-digit code sent to your phone."),
-            OudsPinCodeInputPreviewParameter(value = "12", error = OudsError("Verification failed. Check and enter the correct code."))
-        ).flatMap { listOf(it, it.copy(outlined = true)) }
-    }
-
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
@@ -518,7 +502,7 @@ private fun PreviewOudsPinCodeInputWithRoundedCorners(@PreviewParameter(OudsPinC
 internal fun PreviewOudsPinCodeInputWithRoundedCorners(
     theme: OudsThemeContract,
     outlined: Boolean
-) = OudsPreview(modifier = Modifier.padding(16.dp), theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
+) = OudsPreview(modifier = Modifier.padding(all = 16.dp), theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
     OudsPinCodeInput(
         value = "12",
         onValueChange = {},
@@ -527,4 +511,46 @@ internal fun PreviewOudsPinCodeInputWithRoundedCorners(
     )
 }
 
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsPinCodeInputWithRichText(@PreviewParameter(OudsPinCodeInputWithRichTextPreviewParameterProvider::class) error: Boolean) {
+    PreviewOudsPinCodeInputWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), error = error)
+}
+
+@Composable
+internal fun PreviewOudsPinCodeInputWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    error: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = 10.dp), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsPinCodeInput(
+        value = "12",
+        onValueChange = {},
+        length = OudsPinCodeInputLength.Four,
+        error = if (error) OudsError(buildPreviewAnnotatedErrorMessage()) else null,
+        helperText = buildPreviewAnnotatedHelperText(),
+    )
+}
+
+internal data class OudsPinCodeInputPreviewParameter(
+    val value: String,
+    val outlined: Boolean = false,
+    val error: OudsError? = null,
+    val helperText: String? = null
+)
+
+internal class OudsPinCodeInputPreviewParameterProvider :
+    BasicPreviewParameterProvider<OudsPinCodeInputPreviewParameter>(*previewParameterValues.toTypedArray())
+
 internal class OudsPinCodeInputWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+internal class OudsPinCodeInputWithRichTextPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+private val previewParameterValues: List<OudsPinCodeInputPreviewParameter>
+    get() {
+        return listOf(
+            OudsPinCodeInputPreviewParameter(value = "12", helperText = "Enter the 4-digit code sent to your phone."),
+            OudsPinCodeInputPreviewParameter(value = "12", error = OudsError("Verification failed. Check and enter the correct code."))
+        ).flatMap { listOf(it, it.copy(outlined = true)) }
+    }
