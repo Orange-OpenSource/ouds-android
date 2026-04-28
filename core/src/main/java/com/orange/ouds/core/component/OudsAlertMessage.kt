@@ -166,9 +166,7 @@ fun OudsAlertMessage(
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
  *
- * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsAlertMessageFunctionalWithTopEndActionLinkSample
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageWithAnnotatedTextSample
  */
 @Composable
 fun OudsAlertMessage(

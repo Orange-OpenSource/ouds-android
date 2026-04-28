@@ -22,6 +22,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsRadioButtonItem
+import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -41,8 +44,40 @@ internal fun OudsRadioButtonItemSample() {
     }
 }
 
+@Composable
+internal fun OudsRadioButtonItemWithAnnotatedErrorMessageSample() {
+    val genders = listOf("Female", "Male", "Other")
+    var selectedGender by rememberSaveable { mutableStateOf("") }
+
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("You ")
+            withStrong { append("must") }
+            append(" select an option")
+        }
+    )
+
+    Column(modifier = Modifier.selectableGroup()) {
+        genders.forEachIndexed { index, gender ->
+            OudsRadioButtonItem(
+                selected = gender == selectedGender,
+                label = gender,
+                onClick = { selectedGender = gender },
+                error = if (index == genders.lastIndex) error else OudsError(""),
+                divider = true
+            )
+        }
+    }
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsRadioButtonItemSample() = OudsPreview {
     OudsRadioButtonItemSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsRadioButtonItemWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsRadioButtonItemWithAnnotatedErrorMessageSample()
 }

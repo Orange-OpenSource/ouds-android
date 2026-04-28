@@ -83,6 +83,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithAnnotatedErrorMessageSample
  */
 @Composable
 fun OudsSwitchItem(

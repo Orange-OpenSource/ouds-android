@@ -141,7 +141,6 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedErrorSample
  */
 @Composable
@@ -241,8 +240,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsTextArea(
@@ -411,7 +410,6 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
  */
 @Composable
@@ -506,8 +504,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsTextArea(
@@ -674,7 +672,6 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
  */
 @Composable
@@ -769,8 +766,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsTextArea(

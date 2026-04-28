@@ -19,6 +19,10 @@ import com.orange.ouds.core.component.OudsBulletListFontSize
 import com.orange.ouds.core.component.OudsBulletListFontWeight
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBulletListLabel
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -89,6 +93,45 @@ internal fun OudsBulletListBareSample() {
     }
 }
 
+@Composable
+internal fun OudsBulletListWithAnnotatedLabelsSample() {
+    OudsBulletList(
+        textStyle = OudsBulletListTextStyle(
+            fontSize = OudsBulletListFontSize.BodyLarge,
+            fontWeight = OudsBulletListFontWeight.Normal
+        )
+    ) {
+        item(
+            label = buildOudsAnnotatedBulletListLabel {
+                withStrong { append("Important notice:") }
+                append(" Read the following information carefully")
+            })
+        item(
+            label = buildOudsAnnotatedBulletListLabel {
+                append("Product details available on our ")
+                withLink(OudsLinkAnnotation.Url("https://example.com/products")) {
+                    append("website")
+                }
+            }
+        ) {
+            item(
+                label = buildOudsAnnotatedBulletListLabel {
+                    withStrong { append("Features:") }
+                    append(" See complete specifications")
+                }
+            )
+            item(
+                label = buildOudsAnnotatedBulletListLabel {
+                    append("For technical support, ")
+                    withLink(OudsLinkAnnotation.Url("https://support.example.com")) {
+                        append("click here")
+                    }
+                }
+            )
+        }
+    }
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsBulletListUnorderedSample() = OudsPreview {
@@ -105,4 +148,10 @@ private fun PreviewOudsBulletListOrderedSample() = OudsPreview {
 @Composable
 private fun PreviewOudsBulletListBareSample() = OudsPreview {
     OudsBulletListBareSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsBulletListWithAnnotatedLabelsSample() = OudsPreview {
+    OudsBulletListWithAnnotatedLabelsSample()
 }

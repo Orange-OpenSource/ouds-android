@@ -88,6 +88,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithAnnotatedErrorMessageSample
  */
 @Composable
 fun OudsRadioButtonItem(

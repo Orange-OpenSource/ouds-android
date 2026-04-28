@@ -105,6 +105,7 @@ private const val MaxLevelCount = 3
  * @sample com.orange.ouds.core.component.samples.OudsBulletListUnorderedSample
  * @sample com.orange.ouds.core.component.samples.OudsBulletListOrderedSample
  * @sample com.orange.ouds.core.component.samples.OudsBulletListBareSample
+ * @sample com.orange.ouds.core.component.samples.OudsBulletListWithAnnotatedLabelsSample
  */
 @Composable
 fun OudsBulletList(

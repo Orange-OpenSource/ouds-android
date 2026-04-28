@@ -161,7 +161,6 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
  */
 @Composable
@@ -273,8 +272,8 @@ fun OudsTextInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsTextInput(
@@ -458,7 +457,6 @@ private fun OudsTextInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
 @Composable
@@ -564,8 +562,8 @@ fun OudsTextInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsTextInput(
@@ -749,7 +747,6 @@ private fun OudsTextInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
 @Composable
@@ -855,8 +852,8 @@ fun OudsTextInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsTextInput(

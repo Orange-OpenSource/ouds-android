@@ -100,7 +100,6 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
  */
 @Composable
@@ -194,8 +193,8 @@ fun OudsPasswordInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsPasswordInputWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsPasswordInput(

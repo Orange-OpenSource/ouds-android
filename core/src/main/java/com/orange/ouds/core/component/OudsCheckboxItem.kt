@@ -84,6 +84,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithAnnotatedErrorMessageSample
  */
 @Composable
 fun OudsCheckboxItem(
@@ -168,6 +169,7 @@ fun OudsCheckboxItem(
  *   if `null` is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample
  */
 @Composable
 fun OudsTriStateCheckboxItem(

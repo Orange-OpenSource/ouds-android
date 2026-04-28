@@ -115,7 +115,6 @@ import kotlinx.coroutines.launch
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
- *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
  */
 @Composable
@@ -173,8 +172,8 @@ fun OudsPinCodeInput(
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedHelperTextSample
  */
 @Composable
 fun OudsPinCodeInput(
