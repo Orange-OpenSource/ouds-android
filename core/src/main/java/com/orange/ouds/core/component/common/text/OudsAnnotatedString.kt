@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.LinkInteractionListener
-import androidx.compose.ui.text.StringAnnotation
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.capitalize
@@ -57,37 +56,32 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         strongStyle: TextStyle = OudsTheme.typography.label.strong.medium,
         linkStyle: TextStyle = OudsTheme.typography.label.strong.medium
     ): AnnotatedString {
-        val monochrome = LocalColorMode.current?.monochrome == true
-        val linkColor = linkContentColor(state = OudsLinkState.Enabled, monochrome = monochrome)
-        val linkFocusedColor = linkContentColor(state = OudsLinkState.Focused, monochrome = monochrome)
-        val linkHoveredColor = linkContentColor(state = OudsLinkState.Hovered, monochrome = monochrome)
-        val linkPressedColor = linkContentColor(state = OudsLinkState.Pressed, monochrome = monochrome)
+        // Recreate a new annotated string from _annotatedString that will configure OUDS annotations with current theme values
+        // and remove unwanted annotations that may have been added with the append methods of the Appendable interface that take a CharSequence as parameter
+        val builder = AnnotatedString.Builder(_annotatedString.text)
 
-        return _annotatedString.mapAnnotations { annotation ->
-            when (val item = annotation.item) {
-                is LinkAnnotation -> {
-                    val spanStyle = linkStyle.toSpanStyle().copy(textDecoration = TextDecoration.Underline)
-                    val styles = with(spanStyle) {
-                        TextLinkStyles(
-                            style = copy(color = linkColor),
-                            focusedStyle = copy(color = linkFocusedColor),
-                            hoveredStyle = copy(color = linkHoveredColor),
-                            pressedStyle = copy(color = linkPressedColor)
-                        )
+        val linkAnnotations = with(_annotatedString) { getLinkAnnotations(0, length) }
+        if (linkAnnotations.isNotEmpty()) {
+            val linkStyles = getTextLinkStyles(linkStyle)
+            linkAnnotations.forEach { range ->
+                with(range) {
+                    when (val linkAnnotation = item) {
+                        is LinkAnnotation.Url -> builder.addLink(linkAnnotation.copy(styles = linkStyles), start, end)
+                        is LinkAnnotation.Clickable -> builder.addLink(linkAnnotation.copy(styles = linkStyles), start, end)
                     }
-                    val linkAnnotation = when (item) {
-                        is LinkAnnotation.Url -> item.copy(styles = styles)
-                        is LinkAnnotation.Clickable -> item.copy(styles = styles)
-                        else -> item
-                    }
-                    with(annotation) { AnnotatedString.Range(linkAnnotation, start, end, tag) }
                 }
-                is StringAnnotation if item.value == StrongAnnotation -> {
-                    with(annotation) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end, tag) }
-                }
-                else -> annotation
             }
         }
+
+        val stringAnnotations = with(_annotatedString) { getStringAnnotations(0, length) }
+        stringAnnotations.filter { it.item == StrongAnnotation }
+            .forEach { range ->
+                with(range) {
+                    builder.addStyle(strongStyle.toSpanStyle(), start, end)
+                }
+            }
+
+        return builder.toAnnotatedString()
     }
 
     /**
@@ -186,6 +180,24 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      */
     fun decapitalize(localeList: LocaleList = LocaleList.current): OudsAnnotatedString<T> = OudsAnnotatedString(_annotatedString.decapitalize(localeList))
 
+    @Composable
+    private fun getTextLinkStyles(linkStyle: TextStyle): TextLinkStyles {
+        val linkSpanStyle = linkStyle.toSpanStyle().copy(textDecoration = TextDecoration.Underline)
+        return with(linkSpanStyle) {
+            val monochrome = LocalColorMode.current?.monochrome == true
+            val linkColor = linkContentColor(state = OudsLinkState.Enabled, monochrome = monochrome)
+            val linkFocusedColor = linkContentColor(state = OudsLinkState.Focused, monochrome = monochrome)
+            val linkHoveredColor = linkContentColor(state = OudsLinkState.Hovered, monochrome = monochrome)
+            val linkPressedColor = linkContentColor(state = OudsLinkState.Pressed, monochrome = monochrome)
+            TextLinkStyles(
+                style = copy(color = linkColor),
+                focusedStyle = copy(color = linkFocusedColor),
+                hoveredStyle = copy(color = linkHoveredColor),
+                pressedStyle = copy(color = linkPressedColor)
+            )
+        }
+    }
+
     /**
      * Builder class for annotated string. Enables construction of an [OudsAnnotatedString] using methods
      * such as [append].
@@ -220,7 +232,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @return This [Builder] instance.
          */
         override fun append(text: CharSequence?): Builder<T> = apply { builder.append(text) }
-        // TODO: Filtrer les annotations OUDS only
 
         /**
          * Appends the range of [text] between [start] (inclusive) and [end] (exclusive) to this
@@ -238,7 +249,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @return This [Builder] instance.
          */
         override fun append(text: CharSequence?, start: Int, end: Int): Builder<T> = apply { builder.append(text, start, end) }
-        // TODO: Filtrer les annotations OUDS only
 
         /**
          * Appends the given [String] to this [Builder].
