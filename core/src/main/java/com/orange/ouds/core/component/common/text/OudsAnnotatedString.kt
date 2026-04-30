@@ -99,8 +99,8 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      * 
      * @see AnnotatedString.plus
      */
-    operator fun plus(other: OudsAnnotatedString<T>): OudsAnnotatedString<T> {
-        return OudsAnnotatedString(_annotatedString.plus(other._annotatedString))
+    operator fun plus(other: T): T {
+        return createInstance(_annotatedString.plus(other._annotatedString))
     }
 
     override fun equals(other: Any?): Boolean {
@@ -128,7 +128,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   If empty locale list is passed, use the current locale instead.
      * @return An uppercase transformed string.
      */
-    fun toUpperCase(localeList: LocaleList = LocaleList.current): OudsAnnotatedString<T> = OudsAnnotatedString(_annotatedString.toUpperCase(localeList))
+    fun toUpperCase(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.toUpperCase(localeList))
 
     /**
      * Create lower case transformed [OudsAnnotatedString].
@@ -144,7 +144,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   If empty locale list is passed, use the current locale instead.
      * @return A lowercase transformed string.
      */
-    fun toLowerCase(localeList: LocaleList = LocaleList.current): OudsAnnotatedString<T> = OudsAnnotatedString(_annotatedString.toLowerCase(localeList))
+    fun toLowerCase(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.toLowerCase(localeList))
 
     /**
      * Create capitalized [OudsAnnotatedString].
@@ -161,7 +161,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   currently ignored since underlying Kotlin method is experimental.
      * @return A capitalized string.
      */
-    fun capitalize(localeList: LocaleList = LocaleList.current): OudsAnnotatedString<T> = OudsAnnotatedString(_annotatedString.capitalize(localeList))
+    fun capitalize(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.capitalize(localeList))
 
     /**
      * Create decapitalized [OudsAnnotatedString].
@@ -178,7 +178,12 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   locale is currently ignored since underlying Kotlin method is experimental.
      * @return A decapitalized string.
      */
-    fun decapitalize(localeList: LocaleList = LocaleList.current): OudsAnnotatedString<T> = OudsAnnotatedString(_annotatedString.decapitalize(localeList))
+    fun decapitalize(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.decapitalize(localeList))
+
+    private fun createInstance(annotatedString: AnnotatedString): T {
+        @Suppress("UNCHECKED_CAST")
+        return createOudsAnnotatedString(annotatedString, this::class.java as Class<T>)
+    }
 
     @Composable
     private fun getTextLinkStyles(linkStyle: TextStyle): TextLinkStyles {
@@ -279,8 +284,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @return The constructed annotated string.
          */
         open fun toAnnotatedString(): T {
-            val constructor: (AnnotatedString) -> T = { clazz.getConstructor(AnnotatedString::class.java).newInstance(it) }
-            return constructor(builder.toAnnotatedString())
+            return createOudsAnnotatedString(builder.toAnnotatedString(), clazz)
         }
 
         protected fun addStrongImpl(start: Int, end: Int) {
@@ -480,4 +484,9 @@ internal fun <T, U> buildOudsAnnotatedString(
 ): U where T : OudsAnnotatedString.Builder<U>, U : OudsAnnotatedString<U> {
     val constructor: () -> T = { builderClass.getConstructor().newInstance() }
     return constructor().apply { builder() }.toAnnotatedString()
+}
+
+private fun <T> createOudsAnnotatedString(annotatedString: AnnotatedString, clazz: Class<T>): T where T : OudsAnnotatedString<T> {
+    val constructor: (AnnotatedString) -> T = { clazz.getConstructor(AnnotatedString::class.java).newInstance(it) }
+    return constructor(annotatedString)
 }

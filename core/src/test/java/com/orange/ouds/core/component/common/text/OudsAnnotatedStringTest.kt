@@ -16,6 +16,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.intl.LocaleList
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class OudsAnnotatedStringTest {
@@ -36,52 +37,6 @@ class OudsAnnotatedStringTest {
     @Test
     fun oudsAnnotatedString_plusOperator_concatenatesTwoAnnotatedStrings() {
         val first = buildTestAnnotatedString {
-            append("First part")
-        }
-        val second = buildTestAnnotatedString {
-            append(" Second part")
-        }
-
-        val result = first.plus(second)
-
-        assertEquals("First part Second part", result.text)
-    }
-
-    @Test
-    fun oudsAnnotatedString_plusOperator_preservesStrongAnnotations() {
-        val first = buildTestAnnotatedString {
-            withStrong { append("Bold") }
-        }
-
-        val second = buildTestAnnotatedString {
-            append(" normal")
-        }
-
-        val result = first.plus(second)
-
-        assertEquals("Bold normal", result.text)
-    }
-
-    @Test
-    fun oudsAnnotatedString_plusOperator_preservesLinkAnnotations() {
-        val first = buildTestAnnotatedString {
-            withLink(OudsLinkAnnotation.Url("https://example.com")) {
-                append("Link")
-            }
-        }
-
-        val second = buildTestAnnotatedString {
-            append(" text")
-        }
-
-        val result = first.plus(second)
-
-        assertEquals("Link text", result.text)
-    }
-
-    @Test
-    fun oudsAnnotatedString_plusOperator_preservesAnnotationsFromBothStrings() {
-        val first = buildTestAnnotatedString {
             withStrong { append("Bold") }
         }
 
@@ -95,50 +50,87 @@ class OudsAnnotatedStringTest {
         val result = first.plus(second)
 
         assertEquals("Bold link", result.text)
+        // Verify that both strong and link annotations are preserved
+        val strongAnnotations = result.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(0, strongAnnotations[0].start)
+        assertEquals(4, strongAnnotations[0].end) // "Bold" has 4 characters
+        val linkAnnotations = result.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(5, linkAnnotations[0].start) // "Bold " has 5 characters
+        assertEquals(9, linkAnnotations[0].end) // "Bold link" has 9 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     @Test
     fun oudsAnnotatedString_toUpperCase_convertsTextToUpperCase() {
         val annotatedString = buildTestAnnotatedString {
-            append("lowercase text")
+            append("lowercase ")
+            withStrong { append("bold") }
         }
 
         val uppercase = annotatedString.toUpperCase()
 
-        assertEquals("LOWERCASE TEXT", uppercase.text)
+        assertEquals("LOWERCASE BOLD", uppercase.text)
+        // Verify that strong annotation is preserved after case transformation
+        val strongAnnotations = uppercase.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(10, strongAnnotations[0].start) // "LOWERCASE " has 10 characters
+        assertEquals(14, strongAnnotations[0].end) // "LOWERCASE BOLD" has 14 characters
     }
 
     @Test
     fun oudsAnnotatedString_toLowerCase_convertsTextToLowerCase() {
         val annotatedString = buildTestAnnotatedString {
-            append("UPPERCASE TEXT")
+            append("UPPERCASE ")
+            withLink(OudsLinkAnnotation.Url("https://example.com")) {
+                append("WEBSITE")
+            }
         }
 
         val lowercase = annotatedString.toLowerCase()
 
-        assertEquals("uppercase text", lowercase.text)
+        assertEquals("uppercase website", lowercase.text)
+        // Verify that link annotation is preserved after case transformation
+        val linkAnnotations = lowercase.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(10, linkAnnotations[0].start) // "uppercase " has 10 characters
+        assertEquals(17, linkAnnotations[0].end) // "uppercase website" has 17 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     @Test
     fun oudsAnnotatedString_capitalize_capitalizesFirstCharacter() {
         val annotatedString = buildTestAnnotatedString {
-            append("lowercase start")
+            withStrong { append("lowercase") }
+            append(" start")
         }
 
         val capitalized = annotatedString.capitalize()
 
         assertEquals("Lowercase start", capitalized.text)
+        // Verify that strong annotation is preserved after capitalization
+        val strongAnnotations = capitalized.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(0, strongAnnotations[0].start)
+        assertEquals(9, strongAnnotations[0].end) // "Lowercase" has 9 characters
     }
 
     @Test
     fun oudsAnnotatedString_decapitalize_decapitalizesFirstCharacter() {
         val annotatedString = buildTestAnnotatedString {
-            append("Uppercase start")
+            withStrong { append("Uppercase") }
+            append(" start")
         }
 
         val decapitalized = annotatedString.decapitalize()
 
         assertEquals("uppercase start", decapitalized.text)
+        // Verify that strong annotation is preserved after decapitalization
+        val strongAnnotations = decapitalized.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(0, strongAnnotations[0].start)
+        assertEquals(9, strongAnnotations[0].end) // "uppercase" has 9 characters
     }
 
     @Test
@@ -337,7 +329,8 @@ class OudsAnnotatedStringTest {
     @Test
     fun oudsAnnotatedStringBuilder_appendAnnotatedString_preservesContent() {
         val existing = buildTestAnnotatedString {
-            append("Existing")
+            append("Existing ")
+            withStrong { append("bold") }
         }
 
         val builder = TestAnnotatedString.Builder()
@@ -345,20 +338,32 @@ class OudsAnnotatedStringTest {
         builder.append(existing)
         val annotatedString = builder.toAnnotatedString()
 
-        assertEquals("New Existing", annotatedString.text)
+        assertEquals("New Existing bold", annotatedString.text)
+        // Verify that annotations from the appended string are preserved
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(13, strongAnnotations[0].start) // "New Existing " has 13 characters
+        assertEquals(17, strongAnnotations[0].end) // "New Existing bold" has 17 characters
     }
 
     @Test
     fun oudsAnnotatedStringBuilder_appendAnnotatedStringWithRange_appendsSubstring() {
         val existing = buildTestAnnotatedString {
-            append("Hello World")
+            append("Hello ")
+            withStrong { append("bold") }
+            append(" World")
         }
 
         val builder = TestAnnotatedString.Builder()
-        builder.append(existing, 0, 5)
+        builder.append(existing, 0, 11) // "Hello bold " (11 characters, includes the strong annotation)
         val annotatedString = builder.toAnnotatedString()
 
-        assertEquals("Hello", annotatedString.text)
+        assertEquals("Hello bold ", annotatedString.text)
+        // Verify that annotations within the appended range are preserved
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(6, strongAnnotations[0].start) // "Hello " has 6 characters
+        assertEquals(10, strongAnnotations[0].end) // "Hello bold" has 10 characters
     }
 
     //endregion
@@ -375,6 +380,12 @@ class OudsAnnotatedStringTest {
         }
 
         assertEquals("Visit our website", annotatedString.text)
+        // Verify link annotation is present
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(10, linkAnnotations[0].start) // "Visit our " has 10 characters
+        assertEquals(17, linkAnnotations[0].end) // "Visit our website" has 17 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     @Test
@@ -385,6 +396,12 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Visit our website", annotatedString.text)
+        // Verify link annotation is present at the specified range
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(10, linkAnnotations[0].start)
+        assertEquals(17, linkAnnotations[0].end)
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     @Test
@@ -395,17 +412,12 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Click details for more", annotatedString.text)
-    }
-
-    @Test
-    fun oudsAnnotatedStringLinkBuilder_addLinkMultiple_addsMultipleNonOverlappingLinkAnnotations() {
-        val builder = TestAnnotatedString.Builder()
-        builder.append("Read terms and privacy policy")
-        builder.addLink(OudsLinkAnnotation.Url("https://example.com/terms"), 5, 10) // "terms"
-        builder.addLink(OudsLinkAnnotation.Url("https://example.com/privacy"), 15, 29) // "privacy policy"
-        val annotatedString = builder.toAnnotatedString()
-
-        assertEquals("Read terms and privacy policy", annotatedString.text)
+        // Verify clickable link annotation is present at the specified range
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(6, linkAnnotations[0].start)
+        assertEquals(13, linkAnnotations[0].end)
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Clickable)
     }
 
     @Test
@@ -419,6 +431,12 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Visit our website for more", annotatedString.text)
+        // Verify link annotation is present
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(10, linkAnnotations[0].start) // "Visit our " has 10 characters
+        assertEquals(17, linkAnnotations[0].end) // "Visit our website" has 17 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     @Test
@@ -432,6 +450,38 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Click here to continue", annotatedString.text)
+        // Verify clickable link annotation is present
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(6, linkAnnotations[0].start) // "Click " has 6 characters
+        assertEquals(10, linkAnnotations[0].end) // "Click here" has 10 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Clickable)
+    }
+
+    @Test
+    fun oudsAnnotatedStringLinkBuilder_nestedPushLinkAndPop_worksCorrectly() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Start ")
+        builder.pushLink(OudsLinkAnnotation.Url("https://example.com/outer"))
+        builder.append("outer ")
+        builder.pushLink(OudsLinkAnnotation.Url("https://example.com/inner"))
+        builder.append("inner")
+        builder.pop()
+        builder.append(" outer")
+        builder.pop()
+        builder.append(" end")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Start outer inner outer end", annotatedString.text)
+        // Verify nested link annotations are present
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(2, linkAnnotations.size)
+        assertEquals(6, linkAnnotations[0].start) // "Start " has 6 characters, outer starts
+        assertEquals(23, linkAnnotations[0].end) // "Start outer inner outer" has 23 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertEquals(12, linkAnnotations[1].start) // "Start outer " has 12 characters, inner starts
+        assertEquals(17, linkAnnotations[1].end) // "Start outer inner" has 17 characters
+        assertTrue(linkAnnotations[1].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     @Test
@@ -448,6 +498,17 @@ class OudsAnnotatedStringTest {
         }
 
         assertEquals("Visit our official website", annotatedString.text)
+        // Verify both link and strong annotations are present
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(6, linkAnnotations[0].start) // "Visit " has 6 characters
+        assertEquals(26, linkAnnotations[0].end) // "Visit our official website" has 26 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(10, strongAnnotations[0].start) // "Visit our " has 10 characters
+        assertEquals(18, strongAnnotations[0].end) // "Visit our official" has 18 characters
     }
 
     //endregion
@@ -465,6 +526,11 @@ class OudsAnnotatedStringTest {
         }
 
         assertEquals("Normal bold text", annotatedString.text)
+        // Verify strong annotation is present
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(7, strongAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(11, strongAnnotations[0].end) // "Normal bold" has 11 characters
     }
 
     @Test
@@ -475,17 +541,11 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Normal bold text", annotatedString.text)
-    }
-
-    @Test
-    fun oudsAnnotatedStringStrongBuilder_addStrongMultiple_addsMultipleNonOverlappingAnnotations() {
-        val builder = TestAnnotatedString.Builder()
-        builder.append("First bold second bold")
-        builder.addStrong(6, 10) // "bold"
-        builder.addStrong(18, 22) // "bold"
-        val annotatedString = builder.toAnnotatedString()
-
-        assertEquals("First bold second bold", annotatedString.text)
+        // Verify strong annotation is present at the specified range
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(7, strongAnnotations[0].start)
+        assertEquals(11, strongAnnotations[0].end)
     }
 
     @Test
@@ -499,6 +559,11 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Normal bold text", annotatedString.text)
+        // Verify strong annotation is present
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(7, strongAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(11, strongAnnotations[0].end) // "Normal bold" has 11 characters
     }
 
     @Test
@@ -512,6 +577,11 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Normal bold text", annotatedString.text)
+        // Verify strong annotation is present
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(7, strongAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(11, strongAnnotations[0].end) // "Normal bold" has 11 characters
     }
 
     @Test
@@ -529,6 +599,13 @@ class OudsAnnotatedStringTest {
         val annotatedString = builder.toAnnotatedString()
 
         assertEquals("Start outer inner outer end", annotatedString.text)
+        // Verify nested strong annotations are present
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(2, strongAnnotations.size)
+        assertEquals(6, strongAnnotations[0].start) // "Start " has 6 characters, outer starts
+        assertEquals(23, strongAnnotations[0].end) // "Start outer inner outer" has 23 characters
+        assertEquals(12, strongAnnotations[1].start) // "Start outer " has 12 characters, inner starts
+        assertEquals(17, strongAnnotations[1].end) // "Start outer inner" has 17 characters
     }
 
     @Test
@@ -543,12 +620,31 @@ class OudsAnnotatedStringTest {
         }
 
         assertEquals("Important: read this", annotatedString.text)
+        // Verify both strong and link annotations are present
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(0, strongAnnotations[0].start)
+        assertEquals(20, strongAnnotations[0].end) // "Important: read this" has 20 characters
+
+        val linkAnnotations = annotatedString.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(11, linkAnnotations[0].start) // "Important: " has 11 characters
+        assertEquals(20, linkAnnotations[0].end) // "Important: read this" has 20 characters
+        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
     }
 
     //endregion
 }
 
-private class TestAnnotatedString internal constructor(annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
+private class TestAnnotatedString(private val annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
+
+    fun getStrongAnnotations(): List<AnnotatedString.Range<String>> {
+        return with(annotatedString) { getStringAnnotations(0, length) }.filter { it.item == StrongAnnotation }
+    }
+
+    fun getLinkAnnotations(): List<AnnotatedString.Range<androidx.compose.ui.text.LinkAnnotation>> {
+        return with(annotatedString) { getLinkAnnotations(0, length) }
+    }
 
     class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<TestAnnotatedString>(capacity, TestAnnotatedString::class.java), StrongBuilder,
         LinkBuilder {
