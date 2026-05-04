@@ -263,22 +263,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         fun append(text: String): Unit = builder.append(text)
 
         /**
-         * Appends an annotated string to this builder, preserving its formatting.
-         *
-         * @param text The annotated string to append.
-         */
-        fun append(text: T): Unit = builder.append(text._annotatedString)
-
-        /**
-         * Appends a portion of an annotated string to this builder, preserving its formatting.
-         *
-         * @param text The annotated string to append from.
-         * @param start The starting index (inclusive).
-         * @param end The ending index (exclusive).
-         */
-        fun append(text: T, start: Int, end: Int): Unit = builder.append(text._annotatedString, start, end)
-
-        /**
          * Constructs an [OudsAnnotatedString] based on the configurations applied to the [Builder].
          * 
          * @return The constructed annotated string.

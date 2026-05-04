@@ -66,6 +66,15 @@ class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedStr
             append(text)
         }
 
+        /**
+         * Creates a builder initialized with an existing annotated text.
+         *
+         * @param text The initial annotated text to copy.
+         */
+        constructor(text: AnnotatedString) : this() {
+            append(text)
+        }
+        
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
         override fun pushStrong(): Int = pushStrongImpl()
