@@ -39,7 +39,6 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -232,7 +231,13 @@ internal fun PreviewOudsRadioButtonItem(
     }
 }
 
-@OudsPreviewLightDark
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButtonItemHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonItemHighContrastModePreviewParameterProvider::class) parameter: OudsRadioButtonItemHighContrastModePreviewParameter) {

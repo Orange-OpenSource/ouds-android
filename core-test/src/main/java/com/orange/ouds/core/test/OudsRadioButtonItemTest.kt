@@ -39,7 +39,8 @@ internal class OudsRadioButtonItemTest {
     class HighContrastModeEnabled(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled.PreviewHeightDp
     ) {
 
         companion object {
