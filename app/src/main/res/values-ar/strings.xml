@@ -34,6 +34,7 @@
     <string name="app_themeSettingsDialog_apply_label">تطبيق</string>
     <string name="app_themeSettingsDialog_cancel_label">إلغاء</string>
     <string name="app_themeSettingsDialog_label">تغيير إعدادات السمة</string>
+    <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">رسائل التنبيه بزوايا مستديرة</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">زر بزوايا مستديرة</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">حقول إدخال نص بزوايا مستديرة</string>
 
