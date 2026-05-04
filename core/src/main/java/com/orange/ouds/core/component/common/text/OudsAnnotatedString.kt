@@ -463,11 +463,12 @@ internal fun <T, U> buildOudsAnnotatedString(
     builderClass: Class<T>,
     builder: (T).() -> Unit
 ): U where T : OudsAnnotatedString.Builder<U>, U : OudsAnnotatedString<U> {
-    val constructor: () -> T = { builderClass.getConstructor().newInstance() }
-    return constructor().apply { builder() }.toAnnotatedString()
+    return builderClass.getConstructor()
+        .newInstance()
+        .apply(builder)
+        .toAnnotatedString()
 }
 
 private fun <T> createOudsAnnotatedString(annotatedString: AnnotatedString, clazz: Class<T>): T where T : OudsAnnotatedString<T> {
-    val constructor: (AnnotatedString) -> T = { clazz.getConstructor(AnnotatedString::class.java).newInstance(it) }
-    return constructor(annotatedString)
+    return clazz.getConstructor(AnnotatedString::class.java).newInstance(annotatedString)
 }
