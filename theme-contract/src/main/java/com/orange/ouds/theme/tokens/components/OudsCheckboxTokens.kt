@@ -31,6 +31,8 @@ interface OudsCheckboxTokens {
     val borderWidthUnselectedFocus: OudsBorderKeyToken.Width
     val borderWidthUnselectedHover: OudsBorderKeyToken.Width
     val borderWidthUnselectedPressed: OudsBorderKeyToken.Width
+    @Deprecated("")
+    val sizeIndicator: OudsSizeKeyToken.Icon
     val sizeMaxHeight: OudsSizeKeyToken
     val sizeMinHeight: OudsSizeKeyToken
     val sizeMinWidth: OudsSizeKeyToken

@@ -29,6 +29,7 @@ internal data class SoshCheckboxTokens(
     override val borderWidthUnselectedFocus: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     override val borderWidthUnselectedHover: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
     override val borderWidthUnselectedPressed: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,
+    @Deprecated("") override val sizeIndicator: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     override val sizeMaxHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
     override val sizeMinHeight: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea,
     override val sizeMinWidth: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveArea

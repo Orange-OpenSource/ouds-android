@@ -27,6 +27,8 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 interface OudsControlItemTokens {
     val borderRadiusCurrentIndicator: OudsBorderKeyToken.Radius
     val borderRadiusDefault: OudsBorderKeyToken.Radius
+    @Deprecated("")
+    val borderRadiusItemOnly: OudsBorderKeyToken.Radius
     val borderRadiusMedia: OudsBorderKeyToken.Radius
     val borderRadiusMediaRoundedCorner: OudsBorderKeyToken.Radius
     val borderRadiusRounded: OudsBorderKeyToken.Radius
@@ -38,11 +40,21 @@ interface OudsControlItemTokens {
     val colorBgCurrentFocus: OudsColorKeyToken
     val colorBgCurrentHover: OudsColorKeyToken
     val colorBgCurrentPressed: OudsColorKeyToken
+    @Deprecated("")
+    val colorBgFocus: OudsColorKeyToken
+    @Deprecated("")
+    val colorBgHover: OudsColorKeyToken
+    @Deprecated("")
+    val colorBgLoading: OudsColorKeyToken
+    @Deprecated("")
+    val colorBgPressed: OudsColorKeyToken
     val colorContentCurrentDisabled: OudsColorKeyToken
     val colorContentCurrentEnabled: OudsColorKeyToken
     val colorContentCurrentFocus: OudsColorKeyToken
     val colorContentCurrentHover: OudsColorKeyToken
     val colorContentCurrentPressed: OudsColorKeyToken
+    @Deprecated("")
+    val colorContentLoader: OudsColorKeyToken
     val fontLetterSpacingAvatarInitialXlarge: Float
     val fontLineHeightAvatarInitialXlarge: Int
     val fontSizeAvatarInitialXlarge: Int
@@ -54,13 +66,23 @@ interface OudsControlItemTokens {
     val sizeAssetXlarge: Float
     val sizeControlIndicator: OudsSizeKeyToken.Icon
     val sizeCurrentIndicatorWidth: Float
+    @Deprecated("")
+    val sizeErrorIcon: OudsSizeKeyToken.Icon
     val sizeFlagHeight: OudsSizeKeyToken.Icon
+    @Deprecated("")
+    val sizeIcon: OudsSizeKeyToken.Icon
+    @Deprecated("")
+    val sizeLoader: OudsSizeKeyToken.Icon
+    @Deprecated("")
+    val sizeMaxHeightAssetsContainer: Float
     val sizeMaxWidth: Float
     val sizeMinHeightCompact: OudsSizeKeyToken
     val sizeMinHeightDefault: Float
     val sizeMinWidth: Float
     val spaceColumnGap: OudsSpaceKeyToken.ColumnGap
     val spacePaddingBlockBottomSlot: OudsSpaceKeyToken.PaddingBlock
+    @Deprecated("")
+    val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock
     val spacePaddingBlockDensityCompact: OudsSpaceKeyToken.PaddingBlock
     val spacePaddingBlockDensityCompactBottomExpandContainer: OudsSpaceKeyToken.PaddingBlock
     val spacePaddingBlockDensityCompactTopAlignmentTopCounterweight: OudsSpaceKeyToken.PaddingBlock
@@ -71,19 +93,7 @@ interface OudsControlItemTokens {
     val spacePaddingBlockDensityDefaultTopAlignmentTopTextContainer: OudsSpaceKeyToken.PaddingBlock
     val spacePaddingBlockTopHelperText: OudsSpaceKeyToken.PaddingBlock
     val spacePaddingInline: OudsSpaceKeyToken.PaddingInline
-    val spaceRowGap: OudsSpaceKeyToken.RowGap
-
-    // TODO Keep the following tokens until the new control items are implemented, then remove them.
-    val borderRadius: OudsBorderKeyToken.Radius
-    val borderRadiusItemOnly: OudsBorderKeyToken.Radius
-    val colorBgFocus: OudsColorKeyToken
-    val colorBgHover: OudsColorKeyToken
-    val colorBgLoading: OudsColorKeyToken
-    val colorBgPressed: OudsColorKeyToken
-    val colorContentLoader: OudsColorKeyToken
-    val sizeErrorIcon: OudsSizeKeyToken.Icon
-    val sizeLoader: OudsSizeKeyToken.Icon
-    val sizeMaxHeightAssetsContainer: Float
-    val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock
+    @Deprecated("")
     val spacePaddingInlineErrorIcon: OudsSpaceKeyToken.PaddingInline
+    val spaceRowGap: OudsSpaceKeyToken.RowGap
 }

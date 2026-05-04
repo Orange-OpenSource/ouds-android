@@ -22,7 +22,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.selection.triStateToggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -146,6 +146,7 @@ fun OudsCheckbox(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
+@Suppress("DEPRECATION")
 @Composable
 fun OudsTriStateCheckbox(
     state: ToggleableState,
@@ -216,20 +217,20 @@ fun OudsTriStateCheckbox(
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 internal fun OudsCheckboxIndicator(
     state: OudsControlState,
     value: ToggleableState,
     error: Boolean
 ) {
-    val controlItemTokens = OudsTheme.componentsTokens.controlItem
     val checkboxTokens = OudsTheme.componentsTokens.checkbox
     val selected = value != ToggleableState.Off
     val shape = RoundedCornerShape(checkboxTokens.borderRadius.value)
 
     Box(
         modifier = Modifier
-            .sizeIn(minWidth = controlItemTokens.sizeAssetSmall.value, minHeight = controlItemTokens.sizeAssetMedium.value)
+            .size(checkboxTokens.sizeIndicator.value)
             .clip(shape)
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
@@ -307,6 +308,7 @@ private fun checkColor(state: OudsControlState, error: Boolean): Color {
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {

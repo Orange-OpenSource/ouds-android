@@ -87,6 +87,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
  */
+@Suppress("DEPRECATION")
 @Composable
 fun OudsRadioButton(
     selected: Boolean,
@@ -233,6 +234,7 @@ private fun selectionColor(state: OudsControlState, error: Boolean): Color {
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {
