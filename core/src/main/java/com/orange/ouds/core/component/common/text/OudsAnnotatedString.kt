@@ -206,9 +206,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     /**
      * Builder class for annotated string. Enables construction of an [OudsAnnotatedString] using methods
      * such as [append].
-     *
-     * Use specialized builder functions like [buildOudsAnnotatedHelperText] or
-     * [buildOudsAnnotatedAlertMessageDescription] instead of using this class directly.
      * 
      * @param capacity Initial capacity for the internal char buffer.
      */

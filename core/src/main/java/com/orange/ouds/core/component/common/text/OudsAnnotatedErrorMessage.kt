@@ -19,8 +19,9 @@ import androidx.compose.ui.text.AnnotatedString
  *
  * This class supports strong (bold/emphasized) text formatting to highlight critical
  * information in error messages. It is used by components like [com.orange.ouds.core.component.OudsTextInput],
- * [com.orange.ouds.core.component.OudsTextArea], [com.orange.ouds.core.component.OudsPasswordInput], [com.orange.ouds.core.component.OudsPinCodeInput], [com.orange.ouds.core.component.OudsCheckboxItem],
- * [com.orange.ouds.core.component.OudsRadioButtonItem], and [com.orange.ouds.core.component.OudsSwitchItem] through the [com.orange.ouds.core.component.common.OudsError] class.
+ * [com.orange.ouds.core.component.OudsTextArea], [com.orange.ouds.core.component.OudsPasswordInput], [com.orange.ouds.core.component.OudsPinCodeInput],
+ * [com.orange.ouds.core.component.OudsCheckboxItem], [com.orange.ouds.core.component.OudsRadioButtonItem], and [com.orange.ouds.core.component.OudsSwitchItem]
+ * through the [com.orange.ouds.core.component.common.OudsError] class.
  *
  * Use [buildOudsAnnotatedErrorMessage] to create instances:
  * ```

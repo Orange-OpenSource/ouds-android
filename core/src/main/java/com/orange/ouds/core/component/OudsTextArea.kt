@@ -97,7 +97,6 @@ import com.orange.ouds.theme.OudsThemeSettings
  * the state of a text area.
  *
  * This variant, unlike the others, enables a vertical scrollbar when the input text exceeds the text area's maximum capacity.
- * This variant, unlike the others, enables a vertical scrollbar when the input text exceeds the text area's maximum capacity.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
