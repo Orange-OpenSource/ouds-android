@@ -200,7 +200,7 @@ internal fun PreviewOudsSuggestionChip(
     with(parameter) {
         val label = if (hasLabel) "Label" else null
         val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
-        PreviewEnumEntries<OudsChipState>(columnCount = 3) {
+        PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
             OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
         }
     }

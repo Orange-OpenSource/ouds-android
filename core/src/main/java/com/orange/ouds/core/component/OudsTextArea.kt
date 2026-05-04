@@ -631,7 +631,7 @@ internal fun PreviewOudsTextArea(
     parameter: OudsTextAreaPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextArea(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
@@ -653,7 +653,7 @@ private fun PreviewOudsTextAreaWithRoundedCorners() = PreviewOudsTextAreaWithRou
 @Composable
 internal fun PreviewOudsTextAreaWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextArea(
                 textFieldState = rememberTextFieldState(""),
                 label = "Label",

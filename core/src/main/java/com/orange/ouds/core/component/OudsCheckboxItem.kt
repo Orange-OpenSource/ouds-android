@@ -252,7 +252,7 @@ internal fun PreviewOudsCheckboxItem(
     parameter: OudsCheckboxItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -286,7 +286,7 @@ internal fun PreviewOudsCheckboxItemHighContrastModeEnabled(
     parameter: OudsCheckboxItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsTriStateCheckboxItem(
                 state = value,
                 label = "Label",
@@ -320,7 +320,7 @@ private fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled() = PreviewOudsCheckbo
 
 @Composable
 internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
         OudsCheckboxItem(
             checked = true,
             label = "Label",

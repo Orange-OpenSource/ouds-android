@@ -1043,7 +1043,7 @@ internal fun PreviewOudsTextInput(
     parameter: OudsTextInputPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
@@ -1069,7 +1069,7 @@ private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithR
 @Composable
 internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(""),
                 label = "Label",
