@@ -233,7 +233,14 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @param text The text to append.
          * @return This [Builder] instance.
          */
-        override fun append(text: CharSequence?): Builder<T> = apply { builder.append(text) }
+        override fun append(text: CharSequence?): Builder<T> = apply {
+            if (text is OudsAnnotatedString<*>) {
+                // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString 
+                builder.append(text._annotatedString)
+            } else {
+                builder.append(text)
+            }
+        }
 
         /**
          * Appends the range of [text] between [start] (inclusive) and [end] (exclusive) to this
@@ -250,7 +257,14 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @param end The index after the last character in [text] to copy over (exclusive).
          * @return This [Builder] instance.
          */
-        override fun append(text: CharSequence?, start: Int, end: Int): Builder<T> = apply { builder.append(text, start, end) }
+        override fun append(text: CharSequence?, start: Int, end: Int): Builder<T> = apply {
+            if (text is OudsAnnotatedString<*>) {
+                // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
+                builder.append(text._annotatedString, start, end)
+            } else {
+                builder.append(text, start, end)
+            }
+        }
 
         /**
          * Appends the given [String] to this [Builder].
