@@ -150,7 +150,7 @@ fun OudsInputTag(
             Text(
                 text = label,
                 color = contentColor.value,
-                style = OudsTheme.typography.label.strong.medium.run {
+                style = OudsTheme.typography.label.moderate.medium.run {
                     copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
                 }
             )
