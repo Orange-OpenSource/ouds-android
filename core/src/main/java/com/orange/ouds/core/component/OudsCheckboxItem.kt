@@ -136,6 +136,8 @@ fun OudsCheckboxItem(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
  *
+ * > Design name: Checkbox
+ *
  * > Design version: 2.4.0
  *
  * @see [OudsCheckboxItem] If you need a simple item's checkbox that represents [Boolean] state.
