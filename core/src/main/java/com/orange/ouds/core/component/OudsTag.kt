@@ -155,7 +155,7 @@ fun OudsTag(
                     }
                     .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size)),
             ) {
                 if (hasAsset) {
                     Box {
@@ -230,7 +230,7 @@ private fun assetSize(size: OudsTagSize): Dp {
 private fun textStyle(size: OudsTagSize): TextStyle {
     return when (size) {
         OudsTagSize.Default -> OudsTheme.typography.label.strong.medium
-        OudsTagSize.Small -> OudsTheme.typography.label.strong.small
+        OudsTagSize.Small -> OudsTheme.typography.label.moderate.small
     }.run {
         copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }
