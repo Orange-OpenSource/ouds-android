@@ -17,10 +17,10 @@ import org.gradle.api.Project
 
 enum class Component {
     AlertMessage,
+    AppBar,
     Badge,
     BadgeCount,
     BadgeIcon,
-    Bar,
     BottomSheet,
     BulletList,
     Button,
@@ -31,6 +31,7 @@ enum class Component {
     InlineAlert,
     InputTag,
     Link,
+    NavigationBar,
     PasswordInput,
     PinCodeInput,
     RadioButton,
@@ -44,10 +45,10 @@ enum class Component {
         get() = with(OudsVersion.Component) {
             when (this@Component) {
                 Component.AlertMessage -> AlertMessage
+                Component.AppBar -> Bar
                 Component.Badge -> Badge
                 Component.BadgeCount -> BadgeCount
                 Component.BadgeIcon -> BadgeIcon
-                Component.Bar -> Bar
                 Component.BottomSheet -> BottomSheet
                 Component.BulletList -> BulletList
                 Component.Button -> Button
@@ -58,6 +59,7 @@ enum class Component {
                 Component.InlineAlert -> InlineAlert
                 Component.InputTag -> InputTag
                 Component.Link -> Link
+                Component.NavigationBar -> Bar
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
@@ -81,8 +83,8 @@ enum class Component {
     fun getSourceFilePaths(project: Project): List<String> {
         val filenames = when (this) {
             AlertMessage -> listOf("OudsAlertMessage")
+            AppBar -> listOf("OudsTopAppBar")
             Badge, BadgeCount, BadgeIcon -> listOf("OudsBadge")
-            Bar -> listOf("OudsNavigationBar", "OudsTopAppBar") // TODO Waiting for a specific version number for NavigationBar & TopAppBar (in Maxime's TODO)
             BottomSheet -> listOf("OudsBottomSheetScaffold", "OudsModalBottomSheet")
             BulletList -> listOf("OudsBulletList")
             Button -> listOf("OudsButton")
@@ -93,6 +95,7 @@ enum class Component {
             InlineAlert -> listOf("OudsInlineAlert")
             InputTag -> listOf("OudsInputTag")
             Link -> listOf("OudsLink")
+            NavigationBar -> listOf("OudsNavigationBar")
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
