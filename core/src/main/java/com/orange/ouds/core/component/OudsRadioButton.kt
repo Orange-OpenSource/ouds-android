@@ -157,7 +157,6 @@ fun OudsRadioButton(
 
 @Composable
 internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean, error: Boolean) {
-    val radioButtonTokens = OudsTheme.componentsTokens.radioButton
     val shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
 
     Box(
