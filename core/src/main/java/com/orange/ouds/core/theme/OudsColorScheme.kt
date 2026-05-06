@@ -600,7 +600,7 @@ data class OudsColorScheme internal constructor(
 
         data class Secondary(
             val high: Color,
-            @Deprecated("Will be replaced by 'higherHigh' and 'higherLow' tokens")
+            @Deprecated("Replaced by 'higherHigh' and 'higherLow' tokens")
             val higher: Color,
             val higherHigh: Color,
             val higherLow: Color,
