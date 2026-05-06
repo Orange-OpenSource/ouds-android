@@ -12,7 +12,6 @@
 
 plugins {
     id("org.jetbrains.dokka")
-    id("documentation")
 }
 
 dokka {
@@ -33,6 +32,6 @@ dokka {
 }
 
 gradle.projectsEvaluated {
-    tasks["dokkaGenerate"].dependsOn(tasks["prepareDocumentation"]) // Case where dokkaGenerate is called from the subproject
-    tasks["dokkaGenerateModuleHtml"].dependsOn(tasks["prepareDocumentation"]) // Case where dokkaGenerate is called from the root project
+    tasks["dokkaGenerate"].dependsOn(rootProject.tasks["prepareDocumentation"]) // Case where dokkaGenerate is called from the subproject
+    tasks["dokkaGenerateModuleHtml"].dependsOn(rootProject.tasks["prepareDocumentation"]) // Case where dokkaGenerate is called from the root project
 }
