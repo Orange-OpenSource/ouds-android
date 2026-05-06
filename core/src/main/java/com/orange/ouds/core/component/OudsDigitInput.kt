@@ -119,7 +119,7 @@ internal fun OudsDigitInput(
                 placeholder && state != OudsDigitInputState.Focused -> OudsDigitInputPlaceholder.toString()
                 else -> ""
             }
-            val textStyle = OudsTheme.typography.label.default.large
+            val textStyle = OudsTheme.typography.label.moderate.large
             val textColor = if (digit != null) textColor(state = state) else placeholderColor(state = state)
             Text(text = text, style = textStyle, color = textColor)
             if (state == OudsDigitInputState.Focused) {
