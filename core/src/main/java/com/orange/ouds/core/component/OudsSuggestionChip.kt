@@ -206,6 +206,24 @@ internal fun PreviewOudsSuggestionChip(
     }
 }
 
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSuggestionChipHighContrastModeEnabled() {
+    PreviewOudsSuggestionChipHighContrastModeEnabled(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme()
+    )
+}
+
+@Composable
+internal fun PreviewOudsSuggestionChipHighContrastModeEnabled(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    OudsSuggestionChip(nullableIcon = null, nullableLabel = "Label", onClick = {})
+}
+
 internal data class OudsSuggestionChipPreviewParameter(
     val hasLabel: Boolean,
     val hasIcon: Boolean
