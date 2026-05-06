@@ -20,6 +20,7 @@ object OudsVersion {
         const val Badge = "1.2.0"
         const val BadgeCount = "1.2.0"
         const val BadgeIcon = "1.3.0"
+        const val Bar = "1.0.0"
         const val BottomSheet = "0.0.0" // '0.0.0' corresponds to a component that does not yet have a design (draft).
         const val BulletList = "1.1.0"
         const val Button = "3.2.0"
@@ -30,7 +31,6 @@ object OudsVersion {
         const val InlineAlert = "1.0.0"
         const val InputTag = "1.2.0"
         const val Link = "2.2.0"
-        const val NavigationBar = "1.0.0"
         const val NavigationButton = "3.2.1"
         const val PasswordInput = "1.3.0"
         const val PinCodeInput = "1.3.0"
