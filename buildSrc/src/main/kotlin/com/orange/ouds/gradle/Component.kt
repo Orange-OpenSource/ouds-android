@@ -72,7 +72,7 @@ enum class Component {
     val designName: String
         get() {
             // Convert enum name to design name (e.g., "BadgeIcon" -> "Badge Icon")
-            return this.name
+            return name
                 .replace(Regex("([a-z])([A-Z])"), "$1 $2")
                 .replace("Pin", "PIN")
                 .replace("Fab", "FAB")
