@@ -1420,7 +1420,7 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
             ),
             secondary = OudsColorScheme.Repository.Secondary(
                 high = repositorySecondaryHigh,
-                higher = repositorySecondaryHigherHigh, // DEPRECATED
+                higher = repositorySecondaryHigherHigh,
                 higherHigh = repositorySecondaryHigherHigh,
                 higherLow = repositorySecondaryHigherLow,
                 highest = repositorySecondaryHighest,
