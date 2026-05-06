@@ -36,6 +36,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Loading : Negative
             data object Pressed : Negative
         }
+
         data object Pressed : Action
         data object ReadOnlyPrimary : Action
         data object ReadOnlySecondary : Action
@@ -48,14 +49,17 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Loading : Support
             data object Pressed : Support
         }
+
         data object Visited : Action
     }
+
     sealed interface Always : OudsColorKeyToken {
         data object Black : Always
         data object OnBlack : Always
         data object OnWhite : Always
         data object White : Always
     }
+
     sealed interface Background : OudsColorKeyToken {
         data object InverseHigh : Background
         data object InverseLow : Background
@@ -63,6 +67,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
         data object Secondary : Background
         data object Tertiary : Background
     }
+
     sealed interface Border : OudsColorKeyToken {
         data object BrandPrimary : Border
         data object BrandSecondary : Border
@@ -78,6 +83,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Secondary : OnBrand
             data object Tertiary : OnBrand
         }
+
         sealed interface Status : Border {
             data object Accent : Status
             data object Info : Status
@@ -86,6 +92,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Warning : Status
         }
     }
+
     sealed interface Content : OudsColorKeyToken {
         data object BrandPrimary : Content
         data object BrandSecondary : Content
@@ -104,52 +111,55 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Pressed : OnAction
             data object Selected : OnAction
         }
+
         sealed interface OnBrand : Content {
             data object Primary : OnBrand
             data object Secondary : OnBrand
             data object Tertiary : OnBrand
         }
+
         sealed interface OnStatus : Content {
             sealed interface Accent : OnStatus {
                 data object Emphasized : Accent
                 data object Muted : Accent
             }
+
             sealed interface Info : OnStatus {
                 data object Emphasized : Info
                 data object Muted : Info
             }
+
             sealed interface Negative : OnStatus {
                 data object Emphasized : Negative
                 data object Muted : Negative
             }
+
             sealed interface Positive : OnStatus {
                 data object Emphasized : Positive
                 data object Muted : Positive
             }
+
             sealed interface Warning : OnStatus {
                 data object Emphasized : Warning
                 data object Muted : Warning
             }
         }
+
         sealed interface Status : Content {
             data object Accent : Status
             data object Info : Status
-            sealed interface Inverse : Status {
-                data object Info : Inverse
-                data object Negative : Inverse
-                data object Positive : Inverse
-                data object Warning : Inverse
-            }
             data object Negative : Status
             data object Positive : Status
             data object Warning : Status
         }
     }
+
     sealed interface Opacity : OudsColorKeyToken {
         data object Lower : Opacity
         data object Lowest : Opacity
         data object Transparent : Opacity
     }
+
     sealed interface Overlay : OudsColorKeyToken {
         data object Backdrop : Overlay
         data object Drag : Overlay
@@ -157,6 +167,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
         data object ModalSheet : Overlay
         data object Tooltip : Overlay
     }
+
     sealed interface Repository : OudsColorKeyToken {
         sealed interface Accent : Repository {
             data object High : Accent
@@ -167,6 +178,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Accent
             data object Medium : Accent
         }
+
         sealed interface Info : Repository {
             data object High : Info
             data object Higher : Info
@@ -176,6 +188,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Info
             data object Medium : Info
         }
+
         sealed interface Negative : Repository {
             data object High : Negative
             data object Higher : Negative
@@ -185,6 +198,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Negative
             data object Medium : Negative
         }
+
         sealed interface Neutral : Repository {
             sealed interface Emphasized : Neutral {
                 data object Black : Emphasized
@@ -196,6 +210,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Lowest : Emphasized
                 data object Medium : Emphasized
             }
+
             sealed interface Muted : Neutral {
                 data object High : Muted
                 data object Higher : Muted
@@ -207,11 +222,13 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object White : Muted
             }
         }
+
         sealed interface Opacity : Repository {
             sealed interface Accent : Opacity {
                 data object Low : Accent
                 data object Medium : Accent
             }
+
             sealed interface Black : Opacity {
                 data object High : Black
                 data object Higher : Black
@@ -224,18 +241,22 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object MediumLow : Black
                 data object Transparent : Black
             }
+
             sealed interface Info : Opacity {
                 data object Low : Info
                 data object Medium : Info
             }
+
             sealed interface Negative : Opacity {
                 data object Low : Negative
                 data object Medium : Negative
             }
+
             sealed interface Positive : Opacity {
                 data object Low : Positive
                 data object Medium : Positive
             }
+
             sealed interface Primary : Opacity {
                 data object High : Primary
                 data object Higher : Primary
@@ -246,10 +267,12 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Medium : Primary
                 data object Transparent : Primary
             }
+
             sealed interface Warning : Opacity {
                 data object Low : Warning
                 data object Medium : Warning
             }
+
             sealed interface White : Opacity {
                 data object High : White
                 data object Higher : White
@@ -262,6 +285,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Transparent : White
             }
         }
+
         sealed interface Positive : Repository {
             data object High : Positive
             data object Higher : Positive
@@ -271,6 +295,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Positive
             data object Medium : Positive
         }
+
         sealed interface Primary : Repository {
             data object High : Primary
             data object Higher : Primary
@@ -280,6 +305,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Primary
             data object Medium : Primary
         }
+
         sealed interface Secondary : Repository {
             data object High : Secondary
             data object HigherHigh : Secondary
@@ -290,6 +316,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Secondary
             data object Medium : Secondary
         }
+
         sealed interface Tertiary : Repository {
             data object High : Tertiary
             data object Higher : Tertiary
@@ -299,6 +326,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Lowest : Tertiary
             data object Medium : Tertiary
         }
+
         sealed interface Warning : Repository {
             data object High : Warning
             data object Higher : Warning
@@ -309,12 +337,14 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
             data object Medium : Warning
         }
     }
+
     sealed interface Surface : OudsColorKeyToken {
         sealed interface Brand : Surface {
             data object Primary : Brand
             data object Secondary : Brand
             data object Tertiary : Brand
         }
+
         data object InverseHigh : Surface
         data object InverseLow : Surface
         data object Primary : Surface
@@ -324,23 +354,28 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
                 data object Emphasized : Accent
                 data object Muted : Accent
             }
+
             sealed interface Info : Status {
                 data object Emphasized : Info
                 data object Muted : Info
             }
+
             sealed interface Negative : Status {
                 data object Emphasized : Negative
                 data object Muted : Negative
             }
+
             sealed interface Positive : Status {
                 data object Emphasized : Positive
                 data object Muted : Positive
             }
+
             sealed interface Warning : Status {
                 data object Emphasized : Warning
                 data object Muted : Warning
             }
         }
+
         data object Tertiary : Surface
     }
 }

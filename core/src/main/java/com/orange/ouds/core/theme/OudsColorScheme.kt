@@ -393,19 +393,10 @@ data class OudsColorScheme internal constructor(
         data class Status internal constructor(
             val accent: Color,
             val info: Color,
-            val inverse: Inverse,
             val negative: Color,
             val positive: Color,
             val warning: Color
-        ) {
-            @ConsistentCopyVisibility
-            data class Inverse internal constructor(
-                val info: Color,
-                val negative: Color,
-                val positive: Color,
-                val warning: Color
-            )
-        }
+        )
     }
 
     /**
@@ -945,12 +936,6 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 status = OudsColorScheme.Content.Status(
                     accent = contentStatusAccentLight,
                     info = contentStatusInfoLight,
-                    inverse = OudsColorScheme.Content.Status.Inverse(
-                        info = contentStatusInverseInfoLight,
-                        negative = contentStatusInverseNegativeLight,
-                        positive = contentStatusInversePositiveLight,
-                        warning = contentStatusInverseWarningLight,
-                    ),
                     negative = contentStatusNegativeLight,
                     positive = contentStatusPositiveLight,
                     warning = contentStatusWarningLight,
@@ -1182,12 +1167,6 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 status = OudsColorScheme.Content.Status(
                     accent = contentStatusAccentDark,
                     info = contentStatusInfoDark,
-                    inverse = OudsColorScheme.Content.Status.Inverse(
-                        info = contentStatusInverseInfoDark,
-                        negative = contentStatusInverseNegativeDark,
-                        positive = contentStatusInversePositiveDark,
-                        warning = contentStatusInverseWarningDark,
-                    ),
                     negative = contentStatusNegativeDark,
                     positive = contentStatusPositiveDark,
                     warning = contentStatusWarningDark,
@@ -1585,10 +1564,6 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
             OudsColorKeyToken.Content.OnStatus.Accent.Muted -> onStatus.accent.muted
             OudsColorKeyToken.Content.Status.Accent -> status.accent
             OudsColorKeyToken.Content.Status.Info -> status.info
-            OudsColorKeyToken.Content.Status.Inverse.Info -> status.inverse.info
-            OudsColorKeyToken.Content.Status.Inverse.Negative -> status.inverse.negative
-            OudsColorKeyToken.Content.Status.Inverse.Positive -> status.inverse.positive
-            OudsColorKeyToken.Content.Status.Inverse.Warning -> status.inverse.warning
             OudsColorKeyToken.Content.Status.Negative -> status.negative
             OudsColorKeyToken.Content.Status.Positive -> status.positive
             OudsColorKeyToken.Content.Status.Warning -> status.warning

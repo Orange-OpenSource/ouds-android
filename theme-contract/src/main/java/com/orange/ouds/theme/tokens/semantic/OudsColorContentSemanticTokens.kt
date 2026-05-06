@@ -81,14 +81,6 @@ interface OudsColorContentSemanticTokens {
     val contentStatusAccentLight: Color
     val contentStatusInfoDark: Color
     val contentStatusInfoLight: Color
-    val contentStatusInverseInfoDark: Color
-    val contentStatusInverseInfoLight: Color
-    val contentStatusInverseNegativeDark: Color
-    val contentStatusInverseNegativeLight: Color
-    val contentStatusInversePositiveDark: Color
-    val contentStatusInversePositiveLight: Color
-    val contentStatusInverseWarningDark: Color
-    val contentStatusInverseWarningLight: Color
     val contentStatusNegativeDark: Color
     val contentStatusNegativeLight: Color
     val contentStatusPositiveDark: Color
