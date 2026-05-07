@@ -179,12 +179,8 @@ class OudsComponentDocumentableTransformer : DocumentableTransformer {
                     val guidelinesLink = guidelinesLinkBlockquote?.firstMemberOfTypeOrNull<A>()
                     val guidelinesLinkText = guidelinesLink?.firstMemberOfTypeOrNull<Text>()?.body
                     val guidelinesLinkUrl = guidelinesLink?.params["href"]
-                    val designDocTag = if (name != null || version != null || (guidelinesLinkText != null && guidelinesLinkUrl != null)) {
-                        // Build a new DocTag that displays the design name, version and guidelines link in a table.
-                        getDesignDocTag(name, version, guidelinesLinkText, guidelinesLinkUrl)
-                    } else {
-                        null
-                    }
+                    // Build a new DocTag that displays the design name, version and guidelines link in a table.
+                    val designDocTag = getDesignDocTag(name, version, guidelinesLinkText, guidelinesLinkUrl)
 
                     // Remove the design name, version and guidelines link DocTag instances and add the new one as a child of the Description node
                     // In this way, design name, version and guidelines link will appear into blockquotes in Android Studio quick documentation
