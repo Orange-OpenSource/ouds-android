@@ -96,22 +96,19 @@ tasks.register<DefaultTask>("checkDocumentation") {
 
 tasks.register<DefaultTask>("updateDocumentation") {
     doLast {
-        val componentsByFile = mutableMapOf<String, MutableList<Component>>()
-        Component.entries.forEach { component ->
-            component.getSourceFilePaths(project).forEach { filePath ->
-                componentsByFile.getOrPut(filePath) { mutableListOf() }.add(component)
+        val filePaths = Component.entries.flatMap { it.getSourceFilePaths(project) }
+        val pattern = "(> Design name: (.+?)\\s*\\n \\*\\n \\* > Design version: )[^\n]+".toRegex()
+        filePaths.forEach { filePath ->
+            File(filePath).replace(pattern) { matchResult ->
+                val designName = matchResult.groupValues[2]
+                val component = Component.entries.find { it.designName == designName }
+                if (component == null) {
+                    throw GradleException("Could not find component with design name $designName.")
+                } else {
+                    val componentVersion = if (component.version == "0.0.0") draftVersion else component.version
+                    "${matchResult.groupValues[1]}$componentVersion"
+                }
             }
-        }
-
-        componentsByFile.forEach { (filePath, components) ->
-            var content = File(filePath).readText()
-            components.forEach { component ->
-                val componentVersion = if (component.version == "0.0.0") draftVersion else component.version
-                val pattern = "(> Design name: ${component.designName}\\s*\\n \\*\\n \\* > Design version: )([^\n]+)".toRegex()
-                content = content.replace(pattern, "$1$componentVersion")
-            }
-
-            File(filePath).writeText(content)
         }
     }
 }
