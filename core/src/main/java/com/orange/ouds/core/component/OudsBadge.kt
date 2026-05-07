@@ -12,7 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.R.attr.data
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
