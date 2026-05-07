@@ -13,7 +13,14 @@
 package com.orange.ouds.core.component.common.text
 
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.LocaleList
+import androidx.compose.ui.text.withAnnotation
+import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.withStyle
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
@@ -366,6 +373,83 @@ class OudsAnnotatedStringTest {
         assertEquals(10, strongAnnotations[0].end) // "Hello bold" has 10 characters
     }
 
+    @Test
+    fun oudsAnnotatedStringBuilder_appendAnnotatedString_filtersSupportedAnnotations() {
+        // Create an AnnotatedString with various font weights
+        val annotatedString = buildAnnotatedString {
+            // Font weights less than Bold - should be filtered out
+            withStyle(SpanStyle(fontWeight = FontWeight.Light)) {
+                append("Light ")
+            }
+            withStyle(SpanStyle(fontWeight = FontWeight.Normal)) {
+                append("Normal ")
+            }
+            withStyle(SpanStyle(fontWeight = FontWeight.Medium)) {
+                append("Medium ")
+            }
+            withStyle(SpanStyle(fontWeight = FontWeight.SemiBold)) {
+                append("SemiBold ")
+            }
+
+            // Font weights >= Bold - should be converted to strong annotations
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("Bold ")
+            }
+            withStyle(SpanStyle(fontWeight = FontWeight.ExtraBold)) {
+                append("ExtraBold ")
+            }
+            withStyle(SpanStyle(fontWeight = FontWeight.Black)) {
+                append("Black ")
+            }
+
+            // Link annotation - should be preserved
+            withLink(LinkAnnotation.Url("https://example.com")) {
+                append("Link ")
+            }
+
+            // String annotation - should be filtered out
+            withAnnotation("", "String") {
+                append("String")
+            }
+        }
+
+        // Append to OudsAnnotatedString builder
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Prefix ")
+        builder.append(annotatedString)
+        val result = builder.toAnnotatedString()
+
+        // Verify text is fully preserved
+        assertEquals("Prefix Light Normal Medium SemiBold Bold ExtraBold Black Link String", result.text)
+
+        // Verify strong annotations (only Bold, ExtraBold, Black should be converted)
+        val strongAnnotations = result.getStrongAnnotations()
+        assertEquals(3, strongAnnotations.size)
+
+        // Verify Bold annotation at correct position
+        assertEquals(36, strongAnnotations[0].start) // "Prefix Light Normal Medium SemiBold " = 36 chars
+        assertEquals(41, strongAnnotations[0].end) // "Bold " = 5 chars
+
+        // Verify ExtraBold annotation at correct position
+        assertEquals(41, strongAnnotations[1].start) // After "Bold "
+        assertEquals(51, strongAnnotations[1].end) // "ExtraBold " = 10 chars
+
+        // Verify Black annotation at correct position
+        assertEquals(51, strongAnnotations[2].start) // After "ExtraBold "
+        assertEquals(57, strongAnnotations[2].end) // "Black " = 6 chars
+
+        // Verify link annotation is preserved
+        val linkAnnotations = result.getLinkAnnotations()
+        assertEquals(1, linkAnnotations.size)
+        assertEquals(57, linkAnnotations[0].start) // After "Black "
+        assertEquals(62, linkAnnotations[0].end) // "Link " = 5 chars
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
+
+        // Verify other annotations are filtered out
+        assertEquals(0, result.spanStyles.size)
+        assertEquals(strongAnnotations.size, result.getStringAnnotations().size)
+    }
+
     //endregion
 
     //region OudsAnnotatedString.LinkBuilder tests
@@ -638,13 +722,13 @@ class OudsAnnotatedStringTest {
 
 private class TestAnnotatedString(private val annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
 
-    fun getStrongAnnotations(): List<AnnotatedString.Range<String>> {
-        return with(annotatedString) { getStringAnnotations(0, length) }.filter { it.item == StrongAnnotation }
-    }
+    val spanStyles: List<AnnotatedString.Range<SpanStyle>> = annotatedString.spanStyles
 
-    fun getLinkAnnotations(): List<AnnotatedString.Range<androidx.compose.ui.text.LinkAnnotation>> {
-        return with(annotatedString) { getLinkAnnotations(0, length) }
-    }
+    fun getLinkAnnotations(): List<AnnotatedString.Range<LinkAnnotation>> = with(annotatedString) { getLinkAnnotations(0, length) }
+
+    fun getStringAnnotations(): List<AnnotatedString.Range<String>> = with(annotatedString) { getStringAnnotations(0, length) }
+
+    fun getStrongAnnotations(): List<AnnotatedString.Range<String>> = getStringAnnotations().filter { it.item == StrongAnnotation }
 
     class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<TestAnnotatedString>(capacity, TestAnnotatedString::class.java), StrongBuilder,
         LinkBuilder {

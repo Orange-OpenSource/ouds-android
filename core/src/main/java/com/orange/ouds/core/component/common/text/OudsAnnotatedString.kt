@@ -16,10 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.LinkInteractionListener
+import androidx.compose.ui.text.StringAnnotation
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.decapitalize
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.toLowerCase
@@ -56,32 +58,23 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         strongStyle: TextStyle = OudsTheme.typography.label.strong.medium,
         linkStyle: TextStyle = OudsTheme.typography.label.strong.medium
     ): AnnotatedString {
-        // Recreate a new annotated string from _annotatedString that will configure OUDS annotations with current theme values
-        // and remove unwanted annotations that may have been added with the append methods of the Appendable interface that take a CharSequence as parameter
-        val builder = AnnotatedString.Builder(_annotatedString.text)
-
-        val linkAnnotations = with(_annotatedString) { getLinkAnnotations(0, length) }
-        if (linkAnnotations.isNotEmpty()) {
-            val linkStyles = getTextLinkStyles(linkStyle)
-            linkAnnotations.forEach { range ->
-                with(range) {
-                    when (val linkAnnotation = item) {
-                        is LinkAnnotation.Url -> builder.addLink(linkAnnotation.copy(styles = linkStyles), start, end)
-                        is LinkAnnotation.Clickable -> builder.addLink(linkAnnotation.copy(styles = linkStyles), start, end)
-                    }
+        val linkStyles = getTextLinkStyles(linkStyle)
+        return _annotatedString.mapAnnotations { range ->
+            when (val annotation = range.item) {
+                is StringAnnotation if (annotation.value == StrongAnnotation) -> {
+                    with(range) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end) }
                 }
+                is LinkAnnotation -> {
+                    val linkAnnotation = when (annotation) {
+                        is LinkAnnotation.Url -> annotation.copy(styles = linkStyles)
+                        is LinkAnnotation.Clickable -> annotation.copy(styles = linkStyles)
+                        else -> annotation
+                    }
+                    with(range) { AnnotatedString.Range(linkAnnotation, start, end) }
+                }
+                else -> range
             }
         }
-
-        val stringAnnotations = with(_annotatedString) { getStringAnnotations(0, length) }
-        stringAnnotations.filter { it.item == StrongAnnotation }
-            .forEach { range ->
-                with(range) {
-                    builder.addStyle(strongStyle.toSpanStyle(), start, end)
-                }
-            }
-
-        return builder.toAnnotatedString()
     }
 
     /**
@@ -234,11 +227,11 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @return This [Builder] instance.
          */
         override fun append(text: CharSequence?): Builder<T> = apply {
-            if (text is OudsAnnotatedString<*>) {
-                // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString 
-                builder.append(text._annotatedString)
-            } else {
-                builder.append(text)
+            when (text) {
+                // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
+                is OudsAnnotatedString<*> -> builder.append(text._annotatedString.filterSupportedAnnotations())
+                is AnnotatedString -> builder.append(text.filterSupportedAnnotations())
+                else -> builder.append(text)
             }
         }
 
@@ -258,11 +251,11 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * @return This [Builder] instance.
          */
         override fun append(text: CharSequence?, start: Int, end: Int): Builder<T> = apply {
-            if (text is OudsAnnotatedString<*>) {
+            when (text) {
                 // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
-                builder.append(text._annotatedString, start, end)
-            } else {
-                builder.append(text, start, end)
+                is OudsAnnotatedString<*> -> builder.append(text._annotatedString.filterSupportedAnnotations(), start, end)
+                is AnnotatedString -> builder.append(text.filterSupportedAnnotations(), start, end)
+                else -> builder.append(text, start, end)
             }
         }
 
@@ -283,7 +276,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         }
 
         protected fun addStrongImpl(start: Int, end: Int) {
-            builder.addStringAnnotation("", StrongAnnotation, start, end)
+            builder.addStrongAnnotation(start, end)
         }
 
         protected fun addLinkImpl(url: OudsLinkAnnotation.Url, start: Int, end: Int) {
@@ -301,6 +294,44 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         fun pop(): Unit = builder.pop()
 
         fun pop(index: Int): Unit = builder.pop(index)
+
+        private fun AnnotatedString.Builder.addStrongAnnotation(start: Int, end: Int) = addStringAnnotation("", StrongAnnotation, start, end)
+
+        private fun AnnotatedString.filterSupportedAnnotations(): AnnotatedString {
+            val builder = AnnotatedString.Builder(text)
+
+            if (this@Builder is LinkBuilder) {
+                // Link annotations
+                getLinkAnnotations(0, length).forEach { range ->
+                    with(range) {
+                        when (val linkAnnotation = item) {
+                            is LinkAnnotation.Url -> builder.addLink(linkAnnotation, start, end)
+                            is LinkAnnotation.Clickable -> builder.addLink(linkAnnotation, start, end)
+                        }
+                    }
+                }
+            }
+
+            if (this@Builder is StrongBuilder) {
+                // Text style annotations which font weight is greater than or equal to FontWeight.Bold are converted to strong annotations
+                // whereas others are filtered out
+                spanStyles.forEach { range ->
+                    range.item.fontWeight?.let { fontWeight ->
+                        if (fontWeight >= FontWeight.Bold) {
+                            with(range) { builder.addStrongAnnotation(start, end) }
+                        }
+                    }
+                }
+
+                // Strong annotations
+                getStringAnnotations(0, length).filter { it.item == StrongAnnotation }
+                    .forEach { range ->
+                        with(range) { builder.addStrongAnnotation(start, end) }
+                    }
+            }
+
+            return builder.toAnnotatedString()
+        }
     }
 
     /**
