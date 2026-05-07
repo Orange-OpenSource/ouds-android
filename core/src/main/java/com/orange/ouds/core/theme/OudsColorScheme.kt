@@ -416,16 +416,21 @@ data class OudsColorScheme internal constructor(
     /**
      * Colors used for overlay elements like modals or tooltips.
      *
+     * @property backdrop Scrim color used behind dialogs or modals.
      * @property dropdown Background color for dropdowns.
      * @property drag Background color for dragged items.
-     * @property modal Background color for modal dialogs (scrim).
+     * @property modal Background color for modal dialogs.
+     * @property modalSheet Background color for sheets.
      * @property tooltip Background color for tooltips.
      */
     @ConsistentCopyVisibility
     data class Overlay internal constructor(
+        val backdrop: Color,
         val dropdown: Color,
         val drag: Color,
+        @Deprecated("Token renamed to 'modalSheet'", replaceWith = ReplaceWith("modalSheet"))
         val modal: Color,
+        val modalSheet: Color,
         val tooltip: Color
     )
 
@@ -595,7 +600,10 @@ data class OudsColorScheme internal constructor(
 
         data class Secondary(
             val high: Color,
+            @Deprecated("Replaced by 'higherHigh' and 'higherLow' tokens")
             val higher: Color,
+            val higherHigh: Color,
+            val higherLow: Color,
             val highest: Color,
             val low: Color,
             val lower: Color,
@@ -943,9 +951,11 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
         },
         overlay = with(overlayColorTokens) {
             OudsColorScheme.Overlay(
+                backdrop = overlayBackdropLight,
                 dropdown = overlayDropdownLight,
                 drag = overlayDragLight,
-                modal = overlayModalLight,
+                modal = overlayModalSheetLight,
+                modalSheet = overlayModalSheetLight,
                 tooltip = overlayTooltipLight
             )
         },
@@ -1172,9 +1182,11 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
         },
         overlay = with(overlayColorTokens) {
             OudsColorScheme.Overlay(
+                backdrop = overlayBackdropDark,
                 dropdown = overlayDropdownDark,
                 drag = overlayDragDark,
-                modal = overlayModalDark,
+                modal = overlayModalSheetDark,
+                modalSheet = overlayModalSheetDark,
                 tooltip = overlayTooltipDark,
             )
         },
@@ -1408,7 +1420,9 @@ private val OudsColorSemanticTokens.repositoryColorScheme: OudsColorScheme.Repos
             ),
             secondary = OudsColorScheme.Repository.Secondary(
                 high = repositorySecondaryHigh,
-                higher = repositorySecondaryHigher,
+                higher = repositorySecondaryHigherHigh,
+                higherHigh = repositorySecondaryHigherHigh,
+                higherLow = repositorySecondaryHigherLow,
                 highest = repositorySecondaryHighest,
                 low = repositorySecondaryLow,
                 lower = repositorySecondaryLower,
@@ -1650,7 +1664,8 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Repository): Colo
             OudsColorKeyToken.Repository.Primary.Lowest -> primary.lowest
             OudsColorKeyToken.Repository.Primary.Medium -> primary.medium
             OudsColorKeyToken.Repository.Secondary.High -> secondary.high
-            OudsColorKeyToken.Repository.Secondary.Higher -> secondary.higher
+            OudsColorKeyToken.Repository.Secondary.HigherHigh -> secondary.higherHigh
+            OudsColorKeyToken.Repository.Secondary.HigherLow -> secondary.higherLow
             OudsColorKeyToken.Repository.Secondary.Highest -> secondary.highest
             OudsColorKeyToken.Repository.Secondary.Low -> secondary.low
             OudsColorKeyToken.Repository.Secondary.Lower -> secondary.lower
@@ -1715,9 +1730,10 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
 private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
     return with(overlay) {
         when (token) {
+            OudsColorKeyToken.Overlay.Backdrop -> backdrop
             OudsColorKeyToken.Overlay.Drag -> drag
             OudsColorKeyToken.Overlay.Dropdown -> dropdown
-            OudsColorKeyToken.Overlay.Modal -> modal
+            OudsColorKeyToken.Overlay.ModalSheet -> modalSheet
             OudsColorKeyToken.Overlay.Tooltip -> tooltip
         }
     }

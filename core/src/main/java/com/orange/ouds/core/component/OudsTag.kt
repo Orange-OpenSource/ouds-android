@@ -82,7 +82,9 @@ import kotlin.enums.enumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-tag)
  *
- * > Design version: 1.4.0
+ * > Design name: Tag
+ *
+ * > Design version: 1.5.0
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.

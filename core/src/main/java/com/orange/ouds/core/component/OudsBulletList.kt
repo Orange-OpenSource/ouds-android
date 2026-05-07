@@ -88,7 +88,9 @@ private const val MaxLevelCount = 3
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-bullet-list)
  *
- * > Design version: 1.0.0
+ * > Design name: Bullet List
+ *
+ * > Design version: 1.1.0
  *
  * @param modifier [Modifier] applied to the list.
  * @param type The visual type of the list (e.g., ordered, unordered, bare). See [OudsBulletListType].
@@ -244,8 +246,8 @@ private fun OudsBulletListItem(
                 parentNodes = parentNodes
             )
             val textMaxWidth = when (currentTextStyle.fontSize) {
-                OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.type.body.large
-                OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.type.body.medium
+                OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.body.large
+                OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.body.medium
             }
             Text(
                 modifier = Modifier

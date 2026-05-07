@@ -36,7 +36,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -52,6 +51,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * The OUDS checkbox item layout contains an [OudsCheckbox]. By clicking on a checkbox item, the user changes the checked state of its checkbox.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
+ *
+ * > Design name: Checkbox
  *
  * > Design version: 2.4.0
  *
@@ -134,6 +135,8 @@ fun OudsCheckboxItem(
  * state of its checkbox.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
+ *
+ * > Design name: Checkbox
  *
  * > Design version: 2.4.0
  *
@@ -268,7 +271,13 @@ internal fun PreviewOudsCheckboxItem(
     }
 }
 
-@OudsPreviewLightDark
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.CheckboxItem.HighContrastModeEnabled.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.CheckboxItem.HighContrastModeEnabled.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsCheckboxItemHighContrastModeEnabled(@PreviewParameter(OudsCheckboxItemHighContrastModePreviewParameterProvider::class) parameter: OudsCheckboxItemHighContrastModePreviewParameter) {

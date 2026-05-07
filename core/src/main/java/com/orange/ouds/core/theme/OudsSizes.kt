@@ -223,12 +223,14 @@ data class OudsSizes internal constructor(
             /**
              * Icon sizes for extra large label.
              *
+             * @property sizeExtraSmall Extra small icon size for use with an extra large label.
              * @property sizeSmall Small icon size for use with an extra large label.
              * @property sizeMedium Medium icon size for use with an extra large label.
              * @property sizeLarge Large icon size for use with an extra large label.
              */
             @ConsistentCopyVisibility
             data class ExtraLarge internal constructor(
+                val sizeExtraSmall: Dp,
                 val sizeSmall: Dp,
                 val sizeMedium: Dp,
                 val sizeLarge: Dp,
@@ -297,12 +299,82 @@ data class OudsSizes internal constructor(
     /**
      * Maximum width constraints used to control line length and layout density.
      *
+     * @property body Max widths for body text contexts.
+     * @property display Max widths for display text contexts.
+     * @property heading Max widths for heading text contexts.
+     * @property label Max widths for label text contexts.
      * @property type Contains max width values grouped by typography type.
      */
+    @Suppress("DEPRECATION")
     @ConsistentCopyVisibility
     data class MaxWidth internal constructor(
+        val body: Body,
+        val display: Display,
+        val heading: Heading,
+        val label: Label,
+        @Deprecated("This token level will be removed in the next major version. Please use 'body', 'display', 'heading' or 'label' directly in the token hierarchy.")
         val type: Type
     ) {
+        /**
+         * Max widths for body text contexts.
+         *
+         * @property small Max width constraint for small body text.
+         * @property medium Max width constraint for medium body text.
+         * @property large Max width constraint for large body text.
+         */
+        @ConsistentCopyVisibility
+        data class Body internal constructor(
+            val small: Dp,
+            val medium: Dp,
+            val large: Dp
+        )
+
+        /**
+         * Max widths for display text contexts.
+         *
+         * @property small Max width constraint for small display text.
+         * @property medium Max width constraint for medium display text.
+         * @property large Max width constraint for large display text.
+         */
+        @ConsistentCopyVisibility
+        data class Display internal constructor(
+            val small: Dp,
+            val medium: Dp,
+            val large: Dp
+        )
+
+        /**
+         * Max widths for heading text contexts.
+         *
+         * @property small Max width constraint for small heading text.
+         * @property medium Max width constraint for medium heading text.
+         * @property large Max width constraint for large heading text.
+         * @property extraLarge Max width constraint for extra large heading text.
+         */
+        @ConsistentCopyVisibility
+        data class Heading internal constructor(
+            val small: Dp,
+            val medium: Dp,
+            val large: Dp,
+            val extraLarge: Dp
+        )
+
+        /**
+         * Max widths for label text contexts.
+         *
+         * @property small Max width constraint for small label text.
+         * @property medium Max width constraint for medium label text.
+         * @property large Max width constraint for large label text.
+         * @property extraLarge Max width constraint for extra large label text.
+         */
+        @ConsistentCopyVisibility
+        data class Label internal constructor(
+            val small: Dp,
+            val medium: Dp,
+            val large: Dp,
+            val extraLarge: Dp
+        )
+
         /**
          * Max width values grouped by typography type.
          *
@@ -312,6 +384,7 @@ data class OudsSizes internal constructor(
          * @property label Max widths for label text contexts.
          */
         @ConsistentCopyVisibility
+        @Deprecated("This token level will be removed in the next major version.")
         data class Type internal constructor(
             val body: Body,
             val display: Display,
@@ -381,6 +454,7 @@ data class OudsSizes internal constructor(
     }
 }
 
+@Suppress("DEPRECATION")
 internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     OudsSizes(
         icon = OudsSizes.Icon(
@@ -438,6 +512,7 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                     sizeExtraLarge = iconWithLabelLargeSizeXlarge.dp,
                 ),
                 extraLarge = OudsSizes.Icon.WithLabel.ExtraLarge(
+                    sizeExtraSmall = iconWithLabelXlargeSizeXsmall.dp,
                     sizeSmall = iconWithLabelXlargeSizeSmall.dp,
                     sizeMedium = iconWithLabelXlargeSizeMedium.dp,
                     sizeLarge = iconWithLabelXlargeSizeLarge.dp,
@@ -462,28 +537,50 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
             ),
         ),
         maxWidth = OudsSizes.MaxWidth(
+            body = OudsSizes.MaxWidth.Body(
+                small = getTokenValue(maxWidthBodySmallMobile, maxWidthBodySmallTablet).dp,
+                medium = getTokenValue(maxWidthBodyMediumMobile, maxWidthBodyMediumTablet).dp,
+                large = getTokenValue(maxWidthBodyLargeMobile, maxWidthBodyLargeTablet).dp,
+            ),
+            display = OudsSizes.MaxWidth.Display(
+                small = getTokenValue(maxWidthDisplaySmallMobile, maxWidthDisplaySmallTablet).dp,
+                medium = getTokenValue(maxWidthDisplayMediumMobile, maxWidthDisplayMediumTablet).dp,
+                large = getTokenValue(maxWidthDisplayLargeMobile, maxWidthDisplayLargeTablet).dp,
+            ),
+            heading = OudsSizes.MaxWidth.Heading(
+                small = getTokenValue(maxWidthHeadingSmallMobile, maxWidthHeadingSmallTablet).dp,
+                medium = getTokenValue(maxWidthHeadingMediumMobile, maxWidthHeadingMediumTablet).dp,
+                large = getTokenValue(maxWidthHeadingLargeMobile, maxWidthHeadingLargeTablet).dp,
+                extraLarge = getTokenValue(maxWidthHeadingXlargeMobile, maxWidthHeadingXlargeTablet).dp,
+            ),
+            label = OudsSizes.MaxWidth.Label(
+                small = getTokenValue(maxWidthLabelSmallMobile, maxWidthLabelSmallTablet).dp,
+                medium = getTokenValue(maxWidthLabelMediumMobile, maxWidthLabelMediumTablet).dp,
+                large = getTokenValue(maxWidthLabelLargeMobile, maxWidthLabelLargeTablet).dp,
+                extraLarge = getTokenValue(maxWidthLabelXlargeMobile, maxWidthLabelXlargeTablet).dp,
+            ),
             type = OudsSizes.MaxWidth.Type(
                 body = OudsSizes.MaxWidth.Type.Body(
-                    small = getTokenValue(maxWidthTypeBodySmallMobile, maxWidthTypeBodySmallTablet).dp,
-                    medium = getTokenValue(maxWidthTypeBodyMediumMobile, maxWidthTypeBodyMediumTablet).dp,
-                    large = getTokenValue(maxWidthTypeBodyLargeMobile, maxWidthTypeBodyLargeTablet).dp,
+                    small = getTokenValue(maxWidthBodySmallMobile, maxWidthBodySmallTablet).dp,
+                    medium = getTokenValue(maxWidthBodyMediumMobile, maxWidthBodyMediumTablet).dp,
+                    large = getTokenValue(maxWidthBodyLargeMobile, maxWidthBodyLargeTablet).dp,
                 ),
                 display = OudsSizes.MaxWidth.Type.Display(
-                    small = getTokenValue(maxWidthTypeDisplaySmallMobile, maxWidthTypeDisplaySmallTablet).dp,
-                    medium = getTokenValue(maxWidthTypeDisplayMediumMobile, maxWidthTypeDisplayMediumTablet).dp,
-                    large = getTokenValue(maxWidthTypeDisplayLargeMobile, maxWidthTypeDisplayLargeTablet).dp,
+                    small = getTokenValue(maxWidthDisplaySmallMobile, maxWidthDisplaySmallTablet).dp,
+                    medium = getTokenValue(maxWidthDisplayMediumMobile, maxWidthDisplayMediumTablet).dp,
+                    large = getTokenValue(maxWidthDisplayLargeMobile, maxWidthDisplayLargeTablet).dp,
                 ),
                 heading = OudsSizes.MaxWidth.Type.Heading(
-                    small = getTokenValue(maxWidthTypeHeadingSmallMobile, maxWidthTypeHeadingSmallTablet).dp,
-                    medium = getTokenValue(maxWidthTypeHeadingMediumMobile, maxWidthTypeHeadingMediumTablet).dp,
-                    large = getTokenValue(maxWidthTypeHeadingLargeMobile, maxWidthTypeHeadingLargeTablet).dp,
-                    extraLarge = getTokenValue(maxWidthTypeHeadingXlargeMobile, maxWidthTypeHeadingXlargeTablet).dp,
+                    small = getTokenValue(maxWidthHeadingSmallMobile, maxWidthHeadingSmallTablet).dp,
+                    medium = getTokenValue(maxWidthHeadingMediumMobile, maxWidthHeadingMediumTablet).dp,
+                    large = getTokenValue(maxWidthHeadingLargeMobile, maxWidthHeadingLargeTablet).dp,
+                    extraLarge = getTokenValue(maxWidthHeadingXlargeMobile, maxWidthHeadingXlargeTablet).dp,
                 ),
                 label = OudsSizes.MaxWidth.Type.Label(
-                    small = getTokenValue(maxWidthTypeLabelSmallMobile, maxWidthTypeLabelSmallTablet).dp,
-                    medium = getTokenValue(maxWidthTypeLabelMediumMobile, maxWidthTypeLabelMediumTablet).dp,
-                    large = getTokenValue(maxWidthTypeLabelLargeMobile, maxWidthTypeLabelLargeTablet).dp,
-                    extraLarge = getTokenValue(maxWidthTypeLabelXlargeMobile, maxWidthTypeLabelXlargeTablet).dp,
+                    small = getTokenValue(maxWidthLabelSmallMobile, maxWidthLabelSmallTablet).dp,
+                    medium = getTokenValue(maxWidthLabelMediumMobile, maxWidthLabelMediumTablet).dp,
+                    large = getTokenValue(maxWidthLabelLargeMobile, maxWidthLabelLargeTablet).dp,
+                    extraLarge = getTokenValue(maxWidthLabelXlargeMobile, maxWidthLabelXlargeTablet).dp,
                 )
             )
         ),
@@ -549,6 +646,7 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithBody): Dp {
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel): Dp {
     return with(icon.withLabel) {
         when (token) {
+            OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeExtraSmall -> extraLarge.sizeExtraSmall
             OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeSmall -> extraLarge.sizeSmall
             OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeMedium -> extraLarge.sizeMedium
             OudsSizeKeyToken.Icon.WithLabel.ExtraLarge.SizeLarge -> extraLarge.sizeLarge
@@ -571,22 +669,22 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.Icon.WithLabel): Dp {
 
 @Stable
 private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
-    return with(maxWidth.type) {
+    return with(maxWidth) {
         when (token) {
-            OudsSizeKeyToken.MaxWidth.Type.Body.Small -> body.small
-            OudsSizeKeyToken.MaxWidth.Type.Body.Medium -> body.medium
-            OudsSizeKeyToken.MaxWidth.Type.Body.Large -> body.large
-            OudsSizeKeyToken.MaxWidth.Type.Display.Small -> display.small
-            OudsSizeKeyToken.MaxWidth.Type.Display.Medium -> display.medium
-            OudsSizeKeyToken.MaxWidth.Type.Display.Large -> display.large
-            OudsSizeKeyToken.MaxWidth.Type.Heading.Small -> heading.small
-            OudsSizeKeyToken.MaxWidth.Type.Heading.Medium -> heading.medium
-            OudsSizeKeyToken.MaxWidth.Type.Heading.Large -> heading.large
-            OudsSizeKeyToken.MaxWidth.Type.Heading.ExtraLarge -> heading.extraLarge
-            OudsSizeKeyToken.MaxWidth.Type.Label.ExtraLarge -> label.extraLarge
-            OudsSizeKeyToken.MaxWidth.Type.Label.Large -> label.large
-            OudsSizeKeyToken.MaxWidth.Type.Label.Medium -> label.medium
-            OudsSizeKeyToken.MaxWidth.Type.Label.Small -> label.small
+            OudsSizeKeyToken.MaxWidth.Body.Small -> body.small
+            OudsSizeKeyToken.MaxWidth.Body.Medium -> body.medium
+            OudsSizeKeyToken.MaxWidth.Body.Large -> body.large
+            OudsSizeKeyToken.MaxWidth.Display.Small -> display.small
+            OudsSizeKeyToken.MaxWidth.Display.Medium -> display.medium
+            OudsSizeKeyToken.MaxWidth.Display.Large -> display.large
+            OudsSizeKeyToken.MaxWidth.Heading.Small -> heading.small
+            OudsSizeKeyToken.MaxWidth.Heading.Medium -> heading.medium
+            OudsSizeKeyToken.MaxWidth.Heading.Large -> heading.large
+            OudsSizeKeyToken.MaxWidth.Heading.ExtraLarge -> heading.extraLarge
+            OudsSizeKeyToken.MaxWidth.Label.ExtraLarge -> label.extraLarge
+            OudsSizeKeyToken.MaxWidth.Label.Large -> label.large
+            OudsSizeKeyToken.MaxWidth.Label.Medium -> label.medium
+            OudsSizeKeyToken.MaxWidth.Label.Small -> label.small
         }
     }
 }

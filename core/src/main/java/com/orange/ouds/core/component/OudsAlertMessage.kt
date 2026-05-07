@@ -70,6 +70,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-alert-message)
  *
+ * > Design name: Alert Message
+ *
  * > Design version: 1.1.0
  *
  * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
@@ -146,14 +148,14 @@ fun OudsAlertMessage(
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
                     Text(
-                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.large),
+                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
                         text = label,
                         color = status.contentColor,
                         style = OudsTheme.typography.label.moderate.large
                     )
                     description?.let {
                         Text(
-                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium),
                             text = description,
                             color = status.contentColor,
                             style = OudsTheme.typography.label.default.medium
@@ -388,7 +390,7 @@ private fun OudsAlertMessageBulletListItem(label: String, color: Color) {
             modifier = Modifier
                 .fillMaxHeight()
                 .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                .widthIn(max = OudsTheme.sizes.maxWidth.type.label.medium),
+                .widthIn(max = OudsTheme.sizes.maxWidth.label.medium),
             text = label,
             style = OudsTheme.typography.label.default.medium,
             color = color

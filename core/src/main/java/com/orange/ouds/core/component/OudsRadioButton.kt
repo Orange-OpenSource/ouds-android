@@ -68,6 +68,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-radio-button)
  *
+ * > Design name: Radio Button
+ *
  * > Design version: 1.4.0
  *
  * @see [OudsRadioButtonItem] If you want to use a radio button with an associated label and other optional elements.
@@ -85,6 +87,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
  */
+@Suppress("DEPRECATION")
 @Composable
 fun OudsRadioButton(
     selected: Boolean,
@@ -154,12 +157,11 @@ fun OudsRadioButton(
 
 @Composable
 internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean, error: Boolean) {
-    val radioButtonTokens = OudsTheme.componentsTokens.radioButton
     val shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
 
     Box(
         modifier = Modifier
-            .size(radioButtonTokens.sizeIndicator.value)
+            .size(OudsTheme.componentsTokens.controlItem.sizeControlIndicator.value)
             .clip(shape)
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
@@ -231,6 +233,7 @@ private fun selectionColor(state: OudsControlState, error: Boolean): Color {
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {

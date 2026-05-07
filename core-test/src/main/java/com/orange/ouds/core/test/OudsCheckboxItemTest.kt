@@ -39,7 +39,8 @@ internal class OudsCheckboxItemTest {
     class HighContrastModeEnabled(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.CheckboxItem.HighContrastModeEnabled,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.CheckboxItem.HighContrastModeEnabled.PreviewHeightDp
     ) {
 
         companion object {

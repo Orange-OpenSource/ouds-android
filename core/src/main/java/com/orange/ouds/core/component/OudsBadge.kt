@@ -81,6 +81,8 @@ import kotlin.enums.enumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge)
  *
+ * > Design name: Badge
+ *
  * > Design version: 1.2.0
  *
  * @param modifier The [Modifier] to be applied to this badge.
@@ -122,6 +124,8 @@ fun OudsBadge(
  * such as text or an icon.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge-count)
+ *
+ * > Design name: Badge Count
  *
  * > Design version: 1.2.0
  *
@@ -171,7 +175,9 @@ fun OudsBadge(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge-icon)
  *
- * > Design version: 1.2.0
+ * > Design name: Badge Icon
+ *
+ * > Design version: 1.3.0
  *
  * @param modifier The [Modifier] to be applied to this badge.
  * @param enabled Controls the enabled appearance of the badge.
@@ -325,7 +331,7 @@ private fun contentPadding(size: OudsBadgeSize, count: Int?, icon: OudsBadgeIcon
         when {
             count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
             count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
-            icon != null && size in OudsBadgeSize.iconEntries -> PaddingValues(all = spaceInset.dp * scale)
+            icon != null && size in OudsBadgeSize.iconEntries -> PaddingValues(all = spaceInsetMediumLarge.dp * scale)
             else -> PaddingValues(all = 0.dp)
         }
     }

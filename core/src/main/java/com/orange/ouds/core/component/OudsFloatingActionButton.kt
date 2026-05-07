@@ -73,6 +73,10 @@ import kotlin.enums.enumEntries
  * FAB typically contains an icon, for a FAB with text and an icon, see
  * [OudsExtendedFloatingActionButton].
  *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
@@ -121,6 +125,10 @@ fun OudsFloatingActionButton(
  *
  * FAB typically contains an icon, for a FAB with text and an icon, see
  * [OudsExtendedFloatingActionButton].
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
  *
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
@@ -171,6 +179,10 @@ fun OudsSmallFloatingActionButton(
  * FAB typically contains an icon, for a FAB with text and an icon, see
  * [OudsExtendedFloatingActionButton].
  *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
  * @param icon Icon for this FAB.
  * @param onClick Called when this FAB is clicked.
  * @param modifier The [Modifier] to be applied to this FAB.
@@ -219,6 +231,10 @@ fun OudsLargeFloatingActionButton(
  * label and larger target area.
  *
  * The other extended floating action button overload supports a text label and icon.
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
  *
  * @param label Label displayed inside this FAB.
  * @param onClick Called when this FAB is clicked.
@@ -271,6 +287,10 @@ fun OudsExtendedFloatingActionButton(
  *
  * Default content description for accessibility is extended from the extended fabs icon. For custom
  * behavior, you can provide your own via [Modifier.semantics].
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
  *
  * @param label Label displayed inside this FAB.
  * @param icon Icon for this FAB.
