@@ -274,7 +274,6 @@ private fun OudsBadge(
                 modifier = Modifier.fillMaxSize(),
                 extraParameters = OudsBadgeIcon.ExtraParameters(
                     enabled = enabled,
-                    tint = iconColor(status = withIconStatus.toBadgeStatus(), enabled = enabled),
                     status = withIconStatus
                 )
             )
@@ -405,7 +404,6 @@ open class OudsBadgeIcon internal constructor(
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val enabled: Boolean,
-        internal val tint: Color,
         internal val status: OudsIconBadgeStatus
     ) : OudsComponentContent.ExtraParameters()
 
@@ -439,7 +437,8 @@ open class OudsBadgeIcon internal constructor(
 
     override val tint: Color?
         @Composable
-        get() = extraParameters.tint
+        get() = iconColor(status = extraParameters.status.toBadgeStatus(), enabled = extraParameters.enabled)
+
 }
 
 /**
