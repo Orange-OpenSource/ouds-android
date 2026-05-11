@@ -54,7 +54,7 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         @Composable
         get() = null
 
-    protected open val enabled: Boolean?
+    internal open val enabled: Boolean?
         @Composable
         get() = null
 

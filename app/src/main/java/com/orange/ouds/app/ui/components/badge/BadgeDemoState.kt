@@ -91,9 +91,9 @@ class BadgeDemoState(
 
     val enabledSizes: List<OudsBadgeSize>
         get() = when (type) {
-            Type.Standard -> OudsBadgeSize.entries
-            Type.Count,
-            Type.Icon -> listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large)
+            Type.Standard,
+            Type.Icon -> OudsBadgeSize.entries
+            Type.Count -> listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large)
         }
 
     var status: OudsBadgeStatus by mutableStateOf(status)
