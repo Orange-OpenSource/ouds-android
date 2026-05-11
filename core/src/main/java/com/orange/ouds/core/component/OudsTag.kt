@@ -140,51 +140,45 @@ fun OudsTag(
         expression = !isForbidden,
         exceptionMessage = { "A disabled OudsTag cannot have a loader. This is not allowed." }
     ) {
-        // This outer box is necessary otherwise the user can change the size of the tag through the modifier
-        Box(
-            modifier = modifier,
-            contentAlignment = Alignment.Center
+        Row(
+            modifier = modifier
+                .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
+                .clip(shape = tagShape)
+                .background(backgroundColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled))
+                .semantics(mergeDescendants = true) {
+                    this.stateDescription = stateDescription
+                }
+                .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size)),
         ) {
-            Row(
-                modifier = Modifier
-                    .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
-                    .clip(shape = tagShape)
-                    .background(backgroundColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled))
-                    .semantics(mergeDescendants = true) {
-                        this.stateDescription = stateDescription
-                    }
-                    .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size)),
-            ) {
-                if (hasAsset) {
-                    Box {
-                        if (hasLoader) {
-                            ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
-                        } else {
-                            val isBulletAsset = status.asset is OudsTagAsset.Bullet
-                            val assetPadding = if (isBulletAsset) bulletPadding(size = size) else iconPadding(size = size)
-                            val scale = LocalConfiguration.current.fontScale
-                            status.asset?.PolymorphicContent(
-                                modifier = Modifier
-                                    .size(assetSize(size) * scale)
-                                    .padding(all = assetPadding),
-                                extraParameters = OudsTagAsset.ExtraParameters(
-                                    tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
-                                    status = status,
-                                    appearance = appearance,
-                                    enabled = enabled
-                                )
+            if (hasAsset) {
+                Box {
+                    if (hasLoader) {
+                        ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
+                    } else {
+                        val isBulletAsset = status.asset is OudsTagAsset.Bullet
+                        val assetPadding = if (isBulletAsset) bulletPadding(size = size) else iconPadding(size = size)
+                        val scale = LocalConfiguration.current.fontScale
+                        status.asset?.PolymorphicContent(
+                            modifier = Modifier
+                                .size(assetSize(size) * scale)
+                                .padding(all = assetPadding),
+                            extraParameters = OudsTagAsset.ExtraParameters(
+                                tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
+                                status = status,
+                                appearance = appearance,
+                                enabled = enabled
                             )
-                        }
+                        )
                     }
                 }
-                Text(
-                    text = label,
-                    color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
-                    style = textStyle(size)
-                )
             }
+            Text(
+                text = label,
+                color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
+                style = textStyle(size)
+            )
         }
     }
 }
