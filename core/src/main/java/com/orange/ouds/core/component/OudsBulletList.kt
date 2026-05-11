@@ -23,10 +23,9 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
@@ -305,7 +304,7 @@ private fun Bullet(
     parentNodes: List<BulletListParentNode>
 ) {
     val scale = LocalConfiguration.current.fontScale
-    val width = when (textStyle.fontSize) {
+    val minWidth = when (textStyle.fontSize) {
         OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.icon.withBody.medium.sizeMedium
         OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.icon.withBody.large.sizeMedium
     }
@@ -316,8 +315,7 @@ private fun Bullet(
             val maxHeight = textStyle.toTextStyle().lineHeight.value.dp
             Box(
                 modifier = Modifier
-                    .width(width * scale)
-                    .heightIn(max = maxHeight * scale)
+                    .sizeIn(minWidth = minWidth * scale, maxHeight = maxHeight * scale)
                     .fillMaxHeight(),
                 contentAlignment = Alignment.CenterEnd
             ) {
@@ -340,7 +338,7 @@ private fun Bullet(
             val level = parentNodes.count()
             Text(
                 modifier = Modifier
-                    .widthIn(width * scale)
+                    .widthIn(minWidth * scale)
                     .clearAndSetSemantics {},
                 text = formatOrderedBulletText(index, level, LocalLayoutDirection.current) + ".",
                 style = textStyle.toTextStyle(),
@@ -357,7 +355,7 @@ private fun Bullet(
 object OudsBulletListDefaults {
 
     /**
-     * Default type of an [OudsBulletList].
+     * Default type of [OudsBulletList].
      */
     val Type = OudsBulletListType.Unordered()
 
@@ -368,7 +366,7 @@ object OudsBulletListDefaults {
 }
 
 /**
- * The type of an [OudsBulletList].
+ * The type of [OudsBulletList].
  */
 sealed class OudsBulletListType {
 
