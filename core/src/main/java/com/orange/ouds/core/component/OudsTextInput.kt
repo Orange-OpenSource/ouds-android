@@ -888,7 +888,7 @@ private fun decorativeContentColor(enabled: Boolean) = if (enabled) OudsTheme.co
 internal fun decorativeContentColor(state: OudsTextInputState) = decorativeContentColor(state != OudsTextInputState.Disabled)
 
 @Composable
-internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
+internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.moderate.large.copy(color = contentColor(state))
 
 @Composable
 internal fun textInputEnabled(state: OudsTextInputState) =
