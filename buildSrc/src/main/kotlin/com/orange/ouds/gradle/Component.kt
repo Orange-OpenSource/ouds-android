@@ -45,7 +45,7 @@ enum class Component {
         get() = with(OudsVersion.Component) {
             when (this@Component) {
                 Component.AlertMessage -> AlertMessage
-                Component.AppBar -> Bar
+                Component.AppBar -> AppBar
                 Component.Badge -> Badge
                 Component.BadgeCount -> BadgeCount
                 Component.BadgeIcon -> BadgeIcon
@@ -59,7 +59,7 @@ enum class Component {
                 Component.InlineAlert -> InlineAlert
                 Component.InputTag -> InputTag
                 Component.Link -> Link
-                Component.NavigationBar -> Bar
+                Component.NavigationBar -> NavigationBar
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton

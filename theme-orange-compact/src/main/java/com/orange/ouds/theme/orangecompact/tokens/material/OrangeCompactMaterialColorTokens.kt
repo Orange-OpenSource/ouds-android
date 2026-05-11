@@ -22,7 +22,7 @@ import com.orange.ouds.tokens.raw.OudsColorRawTokens
 internal data class OrangeCompactMaterialColorTokens(
     override val backgroundDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
     override val backgroundLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
-    override val errorContainerDark: Color = OudsColorRawTokens.ColorFunctionalScarlet900,
+    override val errorContainerDark: Color = Color.Unspecified,
     override val errorContainerLight: Color = OudsColorRawTokens.ColorFunctionalScarlet100,
     override val errorDark: Color = OudsColorRawTokens.ColorFunctionalScarlet300,
     override val errorLight: Color = OudsColorRawTokens.ColorFunctionalScarlet600,

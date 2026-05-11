@@ -72,7 +72,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Alert Message
  *
- * > Design version: 1.1.0
+ * > Design version: 1.1.1
  *
  * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
  * @param modifier [Modifier] applied to the alert message.
