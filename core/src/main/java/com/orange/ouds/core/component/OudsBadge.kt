@@ -298,7 +298,7 @@ private fun size(size: OudsBadgeSize): Dp {
 private fun backgroundColor(status: OudsBadgeStatus, withIconStatus: OudsIconBadgeStatus?, enabled: Boolean): Color {
     // Do not display any background for functional statuses icon badges that use tinted full size icons
     return when {
-        withIconStatus?.toBadgeStatus() in OudsBadgeStatus.functionalStatuses -> Color.Transparent
+        withIconStatus?.toBadgeStatus() in OudsBadgeStatus.FunctionalStatuses -> Color.Transparent
         !enabled -> OudsTheme.colorScheme.action.disabled
         else -> status.color()
     }
@@ -323,7 +323,7 @@ private fun textColor(status: OudsBadgeStatus, enabled: Boolean): Color {
 @Composable
 private fun iconColor(status: OudsBadgeStatus, enabled: Boolean): Color {
     return if (!enabled) {
-        if (status in OudsBadgeStatus.functionalStatuses) {
+        if (status in OudsBadgeStatus.FunctionalStatuses) {
             OudsTheme.colorScheme.action.disabled
         } else {
             OudsTheme.colorScheme.content.onAction.disabled
@@ -480,7 +480,7 @@ enum class OudsBadgeStatus {
     Negative;
 
     internal companion object {
-        val functionalStatuses = listOf(Positive, Info, Warning, Negative)
+        val FunctionalStatuses = listOf(Positive, Info, Warning, Negative)
     }
 
     /**
