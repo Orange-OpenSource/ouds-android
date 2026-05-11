@@ -172,7 +172,7 @@ internal fun OudsChip(
                 Text(
                     text = label,
                     color = contentColor.value,
-                    style = OudsTheme.typography.label.strong.medium
+                    style = OudsTheme.typography.label.moderate.medium
                 )
             }
             if (iconPosition == OudsChipIconPosition.End) {
