@@ -117,23 +117,10 @@ fun OudsInputTag(
         borderColor(state = inputTagState)
     }
 
-    Box(
-        modifier = Modifier.heightIn(min = tagTokens.sizeMinHeightInteractiveArea.value),
-        contentAlignment = Alignment.Center
-    ) {
-        Row(
-            modifier = modifier
-                .widthIn(min = tagTokens.sizeMinWidthDefault.dp)
-                .heightIn(min = tagTokens.sizeMinHeightDefault.dp)
-                .background(color = backgroundColor.value, shape = shape)
-                .run {
-                    borderWidth.value?.let { borderWidth ->
-                        border(width = borderWidth, color = borderColor.value, shape = shape)
-                    }.orElse {
-                        this
-                    }
-                }
-                .outerBorder(state = state, shape = shape)
+    Box(modifier = modifier) {
+        Box(
+            modifier = Modifier
+                .heightIn(min = tagTokens.sizeMinHeightInteractiveArea.value)
                 .clickable(
                     enabled = enabled,
                     interactionSource = interactionSource,
@@ -141,25 +128,41 @@ fun OudsInputTag(
                     onClick = onClick,
                     onClickLabel = stringResource(R.string.core_inputTag_remove_a11y),
                     role = Role.Button
-                )
-                .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
-                .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value),
-            horizontalArrangement = Arrangement.spacedBy(tagTokens.spaceColumnGapDefault.value, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
+                ),
+            contentAlignment = Alignment.CenterStart
         ) {
-            Text(
-                text = label,
-                color = contentColor.value,
-                style = OudsTheme.typography.label.moderate.medium.run {
-                    copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
-                }
-            )
-            Icon(
-                modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),
-                painter = painterResource(id = OudsTheme.drawableResources.component.tag.close),
-                contentDescription = null,
-                tint = contentColor.value
-            )
+            Row(
+                modifier = Modifier
+                    .widthIn(min = tagTokens.sizeMinWidthDefault.dp)
+                    .heightIn(min = tagTokens.sizeMinHeightDefault.dp)
+                    .background(color = backgroundColor.value, shape = shape)
+                    .run {
+                        borderWidth.value?.let { borderWidth ->
+                            border(width = borderWidth, color = borderColor.value, shape = shape)
+                        }.orElse {
+                            this
+                        }
+                    }
+                    .outerBorder(state = state, shape = shape)
+                    .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
+                    .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value),
+                horizontalArrangement = Arrangement.spacedBy(tagTokens.spaceColumnGapDefault.value, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = label,
+                    color = contentColor.value,
+                    style = OudsTheme.typography.label.moderate.medium.run {
+                        copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
+                    }
+                )
+                Icon(
+                    modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),
+                    painter = painterResource(id = OudsTheme.drawableResources.component.tag.close),
+                    contentDescription = null,
+                    tint = contentColor.value
+                )
+            }
         }
     }
 }
