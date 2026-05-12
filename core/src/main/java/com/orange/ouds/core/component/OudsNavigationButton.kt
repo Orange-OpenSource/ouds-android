@@ -12,12 +12,9 @@
 
 package com.orange.ouds.core.component
 
-import android.R.attr.label
 import androidx.annotation.StringRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -248,7 +245,7 @@ internal fun PreviewOudsNavigationButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val content: @Composable () -> Unit = {
-            PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+            PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 if (hasLabel) {
                     OudsNavigationButton(
                         label = layout.name,
