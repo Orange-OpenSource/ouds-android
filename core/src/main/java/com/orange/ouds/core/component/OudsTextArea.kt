@@ -512,7 +512,8 @@ internal fun OudsTextAreaDecorator(
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
                     // Small label on top
-                    if (!label.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
+                    val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
+                    if (!label.isNullOrBlank() && isSmallLabel) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -536,7 +537,7 @@ internal fun OudsTextAreaDecorator(
                                     color = decorativeContentColor(state = state),
                                     overflow = TextOverflow.Ellipsis
                                 )
-                            } else if (!label.isNullOrBlank() && state != OudsTextInputState.Focused) {
+                            } else if (!label.isNullOrBlank() && !isSmallLabel) {
                                 Text(
                                     modifier = Modifier.semantics { hideFromAccessibility() },
                                     text = label,
