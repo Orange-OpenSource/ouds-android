@@ -28,7 +28,7 @@ internal data class OrangeBarTokens(
     override val borderRadiusCurrentIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusCurrentIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val colorBgOpaque: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
-    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(Color(0xccffffff), Color(0xcc141414)),
+    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorOpacityWhite800, OudsColorRawTokens.ColorOpacityGrayDark880800),
     override val colorBorderBadge: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
     override val colorContentSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     override val colorContentSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,

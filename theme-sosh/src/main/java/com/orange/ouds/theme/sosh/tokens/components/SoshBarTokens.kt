@@ -28,7 +28,7 @@ internal data class SoshBarTokens(
     override val borderRadiusCurrentIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderRadiusCurrentIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val colorBgOpaque: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
-    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(Color(0xccffffff), Color(0xcc001524)),
+    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorOpacityWhite800, SoshColorRawTokens.ColorOpacityLochmaraDark960800),
     override val colorBorderBadge: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
     override val colorContentSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Selected,
     override val colorContentSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
