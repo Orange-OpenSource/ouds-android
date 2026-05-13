@@ -552,14 +552,16 @@ internal fun OudsTextAreaDecorator(
 
                 // Trailing elements (error icon or loader)
                 Box(
-                    modifier = Modifier.padding(
-                        horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value,
-                        vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
-                            textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
-                        } else {
-                            textAreaTokens.spacePaddingBlockTrailingContainer.value
-                        }
-                    )
+                    modifier = Modifier
+                        .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidth.value)
+                        .padding(
+                            horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value,
+                            vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
+                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
+                            } else {
+                                textAreaTokens.spacePaddingBlockTrailingContainer.value
+                            }
+                        )
                 ) {
                     val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
