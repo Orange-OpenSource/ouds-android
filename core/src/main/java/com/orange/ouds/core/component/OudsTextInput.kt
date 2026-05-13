@@ -843,26 +843,18 @@ internal fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined:
 
 @Composable
 internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
-    return if (outlined) {
-        if (error) {
-            errorContentColor(state = state)
-        } else {
-            with(OudsTheme.componentsTokens.textInput) {
-                when (state) {
-                    OudsTextInputState.Enabled -> colorBorderEnabled.value
-                    OudsTextInputState.Hovered -> colorBorderHover.value
-                    OudsTextInputState.Focused -> colorBorderFocus.value
-                    OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
-                    OudsTextInputState.Loading -> colorBorderLoading.value
-                    OudsTextInputState.ReadOnly -> Color.Unspecified
-                }
-            }
-        }
+    return if (error) {
+        errorContentColor(state = state)
     } else {
-        if (state == OudsTextInputState.ReadOnly) {
-            OudsTheme.colorScheme.border.muted
-        } else {
-            labelColor(state, error)
+        with(OudsTheme.componentsTokens.textInput) {
+            when (state) {
+                OudsTextInputState.Enabled -> colorBorderEnabled.value
+                OudsTextInputState.Hovered -> colorBorderHover.value
+                OudsTextInputState.Focused -> colorBorderFocus.value
+                OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
+                OudsTextInputState.Loading -> colorBorderLoading.value
+                OudsTextInputState.ReadOnly -> if (outlined) Color.Unspecified else OudsTheme.colorScheme.border.muted
+            }
         }
     }
 }
