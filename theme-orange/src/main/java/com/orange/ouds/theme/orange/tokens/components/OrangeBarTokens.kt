@@ -23,12 +23,13 @@ import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
+import com.orange.ouds.tokens.raw.OudsLightDarkColor(OudsColorRawTokens.ColorOpacityWhite800, OudsColorRawTokens
 
 internal data class OrangeBarTokens(
     override val borderRadiusCurrentIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusCurrentIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val colorBgOpaque: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
-    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(Color(0xccffffff), Color(0xcc141414)),
+    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorOpacityWhite800, OudsColorRawTokens.ColorOpacityGrayDark880800),
     override val colorBorderBadge: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
     override val colorContentSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.Default,
     override val colorContentSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,
