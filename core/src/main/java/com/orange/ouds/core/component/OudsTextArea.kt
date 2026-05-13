@@ -500,7 +500,7 @@ internal fun OudsTextAreaDecorator(
                     .background(color = backgroundColor, shape = textInputShape)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(top = if (value.isEmpty() && state != OudsTextInputState.Focused) textAreaTokens.spacePaddingBlockTopEmpty.value else textAreaTokens.spacePaddingBlock.value)
-                    .padding(bottom = if (value.isEmpty() && state != OudsTextInputState.Focused) OudsTheme.spaces.fixed.none else textAreaTokens.spacePaddingBlock.value)
+                    .padding(bottom = if (value.isEmpty() && state != OudsTextInputState.Focused) 0.dp else textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
                     .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
