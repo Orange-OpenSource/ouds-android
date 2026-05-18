@@ -60,7 +60,7 @@ class NavigationButtonDemoState(
                 }
             },
             restore = { list: List<Any?> ->
-                val baseButtonDemoState = list[1]?.let { BaseButtonDemoState.Saver.restore(it) }
+                val baseButtonDemoState = list[3]?.let { BaseButtonDemoState.Saver.restore(it) }
                 baseButtonDemoState?.run {
                     NavigationButtonDemoState(
                         enabled,
