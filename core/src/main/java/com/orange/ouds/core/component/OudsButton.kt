@@ -670,8 +670,7 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                     bottom = spacePaddingBlock.value
                 )
                 icon != null && label == null -> PaddingValues(
-                    horizontal = spaceInsetIconOnly.value,
-                    vertical = spacePaddingBlock.value
+                    all = spaceInsetIconOnly.value,
                 )
                 else -> PaddingValues(
                     horizontal = spacePaddingInlineIconNone.value,
