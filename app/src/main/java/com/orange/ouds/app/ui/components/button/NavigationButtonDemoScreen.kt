@@ -82,17 +82,11 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
             onCheckedChange = { hasLoader = it },
             enabled = loaderSwitchEnabled
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_iconOnlyLayout_tech),
-            checked = iconOnly,
-            onCheckedChange = { iconOnly = it }
-        )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_tech),
-            value = label,
-            onValueChange = { value -> label = value },
-            enabled = labelTextInputEnabled
+            value = label.orEmpty(),
+            onValueChange = { value -> label = value.ifEmpty { null } }
         )
     }
 }
@@ -101,24 +95,14 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
 private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
     with(state) {
         val loader = if (hasLoader) OudsButtonLoader(null) else null
-        if (iconOnly) {
-            OudsNavigationButton(
-                chevron = chevron,
-                onClick = {},
-                enabled = enabled,
-                loader = loader,
-                appearance = appearance
-            )
-        } else {
-            OudsNavigationButton(
-                label = label,
-                chevron = chevron,
-                onClick = {},
-                enabled = enabled,
-                loader = loader,
-                appearance = appearance
-            )
-        }
+        OudsNavigationButton(
+            label = label,
+            chevron = chevron,
+            onClick = {},
+            enabled = enabled,
+            loader = loader,
+            appearance = appearance
+        )
     }
 }
 
@@ -126,9 +110,7 @@ private fun Code.Builder.navigationButtonDemoCodeSnippet(state: NavigationButton
     with(state) {
         coloredBoxCall(onColoredBox) {
             functionCall("OudsNavigationButton") {
-                if (!iconOnly) {
-                    labelArgument(label)
-                }
+                label?.let { labelArgument(label) }
                 typedArgument("chevron", chevron)
                 onClickArgument()
                 if (!enabled) enabledArgument(enabled)

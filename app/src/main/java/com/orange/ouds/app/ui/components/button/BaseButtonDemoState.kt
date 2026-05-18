@@ -12,13 +12,13 @@
 
 package com.orange.ouds.app.ui.components.button
 
+import android.R.attr.label
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 
 open class BaseButtonDemoState(
-    label: String,
     enabled: Boolean,
     onColoredBox: Boolean,
     hasLoader: Boolean
@@ -28,7 +28,6 @@ open class BaseButtonDemoState(
             save = { state ->
                 with(state) {
                     listOf(
-                        label,
                         enabled,
                         onColoredBox,
                         hasLoader
@@ -37,16 +36,13 @@ open class BaseButtonDemoState(
             },
             restore = { list: List<Any?> ->
                 BaseButtonDemoState(
-                    list[0] as String,
+                    list[0] as Boolean,
                     list[1] as Boolean,
-                    list[2] as Boolean,
-                    list[3] as Boolean
+                    list[2] as Boolean
                 )
             }
         )
     }
-
-    var label: String by mutableStateOf(label)
 
     var enabled: Boolean by mutableStateOf(enabled)
 

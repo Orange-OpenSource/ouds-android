@@ -12,15 +12,12 @@
 
 package com.orange.ouds.core.component
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ouds.core.R
 import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -33,9 +30,6 @@ import com.orange.ouds.theme.OudsThemeContract
  * Navigation button is a UI element that allows to move between different pages within a multipage interface.
  * Navigation button is typically arrange in sequence to indicate the user's current position and provide controls to access previous, next, or specific pages.
  *
- * This version of the navigation button allows to display a label.
- * Another API is available for this component if you only need a navigation chevron icon.
- *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  *
  * Rounded corners can be enabled or disabled using the [com.orange.ouds.theme.OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
@@ -47,11 +41,11 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design version: 3.2.1
  *
- * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
- *   or in contexts where clarity is critical.
  * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
+ * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
+ *   or in contexts where clarity is critical.
  * @param enabled Controls the enabled state of the button when there is no [loader].
  *   When `false`, this button will not be clickable.
  *   Has no effect if [loader] is provided.
@@ -62,13 +56,14 @@ import com.orange.ouds.theme.OudsThemeContract
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonTextAndIconSample
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonIconOnlySample
  */
 @Composable
 fun OudsNavigationButton(
-    label: String,
     chevron: OudsNavigationButtonChevron,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    label: String? = null,
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
@@ -90,78 +85,6 @@ fun OudsNavigationButton(
         onClick = onClick,
         modifier = modifier,
         component = OudsButtonComponent.NavigationButton(chevron),
-        enabled = enabled,
-        loader = loader,
-        appearance = appearance.toButtonAppearance(),
-        interactionSource = interactionSource
-    )
-}
-
-/**
- * Navigation button is a UI element that allows to move between different pages within a multipage interface.
- * Navigation button is typically arrange in sequence to indicate the user's current position and provide controls to access previous, next, or specific pages.
- *
- * This version of the navigation button only displays navigation chevron icon.
- * Another API is available for this component if you need to also display a label in the navigation button.
- *
- * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- *
- * Rounded corners can be enabled or disabled using the [com.orange.ouds.theme.OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
- * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
- *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-button)
- *
- * > Design name: Navigation Button
- *
- * > Design version: 3.2.1
- *
- * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
- * @param onClick Callback invoked when the button is clicked.
- * @param modifier [Modifier] applied to the button.
- * @param enabled Controls the enabled state of the button when there is no [loader].
- *   When `false`, this button will not be clickable.
- *   Has no effect if [loader] is provided.
- * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
- * @param appearance Appearance of the button among [OudsNavigationButtonAppearance] values.
- *   A button with [OudsNavigationButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
- * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting interactions for this button. Note that if `null`
- *   is provided, interactions will still happen internally.
- *
- * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonIconOnlySample
- */
-@Composable
-fun OudsNavigationButton(
-    chevron: OudsNavigationButtonChevron,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
-    appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
-) {
-    val drawableResources = LocalDrawableResources.current
-
-    val iconResource: Int
-    @StringRes val iconContentDescriptionResId: Int
-    when (chevron) {
-        OudsNavigationButtonChevron.Next -> {
-            iconResource = drawableResources.component.button.next
-            iconContentDescriptionResId = R.string.core_navigationButton_next_a11y
-        }
-        OudsNavigationButtonChevron.Previous -> {
-            iconResource = drawableResources.component.button.previous
-            iconContentDescriptionResId = R.string.core_navigationButton_previous_a11y
-        }
-    }
-
-    OudsButton(
-        nullableIcon = OudsButtonIcon(
-            painter = painterResource(iconResource),
-            contentDescription = stringResource(iconContentDescriptionResId)
-        ),
-        nullableLabel = null,
-        onClick = onClick,
-        modifier = modifier,
         enabled = enabled,
         loader = loader,
         appearance = appearance.toButtonAppearance(),

@@ -43,7 +43,7 @@ class ButtonDemoState(
     hasLoader: Boolean,
     appearance: OudsButtonAppearance,
     layout: Layout
-) : BaseButtonDemoState(label, enabled, onColoredBox, hasLoader) {
+) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
 
     companion object {
 
@@ -54,6 +54,7 @@ class ButtonDemoState(
             save = { state ->
                 with(state) {
                     listOf(
+                        label,
                         appearance,
                         layout,
                         with(BaseButtonDemoState.Saver) { save(state) }
@@ -64,17 +65,19 @@ class ButtonDemoState(
                 val baseButtonDemoState = list[1]?.let { BaseButtonDemoState.Saver.restore(it) }
                 baseButtonDemoState?.run {
                     ButtonDemoState(
-                        label,
+                        list[0] as String,
                         enabled,
                         onColoredBox,
                         hasLoader,
-                        list[0] as OudsButtonAppearance,
-                        list[1] as Layout
+                        list[1] as OudsButtonAppearance,
+                        list[2] as Layout
                     )
                 }
             }
         )
     }
+
+    var label: String by mutableStateOf(label)
 
     var layout: Layout by mutableStateOf(layout)
 
