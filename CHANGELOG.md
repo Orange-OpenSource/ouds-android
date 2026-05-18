@@ -5,6 +5,35 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.4.0...1.5.0) (2026-05-18)
+
+### Features
+
+- **text-input** update to component design version 1.4 ([#1285](https://github.com/Orange-OpenSource/ouds-android/issues/1285))
+- **text-area** update to component design version 1.2 ([#1299](https://github.com/Orange-OpenSource/ouds-android/issues/1299))
+- **password-input** update to component design version 1.3 ([#1284](https://github.com/Orange-OpenSource/ouds-android/issues/1284))
+- **pin-code-input** update to component design version 1.3 ([#1281](https://github.com/Orange-OpenSource/ouds-android/issues/1281))
+- **input-tag** update to component design version 1.2 ([#1276](https://github.com/Orange-OpenSource/ouds-android/issues/1276))
+- **tag** update to component design version 1.5 ([#1275](https://github.com/Orange-OpenSource/ouds-android/issues/1275))
+- **icon-badge** update to component design version 1.3 ([#1274](https://github.com/Orange-OpenSource/ouds-android/issues/1274))
+- **filter-chip** **suggestion-chip** update to component design version 1.4 ([#1268](https://github.com/Orange-OpenSource/ouds-android/issues/1268))
+- **bullet-list** update to component design version 1.1 ([#1283](https://github.com/Orange-OpenSource/ouds-android/issues/1283))
+
+### Bug Fixes
+
+- **deps** update dependency com.google.android.material:material to v1.14.0 ([#1306](https://github.com/Orange-OpenSource/ouds-android/issues/1306))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.47.0 ([#1294](https://github.com/Orange-OpenSource/ouds-android/issues/1294))
+- **deps** update dependency androidx.compose:compose-bom to v2026.05.00 ([#1293](https://github.com/Orange-OpenSource/ouds-android/issues/1293))
+- **deps** update gradle to v9.2.1 ([#1292](https://github.com/Orange-OpenSource/ouds-android/issues/1292))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.13.0 ([#1296](https://github.com/Orange-OpenSource/ouds-android/issues/1296))
+- **deps** update dependency androidx.compose:compose-bom to v2026.04.01 ([#1258](https://github.com/Orange-OpenSource/ouds-android/issues/1258))
+- **deps** update grpc-java monorepo to v1.81.0 ([#1265](https://github.com/Orange-OpenSource/ouds-android/issues/1265))
+- **deps** update gradle to v9.2.0 ([#1253](https://github.com/Orange-OpenSource/ouds-android/issues/1253))
+- **deps** update kotlin monorepo to v2.3.21 ([#1255](https://github.com/Orange-OpenSource/ouds-android/issues/1255))
+- **deps** update dependency androidx.navigation:navigation-compose to v2.9.8 ([#1256](https://github.com/Orange-OpenSource/ouds-android/issues/1256))
+- **deps** update gradle to v9.1.1 ([#1225](https://github.com/Orange-OpenSource/ouds-android/issues/1225))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.46.0 ([#1226](https://github.com/Orange-OpenSource/ouds-android/issues/1226))
+
 ## [1.4.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.3.0...1.4.0) (2026-04-16)
 
 ### Features
