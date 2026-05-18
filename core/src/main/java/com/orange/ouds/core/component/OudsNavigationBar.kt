@@ -115,6 +115,8 @@ val OudsNavigationBarHeight = 80.dp
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
  *
+ * > Design name: Navigation Bar
+ *
  * > Design version: 1.0.0
  *
  * @param items List of [OudsNavigationBarItem] to display in the navigation bar.
@@ -185,6 +187,8 @@ fun OudsNavigationBar(
  *  - **On compact screens** (width < 600dp): The icon is positioned on top of the label.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
+ *
+ * > Design name: Navigation Bar
  *
  * > Design version: 1.0.0
  *
@@ -279,25 +283,25 @@ data class OudsNavigationBarItem(
 private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Boolean, iconPosition: NavigationItemIconPosition): Modifier {
     with(OudsTheme.componentsTokens.bar) {
         val indicatorColor = topIndicatorColor(state = state)
-        val indicatorBottomCornersRadius = borderRadiusActiveIndicatorCustomTop.value
-        val opacityActiveIndicatorCustomValue = opacityActiveIndicatorCustom.value
+        val indicatorBottomCornersRadius = borderRadiusCurrentIndicatorCustomTop.value
+        val opacityCurrentIndicatorCustomValue = opacityCurrentIndicatorCustom.value
 
         val indicatorWidthScale by animateFloatAsState(
             targetValue = if (selected || state == OudsNavigationBarItemState.Hovered) 1.0f else 0.0f,
             animationSpec = tween(200)
         )
 
-        return if (indicatorWidthScale == 0f || opacityActiveIndicatorCustomValue == 0f) {
+        return if (indicatorWidthScale == 0f || opacityCurrentIndicatorCustomValue == 0f) {
             this@indicator
         } else {
             drawWithContent {
-                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityActiveIndicatorCustomValue)
-                val indicatorHeight = sizeHeightActiveIndicatorCustom.dp.toPx()
+                val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityCurrentIndicatorCustomValue)
+                val indicatorHeight = sizeHeightCurrentIndicatorCustom.dp.toPx()
                 val indicatorFullWidth: Float
                 val indicatorCenterX: Float
                 when (iconPosition) {
                     NavigationItemIconPosition.Top -> {
-                        indicatorFullWidth = sizeWidthActiveIndicatorCustomTop.dp.toPx()
+                        indicatorFullWidth = sizeWidthCurrentIndicatorCustomTop.dp.toPx()
                         indicatorCenterX = size.width / 2
                     }
                     else -> {
@@ -366,10 +370,10 @@ private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): 
 private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
     return with(OudsTheme.componentsTokens.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> if (selected) colorActiveIndicatorAndroidSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Hovered -> if (selected) colorActiveIndicatorAndroidSelectedHover.value else colorActiveIndicatorAndroidUnselectedHover.value
-            OudsNavigationBarItemState.Pressed -> if (selected) colorActiveIndicatorAndroidSelectedPressed.value else colorActiveIndicatorAndroidUnselectedPressed.value
-            OudsNavigationBarItemState.Focused -> if (selected) colorActiveIndicatorAndroidSelectedFocus.value else colorActiveIndicatorAndroidUnselectedFocus.value
+            OudsNavigationBarItemState.Enabled -> if (selected) colorCurrentIndicatorAndroidSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Hovered -> if (selected) colorCurrentIndicatorAndroidSelectedHover.value else colorCurrentIndicatorAndroidUnselectedHover.value
+            OudsNavigationBarItemState.Pressed -> if (selected) colorCurrentIndicatorAndroidSelectedPressed.value else colorCurrentIndicatorAndroidUnselectedPressed.value
+            OudsNavigationBarItemState.Focused -> if (selected) colorCurrentIndicatorAndroidSelectedFocus.value else colorCurrentIndicatorAndroidUnselectedFocus.value
         }
     }
 }
@@ -378,10 +382,10 @@ private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: 
 private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
     return with(OudsTheme.componentsTokens.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> colorActiveIndicatorCustomSelectedEnabled.value
-            OudsNavigationBarItemState.Hovered -> colorActiveIndicatorCustomSelectedHover.value
-            OudsNavigationBarItemState.Pressed -> colorActiveIndicatorCustomSelectedPressed.value
-            OudsNavigationBarItemState.Focused -> colorActiveIndicatorCustomSelectedFocus.value
+            OudsNavigationBarItemState.Enabled -> colorCurrentIndicatorCustomSelectedEnabled.value
+            OudsNavigationBarItemState.Hovered -> colorCurrentIndicatorCustomSelectedHover.value
+            OudsNavigationBarItemState.Pressed -> colorCurrentIndicatorCustomSelectedPressed.value
+            OudsNavigationBarItemState.Focused -> colorCurrentIndicatorCustomSelectedFocus.value
         }
     }
 }

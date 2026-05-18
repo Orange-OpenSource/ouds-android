@@ -51,6 +51,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
@@ -80,6 +81,8 @@ import kotlin.enums.enumEntries
  * such as text or an icon.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge)
+ *
+ * > Design name: Badge
  *
  * > Design version: 1.2.0
  *
@@ -122,6 +125,8 @@ fun OudsBadge(
  * such as text or an icon.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge-count)
+ *
+ * > Design name: Badge Count
  *
  * > Design version: 1.2.0
  *
@@ -171,7 +176,9 @@ fun OudsBadge(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-badge-icon)
  *
- * > Design version: 1.2.0
+ * > Design name: Badge Icon
+ *
+ * > Design version: 1.3.0
  *
  * @param modifier The [Modifier] to be applied to this badge.
  * @param enabled Controls the enabled appearance of the badge.
@@ -239,7 +246,7 @@ private fun OudsBadge(
         Box(
             modifier = Modifier
                 .clip(shape = OudsBadgeShape)
-                .background(backgroundColor(status = status, enabled = enabled))
+                .background(backgroundColor(status = status, withIconStatus = withIconStatus, enabled = enabled))
                 .run {
                     if (count != null && size in OudsBadgeSize.countEntries) {
                         sizeIn(minWidth = sizeDp, minHeight = sizeDp)
@@ -247,29 +254,29 @@ private fun OudsBadge(
                         size(sizeDp)
                     }
                 }
-                .padding(paddingValues = contentPadding(size = size, count = count, icon = withIconStatus?.icon, scale = scale)),
+                .padding(paddingValues = contentPadding(size = size, count = count, withIconStatus = withIconStatus, scale = scale)),
             contentAlignment = Alignment.Center
         ) {
-            val contentColor = contentColor(status = status, enabled = enabled)
             if (size in OudsBadgeSize.countEntries && text != null) {
                 val textStyle = textStyle(size = size)
                 if (textStyle != null) {
                     Text(
                         modifier = Modifier.clearAndSetSemantics {},
                         text = text,
-                        color = contentColor,
+                        color = textColor(status = status, enabled = enabled),
                         style = textStyle,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
             }
-            if (size in OudsBadgeSize.iconEntries) {
-                withIconStatus?.icon?.Content(
-                    modifier = Modifier.fillMaxSize(),
-                    extraParameters = OudsBadgeIcon.ExtraParameters(tint = contentColor, status = withIconStatus)
+            withIconStatus?.icon?.Content(
+                modifier = Modifier.fillMaxSize(),
+                extraParameters = OudsBadgeIcon.ExtraParameters(
+                    enabled = enabled,
+                    status = withIconStatus
                 )
-            }
+            )
         }
     }
 }
@@ -287,12 +294,17 @@ private fun size(size: OudsBadgeSize): Dp {
 }
 
 @Composable
-private fun backgroundColor(status: OudsBadgeStatus, enabled: Boolean): Color {
-    return if (!enabled) OudsTheme.colorScheme.action.disabled else status.color()
+private fun backgroundColor(status: OudsBadgeStatus, withIconStatus: OudsIconBadgeStatus?, enabled: Boolean): Color {
+    // Do not display any background for functional statuses icon badges that use tinted full size icons
+    return when {
+        withIconStatus?.toBadgeStatus() in OudsBadgeStatus.FunctionalStatuses -> Color.Transparent
+        !enabled -> OudsTheme.colorScheme.action.disabled
+        else -> status.color()
+    }
 }
 
 @Composable
-private fun contentColor(status: OudsBadgeStatus, enabled: Boolean): Color {
+private fun textColor(status: OudsBadgeStatus, enabled: Boolean): Color {
     return if (!enabled) {
         OudsTheme.colorScheme.content.onAction.disabled
     } else {
@@ -303,6 +315,26 @@ private fun contentColor(status: OudsBadgeStatus, enabled: Boolean): Color {
             OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.onStatus.info.emphasized
             OudsBadgeStatus.Warning -> OudsTheme.colorScheme.content.onStatus.warning.emphasized
             OudsBadgeStatus.Negative -> OudsTheme.colorScheme.content.onStatus.negative.emphasized
+        }
+    }
+}
+
+@Composable
+private fun iconColor(status: OudsBadgeStatus, enabled: Boolean): Color {
+    return if (!enabled) {
+        if (status in OudsBadgeStatus.FunctionalStatuses) {
+            OudsTheme.colorScheme.action.disabled
+        } else {
+            OudsTheme.colorScheme.content.onAction.disabled
+        }
+    } else {
+        when (status) {
+            OudsBadgeStatus.Neutral -> OudsTheme.colorScheme.content.inverse
+            OudsBadgeStatus.Accent -> OudsTheme.colorScheme.content.onStatus.accent.emphasized
+            OudsBadgeStatus.Positive -> OudsTheme.colorScheme.content.status.positive
+            OudsBadgeStatus.Info -> OudsTheme.colorScheme.content.status.info
+            OudsBadgeStatus.Warning -> Color.Unspecified // Case of two colors icon. Colors are managed by the `LayeredTintedPainter`.
+            OudsBadgeStatus.Negative -> OudsTheme.colorScheme.content.status.negative
         }
     }
 }
@@ -320,12 +352,16 @@ private fun textStyle(size: OudsBadgeSize): TextStyle? {
 }
 
 @Composable
-private fun contentPadding(size: OudsBadgeSize, count: Int?, icon: OudsBadgeIcon?, scale: Float): PaddingValues {
+private fun contentPadding(size: OudsBadgeSize, count: Int?, withIconStatus: OudsIconBadgeStatus?, scale: Float): PaddingValues {
+    val hasStatusWithCustomIcon = withIconStatus?.toBadgeStatus() in listOf(OudsBadgeStatus.Neutral, OudsBadgeStatus.Accent)
+            && withIconStatus?.icon != null
     return with(OudsTheme.componentsTokens.badge) {
         when {
             count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
             count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
-            icon != null && size in OudsBadgeSize.iconEntries -> PaddingValues(all = spaceInset.dp * scale)
+            hasStatusWithCustomIcon && size == OudsBadgeSize.ExtraSmall -> PaddingValues(all = spaceInsetXsmall.dp * scale)
+            hasStatusWithCustomIcon && size == OudsBadgeSize.Small -> PaddingValues(all = spaceInsetSmall.dp * scale)
+            hasStatusWithCustomIcon && size in listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large) -> PaddingValues(all = spaceInsetMediumLarge.dp * scale)
             else -> PaddingValues(all = 0.dp)
         }
     }
@@ -367,7 +403,7 @@ open class OudsBadgeIcon internal constructor(
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
-        internal val tint: Color,
+        internal val enabled: Boolean,
         internal val status: OudsIconBadgeStatus
     ) : OudsComponentContent.ExtraParameters()
 
@@ -395,9 +431,14 @@ open class OudsBadgeIcon internal constructor(
      */
     constructor(bitmap: ImageBitmap) : this({ bitmap })
 
+    override val enabled: Boolean?
+        @Composable
+        get() = extraParameters.enabled
+
     override val tint: Color?
         @Composable
-        get() = extraParameters.tint
+        get() = iconColor(status = extraParameters.status.toBadgeStatus(), enabled = extraParameters.enabled)
+
 }
 
 /**
@@ -436,6 +477,10 @@ enum class OudsBadgeStatus {
      * Often used for errors, restrictions, or urgent messages, but not exclusively for failures.
      */
     Negative;
+
+    internal companion object {
+        val FunctionalStatuses = listOf(Positive, Info, Warning, Negative)
+    }
 
     /**
      * The color associated with this status.
@@ -483,7 +528,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Positive] with its default dedicated icon.
      */
-    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill) }))
+    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.tickConfirmationFill) }))
 
     /**
      * Provides informational context without urgency.
@@ -491,7 +536,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Info] with its default dedicated icon.
      */
-    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.infoFill) }))
+    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.infoFill) }))
 
     /**
      * Negatives the user to potential risks or cautionary messages.
@@ -499,7 +544,20 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Warning] with its default dedicated icon.
      */
-    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.warningExternalShape) }))
+    data object Warning : OudsIconBadgeStatus(OudsBadgeIcon({ icon ->
+        if (icon.enabled == true) {
+            val iconTokens = OudsTheme.componentsTokens.icon
+            LayeredTintedPainter(
+                backPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningExternalShape),
+                backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                frontPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningInternalShape),
+                frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+            )
+        } else {
+            painterResource(OudsTheme.drawableResources.component.badgeIcon.warningExternalShape)
+        }
+    }
+    ))
 
     /**
      * Draws attention to important or critical information.
@@ -508,7 +566,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Negative] with its default dedicated icon.
      */
-    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.alert.importantFill) }))
+    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.errorFill) }))
 
     /**
      * The color associated with this status.
@@ -548,9 +606,6 @@ enum class OudsBadgeSize {
     internal companion object {
 
         val countEntries: List<OudsBadgeSize>
-            get() = listOf(Medium, Large)
-
-        val iconEntries: List<OudsBadgeSize>
             get() = listOf(Medium, Large)
     }
 }

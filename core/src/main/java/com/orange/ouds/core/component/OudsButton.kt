@@ -95,6 +95,8 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
  *
+ * > Design name: Button
+ *
  * > Design version: 3.2.0
  *
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
@@ -149,6 +151,8 @@ fun OudsButton(
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
  *
  * > Design version: 3.2.0
  *
@@ -205,6 +209,8 @@ fun OudsButton(
  * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
  *
  * > Design version: 3.2.0
  *
@@ -783,7 +789,7 @@ internal fun PreviewOudsButton(
         val label = if (hasLabel) appearance.name else null
         val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
-            PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+            PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 OudsButton(
                     nullableIcon = icon,
                     nullableLabel = label,
@@ -811,7 +817,7 @@ private fun PreviewOudsButtonWithRoundedCorners() = PreviewOudsButtonWithRounded
 internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
         val appearance = OudsButtonAppearance.Default
-        PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+        PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
             OudsButton(
                 nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
                 nullableLabel = appearance.name,
@@ -829,7 +835,7 @@ private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconB
 
 @Composable
 internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsButtonState>(columnCount = 2) {
+    PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
             nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
             nullableLabel = null,

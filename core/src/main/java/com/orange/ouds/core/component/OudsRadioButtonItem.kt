@@ -39,7 +39,6 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -55,6 +54,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * The OUDS radio button item layout contains an [OudsRadioButton]. By clicking on the radio button item, the user changes the selected state of its radio button.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-radio-button)
+ *
+ * > Design name: Radio Button
  *
  * > Design version: 1.4.0
  *
@@ -213,7 +214,7 @@ internal fun PreviewOudsRadioButtonItem(
     parameter: OudsRadioButtonItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -230,7 +231,13 @@ internal fun PreviewOudsRadioButtonItem(
     }
 }
 
-@OudsPreviewLightDark
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.RadioButtonItem.HighContrastModeEnabled.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsRadioButtonItemHighContrastModeEnabled(@PreviewParameter(OudsRadioButtonItemHighContrastModePreviewParameterProvider::class) parameter: OudsRadioButtonItemHighContrastModePreviewParameter) {
@@ -248,7 +255,7 @@ internal fun PreviewOudsRadioButtonItemHighContrastModeEnabled(
     parameter: OudsRadioButtonItemHighContrastModePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsRadioButtonItem(
                 selected = value,
                 label = "Label",
@@ -284,7 +291,7 @@ private fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled() = PreviewOudsRadi
 
 @Composable
 internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
         OudsRadioButtonItem(
             selected = true,
             label = "Label",

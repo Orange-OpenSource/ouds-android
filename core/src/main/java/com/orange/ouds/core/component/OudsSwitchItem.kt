@@ -52,6 +52,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-switch)
  *
+ * > Design name: Switch
+ *
  * > Design version: 1.5.0
  *
  * @see [OudsSwitch] If you want to use a standalone switch.
@@ -162,7 +164,7 @@ internal fun PreviewOudsSwitchItem(
     parameter: OudsSwitchItemPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsControlState>(columnCount = 1, edgeToEdge = true) {
+        PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsSwitchItem(
                 checked = value,
                 label = "Label",
@@ -201,7 +203,7 @@ private fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled() = PreviewOudsSwitchIte
 
 @Composable
 internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
         OudsSwitchItem(
             checked = true,
             label = "Label",

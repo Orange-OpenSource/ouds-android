@@ -34,6 +34,7 @@ internal class SoshDrawableResources : OudsDrawableResources {
 
     class Component : OudsDrawableResources.Component {
         override val alert = Alert()
+        override val badgeIcon = BadgeIcon()
         override val bulletList = BulletList()
         override val button = Button()
         override val checkbox = Checkbox()
@@ -49,6 +50,14 @@ internal class SoshDrawableResources : OudsDrawableResources {
             override val tickConfirmationFill = R.drawable.ic_sosh_component_alert_tick_confirmation_fill
             override val warningExternalShape = R.drawable.ic_sosh_component_alert_warning_external_shape
             override val warningInternalShape = R.drawable.ic_sosh_component_alert_warning_internal_shape
+        }
+
+        class BadgeIcon : OudsDrawableResources.Component.BadgeIcon {
+            override val errorFill = R.drawable.ic_sosh_component_badge_icon_error_fill
+            override val infoFill = R.drawable.ic_sosh_component_badge_icon_info_fill
+            override val tickConfirmationFill = R.drawable.ic_sosh_component_badge_icon_tick_confirmation_fill
+            override val warningExternalShape = R.drawable.ic_sosh_component_badge_icon_warning_external_shape
+            override val warningInternalShape = R.drawable.ic_sosh_component_badge_icon_warning_internal_shape
         }
 
         class BulletList : OudsDrawableResources.Component.BulletList {

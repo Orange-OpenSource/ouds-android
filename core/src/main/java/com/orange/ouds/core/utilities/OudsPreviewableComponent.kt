@@ -152,7 +152,7 @@ interface OudsPreviewableComponent {
 
     object AlertMessage : OudsPreviewableComponent {
 
-        const val PreviewHeightDp = 1470
+        const val PreviewHeightDp = 1530
 
         override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
 
@@ -326,6 +326,8 @@ interface OudsPreviewableComponent {
 
         object HighContrastModeEnabled : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 680
+
             override val parameters: List<Any> = OudsCheckboxItemHighContrastModePreviewParameterProvider().values.toList()
 
             @Composable
@@ -355,7 +357,7 @@ interface OudsPreviewableComponent {
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 790
+            const val PreviewHeightDp = 840
 
             override val parameters: List<Any> = emptyList()
 
@@ -730,6 +732,8 @@ interface OudsPreviewableComponent {
 
         object HighContrastModeEnabled : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 680
+
             override val parameters: List<Any> = OudsRadioButtonItemHighContrastModePreviewParameterProvider().values.toList()
 
             @Composable
@@ -853,7 +857,7 @@ interface OudsPreviewableComponent {
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 820
+            const val PreviewHeightDp = 850
 
             override val parameters: List<Any> = emptyList()
 

@@ -57,6 +57,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * The control item composable helps factorize common layout elements shared by [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem],
  * and [OudsSwitchItem].
  */
+@Suppress("DEPRECATION")
 @Composable
 internal fun OudsControlItem(
     state: OudsControlState,
@@ -122,11 +123,11 @@ internal fun OudsControlItem(
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
         Column(modifier = modifier) {
-            val shape = RoundedCornerShape(controlItemTokens.borderRadius.value)
+            val shape = RoundedCornerShape(controlItemTokens.borderRadiusDefault.value)
             Box(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
-                    .heightIn(min = controlItemTokens.sizeMinHeight.dp)
+                    .heightIn(min = controlItemTokens.sizeMinHeightDefault.dp)
                     .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) controlItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .background(color = backgroundColor, shape = shape)
                     .then(contentModifier)
@@ -223,7 +224,7 @@ class OudsControlItemIcon private constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeIcon.value))
+        super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value))
     }
 }
 
@@ -237,6 +238,7 @@ internal fun rememberControlItemBackgroundColor(
     backgroundColor(state = state)
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
     val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
@@ -260,7 +262,7 @@ private fun ErrorMessageText(text: String, edgeToEdge: Boolean) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-                .padding(top = spacePaddingBlockTopErrorText.value)
+                .padding(top = spacePaddingBlockTopHelperText.value)
                 .clearAndSetSemantics {
                     error(text)
                 },
@@ -271,6 +273,7 @@ private fun ErrorMessageText(text: String, edgeToEdge: Boolean) {
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
     with(OudsTheme.componentsTokens.controlItem) {
@@ -285,6 +288,7 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
     }
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.controlItem) {

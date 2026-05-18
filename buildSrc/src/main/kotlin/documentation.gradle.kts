@@ -26,6 +26,8 @@ private val moduleDocumentationDirectories = listOf(
     "theme-wireframe"
 )
 
+private val draftVersion = "Draft"
+
 project.extra["moduleDocumentationDirectories"] = moduleDocumentationDirectories
 
 tasks.register<DefaultTask>("prepareDocumentation") {
@@ -64,22 +66,28 @@ tasks.register<DefaultTask>("prepareDocumentation") {
 
 tasks.register<DefaultTask>("checkDocumentation") {
     doLast {
-        val componentVersionRegex = "Design version: (.*)$".toRegex()
+        val componentsByFile = mutableMapOf<String, MutableList<Component>>()
         Component.entries.forEach { component ->
-            component.getSourceFilePaths(project).forEach { sourceFilePath ->
-                val versionByLineIndex = File(sourceFilePath).readLines()
-                    .mapIndexedNotNull { index, line ->
-                        componentVersionRegex.find(line)
-                            ?.groupValues
-                            ?.getOrNull(1)
-                            ?.let { version ->
-                                index to version
-                            }
-                    }
-                versionByLineIndex.forEach { (lineIndex, version) ->
-                    if (version != component.version) {
-                        throw GradleException("Component version at line ${lineIndex + 1} in $sourceFilePath is not up to date. Please launch updateDocumentation Gradle task.")
-                    }
+            component.getSourceFilePaths(project).forEach { filePath ->
+                componentsByFile.getOrPut(filePath) { mutableListOf() }.add(component)
+            }
+        }
+
+        componentsByFile.forEach { (filePath, components) ->
+            val content = File(filePath).readText()
+            val componentByDesignName = components.associateBy { it.designName }
+
+            val pattern = "> Design name: (.+?)\\s*\\n \\*\\n \\* > Design version: ([^\n]+)".toRegex()
+            val matches = pattern.findAll(content).toList()
+            matches.forEach { match ->
+                val designName = match.groupValues[1]
+                val version = match.groupValues[2]
+                val component = componentByDesignName[designName]
+                    ?: throw GradleException("Unknown design name '$designName' in $filePath. Expected one of: ${components.joinToString { it.designName }}.")
+
+                val componentVersion = if (component.version == "0.0.0") draftVersion else component.version
+                if (version != componentVersion) {
+                    throw GradleException("Design version for '$designName' in $filePath is '$version' but expected '${componentVersion}'. Please launch updateDocumentation Gradle task.")
                 }
             }
         }
@@ -88,11 +96,17 @@ tasks.register<DefaultTask>("checkDocumentation") {
 
 tasks.register<DefaultTask>("updateDocumentation") {
     doLast {
-        val componentVersionRegex = "(Design version: ).*".toRegex()
-        Component.entries.forEach { component ->
-            component.getSourceFilePaths(project).forEach { sourceFilePath ->
-                File(sourceFilePath).replace(componentVersionRegex) { matchResult ->
-                    "${matchResult.groupValues[1]}${component.version}"
+        val filePaths = Component.entries.flatMap { it.getSourceFilePaths(project) }
+        val pattern = "(> Design name: (.+?)\\s*\\n \\*\\n \\* > Design version: )[^\n]+".toRegex()
+        filePaths.forEach { filePath ->
+            File(filePath).replace(pattern) { matchResult ->
+                val designName = matchResult.groupValues[2]
+                val component = Component.entries.find { it.designName == designName }
+                if (component == null) {
+                    throw GradleException("Could not find component with design name $designName.")
+                } else {
+                    val componentVersion = if (component.version == "0.0.0") draftVersion else component.version
+                    "${matchResult.groupValues[1]}$componentVersion"
                 }
             }
         }

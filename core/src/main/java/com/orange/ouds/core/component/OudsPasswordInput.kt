@@ -59,7 +59,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
  *
- * > Design version: 1.2.0
+ * > Design name: Password Input
+ *
+ * > Design version: 1.3.0
  *
  * @param state The editable text state of the password input, including the text itself, position of the cursor or selection and the text obfuscation mode.
  * @param modifier [Modifier] applied to the password input.
@@ -244,7 +246,7 @@ internal fun PreviewOudsPasswordInput(
     parameter: OudsPasswordInputPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) {
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) {
             OudsPasswordInput(
                 state = rememberOudsPasswordInputState(initialText),
                 label = label,

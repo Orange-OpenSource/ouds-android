@@ -104,9 +104,9 @@ const val ORANGE_BUSINESS_TOOLS_THEME_NAME = ORANGE_COMPACT_THEME_NAME
  * @param orangeFontFamily The Helvetica Neue font family to use for the Orange Business Tools theme.
  *   If an [OrangeBundledFontFamily] is used, the resource identifiers should reference Helvetica Neue font files.
  *   If an [OrangeDownloadableFontFamily] is used, the [OrangeFontFamily.preloadDownloadableFontFamilies] method should be called to download the Helvetica Neue font files through the Android Downloadable Fonts feature.
- * @param roundedCornerButtons Whether or not buttons have rounded corners.
- * @param roundedCornerTextInputs Whether or not text inputs have rounded corners.
- * @param roundedCornerAlertMessages Whether or not alert messages have rounded corners.
+ * @param roundedCornerButtons Whether buttons have rounded corners.
+ * @param roundedCornerTextInputs Whether text inputs have rounded corners.
+ * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
  */
 @Deprecated(
     "The Orange Business Tools theme has been renamed to Orange Compact, please use OrangeCompactTheme constructor instead " +

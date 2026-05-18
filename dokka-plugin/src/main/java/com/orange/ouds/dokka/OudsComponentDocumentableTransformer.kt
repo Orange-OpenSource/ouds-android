@@ -158,16 +158,19 @@ class OudsComponentDocumentableTransformer : DocumentableTransformer {
     }
 
     /**
-     * Replaces the DocTags instances related to the design version and guidelines link with a new one that displays these values in a table.
+     * Replaces the DocTags instances related to the design name, version and guidelines link with a new one that displays these values in a table.
      */
     private fun Documentable.replaceDesignDocTags(): SourceSetDependent<DocumentationNode> {
         val designVersionRegex = "Design version: (.*)".toRegex()
         val designGuidelinesLinkRegex = "Design guidelines: (.*)".toRegex()
+        val designNameRegex = "Design name: (.*)".toRegex()
 
         return documentation.mapValues { (_, node) ->
             val nodeChildren = node.children.map { tagWrapper ->
-                // The design version and guidelines link are located in the description part of the KDoc
+                // The design name, version and guidelines link are located in the description part of the KDoc
                 if (tagWrapper is Description) {
+                    // Find the design name in any descendant of the root DocTag
+                    val name = designNameRegex.find(tagWrapper.root)?.groupValues?.getOrNull(1)
                     // Find the design version in any descendant of the root DocTag
                     val version = designVersionRegex.find(tagWrapper.root)?.groupValues?.getOrNull(1)
                     // Find the blockquote DocTag that contains the design guidelines link
@@ -176,17 +179,14 @@ class OudsComponentDocumentableTransformer : DocumentableTransformer {
                     val guidelinesLink = guidelinesLinkBlockquote?.firstMemberOfTypeOrNull<A>()
                     val guidelinesLinkText = guidelinesLink?.firstMemberOfTypeOrNull<Text>()?.body
                     val guidelinesLinkUrl = guidelinesLink?.params["href"]
-                    val designDocTag = if (version != null && guidelinesLinkText != null && guidelinesLinkUrl != null) {
-                        // Build a new DocTag that displays the design version and guidelines link in a table.
-                        getDesignDocTag(version, guidelinesLinkText, guidelinesLinkUrl)
-                    } else {
-                        null
-                    }
+                    // Build a new DocTag that displays the design name, version and guidelines link in a table.
+                    val designDocTag = getDesignDocTag(name, version, guidelinesLinkText, guidelinesLinkUrl)
 
-                    // Remove the design version and guidelines link DocTag instances and add the new one as a child of the Description node 
-                    // In this way, design version and guidelines link will appear into blockquotes in Android Studio quick documentation
+                    // Remove the design name, version and guidelines link DocTag instances and add the new one as a child of the Description node
+                    // In this way, design name, version and guidelines link will appear into blockquotes in Android Studio quick documentation
                     // but into a table in the Dokka documentation
                     val tagWrapperRoot = tagWrapper.root
+                        .removeDescendant { designNameRegex.find(it) != null }
                         .removeDescendant { designVersionRegex.find(it) != null }
                         .removeDescendant { designGuidelinesLinkRegex.find(it) != null }
                         .run { if (designDocTag != null) addChild(designDocTag) else this }
@@ -201,34 +201,55 @@ class OudsComponentDocumentableTransformer : DocumentableTransformer {
     }
 
     /**
-     * Builds and returns a DocTag that displays the design version and guidelines link in a table.
+     * Builds and returns a DocTag that displays the design name, version and guidelines link in a table.
      */
-    private fun getDesignDocTag(version: String, guidelinesLinkText: String, guidelinesLinkUrl: String): DocTag {
-        val guidelinesLinkBody = "<a href=\"$guidelinesLinkUrl\" class=\"external\" target=\"_blank\">$guidelinesLinkText</a>"
-        val guidelinesLinkParams = mapOf("content-type" to "html")
-
-        return Div(
-            listOf(
-                H4(listOf(Text("Design"))),
-                Table(
-                    listOf(
-                        Tr(
-                            listOf(
-                                Td(listOf(Text("Guidelines"))),
-                                // Use a Text instead of an A to display the link in order to obtain a link which will open a new window
-                                Td(listOf(Text(guidelinesLinkBody, params = guidelinesLinkParams)))
-                            )
-                        ),
-                        Tr(
-                            listOf(
-                                Td(listOf(Text("Version"))),
-                                Td(listOf(Text(version)))
-                            )
+    private fun getDesignDocTag(name: String?, version: String?, guidelinesLinkText: String?, guidelinesLinkUrl: String?): DocTag? {
+        val tableChildren = mutableListOf<DocTag>().apply {
+            name?.let {
+                add(
+                    Tr(
+                        listOf(
+                            Td(listOf(Text("Name"))),
+                            Td(listOf(Text(name)))
                         )
                     )
                 )
+            }
+            if (guidelinesLinkText != null && guidelinesLinkUrl != null) {
+                val guidelinesLinkBody = "<a href=\"$guidelinesLinkUrl\" class=\"external\" target=\"_blank\">$guidelinesLinkText</a>"
+                val guidelinesLinkParams = mapOf("content-type" to "html")
+                add(
+                    Tr(
+                        listOf(
+                            Td(listOf(Text("Guidelines"))),
+                            // Use a Text instead of an A to display the link in order to obtain a link which will open a new window
+                            Td(listOf(Text(guidelinesLinkBody, params = guidelinesLinkParams)))
+                        )
+                    ),
+                )
+            }
+            version?.let {
+                add(
+                    Tr(
+                        listOf(
+                            Td(listOf(Text("Version"))),
+                            Td(listOf(Text(version)))
+                        )
+                    )
+                )
+            }
+        }.toList()
+
+        return if (tableChildren.isNotEmpty()) {
+            Div(
+                listOf(
+                    H4(listOf(Text("Design"))),
+                    Table(tableChildren)
+                )
             )
-        )
+        } else {
+            null
+        }
     }
 
     private fun <T : DocTag> T.addChild(child: DocTag): T {

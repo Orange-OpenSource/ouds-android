@@ -110,7 +110,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
- * > Design version: 1.3.0
+ * > Design name: Text Input
+ *
+ * > Design version: 1.4.0
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
@@ -245,7 +247,9 @@ fun OudsTextInput(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
- * > Design version: 1.3.0
+ * > Design name: Text Input
+ *
+ * > Design version: 1.4.0
  *
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -374,7 +378,9 @@ fun OudsTextInput(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
- * > Design version: 1.3.0
+ * > Design name: Text Input
+ *
+ * > Design version: 1.4.0
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -672,7 +678,8 @@ internal fun OudsTextInputDecorator(
                             Box(
                                 modifier = Modifier
                                     .widthIn(min = buttonTokens.sizeMinWidth.value)
-                                    .heightIn(min = buttonTokens.sizeMinHeight.value),
+                                    .heightIn(min = buttonTokens.sizeMinHeight.value, max = buttonTokens.sizeMaxHeightIconOnly.value * iconScale)
+                                    .padding(all = buttonTokens.spaceInsetIconOnly.value),
                                 contentAlignment = Alignment.Center
                             ) {
                                 OudsCircularProgressIndicator(
@@ -842,26 +849,18 @@ internal fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined:
 
 @Composable
 internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
-    return if (outlined) {
-        if (error) {
-            errorContentColor(state = state)
-        } else {
-            with(OudsTheme.componentsTokens.textInput) {
-                when (state) {
-                    OudsTextInputState.Enabled -> colorBorderEnabled.value
-                    OudsTextInputState.Hovered -> colorBorderHover.value
-                    OudsTextInputState.Focused -> colorBorderFocus.value
-                    OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
-                    OudsTextInputState.Loading -> colorBorderLoading.value
-                    OudsTextInputState.ReadOnly -> Color.Unspecified
-                }
-            }
-        }
+    return if (error) {
+        errorContentColor(state = state)
     } else {
-        if (state == OudsTextInputState.ReadOnly) {
-            OudsTheme.colorScheme.border.muted
-        } else {
-            labelColor(state, error)
+        with(OudsTheme.componentsTokens.textInput) {
+            when (state) {
+                OudsTextInputState.Enabled -> colorBorderEnabled.value
+                OudsTextInputState.Hovered -> colorBorderHover.value
+                OudsTextInputState.Focused -> colorBorderFocus.value
+                OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
+                OudsTextInputState.Loading -> colorBorderLoading.value
+                OudsTextInputState.ReadOnly -> if (outlined) Color.Unspecified else OudsTheme.colorScheme.border.muted
+            }
         }
     }
 }
@@ -882,7 +881,7 @@ private fun decorativeContentColor(enabled: Boolean) = if (enabled) OudsTheme.co
 internal fun decorativeContentColor(state: OudsTextInputState) = decorativeContentColor(state != OudsTextInputState.Disabled)
 
 @Composable
-internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.default.large.copy(color = contentColor(state))
+internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.moderate.large.copy(color = contentColor(state))
 
 @Composable
 internal fun textInputEnabled(state: OudsTextInputState) =
@@ -1043,7 +1042,7 @@ internal fun PreviewOudsTextInput(
     parameter: OudsTextInputPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
@@ -1069,7 +1068,7 @@ private fun PreviewOudsTextInputWithRoundedCorners() = PreviewOudsTextInputWithR
 @Composable
 internal fun PreviewOudsTextInputWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextInput(
                 textFieldState = rememberTextFieldState(""),
                 label = "Label",

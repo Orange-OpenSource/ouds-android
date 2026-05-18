@@ -68,6 +68,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-switch)
  *
+ * > Design name: Switch
+ *
  * > Design version: 1.5.0
  *
  * @see [OudsSwitchItem] If you want to use a switch with an associated label and other optional elements.
@@ -242,7 +244,7 @@ internal fun PreviewOudsSwitch(
     darkThemeEnabled: Boolean,
     checked: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsControlState>(columnCount = 3) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 3) {
         OudsSwitch(
             checked = checked,
             onCheckedChange = {}

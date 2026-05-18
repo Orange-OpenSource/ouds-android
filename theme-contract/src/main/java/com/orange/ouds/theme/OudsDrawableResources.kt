@@ -41,6 +41,7 @@ interface OudsDrawableResources {
 
     interface Component {
         val alert: Alert
+        val badgeIcon: BadgeIcon
         val bulletList: BulletList
         val button: Button
         val checkbox: Checkbox
@@ -53,6 +54,23 @@ interface OudsDrawableResources {
         interface Alert {
             @get:DrawableRes
             val importantFill: Int
+
+            @get:DrawableRes
+            val infoFill: Int
+
+            @get:DrawableRes
+            val tickConfirmationFill: Int
+
+            @get:DrawableRes
+            val warningExternalShape: Int
+
+            @get:DrawableRes
+            val warningInternalShape: Int
+        }
+
+        interface BadgeIcon {
+            @get:DrawableRes
+            val errorFill: Int
 
             @get:DrawableRes
             val infoFill: Int

@@ -82,7 +82,9 @@ import kotlin.enums.enumEntries
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-tag)
  *
- * > Design version: 1.4.0
+ * > Design name: Tag
+ *
+ * > Design version: 1.5.0
  *
  * @param label The label displayed in the tag.
  * @param modifier [Modifier] applied to the tag.
@@ -138,50 +140,45 @@ fun OudsTag(
         expression = !isForbidden,
         exceptionMessage = { "A disabled OudsTag cannot have a loader. This is not allowed." }
     ) {
-        // This outer box is necessary otherwise the user can change the size of the tag through the modifier
-        Box(
-            modifier = modifier,
-            contentAlignment = Alignment.Center
+        Row(
+            modifier = modifier
+                .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
+                .clip(shape = tagShape)
+                .background(backgroundColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled))
+                .semantics(mergeDescendants = true) {
+                    this.stateDescription = stateDescription
+                }
+                .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size)),
         ) {
-            Row(
-                modifier = Modifier
-                    .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
-                    .clip(shape = tagShape)
-                    .background(backgroundColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled))
-                    .semantics(mergeDescendants = true) {
-                        this.stateDescription = stateDescription
-                    }
-                    .padding(paddingValues = contentPadding(size = size, hasAsset = hasAsset)),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(betweenAssetAndLabelSpace(size = size), Alignment.CenterHorizontally),
-            ) {
-                if (hasAsset) {
-                    Box {
-                        if (hasLoader) {
-                            ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
-                        } else {
-                            val isBulletAsset = status.asset is OudsTagAsset.Bullet
-                            val assetPadding = if (isBulletAsset) bulletPadding(size = size) else iconPadding(size = size)
-                            val scale = LocalConfiguration.current.fontScale
-                            status.asset?.PolymorphicContent(
-                                modifier = Modifier
-                                    .size(assetSize(size) * scale)
-                                    .padding(all = assetPadding),
-                                extraParameters = OudsTagAsset.ExtraParameters(
-                                    tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
-                                    status = status,
-                                    appearance = appearance
-                                )
+            if (hasAsset) {
+                Box {
+                    if (hasLoader) {
+                        ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
+                    } else {
+                        val isBulletAsset = status.asset is OudsTagAsset.Bullet
+                        val assetPadding = if (isBulletAsset) bulletPadding(size = size) else iconPadding(size = size)
+                        val scale = LocalConfiguration.current.fontScale
+                        status.asset?.PolymorphicContent(
+                            modifier = Modifier
+                                .size(assetSize(size) * scale)
+                                .padding(all = assetPadding),
+                            extraParameters = OudsTagAsset.ExtraParameters(
+                                tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
+                                status = status,
+                                appearance = appearance,
+                                enabled = enabled
                             )
-                        }
+                        )
                     }
                 }
-                Text(
-                    text = label,
-                    color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
-                    style = textStyle(size)
-                )
             }
+            Text(
+                text = label,
+                color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
+                style = textStyle(size)
+            )
         }
     }
 }
@@ -227,7 +224,7 @@ private fun assetSize(size: OudsTagSize): Dp {
 private fun textStyle(size: OudsTagSize): TextStyle {
     return when (size) {
         OudsTagSize.Default -> OudsTheme.typography.label.strong.medium
-        OudsTagSize.Small -> OudsTheme.typography.label.strong.small
+        OudsTagSize.Small -> OudsTheme.typography.label.moderate.small
     }.run {
         copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }
@@ -483,7 +480,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
             OudsTagAsset.ExtraParameters::class.java,
             { icon ->
                 with(icon.extraParameters) {
-                    status.getDefaultIconPainter(appearance).orElse {
+                    status.getDefaultIconPainter(appearance, enabled).orElse {
                         error("No default icon for status ${status::class.simpleName}")
                     }
                 }
@@ -501,7 +498,8 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
     data class ExtraParameters internal constructor(
         internal val tint: Color,
         internal val status: OudsTagStatus,
-        internal val appearance: OudsTagAppearance
+        internal val appearance: OudsTagAppearance,
+        internal val enabled: Boolean
     ) : OudsComponentContent.ExtraParameters()
 }
 
@@ -537,7 +535,7 @@ enum class OudsTagSize {
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
     @Composable
-    internal open fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter? = null
+    internal open fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter? = null
 
     internal open val defaultIconContentDescription: String
         @Composable
@@ -607,7 +605,8 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         constructor() : this(null)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
+            painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
     }
 
     /**
@@ -631,7 +630,8 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         constructor() : this(null)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.component.alert.infoFill)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
+            painterResource(OudsTheme.drawableResources.component.alert.infoFill)
     }
 
     /**
@@ -655,11 +655,11 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         constructor() : this(null)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance): Painter {
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter {
             val iconTokens = OudsTheme.componentsTokens.icon
-            return when (appearance) {
-                OudsTagAppearance.Emphasized -> painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)
-                OudsTagAppearance.Muted -> LayeredTintedPainter(
+            return when {
+                appearance == OudsTagAppearance.Emphasized || !enabled -> painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)
+                else -> LayeredTintedPainter(
                     backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
                     backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
                     frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
@@ -694,7 +694,8 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         constructor() : this(null)
 
         @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance) = painterResource(OudsTheme.drawableResources.component.alert.importantFill)
+        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
+            painterResource(OudsTheme.drawableResources.component.alert.importantFill)
 
         override val defaultIconContentDescription
             @Composable

@@ -23,9 +23,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
@@ -97,7 +95,9 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
- * > Design version: 1.1.0
+ * > Design name: Text Area
+ *
+ * > Design version: 1.2.0
  *
  * @param textFieldState The editable text state of the text area, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text area.
@@ -225,7 +225,9 @@ fun OudsTextArea(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
- * > Design version: 1.1.0
+ * > Design name: Text Area
+ *
+ * > Design version: 1.2.0
  *
  * @param value Input text to be shown in the text area.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -344,7 +346,9 @@ fun OudsTextArea(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
- * > Design version: 1.1.0
+ * > Design name: Text Area
+ *
+ * > Design version: 1.2.0
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text area.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -495,7 +499,8 @@ internal fun OudsTextAreaDecorator(
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
-                    .padding(vertical = textAreaTokens.spacePaddingBlock.value)
+                    .padding(top = if (value.isEmpty() && state != OudsTextInputState.Focused) textAreaTokens.spacePaddingBlockTopEmpty.value else textAreaTokens.spacePaddingBlock.value)
+                    .padding(bottom = if (value.isEmpty() && state != OudsTextInputState.Focused) 0.dp else textAreaTokens.spacePaddingBlock.value)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
                     .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
@@ -507,7 +512,8 @@ internal fun OudsTextAreaDecorator(
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
                     // Small label on top
-                    if (!label.isNullOrBlank()) {
+                    val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
+                    if (!label.isNullOrBlank() && isSmallLabel) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -520,16 +526,25 @@ internal fun OudsTextAreaDecorator(
                         )
                     }
 
-                    // Placeholder or Value
+                    // Placeholder, Label or Value
                     Box(modifier = Modifier.fillMaxWidth()) {
-                        if (value.isEmpty() && !placeholder.isNullOrBlank()) {
-                            Text(
-                                modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
-                                text = placeholder,
-                                style = OudsTheme.typography.label.default.large,
-                                color = decorativeContentColor(state = state),
-                                overflow = TextOverflow.Ellipsis
-                            )
+                        if (value.isEmpty()) {
+                            if (!placeholder.isNullOrBlank()) {
+                                Text(
+                                    modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
+                                    text = placeholder,
+                                    style = OudsTheme.typography.label.default.large,
+                                    color = decorativeContentColor(state = state),
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            } else if (!label.isNullOrBlank() && !isSmallLabel) {
+                                Text(
+                                    modifier = Modifier.semantics { hideFromAccessibility() },
+                                    text = label,
+                                    style = OudsTheme.typography.label.default.large,
+                                    color = labelColor(state = state, error = hasError),
+                                )
+                            }
                         }
                         innerTextField()
                     }
@@ -539,10 +554,14 @@ internal fun OudsTextAreaDecorator(
                 Box(
                     modifier = Modifier
                         .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidth.value)
-                        .heightIn(min = OudsTheme.componentsTokens.button.sizeMinHeight.value, max = textAreaTokens.sizeMaxHeightAssetsContainer.dp)
-                        .fillMaxHeight()
-                        .padding(all = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value),
-                    contentAlignment = Alignment.Center
+                        .padding(
+                            horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value,
+                            vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
+                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
+                            } else {
+                                textAreaTokens.spacePaddingBlockTrailingContainer.value
+                            }
+                        )
                 ) {
                     val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
@@ -631,7 +650,7 @@ internal fun PreviewOudsTextArea(
     parameter: OudsTextAreaPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextArea(
                 textFieldState = rememberTextFieldState(value),
                 label = label,
@@ -653,7 +672,7 @@ private fun PreviewOudsTextAreaWithRoundedCorners() = PreviewOudsTextAreaWithRou
 @Composable
 internal fun PreviewOudsTextAreaWithRoundedCorners(theme: OudsThemeContract) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerTextInputs = true) }) {
-        PreviewEnumEntries<OudsTextInputState>(columnCount = 1) { _ ->
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
             OudsTextArea(
                 textFieldState = rememberTextFieldState(""),
                 label = "Label",
