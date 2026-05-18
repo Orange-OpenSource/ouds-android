@@ -411,9 +411,8 @@ internal fun OudsButton(
 }
 
 @Composable
-private fun RowScope.ButtonText(label: String, color: Color) {
+private fun ButtonText(label: String, color: Color) {
     Text(
-        modifier = Modifier.weight(1f, fill = false),
         text = label,
         color = color,
         textAlign = TextAlign.Center,
