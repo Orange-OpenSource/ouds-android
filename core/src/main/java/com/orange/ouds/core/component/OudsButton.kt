@@ -344,7 +344,7 @@ internal fun OudsButton(
                 modifier = Modifier
                     .alpha(alpha = alpha)
                     .padding(paddingValues),
-                horizontalArrangement = Arrangement.spacedBy(component.getColumnGap()),
+                horizontalArrangement = Arrangement.spacedBy(component.columnGap),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (labeledNavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
@@ -825,17 +825,19 @@ internal enum class OudsButtonState {
 internal sealed interface OudsButtonComponent {
 
     /**
-     * Returns the horizontal spacing (gap) between the icon and the text.
+     * The horizontal spacing (gap) between the icon and the text.
      */
-    @Composable
-    fun getColumnGap(): Dp
+    val columnGap: Dp
+        @Composable
+        get
 
     /**
      * Configuration for a standard [OudsButton].
      */
     object Button : OudsButtonComponent {
-        @Composable
-        override fun getColumnGap() = OudsTheme.componentsTokens.button.spaceColumnGapIcon.value
+        override val columnGap
+            @Composable
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapIcon.value
     }
 
     /**
@@ -844,8 +846,9 @@ internal sealed interface OudsButtonComponent {
      * @property chevron The chevron to display in the button.
      */
     class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
-        @Composable
-        override fun getColumnGap() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
+        override val columnGap: Dp
+            @Composable
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
     }
 }
 
