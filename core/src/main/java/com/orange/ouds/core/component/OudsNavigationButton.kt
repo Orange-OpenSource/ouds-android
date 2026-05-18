@@ -43,7 +43,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-button)
  *
- * > Design version: 3.2.0
+ * > Design name: Navigation Button
+ *
+ * > Design version: 3.2.1
  *
  * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
  *   or in contexts where clarity is critical.
@@ -109,7 +111,9 @@ fun OudsNavigationButton(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-button)
  *
- * > Design version: 3.2.0
+ * > Design name: Navigation Button
+ *
+ * > Design version: 3.2.1
  *
  * @param layout Layout of the navigation button determining the chevron to display. See [OudsNavigationButtonLayout] for allowed values.
  * @param onClick Callback invoked when the button is clicked.

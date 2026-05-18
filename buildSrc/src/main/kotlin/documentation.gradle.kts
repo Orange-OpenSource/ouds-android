@@ -79,6 +79,9 @@ tasks.register<DefaultTask>("checkDocumentation") {
 
             val pattern = "> Design name: (.+?)\\s*\\n \\*\\n \\* > Design version: ([^\n]+)".toRegex()
             val matches = pattern.findAll(content).toList()
+            if (matches.isEmpty()) {
+                throw GradleException("Could not find design name and/or design version in $filePath.")
+            }
             matches.forEach { match ->
                 val designName = match.groupValues[1]
                 val version = match.groupValues[2]
