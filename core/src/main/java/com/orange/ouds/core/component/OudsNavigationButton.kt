@@ -49,7 +49,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
  *   or in contexts where clarity is critical.
- * @param layout Layout of the navigation button determining the chevron to display and its position in the button. See [OudsNavigationButtonLayout] for allowed values.
+ * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
@@ -66,7 +66,7 @@ import com.orange.ouds.theme.OudsThemeContract
 @Composable
 fun OudsNavigationButton(
     label: String,
-    layout: OudsNavigationButtonLayout,
+    chevron: OudsNavigationButtonChevron,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -76,9 +76,9 @@ fun OudsNavigationButton(
 ) {
     val drawableResources = LocalDrawableResources.current
 
-    val iconResource = when (layout) {
-        OudsNavigationButtonLayout.Next -> drawableResources.component.button.next
-        OudsNavigationButtonLayout.Previous -> drawableResources.component.button.previous
+    val iconResource = when (chevron) {
+        OudsNavigationButtonChevron.Next -> drawableResources.component.button.next
+        OudsNavigationButtonChevron.Previous -> drawableResources.component.button.previous
     }
 
     OudsButton(
@@ -89,7 +89,7 @@ fun OudsNavigationButton(
         nullableLabel = label,
         onClick = onClick,
         modifier = modifier,
-        component = OudsButtonComponent.NavigationButton(layout),
+        component = OudsButtonComponent.NavigationButton(chevron),
         enabled = enabled,
         loader = loader,
         appearance = appearance.toButtonAppearance(),
@@ -115,7 +115,7 @@ fun OudsNavigationButton(
  *
  * > Design version: 3.2.1
  *
- * @param layout Layout of the navigation button determining the chevron to display. See [OudsNavigationButtonLayout] for allowed values.
+ * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
  * @param enabled Controls the enabled state of the button when there is no [loader].
@@ -131,7 +131,7 @@ fun OudsNavigationButton(
  */
 @Composable
 fun OudsNavigationButton(
-    layout: OudsNavigationButtonLayout,
+    chevron: OudsNavigationButtonChevron,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -143,12 +143,12 @@ fun OudsNavigationButton(
 
     val iconResource: Int
     @StringRes val iconContentDescriptionResId: Int
-    when (layout) {
-        OudsNavigationButtonLayout.Next -> {
+    when (chevron) {
+        OudsNavigationButtonChevron.Next -> {
             iconResource = drawableResources.component.button.next
             iconContentDescriptionResId = R.string.core_navigationButton_next_a11y
         }
-        OudsNavigationButtonLayout.Previous -> {
+        OudsNavigationButtonChevron.Previous -> {
             iconResource = drawableResources.component.button.previous
             iconContentDescriptionResId = R.string.core_navigationButton_previous_a11y
         }
@@ -181,16 +181,16 @@ object OudsNavigationButtonDefaults {
 }
 
 /**
- * Represents the layout of an [OudsNavigationButton], which determines the icon to display and its position in the button.
+ * Represents the chevron of an [OudsNavigationButton]. Its position in the button changes depending on its value.
  */
-enum class OudsNavigationButtonLayout {
+enum class OudsNavigationButtonChevron {
     /**
-     * The Next layout button is used to move the user forward in a sequence of content, steps or pages.
+     * The Next chevron button is used to move the user forward in a sequence of content, steps or pages.
      */
     Next,
 
     /**
-     * The Previous layout button allows the user to return to the prior step, page, or section.
+     * The Previous chevron button allows the user to return to the prior step, page, or section.
      */
     Previous
 }
@@ -252,14 +252,14 @@ internal fun PreviewOudsNavigationButton(
             PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 if (hasLabel) {
                     OudsNavigationButton(
-                        label = layout.name,
-                        layout = layout,
+                        label = chevron.name,
+                        chevron = chevron,
                         onClick = {},
                         appearance = appearance
                     )
                 } else {
                     OudsNavigationButton(
-                        layout = layout,
+                        chevron = chevron,
                         onClick = {},
                         appearance = appearance
                     )
@@ -285,14 +285,14 @@ private fun PreviewOudsNavigationButtonOnTwoLines() = PreviewOudsNavigationButto
 internal fun PreviewOudsNavigationButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsNavigationButton(
         label = "Navigation button\non two lines",
-        layout = OudsNavigationButtonLayout.Next,
+        chevron = OudsNavigationButtonChevron.Next,
         onClick = {},
     )
 }
 
 internal data class OudsNavigationButtonPreviewParameter(
     val appearance: OudsNavigationButtonAppearance,
-    val layout: OudsNavigationButtonLayout,
+    val chevron: OudsNavigationButtonChevron,
     val hasLabel: Boolean,
     val onColoredBox: Boolean = false
 )
@@ -303,10 +303,10 @@ internal class OudsNavigationButtonPreviewParameterProvider :
 private val previewParameterValues: List<OudsNavigationButtonPreviewParameter>
     get() = buildList {
         OudsNavigationButtonAppearance.entries.forEach { appearance ->
-            OudsNavigationButtonLayout.entries.forEach { layout ->
+            OudsNavigationButtonChevron.entries.forEach { chevron ->
                 val parameters = listOf(
-                    OudsNavigationButtonPreviewParameter(appearance, layout, hasLabel = true),
-                    OudsNavigationButtonPreviewParameter(appearance, layout, hasLabel = false),
+                    OudsNavigationButtonPreviewParameter(appearance, chevron, hasLabel = true),
+                    OudsNavigationButtonPreviewParameter(appearance, chevron, hasLabel = false),
                 )
                 addAll(parameters)
                 addAll(parameters.map { it.copy(onColoredBox = true) })

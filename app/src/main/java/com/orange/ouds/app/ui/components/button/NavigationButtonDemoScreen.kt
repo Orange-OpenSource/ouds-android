@@ -30,8 +30,8 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButtonLoader
 import com.orange.ouds.core.component.OudsNavigationButton
 import com.orange.ouds.core.component.OudsNavigationButtonAppearance
+import com.orange.ouds.core.component.OudsNavigationButtonChevron
 import com.orange.ouds.core.component.OudsNavigationButtonDefaults
-import com.orange.ouds.core.component.OudsNavigationButtonLayout
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -64,10 +64,10 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_layout_tech),
-            chipLabels = OudsNavigationButtonLayout.entries.map { it.name },
-            selectedChipIndex = OudsNavigationButtonLayout.entries.indexOf(layout),
-            onSelectionChange = { index -> layout = OudsNavigationButtonLayout.entries[index] }
+            label = stringResource(R.string.app_components_button_navigationButton_chevron_tech),
+            chipLabels = OudsNavigationButtonChevron.entries.map { it.name },
+            selectedChipIndex = OudsNavigationButtonChevron.entries.indexOf(chevron),
+            onSelectionChange = { index -> chevron = OudsNavigationButtonChevron.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -103,7 +103,7 @@ private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
         val loader = if (hasLoader) OudsButtonLoader(null) else null
         if (iconOnly) {
             OudsNavigationButton(
-                layout = layout,
+                chevron = chevron,
                 onClick = {},
                 enabled = enabled,
                 loader = loader,
@@ -112,7 +112,7 @@ private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
         } else {
             OudsNavigationButton(
                 label = label,
-                layout = layout,
+                chevron = chevron,
                 onClick = {},
                 enabled = enabled,
                 loader = loader,
@@ -129,7 +129,7 @@ private fun Code.Builder.navigationButtonDemoCodeSnippet(state: NavigationButton
                 if (!iconOnly) {
                     labelArgument(label)
                 }
-                typedArgument("layout", layout)
+                typedArgument("chevron", chevron)
                 onClickArgument()
                 if (!enabled) enabledArgument(enabled)
                 if (hasLoader) {

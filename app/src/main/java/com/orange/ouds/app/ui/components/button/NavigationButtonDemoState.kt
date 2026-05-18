@@ -21,8 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsNavigationButtonAppearance
+import com.orange.ouds.core.component.OudsNavigationButtonChevron
 import com.orange.ouds.core.component.OudsNavigationButtonDefaults
-import com.orange.ouds.core.component.OudsNavigationButtonLayout
 
 @Composable
 fun rememberNavigationButtonDemoState(
@@ -31,10 +31,10 @@ fun rememberNavigationButtonDemoState(
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    layout: OudsNavigationButtonLayout = OudsNavigationButtonLayout.Next,
+    chevron: OudsNavigationButtonChevron = OudsNavigationButtonChevron.Next,
     iconOnly: Boolean = false
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, iconOnly, saver = NavigationButtonDemoState.Saver) {
-    NavigationButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout, iconOnly)
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, chevron, iconOnly, saver = NavigationButtonDemoState.Saver) {
+    NavigationButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, chevron, iconOnly)
 }
 
 class NavigationButtonDemoState(
@@ -43,7 +43,7 @@ class NavigationButtonDemoState(
     onColoredBox: Boolean,
     hasLoader: Boolean,
     appearance: OudsNavigationButtonAppearance,
-    layout: OudsNavigationButtonLayout,
+    chevron: OudsNavigationButtonChevron,
     iconOnly: Boolean
 ) : BaseButtonDemoState(label, enabled, onColoredBox, hasLoader) {
 
@@ -57,7 +57,7 @@ class NavigationButtonDemoState(
                 with(state) {
                     listOf(
                         appearance,
-                        layout,
+                        chevron,
                         iconOnly,
                         with(BaseButtonDemoState.Saver) { save(state) }
                     )
@@ -72,7 +72,7 @@ class NavigationButtonDemoState(
                         onColoredBox,
                         hasLoader,
                         list[0] as OudsNavigationButtonAppearance,
-                        list[1] as OudsNavigationButtonLayout,
+                        list[1] as OudsNavigationButtonChevron,
                         list[2] as Boolean
                     )
                 }
@@ -90,7 +90,7 @@ class NavigationButtonDemoState(
             }
         }
 
-    var layout: OudsNavigationButtonLayout by mutableStateOf(layout)
+    var chevron: OudsNavigationButtonChevron by mutableStateOf(chevron)
 
     var iconOnly: Boolean by mutableStateOf(iconOnly)
 

@@ -347,7 +347,7 @@ internal fun OudsButton(
                 horizontalArrangement = Arrangement.spacedBy(component.getColumnGap()),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (label != null && component is OudsButtonComponent.NavigationButton && component.layout == OudsNavigationButtonLayout.Next) {
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
                     ButtonText(
                         label = label,
                         color = contentColor.value
@@ -399,7 +399,7 @@ internal fun OudsButton(
                     ButtonText(label = label, color = contentColor.value)
                 }
 
-                if (label != null && component is OudsButtonComponent.NavigationButton && component.layout == OudsNavigationButtonLayout.Previous) {
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
                     ButtonText(
                         label = label,
                         color = contentColor.value
@@ -683,12 +683,12 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                 label != null -> {
                     val startPadding: Dp
                     val endPadding: Dp
-                    when (component.layout) {
-                        OudsNavigationButtonLayout.Next -> {
+                    when (component.chevron) {
+                        OudsNavigationButtonChevron.Next -> {
                             startPadding = spacePaddingInlineStartIconEnd.value
                             endPadding = spacePaddingInlineChevronEnd.value
                         }
-                        OudsNavigationButtonLayout.Previous -> {
+                        OudsNavigationButtonChevron.Previous -> {
                             startPadding = spacePaddingInlineChevronStart.value
                             endPadding = spacePaddingInlineEndIconStart.value
                         }
@@ -843,9 +843,9 @@ internal sealed interface OudsButtonComponent {
     /**
      * Configuration for an [OudsNavigationButton] (including a chevron).
      *
-     * @property layout Layout of the navigation button determining the chevron to display and its position in the button.
+     * @property chevron The chevron to display in the button.
      */
-    class NavigationButton(val layout: OudsNavigationButtonLayout) : OudsButtonComponent {
+    class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
         @Composable
         override fun getColumnGap() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
     }
