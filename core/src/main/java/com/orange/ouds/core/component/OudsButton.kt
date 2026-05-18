@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -340,6 +339,7 @@ internal fun OudsButton(
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
             val paddingValues = contentPadding(component = component, icon = icon, label = label)
+            val labeledNavigationButton = label != null && component is OudsButtonComponent.NavigationButton
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
@@ -347,7 +347,7 @@ internal fun OudsButton(
                 horizontalArrangement = Arrangement.spacedBy(component.getColumnGap()),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
+                if (labeledNavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
                     ButtonText(
                         label = label,
                         color = contentColor.value
@@ -399,7 +399,7 @@ internal fun OudsButton(
                     ButtonText(label = label, color = contentColor.value)
                 }
 
-                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
+                if (labeledNavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
                     ButtonText(
                         label = label,
                         color = contentColor.value
