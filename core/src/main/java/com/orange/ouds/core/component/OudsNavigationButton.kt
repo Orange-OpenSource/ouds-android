@@ -123,24 +123,30 @@ enum class OudsNavigationButtonChevron {
  */
 enum class OudsNavigationButtonAppearance {
     /**
-     * Default navigation buttons are used for actions which are not mandatory or essential for the user.
+     * Default navigation buttons are used for navigation between pages that are not critical or emphasized.They typically represent inactive page states
+     * and support smooth movement across content.
+     * Use case: Standard "next/previous" navigation in product listings or search results.
      */
     Default,
 
     /**
-     * The Strong navigation button on the page should be singular and prominent, ideally limited to one per view.
-     * It should be reserved for the most critical navigation action.
+     * The Strong navigation button should be singular and prominent, reserved for highlighting the active page. It ensures the user always knows their current
+     * position within a sequence.
+     * Use case: Highlighting the active page in long catalog navigation.
      */
     Strong,
 
     /**
-     * A brand primary color alternative to the Strong button. To be used sparingly for high-value specific navigation actions or to visually anchor a brand moment.
-     * Do not use it as the default primary button in your interfaces.
+     * A brand-colored alternative to the Strong navigation button. It should be used sparingly for high-value navigation points or to visually anchor a brand
+     * moment. Avoid using it as the default for all pages.
+     * Use case: Emphasizing a key page (e.g., a promotional offer) with the brand's primary color.
      */
     Brand,
 
     /**
-     * Minimal navigation buttons are commonly used for actions that are considered less crucial. They can be used independently or together with a strong button.
+     * Minimal navigation buttons are simplified and less emphasized, suitable when pagination is not the primary focus. They can be used independently
+     * or in combination with stronger buttons.
+     * Use case: Secondary interface, such as blogs or FAQs, where pagination is less critical.
      */
     Minimal
 }
