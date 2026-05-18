@@ -57,7 +57,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsNavigationButtonAppearance] values.
- *   A button with [OudsButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ *   A button with [OudsNavigationButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting interactions for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
@@ -123,7 +123,7 @@ fun OudsNavigationButton(
  *   Has no effect if [loader] is provided.
  * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
  * @param appearance Appearance of the button among [OudsNavigationButtonAppearance] values.
- *   A button with [OudsButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ *   A button with [OudsNavigationButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting interactions for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
  *
