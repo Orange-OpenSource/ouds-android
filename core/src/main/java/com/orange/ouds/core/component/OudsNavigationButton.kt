@@ -41,9 +41,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design version: 3.2.1
  *
- * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
+ * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
  * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
  *   or in contexts where clarity is critical.
  * @param enabled Controls the enabled state of the button when there is no [loader].
@@ -60,9 +60,9 @@ import com.orange.ouds.theme.OudsThemeContract
  */
 @Composable
 fun OudsNavigationButton(
-    chevron: OudsNavigationButtonChevron,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
     label: String? = null,
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
@@ -70,7 +70,6 @@ fun OudsNavigationButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     val drawableResources = LocalDrawableResources.current
-
     val iconResource = when (chevron) {
         OudsNavigationButtonChevron.Next -> drawableResources.component.button.next
         OudsNavigationButtonChevron.Previous -> drawableResources.component.button.previous
@@ -101,6 +100,11 @@ object OudsNavigationButtonDefaults {
      * Default appearance of an [OudsNavigationButton].
      */
     val Appearance = OudsNavigationButtonAppearance.Default
+
+    /**
+     * Default chevron of an [OudsNavigationButton].
+     */
+    val Chevron = OudsNavigationButtonChevron.Next
 }
 
 /**

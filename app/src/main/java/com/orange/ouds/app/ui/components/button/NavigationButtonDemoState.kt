@@ -28,7 +28,7 @@ fun rememberNavigationButtonDemoState(
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    chevron: OudsNavigationButtonChevron = OudsNavigationButtonChevron.Next,
+    chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
     label: String? = null
 ) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, chevron, saver = NavigationButtonDemoState.Saver) {
     NavigationButtonDemoState(enabled, onColoredBox, hasLoader, appearance, chevron, label)
