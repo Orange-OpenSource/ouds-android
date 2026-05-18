@@ -18,7 +18,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Enclosed::class)
-
 internal class OudsNavigationButtonTest {
     @RunWith(Parameterized::class)
     class Default(parameter: Any) : OudsComponentSnapshotTest(
