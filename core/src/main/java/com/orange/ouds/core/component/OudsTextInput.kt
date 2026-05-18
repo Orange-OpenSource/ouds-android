@@ -24,9 +24,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -674,7 +676,11 @@ internal fun OudsTextInputDecorator(
                         // Loader
                         if (state == OudsTextInputState.Loading) {
                             Box(
-                                modifier = Modifier.padding(all = buttonTokens.spaceInsetIconOnly.value)
+                                modifier = Modifier
+                                    .widthIn(min = buttonTokens.sizeMinWidth.value)
+                                    .heightIn(min = buttonTokens.sizeMinHeight.value, max = buttonTokens.sizeMaxHeightIconOnly.value * iconScale)
+                                    .padding(all = buttonTokens.spaceInsetIconOnly.value),
+                                contentAlignment = Alignment.Center
                             ) {
                                 OudsCircularProgressIndicator(
                                     color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
