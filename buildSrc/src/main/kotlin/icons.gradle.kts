@@ -10,40 +10,24 @@
  * Software description: Android library of reusable graphical components
  */
 
-package com.orange.ouds.tasks
-
-import org.gradle.api.DefaultTask
-import org.gradle.api.GradleException
-import org.gradle.api.tasks.Internal
-import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.options.Option
+import com.orange.ouds.tasks.IconMappings
 import org.w3c.dom.Element
 import java.io.File
 import java.util.zip.ZipFile
 import javax.xml.parsers.DocumentBuilderFactory
 
 /**
- * Gradle task to import OUDS icons from a zip file into all theme modules.
- * 
- * This task automates the process of:
- * 1. Extracting SVG files from the OUDS icons zip
- * 2. Converting SVGs to Android Vector Drawable XML format
- * 3. Importing icons into Orange, Sosh, and Wireframe theme modules
- * 
- * Usage:
- * ```
- * ./gradlew importIcons --zip-path="~/Downloads/OUDS Icons V1.7.zip"
- * ./gradlew importIcons --zip-path="/path/to/OUDS Icons V1.7.zip" --simulate
- * ```
+ * Plugin that provides the importIcons task for importing OUDS Icons from a zip file.
  */
+
 abstract class ImportIconsTask : DefaultTask() {
 
     @get:Internal
-    @set:Option(option = "zip-path", description = "Path to the OUDS icons zip file (required)")
+    @set:org.gradle.api.tasks.options.Option(option = "zip-path", description = "Path to the OUDS Icons zip file (required)")
     var zipPath: String = ""
 
     @get:Internal
-    @set:Option(option = "simulate", description = "Simulate the import without writing files")
+    @set:org.gradle.api.tasks.options.Option(option = "simulate", description = "Simulate the import without writing files")
     var simulate: Boolean = false
 
     private val failures = mutableListOf<String>()
@@ -60,16 +44,15 @@ abstract class ImportIconsTask : DefaultTask() {
         logger.lifecycle("║          OUDS Icons Import Task                            ║")
         logger.lifecycle("╚════════════════════════════════════════════════════════════╝")
         logger.lifecycle("")
-
+        
         if (simulate) {
             logger.lifecycle("🔍 SIMULATION MODE: No files will be written")
             logger.lifecycle("")
         }
 
-        // Validate zip-path parameter is provided
+        // Step 1: Validate zip-path parameter is provided
         if (zipPath.isEmpty()) {
-            throw GradleException(
-                """
+            throw GradleException("""
                 ❌ Missing required parameter: --zip-path
                 
                 Usage:
@@ -77,21 +60,20 @@ abstract class ImportIconsTask : DefaultTask() {
                 
                 Example:
                   ./gradlew importIcons --zip-path="~/Downloads/OUDS Icons V1.7.zip"
-            """.trimIndent()
-            )
+            """.trimIndent())
         }
 
-        // Validate zip file exists
+        // Step 2: Validate zip file exists
         val zipFile = File(zipPath.replace("~", System.getProperty("user.home")))
         if (!zipFile.exists()) {
             throw GradleException("❌ Zip file not found: ${zipFile.absolutePath}")
         }
         logger.lifecycle("✓ Found zip file: ${zipFile.name}")
 
-        // Validate theme-orange-compact doesn't have drawable directory
+        // Step 3: Validate theme-orange-compact doesn't have drawable directory
         validateOrangeCompact()
 
-        // Extract and process icons
+        // Step 4: Extract and process icons
         ZipFile(zipFile).use { zip ->
             val tempDir = createTempDir("ouds-icons-import")
             try {
@@ -109,12 +91,12 @@ abstract class ImportIconsTask : DefaultTask() {
                     }
                 }
 
-                // Find the root directory (should be "OUDS Icons Vx.y")
+                // Find the root directory (should be "OUDS Icons V*.*")
                 // Skip __MACOSX and other system directories
                 val rootDir = tempDir.listFiles()
                     ?.filter { it.isDirectory && !it.name.startsWith("__") && !it.name.startsWith(".") }
                     ?.firstOrNull { it.name.matches(Regex("OUDS Icons V\\d+\\.\\d+.*")) }
-                    ?: throw GradleException("❌ Invalid zip structure: no 'OUDS Icons V*.* directory found")
+                    ?: throw GradleException("❌ Invalid zip structure: no 'OUDS Icons V*.*' directory found")
 
                 logger.lifecycle("✓ Found icons directory: ${rootDir.name}")
                 logger.lifecycle("")
@@ -173,7 +155,7 @@ abstract class ImportIconsTask : DefaultTask() {
     private fun processIcon(
         rootDir: File,
         theme: String,
-        iconDef: IconDefinition,
+        iconDef: com.orange.ouds.tasks.IconDefinition,
         currentIcon: Int,
         totalIcons: Int
     ) {
@@ -207,6 +189,7 @@ abstract class ImportIconsTask : DefaultTask() {
             successCount++
             val status = if (simulate) "[SIMULATED]" else "✓"
             logger.lifecycle("$progress $status $displayPath")
+
         } catch (e: Exception) {
             failures.add("Conversion failed for $theme/${iconDef.svgPath}: ${e.message}")
             logger.lifecycle("$progress ✗ $displayPath (${e.message})")
@@ -222,7 +205,7 @@ abstract class ImportIconsTask : DefaultTask() {
         val width = svgElement.getAttribute("width").takeIf { it.isNotEmpty() } ?: "24"
         val height = svgElement.getAttribute("height").takeIf { it.isNotEmpty() } ?: "24"
         val viewBox = svgElement.getAttribute("viewBox")
-
+        
         val (viewportWidth, viewportHeight) = if (viewBox.isNotEmpty()) {
             val parts = viewBox.trim().split("\\s+".toRegex())
             if (parts.size == 4) {
@@ -241,13 +224,13 @@ abstract class ImportIconsTask : DefaultTask() {
         // Build Vector Drawable XML with Android Studio formatting
         // Format: 4-space indentation for vector attributes, 2-space for path, 6-space for path attributes
         val lines = mutableListOf<String>()
-
+        
         // Vector opening tag
         lines.add("<vector xmlns:android=\"http://schemas.android.com/apk/res/android\"")
         lines.add("    android:width=\"${width.removeSuffix("px")}dp\"")
         lines.add("    android:height=\"${height.removeSuffix("px")}dp\"")
         lines.add("    android:viewportWidth=\"$viewportWidth\"")
-
+        
         // ViewportHeight - last attribute before closing or autoMirrored
         if (autoMirrored) {
             lines.add("    android:viewportHeight=\"$viewportHeight\"")
@@ -264,11 +247,11 @@ abstract class ImportIconsTask : DefaultTask() {
 
             if (pathData.isNotEmpty()) {
                 lines.add("  <path")
-
+                
                 // Format pathData to match Android Studio's Vector Asset import format
                 val formattedPathData = formatPathDataLikeAndroidStudio(pathData)
                 lines.add("      android:pathData=\"$formattedPathData\"")
-
+                
                 // Fill color - check if it's last attribute
                 if (fillRule == "evenodd") {
                     lines.add("      android:fillColor=\"$fill\"")
@@ -281,7 +264,7 @@ abstract class ImportIconsTask : DefaultTask() {
 
         // Closing tag
         lines.add("</vector>")
-
+        
         // Add trailing newline to match Android Studio format
         return lines.joinToString("\n") + "\n"
     }
@@ -306,19 +289,19 @@ abstract class ImportIconsTask : DefaultTask() {
     private fun formatPathDataLikeAndroidStudio(pathData: String): String {
         // Clean up whitespace first
         var formatted = pathData.trim().replace(Regex("""\s+"""), " ")
-
+        
         // Android Studio adds commas after path commands before first coordinate
         // Pattern: "M12 2.4" -> "M12,2.4"
         formatted = formatted.replace(Regex("""([MmLlHhVvCcSsQqTtAa])(\s*)(-?[\d.]+)\s+(-?[\d.]+)""")) { match ->
             "${match.groupValues[1]}${match.groupValues[3]},${match.groupValues[4]}"
         }
-
+        
         // For Arc (A/a) commands, also add commas after the radii pair
         // Pattern: "A9.6 9.6 0 0 0 2.4" -> "A9.6,9.6 0,0 0,2.4"
         formatted = formatted.replace(Regex("""([Aa][\d.,]+)\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)""")) { match ->
             "${match.groupValues[1]} ${match.groupValues[2]},${match.groupValues[3]} ${match.groupValues[4]},${match.groupValues[5]}"
         }
-
+        
         return formatted
     }
 
@@ -331,7 +314,7 @@ abstract class ImportIconsTask : DefaultTask() {
         logger.lifecycle("")
         logger.lifecycle("  ✓ Successfully imported: $successCount icons")
         logger.lifecycle("  ✗ Failures: ${failures.size}")
-
+        
         if (failures.isNotEmpty()) {
             logger.lifecycle("")
             logger.lifecycle("Failed imports:")
@@ -355,4 +338,10 @@ abstract class ImportIconsTask : DefaultTask() {
         }
         logger.lifecycle("")
     }
+}
+
+// Register the importIcons task
+tasks.register<ImportIconsTask>("importIcons") {
+    group = "ouds"
+    description = "Import OUDS Icons from a zip file into all theme modules"
 }
