@@ -26,10 +26,6 @@ abstract class ImportIconsTask : DefaultTask() {
     @set:org.gradle.api.tasks.options.Option(option = "zip-path", description = "Path to the OUDS Icons zip file (required)")
     var zipPath: String = ""
 
-    @get:Internal
-    @set:org.gradle.api.tasks.options.Option(option = "simulate", description = "Simulate the import without writing files")
-    var simulate: Boolean = false
-
     private val failures = mutableListOf<String>()
     private var successCount = 0
 
@@ -44,11 +40,6 @@ abstract class ImportIconsTask : DefaultTask() {
         logger.lifecycle("║          OUDS Icons Import Task                            ║")
         logger.lifecycle("╚════════════════════════════════════════════════════════════╝")
         logger.lifecycle("")
-        
-        if (simulate) {
-            logger.lifecycle("🔍 SIMULATION MODE: No files will be written")
-            logger.lifecycle("")
-        }
 
         // Step 1: Validate zip-path parameter is provided
         if (zipPath.isEmpty()) {
@@ -181,14 +172,11 @@ abstract class ImportIconsTask : DefaultTask() {
             val vectorXml = convertSvgToVectorDrawable(svgFile, iconDef.autoMirrored)
 
             // Write output file
-            if (!simulate) {
-                outputFile.parentFile.mkdirs()
-                outputFile.writeText(vectorXml)
-            }
+            outputFile.parentFile.mkdirs()
+            outputFile.writeText(vectorXml)
 
             successCount++
-            val status = if (simulate) "[SIMULATED]" else "✓"
-            logger.lifecycle("$progress $status $displayPath")
+            logger.lifecycle("$progress ✓ $displayPath")
 
         } catch (e: Exception) {
             failures.add("Conversion failed for $theme/${iconDef.svgPath}: ${e.message}")
@@ -326,16 +314,12 @@ abstract class ImportIconsTask : DefaultTask() {
         }
 
         logger.lifecycle("")
-        if (simulate) {
-            logger.lifecycle("🔍 Simulation completed successfully. No files were modified.")
-        } else {
-            logger.lifecycle("✅ All icons imported successfully!")
-            logger.lifecycle("")
-            logger.lifecycle("Next steps:")
-            logger.lifecycle("  1. Review the changes with: git status")
-            logger.lifecycle("  2. Build the project: ./gradlew build")
-            logger.lifecycle("  3. Run snapshot tests: ./gradlew verifyPaparazziDebug")
-        }
+        logger.lifecycle("✅ All icons imported successfully!")
+        logger.lifecycle("")
+        logger.lifecycle("Next steps:")
+        logger.lifecycle("  1. Review the changes with: git status")
+        logger.lifecycle("  2. Build the project: ./gradlew build")
+        logger.lifecycle("  3. Run snapshot tests: ./gradlew verifyPaparazziDebug")
         logger.lifecycle("")
     }
 }
