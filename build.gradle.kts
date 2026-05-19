@@ -68,3 +68,9 @@ dokka {
         outputDirectory.set(projectDir.resolve("docs/dokka"))
     }
 }
+
+// Register the importIcons task for importing OUDS Icons from zip files
+tasks.register<com.orange.ouds.tasks.ImportIconsTask>("importIcons") {
+    group = "ouds"
+    description = "Import OUDS Icons from a zip file into all theme modules"
+}
