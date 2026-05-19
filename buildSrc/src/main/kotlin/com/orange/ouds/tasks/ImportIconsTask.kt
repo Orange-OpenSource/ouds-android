@@ -14,7 +14,7 @@ package com.orange.ouds.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
-import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 import org.w3c.dom.Element
@@ -33,21 +33,26 @@ import javax.xml.parsers.DocumentBuilderFactory
  * Usage:
  * ```
  * ./gradlew importIcons --zip-path="~/Downloads/OUDS Icons V1.7.zip"
- * ./gradlew importIcons --zip-path="/path/to/OUDS Icons V1.7.zip" --dry-run
+ * ./gradlew importIcons --zip-path="/path/to/OUDS Icons V1.7.zip" --simulate
  * ```
  */
 abstract class ImportIconsTask : DefaultTask() {
 
-    @get:Input
+    @get:Internal
     @set:Option(option = "zip-path", description = "Path to the OUDS icons zip file (required)")
     var zipPath: String = ""
 
-    @get:Input
-    @set:Option(option = "dry-run", description = "Simulate the import without writing files")
-    var dryRun: Boolean = false
+    @get:Internal
+    @set:Option(option = "simulate", description = "Simulate the import without writing files")
+    var simulate: Boolean = false
 
     private val failures = mutableListOf<String>()
     private var successCount = 0
+
+    init {
+        // Always run this task, don't cache it
+        outputs.upToDateWhen { false }
+    }
 
     @TaskAction
     fun importIcons() {
@@ -56,8 +61,8 @@ abstract class ImportIconsTask : DefaultTask() {
         logger.lifecycle("╚════════════════════════════════════════════════════════════╝")
         logger.lifecycle("")
 
-        if (dryRun) {
-            logger.lifecycle("🔍 DRY RUN MODE: No files will be written")
+        if (simulate) {
+            logger.lifecycle("🔍 SIMULATION MODE: No files will be written")
             logger.lifecycle("")
         }
 
@@ -105,8 +110,11 @@ abstract class ImportIconsTask : DefaultTask() {
                 }
 
                 // Find the root directory (should be "OUDS Icons Vx.y")
-                val rootDir = tempDir.listFiles()?.firstOrNull { it.isDirectory }
-                    ?: throw GradleException("❌ Invalid zip structure: no root directory found")
+                // Skip __MACOSX and other system directories
+                val rootDir = tempDir.listFiles()
+                    ?.filter { it.isDirectory && !it.name.startsWith("__") && !it.name.startsWith(".") }
+                    ?.firstOrNull { it.name.matches(Regex("OUDS Icons V\\d+\\.\\d+.*")) }
+                    ?: throw GradleException("❌ Invalid zip structure: no 'OUDS Icons V*.* directory found")
 
                 logger.lifecycle("✓ Found icons directory: ${rootDir.name}")
                 logger.lifecycle("")
@@ -191,13 +199,13 @@ abstract class ImportIconsTask : DefaultTask() {
             val vectorXml = convertSvgToVectorDrawable(svgFile, iconDef.autoMirrored)
 
             // Write output file
-            if (!dryRun) {
+            if (!simulate) {
                 outputFile.parentFile.mkdirs()
                 outputFile.writeText(vectorXml)
             }
 
             successCount++
-            val status = if (dryRun) "[DRY RUN]" else "✓"
+            val status = if (simulate) "[SIMULATED]" else "✓"
             logger.lifecycle("$progress $status $displayPath")
         } catch (e: Exception) {
             failures.add("Conversion failed for $theme/${iconDef.svgPath}: ${e.message}")
@@ -335,8 +343,8 @@ abstract class ImportIconsTask : DefaultTask() {
         }
 
         logger.lifecycle("")
-        if (dryRun) {
-            logger.lifecycle("🔍 DRY RUN completed successfully. No files were modified.")
+        if (simulate) {
+            logger.lifecycle("🔍 Simulation completed successfully. No files were modified.")
         } else {
             logger.lifecycle("✅ All icons imported successfully!")
             logger.lifecycle("")
