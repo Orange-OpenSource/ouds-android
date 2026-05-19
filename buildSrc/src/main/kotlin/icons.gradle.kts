@@ -10,7 +10,6 @@
  * Software description: Android library of reusable graphical components
  */
 
-import com.orange.ouds.tasks.IconMappings
 import org.w3c.dom.Element
 import java.io.File
 import java.util.zip.ZipFile
@@ -20,6 +19,15 @@ import javax.xml.parsers.DocumentBuilderFactory
  * Plugin that provides the importIcons task for importing OUDS Icons from a zip file.
  */
 
+/**
+ * Represents an icon to be imported.
+ */
+data class IconInfo(
+    val svgPath: String,           // Relative path from theme directory (e.g., "Component/alert/important-fill.svg")
+    val resourceName: String,      // Android resource name (e.g., "ic_orange_component_alert_important_fill")
+    val autoMirrored: Boolean = false
+)
+
 abstract class ImportIconsTask : DefaultTask() {
 
     @get:Internal
@@ -28,6 +36,79 @@ abstract class ImportIconsTask : DefaultTask() {
 
     private val failures = mutableListOf<String>()
     private var successCount = 0
+    
+    private val supportedThemes = listOf("orange", "sosh", "wireframe")
+    
+    /**
+     * Filter to determine which SVG files should be imported.
+     * The path is relative to the theme directory (e.g., "Component/alert/important-fill.svg")
+     * Update this lambda to add or remove icons from the import.
+     */
+    private val filter: (String) -> Boolean = { svgPath ->
+        val path = svgPath.lowercase()
+        
+        // Include specific icon paths - use exact matches to avoid partial matches
+        path == "communication/accessibility/accessibility-vision.svg" ||
+        path == "communication/security-and-safety/lock.svg" ||
+        path == "component/alert/important-fill.svg" ||
+        path == "component/alert/info-fill.svg" ||
+        path == "component/alert/tick-confirmation-fill.svg" ||
+        path == "component/alert/warning-external-shape.svg" ||
+        path == "component/alert/warning-internal-shape.svg" ||
+        path == "component/badge-icon/error-fill.svg" ||
+        path == "component/badge-icon/info-fill.svg" ||
+        path == "component/badge-icon/tick-confirmation-fill.svg" ||
+        path == "component/badge-icon/warning-external-shape.svg" ||
+        path == "component/badge-icon/warning-internal-shape.svg" ||
+        path == "component/bullet-list/bullet-level-0.svg" ||
+        path == "component/bullet-list/bullet-level-1.svg" ||
+        path == "component/bullet-list/bullet-level-2.svg" ||
+        path == "component/bullet-list/bullet-tick.svg" ||
+        path == "component/button/expurge.svg" ||
+        path == "component/checkbox/checkbox-selected.svg" ||
+        path == "component/checkbox/checkbox-undetermined.svg" ||
+        path == "component/chip/tick.svg" ||
+        path == "component/link/next.svg" ||
+        path == "component/link/previous.svg" ||
+        path == "component/radio-button/radio-button-selected.svg" ||
+        path == "component/switch/selected-switch.svg" ||
+        path == "component/tag/close.svg" ||
+        path == "functional/actions/delete.svg" ||
+        path == "functional/navigation/form-chevron-left.svg" ||
+        path == "functional/navigation/menu.svg" ||
+        path == "functional/settings-and-tools/hide.svg" ||
+        path == "functional/social-and-engagement/heart-empty.svg"
+    }
+    
+    /**
+     * Transform function to customize the drawable resource name.
+     * The default behavior converts the path to snake_case and removes redundant prefixes.
+     * Update this lambda to customize specific icon names.
+     */
+    private val transform: (String) -> String = { resourceBaseName ->
+        when (resourceBaseName) {
+            // Custom mappings for specific icons
+            "component_switch_selected" -> "component_switch_selected_switch"
+            "component_bullet_list_level_0" -> "component_bullet_list_level0"
+            "component_bullet_list_level_1" -> "component_bullet_list_level1"
+            "component_bullet_list_level_2" -> "component_bullet_list_level2"
+            "component_bullet_list_tick" -> "component_bullet_list_tick"
+            "component_checkbox_selected" -> "component_checkbox_selected"
+            "component_checkbox_undetermined" -> "component_checkbox_undetermined"
+            "component_radio_button_selected" -> "component_radio_button_selected"
+            "communication_accessibility_vision" -> "communication_accessibility_vision"
+            else -> resourceBaseName
+        }
+    }
+    
+    /**
+     * Set of icon paths that should have android:autoMirrored="true" for RTL support.
+     */
+    private val autoMirroredIcons = setOf(
+        "component/link/next.svg",
+        "component/link/previous.svg",
+        "functional/navigation/form-chevron-left.svg"
+    )
 
     init {
         // Always run this task, don't cache it
@@ -118,58 +199,124 @@ abstract class ImportIconsTask : DefaultTask() {
     }
 
     private fun validateThemes(rootDir: File) {
-        IconMappings.supportedThemes.forEach { theme ->
+        supportedThemes.forEach { theme ->
             val themeDir = File(rootDir, theme)
             if (!themeDir.exists()) {
                 throw GradleException("❌ Theme directory not found: ${theme}")
             }
         }
-        logger.lifecycle("✓ All theme directories found (orange, sosh, wireframe)")
+        logger.lifecycle("✓ All theme directories found (${supportedThemes.joinToString(", ")})")
         logger.lifecycle("")
     }
 
     private fun processAllIcons(rootDir: File) {
-        val totalIcons = IconMappings.allIcons.size * IconMappings.supportedThemes.size
+        // Discover all SVG files from the zip
+        val allIcons = mutableListOf<IconInfo>()
+        
+        supportedThemes.forEach { theme ->
+            val themeDir = File(rootDir, theme)
+            discoverSvgFiles(themeDir, theme, "", allIcons)
+        }
+        
+        val totalIcons = allIcons.size
         var currentIcon = 0
 
-        logger.lifecycle("Processing ${IconMappings.allIcons.size} icons across ${IconMappings.supportedThemes.size} themes (${totalIcons} total)...")
+        logger.lifecycle("Processing $totalIcons icons...")
         logger.lifecycle("─".repeat(60))
 
-        IconMappings.supportedThemes.forEach { theme ->
-            IconMappings.allIcons.forEach { iconDef ->
-                currentIcon++
-                processIcon(rootDir, theme, iconDef, currentIcon, totalIcons)
+        allIcons.forEach { iconInfo ->
+            currentIcon++
+            processIcon(rootDir, iconInfo, currentIcon, totalIcons)
+        }
+    }
+    
+    /**
+     * Recursively discover SVG files in a theme directory and filter them.
+     */
+    private fun discoverSvgFiles(dir: File, theme: String, relativePath: String, icons: MutableList<IconInfo>) {
+        dir.listFiles()?.forEach { file ->
+            if (file.isDirectory) {
+                val newRelativePath = if (relativePath.isEmpty()) file.name else "$relativePath/${file.name}"
+                discoverSvgFiles(file, theme, newRelativePath, icons)
+            } else if (file.extension.equals("svg", ignoreCase = true)) {
+                val svgPath = if (relativePath.isEmpty()) file.name else "$relativePath/${file.name}"
+                
+                // Apply filter
+                if (filter(svgPath)) {
+                    // Convert path to resource name
+                    val resourceBaseName = svgPathToResourceName(svgPath)
+                    val transformedName = transform(resourceBaseName)
+                    val resourceName = "ic_${theme}_${transformedName}"
+                    val autoMirrored = autoMirroredIcons.contains(svgPath.lowercase())
+                    
+                    icons.add(IconInfo(svgPath, resourceName, autoMirrored))
+                }
             }
         }
+    }
+    
+    /**
+     * Convert SVG path to Android resource base name.
+     * Example: "Component/alert/important-fill.svg" -> "component_alert_important_fill"
+     * 
+     * Special rule: If the file name starts with the last directory name (or any word from it), remove that prefix.
+     * Examples:
+     * - "communication/accessibility/accessibility-vision.svg" -> "communication_accessibility_vision"
+     * - "Component/bullet-list/bullet-level-0.svg" -> "component_bullet_list_level_0" 
+     * - "Component/checkbox/checkbox-selected.svg" -> "component_checkbox_selected"
+     * - "Component/radio-button/radio-button-selected.svg" -> "component_radio_button_selected"
+     */
+    private fun svgPathToResourceName(svgPath: String): String {
+        val pathWithoutExtension = svgPath.removeSuffix(".svg")
+        val parts = pathWithoutExtension.split("/")
+        
+        if (parts.size >= 2) {
+            val directory = parts[parts.size - 2].lowercase().replace("-", "_")
+            val fileName = parts.last().lowercase().replace("-", "_")
+            
+            var fileNameWithoutPrefix = fileName
+            
+            // First, try to remove the full directory name as a prefix
+            if (fileName.startsWith("${directory}_")) {
+                fileNameWithoutPrefix = fileName.removePrefix("${directory}_")
+            } else {
+                // If that doesn't work, try each word in the directory name
+                val directoryWords = directory.split("_")
+                for (word in directoryWords) {
+                    if (fileName.startsWith("${word}_")) {
+                        fileNameWithoutPrefix = fileName.removePrefix("${word}_")
+                        break
+                    }
+                }
+            }
+            
+            // Build the full resource name
+            val allParts = parts.dropLast(1).map { it.lowercase().replace("-", "_") } + fileNameWithoutPrefix
+            return allParts.joinToString("_")
+        }
+        
+        return pathWithoutExtension.lowercase().replace("/", "_").replace("-", "_")
     }
 
     private fun processIcon(
         rootDir: File,
-        theme: String,
-        iconDef: com.orange.ouds.tasks.IconDefinition,
+        iconInfo: IconInfo,
         currentIcon: Int,
         totalIcons: Int
     ) {
-        val svgFile = File(rootDir, "$theme/${iconDef.svgPath}")
-        val resourceName = "ic_${theme}_${iconDef.resourceBaseName}"
+        val theme = iconInfo.resourceName.removePrefix("ic_").substringBefore("_")
+        val svgFile = File(rootDir, "$theme/${iconInfo.svgPath}")
         val outputFile = File(
             project.rootDir,
-            "theme-${theme}/src/main/res/drawable/${resourceName}.xml"
+            "theme-${theme}/src/main/res/drawable/${iconInfo.resourceName}.xml"
         )
 
         val progress = "[$currentIcon/$totalIcons]"
-        val displayPath = iconDef.interfacePath.padEnd(50)
+        val displayPath = iconInfo.svgPath.padEnd(60)
 
         try {
-            // Check if SVG exists
-            if (!svgFile.exists()) {
-                failures.add("Missing SVG: $theme/${iconDef.svgPath}")
-                logger.lifecycle("$progress ✗ $displayPath (SVG not found)")
-                return
-            }
-
             // Convert SVG to Vector Drawable
-            val vectorXml = convertSvgToVectorDrawable(svgFile, iconDef.autoMirrored)
+            val vectorXml = convertSvgToVectorDrawable(svgFile, iconInfo.autoMirrored)
 
             // Write output file
             outputFile.parentFile.mkdirs()
@@ -179,7 +326,7 @@ abstract class ImportIconsTask : DefaultTask() {
             logger.lifecycle("$progress ✓ $displayPath")
 
         } catch (e: Exception) {
-            failures.add("Conversion failed for $theme/${iconDef.svgPath}: ${e.message}")
+            failures.add("Conversion failed for ${iconInfo.svgPath}: ${e.message}")
             logger.lifecycle("$progress ✗ $displayPath (${e.message})")
         }
     }
