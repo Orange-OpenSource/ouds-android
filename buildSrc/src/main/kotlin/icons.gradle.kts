@@ -10,11 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
+import com.android.ide.common.vectordrawable.Svg2Vector
 import com.orange.ouds.gradle.requireTypedProperty
-import org.w3c.dom.Element
+import java.io.ByteArrayOutputStream
 import java.nio.file.Files.createTempDirectory
 import java.util.zip.ZipFile
-import javax.xml.parsers.DocumentBuilderFactory
 
 /**
  * Plugin that provides the importIcons task for importing OUDS icons from a zip file.
@@ -240,111 +240,27 @@ abstract class ImportIconsTask : DefaultTask() {
     }
 
     private fun convertSvgToVectorDrawable(svgFile: File, autoMirrored: Boolean): String {
-        val documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-        val svg = documentBuilder.parse(svgFile).documentElement
+        val outputStream = ByteArrayOutputStream()
 
-        // Extract SVG attributes
-        val defaultSize = 24
-        val width = svg.getAttribute("width").takeIf { it.isNotEmpty() } ?: defaultSize.toString()
-        val height = svg.getAttribute("height").takeIf { it.isNotEmpty() } ?: defaultSize.toString()
-        val viewBox = svg.getAttribute("viewBox")
-
-        // Parse viewBox to get viewport dimensions
-        val viewBoxValues = viewBox.trim().split("\\s+".toRegex())
-        val (viewportWidth, viewportHeight) = if (viewBoxValues.size == 4) {
-            viewBoxValues[2] to viewBoxValues[3]
-        } else {
-            // Fallback to width/height if view box is empty
-            width.removeSuffix("px").removeSuffix("dp") to height.removeSuffix("px").removeSuffix("dp")
+        // Use Android's Svg2Vector tool to convert SVG to Vector Drawable
+        svgFile.inputStream().use { inputStream ->
+            val errorMessage = Svg2Vector.parseSvgToXml(svgFile.toPath(), outputStream)
+            if (errorMessage.isNotEmpty()) {
+                throw GradleException("Could not parse SVG: $errorMessage")
+            }
         }
 
-        // Build Vector Drawable XML with Android Studio formatting
-        val indent = "    "
-        val lines = mutableListOf<String>()
+        var vectorDrawable = outputStream.toString("UTF-8")
 
-        // Open vector tag
-        lines.add("<vector xmlns:android=\"http://schemas.android.com/apk/res/android\"")
-        lines.add("${indent}android:width=\"${width.removeSuffix("px")}dp\"")
-        lines.add("${indent}android:height=\"${height.removeSuffix("px")}dp\"")
-        lines.add("${indent}android:viewportWidth=\"$viewportWidth\"")
-
-        // Last attribute before closing tag
-        val viewportHeightLine = "${indent}android:viewportHeight=\"$viewportHeight\""
+        // If autoMirrored is true, add the android:autoMirrored="true" attribute
         if (autoMirrored) {
-            lines.add(viewportHeightLine)
-            lines.add("${indent}android:autoMirrored=\"true\">")
-        } else {
-            lines.add("$viewportHeightLine>")
+            vectorDrawable = vectorDrawable.replace(
+                Regex("""(<vector[^>]*android:viewportHeight="[^"]*")(\s*>)"""),
+                "$1\n    android:autoMirrored=\"true\"$2"
+            )
         }
 
-        // Extract paths from SVG
-        val paths = extractPaths(svg)
-
-        // Add paths
-        paths.forEach { path ->
-            val pathData = path.getAttribute("d")
-            val fill = path.getAttribute("fill").takeIf { it.isNotEmpty() } ?: "#000000"
-            val fillRule = path.getAttribute("fill-rule").takeIf { it.isNotEmpty() }
-
-            if (pathData.isNotEmpty()) {
-                lines.add("${indent}<path")
-
-                // Format pathData to match Android Studio's Vector Asset import format
-                val formattedPathData = formatPathData(pathData)
-                lines.add("${indent}${indent}android:pathData=\"$formattedPathData\"")
-
-                // Last attribute before closing tag
-                val fillColorLine = "${indent}${indent}android:fillColor=\"$fill\""
-                if (fillRule == "evenodd") {
-                    lines.add(fillColorLine)
-                    lines.add("${indent}${indent}android:fillType=\"evenOdd\" />")
-                } else {
-                    lines.add("$fillColorLine />")
-                }
-            }
-        }
-
-        // Close vector tag
-        lines.add("</vector>")
-
-        // Add trailing newline to match Android Studio format
-        return lines.joinToString("\n") + "\n"
-    }
-
-    private fun extractPaths(element: Element): List<Element> {
-        val paths = mutableListOf<Element>()
-        val children = element.childNodes
-        for (index in 0 until children.length) {
-            val child = children.item(index)
-            if (child is Element) {
-                when (child.nodeName) {
-                    "path" -> paths.add(child)
-                    "g", "svg" -> paths.addAll(extractPaths(child))
-                }
-            }
-        }
-
-        return paths
-    }
-
-    /**
-     * Formats SVG pathData to match Android Studio's Vector Asset import format.
-     * Android Studio adds commas in specific places when converting SVG to Vector Drawable.
-     */
-    private fun formatPathData(pathData: String): String {
-        return pathData
-            // Clean up whitespace first
-            .trim().replace(Regex("""\s+"""), " ")
-            // Android Studio adds commas after path commands before first coordinate
-            // Pattern: "M12 2.4" -> "M12,2.4"
-            .replace(Regex("""([MmLlHhVvCcSsQqTtAa])\s*(-?[\d.]+)\s+(-?[\d.]+)""")) { match ->
-                "${match.groupValues[1]}${match.groupValues[2]},${match.groupValues[3]}"
-            }
-            // For Arc (A/a) commands, also add commas after the radii pair
-            // Pattern: "A9.6 9.6 0 0 0 2.4" -> "A9.6,9.6 0,0 0,2.4"
-            .replace(Regex("""([Aa][\d.,]+)\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)\s+(-?[\d.]+)""")) { match ->
-                "${match.groupValues[1]} ${match.groupValues[2]},${match.groupValues[3]} ${match.groupValues[4]},${match.groupValues[5]}"
-            }
+        return vectorDrawable.replace("android:fillColor=\"currentColor\"", "android:fillColor=\"#000000\"")
     }
 
     private fun printSummary() {
