@@ -201,7 +201,9 @@ fun OudsTextArea(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
- * > Design version: 1.1.0
+ * > Design name: Text Area
+ *
+ * > Design version: 1.2.0
  *
  * @param textFieldState The editable text state of the text area, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text area.
@@ -471,7 +473,9 @@ fun OudsTextArea(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
- * > Design version: 1.1.0
+ * > Design name: Text Area
+ *
+ * > Design version: 1.2.0
  *
  * @param value Input text to be shown in the text area.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -733,7 +737,9 @@ fun OudsTextArea(
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
- * > Design version: 1.1.0
+ * > Design name: Text Area
+ *
+ * > Design version: 1.2.0
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text area.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
