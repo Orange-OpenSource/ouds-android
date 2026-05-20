@@ -66,7 +66,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(5, linkAnnotations[0].start) // "Bold " has 5 characters
         assertEquals(9, linkAnnotations[0].end) // "Bold link" has 9 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
     }
 
     @Test
@@ -103,7 +103,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(10, linkAnnotations[0].start) // "uppercase " has 10 characters
         assertEquals(17, linkAnnotations[0].end) // "uppercase website" has 17 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
     }
 
     @Test
@@ -469,7 +469,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(10, linkAnnotations[0].start) // "Visit our " has 10 characters
         assertEquals(17, linkAnnotations[0].end) // "Visit our website" has 17 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
     }
 
     @Test
@@ -485,7 +485,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(10, linkAnnotations[0].start)
         assertEquals(17, linkAnnotations[0].end)
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
     }
 
     @Test
@@ -501,7 +501,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(6, linkAnnotations[0].start)
         assertEquals(13, linkAnnotations[0].end)
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Clickable)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Clickable)
     }
 
     @Test
@@ -520,7 +520,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(10, linkAnnotations[0].start) // "Visit our " has 10 characters
         assertEquals(17, linkAnnotations[0].end) // "Visit our website" has 17 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
     }
 
     @Test
@@ -539,7 +539,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(6, linkAnnotations[0].start) // "Click " has 6 characters
         assertEquals(10, linkAnnotations[0].end) // "Click here" has 10 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Clickable)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Clickable)
     }
 
     @Test
@@ -562,10 +562,10 @@ class OudsAnnotatedStringTest {
         assertEquals(2, linkAnnotations.size)
         assertEquals(6, linkAnnotations[0].start) // "Start " has 6 characters, outer starts
         assertEquals(23, linkAnnotations[0].end) // "Start outer inner outer" has 23 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
         assertEquals(12, linkAnnotations[1].start) // "Start outer " has 12 characters, inner starts
         assertEquals(17, linkAnnotations[1].end) // "Start outer inner" has 17 characters
-        assertTrue(linkAnnotations[1].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[1].item is LinkAnnotation.Url)
     }
 
     @Test
@@ -587,7 +587,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(6, linkAnnotations[0].start) // "Visit " has 6 characters
         assertEquals(26, linkAnnotations[0].end) // "Visit our official website" has 26 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
 
         val strongAnnotations = annotatedString.getStrongAnnotations()
         assertEquals(1, strongAnnotations.size)
@@ -714,7 +714,7 @@ class OudsAnnotatedStringTest {
         assertEquals(1, linkAnnotations.size)
         assertEquals(11, linkAnnotations[0].start) // "Important: " has 11 characters
         assertEquals(20, linkAnnotations[0].end) // "Important: read this" has 20 characters
-        assertTrue(linkAnnotations[0].item is androidx.compose.ui.text.LinkAnnotation.Url)
+        assertTrue(linkAnnotations[0].item is LinkAnnotation.Url)
     }
 
     //endregion
