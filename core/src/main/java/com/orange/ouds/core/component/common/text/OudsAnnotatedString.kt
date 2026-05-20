@@ -51,7 +51,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     private val _annotatedString = annotatedString
 
     // The link colors depend on the current light / dark mode as well as the current OudsColorMode
-    // Thus this property must be accessed at the call site of the Text composable it is displayed into
+    // Thus this function must be accessed at the call site of the Text composable it is displayed into
     // If it is accessed elsewhere in the hierarchy, the light / dark mode or the OudsColorMode might be different
     @Composable
     internal fun annotatedString(
@@ -398,7 +398,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     interface LinkBuilder : BaseBuilder {
 
         /**
-         * Set a [OudsLinkAnnotation.Url] for the given range defined by [start] and [end].
+         * Set an [OudsLinkAnnotation.Url] for the given range defined by [start] and [end].
          *
          * When clicking on the text in range, the corresponding URL from the [url] annotation will
          * be opened using [androidx.compose.ui.platform.UriHandler].
@@ -406,14 +406,14 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * URLs may be treated specially by screen readers, including being identified while reading
          * text with an audio icon or being summarized in a links menu.
          *
-         * @param url A [OudsLinkAnnotation.Url] object that stores the URL being linked to.
+         * @param url An [OudsLinkAnnotation.Url] object that stores the URL being linked to.
          * @param start The inclusive starting offset of the range.
          * @param end The exclusive end offset of the range.
          */
         fun addLink(url: OudsLinkAnnotation.Url, start: Int, end: Int)
 
         /**
-         * Set a [OudsLinkAnnotation.Clickable] for the given range defined by [start] and [end].
+         * Set an [OudsLinkAnnotation.Clickable] for the given range defined by [start] and [end].
          *
          * When clicking on the text in range, a [LinkInteractionListener] will be triggered with
          * the [clickable] object.
@@ -421,7 +421,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * Clickable link may be treated specially by screen readers, including being identified
          * while reading text with an audio icon or being summarized in a links menu.
          *
-         * @param clickable A [LinkAnnotation.Clickable] object that stores the tag being linked to.
+         * @param clickable An [OudsLinkAnnotation.Clickable] object that stores the tag being linked to.
          * @param start The inclusive starting offset of the range.
          * @param end The exclusive end offset of the range.
          */
@@ -433,7 +433,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * 
          * For most use cases, prefer using the [withLink] DSL helper which automatically manages the stack.
          *
-         * @param link A [OudsLinkAnnotation] object that stores the URL or clickable tag being linked to.
+         * @param link An [OudsLinkAnnotation] object that stores the URL or clickable tag being linked to.
          * @return The index of the pushed annotation, to be used with [pop] when done.
          */
         fun pushLink(link: OudsLinkAnnotation): Int
