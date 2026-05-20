@@ -98,6 +98,8 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * This variant, unlike the others, enables a vertical scrollbar when the input text exceeds the text area's maximum capacity.
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
  * > Design name: Text Area
@@ -198,6 +200,8 @@ fun OudsTextArea(
  * the state of a text area.
  *
  * This variant, unlike the others, enables a vertical scrollbar when the input text exceeds the text area's maximum capacity.
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
@@ -375,6 +379,8 @@ private fun OudsTextArea(
  * Note: This variant does not support a vertical scrollbar. For scrollbar functionality when text exceeds the available space, please use the state-based
  * version of [OudsTextArea].
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
  * > Design name: Text Area
@@ -470,6 +476,8 @@ fun OudsTextArea(
  *
  * Note: This variant does not support a vertical scrollbar. For scrollbar functionality when text exceeds the available space, please use the state-based
  * version of [OudsTextArea].
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
@@ -639,6 +647,8 @@ private fun OudsTextArea(
  * Note: This variant does not support a vertical scrollbar. For scrollbar functionality when text exceeds the available space, please use the state-based
  * version of [OudsTextArea].
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *
  * > Design name: Text Area
@@ -734,6 +744,8 @@ fun OudsTextArea(
  *
  * Note: This variant does not support a vertical scrollbar. For scrollbar functionality when text exceeds the available space, please use the state-based
  * version of [OudsTextArea].
+ * 
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-area)
  *

@@ -113,6 +113,8 @@ import com.orange.ouds.theme.OudsThemeSettings
  * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text input.
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design name: Text Input
@@ -225,6 +227,8 @@ fun OudsTextInput(
  *
  * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text input.
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
@@ -417,6 +421,8 @@ private fun OudsTextInput(
  * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text input.
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design name: Text Input
@@ -523,6 +529,8 @@ fun OudsTextInput(
  *
  * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text input.
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
@@ -709,6 +717,8 @@ private fun OudsTextInput(
  * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text input.
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *
  * > Design name: Text Input
@@ -815,6 +825,8 @@ fun OudsTextInput(
  *
  * It is recommended to use state-based text inputs rather than value-based ones, as they provide a more complete and reliable approach to managing
  * the state of a text input.
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-text-input)
  *

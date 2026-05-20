@@ -78,6 +78,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * communication. Alert message includes functional icon and semantic colour, and may include as well a close button and/or action link.
  * Alert Message does not disappear automatically and remains visible until dismissed or resolved by the user.
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-alert-message)
  *
  * > Design name: Alert Message
@@ -138,6 +140,8 @@ fun OudsAlertMessage(
  * Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable
  * communication. Alert message includes functional icon and semantic colour, and may include as well a close button and/or action link.
  * Alert Message does not disappear automatically and remains visible until dismissed or resolved by the user.
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-alert-message)
  *

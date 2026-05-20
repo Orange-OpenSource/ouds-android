@@ -145,6 +145,8 @@ class OudsBulletListBuilder internal constructor() {
      *
      * This function can also define a nested sub-list by providing a `builder` lambda.
      *
+     * An overload accepting annotated types is available for rich text formatting.
+     *
      * @param label The text content of the list item.
      * @param subListType The specific [OudsBulletListType] for the nested sub-list, if any.
      *   If `null`, the type is inherited from the parent list.
@@ -165,6 +167,8 @@ class OudsBulletListBuilder internal constructor() {
      * Adds an item to the bullet list.
      *
      * This function can also define a nested sub-list by providing a `builder` lambda.
+     *
+     * An overload accepting plain types is available for simple text without formatting.
      *
      * @param label The annotated text content of the list item.
      * @param subListType The specific [OudsBulletListType] for the nested sub-list, if any.

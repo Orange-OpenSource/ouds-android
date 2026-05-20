@@ -59,6 +59,8 @@ import com.orange.ouds.theme.OudsThemeSettings
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
  *
+ * An overload accepting annotated types is available for rich text formatting.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
  *
  * > Design name: Password Input
@@ -153,6 +155,8 @@ fun OudsPasswordInput(
  *
  * Rounded corners can be enabled or disabled using [OudsThemeSettings.roundedCornerTextInputs] property in the settings of the theme provided when calling
  * the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * An overload accepting plain types is available for simple text without formatting.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-password-input)
  *
