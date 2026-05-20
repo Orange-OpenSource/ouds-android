@@ -339,7 +339,6 @@ internal fun OudsButton(
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
             val paddingValues = contentPadding(component = component, icon = icon, label = label)
-            val labeledNavigationButton = label != null && component is OudsButtonComponent.NavigationButton
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
@@ -347,7 +346,7 @@ internal fun OudsButton(
                 horizontalArrangement = Arrangement.spacedBy(component.columnGap),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (labeledNavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
                     ButtonText(
                         label = label,
                         color = contentColor.value
@@ -399,7 +398,7 @@ internal fun OudsButton(
                     ButtonText(label = label, color = contentColor.value)
                 }
 
-                if (labeledNavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
                     ButtonText(
                         label = label,
                         color = contentColor.value
