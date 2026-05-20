@@ -268,11 +268,7 @@ private fun OudsAlertMessage(
                     }
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
-                    OudsLink(
-                        modifier = Modifier.padding(top = spaceRowGapAction.value),
-                        label = actionLink.label,
-                        onClick = actionLink.onClick
-                    )
+                    actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
                 }
             }
 
