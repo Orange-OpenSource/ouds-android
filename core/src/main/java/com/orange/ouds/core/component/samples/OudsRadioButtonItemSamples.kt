@@ -29,15 +29,15 @@ import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsRadioButtonItemSample() {
-    val genders = listOf("Female", "Male", "Other")
-    var selectedGender by rememberSaveable { mutableStateOf(genders.first()) }
+    val shippingMethods = listOf("Standard delivery", "Express delivery", "Pick up in store")
+    var selectedMethod by rememberSaveable { mutableStateOf(shippingMethods.first()) }
 
     Column(modifier = Modifier.selectableGroup()) {
-        genders.forEach { gender ->
+        shippingMethods.forEach { method ->
             OudsRadioButtonItem(
-                selected = gender == selectedGender,
-                label = gender,
-                onClick = { selectedGender = gender },
+                selected = method == selectedMethod,
+                label = method,
+                onClick = { selectedMethod = method },
                 divider = true
             )
         }
@@ -46,8 +46,8 @@ internal fun OudsRadioButtonItemSample() {
 
 @Composable
 internal fun OudsRadioButtonItemWithAnnotatedErrorMessageSample() {
-    val genders = listOf("Female", "Male", "Other")
-    var selectedGender by rememberSaveable { mutableStateOf("") }
+    val shippingMethods = listOf("Standard delivery", "Express delivery", "Pick up in store")
+    var selectedMethod by rememberSaveable { mutableStateOf("") }
 
     val error = OudsError(
         annotatedMessage = buildOudsAnnotatedErrorMessage {
@@ -58,12 +58,12 @@ internal fun OudsRadioButtonItemWithAnnotatedErrorMessageSample() {
     )
 
     Column(modifier = Modifier.selectableGroup()) {
-        genders.forEachIndexed { index, gender ->
+        shippingMethods.forEachIndexed { index, method ->
             OudsRadioButtonItem(
-                selected = gender == selectedGender,
-                label = gender,
-                onClick = { selectedGender = gender },
-                error = if (index == genders.lastIndex) error else OudsError(""),
+                selected = method == selectedMethod,
+                label = method,
+                onClick = { selectedMethod = method },
+                error = if (index == shippingMethods.lastIndex) error else OudsError(""),
                 divider = true
             )
         }
