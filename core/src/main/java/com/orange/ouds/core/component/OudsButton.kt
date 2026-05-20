@@ -51,6 +51,7 @@ import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -415,7 +416,9 @@ private fun ButtonText(label: String, color: Color) {
         text = label,
         color = color,
         textAlign = TextAlign.Center,
-        style = OudsTheme.typography.label.strong.large,
+        style = OudsTheme.typography.label.strong.large.run {
+            copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
+        },
     )
 }
 
