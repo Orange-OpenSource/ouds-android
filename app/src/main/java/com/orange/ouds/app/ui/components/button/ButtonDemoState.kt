@@ -43,44 +43,43 @@ class ButtonDemoState(
     hasLoader: Boolean,
     appearance: OudsButtonAppearance,
     layout: Layout
-) {
+) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
 
     companion object {
+
         private val ForbiddenAppearancesOnColoredBox = listOf(OudsButtonAppearance.Brand, OudsButtonAppearance.Negative)
 
+        @Suppress("UNCHECKED_CAST")
         val Saver = listSaver(
             save = { state ->
                 with(state) {
                     listOf(
                         label,
-                        enabled,
-                        onColoredBox,
-                        hasLoader,
                         appearance,
-                        layout
+                        layout,
+                        with(BaseButtonDemoState.Saver) { save(state) }
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                ButtonDemoState(
-                    list[0] as String,
-                    list[1] as Boolean,
-                    list[2] as Boolean,
-                    list[3] as Boolean,
-                    list[4] as OudsButtonAppearance,
-                    list[5] as Layout,
-                )
+                val baseButtonDemoState = list[3]?.let { BaseButtonDemoState.Saver.restore(it) }
+                baseButtonDemoState?.run {
+                    ButtonDemoState(
+                        list[0] as String,
+                        enabled,
+                        onColoredBox,
+                        hasLoader,
+                        list[1] as OudsButtonAppearance,
+                        list[2] as Layout
+                    )
+                }
             }
         )
     }
 
     var label: String by mutableStateOf(label)
 
-    var enabled: Boolean by mutableStateOf(enabled)
-
-    var onColoredBox: Boolean by mutableStateOf(onColoredBox)
-
-    var hasLoader: Boolean by mutableStateOf(hasLoader)
+    var layout: Layout by mutableStateOf(layout)
 
     private var _appearance: OudsButtonAppearance by mutableStateOf(appearance)
     var appearance: OudsButtonAppearance
@@ -92,16 +91,8 @@ class ButtonDemoState(
             }
         }
 
-    var layout: Layout by mutableStateOf(layout)
-
-    val enabledSwitchEnabled: Boolean
-        get() = !hasLoader
-
     val onColoredBoxSwitchEnabled: Boolean
         get() = appearance !in ForbiddenAppearancesOnColoredBox
-
-    val loaderSwitchEnabled: Boolean
-        get() = enabled
 
     val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly

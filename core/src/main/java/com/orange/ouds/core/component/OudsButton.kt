@@ -51,6 +51,7 @@ import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -261,6 +262,7 @@ internal fun OudsButton(
     nullableLabel: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    component: OudsButtonComponent = OudsButtonComponent.Button,
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
@@ -337,14 +339,21 @@ internal fun OudsButton(
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
-            val paddingValues = contentPadding(icon = icon, label = label)
+            val paddingValues = contentPadding(component = component, icon = icon, label = label)
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
                     .padding(paddingValues),
-                horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
+                horizontalArrangement = Arrangement.spacedBy(component.columnGap),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
+                    ButtonText(
+                        label = label,
+                        color = contentColor.value
+                    )
+                }
+
                 if (icon != null) {
                     val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                     val iconContent: @Composable () -> Unit = {
@@ -362,7 +371,6 @@ internal fun OudsButton(
                             extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
                         )
                     }
-
                     if (iconOnlyBadge != null && label == null) {
                         val buttonEndPadding = paddingValues.calculateEndPadding(LocalLayoutDirection.current)
                         val maximumBorderWidth = OudsButtonAppearance.entries.flatMap { appearance ->
@@ -386,17 +394,32 @@ internal fun OudsButton(
                         iconContent()
                     }
                 }
-                if (label != null) {
-                    Text(
-                        text = label,
-                        color = contentColor.value,
-                        textAlign = TextAlign.Center,
-                        style = OudsTheme.typography.label.strong.large
+
+                if (label != null && component is OudsButtonComponent.Button) {
+                    ButtonText(label = label, color = contentColor.value)
+                }
+
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
+                    ButtonText(
+                        label = label,
+                        color = contentColor.value
                     )
                 }
             }
         }
     }
+}
+
+@Composable
+private fun ButtonText(label: String, color: Color) {
+    Text(
+        text = label,
+        color = color,
+        textAlign = TextAlign.Center,
+        style = OudsTheme.typography.label.strong.large.run {
+            copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
+        },
+    )
 }
 
 @Composable
@@ -638,23 +661,47 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
 }
 
 @Composable
-private fun contentPadding(icon: OudsButtonIcon?, label: String?): PaddingValues {
+private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
-        when {
-            icon != null && label != null -> PaddingValues(
-                start = spacePaddingInlineIconStart.value,
-                top = spacePaddingBlock.value,
-                end = spacePaddingInlineEndIconStart.value,
-                bottom = spacePaddingBlock.value
-            )
-            icon != null && label == null -> PaddingValues(
-                horizontal = spaceInsetIconOnly.value,
-                vertical = spacePaddingBlock.value
-            )
-            else -> PaddingValues(
-                horizontal = spacePaddingInlineIconNone.value,
-                vertical = spacePaddingBlock.value
-            )
+        when (component) {
+            is OudsButtonComponent.Button -> when {
+                icon != null && label != null -> PaddingValues(
+                    start = spacePaddingInlineIconStart.value,
+                    top = spacePaddingBlock.value,
+                    end = spacePaddingInlineEndIconStart.value,
+                    bottom = spacePaddingBlock.value
+                )
+                icon != null && label == null -> PaddingValues(
+                    all = spaceInsetIconOnly.value,
+                )
+                else -> PaddingValues(
+                    horizontal = spacePaddingInlineIconNone.value,
+                    vertical = spacePaddingBlock.value
+                )
+            }
+            is OudsButtonComponent.NavigationButton -> when {
+                label != null -> {
+                    val startPadding: Dp
+                    val endPadding: Dp
+                    when (component.chevron) {
+                        OudsNavigationButtonChevron.Next -> {
+                            startPadding = spacePaddingInlineStartIconEnd.value
+                            endPadding = spacePaddingInlineChevronEnd.value
+                        }
+                        OudsNavigationButtonChevron.Previous -> {
+                            startPadding = spacePaddingInlineChevronStart.value
+                            endPadding = spacePaddingInlineEndIconStart.value
+                        }
+                    }
+                    PaddingValues(
+                        start = startPadding,
+                        top = spacePaddingBlock.value,
+                        end = endPadding,
+                        bottom = spacePaddingBlock.value
+                    )
+                }
+                else -> PaddingValues(all = spaceInsetIconOnly.value)
+            }
         }
     }
 }
@@ -770,6 +817,41 @@ internal data class OudsButtonIconBadge(val contentDescription: String, val bord
 
 internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
+}
+
+/**
+ * Represents the different button group components.
+ *
+ * It centralizes differences between buttons components in order to render the appropriate layout.
+ */
+internal sealed interface OudsButtonComponent {
+
+    /**
+     * The horizontal spacing (gap) between the icon and the text.
+     */
+    val columnGap: Dp
+        @Composable
+        get
+
+    /**
+     * Configuration for a standard [OudsButton].
+     */
+    object Button : OudsButtonComponent {
+        override val columnGap
+            @Composable
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapIcon.value
+    }
+
+    /**
+     * Configuration for an [OudsNavigationButton] (including a chevron).
+     *
+     * @property chevron The chevron to display in the button.
+     */
+    class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
+        override val columnGap: Dp
+            @Composable
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
+    }
 }
 
 @OudsPreviewLightDark
