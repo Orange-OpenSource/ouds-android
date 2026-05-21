@@ -35,6 +35,7 @@ object OudsVersion {
         const val NavigationButton = "3.2.1"
         const val PasswordInput = "1.3.0"
         const val PinCodeInput = "1.3.0"
+        const val ProgressIndicator = "1.0.0"
         const val RadioButton = "1.4.0"
         const val SuggestionChip = "1.4.0"
         const val Switch = "1.5.0"

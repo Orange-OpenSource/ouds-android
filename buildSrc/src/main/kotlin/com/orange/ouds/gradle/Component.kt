@@ -35,6 +35,7 @@ enum class Component {
     NavigationButton,
     PasswordInput,
     PinCodeInput,
+    ProgressIndicator,
     RadioButton,
     SuggestionChip,
     Switch,
@@ -64,6 +65,7 @@ enum class Component {
                 Component.NavigationButton -> NavigationButton
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
+                Component.ProgressIndicator -> ProgressIndicator
                 Component.RadioButton -> RadioButton
                 Component.SuggestionChip -> SuggestionChip
                 Component.Switch -> Switch
@@ -101,6 +103,7 @@ enum class Component {
             NavigationButton -> listOf("OudsNavigationButton")
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
+            ProgressIndicator -> listOf("OudsCircularProgressIndicator")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             SuggestionChip -> listOf("OudsSuggestionChip")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")

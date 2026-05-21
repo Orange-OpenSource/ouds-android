@@ -156,6 +156,10 @@
     <!-- Components: PIN code input -->
     <string name="app_components_pinCodeInput_description_text">Un PIN code input (ou champ de saisie de code PIN) est un élément d\'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d\'authentification ou de confirmation, tels qu\'un numéro d\'identification personnel (PIN) à quatre, six ou huit chiffres.</string>
 
+    <!-- Components: progress indicator -->
+    <string name="app_components_progressIndicator_description_text">Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).</string>  <!-- TODO -->
+    <string name="app_components_progressIndicator_circularProgressIndicator_description_text">A circular indicator shows the progress of a task using a circle. It can show a specific value (determinate) or just that something is in progress (indeterminate). Useful when you need more visual focus or when space is limited.</string> <!-- TODO -->
+
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Un Radio button (ou bouton radio) est un élément d\'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.</string>
     <string name="app_components_radioButton_radioButton_a11y">Description du contenu du bouton radio %s</string>

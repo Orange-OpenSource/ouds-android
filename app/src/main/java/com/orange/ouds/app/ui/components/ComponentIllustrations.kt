@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemoStateDefaults
+import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.Illustration
 import com.orange.ouds.core.component.OudsAlertMessage
@@ -49,6 +50,7 @@ import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCheckbox
+import com.orange.ouds.core.component.OudsCircularProgressIndicator
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsFloatingActionButton
@@ -237,6 +239,13 @@ fun PinCodeInputIllustration() = ComponentIllustration {
             length = OudsPinCodeInputLength.Four
         )
     }
+}
+
+@Composable
+fun ProgressIndicatorIllustration() = ComponentIllustration {
+    OudsCircularProgressIndicator(
+        progress = { ProgressIndicatorDemoState.InitialProgressValue }
+    )
 }
 
 @Composable

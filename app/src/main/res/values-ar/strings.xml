@@ -158,6 +158,10 @@
     <!-- Components: PIN code input -->
     <string name="app_components_pinCodeInput_description_text">إدخال رمز PIN هو عنصر واجهة مستخدم يسمح بإدخال رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.</string>
 
+    <!-- Components: progress indicator -->
+    <string name="app_components_progressIndicator_description_text">Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).</string> <!-- TODO -->
+    <string name="app_components_progressIndicator_circularProgressIndicator_description_text">A circular indicator shows the progress of a task using a circle. It can show a specific value (determinate) or just that something is in progress (indeterminate). Useful when you need more visual focus or when space is limited.</string> <!-- TODO -->
+
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.</string>
     <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار %s</string>

@@ -52,7 +52,8 @@ data class Code(val elements: List<Formattable>) : Formattable {
     @CodeDslMarker
     class Builder {
 
-        private var elements: MutableList<Formattable> = mutableListOf()
+        @PublishedApi
+        internal var elements: MutableList<Formattable> = mutableListOf()
 
         fun functionCall(name: String, init: FunctionCall.Builder.() -> Unit = {}) {
             val functionCall = FunctionCall.Builder()
@@ -78,6 +79,10 @@ data class Code(val elements: List<Formattable>) : Formattable {
             elements.add(Newline())
         }
 
+        inline fun <reified T> value(value: T) {
+            elements.add(Value(value, T::class.java))
+        }
+
         fun build() = Code(elements)
     }
 }
@@ -94,6 +99,12 @@ data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
         var isMultiline: Boolean = false
 
         fun build() = Comment(text, isMultiline)
+    }
+}
+
+data class Value<T>(val value: T, val clazz: Class<T> ) : Formattable {
+    override fun format(context: Context): String {
+        return value.toString(context, clazz)
     }
 }
 
@@ -182,20 +193,7 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
 data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : Formattable {
 
     override fun format(context: Context): String {
-        val valueString = when (value) {
-            is Float -> "${value}F"
-            is String -> "\"$value\""
-            is Int -> {
-                val resourceName = tryOrNull { context.resources.getResourceName(value) }?.substringAfter("/")
-                val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(value) }
-                if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
-            }
-            is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButtonAppearance.Strong instead of Strong
-            is Dp -> "${value.toNumberString()}.dp"
-            is Formattable -> value.format(context)
-            else -> value.toString()
-        }
-
+        val valueString = value.toString(context, clazz)
         return if (name?.isNotBlank() == true) "$name = $valueString" else valueString
     }
 }
@@ -211,6 +209,23 @@ data class Lambda(val code: Code) : Formattable {
 class Newline : Formattable {
 
     override fun format(context: Context): String = "" // There is no need to return "\n" because code elements are already joined using "\n"
+}
+
+
+private fun <T> T.toString(context: Context, clazz: Class<T>): String {
+    return when (this) {
+        is Float -> "${this}F"
+        is String -> "\"$this\""
+        is Int -> {
+            val resourceName = tryOrNull { context.resources.getResourceName(this) }?.substringAfter("/")
+            val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(this) }
+            if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else this.toString()
+        }
+        is Enum<*> -> "${clazz.nestedName}.${this.name}" // Displays OudsButtonAppearance.Strong instead of Strong
+        is Dp -> "${this.toNumberString()}.dp"
+        is Formattable -> this.format(context)
+        else -> this.toString()
+    }
 }
 
 @Preview
