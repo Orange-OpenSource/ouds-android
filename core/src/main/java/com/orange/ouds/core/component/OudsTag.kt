@@ -259,7 +259,16 @@ private fun assetColor(status: OudsTagStatus, appearance: OudsTagAppearance, ena
         OudsTagAppearance.Muted -> when {
             !enabled -> OudsTheme.colorScheme.content.onAction.disabled
             !isBullet && status is OudsTagStatus.Warning -> Color.Unspecified // Case of two colors icon. Colors are managed by the `LayeredTintedPainter`.
-            else -> status.color()
+            else -> with(OudsTheme.colorScheme.content) {
+                when (status) {
+                    is OudsTagStatus.Accent -> this.status.accent
+                    is OudsTagStatus.Info -> this.status.info
+                    is OudsTagStatus.Negative -> this.status.negative
+                    is OudsTagStatus.Neutral -> default
+                    is OudsTagStatus.Positive -> this.status.positive
+                    is OudsTagStatus.Warning -> this.status.warning
+                }
+            }
         }
     }
 }
