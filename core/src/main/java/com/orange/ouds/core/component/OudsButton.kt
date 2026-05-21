@@ -719,7 +719,7 @@ private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?
         .semantics { hideFromAccessibility() }
     val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
 
-    OudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
+    InternalOudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
 }
 
 /**

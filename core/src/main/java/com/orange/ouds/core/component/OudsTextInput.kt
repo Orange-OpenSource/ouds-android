@@ -1193,7 +1193,7 @@ internal fun OudsTextInputDecorator(
                                     .padding(all = buttonTokens.spaceInsetIconOnly.value),
                                 contentAlignment = Alignment.Center
                             ) {
-                                OudsCircularProgressIndicator(
+                                InternalOudsCircularProgressIndicator(
                                     color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
                                     progress = loader?.progress,
                                     scale = iconScale

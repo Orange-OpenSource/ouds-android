@@ -1340,7 +1340,7 @@ internal fun OudsTextAreaDecorator(
 
                     // Loader
                     if (state == OudsTextInputState.Loading) {
-                        OudsCircularProgressIndicator(
+                        InternalOudsCircularProgressIndicator(
                             color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
                             progress = loader?.progress,
                             scale = iconScale
