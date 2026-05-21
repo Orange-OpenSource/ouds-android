@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -56,11 +57,17 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
+        )
     }
 }
 
 @Composable
-fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
+fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
     val themeDrawableResources = LocalThemeDrawableResources.current
     val icons = listOf(
         themeDrawableResources.call,
@@ -72,8 +79,9 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Uni
     ) {
         repeat(ChipDemoState.ChipCount) { index ->
             val icon = OudsChipIcon(
-                painter = painterResource(icons[index % icons.count()]),
-                contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
+                painter = if (state.tintedIcon) painterResource(icons[index % icons.count()]) else painterResource(R.drawable.il_untinted_icon),
+                contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
+                tinted = state.tintedIcon
             )
             content(index, icon)
         }
@@ -84,8 +92,9 @@ fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResour
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChipIcon>("icon") {
-            painterArgument(themeDrawableResources.call)
+            painterArgument(if (tintedIcon) themeDrawableResources.call else R.drawable.il_untinted_icon)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
+            if (!tintedIcon) tintedArgument(tintedIcon)
         }
     }
     if (layout in listOf(ChipDemoState.Layout.TextOnly, ChipDemoState.Layout.TextAndIcon)) {

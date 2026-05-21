@@ -26,17 +26,19 @@ fun rememberFilterChipDemoState(
     selectedValues: List<Boolean> = List(ChipDemoState.ChipCount) { it == 0 },
     enabled: Boolean = true,
     layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
-    label: String = stringResource(R.string.app_components_common_label_label)
-) = rememberSaveable(selectedValues, enabled, layout, saver = FilterChipDemoState.Saver) {
-    FilterChipDemoState(selectedValues, enabled, layout, label)
+    label: String = stringResource(R.string.app_components_common_label_label),
+    tintedIcon: Boolean = true
+) = rememberSaveable(selectedValues, enabled, layout, tintedIcon, saver = FilterChipDemoState.Saver) {
+    FilterChipDemoState(selectedValues, enabled, layout, label, tintedIcon)
 }
 
 class FilterChipDemoState(
     selectedValues: List<Boolean>,
     enabled: Boolean,
     layout: Layout,
-    label: String
-) : ChipDemoState(enabled, layout, label) {
+    label: String,
+    tintedIcon: Boolean
+) : ChipDemoState(enabled, layout, label, tintedIcon) {
 
     companion object {
 
@@ -57,7 +59,8 @@ class FilterChipDemoState(
                         list[0] as List<Boolean>,
                         enabled,
                         layout,
-                        label
+                        label,
+                        tintedIcon
                     )
                 }
             }

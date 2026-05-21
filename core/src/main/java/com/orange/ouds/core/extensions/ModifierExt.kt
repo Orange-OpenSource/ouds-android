@@ -12,7 +12,10 @@
 
 package com.orange.ouds.core.extensions
 
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 
 internal fun Modifier.filter(predicate: (Modifier.Element) -> Boolean): Modifier {
     return foldIn<Modifier>(Modifier) { result, element ->
@@ -25,3 +28,5 @@ internal fun Modifier.last(): Modifier {
         if (result == Modifier) element else result
     }
 }
+
+internal fun Modifier.iconSize(size: Dp, tinted: Boolean): Modifier = if (tinted) this.size(size) else height(size)

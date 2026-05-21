@@ -49,6 +49,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -157,7 +158,7 @@ internal fun OudsChip(
             val iconContent: @Composable () -> Unit = {
                 icon?.Content(
                     modifier = Modifier
-                        .size(chipTokens.sizeIcon.value * iconScale)
+                        .iconSize(chipTokens.sizeIcon.value * iconScale, icon.tinted)
                         .semantics {
                             contentDescription = if (label == null) icon.contentDescription else ""
                         },
@@ -298,7 +299,8 @@ private fun contentPadding(label: String?, icon: OudsChipIcon?, iconPosition: Ou
  */
 class OudsChipIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String
+    val contentDescription: String,
+    override val tinted: Boolean
 ) : OudsComponentIcon<OudsChipIcon.ExtraParameters, OudsChipIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
     @ConsistentCopyVisibility
@@ -312,7 +314,8 @@ class OudsChipIcon private constructor(
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains a label.
      */
-    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
+    @JvmOverloads
+    constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsChipIcon].
@@ -320,7 +323,8 @@ class OudsChipIcon private constructor(
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains a label.
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsChipIcon].
@@ -328,7 +332,8 @@ class OudsChipIcon private constructor(
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated with this [OudsChipIcon]. This value is ignored if the chip also contains a label.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
 
     override val tint: Color?
         @Composable

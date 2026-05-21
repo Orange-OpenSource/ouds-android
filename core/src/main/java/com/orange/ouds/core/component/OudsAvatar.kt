@@ -42,9 +42,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
-import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -224,11 +224,13 @@ internal fun PreviewOudsAvatar(
             )
         } else {
             OudsAvatar(
-                painter = PreviewCheckerboardPainter(
-                    squareSize = 6.dp,
-                    primaryColor = Color(0xff247a85),
-                    secondaryColor = Color(0xfffbcd00)
-                ),
+                painter = remember {
+                    CheckerboardPainter(
+                        squareSize = 6.dp,
+                        primaryColor = Color(0xff247a85),
+                        secondaryColor = Color(0xfffbcd00)
+                    )
+                },
                 onClick = {}
             )
         }

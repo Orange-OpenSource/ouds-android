@@ -61,6 +61,8 @@ fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes resId: Int, coun
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
+fun FunctionCall.Builder.tintedArgument(value: Boolean) = typedArgument(Argument.Tinted, value)
+
 fun FunctionCall.Builder.errorArgument(message: String) {
     constructorCallArgument<OudsError>(Argument.Error) {
         typedArgument("message", message)
@@ -93,4 +95,5 @@ private object Argument {
     const val OnClick = "onClick"
     const val Painter = "painter"
     const val ReadOnly = "readOnly"
+    const val Tinted = "tinted"
 }

@@ -151,6 +151,7 @@
     <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_textOnlyLayout_tech" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_tech" translatable="false">Text + icon</string>
+    <string name="app_components_common_tintedIcon_tech" translatable="false">Tinted icon</string>
     <string name="app_components_common_type_tech" translatable="false">Type</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">No unread message</item>

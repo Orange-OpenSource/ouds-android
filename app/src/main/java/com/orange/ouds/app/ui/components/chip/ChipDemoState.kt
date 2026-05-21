@@ -22,7 +22,8 @@ import com.orange.ouds.app.R
 open class ChipDemoState(
     enabled: Boolean,
     layout: Layout,
-    label: String
+    label: String,
+    tintedIcon: Boolean
 ) {
 
     companion object {
@@ -35,7 +36,8 @@ open class ChipDemoState(
                     listOf(
                         enabled,
                         layout,
-                        label
+                        label,
+                        tintedIcon
                     )
                 }
             },
@@ -43,7 +45,8 @@ open class ChipDemoState(
                 ChipDemoState(
                     list[0] as Boolean,
                     list[1] as Layout,
-                    list[2] as String
+                    list[2] as String,
+                    list[3] as Boolean
                 )
             }
         )
@@ -55,8 +58,13 @@ open class ChipDemoState(
 
     var label: String by mutableStateOf(label)
 
+    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+
     val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly
+
+    val tintedIconSwitchEnabled: Boolean
+        get() = layout != Layout.TextOnly
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),

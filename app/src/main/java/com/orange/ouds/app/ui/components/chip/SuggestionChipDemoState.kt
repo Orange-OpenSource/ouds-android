@@ -22,16 +22,18 @@ import com.orange.ouds.app.R
 fun rememberSuggestionChipDemoState(
     enabled: Boolean = true,
     layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
-    label: String = stringResource(R.string.app_components_common_label_label)
-) = rememberSaveable(enabled, layout, saver = SuggestionChipDemoState.Saver) {
-    SuggestionChipDemoState(enabled, layout, label)
+    label: String = stringResource(R.string.app_components_common_label_label),
+    tintedIcon: Boolean = true
+) = rememberSaveable(enabled, layout, tintedIcon, saver = SuggestionChipDemoState.Saver) {
+    SuggestionChipDemoState(enabled, layout, label, tintedIcon)
 }
 
 class SuggestionChipDemoState(
     enabled: Boolean,
     layout: Layout,
-    label: String
-) : ChipDemoState(enabled, layout, label) {
+    label: String,
+    tintedIcon: Boolean
+) : ChipDemoState(enabled, layout, label, tintedIcon) {
 
     companion object {
 
@@ -41,7 +43,7 @@ class SuggestionChipDemoState(
             },
             restore = { value ->
                 val chipDemoState = ChipDemoState.Saver.restore(value)
-                chipDemoState?.let { SuggestionChipDemoState(it.enabled, it.layout, it.label) }
+                chipDemoState?.run { SuggestionChipDemoState(enabled, layout, label, tintedIcon) }
             }
         )
     }

@@ -22,7 +22,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extension.setOudsContent
-import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
+import com.orange.ouds.core.utilities.CheckerboardPainter
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.mock
@@ -77,7 +77,7 @@ class OudsTopAppBarTest {
                             onClick = onIconClick
                         ),
                         OudsTopAppBarAction.Avatar(
-                            painter = PreviewCheckerboardPainter(4.dp, Color.White, Color.Black),
+                            painter = CheckerboardPainter(4.dp, Color.White, Color.Black),
                             contentDescription = imageAvatarContentDescription,
                             onClick = onImageAvatarClick
                         ),
