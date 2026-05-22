@@ -32,10 +32,12 @@ mockitoKotlin = "6.3.0"
 mustacheJava = "0.9.14"
 navigationCompose = "2.9.8"
 paparazzi = "2.0.0-alpha04"
+sdkCommon = "32.2.1"
 zxing = "3.5.4"
 
 [libraries]
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
+android-tools-sdk-common = { group = "com.android.tools", name = "sdk-common", version.ref = "sdkCommon" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
