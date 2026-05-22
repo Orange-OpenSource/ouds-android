@@ -157,9 +157,9 @@
     <string name="app_components_pinCodeInput_description_text">Un PIN code input (ou champ de saisie de code PIN) est un élément d\'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d\'authentification ou de confirmation, tels qu\'un numéro d\'identification personnel (PIN) à quatre, six ou huit chiffres.</string>
 
     <!-- Components: progress indicator -->
-    <string name="app_components_progressIndicator_description_text">Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).</string>  <!-- TODO -->
-    <string name="app_components_progressIndicator_circularProgressIndicator_description_text">A circular indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.</string> <!-- TODO -->
-    <string name="app_components_progressIndicator_linearProgressIndicator_description_text">A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.</string> <!-- TODO -->
+    <string name="app_components_progressIndicator_description_text">Un Progress indicator affiche l\'avancement d\'une tâche et fournit un retour visuel. Il peut afficher une valeur précise (déterminée) ou simplement indiquer qu\'une action est en cours (indéterminée).</string>
+    <string name="app_components_progressIndicator_circularProgressIndicator_description_text">Un Circular progress indicator permet de visualiser la progression d\'une tâche à l\'aide d\'un cercle. Il est particulièrement utile lorsque la concentration visuelle est nécessaire ou lorsque l\'espace est limité.</string>
+    <string name="app_components_progressIndicator_linearProgressIndicator_description_text">Un Linear progress indicator affiche l\'avancement d\'une tâche à l\'aide d\'une ligne horizontale. Il est particulièrement adapté à une utilisation dans les mises en page pour visualiser la progression.</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Un Radio button (ou bouton radio) est un élément d\'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.</string>
