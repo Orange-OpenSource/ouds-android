@@ -36,6 +36,7 @@ import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
 import com.orange.ouds.app.ui.components.pincodeinput.PinCodeInputDemoScreen
 import com.orange.ouds.app.ui.components.progressindicator.CircularProgressIndicatorDemoScreen
+import com.orange.ouds.app.ui.components.progressindicator.LinearProgressIndicatorDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -256,9 +257,10 @@ sealed class Variant(
         val descriptionRes = R.string.app_components_progressIndicator_circularProgressIndicator_description_text
     }
 
-    data object LinearProgressIndicator : Variant(
-        R.string.app_components_progressIndicator_linearProgressIndicator_tech,
-        { CircularProgressIndicatorDemoScreen() }) // TODO: Replace with LinearProgressIndicatorDemoScreen when implemented
+    data object LinearProgressIndicator :
+        Variant(R.string.app_components_progressIndicator_linearProgressIndicator_tech, { LinearProgressIndicatorDemoScreen() }) {
+        val descriptionRes = R.string.app_components_progressIndicator_linearProgressIndicator_description_text
+    }
 
     // Radio button
     data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_tech, { RadioButtonDemoScreen() })

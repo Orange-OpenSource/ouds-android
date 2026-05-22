@@ -39,7 +39,7 @@ fun CircularProgressIndicatorDemoScreen() {
 }
 
 @Composable
-private fun CircularProgressIndicatorDemoContent(state: CircularProgressIndicatorDemoState) {
+private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoState) {
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
@@ -64,7 +64,7 @@ private fun CircularProgressIndicatorDemoContent(state: CircularProgressIndicato
     }
 }
 
-private fun Code.Builder.circularProgressIndicatorDemoCodeSnippet(state: CircularProgressIndicatorDemoState) {
+private fun Code.Builder.circularProgressIndicatorDemoCodeSnippet(state: ProgressIndicatorDemoState) {
     with(state) {
         functionCall("OudsCircularProgressIndicator") {
             if (type == ProgressIndicatorDemoState.Type.Determinate) {

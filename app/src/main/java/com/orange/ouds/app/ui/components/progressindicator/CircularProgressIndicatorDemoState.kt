@@ -13,11 +13,16 @@
 package com.orange.ouds.app.ui.components.progressindicator
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Companion.InitialProgressValue
+import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Type
 
 @Composable
-fun rememberCircularProgressIndicatorDemoState() = remember {
-    CircularProgressIndicatorDemoState()
+fun rememberCircularProgressIndicatorDemoState(
+    progressText: String = InitialProgressValue.toString(),
+    type: Type = Type.Determinate,
+    brandColor: Boolean = true,
+    track: Boolean = true
+) = rememberSaveable(progressText, type, brandColor, track, saver = ProgressIndicatorDemoState.Saver) {
+    ProgressIndicatorDemoState(progressText, type, brandColor, track)
 }
-
-class CircularProgressIndicatorDemoState : ProgressIndicatorDemoState()
