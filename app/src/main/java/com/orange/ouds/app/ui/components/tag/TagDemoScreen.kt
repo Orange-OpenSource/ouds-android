@@ -26,6 +26,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -125,6 +126,12 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             onSelectionChange = { index -> layout = TagDemoState.Layout.entries[index] }
         )
         CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
+        )
+        CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_tech),
             checked = hasLoader,
             onCheckedChange = { hasLoader = it },
@@ -156,7 +163,8 @@ private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
             val loader = if (hasLoader) OudsTagLoader(null) else null
-            val icon = OudsTagAsset.Icon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+            val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+            val icon = OudsTagAsset.Icon(painter = painterResource(painterId), tinted = tintedIcon)
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),
@@ -225,7 +233,8 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                         when (status) {
                             is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
                                 constructorCallArgument<OudsTagAsset.Icon>(assetParameterName) {
-                                    painterArgument(themeDrawableResources.tipsAndTricks)
+                                    painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                                    if (!tintedIcon) tintedArgument(tintedIcon)
                                 }
                             is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
                                 rawArgument(assetParameterName, OudsTagAsset.Icon.Default::class.java.nestedName)

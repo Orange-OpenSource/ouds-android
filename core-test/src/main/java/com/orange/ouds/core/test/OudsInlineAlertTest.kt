@@ -21,7 +21,7 @@ import org.junit.runners.Parameterized
 internal class OudsInlineAlertTest {
 
     @RunWith(Parameterized::class)
-    internal class Default(parameter: Any) : OudsComponentSnapshotTest(
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.InlineAlert.Default,
         parameter,
         OudsComponentTestSuite.theme

@@ -36,9 +36,10 @@ fun rememberTagDemoState(
     size: OudsTagSize = OudsTagDefaults.Size,
     status: OudsTagStatus = OudsTagDefaults.Status,
     hasLoader: Boolean = false,
-    enabled: Boolean = true
-) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, saver = TagDemoState.Saver) {
-    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled)
+    enabled: Boolean = true,
+    tintedIcon: Boolean = true
+) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, tintedIcon, saver = TagDemoState.Saver) {
+    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, tintedIcon)
 }
 
 class TagDemoState(
@@ -49,10 +50,18 @@ class TagDemoState(
     size: OudsTagSize,
     status: OudsTagStatus,
     hasLoader: Boolean,
-    enabled: Boolean
+    enabled: Boolean,
+    tintedIcon: Boolean
 ) {
 
     companion object {
+
+        private val FunctionalStatusClasses = listOf(
+            OudsTagStatus.Info::class,
+            OudsTagStatus.Negative::class,
+            OudsTagStatus.Positive::class,
+            OudsTagStatus.Warning::class
+        )
 
         val Saver = listSaver(
             save = { state ->
@@ -65,7 +74,8 @@ class TagDemoState(
                         size,
                         status::class.java.name,
                         hasLoader,
-                        enabled
+                        enabled,
+                        tintedIcon
                     )
                 }
             },
@@ -81,7 +91,8 @@ class TagDemoState(
                     list[4] as OudsTagSize,
                     status,
                     list[6] as Boolean,
-                    list[7] as Boolean
+                    list[7] as Boolean,
+                    list[8] as Boolean
                 )
             }
         )
@@ -103,11 +114,16 @@ class TagDemoState(
 
     var enabled: Boolean by mutableStateOf(enabled)
 
+    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+
     val enabledSwitchEnabled: Boolean
         get() = !hasLoader
 
     val loaderSwitchEnabled: Boolean
         get() = enabled
+
+    val tintedIconSwitchEnabled: Boolean
+        get() = layout == Layout.TextAndIcon && status::class !in FunctionalStatusClasses
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),

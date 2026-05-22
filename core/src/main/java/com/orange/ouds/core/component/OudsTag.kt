@@ -51,6 +51,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -59,6 +60,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -162,7 +164,14 @@ fun OudsTag(
                         val scale = LocalConfiguration.current.fontScale
                         status.asset?.PolymorphicContent(
                             modifier = Modifier
-                                .size(assetSize(size) * scale)
+                                .run {
+                                    val assetSize = assetSize(size) * scale
+                                    if (status.asset is OudsComponentIcon<*, *>) {
+                                        iconSize(assetSize, status.asset.tinted)
+                                    } else {
+                                        size(assetSize)
+                                    }
+                                }
                                 .padding(all = assetPadding),
                             extraParameters = OudsTagAsset.ExtraParameters(
                                 tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
@@ -452,29 +461,34 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
      * An icon in an [OudsTag].
      * This icon is non-clickable. No content description is needed because a tag always contains a label.
      */
-    class Icon private constructor(graphicsObject: Any) : OudsTagAsset,
-        OudsComponentIcon<OudsTagAsset.ExtraParameters, Icon>(OudsTagAsset.ExtraParameters::class.java, graphicsObject, "") {
+    class Icon private constructor(
+        graphicsObject: Any,
+        override val tinted: Boolean
+    ) : OudsTagAsset, OudsComponentIcon<OudsTagAsset.ExtraParameters, Icon>(OudsTagAsset.ExtraParameters::class.java, graphicsObject, "") {
 
         /**
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param painter Painter of the icon.
          */
-        constructor(painter: Painter) : this(painter as Any)
+        @JvmOverloads
+        constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
 
         /**
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param imageVector Image vector of the icon.
          */
-        constructor(imageVector: ImageVector) : this(imageVector as Any)
+        @JvmOverloads
+        constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
 
         /**
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          */
-        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+        @JvmOverloads
+        constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
 
         override val tint: Color?
             @Composable
@@ -778,6 +792,35 @@ internal fun PreviewOudsTag(
                     enabled = enabled
                 )
             }
+        }
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTagWithUntintedIcon() {
+    PreviewOudsTagWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    val icon = OudsTagAsset.Icon(rememberRainbowHeartPainter(), tinted = false)
+    PreviewGrid(
+        columns = enumEntries<OudsTagSize>(),
+        rows = listOf(
+            OudsTagStatus.Neutral(icon),
+            OudsTagStatus.Accent(icon)
+        ),
+        columnTitle = { it.name },
+        rowTitle = { it::class.simpleName.orEmpty() }
+    ) { size, status ->
+        Box {
+            OudsTag(
+                label = "Label",
+                status = status,
+                size = size
+            )
         }
     }
 }

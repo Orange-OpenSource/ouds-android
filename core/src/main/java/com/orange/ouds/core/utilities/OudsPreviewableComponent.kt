@@ -145,6 +145,7 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsTag
+import com.orange.ouds.core.component.PreviewOudsTagWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsTextArea
 import com.orange.ouds.core.component.PreviewOudsTextAreaAutoResize
 import com.orange.ouds.core.component.PreviewOudsTextAreaConstrainedMaxWidth
@@ -1173,17 +1174,32 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object Tag : OudsPreviewableComponent {
+    object Tag {
 
-        override val parameters: List<Any> = OudsTagPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsTag(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsTagPreviewParameter
-            )
+            override val parameters: List<Any> = OudsTagPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTag(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTagPreviewParameter
+                )
+            }
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTagWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
