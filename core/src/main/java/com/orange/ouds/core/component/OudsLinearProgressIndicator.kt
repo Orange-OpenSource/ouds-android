@@ -46,8 +46,12 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0
- *   represents full progress. Values outside of this range are coerced into the range.
+ * > Design name: Progress Indicator
+ *
+ * > Design version: 1.0.0
+ *
+ * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
+ *   into the range.
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param brandColor Whether the brand color is used for the indicator color or the default color.
  *   Use `true` for important, user-triggered actions like upload, submit, or confirm. Also use it when maintaining visual consistency with a branded interface
@@ -86,6 +90,10 @@ fun OudsLinearProgressIndicator(
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * > Design name: Progress Indicator
+ *
+ * > Design version: 1.0.0
  *
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param brandColor Whether the brand color is used for the indicator color or the default color.

@@ -48,8 +48,12 @@ import com.orange.ouds.theme.OudsThemeContract
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0
- *   represents full progress. Values outside of this range are coerced into the range.
+ * > Design name: Progress Indicator
+ *
+ * > Design version: 1.0.0
+ *
+ * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
+ *   into the range.
  * @param modifier The [Modifier] to be applied to this circular progress indicator.
  * @param brandColor Whether the brand color is used for the indicator color or the default color.
  *   Use `true` for important, user-triggered actions like upload, submit, or confirm. Also use it when maintaining visual consistency with a branded interface
@@ -87,6 +91,10 @@ fun OudsCircularProgressIndicator(
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design name: Progress Indicator
+ *
+ * > Design version: 1.0.0
  *
  * @param modifier The [Modifier] to be applied to this circular progress indicator.
  * @param brandColor Whether the brand color is used for the indicator color or the default color.
