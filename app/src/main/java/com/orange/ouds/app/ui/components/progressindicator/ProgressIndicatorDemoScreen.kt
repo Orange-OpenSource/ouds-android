@@ -14,10 +14,13 @@ package com.orange.ouds.app.ui.components.progressindicator
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.LayoutDirection
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -33,21 +36,22 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             selectedChipIndex = ProgressIndicatorDemoState.Type.entries.indexOf(type),
             onSelectionChange = { index: Int -> type = ProgressIndicatorDemoState.Type.entries[index] }
         )
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_progressIndicator_progress_tech),
-            value = TextFieldValue(
-                text = progressText,
-                selection = TextRange(progressText.length)
-            ),
-            onValueChange = { textFieldValue ->
-                progressText = textFieldValue.text.replace(',', '.').filter { it.isDigit() || it == '.' }
-            },
-            enabled = progressTextInputEnabled,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Decimal),
-            resetValue = ProgressIndicatorDemoState.InitialProgressValue.toString()
-
-        )
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            CustomizationTextInput(
+                applyTopPadding = true,
+                label = stringResource(R.string.app_components_progressIndicator_progress_tech),
+                value = TextFieldValue(
+                    text = progressText,
+                    selection = TextRange(progressText.length)
+                ),
+                onValueChange = { textFieldValue ->
+                    progressText = textFieldValue.text.replace(',', '.').filter { it.isDigit() || it == '.' }
+                },
+                enabled = progressTextInputEnabled,
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Decimal),
+                resetValue = ProgressIndicatorDemoState.InitialProgressValue.toString()
+            )
+        }
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_progressIndicator_brandColor_tech),
             checked = brandColor,
