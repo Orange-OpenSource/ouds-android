@@ -13,9 +13,6 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
@@ -132,40 +130,33 @@ private fun OudsCircularProgressIndicator(
     track: Boolean,
     modifier: Modifier = Modifier
 ) {
+    val scale = LocalConfiguration.current.fontScale
     with(OudsTheme.componentsTokens.progressIndicator) {
-        val baseSize = sizeCircularIndicator.value
+        val size = sizeCircularIndicator.value * scale
 
-        BoxWithConstraints(modifier = modifier) {
-            val currentSize = when {
-                constraints.hasFixedWidth -> maxWidth
-                constraints.hasFixedHeight -> maxHeight
-                else -> baseSize
-            }
-            val scale = currentSize / baseSize
+        val progressIndicatorModifier = modifier.size(size)
+        val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.action.enabled
+        val strokeWidth = size * 0.125f // 25% of the radius
+        val trackColor = if (track) colorContentTrack.value else Color.Transparent
+        val gapSize = ProgressIndicatorDefaults.CircularIndicatorTrackGapSize * scale
 
-            val strokeWidth = baseSize * 0.125f * scale
-            val gapSize = ProgressIndicatorDefaults.CircularIndicatorTrackGapSize * scale
-            val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.action.enabled
-            val trackColor = if (track) colorContentTrack.value else Color.Transparent
-
-            nullableProgress?.let {
-                CircularProgressIndicator(
-                    progress = nullableProgress,
-                    modifier = modifier,
-                    color = color,
-                    strokeWidth = strokeWidth,
-                    trackColor = trackColor,
-                    gapSize = gapSize
-                )
-            }.orElse {
-                CircularProgressIndicator(
-                    modifier = modifier,
-                    color = color,
-                    strokeWidth = strokeWidth,
-                    trackColor = trackColor,
-                    gapSize = gapSize
-                )
-            }
+        nullableProgress?.let {
+            CircularProgressIndicator(
+                progress = nullableProgress,
+                modifier = progressIndicatorModifier,
+                color = color,
+                strokeWidth = strokeWidth,
+                trackColor = trackColor,
+                gapSize = gapSize
+            )
+        }.orElse {
+            CircularProgressIndicator(
+                modifier = progressIndicatorModifier,
+                color = color,
+                strokeWidth = strokeWidth,
+                trackColor = trackColor,
+                gapSize = gapSize
+            )
         }
     }
 }
@@ -222,16 +213,11 @@ internal fun PreviewOudsCircularProgressIndicator(
 ) {
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                for (size in previewCircularProgressIndicatorSizes) {
-                    OudsCircularProgressIndicator(
-                        modifier = Modifier.size(size),
-                        progress = { 0.75f },
-                        brandColor = brandColor,
-                        track = track
-                    )
-                }
-            }
+            OudsCircularProgressIndicator(
+                progress = { 0.75f },
+                brandColor = brandColor,
+                track = track
+            )
         }
     }
 }
@@ -243,8 +229,6 @@ internal data class OudsCircularProgressIndicatorPreviewParameter(
 
 internal class OudsCircularProgressIndicatorPreviewParameterProvider :
     BasicPreviewParameterProvider<OudsCircularProgressIndicatorPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewCircularProgressIndicatorSizes = listOf(24.dp, 48.dp, 96.dp)
 
 private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewParameter>
     get() = listOf(
