@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -85,6 +86,12 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             value = label,
             onValueChange = { value -> label = value }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
+        )
     }
 }
 
@@ -101,9 +108,10 @@ private fun LinkDemoContent(state: LinkDemoState) {
                 )
             }
             LinkDemoState.Layout.TextAndIcon -> {
+                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
                 OudsLink(
                     label = label,
-                    icon = OudsLinkIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)),
+                    icon = OudsLinkIcon(painterResource(id = painterId), tinted = tintedIcon),
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -140,7 +148,8 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                     LinkDemoState.Layout.TextOnly -> {}
                     LinkDemoState.Layout.TextAndIcon -> {
                         constructorCallArgument<OudsLinkIcon>("icon") {
-                            painterArgument(themeDrawableResources.tipsAndTricks)
+                            painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                            if (!tintedIcon) tintedArgument(tintedIcon)
                         }
                     }
                     LinkDemoState.Layout.ChevronBack -> typedArgument("chevron", OudsLinkChevron.Back)

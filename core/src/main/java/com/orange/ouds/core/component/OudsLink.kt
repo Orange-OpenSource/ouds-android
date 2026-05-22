@@ -47,6 +47,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -55,6 +56,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -279,7 +281,7 @@ private fun OudsLink(
         ) {
             if (icon != null || chevron == OudsLinkChevron.Back) {
                 icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
-                    modifier = Modifier.size(iconSize),
+                    modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
                     extraParameters = ExtraParameters(tint = iconTint)
                 )
             }
@@ -406,7 +408,8 @@ enum class OudsLinkChevron {
  * This icon is non-clickable and no content description is needed because a link label is always present.
  */
 open class OudsLinkIcon private constructor(
-    graphicsObject: Any
+    graphicsObject: Any,
+    override val tinted: Boolean
 ) : OudsComponentIcon<ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
@@ -419,21 +422,24 @@ open class OudsLinkIcon private constructor(
      *
      * @param painter Painter of the icon.
      */
-    constructor(painter: Painter) : this(painter as Any)
+    @JvmOverloads
+    constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
 
     /**
      * Creates an instance of [OudsLinkIcon].
      *
      * @param imageVector Image vector of the icon.
      */
-    constructor(imageVector: ImageVector) : this(imageVector as Any)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
 
     /**
      * Creates an instance of [OudsLinkIcon].
      *
      * @param bitmap Image bitmap of the icon.
      */
-    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
 
     override val tint: Color?
         @Composable
@@ -499,6 +505,22 @@ internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
                 )
             }
         }
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsLinkWithUntintedIcon() = PreviewOudsLinkWithUntintedIcon(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsLinkWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
+        OudsLink(
+            label = "Label",
+            icon = OudsLinkIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            onClick = {}
+        )
     }
 }
 

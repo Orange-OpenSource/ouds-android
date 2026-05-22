@@ -38,4 +38,10 @@ internal class OudsLinkTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Link.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }
