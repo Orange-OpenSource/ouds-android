@@ -189,7 +189,7 @@ fun OudsBadge(
  *   as the icon of the status.
  *   - Functional statuses: [OudsIconBadgeStatus.Positive], [OudsIconBadgeStatus.Warning], [OudsIconBadgeStatus.Negative], [OudsIconBadgeStatus.Info].
  *   Each functional status has its dedicated functional icon that matches the meaning of the badge.
- * @param size The size of this badge. The icon is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
+ * @param size The size of this badge.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBadgeWithDefaultIconSample
  *
