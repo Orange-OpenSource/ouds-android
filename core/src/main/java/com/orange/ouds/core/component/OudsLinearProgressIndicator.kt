@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
@@ -35,6 +36,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -198,6 +200,7 @@ internal fun PreviewOudsLinearProgressIndicator(
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
             OudsLinearProgressIndicator(
+                modifier = Modifier.padding(all = PreviewPaddingDefault),
                 progress = { 0.75f },
                 brandColor = brandColor,
                 track = track,
@@ -216,6 +219,7 @@ private fun PreviewOudsLinearProgressIndicatorWithLongHelperText() = PreviewOuds
 internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         OudsLinearProgressIndicator(
+            modifier = Modifier.padding(all = PreviewPaddingDefault),
             helperText = "Uploading file: http://download-website.com/directory/file.jpg"
         )
     }
