@@ -80,6 +80,7 @@ import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsAlertMessageWithRichText
+import com.orange.ouds.core.component.PreviewOudsAlertMessageWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
@@ -105,6 +106,7 @@ import com.orange.ouds.core.component.PreviewOudsFilterChip
 import com.orange.ouds.core.component.PreviewOudsFilterChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsInlineAlert
+import com.orange.ouds.core.component.PreviewOudsInlineAlertWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
@@ -198,6 +200,17 @@ interface OudsPreviewableComponent {
                     darkThemeEnabled = darkThemeEnabled
                 )
             }
+        }
+        
+        object WithUntintedIcon : OudsPreviewableComponent {
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsAlertMessageWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
@@ -603,17 +616,32 @@ interface OudsPreviewableComponent {
         }
     }
 
-    object InlineAlert : OudsPreviewableComponent {
+    object InlineAlert {
 
-        override val parameters: List<Any> = OudsInlineAlertPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsInlineAlert(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                label = parameter as String
-            )
+            override val parameters: List<Any> = OudsInlineAlertPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsInlineAlert(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    label = parameter as String
+                )
+            }
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsInlineAlertWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

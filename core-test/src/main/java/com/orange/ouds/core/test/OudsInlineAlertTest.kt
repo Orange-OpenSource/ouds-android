@@ -13,19 +13,30 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsInlineAlertTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.InlineAlert,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
+internal class OudsInlineAlertTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.InlineAlert.parameters
+    @RunWith(Parameterized::class)
+    internal class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.InlineAlert.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.InlineAlert.Default.parameters
+        }
     }
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.InlineAlert.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

@@ -25,12 +25,14 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
@@ -98,6 +100,12 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
             selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
             onSelectionChange = { status = statuses[it] }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
+        )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
@@ -109,7 +117,9 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 
 @Composable
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
-    val icon = OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+    val painter =
+        if (state.tintedIcon) painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks) else painterResource(id = R.drawable.il_untinted_icon)
+    val icon = OudsAlertIcon(painter = painter, tinted = state.tintedIcon)
     with(state) {
         OudsInlineAlert(
             label = label,
@@ -134,7 +144,8 @@ private fun Code.Builder.inlineAlertDemoCodeSnippet(state: InlineAlertDemoState,
                 is OudsInlineAlertStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         constructorCallArgument<OudsAlertIcon>("icon") {
-                            painterArgument(themeDrawableResources.tipsAndTricks)
+                            painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                            if (!tintedIcon) tintedArgument(tintedIcon)
                         }
                     }
                 }

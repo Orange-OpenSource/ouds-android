@@ -58,6 +58,7 @@ import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessage
 import com.orange.ouds.core.component.common.text.withLink
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.content.OudsComponentContent
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -70,6 +71,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -233,7 +235,7 @@ private fun OudsAlertMessage(
             status.icon?.Content(
                 modifier = Modifier
                     .padding(top = spacePaddingBlock.value)
-                    .size(sizeIcon.value * scale),
+                    .iconSize(sizeIcon.value * scale, status.icon.tinted),
                 extraParameters = OudsAlertIcon.ExtraParameters(
                     tint = status.assetColor,
                     status = status.value
@@ -570,6 +572,31 @@ internal fun PreviewOudsAlertMessageWithRichText(
         description = description,
         bulletList = bulletList
     )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsAlertMessageWithUntintedIcon() {
+    PreviewOudsAlertMessageWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsAlertMessageWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
+    PreviewFlowRow(
+        items = listOf(
+            OudsAlertMessageStatus.Neutral(icon),
+            OudsAlertMessageStatus.Accent(icon)
+        ),
+        itemName = { it::class.simpleName.orEmpty() },
+        maxItemsInEachRow = 1
+    ) { status ->
+        OudsAlertMessage(
+            label = "Label",
+            status = status
+        )
+    }
 }
 
 internal data class OudsAlertMessagePreviewParameter(

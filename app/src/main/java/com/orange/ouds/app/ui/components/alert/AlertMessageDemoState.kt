@@ -34,7 +34,8 @@ fun rememberAlertMessageDemoState(
     description: String? = null,
     actionLink: String? = null,
     actionLinkPosition: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
-    bulletList: Map<Int, String>? = null
+    bulletList: Map<Int, String>? = null,
+    tintedIcon: Boolean = true
 ) = rememberSaveable(
     status,
     hasStatusIcon,
@@ -44,9 +45,10 @@ fun rememberAlertMessageDemoState(
     actionLink,
     actionLinkPosition,
     bulletList,
+    tintedIcon,
     saver = AlertMessageDemoState.Saver
 ) {
-    AlertMessageDemoState(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList)
+    AlertMessageDemoState(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, tintedIcon)
 }
 
 class AlertMessageDemoState(
@@ -57,7 +59,8 @@ class AlertMessageDemoState(
     description: String?,
     actionLink: String?,
     actionLinkPosition: OudsAlertMessageActionLinkPosition,
-    bulletList: Map<Int, String>?
+    bulletList: Map<Int, String>?,
+    tintedIcon: Boolean
 ) {
 
     @Suppress("UNCHECKED_CAST")
@@ -82,7 +85,8 @@ class AlertMessageDemoState(
                         description,
                         actionLink,
                         actionLinkPosition,
-                        bulletList
+                        bulletList,
+                        tintedIcon
                     )
                 }
             },
@@ -98,7 +102,8 @@ class AlertMessageDemoState(
                     list[4] as String?,
                     list[5] as String?,
                     list[6] as OudsAlertMessageActionLinkPosition,
-                    list[7] as Map<Int, String>?
+                    list[7] as Map<Int, String>?,
+                    list[8] as Boolean
                 )
             }
         )
@@ -111,6 +116,7 @@ class AlertMessageDemoState(
             _status = value
             if (status in FunctionalStatuses) {
                 hasStatusIcon = true
+                tintedIcon = true
             }
         }
 
@@ -133,4 +139,9 @@ class AlertMessageDemoState(
         get() = !actionLink.isNullOrEmpty()
 
     var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
+
+    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+
+    val tintedIconSwitchEnabled: Boolean
+        get() = status !in FunctionalStatuses && hasStatusIcon
 }

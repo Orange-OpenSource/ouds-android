@@ -119,13 +119,13 @@ internal sealed class OudsAlertStatus(
  */
 open class OudsAlertIcon private constructor(
     graphicsObjectProvider: @Composable (OudsAlertIcon) -> Any,
-    contentDescriptionProvider: @Composable (OudsAlertIcon) -> String
-) :
-    OudsComponentIcon<OudsAlertIcon.ExtraParameters, OudsAlertIcon>(
-        ExtraParameters::class.java,
-        graphicsObjectProvider,
-        contentDescriptionProvider
-    ) {
+    contentDescriptionProvider: @Composable (OudsAlertIcon) -> String,
+    override val tinted: Boolean
+) : OudsComponentIcon<OudsAlertIcon.ExtraParameters, OudsAlertIcon>(
+    ExtraParameters::class.java,
+    graphicsObjectProvider,
+    contentDescriptionProvider
+) {
 
     /**
      * The default icon of an [OudsAlertMessage] or an [OudsInlineAlert].
@@ -140,28 +140,33 @@ open class OudsAlertIcon private constructor(
                 }
             }
         },
-        { icon -> icon.extraParameters.status.defaultIconContentDescription })
+        { icon -> icon.extraParameters.status.defaultIconContentDescription },
+        true
+    )
 
     /**
      * Creates an instance of [OudsAlertIcon].
      *
      * @property painter Painter of the icon.
      */
-    constructor(painter: Painter) : this({ painter }, { "" })
+    @JvmOverloads
+    constructor(painter: Painter, tinted: Boolean = true) : this({ painter }, { "" }, tinted)
 
     /**
      * Creates an instance of [OudsAlertIcon].
      *
      * @property imageVector Image vector of the icon.
      */
-    constructor(imageVector: ImageVector) : this({ imageVector }, { "" })
+    @JvmOverloads
+    constructor(imageVector: ImageVector, tinted: Boolean = true) : this({ imageVector }, { "" }, tinted)
 
     /**
      * Creates an instance of [OudsAlertIcon].
      *
      * @property bitmap Image bitmap of the icon.
      */
-    constructor(bitmap: ImageBitmap) : this({ bitmap }, { "" })
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this({ bitmap }, { "" }, tinted)
 
     override val tint: Color?
         @Composable

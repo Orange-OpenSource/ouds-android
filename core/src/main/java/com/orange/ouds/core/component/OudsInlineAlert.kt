@@ -15,7 +15,6 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -26,12 +25,14 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -75,8 +76,7 @@ fun OudsInlineAlert(
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
             status.icon.Content(
-                modifier = Modifier
-                    .size(sizeIcon.value * scale),
+                modifier = Modifier.iconSize(sizeIcon.value * scale, status.icon.tinted),
                 extraParameters = OudsAlertIcon.ExtraParameters(
                     tint = status.assetColor,
                     status = status.value
@@ -208,6 +208,31 @@ internal fun PreviewOudsInlineAlert(
     ) { status ->
         OudsInlineAlert(
             label = label,
+            status = status
+        )
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsInlineAlertWithUntintedIcon() {
+    PreviewOudsInlineAlertWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsInlineAlertWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
+    PreviewFlowRow(
+        items = listOf(
+            OudsInlineAlertStatus.Neutral(icon),
+            OudsInlineAlertStatus.Accent(icon)
+        ),
+        itemName = { it::class.simpleName.orEmpty() },
+        maxItemsInEachRow = 1
+    ) { status ->
+        OudsInlineAlert(
+            label = "Label",
             status = status
         )
     }

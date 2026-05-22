@@ -25,6 +25,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -106,6 +107,12 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             enabled = statusIconSwitchEnabled
         )
         CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
+        )
+        CustomizationSwitchItem(
             label = stringResource(R.string.app_components_alert_alertMessage_closeButton_tech),
             checked = hasCloseButton,
             onCheckedChange = { hasCloseButton = it },
@@ -155,7 +162,9 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
-    val icon = OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
+    val painter =
+        if (state.tintedIcon) painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks) else painterResource(id = R.drawable.il_untinted_icon)
+    val icon = OudsAlertIcon(painter = painter, tinted = state.tintedIcon)
     with(state) {
         OudsAlertMessage(
             label = label,
@@ -191,7 +200,8 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         if (hasStatusIcon) {
                             constructorCallArgument<OudsAlertIcon>("icon") {
-                                painterArgument(themeDrawableResources.tipsAndTricks)
+                                painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                                if (!tintedIcon) tintedArgument(tintedIcon)
                             }
                         }
                     }

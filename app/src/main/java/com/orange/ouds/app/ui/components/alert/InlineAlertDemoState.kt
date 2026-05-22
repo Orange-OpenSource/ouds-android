@@ -28,26 +28,38 @@ import com.orange.ouds.core.component.OudsInlineAlertStatus
 fun rememberInlineAlertDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
+    tintedIcon: Boolean = true
 ) = rememberSaveable(
     label,
     status,
+    tintedIcon,
     saver = InlineAlertDemoState.Saver
 ) {
-    InlineAlertDemoState(label, status)
+    InlineAlertDemoState(label, status, tintedIcon)
 }
 
 class InlineAlertDemoState(
     label: String,
-    status: OudsInlineAlertStatus
+    status: OudsInlineAlertStatus,
+    tintedIcon: Boolean
 ) {
 
     companion object {
+
+        private val FunctionalStatuses = listOf(
+            OudsInlineAlertStatus.Info,
+            OudsInlineAlertStatus.Negative,
+            OudsInlineAlertStatus.Positive,
+            OudsInlineAlertStatus.Warning
+        )
+
         val Saver = listSaver(
             save = { state ->
                 with(state) {
                     listOf(
                         label,
-                        status::class.java.name
+                        status::class.java.name,
+                        tintedIcon
                     )
                 }
             },
@@ -61,13 +73,27 @@ class InlineAlertDemoState(
 
                 InlineAlertDemoState(
                     list[0] as String,
-                    status
+                    status,
+                    list[2] as Boolean
                 )
             }
         )
     }
 
-    var status: OudsInlineAlertStatus by mutableStateOf(status)
+    private var _status: OudsInlineAlertStatus by mutableStateOf(status)
+    var status: OudsInlineAlertStatus
+        get() = _status
+        set(value) {
+            _status = value
+            if (status in FunctionalStatuses) {
+                tintedIcon = true
+            }
+        }
 
     var label: String by mutableStateOf(label)
+
+    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+
+    val tintedIconSwitchEnabled: Boolean
+        get() = status !in FunctionalStatuses
 }
