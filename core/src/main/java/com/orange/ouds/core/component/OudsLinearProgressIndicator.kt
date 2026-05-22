@@ -158,8 +158,7 @@ private fun OudsLinearProgressIndicator(
                     color = color,
                     trackColor = trackColor,
                     gapSize = gapSize,
-                    strokeCap = strokeCap,
-                    drawStopIndicator = {}
+                    strokeCap = strokeCap
                 )
             }.orElse {
                 LinearProgressIndicator(
