@@ -78,8 +78,9 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
         horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
     ) {
         repeat(ChipDemoState.ChipCount) { index ->
+            val painterId = if (state.tintedIcon) icons[index % icons.count()] else R.drawable.il_untinted_icon
             val icon = OudsChipIcon(
-                painter = if (state.tintedIcon) painterResource(icons[index % icons.count()]) else painterResource(R.drawable.il_untinted_icon),
+                painter = painterResource(id = painterId),
                 contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
                 tinted = state.tintedIcon
             )

@@ -31,9 +31,10 @@ fun rememberButtonDemoState(
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first()
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout)
+    layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first(),
+    tintedIcon: Boolean = true
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, tintedIcon, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout, tintedIcon)
 }
 
 class ButtonDemoState(
@@ -42,7 +43,8 @@ class ButtonDemoState(
     onColoredBox: Boolean,
     hasLoader: Boolean,
     appearance: OudsButtonAppearance,
-    layout: Layout
+    layout: Layout,
+    tintedIcon: Boolean
 ) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
 
     companion object {
@@ -57,12 +59,13 @@ class ButtonDemoState(
                         label,
                         appearance,
                         layout,
-                        with(BaseButtonDemoState.Saver) { save(state) }
+                        tintedIcon,
+                        with(BaseButtonDemoState.Saver) { save(state) },
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                val baseButtonDemoState = list[3]?.let { BaseButtonDemoState.Saver.restore(it) }
+                val baseButtonDemoState = list[4]?.let { BaseButtonDemoState.Saver.restore(it) }
                 baseButtonDemoState?.run {
                     ButtonDemoState(
                         list[0] as String,
@@ -70,7 +73,8 @@ class ButtonDemoState(
                         onColoredBox,
                         hasLoader,
                         list[1] as OudsButtonAppearance,
-                        list[2] as Layout
+                        list[2] as Layout,
+                        list[3] as Boolean
                     )
                 }
             }
@@ -96,6 +100,11 @@ class ButtonDemoState(
 
     val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly
+
+    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+
+    val tintedIconSwitchEnabled: Boolean
+        get() = layout != Layout.TextOnly
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),

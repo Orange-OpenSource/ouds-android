@@ -91,6 +91,7 @@ import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.PreviewOudsCheckbox
 import com.orange.ouds.core.component.PreviewOudsCheckboxItem
@@ -360,6 +361,18 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsButtonOnTwoLines(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsButtonWithUntintedIcon(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled

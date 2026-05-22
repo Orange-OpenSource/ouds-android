@@ -59,4 +59,10 @@ internal class OudsButtonTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

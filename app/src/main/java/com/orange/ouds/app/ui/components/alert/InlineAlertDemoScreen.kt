@@ -117,9 +117,8 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 
 @Composable
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
-    val painter =
-        if (state.tintedIcon) painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks) else painterResource(id = R.drawable.il_untinted_icon)
-    val icon = OudsAlertIcon(painter = painter, tinted = state.tintedIcon)
+    val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+    val icon = OudsAlertIcon(painter = painterResource(id = painterId), tinted = state.tintedIcon)
     with(state) {
         OudsInlineAlert(
             label = label,

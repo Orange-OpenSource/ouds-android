@@ -24,6 +24,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -87,6 +88,12 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = ButtonDemoState.Layout.entries[index] }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
+        )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_tech),
@@ -99,9 +106,11 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 
 @Composable
 private fun ButtonDemoContent(state: ButtonDemoState) {
+    val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
     val icon = OudsButtonIcon(
-        painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-        contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
+        painter = painterResource(id = painterId),
+        contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
+        tinted = state.tintedIcon
     )
     with(state) {
         val loader = if (hasLoader) OudsButtonLoader(null) else null
@@ -144,8 +153,9 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
             functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     constructorCallArgument<OudsButtonIcon>("icon") {
-                        painterArgument(themeDrawableResources.tipsAndTricks)
+                        painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
                         contentDescriptionArgument(R.string.app_components_common_icon_a11y)
+                        if (!tintedIcon) tintedArgument(tintedIcon)
                     }
                 }
                 if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.TextAndIcon)) {

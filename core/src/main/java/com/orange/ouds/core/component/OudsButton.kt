@@ -62,6 +62,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -74,6 +75,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -359,12 +361,12 @@ internal fun OudsButton(
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
-                                .size(size.value * iconScale)
+                                .iconSize(size.value * iconScale, icon.tinted)
                                 .semantics {
-                                    contentDescription = when {
+                                    contentDescription = when (label) {
                                         // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
-                                        label == null && iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
-                                        label == null -> icon.contentDescription
+                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
+                                        null -> icon.contentDescription
                                         else -> ""
                                     }
                                 },
@@ -733,7 +735,8 @@ object OudsButtonDefaults {
  */
 class OudsButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String
+    val contentDescription: String,
+    override val tinted: Boolean
 ) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
     @ConsistentCopyVisibility
@@ -747,7 +750,8 @@ class OudsButtonIcon private constructor(
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      */
-    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
+    @JvmOverloads
+    constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsButtonIcon].
@@ -755,7 +759,8 @@ class OudsButtonIcon private constructor(
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsButtonIcon].
@@ -763,7 +768,8 @@ class OudsButtonIcon private constructor(
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
 
     override val tint: Color?
         @Composable
@@ -940,6 +946,26 @@ internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview
         nullableLabel = "Button\non two lines",
         onClick = {},
     )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsButtonWithUntintedIcon() = PreviewOudsButtonWithUntintedIcon(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsButtonWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
+        OudsButton(
+            nullableIcon = OudsButtonIcon(
+                painter = rememberRainbowHeartPainter(),
+                contentDescription = "",
+                tinted = false
+            ),
+            nullableLabel = "Label",
+            onClick = {},
+        )
+    }
 }
 
 internal data class OudsButtonPreviewParameter(
