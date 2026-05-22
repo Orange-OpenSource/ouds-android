@@ -21,6 +21,7 @@ import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -35,6 +36,7 @@ fun controlItemCustomization(index: Int, content: @Composable () -> Unit) = Cont
 fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: List<ControlItemCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
         { ControlItemIconCustomization(state = state) },
+        { ControlItemTintedIconCustomization(state = state) },
         { ControlItemEdgeToEdgeCustomization(state = state) },
         { ControlItemDividerCustomization(state = state) },
         { ControlItemReversedCustomization(state = state) },
@@ -59,6 +61,18 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
             label = stringResource(R.string.app_components_controlItem_icon_tech),
             checked = icon,
             onCheckedChange = { icon = it },
+        )
+    }
+}
+
+@Composable
+private fun ControlItemTintedIconCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_tintedIcon_tech),
+            checked = tintedIcon,
+            onCheckedChange = { tintedIcon = it },
+            enabled = tintedIconSwitchEnabled
         )
     }
 }
@@ -187,7 +201,8 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         if (!description.isNullOrBlank()) typedArgument("description", description)
         if (icon) {
             constructorCallArgument<OudsControlItemIcon>("icon") {
-                painterArgument(themeDrawableResources.tipsAndTricks)
+                painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                if (!tintedIcon) tintedArgument(tintedIcon)
             }
         }
         if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)

@@ -100,6 +100,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemHighContrastModeEna
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithRichText
+import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
@@ -131,6 +132,7 @@ import com.orange.ouds.core.component.PreviewOudsRadioButtonItemHighContrastMode
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionText
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithRichText
+import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
 import com.orange.ouds.core.component.PreviewOudsSuggestionChipWithUntintedIcon
@@ -140,6 +142,7 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithRichText
+import com.orange.ouds.core.component.PreviewOudsSwitchItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.core.component.PreviewOudsTextArea
 import com.orange.ouds.core.component.PreviewOudsTextAreaAutoResize
@@ -202,7 +205,7 @@ interface OudsPreviewableComponent {
                 )
             }
         }
-        
+
         object WithUntintedIcon : OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
@@ -468,6 +471,20 @@ interface OudsPreviewableComponent {
                     darkThemeEnabled = darkThemeEnabled
                 )
             }
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 670
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCheckboxItemWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
@@ -978,6 +995,20 @@ interface OudsPreviewableComponent {
                 )
             }
         }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 670
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsRadioButtonItemWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
     }
 
     object RadioButton : OudsPreviewableComponent {
@@ -1098,6 +1129,20 @@ interface OudsPreviewableComponent {
                     darkThemeEnabled = darkThemeEnabled
                 )
             }
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 670
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSwitchItemWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

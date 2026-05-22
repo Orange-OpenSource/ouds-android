@@ -88,13 +88,14 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
         ) {
             RadioButtonItemDemoState.values.forEachIndexed { index, radioButtonValue ->
                 val isLastItem = index == RadioButtonItemDemoState.values.lastIndex
+                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
                     label = label,
                     extraLabel = extraLabel,
                     description = description,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = painterId), tinted = tintedIcon) else null,
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     outlined = outlined,

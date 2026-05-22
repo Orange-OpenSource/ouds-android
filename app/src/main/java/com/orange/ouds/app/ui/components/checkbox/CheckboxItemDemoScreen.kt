@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
@@ -59,6 +60,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
+                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -72,7 +74,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     description = description,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)) else null,
+                    icon = if (icon) OudsControlItemIcon(painterResource(id = painterId), tinted = tintedIcon) else null,
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,

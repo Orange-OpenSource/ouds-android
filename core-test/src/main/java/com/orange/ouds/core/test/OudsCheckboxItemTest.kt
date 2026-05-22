@@ -82,4 +82,11 @@ internal class OudsCheckboxItemTest {
         null,
         OudsComponentTestSuite.theme
     )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.CheckboxItem.WithUntintedIcon.PreviewHeightDp
+    )
 }

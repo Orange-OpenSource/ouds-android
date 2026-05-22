@@ -28,7 +28,8 @@ open class ControlItemDemoState(
     errorMessage: String,
     label: String,
     description: String?,
-    constrainedMaxWidth: Boolean
+    constrainedMaxWidth: Boolean,
+    tintedIcon: Boolean
 ) {
 
     companion object {
@@ -47,7 +48,8 @@ open class ControlItemDemoState(
                         errorMessage,
                         label,
                         description,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        tintedIcon
                     )
                 }
             },
@@ -63,7 +65,8 @@ open class ControlItemDemoState(
                     list[7] as String,
                     list[8] as String,
                     list[9] as String?,
-                    list[10] as Boolean
+                    list[10] as Boolean,
+                    list[11] as Boolean
                 )
             }
         )
@@ -80,6 +83,7 @@ open class ControlItemDemoState(
     var errorMessage: String by mutableStateOf(errorMessage)
     var label: String by mutableStateOf(label)
     var description: String? by mutableStateOf(description)
+    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
@@ -92,4 +96,7 @@ open class ControlItemDemoState(
 
     val errorMessageTextInputEnabled: Boolean
         get() = error
+
+    val tintedIconSwitchEnabled: Boolean
+        get() = icon
 }

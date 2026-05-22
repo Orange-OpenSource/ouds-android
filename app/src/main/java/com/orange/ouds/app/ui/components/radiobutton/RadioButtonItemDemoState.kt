@@ -38,7 +38,8 @@ fun rememberRadioButtonItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     extraLabel: String? = null,
     description: String? = null,
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    tintedIcon: Boolean = true
 ) = rememberSaveable(
     selectedValue,
     icon,
@@ -54,6 +55,7 @@ fun rememberRadioButtonItemDemoState(
     extraLabel,
     description,
     constrainedMaxWidth,
+    tintedIcon,
     saver = RadioButtonItemDemoState.Saver
 ) {
     RadioButtonItemDemoState(
@@ -70,7 +72,8 @@ fun rememberRadioButtonItemDemoState(
         label,
         extraLabel,
         description,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        tintedIcon
     )
 }
 
@@ -89,7 +92,8 @@ class RadioButtonItemDemoState(
     extraLabel: String?,
     description: String?,
     constrainedMaxWidth: Boolean,
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
+    tintedIcon: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, tintedIcon) {
 
     companion object {
         val values = listOf(1, 2)
@@ -121,7 +125,8 @@ class RadioButtonItemDemoState(
                         label,
                         list[2] as String?,
                         description,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        tintedIcon
                     )
                 }
             }

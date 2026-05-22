@@ -35,7 +35,8 @@ fun rememberSwitchItemDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     text: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    tintedIcon: Boolean = true
 ) = rememberSaveable(
     checked,
     icon,
@@ -49,9 +50,24 @@ fun rememberSwitchItemDemoState(
     text,
     description,
     constrainedMaxWidth,
+    tintedIcon,
     saver = SwitchItemDemoState.Saver
 ) {
-    SwitchItemDemoState(checked, icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth)
+    SwitchItemDemoState(
+        checked,
+        icon,
+        edgeToEdge,
+        divider,
+        reversed,
+        enabled,
+        readOnly,
+        error,
+        errorMessage,
+        text,
+        description,
+        constrainedMaxWidth,
+        tintedIcon
+    )
 }
 
 class SwitchItemDemoState(
@@ -66,8 +82,9 @@ class SwitchItemDemoState(
     errorMessage: String,
     text: String,
     description: String?,
-    constrainedMaxWidth: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth) {
+    constrainedMaxWidth: Boolean,
+    tintedIcon: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth, tintedIcon) {
 
     companion object {
 
@@ -93,7 +110,8 @@ class SwitchItemDemoState(
                         errorMessage,
                         label,
                         description,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        tintedIcon
                     )
                 }
             }

@@ -40,6 +40,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -263,6 +264,26 @@ internal fun PreviewOudsSwitchItemWithRichText(
     )
 }
 
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.SwitchItem.WithUntintedIcon.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsSwitchItemWithUntintedIcon() {
+    PreviewOudsSwitchItemWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsSwitchItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
+        OudsSwitchItem(
+            checked = false,
+            label = "Label",
+            onCheckedChange = {},
+            icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            edgeToEdge = false,
+            divider = true
+        )
+    }
+}
 
 internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
 
