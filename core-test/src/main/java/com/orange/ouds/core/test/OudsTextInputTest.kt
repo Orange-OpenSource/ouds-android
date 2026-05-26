@@ -61,4 +61,18 @@ internal class OudsTextInputTest {
             internal fun data() = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.parameters
         }
     }
+
+    @RunWith(Parameterized::class)
+    class WithRichText(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextInput.WithRichText,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.TextInput.WithRichText.parameters
+        }
+    }
 }

@@ -16,6 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.rememberOudsPasswordInputState
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -38,6 +41,40 @@ internal fun OudsPasswordInputErrorSample() {
     )
 }
 
+@Composable
+internal fun OudsPasswordInputWithAnnotatedHelperTextSample() {
+    val helperText = buildOudsAnnotatedHelperText {
+        append("Password must be ")
+        withStrong { append("at least 8 characters") }
+        append(" long")
+    }
+
+    OudsPasswordInput(
+        state = rememberOudsPasswordInputState(),
+        label = "Password",
+        lockIcon = true,
+        helperText = helperText
+    )
+}
+
+@Composable
+internal fun OudsPasswordInputWithAnnotatedErrorMessageSample() {
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("This field ")
+            withStrong { append("cannot") }
+            append(" be empty")
+        }
+    )
+
+    OudsPasswordInput(
+        state = rememberOudsPasswordInputState(),
+        label = "Password",
+        lockIcon = true,
+        error = error
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsPasswordInputSample() = OudsPreview {
@@ -48,4 +85,16 @@ private fun PreviewOudsPasswordInputSample() = OudsPreview {
 @Composable
 private fun PreviewOudsPasswordInputErrorSample() = OudsPreview {
     OudsPasswordInputErrorSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsPasswordInputWithAnnotatedHelperTextSample() = OudsPreview {
+    OudsPasswordInputWithAnnotatedHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsPasswordInputWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsPasswordInputWithAnnotatedErrorMessageSample()
 }

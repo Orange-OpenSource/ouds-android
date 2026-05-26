@@ -21,6 +21,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -46,6 +49,43 @@ internal fun OudsPinCodeInputErrorSample() {
     )
 }
 
+@Composable
+internal fun OudsPinCodeInputWithAnnotatedHelperTextSample() {
+    var value by remember { mutableStateOf("") }
+
+    val helperText = buildOudsAnnotatedHelperText {
+        append("Enter the ")
+        withStrong { append("4-digit code") }
+        append(" sent to your phone.")
+    }
+
+    OudsPinCodeInput(
+        value = value,
+        onValueChange = { value = it },
+        length = OudsPinCodeInputLength.Four,
+        helperText = helperText
+    )
+}
+
+@Composable
+internal fun OudsPinCodeInputWithAnnotatedErrorMessageSample() {
+    var value by remember { mutableStateOf("1234") }
+
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("The code you entered is ")
+            withStrong { append("incorrect.") }
+        }
+    )
+
+    OudsPinCodeInput(
+        value = value,
+        onValueChange = { value = it },
+        length = OudsPinCodeInputLength.Four,
+        error = error
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsPinCodeInputSample() = OudsPreview {
@@ -56,4 +96,16 @@ private fun PreviewOudsPinCodeInputSample() = OudsPreview {
 @Composable
 private fun PreviewOudsPinCodeInputErrorSample() = OudsPreview {
     OudsPinCodeInputErrorSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsPinCodeInputWithAnnotatedHelperTextSample() = OudsPreview {
+    OudsPinCodeInputWithAnnotatedHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsPinCodeInputWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsPinCodeInputWithAnnotatedErrorMessageSample()
 }

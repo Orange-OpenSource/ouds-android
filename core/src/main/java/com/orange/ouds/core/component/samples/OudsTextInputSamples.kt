@@ -28,6 +28,9 @@ import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -99,6 +102,84 @@ internal fun OudsTextInputValueBasedErrorSample() {
     )
 }
 
+@Composable
+internal fun OudsTextInputStateBasedWithAnnotatedHelperTextSample() {
+    val helperText = buildOudsAnnotatedHelperText {
+        append("Password must be ")
+        withStrong { append("at least 8 characters") }
+        append(" long.")
+    }
+
+    OudsTextInput(
+        textFieldState = rememberTextFieldState(),
+        label = "Password",
+        placeholder = "Enter your password",
+        helperText = helperText,
+        outlined = true
+    )
+}
+
+@Composable
+internal fun OudsTextInputStateBasedWithAnnotatedErrorMessageSample() {
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("This field ")
+            withStrong { append("cannot") }
+            append(" be empty.")
+        }
+    )
+
+    OudsTextInput(
+        textFieldState = rememberTextFieldState(),
+        label = "Password",
+        placeholder = "Enter your password",
+        error = error,
+        outlined = true
+    )
+}
+
+@Composable
+internal fun OudsTextInputValueBasedWithAnnotatedHelperTextSample() {
+    var value by remember { mutableStateOf("") }
+
+    val helperText = buildOudsAnnotatedHelperText {
+        append("Password must be ")
+        withStrong { append("at least 8 characters") }
+        append(" long.")
+    }
+
+    OudsTextInput(
+        value = value,
+        onValueChange = { value = it },
+        label = "Password",
+        placeholder = "Enter your password",
+        helperText = helperText,
+        outlined = true
+    )
+}
+
+@Composable
+internal fun OudsTextInputValueBasedWithAnnotatedErrorMessageSample() {
+    var value by remember { mutableStateOf("") }
+
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("This field ")
+            withStrong { append("cannot") }
+            append(" be empty.")
+        }
+    )
+
+    OudsTextInput(
+        value = value,
+        onValueChange = { value = it },
+        label = "Password",
+        placeholder = "Enter your password",
+        error = error,
+        outlined = true
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsTextInputStateBasedSample() = OudsPreview {
@@ -121,4 +202,28 @@ private fun PreviewOudsTextInputStateBasedErrorSample() = OudsPreview {
 @Composable
 private fun PreviewOudsTextInputValueBasedErrorSample() = OudsPreview {
     OudsTextInputValueBasedErrorSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputStateBasedWithAnnotatedHelperTextSample() = OudsPreview {
+    OudsTextInputStateBasedWithAnnotatedHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputStateBasedWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsTextInputStateBasedWithAnnotatedErrorMessageSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputValueBasedWithAnnotatedHelperTextSample() = OudsPreview {
+    OudsTextInputValueBasedWithAnnotatedHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputValueBasedWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsTextInputValueBasedWithAnnotatedErrorMessageSample()
 }

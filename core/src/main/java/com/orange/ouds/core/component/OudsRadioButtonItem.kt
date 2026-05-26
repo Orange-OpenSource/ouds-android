@@ -31,7 +31,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
@@ -39,8 +38,11 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -86,6 +88,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithAnnotatedErrorMessageSample
  */
 @Composable
 fun OudsRadioButtonItem(
@@ -313,9 +316,11 @@ internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(@PreviewParameter(Oud
 }
 
 @Composable
-internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(
+    theme: OudsThemeContract,
+    constrainedMaxWidth: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
     OudsRadioButtonItem(
-        modifier = Modifier.padding(all = 10.dp),
         selected = false,
         label = "Label",
         onClick = {},
@@ -324,6 +329,27 @@ internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(theme: OudsThemeContr
         edgeToEdge = false,
         divider = true,
         constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsRadioButtonItemWithRichText() {
+    PreviewOudsRadioButtonItemWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonItemWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsRadioButtonItem(
+        selected = true,
+        label = "Label",
+        onClick = {},
+        divider = true,
+        error = OudsError(buildPreviewAnnotatedErrorMessage()),
     )
 }
 

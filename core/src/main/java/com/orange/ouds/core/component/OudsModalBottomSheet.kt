@@ -31,10 +31,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -96,7 +96,7 @@ fun OudsModalBottomSheet(
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 private fun PreviewOudsModalBottomSheet() {
     PreviewOudsModalBottomSheet(
@@ -123,9 +123,11 @@ internal fun PreviewOudsModalBottomSheet(
             )
         }
     ) {
-        Column(modifier = Modifier
-            .padding(bottom = OudsTheme.spaces.fixed.medium)
-            .padding(horizontal = OudsTheme.grids.margin)) {
+        Column(
+            modifier = Modifier
+                .padding(bottom = OudsTheme.spaces.fixed.medium)
+                .padding(horizontal = OudsTheme.grids.margin)
+        ) {
             Text(text = "Modal bottom sheet content.")
         }
     }

@@ -68,4 +68,18 @@ internal class OudsTextAreaTest {
             internal fun data() = OudsPreviewableComponent.TextArea.MultiLineValue.parameters
         }
     }
+
+    @RunWith(Parameterized::class)
+    class WithRichText(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextArea.WithRichText,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.TextArea.WithRichText.parameters
+        }
+    }
 }

@@ -37,10 +37,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -108,7 +108,7 @@ fun OudsBottomSheetScaffold(
 }
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@PreviewLightDark
+@OudsPreviewLightDark
 @Composable
 private fun PreviewOudsBottomSheetScaffold() {
     PreviewOudsBottomSheetScaffold(

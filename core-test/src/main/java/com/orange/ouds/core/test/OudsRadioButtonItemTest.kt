@@ -76,4 +76,10 @@ internal class OudsRadioButtonItemTest {
             internal fun data() = OudsPreviewableComponent.RadioButtonItem.ConstrainedMaxWidth.parameters
         }
     }
+
+    class WithRichText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithRichText,
+        null,
+        OudsComponentTestSuite.theme
+    )
 }

@@ -19,18 +19,41 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsSwitchItem
+import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
-internal fun OudsSwitchItemSample() = OudsPreview {
+internal fun OudsSwitchItemSample() {
     var checked by remember { mutableStateOf(true) }
 
     OudsSwitchItem(
         checked = checked,
         label = "Notifications",
         description = "Display app notifications in the notification center",
+        onCheckedChange = { value -> checked = value }
+    )
+}
+
+@Composable
+internal fun OudsSwitchItemWithAnnotatedErrorMessageSample() {
+    var checked by remember { mutableStateOf(false) }
+
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("You ")
+            withStrong { append("must") }
+            append(" enable notifications to continue")
+        }
+    )
+
+    OudsSwitchItem(
+        checked = checked,
+        label = "Notifications",
+        description = "Display app notifications in the notification center",
         onCheckedChange = { value -> checked = value },
-        divider = false
+        error = error
     )
 }
 
@@ -38,4 +61,10 @@ internal fun OudsSwitchItemSample() = OudsPreview {
 @Composable
 private fun PreviewOudsSwitchItemSample() = OudsPreview {
     OudsSwitchItemSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSwitchItemWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsSwitchItemWithAnnotatedErrorMessageSample()
 }

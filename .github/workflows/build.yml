@@ -87,7 +87,7 @@ jobs:
           name: lint-reports
           path: '**/build/reports/lint-*.html'
 
-  snapshot-tests:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -106,17 +106,18 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
-      - name: Run snapshot tests
+      - name: Run unit tests
         run: ./gradlew verifyPaparazziDebug
 
-      - name: Upload snapshot test artifacts
+      - name: Upload unit test artifacts
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: snapshot-tests
+          name: unit-tests
           path: |
             core/build/paparazzi
             core/build/reports/paparazzi
+            core/build/test-results
 
   instrumented-tests:
     runs-on: ubuntu-latest
@@ -166,7 +167,7 @@ jobs:
   maven-central-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [ build, lint, snapshot-tests, instrumented-tests ]
+    needs: [ build, lint, unit-tests, instrumented-tests ]
     environment:
       name: maven-central-release
       url: https://mvnrepository.com/artifact/com.orange.ouds.android
@@ -209,7 +210,7 @@ jobs:
   github-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [ build, lint, snapshot-tests, instrumented-tests ]
+    needs: [ build, lint, unit-tests, instrumented-tests ]
     environment:
       name: github-release
       url: https://github.com/Orange-OpenSource/ouds-android/releases
@@ -249,7 +250,7 @@ jobs:
   google-play-store-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [ build, lint, snapshot-tests, instrumented-tests ]
+    needs: [ build, lint, unit-tests, instrumented-tests ]
     environment:
       name: google-play-store-release
       url: https://play.google.com/store/apps

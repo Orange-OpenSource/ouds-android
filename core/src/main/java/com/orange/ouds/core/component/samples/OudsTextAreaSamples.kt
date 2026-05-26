@@ -23,31 +23,34 @@ import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsTextAreaStateBasedSample() {
     OudsTextArea(
-        textFieldState = rememberTextFieldState("Text"),
-        label = "Label",
-        placeholder = "Placeholder",
+        textFieldState = rememberTextFieldState("I would like to report an issue with my recent order. The product arrived damaged and I would appreciate a replacement or refund."),
+        label = "Feedback",
+        placeholder = "Share your thoughts or report an issue",
         loader = OudsTextInputLoader(null),
-        helperText = "Helper text",
-        helperLink = OudsTextInputHelperLink(text = "Helper link", onClick = { })
+        helperText = "Please provide as much detail as possible (minimum 20 characters)",
+        helperLink = OudsTextInputHelperLink(text = "Guidelines", onClick = { /* Open guidelines */ })
     )
 }
 
 @Composable
 internal fun OudsTextAreaValueBasedSample() {
-    var value by remember { mutableStateOf("Text") }
+    var value by remember { mutableStateOf("I would like to report an issue with my recent order. The product arrived damaged and I would appreciate a replacement or refund.") }
     OudsTextArea(
         value = value,
         onValueChange = { value = it },
-        label = "Label",
-        placeholder = "Placeholder",
+        label = "Feedback",
+        placeholder = "Share your thoughts or report an issue",
         loader = OudsTextInputLoader(null),
-        helperText = "Helper text",
-        helperLink = OudsTextInputHelperLink(text = "Helper link", onClick = { })
+        helperText = "Please provide as much detail as possible (minimum 20 characters)",
+        helperLink = OudsTextInputHelperLink(text = "Guidelines", onClick = { /* Open guidelines */ })
     )
 }
 
@@ -55,10 +58,10 @@ internal fun OudsTextAreaValueBasedSample() {
 internal fun OudsTextAreaStateBasedErrorSample() {
     OudsTextArea(
         textFieldState = rememberTextFieldState(),
-        label = "Label",
-        placeholder = "Placeholder",
+        label = "Comment",
+        placeholder = "Add your comment here",
         outlined = true,
-        error = OudsError(message = "This field can't be empty.")
+        error = OudsError(message = "Please enter at least 10 characters.")
     )
 }
 
@@ -68,10 +71,88 @@ internal fun OudsTextAreaValueBasedErrorSample() {
     OudsTextArea(
         value = value,
         onValueChange = { value = it },
-        label = "Label",
-        placeholder = "Placeholder",
+        label = "Comment",
+        placeholder = "Add your comment here",
         outlined = true,
-        error = OudsError(message = "This field can't be empty.")
+        error = OudsError(message = "Please enter at least 10 characters.")
+    )
+}
+
+@Composable
+internal fun OudsTextAreaStateBasedWithAnnotatedHelperTextSample() {
+    val helperText = buildOudsAnnotatedHelperText {
+        append("Description must be ")
+        withStrong { append("at least 20 characters") }
+        append(" long.")
+    }
+
+    OudsTextArea(
+        textFieldState = rememberTextFieldState(),
+        label = "Description",
+        placeholder = "Enter description",
+        helperText = helperText,
+        outlined = true
+    )
+}
+
+@Composable
+internal fun OudsTextAreaStateBasedWithAnnotatedErrorMessageSample() {
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("This field ")
+            withStrong { append("cannot") }
+            append(" be empty.")
+        }
+    )
+
+    OudsTextArea(
+        textFieldState = rememberTextFieldState(),
+        label = "Description",
+        placeholder = "Enter description",
+        error = error,
+        outlined = true
+    )
+}
+
+@Composable
+internal fun OudsTextAreaValueBasedWithAnnotatedHelperTextSample() {
+    var value by remember { mutableStateOf("") }
+
+    val helperText = buildOudsAnnotatedHelperText {
+        append("Description must be ")
+        withStrong { append("at least 20 characters") }
+        append(" long.")
+    }
+
+    OudsTextArea(
+        value = value,
+        onValueChange = { value = it },
+        label = "Description",
+        placeholder = "Enter description",
+        helperText = helperText,
+        outlined = true
+    )
+}
+
+@Composable
+internal fun OudsTextAreaValueBasedWithAnnotatedErrorMessageSample() {
+    var value by remember { mutableStateOf("") }
+
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("This field ")
+            withStrong { append("cannot") }
+            append(" be empty.")
+        }
+    )
+
+    OudsTextArea(
+        value = value,
+        onValueChange = { value = it },
+        label = "Description",
+        placeholder = "Enter description",
+        error = error,
+        outlined = true
     )
 }
 
@@ -97,4 +178,28 @@ private fun PreviewOudsTextAreaStateBasedErrorSample() = OudsPreview {
 @Composable
 private fun PreviewOudsTextAreaValueBasedErrorSample() = OudsPreview {
     OudsTextAreaValueBasedErrorSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaStateBasedWithAnnotatedHelperTextSample() = OudsPreview {
+    OudsTextAreaStateBasedWithAnnotatedHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaStateBasedWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsTextAreaStateBasedWithAnnotatedErrorMessageSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaValueBasedWithAnnotatedHelperTextSample() = OudsPreview {
+    OudsTextAreaValueBasedWithAnnotatedHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextAreaValueBasedWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsTextAreaValueBasedWithAnnotatedErrorMessageSample()
 }

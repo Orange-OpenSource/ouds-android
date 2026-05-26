@@ -22,19 +22,48 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsRadioButtonItem
+import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsRadioButtonItemSample() {
-    val genders = listOf("Female", "Male", "Other")
-    var selectedGender by rememberSaveable { mutableStateOf(genders.first()) }
+    val shippingMethods = listOf("Standard delivery", "Express delivery", "Pick up in store")
+    var selectedMethod by rememberSaveable { mutableStateOf(shippingMethods.first()) }
 
     Column(modifier = Modifier.selectableGroup()) {
-        genders.forEach { gender ->
+        shippingMethods.forEach { method ->
             OudsRadioButtonItem(
-                selected = gender == selectedGender,
-                label = gender,
-                onClick = { selectedGender = gender },
+                selected = method == selectedMethod,
+                label = method,
+                onClick = { selectedMethod = method },
+                divider = true
+            )
+        }
+    }
+}
+
+@Composable
+internal fun OudsRadioButtonItemWithAnnotatedErrorMessageSample() {
+    val shippingMethods = listOf("Standard delivery", "Express delivery", "Pick up in store")
+    var selectedMethod by rememberSaveable { mutableStateOf("") }
+
+    val error = OudsError(
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("You ")
+            withStrong { append("must") }
+            append(" select an option")
+        }
+    )
+
+    Column(modifier = Modifier.selectableGroup()) {
+        shippingMethods.forEachIndexed { index, method ->
+            OudsRadioButtonItem(
+                selected = method == selectedMethod,
+                label = method,
+                onClick = { selectedMethod = method },
+                error = if (index == shippingMethods.lastIndex) error else OudsError(""),
                 divider = true
             )
         }
@@ -45,4 +74,10 @@ internal fun OudsRadioButtonItemSample() {
 @Composable
 private fun PreviewOudsRadioButtonItemSample() = OudsPreview {
     OudsRadioButtonItemSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsRadioButtonItemWithAnnotatedErrorMessageSample() = OudsPreview {
+    OudsRadioButtonItemWithAnnotatedErrorMessageSample()
 }

@@ -29,14 +29,16 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
+import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -81,6 +83,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   is provided, interactions will still happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithAnnotatedErrorMessageSample
  */
 @Composable
 fun OudsSwitchItem(
@@ -224,9 +227,11 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(@PreviewParameter(OudsCont
 }
 
 @Composable
-internal fun PreviewOudsSwitchItemConstrainedMaxWidth(theme: OudsThemeContract, constrainedMaxWidth: Boolean) = OudsPreview(theme = theme) {
+internal fun PreviewOudsSwitchItemConstrainedMaxWidth(
+    theme: OudsThemeContract,
+    constrainedMaxWidth: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
     OudsSwitchItem(
-        modifier = Modifier.padding(all = 10.dp),
         checked = true,
         label = "Label",
         onCheckedChange = {},
@@ -236,6 +241,28 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(theme: OudsThemeContract, 
         divider = true
     )
 }
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSwitchItemWithRichText() {
+    PreviewOudsSwitchItemWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsSwitchItemWithRichText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsSwitchItem(
+        checked = true,
+        label = "Label",
+        onCheckedChange = {},
+        divider = true,
+        error = OudsError(buildPreviewAnnotatedErrorMessage()),
+    )
+}
+
 
 internal typealias OudsSwitchItemPreviewParameter = OudsControlItemPreviewParameter<Boolean, Nothing>
 
