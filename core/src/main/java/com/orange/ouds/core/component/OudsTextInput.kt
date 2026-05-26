@@ -1456,6 +1456,7 @@ class OudsTextInputLeadingIcon private constructor(
      *
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated with this [OudsTextInputLeadingIcon].
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
      */
     constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
 
@@ -1464,6 +1465,7 @@ class OudsTextInputLeadingIcon private constructor(
      *
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated with this [OudsTextInputLeadingIcon].
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
      */
     constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
 
@@ -1472,6 +1474,7 @@ class OudsTextInputLeadingIcon private constructor(
      *
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated with this [OudsTextInputLeadingIcon].
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
 

@@ -147,7 +147,8 @@ open class OudsAlertIcon private constructor(
     /**
      * Creates an instance of [OudsAlertIcon].
      *
-     * @property painter Painter of the icon.
+     * @param painter Painter of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
      */
     @JvmOverloads
     constructor(painter: Painter, tinted: Boolean = true) : this({ painter }, { "" }, tinted)
@@ -155,7 +156,8 @@ open class OudsAlertIcon private constructor(
     /**
      * Creates an instance of [OudsAlertIcon].
      *
-     * @property imageVector Image vector of the icon.
+     * @param imageVector Image vector of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
      */
     @JvmOverloads
     constructor(imageVector: ImageVector, tinted: Boolean = true) : this({ imageVector }, { "" }, tinted)
@@ -163,7 +165,8 @@ open class OudsAlertIcon private constructor(
     /**
      * Creates an instance of [OudsAlertIcon].
      *
-     * @property bitmap Image bitmap of the icon.
+     * @param bitmap Image bitmap of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this({ bitmap }, { "" }, tinted)

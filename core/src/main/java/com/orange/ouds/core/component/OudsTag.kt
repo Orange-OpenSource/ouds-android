@@ -470,6 +470,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param painter Painter of the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          */
         @JvmOverloads
         constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
@@ -478,6 +479,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param imageVector Image vector of the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          */
         @JvmOverloads
         constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
@@ -486,6 +488,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param bitmap Image bitmap of the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          */
         @JvmOverloads
         constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
