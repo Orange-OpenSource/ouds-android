@@ -156,6 +156,7 @@ import com.orange.ouds.core.component.PreviewOudsTextInputConstrainedMaxWidth
 import com.orange.ouds.core.component.PreviewOudsTextInputWithLongLabels
 import com.orange.ouds.core.component.PreviewOudsTextInputWithRichText
 import com.orange.ouds.core.component.PreviewOudsTextInputWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsTextInputWithUntintedLeadingIcon
 import com.orange.ouds.core.component.PreviewOudsTopAppBar
 import com.orange.ouds.core.theme.WindowWidthSizeClass
 import com.orange.ouds.foundation.InternalOudsApi
@@ -1346,6 +1347,20 @@ interface OudsPreviewableComponent {
                     error = parameter as Boolean
                 )
             }
+        }
+
+        object WithUntintedLeadingIcon : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 670
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTextInputWithUntintedLeadingIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

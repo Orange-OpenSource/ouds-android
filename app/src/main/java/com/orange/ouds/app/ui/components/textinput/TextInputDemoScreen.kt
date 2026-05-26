@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -67,6 +68,12 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             label = stringResource(R.string.app_components_textInput_leadingIcon_tech),
             checked = leadingIcon,
             onCheckedChange = { leadingIcon = it },
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_textInput_tintedLeadingIcon_tech),
+            checked = tintedLeadingIcon,
+            onCheckedChange = { tintedLeadingIcon = it },
+            enabled = tintedLeadingIconSwitchEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_textInput_trailingAction_tech),
@@ -158,10 +165,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             placeholder = placeholder,
             outlined = outlined,
             leadingIcon = if (leadingIcon) {
-                OudsTextInputLeadingIcon(
-                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                    contentDescription = ""
-                )
+                val painterId = if (tintedLeadingIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+                OudsTextInputLeadingIcon(painterResource(id = painterId), "", tintedLeadingIcon)
             } else {
                 null
             },
@@ -196,7 +201,8 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             typedArgument("outlined", outlined)
             if (leadingIcon) {
                 constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(themeDrawableResources.tipsAndTricks)
+                    painterArgument(if (tintedLeadingIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                    if (!tintedLeadingIcon) tintedArgument(tintedLeadingIcon)
                 }
             }
             if (trailingIcon) {

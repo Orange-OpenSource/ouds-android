@@ -40,7 +40,8 @@ fun rememberTextInputDemoState(
     suffix: String = "",
     helperText: String = "",
     helperLink: String = "",
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    tintedLeadingIcon: Boolean = true
 ) = rememberSaveable(
     textFieldState,
     label,
@@ -58,6 +59,7 @@ fun rememberTextInputDemoState(
     helperText,
     helperLink,
     constrainedMaxWidth,
+    tintedLeadingIcon,
     saver = TextInputDemoState.Saver
 ) {
     TextInputDemoState(
@@ -76,7 +78,8 @@ fun rememberTextInputDemoState(
         suffix,
         helperText,
         helperLink,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        tintedLeadingIcon
     )
 }
 
@@ -96,7 +99,8 @@ class TextInputDemoState(
     suffix: String,
     helperText: String,
     helperLink: String,
-    constrainedMaxWidth: Boolean
+    constrainedMaxWidth: Boolean,
+    tintedLeadingIcon: Boolean
 ) {
 
     companion object {
@@ -120,7 +124,8 @@ class TextInputDemoState(
                         suffix,
                         helperText,
                         helperLink,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        tintedLeadingIcon
                     )
                 }
             },
@@ -142,7 +147,8 @@ class TextInputDemoState(
                     list[12] as String,
                     list[13] as String,
                     list[14] as String,
-                    list[15] as Boolean
+                    list[15] as Boolean,
+                    list[16] as Boolean
                 )
             }
         )
@@ -180,6 +186,8 @@ class TextInputDemoState(
 
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
+    var tintedLeadingIcon: Boolean by mutableStateOf(tintedLeadingIcon)
+
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader
 
@@ -194,4 +202,7 @@ class TextInputDemoState(
 
     val loaderSwitchEnabled: Boolean
         get() = enabled && !readOnly && !error && textFieldState.text.isNotEmpty()
+
+    val tintedLeadingIconSwitchEnabled: Boolean
+        get() = leadingIcon
 }
