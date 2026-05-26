@@ -195,6 +195,24 @@ internal fun <T, S> PreviewGrid(
     rowTitle: (S) -> String,
     content: @Composable (T, S) -> Unit
 ) {
+    PreviewGrid(
+        columns = columns.map<T, @Composable () -> T> { { it } },
+        rows = rows.map<S, @Composable () -> S> { { it } },
+        columnTitle = columnTitle,
+        rowTitle = rowTitle,
+        content = content
+    )
+}
+
+@Composable
+@JvmName("PreviewGridComposableColumnsAndRows")
+internal fun <T, S> PreviewGrid(
+    columns: List<@Composable () -> T>,
+    rows: List<@Composable () -> S>,
+    columnTitle: (T) -> String,
+    rowTitle: (S) -> String,
+    content: @Composable (T, S) -> Unit
+) {
     val space = 16.dp
     val columnCount = columns.count()
     val rowCount = rows.count()
@@ -206,9 +224,9 @@ internal fun <T, S> PreviewGrid(
     ) {
         repeat(1 + rowCount) { rowIndex ->
             repeat(1 + columnCount) { columnIndex ->
-                val row = rows.getOrNull(rowIndex - 1)
-                val column = columns.getOrNull(columnIndex - 1)
                 item {
+                    val row = rows.getOrNull(rowIndex - 1)?.invoke()
+                    val column = columns.getOrNull(columnIndex - 1)?.invoke()
                     when {
                         row == null && column != null -> DimensionTitle(columnTitle(column))
                         row != null && column == null -> DimensionTitle(rowTitle(row))

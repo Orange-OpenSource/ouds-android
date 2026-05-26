@@ -805,12 +805,13 @@ private fun PreviewOudsTagWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val icon = OudsTagAsset.Icon(rememberRainbowHeartPainter(), tinted = false)
-    PreviewGrid(
-        columns = enumEntries<OudsTagSize>(),
-        rows = listOf(
-            OudsTagStatus.Neutral(icon),
-            OudsTagStatus.Accent(icon)
+    // We can't share the same painter across different Material Icon methods
+    // That's why we use the version of PreviewGrid which takes composables as columns and rows parameters
+    PreviewGrid<OudsTagSize, OudsTagStatus>(
+        columns = enumEntries<OudsTagSize>().map { { it } },
+        rows = listOf<@Composable () -> OudsTagStatus>(
+            { OudsTagStatus.Neutral(OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)) },
+            { OudsTagStatus.Accent(OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)) }
         ),
         columnTitle = { it.name },
         rowTitle = { it::class.simpleName.orEmpty() }
