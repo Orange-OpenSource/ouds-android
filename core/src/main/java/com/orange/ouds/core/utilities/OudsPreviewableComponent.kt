@@ -1108,7 +1108,7 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsTextAreaMultiLineValue(theme = theme, lineCount = parameter as Int)
+                PreviewOudsTextAreaMultiLineValue(theme = theme, fixedHeight = parameter as Boolean)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
