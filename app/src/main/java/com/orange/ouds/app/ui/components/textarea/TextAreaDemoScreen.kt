@@ -74,6 +74,11 @@ private fun TextAreaDemoBottomSheetContent(state: TextAreaDemoState) {
             enabled = readOnlySwitchEnabled
         )
         CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_textArea_fixedHeight_tech),
+            checked = fixedHeight,
+            onCheckedChange = { fixedHeight = it },
+        )
+        CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_error_tech),
             checked = error,
             onCheckedChange = { error = it },
@@ -130,6 +135,7 @@ private fun TextAreaDemoContent(state: TextAreaDemoState) {
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
+            fixedHeight = fixedHeight,
             error = if (error) OudsError(errorMessage) else null,
             helperText = helperText,
             helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
@@ -153,6 +159,7 @@ private fun Code.Builder.textAreaDemoCodeSnippet(state: TextAreaDemoState) {
             }
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
+            if (fixedHeight) typedArgument("fixedHeight", fixedHeight)
             if (error) errorArgument(errorMessage)
             if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
             if (helperLink.isNotEmpty()) {
