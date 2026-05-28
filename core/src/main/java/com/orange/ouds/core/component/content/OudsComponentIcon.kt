@@ -67,12 +67,13 @@ abstract class OudsComponentIcon<T, S> internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
+        val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
         @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
-                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
-                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription)
-                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription)
+                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription, tinted = tinted)
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(
@@ -86,7 +87,6 @@ abstract class OudsComponentIcon<T, S> internal constructor(
                 )
             }
         }.orElse {
-            val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
             when (val graphicsObject = graphicsObject) {
                 is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
                 is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)

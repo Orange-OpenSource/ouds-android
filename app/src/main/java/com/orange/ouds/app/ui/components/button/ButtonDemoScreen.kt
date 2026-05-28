@@ -106,13 +106,13 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 
 @Composable
 private fun ButtonDemoContent(state: ButtonDemoState) {
-    val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
-    val icon = OudsButtonIcon(
-        painter = painterResource(id = painterId),
-        contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
-        tinted = state.tintedIcon
-    )
     with(state) {
+        val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
+        val icon = OudsButtonIcon(
+            painter = painterResource(id = painterId),
+            contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
+            tinted = tintedIcon
+        )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
         when (layout) {
             ButtonDemoState.Layout.TextOnly -> {
@@ -153,7 +153,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
             functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     constructorCallArgument<OudsButtonIcon>("icon") {
-                        painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
+                        painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
                         contentDescriptionArgument(R.string.app_components_common_icon_a11y)
                         if (!tintedIcon) tintedArgument(tintedIcon)
                     }
