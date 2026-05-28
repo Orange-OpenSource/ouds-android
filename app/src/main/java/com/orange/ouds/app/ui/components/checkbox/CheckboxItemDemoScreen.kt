@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -60,7 +61,11 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
-                val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
+                val painter = if (tintedIcon) {
+                    painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+                } else {
+                    rememberUntintedIconPainter()
+                }
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -74,7 +79,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     description = description,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = painterId), tinted = tintedIcon) else null,
+                    icon = if (icon) OudsControlItemIcon(painter, tinted = tintedIcon) else null,
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,

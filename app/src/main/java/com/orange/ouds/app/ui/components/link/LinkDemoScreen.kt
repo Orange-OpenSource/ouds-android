@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -108,10 +109,14 @@ private fun LinkDemoContent(state: LinkDemoState) {
                 )
             }
             LinkDemoState.Layout.TextAndIcon -> {
-                val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
+                val painter = if (tintedIcon) {
+                    painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+                } else {
+                    rememberUntintedIconPainter()
+                }
                 OudsLink(
                     label = label,
-                    icon = OudsLinkIcon(painterResource(id = painterId), tinted = tintedIcon),
+                    icon = OudsLinkIcon(painter, tinted = tintedIcon),
                     onClick = {},
                     enabled = enabled,
                     size = size

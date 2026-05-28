@@ -28,6 +28,7 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -88,14 +89,18 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
         ) {
             RadioButtonItemDemoState.values.forEachIndexed { index, radioButtonValue ->
                 val isLastItem = index == RadioButtonItemDemoState.values.lastIndex
-                val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
+                val painter = if (tintedIcon) {
+                    painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+                } else {
+                    rememberUntintedIconPainter()
+                }
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
                     label = label,
                     extraLabel = extraLabel,
                     description = description,
-                    icon = if (icon) OudsControlItemIcon(painterResource(id = painterId), tinted = tintedIcon) else null,
+                    icon = if (icon) OudsControlItemIcon(painter, tinted = tintedIcon) else null,
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     outlined = outlined,

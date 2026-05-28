@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -48,14 +49,18 @@ fun SwitchItemDemoScreen() {
 @Composable
 private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
     with(state) {
-        val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
+        val painter = if (tintedIcon) {
+            painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+        } else {
+            rememberUntintedIconPainter()
+        }
         OudsSwitchItem(
             modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin),
             checked = checked,
             label = label,
             onCheckedChange = { checked = it },
             description = description,
-            icon = if (icon) OudsControlItemIcon(painterResource(id = painterId), tinted = tintedIcon) else null,
+            icon = if (icon) OudsControlItemIcon(painter, tinted = tintedIcon) else null,
             edgeToEdge = edgeToEdge,
             divider = divider,
             reversed = reversed,

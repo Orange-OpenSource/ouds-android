@@ -36,6 +36,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
@@ -118,8 +119,12 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 @Composable
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
     with(state) {
-        val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
-        val icon = OudsAlertIcon(painter = painterResource(id = painterId), tinted = tintedIcon)
+        val painter = if (tintedIcon) {
+            painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+        } else {
+            rememberUntintedIconPainter()
+        }
+        val icon = OudsAlertIcon(painter = painter, tinted = tintedIcon)
         OudsInlineAlert(
             label = label,
             status = when (status) {

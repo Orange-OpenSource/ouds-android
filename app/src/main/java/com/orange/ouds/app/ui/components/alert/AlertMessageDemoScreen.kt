@@ -38,6 +38,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
@@ -163,8 +164,12 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
     with(state) {
-        val painterId = if (tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
-        val icon = OudsAlertIcon(painter = painterResource(id = painterId), tinted = tintedIcon)
+        val painter = if (tintedIcon) {
+            painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+        } else {
+            rememberUntintedIconPainter()
+        }
+        val icon = OudsAlertIcon(painter = painter, tinted = tintedIcon)
         OudsAlertMessage(
             label = label,
             description = description,

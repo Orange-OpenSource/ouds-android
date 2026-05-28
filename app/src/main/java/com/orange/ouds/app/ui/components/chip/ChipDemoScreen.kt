@@ -28,6 +28,7 @@ import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -79,9 +80,13 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
         ) {
             repeat(ChipDemoState.ChipCount) { index ->
-                val painterId = if (tintedIcon) icons[index % icons.count()] else R.drawable.ic_untinted_icon
+                val painter = if (tintedIcon) {
+                    painterResource(id = icons[index % icons.count()])
+                } else {
+                    rememberUntintedIconPainter()
+                }
                 val icon = OudsChipIcon(
-                    painter = painterResource(id = painterId),
+                    painter = painter,
                     contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
                     tinted = tintedIcon
                 )

@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -165,8 +166,12 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             placeholder = placeholder,
             outlined = outlined,
             leadingIcon = if (leadingIcon) {
-                val painterId = if (tintedLeadingIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
-                OudsTextInputLeadingIcon(painterResource(id = painterId), "", tintedLeadingIcon)
+                val painter = if (tintedLeadingIcon) {
+                    painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
+                } else {
+                    rememberUntintedIconPainter()
+                }
+                OudsTextInputLeadingIcon(painter, "", tintedLeadingIcon)
             } else {
                 null
             },
