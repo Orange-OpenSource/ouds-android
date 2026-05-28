@@ -30,10 +30,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
 @Composable

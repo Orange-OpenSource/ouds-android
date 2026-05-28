@@ -650,40 +650,41 @@ internal data class OudsBadgePreviewParameter(
 @Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, widthDp = OudsPreviewableComponent.Badge.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsBadgeWithIcon(@PreviewParameter(OudsBadgeWithIconPreviewParameterProvider::class) parameter: OudsBadgeWithIconPreviewParameter) {
-    PreviewOudsBadgeWithIcon(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsBadgeWithIcon(@PreviewParameter(OudsBadgeWithIconPreviewParameterProvider::class) enabled: Boolean) {
+    PreviewOudsBadgeWithIcon(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), enabled = enabled)
 }
 
 @Composable
-internal fun PreviewOudsBadgeWithIcon(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBadgeWithIconPreviewParameter) =
+internal fun PreviewOudsBadgeWithIcon(theme: OudsThemeContract, darkThemeEnabled: Boolean, enabled: Boolean) =
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        with(parameter) {
-            PreviewGrid(
-                columns = enumEntries<OudsBadgeSize>(),
-                rows = statuses,
-                columnTitle = { it.name },
-                rowTitle = { it::class.simpleName.orEmpty() }
-            ) { size, status ->
-                OudsBadge(
-                    status = status,
-                    size = size,
-                    enabled = enabled
-                )
+        PreviewGrid(
+            columns = enumEntries<OudsBadgeSize>().map { it.name },
+            rows = listOf(
+                OudsIconBadgeStatus.Neutral::class,
+                OudsIconBadgeStatus.Accent::class,
+                OudsIconBadgeStatus.Positive::class,
+                OudsIconBadgeStatus.Warning::class,
+                OudsIconBadgeStatus.Negative::class,
+                OudsIconBadgeStatus.Info::class
+            ).map { it.simpleName.orEmpty() },
+        ) { column, row ->
+            val status = when (row) {
+                OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(Icons.Filled.FavoriteBorder))
+                OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(Icons.Filled.FavoriteBorder))
+                OudsIconBadgeStatus.Positive::class.simpleName -> OudsIconBadgeStatus.Positive
+                OudsIconBadgeStatus.Warning::class.simpleName -> OudsIconBadgeStatus.Warning
+                OudsIconBadgeStatus.Negative::class.simpleName -> OudsIconBadgeStatus.Negative
+                OudsIconBadgeStatus.Info::class.simpleName -> OudsIconBadgeStatus.Info
+                else -> error("Unknown row $row.")
             }
+            val size = enumValueOf<OudsBadgeSize>(column)
+            OudsBadge(
+                status = status,
+                size = size,
+                enabled = enabled
+            )
         }
     }
-
-internal data class OudsBadgeWithIconPreviewParameter(
-    val statuses: List<OudsIconBadgeStatus> = listOf(
-        OudsIconBadgeStatus.Neutral(OudsBadgeIcon(Icons.Filled.FavoriteBorder)),
-        OudsIconBadgeStatus.Accent(OudsBadgeIcon(Icons.Filled.FavoriteBorder)),
-        OudsIconBadgeStatus.Positive,
-        OudsIconBadgeStatus.Warning,
-        OudsIconBadgeStatus.Negative,
-        OudsIconBadgeStatus.Info
-    ),
-    val enabled: Boolean = true
-)
 
 internal class OudsBadgePreviewParameterProvider : BasicPreviewParameterProvider<OudsBadgePreviewParameter>(*previewParameterValues.toTypedArray())
 
@@ -696,11 +697,4 @@ private val previewParameterValues: List<OudsBadgePreviewParameter>
         OudsBadgePreviewParameter(count = 27, enabled = false),
     )
 
-internal class OudsBadgeWithIconPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsBadgeWithIconPreviewParameter>(*previewWithIconParameterValues.toTypedArray())
-
-private val previewWithIconParameterValues: List<OudsBadgeWithIconPreviewParameter>
-    get() = listOf(
-        OudsBadgeWithIconPreviewParameter(),
-        OudsBadgeWithIconPreviewParameter(enabled = false)
-    )
+internal class OudsBadgeWithIconPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)

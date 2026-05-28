@@ -38,12 +38,12 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance

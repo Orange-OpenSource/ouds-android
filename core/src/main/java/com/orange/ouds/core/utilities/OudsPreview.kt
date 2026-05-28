@@ -55,7 +55,6 @@ import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.OrangeTheme
@@ -64,9 +63,12 @@ import kotlin.enums.enumEntries
 import kotlin.math.ceil
 import kotlin.math.min
 
-internal val LocalPreviewRowFlowItem = staticCompositionLocalOf<Any?> { null }
-internal val LocalPreviewGridRow = staticCompositionLocalOf<Any?> { null }
-internal val LocalPreviewGridColumn = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewRowFlowItem = staticCompositionLocalOf<String?> { null }
+internal val LocalPreviewGridRow = staticCompositionLocalOf<String?> { null }
+internal val LocalPreviewGridColumn = staticCompositionLocalOf<String?> { null }
+private val LocalPreviewRowFlowItemEnumEntry = staticCompositionLocalOf<Any?> { null }
+private val LocalPreviewGridRowEnumEntry = staticCompositionLocalOf<Any?> { null }
+private val LocalPreviewGridColumnEnumEntry = staticCompositionLocalOf<Any?> { null }
 
 /**
  * The device used in the OUDS preview environment.
@@ -139,29 +141,30 @@ internal fun buildPreviewAnnotatedHelperText() = buildOudsAnnotatedHelperText {
 }
 
 @Composable
-internal inline fun <reified T> getPreviewEnumEntry(): T? {
-    return getPreviewFlowRowItem<T>()
-        .orElse { getPreviewGridRow<T>() }
-        .orElse { getPreviewGridColumn<T>() }
+internal inline fun <reified T> getPreviewEnumEntry(): T? where T : Enum<T> {
+    return listOf(LocalPreviewRowFlowItemEnumEntry, LocalPreviewGridRowEnumEntry, LocalPreviewGridColumnEnumEntry)
+        .firstNotNullOfOrNull { providableCompositionLocal ->
+            providableCompositionLocal.current as? T
+        }
 }
 
 @Composable
-internal inline fun <reified T> getPreviewFlowRowItem(): T? = LocalPreviewRowFlowItem.current as? T
+internal fun getPreviewFlowRowItem(): String? = LocalPreviewRowFlowItem.current
 
 @Composable
-internal inline fun <reified T> getPreviewGridRow(): T? = LocalPreviewGridRow.current as? T
+internal fun getPreviewGridRow(): String? = LocalPreviewGridRow.current
 
 @Composable
-internal inline fun <reified T> getPreviewGridColumn(): T? = LocalPreviewGridColumn.current as? T
+internal fun getPreviewGridColumn(): String? = LocalPreviewGridColumn.current
 
 @Composable
-internal fun <T : Any> PreviewFlowRow(
-    items: List<T>,
-    itemName: (T) -> String,
+internal fun PreviewFlowRow(
+    items: List<String>,
+    itemName: (String) -> String = { it },
     maxItemsInEachRow: Int = items.count(),
     edgeToEdge: Boolean = false,
-    filter: (T) -> Boolean = { true },
-    content: @Composable (T) -> Unit
+    filter: (String) -> Boolean = { true },
+    content: @Composable (String) -> Unit
 ) {
     val filteredItems = items.filter(filter)
     val chunkedItems = filteredItems.chunked(maxItemsInEachRow)
@@ -188,30 +191,12 @@ internal fun <T : Any> PreviewFlowRow(
 }
 
 @Composable
-internal fun <T, S> PreviewGrid(
-    columns: List<T>,
-    rows: List<S>,
-    columnTitle: (T) -> String,
-    rowTitle: (S) -> String,
-    content: @Composable (T, S) -> Unit
-) {
-    PreviewGrid(
-        columns = columns.map<T, @Composable () -> T> { { it } },
-        rows = rows.map<S, @Composable () -> S> { { it } },
-        columnTitle = columnTitle,
-        rowTitle = rowTitle,
-        content = content
-    )
-}
-
-@Composable
-@JvmName("PreviewGridComposableColumnsAndRows")
-internal fun <T, S> PreviewGrid(
-    columns: List<@Composable () -> T>,
-    rows: List<@Composable () -> S>,
-    columnTitle: (T) -> String,
-    rowTitle: (S) -> String,
-    content: @Composable (T, S) -> Unit
+internal fun PreviewGrid(
+    columns: List<String>,
+    rows: List<String>,
+    columnTitle: (String) -> String = { it },
+    rowTitle: (String) -> String = { it },
+    content: @Composable (String, String) -> Unit
 ) {
     val space = 16.dp
     val columnCount = columns.count()
@@ -225,8 +210,8 @@ internal fun <T, S> PreviewGrid(
         repeat(1 + rowCount) { rowIndex ->
             repeat(1 + columnCount) { columnIndex ->
                 item {
-                    val row = rows.getOrNull(rowIndex - 1)?.invoke()
-                    val column = columns.getOrNull(columnIndex - 1)?.invoke()
+                    val row = rows.getOrNull(rowIndex - 1)
+                    val column = columns.getOrNull(columnIndex - 1)
                     when {
                         row == null && column != null -> DimensionTitle(columnTitle(column))
                         row != null && column == null -> DimensionTitle(rowTitle(row))
@@ -249,29 +234,48 @@ internal fun <T, S> PreviewGrid(
 
 @Composable
 internal inline fun <reified T> PreviewEnumEntries(
+    noinline itemName: (String) -> String = { it },
     maxEnumEntriesInEachRow: Int = enumEntries<T>().count(),
     edgeToEdge: Boolean = false,
     noinline filter: (T) -> Boolean = { true },
     noinline content: @Composable (T) -> Unit
 ) where T : Enum<T> {
     PreviewFlowRow(
-        items = enumEntries<T>(),
-        itemName = { it.name },
+        items = enumEntries<T>().map { it.name },
+        itemName = itemName,
         maxItemsInEachRow = maxEnumEntriesInEachRow,
         edgeToEdge = edgeToEdge,
-        filter = filter,
-        content = content
+        filter = { filter(enumValueOf(it)) },
+        content = { item ->
+            val enumEntry = enumValueOf<T>(item)
+            CompositionLocalProvider(LocalPreviewRowFlowItemEnumEntry provides enumEntry) {
+                content(enumEntry)
+            }
+        }
     )
 }
 
 @Composable
-internal inline fun <reified T, reified S> PreviewEnumEntries(noinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
+internal inline fun <reified T, reified S> PreviewEnumEntries(
+    noinline columnTitle: (String) -> String = { it },
+    noinline rowTitle: (String) -> String = { it },
+    noinline content: @Composable (T, S) -> Unit
+) where T : Enum<T>, S : Enum<S> {
     PreviewGrid(
-        columns = enumEntries<T>(),
-        rows = enumEntries<S>(),
-        columnTitle = { it.name },
-        rowTitle = { it.name },
-        content = content
+        columns = enumEntries<T>().map { it.name },
+        rows = enumEntries<S>().map { it.name },
+        columnTitle = columnTitle,
+        rowTitle = rowTitle,
+        content = { column, row ->
+            val columnEnumEntry = enumValueOf<T>(column)
+            val rowEnumEntry = enumValueOf<S>(row)
+            CompositionLocalProvider(
+                LocalPreviewGridRowEnumEntry provides rowEnumEntry,
+                LocalPreviewGridColumnEnumEntry provides columnEnumEntry
+            ) {
+                content(columnEnumEntry, rowEnumEntry)
+            }
+        }
     )
 }
 

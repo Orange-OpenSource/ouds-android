@@ -193,19 +193,27 @@ internal fun PreviewOudsInlineAlert(
     darkThemeEnabled: Boolean,
     label: String
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val icon = OudsAlertIcon(Icons.Outlined.FavoriteBorder)
     PreviewFlowRow(
         items = listOf(
-            OudsInlineAlertStatus.Neutral(icon),
-            OudsInlineAlertStatus.Accent(icon),
-            OudsInlineAlertStatus.Negative,
-            OudsInlineAlertStatus.Positive,
-            OudsInlineAlertStatus.Info,
-            OudsInlineAlertStatus.Warning
-        ),
-        itemName = { it::class.simpleName.orEmpty() },
+            OudsInlineAlertStatus.Neutral::class,
+            OudsInlineAlertStatus.Accent::class,
+            OudsInlineAlertStatus.Negative::class,
+            OudsInlineAlertStatus.Positive::class,
+            OudsInlineAlertStatus.Info::class,
+            OudsInlineAlertStatus.Warning::class
+        ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
-    ) { status ->
+    ) { item ->
+        val icon = OudsAlertIcon(Icons.Outlined.FavoriteBorder)
+        val status = when (item) {
+            OudsInlineAlertStatus.Neutral::class.simpleName -> OudsInlineAlertStatus.Neutral(icon)
+            OudsInlineAlertStatus.Accent::class.simpleName -> OudsInlineAlertStatus.Accent(icon)
+            OudsInlineAlertStatus.Negative::class.simpleName -> OudsInlineAlertStatus.Negative
+            OudsInlineAlertStatus.Positive::class.simpleName -> OudsInlineAlertStatus.Positive
+            OudsInlineAlertStatus.Info::class.simpleName -> OudsInlineAlertStatus.Info
+            OudsInlineAlertStatus.Warning::class.simpleName -> OudsInlineAlertStatus.Warning
+            else -> error("Unknown item $item.")
+        }
         OudsInlineAlert(
             label = label,
             status = status
@@ -222,15 +230,19 @@ private fun PreviewOudsInlineAlertWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsInlineAlertWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
     PreviewFlowRow(
-        items = listOf(
-            OudsInlineAlertStatus.Neutral(icon),
-            OudsInlineAlertStatus.Accent(icon)
-        ),
-        itemName = { it::class.simpleName.orEmpty() },
+        listOf(
+            OudsInlineAlertStatus.Neutral::class,
+            OudsInlineAlertStatus.Accent::class
+        ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
-    ) { status ->
+    ) { item ->
+        val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
+        val status = when (item) {
+            OudsInlineAlertStatus.Neutral::class.simpleName -> OudsInlineAlertStatus.Neutral(icon)
+            OudsInlineAlertStatus.Accent::class.simpleName -> OudsInlineAlertStatus.Accent(icon)
+            else -> error("Unknown item $item.")
+        }
         OudsInlineAlert(
             label = "Label",
             status = status

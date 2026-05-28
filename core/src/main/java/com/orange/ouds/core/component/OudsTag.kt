@@ -779,11 +779,35 @@ internal fun PreviewOudsTag(
     val label = "Label"
     with(parameter) {
         PreviewGrid(
-            columns = enumEntries<OudsTagSize>(),
-            rows = statuses,
-            columnTitle = { it.name },
-            rowTitle = { it::class.simpleName.orEmpty() }
-        ) { size, status ->
+            columns = enumEntries<OudsTagSize>().map { it.name },
+            rows = listOf(
+                OudsTagStatus.Neutral::class,
+                OudsTagStatus.Accent::class,
+                OudsTagStatus.Positive::class,
+                OudsTagStatus.Warning::class,
+                OudsTagStatus.Negative::class,
+                OudsTagStatus.Info::class
+            ).map { it.simpleName.orEmpty() },
+        ) { column, row ->
+            val size = enumValueOf<OudsTagSize>(column)
+            val asset = when {
+                bullet -> OudsTagAsset.Bullet
+                icon && row in listOf(
+                    OudsTagStatus.Neutral::class.simpleName,
+                    OudsTagStatus.Accent::class.simpleName
+                ) -> OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
+                icon -> OudsTagAsset.Icon.Default
+                else -> null
+            }
+            val status = when (row) {
+                OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
+                OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
+                OudsTagStatus.Positive::class.simpleName -> OudsTagStatus.Positive(asset)
+                OudsTagStatus.Warning::class.simpleName -> OudsTagStatus.Warning(asset)
+                OudsTagStatus.Negative::class.simpleName -> OudsTagStatus.Negative(asset)
+                OudsTagStatus.Info::class.simpleName -> OudsTagStatus.Info(asset)
+                else -> error("Unknown row $row.")
+            }
             Box {
                 OudsTag(
                     label = label,
@@ -808,17 +832,20 @@ private fun PreviewOudsTagWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    // We can't share the same painter across different Material Icon methods
-    // That's why we use the version of PreviewGrid which takes composables as columns and rows parameters
-    PreviewGrid<OudsTagSize, OudsTagStatus>(
-        columns = enumEntries<OudsTagSize>().map { { it } },
-        rows = listOf<@Composable () -> OudsTagStatus>(
-            { OudsTagStatus.Neutral(OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)) },
-            { OudsTagStatus.Accent(OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)) }
-        ),
-        columnTitle = { it.name },
-        rowTitle = { it::class.simpleName.orEmpty() }
-    ) { size, status ->
+    PreviewGrid(
+        columns = enumEntries<OudsTagSize>().map { it.name },
+        rows = listOf(
+            OudsTagStatus.Neutral::class,
+            OudsTagStatus.Accent::class
+        ).map { it.simpleName.orEmpty() },
+    ) { column, row ->
+        val size = enumValueOf<OudsTagSize>(column)
+        val asset = OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)
+        val status = when (row) {
+            OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
+            OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
+            else -> error("Unknown row $row.")
+        }
         Box {
             OudsTag(
                 label = "Label",
@@ -830,14 +857,8 @@ internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPrev
 }
 
 internal data class OudsTagPreviewParameter(
-    val statuses: List<OudsTagStatus> = listOf(
-        OudsTagStatus.Neutral(),
-        OudsTagStatus.Accent(),
-        OudsTagStatus.Positive(),
-        OudsTagStatus.Warning(),
-        OudsTagStatus.Negative(),
-        OudsTagStatus.Info()
-    ),
+    val icon: Boolean = false,
+    val bullet: Boolean = false,
     val appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     val roundedCorners: Boolean = true,
     val loader: OudsTagLoader? = null,
@@ -847,32 +868,12 @@ internal data class OudsTagPreviewParameter(
 internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTagPreviewParameter>
-    get() {
-        val icon = OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
-        val statusesWithBullet = listOf(
-            OudsTagStatus.Neutral(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Accent(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Positive(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Warning(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Negative(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Info(asset = OudsTagAsset.Bullet)
-        )
-        val statusesWithIcon = listOf(
-            OudsTagStatus.Neutral(asset = icon),
-            OudsTagStatus.Accent(asset = icon),
-            OudsTagStatus.Positive(asset = OudsTagAsset.Icon.Default),
-            OudsTagStatus.Warning(asset = OudsTagAsset.Icon.Default),
-            OudsTagStatus.Negative(asset = OudsTagAsset.Icon.Default),
-            OudsTagStatus.Info(asset = OudsTagAsset.Icon.Default)
-        )
-        val loader = OudsTagLoader(0.6f)
+    get() = listOf(
+        OudsTagPreviewParameter(),
+        OudsTagPreviewParameter(bullet = true, appearance = OudsTagAppearance.Muted),
+        OudsTagPreviewParameter(icon = true, appearance = OudsTagAppearance.Muted),
+        OudsTagPreviewParameter(icon = true, roundedCorners = false),
+        OudsTagPreviewParameter(loader = OudsTagLoader(0.6f)),
+        OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
+    )
 
-        return listOf(
-            OudsTagPreviewParameter(),
-            OudsTagPreviewParameter(statusesWithBullet, appearance = OudsTagAppearance.Muted),
-            OudsTagPreviewParameter(statusesWithIcon, appearance = OudsTagAppearance.Muted),
-            OudsTagPreviewParameter(statusesWithIcon, roundedCorners = false),
-            OudsTagPreviewParameter(loader = loader),
-            OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
-        )
-    }

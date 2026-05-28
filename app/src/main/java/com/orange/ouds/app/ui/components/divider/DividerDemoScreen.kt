@@ -29,11 +29,11 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
 @Composable

@@ -70,8 +70,8 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -514,19 +514,27 @@ internal fun PreviewOudsAlertMessage(
     parameter: OudsAlertMessagePreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val icon = if (hasIcon) OudsAlertIcon(Icons.Outlined.FavoriteBorder) else null
         PreviewFlowRow(
             items = listOf(
-                OudsAlertMessageStatus.Neutral(icon),
-                OudsAlertMessageStatus.Accent(icon),
-                OudsAlertMessageStatus.Negative,
-                OudsAlertMessageStatus.Positive,
-                OudsAlertMessageStatus.Info,
-                OudsAlertMessageStatus.Warning
-            ),
-            itemName = { it::class.simpleName.orEmpty() },
+                OudsAlertMessageStatus.Neutral::class,
+                OudsAlertMessageStatus.Accent::class,
+                OudsAlertMessageStatus.Negative::class,
+                OudsAlertMessageStatus.Positive::class,
+                OudsAlertMessageStatus.Info::class,
+                OudsAlertMessageStatus.Warning::class
+            ).map { it.simpleName.orEmpty() },
             maxItemsInEachRow = 1
-        ) { status ->
+        ) { item ->
+            val icon = if (hasIcon) OudsAlertIcon(Icons.Outlined.FavoriteBorder) else null
+            val status = when (item) {
+                OudsAlertMessageStatus.Neutral::class.simpleName -> OudsAlertMessageStatus.Neutral(icon)
+                OudsAlertMessageStatus.Accent::class.simpleName -> OudsAlertMessageStatus.Accent(icon)
+                OudsAlertMessageStatus.Negative::class.simpleName -> OudsAlertMessageStatus.Negative
+                OudsAlertMessageStatus.Positive::class.simpleName -> OudsAlertMessageStatus.Positive
+                OudsAlertMessageStatus.Info::class.simpleName -> OudsAlertMessageStatus.Info
+                OudsAlertMessageStatus.Warning::class.simpleName -> OudsAlertMessageStatus.Warning
+                else -> error("Unknown item $item.")
+            }
             OudsAlertMessage(
                 label = "Label",
                 status = status,
@@ -583,15 +591,19 @@ private fun PreviewOudsAlertMessageWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsAlertMessageWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
     PreviewFlowRow(
         items = listOf(
-            OudsAlertMessageStatus.Neutral(icon),
-            OudsAlertMessageStatus.Accent(icon)
-        ),
-        itemName = { it::class.simpleName.orEmpty() },
+            OudsAlertMessageStatus.Neutral::class,
+            OudsAlertMessageStatus.Accent::class
+        ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
-    ) { status ->
+    ) { item ->
+        val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
+        val status = when (item) {
+            OudsAlertMessageStatus.Neutral::class.simpleName -> OudsAlertMessageStatus.Neutral(icon)
+            OudsAlertMessageStatus.Accent::class.simpleName -> OudsAlertMessageStatus.Accent(icon)
+            else -> error("Unknown item $item.")
+        }
         OudsAlertMessage(
             label = "Label",
             status = status

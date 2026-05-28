@@ -38,13 +38,13 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagAsset
 import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance

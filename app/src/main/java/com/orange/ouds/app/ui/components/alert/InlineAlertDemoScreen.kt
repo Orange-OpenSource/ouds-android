@@ -36,11 +36,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 

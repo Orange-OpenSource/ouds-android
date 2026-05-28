@@ -58,14 +58,12 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.core.utilities.getPreviewGridColumn
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.enums.enumEntries
 
 /**
  * The FAB represents the most important action on a screen. It puts key actions within reach.
@@ -397,13 +395,11 @@ private fun Text(label: String) {
 @Composable
 private fun getFloatingActionButtonState(interactionState: InteractionState): OudsFloatingActionButtonState {
     return getPreviewEnumEntry<OudsFloatingActionButtonState>().orElse {
-        getPreviewGridColumn<OudsFloatingActionButtonState>().orElse {
-            when (interactionState) {
-                InteractionState.Hovered -> OudsFloatingActionButtonState.Hovered
-                InteractionState.Pressed -> OudsFloatingActionButtonState.Pressed
-                InteractionState.Focused -> OudsFloatingActionButtonState.Focused
-                else -> OudsFloatingActionButtonState.Enabled
-            }
+        when (interactionState) {
+            InteractionState.Hovered -> OudsFloatingActionButtonState.Hovered
+            InteractionState.Pressed -> OudsFloatingActionButtonState.Pressed
+            InteractionState.Focused -> OudsFloatingActionButtonState.Focused
+            else -> OudsFloatingActionButtonState.Enabled
         }
     }
 }
@@ -624,22 +620,8 @@ internal fun PreviewOudsExtendedFloatingActionButton(
     darkThemeEnabled: Boolean,
     appearance: OudsFloatingActionButtonAppearance
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val rows = listOf(
-        OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly,
-        OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon(isExpanded = true),
-        OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon(isExpanded = false)
-    )
-    val icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, "")
-    PreviewGrid(
-        columns = enumEntries<OudsFloatingActionButtonState>(),
-        rows = rows,
-        columnTitle = { it.name },
-        rowTitle = { row ->
-            when (row) {
-                OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly -> "Label only"
-                is OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon -> if (row.isExpanded) "Label and icon expanded" else "Label and icon collapsed"
-            }
-        }
+    PreviewEnumEntries<OudsFloatingActionButtonState, OudsExtendedFloatingActionButtonPreviewGridRow>(
+        rowTitle = { it.toSentenceCase() }
     ) { _, row ->
         when (row) {
             OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly -> {
@@ -649,12 +631,13 @@ internal fun PreviewOudsExtendedFloatingActionButton(
                     appearance = appearance
                 )
             }
-            is OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon -> {
+            OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconExpanded,
+            OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconCollapsed -> {
                 OudsExtendedFloatingActionButton(
                     label = "Label",
-                    icon = icon,
+                    icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, ""),
                     onClick = {},
-                    expanded = row.isExpanded,
+                    expanded = row == OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconExpanded,
                     appearance = appearance
                 )
             }
@@ -664,9 +647,7 @@ internal fun PreviewOudsExtendedFloatingActionButton(
 
 internal class OudsFloatingActionButtonPreviewParameterProvider : EnumPreviewParameterProvider(OudsFloatingActionButtonAppearance::class.java)
 
-private sealed class OudsExtendedFloatingActionButtonPreviewGridRow {
+private enum class OudsExtendedFloatingActionButtonPreviewGridRow {
 
-    object LabelOnly : OudsExtendedFloatingActionButtonPreviewGridRow()
-
-    class LabelAndIcon(val isExpanded: Boolean) : OudsExtendedFloatingActionButtonPreviewGridRow()
+    LabelOnly, LabelAndIconExpanded, LabelAndIconCollapsed
 }

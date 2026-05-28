@@ -17,7 +17,6 @@ import com.orange.ouds.core.component.OudsAlertMessagePreviewParameter
 import com.orange.ouds.core.component.OudsAlertMessagePreviewParameterProvider
 import com.orange.ouds.core.component.OudsBadgePreviewParameter
 import com.orange.ouds.core.component.OudsBadgePreviewParameterProvider
-import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameter
 import com.orange.ouds.core.component.OudsBadgeWithIconPreviewParameterProvider
 import com.orange.ouds.core.component.OudsBulletListPreviewParameter
 import com.orange.ouds.core.component.OudsBulletListPreviewParameterProvider
@@ -248,7 +247,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsBadgeWithIcon(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsBadgeWithIconPreviewParameter
+                    enabled = parameter as Boolean
                 )
             }
         }

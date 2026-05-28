@@ -47,10 +47,10 @@ import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.composable.ScreenMainContentColumn
 import com.orange.ouds.app.ui.utilities.toNumberString
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
