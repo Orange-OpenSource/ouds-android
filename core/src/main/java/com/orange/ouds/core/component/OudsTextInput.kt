@@ -1677,12 +1677,11 @@ internal fun PreviewOudsTextInputWithUntintedLeadingIcon() {
 
 @Composable
 internal fun PreviewOudsTextInputWithUntintedLeadingIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val leadingIcon = OudsTextInputLeadingIcon(rememberRainbowHeartPainter(), contentDescription = "", tinted = false)
-    PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { _ ->
+    PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) {
         OudsTextInput(
             textFieldState = rememberTextFieldState("Text"),
             label = "Label",
-            leadingIcon = leadingIcon
+            leadingIcon = OudsTextInputLeadingIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false)
         )
     }
 }

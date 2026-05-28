@@ -235,14 +235,9 @@ private fun PreviewOudsFilterChipWithUntintedIcon() {
 @Composable
 internal fun PreviewOudsFilterChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-        val icon = OudsChipIcon(
-            painter = rememberRainbowHeartPainter(),
-            contentDescription = "",
-            tinted = false
-        )
         OudsFilterChip(
             selected = false,
-            nullableIcon = icon,
+            nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
             nullableLabel = "Label",
             onClick = {}
         )

@@ -209,9 +209,9 @@ internal fun PreviewGrid(
     ) {
         repeat(1 + rowCount) { rowIndex ->
             repeat(1 + columnCount) { columnIndex ->
+                val row = rows.getOrNull(rowIndex - 1)
+                val column = columns.getOrNull(columnIndex - 1)
                 item {
-                    val row = rows.getOrNull(rowIndex - 1)
-                    val column = columns.getOrNull(columnIndex - 1)
                     when {
                         row == null && column != null -> DimensionTitle(columnTitle(column))
                         row != null && column == null -> DimensionTitle(rowTitle(row))

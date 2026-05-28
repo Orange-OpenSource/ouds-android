@@ -226,14 +226,9 @@ private fun PreviewOudsSuggestionChipWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsSuggestionChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-        val icon = OudsChipIcon(
-            painter = rememberRainbowHeartPainter(),
-            contentDescription = "",
-            tinted = false
-        )
+    PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) { 
         OudsSuggestionChip(
-            nullableIcon = icon,
+            nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
             nullableLabel = "Label",
             onClick = {}
         )
