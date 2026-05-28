@@ -58,7 +58,7 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
 private fun ControlItemIconCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_icon_tech),
+            label = stringResource(R.string.app_components_common_icon_tech),
             checked = icon,
             onCheckedChange = { icon = it },
         )

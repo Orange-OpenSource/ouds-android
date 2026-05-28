@@ -101,10 +101,10 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_alert_alertMessage_statusIcon_tech),
-            checked = hasStatusIcon,
-            onCheckedChange = { hasStatusIcon = it },
-            enabled = statusIconSwitchEnabled
+            label = stringResource(R.string.app_components_common_icon_tech),
+            checked = hasIcon,
+            onCheckedChange = { hasIcon = it },
+            enabled = iconSwitchEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_tintedIcon_tech),
@@ -169,8 +169,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             label = label,
             description = description,
             status = when (status) {
-                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(if (hasStatusIcon) icon else null)
-                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(if (hasStatusIcon) icon else null)
+                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(if (hasIcon) icon else null)
+                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(if (hasIcon) icon else null)
                 is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
                 is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative
                 is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive
@@ -197,7 +197,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Accent,
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        if (hasStatusIcon) {
+                        if (hasIcon) {
                             constructorCallArgument<OudsAlertIcon>("icon") {
                                 painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
                                 if (!tintedIcon) tintedArgument(tintedIcon)

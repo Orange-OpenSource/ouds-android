@@ -28,7 +28,7 @@ import kotlin.reflect.full.createInstance
 @Composable
 fun rememberAlertMessageDemoState(
     status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
-    hasStatusIcon: Boolean = true,
+    hasIcon: Boolean = true,
     hasCloseButton: Boolean = false,
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
@@ -38,7 +38,7 @@ fun rememberAlertMessageDemoState(
     tintedIcon: Boolean = true
 ) = rememberSaveable(
     status,
-    hasStatusIcon,
+    hasIcon,
     hasCloseButton,
     label,
     description,
@@ -48,12 +48,12 @@ fun rememberAlertMessageDemoState(
     tintedIcon,
     saver = AlertMessageDemoState.Saver
 ) {
-    AlertMessageDemoState(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, tintedIcon)
+    AlertMessageDemoState(status, hasIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, tintedIcon)
 }
 
 class AlertMessageDemoState(
     status: OudsAlertMessageStatus,
-    hasStatusIcon: Boolean,
+    hasIcon: Boolean,
     hasCloseButton: Boolean,
     label: String,
     description: String?,
@@ -79,7 +79,7 @@ class AlertMessageDemoState(
                 with(state) {
                     listOf(
                         status::class.java.name,
-                        hasStatusIcon,
+                        hasIcon,
                         hasCloseButton,
                         label,
                         description,
@@ -115,12 +115,12 @@ class AlertMessageDemoState(
         set(value) {
             _status = value
             if (status in FunctionalStatuses) {
-                hasStatusIcon = true
+                hasIcon = true
                 tintedIcon = true
             }
         }
 
-    var hasStatusIcon: Boolean by mutableStateOf(hasStatusIcon)
+    var hasIcon: Boolean by mutableStateOf(hasIcon)
 
     var hasCloseButton: Boolean by mutableStateOf(hasCloseButton)
 
@@ -132,7 +132,7 @@ class AlertMessageDemoState(
 
     var actionLinkPosition: OudsAlertMessageActionLinkPosition by mutableStateOf(actionLinkPosition)
 
-    val statusIconSwitchEnabled: Boolean
+    val iconSwitchEnabled: Boolean
         get() = status !in FunctionalStatuses
 
     val actionLinkPositionChipsEnabled: Boolean
@@ -143,5 +143,5 @@ class AlertMessageDemoState(
     var tintedIcon: Boolean by mutableStateOf(tintedIcon)
 
     val tintedIconSwitchEnabled: Boolean
-        get() = status !in FunctionalStatuses && hasStatusIcon
+        get() = status !in FunctionalStatuses && hasIcon
 }
