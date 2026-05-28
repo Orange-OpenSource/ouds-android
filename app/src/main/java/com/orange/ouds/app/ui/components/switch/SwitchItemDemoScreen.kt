@@ -48,7 +48,7 @@ fun SwitchItemDemoScreen() {
 @Composable
 private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
     with(state) {
-        val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+        val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
         OudsSwitchItem(
             modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin),
             checked = checked,

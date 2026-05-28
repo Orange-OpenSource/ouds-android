@@ -60,7 +60,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
-                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first

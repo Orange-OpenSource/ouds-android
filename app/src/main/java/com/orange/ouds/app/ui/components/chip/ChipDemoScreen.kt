@@ -78,7 +78,7 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
         horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
     ) {
         repeat(ChipDemoState.ChipCount) { index ->
-            val painterId = if (state.tintedIcon) icons[index % icons.count()] else R.drawable.il_untinted_icon
+            val painterId = if (state.tintedIcon) icons[index % icons.count()] else R.drawable.ic_untinted_icon
             val icon = OudsChipIcon(
                 painter = painterResource(id = painterId),
                 contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
@@ -93,7 +93,7 @@ fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResour
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
         constructorCallArgument<OudsChipIcon>("icon") {
-            painterArgument(if (tintedIcon) themeDrawableResources.call else R.drawable.il_untinted_icon)
+            painterArgument(if (tintedIcon) themeDrawableResources.call else R.drawable.ic_untinted_icon)
             contentDescriptionArgument(R.string.app_components_common_icon_a11y)
             if (!tintedIcon) tintedArgument(tintedIcon)
         }

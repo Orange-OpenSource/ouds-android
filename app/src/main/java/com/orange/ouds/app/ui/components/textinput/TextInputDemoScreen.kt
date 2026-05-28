@@ -165,7 +165,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             placeholder = placeholder,
             outlined = outlined,
             leadingIcon = if (leadingIcon) {
-                val painterId = if (tintedLeadingIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+                val painterId = if (tintedLeadingIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
                 OudsTextInputLeadingIcon(painterResource(id = painterId), "", tintedLeadingIcon)
             } else {
                 null
@@ -201,7 +201,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             typedArgument("outlined", outlined)
             if (leadingIcon) {
                 constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(if (tintedLeadingIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                    painterArgument(if (tintedLeadingIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
                     if (!tintedLeadingIcon) tintedArgument(tintedLeadingIcon)
                 }
             }

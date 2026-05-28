@@ -108,7 +108,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
                 )
             }
             LinkDemoState.Layout.TextAndIcon -> {
-                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+                val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
                 OudsLink(
                     label = label,
                     icon = OudsLinkIcon(painterResource(id = painterId), tinted = tintedIcon),
@@ -148,7 +148,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                     LinkDemoState.Layout.TextOnly -> {}
                     LinkDemoState.Layout.TextAndIcon -> {
                         constructorCallArgument<OudsLinkIcon>("icon") {
-                            painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                            painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
                             if (!tintedIcon) tintedArgument(tintedIcon)
                         }
                     }

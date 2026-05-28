@@ -201,7 +201,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         if (!description.isNullOrBlank()) typedArgument("description", description)
         if (icon) {
             constructorCallArgument<OudsControlItemIcon>("icon") {
-                painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                painterArgument(if (state.tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
                 if (!tintedIcon) tintedArgument(tintedIcon)
             }
         }

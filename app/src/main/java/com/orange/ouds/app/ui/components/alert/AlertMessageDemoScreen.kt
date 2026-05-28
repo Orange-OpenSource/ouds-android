@@ -162,7 +162,7 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
-    val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.il_untinted_icon
+    val painterId = if (state.tintedIcon) LocalThemeDrawableResources.current.tipsAndTricks else R.drawable.ic_untinted_icon
     val icon = OudsAlertIcon(painter = painterResource(id = painterId), tinted = state.tintedIcon)
     with(state) {
         OudsAlertMessage(
@@ -199,7 +199,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         if (hasStatusIcon) {
                             constructorCallArgument<OudsAlertIcon>("icon") {
-                                painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.il_untinted_icon)
+                                painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
                                 if (!tintedIcon) tintedArgument(tintedIcon)
                             }
                         }
