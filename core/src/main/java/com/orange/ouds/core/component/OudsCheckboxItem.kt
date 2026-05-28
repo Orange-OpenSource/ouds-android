@@ -400,13 +400,12 @@ internal fun PreviewOudsCheckboxItemWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsCheckboxItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
         OudsCheckboxItem(
             checked = false,
             label = "Label",
             onCheckedChange = {},
             icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
-            edgeToEdge = false,
             divider = true
         )
     }

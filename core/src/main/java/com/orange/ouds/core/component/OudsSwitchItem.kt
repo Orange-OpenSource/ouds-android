@@ -273,13 +273,12 @@ internal fun PreviewOudsSwitchItemWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsSwitchItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
         OudsSwitchItem(
             checked = false,
             label = "Label",
             onCheckedChange = {},
             icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
-            edgeToEdge = false,
             divider = true
         )
     }

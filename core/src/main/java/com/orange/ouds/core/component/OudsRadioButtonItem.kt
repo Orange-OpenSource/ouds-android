@@ -363,13 +363,12 @@ internal fun PreviewOudsRadioButtonItemWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsRadioButtonItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
         OudsRadioButtonItem(
             selected = false,
             label = "Label",
             onClick = {},
             icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
-            edgeToEdge = false,
             divider = true
         )
     }
