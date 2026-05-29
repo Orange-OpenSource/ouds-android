@@ -446,7 +446,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Close(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.actions.delete) },
+        { painterResource(id = OudsTheme.drawableResources.functional.actions.deleteCrossRound) },
         { stringResource(R.string.core_topAppBar_closeNavigationIcon_a11y) },
         onClick
     )
@@ -458,7 +458,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Menu(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.navigation.menu) },
+        { painterResource(id = OudsTheme.drawableResources.functional.navigation.menuGridUiRound) },
         { stringResource(R.string.core_topAppBar_menuNavigationIcon_a11y) },
         onClick
     )

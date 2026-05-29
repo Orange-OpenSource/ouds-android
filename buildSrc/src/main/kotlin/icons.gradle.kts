@@ -43,7 +43,7 @@ abstract class ImportIconsTask : DefaultTask() {
         private val IconPaths = setOf(
             // Communication
             "communication/accessibility/accessibility-vision.svg",
-            "communication/security-and-safety/lock.svg",
+            "communication/security-and-safety/lock-closed.svg",
 
             // Component - Alert
             "component/alert/important-fill.svg",
@@ -77,11 +77,11 @@ abstract class ImportIconsTask : DefaultTask() {
             "component/tag/close.svg",
 
             // Functional
-            "functional/actions/delete.svg",
+            "functional/actions/delete-cross-round.svg",
             "functional/navigation/form-chevron-left.svg",
-            "functional/navigation/menu.svg",
-            "functional/settings-and-tools/hide.svg",
-            "functional/social-and-engagement/heart-empty.svg"
+            "functional/navigation/menu-grid-ui-round.svg",
+            "functional/settings-and-tools/accessibility-hide.svg",
+            "functional/social-and-engagement/heart-recommend.svg"
         )
 
         /**
