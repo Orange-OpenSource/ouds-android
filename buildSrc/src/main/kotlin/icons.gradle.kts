@@ -166,6 +166,17 @@ abstract class ImportIconsTask : DefaultTask() {
                 }
                 logger.lifecycle("✓ All theme directories found (${SupportedThemes.joinToString(", ")})")
 
+                // Validate that all files listed in IconPaths exist in the zip for each theme
+                SupportedThemes.forEach { theme ->
+                    val themeDir = File(rootDir, theme)
+                    IconPaths.forEach { iconPath ->
+                        val iconFile = File(themeDir, iconPath)
+                        if (!iconFile.exists()) {
+                            failures.add("File ${iconFile.toRelativeString(rootDir)} not found in zip")
+                        }
+                    }
+                }
+
                 // Process all icons
                 val icons = SupportedThemes.flatMap { theme ->
                     val themeDir = File(rootDir, theme)
@@ -234,7 +245,7 @@ abstract class ImportIconsTask : DefaultTask() {
             successCount++
             logger.lifecycle("$progress ✓ $svgPath")
         } catch (e: Exception) {
-            failures.add("Conversion failed for ${icon.svgPath}: ${e.message}")
+            failures.add("Conversion failed for ${svgFile.toRelativeString(rootDir)}: ${e.message}")
             logger.lifecycle("$progress ✗ $svgPath (${e.message})")
         }
     }
