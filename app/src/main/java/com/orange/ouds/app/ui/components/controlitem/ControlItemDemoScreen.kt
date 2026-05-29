@@ -18,10 +18,9 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -200,10 +199,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         labelArgument(label)
         if (!description.isNullOrBlank()) typedArgument("description", description)
         if (icon) {
-            constructorCallArgument<OudsControlItemIcon>("icon") {
-                painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                if (!tintedIcon) tintedArgument(tintedIcon)
-            }
+            iconArgument<OudsControlItemIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
         }
         if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)
         if (divider) typedArgument("divider", divider)

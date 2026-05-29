@@ -24,8 +24,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MaxLevelCount
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -171,9 +171,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
                 functionCallArgument(typeParameterName, type::class.java.nestedName) {
                     val assetParameterName = "asset"
                     if (unorderedAssetClassName == OudsBulletListUnorderedAsset.Icon::class.java.name) {
-                        functionCallArgument(assetParameterName, unorderedAssetClassName.nestedName) {
-                            painterArgument(themeDrawableResources.tipsAndTricks)
-                        }
+                        iconArgument<OudsBulletListUnorderedAsset.Icon>(assetParameterName, themeDrawableResources.tipsAndTricks)
                     } else {
                         rawArgument(assetParameterName, unorderedAssetClassName.nestedName)
                     }

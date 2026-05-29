@@ -30,7 +30,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.enabledArgument
-import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -183,9 +183,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     is OudsIconBadgeStatus.Neutral,
                     is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
-                            constructorCallArgument<OudsBadgeIcon>("icon") {
-                                painterArgument(themeDrawableResources.tipsAndTricks)
-                            }
+                            iconArgument<OudsBadgeIcon>("icon", themeDrawableResources.tipsAndTricks)
                         }
                     }
                     OudsIconBadgeStatus.Positive,

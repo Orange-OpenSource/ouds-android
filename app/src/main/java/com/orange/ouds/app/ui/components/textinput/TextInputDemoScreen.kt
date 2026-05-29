@@ -23,19 +23,19 @@ import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLeadingIcon
@@ -205,10 +205,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (leadingIcon) {
-                constructorCallArgument<OudsTextInputLeadingIcon>("leadingIcon") {
-                    painterArgument(if (tintedLeadingIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                    if (!tintedLeadingIcon) tintedArgument(tintedLeadingIcon)
-                }
+                iconArgument<OudsTextInputLeadingIcon>("leadingIcon", themeDrawableResources.tipsAndTricks, tinted = tintedLeadingIcon)
             }
             if (trailingIcon) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {

@@ -20,19 +20,18 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsLinkIcon
@@ -151,12 +150,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.TextAndIcon -> {
-                        constructorCallArgument<OudsLinkIcon>("icon") {
-                            painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                            if (!tintedIcon) tintedArgument(tintedIcon)
-                        }
-                    }
+                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsLinkIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
                     LinkDemoState.Layout.ChevronBack -> typedArgument("chevron", OudsLinkChevron.Back)
                     LinkDemoState.Layout.ChevronNext -> typedArgument("chevron", OudsLinkChevron.Next)
                 }

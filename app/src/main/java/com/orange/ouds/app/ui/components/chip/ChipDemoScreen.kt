@@ -20,19 +20,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -99,11 +97,7 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
 fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResources: ThemeDrawableResources) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
-        constructorCallArgument<OudsChipIcon>("icon") {
-            painterArgument(if (tintedIcon) themeDrawableResources.call else R.drawable.ic_untinted_icon)
-            contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-            if (!tintedIcon) tintedArgument(tintedIcon)
-        }
+        iconArgument<OudsChipIcon>("icon", themeDrawableResources.call, R.string.app_components_common_icon_a11y, tintedIcon)
     }
     if (layout in listOf(ChipDemoState.Layout.TextOnly, ChipDemoState.Layout.TextAndIcon)) {
         val separator = if (label.isBlank()) "" else " "

@@ -23,9 +23,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.tintedArgument
+import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -203,10 +203,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         if (hasIcon) {
-                            constructorCallArgument<OudsAlertIcon>("icon") {
-                                painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                                if (!tintedIcon) tintedArgument(tintedIcon)
-                            }
+                            iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
                         }
                     }
                 }
@@ -225,9 +222,9 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 }
             }
             if (!actionLink.isNullOrEmpty()) {
-                functionCallArgument("actionLink", OudsAlertMessageActionLink::class.java.simpleName) {
+                constructorCallArgument<OudsAlertMessageActionLink>("actionLink") {
                     labelArgument(actionLink)
-                    lambdaArgument("onClick") {
+                    onClickArgument {
                         comment("Implement click")
                     }
                     typedArgument("position", actionLinkPosition)

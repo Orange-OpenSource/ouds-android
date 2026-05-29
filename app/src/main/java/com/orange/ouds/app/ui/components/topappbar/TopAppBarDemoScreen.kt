@@ -265,7 +265,7 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
                                     }
                                     val lastActionIconIndex = actions.indexOfLast { it == TopAppBarDemoState.Action.Icon }
                                     if (lastActionIconIndex == index && lastActionIconBadge != TopAppBarDemoState.ActionIconBadge.None) {
-                                        functionCallArgument("badge", OudsTopAppBarActionBadge::class.simpleName.orEmpty()) {
+                                        constructorCallArgument<OudsTopAppBarActionBadge>("badge") {
                                             when (lastActionIconBadge) {
                                                 TopAppBarDemoState.ActionIconBadge.None -> {}
                                                 TopAppBarDemoState.ActionIconBadge.Standard -> contentDescriptionArgument(resId = R.string.app_components_common_unreadNotificationsBadge_a11y)

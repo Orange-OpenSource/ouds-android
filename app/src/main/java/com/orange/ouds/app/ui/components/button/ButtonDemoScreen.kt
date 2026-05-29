@@ -19,12 +19,10 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -157,11 +155,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
         coloredBoxCall(onColoredBox) {
             functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
-                    constructorCallArgument<OudsButtonIcon>("icon") {
-                        painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                        contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-                        if (!tintedIcon) tintedArgument(tintedIcon)
-                    }
+                    iconArgument<OudsButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, tintedIcon)
                 }
                 if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     labelArgument(label)

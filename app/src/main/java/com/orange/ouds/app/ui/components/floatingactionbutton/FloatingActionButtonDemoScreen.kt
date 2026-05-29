@@ -18,10 +18,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -155,10 +154,7 @@ private fun Code.Builder.floatingActionButtonDemoCodeSnippet(state: FloatingActi
                 labelArgument(label)
             }
             if (layout != FloatingActionButtonDemoState.Layout.TextOnly) {
-                constructorCallArgument<OudsFloatingActionButtonIcon>("icon") {
-                    painterArgument(themeDrawableResources.tipsAndTricks)
-                    contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-                }
+                iconArgument<OudsFloatingActionButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y)
             }
             if (layout == FloatingActionButtonDemoState.Layout.TextAndIcon && !expanded) {
                 typedArgument("expanded", expanded)

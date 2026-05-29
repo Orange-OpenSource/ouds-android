@@ -24,9 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -236,13 +235,16 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                     TagDemoState.Layout.TextAndBullet -> rawArgument(assetParameterName, OudsTagAsset.Bullet::class.java.nestedName)
                     TagDemoState.Layout.TextAndIcon -> {
                         when (status) {
-                            is OudsTagStatus.Neutral, is OudsTagStatus.Accent ->
-                                constructorCallArgument<OudsTagAsset.Icon>(assetParameterName) {
-                                    painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                                    if (!tintedIcon) tintedArgument(tintedIcon)
-                                }
-                            is OudsTagStatus.Positive, is OudsTagStatus.Warning, is OudsTagStatus.Info, is OudsTagStatus.Negative ->
-                                rawArgument(assetParameterName, OudsTagAsset.Icon.Default::class.java.nestedName)
+                            is OudsTagStatus.Neutral,
+                            is OudsTagStatus.Accent -> iconArgument<OudsTagAsset.Icon>(
+                                assetParameterName,
+                                themeDrawableResources.tipsAndTricks,
+                                tinted = tintedIcon
+                            )
+                            is OudsTagStatus.Positive,
+                            is OudsTagStatus.Warning,
+                            is OudsTagStatus.Info,
+                            is OudsTagStatus.Negative -> rawArgument(assetParameterName, OudsTagAsset.Icon.Default::class.java.nestedName)
                         }
                     }
                 }

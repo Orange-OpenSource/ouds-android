@@ -23,9 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
-import com.orange.ouds.app.ui.components.tintedArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -147,10 +146,7 @@ private fun Code.Builder.inlineAlertDemoCodeSnippet(state: InlineAlertDemoState,
                 is OudsInlineAlertStatus.Accent,
                 is OudsInlineAlertStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        constructorCallArgument<OudsAlertIcon>("icon") {
-                            painterArgument(if (tintedIcon) themeDrawableResources.tipsAndTricks else R.drawable.ic_untinted_icon)
-                            if (!tintedIcon) tintedArgument(tintedIcon)
-                        }
+                        iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
                     }
                 }
                 OudsInlineAlertStatus.Info,
