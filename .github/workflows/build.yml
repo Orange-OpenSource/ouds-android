@@ -115,9 +115,10 @@ jobs:
         with:
           name: unit-tests
           path: |
-            core/build/paparazzi
-            core/build/reports/paparazzi
-            core/build/test-results
+            */build/paparazzi
+            */build/reports/paparazzi
+            */build/reports/tests
+            */build/test-results
 
   instrumented-tests:
     runs-on: ubuntu-latest
