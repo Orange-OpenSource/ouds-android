@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
+import androidx.compose.animation.core.EaseOut
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -288,7 +289,7 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
 
         val indicatorWidthScale by animateFloatAsState(
             targetValue = if (selected || state == OudsNavigationBarItemState.Hovered) 1.0f else 0.0f,
-            animationSpec = tween(200)
+            animationSpec = tween(240, easing = EaseOut)
         )
 
         return if (indicatorWidthScale == 0f || opacityCurrentIndicatorCustomValue == 0f) {
