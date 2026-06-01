@@ -121,7 +121,7 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
     class Neutral(icon: OudsAlertIcon) : OudsInlineAlertStatus(
-        OudsAlertStatus.Neutral({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartEmpty) }),
+        OudsAlertStatus.Neutral({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartRecommend) }),
         icon
     )
 
@@ -132,7 +132,7 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
     class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(
-        OudsAlertStatus.Accent({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartEmpty) }),
+        OudsAlertStatus.Accent({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartRecommend) }),
         icon
     )
 

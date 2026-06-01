@@ -100,7 +100,7 @@ docs/assets/banner.png
 docs/assets/logo-icon.svg
 
 theme-orange/src/main/res/drawable/ic_orange_communication_accessibility_vision.xml
-theme-orange/src/main/res/drawable/ic_orange_communication_security_and_safety_lock.xml
+theme-orange/src/main/res/drawable/ic_orange_communication_security_and_safety_lock_closed.xml
 theme-orange/src/main/res/drawable/ic_orange_component_alert_important_fill.xml
 theme-orange/src/main/res/drawable/ic_orange_component_alert_info_fill.xml
 theme-orange/src/main/res/drawable/ic_orange_component_alert_tick_confirmation_fill.xml
@@ -126,17 +126,17 @@ theme-orange/src/main/res/drawable/ic_orange_component_link_previous.xml
 theme-orange/src/main/res/drawable/ic_orange_component_radio_button_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_component_switch_selected_switch.xml
 theme-orange/src/main/res/drawable/ic_orange_component_tag_close.xml
-theme-orange/src/main/res/drawable/ic_orange_functional_actions_delete.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_actions_delete_cross_round.xml
 theme-orange/src/main/res/drawable/ic_orange_functional_navigation_form_chevron_left.xml
-theme-orange/src/main/res/drawable/ic_orange_functional_navigation_menu.xml
-theme-orange/src/main/res/drawable/ic_orange_functional_settings_and_tools_hide.xml
-theme-orange/src/main/res/drawable/ic_orange_functional_social_and_engagement_heart_empty.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_navigation_menu_grid_ui_round.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_settings_and_tools_accessibility_hide.xml
+theme-orange/src/main/res/drawable/ic_orange_functional_social_and_engagement_heart_recommend.xml
 theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level0.xml
 theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level1.xml
 theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level2.xml
 
 theme-sosh/src/main/res/drawable/ic_sosh_communication_accessibility_vision.xml
-theme-sosh/src/main/res/drawable/ic_sosh_communication_security_and_safety_lock.xml
+theme-sosh/src/main/res/drawable/ic_sosh_communication_security_and_safety_lock_closed.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_important_fill.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_info_fill.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_alert_tick_confirmation_fill.xml
@@ -162,11 +162,11 @@ theme-sosh/src/main/res/drawable/ic_sosh_component_link_previous.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_radio_button_selected.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_switch_selected_switch.xml
 theme-sosh/src/main/res/drawable/ic_sosh_component_tag_close.xml
-theme-sosh/src/main/res/drawable/ic_sosh_functional_actions_delete.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_actions_delete_cross_round.xml
 theme-sosh/src/main/res/drawable/ic_sosh_functional_navigation_form_chevron_left.xml
-theme-sosh/src/main/res/drawable/ic_sosh_functional_navigation_menu.xml
-theme-sosh/src/main/res/drawable/ic_sosh_functional_settings_and_tools_hide.xml
-theme-sosh/src/main/res/drawable/ic_sosh_functional_social_and_engagement_heart_empty.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_navigation_menu_grid_ui_round.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_settings_and_tools_accessibility_hide.xml
+theme-sosh/src/main/res/drawable/ic_sosh_functional_social_and_engagement_heart_recommend.xml
 theme-sosh/src/main/res/font/sosh_black.ttf
 theme-sosh/src/main/res/font/sosh_bold.ttf
 theme-sosh/src/main/res/font/sosh_medium.ttf
@@ -174,7 +174,7 @@ theme-sosh/src/main/res/font/sosh_regular.ttf
 theme-sosh/src/main/res/font/sosh_thin.ttf
 
 theme-wireframe/src/main/res/drawable/ic_wireframe_communication_accessibility_vision.xml
-theme-wireframe/src/main/res/drawable/ic_wireframe_communication_security_and_safety_lock.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_communication_security_and_safety_lock_closed.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_important_fill.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_info_fill.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_alert_tick_confirmation_fill.xml
@@ -200,11 +200,11 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_previous.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_radio_button_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_switch_selected_switch.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_tag_close.xml
-theme-wireframe/src/main/res/drawable/ic_wireframe_functional_actions_delete.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_actions_delete_cross_round.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_form_chevron_left.xml
-theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_menu.xml
-theme-wireframe/src/main/res/drawable/ic_wireframe_functional_settings_and_tools_hide.xml
-theme-wireframe/src/main/res/drawable/ic_wireframe_functional_social_and_engagement_heart_empty.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_menu_grid_ui_round.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_settings_and_tools_accessibility_hide.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_functional_social_and_engagement_heart_recommend.xml
 
 End of the parts list under Orange SA Copyright
 
