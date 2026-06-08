@@ -450,7 +450,7 @@ fun OudsTextArea(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    autoResize: Boolean = false
+    autoResize: Boolean = true
 ) {
     OudsTextArea(
         value = value,
