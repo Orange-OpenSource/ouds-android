@@ -1173,11 +1173,11 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMultilineValuePreviewParameterProvider::class) autoResize: Boolean) =
-    PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme(), autoResize = autoResize)
+private fun PreviewOudsTextAreaAutoResize(@PreviewParameter(OudsTextAreaAutoResizePreviewParameterProvider::class) autoResize: Boolean) =
+    PreviewOudsTextAreaAutoResize(theme = getPreviewTheme(), autoResize = autoResize)
 
 @Composable
-internal fun PreviewOudsTextAreaMultiLineValue(
+internal fun PreviewOudsTextAreaAutoResize(
     theme: OudsThemeContract,
     autoResize: Boolean
 ) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
@@ -1228,7 +1228,7 @@ internal class OudsTextAreaPreviewParameterProvider : BasicPreviewParameterProvi
 
 internal class OudsTextAreaConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
-internal class OudsTextAreaMultilineValuePreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+internal class OudsTextAreaAutoResizePreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 internal class OudsTextAreaWithRichTextPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
