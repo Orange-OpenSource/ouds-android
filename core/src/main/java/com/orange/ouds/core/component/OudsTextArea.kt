@@ -1224,11 +1224,6 @@ internal data class OudsTextAreaPreviewParameter(
     val helperLink: OudsTextInputHelperLink? = null
 )
 
-internal data class OudsTextAreaMultiLineValuePreviewParameter(
-    val lineCount: Int,
-    val fixedHeight: Boolean
-)
-
 internal class OudsTextAreaPreviewParameterProvider : BasicPreviewParameterProvider<OudsTextAreaPreviewParameter>(*previewParameterValues.toTypedArray())
 
 internal class OudsTextAreaConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
