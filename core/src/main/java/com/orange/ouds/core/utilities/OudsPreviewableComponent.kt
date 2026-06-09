@@ -761,6 +761,8 @@ interface OudsPreviewableComponent {
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsLinearProgressIndicatorWithLongHelperText(theme = theme)
             }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
