@@ -961,22 +961,20 @@ internal fun OudsTextAreaDecorator(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
-                    // Small label on top
-                    val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
-                    if (!label.isNullOrBlank() && isSmallLabel) {
+                    // Label
+                    if (!label.isNullOrBlank()) {
+                        val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .semantics { hideFromAccessibility() },
                             text = label,
-                            style = OudsTheme.typography.label.default.small,
-                            color = labelColor(state = state, error = hasError),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            style = with(OudsTheme.typography.label.default) { if (isSmallLabel) small else large },
+                            color = labelColor(state = state, error = hasError)
                         )
                     }
 
-                    // Placeholder, Label or Value
+                    // Placeholder or value
                     Box(modifier = Modifier.fillMaxWidth()) {
                         if (value.isEmpty()) {
                             if (!placeholder.isNullOrBlank()) {
@@ -986,13 +984,6 @@ internal fun OudsTextAreaDecorator(
                                     style = OudsTheme.typography.label.default.large,
                                     color = decorativeContentColor(state = state),
                                     overflow = TextOverflow.Ellipsis
-                                )
-                            } else if (!label.isNullOrBlank() && !isSmallLabel) {
-                                Text(
-                                    modifier = Modifier.semantics { hideFromAccessibility() },
-                                    text = label,
-                                    style = OudsTheme.typography.label.default.large,
-                                    color = labelColor(state = state, error = hasError),
                                 )
                             }
                         }
