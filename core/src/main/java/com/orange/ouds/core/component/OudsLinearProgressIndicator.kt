@@ -153,7 +153,7 @@ private fun OudsLinearProgressIndicator(
             val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.content.default
             val trackColor = if (track) colorContentTrack.value else Color.Transparent
             val gapSize = ProgressIndicatorDefaults.LinearIndicatorTrackGapSize * scale
-            val strokeCap = if (OudsTheme.borders.radius.default.value > 0) StrokeCap.Round else StrokeCap.Square
+            val strokeCap = if (OudsTheme.borders.radius.default.value > 0) StrokeCap.Round else StrokeCap.Butt
 
             nullableProgress?.let {
                 LinearProgressIndicator(
@@ -174,10 +174,10 @@ private fun OudsLinearProgressIndicator(
                 )
             }
 
-            helperText?.let {
+            if (!helperText.isNullOrBlank()) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = it,
+                    text = helperText,
                     style = OudsTheme.typography.label.default.medium,
                     color = OudsTheme.colorScheme.content.default,
                     textAlign = TextAlign.Center

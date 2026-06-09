@@ -50,7 +50,7 @@ private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressI
             applyTopPadding = true,
             label = stringResource(R.string.app_components_progressIndicator_helperText_tech),
             value = helperText.orEmpty(),
-            onValueChange = { value -> helperText = value.ifBlank { null } }
+            onValueChange = { value -> helperText = value }
         )
     }
 }
@@ -94,7 +94,7 @@ private fun Code.Builder.linearProgressIndicatorDemoCodeSnippet(state: LinearPro
             }
             typedArgument("brandColor", brandColor)
             typedArgument("track", track)
-            if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
+            helperText?.let { typedArgument("helperText", it) }
         }
     }
 }
