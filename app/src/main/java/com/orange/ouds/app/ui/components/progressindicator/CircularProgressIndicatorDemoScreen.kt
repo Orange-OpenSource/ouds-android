@@ -12,11 +12,7 @@
 
 package com.orange.ouds.app.ui.components.progressindicator
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.components.Variant
@@ -60,16 +56,8 @@ private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoSta
 }
 
 private fun Code.Builder.circularProgressIndicatorDemoCodeSnippet(state: ProgressIndicatorDemoState) {
-    with(state) {
-        functionCall("OudsCircularProgressIndicator") {
-            if (type == ProgressIndicatorDemoState.Type.Determinate) {
-                lambdaArgument("progress") {
-                    value(progress)
-                }
-            }
-            typedArgument("brandColor", brandColor)
-            typedArgument("track", track)
-        }
+    functionCall("OudsCircularProgressIndicator") {
+        progressIndicatorArguments(state = state)
     }
 }
 

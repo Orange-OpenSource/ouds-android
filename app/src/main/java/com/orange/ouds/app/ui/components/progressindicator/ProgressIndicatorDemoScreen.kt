@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.progressindicator
 
+import android.R.attr.label
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -22,9 +23,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.chip.ChipDemoState
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
+import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
+import com.orange.ouds.core.component.OudsChipIcon
 
 @Composable
 fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
@@ -64,3 +74,14 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
         )
     }
 }
+
+fun FunctionCall.Builder.progressIndicatorArguments(state: ProgressIndicatorDemoState) = with(state) {
+    if (type == ProgressIndicatorDemoState.Type.Determinate) {
+        lambdaArgument("progress") {
+            value(progress)
+        }
+    }
+    typedArgument("brandColor", brandColor)
+    typedArgument("track", track)
+}
+

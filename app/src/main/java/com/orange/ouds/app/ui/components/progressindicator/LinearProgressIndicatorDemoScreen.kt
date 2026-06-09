@@ -12,11 +12,7 @@
 
 package com.orange.ouds.app.ui.components.progressindicator
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -26,7 +22,6 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLinearProgressIndicator
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -78,17 +73,9 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
 }
 
 private fun Code.Builder.linearProgressIndicatorDemoCodeSnippet(state: LinearProgressIndicatorDemoState) {
-    with(state) {
-        functionCall("OudsLinearProgressIndicator") {
-            if (type == ProgressIndicatorDemoState.Type.Determinate) {
-                lambdaArgument("progress") {
-                    value(progress)
-                }
-            }
-            typedArgument("brandColor", brandColor)
-            typedArgument("track", track)
-            helperText?.let { typedArgument("helperText", it) }
-        }
+    functionCall("OudsLinearProgressIndicator") {
+        progressIndicatorArguments(state = state)
+        state.helperText?.let { typedArgument("helperText", it) }
     }
 }
 
