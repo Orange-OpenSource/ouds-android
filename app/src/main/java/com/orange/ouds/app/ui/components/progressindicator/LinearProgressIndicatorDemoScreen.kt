@@ -23,7 +23,6 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Variant
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLinearProgressIndicator
@@ -48,7 +47,7 @@ private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressI
         ProgressIndicatorDemoBottomSheetContent(state = state)
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_progressIndicator_helperText_tech),
+            label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText.orEmpty(),
             onValueChange = { value -> helperText = value }
         )
