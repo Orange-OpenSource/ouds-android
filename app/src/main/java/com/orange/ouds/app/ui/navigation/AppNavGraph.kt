@@ -56,9 +56,8 @@ private fun NavGraphBuilder.addBottomBarNavGraph(navController: NavController) {
             when (val aboutMenuItem = AboutMenuItem.fromId(id)) {
                 is AboutFileMenuItem -> navController.navigateToElement(AboutDestinations.FileRoute, id.toLong(), from)
                 is AboutRouteMenuItem -> navController.navigate(aboutMenuItem.route)
-                else -> null
+                else -> {}
             }
-
         }
     }
 }
