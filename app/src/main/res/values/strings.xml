@@ -302,7 +302,6 @@
     <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
     <string name="app_components_progressIndicator_brandColor_tech" translatable="false">Brand color</string>
     <string name="app_components_progressIndicator_track_tech" translatable="false">Track</string>
-    <string name="app_components_progressIndicator_helperTextValue_tech" translatable="false">Helper text value</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_tech" translatable="false">Radio button</string>
