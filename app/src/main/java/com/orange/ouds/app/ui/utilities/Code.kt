@@ -102,7 +102,7 @@ data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
     }
 }
 
-data class Value<T>(val value: T, val clazz: Class<T> ) : Formattable {
+data class Value<T>(val value: T, val clazz: Class<T>) : Formattable {
     override fun format(context: Context): String {
         return value.toString(context, clazz)
     }
@@ -219,12 +219,12 @@ private fun <T> T.toString(context: Context, clazz: Class<T>): String {
         is Int -> {
             val resourceName = tryOrNull { context.resources.getResourceName(this) }?.substringAfter("/")
             val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(this) }
-            if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else this.toString()
+            if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else toString()
         }
-        is Enum<*> -> "${clazz.nestedName}.${this.name}" // Displays OudsButtonAppearance.Strong instead of Strong
-        is Dp -> "${this.toNumberString()}.dp"
-        is Formattable -> this.format(context)
-        else -> this.toString()
+        is Enum<*> -> "${clazz.nestedName}.${name}" // Displays OudsButtonAppearance.Strong instead of Strong
+        is Dp -> "${toNumberString()}.dp"
+        is Formattable -> format(context)
+        else -> toString()
     }
 }
 
