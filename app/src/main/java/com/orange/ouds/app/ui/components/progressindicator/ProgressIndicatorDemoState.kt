@@ -60,7 +60,7 @@ open class ProgressIndicatorDemoState(
     var track by mutableStateOf(track)
 
     val progress: Float
-        get() = (progressText.toFloatOrNull() ?: 0f).coerceIn(0f, 1f)
+        get() = progressText.toFloatOrNull() ?: 0f
 
     val progressTextInputEnabled: Boolean
         get() = type == Type.Determinate
