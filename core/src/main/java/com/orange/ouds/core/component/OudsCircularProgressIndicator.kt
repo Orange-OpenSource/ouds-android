@@ -37,6 +37,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
+// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -81,6 +82,7 @@ fun OudsCircularProgressIndicator(
     )
 }
 
+// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
