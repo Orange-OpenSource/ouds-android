@@ -137,7 +137,7 @@ private fun OudsCircularProgressIndicator(
         val size = sizeCircularIndicator.value * scale
 
         val progressIndicatorModifier = modifier.size(size)
-        val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.action.enabled
+        val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.content.default
         val strokeWidth = size * 0.125f // 25% of the radius
         val strokeCap = if (OudsTheme.borders.radius.default.value > 0) StrokeCap.Round else StrokeCap.Butt
         val trackColor = if (track) colorContentTrack.value else Color.Transparent

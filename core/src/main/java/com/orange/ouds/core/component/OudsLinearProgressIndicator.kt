@@ -150,7 +150,7 @@ private fun OudsLinearProgressIndicator(
             val progressIndicatorModifier = Modifier
                 .height(sizeLinearIndicatorHeight.dp * scale)
                 .fillMaxWidth()
-            val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.action.enabled
+            val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.content.default
             val trackColor = if (track) colorContentTrack.value else Color.Transparent
             val gapSize = ProgressIndicatorDefaults.LinearIndicatorTrackGapSize * scale
             val strokeCap = if (OudsTheme.borders.radius.default.value > 0) StrokeCap.Round else StrokeCap.Square
