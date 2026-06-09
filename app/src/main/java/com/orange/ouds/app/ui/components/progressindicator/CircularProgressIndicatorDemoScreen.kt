@@ -40,25 +40,20 @@ fun CircularProgressIndicatorDemoScreen() {
 
 @Composable
 private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoState) {
-    Box(
-        modifier = Modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center
-    ) {
-        with(state) {
-            when (type) {
-                ProgressIndicatorDemoState.Type.Determinate -> {
-                    OudsCircularProgressIndicator(
-                        progress = { progress },
-                        brandColor = brandColor,
-                        track = track
-                    )
-                }
-                ProgressIndicatorDemoState.Type.Indeterminate -> {
-                    OudsCircularProgressIndicator(
-                        brandColor = brandColor,
-                        track = track
-                    )
-                }
+    with(state) {
+        when (type) {
+            ProgressIndicatorDemoState.Type.Determinate -> {
+                OudsCircularProgressIndicator(
+                    progress = { progress },
+                    brandColor = brandColor,
+                    track = track
+                )
+            }
+            ProgressIndicatorDemoState.Type.Indeterminate -> {
+                OudsCircularProgressIndicator(
+                    brandColor = brandColor,
+                    track = track
+                )
             }
         }
     }

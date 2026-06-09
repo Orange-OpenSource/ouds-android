@@ -56,28 +56,22 @@ private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressI
 
 @Composable
 private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDemoState) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = OudsTheme.grids.margin)
-    ) {
-        with(state) {
-            when (type) {
-                ProgressIndicatorDemoState.Type.Determinate -> {
-                    OudsLinearProgressIndicator(
-                        progress = { progress },
-                        brandColor = brandColor,
-                        track = track,
-                        helperText = helperText
-                    )
-                }
-                ProgressIndicatorDemoState.Type.Indeterminate -> {
-                    OudsLinearProgressIndicator(
-                        brandColor = brandColor,
-                        track = track,
-                        helperText = helperText
-                    )
-                }
+    with(state) {
+        when (type) {
+            ProgressIndicatorDemoState.Type.Determinate -> {
+                OudsLinearProgressIndicator(
+                    progress = { progress },
+                    brandColor = brandColor,
+                    track = track,
+                    helperText = helperText
+                )
+            }
+            ProgressIndicatorDemoState.Type.Indeterminate -> {
+                OudsLinearProgressIndicator(
+                    brandColor = brandColor,
+                    track = track,
+                    helperText = helperText
+                )
             }
         }
     }
