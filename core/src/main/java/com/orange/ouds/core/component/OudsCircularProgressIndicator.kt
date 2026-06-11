@@ -16,16 +16,22 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
@@ -36,6 +42,9 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import kotlin.math.PI
+
+private val OudsCircularProgressIndicatorSize = 48.dp
 
 // TODO Update description and add design guideline link when available
 /**
@@ -133,15 +142,26 @@ private fun OudsCircularProgressIndicator(
     modifier: Modifier = Modifier
 ) {
     val scale = LocalConfiguration.current.fontScale
-    with(OudsTheme.componentsTokens.progressIndicator) {
-        val size = sizeCircularIndicator.value * scale
+    val density = LocalDensity.current
 
-        val progressIndicatorModifier = modifier.size(size)
+    with(OudsTheme.componentsTokens.progressIndicator) {
+        val defaultSize = OudsCircularProgressIndicatorSize * scale
+
+        var strokeWidth by remember { mutableStateOf(computeStrokeWidth(defaultSize)) }
+        var gapSize by remember { mutableStateOf(computeGapSize(defaultSize)) }
+
+        val progressIndicatorModifier = modifier
+            .size(defaultSize)
+            .onSizeChanged { measuredSize ->
+                with(density) {
+                    val currentSize = measuredSize.width.toDp()
+                    strokeWidth = computeStrokeWidth(currentSize)
+                    gapSize = computeGapSize(currentSize)
+                }
+            }
         val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.content.default
-        val strokeWidth = size * 0.125f // 25% of the radius
         val strokeCap = if (OudsTheme.borders.radius.default.value > 0) StrokeCap.Round else StrokeCap.Butt
         val trackColor = if (track) colorContentTrack.value else Color.Transparent
-        val gapSize = ProgressIndicatorDefaults.CircularIndicatorTrackGapSize * scale
 
         nullableProgress?.let {
             CircularProgressIndicator(
@@ -166,6 +186,18 @@ private fun OudsCircularProgressIndicator(
     }
 }
 
+/**
+ * Calculates the stroke width based on the component size.
+ * The stroke width is equal to 25% of the radius, 12.5% of the diameter.
+ */
+private fun computeStrokeWidth(componentSize: Dp): Dp = componentSize * 0.125f
+
+/**
+ * Calculates the gap size based on the component size.
+ * The gap corresponds to a 10-degree angle converted into a distance on the circle.
+ */
+private fun computeGapSize(componentSize: Dp): Dp =
+    (10f / 360f * PI.toFloat() * componentSize.value).dp
 
 /**
  * A temporary circular progress indicator component used internally by several public components.
@@ -202,7 +234,6 @@ internal fun InternalOudsCircularProgressIndicator(
         )
     }
 }
-
 
 @OudsPreviewLightDark
 @Composable
