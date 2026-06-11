@@ -120,12 +120,14 @@ const val ORANGE_THEME_NAME = "Orange"
  * @param roundedCornerButtons Whether buttons have rounded corners.
  * @param roundedCornerTextInputs Whether text inputs have rounded corners.
  * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
+ * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
  */
 open class OrangeTheme(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = false,
-    private val roundedCornerAlertMessages: Boolean = false
+    private val roundedCornerAlertMessages: Boolean = false,
+    private val roundedCornerProgressIndicators: Boolean = false
 ) : OudsThemeContract {
 
     /**
@@ -136,11 +138,11 @@ open class OrangeTheme(
      */
     @Deprecated(
         "Use constructor with orangeFontFamily parameter instead.",
-        ReplaceWith("OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages)")
+        ReplaceWith("OrangeTheme(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators)")
     )
     constructor(
         roundedCornerButtons: Boolean = false,
-        roundedCornerTextInputs: Boolean = false
+        roundedCornerTextInputs: Boolean = false,
     ) : this(OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable), roundedCornerButtons, roundedCornerTextInputs)
 
     override val name: String
@@ -155,7 +157,7 @@ open class OrangeTheme(
     }
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages)
+        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators)
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()

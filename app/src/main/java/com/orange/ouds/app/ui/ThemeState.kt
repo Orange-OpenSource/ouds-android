@@ -119,12 +119,14 @@ class ThemeState(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
+                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )
                     ORANGE_COMPACT_THEME_NAME -> OrangeCompactTheme(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
+                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
                     )
                     SOSH_THEME_NAME -> SoshTheme()

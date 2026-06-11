@@ -38,7 +38,8 @@
     <string name="app_themeSettingsDialog_cancel_label">Cancel</string>
     <string name="app_themeSettingsDialog_label">Change theme settings</string>
     <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Rounded corner alert messages</string>
-    <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner button</string>
+    <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner buttons</string>
+    <string name="app_themeSettingsDialog_roundedCornerProgressIndicators_label">Rounded corner progress indicators</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Rounded corner text inputs</string>
 
     <!-- Bottom navigation -->
