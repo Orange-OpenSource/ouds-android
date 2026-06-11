@@ -76,8 +76,8 @@ internal fun OudsDigitInput(
             "An OudsDigitInput set to $parameter with an error is not allowed."
         }
     ) {
-        val textInputTokens = OudsTheme.componentsTokens.textInput
-        val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
+        val textInputTokens = OudsTheme.components.textInput
+        val pinCodeInputTokens = OudsTheme.components.pinCodeInput
 
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = error)
         val borderColor = borderColor(state = state, outlined = outlined, error = error)
@@ -173,7 +173,7 @@ private fun borderColor(state: OudsDigitInputState, outlined: Boolean, error: Bo
             }
         }
     } else {
-        val textInputTokens = OudsTheme.componentsTokens.textInput
+        val textInputTokens = OudsTheme.components.textInput
         when (state) {
             OudsDigitInputState.Enabled -> textInputTokens.colorBorderEnabled.value
             OudsDigitInputState.Hovered -> textInputTokens.colorBorderHover.value
@@ -186,7 +186,7 @@ private fun borderColor(state: OudsDigitInputState, outlined: Boolean, error: Bo
 
 @Composable
 private fun borderWidth(state: OudsDigitInputState, outlined: Boolean): Dp? {
-    return with(OudsTheme.componentsTokens.textInput) {
+    return with(OudsTheme.components.textInput) {
         when (state) {
             OudsDigitInputState.Enabled,
             OudsDigitInputState.Hovered,

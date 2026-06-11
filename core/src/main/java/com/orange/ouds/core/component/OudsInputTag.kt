@@ -88,7 +88,7 @@ fun OudsInputTag(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    val tagTokens = OudsTheme.componentsTokens.tag
+    val tagTokens = OudsTheme.components.tag
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getInputTagState(enabled = enabled, interactionState = interactionState)
@@ -182,7 +182,7 @@ private fun getInputTagState(interactionState: InteractionState, enabled: Boolea
 
 @Composable
 private fun backgroundColor(state: OudsInputTagState): Color {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
             OudsInputTagState.Enabled -> colorBgEnabled.value
             OudsInputTagState.Focused -> colorBgFocus.value
@@ -195,7 +195,7 @@ private fun backgroundColor(state: OudsInputTagState): Color {
 
 @Composable
 private fun borderWidth(state: OudsInputTagState): Dp? {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
             OudsInputTagState.Enabled,
             OudsInputTagState.Disabled -> borderWidthDefault
@@ -208,7 +208,7 @@ private fun borderWidth(state: OudsInputTagState): Dp? {
 
 @Composable
 private fun borderColor(state: OudsInputTagState): Color {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
             OudsInputTagState.Enabled -> colorBorderEnabled.value
             OudsInputTagState.Focused -> colorBorderFocus.value
@@ -221,7 +221,7 @@ private fun borderColor(state: OudsInputTagState): Color {
 
 @Composable
 private fun contentColor(state: OudsInputTagState): Color {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
             OudsInputTagState.Enabled -> colorContentEnabled.value
             OudsInputTagState.Focused -> colorContentFocus.value

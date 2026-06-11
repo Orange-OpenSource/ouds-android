@@ -32,7 +32,7 @@ import com.orange.ouds.foundation.extensions.orElse
 @Composable
 internal fun OudsCircularProgressIndicator(color: Color, progress: Float?, modifier: Modifier = Modifier, scale: Float = 1.0f) {
     val modifier = modifier
-        .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
+        .size(OudsTheme.components.button.sizeLoader.value * scale)
         .semantics { hideFromAccessibility() }
     val strokeWidth = 3.dp * scale
     val trackColor = Color.Transparent

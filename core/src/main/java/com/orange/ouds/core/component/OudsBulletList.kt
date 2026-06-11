@@ -209,7 +209,7 @@ private fun OudsBulletListItem(
     parentNodes: List<BulletListParentNode>,
     modifier: Modifier = Modifier,
 ) {
-    with(OudsTheme.componentsTokens.bulletList) {
+    with(OudsTheme.components.bulletList) {
         val columnGap: Dp
         val verticalPadding: Dp
         when (currentTextStyle.fontSize) {

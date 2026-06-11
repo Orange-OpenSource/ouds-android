@@ -71,7 +71,7 @@ fun OudsInlineAlert(
     modifier: Modifier = Modifier,
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status
 ) {
-    with(OudsTheme.componentsTokens.alert) {
+    with(OudsTheme.components.alert) {
         val scale = LocalConfiguration.current.fontScale
         Row(
             modifier = modifier.semantics(mergeDescendants = true) {},

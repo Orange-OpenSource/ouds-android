@@ -28,6 +28,7 @@ import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -56,7 +57,6 @@ internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsToke
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
-internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
 
 /**
@@ -124,12 +124,8 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    val components: OudsComponents
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalComponents.current
-
-    internal val componentsTokens: OudsComponentsTokens
+    @InternalOudsApi
+    val components: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsTokens.current
@@ -197,7 +193,6 @@ fun OudsTheme(
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
             LocalThemeSettings provides settings,
-            LocalComponents provides componentsTokens.getComponents(),
             LocalThemeName provides theme.name
         ) {
             MaterialTheme(

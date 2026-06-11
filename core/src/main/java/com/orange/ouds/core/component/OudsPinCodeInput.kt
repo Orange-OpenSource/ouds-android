@@ -253,7 +253,7 @@ private fun OudsPinCodeInput(
     ) {
         BasicSecureTextField(
             modifier = modifier
-                .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+                .heightIn(min = OudsTheme.components.textInput.sizeMinHeight.dp)
                 .focusRequester(focusRequester),
             state = textFieldState,
             keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
@@ -335,7 +335,7 @@ private fun OudsPinCodeInputDecorator(
     interactionSource: MutableInteractionSource
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
+    val pinCodeInputTokens = OudsTheme.components.pinCodeInput
     val smallDeviceSpecificRules = smallDeviceSpecificRules(length)
     BoxWithConstraints(contentAlignment = Alignment.Center) {
         val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value

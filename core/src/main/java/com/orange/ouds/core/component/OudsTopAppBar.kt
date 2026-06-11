@@ -74,7 +74,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effectBgBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsTopAppBar].
@@ -147,7 +147,7 @@ fun OudsTopAppBar(
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effectBgBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsCenterAlignedTopAppBar].
@@ -221,7 +221,7 @@ fun OudsCenterAlignedTopAppBar(
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effectBgBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsMediumTopAppBar].
@@ -306,7 +306,7 @@ fun OudsMediumTopAppBar(
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effectBgBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsLargeTopAppBar].
@@ -394,7 +394,7 @@ private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned
 
 @Composable
 private fun colors(translucent: Boolean): TopAppBarColors {
-    val backgroundColor = with(OudsTheme.componentsTokens.bar) {
+    val backgroundColor = with(OudsTheme.components.bar) {
         if (translucent) colorBgTranslucent.value else colorBgOpaque.value
     }
     return TopAppBarDefaults.topAppBarColors(
@@ -525,7 +525,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
                 OudsButtonIconBadge(
                     contentDescription = badge.contentDescription,
                     count = badge.count,
-                    borderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                    borderColor = OudsTheme.components.bar.colorBorderBadge.value
                 )
             }
 

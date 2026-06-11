@@ -285,7 +285,7 @@ private fun OudsBadge(
 
 @Composable
 private fun size(size: OudsBadgeSize): Dp {
-    return with(OudsTheme.componentsTokens.badge) {
+    return with(OudsTheme.components.badge) {
         when (size) {
             OudsBadgeSize.ExtraSmall -> sizeXsmall
             OudsBadgeSize.Small -> sizeSmall
@@ -357,7 +357,7 @@ private fun textStyle(size: OudsBadgeSize): TextStyle? {
 private fun contentPadding(size: OudsBadgeSize, count: Int?, withIconStatus: OudsIconBadgeStatus?, scale: Float): PaddingValues {
     val hasStatusWithCustomIcon = withIconStatus?.toBadgeStatus() in listOf(OudsBadgeStatus.Neutral, OudsBadgeStatus.Accent)
             && withIconStatus?.icon != null
-    return with(OudsTheme.componentsTokens.badge) {
+    return with(OudsTheme.components.badge) {
         when {
             count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
             count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
@@ -563,7 +563,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
         OudsBadgeIcon(
             { icon ->
                 if (icon.enabled == true) {
-                    val iconTokens = OudsTheme.componentsTokens.icon
+                    val iconTokens = OudsTheme.components.icon
                     LayeredTintedPainter(
                         backPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningExternalShape),
                         backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
