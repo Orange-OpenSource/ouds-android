@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 
 /**
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 sealed interface OudsGridKeyToken : OudsKeyToken {
     data object ColumnGap : OudsGridKeyToken
     data object Margin : OudsGridKeyToken

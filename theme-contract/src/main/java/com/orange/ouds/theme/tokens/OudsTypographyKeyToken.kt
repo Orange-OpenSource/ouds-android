@@ -12,12 +12,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 
 /**
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 sealed interface OudsTypographyKeyToken : OudsKeyToken {
 
     sealed interface Display : OudsTypographyKeyToken {

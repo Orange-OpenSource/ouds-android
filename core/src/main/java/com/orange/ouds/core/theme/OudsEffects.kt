@@ -15,7 +15,7 @@ package com.orange.ouds.core.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.theme.tokens.OudsEffectKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 
@@ -49,7 +49,7 @@ private fun OudsEffects.fromToken(token: OudsEffectKeyToken): Int {
  *
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 val OudsEffectKeyToken.value: Int
     @ReadOnlyComposable
     @Composable

@@ -15,13 +15,13 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 /** @suppress */
-@InternalOudsApi
+@DeveloperOudsApi
 interface OudsLinkTokens {
     val colorChevronEnabled: OudsColorKeyToken
     val colorChevronFocus: OudsColorKeyToken

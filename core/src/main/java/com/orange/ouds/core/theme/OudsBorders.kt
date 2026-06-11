@@ -34,7 +34,7 @@ import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import java.util.Locale
@@ -177,7 +177,7 @@ private fun OudsBorders.fromToken(token: OudsBorderKeyToken.Style): OudsBorderSt
  *
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 val OudsBorderKeyToken.Radius.value: Dp
     @ReadOnlyComposable
     @Composable
@@ -188,7 +188,7 @@ val OudsBorderKeyToken.Radius.value: Dp
  *
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 val OudsBorderKeyToken.Style.value: OudsBorderStyle
     @ReadOnlyComposable
     @Composable
@@ -199,7 +199,7 @@ val OudsBorderKeyToken.Style.value: OudsBorderStyle
  *
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 val OudsBorderKeyToken.Width.value: Dp
     @ReadOnlyComposable
     @Composable

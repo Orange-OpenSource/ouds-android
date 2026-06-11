@@ -28,7 +28,7 @@ import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -53,7 +53,7 @@ internal val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositi
 internal val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
 internal val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 internal val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
-internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
+internal val LocalComponents = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponents") }
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
@@ -124,11 +124,11 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    @InternalOudsApi
+    @DeveloperOudsApi
     val components: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
-        get() = LocalComponentsTokens.current
+        get() = LocalComponents.current
 
     internal val drawableResources: OudsDrawableResources
         @Composable
@@ -190,7 +190,7 @@ fun OudsTheme(
             LocalOpacities provides opacityTokens.getOpacities(),
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
-            LocalComponentsTokens provides componentsTokens,
+            LocalComponents provides componentsTokens,
             LocalDrawableResources provides drawableResources,
             LocalThemeSettings provides settings,
             LocalThemeName provides theme.name

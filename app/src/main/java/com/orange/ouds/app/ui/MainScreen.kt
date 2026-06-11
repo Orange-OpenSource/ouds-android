@@ -54,7 +54,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
@@ -77,7 +77,7 @@ fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
     )
 }
 
-@OptIn(InternalOudsApi::class)
+@OptIn(DeveloperOudsApi::class)
 @Composable
 fun MainScreen(
     themeSettings: OudsThemeSettings,

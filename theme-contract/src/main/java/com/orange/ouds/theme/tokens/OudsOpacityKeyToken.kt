@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 
 /**
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 sealed interface OudsOpacityKeyToken : OudsKeyToken {
     data object Disabled : OudsOpacityKeyToken
     data object Invisible : OudsOpacityKeyToken

@@ -56,8 +56,8 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.foundation.ExperimentalOudsApi
-import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 
@@ -360,7 +360,7 @@ class OudsChipIcon private constructor(
         get() = extraParameters.tint
 }
 
-@InternalOudsApi
+@DeveloperOudsApi
 enum class OudsChipState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
@@ -370,6 +370,7 @@ internal enum class OudsChipIconPosition {
 }
 
 @ExperimentalOudsApi
+@DeveloperOudsApi
 class OudsChipScope internal constructor(val tokens: OudsChipTokens) {
 
     var state: OudsChipState by mutableStateOf(OudsChipState.Enabled)

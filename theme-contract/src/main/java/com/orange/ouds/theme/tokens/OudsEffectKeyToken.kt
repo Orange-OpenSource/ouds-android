@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 
 /**
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 sealed interface OudsEffectKeyToken : OudsKeyToken {
     sealed interface Blur : OudsEffectKeyToken {
         data object Drag : Blur

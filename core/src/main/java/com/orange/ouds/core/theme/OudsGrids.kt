@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.theme.tokens.OudsGridKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
@@ -66,7 +66,7 @@ private fun OudsGrids.fromToken(token: OudsGridKeyToken): Dp {
  *
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 val OudsGridKeyToken.value: Dp
     @Composable
     get() = OudsTheme.grids.fromToken(this)

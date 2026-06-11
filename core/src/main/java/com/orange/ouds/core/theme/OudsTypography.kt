@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.theme.tokens.OudsTypographyKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 
@@ -443,7 +443,7 @@ private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
  *
  * @suppress
  */
-@InternalOudsApi
+@DeveloperOudsApi
 val OudsTypographyKeyToken.value: TextStyle
     @Composable
     get() = OudsTheme.typography.fromToken(this)

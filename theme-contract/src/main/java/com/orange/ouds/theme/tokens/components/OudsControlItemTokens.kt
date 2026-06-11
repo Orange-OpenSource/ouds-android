@@ -15,7 +15,7 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
@@ -23,7 +23,7 @@ import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 
 /** @suppress */
-@InternalOudsApi
+@DeveloperOudsApi
 interface OudsControlItemTokens {
     val borderRadiusCurrentIndicator: OudsBorderKeyToken.Radius
     val borderRadiusDefault: OudsBorderKeyToken.Radius

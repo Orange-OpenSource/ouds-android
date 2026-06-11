@@ -25,6 +25,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.DeveloperOudsApi
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -174,6 +175,7 @@ fun OudsSuggestionChip(
 }
 
 @Composable
+@DeveloperOudsApi
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
@@ -195,6 +197,7 @@ fun OudsBasicSuggestionChip(
 }
 
 @Composable
+@DeveloperOudsApi
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
@@ -216,6 +219,7 @@ fun OudsBasicSuggestionChip(
 }
 
 @Composable
+@DeveloperOudsApi
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
@@ -238,6 +242,7 @@ fun OudsBasicSuggestionChip(
 }
 
 @Composable
+@DeveloperOudsApi
 @ExperimentalOudsApi
 fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(OudsChipIconPosition.Start)
 
