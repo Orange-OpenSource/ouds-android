@@ -30,7 +30,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -54,10 +56,13 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.theme.tokens.components.OudsChipTokens
 
 @Composable
-internal fun OudsChip(
+internal fun OudsBasicChip(
     selectable: Boolean,
     selected: Boolean,
     onClick: () -> Unit,
@@ -66,7 +71,8 @@ internal fun OudsChip(
     iconPosition: OudsChipIconPosition,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsChipScope.() -> Unit = { DefaultChipContent(iconPosition) }
 ) {
     @Suppress("NAME_SHADOWING") val selected = selectable && selected
     val chipTokens = OudsTheme.componentsTokens.chip
@@ -106,7 +112,9 @@ internal fun OudsChip(
             .heightIn(min = chipTokens.sizeMinHeightInteractiveArea.value),
         contentAlignment = Alignment.Center
     ) {
-        Row(
+        val scope = remember(chipTokens) { OudsChipScope(tokens = chipTokens) }
+        Box(
+            propagateMinConstraints = true,
             modifier = modifier
                 .widthIn(min = chipTokens.sizeMinWidth.dp)
                 .heightIn(min = chipTokens.sizeMinHeight.dp)
@@ -141,20 +149,28 @@ internal fun OudsChip(
                     }
                 }
                 .padding(paddingValues = contentPadding(label, icon, iconPosition, selected)),
-            horizontalArrangement = Arrangement.spacedBy(chipTokens.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically
         ) {
-            if (selected) {
-                tickColor.value?.let { tickColor ->
-                    Icon(
-                        modifier = Modifier.size(chipTokens.sizeIcon.value * iconScale),
-                        painter = painterResource(id = OudsTheme.drawableResources.component.chip.tick),
-                        tint = tickColor,
-                        contentDescription = null
+            val tick: @Composable () -> Unit = {
+                if (selected) {
+                    tickColor.value?.let { tickColor ->
+                        Icon(
+                            modifier = Modifier.size(chipTokens.sizeIcon.value * iconScale),
+                            painter = painterResource(id = OudsTheme.drawableResources.component.chip.tick),
+                            tint = tickColor,
+                            contentDescription = null
+                        )
+                    }
+                }
+            }
+            val labelContent: @Composable () -> Unit = {
+                if (label != null) {
+                    Text(
+                        text = label,
+                        color = contentColor.value,
+                        style = OudsTheme.typography.label.moderate.medium
                     )
                 }
             }
-
             val iconContent: @Composable () -> Unit = {
                 icon?.Content(
                     modifier = Modifier
@@ -166,18 +182,13 @@ internal fun OudsChip(
                 )
             }
 
-            if (iconPosition == OudsChipIconPosition.Start) {
-                iconContent()
-            }
-            if (label != null) {
-                Text(
-                    text = label,
-                    color = contentColor.value,
-                    style = OudsTheme.typography.label.moderate.medium
-                )
-            }
-            if (iconPosition == OudsChipIconPosition.End) {
-                iconContent()
+            with(scope) {
+                this.icon = iconContent
+                this.label = labelContent
+                this.tick = tick
+                this.state = state
+                this.contentColor = contentColor.value
+                content()
             }
         }
     }
@@ -349,10 +360,53 @@ class OudsChipIcon private constructor(
         get() = extraParameters.tint
 }
 
-internal enum class OudsChipState {
+@InternalOudsApi
+enum class OudsChipState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
 internal enum class OudsChipIconPosition {
     Start, End
+}
+
+@ExperimentalOudsApi
+class OudsChipScope internal constructor(val tokens: OudsChipTokens) {
+
+    var state: OudsChipState by mutableStateOf(OudsChipState.Enabled)
+        internal set
+
+    var contentColor: Color by mutableStateOf(Color.Unspecified)
+        internal set
+
+    internal var icon: @Composable () -> Unit = {}
+
+    internal var label: @Composable () -> Unit = {}
+
+    internal var tick: @Composable () -> Unit = {}
+
+    @Composable
+    fun Icon() = icon()
+
+    @Composable
+    fun Label() = label()
+
+    @Composable
+    internal fun Tick() = tick()
+}
+
+@Composable
+internal fun OudsChipScope.DefaultChipContent(iconPosition: OudsChipIconPosition) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(tokens.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Tick()
+        if (iconPosition == OudsChipIconPosition.Start) {
+            Icon()
+        }
+        Label()
+        if (iconPosition == OudsChipIconPosition.End) {
+            Icon()
+        }
+    }
 }

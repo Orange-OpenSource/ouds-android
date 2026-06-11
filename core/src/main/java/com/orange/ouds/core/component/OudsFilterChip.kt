@@ -192,7 +192,7 @@ private fun OudsFilterChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsChip(
+    OudsBasicChip(
         selectable = true,
         selected = selected,
         onClick = onClick,

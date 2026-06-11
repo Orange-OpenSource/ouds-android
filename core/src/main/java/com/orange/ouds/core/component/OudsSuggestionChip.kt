@@ -25,6 +25,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -64,7 +65,7 @@ fun OudsSuggestionChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsSuggestionChip(
+    OudsBasicSuggestionChip(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = null,
@@ -112,7 +113,7 @@ fun OudsSuggestionChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsSuggestionChip(
+    OudsBasicSuggestionChip(
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
@@ -162,7 +163,7 @@ fun OudsSuggestionChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsSuggestionChip(
+    OudsBasicSuggestionChip(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = icon,
@@ -173,16 +174,85 @@ fun OudsSuggestionChip(
 }
 
 @Composable
+@ExperimentalOudsApi
+fun OudsBasicSuggestionChip(
+    onClick: () -> Unit,
+    label: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
+) {
+    OudsBasicSuggestionChip(
+        onClick = onClick,
+        nullableLabel = label,
+        nullableIcon = null,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        content = content
+    )
+}
+
+@Composable
+@ExperimentalOudsApi
+fun OudsBasicSuggestionChip(
+    onClick: () -> Unit,
+    icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
+) {
+    OudsBasicSuggestionChip(
+        onClick = onClick,
+        nullableLabel = null,
+        nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        content = content
+    )
+}
+
+@Composable
+@ExperimentalOudsApi
+fun OudsBasicSuggestionChip(
+    onClick: () -> Unit,
+    label: String,
+    icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
+) {
+    OudsBasicSuggestionChip(
+        onClick = onClick,
+        nullableLabel = label,
+        nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        content = content
+    )
+}
+
+@Composable
+@ExperimentalOudsApi
+fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(OudsChipIconPosition.Start)
+
+@Composable
 @JvmName("OudsSuggestionChipNullableLabelAndIcon")
-private fun OudsSuggestionChip(
+private fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
     nullableLabel: String?,
     nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
-    OudsChip(
+    OudsBasicChip(
         selectable = false,
         selected = false,
         onClick = onClick,
@@ -191,7 +261,8 @@ private fun OudsSuggestionChip(
         iconPosition = OudsChipIconPosition.Start,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        content = content
     )
 }
 
@@ -212,11 +283,12 @@ internal fun PreviewOudsSuggestionChip(
         val label = if (hasLabel) "Label" else null
         val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
         PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-            OudsSuggestionChip(
-                nullableIcon = icon,
-                nullableLabel = label,
-                onClick = {}
-            )
+            when {
+                label != null && icon != null -> OudsSuggestionChip(onClick = {}, label = label, icon = icon)
+                label != null -> OudsSuggestionChip(onClick = {}, label = label)
+                icon != null -> OudsSuggestionChip(onClick = {}, icon = icon)
+                else -> {}
+            }
         }
     }
 }
@@ -230,10 +302,10 @@ private fun PreviewOudsSuggestionChipWithUntintedIcon() {
 
 @Composable
 internal fun PreviewOudsSuggestionChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) { 
+    PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
         OudsSuggestionChip(
-            nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
-            nullableLabel = "Label",
+            icon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            label = "Label",
             onClick = {}
         )
     }
