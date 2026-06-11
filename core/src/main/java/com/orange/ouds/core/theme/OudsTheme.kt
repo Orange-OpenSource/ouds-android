@@ -23,13 +23,11 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalLocale
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
-import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceDark
-import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceLight
-import com.orange.ouds.core.theme.OudsTheme.Tweak.Invert
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -59,6 +57,7 @@ internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
+internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
 
 /**
  * Object that stores tokens values for the current theme.
@@ -67,13 +66,17 @@ object OudsTheme {
 
     /**
      * Defines adjustments that can be applied to the current [OudsTheme] via the [OudsThemeTweak] composable.
-     *
-     * @property Invert Inverts the current theme (switches from Light to Dark or Dark to Light).
-     * @property ForceDark Forces the theme to Dark mode, regardless of the system setting.
-     * @property ForceLight Forces the theme to Light mode, regardless of the system setting.
      */
     enum class Tweak {
-        Invert, ForceDark, ForceLight
+
+        /** Inverts the current theme (switches from Light to Dark or Dark to Light). */
+        Invert,
+
+        /** Forces the theme to Dark mode, regardless of the system setting. */
+        ForceDark,
+
+        /** Forces the theme to Light mode, regardless of the system setting. */
+        ForceLight
     }
 
     val colorScheme: OudsColorScheme
@@ -136,10 +139,16 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalDrawableResources.current
 
-    internal val settings: OudsThemeSettings
+    val settings: OudsThemeSettings
         @Composable
         @ReadOnlyComposable
         get() = LocalThemeSettings.current
+
+    val name: String
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalThemeName.current
+
 }
 
 /**
@@ -167,7 +176,7 @@ fun OudsTheme(
         }
         val locale = applicationLocaleList.get(0)
             .orElse { ConfigurationCompat.getLocales(LocalConfiguration.current).get(0) }
-            .orElse { java.util.Locale.getDefault() }
+            .orElse { LocalLocale.current.platformLocale }
 
         CompositionLocalProvider(
             LocalDarkThemeEnabled provides darkThemeEnabled,
@@ -188,7 +197,8 @@ fun OudsTheme(
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
             LocalThemeSettings provides settings,
-            LocalComponents provides componentsTokens.getComponents()
+            LocalComponents provides componentsTokens.getComponents(),
+            LocalThemeName provides theme.name
         ) {
             MaterialTheme(
                 colorScheme = materialColorScheme,
