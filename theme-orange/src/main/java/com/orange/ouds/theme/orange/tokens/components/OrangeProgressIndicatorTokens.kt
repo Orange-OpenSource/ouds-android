@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.orange.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
-import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
@@ -30,7 +29,6 @@ internal data class OrangeProgressIndicatorTokens(
         OudsColorRawTokens.ColorFunctionalGrayLight400,
         OudsColorRawTokens.ColorFunctionalGrayDark480
     ),
-    override val sizeCircularIndicator: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.Decorative.Large,
     override val sizeLinearIndicatorHeight: Float = OudsDimensionRawTokens.Dimension50,
     override val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall
 ) : OudsProgressIndicatorTokens
