@@ -199,15 +199,17 @@ fun OudsTheme(
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),
             LocalComponentsTokens provides componentsTokens,
-            LocalComponents provides componentsTokens.getComponents(),
             LocalDrawableResources provides drawableResources,
             LocalThemeSettings provides settings,
             LocalThemeName provides theme.name
         ) {
-            MaterialTheme(
-                colorScheme = materialColorScheme,
-                content = content
-            )
+            // Bind LocalComponents after the others because the getComponents method needs to access the other composition locals 
+            CompositionLocalProvider(LocalComponents provides componentsTokens.getComponents()) {
+                MaterialTheme(
+                    colorScheme = materialColorScheme,
+                    content = content
+                )
+            }
         }
     }
 }
