@@ -56,10 +56,9 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.foundation.LowLevelOudsApi
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.LowLevelOudsApi
 import com.orange.ouds.foundation.extensions.orElse
-import com.orange.ouds.theme.tokens.components.OudsChipTokens
 
 @Composable
 internal fun OudsBasicChip(
@@ -112,7 +111,6 @@ internal fun OudsBasicChip(
             .heightIn(min = chipTokens.sizeMinHeightInteractiveArea.value),
         contentAlignment = Alignment.Center
     ) {
-        val scope = remember(chipTokens) { OudsChipScope(tokens = chipTokens) }
         Box(
             propagateMinConstraints = true,
             modifier = modifier
@@ -182,6 +180,7 @@ internal fun OudsBasicChip(
                 )
             }
 
+            val scope = remember { OudsChipScope() }
             with(scope) {
                 this.icon = iconContent
                 this.label = labelContent
@@ -360,18 +359,41 @@ class OudsChipIcon private constructor(
         get() = extraParameters.tint
 }
 
+/**
+ * Represents the different states of a chip.
+ */
 @LowLevelOudsApi
 enum class OudsChipState {
-    Enabled, Hovered, Pressed, Disabled, Focused
+
+    /** The chip is enabled and can be interacted with. */
+    Enabled,
+
+    /** The chip is being hovered over. */
+    Hovered,
+
+    /** The chip is being pressed. */
+    Pressed,
+
+    /** The chip is disabled and cannot be interacted with. */
+    Disabled,
+
+    /** The chip is focused. */
+    Focused
 }
 
 internal enum class OudsChipIconPosition {
     Start, End
 }
 
+/**
+ * Scope for the content of a chip.
+ *
+ * @property state The current state of the chip.
+ * @property contentColor The content color of the chip.
+ */
 @ExperimentalOudsApi
 @LowLevelOudsApi
-class OudsChipScope internal constructor(val tokens: OudsChipTokens) {
+class OudsChipScope {
 
     var state: OudsChipState by mutableStateOf(OudsChipState.Enabled)
         internal set
@@ -385,9 +407,15 @@ class OudsChipScope internal constructor(val tokens: OudsChipTokens) {
 
     internal var tick: @Composable () -> Unit = {}
 
+    /**
+     * The icon of the chip.
+     */
     @Composable
     fun Icon() = icon()
 
+    /**
+     * The label of the chip.
+     */
     @Composable
     fun Label() = label()
 
@@ -398,7 +426,7 @@ class OudsChipScope internal constructor(val tokens: OudsChipTokens) {
 @Composable
 internal fun OudsChipScope.DefaultChipContent(iconPosition: OudsChipIconPosition) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(tokens.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.chip.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Tick()

@@ -174,6 +174,35 @@ fun OudsSuggestionChip(
     )
 }
 
+/**
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
+ *
+ * This version of the suggestion chip uses the *text only* layout which displays only text, offering a clean and minimalistic look.
+ * Best suited for category-based filters that do not require additional visual elements.
+ * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
+ *
+ * > Design name: Suggestion Chip
+ *
+ * > Design version: 1.4.0
+ *
+ * @param onClick Called when this chip is clicked.
+ * @param label Text label displayed in the chip.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ * @param content The custom content of this chip.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextOnlySample
+ */
 @Composable
 @LowLevelOudsApi
 @ExperimentalOudsApi
@@ -196,6 +225,35 @@ fun OudsBasicSuggestionChip(
     )
 }
 
+/**
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
+ *
+ * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
+ * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
+ *
+ * > Design name: Suggestion Chip
+ *
+ * > Design version: 1.4.0
+ *
+ * @param onClick Called when this chip is clicked.
+ * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ * @param content The custom content of this chip.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlySample
+ */
 @Composable
 @LowLevelOudsApi
 @ExperimentalOudsApi
@@ -218,6 +276,36 @@ fun OudsBasicSuggestionChip(
     )
 }
 
+/**
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
+ *
+ * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
+ * Ideal when a visual cue helps reinforce the filter's meaning.
+ * Other layouts are available for this component: *text only* and *icon only*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
+ *
+ * > Design name: Suggestion Chip
+ *
+ * > Design version: 1.4.0
+ *
+ * @param onClick Called when this chip is clicked.
+ * @param label Text label displayed in the chip.
+ * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ * @param content The custom content of this chip.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconSample
+ */
 @Composable
 @LowLevelOudsApi
 @ExperimentalOudsApi
@@ -241,6 +329,9 @@ fun OudsBasicSuggestionChip(
     )
 }
 
+/**
+ * The default content of a suggestion chip.
+ */
 @Composable
 @LowLevelOudsApi
 @ExperimentalOudsApi
