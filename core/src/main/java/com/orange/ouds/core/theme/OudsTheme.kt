@@ -23,7 +23,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.platform.LocalLocale
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
@@ -56,10 +55,10 @@ internal val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingC
 internal val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 internal val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
 internal val LocalComponentsTokens = staticCompositionLocalOf<OudsComponentsTokens> { missingCompositionLocalError("LocalComponentsTokens") }
-internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
+internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
 
 /**
@@ -152,7 +151,6 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalThemeName.current
-
 }
 
 /**
@@ -180,8 +178,8 @@ fun OudsTheme(
         }
         val locale = applicationLocaleList.get(0)
             .orElse { ConfigurationCompat.getLocales(LocalConfiguration.current).get(0) }
-            .orElse { LocalLocale.current.platformLocale }
-
+            .orElse { java.util.Locale.getDefault() }
+        
         CompositionLocalProvider(
             LocalDarkThemeEnabled provides darkThemeEnabled,
             LocalHighContrastModeEnabled provides context.isHighContrastModeEnabled(),

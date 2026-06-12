@@ -148,7 +148,7 @@ internal fun OudsBasicChip(
                 }
                 .padding(paddingValues = contentPadding(label, icon, iconPosition, selected)),
         ) {
-            val tick: @Composable () -> Unit = {
+            val tickContent: @Composable () -> Unit = {
                 if (selected) {
                     tickColor.value?.let { tickColor ->
                         Icon(
@@ -184,7 +184,7 @@ internal fun OudsBasicChip(
             with(scope) {
                 this.icon = iconContent
                 this.label = labelContent
-                this.tick = tick
+                this.tick = tickContent
                 this.state = state
                 this.contentColor = contentColor.value
                 content()

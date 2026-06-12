@@ -130,7 +130,7 @@ fun OudsSuggestionChip(
  * or clicked to apply the suggestion, streamlining input and enhancing usability.
  *
  * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
- * Ideal when a visual cue helps reinforce the filter’s meaning.
+ * Ideal when a visual cue helps reinforce the filter's meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
