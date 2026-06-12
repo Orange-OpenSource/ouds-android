@@ -12,12 +12,22 @@
 
 package com.orange.ouds.core.component.samples
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.core.component.OudsBasicSuggestionChip
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.component.OudsSuggestionChip
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
@@ -77,6 +87,63 @@ internal fun OudsSuggestionChipTextAndIconWithUntintedIconSample() {
     )
 }
 
+@Composable
+internal fun OudsBasicSuggestionChipTextOnlySample() {
+    OudsBasicSuggestionChip(
+        onClick = { /* Do something! */ },
+        label = "Label"
+    ) {
+        Column {
+            Label()
+            Text(
+                text = "Extra label",
+                color = contentColor,
+                style = OudsTheme.typography.label.moderate.small
+            )
+        }
+    }
+}
+
+@Composable
+internal fun OudsBasicSuggestionChipIconOnlySample() {
+    OudsBasicSuggestionChip(
+        onClick = { /* Do something! */ },
+        icon = OudsChipIcon(
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = "Content description"
+        )
+    ) {
+        Icon(modifier = Modifier.size(OudsTheme.sizes.icon.withLabel.medium.sizeMedium))
+    }
+}
+
+@Composable
+internal fun OudsBasicSuggestionChipTextAndIconSample() {
+    OudsBasicSuggestionChip(
+        onClick = { /* Do something! */ },
+        label = "Label",
+        icon = OudsChipIcon(
+            imageVector = Icons.Filled.FavoriteBorder,
+            contentDescription = ""
+        )
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.components.chip.space.columnGap.icon, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon()
+            Column {
+                Label()
+                Text(
+                    text = "Extra label",
+                    color = contentColor,
+                    style = OudsTheme.typography.label.moderate.small
+                )
+            }
+        }
+    }
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsSuggestionChipTextOnlySample() = OudsPreview {
@@ -105,4 +172,22 @@ private fun PreviewOudsSuggestionChipIconOnlyWithUntintedIconSample() = OudsPrev
 @Composable
 private fun PreviewOudsSuggestionChipTextAndIconWithUntintedIconSample() = OudsPreview {
     OudsSuggestionChipTextAndIconWithUntintedIconSample()
+}
+
+@Preview
+@Composable
+private fun PreviewOudsBasicSuggestionChipTextOnlySample() = OudsPreview {
+    OudsBasicSuggestionChipTextOnlySample()
+}
+
+@Preview
+@Composable
+private fun PreviewOudsBasicSuggestionChipIconOnlySample() = OudsPreview {
+    OudsBasicSuggestionChipIconOnlySample()
+}
+
+@Preview
+@Composable
+private fun PreviewOudsBasicSuggestionChipTextAndIconSample() = OudsPreview {
+    OudsBasicSuggestionChipTextAndIconSample()
 }

@@ -160,16 +160,17 @@ internal fun OudsBasicChip(
                     }
                 }
             }
-            val labelContent: @Composable () -> Unit = {
+            val labelContent: @Composable (Modifier) -> Unit = { modifier ->
                 if (label != null) {
                     Text(
+                        modifier = modifier,
                         text = label,
                         color = contentColor.value,
                         style = OudsTheme.typography.label.moderate.medium
                     )
                 }
             }
-            val iconContent: @Composable () -> Unit = {
+            val iconContent: @Composable (Modifier) -> Unit = { modifier ->
                 icon?.Content(
                     modifier = Modifier
                         .iconSize(chipTokens.sizeIcon.value * iconScale, icon.tinted)
@@ -401,23 +402,27 @@ class OudsChipScope {
     var contentColor: Color by mutableStateOf(Color.Unspecified)
         internal set
 
-    internal var icon: @Composable () -> Unit = {}
+    internal var icon: @Composable (Modifier) -> Unit = {}
 
-    internal var label: @Composable () -> Unit = {}
+    internal var label: @Composable (Modifier) -> Unit = {}
 
     internal var tick: @Composable () -> Unit = {}
 
     /**
      * The icon of the chip.
+     * 
+     * @param modifier The [Modifier] to be applied to the icon.
      */
     @Composable
-    fun Icon() = icon()
+    fun Icon(modifier: Modifier = Modifier) = icon(modifier)
 
     /**
      * The label of the chip.
+     * 
+     * @param modifier The [Modifier] to be applied to the label.
      */
     @Composable
-    fun Label() = label()
+    fun Label(modifier: Modifier = Modifier) = label(modifier)
 
     @Composable
     internal fun Tick() = tick()

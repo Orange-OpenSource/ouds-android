@@ -201,7 +201,7 @@ fun OudsSuggestionChip(
  *   happen internally.
  * @param content The custom content of this chip.
  *
- * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextOnlySample
+ * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextOnlySample
  */
 @Composable
 @LowLevelOudsApi
@@ -252,7 +252,7 @@ fun OudsBasicSuggestionChip(
  *   happen internally.
  * @param content The custom content of this chip.
  *
- * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlySample
+ * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipIconOnlySample
  */
 @Composable
 @LowLevelOudsApi
@@ -304,7 +304,7 @@ fun OudsBasicSuggestionChip(
  *   happen internally.
  * @param content The custom content of this chip.
  *
- * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconSample
+ * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextAndIconSample
  */
 @Composable
 @LowLevelOudsApi
