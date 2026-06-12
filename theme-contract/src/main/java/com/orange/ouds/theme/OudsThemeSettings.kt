@@ -46,7 +46,7 @@ import kotlinx.parcelize.Parcelize
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
-data class OudsThemeSettings(
+data class OudsThemeSettings @JvmOverloads constructor(
     val roundedCornerButtons: Boolean? = null,
     val roundedCornerTextInputs: Boolean? = null,
     val roundedCornerAlertMessages: Boolean? = null,

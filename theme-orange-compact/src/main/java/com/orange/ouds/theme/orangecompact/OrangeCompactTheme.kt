@@ -129,7 +129,7 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
  * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
  */
-open class OrangeCompactTheme(
+open class OrangeCompactTheme @JvmOverloads constructor(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = true,
