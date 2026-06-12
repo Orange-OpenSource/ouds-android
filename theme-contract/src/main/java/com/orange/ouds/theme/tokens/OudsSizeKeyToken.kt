@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 
 /**
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 sealed interface OudsSizeKeyToken : OudsKeyToken {
     sealed interface Icon : OudsSizeKeyToken {
         sealed interface Decorative : Icon {

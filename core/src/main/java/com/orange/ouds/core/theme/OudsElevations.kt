@@ -17,7 +17,7 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsElevationKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
 
@@ -71,7 +71,7 @@ private fun OudsElevations.fromToken(token: OudsElevationKeyToken): Dp {
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 val OudsElevationKeyToken.value: Dp
     @ReadOnlyComposable
     @Composable

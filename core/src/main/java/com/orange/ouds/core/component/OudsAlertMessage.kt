@@ -213,7 +213,7 @@ private fun OudsAlertMessage(
     bulletList: List<String>? = null,
     annotatedBulletList: List<OudsAnnotatedAlertMessageBulletListLabel>? = null
 ) {
-    with(OudsTheme.components.alert) {
+    with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
         val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
@@ -467,7 +467,7 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min),
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.components.bulletList.spaceColumnGapBodyMedium.value)
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.bulletList.spaceColumnGapBodyMedium.value)
     ) {
         Box(
             modifier = Modifier

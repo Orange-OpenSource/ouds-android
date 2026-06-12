@@ -15,11 +15,11 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /** @suppress */
-@DeveloperOudsApi
+@InternalOudsApi
 interface OudsLinkMonoTokens {
     val colorContentDisabled: OudsColorKeyToken
     val colorContentEnabled: OudsColorKeyToken

@@ -195,14 +195,14 @@ fun OudsTag(
 
 @Composable
 private fun shape(roundedCorners: Boolean): RoundedCornerShape {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         RoundedCornerShape(if (roundedCorners) borderRadius.value else OudsTheme.borders.radius.none)
     }
 }
 
 @Composable
 private fun minWidth(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> sizeMinWidthDefault
             OudsTagSize.Small -> sizeMinWidthSmall
@@ -212,7 +212,7 @@ private fun minWidth(size: OudsTagSize): Dp {
 
 @Composable
 private fun minHeight(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> sizeMinHeightDefault
             OudsTagSize.Small -> sizeMinHeightSmall
@@ -222,7 +222,7 @@ private fun minHeight(size: OudsTagSize): Dp {
 
 @Composable
 private fun assetSize(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> sizeAssetDefault
             OudsTagSize.Small -> sizeAssetSmall
@@ -242,7 +242,7 @@ private fun textStyle(size: OudsTagSize): TextStyle {
 
 @Composable
 private fun betweenAssetAndLabelSpace(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> spaceColumnGapDefault
             OudsTagSize.Small -> spaceColumnGapSmall
@@ -316,7 +316,7 @@ private fun contentPadding(size: OudsTagSize, hasAsset: Boolean): PaddingValues 
     val verticalPadding: Dp
     val startPadding: Dp
     val endPadding: Dp
-    with(OudsTheme.components.tag) {
+    with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> {
                 verticalPadding = spacePaddingBlockDefault.value
@@ -336,7 +336,7 @@ private fun contentPadding(size: OudsTagSize, hasAsset: Boolean): PaddingValues 
 
 @Composable
 private fun iconPadding(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> spaceInsetIconDefault
             OudsTagSize.Small -> spaceInsetIconSmall
@@ -346,7 +346,7 @@ private fun iconPadding(size: OudsTagSize): Dp {
 
 @Composable
 private fun bulletPadding(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> spaceInsetBulletDefault.dp
             OudsTagSize.Small -> spaceInsetBulletSmall.value
@@ -356,7 +356,7 @@ private fun bulletPadding(size: OudsTagSize): Dp {
 
 @Composable
 private fun loaderPadding(size: OudsTagSize): Dp {
-    return with(OudsTheme.components.tag) {
+    return with(OudsTheme.componentsTokens.tag) {
         when (size) {
             OudsTagSize.Default -> spaceInsetLoaderDefault
             OudsTagSize.Small -> spaceInsetLoaderSmall
@@ -689,7 +689,7 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
         @Composable
         override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter {
-            val iconTokens = OudsTheme.components.icon
+            val iconTokens = OudsTheme.componentsTokens.icon
             return when {
                 appearance == OudsTagAppearance.Emphasized || !enabled -> painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)
                 else -> LayeredTintedPainter(

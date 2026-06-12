@@ -1067,7 +1067,7 @@ internal fun OudsTextInputDecorator(
     constrainedMaxWidth: Boolean,
 ) {
     val hasError = error != null
-    with(OudsTheme.components.textInput) {
+    with(OudsTheme.componentsTokens.textInput) {
         val borderWidth = borderWidth(state)
         val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
@@ -1163,7 +1163,7 @@ internal fun OudsTextInputDecorator(
 
                 // Trailing elements
                 if (hasError || state == OudsTextInputState.Loading || trailingIconButton != null) {
-                    val buttonTokens = OudsTheme.components.button
+                    val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -1194,7 +1194,7 @@ internal fun OudsTextInputDecorator(
                                 contentAlignment = Alignment.Center
                             ) {
                                 OudsCircularProgressIndicator(
-                                    color = OudsTheme.components.button.colorContentMinimalLoading.value,
+                                    color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
                                     progress = loader?.progress,
                                     scale = iconScale
                                 )
@@ -1233,7 +1233,7 @@ internal fun OudsTextInputHelperTextErrorMessage(
     annotatedHelperText: OudsAnnotatedHelperText?,
     modifier: Modifier = Modifier
 ) {
-    with(OudsTheme.components.textInput) {
+    with(OudsTheme.componentsTokens.textInput) {
         val hasError = error != null
         val isHelperTextNullOrBlank = annotatedHelperText?.text.orElse { helperText }.isNullOrBlank()
         if ((!hasError && !isHelperTextNullOrBlank) || (hasError && error.message.isNotBlank())) {
@@ -1281,7 +1281,7 @@ internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: Ouds
 internal fun OptionalHelperLink(state: OudsTextInputState, helperLink: OudsTextInputHelperLink?) {
     if (!helperLink?.text.isNullOrBlank()) {
         OudsLink(
-            modifier = Modifier.padding(horizontal = OudsTheme.components.textInput.spacePaddingInlineDefault.value),
+            modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
             label = helperLink.text,
             onClick = helperLink.onClick,
             size = OudsLinkSize.Small,
@@ -1291,7 +1291,7 @@ internal fun OptionalHelperLink(state: OudsTextInputState, helperLink: OudsTextI
 }
 
 @Composable
-internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.components.textInput) {
+internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
     val borderWidth = if (state == OudsTextInputState.Focused) borderWidthFocus else borderWidthDefault
     return@with borderWidth.value.takeUnlessHairline
 }
@@ -1375,7 +1375,7 @@ internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Bo
     return if (error) {
         errorContentColor(state = state)
     } else {
-        with(OudsTheme.components.textInput) {
+        with(OudsTheme.componentsTokens.textInput) {
             when (state) {
                 OudsTextInputState.Enabled -> colorBorderEnabled.value
                 OudsTextInputState.Hovered -> colorBorderHover.value
@@ -1412,7 +1412,7 @@ internal fun textInputEnabled(state: OudsTextInputState) =
 
 internal val textInputBorderRadius: Dp
     @Composable
-    get() = with(OudsTheme.components.textInput) {
+    get() = with(OudsTheme.componentsTokens.textInput) {
         if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded else borderRadiusDefault
     }.value
 

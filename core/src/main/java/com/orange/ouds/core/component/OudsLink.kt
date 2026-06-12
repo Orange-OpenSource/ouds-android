@@ -203,7 +203,7 @@ private fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true
 ) {
-    val linkTokens = OudsTheme.components.link
+    val linkTokens = OudsTheme.componentsTokens.link
     val interactionSource = remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getLinkState(enabled = enabled, interactionState = interactionState)
@@ -322,7 +322,7 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 @Composable
 internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color {
     return if (monochrome) {
-        with(OudsTheme.components.linkMonochrome) {
+        with(OudsTheme.componentsTokens.linkMonochrome) {
             when (state) {
                 OudsLinkState.Enabled -> colorContentEnabled
                 OudsLinkState.Focused -> colorContentFocus
@@ -332,7 +332,7 @@ internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color 
             }.value
         }
     } else {
-        with(OudsTheme.components.link) {
+        with(OudsTheme.componentsTokens.link) {
             when (state) {
                 OudsLinkState.Enabled -> colorContentEnabled.value
                 OudsLinkState.Focused -> colorContentFocus.value
@@ -346,7 +346,7 @@ internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color 
 
 @Composable
 private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
-    return with(OudsTheme.components.link) {
+    return with(OudsTheme.componentsTokens.link) {
         if (monochrome) {
             linkContentColor(state = state, monochrome = true)
         } else {

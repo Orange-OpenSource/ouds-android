@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.core.theme.isOudsInDarkTheme
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 
 /**
@@ -29,7 +29,7 @@ import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 val OudsLightDarkColor.value: Color
     @ReadOnlyComposable
     @Composable

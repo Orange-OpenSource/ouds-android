@@ -13,7 +13,7 @@
 package com.orange.ouds.theme.tokens.components
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 
 /**
  * An aggregate of two colors, with one being used for the light theme and the other for the dark theme.
@@ -24,5 +24,5 @@ import com.orange.ouds.foundation.DeveloperOudsApi
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 data class OudsLightDarkColor(val light: Color, val dark: Color)

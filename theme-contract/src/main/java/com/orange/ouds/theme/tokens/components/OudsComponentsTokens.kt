@@ -12,10 +12,10 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 
 /** @suppress */
-@DeveloperOudsApi
+@InternalOudsApi
 interface OudsComponentsTokens {
     val alert: OudsAlertTokens
     val badge: OudsBadgeTokens

@@ -68,7 +68,7 @@ internal sealed class OudsAlertStatus(
                 is Positive -> painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
                 is Info -> painterResource(OudsTheme.drawableResources.component.alert.infoFill)
                 is Warning -> {
-                    val iconTokens = OudsTheme.components.icon
+                    val iconTokens = OudsTheme.componentsTokens.icon
                     LayeredTintedPainter(
                         backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
                         backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,

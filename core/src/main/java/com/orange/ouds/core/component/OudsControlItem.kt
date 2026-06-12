@@ -98,7 +98,7 @@ internal fun OudsControlItem(
         },
         edgeToEdgePreview = edgeToEdge
     ) {
-        val controlItemTokens = OudsTheme.components.controlItem
+        val controlItemTokens = OudsTheme.componentsTokens.controlItem
 
         val itemIcon: (@Composable () -> Unit)? = if (error != null) {
             {
@@ -238,7 +238,7 @@ class OudsControlItemIcon private constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier.iconSize(OudsTheme.components.controlItem.sizeAssetSmall.value, tinted))
+        super.Content(modifier.iconSize(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value, tinted))
     }
 }
 
@@ -255,8 +255,8 @@ internal fun rememberControlItemBackgroundColor(
 @Suppress("DEPRECATION")
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
-    val assetContainerMaxHeight = OudsTheme.components.controlItem.sizeMaxHeightAssetsContainer.dp
-    val checkboxIndicatorSize = OudsTheme.components.checkbox.sizeMinHeight.value
+    val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
+    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.value
 
     val maxHeight = max(assetContainerMaxHeight, checkboxIndicatorSize)
     Box(
@@ -271,7 +271,7 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 
 @Composable
 private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
-    with(OudsTheme.components.controlItem) {
+    with(OudsTheme.componentsTokens.controlItem) {
         val modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
@@ -292,7 +292,7 @@ private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
 @Suppress("DEPRECATION")
 @Composable
 private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
-    with(OudsTheme.components.controlItem) {
+    with(OudsTheme.componentsTokens.controlItem) {
         Icon(
             modifier = modifier
                 .padding(spacePaddingInlineErrorIcon.value)
@@ -307,7 +307,7 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
 @Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
-    return with(OudsTheme.components.controlItem) {
+    return with(OudsTheme.componentsTokens.controlItem) {
         when (state) {
             OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
@@ -319,7 +319,7 @@ private fun backgroundColor(state: OudsControlState): Color {
 
 @Composable
 private fun contentHorizontalPadding(edgeToEdge: Boolean) =
-    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.components.controlItem.spacePaddingInline.value
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
 
 @Composable
 private fun dividerColor(state: OudsControlState, error: OudsError?) =

@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 
@@ -694,7 +694,7 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 val OudsSizeKeyToken.value: Dp
     @Composable
     get() = when (this) {

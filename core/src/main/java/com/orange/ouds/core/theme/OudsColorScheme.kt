@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
@@ -1824,7 +1824,7 @@ internal val OudsMaterialColorTokens.materialDarkColorScheme: ColorScheme
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 val OudsColorKeyToken.value: Color
     @ReadOnlyComposable
     @Composable

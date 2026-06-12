@@ -15,13 +15,13 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 
 /** @suppress */
-@DeveloperOudsApi
+@InternalOudsApi
 interface OudsBarTokens {
     val borderRadiusCurrentIndicatorCustomBottom: OudsBorderKeyToken.Radius
     val borderRadiusCurrentIndicatorCustomTop: OudsBorderKeyToken.Radius

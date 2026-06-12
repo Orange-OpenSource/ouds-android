@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 
 /**
  * A color key token which aggregates two color key tokens, with one being used for the light theme and the other for the dark theme.
@@ -23,7 +23,7 @@ import com.orange.ouds.foundation.DeveloperOudsApi
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 data class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: OudsColorKeyToken) : OudsColorKeyToken {
 
     init {

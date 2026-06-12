@@ -1228,7 +1228,7 @@ private fun OudsTextArea(
  */
 private val minLines: Int
     @Composable
-    get() = (OudsTheme.components.textArea.sizeMinHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
+    get() = (OudsTheme.componentsTokens.textArea.sizeMinHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
 
 /**
@@ -1238,7 +1238,7 @@ private val minLines: Int
  */
 private val maxLines: Int
     @Composable
-    get() = (OudsTheme.components.textArea.sizeMaxHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
+    get() = (OudsTheme.componentsTokens.textArea.sizeMaxHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
 @Composable
 internal fun OudsTextAreaDecorator(
@@ -1257,8 +1257,8 @@ internal fun OudsTextAreaDecorator(
     scrollState: ScrollState = rememberScrollState(),
 ) {
     val hasError = error != null
-    val textInputTokens = OudsTheme.components.textInput
-    val textAreaTokens = OudsTheme.components.textArea
+    val textInputTokens = OudsTheme.componentsTokens.textInput
+    val textAreaTokens = OudsTheme.componentsTokens.textArea
     with(textInputTokens) {
         val borderWidth = borderWidth(state)
         val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
@@ -1315,9 +1315,9 @@ internal fun OudsTextAreaDecorator(
                 // Trailing elements (error icon or loader)
                 Box(
                     modifier = Modifier
-                        .widthIn(min = OudsTheme.components.button.sizeMinWidth.value)
+                        .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidth.value)
                         .padding(
-                            horizontal = OudsTheme.components.button.spaceInsetIconOnly.value,
+                            horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value,
                             vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
                                 textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
                             } else {
@@ -1325,7 +1325,7 @@ internal fun OudsTextAreaDecorator(
                             }
                         )
                 ) {
-                    val buttonTokens = OudsTheme.components.button
+                    val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
 
                     // Error icon
@@ -1341,7 +1341,7 @@ internal fun OudsTextAreaDecorator(
                     // Loader
                     if (state == OudsTextInputState.Loading) {
                         OudsCircularProgressIndicator(
-                            color = OudsTheme.components.button.colorContentMinimalLoading.value,
+                            color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
                             progress = loader?.progress,
                             scale = iconScale
                         )

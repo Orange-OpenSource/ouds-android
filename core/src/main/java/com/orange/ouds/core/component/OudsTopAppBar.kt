@@ -394,7 +394,7 @@ private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned
 
 @Composable
 private fun colors(translucent: Boolean): TopAppBarColors {
-    val backgroundColor = with(OudsTheme.components.bar) {
+    val backgroundColor = with(OudsTheme.componentsTokens.bar) {
         if (translucent) colorBgTranslucent.value else colorBgOpaque.value
     }
     return TopAppBarDefaults.topAppBarColors(
@@ -525,7 +525,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
                 OudsButtonIconBadge(
                     contentDescription = badge.contentDescription,
                     count = badge.count,
-                    borderColor = OudsTheme.components.bar.colorBorderBadge.value
+                    borderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
                 )
             }
 

@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
@@ -464,7 +464,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
  *
  * @suppress
  */
-@DeveloperOudsApi
+@InternalOudsApi
 val OudsSpaceKeyToken.value: Dp
     @Composable
     get() = when (this) {

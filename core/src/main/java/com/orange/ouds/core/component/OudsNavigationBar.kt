@@ -140,7 +140,7 @@ fun OudsNavigationBar(
         WindowWidthSizeClass.compute(currentWindowWidth())
     }
 
-    with(OudsTheme.components.bar) {
+    with(OudsTheme.componentsTokens.bar) {
         ShortNavigationBar(
             modifier = modifier,
             containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
@@ -228,7 +228,7 @@ data class OudsNavigationBarItem(
         }
         val iconPosition = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 
-        with(OudsTheme.components.bar) {
+        with(OudsTheme.componentsTokens.bar) {
             val selectedContentColor = contentColor(state = state, selected = true)
             val unselectedContentColor = contentColor(state = state, selected = false)
 
@@ -247,7 +247,7 @@ data class OudsNavigationBarItem(
                             OudsBadgedIcon(
                                 modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
                                 badgeCount = badge.count,
-                                badgeBorderColor = OudsTheme.components.bar.colorBorderBadge.value
+                                badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
                             ) {
                                 icon.Content()
                             }
@@ -282,7 +282,7 @@ data class OudsNavigationBarItem(
 
 @Composable
 private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Boolean, iconPosition: NavigationItemIconPosition): Modifier {
-    with(OudsTheme.components.bar) {
+    with(OudsTheme.componentsTokens.bar) {
         val indicatorColor = topIndicatorColor(state = state)
         val indicatorBottomCornersRadius = borderRadiusCurrentIndicatorCustomTop.value
         val opacityCurrentIndicatorCustomValue = opacityCurrentIndicatorCustom.value
@@ -357,7 +357,7 @@ private fun getNavigationBarItemState(interactionState: InteractionState): OudsN
 
 @Composable
 private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
-    return with(OudsTheme.components.bar) {
+    return with(OudsTheme.componentsTokens.bar) {
         when (state) {
             OudsNavigationBarItemState.Enabled -> if (selected) colorContentSelectedEnabled.value else colorContentUnselectedEnabled.value
             OudsNavigationBarItemState.Hovered -> if (selected) colorContentSelectedHover.value else colorContentUnselectedHover.value
@@ -369,7 +369,7 @@ private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): 
 
 @Composable
 private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
-    return with(OudsTheme.components.bar) {
+    return with(OudsTheme.componentsTokens.bar) {
         when (state) {
             OudsNavigationBarItemState.Enabled -> if (selected) colorCurrentIndicatorAndroidSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
             OudsNavigationBarItemState.Hovered -> if (selected) colorCurrentIndicatorAndroidSelectedHover.value else colorCurrentIndicatorAndroidUnselectedHover.value
@@ -381,7 +381,7 @@ private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: 
 
 @Composable
 private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
-    return with(OudsTheme.components.bar) {
+    return with(OudsTheme.componentsTokens.bar) {
         when (state) {
             OudsNavigationBarItemState.Enabled -> colorCurrentIndicatorCustomSelectedEnabled.value
             OudsNavigationBarItemState.Hovered -> colorCurrentIndicatorCustomSelectedHover.value
@@ -579,7 +579,7 @@ internal fun PreviewOudsNavigationBarItem(
                 item.Content(
                     modifier = Modifier
                         .size(width = 80.dp, height = 64.dp)
-                        .background(OudsTheme.components.bar.colorBgOpaque.value),
+                        .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value),
                     extraParameters = OudsNavigationBarItem.ExtraParameters(this)
                 )
             }

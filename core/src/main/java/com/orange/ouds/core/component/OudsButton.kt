@@ -284,7 +284,7 @@ internal fun OudsButton(
         exceptionMessage = { "An OudsButton with $appearance appearance displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
         previewMessage = { if (icon != null && label == null) "⛔" else "Not on a\ncolored\nbackground" }
     ) {
-        val buttonTokens = OudsTheme.components.button
+        val buttonTokens = OudsTheme.componentsTokens.button
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
@@ -447,7 +447,7 @@ private fun getButtonState(enabled: Boolean, loader: OudsButtonLoader?, interact
 
 @Composable
 private fun borderWidth(appearance: OudsButtonAppearance, state: OudsButtonState): Dp? {
-    return with(OudsTheme.components.button) {
+    return with(OudsTheme.componentsTokens.button) {
         when (appearance) {
             OudsButtonAppearance.Default -> when (state) {
                 OudsButtonState.Enabled,
@@ -468,7 +468,7 @@ private fun borderWidth(appearance: OudsButtonAppearance, state: OudsButtonState
 @Composable
 private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color? {
     return if (LocalColorMode.current?.monochrome == true) {
-        with(OudsTheme.components.buttonMonochrome) {
+        with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
                     OudsButtonState.Enabled -> colorBorderDefaultEnabled
@@ -485,7 +485,7 @@ private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState
             }
         }
     } else {
-        with(OudsTheme.components.button) {
+        with(OudsTheme.componentsTokens.button) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
                     OudsButtonState.Enabled -> colorBorderDefaultEnabled
@@ -507,7 +507,7 @@ private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState
 @Composable
 private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color {
     return if (LocalColorMode.current?.monochrome == true) {
-        with(OudsTheme.components.buttonMonochrome) {
+        with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
                     OudsButtonState.Enabled -> colorBgDefaultEnabled
@@ -538,7 +538,7 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
             }
         }
     } else {
-        with(OudsTheme.components.button) {
+        with(OudsTheme.componentsTokens.button) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
                     OudsButtonState.Enabled -> colorBgDefaultEnabled
@@ -588,7 +588,7 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
 @Composable
 private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color {
     return if (LocalColorMode.current?.monochrome == true) {
-        with(OudsTheme.components.buttonMonochrome) {
+        with(OudsTheme.componentsTokens.buttonMonochrome) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
                     OudsButtonState.Enabled -> colorContentDefaultEnabled
@@ -619,7 +619,7 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
             }
         }
     } else {
-        with(OudsTheme.components.button) {
+        with(OudsTheme.componentsTokens.button) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
                     OudsButtonState.Enabled -> colorContentDefaultEnabled
@@ -668,7 +668,7 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
 
 @Composable
 private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?): PaddingValues {
-    return with(OudsTheme.components.button) {
+    return with(OudsTheme.componentsTokens.button) {
         when (component) {
             is OudsButtonComponent.Button -> when {
                 icon != null && label != null -> PaddingValues(
@@ -715,7 +715,7 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
 @Composable
 private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?, scale: Float) {
     val modifier = Modifier
-        .size(OudsTheme.components.button.sizeLoader.value * scale)
+        .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
         .semantics { hideFromAccessibility() }
     val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
 
@@ -858,7 +858,7 @@ internal sealed interface OudsButtonComponent {
     object Button : OudsButtonComponent {
         override val columnGap
             @Composable
-            get() = OudsTheme.components.button.spaceColumnGapIcon.value
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapIcon.value
     }
 
     /**
@@ -869,7 +869,7 @@ internal sealed interface OudsButtonComponent {
     class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
         override val columnGap: Dp
             @Composable
-            get() = OudsTheme.components.button.spaceColumnGapChevron.value
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
     }
 }
 
@@ -942,7 +942,7 @@ internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int
             nullableLabel = null,
             onClick = {},
             appearance = OudsButtonAppearance.Minimal,
-            iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.components.bar.colorBorderBadge.value, count = count)
+            iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
         )
     }
 }

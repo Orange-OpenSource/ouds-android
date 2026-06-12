@@ -385,7 +385,7 @@ private fun OudsFloatingActionButton(
 
 @Composable
 private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
-    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.components.button.sizeIconOnly.value
+    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnly.value
     val iconScale = LocalConfiguration.current.fontScale
     icon.Content(
         modifier = Modifier
@@ -424,7 +424,7 @@ private fun contentColor(appearance: OudsFloatingActionButtonAppearance, state: 
                 OudsFloatingActionButtonState.Pressed -> pressed
             }
         }
-        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.components.button) {
+        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.componentsTokens.button) {
             when (state) {
                 OudsFloatingActionButtonState.Enabled -> colorContentBrandEnabled.value
                 OudsFloatingActionButtonState.Focused -> colorContentBrandFocus.value
@@ -446,7 +446,7 @@ private fun containerColor(appearance: OudsFloatingActionButtonAppearance, state
                 OudsFloatingActionButtonState.Pressed -> pressed
             }
         }
-        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.components.button) {
+        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.componentsTokens.button) {
             when (state) {
                 OudsFloatingActionButtonState.Enabled -> colorBgBrandEnabled.value
                 OudsFloatingActionButtonState.Focused -> colorBgBrandFocus.value

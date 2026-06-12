@@ -108,7 +108,7 @@ fun MainScreen(
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
         val hazeState = rememberHazeState(blurEnabled = true)
-        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effectBgBlur.dp)
+        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)
 
         CompositionLocalProvider(LocalThemeDrawableResources provides ThemeDrawableResources(mainState.themeState.currentTheme)) {
             Scaffold(

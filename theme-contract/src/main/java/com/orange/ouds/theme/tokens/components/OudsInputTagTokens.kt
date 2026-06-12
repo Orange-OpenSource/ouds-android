@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.DeveloperOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /** @suppress */
-@DeveloperOudsApi
+@InternalOudsApi
 interface OudsInputTagTokens {
     val borderWidthDefault: OudsBorderKeyToken.Width
     val borderWidthDefaultInteraction: OudsBorderKeyToken.Width
