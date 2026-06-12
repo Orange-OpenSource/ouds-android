@@ -175,6 +175,8 @@ fun OudsSuggestionChip(
 }
 
 /**
+ * Basic suggestion chip composable that allows to implement components that look close to a standard OUDS suggestion chip.
+ *
  * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
  * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
  * or clicked to apply the suggestion, streamlining input and enhancing usability.
@@ -226,6 +228,8 @@ fun OudsBasicSuggestionChip(
 }
 
 /**
+ * Basic suggestion chip composable that allows to implement components that look close to a standard OUDS suggestion chip.
+ *
  * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
  * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
  * or clicked to apply the suggestion, streamlining input and enhancing usability.
@@ -277,6 +281,8 @@ fun OudsBasicSuggestionChip(
 }
 
 /**
+ * Basic suggestion chip composable that allows to implement components that look close to a standard OUDS suggestion chip.
+ *
  * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
  * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
  * or clicked to apply the suggestion, streamlining input and enhancing usability.
