@@ -398,7 +398,7 @@ private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, larg
 
 @Composable
 private fun Text(label: String) {
-    Text(text = label, style = OudsTheme.typography.label.strong.large)
+    Text(text = label, style = OudsTheme.typography.label.large.strong)
 }
 
 @Composable

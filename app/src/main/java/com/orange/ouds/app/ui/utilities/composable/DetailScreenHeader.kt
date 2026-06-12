@@ -65,7 +65,7 @@ fun DetailScreenDescription(
         modifier = modifier,
         text = description,
         color = OudsTheme.colorScheme.content.default,
-        style = OudsTheme.typography.body.default.large
+        style = OudsTheme.typography.body.large.default
     )
 }
 

@@ -154,7 +154,7 @@ internal fun OudsBasicChip(
                         modifier = modifier,
                         text = label,
                         color = contentColor.value,
-                        style = OudsTheme.typography.label.moderate.medium
+                        style = OudsTheme.typography.label.medium.moderate
                     )
                 }
             }

@@ -77,16 +77,68 @@ data class OudsTypography internal constructor(
     /**
      * Styles for body text, used for the main content, paragraphs, and descriptions.
      *
-     * @property default Default font weight styles (Regular).
-     * @property moderate Moderate font weight styles (Medium).
-     * @property strong Strong font weight styles (Bold).
+     * @property large Large body text styles.
+     * @property medium Medium body text styles.
+     * @property small Small body text styles.
+     * @property default Default font weight styles (Regular). **Deprecated:** Use size-first accessors instead (e.g., `body.large.default`).
+     * @property moderate Moderate font weight styles (Medium). **Deprecated:** Use size-first accessors instead (e.g., `body.large.moderate`).
+     * @property strong Strong font weight styles (Bold). **Deprecated:** Use size-first accessors instead (e.g., `body.large.strong`).
      */
+    @Suppress("DEPRECATION")
     @ConsistentCopyVisibility
     data class Body internal constructor(
+        val large: Large,
+        val medium: Medium,
+        val small: Small,
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.default' instead of 'body.default.large'.")
         val default: Default,
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.moderate' instead of 'body.moderate.large'.")
         val moderate: Moderate,
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.strong' instead of 'body.strong.large'.")
         val strong: Strong
     ) {
+        /**
+         * Large body text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class Large internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
+        /**
+         * Medium body text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class Medium internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
+        /**
+         * Small body text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class Small internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
         /**
          * Body styles with Default font weight (Regular).
          *
@@ -94,6 +146,7 @@ data class OudsTypography internal constructor(
          * @property medium Medium body text.
          * @property small Small body text.
          */
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.default' instead of 'body.default.large'.")
         @ConsistentCopyVisibility
         data class Default internal constructor(
             val large: TextStyle,
@@ -108,6 +161,7 @@ data class OudsTypography internal constructor(
          * @property medium Medium moderate body text.
          * @property small Small moderate body text.
          */
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.moderate' instead of 'body.moderate.large'.")
         @ConsistentCopyVisibility
         data class Moderate internal constructor(
             val large: TextStyle,
@@ -122,6 +176,7 @@ data class OudsTypography internal constructor(
          * @property medium Medium strong body text.
          * @property small Small strong body text.
          */
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.strong' instead of 'body.strong.large'.")
         @ConsistentCopyVisibility
         data class Strong internal constructor(
             val large: TextStyle,
@@ -134,16 +189,84 @@ data class OudsTypography internal constructor(
     /**
      * Styles for utility text such as captions, input labels, and metadata.
      *
-     * @property default Default font weight styles (Regular).
-     * @property moderate Moderate font weight styles (Medium).
-     * @property strong Strong font weight styles (Bold).
+     * @property extraLarge Extra large label text styles.
+     * @property large Large label text styles.
+     * @property medium Medium label text styles.
+     * @property small Small label text styles.
+     * @property default Default font weight styles (Regular). **Deprecated:** Use size-first accessors instead (e.g., `label.large.default`).
+     * @property moderate Moderate font weight styles (Medium). **Deprecated:** Use size-first accessors instead (e.g., `label.large.moderate`).
+     * @property strong Strong font weight styles (Bold). **Deprecated:** Use size-first accessors instead (e.g., `label.large.strong`).
      */
+    @Suppress("DEPRECATION")
     @ConsistentCopyVisibility
     data class Label internal constructor(
+        val extraLarge: ExtraLarge,
+        val large: Large,
+        val medium: Medium,
+        val small: Small,
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.default' instead of 'label.default.large'.")
         val default: Default,
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.moderate' instead of 'label.moderate.large'.")
         val moderate: Moderate,
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.strong' instead of 'label.strong.large'.")
         val strong: Strong
     ) {
+        /**
+         * Extra large label text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class ExtraLarge internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
+        /**
+         * Large label text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class Large internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
+        /**
+         * Medium label text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class Medium internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
+        /**
+         * Small label text styles with different font weights.
+         *
+         * @property default Default font weight (Regular).
+         * @property moderate Moderate font weight (Medium).
+         * @property strong Strong font weight (Bold).
+         */
+        @ConsistentCopyVisibility
+        data class Small internal constructor(
+            val default: TextStyle,
+            val moderate: TextStyle,
+            val strong: TextStyle
+        )
+
         /**
          * Label styles with Default font weight (Regular).
          *
@@ -152,6 +275,7 @@ data class OudsTypography internal constructor(
          * @property medium Medium label text.
          * @property small Small label text.
          */
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.default' instead of 'label.default.large'.")
         @ConsistentCopyVisibility
         data class Default internal constructor(
             val extraLarge: TextStyle,
@@ -168,6 +292,7 @@ data class OudsTypography internal constructor(
          * @property medium Medium moderate label text.
          * @property small Small moderate label text.
          */
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.moderate' instead of 'label.moderate.large'.")
         @ConsistentCopyVisibility
         data class Moderate internal constructor(
             val extraLarge: TextStyle,
@@ -184,6 +309,7 @@ data class OudsTypography internal constructor(
          * @property medium Medium strong label text.
          * @property small Small strong label text.
          */
+        @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.strong' instead of 'label.strong.large'.")
         @ConsistentCopyVisibility
         data class Strong internal constructor(
             val extraLarge: TextStyle,
@@ -194,6 +320,7 @@ data class OudsTypography internal constructor(
     }
 }
 
+@Suppress("DEPRECATION")
 internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     val lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Proportional, trim = LineHeightStyle.Trim.None)
     OudsTypography(
@@ -259,6 +386,21 @@ internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, window
             ),
         ),
         body = OudsTypography.Body(
+            large = OudsTypography.Body.Large(
+                default = bodyLargeTextStyle(fontFamily, FontWeight(weightBodyDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = bodyLargeTextStyle(fontFamily, FontWeight(weightBodyModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = bodyLargeTextStyle(fontFamily, FontWeight(weightBodyStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
+            medium = OudsTypography.Body.Medium(
+                default = bodyMediumTextStyle(fontFamily, FontWeight(weightBodyDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = bodyMediumTextStyle(fontFamily, FontWeight(weightBodyModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = bodyMediumTextStyle(fontFamily, FontWeight(weightBodyStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
+            small = OudsTypography.Body.Small(
+                default = bodySmallTextStyle(fontFamily, FontWeight(weightBodyDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = bodySmallTextStyle(fontFamily, FontWeight(weightBodyModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = bodySmallTextStyle(fontFamily, FontWeight(weightBodyStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
             default = OudsTypography.Body.Default(
                 large = bodyLargeTextStyle(fontFamily, FontWeight(weightBodyDefault), lineHeightStyle, windowWidthSizeClass),
                 medium = bodyMediumTextStyle(fontFamily, FontWeight(weightBodyDefault), lineHeightStyle, windowWidthSizeClass),
@@ -276,6 +418,26 @@ internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, window
             )
         ),
         label = OudsTypography.Label(
+            extraLarge = OudsTypography.Label.ExtraLarge(
+                default = labelExtraLargeTextStyle(fontFamily, FontWeight(weightLabelDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = labelExtraLargeTextStyle(fontFamily, FontWeight(weightLabelModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = labelExtraLargeTextStyle(fontFamily, FontWeight(weightLabelStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
+            large = OudsTypography.Label.Large(
+                default = labelLargeTextStyle(fontFamily, FontWeight(weightLabelDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = labelLargeTextStyle(fontFamily, FontWeight(weightLabelModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = labelLargeTextStyle(fontFamily, FontWeight(weightLabelStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
+            medium = OudsTypography.Label.Medium(
+                default = labelMediumTextStyle(fontFamily, FontWeight(weightLabelDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = labelMediumTextStyle(fontFamily, FontWeight(weightLabelModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = labelMediumTextStyle(fontFamily, FontWeight(weightLabelStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
+            small = OudsTypography.Label.Small(
+                default = labelSmallTextStyle(fontFamily, FontWeight(weightLabelDefault), lineHeightStyle, windowWidthSizeClass),
+                moderate = labelSmallTextStyle(fontFamily, FontWeight(weightLabelModerate), lineHeightStyle, windowWidthSizeClass),
+                strong = labelSmallTextStyle(fontFamily, FontWeight(weightLabelStrong), lineHeightStyle, windowWidthSizeClass)
+            ),
             default = OudsTypography.Label.Default(
                 extraLarge = labelExtraLargeTextStyle(fontFamily, FontWeight(weightLabelDefault), lineHeightStyle, windowWidthSizeClass),
                 large = labelLargeTextStyle(fontFamily, FontWeight(weightLabelDefault), lineHeightStyle, windowWidthSizeClass),
@@ -420,20 +582,20 @@ private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
         OudsTypographyKeyToken.Heading.Large -> heading.large
         OudsTypographyKeyToken.Heading.Medium -> heading.medium
         OudsTypographyKeyToken.Heading.Small -> heading.small
-        OudsTypographyKeyToken.Body.Default.Large -> body.default.large
-        OudsTypographyKeyToken.Body.Default.Medium -> body.default.medium
-        OudsTypographyKeyToken.Body.Default.Small -> body.default.small
-        OudsTypographyKeyToken.Body.Strong.Large -> body.strong.large
-        OudsTypographyKeyToken.Body.Strong.Medium -> body.strong.medium
-        OudsTypographyKeyToken.Body.Strong.Small -> body.strong.small
-        OudsTypographyKeyToken.Label.Default.ExtraLarge -> label.default.extraLarge
-        OudsTypographyKeyToken.Label.Default.Large -> label.default.large
-        OudsTypographyKeyToken.Label.Default.Medium -> label.default.medium
-        OudsTypographyKeyToken.Label.Default.Small -> label.default.small
-        OudsTypographyKeyToken.Label.Strong.ExtraLarge -> label.strong.extraLarge
-        OudsTypographyKeyToken.Label.Strong.Large -> label.strong.large
-        OudsTypographyKeyToken.Label.Strong.Medium -> label.strong.medium
-        OudsTypographyKeyToken.Label.Strong.Small -> label.strong.small
+        OudsTypographyKeyToken.Body.Default.Large -> body.large.default
+        OudsTypographyKeyToken.Body.Default.Medium -> body.medium.default
+        OudsTypographyKeyToken.Body.Default.Small -> body.small.default
+        OudsTypographyKeyToken.Body.Strong.Large -> body.large.strong
+        OudsTypographyKeyToken.Body.Strong.Medium -> body.medium.strong
+        OudsTypographyKeyToken.Body.Strong.Small -> body.small.strong
+        OudsTypographyKeyToken.Label.Default.ExtraLarge -> label.extraLarge.default
+        OudsTypographyKeyToken.Label.Default.Large -> label.large.default
+        OudsTypographyKeyToken.Label.Default.Medium -> label.medium.default
+        OudsTypographyKeyToken.Label.Default.Small -> label.small.default
+        OudsTypographyKeyToken.Label.Strong.ExtraLarge -> label.extraLarge.strong
+        OudsTypographyKeyToken.Label.Strong.Large -> label.large.strong
+        OudsTypographyKeyToken.Label.Strong.Medium -> label.medium.strong
+        OudsTypographyKeyToken.Label.Strong.Small -> label.small.strong
     }
 }
 

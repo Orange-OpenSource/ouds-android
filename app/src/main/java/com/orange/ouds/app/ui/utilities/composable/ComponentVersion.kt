@@ -40,7 +40,7 @@ fun ComponentVersion(version: String) {
         Text(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.app_components_common_version_label),
-            style = with(OudsTheme.typography.label.strong.large) { copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center)) },
+            style = with(OudsTheme.typography.label.large.strong) { copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center)) },
             color = OudsTheme.colorScheme.content.default
         )
         OudsTag(modifier = Modifier.padding(start = 10.dp), label = version, appearance = OudsTagAppearance.Muted, status = OudsTagStatus.Info())

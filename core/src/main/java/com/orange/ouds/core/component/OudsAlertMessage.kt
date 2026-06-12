@@ -253,11 +253,11 @@ private fun OudsAlertMessage(
                         modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
                         text = label,
                         color = status.contentColor,
-                        style = OudsTheme.typography.label.moderate.large
+                        style = OudsTheme.typography.label.large.moderate
                     )
                     val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
                     val descriptionColor = status.contentColor
-                    val descriptionStyle = OudsTheme.typography.label.default.medium
+                    val descriptionStyle = OudsTheme.typography.label.medium.default
                     if (annotatedDescription != null) {
                         Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
                     } else if (description != null) {
@@ -472,7 +472,7 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
         Box(
             modifier = Modifier
                 .width(OudsTheme.sizes.icon.withLabel.medium.sizeMedium * scale)
-                .heightIn(max = OudsTheme.typography.label.default.medium.lineHeight.value.dp * scale)
+                .heightIn(max = OudsTheme.typography.label.medium.default.lineHeight.value.dp * scale)
                 .fillMaxHeight(),
             contentAlignment = Alignment.CenterEnd
         ) {
@@ -488,7 +488,7 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
             .fillMaxHeight()
             .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
             .widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
-        val style = OudsTheme.typography.label.default.medium
+        val style = OudsTheme.typography.label.medium.default
         when (label) {
             is OudsAnnotatedString<*> -> Text(modifier = modifier, text = label.annotatedString(), color = color, style = style)
             is String -> Text(modifier = modifier, text = label, color = color, style = style)

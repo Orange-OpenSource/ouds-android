@@ -422,7 +422,7 @@ private fun ButtonText(label: String, color: Color) {
         text = label,
         color = color,
         textAlign = TextAlign.Center,
-        style = OudsTheme.typography.label.strong.large.run {
+        style = OudsTheme.typography.label.large.strong.run {
             copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
         },
     )

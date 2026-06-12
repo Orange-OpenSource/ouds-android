@@ -155,7 +155,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                 .asOrNull<List<Token<TextStyle>>>()
                                 ?.firstOrNull { typographyToken ->
                                     // For instance if entry key is sizes.icon.withLabel.large,
-                                    // typography token identifier will be label.large which will match typography token named typography.label.strong.large
+                                    // typography token identifier will be label.large which will match typography token named typography.label.large.strong
                                     typographyToken.name.removePrefix("typography.").replace("strong.", "") == typographyTokenIdentifier
                                 }
                             if (typographyToken != null) {
@@ -212,13 +212,13 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
                 style = if (tokenProperty == TokenProperty.Typography) {
                     token.value() as TextStyle
                 } else {
-                    OudsTheme.typography.body.strong.large
+                    OudsTheme.typography.body.large.strong
                 }
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = token.literalValue,
-                style = OudsTheme.typography.body.default.medium.copy(color = OudsTheme.colorScheme.content.muted)
+                style = OudsTheme.typography.body.medium.default.copy(color = OudsTheme.colorScheme.content.muted)
             )
         }
     }
@@ -294,7 +294,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_common_viewCodeExample_label),
-                    style = OudsTheme.typography.label.strong.large,
+                    style = OudsTheme.typography.label.large.strong,
                     color = OudsTheme.colorScheme.content.default
                 )
                 Icon(

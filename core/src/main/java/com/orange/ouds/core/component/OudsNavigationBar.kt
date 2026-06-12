@@ -262,7 +262,7 @@ data class OudsNavigationBarItem(
                                 text = it,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.label.moderate.small
+                                style = OudsTheme.typography.label.small.moderate
                             )
                         }
                     },
