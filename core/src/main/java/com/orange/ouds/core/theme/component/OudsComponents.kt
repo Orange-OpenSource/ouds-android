@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.foundation.LowLevelOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -41,7 +41,7 @@ import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 @ConsistentCopyVisibility
-@LowLevelOudsApi
+@RestrictedOudsApi
 data class OudsComponents internal constructor(
     val alert: Alert,
     val badge: Badge,

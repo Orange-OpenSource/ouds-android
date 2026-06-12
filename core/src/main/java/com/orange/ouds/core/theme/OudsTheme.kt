@@ -29,7 +29,7 @@ import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.core.theme.component.OudsComponents
 import com.orange.ouds.core.theme.component.getComponents
-import com.orange.ouds.foundation.LowLevelOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -126,7 +126,7 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
-    @LowLevelOudsApi
+    @RestrictedOudsApi
     val components: OudsComponents
         @Composable
         @ReadOnlyComposable

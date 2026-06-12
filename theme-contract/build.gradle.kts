@@ -31,7 +31,7 @@ android {
     kotlin {
         compilerOptions {
             freeCompilerArgs.addAll(
-                "-opt-in=com.orange.ouds.foundation.LowLevelOudsApi",
+                "-opt-in=com.orange.ouds.foundation.RestrictedOudsApi",
                 "-opt-in=com.orange.ouds.foundation.ExperimentalOudsApi",
                 "-opt-in=com.orange.ouds.foundation.InternalOudsApi"
             )

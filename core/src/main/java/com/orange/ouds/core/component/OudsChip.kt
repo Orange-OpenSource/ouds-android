@@ -57,7 +57,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.ExperimentalOudsApi
-import com.orange.ouds.foundation.LowLevelOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
@@ -363,7 +363,7 @@ class OudsChipIcon private constructor(
 /**
  * Represents the different states of a chip.
  */
-@LowLevelOudsApi
+@RestrictedOudsApi
 enum class OudsChipState {
 
     /** The chip is enabled and can be interacted with. */
@@ -393,7 +393,7 @@ internal enum class OudsChipIconPosition {
  * @property contentColor The content color of the chip.
  */
 @ExperimentalOudsApi
-@LowLevelOudsApi
+@RestrictedOudsApi
 class OudsChipScope {
 
     var state: OudsChipState by mutableStateOf(OudsChipState.Enabled)

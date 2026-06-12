@@ -26,7 +26,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.ExperimentalOudsApi
-import com.orange.ouds.foundation.LowLevelOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -206,7 +206,7 @@ fun OudsSuggestionChip(
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextOnlySample
  */
 @Composable
-@LowLevelOudsApi
+@RestrictedOudsApi
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
@@ -259,7 +259,7 @@ fun OudsBasicSuggestionChip(
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipIconOnlySample
  */
 @Composable
-@LowLevelOudsApi
+@RestrictedOudsApi
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
@@ -313,7 +313,7 @@ fun OudsBasicSuggestionChip(
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextAndIconSample
  */
 @Composable
-@LowLevelOudsApi
+@RestrictedOudsApi
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
@@ -339,7 +339,7 @@ fun OudsBasicSuggestionChip(
  * The default content of a suggestion chip.
  */
 @Composable
-@LowLevelOudsApi
+@RestrictedOudsApi
 @ExperimentalOudsApi
 fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(OudsChipIconPosition.Start)
 
