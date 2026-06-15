@@ -424,6 +424,8 @@ open class OudsLinkIcon private constructor(
      *
      * @param painter Painter of the icon.
      * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
     @JvmOverloads
     constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
@@ -433,6 +435,8 @@ open class OudsLinkIcon private constructor(
      *
      * @param imageVector Image vector of the icon.
      * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
     @JvmOverloads
     constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
@@ -442,6 +446,8 @@ open class OudsLinkIcon private constructor(
      *
      * @param bitmap Image bitmap of the icon.
      * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)

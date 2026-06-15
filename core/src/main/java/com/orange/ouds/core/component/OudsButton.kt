@@ -754,6 +754,8 @@ class OudsButtonIcon private constructor(
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
     @JvmOverloads
     constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
@@ -764,6 +766,8 @@ class OudsButtonIcon private constructor(
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
     @JvmOverloads
     constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
@@ -774,6 +778,8 @@ class OudsButtonIcon private constructor(
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
      * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
