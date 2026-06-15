@@ -67,8 +67,8 @@ import com.orange.ouds.core.component.OudsSwitchItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTagPreviewParameter
 import com.orange.ouds.core.component.OudsTagPreviewParameterProvider
+import com.orange.ouds.core.component.OudsTextAreaAutoResizePreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextAreaConstrainedMaxWidthPreviewParameterProvider
-import com.orange.ouds.core.component.OudsTextAreaMultilineValuePreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextAreaPreviewParameter
 import com.orange.ouds.core.component.OudsTextAreaPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextAreaWithRichTextPreviewParameterProvider
@@ -137,8 +137,8 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsTag
 import com.orange.ouds.core.component.PreviewOudsTextArea
+import com.orange.ouds.core.component.PreviewOudsTextAreaAutoResize
 import com.orange.ouds.core.component.PreviewOudsTextAreaConstrainedMaxWidth
-import com.orange.ouds.core.component.PreviewOudsTextAreaMultiLineValue
 import com.orange.ouds.core.component.PreviewOudsTextAreaWithRichText
 import com.orange.ouds.core.component.PreviewOudsTextAreaWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsTextInput
@@ -1102,13 +1102,13 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
 
-        object MultiLineValue : OudsPreviewableComponent {
+        object AutoResize : OudsPreviewableComponent {
 
-            override val parameters: List<Any> = OudsTextAreaMultilineValuePreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsTextAreaAutoResizePreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsTextAreaMultiLineValue(theme = theme, lineCount = parameter as Int)
+                PreviewOudsTextAreaAutoResize(theme = theme, autoResize = parameter as Boolean)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
@@ -1130,7 +1130,6 @@ interface OudsPreviewableComponent {
     }
 
     object TextInput {
-
 
         object Default : OudsPreviewableComponent {
 

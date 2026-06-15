@@ -140,10 +140,62 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text area. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
+ *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedErrorSample
  */
+@Composable
+fun OudsTextArea(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
+) {
+    OudsTextArea(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize
+    )
+}
+
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     textFieldState: TextFieldState,
@@ -184,7 +236,8 @@ fun OudsTextArea(
         onTextLayout = onTextLayout,
         inputTransformation = inputTransformation,
         outputTransformation = outputTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        autoResize = true
     )
 }
 
@@ -243,11 +296,63 @@ fun OudsTextArea(
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text area. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
+ *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextArea(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
+) {
+    OudsTextArea(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize
+    )
+}
+
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     textFieldState: TextFieldState,
@@ -288,7 +393,8 @@ fun OudsTextArea(
         onTextLayout = onTextLayout,
         inputTransformation = inputTransformation,
         outputTransformation = outputTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        autoResize = true
     )
 }
 
@@ -312,7 +418,8 @@ private fun OudsTextArea(
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -334,7 +441,7 @@ private fun OudsTextArea(
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
-                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = maxLines),
+                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = if (autoResize) maxLines else minLines),
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 onKeyboardAction = onKeyboardAction,
@@ -415,10 +522,62 @@ private fun OudsTextArea(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text area. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
+ *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
  */
+@Composable
+fun OudsTextArea(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize
+    )
+}
+
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: String,
@@ -459,7 +618,8 @@ fun OudsTextArea(
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        autoResize = true
     )
 }
 
@@ -513,11 +673,64 @@ fun OudsTextArea(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text area. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
+ *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextArea(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize
+    )
+}
+
+
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: String,
@@ -558,10 +771,10 @@ fun OudsTextArea(
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        autoResize = true
     )
 }
-
 
 @Composable
 private fun OudsTextArea(
@@ -583,7 +796,8 @@ private fun OudsTextArea(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -605,7 +819,7 @@ private fun OudsTextArea(
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
                 minLines = minLines,
-                maxLines = maxLines,
+                maxLines = if (autoResize) maxLines else minLines,
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
@@ -683,10 +897,62 @@ private fun OudsTextArea(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text area. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
+ *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
  */
+@Composable
+fun OudsTextArea(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize
+    )
+}
+
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: TextFieldValue,
@@ -727,7 +993,8 @@ fun OudsTextArea(
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        autoResize = true
     )
 }
 
@@ -781,11 +1048,63 @@ fun OudsTextArea(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text area. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
+ *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextArea(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize
+    )
+}
+
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: TextFieldValue,
@@ -826,7 +1145,8 @@ fun OudsTextArea(
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        autoResize = true
     )
 }
 
@@ -850,7 +1170,8 @@ private fun OudsTextArea(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -872,7 +1193,7 @@ private fun OudsTextArea(
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
                 minLines = minLines,
-                maxLines = maxLines,
+                maxLines = if (autoResize) maxLines else minLines,
                 cursorBrush = textInputCursorBrush(state = state, error = error != null),
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
@@ -1146,19 +1467,24 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsTextAreaMultiLineValue(@PreviewParameter(OudsTextAreaMultilineValuePreviewParameterProvider::class) lineCount: Int) =
-    PreviewOudsTextAreaMultiLineValue(theme = getPreviewTheme(), lineCount = lineCount)
+private fun PreviewOudsTextAreaAutoResize(@PreviewParameter(OudsTextAreaAutoResizePreviewParameterProvider::class) autoResize: Boolean) =
+    PreviewOudsTextAreaAutoResize(theme = getPreviewTheme(), autoResize = autoResize)
 
 @Composable
-internal fun PreviewOudsTextAreaMultiLineValue(
+internal fun PreviewOudsTextAreaAutoResize(
     theme: OudsThemeContract,
-    lineCount: Int
+    autoResize: Boolean
 ) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
-    OudsTextArea(
-        textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
-        label = "$lineCount lines",
-        loader = OudsTextInputLoader(progress = 0.75f)
-    )
+    Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)) {
+        for (lineCount in listOf(3, 5, 15)) {
+            OudsTextArea(
+                textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
+                label = "$lineCount lines",
+                loader = OudsTextInputLoader(progress = 0.75f),
+                autoResize = autoResize
+            )
+        }
+    }
 }
 
 @OudsPreviewLightDark
@@ -1196,7 +1522,7 @@ internal class OudsTextAreaPreviewParameterProvider : BasicPreviewParameterProvi
 
 internal class OudsTextAreaConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
-internal class OudsTextAreaMultilineValuePreviewParameterProvider : BasicPreviewParameterProvider<Int>(3, 5, 15)
+internal class OudsTextAreaAutoResizePreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 internal class OudsTextAreaWithRichTextPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 

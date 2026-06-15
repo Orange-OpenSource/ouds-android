@@ -57,15 +57,15 @@ internal class OudsTextAreaTest {
     }
 
     @RunWith(Parameterized::class)
-    class MultiLineValue(parameter: Any) : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.TextArea.MultiLineValue,
+    class AutoResize(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextArea.AutoResize,
         parameter,
         OudsComponentTestSuite.theme
     ) {
         companion object {
             @JvmStatic
             @Parameterized.Parameters
-            internal fun data() = OudsPreviewableComponent.TextArea.MultiLineValue.parameters
+            internal fun data() = OudsPreviewableComponent.TextArea.AutoResize.parameters
         }
     }
 
