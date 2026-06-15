@@ -82,6 +82,7 @@ import com.orange.ouds.core.component.PreviewOudsAlertMessageWithRichText
 import com.orange.ouds.core.component.PreviewOudsAlertMessageWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
+import com.orange.ouds.core.component.PreviewOudsBadgeWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsBulletListRtl
@@ -250,6 +251,18 @@ interface OudsPreviewableComponent {
                     enabled = parameter as Boolean
                 )
             }
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBadgeWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

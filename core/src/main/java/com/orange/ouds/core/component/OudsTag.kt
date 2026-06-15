@@ -64,7 +64,6 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.enums.enumEntries
 
 /**
  * Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
@@ -787,7 +786,7 @@ internal fun PreviewOudsTag(
     val label = "Label"
     with(parameter) {
         PreviewGrid(
-            columns = enumEntries<OudsTagSize>().map { it.name },
+            columns = OudsTagSize.entries.map { it.name },
             rows = listOf(
                 OudsTagStatus.Neutral::class,
                 OudsTagStatus.Accent::class,
@@ -841,7 +840,7 @@ private fun PreviewOudsTagWithUntintedIcon() {
 @Composable
 internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     PreviewGrid(
-        columns = enumEntries<OudsTagSize>().map { it.name },
+        columns = OudsTagSize.entries.map { it.name },
         rows = listOf(
             OudsTagStatus.Neutral::class,
             OudsTagStatus.Accent::class
