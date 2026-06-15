@@ -105,6 +105,8 @@ fun OudsFilterChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlyWithUntintedIconSample
  */
 @Composable
 fun OudsFilterChip(
@@ -155,6 +157,8 @@ fun OudsFilterChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconWithUntintedIconSample
  */
 @Composable
 fun OudsFilterChip(

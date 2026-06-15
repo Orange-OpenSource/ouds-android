@@ -85,6 +85,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithUntintedIconSample
  */
 @Composable
 fun OudsSwitchItem(

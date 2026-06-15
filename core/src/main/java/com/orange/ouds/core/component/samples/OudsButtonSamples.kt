@@ -21,6 +21,7 @@ import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsButtonTextOnlySample() {
@@ -93,6 +94,31 @@ internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
     }
 }
 
+@Composable
+internal fun OudsButtonIconOnlyWithUntintedIconSample() {
+    OudsButton(
+        icon = OudsButtonIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "Content description",
+            tinted = false
+        ),
+        onClick = { /* Do something! */ }
+    )
+}
+
+@Composable
+internal fun OudsButtonTextAndIconWithUntintedIconSample() {
+    OudsButton(
+        icon = OudsButtonIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "",
+            tinted = false
+        ),
+        label = "Label",
+        onClick = { /* Do something! */ }
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsButtonTextOnlySample() = OudsPreview {
@@ -127,4 +153,16 @@ private fun PreviewOudsButtonTextAndIconSample() = OudsPreview {
 @Composable
 private fun PreviewOudsButtonTextAndIconOnColoredBackgroundSample() = OudsPreview {
     OudsButtonTextAndIconOnColoredBackgroundSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonIconOnlyWithUntintedIconSample() = OudsPreview {
+    OudsButtonIconOnlyWithUntintedIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsButtonTextAndIconWithUntintedIconSample() = OudsPreview {
+    OudsButtonTextAndIconWithUntintedIconSample()
 }

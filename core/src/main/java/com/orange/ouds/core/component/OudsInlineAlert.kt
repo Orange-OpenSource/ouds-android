@@ -62,6 +62,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalStatusSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertFunctionalStatusSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalWithUntintedIconSample
  */
 @Composable
 fun OudsInlineAlert(

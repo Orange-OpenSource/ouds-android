@@ -174,6 +174,8 @@ fun OudsButton(
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyOnColoredBackgroundSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyWithUntintedIconSample
  */
 @Composable
 fun OudsButton(
@@ -233,6 +235,8 @@ fun OudsButton(
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconOnColoredBackgroundSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconWithUntintedIconSample
  */
 @Composable
 fun OudsButton(

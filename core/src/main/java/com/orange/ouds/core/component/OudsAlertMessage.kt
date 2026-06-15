@@ -114,6 +114,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageFunctionalWithTopEndActionLinkSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsAlertMessageNonFunctionalWithUntintedIconSample
  */
 @Composable
 fun OudsAlertMessage(

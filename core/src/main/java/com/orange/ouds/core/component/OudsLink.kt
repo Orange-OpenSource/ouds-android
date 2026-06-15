@@ -125,6 +125,8 @@ fun OudsLink(
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
  */
 @Composable
 fun OudsLink(

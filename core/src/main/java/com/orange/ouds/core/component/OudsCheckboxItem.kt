@@ -86,6 +86,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemSample
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithUntintedIconSample
  */
 @Composable
 fun OudsCheckboxItem(
@@ -171,6 +172,7 @@ fun OudsCheckboxItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemSample
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithUntintedIconSample
  */
 @Composable
 fun OudsTriStateCheckboxItem(

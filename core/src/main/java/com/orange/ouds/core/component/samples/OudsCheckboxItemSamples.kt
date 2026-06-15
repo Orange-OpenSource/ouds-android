@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component.samples
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,11 +22,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsCheckboxItem
+import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsCheckboxItemSample() {
@@ -34,6 +38,7 @@ internal fun OudsCheckboxItemSample() {
         checked = checked,
         label = "Terms of use",
         description = "By checking this box, I acknowledge having read the conditions of use.",
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.FavoriteBorder),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -46,6 +51,7 @@ internal fun OudsTriStateCheckboxItemSample() {
         state = toggleableState,
         label = "My hobbies",
         description = "Select the hobbies you practice regularly.",
+        icon = OudsControlItemIcon(imageVector = Icons.Filled.FavoriteBorder),
         onClick = {
             toggleableState = when (toggleableState) {
                 ToggleableState.On -> ToggleableState.Off
@@ -104,6 +110,38 @@ internal fun OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample() {
     )
 }
 
+@Composable
+internal fun OudsCheckboxItemWithUntintedIconSample() {
+    var checked by remember { mutableStateOf(false) }
+
+    OudsCheckboxItem(
+        checked = checked,
+        label = "Terms of use",
+        description = "By checking this box, I acknowledge having read the conditions of use.",
+        icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        onCheckedChange = { value -> checked = value }
+    )
+}
+
+@Composable
+internal fun OudsTriStateCheckboxItemWithUntintedIconSample() {
+    var toggleableState by remember { mutableStateOf(ToggleableState.Off) }
+
+    OudsTriStateCheckboxItem(
+        state = toggleableState,
+        label = "My hobbies",
+        description = "Select the hobbies you practice regularly.",
+        icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        onClick = {
+            toggleableState = when (toggleableState) {
+                ToggleableState.On -> ToggleableState.Off
+                ToggleableState.Off -> ToggleableState.Indeterminate
+                ToggleableState.Indeterminate -> ToggleableState.On
+            }
+        }
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsCheckboxItemSample() = OudsPreview {
@@ -126,4 +164,16 @@ private fun PreviewOudsCheckboxItemWithAnnotatedErrorMessageSample() = OudsPrevi
 @Composable
 private fun PreviewOudsTriStateCheckboxItemWithAnnotatedErrorMessageSample() = OudsPreview {
     OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsCheckboxItemWithUntintedIconSample() = OudsPreview {
+    OudsCheckboxItemWithUntintedIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTriStateCheckboxItemWithUntintedIconSample() = OudsPreview {
+    OudsTriStateCheckboxItemWithUntintedIconSample()
 }

@@ -101,6 +101,8 @@ fun OudsSuggestionChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlyWithUntintedIconSample
  */
 @Composable
 fun OudsSuggestionChip(
@@ -148,6 +150,8 @@ fun OudsSuggestionChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconWithUntintedIconSample
  */
 @Composable
 fun OudsSuggestionChip(

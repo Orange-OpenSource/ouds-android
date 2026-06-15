@@ -166,6 +166,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithUntintedLeadingIconSample
  */
 @Composable
 fun OudsTextInput(
@@ -468,6 +469,7 @@ private fun OudsTextInput(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithUntintedLeadingIconSample
  */
 @Composable
 fun OudsTextInput(

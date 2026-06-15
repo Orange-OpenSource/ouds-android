@@ -21,6 +21,7 @@ import com.orange.ouds.core.component.OudsTagAsset
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsTagSample() {
@@ -55,6 +56,14 @@ internal fun OudsTagWithIconSample() {
     )
 }
 
+@Composable
+internal fun OudsTagWithUntintedIconSample() {
+    OudsTag(
+        label = "Tag",
+        status = OudsTagStatus.Neutral(asset = OudsTagAsset.Icon(painter = rememberRainbowHeartPainter(), tinted = false))
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsTagSample() = OudsPreview {
@@ -77,4 +86,10 @@ private fun PreviewOudsTagWithDefaultIconSample() = OudsPreview {
 @Composable
 private fun PreviewOudsTagWithIconSample() = OudsPreview {
     OudsTagWithIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTagWithUntintedIconSample() = OudsPreview {
+    OudsTagWithUntintedIconSample()
 }

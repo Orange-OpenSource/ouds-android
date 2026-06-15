@@ -120,6 +120,8 @@ import kotlin.enums.enumEntries
  * @sample com.orange.ouds.core.component.samples.OudsTagWithDefaultIconSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithUntintedIconSample
  */
 @Composable
 fun OudsTag(

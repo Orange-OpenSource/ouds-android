@@ -90,6 +90,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemSample
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithUntintedIconSample
  */
 @Composable
 fun OudsRadioButtonItem(
