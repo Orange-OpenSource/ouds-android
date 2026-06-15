@@ -23,10 +23,4 @@ internal fun Modifier.filter(predicate: (Modifier.Element) -> Boolean): Modifier
     }
 }
 
-internal fun Modifier.last(): Modifier {
-    return foldOut<Modifier>(Modifier) { element, result ->
-        if (result == Modifier) element else result
-    }
-}
-
 internal fun Modifier.iconSize(size: Dp, tinted: Boolean): Modifier = if (tinted) this.size(size) else height(size)
