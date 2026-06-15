@@ -152,7 +152,8 @@
     <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_textOnlyLayout_tech" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_tech" translatable="false">Text + icon</string>
-    <string name="app_components_common_tintedIcon_tech" translatable="false">Tinted icon</string>
+    <string name="app_components_common_tintedIcon_tech" translatable="false">Tinted</string>
+    <string name="app_components_common_untintedIcon_tech" translatable="false">Untinted</string>
     <string name="app_components_common_type_tech" translatable="false">Type</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">No unread message</item>
@@ -321,7 +322,6 @@
     <string name="app_components_textInput_tech" translatable="false">Text input</string>
     <string name="app_components_textInput_description_text">Text input is a UI element that allows to type, edit, or select single line of textual data, such as names, emails or search queries.</string>
     <string name="app_components_textInput_leadingIcon_tech" translatable="false">Leading icon</string>
-    <string name="app_components_textInput_tintedLeadingIcon_tech" translatable="false">Tinted leading icon</string>
     <string name="app_components_textInput_trailingAction_tech" translatable="false">Trailing action</string>
     <string name="app_components_textInput_trailingAction_a11y">Trailing action content description</string>
     <string name="app_components_textInput_suffix_tech" translatable="false">Suffix</string>

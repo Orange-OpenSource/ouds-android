@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.alert
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,20 +29,20 @@ import com.orange.ouds.core.component.OudsInlineAlertStatus
 fun rememberInlineAlertDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
-    tintedIcon: Boolean = true
+    icon: InlineAlertDemoState.Icon = InlineAlertDemoState.Icon.Tinted
 ) = rememberSaveable(
     label,
     status,
-    tintedIcon,
+    icon,
     saver = InlineAlertDemoState.Saver
 ) {
-    InlineAlertDemoState(label, status, tintedIcon)
+    InlineAlertDemoState(label, status, icon)
 }
 
 class InlineAlertDemoState(
     label: String,
     status: OudsInlineAlertStatus,
-    tintedIcon: Boolean
+    icon: Icon = Icon.Tinted
 ) {
 
     companion object {
@@ -59,7 +60,7 @@ class InlineAlertDemoState(
                     listOf(
                         label,
                         status::class.java.name,
-                        tintedIcon
+                        icon
                     )
                 }
             },
@@ -74,7 +75,7 @@ class InlineAlertDemoState(
                 InlineAlertDemoState(
                     list[0] as String,
                     status,
-                    list[2] as Boolean
+                    list[2] as Icon
                 )
             }
         )
@@ -85,15 +86,20 @@ class InlineAlertDemoState(
         get() = _status
         set(value) {
             _status = value
-            if (status in FunctionalStatuses) {
-                tintedIcon = true
+            if (icon !in enabledIcons) {
+                icon = Icon.Tinted
             }
         }
 
     var label: String by mutableStateOf(label)
 
-    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+    var icon: Icon by mutableStateOf(icon)
 
-    val tintedIconSwitchEnabled: Boolean
-        get() = status !in FunctionalStatuses
+    val enabledIcons: List<Icon>
+        get() = if (status !in FunctionalStatuses) Icon.entries else listOf(Icon.Tinted)
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
+    }
 }

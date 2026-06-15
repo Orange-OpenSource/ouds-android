@@ -31,9 +31,9 @@ fun rememberLinkDemoState(
     onColoredBox: Boolean = false,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     layout: LinkDemoState.Layout = LinkDemoState.Layout.entries.first(),
-    tintedIcon: Boolean = true
-) = rememberSaveable(label, enabled, onColoredBox, size, layout, tintedIcon, saver = LinkDemoState.Saver) {
-    LinkDemoState(label, enabled, onColoredBox, size, layout, tintedIcon)
+    icon: LinkDemoState.Icon = LinkDemoState.Icon.Tinted
+) = rememberSaveable(label, enabled, onColoredBox, size, layout, icon, saver = LinkDemoState.Saver) {
+    LinkDemoState(label, enabled, onColoredBox, size, layout, icon)
 }
 
 class LinkDemoState(
@@ -42,7 +42,7 @@ class LinkDemoState(
     onColoredBox: Boolean,
     size: OudsLinkSize,
     layout: Layout,
-    tintedIcon: Boolean
+    icon: Icon
 ) {
 
     companion object {
@@ -56,7 +56,7 @@ class LinkDemoState(
                         onColoredBox,
                         size,
                         layout,
-                        tintedIcon
+                        icon
                     )
                 }
             },
@@ -67,7 +67,7 @@ class LinkDemoState(
                     list[2] as Boolean,
                     list[3] as OudsLinkSize,
                     list[4] as Layout,
-                    list[5] as Boolean
+                    list[5] as Icon
                 )
             }
         )
@@ -83,15 +83,20 @@ class LinkDemoState(
 
     var layout: Layout by mutableStateOf(layout)
 
-    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+    var icon: Icon by mutableStateOf(icon)
 
-    val tintedIconSwitchEnabled: Boolean
-        get() = layout == Layout.TextAndIcon
+    val enabledIcons: List<Icon>
+        get() = if (layout == Layout.TextAndIcon) Icon.entries else emptyList()
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
         ChevronBack(R.string.app_components_link_backLayout_tech),
         ChevronNext(R.string.app_components_link_nextLayout_tech)
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }

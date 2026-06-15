@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.alert
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,39 +29,36 @@ import kotlin.reflect.full.createInstance
 @Composable
 fun rememberAlertMessageDemoState(
     status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
-    hasIcon: Boolean = true,
+    icon: AlertMessageDemoState.Icon = AlertMessageDemoState.Icon.Tinted,
     hasCloseButton: Boolean = false,
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     actionLink: String? = null,
     actionLinkPosition: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
     bulletList: Map<Int, String>? = null,
-    tintedIcon: Boolean = true
 ) = rememberSaveable(
     status,
-    hasIcon,
+    icon,
     hasCloseButton,
     label,
     description,
     actionLink,
     actionLinkPosition,
     bulletList,
-    tintedIcon,
     saver = AlertMessageDemoState.Saver
 ) {
-    AlertMessageDemoState(status, hasIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, tintedIcon)
+    AlertMessageDemoState(status, icon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList)
 }
 
 class AlertMessageDemoState(
     status: OudsAlertMessageStatus,
-    hasIcon: Boolean,
+    icon: Icon,
     hasCloseButton: Boolean,
     label: String,
     description: String?,
     actionLink: String?,
     actionLinkPosition: OudsAlertMessageActionLinkPosition,
-    bulletList: Map<Int, String>?,
-    tintedIcon: Boolean
+    bulletList: Map<Int, String>?
 ) {
 
     @Suppress("UNCHECKED_CAST")
@@ -79,14 +77,13 @@ class AlertMessageDemoState(
                 with(state) {
                     listOf(
                         status::class.java.name,
-                        hasIcon,
+                        icon,
                         hasCloseButton,
                         label,
                         description,
                         actionLink,
                         actionLinkPosition,
-                        bulletList,
-                        tintedIcon
+                        bulletList
                     )
                 }
             },
@@ -96,14 +93,13 @@ class AlertMessageDemoState(
 
                 AlertMessageDemoState(
                     status,
-                    list[1] as Boolean,
+                    list[1] as Icon,
                     list[2] as Boolean,
                     list[3] as String,
                     list[4] as String?,
                     list[5] as String?,
                     list[6] as OudsAlertMessageActionLinkPosition,
-                    list[7] as Map<Int, String>?,
-                    list[8] as Boolean
+                    list[7] as Map<Int, String>?
                 )
             }
         )
@@ -114,13 +110,12 @@ class AlertMessageDemoState(
         get() = _status
         set(value) {
             _status = value
-            if (status in FunctionalStatuses) {
-                hasIcon = true
-                tintedIcon = true
+            if (icon !in enabledIcons) {
+                icon = Icon.Tinted
             }
         }
 
-    var hasIcon: Boolean by mutableStateOf(hasIcon)
+    var icon: Icon by mutableStateOf(icon)
 
     var hasCloseButton: Boolean by mutableStateOf(hasCloseButton)
 
@@ -132,16 +127,17 @@ class AlertMessageDemoState(
 
     var actionLinkPosition: OudsAlertMessageActionLinkPosition by mutableStateOf(actionLinkPosition)
 
-    val iconSwitchEnabled: Boolean
-        get() = status !in FunctionalStatuses
-
     val actionLinkPositionChipsEnabled: Boolean
         get() = !actionLink.isNullOrEmpty()
 
     var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
 
-    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+    val enabledIcons: List<Icon>
+        get() = if (status !in FunctionalStatuses) Icon.entries else listOf(Icon.Tinted)
 
-    val tintedIconSwitchEnabled: Boolean
-        get() = status !in FunctionalStatuses && hasIcon
+    enum class Icon(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_tech),
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
+    }
 }

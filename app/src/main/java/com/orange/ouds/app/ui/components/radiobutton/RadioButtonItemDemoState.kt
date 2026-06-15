@@ -26,7 +26,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 @Composable
 fun rememberRadioButtonItemDemoState(
     selectedValue: Int = RadioButtonItemDemoState.values.first(),
-    icon: Boolean = false,
+    icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     outlined: Boolean = false,
@@ -38,8 +38,7 @@ fun rememberRadioButtonItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     extraLabel: String? = null,
     description: String? = null,
-    constrainedMaxWidth: Boolean = false,
-    tintedIcon: Boolean = true
+    constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
     selectedValue,
     icon,
@@ -55,7 +54,6 @@ fun rememberRadioButtonItemDemoState(
     extraLabel,
     description,
     constrainedMaxWidth,
-    tintedIcon,
     saver = RadioButtonItemDemoState.Saver
 ) {
     RadioButtonItemDemoState(
@@ -72,14 +70,13 @@ fun rememberRadioButtonItemDemoState(
         label,
         extraLabel,
         description,
-        constrainedMaxWidth,
-        tintedIcon
+        constrainedMaxWidth
     )
 }
 
 class RadioButtonItemDemoState(
     selectedValue: Int,
-    icon: Boolean,
+    icon: Icon,
     edgeToEdge: Boolean,
     divider: Boolean,
     outlined: Boolean,
@@ -91,9 +88,8 @@ class RadioButtonItemDemoState(
     label: String,
     extraLabel: String?,
     description: String?,
-    constrainedMaxWidth: Boolean,
-    tintedIcon: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, tintedIcon) {
+    constrainedMaxWidth: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
 
     companion object {
         val values = listOf(1, 2)
@@ -125,8 +121,7 @@ class RadioButtonItemDemoState(
                         label,
                         list[2] as String?,
                         description,
-                        constrainedMaxWidth,
-                        tintedIcon
+                        constrainedMaxWidth
                     )
                 }
             }

@@ -20,14 +20,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.painterResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.core.component.OudsBadgeDefaults
-import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
-import com.orange.ouds.core.component.OudsIconBadgeStatus
 
 @Composable
 fun rememberBadgeDemoState(
@@ -35,9 +31,10 @@ fun rememberBadgeDemoState(
     size: OudsBadgeSize = OudsBadgeDefaults.Size,
     status: OudsBadgeStatus = OudsBadgeDefaults.Status,
     count: Int = 1,
-    enabled: Boolean = true
-) = rememberSaveable(type, size, status, count, enabled, saver = BadgeDemoState.Saver) {
-    BadgeDemoState(type, size, status, count, enabled)
+    enabled: Boolean = true,
+    icon: BadgeDemoState.Icon = BadgeDemoState.Icon.Tinted
+) = rememberSaveable(type, size, status, count, enabled, icon, saver = BadgeDemoState.Saver) {
+    BadgeDemoState(type, size, status, count, enabled, icon)
 }
 
 class BadgeDemoState(
@@ -45,10 +42,18 @@ class BadgeDemoState(
     size: OudsBadgeSize,
     status: OudsBadgeStatus,
     count: Int,
-    enabled: Boolean
+    enabled: Boolean,
+    icon: Icon
 ) {
 
     companion object {
+
+        private val FunctionalStatuses = listOf(
+            OudsBadgeStatus.Info,
+            OudsBadgeStatus.Negative,
+            OudsBadgeStatus.Positive,
+            OudsBadgeStatus.Warning
+        )
 
         val Saver = listSaver(
             save = { state ->
@@ -58,7 +63,8 @@ class BadgeDemoState(
                         size,
                         status,
                         count,
-                        enabled
+                        enabled,
+                        icon
                     )
                 }
             },
@@ -68,7 +74,8 @@ class BadgeDemoState(
                     list[1] as OudsBadgeSize,
                     list[2] as OudsBadgeStatus,
                     list[3] as Int,
-                    list[4] as Boolean
+                    list[4] as Boolean,
+                    list[5] as Icon
                 )
             }
         )
@@ -96,29 +103,41 @@ class BadgeDemoState(
             Type.Count -> listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large)
         }
 
-    var status: OudsBadgeStatus by mutableStateOf(status)
-
-    val badgeWithIconStatus: OudsIconBadgeStatus
-        @Composable
-        get() = when (status) {
-            OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks)))
-            OudsBadgeStatus.Accent -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks)))
-            OudsBadgeStatus.Positive -> OudsIconBadgeStatus.Positive
-            OudsBadgeStatus.Info -> OudsIconBadgeStatus.Info
-            OudsBadgeStatus.Warning -> OudsIconBadgeStatus.Warning
-            OudsBadgeStatus.Negative -> OudsIconBadgeStatus.Negative
+    private var _status: OudsBadgeStatus by mutableStateOf(status)
+    var status: OudsBadgeStatus
+        get() = _status
+        set(value) {
+            _status = value
+            if (type == Type.Icon && icon !in enabledIcons) {
+                icon = enabledIcons.first()
+            }
         }
 
     var count: Int by mutableIntStateOf(count)
 
     var enabled: Boolean by mutableStateOf(enabled)
 
+    var icon: Icon by mutableStateOf(icon)
+
     val countTextInputEnabled: Boolean
         get() = type == Type.Count
+
+    val enabledIcons: List<Icon>
+        get() = when (type) {
+            Type.Icon if status !in FunctionalStatuses -> Icon.entries
+            Type.Icon -> listOf(Icon.Tinted)
+            Type.Standard,
+            Type.Count -> emptyList()
+        }
 
     enum class Type(@StringRes val labelRes: Int) {
         Standard(R.string.app_components_badge_standardType_tech),
         Count(R.string.app_components_badge_count_tech),
         Icon(R.string.app_components_badge_iconType_tech)
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }

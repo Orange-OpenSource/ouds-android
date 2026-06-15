@@ -37,9 +37,9 @@ fun rememberTagDemoState(
     status: OudsTagStatus = OudsTagDefaults.Status,
     hasLoader: Boolean = false,
     enabled: Boolean = true,
-    tintedIcon: Boolean = true
-) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, tintedIcon, saver = TagDemoState.Saver) {
-    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, tintedIcon)
+    icon: TagDemoState.Icon = TagDemoState.Icon.Tinted
+) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, icon, saver = TagDemoState.Saver) {
+    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, icon)
 }
 
 class TagDemoState(
@@ -51,7 +51,7 @@ class TagDemoState(
     status: OudsTagStatus,
     hasLoader: Boolean,
     enabled: Boolean,
-    tintedIcon: Boolean
+    icon: Icon
 ) {
 
     companion object {
@@ -75,7 +75,7 @@ class TagDemoState(
                         status::class.java.name,
                         hasLoader,
                         enabled,
-                        tintedIcon
+                        icon
                     )
                 }
             },
@@ -92,7 +92,7 @@ class TagDemoState(
                     status,
                     list[6] as Boolean,
                     list[7] as Boolean,
-                    list[8] as Boolean
+                    list[8] as Icon
                 )
             }
         )
@@ -108,13 +108,21 @@ class TagDemoState(
 
     var size: OudsTagSize by mutableStateOf(size)
 
-    var status: OudsTagStatus by mutableStateOf(status)
+    private var _status: OudsTagStatus by mutableStateOf(status)
+    var status: OudsTagStatus
+        get() = _status
+        set(value) {
+            _status = value
+            if (layout == Layout.TextAndIcon && icon !in enabledIcons) {
+                icon = enabledIcons.first()
+            }
+        }
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
     var enabled: Boolean by mutableStateOf(enabled)
 
-    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+    var icon: Icon by mutableStateOf(icon)
 
     val enabledSwitchEnabled: Boolean
         get() = !hasLoader
@@ -122,12 +130,22 @@ class TagDemoState(
     val loaderSwitchEnabled: Boolean
         get() = enabled
 
-    val tintedIconSwitchEnabled: Boolean
-        get() = layout == Layout.TextAndIcon && status::class !in FunctionalStatusClasses
+    val enabledIcons: List<Icon>
+        get() = when (layout) {
+            Layout.TextAndIcon if status::class !in FunctionalStatusClasses -> Icon.entries
+            Layout.TextAndIcon -> listOf(Icon.Tinted)
+            Layout.TextOnly,
+            Layout.TextAndBullet -> emptyList()
+        }
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
         TextAndBullet(R.string.app_components_tag_textAndBulletLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech)
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }

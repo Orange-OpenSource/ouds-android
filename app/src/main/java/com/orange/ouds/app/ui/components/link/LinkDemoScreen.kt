@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -86,11 +87,12 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             value = label,
             onValueChange = { value -> label = value }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_tintedIcon_tech),
-            checked = tintedIcon,
-            onCheckedChange = { tintedIcon = it },
-            enabled = tintedIconSwitchEnabled
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = LinkDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = LinkDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = LinkDemoState.Icon.entries[index] }
         )
     }
 }
@@ -108,14 +110,13 @@ private fun LinkDemoContent(state: LinkDemoState) {
                 )
             }
             LinkDemoState.Layout.TextAndIcon -> {
-                val painter = if (tintedIcon) {
-                    painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
-                } else {
-                    rememberUntintedIconPainter()
+                val painter = when (icon) {
+                    LinkDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+                    LinkDemoState.Icon.Untinted -> rememberUntintedIconPainter()
                 }
                 OudsLink(
                     label = label,
-                    icon = OudsLinkIcon(painter, tinted = tintedIcon),
+                    icon = OudsLinkIcon(painter, tinted = icon == LinkDemoState.Icon.Tinted),
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -150,7 +151,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsLinkIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
+                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsLinkIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == LinkDemoState.Icon.Tinted)
                     LinkDemoState.Layout.ChevronBack -> typedArgument("chevron", OudsLinkChevron.Back)
                     LinkDemoState.Layout.ChevronNext -> typedArgument("chevron", OudsLinkChevron.Next)
                 }

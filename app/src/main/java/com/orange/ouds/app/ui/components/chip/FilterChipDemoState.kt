@@ -27,9 +27,9 @@ fun rememberFilterChipDemoState(
     enabled: Boolean = true,
     layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
     label: String = stringResource(R.string.app_components_common_label_label),
-    tintedIcon: Boolean = true
-) = rememberSaveable(selectedValues, enabled, layout, tintedIcon, saver = FilterChipDemoState.Saver) {
-    FilterChipDemoState(selectedValues, enabled, layout, label, tintedIcon)
+    icon: ChipDemoState.Icon = ChipDemoState.Icon.Tinted
+) = rememberSaveable(selectedValues, enabled, layout, icon, saver = FilterChipDemoState.Saver) {
+    FilterChipDemoState(selectedValues, enabled, layout, label, icon)
 }
 
 class FilterChipDemoState(
@@ -37,8 +37,8 @@ class FilterChipDemoState(
     enabled: Boolean,
     layout: Layout,
     label: String,
-    tintedIcon: Boolean
-) : ChipDemoState(enabled, layout, label, tintedIcon) {
+    icon: Icon
+) : ChipDemoState(enabled, layout, label, icon) {
 
     companion object {
 
@@ -60,7 +60,7 @@ class FilterChipDemoState(
                         enabled,
                         layout,
                         label,
-                        tintedIcon
+                        icon
                     )
                 }
             }

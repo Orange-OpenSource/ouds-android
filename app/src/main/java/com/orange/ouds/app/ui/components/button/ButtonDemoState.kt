@@ -32,9 +32,9 @@ fun rememberButtonDemoState(
     hasLoader: Boolean = false,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first(),
-    tintedIcon: Boolean = true
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, tintedIcon, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout, tintedIcon)
+    icon: ButtonDemoState.Icon = ButtonDemoState.Icon.Tinted
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, icon, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout, icon)
 }
 
 class ButtonDemoState(
@@ -44,7 +44,7 @@ class ButtonDemoState(
     hasLoader: Boolean,
     appearance: OudsButtonAppearance,
     layout: Layout,
-    tintedIcon: Boolean
+    icon: Icon
 ) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
 
     companion object {
@@ -59,7 +59,7 @@ class ButtonDemoState(
                         label,
                         appearance,
                         layout,
-                        tintedIcon,
+                        icon,
                         with(BaseButtonDemoState.Saver) { save(state) },
                     )
                 }
@@ -74,7 +74,7 @@ class ButtonDemoState(
                         hasLoader,
                         list[1] as OudsButtonAppearance,
                         list[2] as Layout,
-                        list[3] as Boolean
+                        list[3] as Icon
                     )
                 }
             }
@@ -101,14 +101,19 @@ class ButtonDemoState(
     val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly
 
-    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
+    var icon: Icon by mutableStateOf(icon)
 
-    val tintedIconSwitchEnabled: Boolean
-        get() = layout != Layout.TextOnly
+    val enabledIcons: List<Icon>
+        get() = if (layout != Layout.TextOnly) Icon.entries else emptyList()
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
         IconOnly(R.string.app_components_common_iconOnlyLayout_tech)
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }

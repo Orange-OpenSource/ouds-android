@@ -101,17 +101,12 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
             onSelectionChange = { status = statuses[it] }
         )
-        CustomizationSwitchItem(
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_icon_tech),
-            checked = hasIcon,
-            onCheckedChange = { hasIcon = it },
-            enabled = iconSwitchEnabled
-        )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_tintedIcon_tech),
-            checked = tintedIcon,
-            onCheckedChange = { tintedIcon = it },
-            enabled = tintedIconSwitchEnabled
+            chips = AlertMessageDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = AlertMessageDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = AlertMessageDemoState.Icon.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_alert_alertMessage_closeButton_tech),
@@ -164,18 +159,17 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
     with(state) {
-        val painter = if (tintedIcon) {
-            painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
-        } else {
-            rememberUntintedIconPainter()
+        val alertIcon = when (icon) {
+            AlertMessageDemoState.Icon.None -> null
+            AlertMessageDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
-        val icon = OudsAlertIcon(painter = painter, tinted = tintedIcon)
         OudsAlertMessage(
             label = label,
             description = description,
             status = when (status) {
-                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(if (hasIcon) icon else null)
-                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(if (hasIcon) icon else null)
+                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
+                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(alertIcon)
                 is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
                 is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative
                 is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive
@@ -202,8 +196,8 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Accent,
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        if (hasIcon) {
-                            iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
+                        if (icon != AlertMessageDemoState.Icon.None) {
+                            iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == AlertMessageDemoState.Icon.Tinted)
                         }
                     }
                 }

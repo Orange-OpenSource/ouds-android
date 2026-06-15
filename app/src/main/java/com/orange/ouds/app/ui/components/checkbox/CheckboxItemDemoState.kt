@@ -30,7 +30,7 @@ fun rememberCheckboxItemDemoState(
         ToggleableState.Off,
         ToggleableState.Off
     ), // only used for indeterminate checkbox item demo
-    icon: Boolean = false,
+    icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -41,7 +41,6 @@ fun rememberCheckboxItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     constrainedMaxWidth: Boolean = false,
-    tintedIcon: Boolean = true
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
@@ -56,7 +55,6 @@ fun rememberCheckboxItemDemoState(
     label,
     description,
     constrainedMaxWidth,
-    tintedIcon,
     saver = CheckboxItemDemoState.Saver
 ) {
     CheckboxItemDemoState(
@@ -72,15 +70,14 @@ fun rememberCheckboxItemDemoState(
         errorMessage,
         label,
         description,
-        constrainedMaxWidth,
-        tintedIcon
+        constrainedMaxWidth
     )
 }
 
 class CheckboxItemDemoState(
     checkedValues: Pair<Boolean, Boolean>,
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
-    icon: Boolean,
+    icon: Icon,
     edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
@@ -90,9 +87,8 @@ class CheckboxItemDemoState(
     errorMessage: String,
     label: String,
     description: String?,
-    constrainedMaxWidth: Boolean,
-    tintedIcon: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, tintedIcon) {
+    constrainedMaxWidth: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
 
     companion object {
         val Saver = listSaver(
@@ -120,8 +116,7 @@ class CheckboxItemDemoState(
                         errorMessage,
                         label,
                         description,
-                        constrainedMaxWidth,
-                        tintedIcon
+                        constrainedMaxWidth
                     )
                 }
             }

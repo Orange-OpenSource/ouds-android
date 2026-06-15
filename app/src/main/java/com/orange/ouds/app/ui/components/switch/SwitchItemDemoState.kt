@@ -25,7 +25,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 @Composable
 fun rememberSwitchItemDemoState(
     checked: Boolean = false,
-    icon: Boolean = false,
+    icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -35,8 +35,7 @@ fun rememberSwitchItemDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     text: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
-    constrainedMaxWidth: Boolean = false,
-    tintedIcon: Boolean = true
+    constrainedMaxWidth: Boolean = false
 ) = rememberSaveable(
     checked,
     icon,
@@ -50,7 +49,6 @@ fun rememberSwitchItemDemoState(
     text,
     description,
     constrainedMaxWidth,
-    tintedIcon,
     saver = SwitchItemDemoState.Saver
 ) {
     SwitchItemDemoState(
@@ -65,14 +63,13 @@ fun rememberSwitchItemDemoState(
         errorMessage,
         text,
         description,
-        constrainedMaxWidth,
-        tintedIcon
+        constrainedMaxWidth
     )
 }
 
 class SwitchItemDemoState(
     checked: Boolean,
-    icon: Boolean,
+    icon: Icon,
     edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
@@ -82,9 +79,8 @@ class SwitchItemDemoState(
     errorMessage: String,
     text: String,
     description: String?,
-    constrainedMaxWidth: Boolean,
-    tintedIcon: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth, tintedIcon) {
+    constrainedMaxWidth: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth) {
 
     companion object {
 
@@ -110,8 +106,7 @@ class SwitchItemDemoState(
                         errorMessage,
                         label,
                         description,
-                        constrainedMaxWidth,
-                        tintedIcon
+                        constrainedMaxWidth
                     )
                 }
             }

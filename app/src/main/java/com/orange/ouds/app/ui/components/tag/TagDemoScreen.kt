@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -125,11 +126,12 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             selectedChipIndex = TagDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = TagDemoState.Layout.entries[index] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_tintedIcon_tech),
-            checked = tintedIcon,
-            onCheckedChange = { tintedIcon = it },
-            enabled = tintedIconSwitchEnabled
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = TagDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = TagDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = TagDemoState.Icon.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_tech),
@@ -163,12 +165,11 @@ private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
             val loader = if (hasLoader) OudsTagLoader(null) else null
-            val painter = if (tintedIcon) {
-                painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
-            } else {
-                rememberUntintedIconPainter()
+            val painter = when (icon) {
+                TagDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+                TagDemoState.Icon.Untinted -> rememberUntintedIconPainter()
             }
-            val icon = OudsTagAsset.Icon(painter = painter, tinted = tintedIcon)
+            val tagIcon = OudsTagAsset.Icon(painter = painter, tinted = icon == TagDemoState.Icon.Tinted)
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),
@@ -178,12 +179,12 @@ private fun TagDemoContent(state: TagDemoState) {
                     is OudsTagStatus.Neutral -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Neutral()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Neutral(asset = OudsTagAsset.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Neutral(asset = icon)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Neutral(asset = tagIcon)
                     }
                     is OudsTagStatus.Accent -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Accent()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Accent(asset = OudsTagAsset.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Accent(asset = icon)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Accent(asset = tagIcon)
                     }
                     is OudsTagStatus.Positive -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Positive()
@@ -239,7 +240,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                             is OudsTagStatus.Accent -> iconArgument<OudsTagAsset.Icon>(
                                 assetParameterName,
                                 themeDrawableResources.tipsAndTricks,
-                                tinted = tintedIcon
+                                tinted = icon == TagDemoState.Icon.Tinted
                             )
                             is OudsTagStatus.Positive,
                             is OudsTagStatus.Warning,

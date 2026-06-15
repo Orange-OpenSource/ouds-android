@@ -31,7 +31,8 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
@@ -100,11 +101,12 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
             selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
             onSelectionChange = { status = statuses[it] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_tintedIcon_tech),
-            checked = tintedIcon,
-            onCheckedChange = { tintedIcon = it },
-            enabled = tintedIconSwitchEnabled
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = InlineAlertDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = InlineAlertDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = InlineAlertDemoState.Icon.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -118,17 +120,15 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 @Composable
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
     with(state) {
-        val painter = if (tintedIcon) {
-            painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
-        } else {
-            rememberUntintedIconPainter()
+        val alertIcon = when (icon) {
+            InlineAlertDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            InlineAlertDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
-        val icon = OudsAlertIcon(painter = painter, tinted = tintedIcon)
         OudsInlineAlert(
             label = label,
             status = when (status) {
-                is OudsInlineAlertStatus.Accent -> OudsInlineAlertStatus.Accent(icon)
-                is OudsInlineAlertStatus.Neutral -> OudsInlineAlertStatus.Neutral(icon)
+                is OudsInlineAlertStatus.Accent -> OudsInlineAlertStatus.Accent(alertIcon)
+                is OudsInlineAlertStatus.Neutral -> OudsInlineAlertStatus.Neutral(alertIcon)
                 is OudsInlineAlertStatus.Info -> OudsInlineAlertStatus.Info
                 is OudsInlineAlertStatus.Negative -> OudsInlineAlertStatus.Negative
                 is OudsInlineAlertStatus.Positive -> OudsInlineAlertStatus.Positive
@@ -146,7 +146,7 @@ private fun Code.Builder.inlineAlertDemoCodeSnippet(state: InlineAlertDemoState,
                 is OudsInlineAlertStatus.Accent,
                 is OudsInlineAlertStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = tintedIcon)
+                        iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == InlineAlertDemoState.Icon.Tinted)
                     }
                 }
                 OudsInlineAlertStatus.Info,

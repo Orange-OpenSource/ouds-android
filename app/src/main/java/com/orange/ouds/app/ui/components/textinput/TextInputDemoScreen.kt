@@ -32,6 +32,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -65,21 +66,20 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             checked = outlined,
             onCheckedChange = { outlined = it },
         )
-        CustomizationSwitchItem(
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_leadingIcon_tech),
-            checked = leadingIcon,
-            onCheckedChange = { leadingIcon = it },
+            chipLabels = TextInputDemoState.LeadingIcon.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TextInputDemoState.LeadingIcon.entries.indexOf(leadingIcon),
+            onSelectionChange = { index -> leadingIcon = TextInputDemoState.LeadingIcon.entries[index] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_textInput_tintedLeadingIcon_tech),
-            checked = tintedLeadingIcon,
-            onCheckedChange = { tintedLeadingIcon = it },
-            enabled = tintedLeadingIconSwitchEnabled
-        )
-        CustomizationSwitchItem(
+
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_textInput_trailingAction_tech),
-            checked = trailingIcon,
-            onCheckedChange = { trailingIcon = it },
+            chipLabels = TextInputDemoState.TrailingIcon.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = TextInputDemoState.TrailingIcon.entries.indexOf(trailingIcon),
+            onSelectionChange = { index -> trailingIcon = TextInputDemoState.TrailingIcon.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_tech),
@@ -160,29 +160,32 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
 private fun TextInputDemoContent(state: TextInputDemoState) {
     val focusManager = LocalFocusManager.current
     with(state) {
+        val textInputLeadingIcon = when (leadingIcon) {
+            TextInputDemoState.LeadingIcon.None -> null
+            TextInputDemoState.LeadingIcon.Tinted -> OudsTextInputLeadingIcon(
+                painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                contentDescription = ""
+            )
+            TextInputDemoState.LeadingIcon.Untinted -> OudsTextInputLeadingIcon(
+                painter = rememberUntintedIconPainter(),
+                contentDescription = "",
+                tinted = false
+            )
+        }
+        val textInputTrailingIcon = when (trailingIcon) {
+            TextInputDemoState.TrailingIcon.None -> null
+            TextInputDemoState.TrailingIcon.Tinted -> OudsTextInputTrailingIconButton(
+                painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
+                onClick = {})
+        }
         OudsTextInput(
             textFieldState = textFieldState,
             label = label,
             placeholder = placeholder,
             outlined = outlined,
-            leadingIcon = if (leadingIcon) {
-                val painter = if (tintedLeadingIcon) {
-                    painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
-                } else {
-                    rememberUntintedIconPainter()
-                }
-                OudsTextInputLeadingIcon(painter, "", tintedLeadingIcon)
-            } else {
-                null
-            },
-            trailingIconButton = if (trailingIcon) {
-                OudsTextInputTrailingIconButton(
-                    painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                    contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
-                    onClick = { })
-            } else {
-                null
-            },
+            leadingIcon = textInputLeadingIcon,
+            trailingIconButton = textInputTrailingIcon,
             loader = if (hasLoader) OudsTextInputLoader(null) else null,
             enabled = enabled,
             readOnly = readOnly,
@@ -204,10 +207,14 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             if (label.isNotEmpty()) labelArgument(label)
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
-            if (leadingIcon) {
-                iconArgument<OudsTextInputLeadingIcon>("leadingIcon", themeDrawableResources.tipsAndTricks, tinted = tintedLeadingIcon)
+            if (leadingIcon != TextInputDemoState.LeadingIcon.None) {
+                iconArgument<OudsTextInputLeadingIcon>(
+                    "leadingIcon",
+                    themeDrawableResources.tipsAndTricks,
+                    tinted = leadingIcon == TextInputDemoState.LeadingIcon.Tinted
+                )
             }
-            if (trailingIcon) {
+            if (trailingIcon != TextInputDemoState.TrailingIcon.None) {
                 constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
                     painterArgument(themeDrawableResources.tipsAndTricks)
                     contentDescriptionArgument(R.string.app_components_textInput_trailingAction_a11y)

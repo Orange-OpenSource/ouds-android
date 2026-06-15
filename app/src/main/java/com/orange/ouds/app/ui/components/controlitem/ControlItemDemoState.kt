@@ -12,13 +12,15 @@
 
 package com.orange.ouds.app.ui.components.controlitem
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
+import com.orange.ouds.app.R
 
 open class ControlItemDemoState(
-    icon: Boolean,
+    icon: Icon,
     edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,
@@ -28,8 +30,7 @@ open class ControlItemDemoState(
     errorMessage: String,
     label: String,
     description: String?,
-    constrainedMaxWidth: Boolean,
-    tintedIcon: Boolean
+    constrainedMaxWidth: Boolean
 ) {
 
     companion object {
@@ -49,13 +50,12 @@ open class ControlItemDemoState(
                         label,
                         description,
                         constrainedMaxWidth,
-                        tintedIcon
                     )
                 }
             },
             restore = { list ->
                 ControlItemDemoState(
-                    list[0] as Boolean,
+                    list[0] as Icon,
                     list[1] as Boolean,
                     list[2] as Boolean,
                     list[3] as Boolean,
@@ -65,14 +65,13 @@ open class ControlItemDemoState(
                     list[7] as String,
                     list[8] as String,
                     list[9] as String?,
-                    list[10] as Boolean,
-                    list[11] as Boolean
+                    list[10] as Boolean
                 )
             }
         )
     }
 
-    var icon: Boolean by mutableStateOf(icon)
+    var icon: Icon by mutableStateOf(icon)
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
     var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
     var divider: Boolean by mutableStateOf(divider)
@@ -83,7 +82,6 @@ open class ControlItemDemoState(
     var errorMessage: String by mutableStateOf(errorMessage)
     var label: String by mutableStateOf(label)
     var description: String? by mutableStateOf(description)
-    var tintedIcon: Boolean by mutableStateOf(tintedIcon)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
@@ -97,6 +95,9 @@ open class ControlItemDemoState(
     val errorMessageTextInputEnabled: Boolean
         get() = error
 
-    val tintedIconSwitchEnabled: Boolean
-        get() = icon
+    enum class Icon(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_tech),
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
+    }
 }

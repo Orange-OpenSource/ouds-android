@@ -23,17 +23,17 @@ fun rememberSuggestionChipDemoState(
     enabled: Boolean = true,
     layout: ChipDemoState.Layout = ChipDemoState.Layout.entries.first(),
     label: String = stringResource(R.string.app_components_common_label_label),
-    tintedIcon: Boolean = true
-) = rememberSaveable(enabled, layout, tintedIcon, saver = SuggestionChipDemoState.Saver) {
-    SuggestionChipDemoState(enabled, layout, label, tintedIcon)
+    icon: ChipDemoState.Icon = ChipDemoState.Icon.Tinted
+) = rememberSaveable(enabled, layout, icon, saver = SuggestionChipDemoState.Saver) {
+    SuggestionChipDemoState(enabled, layout, label, icon)
 }
 
 class SuggestionChipDemoState(
     enabled: Boolean,
     layout: Layout,
     label: String,
-    tintedIcon: Boolean
-) : ChipDemoState(enabled, layout, label, tintedIcon) {
+    icon: Icon
+) : ChipDemoState(enabled, layout, label, icon) {
 
     companion object {
 
@@ -43,7 +43,7 @@ class SuggestionChipDemoState(
             },
             restore = { value ->
                 val chipDemoState = ChipDemoState.Saver.restore(value)
-                chipDemoState?.run { SuggestionChipDemoState(enabled, layout, label, tintedIcon) }
+                chipDemoState?.run { SuggestionChipDemoState(enabled, layout, label, icon) }
             }
         )
     }

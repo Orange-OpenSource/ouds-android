@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -87,11 +88,12 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = ButtonDemoState.Layout.entries[index] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_tintedIcon_tech),
-            checked = tintedIcon,
-            onCheckedChange = { tintedIcon = it },
-            enabled = tintedIconSwitchEnabled
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = ButtonDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = ButtonDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = ButtonDemoState.Icon.entries[index] }
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -106,15 +108,14 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 @Composable
 private fun ButtonDemoContent(state: ButtonDemoState) {
     with(state) {
-        val painter = if (tintedIcon) {
-            painterResource(LocalThemeDrawableResources.current.tipsAndTricks)
-        } else {
-            rememberUntintedIconPainter()
+        val painter = when (icon) {
+            ButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+            ButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
         }
-        val icon = OudsButtonIcon(
+        val buttonIcon = OudsButtonIcon(
             painter = painter,
             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
-            tinted = tintedIcon
+            tinted = icon == ButtonDemoState.Icon.Tinted
         )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
         when (layout) {
@@ -129,7 +130,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             }
             ButtonDemoState.Layout.TextAndIcon -> {
                 OudsButton(
-                    icon = icon,
+                    icon = buttonIcon,
                     label = label,
                     onClick = {},
                     enabled = enabled,
@@ -139,7 +140,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             }
             ButtonDemoState.Layout.IconOnly -> {
                 OudsButton(
-                    icon = icon,
+                    icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
@@ -155,7 +156,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
         coloredBoxCall(onColoredBox) {
             functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
-                    iconArgument<OudsButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, tintedIcon)
+                    iconArgument<OudsButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, icon == ButtonDemoState.Icon.Tinted)
                 }
                 if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     labelArgument(label)
