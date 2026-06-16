@@ -317,13 +317,8 @@ fun OudsBasicSuggestionChip(
     )
 }
 
-/**
- * The default content of a suggestion chip.
- */
 @Composable
-@RestrictedOudsApi
-@ExperimentalOudsApi
-fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(OudsChipIconPosition.Start)
+private fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(OudsChipIconPosition.Start)
 
 @Composable
 @JvmName("OudsSuggestionChipNullableLabelAndIcon")
