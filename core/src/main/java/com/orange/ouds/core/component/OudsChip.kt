@@ -362,6 +362,19 @@ class OudsChipIcon private constructor(
 
 /**
  * Represents the different states of a chip.
+ * 
+ * This state is available in [OudsChipScope] when using "Basic" chip variants,
+ * allowing developers to customize chip appearance based on interaction state.
+ * 
+ * Example:
+ * ```
+ * OudsBasicSuggestionChip(...) {
+ *     when (state) {
+ *         OudsChipState.Pressed -> Icon(modifier = Modifier.rotate(10f))
+ *         else -> Icon()
+ *     }
+ * }
+ * ```
  */
 @RestrictedOudsApi
 enum class OudsChipState {
