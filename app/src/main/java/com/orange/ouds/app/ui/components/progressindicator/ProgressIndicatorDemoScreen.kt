@@ -82,23 +82,20 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
 
 @Composable
 fun animatedProgress(state: ProgressIndicatorDemoState): Float {
-    var progressValue by remember { mutableFloatStateOf(0f) }
-    val animatedProgress by animateFloatAsState(
-        targetValue = progressValue,
-        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
-    )
+    return with(state) {
+        var progressValue by remember(progress, animated, type) { mutableFloatStateOf(0f) }
+        LaunchedEffect(progress, animated, type) {
+            progressValue = if (!animated || type == ProgressIndicatorDemoState.Type.Indeterminate) 0f else progress
+        }
 
-    if (!state.animated || state.type == ProgressIndicatorDemoState.Type.Indeterminate) {
-        progressValue = 0f // Reset progress value for future determinate progress animation
+        val animatedProgress by animateFloatAsState(
+            targetValue = progressValue.coerceIn(0f, 1f),
+            animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+        )
+
+        if (animated) animatedProgress else progress
     }
-
-    LaunchedEffect(state.progress, state.animated, state.type) {
-        progressValue = state.progress
-    }
-
-    return if (state.animated) animatedProgress else state.progress
 }
-
 
 fun FunctionCall.Builder.progressIndicatorArguments(state: ProgressIndicatorDemoState) = with(state) {
     if (type == ProgressIndicatorDemoState.Type.Determinate) {
@@ -115,14 +112,14 @@ fun FunctionCall.Builder.progressIndicatorArguments(state: ProgressIndicatorDemo
 }
 
 fun Code.Builder.progressIndicatorAnimationInitialization(state: ProgressIndicatorDemoState) = with(state) {
-    comment("Progress animation example")
     if (animated && type == ProgressIndicatorDemoState.Type.Determinate) {
-        variableDeclaration(name = "progressValue", mutable = true, delegatedProperty = "remember") {
+        comment("Progress animation example")
+        variableDeclaration(name = "progressValue", mutable = true, delegatedProperty = true) {
             rememberFunctionCallValue("mutableFloatStateOf", isMultiline = false) {
                 typedArgument(null, 0f)
             }
         }
-        variableDeclaration(name = "animatedProgress", mutable = false, delegatedProperty = "animateFloatAsState") {
+        variableDeclaration(name = "animatedProgress", mutable = false, delegatedProperty = true) {
             functionCallValue("animateFloatAsState") {
                 typedArgument("targetValue", progress)
                 rawArgument("animationSpec", "ProgressIndicatorDefaults.ProgressAnimationSpec")
@@ -131,4 +128,3 @@ fun Code.Builder.progressIndicatorAnimationInitialization(state: ProgressIndicat
         newline()
     }
 }
-

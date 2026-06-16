@@ -69,7 +69,7 @@ data class Code(val elements: List<Formattable>) : Formattable {
             name: String,
             type: String? = null,
             mutable: Boolean = false,
-            delegatedProperty: String? = null,
+            delegatedProperty: Boolean = false,
             init: VariableDeclaration.Builder.() -> Unit
         ) {
             val variableDeclaration = VariableDeclaration.Builder()
@@ -92,10 +92,6 @@ data class Code(val elements: List<Formattable>) : Formattable {
                 }
                 .build()
             elements.add(comment)
-        }
-
-        fun assignment(name: String, value: String) {
-            elements.add(Assignment(name, value))
         }
 
         fun rawValue(value: String) {
@@ -133,14 +129,14 @@ data class VariableDeclaration(
     val name: String,
     val type: String?,
     val mutable: Boolean,
-    val delegatedProperty: String?,
+    val delegatedProperty: Boolean,
     val value: Formattable
 ) : Formattable {
 
     override fun format(context: Context): String {
         val keyword = if (mutable) "var" else "val"
         val typeAnnotation = if (type != null) ": $type" else ""
-        val assignment = if (delegatedProperty != null) "by" else "="
+        val assignment = if (delegatedProperty) "by" else "="
         val formattedValue = value.format(context)
         return "$keyword $name$typeAnnotation $assignment $formattedValue"
     }
@@ -154,36 +150,31 @@ data class VariableDeclaration(
 
         var mutable: Boolean = false
 
-        var delegatedProperty: String? = null
+        var delegatedProperty: Boolean = false
 
-        @PublishedApi
-        internal var value: Formattable? = null
+        internal var value: Formattable by Delegates.notNull()
 
         fun functionCallValue(functionName: String, init: FunctionCall.Builder.() -> Unit = {}) {
             val builder = FunctionCall.Builder().apply {
-                this.name = functionName
+                name = functionName
                 init()
             }
             value = builder.build()
         }
 
         fun rememberFunctionCallValue(functionName: String, isMultiline: Boolean = true, init: FunctionCall.Builder.() -> Unit = {}) {
-            val innerFunctionCall = FunctionCall.Builder().apply {
-                this.name = functionName
-                this.isMultiline = isMultiline
-                init()
-            }
-            val rememberCall = FunctionCall.Builder().apply {
-                this.name = "remember"
-                this.trailingLambda = true
+            functionCallValue("remember") {
+                trailingLambda = true
                 lambdaArgument(null) {
-                    elements.add(innerFunctionCall.build())
+                    functionCall(functionName) {
+                        this.isMultiline = isMultiline
+                        init()
+                    }
                 }
             }
-            value = rememberCall.build()
         }
 
-        fun build() = VariableDeclaration(name, type, mutable, delegatedProperty, value ?: error("value is required"))
+        fun build() = VariableDeclaration(name, type, mutable, delegatedProperty, value)
     }
 }
 
@@ -296,16 +287,10 @@ class Newline : Formattable {
     override fun format(context: Context): String = "" // There is no need to return "\n" because code elements are already joined using "\n"
 }
 
-data class Assignment(val name: String, val value: String) : Formattable {
-
-    override fun format(context: Context): String = "$name = $value"
-}
-
 data class RawValue(val value: String) : Formattable {
 
     override fun format(context: Context): String = value
 }
-
 
 private fun <T> T.toString(context: Context, clazz: Class<T>): String {
     return when (this) {
@@ -328,6 +313,13 @@ private fun <T> T.toString(context: Context, clazz: Class<T>): String {
 internal fun PreviewCode() = AppPreview {
     val themeDrawableResources = LocalThemeDrawableResources.current
     val code = code {
+        variableDeclaration("progress", delegatedProperty = true) {
+            rememberFunctionCallValue("mutableFloatStateOf") {
+                isMultiline = false
+                typedArgument(null, 2f)
+            }
+        }
+        newline()
         comment("Multiline\ncomment") { isMultiline = true }
         newline()
         functionCall("OudsComponent") {
