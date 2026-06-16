@@ -124,6 +124,22 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
+    /**
+     * Provides access to component-specific tokens (borders, colors, sizes, spaces, etc.) for advanced customization.
+     *
+     * When to use:
+     * - Building custom components that need to match OUDS component styling
+     * - Implementing advanced customization beyond what standard OUDS components provide
+     *
+     * **Prefer using standard OUDS components** (e.g., [com.orange.ouds.core.component.OudsButton], [com.orange.ouds.core.component.OudsFilterChip]) when possible,
+     * as they provide a higher-level, more convenient API.
+     *
+     * Example:
+     * ```
+     * val chipIconGap = OudsTheme.components.chip.space.columnGap.icon
+     * val barBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp
+     * ```
+     */
     @RestrictedOudsApi
     val components: OudsComponents
         @Composable
