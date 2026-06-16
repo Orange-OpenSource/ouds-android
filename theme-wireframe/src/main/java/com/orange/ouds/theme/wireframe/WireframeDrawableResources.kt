@@ -39,6 +39,7 @@ internal class WireframeDrawableResources : OudsDrawableResources {
         override val button = Button()
         override val checkbox = Checkbox()
         override val chip = Chip()
+        override val controlItem = ControlItem()
         override val link = Link()
         override val radioButton = RadioButton()
         override val switch = Switch()
@@ -80,6 +81,11 @@ internal class WireframeDrawableResources : OudsDrawableResources {
 
         class Chip : OudsDrawableResources.Component.Chip {
             override val tick = R.drawable.ic_wireframe_component_chip_tick
+        }
+
+        class ControlItem : OudsDrawableResources.Component.ControlItem {
+            override val next = R.drawable.ic_wireframe_component_control_item_next
+            override val previous = R.drawable.ic_wireframe_component_control_item_previous
         }
 
         class Link : OudsDrawableResources.Component.Link {

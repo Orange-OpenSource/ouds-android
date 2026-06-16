@@ -27,6 +27,7 @@ import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
@@ -50,6 +51,7 @@ internal data class OrangeCompactComponentsTokens(
     override val inputTag: OudsInputTagTokens = OrangeCompactInputTagTokens(),
     override val link: OudsLinkTokens = OrangeCompactLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = OrangeCompactLinkMonoTokens(),
+    override val listItem: OudsListItemTokens = OrangeCompactListItemTokens(),
     override val pinCodeInput: OudsPinCodeInputTokens = OrangeCompactPinCodeInputTokens(),
     override val progressIndicator: OudsProgressIndicatorTokens = OrangeCompactProgressIndicatorTokens(),
     override val radioButton: OudsRadioButtonTokens = OrangeCompactRadioButtonTokens(),
