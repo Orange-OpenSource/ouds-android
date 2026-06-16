@@ -31,6 +31,7 @@ object OudsVersion {
         const val InlineAlert = "1.0.0"
         const val InputTag = "1.2.0"
         const val Link = "2.4.0"
+        const val ListItem = "0.1.0"
         const val NavigationBar = "1.0.0"
         const val NavigationButton = "3.3.0"
         const val NavigationCardItem = "1.0.0"
