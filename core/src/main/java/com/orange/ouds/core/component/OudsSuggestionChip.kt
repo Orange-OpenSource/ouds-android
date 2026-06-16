@@ -185,12 +185,6 @@ fun OudsSuggestionChip(
  * Best suited for category-based filters that do not require additional visual elements.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
- *
- * > Design name: Suggestion Chip
- *
- * > Design version: 1.4.0
- *
  * @param onClick Called when this chip is clicked.
  * @param label Text label displayed in the chip.
  * @param modifier The [Modifier] to be applied to this chip.
@@ -238,12 +232,6 @@ fun OudsBasicSuggestionChip(
  * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
- *
- * > Design name: Suggestion Chip
- *
- * > Design version: 1.4.0
- *
  * @param onClick Called when this chip is clicked.
  * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param modifier The [Modifier] to be applied to this chip.
@@ -290,12 +278,6 @@ fun OudsBasicSuggestionChip(
  * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
  * Ideal when a visual cue helps reinforce the filter's meaning.
  * Other layouts are available for this component: *text only* and *icon only*.
- *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
- *
- * > Design name: Suggestion Chip
- *
- * > Design version: 1.4.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label displayed in the chip.
