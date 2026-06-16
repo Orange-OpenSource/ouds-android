@@ -23,7 +23,8 @@ open class ProgressIndicatorDemoState(
     progressText: String,
     type: Type,
     brandColor: Boolean,
-    track: Boolean
+    track: Boolean,
+    animated: Boolean
 ) {
 
     companion object {
@@ -36,7 +37,8 @@ open class ProgressIndicatorDemoState(
                         progressText,
                         type,
                         brandColor,
-                        track
+                        track,
+                        animated
                     )
                 }
             },
@@ -45,7 +47,8 @@ open class ProgressIndicatorDemoState(
                     list[0] as String,
                     list[1] as Type,
                     list[2] as Boolean,
-                    list[3] as Boolean
+                    list[3] as Boolean,
+                    list[4] as Boolean
                 )
             }
         )
@@ -59,10 +62,15 @@ open class ProgressIndicatorDemoState(
 
     var track by mutableStateOf(track)
 
+    var animated by mutableStateOf(animated)
+
     val progress: Float
         get() = progressText.toFloatOrNull() ?: 0f
 
     val progressTextInputEnabled: Boolean
+        get() = type == Type.Determinate
+
+    val animatedSwitchEnabled: Boolean
         get() = type == Type.Determinate
 
     enum class Type(@StringRes val labelRes: Int) {

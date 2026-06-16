@@ -27,9 +27,10 @@ fun rememberLinearProgressIndicatorDemoState(
     type: Type = Type.Determinate,
     brandColor: Boolean = true,
     track: Boolean = true,
-    helperText: String? = null
-) = rememberSaveable(progressText, type, brandColor, track, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
-    LinearProgressIndicatorDemoState(progressText, type, brandColor, track, helperText)
+    helperText: String? = null,
+    animated: Boolean = true
+) = rememberSaveable(progressText, type, brandColor, track, animated, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
+    LinearProgressIndicatorDemoState(progressText, type, brandColor, track, animated, helperText)
 }
 
 class LinearProgressIndicatorDemoState(
@@ -37,8 +38,9 @@ class LinearProgressIndicatorDemoState(
     type: Type,
     brandColor: Boolean,
     track: Boolean,
+    animated: Boolean,
     helperText: String?
-) : ProgressIndicatorDemoState(progressText, type, brandColor, track) {
+) : ProgressIndicatorDemoState(progressText, type, brandColor, track, animated) {
 
     companion object {
         val Saver = listSaver(
@@ -58,6 +60,7 @@ class LinearProgressIndicatorDemoState(
                         type,
                         brandColor,
                         track,
+                        animated,
                         list[1] as String?
                     )
                 }

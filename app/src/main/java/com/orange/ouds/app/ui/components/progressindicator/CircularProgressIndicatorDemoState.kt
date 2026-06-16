@@ -22,7 +22,8 @@ fun rememberCircularProgressIndicatorDemoState(
     progressText: String = InitialProgressValue.toString(),
     type: Type = Type.Determinate,
     brandColor: Boolean = true,
-    track: Boolean = true
-) = rememberSaveable(progressText, type, brandColor, track, saver = ProgressIndicatorDemoState.Saver) {
-    ProgressIndicatorDemoState(progressText, type, brandColor, track)
+    track: Boolean = true,
+    animated: Boolean = true
+) = rememberSaveable(progressText, type, brandColor, track, animated, saver = ProgressIndicatorDemoState.Saver) {
+    ProgressIndicatorDemoState(progressText, type, brandColor, track, animated)
 }

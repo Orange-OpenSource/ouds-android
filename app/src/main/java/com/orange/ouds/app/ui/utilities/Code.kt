@@ -65,6 +65,25 @@ data class Code(val elements: List<Formattable>) : Formattable {
             elements.add(functionCall)
         }
 
+        fun variableDeclaration(
+            name: String,
+            type: String? = null,
+            mutable: Boolean = false,
+            delegatedProperty: String? = null,
+            init: VariableDeclaration.Builder.() -> Unit
+        ) {
+            val variableDeclaration = VariableDeclaration.Builder()
+                .apply {
+                    this.name = name
+                    this.type = type
+                    this.mutable = mutable
+                    this.delegatedProperty = delegatedProperty
+                    init()
+                }
+                .build()
+            elements.add(variableDeclaration)
+        }
+
         fun comment(text: String, init: Comment.Builder.() -> Unit = {}) {
             val comment = Comment.Builder()
                 .apply {
@@ -73,6 +92,14 @@ data class Code(val elements: List<Formattable>) : Formattable {
                 }
                 .build()
             elements.add(comment)
+        }
+
+        fun assignment(name: String, value: String) {
+            elements.add(Assignment(name, value))
+        }
+
+        fun rawValue(value: String) {
+            elements.add(RawValue(value))
         }
 
         fun newline() {
@@ -99,6 +126,64 @@ data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
         var isMultiline: Boolean = false
 
         fun build() = Comment(text, isMultiline)
+    }
+}
+
+data class VariableDeclaration(
+    val name: String,
+    val type: String?,
+    val mutable: Boolean,
+    val delegatedProperty: String?,
+    val value: Formattable
+) : Formattable {
+
+    override fun format(context: Context): String {
+        val keyword = if (mutable) "var" else "val"
+        val typeAnnotation = if (type != null) ": $type" else ""
+        val assignment = if (delegatedProperty != null) "by" else "="
+        val formattedValue = value.format(context)
+        return "$keyword $name$typeAnnotation $assignment $formattedValue"
+    }
+
+    @CodeDslMarker
+    class Builder {
+
+        var name: String by Delegates.notNull()
+
+        var type: String? = null
+
+        var mutable: Boolean = false
+
+        var delegatedProperty: String? = null
+
+        @PublishedApi
+        internal var value: Formattable? = null
+
+        fun functionCallValue(functionName: String, init: FunctionCall.Builder.() -> Unit = {}) {
+            val builder = FunctionCall.Builder().apply {
+                this.name = functionName
+                init()
+            }
+            value = builder.build()
+        }
+
+        fun rememberFunctionCallValue(functionName: String, isMultiline: Boolean = true, init: FunctionCall.Builder.() -> Unit = {}) {
+            val innerFunctionCall = FunctionCall.Builder().apply {
+                this.name = functionName
+                this.isMultiline = isMultiline
+                init()
+            }
+            val rememberCall = FunctionCall.Builder().apply {
+                this.name = "remember"
+                this.trailingLambda = true
+                lambdaArgument(null) {
+                    elements.add(innerFunctionCall.build())
+                }
+            }
+            value = rememberCall.build()
+        }
+
+        fun build() = VariableDeclaration(name, type, mutable, delegatedProperty, value ?: error("value is required"))
     }
 }
 
@@ -209,6 +294,16 @@ data class Lambda(val code: Code) : Formattable {
 class Newline : Formattable {
 
     override fun format(context: Context): String = "" // There is no need to return "\n" because code elements are already joined using "\n"
+}
+
+data class Assignment(val name: String, val value: String) : Formattable {
+
+    override fun format(context: Context): String = "$name = $value"
+}
+
+data class RawValue(val value: String) : Formattable {
+
+    override fun format(context: Context): String = value
 }
 
 

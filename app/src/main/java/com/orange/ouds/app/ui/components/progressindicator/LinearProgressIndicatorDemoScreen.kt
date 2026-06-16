@@ -51,6 +51,8 @@ private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressI
 
 @Composable
 private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDemoState) {
+    val progress = animatedProgress(state)
+
     with(state) {
         when (type) {
             ProgressIndicatorDemoState.Type.Determinate -> {
@@ -73,6 +75,8 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
 }
 
 private fun Code.Builder.linearProgressIndicatorDemoCodeSnippet(state: LinearProgressIndicatorDemoState) {
+    progressIndicatorAnimationInitialization(state)
+
     functionCall("OudsLinearProgressIndicator") {
         progressIndicatorArguments(state = state)
         state.helperText?.let { typedArgument("helperText", it) }

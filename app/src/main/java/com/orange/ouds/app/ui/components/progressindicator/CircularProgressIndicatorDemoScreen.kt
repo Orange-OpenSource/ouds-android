@@ -36,6 +36,8 @@ fun CircularProgressIndicatorDemoScreen() {
 
 @Composable
 private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoState) {
+    val progress = animatedProgress(state)
+
     with(state) {
         when (type) {
             ProgressIndicatorDemoState.Type.Determinate -> {
@@ -56,6 +58,8 @@ private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoSta
 }
 
 private fun Code.Builder.circularProgressIndicatorDemoCodeSnippet(state: ProgressIndicatorDemoState) {
+    progressIndicatorAnimationInitialization(state)
+
     functionCall("OudsCircularProgressIndicator") {
         progressIndicatorArguments(state = state)
     }
