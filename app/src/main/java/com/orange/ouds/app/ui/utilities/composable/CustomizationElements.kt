@@ -128,7 +128,7 @@ fun CustomizationFilterChips(
         } else {
             true
         }
-        
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -159,6 +159,9 @@ fun CustomizationTextInput(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    suffix: String? = null,
+    helperText: String? = null,
+    resetValue: String = ""
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
@@ -173,6 +176,9 @@ fun CustomizationTextInput(
         modifier = modifier,
         enabled = enabled,
         keyboardOptions = keyboardOptions,
+        suffix = suffix,
+        helperText = helperText,
+        resetValue = resetValue
     )
 }
 
@@ -186,6 +192,7 @@ fun CustomizationTextInput(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     suffix: String? = null,
+    helperText: String? = null,
     resetValue: String = ""
 ) {
     @Suppress("NAME_SHADOWING")
@@ -211,6 +218,7 @@ fun CustomizationTextInput(
             null
         },
         suffix = suffix,
+        helperText = helperText,
         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
     )
 }

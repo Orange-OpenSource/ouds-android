@@ -22,6 +22,8 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.OudsAnnotatedString
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
     if (onColoredBox) {
@@ -32,6 +34,16 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
         }
     } else {
         content()
+    }
+}
+
+internal inline fun <reified T> FunctionCall.Builder.annotatedStringArgument(name: String?) where T : OudsAnnotatedString<T> {
+    val functionName = "build${T::class.simpleName}"
+    functionCallArgument(name, functionName) {
+        trailingLambda = true
+        lambdaArgument("builder") {
+            comment("Build annotated string")
+        }
     }
 }
 
@@ -77,9 +89,13 @@ fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argumen
 
 fun FunctionCall.Builder.tintedArgument(value: Boolean) = typedArgument(Argument.Tinted, value)
 
-fun FunctionCall.Builder.errorArgument(message: String) {
+fun FunctionCall.Builder.errorArgument(message: String, annotatedMessage: Boolean = false) {
     constructorCallArgument<OudsError>(Argument.Error) {
-        typedArgument("message", message)
+        if (annotatedMessage) {
+            annotatedStringArgument<OudsAnnotatedErrorMessage>("message")
+        } else {
+            typedArgument("message", message)
+        }
     }
 }
 
