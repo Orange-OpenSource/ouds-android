@@ -64,11 +64,11 @@ class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString:
         }
 
         /**
-         * Creates a builder initialized with an existing annotated helper text.
+         * Creates a builder initialized with an existing annotated alert message description.
          *
          * @param text The initial annotated text to copy.
          */
-        constructor(text: OudsAnnotatedHelperText) : this() {
+        constructor(text: OudsAnnotatedAlertMessageDescription) : this() {
             append(text)
         }
 

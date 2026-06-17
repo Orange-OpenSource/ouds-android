@@ -67,11 +67,11 @@ class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedStr
         }
 
         /**
-         * Creates a builder initialized with an existing annotated helper text.
+         * Creates a builder initialized with an existing annotated alert message bullet list.
          *
          * @param text The initial annotated text to copy.
          */
-        constructor(text: OudsAnnotatedHelperText) : this() {
+        constructor(text: OudsAnnotatedAlertMessageBulletListLabel) : this() {
             append(text)
         }
 
