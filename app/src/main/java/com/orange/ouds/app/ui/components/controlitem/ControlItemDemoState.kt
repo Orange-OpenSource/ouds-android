@@ -30,7 +30,8 @@ open class ControlItemDemoState(
     errorMessage: String,
     label: String,
     description: String?,
-    constrainedMaxWidth: Boolean
+    constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
 ) {
 
     companion object {
@@ -50,6 +51,7 @@ open class ControlItemDemoState(
                         label,
                         description,
                         constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             },
@@ -65,7 +67,8 @@ open class ControlItemDemoState(
                     list[7] as String,
                     list[8] as String,
                     list[9] as String?,
-                    list[10] as Boolean
+                    list[10] as Boolean,
+                    list[11] as Boolean
                 )
             }
         )
@@ -83,6 +86,16 @@ open class ControlItemDemoState(
     var label: String by mutableStateOf(label)
     var description: String? by mutableStateOf(description)
 
+    private var _annotatedText: Boolean by mutableStateOf(annotatedText)
+    var annotatedText: Boolean
+        get() = _annotatedText
+        set(value) {
+            _annotatedText = value
+            if (value) {
+                error = true
+            }
+        }
+
     val enabledSwitchEnabled: Boolean
         get() = !error
 
@@ -93,7 +106,7 @@ open class ControlItemDemoState(
         get() = enabled && !readOnly
 
     val errorMessageTextInputEnabled: Boolean
-        get() = error
+        get() = error && !annotatedText
 
     enum class Icon(@StringRes val labelRes: Int) {
         None(R.string.app_components_common_none_tech),

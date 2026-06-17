@@ -19,14 +19,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
-import com.orange.ouds.app.ui.components.controlitem.getControlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemError
+import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSwitchItem
-import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -52,13 +54,21 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             label = label,
             onCheckedChange = { checked = it },
             description = description,
-            icon = getControlItemIcon(this),
+            icon = controlItemIcon(this),
             edgeToEdge = edgeToEdge,
             divider = divider,
             reversed = reversed,
             enabled = enabled,
             readOnly = readOnly,
-            error = if (error) OudsError(errorMessage) else null,
+            error = controlItemError(
+                state = this,
+                isLastItem = true,
+                annotatedMessage = buildOudsAnnotatedErrorMessage {
+                    append("You must enable ")
+                    withStrong { append("automatic payments") }
+                    append(" to activate this offer.")
+                }
+            ),
             constrainedMaxWidth = constrainedMaxWidth
         )
     }
