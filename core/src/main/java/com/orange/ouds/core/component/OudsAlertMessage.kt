@@ -258,9 +258,9 @@ private fun OudsAlertMessage(
                     val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
                     val descriptionColor = status.contentColor
                     val descriptionStyle = OudsTheme.typography.label.medium.default
-                    if (annotatedDescription != null) {
+                    if (!annotatedDescription.isNullOrBlank()) {
                         Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
-                    } else if (description != null) {
+                    } else if (!description.isNullOrBlank()) {
                         Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
                     annotatedBulletList.orElse { bulletList }?.let { list ->
