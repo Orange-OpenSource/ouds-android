@@ -70,7 +70,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
- * is required if the track has a contrast below 3:1 with its container or the surface behind the container.
+ *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
  * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
  *   progress value.
  *
@@ -117,7 +117,8 @@ fun OudsLinearProgressIndicator(
  *   easier to read (for determinate variant).
  *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
  *   appearance is needed.
- * @param stopIndicator
+ * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
+ *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
  * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
  *   progress value.
  *
@@ -179,7 +180,7 @@ private fun OudsLinearProgressIndicator(
                         if (stopIndicator) {
                             stopIndicator(color = color, strokeCap = strokeCap)
                         }
-                    },
+                    }
                 )
             }.orElse {
                 LinearProgressIndicator(
