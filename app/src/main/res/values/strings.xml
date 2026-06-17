@@ -298,6 +298,7 @@
     <string name="app_components_progressIndicator_circularProgressIndicator_description_text">A circular progress indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.</string>
     <string name="app_components_progressIndicator_linearProgressIndicator_tech" translatable="false">Linear progress indicator</string>
     <string name="app_components_progressIndicator_linearProgressIndicator_description_text">A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.</string>
+    <string name="app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech" translatable="false">Stop indicator</string>
     <string name="app_components_progressIndicator_animated_tech" translatable="false">Animated</string>
     <string name="app_components_progressIndicator_determinate_tech" translatable="false">Determinate</string>
     <string name="app_components_progressIndicator_indeterminate_tech" translatable="false">Indeterminate</string>

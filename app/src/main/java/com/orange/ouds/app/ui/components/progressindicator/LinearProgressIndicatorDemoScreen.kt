@@ -19,6 +19,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Variant
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLinearProgressIndicator
@@ -40,6 +41,12 @@ fun LinearProgressIndicatorDemoScreen() {
 private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressIndicatorDemoState) {
     with(state) {
         ProgressIndicatorDemoBottomSheetContent(state = state)
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech),
+            checked = stopIndicator,
+            onCheckedChange = { stopIndicator = it },
+            enabled = stopIndicatorSwitchEnabled
+        )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
@@ -60,6 +67,7 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
                     progress = { progress },
                     brandColor = brandColor,
                     track = track,
+                    stopIndicator = stopIndicator,
                     helperText = helperText
                 )
             }

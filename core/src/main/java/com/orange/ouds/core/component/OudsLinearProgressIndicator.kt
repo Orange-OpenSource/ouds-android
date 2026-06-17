@@ -21,12 +21,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.ProgressIndicatorDefaults.drawStopIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -67,6 +69,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *   easier to read (for determinate variant).
  *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
  *   appearance is needed.
+ * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
+ * is required if the track has a contrast below 3:1 with its container or the surface behind the container.
  * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
  *   progress value.
  *
@@ -78,6 +82,7 @@ fun OudsLinearProgressIndicator(
     modifier: Modifier = Modifier,
     brandColor: Boolean = true,
     track: Boolean = true,
+    stopIndicator: Boolean = false,
     helperText: String? = null
 ) {
     OudsLinearProgressIndicator(
@@ -85,6 +90,7 @@ fun OudsLinearProgressIndicator(
         modifier = modifier,
         brandColor = brandColor,
         track = track,
+        stopIndicator = stopIndicator,
         helperText = helperText
     )
 }
@@ -111,6 +117,7 @@ fun OudsLinearProgressIndicator(
  *   easier to read (for determinate variant).
  *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
  *   appearance is needed.
+ * @param stopIndicator
  * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
  *   progress value.
  *
@@ -121,6 +128,7 @@ fun OudsLinearProgressIndicator(
     modifier: Modifier = Modifier,
     brandColor: Boolean = true,
     track: Boolean = true,
+    stopIndicator: Boolean = false,
     helperText: String? = null
 ) {
     OudsLinearProgressIndicator(
@@ -128,6 +136,7 @@ fun OudsLinearProgressIndicator(
         modifier = modifier,
         brandColor = brandColor,
         track = track,
+        stopIndicator = stopIndicator,
         helperText = helperText
     )
 }
@@ -138,6 +147,7 @@ private fun OudsLinearProgressIndicator(
     nullableProgress: (() -> Float)?,
     brandColor: Boolean,
     track: Boolean,
+    stopIndicator: Boolean,
     helperText: String?,
     modifier: Modifier = Modifier
 ) {
@@ -164,7 +174,12 @@ private fun OudsLinearProgressIndicator(
                     color = color,
                     trackColor = trackColor,
                     gapSize = gapSize,
-                    strokeCap = strokeCap
+                    strokeCap = strokeCap,
+                    drawStopIndicator = {
+                        if (stopIndicator) {
+                            stopIndicator(color = color, strokeCap = strokeCap)
+                        }
+                    },
                 )
             }.orElse {
                 LinearProgressIndicator(
@@ -187,6 +202,16 @@ private fun OudsLinearProgressIndicator(
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+private fun DrawScope.stopIndicator(color: Color, strokeCap: StrokeCap) {
+    drawStopIndicator(
+        drawScope = this,
+        stopSize = ProgressIndicatorDefaults.LinearTrackStopIndicatorSize,
+        color = color,
+        strokeCap = strokeCap,
+    )
 }
 
 @OudsPreviewLightDark

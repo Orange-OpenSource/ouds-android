@@ -27,10 +27,11 @@ fun rememberLinearProgressIndicatorDemoState(
     type: Type = Type.Determinate,
     brandColor: Boolean = true,
     track: Boolean = true,
+    stopIndicator: Boolean = false,
     helperText: String? = null,
     animated: Boolean = true
-) = rememberSaveable(progressText, type, brandColor, track, animated, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
-    LinearProgressIndicatorDemoState(progressText, type, brandColor, track, animated, helperText)
+) = rememberSaveable(progressText, type, brandColor, track, animated, stopIndicator, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
+    LinearProgressIndicatorDemoState(progressText, type, brandColor, track, animated, stopIndicator, helperText)
 }
 
 class LinearProgressIndicatorDemoState(
@@ -39,6 +40,7 @@ class LinearProgressIndicatorDemoState(
     brandColor: Boolean,
     track: Boolean,
     animated: Boolean,
+    stopIndicator: Boolean,
     helperText: String?
 ) : ProgressIndicatorDemoState(progressText, type, brandColor, track, animated) {
 
@@ -48,6 +50,7 @@ class LinearProgressIndicatorDemoState(
                 with(state) {
                     listOf(
                         with(ProgressIndicatorDemoState.Saver) { save(state) },
+                        stopIndicator,
                         helperText
                     )
                 }
@@ -61,13 +64,18 @@ class LinearProgressIndicatorDemoState(
                         brandColor,
                         track,
                         animated,
-                        list[1] as String?
+                        list[1] as Boolean,
+                        list[2] as String?
                     )
                 }
             }
         )
     }
 
+    var stopIndicator by mutableStateOf(stopIndicator)
+
     var helperText by mutableStateOf(helperText)
 
+    val stopIndicatorSwitchEnabled: Boolean
+        get() = type == Type.Determinate
 }
