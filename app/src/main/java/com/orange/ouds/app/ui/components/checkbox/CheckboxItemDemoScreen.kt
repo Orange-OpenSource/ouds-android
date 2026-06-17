@@ -20,7 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
-import com.orange.ouds.app.ui.components.controlitem.getControlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemError
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -30,6 +31,8 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -71,13 +74,13 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     description = description,
-                    icon = getControlItemIcon(this),
+                    icon = controlItemIcon(this),
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    error = checkboxItemError(state = this, isLastItem = isLastItem),
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
@@ -106,13 +109,13 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     },
                     label = label,
                     description = description,
-                    icon = getControlItemIcon(this),
+                    icon = controlItemIcon(this),
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    error = checkboxItemError(state = this, isLastItem = isLastItem,),
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
@@ -127,24 +130,39 @@ private fun CheckboxItemDemoColumn(edgeToEdge: Boolean, content: @Composable () 
     }
 }
 
+@Composable
+private fun checkboxItemError(state: CheckboxItemDemoState, isLastItem: Boolean): OudsError? {
+    return controlItemError(
+        state = state,
+        isLastItem = isLastItem,
+        annotatedMessage = buildOudsAnnotatedErrorMessage {
+            append("You must select at ")
+            withStrong { append("least one service") }
+            append(" to continue.")
+        })
+}
+
 private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean, themeDrawableResources: ThemeDrawableResources) {
     val functionName = if (indeterminate) "OudsTriStateCheckboxItem" else "OudsCheckboxItem"
     val lambdaCommentText = "Change state"
-    comment("First checkbox item")
     with(state) {
-        functionCall(functionName) {
-            if (indeterminate) {
-                typedArgument("state", toggleableStateValues.first)
-                onClickArgument {
-                    comment(lambdaCommentText)
+        repeat(CheckboxIdentifier.entries.count()) { index ->
+            functionCall(functionName) {
+                if (indeterminate) {
+                    val value = if (index == 0) toggleableStateValues.first else toggleableStateValues.second
+                    typedArgument("state", value)
+                    onClickArgument {
+                        comment(lambdaCommentText)
+                    }
+                } else {
+                    val value = if (index == 0) checkedValues.first else checkedValues.second
+                    typedArgument("checked", value)
+                    lambdaArgument("onCheckedChange") {
+                        comment(lambdaCommentText)
+                    }
                 }
-            } else {
-                typedArgument("checked", checkedValues.first)
-                lambdaArgument("onCheckedChange") {
-                    comment(lambdaCommentText)
-                }
+                controlItemArguments(state, themeDrawableResources, index == CheckboxIdentifier.entries.lastIndex)
             }
-            controlItemArguments(state, themeDrawableResources)
         }
     }
 }

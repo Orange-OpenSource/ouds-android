@@ -24,7 +24,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
-import com.orange.ouds.app.ui.components.controlitem.getControlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemError
+import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -34,7 +35,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsRadioButtonItem
-import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -93,14 +95,21 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     label = label,
                     extraLabel = extraLabel,
                     description = description,
-                    icon = getControlItemIcon(this@with),
+                    icon = controlItemIcon(this@with),
                     edgeToEdge = edgeToEdge,
                     divider = divider,
                     outlined = outlined,
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(if (isLastItem) errorMessage else "") else null,
+                    error = controlItemError(
+                        state = this@with,
+                        isLastItem = isLastItem,
+                        annotatedMessage = buildOudsAnnotatedErrorMessage {
+                            append("Please select ")
+                            withStrong { append("one contact method") }
+                            append(" to proceed.")
+                        }),
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
@@ -109,16 +118,17 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
 }
 
 private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, themeDrawableResources: ThemeDrawableResources) {
-    comment("First radio button item")
     with(state) {
-        functionCall("OudsRadioButtonItem") {
-            typedArgument("selected", selectedValue == RadioButtonItemDemoState.values.first())
-            onClickArgument {
-                comment("Change selection")
+        RadioButtonItemDemoState.values.forEachIndexed { index, value ->
+            functionCall("OudsRadioButtonItem") {
+                typedArgument("selected", selectedValue == value)
+                onClickArgument {
+                    comment("Change selection")
+                }
+                controlItemArguments(state, themeDrawableResources, index == RadioButtonItemDemoState.values.lastIndex)
+                if (!extraLabel.isNullOrBlank()) typedArgument("extraLabel", extraLabel)
+                if (outlined) typedArgument("outlined", outlined)
             }
-            controlItemArguments(state, themeDrawableResources)
-            if (!extraLabel.isNullOrBlank()) typedArgument("extraLabel", extraLabel)
-            if (outlined) typedArgument("outlined", outlined)
         }
     }
 }

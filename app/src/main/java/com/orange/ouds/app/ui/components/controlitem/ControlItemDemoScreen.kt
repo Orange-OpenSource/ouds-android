@@ -30,6 +30,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -48,7 +50,8 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemErrorMessageCustomization(state = state) },
         { ControlItemLabelCustomization(state = state) },
         { ControlItemDescriptionCustomization(state = state) },
-        { ControlItemConstrainedMaxWidthCustomization(state = state) }
+        { ControlItemConstrainedMaxWidthCustomization(state = state) },
+        { ControlItemAnnotatedTextCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -61,8 +64,8 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
-            label = stringResource(R.string.app_components_common_icon_tech),
-            chipLabels = ControlItemDemoState.Icon.entries.map { stringResource(it.labelRes) },
+            label = stringResource(id = R.string.app_components_common_icon_tech),
+            chipLabels = ControlItemDemoState.Icon.entries.map { stringResource(id = it.labelRes) },
             selectedChipIndex = ControlItemDemoState.Icon.entries.indexOf(icon),
             onSelectionChange = { index -> icon = ControlItemDemoState.Icon.entries[index] }
         )
@@ -73,7 +76,7 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
 private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_edgeToEdge_tech),
+            label = stringResource(id = R.string.app_components_controlItem_edgeToEdge_tech),
             checked = edgeToEdge,
             onCheckedChange = { edgeToEdge = it },
         )
@@ -85,7 +88,7 @@ private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
 private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_divider_tech),
+            label = stringResource(id = R.string.app_components_controlItem_divider_tech),
             checked = divider,
             onCheckedChange = { divider = it },
         )
@@ -96,7 +99,7 @@ private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
 private fun ControlItemReversedCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_reversed_tech),
+            label = stringResource(id = R.string.app_components_controlItem_reversed_tech),
             checked = reversed,
             onCheckedChange = { reversed = it },
         )
@@ -107,7 +110,7 @@ private fun ControlItemReversedCustomization(state: ControlItemDemoState) {
 private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_common_enabled_tech),
+            label = stringResource(id = R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
             enabled = enabledSwitchEnabled
@@ -119,7 +122,7 @@ private fun ControlItemEnabledCustomization(state: ControlItemDemoState) {
 private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_readOnly_tech),
+            label = stringResource(id = R.string.app_components_common_readOnly_tech),
             checked = readOnly,
             onCheckedChange = { readOnly = it },
             enabled = readOnlySwitchEnabled
@@ -131,7 +134,7 @@ private fun ControlItemReadOnlyCustomization(state: ControlItemDemoState) {
 private fun ControlItemErrorCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_error_tech),
+            label = stringResource(id = R.string.app_components_common_error_tech),
             checked = error,
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
@@ -144,10 +147,22 @@ private fun ControlItemErrorMessageCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_errorMessage_tech),
+            label = stringResource(id = R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
-            enabled = errorMessageTextInputEnabled
+            enabled = errorMessageTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
+        )
+    }
+}
+
+@Composable
+fun ControlItemAnnotatedTextCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(id = R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it }
         )
     }
 }
@@ -157,7 +172,7 @@ private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_label_tech),
+            label = stringResource(id = R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value }
         )
@@ -169,7 +184,7 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_description_tech),
+            label = stringResource(id = R.string.app_components_common_description_tech),
             value = description.orEmpty(),
             onValueChange = { value -> description = value }
         )
@@ -180,7 +195,7 @@ private fun ControlItemDescriptionCustomization(state: ControlItemDemoState) {
 private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_constrainedMaxWidth_tech),
+            label = stringResource(id = R.string.app_components_common_constrainedMaxWidth_tech),
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
@@ -188,11 +203,23 @@ private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoSt
 }
 
 @Composable
-fun getControlItemIcon(state: ControlItemDemoState): OudsControlItemIcon? {
+fun controlItemIcon(state: ControlItemDemoState): OudsControlItemIcon? {
     return when (state.icon) {
         ControlItemDemoState.Icon.None -> null
         ControlItemDemoState.Icon.Tinted -> OudsControlItemIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks))
         ControlItemDemoState.Icon.Untinted -> OudsControlItemIcon(painter = rememberUntintedIconPainter(), tinted = false)
+    }
+}
+
+@Composable
+fun controlItemError(state: ControlItemDemoState, isLastItem: Boolean, annotatedMessage: OudsAnnotatedErrorMessage): OudsError? {
+    return with(state) {
+        when {
+            error && !isLastItem -> OudsError("")
+            error && !annotatedText -> OudsError(errorMessage)
+            error && annotatedText -> OudsError(annotatedMessage)
+            else -> null
+        }
     }
 }
 
@@ -208,6 +235,6 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         if (reversed) typedArgument("reversed", reversed)
         if (!enabled) enabledArgument(enabled)
         if (readOnly) readOnlyArgument(readOnly)
-        if (error) errorArgument(if (hasErrorMessage) errorMessage else "")
+        if (error) errorArgument(if (hasErrorMessage) errorMessage else "", hasErrorMessage && annotatedText)
         if (constrainedMaxWidth) constrainedMaxWidthArgument(constrainedMaxWidth)
     }

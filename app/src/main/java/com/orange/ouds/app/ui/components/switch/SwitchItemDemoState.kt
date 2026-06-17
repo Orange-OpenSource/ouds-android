@@ -33,9 +33,10 @@ fun rememberSwitchItemDemoState(
     readOnly: Boolean = false,
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
-    text: String = stringResource(id = R.string.app_components_common_label_label),
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     checked,
     icon,
@@ -46,9 +47,10 @@ fun rememberSwitchItemDemoState(
     readOnly,
     error,
     errorMessage,
-    text,
+    label,
     description,
     constrainedMaxWidth,
+    annotatedText,
     saver = SwitchItemDemoState.Saver
 ) {
     SwitchItemDemoState(
@@ -61,9 +63,10 @@ fun rememberSwitchItemDemoState(
         readOnly,
         error,
         errorMessage,
-        text,
+        label,
         description,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        annotatedText
     )
 }
 
@@ -77,10 +80,24 @@ class SwitchItemDemoState(
     readOnly: Boolean,
     error: Boolean,
     errorMessage: String,
-    text: String,
+    label: String,
     description: String?,
-    constrainedMaxWidth: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth) {
+    constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
+) : ControlItemDemoState(
+    icon,
+    edgeToEdge,
+    divider,
+    reversed,
+    enabled,
+    readOnly,
+    error,
+    errorMessage,
+    label,
+    description,
+    constrainedMaxWidth,
+    annotatedText
+) {
 
     companion object {
 
@@ -106,7 +123,8 @@ class SwitchItemDemoState(
                         errorMessage,
                         label,
                         description,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             }
