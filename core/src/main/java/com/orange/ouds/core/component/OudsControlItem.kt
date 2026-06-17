@@ -47,6 +47,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -190,6 +191,7 @@ internal enum class OudsControlItemIndicatorPosition {
  */
 class OudsControlItemIcon private constructor(
     graphicsObject: Any,
+    override val tinted: Boolean
 ) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters, OudsControlItemIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
@@ -201,22 +203,34 @@ class OudsControlItemIcon private constructor(
      * Creates an instance of [OudsControlItemIcon].
      *
      * @param painter Painter of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(painter: Painter) : this(painter as Any)
+    @JvmOverloads
+    constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
 
     /**
      * Creates an instance of [OudsControlItemIcon].
      *
      * @param imageVector Image vector of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(imageVector: ImageVector) : this(imageVector as Any)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
 
     /**
      * Creates an instance of [OudsControlItemIcon].
      *
      * @param bitmap Image bitmap of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
 
     override val tint: Color?
         @Composable
@@ -224,7 +238,7 @@ class OudsControlItemIcon private constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value))
+        super.Content(modifier.iconSize(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value, tinted))
     }
 }
 

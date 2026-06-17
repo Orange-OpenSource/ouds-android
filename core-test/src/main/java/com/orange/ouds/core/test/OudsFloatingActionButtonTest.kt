@@ -77,4 +77,10 @@ internal class OudsFloatingActionButtonTest {
             internal fun data() = OudsPreviewableComponent.FloatingActionButton.Extended.parameters
         }
     }
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.FloatingActionButton.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

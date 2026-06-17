@@ -24,11 +24,12 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.ItemBadgeCount
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MaxItemCount
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoState.Companion.MinItemCount
-import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -131,13 +132,11 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(
                     val label = context.resources.getString(item.labelRes)
                     functionCallArgument(null, "OudsNavigationBarItem") {
                         typedArgument("selected", index == state.selectedItemId)
-                        lambdaArgument("onClick", {})
+                        onClickArgument()
                         labelArgument(label)
-                        functionCallArgument("icon", OudsNavigationBarItemIcon::class.simpleName.orEmpty()) {
-                            painterArgument(resId = item.iconResourceProvider.getResource(themeDrawableResources))
-                        }
+                        iconArgument<OudsNavigationBarItemIcon>("icon", item.iconResourceProvider.getResource(themeDrawableResources))
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
-                            functionCallArgument("badge", OudsNavigationBarItemBadge::class.simpleName.orEmpty()) {
+                            constructorCallArgument<OudsNavigationBarItemBadge>("badge") {
                                 when (lastItemBadge) {
                                     NavigationBarDemoState.ItemBadge.None -> {}
                                     NavigationBarDemoState.ItemBadge.Standard -> contentDescriptionArgument(resId = R.string.app_components_common_unreadNotificationsBadge_a11y)

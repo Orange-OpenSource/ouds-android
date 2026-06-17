@@ -24,6 +24,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -100,6 +101,8 @@ fun OudsSuggestionChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlyWithUntintedIconSample
  */
 @Composable
 fun OudsSuggestionChip(
@@ -147,6 +150,8 @@ fun OudsSuggestionChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconWithUntintedIconSample
  */
 @Composable
 fun OudsSuggestionChip(
@@ -207,8 +212,30 @@ internal fun PreviewOudsSuggestionChip(
         val label = if (hasLabel) "Label" else null
         val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
         PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-            OudsSuggestionChip(nullableIcon = icon, nullableLabel = label, onClick = {})
+            OudsSuggestionChip(
+                nullableIcon = icon,
+                nullableLabel = label,
+                onClick = {}
+            )
         }
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSuggestionChipWithUntintedIcon() {
+    PreviewOudsSuggestionChipWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsSuggestionChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) { 
+        OudsSuggestionChip(
+            nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            nullableLabel = "Label",
+            onClick = {}
+        )
     }
 }
 

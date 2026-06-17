@@ -67,4 +67,11 @@ internal class OudsSwitchItemTest {
         null,
         OudsComponentTestSuite.theme
     )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.SwitchItem.WithUntintedIcon.PreviewHeightDp
+    )
 }

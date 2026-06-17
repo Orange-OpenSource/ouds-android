@@ -15,10 +15,11 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.component.OudsSuggestionChip
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsSuggestionChipTextOnlySample() {
@@ -51,20 +52,57 @@ internal fun OudsSuggestionChipTextAndIconSample() {
     )
 }
 
-@Preview
+@Composable
+internal fun OudsSuggestionChipIconOnlyWithUntintedIconSample() {
+    OudsSuggestionChip(
+        onClick = { /* Do something! */ },
+        icon = OudsChipIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "Content description",
+            tinted = false
+        )
+    )
+}
+
+@Composable
+internal fun OudsSuggestionChipTextAndIconWithUntintedIconSample() {
+    OudsSuggestionChip(
+        onClick = { /* Do something! */ },
+        label = "Label",
+        icon = OudsChipIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "",
+            tinted = false
+        )
+    )
+}
+
+@PreviewLightDark
 @Composable
 private fun PreviewOudsSuggestionChipTextOnlySample() = OudsPreview {
     OudsSuggestionChipTextOnlySample()
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun PreviewOudsSuggestionChipIconOnlySample() = OudsPreview {
     OudsSuggestionChipIconOnlySample()
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun PreviewOudsSuggestionChipTextAndIconSample() = OudsPreview {
     OudsSuggestionChipTextAndIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSuggestionChipIconOnlyWithUntintedIconSample() = OudsPreview {
+    OudsSuggestionChipIconOnlyWithUntintedIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSuggestionChipTextAndIconWithUntintedIconSample() = OudsPreview {
+    OudsSuggestionChipTextAndIconWithUntintedIconSample()
 }

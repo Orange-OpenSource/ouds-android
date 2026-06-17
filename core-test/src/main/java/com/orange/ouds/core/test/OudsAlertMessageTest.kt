@@ -40,4 +40,10 @@ internal class OudsAlertMessageTest {
         null,
         OudsComponentTestSuite.theme
     )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.AlertMessage.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

@@ -75,4 +75,11 @@ internal class OudsTextInputTest {
             internal fun data() = OudsPreviewableComponent.TextInput.WithRichText.parameters
         }
     }
+
+    class WithUntintedLeadingIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextInput.WithUntintedLeadingIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.TextInput.WithUntintedLeadingIcon.PreviewHeightDp
+    )
 }

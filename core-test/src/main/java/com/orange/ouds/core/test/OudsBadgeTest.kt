@@ -49,4 +49,11 @@ internal class OudsBadgeTest {
             internal fun data() = OudsPreviewableComponent.Badge.WithIcon.parameters
         }
     }
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Badge.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Badge.PreviewWidthDp
+    )
 }

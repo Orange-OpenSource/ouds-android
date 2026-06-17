@@ -131,6 +131,7 @@
     <string name="app_components_common_errorMessage_label">@string/app_components_common_errorMessage_tech</string>
     <string name="app_components_common_errorMessage_tech" translatable="false">Error message</string>
     <string name="app_components_common_helperText_tech" translatable="false">Helper text</string>
+    <string name="app_components_common_icon_tech" translatable="false">Icon</string>
     <string name="app_components_common_icon_a11y">Icon</string>
     <string name="app_components_common_iconOnlyLayout_tech" translatable="false">Icon only</string>
     <string name="app_components_common_label_label">@string/app_components_common_label_tech</string>
@@ -151,6 +152,8 @@
     <string name="app_components_common_textInputClearIcon_a11y">Clear value</string>
     <string name="app_components_common_textOnlyLayout_tech" translatable="false">Text only</string>
     <string name="app_components_common_textAndIconLayout_tech" translatable="false">Text + icon</string>
+    <string name="app_components_common_tintedIcon_tech" translatable="false">Tinted</string>
+    <string name="app_components_common_untintedIcon_tech" translatable="false">Untinted</string>
     <string name="app_components_common_type_tech" translatable="false">Type</string>
     <plurals name="app_components_common_unreadMessageCountBadge_a11y">
         <item quantity="zero">No unread message</item>
@@ -169,7 +172,6 @@
     <string name="app_components_alert_alertMessage_tech" translatable="false">Alert message</string>
     <string name="app_components_alert_alertMessage_description_text">Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.</string>
     <string name="app_components_alert_alertMessage_closeButton_tech" translatable="false">Close button</string>
-    <string name="app_components_alert_alertMessage_statusIcon_tech" translatable="false">Status icon</string>
     <string name="app_components_alert_alertMessage_actionLink_tech" translatable="false">Action link</string>
     <string name="app_components_alert_alertMessage_actionLinkPosition_tech" translatable="false">Action link position</string>
     <string name="app_components_alert_alertMessage_bullet_tech" translatable="false">Bullet %d</string>
@@ -244,7 +246,6 @@
 
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_icon_tech" translatable="false">Icon</string>
     <string name="app_components_controlItem_edgeToEdge_tech" translatable="false">Edge to edge</string>
     <string name="app_components_controlItem_divider_tech" translatable="false">Divider</string>
     <string name="app_components_controlItem_reversed_tech" translatable="false">Reversed</string>

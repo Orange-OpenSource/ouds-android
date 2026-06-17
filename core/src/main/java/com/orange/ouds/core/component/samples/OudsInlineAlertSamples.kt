@@ -18,6 +18,7 @@ import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsInlineAlertNonFunctionalStatusSample() {
@@ -35,6 +36,14 @@ internal fun OudsInlineAlertFunctionalStatusSample() {
     )
 }
 
+@Composable
+internal fun OudsInlineAlertNonFunctionalWithUntintedIconSample() {
+    OudsInlineAlert(
+        label = "Label",
+        status = OudsInlineAlertStatus.Accent(OudsAlertIcon(painter = rememberRainbowHeartPainter(), tinted = false))
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsInlineAlertNonFunctionalStatusSample() = OudsPreview {
@@ -45,4 +54,10 @@ private fun PreviewOudsInlineAlertNonFunctionalStatusSample() = OudsPreview {
 @Composable
 private fun PreviewOudsInlineAlertFunctionalStatusSample() = OudsPreview {
     OudsInlineAlertFunctionalStatusSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsInlineAlertNonFunctionalWithUntintedIconSample() = OudsPreview {
+    OudsInlineAlertNonFunctionalWithUntintedIconSample()
 }

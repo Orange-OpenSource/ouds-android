@@ -30,9 +30,10 @@ fun rememberFloatingActionButtonDemoState(
     appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
     layout: FloatingActionButtonDemoState.Layout = FloatingActionButtonDemoState.Layout.entries.first(),
     label: String = stringResource(id = R.string.app_components_common_label_label),
+    icon: FloatingActionButtonDemoState.Icon = FloatingActionButtonDemoState.Icon.Tinted,
     expanded: Boolean = true
-) = rememberSaveable(size, appearance, layout, label, expanded, saver = FloatingActionButtonDemoState.Saver) {
-    FloatingActionButtonDemoState(size, appearance, layout, label, expanded)
+) = rememberSaveable(size, appearance, layout, label, icon, expanded, saver = FloatingActionButtonDemoState.Saver) {
+    FloatingActionButtonDemoState(size, appearance, layout, label, icon, expanded)
 }
 
 class FloatingActionButtonDemoState(
@@ -40,6 +41,7 @@ class FloatingActionButtonDemoState(
     appearance: OudsFloatingActionButtonAppearance,
     layout: Layout,
     label: String,
+    icon: Icon,
     expanded: Boolean
 ) {
 
@@ -53,6 +55,7 @@ class FloatingActionButtonDemoState(
                         appearance,
                         layout,
                         label,
+                        icon,
                         expanded
                     )
                 }
@@ -63,7 +66,8 @@ class FloatingActionButtonDemoState(
                     list[1] as OudsFloatingActionButtonAppearance,
                     list[2] as Layout,
                     list[3] as String,
-                    list[4] as Boolean
+                    list[4] as Icon,
+                    list[5] as Boolean
                 )
             }
         )
@@ -102,10 +106,15 @@ class FloatingActionButtonDemoState(
 
     var label: String by mutableStateOf(label)
 
+    var icon: Icon by mutableStateOf(icon)
+
     var expanded: Boolean by mutableStateOf(expanded)
 
     val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly
+
+    val enabledIcons: List<Icon>
+        get() = if (layout != Layout.TextOnly) Icon.entries else emptyList()
 
     val expandedSwitchEnabled: Boolean
         get() = layout == Layout.TextAndIcon
@@ -120,5 +129,10 @@ class FloatingActionButtonDemoState(
         IconOnly(R.string.app_components_common_iconOnlyLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }

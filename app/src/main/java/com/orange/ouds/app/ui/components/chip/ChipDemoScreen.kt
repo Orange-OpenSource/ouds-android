@@ -20,17 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -56,26 +57,40 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = ChipDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = ChipDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = ChipDemoState.Icon.entries[index] }
+        )
     }
 }
 
 @Composable
-fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
-    val themeDrawableResources = LocalThemeDrawableResources.current
-    val icons = listOf(
-        themeDrawableResources.call,
-        themeDrawableResources.smsMessage
-    )
-    FlowRow(
-        modifier = Modifier.selectableGroup(),
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
-    ) {
-        repeat(ChipDemoState.ChipCount) { index ->
-            val icon = OudsChipIcon(
-                painter = painterResource(icons[index % icons.count()]),
-                contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
-            )
-            content(index, icon)
+fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
+    with(state) {
+        val themeDrawableResources = LocalThemeDrawableResources.current
+        val icons = listOf(
+            themeDrawableResources.call,
+            themeDrawableResources.smsMessage
+        )
+        FlowRow(
+            modifier = Modifier.selectableGroup(),
+            horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
+        ) {
+            repeat(ChipDemoState.ChipCount) { index ->
+                val painter = when (icon) {
+                    ChipDemoState.Icon.Tinted -> painterResource(id = icons[index % icons.count()])
+                    ChipDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+                }
+                val chipIcon = OudsChipIcon(
+                    painter = painter,
+                    contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
+                    tinted = icon == ChipDemoState.Icon.Tinted
+                )
+                content(index, chipIcon)
+            }
         }
     }
 }
@@ -83,10 +98,7 @@ fun ChipDemoContent(content: @Composable (index: Int, icon: OudsChipIcon) -> Uni
 fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResources: ThemeDrawableResources) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
-        constructorCallArgument<OudsChipIcon>("icon") {
-            painterArgument(themeDrawableResources.call)
-            contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-        }
+        iconArgument<OudsChipIcon>("icon", themeDrawableResources.call, R.string.app_components_common_icon_a11y, icon == ChipDemoState.Icon.Tinted)
     }
     if (layout in listOf(ChipDemoState.Layout.TextOnly, ChipDemoState.Layout.TextAndIcon)) {
         val separator = if (label.isBlank()) "" else " "

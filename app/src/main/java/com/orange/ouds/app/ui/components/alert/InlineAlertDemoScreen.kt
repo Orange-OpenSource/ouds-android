@@ -23,22 +23,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.toSentenceCase
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 
@@ -98,6 +101,13 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
             selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
             onSelectionChange = { status = statuses[it] }
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = InlineAlertDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = InlineAlertDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = InlineAlertDemoState.Icon.entries[index] }
+        )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_label),
@@ -109,13 +119,16 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 
 @Composable
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
-    val icon = OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
     with(state) {
+        val alertIcon = when (icon) {
+            InlineAlertDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            InlineAlertDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
+        }
         OudsInlineAlert(
             label = label,
             status = when (status) {
-                is OudsInlineAlertStatus.Accent -> OudsInlineAlertStatus.Accent(icon)
-                is OudsInlineAlertStatus.Neutral -> OudsInlineAlertStatus.Neutral(icon)
+                is OudsInlineAlertStatus.Accent -> OudsInlineAlertStatus.Accent(alertIcon)
+                is OudsInlineAlertStatus.Neutral -> OudsInlineAlertStatus.Neutral(alertIcon)
                 is OudsInlineAlertStatus.Info -> OudsInlineAlertStatus.Info
                 is OudsInlineAlertStatus.Negative -> OudsInlineAlertStatus.Negative
                 is OudsInlineAlertStatus.Positive -> OudsInlineAlertStatus.Positive
@@ -133,9 +146,7 @@ private fun Code.Builder.inlineAlertDemoCodeSnippet(state: InlineAlertDemoState,
                 is OudsInlineAlertStatus.Accent,
                 is OudsInlineAlertStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        constructorCallArgument<OudsAlertIcon>("icon") {
-                            painterArgument(themeDrawableResources.tipsAndTricks)
-                        }
+                        iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == InlineAlertDemoState.Icon.Tinted)
                     }
                 }
                 OudsInlineAlertStatus.Info,

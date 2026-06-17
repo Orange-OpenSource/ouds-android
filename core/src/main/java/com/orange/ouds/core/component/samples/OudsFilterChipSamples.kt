@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsFilterChipTextOnlySample() {
@@ -61,6 +62,35 @@ internal fun OudsFilterChipTextAndIconSample() {
     )
 }
 
+@Composable
+internal fun OudsFilterChipIconOnlyWithUntintedIconSample() {
+    var selected by remember { mutableStateOf(false) }
+    OudsFilterChip(
+        selected = selected,
+        onClick = { selected = !selected },
+        icon = OudsChipIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "Content description",
+            tinted = false
+        )
+    )
+}
+
+@Composable
+internal fun OudsFilterChipTextAndIconWithUntintedIconSample() {
+    var selected by remember { mutableStateOf(false) }
+    OudsFilterChip(
+        selected = selected,
+        onClick = { selected = !selected },
+        label = "Label",
+        icon = OudsChipIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "",
+            tinted = false
+        )
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsFilterChipTextOnlySample() = OudsPreview {
@@ -77,4 +107,16 @@ private fun PreviewOudsFilterChipIconOnlySample() = OudsPreview {
 @Composable
 private fun PreviewOudsFilterChipTextAndIconSample() = OudsPreview {
     OudsFilterChipTextAndIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsFilterChipIconOnlyWithUntintedIconSample() = OudsPreview {
+    OudsFilterChipIconOnlyWithUntintedIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsFilterChipTextAndIconWithUntintedIconSample() = OudsPreview {
+    OudsFilterChipTextAndIconWithUntintedIconSample()
 }

@@ -32,6 +32,7 @@ import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsTextInputStateBasedSample() {
@@ -180,6 +181,36 @@ internal fun OudsTextInputValueBasedWithAnnotatedErrorMessageSample() {
     )
 }
 
+@Composable
+internal fun OudsTextInputStateBasedWithUntintedLeadingIconSample() {
+    OudsTextInput(
+        textFieldState = rememberTextFieldState("Text"),
+        label = "Label",
+        placeholder = "Placeholder",
+        leadingIcon = OudsTextInputLeadingIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "",
+            tinted = false
+        )
+    )
+}
+
+@Composable
+internal fun OudsTextInputValueBasedWithUntintedLeadingIconSample() {
+    var value by remember { mutableStateOf("Text") }
+    OudsTextInput(
+        value = value,
+        onValueChange = { value = it },
+        label = "Label",
+        placeholder = "Placeholder",
+        leadingIcon = OudsTextInputLeadingIcon(
+            painter = rememberRainbowHeartPainter(),
+            contentDescription = "",
+            tinted = false
+        )
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsTextInputStateBasedSample() = OudsPreview {
@@ -226,4 +257,16 @@ private fun PreviewOudsTextInputValueBasedWithAnnotatedHelperTextSample() = Ouds
 @Composable
 private fun PreviewOudsTextInputValueBasedWithAnnotatedErrorMessageSample() = OudsPreview {
     OudsTextInputValueBasedWithAnnotatedErrorMessageSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputStateBasedWithUntintedLeadingIconSample() = OudsPreview {
+    OudsTextInputStateBasedWithUntintedLeadingIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTextInputValueBasedWithUntintedLeadingIconSample() = OudsPreview {
+    OudsTextInputValueBasedWithUntintedLeadingIconSample()
 }

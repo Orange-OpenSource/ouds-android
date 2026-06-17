@@ -39,7 +39,6 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CodeSnippet
-import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -47,10 +46,10 @@ import com.orange.ouds.app.ui.utilities.composable.DetailScreenDescription
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.composable.ScreenMainContentColumn
 import com.orange.ouds.app.ui.utilities.toNumberString
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -112,7 +111,7 @@ private fun StandardBottomSheetDemoCustomization(state: StandardBottomSheetDemoS
         CustomizationFilterChips(
             applyTopPadding = false,
             label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetValue_tech),
-            chips = StandardBottomSheetDemoState.SheetValue.entries.map { CustomizationFilterChip(it.name.toSentenceCase()) },
+            chipLabels = StandardBottomSheetDemoState.SheetValue.entries.map { it.name.toSentenceCase() },
             selectedChipIndex = when (scaffoldState.bottomSheetState.targetValue) {
                 SheetValue.Hidden, SheetValue.PartiallyExpanded -> StandardBottomSheetDemoState.SheetValue.entries.indexOf(StandardBottomSheetDemoState.SheetValue.PartiallyExpanded)
                 SheetValue.Expanded -> StandardBottomSheetDemoState.SheetValue.entries.indexOf(StandardBottomSheetDemoState.SheetValue.Expanded)

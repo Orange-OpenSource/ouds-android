@@ -30,6 +30,7 @@ import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsBadgeSample() {
@@ -107,6 +108,19 @@ internal fun OudsBadgeWithCountInNavigationBarItemSample() {
     }
 }
 
+@Composable
+internal fun OudsBadgeWithUntintedCustomIconSample() {
+    OudsBadge(
+        modifier = Modifier.semantics {
+            contentDescription = "Favorite"
+        },
+        status = OudsIconBadgeStatus.Neutral(
+            OudsBadgeIcon(painter = rememberRainbowHeartPainter(), tinted = false)
+        ),
+        size = OudsBadgeSize.Large
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsBadgeSample() = OudsPreview {
@@ -135,4 +149,10 @@ private fun PreviewOudsBadgeWithCustomIconSample() = OudsPreview {
 @Composable
 private fun PreviewOudsBadgeWithCountInNavigationBarItemSample() = OudsPreview {
     OudsBadgeWithCountInNavigationBarItemSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsBadgeWithUntintedCustomIconSample() = OudsPreview {
+    OudsBadgeWithUntintedCustomIconSample()
 }

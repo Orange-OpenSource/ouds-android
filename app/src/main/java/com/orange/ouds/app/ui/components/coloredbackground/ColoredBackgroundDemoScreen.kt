@@ -36,13 +36,13 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.toSentenceCase
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.toSentenceCase
 
 @Composable
 fun ColoredBackgroundDemoScreen() {

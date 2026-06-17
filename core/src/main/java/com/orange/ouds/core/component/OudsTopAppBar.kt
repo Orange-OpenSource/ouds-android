@@ -55,9 +55,9 @@ import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
-import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -792,7 +792,7 @@ private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
                     onClick = {}
                 ),
                 OudsTopAppBarAction.Avatar(
-                    painter = PreviewCheckerboardPainter(
+                    painter = CheckerboardPainter(
                         squareSize = 6.dp,
                         primaryColor = Color(0xff247a85),
                         secondaryColor = Color(0xfffbcd00)

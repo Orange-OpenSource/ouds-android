@@ -49,6 +49,7 @@ app/src/main/res/drawable/ic_sosh_tips_and_tricks.xml
 app/src/main/res/drawable/ic_typography.xml
 app/src/main/res/drawable/ic_ui_dark_mode.xml
 app/src/main/res/drawable/ic_ui_light_mode.xml
+app/src/main/res/drawable/ic_untinted_icon.png
 app/src/main/res/drawable/ic_wireframe_avatar.xml
 app/src/main/res/drawable/ic_wireframe_call.xml
 app/src/main/res/drawable/ic_wireframe_filters.xml

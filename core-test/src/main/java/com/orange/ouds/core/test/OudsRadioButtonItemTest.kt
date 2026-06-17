@@ -82,4 +82,11 @@ internal class OudsRadioButtonItemTest {
         null,
         OudsComponentTestSuite.theme
     )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButtonItem.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.RadioButtonItem.WithUntintedIcon.PreviewHeightDp
+    )
 }

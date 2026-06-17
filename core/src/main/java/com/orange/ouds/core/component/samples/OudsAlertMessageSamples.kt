@@ -27,6 +27,7 @@ import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessage
 import com.orange.ouds.core.component.common.text.withLink
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsAlertMessageSample() {
@@ -97,6 +98,16 @@ internal fun OudsAlertMessageWithAnnotatedTextSample() {
     )
 }
 
+@Composable
+internal fun OudsAlertMessageNonFunctionalWithUntintedIconSample() {
+    OudsAlertMessage(
+        label = "New features available",
+        description = "We've added exciting new features to improve your experience.",
+        status = OudsAlertMessageStatus.Accent(OudsAlertIcon(painter = rememberRainbowHeartPainter(), tinted = false)),
+        onClose = { /* Close the alert message */ }
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsAlertMessageSample() = OudsPreview {
@@ -113,4 +124,10 @@ private fun PreviewOudsAlertMessageFunctionalWithTopEndActionLinkSample() = Ouds
 @Composable
 private fun PreviewOudsAlertMessageWithAnnotatedTextSample() = OudsPreview {
     OudsAlertMessageWithAnnotatedTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsAlertMessageNonFunctionalWithUntintedIconSample() = OudsPreview {
+    OudsAlertMessageNonFunctionalWithUntintedIconSample()
 }

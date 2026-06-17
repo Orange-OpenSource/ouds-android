@@ -23,8 +23,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -37,12 +38,13 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.toSentenceCase
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance
@@ -99,11 +101,12 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
             onSelectionChange = { status = statuses[it] }
         )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_alert_alertMessage_statusIcon_tech),
-            checked = hasStatusIcon,
-            onCheckedChange = { hasStatusIcon = it },
-            enabled = statusIconSwitchEnabled
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = AlertMessageDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = AlertMessageDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = AlertMessageDemoState.Icon.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_alert_alertMessage_closeButton_tech),
@@ -155,14 +158,18 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
 
 @Composable
 private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
-    val icon = OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks))
     with(state) {
+        val alertIcon = when (icon) {
+            AlertMessageDemoState.Icon.None -> null
+            AlertMessageDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
+        }
         OudsAlertMessage(
             label = label,
             description = description,
             status = when (status) {
-                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(if (hasStatusIcon) icon else null)
-                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(if (hasStatusIcon) icon else null)
+                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
+                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(alertIcon)
                 is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
                 is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative
                 is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive
@@ -189,10 +196,8 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Accent,
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        if (hasStatusIcon) {
-                            constructorCallArgument<OudsAlertIcon>("icon") {
-                                painterArgument(themeDrawableResources.tipsAndTricks)
-                            }
+                        if (icon != AlertMessageDemoState.Icon.None) {
+                            iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == AlertMessageDemoState.Icon.Tinted)
                         }
                     }
                 }
@@ -211,9 +216,9 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 }
             }
             if (!actionLink.isNullOrEmpty()) {
-                functionCallArgument("actionLink", OudsAlertMessageActionLink::class.java.simpleName) {
+                constructorCallArgument<OudsAlertMessageActionLink>("actionLink") {
                     labelArgument(actionLink)
-                    lambdaArgument("onClick") {
+                    onClickArgument {
                         comment("Implement click")
                     }
                     typedArgument("position", actionLinkPosition)

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.textinput
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
@@ -29,8 +30,8 @@ fun rememberTextInputDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     placeholder: String = "",
     outlined: Boolean = false,
-    leadingIcon: Boolean = false,
-    trailingIcon: Boolean = false,
+    leadingIcon: TextInputDemoState.LeadingIcon = TextInputDemoState.LeadingIcon.None,
+    trailingIcon: TextInputDemoState.TrailingIcon = TextInputDemoState.TrailingIcon.None,
     hasLoader: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -85,8 +86,8 @@ class TextInputDemoState(
     label: String,
     placeholder: String,
     outlined: Boolean,
-    leadingIcon: Boolean,
-    trailingIcon: Boolean,
+    leadingIcon: LeadingIcon,
+    trailingIcon: TrailingIcon,
     hasLoader: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
@@ -96,7 +97,7 @@ class TextInputDemoState(
     suffix: String,
     helperText: String,
     helperLink: String,
-    constrainedMaxWidth: Boolean
+    constrainedMaxWidth: Boolean,
 ) {
 
     companion object {
@@ -131,8 +132,8 @@ class TextInputDemoState(
                     list[1] as String,
                     list[2] as String,
                     list[3] as Boolean,
-                    list[4] as Boolean,
-                    list[5] as Boolean,
+                    list[4] as LeadingIcon,
+                    list[5] as TrailingIcon,
                     list[6] as Boolean,
                     list[7] as Boolean,
                     list[8] as Boolean,
@@ -160,9 +161,9 @@ class TextInputDemoState(
 
     var errorMessage: String by mutableStateOf(errorMessage)
 
-    var leadingIcon: Boolean by mutableStateOf(leadingIcon)
+    var leadingIcon: LeadingIcon by mutableStateOf(leadingIcon)
 
-    var trailingIcon: Boolean by mutableStateOf(trailingIcon)
+    var trailingIcon: TrailingIcon by mutableStateOf(trailingIcon)
 
     var hasLoader: Boolean by mutableStateOf(hasLoader)
 
@@ -194,4 +195,15 @@ class TextInputDemoState(
 
     val loaderSwitchEnabled: Boolean
         get() = enabled && !readOnly && !error && textFieldState.text.isNotEmpty()
+
+    enum class LeadingIcon(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_tech),
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
+    }
+
+    enum class TrailingIcon(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_tech),
+        Tinted(R.string.app_components_common_tintedIcon_tech)
+    }
 }

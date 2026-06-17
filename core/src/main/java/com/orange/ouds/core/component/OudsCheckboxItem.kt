@@ -41,6 +41,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -85,6 +86,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemSample
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithUntintedIconSample
  */
 @Composable
 fun OudsCheckboxItem(
@@ -170,6 +172,7 @@ fun OudsCheckboxItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemSample
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithUntintedIconSample
  */
 @Composable
 fun OudsTriStateCheckboxItem(
@@ -388,6 +391,26 @@ internal fun PreviewOudsCheckboxItemWithRichText(
         divider = true,
         error = OudsError(buildPreviewAnnotatedErrorMessage()),
     )
+}
+
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.CheckboxItem.WithUntintedIcon.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsCheckboxItemWithUntintedIcon() {
+    PreviewOudsCheckboxItemWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsCheckboxItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
+        OudsCheckboxItem(
+            checked = false,
+            label = "Label",
+            onCheckedChange = {},
+            icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            divider = true
+        )
+    }
 }
 
 internal typealias OudsCheckboxItemPreviewParameter = OudsControlItemPreviewParameter<ToggleableState, Nothing>

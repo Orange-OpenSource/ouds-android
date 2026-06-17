@@ -13,18 +13,22 @@
 package com.orange.ouds.app.ui.components.controlitem
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsControlItemIcon
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
@@ -55,10 +59,12 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
 @Composable
 private fun ControlItemIconCustomization(state: ControlItemDemoState) {
     with(state) {
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_controlItem_icon_tech),
-            checked = icon,
-            onCheckedChange = { icon = it },
+        CustomizationFilterChips(
+            applyTopPadding = false,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chipLabels = ControlItemDemoState.Icon.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = ControlItemDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = ControlItemDemoState.Icon.entries[index] }
         )
     }
 }
@@ -181,14 +187,21 @@ private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoSt
     }
 }
 
+@Composable
+fun getControlItemIcon(state: ControlItemDemoState): OudsControlItemIcon? {
+    return when (state.icon) {
+        ControlItemDemoState.Icon.None -> null
+        ControlItemDemoState.Icon.Tinted -> OudsControlItemIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks))
+        ControlItemDemoState.Icon.Untinted -> OudsControlItemIcon(painter = rememberUntintedIconPainter(), tinted = false)
+    }
+}
+
 fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) =
     with(state) {
         labelArgument(label)
         if (!description.isNullOrBlank()) typedArgument("description", description)
-        if (icon) {
-            constructorCallArgument<OudsControlItemIcon>("icon") {
-                painterArgument(themeDrawableResources.tipsAndTricks)
-            }
+        if (icon != ControlItemDemoState.Icon.None) {
+            iconArgument<OudsControlItemIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == ControlItemDemoState.Icon.Tinted)
         }
         if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)
         if (divider) typedArgument("divider", divider)
