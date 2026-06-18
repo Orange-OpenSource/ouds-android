@@ -162,7 +162,8 @@ fun ControlItemAnnotatedTextCustomization(state: ControlItemDemoState) {
         CustomizationSwitchItem(
             label = stringResource(id = R.string.app_components_common_annotatedText_tech),
             checked = annotatedText,
-            onCheckedChange = { annotatedText = it }
+            onCheckedChange = { annotatedText = it },
+            enabled = annotatedTextSwitchEnabled
         )
     }
 }
