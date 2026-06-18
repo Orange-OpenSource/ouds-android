@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.textinput
 
+import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -23,6 +24,7 @@ import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
@@ -43,6 +45,9 @@ import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -110,7 +115,8 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
-            enabled = errorMessageTextInputEnabled
+            enabled = errorMessageTextInputEnabled,
+            helperText = stringResource(R.string.app_components_common_errorMessage_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -140,7 +146,9 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText,
-            onValueChange = { value -> helperText = value }
+            onValueChange = { value -> helperText = value },
+            enabled = helperTextTextInputEnabled,
+            helperText = stringResource(R.string.app_components_common_errorMessage_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -152,6 +160,11 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             label = stringResource(R.string.app_components_common_constrainedMaxWidth_tech),
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
+        )
+        CustomizationSwitchItem(
+            label = stringResource(id = R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it }
         )
     }
 }
@@ -177,26 +190,65 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             TextInputDemoState.TrailingIcon.Tinted -> OudsTextInputTrailingIconButton(
                 painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
                 contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
-                onClick = {})
+                onClick = {}
+            )
         }
-        OudsTextInput(
-            textFieldState = textFieldState,
-            label = label,
-            placeholder = placeholder,
-            outlined = outlined,
-            leadingIcon = textInputLeadingIcon,
-            trailingIconButton = textInputTrailingIcon,
-            loader = if (hasLoader) OudsTextInputLoader(null) else null,
-            enabled = enabled,
-            readOnly = readOnly,
-            error = if (error) OudsError(errorMessage) else null,
-            prefix = prefix,
-            suffix = suffix,
-            helperText = helperText,
-            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
-            constrainedMaxWidth = constrainedMaxWidth,
-            onKeyboardAction = { focusManager.clearFocus() }
-        )
+        val loader = if (hasLoader) OudsTextInputLoader(null) else null
+        val textInputError = when {
+            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
+                append("This field can’t be ")
+                withStrong { append("empty") }
+                append(".")
+            })
+            error -> OudsError(errorMessage)
+            else -> null
+        }
+        val textInputHelperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = {}) else null
+        val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        if (annotatedText) {
+            val annotatedHelperText = buildOudsAnnotatedHelperText {
+                append("You can find your ")
+                withStrong { append("customer ID") }
+                append("on your latest invoice.")
+            }
+            OudsTextInput(
+                textFieldState = textFieldState,
+                label = label,
+                placeholder = placeholder,
+                outlined = outlined,
+                leadingIcon = textInputLeadingIcon,
+                trailingIconButton = textInputTrailingIcon,
+                loader = loader,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = textInputError,
+                prefix = prefix,
+                suffix = suffix,
+                helperText = annotatedHelperText,
+                helperLink = textInputHelperLink,
+                constrainedMaxWidth = constrainedMaxWidth,
+                onKeyboardAction = onKeyboardAction
+            )
+        } else {
+            OudsTextInput(
+                textFieldState = textFieldState,
+                label = label,
+                placeholder = placeholder,
+                outlined = outlined,
+                leadingIcon = textInputLeadingIcon,
+                trailingIconButton = textInputTrailingIcon,
+                loader = loader,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = textInputError,
+                prefix = prefix,
+                suffix = suffix,
+                helperText = helperText,
+                helperLink = textInputHelperLink,
+                constrainedMaxWidth = constrainedMaxWidth,
+                onKeyboardAction = onKeyboardAction
+            )
+        }
     }
 }
 
@@ -230,10 +282,10 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             }
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
-            if (error) errorArgument(errorMessage)
+            if (error) errorArgument(errorMessage, annotatedText)
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
             if (suffix.isNotEmpty()) typedArgument("suffix", suffix)
-            if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
+            helperTextArgument(helperText, annotatedText)
             if (helperLink.isNotEmpty()) {
                 constructorCallArgument<OudsTextInputHelperLink>("helperLink") {
                     typedArgument("text", helperLink)

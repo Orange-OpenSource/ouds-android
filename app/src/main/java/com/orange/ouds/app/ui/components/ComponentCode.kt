@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.component.common.text.OudsAnnotatedString
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
@@ -92,9 +93,9 @@ fun FunctionCall.Builder.tintedArgument(value: Boolean) = typedArgument(Argument
 fun FunctionCall.Builder.errorArgument(message: String, annotatedMessage: Boolean = false) {
     constructorCallArgument<OudsError>(Argument.Error) {
         if (annotatedMessage) {
-            annotatedStringArgument<OudsAnnotatedErrorMessage>("message")
+            annotatedStringArgument<OudsAnnotatedErrorMessage>(Argument.ErrorMessage)
         } else {
-            typedArgument("message", message)
+            typedArgument(Argument.ErrorMessage, message)
         }
     }
 }
@@ -112,6 +113,14 @@ fun FunctionCall.Builder.onClickArgument(init: Code.Builder.() -> Unit = {}) = l
 
 fun FunctionCall.Builder.readOnlyArgument(value: Boolean) = typedArgument(Argument.ReadOnly, value)
 
+fun FunctionCall.Builder.helperTextArgument(helperText: String, annotated: Boolean = false) {
+    if (annotated) {
+        annotatedStringArgument<OudsAnnotatedHelperText>(Argument.HelperText)
+    } else if (helperText.isNotEmpty()) {
+        typedArgument(Argument.HelperText, helperText)
+    }
+}
+
 private object Argument {
 
     const val Color = "color"
@@ -120,6 +129,8 @@ private object Argument {
     const val Content = "content"
     const val Enabled = "enabled"
     const val Error = "error"
+    const val ErrorMessage = "message"
+    const val HelperText = "helperText"
     const val Id = "id"
     const val Label = "label"
     const val OnClick = "onClick"

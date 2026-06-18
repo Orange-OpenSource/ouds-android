@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.passwordinput
 
+import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.TextObfuscationMode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
@@ -22,6 +23,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
@@ -33,6 +35,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -90,7 +95,8 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
-            enabled = errorMessageTextInputEnabled
+            enabled = errorMessageTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -114,7 +120,9 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText,
-            onValueChange = { value -> helperText = value }
+            onValueChange = { value -> helperText = value },
+            enabled = helperTextTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_constrainedMaxWidth_tech),
@@ -132,28 +140,69 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
                 passwordInputState.textObfuscationMode = textObfuscationModes[index]
             }
         )
+        CustomizationSwitchItem(
+            label = stringResource(id = R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it }
+        )
     }
 }
 
 @Composable
 private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
-    val focusManager = LocalFocusManager.current
     with(state) {
-        OudsPasswordInput(
-            state = passwordInputState,
-            label = label,
-            placeholder = placeholder,
-            outlined = outlined,
-            lockIcon = lockIcon,
-            loader = if (hasLoader) OudsTextInputLoader(null) else null,
-            enabled = enabled,
-            readOnly = readOnly,
-            error = if (error) OudsError(errorMessage) else null,
-            prefix = prefix,
-            helperText = helperText,
-            constrainedMaxWidth = constrainedMaxWidth,
-            onKeyboardAction = { focusManager.clearFocus() }
-        )
+        val focusManager = LocalFocusManager.current
+        val loader = if (hasLoader) OudsTextInputLoader(null) else null
+        val passwordInputError = when {
+            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
+                append("Your password can't be ")
+                withStrong { append("empty") }
+                append(".")
+            })
+            error -> OudsError(errorMessage)
+            else -> null
+        }
+        val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        if (annotatedText) {
+            val annotatedHelperText = buildOudsAnnotatedHelperText {
+                append("Your password must be between ")
+                withStrong { append("8") }
+                append(" and ")
+                withStrong { append("20") }
+                append(" characters long.")
+            }
+            OudsPasswordInput(
+                state = passwordInputState,
+                label = label,
+                placeholder = placeholder,
+                outlined = outlined,
+                lockIcon = lockIcon,
+                loader = loader,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = passwordInputError,
+                prefix = prefix,
+                helperText = annotatedHelperText,
+                constrainedMaxWidth = constrainedMaxWidth,
+                onKeyboardAction = onKeyboardAction
+            )
+        } else {
+            OudsPasswordInput(
+                state = passwordInputState,
+                label = label,
+                placeholder = placeholder,
+                outlined = outlined,
+                lockIcon = lockIcon,
+                loader = loader,
+                enabled = enabled,
+                readOnly = readOnly,
+                error = passwordInputError,
+                prefix = prefix,
+                helperText = helperText,
+                constrainedMaxWidth = constrainedMaxWidth,
+                onKeyboardAction = onKeyboardAction
+            )
+        }
     }
 }
 
@@ -172,9 +221,9 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             }
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
-            if (error) errorArgument(errorMessage)
+            if (error) errorArgument(errorMessage, annotatedText)
             if (prefix.isNotEmpty()) typedArgument("prefix", prefix)
-            if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
+            helperTextArgument(helperText, annotatedText)
             if (constrainedMaxWidth) constrainedMaxWidthArgument(true)
             lambdaArgument("onKeyboardAction") {
                 functionCall("focusManager.clearFocus")

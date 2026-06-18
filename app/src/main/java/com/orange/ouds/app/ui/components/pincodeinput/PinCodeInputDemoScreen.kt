@@ -12,12 +12,14 @@
 
 package com.orange.ouds.app.ui.components.pincodeinput
 
+import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -26,6 +28,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -66,30 +71,65 @@ private fun PinCodeInputDemoBottomSheetContent(state: PinCodeInputDemoState) {
             label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
-            enabled = errorMessageTextInputEnabled
+            enabled = errorMessageTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText,
-            onValueChange = { value -> helperText = value }
+            onValueChange = { value -> helperText = value },
+            enabled = helperTextTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
+        )
+        CustomizationSwitchItem(
+            label = stringResource(id = R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it }
         )
     }
 }
 
 @Composable
 private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
-    val focusManager = LocalFocusManager.current
     with(state) {
-        OudsPinCodeInput(
-            value = value,
-            onValueChange = { value = it },
-            length = length,
-            outlined = outlined,
-            error = if (error) OudsError(errorMessage) else null,
-            helperText = helperText,
-            onKeyboardAction = { focusManager.clearFocus() }
-        )
+        val focusManager = LocalFocusManager.current
+        val onValueChange: (String) -> Unit = { value = it }
+        val pinCodeInputError = when {
+            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
+                withStrong { append("Verification failed") }
+                append(". Check and enter the correct code.")
+            })
+            error -> OudsError(errorMessage)
+            else -> null
+        }
+        val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        if (annotatedText) {
+            val annotatedHelperText = buildOudsAnnotatedHelperText {
+                append("Enter the ")
+                withStrong { append("one-time code") }
+                append(" sent to your device.")
+            }
+            OudsPinCodeInput(
+                value = value,
+                onValueChange = onValueChange,
+                length = length,
+                outlined = outlined,
+                error = pinCodeInputError,
+                helperText = annotatedHelperText,
+                onKeyboardAction = onKeyboardAction
+            )
+        } else {
+            OudsPinCodeInput(
+                value = value,
+                onValueChange = onValueChange,
+                length = length,
+                outlined = outlined,
+                error = pinCodeInputError,
+                helperText = helperText,
+                onKeyboardAction = onKeyboardAction
+            )
+        }
     }
 }
 
@@ -102,8 +142,8 @@ private fun Code.Builder.pinCodeInputDemoCodeSnippet(state: PinCodeInputDemoStat
             }
             typedArgument("length", length)
             if (outlined) typedArgument("outlined", outlined)
-            if (error) errorArgument(errorMessage)
-            if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
+            if (error) errorArgument(errorMessage, annotatedText)
+            helperTextArgument(helperText, annotatedText)
         }
     }
 
