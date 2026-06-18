@@ -233,8 +233,8 @@ private fun assetSize(size: OudsTagSize): Dp {
 @Composable
 private fun textStyle(size: OudsTagSize): TextStyle {
     return when (size) {
-        OudsTagSize.Default -> OudsTheme.typography.label.strong.medium
-        OudsTagSize.Small -> OudsTheme.typography.label.moderate.small
+        OudsTagSize.Default -> OudsTheme.typography.label.medium.strong
+        OudsTagSize.Small -> OudsTheme.typography.label.small.moderate
     }.run {
         copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }

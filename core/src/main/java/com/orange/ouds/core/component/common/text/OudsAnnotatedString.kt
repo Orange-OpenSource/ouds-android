@@ -55,8 +55,8 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     // If it is accessed elsewhere in the hierarchy, the light / dark mode or the OudsColorMode might be different
     @Composable
     internal fun annotatedString(
-        strongStyle: TextStyle = OudsTheme.typography.label.strong.medium,
-        linkStyle: TextStyle = OudsTheme.typography.label.strong.medium
+        strongStyle: TextStyle = OudsTheme.typography.label.medium.strong,
+        linkStyle: TextStyle = OudsTheme.typography.label.medium.strong
     ): AnnotatedString {
         val linkStyles = getTextLinkStyles(linkStyle)
         return _annotatedString.mapAnnotations { range ->

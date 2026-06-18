@@ -543,14 +543,14 @@ data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fon
     internal fun toTextStyle(forceStrong: Boolean = false): TextStyle {
         return when (fontSize) {
             OudsBulletListFontSize.BodyLarge -> when (fontWeight) {
-                OudsBulletListFontWeight.Normal if !forceStrong -> OudsTheme.typography.body.default.large
+                OudsBulletListFontWeight.Normal if !forceStrong -> OudsTheme.typography.body.large.default
                 OudsBulletListFontWeight.Normal,
-                OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.large
+                OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.large.strong
             }
             OudsBulletListFontSize.BodyMedium -> when (fontWeight) {
-                OudsBulletListFontWeight.Normal if !forceStrong -> OudsTheme.typography.body.default.medium
+                OudsBulletListFontWeight.Normal if !forceStrong -> OudsTheme.typography.body.medium.default
                 OudsBulletListFontWeight.Normal,
-                OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.strong.medium
+                OudsBulletListFontWeight.Bold -> OudsTheme.typography.body.medium.strong
             }
         }
     }

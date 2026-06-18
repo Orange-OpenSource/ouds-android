@@ -1290,7 +1290,7 @@ internal fun OudsTextAreaDecorator(
                                 .fillMaxWidth()
                                 .semantics { hideFromAccessibility() },
                             text = label,
-                            style = with(OudsTheme.typography.label.default) { if (isSmallLabel) small else large },
+                            style = if (isSmallLabel) OudsTheme.typography.label.small.default else OudsTheme.typography.label.large.default,
                             color = labelColor(state = state, error = hasError)
                         )
                     }
@@ -1302,7 +1302,7 @@ internal fun OudsTextAreaDecorator(
                                 Text(
                                     modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
                                     text = placeholder,
-                                    style = OudsTheme.typography.label.default.large,
+                                    style = OudsTheme.typography.label.large.default,
                                     color = decorativeContentColor(state = state),
                                     overflow = TextOverflow.Ellipsis
                                 )

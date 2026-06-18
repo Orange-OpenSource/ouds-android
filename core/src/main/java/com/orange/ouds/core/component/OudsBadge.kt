@@ -346,8 +346,8 @@ private fun textStyle(size: OudsBadgeSize): TextStyle? {
     return when (size) {
         OudsBadgeSize.ExtraSmall,
         OudsBadgeSize.Small -> null
-        OudsBadgeSize.Medium -> OudsTheme.typography.label.default.small
-        OudsBadgeSize.Large -> OudsTheme.typography.label.default.medium
+        OudsBadgeSize.Medium -> OudsTheme.typography.label.small.default
+        OudsBadgeSize.Large -> OudsTheme.typography.label.medium.default
     }?.run {
         copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }

@@ -191,7 +191,7 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
                 .background(color = OudsTheme.colorScheme.surface.secondary),
             text = stringResource(id = textResId),
             color = OudsTheme.colorScheme.content.default,
-            style = OudsTheme.typography.body.default.medium
+            style = OudsTheme.typography.body.medium.default
         )
     }
 }
@@ -207,7 +207,7 @@ private fun PreviewGridHeader() = AppPreview {
 private fun PreviewSizeIconWithTextHeader() = AppPreview {
     SizeIconWithTextHeader(
         size = OudsTheme.sizes.icon.withHeading.small.sizeLarge,
-        typographyToken = Token("typography.label.strong.extraLarge", "", { OudsTheme.typography.label.strong.extraLarge })
+        typographyToken = Token("typography.label.extraLarge.strong", "", { OudsTheme.typography.label.extraLarge.strong })
     )
 }
 

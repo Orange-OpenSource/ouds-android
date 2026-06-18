@@ -97,7 +97,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                     headlineContent = {
                         Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
                             Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
-                            Text(text = version, style = OudsTheme.typography.body.default.large)
+                            Text(text = version, style = OudsTheme.typography.body.large.default)
                             if (issueNumbers != null) {
                                 val issues = buildAnnotatedString {
                                     append(pluralStringResource(R.plurals.app_about_issues_tech, issueNumbers.count()))
@@ -112,7 +112,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                                         }
                                     }
                                 }
-                                Text(text = issues, style = OudsTheme.typography.body.default.medium)
+                                Text(text = issues, style = OudsTheme.typography.body.medium.default)
                             }
                         }
                     }
@@ -129,7 +129,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                             }
                         }
                         .listItemHorizontalPadding(),
-                    headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.strong.large) }
+                    headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.large.strong) }
                 )
             }
         }

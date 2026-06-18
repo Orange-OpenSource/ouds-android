@@ -149,18 +149,18 @@ internal fun OudsControlItem(
                             .align(Alignment.CenterVertically),
                         verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
                     ) {
-                        Text(text = label, style = OudsTheme.typography.label.default.large, color = labelColor(state = state, error = error))
+                        Text(text = label, style = OudsTheme.typography.label.large.default, color = labelColor(state = state, error = error))
                         if (!extraLabel.isNullOrBlank()) {
                             Text(
                                 text = extraLabel,
-                                style = OudsTheme.typography.label.strong.medium,
+                                style = OudsTheme.typography.label.medium.strong,
                                 color = extraLabelColor(state = state)
                             )
                         }
                         if (!description.isNullOrBlank()) {
                             Text(
                                 text = description,
-                                style = OudsTheme.typography.label.default.medium,
+                                style = OudsTheme.typography.label.medium.default,
                                 color = descriptionColor(state = state)
                             )
                         }
@@ -279,7 +279,7 @@ private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
             .clearAndSetSemantics {
                 error(error.message)
             }
-        val style = OudsTheme.typography.label.default.medium
+        val style = OudsTheme.typography.label.medium.default
         val color = OudsTheme.colorScheme.content.status.negative
         if (error.annotatedMessage != null) {
             Text(modifier = modifier, text = error.annotatedMessage.annotatedString(), style = style, color = color)

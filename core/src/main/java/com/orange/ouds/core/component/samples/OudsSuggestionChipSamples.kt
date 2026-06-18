@@ -98,7 +98,7 @@ internal fun OudsBasicSuggestionChipTextOnlySample() {
             Text(
                 text = "Extra label",
                 color = contentColor,
-                style = OudsTheme.typography.label.moderate.small
+                style = OudsTheme.typography.label.small.moderate
             )
         }
     }
@@ -137,7 +137,7 @@ internal fun OudsBasicSuggestionChipTextAndIconSample() {
                 Text(
                     text = "Extra label",
                     color = contentColor,
-                    style = OudsTheme.typography.label.moderate.small
+                    style = OudsTheme.typography.label.small.moderate
                 )
             }
         }

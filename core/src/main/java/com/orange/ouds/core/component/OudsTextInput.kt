@@ -1104,7 +1104,7 @@ internal fun OudsTextInputDecorator(
                                 .fillMaxWidth()
                                 .semantics { hideFromAccessibility() },
                             text = label,
-                            style = OudsTheme.typography.label.default.small,
+                            style = OudsTheme.typography.label.small.default,
                             color = labelColor(state = state, error = hasError),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -1131,7 +1131,7 @@ internal fun OudsTextInputDecorator(
                                     Text(
                                         modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
                                         text = placeholder,
-                                        style = OudsTheme.typography.label.default.large,
+                                        style = OudsTheme.typography.label.large.default,
                                         color = decorativeContentColor(state = state),
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis
@@ -1140,7 +1140,7 @@ internal fun OudsTextInputDecorator(
                                     Text(
                                         modifier = Modifier.semantics { hideFromAccessibility() },
                                         text = label,
-                                        style = OudsTheme.typography.label.default.large,
+                                        style = OudsTheme.typography.label.large.default,
                                         color = labelColor(state = state, error = hasError),
                                         maxLines = 2,
                                         overflow = TextOverflow.Ellipsis
@@ -1247,7 +1247,7 @@ internal fun OudsTextInputHelperTextErrorMessage(
                         contentDescription = helperText.orEmpty()
                     }
                 }
-            val textStyle = OudsTheme.typography.label.default.medium
+            val textStyle = OudsTheme.typography.label.medium.default
             val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
             val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
             val text = if (hasError) error.message else helperText
@@ -1298,7 +1298,7 @@ internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.compon
 
 @Composable
 private fun PrefixSuffixText(text: String, state: OudsTextInputState, modifier: Modifier = Modifier) {
-    Text(modifier = modifier, text = text, style = OudsTheme.typography.label.default.large, color = decorativeContentColor(state = state))
+    Text(modifier = modifier, text = text, style = OudsTheme.typography.label.large.default, color = decorativeContentColor(state = state))
 }
 
 @Composable
@@ -1404,7 +1404,7 @@ private fun decorativeContentColor(enabled: Boolean) = if (enabled) OudsTheme.co
 internal fun decorativeContentColor(state: OudsTextInputState) = decorativeContentColor(state != OudsTextInputState.Disabled)
 
 @Composable
-internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.moderate.large.copy(color = contentColor(state))
+internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.large.moderate.copy(color = contentColor(state))
 
 @Composable
 internal fun textInputEnabled(state: OudsTextInputState) =

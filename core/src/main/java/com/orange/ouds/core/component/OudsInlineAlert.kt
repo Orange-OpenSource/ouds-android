@@ -88,7 +88,7 @@ fun OudsInlineAlert(
                 modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
                 text = label,
                 color = status.textColor,
-                style = OudsTheme.typography.label.moderate.large
+                style = OudsTheme.typography.label.large.moderate
             )
         }
     }

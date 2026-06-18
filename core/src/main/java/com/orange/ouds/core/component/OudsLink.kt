@@ -261,12 +261,12 @@ private fun OudsLink(
                 OudsLinkSize.Default -> {
                     columnGap = if (chevron != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
                     iconSize = sizeIconDefault.value
-                    textStyle = OudsTheme.typography.label.strong.large
+                    textStyle = OudsTheme.typography.label.large.strong
                 }
                 OudsLinkSize.Small -> {
                     columnGap = if (chevron != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
                     iconSize = sizeIconSmall.value
-                    textStyle = OudsTheme.typography.label.strong.medium
+                    textStyle = OudsTheme.typography.label.medium.strong
                 }
             }
         }
