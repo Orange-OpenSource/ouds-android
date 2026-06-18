@@ -34,32 +34,41 @@ sealed interface OudsTypographyKeyToken : OudsKeyToken {
     }
 
     sealed interface Body : OudsTypographyKeyToken {
-        sealed interface Default : Body {
-            data object Large : Default
-            data object Medium : Default
-            data object Small : Default
+        sealed interface Large : Body {
+            data object Default : Large
+            data object Strong : Large
         }
 
-        sealed interface Strong : Body {
-            data object Large : Strong
-            data object Medium : Strong
-            data object Small : Strong
+        sealed interface Medium : Body {
+            data object Default : Medium
+            data object Strong : Medium
+        }
+
+        sealed interface Small : Body {
+            data object Default : Small
+            data object Strong : Small
         }
     }
 
     sealed interface Label : OudsTypographyKeyToken {
-        sealed interface Default : Label {
-            data object ExtraLarge : Default
-            data object Large : Default
-            data object Medium : Default
-            data object Small : Default
+        sealed interface ExtraLarge : Body {
+            data object Default : ExtraLarge
+            data object Strong : ExtraLarge
         }
 
-        sealed interface Strong : Label {
-            data object ExtraLarge : Strong
-            data object Large : Strong
-            data object Medium : Strong
-            data object Small : Strong
+        sealed interface Large : Body {
+            data object Default : Large
+            data object Strong : Large
+        }
+
+        sealed interface Medium : Body {
+            data object Default : Medium
+            data object Strong : Medium
+        }
+
+        sealed interface Small : Body {
+            data object Default : Small
+            data object Strong : Small
         }
     }
 }

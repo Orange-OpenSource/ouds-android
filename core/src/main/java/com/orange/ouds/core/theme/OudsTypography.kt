@@ -582,20 +582,20 @@ private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
         OudsTypographyKeyToken.Heading.Large -> heading.large
         OudsTypographyKeyToken.Heading.Medium -> heading.medium
         OudsTypographyKeyToken.Heading.Small -> heading.small
-        OudsTypographyKeyToken.Body.Default.Large -> body.large.default
-        OudsTypographyKeyToken.Body.Default.Medium -> body.medium.default
-        OudsTypographyKeyToken.Body.Default.Small -> body.small.default
-        OudsTypographyKeyToken.Body.Strong.Large -> body.large.strong
-        OudsTypographyKeyToken.Body.Strong.Medium -> body.medium.strong
-        OudsTypographyKeyToken.Body.Strong.Small -> body.small.strong
-        OudsTypographyKeyToken.Label.Default.ExtraLarge -> label.extraLarge.default
-        OudsTypographyKeyToken.Label.Default.Large -> label.large.default
-        OudsTypographyKeyToken.Label.Default.Medium -> label.medium.default
-        OudsTypographyKeyToken.Label.Default.Small -> label.small.default
-        OudsTypographyKeyToken.Label.Strong.ExtraLarge -> label.extraLarge.strong
-        OudsTypographyKeyToken.Label.Strong.Large -> label.large.strong
-        OudsTypographyKeyToken.Label.Strong.Medium -> label.medium.strong
-        OudsTypographyKeyToken.Label.Strong.Small -> label.small.strong
+        OudsTypographyKeyToken.Body.Large.Default -> body.large.default
+        OudsTypographyKeyToken.Body.Medium.Default -> body.medium.default
+        OudsTypographyKeyToken.Body.Small.Default -> body.small.default
+        OudsTypographyKeyToken.Body.Large.Strong -> body.large.strong
+        OudsTypographyKeyToken.Body.Medium.Strong -> body.medium.strong
+        OudsTypographyKeyToken.Body.Small.Strong -> body.small.strong
+        OudsTypographyKeyToken.Label.ExtraLarge.Default -> label.extraLarge.default
+        OudsTypographyKeyToken.Label.Large.Default -> label.large.default
+        OudsTypographyKeyToken.Label.Medium.Default -> label.medium.default
+        OudsTypographyKeyToken.Label.Small.Default -> label.small.default
+        OudsTypographyKeyToken.Label.ExtraLarge.Strong -> label.extraLarge.strong
+        OudsTypographyKeyToken.Label.Large.Strong -> label.large.strong
+        OudsTypographyKeyToken.Label.Medium.Strong -> label.medium.strong
+        OudsTypographyKeyToken.Label.Small.Strong -> label.small.strong
     }
 }
 
