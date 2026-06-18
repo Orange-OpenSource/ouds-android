@@ -86,15 +86,7 @@ open class ControlItemDemoState(
     var label: String by mutableStateOf(label)
     var description: String? by mutableStateOf(description)
 
-    private var _annotatedText: Boolean by mutableStateOf(annotatedText)
-    var annotatedText: Boolean
-        get() = _annotatedText
-        set(value) {
-            _annotatedText = value
-            if (value) {
-                error = true
-            }
-        }
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
@@ -107,6 +99,9 @@ open class ControlItemDemoState(
 
     val errorMessageTextInputEnabled: Boolean
         get() = error && !annotatedText
+
+    val annotatedTextSwitchEnabled: Boolean
+        get() = error
 
     enum class Icon(@StringRes val labelRes: Int) {
         None(R.string.app_components_common_none_tech),
