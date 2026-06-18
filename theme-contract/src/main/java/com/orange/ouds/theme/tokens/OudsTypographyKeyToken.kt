@@ -51,22 +51,22 @@ sealed interface OudsTypographyKeyToken : OudsKeyToken {
     }
 
     sealed interface Label : OudsTypographyKeyToken {
-        sealed interface ExtraLarge : Body {
+        sealed interface ExtraLarge : Label {
             data object Default : ExtraLarge
             data object Strong : ExtraLarge
         }
 
-        sealed interface Large : Body {
+        sealed interface Large : Label {
             data object Default : Large
             data object Strong : Large
         }
 
-        sealed interface Medium : Body {
+        sealed interface Medium : Label {
             data object Default : Medium
             data object Strong : Medium
         }
 
-        sealed interface Small : Body {
+        sealed interface Small : Label {
             data object Default : Small
             data object Strong : Small
         }
