@@ -30,9 +30,10 @@ fun rememberPinCodeInputDemoState(
     outlined: Boolean = false,
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
-    helperText: String = ""
-) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, saver = PinCodeInputDemoState.Saver) {
-    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText)
+    helperText: String = "",
+    annotatedText: Boolean = false
+) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, annotatedText, saver = PinCodeInputDemoState.Saver) {
+    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText, annotatedText)
 }
 
 class PinCodeInputDemoState(
@@ -41,7 +42,8 @@ class PinCodeInputDemoState(
     outlined: Boolean,
     error: Boolean,
     errorMessage: String,
-    helperText: String
+    helperText: String,
+    annotatedText: Boolean
 ) {
 
     companion object {
@@ -54,7 +56,8 @@ class PinCodeInputDemoState(
                         outlined,
                         error,
                         errorMessage,
-                        helperText
+                        helperText,
+                        annotatedText
                     )
                 }
             },
@@ -65,7 +68,8 @@ class PinCodeInputDemoState(
                     list[2] as Boolean,
                     list[3] as Boolean,
                     list[4] as String,
-                    list[5] as String
+                    list[5] as String,
+                    list[6] as Boolean
                 )
             }
         )
@@ -83,6 +87,11 @@ class PinCodeInputDemoState(
 
     var helperText: String by mutableStateOf(helperText)
 
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
+
     val errorMessageTextInputEnabled: Boolean
-        get() = error
+        get() = error && !annotatedText
+
+    val helperTextTextInputEnabled: Boolean
+        get() = !annotatedText
 }
