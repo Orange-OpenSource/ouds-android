@@ -52,7 +52,8 @@ data class Code(val elements: List<Formattable>) : Formattable {
     @CodeDslMarker
     class Builder {
 
-        private var elements: MutableList<Formattable> = mutableListOf()
+        @PublishedApi
+        internal var elements: MutableList<Formattable> = mutableListOf()
 
         fun functionCall(name: String, init: FunctionCall.Builder.() -> Unit = {}) {
             val functionCall = FunctionCall.Builder()
@@ -62,6 +63,25 @@ data class Code(val elements: List<Formattable>) : Formattable {
                 }
                 .build()
             elements.add(functionCall)
+        }
+
+        fun variableDeclaration(
+            name: String,
+            type: String? = null,
+            mutable: Boolean = false,
+            delegatedProperty: Boolean = false,
+            init: VariableDeclaration.Builder.() -> Unit
+        ) {
+            val variableDeclaration = VariableDeclaration.Builder()
+                .apply {
+                    this.name = name
+                    this.type = type
+                    this.mutable = mutable
+                    this.delegatedProperty = delegatedProperty
+                    init()
+                }
+                .build()
+            elements.add(variableDeclaration)
         }
 
         fun comment(text: String, init: Comment.Builder.() -> Unit = {}) {
@@ -74,8 +94,16 @@ data class Code(val elements: List<Formattable>) : Formattable {
             elements.add(comment)
         }
 
+        fun rawValue(value: String) {
+            elements.add(RawValue(value))
+        }
+
         fun newline() {
             elements.add(Newline())
+        }
+
+        inline fun <reified T> value(value: T) {
+            elements.add(Value(value, T::class.java))
         }
 
         fun build() = Code(elements)
@@ -94,6 +122,65 @@ data class Comment(val text: String, val isMultiline: Boolean) : Formattable {
         var isMultiline: Boolean = false
 
         fun build() = Comment(text, isMultiline)
+    }
+}
+
+data class VariableDeclaration(
+    val name: String,
+    val type: String?,
+    val mutable: Boolean,
+    val delegatedProperty: Boolean,
+    val value: Formattable
+) : Formattable {
+
+    override fun format(context: Context): String {
+        val keyword = if (mutable) "var" else "val"
+        val typeAnnotation = if (type != null) ": $type" else ""
+        val assignment = if (delegatedProperty) "by" else "="
+        val formattedValue = value.format(context)
+        return "$keyword $name$typeAnnotation $assignment $formattedValue"
+    }
+
+    @CodeDslMarker
+    class Builder {
+
+        var name: String by Delegates.notNull()
+
+        var type: String? = null
+
+        var mutable: Boolean = false
+
+        var delegatedProperty: Boolean = false
+
+        internal var value: Formattable by Delegates.notNull()
+
+        fun functionCallValue(functionName: String, init: FunctionCall.Builder.() -> Unit = {}) {
+            val builder = FunctionCall.Builder().apply {
+                name = functionName
+                init()
+            }
+            value = builder.build()
+        }
+
+        fun rememberFunctionCallValue(functionName: String, isMultiline: Boolean = true, init: FunctionCall.Builder.() -> Unit = {}) {
+            functionCallValue("remember") {
+                trailingLambda = true
+                lambdaArgument(null) {
+                    functionCall(functionName) {
+                        this.isMultiline = isMultiline
+                        init()
+                    }
+                }
+            }
+        }
+
+        fun build() = VariableDeclaration(name, type, mutable, delegatedProperty, value)
+    }
+}
+
+data class Value<T>(val value: T, val clazz: Class<T>) : Formattable {
+    override fun format(context: Context): String {
+        return value.toString(context, clazz)
     }
 }
 
@@ -182,20 +269,7 @@ data class FunctionCall(val name: String, val elements: List<Formattable>, val i
 data class Argument<T>(val name: String?, val value: T, val clazz: Class<T>) : Formattable {
 
     override fun format(context: Context): String {
-        val valueString = when (value) {
-            is Float -> "${value}F"
-            is String -> "\"$value\""
-            is Int -> {
-                val resourceName = tryOrNull { context.resources.getResourceName(value) }?.substringAfter("/")
-                val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(value) }
-                if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else value.toString()
-            }
-            is Enum<*> -> "${clazz.nestedName}.${value.name}" // Displays OudsButtonAppearance.Strong instead of Strong
-            is Dp -> "${value.toNumberString()}.dp"
-            is Formattable -> value.format(context)
-            else -> value.toString()
-        }
-
+        val valueString = value.toString(context, clazz)
         return if (name?.isNotBlank() == true) "$name = $valueString" else valueString
     }
 }
@@ -213,11 +287,39 @@ class Newline : Formattable {
     override fun format(context: Context): String = "" // There is no need to return "\n" because code elements are already joined using "\n"
 }
 
+data class RawValue(val value: String) : Formattable {
+
+    override fun format(context: Context): String = value
+}
+
+private fun <T> T.toString(context: Context, clazz: Class<T>): String {
+    return when (this) {
+        is Float -> "${this}F"
+        is String -> "\"$this\""
+        is Int -> {
+            val resourceName = tryOrNull { context.resources.getResourceName(this) }?.substringAfter("/")
+            val resourceTypeName = tryOrNull { context.resources.getResourceTypeName(this) }
+            if (resourceName != null && resourceTypeName != null) "R.$resourceTypeName.$resourceName" else toString()
+        }
+        is Enum<*> -> "${clazz.nestedName}.${name}" // Displays OudsButtonAppearance.Strong instead of Strong
+        is Dp -> "${toNumberString()}.dp"
+        is Formattable -> format(context)
+        else -> toString()
+    }
+}
+
 @Preview
 @Composable
 internal fun PreviewCode() = AppPreview {
     val themeDrawableResources = LocalThemeDrawableResources.current
     val code = code {
+        variableDeclaration("progress", delegatedProperty = true) {
+            rememberFunctionCallValue("mutableFloatStateOf") {
+                isMultiline = false
+                typedArgument(null, 2f)
+            }
+        }
+        newline()
         comment("Multiline\ncomment") { isMultiline = true }
         newline()
         functionCall("OudsComponent") {

@@ -27,6 +27,7 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
         private const val USER_THEME_NAME_KEY = "userThemeName"
         private const val USER_THEME_SETTINGS_ROUNDED_CORNER_ALERT_MESSAGES_KEY = "userThemeSettingsRoundedCornerAlertMessages"
         private const val USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY = "userThemeSettingsRoundedCornerButtons"
+        private const val USER_THEME_SETTINGS_ROUNDED_CORNER_PROGRESS_INDICATORS_KEY = "userThemeSettingsRoundedCornerProgressIndicators"
         private const val USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY = "userThemeSettingsRoundedCornerTextInputs"
     }
 
@@ -41,6 +42,7 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
     fun storeUserThemeSettings(themeSettings: OudsThemeSettings) = runBlocking {
         dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_ALERT_MESSAGES_KEY, themeSettings.roundedCornerAlertMessages)
         dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY, themeSettings.roundedCornerButtons)
+        dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_PROGRESS_INDICATORS_KEY, themeSettings.roundedCornerProgressIndicators)
         dataStoreService.putBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY, themeSettings.roundedCornerTextInputs)
     }
 
@@ -48,6 +50,7 @@ class MainViewModel @Inject constructor(private val dataStoreService: DataStoreS
         OudsThemeSettings(
             roundedCornerAlertMessages = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_ALERT_MESSAGES_KEY),
             roundedCornerButtons = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_BUTTONS_KEY),
+            roundedCornerProgressIndicators = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_PROGRESS_INDICATORS_KEY),
             roundedCornerTextInputs = dataStoreService.getBoolean(USER_THEME_SETTINGS_ROUNDED_CORNER_TEXT_INPUTS_KEY)
         )
     }

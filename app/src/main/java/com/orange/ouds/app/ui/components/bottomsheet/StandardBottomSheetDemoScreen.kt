@@ -25,15 +25,18 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
@@ -137,21 +140,23 @@ private fun StandardBottomSheetDemoCustomization(state: StandardBottomSheetDemoS
             checked = sheetSwipeEnabled,
             onCheckedChange = { sheetSwipeEnabled = it },
         )
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech),
-            value = TextFieldValue(
-                text = sheetPeekHeightDisplayValue,
-                selection = TextRange(sheetPeekHeightDisplayValue.length)
-            ),
-            onValueChange = { textFieldValue ->
-                val text = textFieldValue.text.filter { it.isDigit() }.take(3)
-                sheetPeekHeight = (text.toIntOrNull() ?: 0).dp
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            suffix = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech),
-            resetValue = BottomSheetDefaults.SheetPeekHeight.toNumberString()
-        )
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            CustomizationTextInput(
+                applyTopPadding = true,
+                label = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech),
+                value = TextFieldValue(
+                    text = sheetPeekHeightDisplayValue,
+                    selection = TextRange(sheetPeekHeightDisplayValue.length)
+                ),
+                onValueChange = { textFieldValue ->
+                    val text = textFieldValue.text.filter { it.isDigit() }.take(3)
+                    sheetPeekHeight = (text.toIntOrNull() ?: 0).dp
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                suffix = stringResource(R.string.app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech),
+                resetValue = BottomSheetDefaults.SheetPeekHeight.toNumberString()
+            )
+        }
     }
 }
 

@@ -38,7 +38,8 @@
     <string name="app_themeSettingsDialog_cancel_label">Cancel</string>
     <string name="app_themeSettingsDialog_label">Change theme settings</string>
     <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Rounded corner alert messages</string>
-    <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner button</string>
+    <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner buttons</string>
+    <string name="app_themeSettingsDialog_roundedCornerProgressIndicators_label">Rounded corner progress indicators</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Rounded corner text inputs</string>
 
     <!-- Bottom navigation -->
@@ -289,6 +290,20 @@
     <string name="app_components_pinCodeInput_tech" translatable="false">PIN code input</string>
     <string name="app_components_pinCodeInput_description_text">PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a four, six or eight-digit personal identification number (PIN).</string>
     <string name="app_components_pinCodeInput_length_tech" translatable="false">Length</string>
+
+    <!-- Components: progress indicator -->
+    <string name="app_components_progressIndicator_tech" translatable="false">Progress indicator</string>
+    <string name="app_components_progressIndicator_description_text">Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).</string>  <!-- TODO -->
+    <string name="app_components_progressIndicator_circularProgressIndicator_tech" translatable="false">Circular progress indicator</string>
+    <string name="app_components_progressIndicator_circularProgressIndicator_description_text">A circular progress indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.</string>
+    <string name="app_components_progressIndicator_linearProgressIndicator_tech" translatable="false">Linear progress indicator</string>
+    <string name="app_components_progressIndicator_linearProgressIndicator_description_text">A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.</string>
+    <string name="app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech" translatable="false">Stop indicator</string>
+    <string name="app_components_progressIndicator_animated_tech" translatable="false">Animated</string>
+    <string name="app_components_progressIndicator_determinate_tech" translatable="false">Determinate</string>
+    <string name="app_components_progressIndicator_indeterminate_tech" translatable="false">Indeterminate</string>
+    <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
+    <string name="app_components_progressIndicator_track_tech" translatable="false">Track</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_tech" translatable="false">Radio button</string>

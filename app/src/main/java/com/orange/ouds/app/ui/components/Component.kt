@@ -19,8 +19,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.alert.AlertMessageDemoScreen
 import com.orange.ouds.app.ui.components.alert.InlineAlertDemoScreen
 import com.orange.ouds.app.ui.components.badge.BadgeDemoScreen
-import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoScreen
 import com.orange.ouds.app.ui.components.bottomsheet.ModalBottomSheetDemoScreen
+import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoScreen
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.button.NavigationButtonDemoScreen
@@ -35,6 +35,8 @@ import com.orange.ouds.app.ui.components.link.LinkDemoScreen
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
 import com.orange.ouds.app.ui.components.pincodeinput.PinCodeInputDemoScreen
+import com.orange.ouds.app.ui.components.progressindicator.CircularProgressIndicatorDemoScreen
+import com.orange.ouds.app.ui.components.progressindicator.LinearProgressIndicatorDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
@@ -161,6 +163,13 @@ sealed class Component(
         demoScreen = { PinCodeInputDemoScreen() }
     )
 
+    data object ProgressIndicator : Component(
+        R.string.app_components_progressIndicator_tech,
+        R.string.app_components_progressIndicator_description_text,
+        { ProgressIndicatorIllustration() },
+        listOf(Variant.CircularProgressIndicator, Variant.LinearProgressIndicator)
+    )
+
     data object RadioButton : Component(
         R.string.app_components_radioButton_tech,
         R.string.app_components_radioButton_description_text,
@@ -241,6 +250,17 @@ sealed class Variant(
     // Divider
     data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_tech, { DividerDemoScreen() })
     data object VerticalDivider : Variant(R.string.app_components_divider_verticalDivider_tech, { DividerDemoScreen(vertical = true) })
+
+    // Progress indicator
+    data object CircularProgressIndicator :
+        Variant(R.string.app_components_progressIndicator_circularProgressIndicator_tech, { CircularProgressIndicatorDemoScreen() }) {
+        val descriptionRes = R.string.app_components_progressIndicator_circularProgressIndicator_description_text
+    }
+
+    data object LinearProgressIndicator :
+        Variant(R.string.app_components_progressIndicator_linearProgressIndicator_tech, { LinearProgressIndicatorDemoScreen() }) {
+        val descriptionRes = R.string.app_components_progressIndicator_linearProgressIndicator_description_text
+    }
 
     // Radio button
     data object RadioButton : Variant(R.string.app_components_radioButton_radioButton_tech, { RadioButtonDemoScreen() })

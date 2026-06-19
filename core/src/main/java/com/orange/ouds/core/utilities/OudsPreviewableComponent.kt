@@ -29,6 +29,8 @@ import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
+import com.orange.ouds.core.component.OudsCircularProgressIndicatorPreviewParameter
+import com.orange.ouds.core.component.OudsCircularProgressIndicatorPreviewParameterProvider
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsControlItemConstrainedMaxWidthPreviewParameterProvider
@@ -40,6 +42,8 @@ import com.orange.ouds.core.component.OudsFilterChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
 import com.orange.ouds.core.component.OudsFloatingActionButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsInlineAlertPreviewParameterProvider
+import com.orange.ouds.core.component.OudsLinearProgressIndicatorPreviewParameter
+import com.orange.ouds.core.component.OudsLinearProgressIndicatorPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
@@ -101,6 +105,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithEdgeToEdgeDisab
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicator
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
@@ -113,6 +118,8 @@ import com.orange.ouds.core.component.PreviewOudsInlineAlertWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
+import com.orange.ouds.core.component.PreviewOudsLinearProgressIndicator
+import com.orange.ouds.core.component.PreviewOudsLinearProgressIndicatorWithLongHelperText
 import com.orange.ouds.core.component.PreviewOudsLink
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsLinkWithUntintedIcon
@@ -523,6 +530,20 @@ interface OudsPreviewableComponent {
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
     }
 
+    object CircularProgressIndicator : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsCircularProgressIndicatorPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsCircularProgressIndicator(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsCircularProgressIndicatorPreviewParameter
+            )
+        }
+    }
+
     object ColoredBox : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsColoredBoxPreviewParameterProvider().values.toList()
@@ -713,6 +734,35 @@ interface OudsPreviewableComponent {
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled
             )
+        }
+    }
+
+    object LinearProgressIndicator {
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsLinearProgressIndicatorPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLinearProgressIndicator(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsLinearProgressIndicatorPreviewParameter
+                )
+            }
+        }
+
+        object WithLongHelperText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLinearProgressIndicatorWithLongHelperText(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
