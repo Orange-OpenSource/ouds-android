@@ -54,7 +54,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Progress Indicator
  *
- * > Design version: 1.0.0
+ * > Design version: 0.1.0
  *
  * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  *   into the range.
@@ -100,7 +100,7 @@ fun OudsLinearProgressIndicator(
  *
  * > Design name: Progress Indicator
  *
- * > Design version: 1.0.0
+ * > Design version: 0.1.0
  *
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
