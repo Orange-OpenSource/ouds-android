@@ -20,29 +20,31 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Companion.InitialProgressValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Type
+import com.orange.ouds.core.component.OudsProgressIndicatorDefaults
+import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 
 @Composable
 fun rememberLinearProgressIndicatorDemoState(
     progressText: String = InitialProgressValue.toString(),
     type: Type = Type.Determinate,
-    brandColor: Boolean = true,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     stopIndicator: Boolean = false,
     helperText: String? = null,
     animated: Boolean = true
-) = rememberSaveable(progressText, type, brandColor, track, animated, stopIndicator, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
-    LinearProgressIndicatorDemoState(progressText, type, brandColor, track, animated, stopIndicator, helperText)
+) = rememberSaveable(progressText, type, status, track, animated, stopIndicator, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
+    LinearProgressIndicatorDemoState(progressText, type, status, track, animated, stopIndicator, helperText)
 }
 
 class LinearProgressIndicatorDemoState(
     progressText: String,
     type: Type,
-    brandColor: Boolean,
+    status: OudsProgressIndicatorStatus,
     track: Boolean,
     animated: Boolean,
     stopIndicator: Boolean,
     helperText: String?
-) : ProgressIndicatorDemoState(progressText, type, brandColor, track, animated) {
+) : ProgressIndicatorDemoState(progressText, type, status, track, animated) {
 
     companion object {
         val Saver = listSaver(
@@ -61,7 +63,7 @@ class LinearProgressIndicatorDemoState(
                     LinearProgressIndicatorDemoState(
                         progressText,
                         type,
-                        brandColor,
+                        status,
                         track,
                         animated,
                         list[1] as Boolean,

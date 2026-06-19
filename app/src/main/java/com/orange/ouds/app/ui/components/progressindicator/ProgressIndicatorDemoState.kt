@@ -18,11 +18,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 
 open class ProgressIndicatorDemoState(
     progressText: String,
     type: Type,
-    brandColor: Boolean,
+    status: OudsProgressIndicatorStatus,
     track: Boolean,
     animated: Boolean
 ) {
@@ -36,17 +37,20 @@ open class ProgressIndicatorDemoState(
                     listOf(
                         progressText,
                         type,
-                        brandColor,
+                        status::class.java.name,
                         track,
                         animated
                     )
                 }
             },
             restore = { list ->
+                val statusClassName = list[2] as String
+                val status = Class.forName(statusClassName).kotlin.objectInstance as OudsProgressIndicatorStatus
+
                 ProgressIndicatorDemoState(
                     list[0] as String,
                     list[1] as Type,
-                    list[2] as Boolean,
+                    status,
                     list[3] as Boolean,
                     list[4] as Boolean
                 )
@@ -58,7 +62,7 @@ open class ProgressIndicatorDemoState(
 
     var type by mutableStateOf(type)
 
-    var brandColor by mutableStateOf(brandColor)
+    var status by mutableStateOf(status)
 
     var track by mutableStateOf(track)
 

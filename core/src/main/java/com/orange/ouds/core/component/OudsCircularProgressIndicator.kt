@@ -64,11 +64,7 @@ private val OudsCircularProgressIndicatorSize = 48.dp
  * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  *   into the range.
  * @param modifier The [Modifier] to be applied to this circular progress indicator.
- * @param brandColor Whether the brand color is used for the indicator color or the default color.
- *   Use `true` for important, user-triggered actions like upload, submit, or confirm. Also use it when maintaining visual consistency with a branded interface
- *   or artistic direction.
- *   Use `false` for background or secondary processes. Use it when the indicator should not compete with the main content or when a more neutral tone
- *   is required.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
  * @param track Whether the track is displayed or not.
  *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
  *   easier to read (for determinate variant).
@@ -81,13 +77,13 @@ private val OudsCircularProgressIndicatorSize = 48.dp
 fun OudsCircularProgressIndicator(
     progress: () -> Float,
     modifier: Modifier = Modifier,
-    brandColor: Boolean = true,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = progress,
         modifier = modifier,
-        brandColor = brandColor,
+        status = status,
         track = track
     )
 }
@@ -107,11 +103,7 @@ fun OudsCircularProgressIndicator(
  * > Design version: 1.0.0
  *
  * @param modifier The [Modifier] to be applied to this circular progress indicator.
- * @param brandColor Whether the brand color is used for the indicator color or the default color.
- *   Use `true` for important, user-triggered actions like upload, submit, or confirm. Also use it when maintaining visual consistency with a branded interface
- *   or artistic direction.
- *   Use `false` for background or secondary processes. Use it when the indicator should not compete with the main content or when a more neutral tone
- *   is required.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
  * @param track Whether the track is displayed or not.
  *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
  *   easier to read (for determinate variant).
@@ -123,13 +115,13 @@ fun OudsCircularProgressIndicator(
 @Composable
 fun OudsCircularProgressIndicator(
     modifier: Modifier = Modifier,
-    brandColor: Boolean = true,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = null,
         modifier = modifier,
-        brandColor = brandColor,
+        status = status,
         track = track
     )
 }
@@ -138,7 +130,7 @@ fun OudsCircularProgressIndicator(
 @Composable
 private fun OudsCircularProgressIndicator(
     nullableProgress: (() -> Float)?,
-    brandColor: Boolean,
+    status: OudsProgressIndicatorStatus,
     track: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -160,7 +152,7 @@ private fun OudsCircularProgressIndicator(
                     gapSize = computeGapSize(currentSize)
                 }
             }
-        val color = if (brandColor) OudsTheme.colorScheme.action.loading else OudsTheme.colorScheme.content.default
+        val color = status.color
         val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
         val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
         val trackColor = if (track) colorContentTrack.value else Color.Transparent
@@ -253,7 +245,7 @@ internal fun PreviewOudsCircularProgressIndicator(
         with(parameter) {
             OudsCircularProgressIndicator(
                 progress = { 0.75f },
-                brandColor = brandColor,
+                status = status,
                 track = track
             )
         }
@@ -261,7 +253,7 @@ internal fun PreviewOudsCircularProgressIndicator(
 }
 
 internal data class OudsCircularProgressIndicatorPreviewParameter(
-    val brandColor: Boolean = true,
+    val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     val track: Boolean = true
 )
 
@@ -271,6 +263,6 @@ internal class OudsCircularProgressIndicatorPreviewParameterProvider :
 private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewParameter>
     get() = listOf(
         OudsCircularProgressIndicatorPreviewParameter(),
-        OudsCircularProgressIndicatorPreviewParameter(brandColor = false),
+        OudsCircularProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
         OudsCircularProgressIndicatorPreviewParameter(track = false)
     )

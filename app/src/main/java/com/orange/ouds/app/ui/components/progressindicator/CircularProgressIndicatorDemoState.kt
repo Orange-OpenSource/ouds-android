@@ -16,14 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Companion.InitialProgressValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Type
+import com.orange.ouds.core.component.OudsProgressIndicatorDefaults
+import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 
 @Composable
 fun rememberCircularProgressIndicatorDemoState(
     progressText: String = InitialProgressValue.toString(),
     type: Type = Type.Determinate,
-    brandColor: Boolean = true,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     animated: Boolean = true
-) = rememberSaveable(progressText, type, brandColor, track, animated, saver = ProgressIndicatorDemoState.Saver) {
-    ProgressIndicatorDemoState(progressText, type, brandColor, track, animated)
+) = rememberSaveable(progressText, type, status, track, animated, saver = ProgressIndicatorDemoState.Saver) {
+    ProgressIndicatorDemoState(progressText, type, status, track, animated)
 }

@@ -43,13 +43,13 @@ private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoSta
             ProgressIndicatorDemoState.Type.Determinate -> {
                 OudsCircularProgressIndicator(
                     progress = { progress },
-                    brandColor = brandColor,
+                    status = status,
                     track = track
                 )
             }
             ProgressIndicatorDemoState.Type.Indeterminate -> {
                 OudsCircularProgressIndicator(
-                    brandColor = brandColor,
+                    status = status,
                     track = track
                 )
             }

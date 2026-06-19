@@ -65,7 +65,7 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
             ProgressIndicatorDemoState.Type.Determinate -> {
                 OudsLinearProgressIndicator(
                     progress = { progress },
-                    brandColor = brandColor,
+                    status = status,
                     track = track,
                     stopIndicator = stopIndicator,
                     helperText = helperText
@@ -73,7 +73,7 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
             }
             ProgressIndicatorDemoState.Type.Indeterminate -> {
                 OudsLinearProgressIndicator(
-                    brandColor = brandColor,
+                    status = status,
                     track = track,
                     helperText = helperText
                 )

@@ -13,6 +13,9 @@
 package com.orange.ouds.app.ui.components.progressindicator
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.runtime.Composable
@@ -22,6 +25,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
@@ -31,9 +36,15 @@ import androidx.compose.ui.unit.LayoutDirection
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
+import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.core.component.OudsProgressIndicatorStatus
+import com.orange.ouds.foundation.extensions.toSentenceCase
+import com.orange.ouds.foundation.extensions.tryOrNull
 
 @Composable
 fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
@@ -61,10 +72,37 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
                 resetValue = ProgressIndicatorDemoState.InitialProgressValue.toString()
             )
         }
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_progressIndicator_brandColor_tech),
-            checked = brandColor,
-            onCheckedChange = { brandColor = it }
+        val statuses = if (LocalInspectionMode.current) {
+            // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
+            // See https://issuetracker.google.com/issues/240601093
+            listOf(
+                OudsProgressIndicatorStatus.Accent,
+                OudsProgressIndicatorStatus.Neutral
+            )
+        } else {
+            OudsProgressIndicatorStatus::class.sealedSubclasses.mapNotNull { kClass ->
+                tryOrNull {
+                    kClass.objectInstance
+                }
+            }
+        }
+        CustomizationDropdownMenu(
+            applyTopPadding = true,
+            label = stringResource(id = R.string.app_components_common_status_tech),
+            items = statuses.map { status ->
+                CustomizationDropdownMenuItem(
+                    label = status::class.simpleName.orEmpty().toSentenceCase(),
+                    leadingIcon = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(status.color)
+                        )
+                    }
+                )
+            },
+            selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
+            onSelectionChange = { status = statuses[it] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_progressIndicator_track_tech),
@@ -107,7 +145,7 @@ fun FunctionCall.Builder.progressIndicatorArguments(state: ProgressIndicatorDemo
             }
         }
     }
-    typedArgument("brandColor", brandColor)
+    rawArgument("status", status::class.java.nestedName)
     typedArgument("track", track)
 }
 

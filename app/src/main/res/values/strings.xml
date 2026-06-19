@@ -303,7 +303,6 @@
     <string name="app_components_progressIndicator_determinate_tech" translatable="false">Determinate</string>
     <string name="app_components_progressIndicator_indeterminate_tech" translatable="false">Indeterminate</string>
     <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
-    <string name="app_components_progressIndicator_brandColor_tech" translatable="false">Brand color</string>
     <string name="app_components_progressIndicator_track_tech" translatable="false">Track</string>
 
     <!-- Components: radio button -->
