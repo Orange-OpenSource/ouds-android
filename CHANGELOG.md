@@ -5,6 +5,32 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.5.0...1.6.0) (2026-06-19)
+
+### Features
+
+- create components - circular progress indicator and linear progress indicator ([#1322](https://github.com/Orange-OpenSource/ouds-android/issues/1322))
+- **tokens** update OudsTypography hierarchy and apply modifications in files ([#1371](https://github.com/Orange-OpenSource/ouds-android/issues/1371))
+- **suggestion-chip** facilitate the creation of local components ([#1360](https://github.com/Orange-OpenSource/ouds-android/issues/1360))
+- **alert-message** **inline-alert** **badge** **button** **checkbox-item** **fab** **filter-chip** **link** **radio-button-item** **suggestion-chip** **switch-item** **tag** **text-input** allow the use of untinted fixed images ([#1320](https://github.com/Orange-OpenSource/ouds-android/issues/1320))
+- **text-area** allow to fix the height of the component despite the number of entered lines ([#1329](https://github.com/Orange-OpenSource/ouds-android/issues/1329))
+- **alert-message** **bullet-list** **switch** **radio-button** **checkbox** **text-area** **text-input** **pin-code-input** update api to use rich text ([#1217](https://github.com/Orange-OpenSource/ouds-android/issues/1217))
+- create component - navigation button ([#1232](https://github.com/Orange-OpenSource/ouds-android/issues/1232))
+
+### Bug Fixes
+
+- **deps** update grpc-java monorepo to v1.82.0 ([#1366](https://github.com/Orange-OpenSource/ouds-android/issues/1366))
+- **deps** update firebasebom to v34.14.1 ([#1362](https://github.com/Orange-OpenSource/ouds-android/issues/1362))
+- **text-area** text area height is wrong when empty and not focused ([#1349](https://github.com/Orange-OpenSource/ouds-android/issues/1349))
+- **deps** update core to v1.19.0 ([#1353](https://github.com/Orange-OpenSource/ouds-android/issues/1353))
+- **deps** update googleauthlibraryoauth2http to v1.48.0 ([#1354](https://github.com/Orange-OpenSource/ouds-android/issues/1354))
+- update icons to version 1.7 ([#1337](https://github.com/Orange-OpenSource/ouds-android/issues/1337))
+- **navigation-bar** update animation of navigation bar indicator with Figma values ([#1341](https://github.com/Orange-OpenSource/ouds-android/issues/1341))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.14.0 ([#1343](https://github.com/Orange-OpenSource/ouds-android/issues/1343))
+- **deps** update paparazzi to v2.0.0-alpha05 ([#1326](https://github.com/Orange-OpenSource/ouds-android/issues/1326))
+- **deps** update dependency androidx.compose:compose-bom to v2026.05.01 ([#1325](https://github.com/Orange-OpenSource/ouds-android/issues/1325))
+- **tag** asset color is wrong in muted tag ([#1319](https://github.com/Orange-OpenSource/ouds-android/issues/1319))
+
 ## [1.5.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.4.0...1.5.0) (2026-05-18)
 
 ### Features
