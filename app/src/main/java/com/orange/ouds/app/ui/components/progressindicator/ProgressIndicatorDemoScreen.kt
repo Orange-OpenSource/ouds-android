@@ -26,7 +26,6 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
@@ -44,7 +43,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 import com.orange.ouds.foundation.extensions.toSentenceCase
-import com.orange.ouds.foundation.extensions.tryOrNull
 
 @Composable
 fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
@@ -72,36 +70,23 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
                 resetValue = ProgressIndicatorDemoState.InitialProgressValue.toString()
             )
         }
-        val statuses = if (LocalInspectionMode.current) {
-            // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
-            // See https://issuetracker.google.com/issues/240601093
-            listOf(
-                OudsProgressIndicatorStatus.Accent,
-                OudsProgressIndicatorStatus.Neutral
-            )
-        } else {
-            OudsProgressIndicatorStatus::class.sealedSubclasses.mapNotNull { kClass ->
-                tryOrNull {
-                    kClass.objectInstance
-                }
-            }
-        }
+        val statuses = OudsProgressIndicatorStatus.entries
         CustomizationDropdownMenu(
             applyTopPadding = true,
             label = stringResource(id = R.string.app_components_common_status_tech),
             items = statuses.map { status ->
                 CustomizationDropdownMenuItem(
-                    label = status::class.simpleName.orEmpty().toSentenceCase(),
+                    label = status.name.toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(status.color)
+                                .background(status.color())
                         )
                     }
                 )
             },
-            selectedItemIndex = statuses.indexOfFirst { it::class.qualifiedName == status::class.qualifiedName },
+            selectedItemIndex = statuses.indexOf(status),
             onSelectionChange = { status = statuses[it] }
         )
         CustomizationSwitchItem(

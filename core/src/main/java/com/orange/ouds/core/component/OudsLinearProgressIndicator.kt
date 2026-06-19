@@ -154,7 +154,7 @@ private fun OudsLinearProgressIndicator(
             val progressIndicatorModifier = Modifier
                 .height(sizeLinearIndicatorHeight.dp * scale)
                 .fillMaxWidth()
-            val color = status.color
+            val color = status.color()
             val trackColor = if (track) colorContentTrack.value else Color.Transparent
             val gapSize = ProgressIndicatorDefaults.LinearIndicatorTrackGapSize * scale
             val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault

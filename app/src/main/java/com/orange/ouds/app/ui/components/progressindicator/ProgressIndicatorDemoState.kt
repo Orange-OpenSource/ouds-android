@@ -37,20 +37,17 @@ open class ProgressIndicatorDemoState(
                     listOf(
                         progressText,
                         type,
-                        status::class.java.name,
+                        status,
                         track,
                         animated
                     )
                 }
             },
             restore = { list ->
-                val statusClassName = list[2] as String
-                val status = Class.forName(statusClassName).kotlin.objectInstance as OudsProgressIndicatorStatus
-
                 ProgressIndicatorDemoState(
                     list[0] as String,
                     list[1] as Type,
-                    status,
+                    list[2] as OudsProgressIndicatorStatus,
                     list[3] as Boolean,
                     list[4] as Boolean
                 )

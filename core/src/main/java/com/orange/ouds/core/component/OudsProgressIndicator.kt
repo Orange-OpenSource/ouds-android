@@ -20,30 +20,29 @@ import com.orange.ouds.core.theme.OudsTheme
  * The status of an [OudsCircularProgressIndicator] or an [OudsLinearProgressIndicator].
  * It determines the color of the progress indicator.
  */
-sealed interface OudsProgressIndicatorStatus {
-
-    val color: Color
-        @Composable
-        get
+enum class OudsProgressIndicatorStatus {
 
     /**
      * Used for important, user-triggered actions like upload, submit, or confirm. Also use it when maintaining visual consistency with a branded interface
      * or artistic direction.
      */
-    object Accent : OudsProgressIndicatorStatus {
-        override val color: Color
-            @Composable
-            get() = OudsTheme.colorScheme.action.loading
-    }
+    Accent,
 
     /**
      * Used for background or secondary processes. Use it when the indicator should not compete with the main content or when a more neutral tone
      * is required.
      */
-    object Neutral : OudsProgressIndicatorStatus {
-        override val color: Color
-            @Composable
-            get() = OudsTheme.colorScheme.content.default
+    Neutral;
+
+    /**
+     * The color associated with this status.
+     */
+    @Composable
+    fun color(): Color {
+        return when (this) {
+            Neutral -> OudsTheme.colorScheme.content.default
+            Accent -> OudsTheme.colorScheme.action.loading
+        }
     }
 }
 

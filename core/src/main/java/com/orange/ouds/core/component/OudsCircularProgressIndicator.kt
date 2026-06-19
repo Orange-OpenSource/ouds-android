@@ -152,7 +152,7 @@ private fun OudsCircularProgressIndicator(
                     gapSize = computeGapSize(currentSize)
                 }
             }
-        val color = status.color
+        val color = status.color()
         val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
         val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
         val trackColor = if (track) colorContentTrack.value else Color.Transparent
