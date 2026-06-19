@@ -188,7 +188,7 @@ private fun OudsLinearProgressIndicator(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = helperText,
-                    style = OudsTheme.typography.label.default.medium,
+                    style = OudsTheme.typography.label.medium.default,
                     color = OudsTheme.colorScheme.content.default,
                     textAlign = TextAlign.Center
                 )
