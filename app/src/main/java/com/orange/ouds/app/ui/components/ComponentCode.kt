@@ -116,7 +116,7 @@ fun FunctionCall.Builder.readOnlyArgument(value: Boolean) = typedArgument(Argume
 fun FunctionCall.Builder.helperTextArgument(helperText: String, annotated: Boolean = false) {
     if (annotated) {
         annotatedStringArgument<OudsAnnotatedHelperText>(Argument.HelperText)
-    } else if (helperText.isNotEmpty()) {
+    } else if (helperText.isNotBlank()) {
         typedArgument(Argument.HelperText, helperText)
     }
 }

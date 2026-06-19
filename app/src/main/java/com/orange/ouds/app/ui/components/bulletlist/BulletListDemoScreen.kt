@@ -296,7 +296,7 @@ private fun OudsBulletListBuilder.bulletListDemoItem(index: Int, state: BulletLi
                     }
                     2 -> {
                         append("Update your ")
-                        withLink(OudsLinkAnnotation.Url("https://unified-design-system.orange.com")) { append("declined") }
+                        withLink(OudsLinkAnnotation.Url("https://unified-design-system.orange.com")) { append("payment details") }
                         append(" if needed.")
                     }
                     else -> {}
