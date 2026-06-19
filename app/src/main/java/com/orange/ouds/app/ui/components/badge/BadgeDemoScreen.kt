@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -30,7 +31,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.enabledArgument
-import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -43,19 +44,20 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.toSentenceCase
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
 import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
 fun BadgeDemoScreen() {
     val state = rememberBadgeDemoState()
-    val badgeWithIconStatus = state.badgeWithIconStatus
+    val badgeWithIconStatus = getBadgeWithIconStatus(state)
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         description = stringResource(id = Component.Badge.descriptionRes),
@@ -121,6 +123,13 @@ private fun BadgeDemoBottomSheetContent(state: BadgeDemoState) {
             enabled = countTextInputEnabled,
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = BadgeDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = BadgeDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = BadgeDemoState.Icon.entries[index] }
+        )
     }
 }
 
@@ -154,7 +163,7 @@ private fun BadgeDemoContent(state: BadgeDemoState) {
                     val contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
                     OudsBadge(
                         modifier = modifier.semantics { this.contentDescription = contentDescription },
-                        status = badgeWithIconStatus,
+                        status = getBadgeWithIconStatus(this),
                         size = size,
                         enabled = enabled
                     )
@@ -183,9 +192,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     is OudsIconBadgeStatus.Neutral,
                     is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
-                            constructorCallArgument<OudsBadgeIcon>("icon") {
-                                painterArgument(themeDrawableResources.tipsAndTricks)
-                            }
+                            iconArgument<OudsBadgeIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == BadgeDemoState.Icon.Tinted)
                         }
                     }
                     OudsIconBadgeStatus.Positive,
@@ -201,6 +208,24 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
 
             typedArgument("size", size)
             enabledArgument(enabled)
+        }
+    }
+}
+
+@Composable
+private fun getBadgeWithIconStatus(state: BadgeDemoState): OudsIconBadgeStatus {
+    with(state) {
+        val badgeIcon = when (icon) {
+            BadgeDemoState.Icon.Tinted -> OudsBadgeIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            BadgeDemoState.Icon.Untinted -> OudsBadgeIcon(painter = rememberUntintedIconPainter(), tinted = false)
+        }
+        return when (status) {
+            OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(badgeIcon)
+            OudsBadgeStatus.Accent -> OudsIconBadgeStatus.Accent(badgeIcon)
+            OudsBadgeStatus.Positive -> OudsIconBadgeStatus.Positive
+            OudsBadgeStatus.Info -> OudsIconBadgeStatus.Info
+            OudsBadgeStatus.Warning -> OudsIconBadgeStatus.Warning
+            OudsBadgeStatus.Negative -> OudsIconBadgeStatus.Negative
         }
     }
 }

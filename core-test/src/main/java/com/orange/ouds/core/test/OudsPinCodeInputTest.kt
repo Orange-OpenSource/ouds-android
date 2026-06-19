@@ -47,4 +47,18 @@ internal class OudsPinCodeInputTest {
             internal fun data() = OudsPreviewableComponent.PinCodeInput.WithRoundedCorners.parameters
         }
     }
+
+    @RunWith(Parameterized::class)
+    class WithRichText(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.PinCodeInput.WithRichText,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.PinCodeInput.WithRichText.parameters
+        }
+    }
 }

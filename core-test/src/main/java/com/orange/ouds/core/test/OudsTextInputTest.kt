@@ -61,4 +61,25 @@ internal class OudsTextInputTest {
             internal fun data() = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.parameters
         }
     }
+
+    @RunWith(Parameterized::class)
+    class WithRichText(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextInput.WithRichText,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.TextInput.WithRichText.parameters
+        }
+    }
+
+    class WithUntintedLeadingIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TextInput.WithUntintedLeadingIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.TextInput.WithUntintedLeadingIcon.PreviewHeightDp
+    )
 }

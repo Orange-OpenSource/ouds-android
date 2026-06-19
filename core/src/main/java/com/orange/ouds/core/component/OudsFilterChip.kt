@@ -24,6 +24,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -104,6 +105,8 @@ fun OudsFilterChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlyWithUntintedIconSample
  */
 @Composable
 fun OudsFilterChip(
@@ -154,6 +157,8 @@ fun OudsFilterChip(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconWithUntintedIconSample
  */
 @Composable
 fun OudsFilterChip(
@@ -187,7 +192,7 @@ private fun OudsFilterChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsChip(
+    OudsBasicChip(
         selectable = true,
         selected = selected,
         onClick = onClick,
@@ -214,10 +219,34 @@ internal fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: B
             val label = if (hasLabel) "Label" else null
             val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
             PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-                OudsFilterChip(selected = selected, nullableIcon = icon, nullableLabel = label, onClick = {})
+                OudsFilterChip(
+                    selected = selected,
+                    nullableIcon = icon,
+                    nullableLabel = label,
+                    onClick = {}
+                )
             }
         }
     }
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsFilterChipWithUntintedIcon() {
+    PreviewOudsFilterChipWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsFilterChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
+        OudsFilterChip(
+            selected = false,
+            nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            nullableLabel = "Label",
+            onClick = {}
+        )
+    }
+}
 
 internal data class OudsFilterChipPreviewParameter(
     val selected: Boolean,

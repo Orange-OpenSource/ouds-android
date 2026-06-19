@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.alert
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,26 +29,38 @@ import com.orange.ouds.core.component.OudsInlineAlertStatus
 fun rememberInlineAlertDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
+    icon: InlineAlertDemoState.Icon = InlineAlertDemoState.Icon.Tinted
 ) = rememberSaveable(
     label,
     status,
+    icon,
     saver = InlineAlertDemoState.Saver
 ) {
-    InlineAlertDemoState(label, status)
+    InlineAlertDemoState(label, status, icon)
 }
 
 class InlineAlertDemoState(
     label: String,
-    status: OudsInlineAlertStatus
+    status: OudsInlineAlertStatus,
+    icon: Icon = Icon.Tinted
 ) {
 
     companion object {
+
+        private val FunctionalStatuses = listOf(
+            OudsInlineAlertStatus.Info,
+            OudsInlineAlertStatus.Negative,
+            OudsInlineAlertStatus.Positive,
+            OudsInlineAlertStatus.Warning
+        )
+
         val Saver = listSaver(
             save = { state ->
                 with(state) {
                     listOf(
                         label,
-                        status::class.java.name
+                        status::class.java.name,
+                        icon
                     )
                 }
             },
@@ -61,13 +74,32 @@ class InlineAlertDemoState(
 
                 InlineAlertDemoState(
                     list[0] as String,
-                    status
+                    status,
+                    list[2] as Icon
                 )
             }
         )
     }
 
-    var status: OudsInlineAlertStatus by mutableStateOf(status)
+    private var _status: OudsInlineAlertStatus by mutableStateOf(status)
+    var status: OudsInlineAlertStatus
+        get() = _status
+        set(value) {
+            _status = value
+            if (icon !in enabledIcons) {
+                icon = Icon.Tinted
+            }
+        }
 
     var label: String by mutableStateOf(label)
+
+    var icon: Icon by mutableStateOf(icon)
+
+    val enabledIcons: List<Icon>
+        get() = if (status !in FunctionalStatuses) Icon.entries else listOf(Icon.Tinted)
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
+    }
 }

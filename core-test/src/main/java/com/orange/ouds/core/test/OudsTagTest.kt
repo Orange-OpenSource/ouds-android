@@ -13,19 +13,30 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsTagTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.Tag,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
+internal class OudsTagTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.Tag.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Tag.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Tag.Default.parameters
+        }
     }
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Tag.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

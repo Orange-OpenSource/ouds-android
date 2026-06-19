@@ -56,11 +56,11 @@ import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
     @Composable
-    get() = OudsTheme.typography.label.default.large
+    get() = OudsTheme.typography.label.large.default
 
 private val valueLabelTextStyle: TextStyle
     @Composable
-    get() = OudsTheme.typography.label.strong.large
+    get() = OudsTheme.typography.label.large.strong
 
 private val elementTopPadding: Dp
     @Composable

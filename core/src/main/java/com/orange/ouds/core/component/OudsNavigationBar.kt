@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
+import androidx.compose.animation.core.EaseOut
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -108,7 +109,7 @@ val OudsNavigationBarHeight = 80.dp
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
@@ -261,7 +262,7 @@ data class OudsNavigationBarItem(
                                 text = it,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.label.moderate.small
+                                style = OudsTheme.typography.label.small.moderate
                             )
                         }
                     },
@@ -288,7 +289,7 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
 
         val indicatorWidthScale by animateFloatAsState(
             targetValue = if (selected || state == OudsNavigationBarItemState.Hovered) 1.0f else 0.0f,
-            animationSpec = tween(200)
+            animationSpec = tween(240, easing = EaseOut)
         )
 
         return if (indicatorWidthScale == 0f || opacityCurrentIndicatorCustomValue == 0f) {

@@ -27,9 +27,7 @@ import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
-import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceDark
-import com.orange.ouds.core.theme.OudsTheme.Tweak.ForceLight
-import com.orange.ouds.core.theme.OudsTheme.Tweak.Invert
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -59,6 +57,7 @@ internal val LocalColorMode = staticCompositionLocalOf<OudsColorMode?> { null }
 internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResources> { missingCompositionLocalError("LocalDrawableResources") }
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
+internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
 
 /**
  * Object that stores tokens values for the current theme.
@@ -67,13 +66,17 @@ object OudsTheme {
 
     /**
      * Defines adjustments that can be applied to the current [OudsTheme] via the [OudsThemeTweak] composable.
-     *
-     * @property Invert Inverts the current theme (switches from Light to Dark or Dark to Light).
-     * @property ForceDark Forces the theme to Dark mode, regardless of the system setting.
-     * @property ForceLight Forces the theme to Light mode, regardless of the system setting.
      */
     enum class Tweak {
-        Invert, ForceDark, ForceLight
+
+        /** Inverts the current theme (switches from Light to Dark or Dark to Light). */
+        Invert,
+
+        /** Forces the theme to Dark mode, regardless of the system setting. */
+        ForceDark,
+
+        /** Forces the theme to Light mode, regardless of the system setting. */
+        ForceLight
     }
 
     val colorScheme: OudsColorScheme
@@ -121,6 +124,23 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalSpaces.current
 
+    /**
+     * Provides access to component-specific tokens (borders, colors, sizes, spaces, etc.) for advanced customization.
+     *
+     * When to use:
+     * - Building custom components that need to match OUDS component styling
+     * - Implementing advanced customization beyond what standard OUDS components provide
+     *
+     * **Prefer using standard OUDS components** (e.g., [com.orange.ouds.core.component.OudsButton], [com.orange.ouds.core.component.OudsFilterChip]) when possible,
+     * as they provide a higher-level, more convenient API.
+     *
+     * Example:
+     * ```
+     * val chipIconGap = OudsTheme.components.chip.space.columnGap.icon
+     * val barBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp
+     * ```
+     */
+    @RestrictedOudsApi
     val components: OudsComponents
         @Composable
         @ReadOnlyComposable
@@ -136,10 +156,15 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalDrawableResources.current
 
-    internal val settings: OudsThemeSettings
+    val settings: OudsThemeSettings
         @Composable
         @ReadOnlyComposable
         get() = LocalThemeSettings.current
+
+    val name: String
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalThemeName.current
 }
 
 /**
@@ -188,12 +213,15 @@ fun OudsTheme(
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
             LocalThemeSettings provides settings,
-            LocalComponents provides componentsTokens.getComponents()
+            LocalThemeName provides theme.name
         ) {
-            MaterialTheme(
-                colorScheme = materialColorScheme,
-                content = content
-            )
+            // Bind LocalComponents after the others because the getComponents method needs to access the other composition locals 
+            CompositionLocalProvider(LocalComponents provides componentsTokens.getComponents()) {
+                MaterialTheme(
+                    colorScheme = materialColorScheme,
+                    content = content
+                )
+            }
         }
     }
 }

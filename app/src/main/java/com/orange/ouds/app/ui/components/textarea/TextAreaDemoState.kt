@@ -32,6 +32,7 @@ fun rememberTextAreaDemoState(
     hasLoader: Boolean = false,
     enabled: Boolean = true,
     readOnly: Boolean = false,
+    autoResize: Boolean = true,
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     helperText: String = "",
@@ -45,6 +46,7 @@ fun rememberTextAreaDemoState(
     enabled,
     readOnly,
     hasLoader,
+    autoResize,
     error,
     errorMessage,
     helperText,
@@ -60,6 +62,7 @@ fun rememberTextAreaDemoState(
         hasLoader,
         enabled,
         readOnly,
+        autoResize,
         error,
         errorMessage,
         helperText,
@@ -76,6 +79,7 @@ class TextAreaDemoState(
     hasLoader: Boolean,
     enabled: Boolean,
     readOnly: Boolean,
+    autoResize: Boolean,
     error: Boolean,
     errorMessage: String,
     helperText: String,
@@ -96,6 +100,7 @@ class TextAreaDemoState(
                         hasLoader,
                         enabled,
                         readOnly,
+                        autoResize,
                         error,
                         errorMessage,
                         helperText,
@@ -115,10 +120,11 @@ class TextAreaDemoState(
                     list[5] as Boolean,
                     list[6] as Boolean,
                     list[7] as Boolean,
-                    list[8] as String,
+                    list[8] as Boolean,
                     list[9] as String,
                     list[10] as String,
-                    list[11] as Boolean
+                    list[11] as String,
+                    list[12] as Boolean
                 )
             }
         )
@@ -131,6 +137,8 @@ class TextAreaDemoState(
     var placeholder: String by mutableStateOf(placeholder)
 
     var outlined: Boolean by mutableStateOf(outlined)
+
+    var autoResize: Boolean by mutableStateOf(autoResize)
 
     var error: Boolean by mutableStateOf(error)
 

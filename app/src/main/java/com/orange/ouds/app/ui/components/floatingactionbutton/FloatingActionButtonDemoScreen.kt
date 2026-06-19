@@ -18,10 +18,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -31,6 +30,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
@@ -81,6 +81,13 @@ private fun FloatingActionButtonDemoBottomSheetContent(state: FloatingActionButt
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = FloatingActionButtonDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = FloatingActionButtonDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = FloatingActionButtonDemoState.Icon.entries[index] }
+        )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_floatingActionButton_expanded_tech),
             checked = expanded,
@@ -92,15 +99,20 @@ private fun FloatingActionButtonDemoBottomSheetContent(state: FloatingActionButt
 
 @Composable
 private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState) {
-    val icon = OudsFloatingActionButtonIcon(
-        painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-        contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
-    )
     with(state) {
+        val painter = when (icon) {
+            FloatingActionButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+            FloatingActionButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+        }
+        val floatingActionButtonIcon = OudsFloatingActionButtonIcon(
+            painter = painter,
+            contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
+            tinted = icon == FloatingActionButtonDemoState.Icon.Tinted
+        )
         when (size) {
             FloatingActionButtonDemoState.Size.Small -> {
                 OudsSmallFloatingActionButton(
-                    icon = icon,
+                    icon = floatingActionButtonIcon,
                     onClick = {},
                     appearance = appearance
                 )
@@ -109,7 +121,7 @@ private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState
                 when (layout) {
                     FloatingActionButtonDemoState.Layout.IconOnly -> {
                         OudsFloatingActionButton(
-                            icon = icon,
+                            icon = floatingActionButtonIcon,
                             onClick = {},
                             appearance = appearance
                         )
@@ -117,7 +129,7 @@ private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState
                     FloatingActionButtonDemoState.Layout.TextAndIcon -> {
                         OudsExtendedFloatingActionButton(
                             label = label,
-                            icon = icon,
+                            icon = floatingActionButtonIcon,
                             onClick = {},
                             expanded = expanded,
                             appearance = appearance
@@ -134,7 +146,7 @@ private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState
             }
             FloatingActionButtonDemoState.Size.Large -> {
                 OudsLargeFloatingActionButton(
-                    icon = icon,
+                    icon = floatingActionButtonIcon,
                     onClick = {},
                     appearance = appearance
                 )
@@ -155,10 +167,7 @@ private fun Code.Builder.floatingActionButtonDemoCodeSnippet(state: FloatingActi
                 labelArgument(label)
             }
             if (layout != FloatingActionButtonDemoState.Layout.TextOnly) {
-                constructorCallArgument<OudsFloatingActionButtonIcon>("icon") {
-                    painterArgument(themeDrawableResources.tipsAndTricks)
-                    contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-                }
+                iconArgument<OudsFloatingActionButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, icon == FloatingActionButtonDemoState.Icon.Tinted)
             }
             if (layout == FloatingActionButtonDemoState.Layout.TextAndIcon && !expanded) {
                 typedArgument("expanded", expanded)

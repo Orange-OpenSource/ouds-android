@@ -58,14 +58,13 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
-import com.orange.ouds.core.utilities.getPreviewGridColumn
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.enums.enumEntries
 
 /**
  * The FAB represents the most important action on a screen. It puts key actions within reach.
@@ -88,6 +87,8 @@ import kotlin.enums.enumEntries
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFloatingActionButtonSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFloatingActionButtonWithUntintedIconSample
  */
 @Composable
 fun OudsFloatingActionButton(
@@ -141,6 +142,8 @@ fun OudsFloatingActionButton(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonWithUntintedIconSample
  */
 @Composable
 fun OudsSmallFloatingActionButton(
@@ -194,6 +197,8 @@ fun OudsSmallFloatingActionButton(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonWithUntintedIconSample
  */
 @Composable
 fun OudsLargeFloatingActionButton(
@@ -305,6 +310,8 @@ fun OudsExtendedFloatingActionButton(
  *   happen internally.
  *
  * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonSampleWithLabelAndIcon
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonWithUntintedIconSample
  */
 @Composable
 fun OudsExtendedFloatingActionButton(
@@ -391,19 +398,17 @@ private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, larg
 
 @Composable
 private fun Text(label: String) {
-    Text(text = label, style = OudsTheme.typography.label.strong.large)
+    Text(text = label, style = OudsTheme.typography.label.large.strong)
 }
 
 @Composable
 private fun getFloatingActionButtonState(interactionState: InteractionState): OudsFloatingActionButtonState {
     return getPreviewEnumEntry<OudsFloatingActionButtonState>().orElse {
-        getPreviewGridColumn<OudsFloatingActionButtonState>().orElse {
-            when (interactionState) {
-                InteractionState.Hovered -> OudsFloatingActionButtonState.Hovered
-                InteractionState.Pressed -> OudsFloatingActionButtonState.Pressed
-                InteractionState.Focused -> OudsFloatingActionButtonState.Focused
-                else -> OudsFloatingActionButtonState.Enabled
-            }
+        when (interactionState) {
+            InteractionState.Hovered -> OudsFloatingActionButtonState.Hovered
+            InteractionState.Pressed -> OudsFloatingActionButtonState.Pressed
+            InteractionState.Focused -> OudsFloatingActionButtonState.Focused
+            else -> OudsFloatingActionButtonState.Enabled
         }
     }
 }
@@ -477,7 +482,8 @@ object OudsFloatingActionButtonDefaults {
  */
 class OudsFloatingActionButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String
+    val contentDescription: String,
+    override val tinted: Boolean
 ) : OudsComponentIcon<Nothing, OudsFloatingActionButtonIcon>(
     Nothing::class.java,
     graphicsObject,
@@ -489,24 +495,36 @@ class OudsFloatingActionButtonIcon private constructor(
      *
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon].
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
+    @JvmOverloads
+    constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsFloatingActionButtonIcon].
      *
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon].
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsFloatingActionButtonIcon].
      *
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated with this [OudsFloatingActionButtonIcon].
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
 }
 
 /**
@@ -624,22 +642,8 @@ internal fun PreviewOudsExtendedFloatingActionButton(
     darkThemeEnabled: Boolean,
     appearance: OudsFloatingActionButtonAppearance
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val rows = listOf(
-        OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly,
-        OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon(isExpanded = true),
-        OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon(isExpanded = false)
-    )
-    val icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, "")
-    PreviewGrid(
-        columns = enumEntries<OudsFloatingActionButtonState>(),
-        rows = rows,
-        columnTitle = { it.name },
-        rowTitle = { row ->
-            when (row) {
-                OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly -> "Label only"
-                is OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon -> if (row.isExpanded) "Label and icon expanded" else "Label and icon collapsed"
-            }
-        }
+    PreviewEnumEntries<OudsFloatingActionButtonState, OudsExtendedFloatingActionButtonPreviewGridRow>(
+        rowTitle = { it.toSentenceCase() }
     ) { _, row ->
         when (row) {
             OudsExtendedFloatingActionButtonPreviewGridRow.LabelOnly -> {
@@ -649,12 +653,13 @@ internal fun PreviewOudsExtendedFloatingActionButton(
                     appearance = appearance
                 )
             }
-            is OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIcon -> {
+            OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconExpanded,
+            OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconCollapsed -> {
                 OudsExtendedFloatingActionButton(
                     label = "Label",
-                    icon = icon,
+                    icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, ""),
                     onClick = {},
-                    expanded = row.isExpanded,
+                    expanded = row == OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconExpanded,
                     appearance = appearance
                 )
             }
@@ -664,9 +669,24 @@ internal fun PreviewOudsExtendedFloatingActionButton(
 
 internal class OudsFloatingActionButtonPreviewParameterProvider : EnumPreviewParameterProvider(OudsFloatingActionButtonAppearance::class.java)
 
-private sealed class OudsExtendedFloatingActionButtonPreviewGridRow {
+private enum class OudsExtendedFloatingActionButtonPreviewGridRow {
 
-    object LabelOnly : OudsExtendedFloatingActionButtonPreviewGridRow()
+    LabelOnly, LabelAndIconExpanded, LabelAndIconCollapsed
+}
 
-    class LabelAndIcon(val isExpanded: Boolean) : OudsExtendedFloatingActionButtonPreviewGridRow()
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsFloatingActionButtonWithUntintedIcon() {
+    PreviewOudsFloatingActionButtonWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsFloatingActionButtonWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsFloatingActionButtonState> {
+        OudsFloatingActionButton(
+            icon = OudsFloatingActionButtonIcon(rememberRainbowHeartPainter(), "", tinted = false),
+            onClick = {}
+        )
+    }
 }

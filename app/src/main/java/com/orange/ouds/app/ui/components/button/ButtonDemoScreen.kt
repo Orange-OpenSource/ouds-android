@@ -19,19 +19,20 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.coloredBoxCall
-import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
-import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
@@ -87,6 +88,13 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
             onSelectionChange = { index -> layout = ButtonDemoState.Layout.entries[index] }
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_icon_tech),
+            chips = ButtonDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
+            selectedChipIndex = ButtonDemoState.Icon.entries.indexOf(icon),
+            onSelectionChange = { index -> icon = ButtonDemoState.Icon.entries[index] }
+        )
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_tech),
@@ -99,11 +107,16 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 
 @Composable
 private fun ButtonDemoContent(state: ButtonDemoState) {
-    val icon = OudsButtonIcon(
-        painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-        contentDescription = stringResource(id = R.string.app_components_common_icon_a11y)
-    )
     with(state) {
+        val painter = when (icon) {
+            ButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+            ButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+        }
+        val buttonIcon = OudsButtonIcon(
+            painter = painter,
+            contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
+            tinted = icon == ButtonDemoState.Icon.Tinted
+        )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
         when (layout) {
             ButtonDemoState.Layout.TextOnly -> {
@@ -117,7 +130,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             }
             ButtonDemoState.Layout.TextAndIcon -> {
                 OudsButton(
-                    icon = icon,
+                    icon = buttonIcon,
                     label = label,
                     onClick = {},
                     enabled = enabled,
@@ -127,7 +140,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             }
             ButtonDemoState.Layout.IconOnly -> {
                 OudsButton(
-                    icon = icon,
+                    icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
@@ -143,10 +156,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
         coloredBoxCall(onColoredBox) {
             functionCall("OudsButton") {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
-                    constructorCallArgument<OudsButtonIcon>("icon") {
-                        painterArgument(themeDrawableResources.tipsAndTricks)
-                        contentDescriptionArgument(R.string.app_components_common_icon_a11y)
-                    }
+                    iconArgument<OudsButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, icon == ButtonDemoState.Icon.Tinted)
                 }
                 if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     labelArgument(label)

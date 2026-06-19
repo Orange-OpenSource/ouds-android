@@ -17,6 +17,7 @@ import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
@@ -31,6 +32,19 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
         }
     } else {
         content()
+    }
+}
+
+inline fun <reified T> FunctionCall.Builder.iconArgument(
+    name: String,
+    @DrawableRes resId: Int,
+    @StringRes contentDescriptionResId: Int? = null,
+    tinted: Boolean = true
+) {
+    constructorCallArgument<T>(name) {
+        painterArgument(if (tinted) resId else R.drawable.ic_untinted_icon)
+        contentDescriptionResId?.let { contentDescriptionArgument(it) }
+        if (!tinted) tintedArgument(tinted)
     }
 }
 
@@ -60,6 +74,8 @@ fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes resId: Int, coun
 
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
+
+fun FunctionCall.Builder.tintedArgument(value: Boolean) = typedArgument(Argument.Tinted, value)
 
 fun FunctionCall.Builder.errorArgument(message: String) {
     constructorCallArgument<OudsError>(Argument.Error) {
@@ -93,4 +109,5 @@ private object Argument {
     const val OnClick = "onClick"
     const val Painter = "painter"
     const val ReadOnly = "readOnly"
+    const val Tinted = "tinted"
 }

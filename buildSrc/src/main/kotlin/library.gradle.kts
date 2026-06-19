@@ -52,9 +52,6 @@ android {
             // Suppresses an expected warning that triggers a build failure because allWarningsAsErrors is true
             // See https://youtrack.jetbrains.com/issue/KT-68400/K2-w-Kapt-currently-doesnt-support-language-version-2.0.-Falling-back-to-1.9.
             freeCompilerArgs.add("-Xsuppress-version-warnings")
-            // From Kotlin 2.2, need to specify default rule for annotations
-            // See http://youtrack.jetbrains.com/issue/KT-73255
-            freeCompilerArgs.add("-Xannotation-default-target=param-property")
         }
     }
 
@@ -69,10 +66,4 @@ android {
             res.directories.add("src/main/res-public")
         }
     }
-}
-
-// Temporary workaround for Gradle 9.3.0 compatibility with Paparazzi 2.0.0-alpha04
-// Disable HTML report generation for test tasks to avoid NoSuchMethodError with TestResultsProvider
-tasks.withType<Test>().configureEach {
-    reports.html.required = false
 }

@@ -89,13 +89,13 @@ private fun Version(version: Version) {
         headlineContent = {
             Text(
                 text = version.name,
-                style = OudsTheme.typography.body.strong.large
+                style = OudsTheme.typography.body.large.strong
             )
         },
         trailingContent = {
             Text(
                 text = version.value,
-                style = OudsTheme.typography.body.default.large
+                style = OudsTheme.typography.body.large.default
             )
         }
     )

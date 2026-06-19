@@ -25,7 +25,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 @Composable
 fun rememberSwitchItemDemoState(
     checked: Boolean = false,
-    icon: Boolean = false,
+    icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -51,12 +51,25 @@ fun rememberSwitchItemDemoState(
     constrainedMaxWidth,
     saver = SwitchItemDemoState.Saver
 ) {
-    SwitchItemDemoState(checked, icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, text, description, constrainedMaxWidth)
+    SwitchItemDemoState(
+        checked,
+        icon,
+        edgeToEdge,
+        divider,
+        reversed,
+        enabled,
+        readOnly,
+        error,
+        errorMessage,
+        text,
+        description,
+        constrainedMaxWidth
+    )
 }
 
 class SwitchItemDemoState(
     checked: Boolean,
-    icon: Boolean,
+    icon: Icon,
     edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,

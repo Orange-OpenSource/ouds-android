@@ -76,4 +76,17 @@ internal class OudsCheckboxItemTest {
             internal fun data() = OudsPreviewableComponent.CheckboxItem.ConstrainedMaxWidth.parameters
         }
     }
+
+    class WithRichText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithRichText,
+        null,
+        OudsComponentTestSuite.theme
+    )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CheckboxItem.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.CheckboxItem.WithUntintedIcon.PreviewHeightDp
+    )
 }

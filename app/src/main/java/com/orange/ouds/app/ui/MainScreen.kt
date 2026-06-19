@@ -54,6 +54,7 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
@@ -76,6 +77,7 @@ fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
     )
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Composable
 fun MainScreen(
     themeSettings: OudsThemeSettings,
@@ -106,7 +108,7 @@ fun MainScreen(
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
         val hazeState = rememberHazeState(blurEnabled = true)
-        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)
+        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)
 
         CompositionLocalProvider(LocalThemeDrawableResources provides ThemeDrawableResources(mainState.themeState.currentTheme)) {
             Scaffold(

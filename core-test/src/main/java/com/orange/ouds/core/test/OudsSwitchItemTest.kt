@@ -61,4 +61,17 @@ internal class OudsSwitchItemTest {
             internal fun data() = OudsPreviewableComponent.SwitchItem.ConstrainedMaxWidth.parameters
         }
     }
+
+    class WithRichText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithRichText,
+        null,
+        OudsComponentTestSuite.theme
+    )
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.SwitchItem.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.SwitchItem.WithUntintedIcon.PreviewHeightDp
+    )
 }

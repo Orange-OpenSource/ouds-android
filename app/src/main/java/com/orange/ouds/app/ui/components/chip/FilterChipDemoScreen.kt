@@ -36,7 +36,7 @@ fun FilterChipDemoScreen() {
 
 @Composable
 private fun FilterChipDemoContent(state: FilterChipDemoState) {
-    ChipDemoContent { index, icon ->
+    ChipDemoContent(state) { index, icon ->
         with(state) {
             val separator = if (label.isBlank()) "" else " "
             val label = "$label$separator${index + 1}"

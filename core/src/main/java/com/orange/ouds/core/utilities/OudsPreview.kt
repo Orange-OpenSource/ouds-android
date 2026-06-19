@@ -24,16 +24,24 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Devices
@@ -41,10 +49,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.extensions.isNightModeEnabled
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.OrangeTheme
@@ -53,9 +63,12 @@ import kotlin.enums.enumEntries
 import kotlin.math.ceil
 import kotlin.math.min
 
-internal val LocalPreviewRowFlowItem = staticCompositionLocalOf<Any?> { null }
-internal val LocalPreviewGridRow = staticCompositionLocalOf<Any?> { null }
-internal val LocalPreviewGridColumn = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewRowFlowItem = staticCompositionLocalOf<String?> { null }
+internal val LocalPreviewGridRow = staticCompositionLocalOf<String?> { null }
+internal val LocalPreviewGridColumn = staticCompositionLocalOf<String?> { null }
+private val LocalPreviewRowFlowItemEnumEntry = staticCompositionLocalOf<Any?> { null }
+private val LocalPreviewGridRowEnumEntry = staticCompositionLocalOf<Any?> { null }
+private val LocalPreviewGridColumnEnumEntry = staticCompositionLocalOf<Any?> { null }
 
 /**
  * The device used in the OUDS preview environment.
@@ -115,30 +128,43 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
 
 internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrangeFontFamily())
 
-@Composable
-internal inline fun <reified T> getPreviewEnumEntry(): T? {
-    return getPreviewFlowRowItem<T>()
-        .orElse { getPreviewGridRow<T>() }
-        .orElse { getPreviewGridColumn<T>() }
+internal fun buildPreviewAnnotatedErrorMessage() = buildOudsAnnotatedErrorMessage {
+    append("Error message with ")
+    withStrong { append("strong") }
+    append(" text")
+}
+
+internal fun buildPreviewAnnotatedHelperText() = buildOudsAnnotatedHelperText {
+    append("Helper text with ")
+    withStrong { append("strong") }
+    append(" text")
 }
 
 @Composable
-internal inline fun <reified T> getPreviewFlowRowItem(): T? = LocalPreviewRowFlowItem.current as? T
+internal inline fun <reified T> getPreviewEnumEntry(): T? where T : Enum<T> {
+    return listOf(LocalPreviewRowFlowItemEnumEntry, LocalPreviewGridRowEnumEntry, LocalPreviewGridColumnEnumEntry)
+        .firstNotNullOfOrNull { providableCompositionLocal ->
+            providableCompositionLocal.current as? T
+        }
+}
 
 @Composable
-internal inline fun <reified T> getPreviewGridRow(): T? = LocalPreviewGridRow.current as? T
+internal fun getPreviewFlowRowItem(): String? = LocalPreviewRowFlowItem.current
 
 @Composable
-internal inline fun <reified T> getPreviewGridColumn(): T? = LocalPreviewGridColumn.current as? T
+internal fun getPreviewGridRow(): String? = LocalPreviewGridRow.current
 
 @Composable
-internal fun <T : Any> PreviewFlowRow(
-    items: List<T>,
-    itemName: (T) -> String,
+internal fun getPreviewGridColumn(): String? = LocalPreviewGridColumn.current
+
+@Composable
+internal fun PreviewFlowRow(
+    items: List<String>,
+    itemName: (String) -> String = { it },
     maxItemsInEachRow: Int = items.count(),
     edgeToEdge: Boolean = false,
-    filter: (T) -> Boolean = { true },
-    content: @Composable (T) -> Unit
+    filter: (String) -> Boolean = { true },
+    content: @Composable (String) -> Unit
 ) {
     val filteredItems = items.filter(filter)
     val chunkedItems = filteredItems.chunked(maxItemsInEachRow)
@@ -165,12 +191,12 @@ internal fun <T : Any> PreviewFlowRow(
 }
 
 @Composable
-internal fun <T, S> PreviewGrid(
-    columns: List<T>,
-    rows: List<S>,
-    columnTitle: (T) -> String,
-    rowTitle: (S) -> String,
-    content: @Composable (T, S) -> Unit
+internal fun PreviewGrid(
+    columns: List<String>,
+    rows: List<String>,
+    columnTitle: (String) -> String = { it },
+    rowTitle: (String) -> String = { it },
+    content: @Composable (String, String) -> Unit
 ) {
     val space = 16.dp
     val columnCount = columns.count()
@@ -208,29 +234,48 @@ internal fun <T, S> PreviewGrid(
 
 @Composable
 internal inline fun <reified T> PreviewEnumEntries(
+    noinline itemName: (String) -> String = { it },
     maxEnumEntriesInEachRow: Int = enumEntries<T>().count(),
     edgeToEdge: Boolean = false,
     noinline filter: (T) -> Boolean = { true },
     noinline content: @Composable (T) -> Unit
 ) where T : Enum<T> {
     PreviewFlowRow(
-        items = enumEntries<T>(),
-        itemName = { it.name },
+        items = enumEntries<T>().map { it.name },
+        itemName = itemName,
         maxItemsInEachRow = maxEnumEntriesInEachRow,
         edgeToEdge = edgeToEdge,
-        filter = filter,
-        content = content
+        filter = { filter(enumValueOf(it)) },
+        content = { item ->
+            val enumEntry = enumValueOf<T>(item)
+            CompositionLocalProvider(LocalPreviewRowFlowItemEnumEntry provides enumEntry) {
+                content(enumEntry)
+            }
+        }
     )
 }
 
 @Composable
-internal inline fun <reified T, reified S> PreviewEnumEntries(noinline content: @Composable (T, S) -> Unit) where T : Enum<T>, S : Enum<S> {
+internal inline fun <reified T, reified S> PreviewEnumEntries(
+    noinline columnTitle: (String) -> String = { it },
+    noinline rowTitle: (String) -> String = { it },
+    noinline content: @Composable (T, S) -> Unit
+) where T : Enum<T>, S : Enum<S> {
     PreviewGrid(
-        columns = enumEntries<T>(),
-        rows = enumEntries<S>(),
-        columnTitle = { it.name },
-        rowTitle = { it.name },
-        content = content
+        columns = enumEntries<T>().map { it.name },
+        rows = enumEntries<S>().map { it.name },
+        columnTitle = columnTitle,
+        rowTitle = rowTitle,
+        content = { column, row ->
+            val columnEnumEntry = enumValueOf<T>(column)
+            val rowEnumEntry = enumValueOf<S>(row)
+            CompositionLocalProvider(
+                LocalPreviewGridRowEnumEntry provides rowEnumEntry,
+                LocalPreviewGridColumnEnumEntry provides columnEnumEntry
+            ) {
+                content(columnEnumEntry, rowEnumEntry)
+            }
+        }
     )
 }
 
@@ -253,7 +298,7 @@ internal val PreviewPaddingDefault = 16.dp
 internal const val LoremIpsumText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 
-internal class PreviewCheckerboardPainter(val squareSize: Dp, val primaryColor: Color, val secondaryColor: Color) : Painter() {
+internal class CheckerboardPainter(val squareSize: Dp, val primaryColor: Color, val secondaryColor: Color) : Painter() {
 
     override val intrinsicSize = Size.Unspecified
 
@@ -275,6 +320,53 @@ internal class PreviewCheckerboardPainter(val squareSize: Dp, val primaryColor: 
         }
     }
 }
+
+@Composable
+internal fun rememberRainbowHeartPainter(): Painter {
+    val heartPainter = rememberVectorPainter(Icons.Filled.FavoriteBorder)
+
+    return remember(heartPainter) {
+        object : Painter() {
+            override val intrinsicSize: Size
+                get() = heartPainter.intrinsicSize
+
+            override fun DrawScope.onDraw() {
+                // Rainbow colors adjusted for better visibility on both light and dark backgrounds
+                // Using mid-tone colors that work well on both white and black
+                val rainbowColors = listOf(
+                    Color(0xFFE63946), // Red - slightly darker
+                    Color(0xFFFF8C42), // Orange - vibrant
+                    Color(0xFFFFB703), // Yellow-Orange - darker than pure yellow for visibility on white
+                    Color(0xFF06D6A0), // Teal-Green - brighter than pure green
+                    Color(0xFF118AB2), // Blue - mid-tone
+                    Color(0xFF7209B7), // Purple - brighter than indigo
+                    Color(0xFFD62598)  // Magenta - visible on both backgrounds
+                )
+
+                // Create a horizontal rainbow gradient with equal color distribution
+                val colorStops = rainbowColors.mapIndexed { index, color ->
+                    (index.toFloat() / (rainbowColors.size - 1)) to color
+                }.toTypedArray()
+
+                val rainbowBrush = Brush.horizontalGradient(colorStops = colorStops, startX = 0f, endX = size.width)
+
+                // Draw with the gradient applied
+                drawContext.canvas.saveLayer(bounds = Rect(0f, 0f, size.width, size.height), paint = Paint())
+
+                // Draw the heart icon
+                with(heartPainter) {
+                    draw(size)
+                }
+
+                // Apply the rainbow gradient with SrcIn blend mode
+                drawRect(brush = rainbowBrush, size = size, blendMode = BlendMode.SrcIn)
+
+                drawContext.canvas.restore()
+            }
+        }
+    }
+}
+
 
 /**
  * Preview annotation to display a composable in both light and dark modes.

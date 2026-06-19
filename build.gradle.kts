@@ -26,6 +26,7 @@ plugins {
     id("netlify")
     id("check-notice")
     id("documentation")
+    id("icons")
 }
 
 dependencies {

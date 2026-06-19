@@ -125,7 +125,7 @@ fun CustomizationBottomSheetScaffold(
                 Text(
                     modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = titleResId),
-                    style = OudsTheme.typography.body.strong.large,
+                    style = OudsTheme.typography.body.large.strong,
                     color = OudsTheme.colorScheme.content.default
                 )
             }

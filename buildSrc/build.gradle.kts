@@ -27,6 +27,7 @@ kotlin {
 
 dependencies {
     implementation(libs.android.gradle.plugin)
+    implementation(libs.android.tools.sdk.common)
     implementation(libs.dokka.base)
     implementation(libs.dokka.gradle.plugin)
     implementation(libs.firebase.appdistribution.gradle.plugin)

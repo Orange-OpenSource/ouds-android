@@ -35,7 +35,7 @@ interface OudsDrawableResources {
 
         interface SecurityAndSafety {
             @get:DrawableRes
-            val lock: Int
+            val lockClosed: Int
         }
     }
 
@@ -102,6 +102,12 @@ interface OudsDrawableResources {
         interface Button {
             @get:DrawableRes
             val expurge: Int
+
+            @get:DrawableRes
+            val next: Int
+
+            @get:DrawableRes
+            val previous: Int
         }
 
         interface Checkbox {
@@ -149,7 +155,7 @@ interface OudsDrawableResources {
 
         interface Actions {
             @get:DrawableRes
-            val delete: Int
+            val deleteCrossRound: Int
         }
 
         interface Navigation {
@@ -157,17 +163,17 @@ interface OudsDrawableResources {
             val formChevronLeft: Int
 
             @get:DrawableRes
-            val menu: Int
+            val menuGridUiRound: Int
         }
 
         interface SettingsAndTools {
             @get:DrawableRes
-            val hide: Int
+            val accessibilityHide: Int
         }
 
         interface SocialAndEngagement {
             @get:DrawableRes
-            val heartEmpty: Int
+            val heartRecommend: Int
         }
     }
 }

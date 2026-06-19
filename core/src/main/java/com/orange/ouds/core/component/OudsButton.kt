@@ -51,6 +51,7 @@ import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -61,6 +62,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -73,6 +75,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -171,6 +174,8 @@ fun OudsButton(
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyOnColoredBackgroundSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyWithUntintedIconSample
  */
 @Composable
 fun OudsButton(
@@ -230,6 +235,8 @@ fun OudsButton(
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconOnColoredBackgroundSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconWithUntintedIconSample
  */
 @Composable
 fun OudsButton(
@@ -261,6 +268,7 @@ internal fun OudsButton(
     nullableLabel: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    component: OudsButtonComponent = OudsButtonComponent.Button,
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
@@ -337,32 +345,38 @@ internal fun OudsButton(
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
-            val paddingValues = contentPadding(icon = icon, label = label)
+            val paddingValues = contentPadding(component = component, icon = icon, label = label)
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
                     .padding(paddingValues),
-                horizontalArrangement = Arrangement.spacedBy(buttonTokens.spaceColumnGapIcon.value),
+                horizontalArrangement = Arrangement.spacedBy(component.columnGap),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
+                    ButtonText(
+                        label = label,
+                        color = contentColor.value
+                    )
+                }
+
                 if (icon != null) {
                     val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
-                                .size(size.value * iconScale)
+                                .iconSize(size.value * iconScale, icon.tinted)
                                 .semantics {
-                                    contentDescription = when {
+                                    contentDescription = when (label) {
                                         // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
-                                        label == null && iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
-                                        label == null -> icon.contentDescription
+                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
+                                        null -> icon.contentDescription
                                         else -> ""
                                     }
                                 },
                             extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
                         )
                     }
-
                     if (iconOnlyBadge != null && label == null) {
                         val buttonEndPadding = paddingValues.calculateEndPadding(LocalLayoutDirection.current)
                         val maximumBorderWidth = OudsButtonAppearance.entries.flatMap { appearance ->
@@ -386,17 +400,32 @@ internal fun OudsButton(
                         iconContent()
                     }
                 }
-                if (label != null) {
-                    Text(
-                        text = label,
-                        color = contentColor.value,
-                        textAlign = TextAlign.Center,
-                        style = OudsTheme.typography.label.strong.large
+
+                if (label != null && component is OudsButtonComponent.Button) {
+                    ButtonText(label = label, color = contentColor.value)
+                }
+
+                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
+                    ButtonText(
+                        label = label,
+                        color = contentColor.value
                     )
                 }
             }
         }
     }
+}
+
+@Composable
+private fun ButtonText(label: String, color: Color) {
+    Text(
+        text = label,
+        color = color,
+        textAlign = TextAlign.Center,
+        style = OudsTheme.typography.label.large.strong.run {
+            copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
+        },
+    )
 }
 
 @Composable
@@ -638,23 +667,47 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
 }
 
 @Composable
-private fun contentPadding(icon: OudsButtonIcon?, label: String?): PaddingValues {
+private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
-        when {
-            icon != null && label != null -> PaddingValues(
-                start = spacePaddingInlineIconStart.value,
-                top = spacePaddingBlock.value,
-                end = spacePaddingInlineEndIconStart.value,
-                bottom = spacePaddingBlock.value
-            )
-            icon != null && label == null -> PaddingValues(
-                horizontal = spaceInsetIconOnly.value,
-                vertical = spacePaddingBlock.value
-            )
-            else -> PaddingValues(
-                horizontal = spacePaddingInlineIconNone.value,
-                vertical = spacePaddingBlock.value
-            )
+        when (component) {
+            is OudsButtonComponent.Button -> when {
+                icon != null && label != null -> PaddingValues(
+                    start = spacePaddingInlineIconStart.value,
+                    top = spacePaddingBlock.value,
+                    end = spacePaddingInlineEndIconStart.value,
+                    bottom = spacePaddingBlock.value
+                )
+                icon != null && label == null -> PaddingValues(
+                    all = spaceInsetIconOnly.value,
+                )
+                else -> PaddingValues(
+                    horizontal = spacePaddingInlineIconNone.value,
+                    vertical = spacePaddingBlock.value
+                )
+            }
+            is OudsButtonComponent.NavigationButton -> when {
+                label != null -> {
+                    val startPadding: Dp
+                    val endPadding: Dp
+                    when (component.chevron) {
+                        OudsNavigationButtonChevron.Next -> {
+                            startPadding = spacePaddingInlineStartIconEnd.value
+                            endPadding = spacePaddingInlineChevronEnd.value
+                        }
+                        OudsNavigationButtonChevron.Previous -> {
+                            startPadding = spacePaddingInlineChevronStart.value
+                            endPadding = spacePaddingInlineEndIconStart.value
+                        }
+                    }
+                    PaddingValues(
+                        start = startPadding,
+                        top = spacePaddingBlock.value,
+                        end = endPadding,
+                        bottom = spacePaddingBlock.value
+                    )
+                }
+                else -> PaddingValues(all = spaceInsetIconOnly.value)
+            }
         }
     }
 }
@@ -666,7 +719,7 @@ private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?
         .semantics { hideFromAccessibility() }
     val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
 
-    OudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
+    InternalOudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
 }
 
 /**
@@ -686,7 +739,8 @@ object OudsButtonDefaults {
  */
 class OudsButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String
+    val contentDescription: String,
+    override val tinted: Boolean
 ) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
     @ConsistentCopyVisibility
@@ -699,24 +753,36 @@ class OudsButtonIcon private constructor(
      *
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(painter: Painter, contentDescription: String) : this(painter as Any, contentDescription)
+    @JvmOverloads
+    constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsButtonIcon].
      *
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(imageVector: ImageVector, contentDescription: String) : this(imageVector as Any, contentDescription)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsButtonIcon].
      *
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated with this [OudsButtonIcon]. This value is ignored if the button also contains label.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(bitmap: ImageBitmap, contentDescription: String) : this(bitmap as Any, contentDescription)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
 
     override val tint: Color?
         @Composable
@@ -770,6 +836,41 @@ internal data class OudsButtonIconBadge(val contentDescription: String, val bord
 
 internal enum class OudsButtonState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused
+}
+
+/**
+ * Represents the different button group components.
+ *
+ * It centralizes differences between buttons components in order to render the appropriate layout.
+ */
+internal sealed interface OudsButtonComponent {
+
+    /**
+     * The horizontal spacing (gap) between the icon and the text.
+     */
+    val columnGap: Dp
+        @Composable
+        get
+
+    /**
+     * Configuration for a standard [OudsButton].
+     */
+    object Button : OudsButtonComponent {
+        override val columnGap
+            @Composable
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapIcon.value
+    }
+
+    /**
+     * Configuration for an [OudsNavigationButton] (including a chevron).
+     *
+     * @property chevron The chevron to display in the button.
+     */
+    class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
+        override val columnGap: Dp
+            @Composable
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
+    }
 }
 
 @OudsPreviewLightDark
@@ -858,6 +959,26 @@ internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview
         nullableLabel = "Button\non two lines",
         onClick = {},
     )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsButtonWithUntintedIcon() = PreviewOudsButtonWithUntintedIcon(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsButtonWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
+        OudsButton(
+            nullableIcon = OudsButtonIcon(
+                painter = rememberRainbowHeartPainter(),
+                contentDescription = "",
+                tinted = false
+            ),
+            nullableLabel = "Label",
+            onClick = {},
+        )
+    }
 }
 
 internal data class OudsButtonPreviewParameter(

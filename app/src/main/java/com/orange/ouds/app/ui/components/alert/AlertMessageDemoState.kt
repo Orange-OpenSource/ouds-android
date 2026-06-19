@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.alert
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,16 +29,16 @@ import kotlin.reflect.full.createInstance
 @Composable
 fun rememberAlertMessageDemoState(
     status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
-    hasStatusIcon: Boolean = true,
+    icon: AlertMessageDemoState.Icon = AlertMessageDemoState.Icon.Tinted,
     hasCloseButton: Boolean = false,
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     actionLink: String? = null,
     actionLinkPosition: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
-    bulletList: Map<Int, String>? = null
+    bulletList: Map<Int, String>? = null,
 ) = rememberSaveable(
     status,
-    hasStatusIcon,
+    icon,
     hasCloseButton,
     label,
     description,
@@ -46,12 +47,12 @@ fun rememberAlertMessageDemoState(
     bulletList,
     saver = AlertMessageDemoState.Saver
 ) {
-    AlertMessageDemoState(status, hasStatusIcon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList)
+    AlertMessageDemoState(status, icon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList)
 }
 
 class AlertMessageDemoState(
     status: OudsAlertMessageStatus,
-    hasStatusIcon: Boolean,
+    icon: Icon,
     hasCloseButton: Boolean,
     label: String,
     description: String?,
@@ -76,7 +77,7 @@ class AlertMessageDemoState(
                 with(state) {
                     listOf(
                         status::class.java.name,
-                        hasStatusIcon,
+                        icon,
                         hasCloseButton,
                         label,
                         description,
@@ -92,7 +93,7 @@ class AlertMessageDemoState(
 
                 AlertMessageDemoState(
                     status,
-                    list[1] as Boolean,
+                    list[1] as Icon,
                     list[2] as Boolean,
                     list[3] as String,
                     list[4] as String?,
@@ -109,12 +110,12 @@ class AlertMessageDemoState(
         get() = _status
         set(value) {
             _status = value
-            if (status in FunctionalStatuses) {
-                hasStatusIcon = true
+            if (icon !in enabledIcons) {
+                icon = Icon.Tinted
             }
         }
 
-    var hasStatusIcon: Boolean by mutableStateOf(hasStatusIcon)
+    var icon: Icon by mutableStateOf(icon)
 
     var hasCloseButton: Boolean by mutableStateOf(hasCloseButton)
 
@@ -126,11 +127,17 @@ class AlertMessageDemoState(
 
     var actionLinkPosition: OudsAlertMessageActionLinkPosition by mutableStateOf(actionLinkPosition)
 
-    val statusIconSwitchEnabled: Boolean
-        get() = status !in FunctionalStatuses
-
     val actionLinkPositionChipsEnabled: Boolean
         get() = !actionLink.isNullOrEmpty()
 
     var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
+
+    val enabledIcons: List<Icon>
+        get() = if (status !in FunctionalStatuses) Icon.entries else listOf(Icon.Tinted)
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        None(R.string.app_components_common_none_tech),
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
+    }
 }

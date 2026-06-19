@@ -31,9 +31,10 @@ fun rememberButtonDemoState(
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first()
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout)
+    layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first(),
+    icon: ButtonDemoState.Icon = ButtonDemoState.Icon.Tinted
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, icon, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout, icon)
 }
 
 class ButtonDemoState(
@@ -42,45 +43,47 @@ class ButtonDemoState(
     onColoredBox: Boolean,
     hasLoader: Boolean,
     appearance: OudsButtonAppearance,
-    layout: Layout
-) {
+    layout: Layout,
+    icon: Icon
+) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
 
     companion object {
+
         private val ForbiddenAppearancesOnColoredBox = listOf(OudsButtonAppearance.Brand, OudsButtonAppearance.Negative)
 
+        @Suppress("UNCHECKED_CAST")
         val Saver = listSaver(
             save = { state ->
                 with(state) {
                     listOf(
                         label,
-                        enabled,
-                        onColoredBox,
-                        hasLoader,
                         appearance,
-                        layout
+                        layout,
+                        icon,
+                        with(BaseButtonDemoState.Saver) { save(state) },
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                ButtonDemoState(
-                    list[0] as String,
-                    list[1] as Boolean,
-                    list[2] as Boolean,
-                    list[3] as Boolean,
-                    list[4] as OudsButtonAppearance,
-                    list[5] as Layout,
-                )
+                val baseButtonDemoState = list[4]?.let { BaseButtonDemoState.Saver.restore(it) }
+                baseButtonDemoState?.run {
+                    ButtonDemoState(
+                        list[0] as String,
+                        enabled,
+                        onColoredBox,
+                        hasLoader,
+                        list[1] as OudsButtonAppearance,
+                        list[2] as Layout,
+                        list[3] as Icon
+                    )
+                }
             }
         )
     }
 
     var label: String by mutableStateOf(label)
 
-    var enabled: Boolean by mutableStateOf(enabled)
-
-    var onColoredBox: Boolean by mutableStateOf(onColoredBox)
-
-    var hasLoader: Boolean by mutableStateOf(hasLoader)
+    var layout: Layout by mutableStateOf(layout)
 
     private var _appearance: OudsButtonAppearance by mutableStateOf(appearance)
     var appearance: OudsButtonAppearance
@@ -92,23 +95,25 @@ class ButtonDemoState(
             }
         }
 
-    var layout: Layout by mutableStateOf(layout)
-
-    val enabledSwitchEnabled: Boolean
-        get() = !hasLoader
-
     val onColoredBoxSwitchEnabled: Boolean
         get() = appearance !in ForbiddenAppearancesOnColoredBox
 
-    val loaderSwitchEnabled: Boolean
-        get() = enabled
-
     val labelTextInputEnabled: Boolean
         get() = layout != Layout.IconOnly
+
+    var icon: Icon by mutableStateOf(icon)
+
+    val enabledIcons: List<Icon>
+        get() = if (layout != Layout.TextOnly) Icon.entries else emptyList()
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
         IconOnly(R.string.app_components_common_iconOnlyLayout_tech)
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }

@@ -49,6 +49,8 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         @Composable
         get() = null
 
+    internal open val tinted: Boolean = true
+
     // The badge is not displayed if onClick is null
     internal open val badge: OudsButtonIconBadge?
         @Composable
@@ -65,13 +67,13 @@ abstract class OudsComponentIcon<T, S> internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        val iconTint = tint.orElse { LocalContentColor.current }
+        val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
         @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
-                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription)
-                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription)
-                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription)
+                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription, tinted = tinted)
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(

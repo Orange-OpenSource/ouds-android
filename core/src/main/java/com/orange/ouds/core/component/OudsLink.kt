@@ -47,6 +47,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -55,6 +56,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -123,6 +125,8 @@ fun OudsLink(
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
  */
 @Composable
 fun OudsLink(
@@ -213,7 +217,7 @@ private fun OudsLink(
     val monochrome = LocalColorMode.current?.monochrome == true
     val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
         val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        contentColor(state = linkState, monochrome = monochrome)
+        linkContentColor(state = linkState, monochrome = monochrome)
     }
 
     val chevronColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
@@ -257,12 +261,12 @@ private fun OudsLink(
                 OudsLinkSize.Default -> {
                     columnGap = if (chevron != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
                     iconSize = sizeIconDefault.value
-                    textStyle = OudsTheme.typography.label.strong.large
+                    textStyle = OudsTheme.typography.label.large.strong
                 }
                 OudsLinkSize.Small -> {
                     columnGap = if (chevron != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
                     iconSize = sizeIconSmall.value
-                    textStyle = OudsTheme.typography.label.strong.medium
+                    textStyle = OudsTheme.typography.label.medium.strong
                 }
             }
         }
@@ -279,7 +283,7 @@ private fun OudsLink(
         ) {
             if (icon != null || chevron == OudsLinkChevron.Back) {
                 icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
-                    modifier = Modifier.size(iconSize),
+                    modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
                     extraParameters = ExtraParameters(tint = iconTint)
                 )
             }
@@ -316,7 +320,7 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 }
 
 @Composable
-private fun contentColor(state: OudsLinkState, monochrome: Boolean): Color {
+internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color {
     return if (monochrome) {
         with(OudsTheme.componentsTokens.linkMonochrome) {
             when (state) {
@@ -344,7 +348,7 @@ private fun contentColor(state: OudsLinkState, monochrome: Boolean): Color {
 private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
     return with(OudsTheme.componentsTokens.link) {
         if (monochrome) {
-            contentColor(state = state, monochrome = true)
+            linkContentColor(state = state, monochrome = true)
         } else {
             when (state) {
                 OudsLinkState.Enabled -> colorChevronEnabled.value
@@ -406,7 +410,8 @@ enum class OudsLinkChevron {
  * This icon is non-clickable and no content description is needed because a link label is always present.
  */
 open class OudsLinkIcon private constructor(
-    graphicsObject: Any
+    graphicsObject: Any,
+    override val tinted: Boolean
 ) : OudsComponentIcon<ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
@@ -418,29 +423,41 @@ open class OudsLinkIcon private constructor(
      * Creates an instance of [OudsLinkIcon].
      *
      * @param painter Painter of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(painter: Painter) : this(painter as Any)
+    @JvmOverloads
+    constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
 
     /**
      * Creates an instance of [OudsLinkIcon].
      *
      * @param imageVector Image vector of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(imageVector: ImageVector) : this(imageVector as Any)
+    @JvmOverloads
+    constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
 
     /**
      * Creates an instance of [OudsLinkIcon].
      *
      * @param bitmap Image bitmap of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
 
     override val tint: Color?
         @Composable
         get() = extraParameters.tint
 }
 
-private enum class OudsLinkState {
+internal enum class OudsLinkState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
@@ -499,6 +516,22 @@ internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
                 )
             }
         }
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsLinkWithUntintedIcon() = PreviewOudsLinkWithUntintedIcon(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsLinkWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
+        OudsLink(
+            label = "Label",
+            icon = OudsLinkIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            onClick = {}
+        )
     }
 }
 

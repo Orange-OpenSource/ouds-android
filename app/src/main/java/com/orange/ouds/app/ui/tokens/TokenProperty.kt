@@ -32,6 +32,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KParameter
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.primaryConstructor
 
 sealed class TokenProperty<T>(
@@ -235,7 +236,9 @@ private fun getPath(clazz: KClass<*>): String {
  * @param predicate A function that takes the class containing the token and its associated constructor parameter, and returns the result of predicate evaluation for this token.
  */
 private fun getTokenPaths(clazz: KClass<*>, fromClass: KClass<*>?, parentPath: String, predicate: (KClass<*>, KParameter) -> Boolean): List<String> {
-    return clazz.primaryConstructor
+    return clazz
+        .takeIf { clazz.findAnnotation<Deprecated>() == null }
+        ?.primaryConstructor
         ?.parameters // Use primary constructor parameters instead of declaredMemberProperties because parameters are sorted as they are declared
         .orEmpty()
         .flatMap { parameter ->

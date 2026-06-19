@@ -30,7 +30,7 @@ fun rememberCheckboxItemDemoState(
         ToggleableState.Off,
         ToggleableState.Off
     ), // only used for indeterminate checkbox item demo
-    icon: Boolean = false,
+    icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -40,7 +40,7 @@ fun rememberCheckboxItemDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
@@ -77,7 +77,7 @@ fun rememberCheckboxItemDemoState(
 class CheckboxItemDemoState(
     checkedValues: Pair<Boolean, Boolean>,
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
-    icon: Boolean,
+    icon: Icon,
     edgeToEdge: Boolean,
     divider: Boolean,
     reversed: Boolean,

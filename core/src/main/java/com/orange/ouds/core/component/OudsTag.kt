@@ -51,6 +51,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -59,10 +60,10 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.enums.enumEntries
 
 /**
  * Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
@@ -118,6 +119,8 @@ import kotlin.enums.enumEntries
  * @sample com.orange.ouds.core.component.samples.OudsTagWithDefaultIconSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithUntintedIconSample
  */
 @Composable
 fun OudsTag(
@@ -162,7 +165,14 @@ fun OudsTag(
                         val scale = LocalConfiguration.current.fontScale
                         status.asset?.PolymorphicContent(
                             modifier = Modifier
-                                .size(assetSize(size) * scale)
+                                .run {
+                                    val assetSize = assetSize(size) * scale
+                                    if (status.asset is OudsComponentIcon<*, *>) {
+                                        iconSize(assetSize, status.asset.tinted)
+                                    } else {
+                                        size(assetSize)
+                                    }
+                                }
                                 .padding(all = assetPadding),
                             extraParameters = OudsTagAsset.ExtraParameters(
                                 tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
@@ -223,8 +233,8 @@ private fun assetSize(size: OudsTagSize): Dp {
 @Composable
 private fun textStyle(size: OudsTagSize): TextStyle {
     return when (size) {
-        OudsTagSize.Default -> OudsTheme.typography.label.strong.medium
-        OudsTagSize.Small -> OudsTheme.typography.label.moderate.small
+        OudsTagSize.Default -> OudsTheme.typography.label.medium.strong
+        OudsTagSize.Small -> OudsTheme.typography.label.small.moderate
     }.run {
         copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }
@@ -259,7 +269,16 @@ private fun assetColor(status: OudsTagStatus, appearance: OudsTagAppearance, ena
         OudsTagAppearance.Muted -> when {
             !enabled -> OudsTheme.colorScheme.content.onAction.disabled
             !isBullet && status is OudsTagStatus.Warning -> Color.Unspecified // Case of two colors icon. Colors are managed by the `LayeredTintedPainter`.
-            else -> status.color()
+            else -> with(OudsTheme.colorScheme.content) {
+                when (status) {
+                    is OudsTagStatus.Accent -> this.status.accent
+                    is OudsTagStatus.Info -> this.status.info
+                    is OudsTagStatus.Negative -> this.status.negative
+                    is OudsTagStatus.Neutral -> default
+                    is OudsTagStatus.Positive -> this.status.positive
+                    is OudsTagStatus.Warning -> this.status.warning
+                }
+            }
         }
     }
 }
@@ -443,29 +462,43 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
      * An icon in an [OudsTag].
      * This icon is non-clickable. No content description is needed because a tag always contains a label.
      */
-    class Icon private constructor(graphicsObject: Any) : OudsTagAsset,
-        OudsComponentIcon<OudsTagAsset.ExtraParameters, Icon>(OudsTagAsset.ExtraParameters::class.java, graphicsObject, "") {
+    class Icon private constructor(
+        graphicsObject: Any,
+        override val tinted: Boolean
+    ) : OudsTagAsset, OudsComponentIcon<OudsTagAsset.ExtraParameters, Icon>(OudsTagAsset.ExtraParameters::class.java, graphicsObject, "") {
 
         /**
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param painter Painter of the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+         *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+         *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          */
-        constructor(painter: Painter) : this(painter as Any)
+        @JvmOverloads
+        constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
 
         /**
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param imageVector Image vector of the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+         *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+         *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          */
-        constructor(imageVector: ImageVector) : this(imageVector as Any)
+        @JvmOverloads
+        constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
 
         /**
          * Creates an instance of [OudsTagAsset.Icon].
          *
          * @param bitmap Image bitmap of the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+         *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+         *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          */
-        constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+        @JvmOverloads
+        constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
 
         override val tint: Color?
             @Composable
@@ -753,11 +786,35 @@ internal fun PreviewOudsTag(
     val label = "Label"
     with(parameter) {
         PreviewGrid(
-            columns = enumEntries<OudsTagSize>(),
-            rows = statuses,
-            columnTitle = { it.name },
-            rowTitle = { it::class.simpleName.orEmpty() }
-        ) { size, status ->
+            columns = OudsTagSize.entries.map { it.name },
+            rows = listOf(
+                OudsTagStatus.Neutral::class,
+                OudsTagStatus.Accent::class,
+                OudsTagStatus.Positive::class,
+                OudsTagStatus.Warning::class,
+                OudsTagStatus.Negative::class,
+                OudsTagStatus.Info::class
+            ).map { it.simpleName.orEmpty() },
+        ) { column, row ->
+            val size = enumValueOf<OudsTagSize>(column)
+            val asset = when {
+                bullet -> OudsTagAsset.Bullet
+                icon && row in listOf(
+                    OudsTagStatus.Neutral::class.simpleName,
+                    OudsTagStatus.Accent::class.simpleName
+                ) -> OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
+                icon -> OudsTagAsset.Icon.Default
+                else -> null
+            }
+            val status = when (row) {
+                OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
+                OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
+                OudsTagStatus.Positive::class.simpleName -> OudsTagStatus.Positive(asset)
+                OudsTagStatus.Warning::class.simpleName -> OudsTagStatus.Warning(asset)
+                OudsTagStatus.Negative::class.simpleName -> OudsTagStatus.Negative(asset)
+                OudsTagStatus.Info::class.simpleName -> OudsTagStatus.Info(asset)
+                else -> error("Unknown row $row.")
+            }
             Box {
                 OudsTag(
                     label = label,
@@ -773,15 +830,42 @@ internal fun PreviewOudsTag(
     }
 }
 
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTagWithUntintedIcon() {
+    PreviewOudsTagWithUntintedIcon(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewGrid(
+        columns = OudsTagSize.entries.map { it.name },
+        rows = listOf(
+            OudsTagStatus.Neutral::class,
+            OudsTagStatus.Accent::class
+        ).map { it.simpleName.orEmpty() },
+    ) { column, row ->
+        val size = enumValueOf<OudsTagSize>(column)
+        val asset = OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)
+        val status = when (row) {
+            OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
+            OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
+            else -> error("Unknown row $row.")
+        }
+        Box {
+            OudsTag(
+                label = "Label",
+                status = status,
+                size = size
+            )
+        }
+    }
+}
+
 internal data class OudsTagPreviewParameter(
-    val statuses: List<OudsTagStatus> = listOf(
-        OudsTagStatus.Neutral(),
-        OudsTagStatus.Accent(),
-        OudsTagStatus.Positive(),
-        OudsTagStatus.Warning(),
-        OudsTagStatus.Negative(),
-        OudsTagStatus.Info()
-    ),
+    val icon: Boolean = false,
+    val bullet: Boolean = false,
     val appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     val roundedCorners: Boolean = true,
     val loader: OudsTagLoader? = null,
@@ -791,32 +875,12 @@ internal data class OudsTagPreviewParameter(
 internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTagPreviewParameter>
-    get() {
-        val icon = OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
-        val statusesWithBullet = listOf(
-            OudsTagStatus.Neutral(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Accent(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Positive(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Warning(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Negative(asset = OudsTagAsset.Bullet),
-            OudsTagStatus.Info(asset = OudsTagAsset.Bullet)
-        )
-        val statusesWithIcon = listOf(
-            OudsTagStatus.Neutral(asset = icon),
-            OudsTagStatus.Accent(asset = icon),
-            OudsTagStatus.Positive(asset = OudsTagAsset.Icon.Default),
-            OudsTagStatus.Warning(asset = OudsTagAsset.Icon.Default),
-            OudsTagStatus.Negative(asset = OudsTagAsset.Icon.Default),
-            OudsTagStatus.Info(asset = OudsTagAsset.Icon.Default)
-        )
-        val loader = OudsTagLoader(0.6f)
+    get() = listOf(
+        OudsTagPreviewParameter(),
+        OudsTagPreviewParameter(bullet = true, appearance = OudsTagAppearance.Muted),
+        OudsTagPreviewParameter(icon = true, appearance = OudsTagAppearance.Muted),
+        OudsTagPreviewParameter(icon = true, roundedCorners = false),
+        OudsTagPreviewParameter(loader = OudsTagLoader(0.6f)),
+        OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
+    )
 
-        return listOf(
-            OudsTagPreviewParameter(),
-            OudsTagPreviewParameter(statusesWithBullet, appearance = OudsTagAppearance.Muted),
-            OudsTagPreviewParameter(statusesWithIcon, appearance = OudsTagAppearance.Muted),
-            OudsTagPreviewParameter(statusesWithIcon, roundedCorners = false),
-            OudsTagPreviewParameter(loader = loader),
-            OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
-        )
-    }

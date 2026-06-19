@@ -20,6 +20,7 @@ import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @Composable
 internal fun OudsLinkSample() {
@@ -47,6 +48,15 @@ internal fun OudsLinkWithChevronSample() {
     )
 }
 
+@Composable
+internal fun OudsLinkWithUntintedIconSample() {
+    OudsLink(
+        label = "Link",
+        icon = OudsLinkIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        onClick = { /* Do something! */ },
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsLinkSample() = OudsPreview {
@@ -63,4 +73,10 @@ private fun PreviewOudsLinkWithIconSample() = OudsPreview {
 @Composable
 private fun PreviewOudsLinkWithChevronSample() = OudsPreview {
     OudsLinkWithChevronSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsLinkWithUntintedIconSample() = OudsPreview {
+    OudsLinkWithUntintedIconSample()
 }

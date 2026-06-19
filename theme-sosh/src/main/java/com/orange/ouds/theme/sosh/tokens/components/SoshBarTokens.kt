@@ -16,11 +16,13 @@
 package com.orange.ouds.theme.sosh.tokens.components
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsOpacityKeyToken
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
+import com.orange.ouds.tokens.raw.OudsColorRawTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
@@ -28,7 +30,7 @@ internal data class SoshBarTokens(
     override val borderRadiusCurrentIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderRadiusCurrentIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val colorBgOpaque: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
-    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(Color(0xccffffff), Color(0xcc001524)),
+    override val colorBgTranslucent: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorOpacityWhite800, SoshColorRawTokens.ColorOpacityLochmaraDark960800),
     override val colorBorderBadge: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,
     override val colorContentSelectedEnabled: OudsColorKeyToken = OudsColorKeyToken.Action.Selected,
     override val colorContentSelectedFocus: OudsColorKeyToken = OudsColorKeyToken.Action.Focus,

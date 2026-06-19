@@ -55,9 +55,9 @@ import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
-import com.orange.ouds.core.utilities.PreviewCheckerboardPainter
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -74,7 +74,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsTopAppBar].
@@ -147,7 +147,7 @@ fun OudsTopAppBar(
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsCenterAlignedTopAppBar].
@@ -221,7 +221,7 @@ fun OudsCenterAlignedTopAppBar(
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsMediumTopAppBar].
@@ -306,7 +306,7 @@ fun OudsMediumTopAppBar(
  * 1. Add Haze dependency
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
+ * - Use `hazeEffect` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsLargeTopAppBar].
@@ -446,7 +446,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Close(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.actions.delete) },
+        { painterResource(id = OudsTheme.drawableResources.functional.actions.deleteCrossRound) },
         { stringResource(R.string.core_topAppBar_closeNavigationIcon_a11y) },
         onClick
     )
@@ -458,7 +458,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Menu(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.navigation.menu) },
+        { painterResource(id = OudsTheme.drawableResources.functional.navigation.menuGridUiRound) },
         { stringResource(R.string.core_topAppBar_menuNavigationIcon_a11y) },
         onClick
     )
@@ -792,7 +792,7 @@ private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
                     onClick = {}
                 ),
                 OudsTopAppBarAction.Avatar(
-                    painter = PreviewCheckerboardPainter(
+                    painter = CheckerboardPainter(
                         squareSize = 6.dp,
                         primaryColor = Color(0xff247a85),
                         secondaryColor = Color(0xfffbcd00)
