@@ -25,7 +25,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 
 @Composable
 fun rememberRadioButtonItemDemoState(
-    selectedValue: Int = RadioButtonItemDemoState.values.first(),
+    selectedValue: Int = RadioButtonItemDemoState.Values.first(),
     icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
@@ -96,7 +96,7 @@ class RadioButtonItemDemoState(
 ) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, annotatedText) {
 
     companion object {
-        val values = listOf(1, 2)
+        val Values = listOf(1, 2)
         val Saver = listSaver(
             save = { state ->
                 with(state) {

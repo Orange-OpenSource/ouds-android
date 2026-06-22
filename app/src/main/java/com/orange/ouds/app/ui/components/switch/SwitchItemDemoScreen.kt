@@ -53,7 +53,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             label = label,
             onCheckedChange = { checked = it },
             description = description,
-            icon = controlItemIcon(this),
+            icon = controlItemIcon(state = this),
             edgeToEdge = edgeToEdge,
             divider = divider,
             reversed = reversed,
