@@ -85,8 +85,8 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                 Modifier.padding(horizontal = OudsTheme.grids.margin)
             }.selectableGroup()
         ) {
-            RadioButtonItemDemoState.values.forEachIndexed { index, radioButtonValue ->
-                val isLastItem = index == RadioButtonItemDemoState.values.lastIndex
+            RadioButtonItemDemoState.Values.forEachIndexed { index, radioButtonValue ->
+                val isLastItem = index == RadioButtonItemDemoState.Values.lastIndex
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
@@ -114,13 +114,13 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
 
 private fun Code.Builder.radioButtonItemDemoCodeSnippet(state: RadioButtonItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
-        RadioButtonItemDemoState.values.forEachIndexed { index, value ->
+        RadioButtonItemDemoState.Values.forEachIndexed { index, value ->
             functionCall("OudsRadioButtonItem") {
                 typedArgument("selected", selectedValue == value)
                 onClickArgument {
                     comment("Change selection")
                 }
-                controlItemArguments(state, themeDrawableResources, index == RadioButtonItemDemoState.values.lastIndex)
+                controlItemArguments(state, themeDrawableResources, index == RadioButtonItemDemoState.Values.lastIndex)
                 if (!extraLabel.isNullOrBlank()) typedArgument("extraLabel", extraLabel)
                 if (outlined) typedArgument("outlined", outlined)
             }

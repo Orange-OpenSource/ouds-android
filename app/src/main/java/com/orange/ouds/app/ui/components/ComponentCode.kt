@@ -93,9 +93,9 @@ fun FunctionCall.Builder.tintedArgument(value: Boolean) = typedArgument(Argument
 fun FunctionCall.Builder.errorArgument(message: String, annotatedMessage: Boolean = false) {
     constructorCallArgument<OudsError>(Argument.Error) {
         if (annotatedMessage) {
-            annotatedStringArgument<OudsAnnotatedErrorMessage>(Argument.ErrorMessage)
+            annotatedStringArgument<OudsAnnotatedErrorMessage>(Argument.Message)
         } else {
-            typedArgument(Argument.ErrorMessage, message)
+            typedArgument(Argument.Message, message)
         }
     }
 }
@@ -129,7 +129,7 @@ private object Argument {
     const val Content = "content"
     const val Enabled = "enabled"
     const val Error = "error"
-    const val ErrorMessage = "message"
+    const val Message = "message"
     const val HelperText = "helperText"
     const val Id = "id"
     const val Label = "label"

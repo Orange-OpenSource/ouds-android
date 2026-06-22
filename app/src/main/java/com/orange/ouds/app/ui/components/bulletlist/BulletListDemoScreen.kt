@@ -287,9 +287,7 @@ private fun OudsBulletListBuilder.bulletListDemoItem(state: BulletListDemoState,
     with(state) {
         if (annotatedText) {
             val annotatedLabel = buildOudsAnnotatedBulletListLabel {
-                if (labelHtml.isNotEmpty()) {
-                    appendHtml(labelHtml)
-                }
+                appendHtml(labelHtml)
             }
             item(label = annotatedLabel, builder = builder)
         } else {

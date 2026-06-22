@@ -20,7 +20,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
-import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -34,6 +33,7 @@ import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -48,7 +48,6 @@ import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -117,7 +116,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
             enabled = errorMessageTextInputEnabled,
-            helperText = stringResource(R.string.app_components_common_errorMessage_tech)
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -149,7 +148,7 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             value = helperText,
             onValueChange = { value -> helperText = value },
             enabled = helperTextTextInputEnabled,
-            helperText = stringResource(R.string.app_components_common_errorMessage_tech)
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
