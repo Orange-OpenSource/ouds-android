@@ -3,6 +3,7 @@
 .externalNativeBuild
 .cxx
 *.iml
+.idea/artifacts
 .idea/caches
 .idea/compiler.xml
 .idea/deviceManager.xml
@@ -40,3 +41,6 @@ app/src/main/res/raw/changelog.md
 
 # Mustache output
 Module.md
+
+# Kotlin Multiplatform
+.kotlin/

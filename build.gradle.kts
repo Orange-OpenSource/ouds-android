@@ -16,6 +16,8 @@ import com.orange.ouds.gradle.releaseVersion
 plugins {
     kotlin("jvm")
     alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.compose.multiplatform) apply false
+    id(libs.plugins.kotlin.multiplatform.get().pluginId) apply false
     id(libs.plugins.firebase.appdistribution.get().pluginId) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.google.services) apply false
