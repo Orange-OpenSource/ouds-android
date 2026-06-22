@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -142,21 +143,21 @@ private fun TextAreaDemoContent(state: TextAreaDemoState) {
         val focusManager = LocalFocusManager.current
         val loader = if (hasLoader) OudsTextInputLoader(null) else null
         val textAreaError = when {
-            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
-                append("You have ")
-                withStrong { append("20") }
-                append(" characters too many.")
-            })
+            error && annotatedText -> {
+                val errorHtml = stringResource(R.string.app_components_textArea_annotatedErrorMessage_text)
+                OudsError(buildOudsAnnotatedErrorMessage {
+                    appendHtml(errorHtml)
+                })
+            }
             error -> OudsError(errorMessage)
             else -> null
         }
         val textAreaHelperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
+            val helperTextHtml = stringResource(R.string.app_components_textArea_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
-                append("Please provide a ")
-                withStrong { append("detailed description") }
-                append(" of your request.")
+                appendHtml(helperTextHtml)
             }
             OudsTextArea(
                 textFieldState = textFieldState,

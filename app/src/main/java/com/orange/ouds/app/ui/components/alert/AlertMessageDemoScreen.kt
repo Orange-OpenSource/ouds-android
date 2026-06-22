@@ -29,6 +29,7 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
@@ -46,11 +47,8 @@ import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescription
-import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
-import com.orange.ouds.core.component.common.text.withLink
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -180,7 +178,7 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             AlertMessageDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
             AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
-        val status = when (status) {
+        val alertMessageStatus = when (status) {
             is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
             is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(alertIcon)
             is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
@@ -193,51 +191,43 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
         } else {
             null
         }
-        val actionLink = actionLink?.let { actionLinkLabel ->
+        val alertMessageActionLink = actionLink?.let { actionLinkLabel ->
             OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
         }
         if (annotatedText) {
+            val annotatedDescriptionHtml = stringResource(R.string.app_components_alert_alertMessage_annotatedDescription_text)
             val annotatedDescription = buildOudsAnnotatedAlertMessageDescription {
-                append("Your last payment attempt was ")
-                withStrong { append("declined") }
-                append(". Please check your payment details or ")
-                withStrong { append("available balance") }
-                append(" and try again, or ")
-                withLink(OudsLinkAnnotation.Url("https://unified-design-system.orange.com")) { append("update your payment details") }
-                append(".")
+                appendHtml(annotatedDescriptionHtml)
             }
+            val annotatedBullet1Html = stringResource(R.string.app_components_alert_alertMessage_annotatedBullet1_text)
+            val annotatedBullet2Html = stringResource(R.string.app_components_alert_alertMessage_annotatedBullet2_text)
+            val annotatedBullet3Html = stringResource(R.string.app_components_alert_alertMessage_annotatedBullet3_text)
             val annotatedBulletList = listOf(
                 buildOudsAnnotatedAlertMessageBulletListLabel {
-                    append("Your payment was ")
-                    withStrong { append("declined") }
-                    append(".")
+                    appendHtml(annotatedBullet1Html)
                 },
                 buildOudsAnnotatedAlertMessageBulletListLabel {
-                    append("Check your ")
-                    withStrong { append("available balance") }
-                    append(" before retrying.")
+                    appendHtml(annotatedBullet2Html)
                 },
                 buildOudsAnnotatedAlertMessageBulletListLabel {
-                    append("Update your ")
-                    withStrong { append("payment details") }
-                    append(" if needed.")
+                    appendHtml(annotatedBullet3Html)
                 }
             )
             OudsAlertMessage(
                 label = label,
                 description = annotatedDescription,
-                status = status,
+                status = alertMessageStatus,
                 onClose = onClose,
-                actionLink = actionLink,
+                actionLink = alertMessageActionLink,
                 bulletList = annotatedBulletList
             )
         } else {
             OudsAlertMessage(
                 label = label,
                 description = description,
-                status = status,
+                status = alertMessageStatus,
                 onClose = onClose,
-                actionLink = actionLink,
+                actionLink = alertMessageActionLink,
                 bulletList = bulletList
             )
         }

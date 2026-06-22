@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -195,21 +196,21 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
         }
         val loader = if (hasLoader) OudsTextInputLoader(null) else null
         val textInputError = when {
-            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
-                append("This field can’t be ")
-                withStrong { append("empty") }
-                append(".")
-            })
+            error && annotatedText -> {
+                val errorHtml = stringResource(R.string.app_components_textInput_annotatedErrorMessage_text)
+                OudsError(buildOudsAnnotatedErrorMessage {
+                    appendHtml(errorHtml)
+                })
+            }
             error -> OudsError(errorMessage)
             else -> null
         }
         val textInputHelperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = {}) else null
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
+            val helperTextHtml = stringResource(R.string.app_components_textInput_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
-                append("You can find your ")
-                withStrong { append("customer ID") }
-                append("on your latest invoice.")
+                appendHtml(helperTextHtml)
             }
             OudsTextInput(
                 textFieldState = textFieldState,

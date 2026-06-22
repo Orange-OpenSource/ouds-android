@@ -35,8 +35,6 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsRadioButtonItem
-import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -105,11 +103,8 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     error = controlItemError(
                         state = this@with,
                         isLastItem = isLastItem,
-                        annotatedMessage = buildOudsAnnotatedErrorMessage {
-                            append("Please select ")
-                            withStrong { append("one contact method") }
-                            append(" to proceed.")
-                        }),
+                        errorMessageHtmlResId = R.string.app_components_radioButtonItem_annotatedErrorMessage_text
+                    ),
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }

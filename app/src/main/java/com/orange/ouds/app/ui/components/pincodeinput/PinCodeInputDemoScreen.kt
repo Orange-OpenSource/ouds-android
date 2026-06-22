@@ -21,6 +21,7 @@ import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -30,7 +31,6 @@ import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -96,19 +96,20 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
         val focusManager = LocalFocusManager.current
         val onValueChange: (String) -> Unit = { value = it }
         val pinCodeInputError = when {
-            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
-                withStrong { append("Verification failed") }
-                append(". Check and enter the correct code.")
-            })
+            error && annotatedText -> {
+                val errorMessageHtml = stringResource(R.string.app_components_pinCodeInput_annotatedErrorMessage_text)
+                OudsError(buildOudsAnnotatedErrorMessage {
+                    appendHtml(errorMessageHtml)
+                })
+            }
             error -> OudsError(errorMessage)
             else -> null
         }
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
+            val helperTextHtml = stringResource(R.string.app_components_pinCodeInput_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
-                append("Enter the ")
-                withStrong { append("one-time code") }
-                append(" sent to your device.")
+                appendHtml(helperTextHtml)
             }
             OudsPinCodeInput(
                 value = value,

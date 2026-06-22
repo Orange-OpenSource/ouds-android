@@ -18,10 +18,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
-import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
 import com.orange.ouds.app.ui.components.controlitem.controlItemError
+import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -31,8 +32,6 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -115,7 +114,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = checkboxItemError(state = this, isLastItem = isLastItem,),
+                    error = checkboxItemError(state = this, isLastItem = isLastItem),
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
@@ -135,11 +134,8 @@ private fun checkboxItemError(state: CheckboxItemDemoState, isLastItem: Boolean)
     return controlItemError(
         state = state,
         isLastItem = isLastItem,
-        annotatedMessage = buildOudsAnnotatedErrorMessage {
-            append("You must select at ")
-            withStrong { append("least one service") }
-            append(" to continue.")
-        })
+        errorMessageHtmlResId = R.string.app_components_checkbox_checkboxItem_annotatedErrorMessage_text
+    )
 }
 
 private fun Code.Builder.checkboxItemDemoCodeSnippet(state: CheckboxItemDemoState, indeterminate: Boolean, themeDrawableResources: ThemeDrawableResources) {
