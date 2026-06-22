@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -46,10 +47,7 @@ import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
 import com.orange.ouds.core.component.common.text.OudsAnnotatedBulletListLabel
-import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBulletListLabel
-import com.orange.ouds.core.component.common.text.withLink
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -134,22 +132,28 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
 @Composable
 private fun BulletListDemoContent(state: BulletListDemoState) {
     with(state) {
-        val builder: OudsBulletListBuilder.() -> Unit = remember(levelCount, label, annotatedText) {
+        val label1Html = stringResource(R.string.app_components_bulletList_annotatedLabel1_text)
+        val label2Html = stringResource(R.string.app_components_bulletList_annotatedLabel2_text)
+        val label3Html = stringResource(R.string.app_components_bulletList_annotatedLabel3_text)
+
+        val builder: OudsBulletListBuilder.() -> Unit = remember(levelCount, label, annotatedText, label1Html, label2Html, label3Html) {
             {
                 when (levelCount) {
-                    1 -> repeat(3) { index ->
-                        bulletListDemoItem(index, this@with)
+                    1 -> {
+                        bulletListDemoItem(this@with, label1Html)
+                        bulletListDemoItem(this@with, label2Html)
+                        bulletListDemoItem(this@with, label3Html)
                     }
                     2 -> {
-                        bulletListDemoItem(0, this@with) {
-                            bulletListDemoItem(1, this@with)
-                            bulletListDemoItem(2, this@with)
+                        bulletListDemoItem(this@with, label1Html) {
+                            bulletListDemoItem(this@with, label2Html)
+                            bulletListDemoItem(this@with, label3Html)
                         }
                     }
                     else -> {
-                        bulletListDemoItem(0, this@with) {
-                            bulletListDemoItem(1, this@with) {
-                                bulletListDemoItem(2, this@with)
+                        bulletListDemoItem(this@with, label1Html) {
+                            bulletListDemoItem(this@with, label2Html) {
+                                bulletListDemoItem(this@with, label3Html)
                             }
                         }
                     }
@@ -279,27 +283,12 @@ private fun getUnorderedAssetClasses() = if (LocalInspectionMode.current) {
     OudsBulletListUnorderedAsset::class.sealedSubclasses
 }
 
-private fun OudsBulletListBuilder.bulletListDemoItem(index: Int, state: BulletListDemoState, builder: (OudsBulletListBuilder.() -> Unit)? = null) {
+private fun OudsBulletListBuilder.bulletListDemoItem(state: BulletListDemoState, labelHtml: String, builder: (OudsBulletListBuilder.() -> Unit)? = null) {
     with(state) {
         if (annotatedText) {
             val annotatedLabel = buildOudsAnnotatedBulletListLabel {
-                when (index) {
-                    0 -> {
-                        append("Your payment was ")
-                        withStrong { append("declined") }
-                        append(".")
-                    }
-                    1 -> {
-                        append("Check your ")
-                        withStrong { append("available balance") }
-                        append(" before retrying.")
-                    }
-                    2 -> {
-                        append("Update your ")
-                        withLink(OudsLinkAnnotation.Url("https://unified-design-system.orange.com")) { append("payment details") }
-                        append(" if needed.")
-                    }
-                    else -> {}
+                if (labelHtml.isNotEmpty()) {
+                    appendHtml(labelHtml)
                 }
             }
             item(label = annotatedLabel, builder = builder)

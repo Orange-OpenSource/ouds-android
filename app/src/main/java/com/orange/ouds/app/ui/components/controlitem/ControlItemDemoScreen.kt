@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.controlitem
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -25,13 +26,14 @@ import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.common.OudsError
-import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -213,12 +215,17 @@ fun controlItemIcon(state: ControlItemDemoState): OudsControlItemIcon? {
 }
 
 @Composable
-fun controlItemError(state: ControlItemDemoState, isLastItem: Boolean, annotatedMessage: OudsAnnotatedErrorMessage): OudsError? {
+fun controlItemError(state: ControlItemDemoState, isLastItem: Boolean, @StringRes errorMessageHtmlResId: Int): OudsError? {
     return with(state) {
         when {
             error && !isLastItem -> OudsError("")
             error && !annotatedText -> OudsError(errorMessage)
-            error && annotatedText -> OudsError(annotatedMessage)
+            error && annotatedText -> {
+                val errorMessageHtml = stringResource(id = errorMessageHtmlResId)
+                OudsError(buildOudsAnnotatedErrorMessage {
+                    appendHtml(errorMessageHtml)
+                })
+            }
             else -> null
         }
     }

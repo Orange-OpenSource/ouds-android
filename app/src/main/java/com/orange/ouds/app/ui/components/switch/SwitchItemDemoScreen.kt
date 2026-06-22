@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemError
@@ -27,8 +28,6 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSwitchItem
-import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -63,11 +62,7 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
             error = controlItemError(
                 state = this,
                 isLastItem = true,
-                annotatedMessage = buildOudsAnnotatedErrorMessage {
-                    append("You must enable ")
-                    withStrong { append("automatic payments") }
-                    append(" to activate this offer.")
-                }
+                errorMessageHtmlResId = R.string.app_components_switchItem_annotatedErrorMessage_text
             ),
             constrainedMaxWidth = constrainedMaxWidth
         )

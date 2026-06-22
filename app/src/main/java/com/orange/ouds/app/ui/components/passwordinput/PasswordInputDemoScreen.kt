@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -37,7 +38,6 @@ import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -154,22 +154,20 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
         val focusManager = LocalFocusManager.current
         val loader = if (hasLoader) OudsTextInputLoader(null) else null
         val passwordInputError = when {
-            error && annotatedText -> OudsError(buildOudsAnnotatedErrorMessage {
-                append("Your password can't be ")
-                withStrong { append("empty") }
-                append(".")
-            })
+            error && annotatedText -> {
+                val errorMessageHtml = stringResource(R.string.app_components_passwordInput_annotatedErrorMessage_text)
+                OudsError(buildOudsAnnotatedErrorMessage {
+                    appendHtml(errorMessageHtml)
+                })
+            }
             error -> OudsError(errorMessage)
             else -> null
         }
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
+            val helperTextHtml = stringResource(R.string.app_components_passwordInput_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
-                append("Your password must be between ")
-                withStrong { append("8") }
-                append(" and ")
-                withStrong { append("20") }
-                append(" characters long.")
+                appendHtml(helperTextHtml)
             }
             OudsPasswordInput(
                 state = passwordInputState,
