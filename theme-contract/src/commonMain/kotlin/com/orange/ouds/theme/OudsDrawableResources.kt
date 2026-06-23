@@ -12,8 +12,8 @@
 
 package com.orange.ouds.theme
 
-import androidx.annotation.DrawableRes
 import com.orange.ouds.foundation.InternalOudsApi
+import org.jetbrains.compose.resources.DrawableResource
 
 /**
  * @suppress
@@ -29,13 +29,11 @@ interface OudsDrawableResources {
         val securityAndSafety: SecurityAndSafety
 
         interface Accessibility {
-            @get:DrawableRes
-            val vision: Int
+            val vision: DrawableResource
         }
 
         interface SecurityAndSafety {
-            @get:DrawableRes
-            val lockClosed: Int
+            val lockClosed: DrawableResource
         }
     }
 
@@ -52,98 +50,73 @@ interface OudsDrawableResources {
         val tag: Tag
 
         interface Alert {
-            @get:DrawableRes
-            val importantFill: Int
+            val importantFill: DrawableResource
 
-            @get:DrawableRes
-            val infoFill: Int
+            val infoFill: DrawableResource
+            
+            val tickConfirmationFill: DrawableResource
 
-            @get:DrawableRes
-            val tickConfirmationFill: Int
+            val warningExternalShape: DrawableResource
 
-            @get:DrawableRes
-            val warningExternalShape: Int
-
-            @get:DrawableRes
-            val warningInternalShape: Int
+            val warningInternalShape: DrawableResource
         }
 
         interface BadgeIcon {
-            @get:DrawableRes
-            val errorFill: Int
+            val errorFill: DrawableResource
 
-            @get:DrawableRes
-            val infoFill: Int
+            val infoFill: DrawableResource
 
-            @get:DrawableRes
-            val tickConfirmationFill: Int
+            val tickConfirmationFill: DrawableResource
 
-            @get:DrawableRes
-            val warningExternalShape: Int
+            val warningExternalShape: DrawableResource
 
-            @get:DrawableRes
-            val warningInternalShape: Int
+            val warningInternalShape: DrawableResource
         }
 
         interface BulletList {
-            @get:DrawableRes
-            val level0: Int
+            val level0: DrawableResource
 
-            @get:DrawableRes
-            val level1: Int
+            val level1: DrawableResource
 
-            @get:DrawableRes
-            val level2: Int
+            val level2: DrawableResource
 
-            @get:DrawableRes
-            val tick: Int
+            val tick: DrawableResource
         }
 
         interface Button {
-            @get:DrawableRes
-            val expurge: Int
+            val expurge: DrawableResource
 
-            @get:DrawableRes
-            val next: Int
+            val next: DrawableResource
 
-            @get:DrawableRes
-            val previous: Int
+            val previous: DrawableResource
         }
 
         interface Checkbox {
-            @get:DrawableRes
-            val selected: Int
+            val selected: DrawableResource
 
-            @get:DrawableRes
-            val undetermined: Int
+            val undetermined: DrawableResource
         }
 
         interface Chip {
-            @get:DrawableRes
-            val tick: Int
+            val tick: DrawableResource
         }
 
         interface Link {
-            @get:DrawableRes
-            val next: Int
+            val next: DrawableResource
 
-            @get:DrawableRes
-            val previous: Int
+            val previous: DrawableResource
         }
 
         interface RadioButton {
-            @get:DrawableRes
-            val selected: Int
+            val selected: DrawableResource
         }
 
         interface Switch {
-            @get:DrawableRes
-            val selected: Int
+            val selected: DrawableResource
         }
 
         interface Tag {
-            @get:DrawableRes
-            val close: Int
+            val close: DrawableResource
         }
     }
 
@@ -154,26 +127,21 @@ interface OudsDrawableResources {
         val socialAndEngagement: SocialAndEngagement
 
         interface Actions {
-            @get:DrawableRes
-            val deleteCrossRound: Int
+            val deleteCrossRound: DrawableResource
         }
 
         interface Navigation {
-            @get:DrawableRes
-            val formChevronLeft: Int
+            val formChevronLeft: DrawableResource
 
-            @get:DrawableRes
-            val menuGridUiRound: Int
+            val menuGridUiRound: DrawableResource
         }
 
         interface SettingsAndTools {
-            @get:DrawableRes
-            val accessibilityHide: Int
+            val accessibilityHide: DrawableResource
         }
 
         interface SocialAndEngagement {
-            @get:DrawableRes
-            val heartRecommend: Int
+            val heartRecommend: DrawableResource
         }
     }
 }

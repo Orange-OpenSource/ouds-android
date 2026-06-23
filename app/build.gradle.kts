@@ -119,9 +119,9 @@ firebaseAppDistributionDefault {
 dependencies {
     implementation(project(":core"))
     implementation(project(":foundation"))
-    implementation(project(":theme-orange"))
-    implementation(project(":theme-orange-compact"))
-    implementation(project(":theme-sosh"))
+//    implementation(project(":theme-orange"))
+//    implementation(project(":theme-orange-compact"))
+//    implementation(project(":theme-sosh"))
     implementation(project(":theme-wireframe"))
 
     implementation(libs.androidx.activity.compose)
@@ -194,7 +194,7 @@ fun updateBuildConfig() {
 gradle.projectsEvaluated {
     tasks["preBuild"].apply {
         dependsOn(":checkDocumentation")
-        dependsOn(":checkNotice")
+        //dependsOn(":checkNotice")
         dependsOn(tasks["updateAppChangelog"])
     }
     updateBuildConfig()

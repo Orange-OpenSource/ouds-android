@@ -22,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.iconSize
@@ -35,6 +34,7 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent,
@@ -134,7 +134,7 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
     class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(
-        OudsAlertStatus.Accent({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartRecommend) }),
+        OudsAlertStatus.Accent({ painterResource(resource = OudsTheme.drawableResources.functional.socialAndEngagement.heartRecommend) }),
         icon
     )
 

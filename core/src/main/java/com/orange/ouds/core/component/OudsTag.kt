@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
@@ -64,6 +63,7 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
@@ -639,7 +639,7 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
         @Composable
         override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
-            painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
+            painterResource(resource = OudsTheme.drawableResources.component.alert.tickConfirmationFill)
     }
 
     /**
@@ -691,11 +691,11 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter {
             val iconTokens = OudsTheme.componentsTokens.icon
             return when {
-                appearance == OudsTagAppearance.Emphasized || !enabled -> painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)
+                appearance == OudsTagAppearance.Emphasized || !enabled -> painterResource(resource = OudsTheme.drawableResources.component.alert.warningExternalShape)
                 else -> LayeredTintedPainter(
-                    backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                    backPainter = painterResource(resource = OudsTheme.drawableResources.component.alert.warningExternalShape),
                     backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                    frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                    frontPainter = painterResource(resource = OudsTheme.drawableResources.component.alert.warningInternalShape),
                     frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                 )
             }

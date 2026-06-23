@@ -61,6 +61,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Link is a UI element that allows to navigate from one location to another, either within the same page
@@ -282,7 +283,7 @@ private fun OudsLink(
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (icon != null || chevron == OudsLinkChevron.Back) {
-                icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
+                icon.orElse { OudsLinkIcon(painterResource(resource = OudsTheme.drawableResources.component.link.previous)) }.Content(
                     modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
                     extraParameters = ExtraParameters(tint = iconTint)
                 )
@@ -294,7 +295,7 @@ private fun OudsLink(
                 style = textStyle
             )
             if (chevron == OudsLinkChevron.Next) {
-                OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.next)).Content(
+                OudsLinkIcon(painterResource(resource = OudsTheme.drawableResources.component.link.next)).Content(
                     modifier = Modifier
                         .size(iconSize)
                         .fillMaxHeight()

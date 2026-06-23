@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -26,6 +25,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.foundation.extensions.orElse
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Base class for defining the semantic status of an alert component ([OudsInlineAlert] or [OudsAlertMessage]).
@@ -64,15 +64,15 @@ internal sealed class OudsAlertStatus(
         @Composable
         protected fun getDefaultIconPainter(status: OudsAlertStatus): Painter? {
             return when (status) {
-                is Negative -> painterResource(OudsTheme.drawableResources.component.alert.importantFill)
-                is Positive -> painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
-                is Info -> painterResource(OudsTheme.drawableResources.component.alert.infoFill)
+                is Negative -> painterResource(resource = OudsTheme.drawableResources.component.alert.importantFill)
+                is Positive -> painterResource(resource = OudsTheme.drawableResources.component.alert.tickConfirmationFill)
+                is Info -> painterResource(resource = OudsTheme.drawableResources.component.alert.infoFill)
                 is Warning -> {
                     val iconTokens = OudsTheme.componentsTokens.icon
                     LayeredTintedPainter(
-                        backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                        backPainter = painterResource(resource = OudsTheme.drawableResources.component.alert.warningExternalShape),
                         backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                        frontPainter = painterResource(resource = OudsTheme.drawableResources.component.alert.warningInternalShape),
                         frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                     )
                 }

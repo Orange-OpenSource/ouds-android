@@ -26,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.input.ImeAction
@@ -50,6 +49,8 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Password input is a UI element that allows to securely and confidentially capture a user's password.
@@ -348,23 +349,23 @@ object OudsPasswordInputDefaults {
 
 @Composable
 private fun textInputLockIcon() = OudsTextInputLeadingIcon(
-    painter = painterResource(OudsTheme.drawableResources.communication.securityAndSafety.lockClosed),
+    painter = painterResource(resource = OudsTheme.drawableResources.communication.securityAndSafety.lockClosed),
     contentDescription = ""
 )
 
 @Composable
 private fun trailingIconButton(isPasswordHidden: Boolean, onClick: () -> Unit): OudsTextInputTrailingIconButton {
-    val painterResId: Int
+    val painterResource: DrawableResource
     val contentDescriptionResId: Int
     if (isPasswordHidden) {
-        painterResId = OudsTheme.drawableResources.communication.accessibility.vision
+        painterResource = OudsTheme.drawableResources.communication.accessibility.vision
         contentDescriptionResId = R.string.core_passwordInput_showPassword_a11y
     } else {
-        painterResId = OudsTheme.drawableResources.functional.settingsAndTools.accessibilityHide
+        painterResource = OudsTheme.drawableResources.functional.settingsAndTools.accessibilityHide
         contentDescriptionResId = R.string.core_passwordInput_hidePassword_a11y
     }
     return OudsTextInputTrailingIconButton(
-        painter = painterResource(painterResId),
+        painter = painterResource(resource = painterResource),
         contentDescription = stringResource(contentDescriptionResId),
         onClick = onClick
     )

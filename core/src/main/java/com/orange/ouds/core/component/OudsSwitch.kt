@@ -45,7 +45,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -59,6 +58,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Switch is a UI element that allows to toggle between two states, typically "On" and "Off", and used to enable or disable features, options or settings.
@@ -169,7 +169,7 @@ internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modi
                     modifier = Modifier
                         .alpha(switchTokens.opacityCheck.value)
                         .alpha(checkAlpha),
-                    painter = painterResource(id = OudsTheme.drawableResources.component.switch.selected),
+                    painter = painterResource(resource = OudsTheme.drawableResources.component.switch.selected),
                     contentDescription = null,
                     tint = checkColor
                 )

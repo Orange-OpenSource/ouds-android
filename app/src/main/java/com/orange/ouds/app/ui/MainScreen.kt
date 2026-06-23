@@ -57,7 +57,8 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
-import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
+import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
+//import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 import dev.chrisbanes.haze.HazeStyle
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
@@ -67,7 +68,8 @@ import dev.chrisbanes.haze.rememberHazeState
 fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
     MainScreen(
         themeSettings = mainViewModel.getUserThemeSettings().orElse { OudsThemeSettings() },
-        currentThemeName = mainViewModel.getUserThemeName().orElse { ORANGE_THEME_NAME },
+        //currentThemeName = mainViewModel.getUserThemeName().orElse { ORANGE_THEME_NAME },
+        currentThemeName = mainViewModel.getUserThemeName().orElse { WIREFRAME_THEME_NAME },
         onThemeChange = { themeName ->
             mainViewModel.storeUserThemeName(themeName)
         },
@@ -204,7 +206,7 @@ private fun PreviewMainScreen() = AppPreview {
     // See https://issuetracker.google.com/issues/240601093
     MainScreen(
         themeSettings = OudsThemeSettings(),
-        currentThemeName = ORANGE_THEME_NAME,
+        currentThemeName = WIREFRAME_THEME_NAME,//ORANGE_THEME_NAME,
         onThemeChange = {},
         onThemeSettingsChange = {}
     )

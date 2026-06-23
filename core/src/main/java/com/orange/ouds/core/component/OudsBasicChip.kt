@@ -33,7 +33,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -47,6 +46,7 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun OudsBasicChip(
@@ -141,7 +141,7 @@ internal fun OudsBasicChip(
                     tickColor.value?.let { tickColor ->
                         Icon(
                             modifier = Modifier.size(chipTokens.sizeIcon.value * iconScale),
-                            painter = painterResource(id = OudsTheme.drawableResources.component.chip.tick),
+                            painter = painterResource(resource = OudsTheme.drawableResources.component.chip.tick),
                             tint = tickColor,
                             contentDescription = null
                         )

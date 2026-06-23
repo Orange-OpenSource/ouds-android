@@ -103,6 +103,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
@@ -1177,7 +1178,7 @@ internal fun OudsTextInputDecorator(
                             ) {
                                 Icon(
                                     modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
-                                    painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
+                                    painter = painterResource(resource =  OudsTheme.drawableResources.component.alert.importantFill),
                                     contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                                     tint = errorIconColor(state = state)
                                 )

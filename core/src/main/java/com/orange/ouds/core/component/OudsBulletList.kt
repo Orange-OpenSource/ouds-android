@@ -45,7 +45,6 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalResources
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -77,6 +76,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 @DslMarker
 annotation class OudsBulletListDslMarker
@@ -499,7 +499,7 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
                         1 -> OudsTheme.drawableResources.component.bulletList.level1
                         else -> OudsTheme.drawableResources.component.bulletList.level2
                     }
-                    painterResource(iconRes)
+                    painterResource(resource = iconRes)
                 }
             },
             { "" }) {

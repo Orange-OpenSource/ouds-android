@@ -21,15 +21,15 @@ import androidx.compose.runtime.setValue
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-import com.orange.ouds.theme.orange.OrangeFontFamily
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
-import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
-import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
-import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
-import com.orange.ouds.theme.sosh.SoshTheme
+//import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
+//import com.orange.ouds.theme.orange.OrangeFontFamily
+//import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
+//import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
+//import com.orange.ouds.theme.orange.OrangeTheme
+//import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
+//import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
+//import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
+//import com.orange.ouds.theme.sosh.SoshTheme
 import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
 import com.orange.ouds.theme.wireframe.WireframeTheme
 
@@ -37,12 +37,12 @@ import com.orange.ouds.theme.wireframe.WireframeTheme
 fun rememberThemeState(
     settings: OudsThemeSettings = OudsThemeSettings(),
     themeNames: List<String> = listOf(
-        ORANGE_THEME_NAME,
-        ORANGE_COMPACT_THEME_NAME,
-        SOSH_THEME_NAME,
+//        ORANGE_THEME_NAME,
+//        ORANGE_COMPACT_THEME_NAME,
+//        SOSH_THEME_NAME,
         WIREFRAME_THEME_NAME
     ),
-    currentThemeName: String = ORANGE_THEME_NAME,
+    currentThemeName: String = WIREFRAME_THEME_NAME,//ORANGE_THEME_NAME,
     areDownloadableOrangeFontFamiliesPreloaded: Boolean = false
 ) = rememberSaveable(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded, saver = ThemeState.Saver) {
     ThemeState(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded)
@@ -108,7 +108,7 @@ class ThemeState(
 
     private fun getCurrentTheme(name: String): OudsThemeContract {
         return themes.firstOrNull { it.name == name }
-            .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
+            .orElse { themes.firstOrNull { it.name == WIREFRAME_THEME_NAME } }
             .orElse { themes.first() }
     }
 
@@ -116,21 +116,21 @@ class ThemeState(
         return with(settings) {
             names.mapNotNull { name ->
                 when (name) {
-                    ORANGE_THEME_NAME -> OrangeTheme(
-                        orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
-                        roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
-                        roundedCornerButtons = roundedCornerButtons.orElse { false },
-                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
-                        roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
-                    )
-                    ORANGE_COMPACT_THEME_NAME -> OrangeCompactTheme(
-                        orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
-                        roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
-                        roundedCornerButtons = roundedCornerButtons.orElse { false },
-                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
-                        roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
-                    )
-                    SOSH_THEME_NAME -> SoshTheme()
+//                    ORANGE_THEME_NAME -> OrangeTheme(
+//                        orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
+//                        roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
+//                        roundedCornerButtons = roundedCornerButtons.orElse { false },
+//                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
+//                        roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
+//                    )
+//                    ORANGE_COMPACT_THEME_NAME -> OrangeCompactTheme(
+//                        orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
+//                        roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
+//                        roundedCornerButtons = roundedCornerButtons.orElse { false },
+//                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
+//                        roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
+//                    )
+//                    SOSH_THEME_NAME -> SoshTheme()
                     WIREFRAME_THEME_NAME -> WireframeTheme()
                     else -> null
                 }

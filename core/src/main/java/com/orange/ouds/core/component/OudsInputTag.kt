@@ -35,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.LineHeightStyle
@@ -55,6 +54,7 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Input tag is a UI element that allows to enter multiple values, each represented as a tag. As users type
@@ -158,7 +158,7 @@ fun OudsInputTag(
                 )
                 Icon(
                     modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),
-                    painter = painterResource(id = OudsTheme.drawableResources.component.tag.close),
+                    painter = painterResource(resource = OudsTheme.drawableResources.component.tag.close),
                     contentDescription = null,
                     tint = contentColor.value
                 )

@@ -38,7 +38,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -61,6 +60,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
@@ -434,7 +434,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Back(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.navigation.formChevronLeft) },
+        { painterResource(resource = OudsTheme.drawableResources.functional.navigation.formChevronLeft) },
         { stringResource(R.string.core_topAppBar_backNavigationIcon_a11y) },
         onClick
     )
@@ -446,7 +446,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Close(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.actions.deleteCrossRound) },
+        { painterResource(resource = OudsTheme.drawableResources.functional.actions.deleteCrossRound) },
         { stringResource(R.string.core_topAppBar_closeNavigationIcon_a11y) },
         onClick
     )
@@ -458,7 +458,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
     class Menu(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
-        { painterResource(id = OudsTheme.drawableResources.functional.navigation.menuGridUiRound) },
+        { painterResource(resource = OudsTheme.drawableResources.functional.navigation.menuGridUiRound) },
         { stringResource(R.string.core_topAppBar_menuNavigationIcon_a11y) },
         onClick
     )

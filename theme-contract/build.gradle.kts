@@ -41,6 +41,8 @@ kotlin {
         compileSdk = libs.versions.androidCompileSdk.get().toInt()
         minSdk = libs.versions.androidMinSdk.get().toInt()
 
+        androidResources.enable = true
+
         withHostTestBuilder {
         }
 
@@ -86,6 +88,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(libs.compose.components.resources)
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
                 implementation(project(":foundation"))

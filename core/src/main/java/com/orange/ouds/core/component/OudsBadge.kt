@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -62,6 +61,7 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Badge is a UI element that emphasizes system notifications, status, or the categorization of an information,
@@ -543,7 +543,8 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Positive] with its default dedicated icon.
      */
-    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.tickConfirmationFill) }, true))
+    data object Positive :
+        OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(resource = OudsTheme.drawableResources.component.badgeIcon.tickConfirmationFill) }, true))
 
     /**
      * Provides informational context without urgency.
@@ -551,7 +552,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Info] with its default dedicated icon.
      */
-    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.infoFill) }, true))
+    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(resource = OudsTheme.drawableResources.component.badgeIcon.infoFill) }, true))
 
     /**
      * Negatives the user to potential risks or cautionary messages.
@@ -565,9 +566,9 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
                 if (icon.enabled == true) {
                     val iconTokens = OudsTheme.componentsTokens.icon
                     LayeredTintedPainter(
-                        backPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningExternalShape),
+                        backPainter = painterResource(resource = OudsTheme.drawableResources.component.badgeIcon.warningExternalShape),
                         backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningInternalShape),
+                        frontPainter = painterResource(resource = OudsTheme.drawableResources.component.badgeIcon.warningInternalShape),
                         frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
                     )
                 } else {

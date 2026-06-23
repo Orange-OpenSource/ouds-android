@@ -60,6 +60,7 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox that does not show icon or text,
@@ -243,7 +244,7 @@ internal fun OudsCheckboxIndicator(
         indicatorResource?.let { resource ->
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(resource),
+                painter = painterResource(resource = resource),
                 tint = checkColor(state = state, error = error),
                 contentDescription = null
             )
