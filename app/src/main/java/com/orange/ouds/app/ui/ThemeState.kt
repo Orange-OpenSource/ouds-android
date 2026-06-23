@@ -64,17 +64,18 @@ class ThemeState(
             save = { state ->
                 with(state) {
                     listOf(
-                        settings,
+                        with(OudsThemeSettings.Saver) { save(settings) },
                         themeNames,
                         currentThemeName,
                         areDownloadableOrangeFontFamilyPreloaded
                     )
                 }
             },
-            restore = { list ->
+            restore = { list: List<Any?> ->
+                val settings = list[0]?.let { OudsThemeSettings.Saver.restore(it) }
                 @Suppress("UNCHECKED_CAST")
                 ThemeState(
-                    list[0] as OudsThemeSettings,
+                    settings as OudsThemeSettings,
                     list[1] as List<String>,
                     list[2] as String,
                     list[3] as Boolean

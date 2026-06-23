@@ -51,7 +51,7 @@ fun ChangeThemeSettingsDialog(themeState: ThemeState, onThemeSettingsChange: (Ou
 
 @Composable
 private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSettingsChange: (OudsThemeSettings) -> Unit) {
-    var themeSettings by rememberSaveable { mutableStateOf(themeState.settings) }
+    var themeSettings by rememberSaveable(stateSaver = OudsThemeSettings.Saver) { mutableStateOf(themeState.settings) }
     DialogContent(
         title = stringResource(R.string.app_themeSettingsDialog_label)
     ) {

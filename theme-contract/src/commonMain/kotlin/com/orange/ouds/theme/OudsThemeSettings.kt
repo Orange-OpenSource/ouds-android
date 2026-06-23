@@ -12,8 +12,9 @@
 
 package com.orange.ouds.theme
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.compose.runtime.saveable.listSaver
+import com.orange.ouds.theme.OudsThemeSettings.Companion.Saver
+import kotlin.jvm.JvmOverloads
 
 /**
  * Theme settings.
@@ -45,10 +46,36 @@ import kotlinx.parcelize.Parcelize
  *
  * @constructor Creates an instance of [OudsThemeSettings].
  */
-@Parcelize
 data class OudsThemeSettings @JvmOverloads constructor(
     val roundedCornerButtons: Boolean? = null,
     val roundedCornerTextInputs: Boolean? = null,
     val roundedCornerAlertMessages: Boolean? = null,
     val roundedCornerProgressIndicators: Boolean? = null
-) : Parcelable
+) {
+    companion object {
+
+        /**
+         * [Saver] implementation for [OudsThemeSettings] to support saving/restoring state in Compose.
+         */
+        val Saver = listSaver(
+            save = { settings ->
+                with(settings) {
+                    listOf(
+                        roundedCornerButtons,
+                        roundedCornerTextInputs,
+                        roundedCornerAlertMessages,
+                        roundedCornerProgressIndicators
+                    )
+                }
+            },
+            restore = { list ->
+                OudsThemeSettings(
+                    roundedCornerButtons = list[0] as Boolean,
+                    roundedCornerTextInputs = list[1] as Boolean,
+                    roundedCornerAlertMessages = list[2] as Boolean,
+                    roundedCornerProgressIndicators = list[3] as Boolean
+                )
+            }
+        )
+    }
+}
