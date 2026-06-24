@@ -218,6 +218,7 @@
     <string name="app_components_button_tech" translatable="false">Button</string>
     <string name="app_components_button_description_text">Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.</string>
     <string name="app_components_button_button_tech" translatable="false">Button</string>
+    <string name="app_components_button_button_defaultSize_tech" translatable="false">Default</string>
     <string name="app_components_button_navigationButton_tech" translatable="false">Navigation button</string>
     <string name="app_components_button_navigationButton_chevron_tech" translatable="false">Chevron</string>
 

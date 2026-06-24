@@ -37,6 +37,7 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsSmallButton
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -83,6 +84,13 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_size_tech),
+            chipLabels = ButtonDemoState.Size.entries.map { stringResource(it.labelRes) },
+            selectedChipIndex = ButtonDemoState.Size.entries.indexOf(size),
+            onSelectionChange = { index -> size = ButtonDemoState.Size.entries[index] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_tech),
             chipLabels = ButtonDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = ButtonDemoState.Layout.entries.indexOf(layout),
@@ -118,18 +126,17 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             tinted = icon == ButtonDemoState.Icon.Tinted
         )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
-        when (layout) {
-            ButtonDemoState.Layout.TextOnly -> {
-                OudsButton(
+
+        when (size) {
+            ButtonDemoState.Size.Default -> when (layout) {
+                ButtonDemoState.Layout.TextOnly -> OudsButton(
                     label = label,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance
                 )
-            }
-            ButtonDemoState.Layout.TextAndIcon -> {
-                OudsButton(
+                ButtonDemoState.Layout.TextAndIcon -> OudsButton(
                     icon = buttonIcon,
                     label = label,
                     onClick = {},
@@ -137,9 +144,31 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     loader = loader,
                     appearance = appearance
                 )
+                ButtonDemoState.Layout.IconOnly -> OudsButton(
+                    icon = buttonIcon,
+                    onClick = {},
+                    enabled = enabled,
+                    loader = loader,
+                    appearance = appearance
+                )
             }
-            ButtonDemoState.Layout.IconOnly -> {
-                OudsButton(
+            ButtonDemoState.Size.Small -> when (layout) {
+                ButtonDemoState.Layout.TextOnly -> OudsSmallButton(
+                    label = label,
+                    onClick = {},
+                    enabled = enabled,
+                    loader = loader,
+                    appearance = appearance
+                )
+                ButtonDemoState.Layout.TextAndIcon -> OudsSmallButton(
+                    icon = buttonIcon,
+                    label = label,
+                    onClick = {},
+                    enabled = enabled,
+                    loader = loader,
+                    appearance = appearance
+                )
+                ButtonDemoState.Layout.IconOnly -> OudsSmallButton(
                     icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
@@ -154,9 +183,18 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
 private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         coloredBoxCall(onColoredBox) {
-            functionCall("OudsButton") {
+            val functionName = when (size) {
+                ButtonDemoState.Size.Default -> "OudsButton"
+                ButtonDemoState.Size.Small -> "OudsSmallButton"
+            }
+            functionCall(functionName) {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
-                    iconArgument<OudsButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, icon == ButtonDemoState.Icon.Tinted)
+                    iconArgument<OudsButtonIcon>(
+                        "icon",
+                        themeDrawableResources.tipsAndTricks,
+                        R.string.app_components_common_icon_a11y,
+                        icon == ButtonDemoState.Icon.Tinted
+                    )
                 }
                 if (layout in listOf(ButtonDemoState.Layout.TextOnly, ButtonDemoState.Layout.TextAndIcon)) {
                     labelArgument(label)
