@@ -14,7 +14,6 @@ package com.orange.ouds.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.intl.Locale
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
@@ -78,10 +77,10 @@ interface OudsThemeContract {
      * Defaults to [FontFamily.Default] (system font).
      * You can provide a custom font family, for example: `FontFamily(Font(R.font.my_custom_font))`.
      *
-     * @param locale The locale to use for the font family.
+     * @param language The language to use for the font family.
      */
     @Composable
-    fun getFontFamily(locale: Locale): FontFamily = FontFamily.Default
+    fun getFontFamily(language: String): FontFamily = FontFamily.Default
 
     /**
      * The collection of typography semantic tokens (font sizes, weights, line heights) used in the theme.

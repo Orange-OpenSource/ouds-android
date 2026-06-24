@@ -20,6 +20,12 @@ plugins {
 kotlin {
     jvmToolchain(17)
 
+    compilerOptions {
+        freeCompilerArgs.addAll(
+            "-Xexpect-actual-classes"
+        )
+    }
+
     // Target declarations - add or remove as needed below. These define
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
@@ -91,6 +97,7 @@ kotlin {
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
                 api(libs.androidx.compose.ui.tooling.preview)
+                implementation(libs.androidx.core)
             }
         }
 

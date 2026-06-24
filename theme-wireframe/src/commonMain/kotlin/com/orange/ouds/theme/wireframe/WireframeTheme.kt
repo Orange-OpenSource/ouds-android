@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.intl.Locale
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -107,7 +106,7 @@ class WireframeTheme : OudsThemeContract {
         get() = WireframeDrawableResources()
 
     @Composable
-    override fun getFontFamily(locale: Locale): FontFamily {
+    override fun getFontFamily(language: String): FontFamily {
         return FontFamily(
             Font(resource = Res.font.shantellsans_extrabold, weight = FontWeight.ExtraBold),
             Font(resource = Res.font.shantellsans_extrabolditalic, weight = FontWeight.ExtraBold, style = FontStyle.Italic),
