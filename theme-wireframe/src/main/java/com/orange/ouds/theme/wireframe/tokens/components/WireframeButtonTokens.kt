@@ -91,6 +91,8 @@ internal data class WireframeButtonTokens(
     override val sizeIconOnlyDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
     override val sizeIconOnlySmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     override val sizeIconSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
+    @Deprecated("")
+    override val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     override val sizeMaxWidthHeightIconOnlyDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveAreaDefault,
     override val sizeMaxWidthHeightIconOnlySmall: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveAreaSmall,
     override val sizeMinHeightDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveAreaDefault,

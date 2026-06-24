@@ -115,5 +115,7 @@ internal data class OrangeSizeSemanticTokens(
     override val maxWidthLabelSmallTablet: Float = OudsDimensionRawTokens.Dimension6000,
     override val maxWidthLabelXlargeMobile: Float = OudsDimensionRawTokens.Dimension6000,
     override val maxWidthLabelXlargeTablet: Float = OudsDimensionRawTokens.Dimension6000,
-    override val minInteractiveArea: Float = OudsDimensionRawTokens.Dimension600
+    override val minInteractiveArea: Float = OudsDimensionRawTokens.Dimension600,
+    override val minInteractiveAreaDefault: Float = OudsDimensionRawTokens.Dimension600,
+    override val minInteractiveAreaSmall: Float = OudsDimensionRawTokens.Dimension500
 ) : OudsSizeSemanticTokens

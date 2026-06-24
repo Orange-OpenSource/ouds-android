@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
@@ -33,6 +34,7 @@ import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
@@ -57,6 +59,7 @@ data class OudsComponents internal constructor(
     val link: Link,
     val linkMonochrome: LinkMonochrome,
     val pinCodeInput: PinCodeInput,
+    val progressIndicator: ProgressIndicator,
     val radioButton: RadioButton,
     val switch: Switch,
     val tag: Tag,
@@ -337,6 +340,7 @@ data class OudsComponents internal constructor(
 
             @ConsistentCopyVisibility
             data class Radius internal constructor(
+                @ExperimentalOudsApi val aiIconOnly: Dp,
                 val default: Dp,
                 val rounded: Dp,
                 val social: Dp
@@ -344,6 +348,8 @@ data class OudsComponents internal constructor(
 
             @ConsistentCopyVisibility
             data class Width internal constructor(
+                @ExperimentalOudsApi val ai: Dp,
+                @ExperimentalOudsApi val aiInteraction: Dp,
                 val default: Dp,
                 val defaultInteraction: Dp,
                 val defaultInteractionMonochrome: Dp
@@ -361,7 +367,8 @@ data class OudsComponents internal constructor(
             data class Background internal constructor(
                 val brand: Brand,
                 val default: Default,
-                val minimal: Minimal
+                val minimal: Minimal,
+                val ai: Ai
             ) {
 
                 @ConsistentCopyVisibility
@@ -389,15 +396,38 @@ data class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color
                 )
+
+                @ConsistentCopyVisibility
+                @ExperimentalOudsApi
+                data class Ai internal constructor(
+                    val enabled: androidx.compose.ui.graphics.Color,
+                    val hover: androidx.compose.ui.graphics.Color,
+                    val pressed: androidx.compose.ui.graphics.Color,
+                    val loading: androidx.compose.ui.graphics.Color,
+                    val disabled: androidx.compose.ui.graphics.Color,
+                    val focus: androidx.compose.ui.graphics.Color
+                )
             }
 
             @ConsistentCopyVisibility
             data class Border internal constructor(
-                val default: Default
+                val default: Default,
+                val ai: Ai
             ) {
 
                 @ConsistentCopyVisibility
                 data class Default internal constructor(
+                    val enabled: androidx.compose.ui.graphics.Color,
+                    val hover: androidx.compose.ui.graphics.Color,
+                    val pressed: androidx.compose.ui.graphics.Color,
+                    val loading: androidx.compose.ui.graphics.Color,
+                    val disabled: androidx.compose.ui.graphics.Color,
+                    val focus: androidx.compose.ui.graphics.Color
+                )
+
+                @ConsistentCopyVisibility
+                @ExperimentalOudsApi
+                data class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -411,7 +441,8 @@ data class OudsComponents internal constructor(
             data class Content internal constructor(
                 val brand: Brand,
                 val default: Default,
-                val minimal: Minimal
+                val minimal: Minimal,
+                val ai: Ai
             ) {
 
                 @ConsistentCopyVisibility
@@ -442,42 +473,95 @@ data class OudsComponents internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color
                 )
+
+                @ConsistentCopyVisibility
+                @ExperimentalOudsApi
+                data class Ai internal constructor(
+                    val enabled: androidx.compose.ui.graphics.Color,
+                    val hover: androidx.compose.ui.graphics.Color,
+                    val pressed: androidx.compose.ui.graphics.Color,
+                    val loading: androidx.compose.ui.graphics.Color,
+                    val disabled: androidx.compose.ui.graphics.Color,
+                    val focus: androidx.compose.ui.graphics.Color
+                )
             }
         }
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
             val icon: Dp,
+            @ExperimentalOudsApi val iconDefault: Dp,
+            @ExperimentalOudsApi val iconSmall: Dp,
             val iconOnly: Dp,
-            val loader: Dp,
+            @ExperimentalOudsApi val iconOnlyDefault: Dp,
+            @ExperimentalOudsApi val iconOnlySmall: Dp,
+            @Deprecated("This token has been removed.") val loader: Dp,
             val maxHeightIconOnly: Dp,
+            @ExperimentalOudsApi val maxWidthHeightIconOnlyDefault: Dp,
+            @ExperimentalOudsApi val maxWidthHeightIconOnlySmall: Dp,
             val minHeight: Dp,
-            val minWidth: Dp
+            @ExperimentalOudsApi val minHeightDefault: Dp,
+            @ExperimentalOudsApi val minHeightSmall: Dp,
+            val minWidth: Dp,
+            @ExperimentalOudsApi val minWidthDefault: Dp,
+            @ExperimentalOudsApi val minWidthSmall: Dp,
+            @ExperimentalOudsApi val progressIndicatorDefault: Dp,
+            @ExperimentalOudsApi val progressIndicatorSmall: Dp
         )
 
         @ConsistentCopyVisibility
         data class Space internal constructor(
             val columnGap: ColumnGap,
             val insetIconOnly: Dp,
+            val inset: Inset,
             val paddingBlock: Dp,
+            @ExperimentalOudsApi val paddingBlockDefault: Dp,
+            @ExperimentalOudsApi val paddingBlockSmall: Dp,
             val paddingInline: PaddingInline
         ) {
 
             @ConsistentCopyVisibility
             data class ColumnGap internal constructor(
                 val chevron: Dp,
+                @ExperimentalOudsApi val chevronDefault: Dp,
+                @ExperimentalOudsApi val chevronSmall: Dp,
                 val icon: Dp,
-                val iconChevron: Dp
+                @ExperimentalOudsApi val iconDefault: Dp,
+                @ExperimentalOudsApi val iconSmall: Dp,
+                val iconChevron: Dp,
+                @ExperimentalOudsApi val iconChevronDefault: Dp,
+                @ExperimentalOudsApi val iconChevronSmall: Dp
+            )
+
+            @ConsistentCopyVisibility
+            @ExperimentalOudsApi
+            data class Inset internal constructor(
+                val iconOnlyDefault: Dp,
+                val iconOnlySmall: Dp,
+                val progressIndicatorOnlyDefault: Dp,
+                val progressIndicatorOnlySmall: Dp
             )
 
             @ConsistentCopyVisibility
             data class PaddingInline internal constructor(
                 val chevronEnd: Dp,
+                @ExperimentalOudsApi val chevronEndDefault: Dp,
+                @ExperimentalOudsApi val chevronEndSmall: Dp,
                 val chevronStart: Dp,
+                @ExperimentalOudsApi val chevronStartDefault: Dp,
+                @ExperimentalOudsApi val chevronStartSmall: Dp,
                 val endIconStart: Dp,
+                @ExperimentalOudsApi val endIconStartDefault: Dp,
+                @ExperimentalOudsApi val endIconStartSmall: Dp,
                 val iconNone: Dp,
+                @ExperimentalOudsApi val iconNoneDefault: Dp,
+                @ExperimentalOudsApi val iconNoneSmall: Dp,
                 val iconStart: Dp,
-                val startIconEnd: Dp
+                @ExperimentalOudsApi val iconStartDefault: Dp,
+                @ExperimentalOudsApi val iconStartSmall: Dp,
+                val startIconEnd: Dp,
+                @ExperimentalOudsApi val startIconEndDefault: Dp,
+                @ExperimentalOudsApi val startIconEndSmall: Dp
             )
         }
     }
@@ -1120,6 +1204,48 @@ data class OudsComponents internal constructor(
     }
 
     @ConsistentCopyVisibility
+    data class ProgressIndicator internal constructor(
+        val border: Border,
+        val color: Color,
+        val size: Size,
+        val space: Space
+    ) {
+
+        @ConsistentCopyVisibility
+        data class Border internal constructor(
+            val radius: Radius
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Radius internal constructor(
+                val default: Dp,
+                val rounded: Dp
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Color internal constructor(
+            val content: Content
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Content internal constructor(
+                val track: androidx.compose.ui.graphics.Color
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Size internal constructor(
+            val linearIndicatorHeight: Dp
+        )
+
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
+            val paddingBlock: Dp
+        )
+    }
+
+    @ConsistentCopyVisibility
     data class RadioButton internal constructor(
         val border: Border,
         val size: Size
@@ -1424,6 +1550,7 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         link = link.getLink(),
         linkMonochrome = linkMonochrome.getLinkMonochrome(),
         pinCodeInput = pinCodeInput.getPinCodeInput(),
+        progressIndicator = progressIndicator.getProgressIndicator(),
         radioButton = radioButton.getRadioButton(),
         switch = switch.getSwitch(),
         tag = tag.getTag(),
@@ -1587,11 +1714,14 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
     return OudsComponents.Button(
         border = OudsComponents.Button.Border(
             radius = OudsComponents.Button.Border.Radius(
+                aiIconOnly = borderRadiusAiIconOnly.value,
                 default = borderRadiusDefault.value,
                 rounded = borderRadiusRounded.value,
                 social = borderRadiusSocial.value
             ),
             width = OudsComponents.Button.Border.Width(
+                ai = borderWidthAi.value,
+                aiInteraction = borderWidthAiInteraction.value,
                 default = borderWidthDefault.value,
                 defaultInteraction = borderWidthDefaultInteraction.value,
                 defaultInteractionMonochrome = borderWidthDefaultInteractionMono.value
@@ -1618,6 +1748,14 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
                     hover = colorBgMinimalHover.value,
                     pressed = colorBgMinimalPressed.value,
                     focus = colorBgMinimalFocus.value
+                ),
+                ai = OudsComponents.Button.Color.Background.Ai(
+                    enabled = colorBgAiEnabled.value,
+                    hover = colorBgAiHover.value,
+                    pressed = colorBgAiPressed.value,
+                    loading = colorBgAiLoading.value,
+                    disabled = colorBgAiDisabled.value,
+                    focus = colorBgAiFocus.value
                 )
             ),
             border = OudsComponents.Button.Color.Border(
@@ -1628,6 +1766,14 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
                     loading = colorBorderDefaultLoading.value,
                     disabled = colorBorderDefaultDisabled.value,
                     focus = colorBorderDefaultFocus.value
+                ),
+                ai = OudsComponents.Button.Color.Border.Ai(
+                    enabled = colorBorderAiEnabled.value,
+                    hover = colorBorderAiHover.value,
+                    pressed = colorBorderAiPressed.value,
+                    loading = colorBorderAiLoading.value,
+                    disabled = colorBorderAiDisabled.value,
+                    focus = colorBorderAiFocus.value
                 )
             ),
             content = OudsComponents.Button.Color.Content(
@@ -1653,32 +1799,78 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
                     loading = colorContentMinimalLoading.value,
                     disabled = colorContentMinimalDisabled.value,
                     focus = colorContentMinimalFocus.value
+                ),
+                ai = OudsComponents.Button.Color.Content.Ai(
+                    enabled = colorContentAiEnabled.value,
+                    hover = colorContentAiHover.value,
+                    pressed = colorContentAiPressed.value,
+                    loading = colorContentAiLoading.value,
+                    disabled = colorContentAiDisabled.value,
+                    focus = colorContentAiFocus.value
                 )
             )
         ),
         size = OudsComponents.Button.Size(
-            icon = sizeIcon.value,
-            iconOnly = sizeIconOnly.value,
-            loader = sizeLoader.value,
-            maxHeightIconOnly = sizeMaxHeightIconOnly.value,
-            minHeight = sizeMinHeight.value,
-            minWidth = sizeMinWidth.value
+            icon = sizeIconDefault.value,
+            iconDefault = sizeIconDefault.value,
+            iconSmall = sizeIconSmall.value,
+            iconOnly = sizeIconOnlyDefault.value,
+            iconOnlyDefault = sizeIconOnlyDefault.value,
+            iconOnlySmall = sizeIconOnlySmall.value,
+            loader = @Suppress("DEPRECATION") sizeLoader.value,
+            maxHeightIconOnly = sizeMaxWidthHeightIconOnlyDefault.value,
+            maxWidthHeightIconOnlyDefault = sizeMaxWidthHeightIconOnlyDefault.value,
+            maxWidthHeightIconOnlySmall = sizeMaxWidthHeightIconOnlySmall.value,
+            minHeight = sizeMinHeightDefault.value,
+            minHeightDefault = sizeMinHeightDefault.value,
+            minHeightSmall = sizeMinHeightSmall.value,
+            minWidth = sizeMinWidthDefault.value,
+            minWidthDefault = sizeMinWidthDefault.value,
+            minWidthSmall = sizeMinWidthSmall.value,
+            progressIndicatorDefault = sizeProgressIndicatorDefault.value,
+            progressIndicatorSmall = sizeProgressIndicatorSmall.value
         ),
         space = OudsComponents.Button.Space(
             columnGap = OudsComponents.Button.Space.ColumnGap(
-                chevron = spaceColumnGapChevron.value,
-                icon = spaceColumnGapIcon.value,
-                iconChevron = spaceColumnGapIconChevron.value
+                chevron = spaceColumnGapChevronDefault.value,
+                chevronDefault = spaceColumnGapChevronDefault.value,
+                chevronSmall = spaceColumnGapChevronSmall.value,
+                icon = spaceColumnGapIconDefault.value,
+                iconDefault = spaceColumnGapIconDefault.value,
+                iconSmall = spaceColumnGapIconSmall.value,
+                iconChevron = spaceColumnGapIconChevronDefault.value,
+                iconChevronDefault = spaceColumnGapIconChevronDefault.value,
+                iconChevronSmall = spaceColumnGapIconChevronSmall.value
             ),
-            insetIconOnly = spaceInsetIconOnly.value,
-            paddingBlock = spacePaddingBlock.value,
+            insetIconOnly = spaceInsetIconOnlyDefault.value,
+            inset = OudsComponents.Button.Space.Inset(
+                iconOnlyDefault = spaceInsetIconOnlyDefault.value,
+                iconOnlySmall = spaceInsetIconOnlySmall.value,
+                progressIndicatorOnlyDefault = spaceInsetProgressIndicartorOnlyDefault.value,
+                progressIndicatorOnlySmall = spaceInsetProgressIndicartorOnlySmall.value
+            ),
+            paddingBlock = spacePaddingBlockDefault.value,
+            paddingBlockDefault = spacePaddingBlockDefault.value,
+            paddingBlockSmall = spacePaddingBlockSmall.value,
             paddingInline = OudsComponents.Button.Space.PaddingInline(
-                chevronEnd = spacePaddingInlineChevronEnd.value,
-                chevronStart = spacePaddingInlineChevronStart.value,
-                endIconStart = spacePaddingInlineEndIconStart.value,
-                iconNone = spacePaddingInlineIconNone.value,
-                iconStart = spacePaddingInlineIconStart.value,
-                startIconEnd = spacePaddingInlineStartIconEnd.value
+                chevronEnd = spacePaddingInlineChevronEndDefault.value,
+                chevronEndDefault = spacePaddingInlineChevronEndDefault.value,
+                chevronEndSmall = spacePaddingInlineChevronEndSmall.value,
+                chevronStart = spacePaddingInlineChevronStartDefault.value,
+                chevronStartDefault = spacePaddingInlineChevronStartDefault.value,
+                chevronStartSmall = spacePaddingInlineChevronStartSmall.value,
+                endIconStart = spacePaddingInlineEndIconStartDefault.value,
+                endIconStartDefault = spacePaddingInlineEndIconStartDefault.value,
+                endIconStartSmall = spacePaddingInlineEndIconStartSmall.value,
+                iconNone = spacePaddingInlineIconNoneDefault.value,
+                iconNoneDefault = spacePaddingInlineIconNoneDefault.value,
+                iconNoneSmall = spacePaddingInlineIconNoneSmall.value,
+                iconStart = spacePaddingInlineIconStartDefault.value,
+                iconStartDefault = spacePaddingInlineIconStartDefault.value,
+                iconStartSmall = spacePaddingInlineIconStartSmall.value,
+                startIconEnd = spacePaddingInlineStartIconEndDefault.value,
+                startIconEndDefault = spacePaddingInlineStartIconEndDefault.value,
+                startIconEndSmall = spacePaddingInlineStartIconEndSmall.value
             )
         )
     )
@@ -2080,6 +2272,29 @@ private fun OudsPinCodeInputTokens.getPinCodeInput(): OudsComponents.PinCodeInpu
         ),
         space = OudsComponents.PinCodeInput.Space(
             columnGapDigitInput = spaceColumnGapDigitInput.value
+        )
+    )
+}
+
+@Composable
+private fun OudsProgressIndicatorTokens.getProgressIndicator(): OudsComponents.ProgressIndicator {
+    return OudsComponents.ProgressIndicator(
+        border = OudsComponents.ProgressIndicator.Border(
+            radius = OudsComponents.ProgressIndicator.Border.Radius(
+                default = borderRadiusDefault.value,
+                rounded = borderRadiusRounded.value
+            )
+        ),
+        color = OudsComponents.ProgressIndicator.Color(
+            content = OudsComponents.ProgressIndicator.Color.Content(
+                track = colorContentTrack.value
+            )
+        ),
+        size = OudsComponents.ProgressIndicator.Size(
+            linearIndicatorHeight = sizeLinearIndicatorHeight.dp
+        ),
+        space = OudsComponents.ProgressIndicator.Space(
+            paddingBlock = spacePaddingBlock.value
         )
     )
 }

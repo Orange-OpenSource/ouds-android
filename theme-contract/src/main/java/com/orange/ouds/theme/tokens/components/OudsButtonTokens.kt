@@ -92,6 +92,8 @@ interface OudsButtonTokens {
     val sizeIconOnlyDefault: OudsSizeKeyToken.Icon
     val sizeIconOnlySmall: OudsSizeKeyToken.Icon
     val sizeIconSmall: OudsSizeKeyToken.Icon
+    @Deprecated("")
+    val sizeLoader: OudsSizeKeyToken.Icon
     val sizeMaxWidthHeightIconOnlyDefault: OudsSizeKeyToken
     val sizeMaxWidthHeightIconOnlySmall: OudsSizeKeyToken
     val sizeMinHeightDefault: OudsSizeKeyToken
