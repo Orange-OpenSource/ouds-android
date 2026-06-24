@@ -23,6 +23,7 @@ import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -208,6 +209,24 @@ internal fun PreviewOudsNavigationButton(
         }
     }
 }
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsNavigationButtonWithRoundedCorners() = PreviewOudsNavigationButtonWithRoundedCorners(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsNavigationButtonWithRoundedCorners(theme: OudsThemeContract) =
+    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
+        val appearance = OudsNavigationButtonAppearance.Default
+        PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
+            OudsNavigationButton(
+                label = appearance.name,
+                onClick = {},
+                appearance = appearance
+            )
+        }
+    }
 
 @OudsPreview
 @Composable

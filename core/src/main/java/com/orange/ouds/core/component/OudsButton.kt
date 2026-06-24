@@ -81,6 +81,9 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import com.orange.ouds.theme.tokens.OudsKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
@@ -89,6 +92,9 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * This version of the button uses the *text only* layout, which is the most common layout.
  * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * This is the default size of the component. This size is used for the vast majority of applications.
+ * A small size is also available via [OudsSmallButton].
  *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
@@ -100,7 +106,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * > Design name: Button
  *
- * > Design version: 3.2.0
+ * > Design version: 3.3.0
  *
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -147,6 +153,9 @@ fun OudsButton(
  * This version of the button uses the *icon only* layout, which is typically used in business or back-office interfaces. It is rarely used alone (usually part of a group of elements).
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
+ * This is the default size of the component. This size is used for the vast majority of applications.
+ * A small size is also available via [OudsSmallButton].
+ *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
@@ -157,7 +166,7 @@ fun OudsButton(
  *
  * > Design name: Button
  *
- * > Design version: 3.2.0
+ * > Design version: 3.3.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -207,6 +216,9 @@ fun OudsButton(
  * "Play" button is standard in the context of TV or video streaming).
  * Other layouts are available for this component: *text only* and *icon only*.
  *
+ * This is the default size of the component. This size is used for the vast majority of applications.
+ * A small size is also available via [OudsSmallButton].
+ *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
  * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
  *
@@ -217,7 +229,7 @@ fun OudsButton(
  *
  * > Design name: Button
  *
- * > Design version: 3.2.0
+ * > Design version: 3.3.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
@@ -273,6 +285,7 @@ internal fun OudsButton(
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     iconOnlyBadge: OudsButtonIconBadge? = null,
+    size: OudsButtonSize = OudsButtonSize.Default,
     interactionSource: MutableInteractionSource? = null
 ) {
     val icon = nullableIcon
@@ -289,7 +302,15 @@ internal fun OudsButton(
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
-        val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxWidthHeightIconOnlyDefault.value * iconScale else Dp.Unspecified
+
+        val minWidth = getSize(size = size, default = buttonTokens.sizeMinWidthDefault, small = buttonTokens.sizeMinWidthSmall)
+        val minHeight = getSize(size = size, default = buttonTokens.sizeMinHeightDefault, small = buttonTokens.sizeMinHeightSmall)
+        val maxHeight = if (icon != null && label == null) {
+            getSize(size = size, default = buttonTokens.sizeMaxWidthHeightIconOnlyDefault, small = buttonTokens.sizeMaxWidthHeightIconOnlySmall) * iconScale
+        } else {
+            Dp.Unspecified
+        }
+
         val borderRadius = if (LocalThemeSettings.current.roundedCornerButtons == true) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
@@ -317,8 +338,8 @@ internal fun OudsButton(
 
         Box(
             modifier = modifier
-                .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = maxHeight)
+                .widthIn(min = minWidth)
+                .heightIn(min = minHeight, max = maxHeight)
                 .background(color = backgroundColor.value, shape = shape)
                 .run {
                     ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
@@ -345,7 +366,7 @@ internal fun OudsButton(
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
-            val paddingValues = contentPadding(component = component, icon = icon, label = label)
+            val paddingValues = contentPadding(component = component, icon = icon, label = label, size = size)
             Row(
                 modifier = Modifier
                     .alpha(alpha = alpha)
@@ -361,11 +382,15 @@ internal fun OudsButton(
                 }
 
                 if (icon != null) {
-                    val size = if (label == null) buttonTokens.sizeIconOnlyDefault else buttonTokens.sizeIconDefault
+                    val iconSize = getSize(
+                        size = size,
+                        default = if (label == null) buttonTokens.sizeIconOnlyDefault else buttonTokens.sizeIconDefault,
+                        small = if (label == null) buttonTokens.sizeIconOnlySmall else buttonTokens.sizeIconSmall
+                    )
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
-                                .iconSize(size.value * iconScale, icon.tinted)
+                                .iconSize(iconSize * iconScale, icon.tinted)
                                 .semantics {
                                     contentDescription = when (label) {
                                         // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
@@ -389,7 +414,7 @@ internal fun OudsButton(
                             return@with buttonEndPadding - maximumBorderWidth - iconBadgeEndPadding
                         }
                         OudsBadgedIcon(
-                            modifier = Modifier.size(size.value * iconScale),
+                            modifier = Modifier.size(iconSize * iconScale),
                             badgeCount = iconOnlyBadge.count,
                             badgeBorderColor = iconOnlyBadge.borderColor,
                             badgeMaximumEndOverflow = maximumEndOverflow,
@@ -667,22 +692,22 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
 }
 
 @Composable
-private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?): PaddingValues {
+private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?, size: OudsButtonSize): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
         when (component) {
             is OudsButtonComponent.Button -> when {
                 icon != null && label != null -> PaddingValues(
-                    start = spacePaddingInlineIconStartDefault.value,
-                    top = spacePaddingBlockDefault.value,
-                    end = spacePaddingInlineEndIconStartDefault.value,
-                    bottom = spacePaddingBlockDefault.value
+                    start = getSpace(size = size, default = spacePaddingInlineIconStartDefault, small = spacePaddingInlineIconStartSmall),
+                    top = getSpace(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall),
+                    end = getSpace(size = size, default = spacePaddingInlineEndIconStartDefault, small = spacePaddingInlineEndIconStartSmall),
+                    bottom = getSpace(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
                 )
                 icon != null && label == null -> PaddingValues(
-                    all = spaceInsetIconOnlyDefault.value,
+                    all = getSpace(size = size, default = spaceInsetIconOnlyDefault, small = spaceInsetIconOnlySmall),
                 )
                 else -> PaddingValues(
-                    horizontal = spacePaddingInlineIconNoneDefault.value,
-                    vertical = spacePaddingBlockDefault.value
+                    horizontal = getSpace(size = size, default = spacePaddingInlineIconNoneDefault, small = spacePaddingInlineIconNoneSmall),
+                    vertical = getSpace(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
                 )
             }
             is OudsButtonComponent.NavigationButton -> when {
@@ -691,22 +716,22 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                     val endPadding: Dp
                     when (component.chevron) {
                         OudsNavigationButtonChevron.Next -> {
-                            startPadding = spacePaddingInlineStartIconEndDefault.value
-                            endPadding = spacePaddingInlineChevronEndDefault.value
+                            startPadding = getSpace(size = size, default = spacePaddingInlineStartIconEndDefault, small = spacePaddingInlineStartIconEndSmall)
+                            endPadding = getSpace(size = size, default = spacePaddingInlineChevronEndDefault, small = spacePaddingInlineChevronEndSmall)
                         }
                         OudsNavigationButtonChevron.Previous -> {
-                            startPadding = spacePaddingInlineChevronStartDefault.value
-                            endPadding = spacePaddingInlineEndIconStartDefault.value
+                            startPadding = getSpace(size = size, default = spacePaddingInlineChevronStartDefault, small = spacePaddingInlineChevronStartSmall)
+                            endPadding = getSpace(size = size, default = spacePaddingInlineEndIconStartDefault, small = spacePaddingInlineEndIconStartSmall)
                         }
                     }
                     PaddingValues(
                         start = startPadding,
-                        top = spacePaddingBlockDefault.value,
+                        top = getSpace(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall),
                         end = endPadding,
-                        bottom = spacePaddingBlockDefault.value
+                        bottom = getSpace(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
                     )
                 }
-                else -> PaddingValues(all = spaceInsetIconOnlyDefault.value)
+                else -> PaddingValues(all = getSpace(size = size, default = spaceInsetIconOnlyDefault, small = spaceInsetIconOnlySmall))
             }
         }
     }
@@ -720,6 +745,19 @@ private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?
     val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
 
     InternalOudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
+}
+
+@Composable
+private fun <T> getSize(size: OudsButtonSize, default: T, small: T): Dp where T : OudsSizeKeyToken = getKeyToken(size, default, small).value
+
+@Composable
+private fun <T> getSpace(size: OudsButtonSize, default: T, small: T): Dp where T : OudsSpaceKeyToken = getKeyToken(size, default, small).value
+
+private fun <T> getKeyToken(size: OudsButtonSize, default: T, small: T): T where T : OudsKeyToken {
+    return when (size) {
+        OudsButtonSize.Default -> default
+        OudsButtonSize.Small -> small
+    }
 }
 
 /**
@@ -873,6 +911,11 @@ internal sealed interface OudsButtonComponent {
     }
 }
 
+internal enum class OudsButtonSize {
+
+    Default, Small
+}
+
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
@@ -891,12 +934,25 @@ internal fun PreviewOudsButton(
         val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
-                OudsButton(
-                    nullableIcon = icon,
-                    nullableLabel = label,
-                    onClick = {},
-                    appearance = appearance
-                )
+                when {
+                    icon != null && label != null -> OudsButton(
+                        icon = icon,
+                        label = label,
+                        onClick = {},
+                        appearance = appearance
+                    )
+                    icon != null -> OudsButton(
+                        icon = icon,
+                        onClick = {},
+                        appearance = appearance
+                    )
+                    label != null -> OudsButton(
+                        label = label,
+                        onClick = {},
+                        appearance = appearance
+                    )
+                    else -> {}
+                }
             }
         }
         if (onColoredBox) {
@@ -920,8 +976,8 @@ internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) =
         val appearance = OudsButtonAppearance.Default
         PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
             OudsButton(
-                nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
-                nullableLabel = appearance.name,
+                icon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+                label = appearance.name,
                 onClick = {},
                 appearance = appearance
             )
