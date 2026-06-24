@@ -289,7 +289,7 @@ internal fun OudsButton(
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
-        val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxHeightIconOnly.value * iconScale else Dp.Unspecified
+        val maxHeight = if (icon != null && label == null) buttonTokens.sizeMaxWidthHeightIconOnlyDefault.value * iconScale else Dp.Unspecified
         val borderRadius = if (LocalThemeSettings.current.roundedCornerButtons == true) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
         val shape = RoundedCornerShape(borderRadius.value)
 
@@ -317,8 +317,8 @@ internal fun OudsButton(
 
         Box(
             modifier = modifier
-                .widthIn(min = buttonTokens.sizeMinWidth.value)
-                .heightIn(min = buttonTokens.sizeMinHeight.value, max = maxHeight)
+                .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
+                .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = maxHeight)
                 .background(color = backgroundColor.value, shape = shape)
                 .run {
                     ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
@@ -361,7 +361,7 @@ internal fun OudsButton(
                 }
 
                 if (icon != null) {
-                    val size = if (label == null) buttonTokens.sizeIconOnly else buttonTokens.sizeIcon
+                    val size = if (label == null) buttonTokens.sizeIconOnlyDefault else buttonTokens.sizeIconDefault
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
@@ -672,17 +672,17 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
         when (component) {
             is OudsButtonComponent.Button -> when {
                 icon != null && label != null -> PaddingValues(
-                    start = spacePaddingInlineIconStart.value,
-                    top = spacePaddingBlock.value,
-                    end = spacePaddingInlineEndIconStart.value,
-                    bottom = spacePaddingBlock.value
+                    start = spacePaddingInlineIconStartDefault.value,
+                    top = spacePaddingBlockDefault.value,
+                    end = spacePaddingInlineEndIconStartDefault.value,
+                    bottom = spacePaddingBlockDefault.value
                 )
                 icon != null && label == null -> PaddingValues(
-                    all = spaceInsetIconOnly.value,
+                    all = spaceInsetIconOnlyDefault.value,
                 )
                 else -> PaddingValues(
-                    horizontal = spacePaddingInlineIconNone.value,
-                    vertical = spacePaddingBlock.value
+                    horizontal = spacePaddingInlineIconNoneDefault.value,
+                    vertical = spacePaddingBlockDefault.value
                 )
             }
             is OudsButtonComponent.NavigationButton -> when {
@@ -691,22 +691,22 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                     val endPadding: Dp
                     when (component.chevron) {
                         OudsNavigationButtonChevron.Next -> {
-                            startPadding = spacePaddingInlineStartIconEnd.value
-                            endPadding = spacePaddingInlineChevronEnd.value
+                            startPadding = spacePaddingInlineStartIconEndDefault.value
+                            endPadding = spacePaddingInlineChevronEndDefault.value
                         }
                         OudsNavigationButtonChevron.Previous -> {
-                            startPadding = spacePaddingInlineChevronStart.value
-                            endPadding = spacePaddingInlineEndIconStart.value
+                            startPadding = spacePaddingInlineChevronStartDefault.value
+                            endPadding = spacePaddingInlineEndIconStartDefault.value
                         }
                     }
                     PaddingValues(
                         start = startPadding,
-                        top = spacePaddingBlock.value,
+                        top = spacePaddingBlockDefault.value,
                         end = endPadding,
-                        bottom = spacePaddingBlock.value
+                        bottom = spacePaddingBlockDefault.value
                     )
                 }
-                else -> PaddingValues(all = spaceInsetIconOnly.value)
+                else -> PaddingValues(all = spaceInsetIconOnlyDefault.value)
             }
         }
     }
@@ -715,7 +715,7 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
 @Composable
 private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?, scale: Float) {
     val modifier = Modifier
-        .size(OudsTheme.componentsTokens.button.sizeLoader.value * scale)
+        .size(@Suppress("DEPRECATION") OudsTheme.componentsTokens.button.sizeLoader.value * scale)
         .semantics { hideFromAccessibility() }
     val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
 
@@ -858,7 +858,7 @@ internal sealed interface OudsButtonComponent {
     object Button : OudsButtonComponent {
         override val columnGap
             @Composable
-            get() = OudsTheme.componentsTokens.button.spaceColumnGapIcon.value
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapIconDefault.value
     }
 
     /**
@@ -869,7 +869,7 @@ internal sealed interface OudsButtonComponent {
     class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
         override val columnGap: Dp
             @Composable
-            get() = OudsTheme.componentsTokens.button.spaceColumnGapChevron.value
+            get() = OudsTheme.componentsTokens.button.spaceColumnGapChevronDefault.value
     }
 }
 

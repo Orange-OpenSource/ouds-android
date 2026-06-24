@@ -1315,9 +1315,9 @@ internal fun OudsTextAreaDecorator(
                 // Trailing elements (error icon or loader)
                 Box(
                     modifier = Modifier
-                        .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidth.value)
+                        .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidthDefault.value)
                         .padding(
-                            horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnly.value,
+                            horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnlyDefault.value,
                             vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
                                 textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
                             } else {
@@ -1331,7 +1331,7 @@ internal fun OudsTextAreaDecorator(
                     // Error icon
                     if (hasError) {
                         Icon(
-                            modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
+                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
                             painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
                             contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
