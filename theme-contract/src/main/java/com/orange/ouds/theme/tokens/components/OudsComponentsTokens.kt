@@ -33,6 +33,7 @@ interface OudsComponentsTokens {
     val linkMonochrome: OudsLinkMonoTokens
     val pinCodeInput: OudsPinCodeInputTokens
     val progressIndicator: OudsProgressIndicatorTokens
+    val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
     val tag: OudsTagTokens

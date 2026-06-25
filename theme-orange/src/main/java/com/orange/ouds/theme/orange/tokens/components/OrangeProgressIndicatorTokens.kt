@@ -15,6 +15,7 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
@@ -23,12 +24,9 @@ import com.orange.ouds.tokens.raw.OudsColorRawTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
 internal data class OrangeProgressIndicatorTokens(
-    override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
+    override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
-    override val colorContentTrack: OudsLightDarkColor = OudsLightDarkColor(
-        OudsColorRawTokens.ColorFunctionalGrayLight400,
-        OudsColorRawTokens.ColorFunctionalGrayDark480
-    ),
+    override val colorContentTrack: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorFunctionalGrayLight400, OudsColorRawTokens.ColorFunctionalGrayDark480),
     override val sizeLinearIndicatorHeight: Float = OudsDimensionRawTokens.Dimension50,
     override val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall
 ) : OudsProgressIndicatorTokens

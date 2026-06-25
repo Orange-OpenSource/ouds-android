@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -152,10 +153,15 @@ private fun OudsCircularProgressIndicator(
                     gapSize = computeGapSize(currentSize)
                 }
             }
-        val color = status.color()
         val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
         val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
-        val trackColor = if (track) colorContentTrack.value else Color.Transparent
+        val monochrome = LocalColorMode.current?.monochrome == true
+        val monochromeTokens = OudsTheme.componentsTokens.progressIndicatorMonochrome
+        val color = if (monochrome) monochromeTokens.colorContentIndicator.value else status.color()
+        val trackColor = when {
+            track -> if (monochrome) monochromeTokens.colorContentTrack.value else colorContentTrack.value
+            else -> Color.Transparent
+        }
 
         nullableProgress?.let {
             CircularProgressIndicator(
@@ -243,18 +249,29 @@ internal fun PreviewOudsCircularProgressIndicator(
 ) {
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
-            OudsCircularProgressIndicator(
-                progress = { 0.75f },
-                status = status,
-                track = track
-            )
+            val circularProgressIndicatorPreview: @Composable () -> Unit = {
+                OudsCircularProgressIndicator(
+                    progress = { 0.75f },
+                    status = status,
+                    track = track
+                )
+            }
+
+            if (onColoredBackground) {
+                OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
+                    circularProgressIndicatorPreview()
+                }
+            } else {
+                circularProgressIndicatorPreview()
+            }
         }
     }
 }
 
 internal data class OudsCircularProgressIndicatorPreviewParameter(
     val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    val track: Boolean = true
+    val track: Boolean = true,
+    val onColoredBackground: Boolean = false
 )
 
 internal class OudsCircularProgressIndicatorPreviewParameterProvider :
@@ -264,5 +281,6 @@ private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewPar
     get() = listOf(
         OudsCircularProgressIndicatorPreviewParameter(),
         OudsCircularProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
-        OudsCircularProgressIndicatorPreviewParameter(track = false)
+        OudsCircularProgressIndicatorPreviewParameter(track = false),
+        OudsCircularProgressIndicatorPreviewParameter(onColoredBackground = true)
     )

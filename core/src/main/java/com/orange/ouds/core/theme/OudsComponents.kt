@@ -33,6 +33,8 @@ import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
@@ -57,6 +59,8 @@ data class OudsComponents internal constructor(
     val link: Link,
     val linkMonochrome: LinkMonochrome,
     val pinCodeInput: PinCodeInput,
+    val progressIndicator: ProgressIndicator,
+    val progressIndicatorMonochrome: ProgressIndicatorMonochrome,
     val radioButton: RadioButton,
     val switch: Switch,
     val tag: Tag,
@@ -1120,6 +1124,65 @@ data class OudsComponents internal constructor(
     }
 
     @ConsistentCopyVisibility
+    data class ProgressIndicator internal constructor(
+        val border: Border,
+        val color: Color,
+        val size: Size,
+        val space: Space
+    ) {
+
+        @ConsistentCopyVisibility
+        data class Border internal constructor(
+            val radius: Radius
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Radius internal constructor(
+                val default: Dp,
+                val rounded: Dp
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Color internal constructor(
+            val content: Content
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Content internal constructor(
+                val track: androidx.compose.ui.graphics.Color
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Size internal constructor(
+            val linearIndicatorHeight: Dp
+        )
+
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
+            val paddingBlock: Dp
+        )
+    }
+
+    @ConsistentCopyVisibility
+    data class ProgressIndicatorMonochrome internal constructor(
+        val color: Color
+    ) {
+        @ConsistentCopyVisibility
+        data class Color internal constructor(
+            val content: Content
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Content internal constructor(
+                val indicator: androidx.compose.ui.graphics.Color,
+                val track: androidx.compose.ui.graphics.Color
+            )
+        }
+    }
+
+    @ConsistentCopyVisibility
     data class RadioButton internal constructor(
         val border: Border,
         val size: Size
@@ -1424,6 +1487,8 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         link = link.getLink(),
         linkMonochrome = linkMonochrome.getLinkMonochrome(),
         pinCodeInput = pinCodeInput.getPinCodeInput(),
+        progressIndicator = progressIndicator.getProgressIndicator(),
+        progressIndicatorMonochrome = progressIndicatorMonochrome.getProgressIndicatorMonochrome(),
         radioButton = radioButton.getRadioButton(),
         switch = switch.getSwitch(),
         tag = tag.getTag(),
@@ -2080,6 +2145,41 @@ private fun OudsPinCodeInputTokens.getPinCodeInput(): OudsComponents.PinCodeInpu
         ),
         space = OudsComponents.PinCodeInput.Space(
             columnGapDigitInput = spaceColumnGapDigitInput.value
+        )
+    )
+}
+
+@Composable
+private fun OudsProgressIndicatorTokens.getProgressIndicator(): OudsComponents.ProgressIndicator {
+    return OudsComponents.ProgressIndicator(
+        border = OudsComponents.ProgressIndicator.Border(
+            radius = OudsComponents.ProgressIndicator.Border.Radius(
+                default = borderRadiusDefault.value,
+                rounded = borderRadiusRounded.value
+            )
+        ),
+        color = OudsComponents.ProgressIndicator.Color(
+            content = OudsComponents.ProgressIndicator.Color.Content(
+                track = colorContentTrack.value
+            )
+        ),
+        size = OudsComponents.ProgressIndicator.Size(
+            linearIndicatorHeight = sizeLinearIndicatorHeight.dp
+        ),
+        space = OudsComponents.ProgressIndicator.Space(
+            paddingBlock = spacePaddingBlock.value
+        )
+    )
+}
+
+@Composable
+private fun OudsProgressIndicatorMonoTokens.getProgressIndicatorMonochrome(): OudsComponents.ProgressIndicatorMonochrome {
+    return OudsComponents.ProgressIndicatorMonochrome(
+        color = OudsComponents.ProgressIndicatorMonochrome.Color(
+            content = OudsComponents.ProgressIndicatorMonochrome.Color.Content(
+                indicator = colorContentIndicator.value,
+                track = colorContentTrack.value
+            )
         )
     )
 }
