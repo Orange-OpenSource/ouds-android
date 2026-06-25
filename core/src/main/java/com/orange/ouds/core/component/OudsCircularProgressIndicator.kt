@@ -13,25 +13,19 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalThemeSettings
@@ -134,64 +128,44 @@ private fun OudsCircularProgressIndicator(
     track: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val scale = LocalConfiguration.current.fontScale
-    val density = LocalDensity.current
-
     with(OudsTheme.componentsTokens.progressIndicator) {
+        val scale = LocalConfiguration.current.fontScale
         val defaultSize = OudsCircularProgressIndicatorSize * scale
 
-        var strokeWidth by remember { mutableStateOf(computeStrokeWidth(defaultSize)) }
-        var gapSize by remember { mutableStateOf(computeGapSize(defaultSize)) }
+        BoxWithConstraints(modifier = modifier.size(defaultSize)) {
+            // The stroke width is equal to 25% of the radius, 12.5% of the diameter
+            val strokeWidth = maxWidth * 0.125f
+            // The gap corresponds to a 10-degree angle converted into a distance on the circle
+            val gapSize = (10f / 360f * PI.toFloat() * maxWidth.value).dp
+            val color = status.color()
+            val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
+            val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
+            val trackColor = if (track) colorContentTrack.value else Color.Transparent
+            val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)
 
-        val progressIndicatorModifier = modifier
-            .size(defaultSize)
-            .onSizeChanged { measuredSize ->
-                with(density) {
-                    val currentSize = measuredSize.width.toDp()
-                    strokeWidth = computeStrokeWidth(currentSize)
-                    gapSize = computeGapSize(currentSize)
-                }
+            nullableProgress?.let {
+                CircularProgressIndicator(
+                    progress = nullableProgress,
+                    modifier = progressIndicatorModifier,
+                    color = color,
+                    strokeWidth = strokeWidth,
+                    trackColor = trackColor,
+                    strokeCap = strokeCap,
+                    gapSize = gapSize
+                )
+            }.orElse {
+                CircularProgressIndicator(
+                    modifier = progressIndicatorModifier,
+                    color = color,
+                    strokeWidth = strokeWidth,
+                    trackColor = trackColor,
+                    strokeCap = strokeCap,
+                    gapSize = gapSize
+                )
             }
-        val color = status.color()
-        val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
-        val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
-        val trackColor = if (track) colorContentTrack.value else Color.Transparent
-
-        nullableProgress?.let {
-            CircularProgressIndicator(
-                progress = nullableProgress,
-                modifier = progressIndicatorModifier,
-                color = color,
-                strokeWidth = strokeWidth,
-                trackColor = trackColor,
-                strokeCap = strokeCap,
-                gapSize = gapSize
-            )
-        }.orElse {
-            CircularProgressIndicator(
-                modifier = progressIndicatorModifier,
-                color = color,
-                strokeWidth = strokeWidth,
-                trackColor = trackColor,
-                strokeCap = strokeCap,
-                gapSize = gapSize
-            )
         }
     }
 }
-
-/**
- * Calculates the stroke width based on the component size.
- * The stroke width is equal to 25% of the radius, 12.5% of the diameter.
- */
-private fun computeStrokeWidth(componentSize: Dp): Dp = componentSize * 0.125f
-
-/**
- * Calculates the gap size based on the component size.
- * The gap corresponds to a 10-degree angle converted into a distance on the circle.
- */
-private fun computeGapSize(componentSize: Dp): Dp =
-    (10f / 360f * PI.toFloat() * componentSize.value).dp
 
 /**
  * A temporary circular progress indicator component used internally by several public components.
