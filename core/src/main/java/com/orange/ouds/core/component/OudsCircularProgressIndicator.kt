@@ -252,6 +252,23 @@ internal fun PreviewOudsCircularProgressIndicator(
     }
 }
 
+@Suppress("PreviewShouldNotBeCalledRecursively")
+@OudsPreview
+@Composable
+private fun PreviewOudsCircularProgressIndicatorSized(@PreviewParameter(OudsCircularProgressIndicatorSizedPreviewParameterProvider::class) size: Float) {
+    PreviewOudsCircularProgressIndicatorSized(theme = getPreviewTheme(), size = size)
+}
+
+@Composable
+internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract, size: Float) {
+    OudsPreview(theme = theme) {
+        OudsCircularProgressIndicator(
+            modifier = Modifier.size(size.dp),
+            progress = { 0.75f }
+        )
+    }
+}
+
 internal data class OudsCircularProgressIndicatorPreviewParameter(
     val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     val track: Boolean = true
@@ -265,4 +282,11 @@ private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewPar
         OudsCircularProgressIndicatorPreviewParameter(),
         OudsCircularProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
         OudsCircularProgressIndicatorPreviewParameter(track = false)
+    )
+
+internal class OudsCircularProgressIndicatorSizedPreviewParameterProvider :
+    BasicPreviewParameterProvider<Float>(
+        OudsCircularProgressIndicatorSize.value / 2f,
+        OudsCircularProgressIndicatorSize.value,
+        OudsCircularProgressIndicatorSize.value * 2f
     )

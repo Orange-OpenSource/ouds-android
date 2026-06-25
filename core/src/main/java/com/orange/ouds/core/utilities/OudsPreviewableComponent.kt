@@ -31,6 +31,7 @@ import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCircularProgressIndicatorPreviewParameter
 import com.orange.ouds.core.component.OudsCircularProgressIndicatorPreviewParameterProvider
+import com.orange.ouds.core.component.OudsCircularProgressIndicatorSizedPreviewParameterProvider
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsControlItemConstrainedMaxWidthPreviewParameterProvider
@@ -106,6 +107,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicator
+import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorSized
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
@@ -535,17 +537,35 @@ interface OudsPreviewableComponent {
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
     }
 
-    object CircularProgressIndicator : OudsPreviewableComponent {
+    object CircularProgressIndicator {
 
-        override val parameters: List<Any> = OudsCircularProgressIndicatorPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsCircularProgressIndicator(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsCircularProgressIndicatorPreviewParameter
-            )
+            override val parameters: List<Any> = OudsCircularProgressIndicatorPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCircularProgressIndicator(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsCircularProgressIndicatorPreviewParameter
+                )
+            }
+        }
+
+        object Sized : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsCircularProgressIndicatorSizedPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCircularProgressIndicatorSized(
+                    theme = theme,
+                    size = parameter as Float
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
