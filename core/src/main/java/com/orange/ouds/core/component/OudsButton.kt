@@ -362,7 +362,21 @@ internal fun OudsButton(
             contentAlignment = Alignment.Center
         ) {
             if (state == OudsButtonState.Loading) {
-                ProgressIndicator(appearance = appearance, progress = loader?.progress, scale = iconScale)
+                val progressIndicatorSize = getSize(
+                    size = size,
+                    default = buttonTokens.sizeProgressIndicatorDefault,
+                    small = buttonTokens.sizeProgressIndicatorSmall
+                )
+                val modifier = Modifier
+                    .size(progressIndicatorSize)
+                    .semantics { hideFromAccessibility() }
+                val loadingContentColor = contentColor(appearance = appearance, state = OudsButtonState.Loading)
+                OudsCircularProgressIndicator(
+                    modifier = modifier,
+                    nullableProgress = loader?.progress?.let { { it } },
+                    track = false,
+                    color = loadingContentColor
+                )
             }
 
             val alpha = if (state == OudsButtonState.Loading) 0f else 1f
@@ -735,16 +749,6 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
             }
         }
     }
-}
-
-@Composable
-private fun ProgressIndicator(appearance: OudsButtonAppearance, progress: Float?, scale: Float) {
-    val modifier = Modifier
-        .size(@Suppress("DEPRECATION") OudsTheme.componentsTokens.button.sizeLoader.value * scale)
-        .semantics { hideFromAccessibility() }
-    val color = contentColor(appearance = appearance, state = OudsButtonState.Loading)
-
-    InternalOudsCircularProgressIndicator(modifier = modifier, color = color, progress = progress, scale = scale)
 }
 
 @Composable

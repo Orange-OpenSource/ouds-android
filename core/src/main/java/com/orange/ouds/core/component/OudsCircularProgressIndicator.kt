@@ -122,11 +122,12 @@ fun OudsCircularProgressIndicator(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun OudsCircularProgressIndicator(
+internal fun OudsCircularProgressIndicator(
     nullableProgress: (() -> Float)?,
-    status: OudsProgressIndicatorStatus,
-    track: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    color: Color? = null
 ) {
     with(OudsTheme.componentsTokens.progressIndicator) {
         val scale = LocalConfiguration.current.fontScale
@@ -137,26 +138,26 @@ private fun OudsCircularProgressIndicator(
             val strokeWidth = maxWidth * 0.125f
             // The gap corresponds to a 10-degree angle converted into a distance on the circle
             val gapSize = (10f / 360f * PI.toFloat() * maxWidth.value).dp
-            val color = status.color()
+            val circularProgressIndicatorColor = color.orElse { status.color() }
             val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
             val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
             val trackColor = if (track) colorContentTrack.value else Color.Transparent
             val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)
 
-            nullableProgress?.let {
+            if (nullableProgress != null || LocalInspectionMode.current) {
                 CircularProgressIndicator(
-                    progress = nullableProgress,
+                    progress = nullableProgress.orElse { { 0.75f } },
                     modifier = progressIndicatorModifier,
-                    color = color,
+                    color = circularProgressIndicatorColor,
                     strokeWidth = strokeWidth,
                     trackColor = trackColor,
                     strokeCap = strokeCap,
                     gapSize = gapSize
                 )
-            }.orElse {
+            } else {
                 CircularProgressIndicator(
                     modifier = progressIndicatorModifier,
-                    color = color,
+                    color = circularProgressIndicatorColor,
                     strokeWidth = strokeWidth,
                     trackColor = trackColor,
                     strokeCap = strokeCap,
