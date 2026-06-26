@@ -90,7 +90,7 @@ private val LocalWindowWidthSizeClass = staticCompositionLocalOf { WindowWidthSi
 /**
  * Height of OUDS navigation bar.
  */
-val OudsNavigationBarHeight = 80.dp
+val OudsNavigationBarHeight = 64.dp
 
 /**
  * The Navigation bar (aka Bottom navigation bar on Material 2) provides access to an app’s primary destinations using 3 to 5 persistent tabs.
