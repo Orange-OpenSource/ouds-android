@@ -470,15 +470,13 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
         val label = "Label"
         val description = "Description"
         val helperText = "Helper text"
-        val iconLeadingContent = OudsSmallListItemLeading.Icon.Info
-        val iconTrailingContent = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         return listOf(
             OudsSmallListItemPreviewParameter(
                 label = label,
                 description = description,
                 helperText = helperText,
-                leadingContent = iconLeadingContent,
-                trailingContent = iconTrailingContent
+                leadingContent = OudsSmallListItemLeading.Icon.Info,
+                trailingContent = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
