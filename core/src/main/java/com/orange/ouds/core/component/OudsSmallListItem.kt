@@ -39,7 +39,6 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.jvm.java
 
 /**
  * TODO Small List Item
@@ -156,9 +155,6 @@ sealed interface OudsSmallListItemLeadingContent : OudsListItemContent {
 
         override val size
             get() = smallListItemIcon.size
-
-        internal val tinted
-            get() = smallListItemIcon.tinted
 
         /**
          * Creates an instance of [OudsSmallListItemLeadingContent.Icon].
@@ -325,14 +321,13 @@ sealed interface OudsSmallListItemTrailingContent : OudsListItemTrailingContent 
      * Icon as a small list item trailing content.
      */
     open class Icon private constructor(
-        internal val smallListItemIcon: SmallListItemIcon
+        private val smallListItemIcon: SmallListItemIcon
     ) : OudsComponentContent<OudsListItemContent.Icon.ExtraParameters>(
         OudsListItemContent.Icon.ExtraParameters::class.java
     ), OudsSmallListItemTrailingContent, OudsListItemContent.Icon {
 
-        override val size = smallListItemIcon.size
-
-        internal val tinted get() = smallListItemIcon.tinted
+        override val size
+            get() = smallListItemIcon.size
 
         /**
          * Creates an instance of [OudsSmallListItemTrailingContent.Icon].
@@ -430,8 +425,10 @@ sealed interface OudsSmallListItemTrailingContent : OudsListItemTrailingContent 
         private val listItemImage: ListItemImage
     ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsSmallListItemTrailingContent, OudsListItemContent.Image {
 
-        override val size get() = listItemImage.size
-        override val format get() = listItemImage.format
+        override val size
+            get() = listItemImage.size
+        override val format
+            get() = listItemImage.format
 
         /**
          * Creates an instance of [OudsSmallListItemTrailingContent.Image].
