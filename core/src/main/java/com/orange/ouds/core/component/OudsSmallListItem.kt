@@ -29,28 +29,28 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.component.OudsListItemContent.Text.Style
-import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
  * TODO Small List Item
  */
+@ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(
     label: String,
     modifier: Modifier = Modifier,
     contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     description: String? = null,
-    leadingContent: OudsSmallListItemLeadingContent? = null,
-    trailingContent: OudsSmallListItemTrailingContent? = null,
+    leading: OudsSmallListItemLeading? = null,
+    trailing: OudsSmallListItemTrailing? = null,
     divider: Boolean = true,
     background: Boolean = true,
     helperText: String? = null,
@@ -66,8 +66,8 @@ fun OudsSmallListItem(
         overline = null,
         extraLabel = null,
         description = description,
-        leadingContent = leadingContent,
-        trailingContent = trailingContent,
+        leading = leading,
+        trailing = trailing,
         divider = divider,
         background = background,
         helperText = helperText,
@@ -77,6 +77,7 @@ fun OudsSmallListItem(
 }
 
 // TODO Navigation Small List Item
+@ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(
     label: String,
@@ -85,8 +86,8 @@ fun OudsSmallListItem(
     chevron: OudsListItemChevron = OudsListItemDefaults.Chevron,
     contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     description: String? = null,
-    leadingContent: OudsSmallListItemLeadingContent? = null,
-    trailingContent: OudsSmallListItemTrailingContent? = null,
+    leading: OudsSmallListItemLeading? = null,
+    trailing: OudsSmallListItemTrailing? = null,
     divider: Boolean = true,
     background: Boolean = false,
     helperText: String? = null,
@@ -104,8 +105,8 @@ fun OudsSmallListItem(
         overline = null,
         extraLabel = null,
         description = description,
-        leadingContent = leadingContent,
-        trailingContent = trailingContent,
+        leading = leading,
+        trailing = trailing,
         divider = divider,
         background = background,
         helperText = helperText,
@@ -115,49 +116,25 @@ fun OudsSmallListItem(
     )
 }
 
-private val SmallListItemAssetSize = OudsListItemContent.Asset.Size.Small
-
-/**
- * Implementation for small list item icons.
- * Shared by both leading and trailing icons.
- */
-internal open class SmallListItemIcon internal constructor(
-    graphicsObjectProvider: @Composable (ListItemIcon) -> Any,
-    contentDescriptionProvider: @Composable (ListItemIcon) -> String,
-    override val tinted: Boolean
-) : ListItemIcon(
-    graphicsObjectProvider, contentDescriptionProvider, tinted, SmallListItemAssetSize
-) {
-    constructor(painter: Painter, contentDescription: String, tinted: Boolean)
-            : this({ painter as Any }, { contentDescription }, tinted)
-
-    constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean)
-            : this({ imageVector as Any }, { contentDescription }, tinted)
-
-    constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean)
-            : this({ bitmap as Any }, { contentDescription }, tinted)
-}
-
+private val SmallListItemAssetSize = OudsListItemAssetSize.Small
 
 /**
  * A leading content of an [OudsSmallListItem].
  */
-sealed interface OudsSmallListItemLeadingContent : OudsListItemContent {
+sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
 
     /**
      * An icon as a small list item leading content.
      */
     open class Icon internal constructor(
-        internal val smallListItemIcon: SmallListItemIcon
-    ) : OudsComponentContent<OudsListItemContent.Icon.ExtraParameters>(
-        OudsListItemContent.Icon.ExtraParameters::class.java
-    ), OudsSmallListItemLeadingContent, OudsListItemContent.Icon {
-
-        override val size
-            get() = smallListItemIcon.size
+        graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
+        contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
+        override val tinted: Boolean,
+        status: OudsListItemIconStatus?
+    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, SmallListItemAssetSize, status), OudsSmallListItemLeading {
 
         /**
-         * Creates an instance of [OudsSmallListItemLeadingContent.Icon].
+         * Creates an instance of [OudsSmallListItemLeading.Icon].
          *
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated with this icon.
@@ -167,10 +144,10 @@ sealed interface OudsSmallListItemLeadingContent : OudsListItemContent {
          */
         constructor(
             painter: Painter, contentDescription: String, tinted: Boolean = true
-        ) : this(SmallListItemIcon(painter, contentDescription, tinted))
+        ) : this({ painter }, { contentDescription }, tinted, null)
 
         /**
-         * Creates an instance of [OudsSmallListItemLeadingContent.Icon].
+         * Creates an instance of [OudsSmallListItemLeading.Icon].
          *
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated with this icon.
@@ -180,10 +157,10 @@ sealed interface OudsSmallListItemLeadingContent : OudsListItemContent {
          */
         constructor(
             imageVector: ImageVector, contentDescription: String, tinted: Boolean = true
-        ) : this(SmallListItemIcon(imageVector, contentDescription, tinted))
+        ) : this({ imageVector }, { contentDescription }, tinted, null)
 
         /**
-         * Creates an instance of [OudsSmallListItemLeadingContent.Icon].
+         * Creates an instance of [OudsSmallListItemLeading.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated with this icon.
@@ -193,144 +170,106 @@ sealed interface OudsSmallListItemLeadingContent : OudsListItemContent {
          */
         constructor(
             bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true
-        ) : this(SmallListItemIcon(bitmap, contentDescription, tinted))
+        ) : this({ bitmap }, { contentDescription }, tinted, null)
+
+        private constructor(status: OudsListItemIconStatus) : this(
+            { status.painterProvider() },
+            { status.contentDescriptionProvider() },
+            true,
+            status
+        )
 
         // TODO KDoc
-        object Info : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Info.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Info.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Info
-        }
+        object Info : Icon(OudsListItemIconStatus.Info)
 
         // TODO KDoc
-        object Negative : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Negative.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Negative.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Negative
-        }
+        object Negative : Icon(OudsListItemIconStatus.Negative)
 
         // TODO KDoc
-        object Positive : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Positive.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Positive.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Positive
-        }
+        object Positive : Icon(OudsListItemIconStatus.Positive)
 
         // TODO KDoc
-        object Warning : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Warning.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Warning.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Warning
-        }
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            smallListItemIcon.Content(modifier)
-        }
+        object Warning : Icon(OudsListItemIconStatus.Warning)
     }
 
     /**
      * An image as a small list item leading content.
      */
     class Image internal constructor(
-        private val listItemImage: ListItemImage
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsSmallListItemLeadingContent, OudsListItemContent.Image {
-
-        override val size
-            get() = listItemImage.size
-        override val format
-            get() = listItemImage.format
+        graphicsObject: Any,
+        contentDescription: String,
+        size: OudsListItemAssetSize,
+        imageFormat: OudsListItemImageFormat,
+        contentScale: ContentScale
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale), OudsSmallListItemLeading {
 
         /**
-         * Creates an instance of [OudsSmallListItemLeadingContent.Image].
+         * Creates an instance of [OudsSmallListItemLeading.Image].
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(painter, contentDescription, SmallListItemAssetSize, format, contentScale))
+        ) : this(painter, contentDescription, SmallListItemAssetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsSmallListItemLeadingContent.Image].
+         * Creates an instance of [OudsSmallListItemLeading.Image].
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(imageVector, contentDescription, SmallListItemAssetSize, format, contentScale))
+        ) : this(imageVector, contentDescription, SmallListItemAssetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsSmallListItemLeadingContent.Image].
+         * Creates an instance of [OudsSmallListItemLeading.Image].
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(bitmap, contentDescription, SmallListItemAssetSize, format, contentScale))
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemImage.Content(modifier)
-        }
+        ) : this(bitmap, contentDescription, SmallListItemAssetSize, format, contentScale)
     }
 }
 
 /**
  * A trailing content of an [OudsSmallListItem].
  */
-sealed interface OudsSmallListItemTrailingContent : OudsListItemTrailingContent {
+sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
 
     /**
-     * Icon as a small list item trailing content.
+     * An icon as a small list item trailing content.
      */
-    open class Icon private constructor(
-        private val smallListItemIcon: SmallListItemIcon
-    ) : OudsComponentContent<OudsListItemContent.Icon.ExtraParameters>(
-        OudsListItemContent.Icon.ExtraParameters::class.java
-    ), OudsSmallListItemTrailingContent, OudsListItemContent.Icon {
-
-        override val size
-            get() = smallListItemIcon.size
+    open class Icon internal constructor(
+        graphicsObjectProvider: @Composable () -> Any,
+        contentDescriptionProvider: @Composable () -> String,
+        override val tinted: Boolean,
+        status: OudsListItemIconStatus?
+    ) : OudsListItemIcon({ graphicsObjectProvider() }, { contentDescriptionProvider() }, tinted, SmallListItemAssetSize, status), OudsSmallListItemTrailing {
 
         /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Icon].
+         * Creates an instance of [OudsSmallListItemTrailing.Icon].
          *
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated with this icon.
@@ -340,10 +279,10 @@ sealed interface OudsSmallListItemTrailingContent : OudsListItemTrailingContent 
          */
         constructor(
             painter: Painter, contentDescription: String, tinted: Boolean = true
-        ) : this(SmallListItemIcon(painter, contentDescription, tinted))
+        ) : this({ painter }, { contentDescription }, tinted, null)
 
         /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Icon].
+         * Creates an instance of [OudsSmallListItemTrailing.Icon].
          *
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated with this icon.
@@ -353,10 +292,10 @@ sealed interface OudsSmallListItemTrailingContent : OudsListItemTrailingContent 
          */
         constructor(
             imageVector: ImageVector, contentDescription: String, tinted: Boolean = true
-        ) : this(SmallListItemIcon(imageVector, contentDescription, tinted))
+        ) : this({ imageVector }, { contentDescription }, tinted, null)
 
         /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Icon].
+         * Creates an instance of [OudsSmallListItemTrailing.Icon].
          *
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated with this icon.
@@ -366,144 +305,90 @@ sealed interface OudsSmallListItemTrailingContent : OudsListItemTrailingContent 
          */
         constructor(
             bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true
-        ) : this(SmallListItemIcon(bitmap, contentDescription, tinted))
+        ) : this({ bitmap }, { contentDescription }, tinted, null)
+
+        private constructor(status: OudsListItemIconStatus) : this(status.painterProvider, status.contentDescriptionProvider, true, status)
 
         // TODO KDoc
-        object Info : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Info.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Info.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Info
-        }
+        object Info : Icon(OudsListItemIconStatus.Info)
 
         // TODO KDoc
-        object Negative : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Negative.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Negative.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Negative
-        }
+        object Negative : Icon(OudsListItemIconStatus.Negative)
 
         // TODO KDoc
-        object Positive : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Positive.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Positive.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Positive
-        }
+        object Positive : Icon(OudsListItemIconStatus.Positive)
 
         // TODO KDoc
-        object Warning : Icon(
-            SmallListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Warning.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Warning.contentDescriptionProvider() },
-                true
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Warning
-        }
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            smallListItemIcon.Content(modifier)
-        }
+        object Warning : Icon(OudsListItemIconStatus.Warning)
     }
 
     /**
      * Image as a small list item trailing content.
      */
     class Image internal constructor(
-        private val listItemImage: ListItemImage
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsSmallListItemTrailingContent, OudsListItemContent.Image {
-
-        override val size
-            get() = listItemImage.size
-        override val format
-            get() = listItemImage.format
+        graphicsObject: Any,
+        contentDescription: String,
+        size: OudsListItemAssetSize,
+        imageFormat: OudsListItemImageFormat,
+        contentScale: ContentScale
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale), OudsSmallListItemTrailing {
 
         /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Image].
+         * Creates an instance of [OudsSmallListItemTrailing.Image].
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(painter, contentDescription, SmallListItemAssetSize, format, contentScale))
+        ) : this(painter, contentDescription, SmallListItemAssetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Image].
+         * Creates an instance of [OudsSmallListItemTrailing.Image].
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(imageVector, contentDescription, SmallListItemAssetSize, format, contentScale))
+        ) : this(imageVector, contentDescription, SmallListItemAssetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Image].
+         * Creates an instance of [OudsSmallListItemTrailing.Image].
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(bitmap, contentDescription, SmallListItemAssetSize, format, contentScale))
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemImage.Content(modifier)
-        }
+        ) : this(bitmap, contentDescription, SmallListItemAssetSize, format, contentScale)
     }
 
     /**
      * Label as a small list item trailing content.
      */
-    class Text private constructor(
-        private val listItemTrailingText: ListItemTrailingText
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsSmallListItemTrailingContent, OudsListItemContent.Text {
-
-        /**
-         * Creates an instance of [OudsSmallListItemTrailingContent.Text].
-         *
-         * @param label Label displayed in trailing.
-         * @param style Style applied to the label among [OudsListItemContent.Text.Style] values.
-         */
-        constructor(label: String, style: Style = Style.Label) : this(ListItemTrailingText(label, style))
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemTrailingText.Content(modifier = modifier)
-        }
-    }
+    class Text(
+        label: String,
+        style: OudsListItemTextStyle
+    ) : OudsListItemText(label, style, null), OudsSmallListItemTrailing
 }
 
 @OudsPreviewLightDark
@@ -524,8 +409,8 @@ internal fun PreviewOudsSmallStaticListItem(
             label = label,
             description = description,
             helperText = helperText,
-            leadingContent = leadingContent,
-            trailingContent = trailingContent,
+            leading = leadingContent,
+            trailing = trailingContent,
             enabled = enabled
         )
     }
@@ -559,8 +444,8 @@ internal fun PreviewOudsNavigationSmallListItem(
                 description = description,
                 helperText = helperText,
                 contentAlignment = contentAlignment,
-                leadingContent = leadingContent,
-                trailingContent = trailingContent,
+                leading = leadingContent,
+                trailing = trailingContent,
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() }
             )
@@ -574,8 +459,8 @@ internal data class OudsSmallListItemPreviewParameter(
     val description: String? = null,
     val helperText: String? = null,
     val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
-    val leadingContent: OudsSmallListItemLeadingContent? = null,
-    val trailingContent: OudsSmallListItemTrailingContent? = null,
+    val leadingContent: OudsSmallListItemLeading? = null,
+    val trailingContent: OudsSmallListItemTrailing? = null,
     val enabled: Boolean = true
 )
 
@@ -587,8 +472,8 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
         val label = "Label"
         val description = "Description"
         val helperText = "Helper text"
-        val iconLeadingContent = OudsSmallListItemLeadingContent.Icon.Info
-        val iconTrailingContent = OudsSmallListItemTrailingContent.Icon(Icons.Outlined.FavoriteBorder, "")
+        val iconLeadingContent = OudsSmallListItemLeading.Icon.Info
+        val iconTrailingContent = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         val imagePainter = CheckerboardPainter(
             squareSize = 6.dp,
             primaryColor = Color(0xff247a85),
@@ -605,13 +490,13 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
             OudsSmallListItemPreviewParameter(
                 label = label,
                 contentAlignment = OudsListItemContentAlignment.Top,
-                leadingContent = OudsSmallListItemLeadingContent.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailingContent = OudsSmallListItemTrailingContent.Text(label = label, style = Style.LabelStrong)
+                leadingContent = OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
+                trailingContent = OudsSmallListItemTrailing.Text(label = label, style = OudsListItemTextStyle.LabelStrong)
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
-                leadingContent = OudsSmallListItemLeadingContent.Image(imagePainter, "", OudsListItemContent.Image.Format.Panoramic),
-                trailingContent = OudsSmallListItemTrailingContent.Image(imagePainter, "", OudsListItemContent.Image.Format.Square)
+                leadingContent = OudsSmallListItemLeading.Image(imagePainter, "", OudsListItemImageFormat.Panoramic),
+                trailingContent = OudsSmallListItemTrailing.Image(imagePainter, "", OudsListItemImageFormat.Square)
             )
         )
     }
