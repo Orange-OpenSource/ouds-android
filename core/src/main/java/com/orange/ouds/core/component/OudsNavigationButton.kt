@@ -216,17 +216,18 @@ internal fun PreviewOudsNavigationButton(
 private fun PreviewOudsNavigationButtonWithRoundedCorners() = PreviewOudsNavigationButtonWithRoundedCorners(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsNavigationButtonWithRoundedCorners(theme: OudsThemeContract) =
-    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
-        val appearance = OudsNavigationButtonAppearance.Default
-        PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
-            OudsNavigationButton(
-                label = appearance.name,
-                onClick = {},
-                appearance = appearance
-            )
-        }
+internal fun PreviewOudsNavigationButtonWithRoundedCorners(
+    theme: OudsThemeContract
+) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
+    val appearance = OudsNavigationButtonAppearance.Default
+    PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
+        OudsNavigationButton(
+            label = appearance.name,
+            onClick = {},
+            appearance = appearance
+        )
     }
+}
 
 @OudsPreview
 @Composable

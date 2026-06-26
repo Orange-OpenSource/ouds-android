@@ -38,6 +38,7 @@ import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
 import com.orange.ouds.core.component.OudsSmallButton
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -114,6 +115,7 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
 }
 
 @Composable
+@OptIn(ExperimentalOudsApi::class)
 private fun ButtonDemoContent(state: ButtonDemoState) {
     with(state) {
         val painter = when (icon) {

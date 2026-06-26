@@ -495,7 +495,7 @@ data class OudsComponents internal constructor(
             val iconOnly: Dp,
             @ExperimentalOudsApi val iconOnlyDefault: Dp,
             @ExperimentalOudsApi val iconOnlySmall: Dp,
-            @Deprecated("This token has been removed.") val loader: Dp,
+            @Deprecated("This token is not part of OUDS anymore. OUDS buttons now use the OUDS circular progress indicator instead of a custom loader.") val loader: Dp,
             val maxHeightIconOnly: Dp,
             @ExperimentalOudsApi val maxWidthHeightIconOnlyDefault: Dp,
             @ExperimentalOudsApi val maxWidthHeightIconOnlySmall: Dp,

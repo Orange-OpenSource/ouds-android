@@ -215,15 +215,13 @@ internal fun PreviewOudsCircularProgressIndicator(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsCircularProgressIndicatorPreviewParameter
-) {
-    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        with(parameter) {
-            OudsCircularProgressIndicator(
-                progress = { 0.75f },
-                status = status,
-                track = track
-            )
-        }
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
+        OudsCircularProgressIndicator(
+            progress = { 0.75f },
+            status = status,
+            track = track
+        )
     }
 }
 
@@ -235,13 +233,11 @@ private fun PreviewOudsCircularProgressIndicatorSized(@PreviewParameter(OudsCirc
 }
 
 @Composable
-internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract, size: Float) {
-    OudsPreview(theme = theme) {
-        OudsCircularProgressIndicator(
-            modifier = Modifier.size(size.dp),
-            progress = { 0.75f }
-        )
-    }
+internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract, size: Float) = OudsPreview(theme = theme) {
+    OudsCircularProgressIndicator(
+        modifier = Modifier.size(size.dp),
+        progress = { 0.75f }
+    )
 }
 
 internal data class OudsCircularProgressIndicatorPreviewParameter(

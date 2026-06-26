@@ -26,6 +26,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
@@ -37,7 +38,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * This version of the button uses the *text only* layout, which is the most common layout.
  * Other layouts are available for this component: *text + icon* and *icon only*.
  *
- * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in an "List item" component, for example).
+ * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in a "List item" component, for example).
  * The default size is available via [OudsButton].
  *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
@@ -51,6 +52,9 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * > Design name: Button
  *
  * > Design version: 3.3.0
+ *
+ * **Note**: This API is currently marked as experimental because it has been released ahead of
+ * the tokens 2.6.0 update. It will be stabilized once tokens 2.6.0 is integrated.
  *
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -69,6 +73,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlyOnColoredBackgroundSample
  */
 @Composable
+@ExperimentalOudsApi
 fun OudsSmallButton(
     label: String,
     onClick: () -> Unit,
@@ -98,7 +103,7 @@ fun OudsSmallButton(
  * This version of the button uses the *icon only* layout, which is typically used in business or back-office interfaces. It is rarely used alone (usually part of a group of elements).
  * Other layouts are available for this component: *text only* and *text + icon*.
  *
- * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in an "List item" component, for example).
+ * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in a "List item" component, for example).
  * The default size is available via [OudsButton].
  *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
@@ -112,6 +117,9 @@ fun OudsSmallButton(
  * > Design name: Button
  *
  * > Design version: 3.3.0
+ *
+ * **Note**: This API is currently marked as experimental because it has been released ahead of
+ * the tokens 2.6.0 update. It will be stabilized once tokens 2.6.0 is integrated.
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -132,6 +140,7 @@ fun OudsSmallButton(
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonIconOnlyWithUntintedIconSample
  */
 @Composable
+@ExperimentalOudsApi
 fun OudsSmallButton(
     icon: OudsButtonIcon,
     onClick: () -> Unit,
@@ -162,7 +171,7 @@ fun OudsSmallButton(
  * "Play" button is standard in the context of TV or video streaming).
  * Other layouts are available for this component: *text only* and *icon only*.
  *
- * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in an "List item" component, for example).
+ * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in a "List item" component, for example).
  * The default size is available via [OudsButton].
  *
  * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
@@ -176,6 +185,9 @@ fun OudsSmallButton(
  * > Design name: Button
  *
  * > Design version: 3.3.0
+ *
+ * **Note**: This API is currently marked as experimental because it has been released ahead of
+ * the tokens 2.6.0 update. It will be stabilized once tokens 2.6.0 is integrated.
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
@@ -197,6 +209,7 @@ fun OudsSmallButton(
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextAndIconWithUntintedIconSample
  */
 @Composable
+@ExperimentalOudsApi
 fun OudsSmallButton(
     icon: OudsButtonIcon,
     label: String,
@@ -275,18 +288,19 @@ internal fun PreviewOudsSmallButton(
 private fun PreviewOudsSmallButtonWithRoundedCorners() = PreviewOudsSmallButtonWithRoundedCorners(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsSmallButtonWithRoundedCorners(theme: OudsThemeContract) =
-    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
-        val appearance = OudsButtonAppearance.Default
-        PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
-            OudsSmallButton(
-                icon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
-                label = appearance.name,
-                onClick = {},
-                appearance = appearance
-            )
-        }
+internal fun PreviewOudsSmallButtonWithRoundedCorners(
+    theme: OudsThemeContract
+) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerButtons = true) }) {
+    val appearance = OudsButtonAppearance.Default
+    PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
+        OudsSmallButton(
+            icon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            label = appearance.name,
+            onClick = {},
+            appearance = appearance
+        )
     }
+}
 
 @OudsPreview
 @Composable
