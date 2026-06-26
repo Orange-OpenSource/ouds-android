@@ -46,7 +46,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
@@ -298,19 +297,19 @@ internal val PreviewPaddingDefault = 16.dp
 internal const val LoremIpsumText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 
-internal class CheckerboardPainter(val squareSize: Dp, val primaryColor: Color, val secondaryColor: Color) : Painter() {
+internal object CheckerboardPainter : Painter() {
 
     override val intrinsicSize = Size.Unspecified
 
     override fun DrawScope.onDraw() {
-        val squareSizePx = squareSize.toPx()
+        val squareSizePx = 6.dp.toPx()
         val columnCount = ceil(size.width / squareSizePx).toInt()
         val rowCount = ceil(size.height / squareSizePx).toInt()
         val drawSize = Size(squareSizePx, squareSizePx)
 
         repeat(rowCount) { row ->
             repeat(columnCount) { column ->
-                val color = if ((row + column) % 2 == 0) primaryColor else secondaryColor
+                val color = if ((row + column) % 2 == 0) Color(0xff247a85) else Color(0xfffbcd00)
                 drawRect(
                     color = color,
                     topLeft = Offset(column * squareSizePx, row * squareSizePx),

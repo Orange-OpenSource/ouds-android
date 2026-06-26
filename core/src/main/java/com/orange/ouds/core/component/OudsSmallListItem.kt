@@ -21,14 +21,12 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -474,11 +472,6 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
         val helperText = "Helper text"
         val iconLeadingContent = OudsSmallListItemLeading.Icon.Info
         val iconTrailingContent = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
-        val imagePainter = CheckerboardPainter(
-            squareSize = 6.dp,
-            primaryColor = Color(0xff247a85),
-            secondaryColor = Color(0xfffbcd00)
-        )
         return listOf(
             OudsSmallListItemPreviewParameter(
                 label = label,
@@ -495,8 +488,8 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
-                leadingContent = OudsSmallListItemLeading.Image(imagePainter, "", OudsListItemImageFormat.Panoramic),
-                trailingContent = OudsSmallListItemTrailing.Image(imagePainter, "", OudsListItemImageFormat.Square)
+                leadingContent = OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic),
+                trailingContent = OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
             )
         )
     }
