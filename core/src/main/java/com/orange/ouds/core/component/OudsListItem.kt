@@ -14,7 +14,6 @@ package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -50,12 +49,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.times
 import com.orange.ouds.core.R
-import com.orange.ouds.core.component.OudsListItemContent.Text.Style
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsComponentImage
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.InteractionState
@@ -69,6 +67,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -76,6 +75,7 @@ import com.orange.ouds.theme.OudsThemeContract
 /**
  * TODO List Item
  */
+@ExperimentalOudsApi
 @Composable
 fun OudsListItem(
     label: String,
@@ -84,8 +84,8 @@ fun OudsListItem(
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
-    leadingContent: OudsListItemLeadingContent? = null,
-    trailingContent: OudsListItemTrailingContent? = null,
+    leading: OudsListItemLeading? = null,
+    trailing: OudsListItemTrailing? = null,
     divider: Boolean = true,
     background: Boolean = false,
     helperText: String? = null,
@@ -102,8 +102,8 @@ fun OudsListItem(
         overline = overline,
         extraLabel = extraLabel,
         description = description,
-        leadingContent = leadingContent,
-        trailingContent = trailingContent,
+        leading = leading,
+        trailing = trailing,
         divider = divider,
         background = background,
         helperText = helperText,
@@ -113,6 +113,7 @@ fun OudsListItem(
 }
 
 // TODO Navigation List Item
+@ExperimentalOudsApi
 @Composable
 fun OudsListItem(
     label: String,
@@ -123,8 +124,8 @@ fun OudsListItem(
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
-    leadingContent: OudsListItemLeadingContent? = null,
-    trailingContent: OudsListItemTrailingContent? = null,
+    leading: OudsListItemLeading? = null,
+    trailing: OudsListItemTrailing? = null,
     divider: Boolean = true,
     background: Boolean = false,
     helperText: String? = null,
@@ -142,8 +143,8 @@ fun OudsListItem(
         overline = overline,
         extraLabel = extraLabel,
         description = description,
-        leadingContent = leadingContent,
-        trailingContent = trailingContent,
+        leading = leading,
+        trailing = trailing,
         divider = divider,
         background = background,
         helperText = helperText,
@@ -164,8 +165,8 @@ internal fun OudsListItem(
     overline: String?,
     extraLabel: String?,
     description: String?,
-    leadingContent: OudsListItemContent?,
-    trailingContent: OudsListItemContent?,
+    leading: OudsListItemLeadingTrailing?,
+    trailing: OudsListItemLeadingTrailing?,
     divider: Boolean,
     background: Boolean,
     helperText: String?,
@@ -207,26 +208,15 @@ internal fun OudsListItem(
                         tint = chevronColor(state = state)
                     )
                 } else {
-                    leadingContent?.let {
-                        if (leadingContent is OudsListItemContent.Icon) {
-                            leadingContent.PolymorphicContent(
-                                modifier = Modifier.size(leadingContent.size.value),
-                                extraParameters =
-                                    OudsListItemContent.Icon.ExtraParameters(
-                                        tint = actionColor(
-                                            state = state,
-                                            tint = if (leadingContent is OudsListItemContent.StatusIcon) leadingContent.status.tint else null
-                                        )
-                                    )
-                            )
-                        } else {
-                            leadingContent.PolymorphicContent(
-                                modifier = Modifier.apply {
-                                    if (leadingContent is OudsListItemContent.Image) {
-                                        height(leadingContent.size.value).width(leadingContent.format.ratio * leadingContent.size.value)
-                                    }
-                                }
-                            )
+                    leading?.let {
+                        when (leading) {
+                            is OudsListItemLeadingTrailing.Icon -> {
+                                leading.PolymorphicContent(
+                                    extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
+                                )
+                            }
+                            is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
+                            is OudsListItemLeadingTrailing.Text -> {}
                         }
                     }
                 }
@@ -248,38 +238,17 @@ internal fun OudsListItem(
                     }
                 }
 
-                trailingContent?.let {
-                    when (trailingContent) {
-                        is OudsListItemContent.Icon -> {
-                            trailingContent.PolymorphicContent(
-                                modifier = Modifier.size(trailingContent.size.value),
-                                extraParameters =
-                                    OudsListItemContent.Icon.ExtraParameters(
-                                        tint = actionColor(
-                                            state = state,
-                                            tint = if (trailingContent is OudsListItemContent.StatusIcon) trailingContent.status.tint else null
-                                        )
-                                    )
+                trailing?.let {
+                    when (trailing) {
+                        is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
+                            extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(
+                                state = state
                             )
+                        )
+                        is OudsListItemLeadingTrailing.Text -> {
+                            trailing.PolymorphicContent(extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(contentAlignment = contentAlignment))
                         }
-                        is OudsListItemContent.Text -> {
-                            trailingContent.PolymorphicContent(
-                                modifier = if (contentAlignment == OudsListItemContentAlignment.Top) {
-                                    Modifier.padding(top = OudsTheme.componentsTokens.listItem.spacePaddingBlockTopAlignmentTopTextContainerSmall.value)
-                                } else {
-                                    Modifier
-                                }
-                            )
-                        }
-                        else -> {
-                            trailingContent.PolymorphicContent(
-                                modifier = Modifier.apply {
-                                    if (trailingContent is OudsListItemContent.Image) {
-                                        height(trailingContent.size.value).width(trailingContent.format.ratio * trailingContent.size.value)
-                                    }
-                                }
-                            )
-                        }
+                        is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
                     }
                 }
 
@@ -460,237 +429,216 @@ internal enum class OudsListItemState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
-interface OudsListItemContent : OudsPolymorphicComponentContent {
-    interface Asset {
-        val size: Size
-
-        enum class Size {
-            Small, Medium, Large, ExtraLarge;
-
-            val value: Dp
-                @Composable
-                get() = with(OudsTheme.componentsTokens.listItem) {
-                    when (this@Size) {
-                        Small -> sizeAssetSmall.value
-                        Medium -> sizeAssetMedium.value
-                        Large -> sizeAssetLarge.dp
-                        ExtraLarge -> sizeAssetXlarge.dp
-                    }
-                }
-        }
+sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
+    sealed interface Asset : OudsListItemLeadingTrailing {
+        val size: OudsListItemAssetSize
     }
 
     interface Icon : Asset {
-        data class ExtraParameters(internal val tint: Color) : OudsComponentContent.ExtraParameters()
-
-        enum class Size {
-            Medium, Large;
-
-            val assetSize: Asset.Size
-                get() = when (this) {
-                    Medium -> Asset.Size.Medium
-                    Large -> Asset.Size.Large
-                }
-        }
+        @ConsistentCopyVisibility
+        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
     interface Image : Asset {
-        val format: Format
-
-        enum class Format {
-            Square,
-            Panoramic;
-
-            internal val ratio: Float
-                get() = when (this) {
-                    Square -> 1f
-                    Panoramic -> 16f / 9f
-                }
-        }
-
-        enum class Size {
-            Medium, Large, ExtraLarge;
-
-            val assetSize: Asset.Size
-                get() = when (this) {
-                    Medium -> Asset.Size.Medium
-                    Large -> Asset.Size.Large
-                    ExtraLarge -> Asset.Size.ExtraLarge
-                }
-        }
+        val format: OudsListItemImageFormat
     }
 
-    interface StatusIcon {
-        val status: Status
-
-        enum class Status(
-            val painterProvider: @Composable () -> Painter,
-            val contentDescriptionProvider: (@Composable () -> String) = { "" }
-        ) {
-            Negative(
-                { painterResource(OudsTheme.drawableResources.component.alert.importantFill) },
-                { stringResource(R.string.core_common_error_a11y) }
-            ),
-
-            Positive({ painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill) }),
-
-            Info({ painterResource(OudsTheme.drawableResources.component.alert.infoFill) }),
-
-            Warning(
-                {
-                    val iconTokens = OudsTheme.componentsTokens.icon
-                    LayeredTintedPainter(
-                        backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                        backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                        frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
-                    )
-                },
-                { stringResource(R.string.core_common_warning_a11y) }
-            );
-
-            val tint
-                @Composable
-                get() = with(OudsTheme.colorScheme.content) {
-                    when (this@Status) {
-                        Positive -> status.positive
-                        Warning -> Color.Unspecified
-                        Negative -> status.negative
-                        Info -> status.info
-                    }
-                }
-        }
-    }
-
-    interface Text {
-        enum class Style {
-            Label, LabelMuted, LabelStrong
-        }
+    interface Text : OudsListItemLeadingTrailing {
+        @ConsistentCopyVisibility
+        data class ExtraParameters internal constructor(internal val contentAlignment: OudsListItemContentAlignment) : OudsComponentContent.ExtraParameters()
     }
 }
 
-internal open class ListItemIcon internal constructor(
-    graphicsObjectProvider: @Composable (ListItemIcon) -> Any,
-    contentDescriptionProvider: @Composable (ListItemIcon) -> String,
+enum class OudsListItemAssetSize {
+    Small, Medium, Large, ExtraLarge;
+
+    val value: Dp
+        @Composable
+        get() = with(OudsTheme.componentsTokens.listItem) {
+            when (this@OudsListItemAssetSize) {
+                Small -> sizeAssetSmall.value
+                Medium -> sizeAssetMedium.value
+                Large -> sizeAssetLarge.dp
+                ExtraLarge -> sizeAssetXlarge.dp
+            }
+        }
+}
+
+enum class OudsListItemIconSize {
+    Medium, Large;
+
+    val assetSize: OudsListItemAssetSize
+        get() = when (this) {
+            Medium -> OudsListItemAssetSize.Medium
+            Large -> OudsListItemAssetSize.Large
+        }
+}
+
+enum class OudsListItemIconStatus(
+    val painterProvider: @Composable () -> Painter,
+    val contentDescriptionProvider: (@Composable () -> String) = { "" }
+) {
+    Negative(
+        { painterResource(OudsTheme.drawableResources.component.alert.importantFill) },
+        { stringResource(R.string.core_common_error_a11y) }
+    ),
+
+    Positive({ painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill) }),
+
+    Info({ painterResource(OudsTheme.drawableResources.component.alert.infoFill) }),
+
+    Warning(
+        {
+            val iconTokens = OudsTheme.componentsTokens.icon
+            LayeredTintedPainter(
+                backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+            )
+        },
+        { stringResource(R.string.core_common_warning_a11y) }
+    );
+
+    val tint
+        @Composable
+        get() = with(OudsTheme.colorScheme.content) {
+            when (this@OudsListItemIconStatus) {
+                Positive -> status.positive
+                Warning -> Color.Unspecified
+                Negative -> status.negative
+                Info -> status.info
+            }
+        }
+}
+
+enum class OudsListItemImageFormat {
+    Square,
+    Panoramic;
+
+    internal val ratio: Float
+        get() = when (this) {
+            Square -> 1f
+            Panoramic -> 16f / 9f
+        }
+}
+
+enum class OudsListItemImageSize {
+    Medium, Large, ExtraLarge;
+
+    val assetSize: OudsListItemAssetSize
+        get() = when (this) {
+            Medium -> OudsListItemAssetSize.Medium
+            Large -> OudsListItemAssetSize.Large
+            ExtraLarge -> OudsListItemAssetSize.ExtraLarge
+        }
+}
+
+enum class OudsListItemTextStyle {
+    Label, LabelMuted, LabelStrong
+}
+
+open class OudsListItemIcon internal constructor(
+    graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
+    contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
     override val tinted: Boolean,
-    override val size: OudsListItemContent.Asset.Size
-) : OudsComponentIcon<OudsListItemContent.Icon.ExtraParameters, ListItemIcon>(
-    OudsListItemContent.Icon.ExtraParameters::class.java,
+    override val size: OudsListItemAssetSize,
+    internal val status: OudsListItemIconStatus?
+) : OudsComponentIcon<OudsListItemLeadingTrailing.Icon.ExtraParameters, OudsListItemIcon>(
+    OudsListItemLeadingTrailing.Icon.ExtraParameters::class.java,
     graphicsObjectProvider,
     contentDescriptionProvider
-), OudsListItemContent.Icon {
+), OudsListItemLeadingTrailing.Icon {
 
     override val tint: Color?
         @Composable
-        get() = extraParameters.tint
-}
-
-internal class ListItemImage(
-    private val graphicsObject: Any?,
-    private val contentDescription: String,
-    override val size: OudsListItemContent.Asset.Size,
-    private val imageFormat: OudsListItemContent.Image.Format,
-    private val contentScale: ContentScale
-) : OudsComponentContent<Nothing>(Nothing::class.java), OudsListItemContent.Image {
-
-    override val format: OudsListItemContent.Image.Format
-        get() = imageFormat
-
-    constructor(
-        painter: Painter,
-        contentDescription: String,
-        size: OudsListItemContent.Asset.Size,
-        format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(painter as Any, contentDescription, size, format, contentScale)
-
-    constructor(
-        imageVector: ImageVector,
-        contentDescription: String,
-        size: OudsListItemContent.Asset.Size,
-        format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(imageVector as Any, contentDescription, size, format, contentScale)
-
-    constructor(
-        bitmap: ImageBitmap,
-        contentDescription: String,
-        size: OudsListItemContent.Asset.Size,
-        format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(bitmap as Any, contentDescription, size, format, contentScale)
+        get() = actionColor(
+            state = extraParameters.state,
+            tint = status?.tint
+        )
 
     @Composable
     override fun Content(modifier: Modifier) {
-        val imageModifier = Modifier
-            .height(size.value)
-            .width(size.value * format.ratio)
-            .then(modifier)
-
-        when (graphicsObject) {
-            is Painter -> Image(
-                painter = graphicsObject,
-                contentDescription = contentDescription,
-                modifier = imageModifier,
-                contentScale = contentScale
-            )
-            is ImageVector -> Image(
-                imageVector = graphicsObject,
-                contentDescription = contentDescription,
-                modifier = imageModifier,
-                contentScale = contentScale
-            )
-            is ImageBitmap -> Image(
-                bitmap = graphicsObject,
-                contentDescription = contentDescription,
-                modifier = imageModifier,
-                contentScale = contentScale
-            )
-        }
+        super.Content(modifier.size(size.value))
     }
 }
 
-internal class ListItemTrailingText(
-    private val label: String,
-    private val style: Style
-) : OudsComponentContent<Nothing>(Nothing::class.java) {
+open class OudsListItemImage internal constructor(
+    graphicsObject: Any,
+    contentDescription: String,
+    override val size: OudsListItemAssetSize,
+    override val format: OudsListItemImageFormat,
+    contentScale: ContentScale
+) : OudsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = contentScale), OudsListItemLeadingTrailing.Image {
 
     @Composable
     override fun Content(modifier: Modifier) {
-        Text(
-            modifier = modifier,
-            text = label,
-            style = when (style) {
-                Style.Label, Style.LabelMuted -> OudsTheme.typography.label.large.default
-                Style.LabelStrong -> OudsTheme.typography.label.large.strong
-            },
-            color = if (style == Style.LabelMuted) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.content.default
+        super.Content(
+            modifier = modifier
+                .height(size.value)
+                .width(size.value * format.ratio)
         )
+    }
+}
+
+open class OudsListItemText internal constructor(
+    private val label: String,
+    private val style: OudsListItemTextStyle,
+    private val extraLabel: String?
+) : OudsComponentContent<OudsListItemLeadingTrailing.Text.ExtraParameters>(OudsListItemLeadingTrailing.Text.ExtraParameters::class.java),
+    OudsListItemLeadingTrailing.Text {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        Column(modifier = modifier) {
+            Text(
+                modifier = modifier.run {
+                    if (extraParameters.contentAlignment == OudsListItemContentAlignment.Top) {
+                        padding(top = OudsTheme.componentsTokens.listItem.spacePaddingBlockTopAlignmentTopTextContainerSmall.value)
+                    } else {
+                        this
+                    }
+                },
+                text = label,
+                style = when (style) {
+                    OudsListItemTextStyle.Label, OudsListItemTextStyle.LabelMuted -> OudsTheme.typography.label.large.default
+                    OudsListItemTextStyle.LabelStrong -> OudsTheme.typography.label.large.strong
+                },
+                color = if (style == OudsListItemTextStyle.LabelMuted) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.content.default
+            )
+            extraLabel?.let {
+                Text(
+                    text = extraLabel,
+                    style = OudsTheme.typography.label.large.strong,
+                    color = OudsTheme.colorScheme.content.default
+                )
+            }
+        }
     }
 }
 
 /**
  * A leading content of an [OudsListItem].
  */
-sealed interface OudsListItemLeadingContent : OudsListItemContent {
+sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
 
     /**
      * An icon as a list item leading content.
      */
     open class Icon internal constructor(
-        internal val listItemIcon: ListItemIcon
-    ) : OudsComponentContent<OudsListItemContent.Icon.ExtraParameters>(
-        OudsListItemContent.Icon.ExtraParameters::class.java
-    ), OudsListItemLeadingContent, OudsListItemContent.Icon {
-
-        override val size get() = listItemIcon.size
+        graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
+        contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
+        override val tinted: Boolean,
+        size: OudsListItemIconSize,
+        status: OudsListItemIconStatus?
+    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, size.assetSize, status), OudsListItemLeading {
 
         /**
-         * Creates an instance of [OudsListItemLeadingContent.Icon].
+         * Creates an instance of [OudsListItemLeading.Icon].
          *
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsListItemLeadingContent.Icon].
-         * @param size Size of the icon among [OudsListItemContent.Icon.Size] values.
+         * @param contentDescription The content description associated with this [OudsListItemLeading.Icon].
+         * @param size Size of the icon among [OudsListItemIconSize] values.
          * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          *   When set to `false`, the icon is displayed with its original colors (e.g., for multicolor icons).
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
@@ -698,23 +646,16 @@ sealed interface OudsListItemLeadingContent : OudsListItemContent {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium,
+            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
             tinted: Boolean = true
-        ) : this(
-            ListItemIcon(
-                { painter as Any },
-                { contentDescription },
-                tinted,
-                size.assetSize
-            )
-        )
+        ) : this({ painter as Any }, { contentDescription }, tinted, size, null)
 
         /**
-         * Creates an instance of [OudsListItemLeadingContent.Icon].
+         * Creates an instance of [OudsListItemLeading.Icon].
          *
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsListItemLeadingContent.Icon].
-         * @param size Size of the icon among [OudsListItemContent.Icon.Size] values.
+         * @param contentDescription The content description associated with this [OudsListItemLeading.Icon].
+         * @param size Size of the icon among [OudsListItemIconSize] values.
          * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          *   When set to `false`, the icon is displayed with its original colors (e.g., for multicolor icons).
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
@@ -722,23 +663,16 @@ sealed interface OudsListItemLeadingContent : OudsListItemContent {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium,
+            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
             tinted: Boolean = true
-        ) : this(
-            ListItemIcon(
-                { imageVector as Any },
-                { contentDescription },
-                tinted,
-                size.assetSize
-            )
-        )
+        ) : this({ imageVector as Any }, { contentDescription }, tinted, size, null)
 
         /**
-         * Creates an instance of [OudsListItemLeadingContent.Icon].
+         * Creates an instance of [OudsListItemLeading.Icon].
          *
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsListItemLeadingContent.Icon].
-         * @param size Size of the icon among [OudsListItemContent.Icon.Size] values.
+         * @param contentDescription The content description associated with this [OudsListItemLeading.Icon].
+         * @param size Size of the icon among [OudsListItemIconSize] values.
          * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          *   When set to `false`, the icon is displayed with its original colors (e.g., for multicolor icons).
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
@@ -746,167 +680,124 @@ sealed interface OudsListItemLeadingContent : OudsListItemContent {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium,
+            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
             tinted: Boolean = true
-        ) : this(
-            ListItemIcon(
-                { bitmap as Any },
-                { contentDescription },
-                tinted,
-                size.assetSize
-            )
+        ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
+
+        private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
+            { status.painterProvider() },
+            { status.contentDescriptionProvider() },
+            true,
+            size,
+            status
         )
 
         // TODO KDoc
-        class Info(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Info.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Info.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Info
-        }
+        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Info)
 
         // TODO KDoc
-        class Negative(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Negative.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Negative.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Negative
-        }
+        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Negative)
 
         // TODO KDoc
-        class Positive(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Positive.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Positive.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Positive
-        }
+        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Positive)
 
         // TODO KDoc
-        class Warning(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Warning.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Warning.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Warning
-        }
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemIcon.Content(modifier)
-        }
+        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Warning)
     }
 
     /**
      * An image as a list item leading content.
      */
     class Image internal constructor(
-        private val listItemImage: ListItemImage
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsListItemLeadingContent, OudsListItemContent.Image {
-
-        override val size
-            get() = listItemImage.size
-        override val format
-            get() = listItemImage.format
+        graphicsObject: Any,
+        contentDescription: String,
+        size: OudsListItemAssetSize,
+        imageFormat: OudsListItemImageFormat,
+        contentScale: ContentScale
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale), OudsListItemLeading {
 
         /**
-         * Creates an instance of [OudsListItemLeadingContent.Image].
+         * Creates an instance of [OudsListItemLeading.Image].
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemContent.Image.Size] values.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemContent.Image.Size,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            size: OudsListItemImageSize,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(painter, contentDescription, size.assetSize, format, contentScale))
+        ) : this(painter, contentDescription, size.assetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsListItemLeadingContent.Image].
+         * Creates an instance of [OudsListItemLeading.Image].
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemContent.Image.Size] values.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemContent.Image.Size,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            size: OudsListItemImageSize,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(imageVector, contentDescription, size.assetSize, format, contentScale))
+        ) : this(imageVector, contentDescription, size.assetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsListItemLeadingContent.Image].
+         * Creates an instance of [OudsListItemLeading.Image].
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemContent.Image.Size] values.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemContent.Image.Size,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            size: OudsListItemImageSize,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(bitmap, contentDescription, size.assetSize, format, contentScale))
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemImage.Content(modifier)
-        }
+        ) : this(bitmap, contentDescription, size.assetSize, format, contentScale)
     }
 }
 
 /**
  * A trailing content of an [OudsListItem].
  */
-sealed interface OudsListItemTrailingContent : OudsListItemContent {
+sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
 
     /**
      * An icon as a list item trailing content.
      */
     open class Icon internal constructor(
-        internal val listItemIcon: ListItemIcon
-    ) : OudsComponentContent<OudsListItemContent.Icon.ExtraParameters>(
-        OudsListItemContent.Icon.ExtraParameters::class.java
-    ), OudsListItemTrailingContent, OudsListItemContent.Icon {
-
-        override val size
-            get() = listItemIcon.size
+        graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
+        contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
+        override val tinted: Boolean,
+        size: OudsListItemIconSize,
+        status: OudsListItemIconStatus?
+    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, size.assetSize, status), OudsListItemTrailing {
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Icon].
+         * Creates an instance of [OudsListItemTrailing.Icon].
          *
          * @param painter Painter of the icon.
-         * @param contentDescription The content description associated with this [OudsListItemTrailingContent.Icon].
-         * @param size Size of the icon among [OudsListItemContent.Icon.Size] values.
+         * @param contentDescription The content description associated with this [OudsListItemTrailing.Icon].
+         * @param size Size of the icon among [OudsListItemIconSize] values.
          * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          *   When set to `false`, the icon is displayed with its original colors (e.g., for multicolor icons).
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
@@ -914,23 +805,16 @@ sealed interface OudsListItemTrailingContent : OudsListItemContent {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium,
+            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
             tinted: Boolean = true
-        ) : this(
-            ListItemIcon(
-                { painter as Any },
-                { contentDescription },
-                tinted,
-                size.assetSize
-            )
-        )
+        ) : this({ painter as Any }, { contentDescription }, tinted, size, null)
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Icon].
+         * Creates an instance of [OudsListItemTrailing.Icon].
          *
          * @param imageVector Image vector of the icon.
-         * @param contentDescription The content description associated with this [OudsListItemTrailingContent.Icon].
-         * @param size Size of the icon among [OudsListItemContent.Icon.Size] values.
+         * @param contentDescription The content description associated with this [OudsListItemTrailing.Icon].
+         * @param size Size of the icon among [OudsListItemIconSize] values.
          * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          *   When set to `false`, the icon is displayed with its original colors (e.g., for multicolor icons).
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
@@ -938,23 +822,16 @@ sealed interface OudsListItemTrailingContent : OudsListItemContent {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium,
+            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
             tinted: Boolean = true
-        ) : this(
-            ListItemIcon(
-                { imageVector as Any },
-                { contentDescription },
-                tinted,
-                size.assetSize
-            )
-        )
+        ) : this({ imageVector as Any }, { contentDescription }, tinted, size, null)
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Icon].
+         * Creates an instance of [OudsListItemTrailing.Icon].
          *
          * @param bitmap Image bitmap of the icon.
-         * @param contentDescription The content description associated with this [OudsListItemTrailingContent.Icon].
-         * @param size Size of the icon among [OudsListItemContent.Icon.Size] values.
+         * @param contentDescription The content description associated with this [OudsListItemTrailing.Icon].
+         * @param size Size of the icon among [OudsListItemIconSize] values.
          * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
          *   When set to `false`, the icon is displayed with its original colors (e.g., for multicolor icons).
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
@@ -962,178 +839,126 @@ sealed interface OudsListItemTrailingContent : OudsListItemContent {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium,
+            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
             tinted: Boolean = true
-        ) : this(
-            ListItemIcon(
-                { bitmap as Any },
-                { contentDescription },
-                tinted,
-                size.assetSize
-            )
+        ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
+
+        private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
+            { status.painterProvider() },
+            { status.contentDescriptionProvider() },
+            true,
+            size,
+            status
         )
 
-        class Info(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Info.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Info.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Info
-        }
+        // TODO KDoc
+        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Info)
 
-        class Negative(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Negative.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Negative.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Negative
-        }
+        // TODO KDoc
+        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Negative)
 
-        class Positive(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Positive.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Positive.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Positive
-        }
+        // TODO KDoc
+        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Positive)
 
-        class Warning(size: OudsListItemContent.Icon.Size = OudsListItemContent.Icon.Size.Medium) : Icon(
-            ListItemIcon(
-                { OudsListItemContent.StatusIcon.Status.Warning.painterProvider() },
-                { OudsListItemContent.StatusIcon.Status.Warning.contentDescriptionProvider() },
-                true,
-                size.assetSize
-            )
-        ), OudsListItemContent.StatusIcon {
-            override val status: OudsListItemContent.StatusIcon.Status = OudsListItemContent.StatusIcon.Status.Warning
-        }
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemIcon.Content(modifier)
-        }
+        // TODO KDoc
+        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
+            Icon(size, OudsListItemIconStatus.Warning)
     }
-
 
     /**
      * An image as a list item trailing content.
      */
     class Image internal constructor(
-        private val listItemImage: ListItemImage
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsListItemLeadingContent, OudsListItemContent.Image {
-
-        override val size
-            get() = listItemImage.size
-        override val format
-            get() = listItemImage.format
+        graphicsObject: Any,
+        contentDescription: String,
+        size: OudsListItemAssetSize,
+        imageFormat: OudsListItemImageFormat,
+        contentScale: ContentScale
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale), OudsListItemTrailing {
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Image].
+         * Creates an instance of [OudsListItemTrailing.Image].
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemContent.Image.Size] values.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemContent.Image.Size,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            size: OudsListItemImageSize,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(painter, contentDescription, size.assetSize, format, contentScale))
+        ) : this(painter, contentDescription, size.assetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Image].
+         * Creates an instance of [OudsListItemTrailing.Image].
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemContent.Image.Size] values.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemContent.Image.Size,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            size: OudsListItemImageSize,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(imageVector, contentDescription, size.assetSize, format, contentScale))
+        ) : this(imageVector, contentDescription, size.assetSize, format, contentScale)
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Image].
+         * Creates an instance of [OudsListItemTrailing.Image].
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemContent.Image.Size] values.
-         * @param format Format of the image among [OudsListItemContent.Image.Format] values.
+         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param format Format of the image among [OudsListItemImageFormat] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemContent.Image.Size,
-            format: OudsListItemContent.Image.Format = OudsListItemContent.Image.Format.Square,
+            size: OudsListItemImageSize,
+            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(ListItemImage(bitmap, contentDescription, size.assetSize, format, contentScale))
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            listItemImage.Content(modifier)
-        }
+        ) : this(bitmap, contentDescription, size.assetSize, format, contentScale)
     }
 
     /**
      * Label as a list item trailing content.
      */
     class Text private constructor(
-        private val listItemTrailingText: ListItemTrailingText,
-        private val extraLabel: String?
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsListItemTrailingContent {
+        label: String,
+        style: OudsListItemTextStyle,
+        extraLabel: String?
+    ) : OudsListItemText(label, style, extraLabel), OudsListItemTrailing {
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Text].
+         * Creates an instance of [OudsListItemTrailing.Text].
          *
          * @param label Label displayed in trailing.
-         * @param style Style applied to the label among [OudsListItemContent.Text.Style] values.
+         * @param style Style applied to the label among [OudsListItemTextStyle] values.
          */
-        constructor(label: String, style: Style = Style.Label) : this(ListItemTrailingText(label, style), null)
+        constructor(label: String, style: OudsListItemTextStyle = OudsListItemTextStyle.Label) : this(label, style, null)
 
         /**
-         * Creates an instance of [OudsListItemTrailingContent.Text].
-         * Note that when an [extraLabel] is provided, the [label] retains the [Style.Label] style.
+         * Creates an instance of [OudsListItemTrailing.Text].
+         * Note that when an [extraLabel] is provided, the [label] retains the [OudsListItemTextStyle.Label] style.
          *
          * @param label Label displayed in trailing.
          * @param extraLabel Label displayed below the main label.
          */
-        constructor(label: String, extraLabel: String? = null) : this(ListItemTrailingText(label, Style.Label), extraLabel)
-
-        @Composable
-        override fun Content(modifier: Modifier) {
-            Column(modifier = modifier) {
-                listItemTrailingText.Content()
-                extraLabel?.let {
-                    Text(
-                        text = extraLabel,
-                        style = OudsTheme.typography.label.large.strong,
-                        color = OudsTheme.colorScheme.content.default
-                    )
-                }
-            }
-        }
+        constructor(label: String, extraLabel: String? = null) : this(label, OudsListItemTextStyle.Label, extraLabel)
     }
 }
 
@@ -1158,8 +983,8 @@ internal fun PreviewOudsStaticListItem(
             description = description,
             helperText = helperText,
             contentAlignment = contentAlignment,
-            leadingContent = leadingContent,
-            trailingContent = trailingContent,
+            leading = leadingContent,
+            trailing = trailingContent,
             enabled = enabled
         )
     }
@@ -1195,8 +1020,8 @@ internal fun PreviewOudsNavigationListItem(
                 description = description,
                 helperText = helperText,
                 contentAlignment = contentAlignment,
-                leadingContent = leadingContent,
-                trailingContent = trailingContent,
+                leading = leadingContent,
+                trailing = trailingContent,
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() }
             )
@@ -1212,8 +1037,8 @@ internal data class OudsListItemPreviewParameter(
     val description: String? = null,
     val helperText: String? = null,
     val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
-    val leadingContent: OudsListItemLeadingContent? = null,
-    val trailingContent: OudsListItemTrailingContent? = null,
+    val leadingContent: OudsListItemLeading? = null,
+    val trailingContent: OudsListItemTrailing? = null,
     val enabled: Boolean = true
 )
 
@@ -1227,8 +1052,8 @@ private val listItemPreviewParameterValues: List<OudsListItemPreviewParameter>
         val extraLabel = "Extra label"
         val description = "Description"
         val helperText = "Helper text"
-        val iconLeadingContent = OudsListItemLeadingContent.Icon.Info()
-        val iconTrailingContent = OudsListItemTrailingContent.Icon(Icons.Outlined.FavoriteBorder, "")
+        val iconLeadingContent = OudsListItemLeading.Icon.Info()
+        val iconTrailingContent = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         return listOf(
             OudsListItemPreviewParameter(
                 label = label,
@@ -1242,9 +1067,8 @@ private val listItemPreviewParameterValues: List<OudsListItemPreviewParameter>
             OudsListItemPreviewParameter(
                 label = label,
                 contentAlignment = OudsListItemContentAlignment.Top,
-                leadingContent = OudsListItemLeadingContent.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailingContent = OudsListItemTrailingContent.Text(label = label, extraLabel = "Extra label")
-
+                leadingContent = OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
+                trailingContent = OudsListItemTrailing.Text(label = label, extraLabel = "Extra label")
             )
         )
     }
