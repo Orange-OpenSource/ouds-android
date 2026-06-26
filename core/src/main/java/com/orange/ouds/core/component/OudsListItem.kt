@@ -233,18 +233,18 @@ internal fun OudsListItem(
 
                 Column(modifier = Modifier.weight(1f)) {
                     overline?.let {
-                        Text(text = overline, style = OudsTheme.typography.label.moderate.small, color = contentColor(state = state, muted = true))
+                        Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
                     }
                     Text(
                         text = label,
-                        style = if (boldLabel) OudsTheme.typography.label.strong.large else OudsTheme.typography.label.default.large,
+                        style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
                         color = contentColor(state = state)
                     )
                     if (!extraLabel.isNullOrBlank()) {
-                        Text(text = extraLabel, style = OudsTheme.typography.label.strong.medium, color = contentColor(state = state))
+                        Text(text = extraLabel, style = OudsTheme.typography.label.medium.strong, color = contentColor(state = state))
                     }
                     if (!description.isNullOrBlank()) {
-                        Text(text = description, style = OudsTheme.typography.label.default.medium, color = contentColor(state = state, muted = true))
+                        Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
                     }
                 }
 
@@ -303,7 +303,7 @@ internal fun OudsListItem(
                         .padding(top = spacePaddingBlockTopHelperText.value)
                         .padding(horizontal = spacePaddingInline.value),
                     text = helperText,
-                    style = OudsTheme.typography.label.default.medium,
+                    style = OudsTheme.typography.label.medium.default,
                     color = contentColor(state = state, muted = true)
                 )
             }
@@ -627,32 +627,30 @@ internal class ListItemImage(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        with(OudsTheme.componentsTokens.listItem) {
-            val imageModifier = Modifier
-                .height(size.value)
-                .width(size.value * format.ratio)
-                .then(modifier)
+        val imageModifier = Modifier
+            .height(size.value)
+            .width(size.value * format.ratio)
+            .then(modifier)
 
-            when (graphicsObject) {
-                is Painter -> Image(
-                    painter = graphicsObject,
-                    contentDescription = contentDescription,
-                    modifier = imageModifier,
-                    contentScale = contentScale
-                )
-                is ImageVector -> Image(
-                    imageVector = graphicsObject,
-                    contentDescription = contentDescription,
-                    modifier = imageModifier,
-                    contentScale = contentScale
-                )
-                is ImageBitmap -> Image(
-                    bitmap = graphicsObject,
-                    contentDescription = contentDescription,
-                    modifier = imageModifier,
-                    contentScale = contentScale
-                )
-            }
+        when (graphicsObject) {
+            is Painter -> Image(
+                painter = graphicsObject,
+                contentDescription = contentDescription,
+                modifier = imageModifier,
+                contentScale = contentScale
+            )
+            is ImageVector -> Image(
+                imageVector = graphicsObject,
+                contentDescription = contentDescription,
+                modifier = imageModifier,
+                contentScale = contentScale
+            )
+            is ImageBitmap -> Image(
+                bitmap = graphicsObject,
+                contentDescription = contentDescription,
+                modifier = imageModifier,
+                contentScale = contentScale
+            )
         }
     }
 }
@@ -668,8 +666,8 @@ internal class ListItemTrailingText(
             modifier = modifier,
             text = label,
             style = when (style) {
-                Style.Label, Style.LabelMuted -> OudsTheme.typography.label.default.large
-                Style.LabelStrong -> OudsTheme.typography.label.strong.large
+                Style.Label, Style.LabelMuted -> OudsTheme.typography.label.large.default
+                Style.LabelStrong -> OudsTheme.typography.label.large.strong
             },
             color = if (style == Style.LabelMuted) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.content.default
         )
@@ -1136,7 +1134,7 @@ sealed interface OudsListItemTrailingContent : OudsListItemContent {
                 extraLabel?.let {
                     Text(
                         text = extraLabel,
-                        style = OudsTheme.typography.label.strong.large,
+                        style = OudsTheme.typography.label.large.strong,
                         color = OudsTheme.colorScheme.content.default
                     )
                 }
