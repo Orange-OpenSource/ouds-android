@@ -408,17 +408,12 @@ object OudsListItemDefaults {
      * Default navigation chevron of an [OudsListItem].
      */
     val Chevron = OudsListItemChevron.Next
-
-    /**
-     * Default size of an [OudsListItem].
-     */
-    val Size = OudsListItemSize.Default
 }
 
 /**
  * Represents the size of an [OudsListItem].
  */
-enum class OudsListItemSize {
+internal enum class OudsListItemSize {
     /**
      * Default size.
      */
@@ -689,7 +684,6 @@ sealed interface OudsListItemLeadingContent : OudsListItemContent {
     ), OudsListItemLeadingContent, OudsListItemContent.Icon {
 
         override val size get() = listItemIcon.size
-        internal val tinted get() = listItemIcon.tinted
 
         /**
          * Creates an instance of [OudsListItemLeadingContent.Icon].
@@ -822,7 +816,7 @@ sealed interface OudsListItemLeadingContent : OudsListItemContent {
      */
     class Image internal constructor(
         private val listItemImage: ListItemImage
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsSmallListItemLeadingContent, OudsListItemContent.Image {
+    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsListItemLeadingContent, OudsListItemContent.Image {
 
         override val size
             get() = listItemImage.size
@@ -904,8 +898,8 @@ sealed interface OudsListItemTrailingContent : OudsListItemContent {
         OudsListItemContent.Icon.ExtraParameters::class.java
     ), OudsListItemTrailingContent, OudsListItemContent.Icon {
 
-        override val size get() = listItemIcon.size
-        internal val tinted get() = listItemIcon.tinted
+        override val size
+            get() = listItemIcon.size
 
         /**
          * Creates an instance of [OudsListItemTrailingContent.Icon].
@@ -1035,7 +1029,7 @@ sealed interface OudsListItemTrailingContent : OudsListItemContent {
      */
     class Image internal constructor(
         private val listItemImage: ListItemImage
-    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsSmallListItemLeadingContent, OudsListItemContent.Image {
+    ) : OudsComponentContent<Nothing>(Nothing::class.java), OudsListItemLeadingContent, OudsListItemContent.Image {
 
         override val size
             get() = listItemImage.size
