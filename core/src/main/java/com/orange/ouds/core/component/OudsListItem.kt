@@ -60,6 +60,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -1052,8 +1053,6 @@ private val listItemPreviewParameterValues: List<OudsListItemPreviewParameter>
         val extraLabel = "Extra label"
         val description = "Description"
         val helperText = "Helper text"
-        val iconLeadingContent = OudsListItemLeading.Icon.Info()
-        val iconTrailingContent = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         return listOf(
             OudsListItemPreviewParameter(
                 label = label,
@@ -1061,14 +1060,22 @@ private val listItemPreviewParameterValues: List<OudsListItemPreviewParameter>
                 extraLabel = extraLabel,
                 description = description,
                 helperText = helperText,
-                leadingContent = iconLeadingContent,
-                trailingContent = iconTrailingContent
+                leadingContent = OudsListItemLeading.Icon.Info(),
+                trailingContent = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
             ),
             OudsListItemPreviewParameter(
                 label = label,
                 contentAlignment = OudsListItemContentAlignment.Top,
                 leadingContent = OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailingContent = OudsListItemTrailing.Text(label = label, extraLabel = "Extra label")
+                trailingContent = OudsListItemTrailing.Text(label = label, extraLabel = extraLabel)
+            ),
+            OudsListItemPreviewParameter(
+                label = label,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                leadingContent = OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageFormat.Panoramic),
+                trailingContent = OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageFormat.Square)
             )
         )
     }
