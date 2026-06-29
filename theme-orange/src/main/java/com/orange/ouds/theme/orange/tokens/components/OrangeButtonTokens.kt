@@ -15,12 +15,14 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.theme.orange.tokens.components.deprecated.OrangeDeprecatedTokensProvider
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
 
 internal data class OrangeButtonTokens(
     override val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
@@ -91,8 +93,6 @@ internal data class OrangeButtonTokens(
     override val sizeIconOnlyDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,
     override val sizeIconOnlySmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     override val sizeIconSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
-    @Deprecated("")
-    override val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall,
     override val sizeMaxWidthHeightIconOnlyDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveAreaDefault,
     override val sizeMaxWidthHeightIconOnlySmall: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveAreaSmall,
     override val sizeMinHeightDefault: OudsSizeKeyToken = OudsSizeKeyToken.MinInteractiveAreaDefault,
@@ -124,5 +124,5 @@ internal data class OrangeButtonTokens(
     override val spacePaddingInlineIconStartDefault: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ExtraLarge,
     override val spacePaddingInlineIconStartSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Large,
     override val spacePaddingInlineStartIconEndDefault: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge,
-    override val spacePaddingInlineStartIconEndSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraLarge
-) : OudsButtonTokens
+    override val spacePaddingInlineStartIconEndSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraLarge,
+) : OudsButtonTokens, OrangeDeprecatedTokensProvider<OudsDeprecatedButtonTokens>

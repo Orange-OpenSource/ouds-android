@@ -16,14 +16,16 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.OudsDeprecatedTokensProvider
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
 
 /** @suppress */
 @InternalOudsApi
-interface OudsButtonTokens {
+interface OudsButtonTokens : OudsDeprecatedTokensProvider<OudsDeprecatedButtonTokens> {
     val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius
     val borderRadiusDefault: OudsBorderKeyToken.Radius
     val borderRadiusRounded: OudsBorderKeyToken.Radius
@@ -92,8 +94,6 @@ interface OudsButtonTokens {
     val sizeIconOnlyDefault: OudsSizeKeyToken.Icon
     val sizeIconOnlySmall: OudsSizeKeyToken.Icon
     val sizeIconSmall: OudsSizeKeyToken.Icon
-    @Deprecated("")
-    val sizeLoader: OudsSizeKeyToken.Icon
     val sizeMaxWidthHeightIconOnlyDefault: OudsSizeKeyToken
     val sizeMaxWidthHeightIconOnlySmall: OudsSizeKeyToken
     val sizeMinHeightDefault: OudsSizeKeyToken
