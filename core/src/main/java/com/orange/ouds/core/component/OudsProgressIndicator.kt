@@ -14,7 +14,10 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.core.extensions.value
+import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.value
 
 /**
  * The status of an [OudsCircularProgressIndicator] or an [OudsLinearProgressIndicator].
@@ -55,4 +58,22 @@ object OudsProgressIndicatorDefaults {
      * The default status.
      */
     val Status = OudsProgressIndicatorStatus.Accent
+}
+
+@Composable
+internal fun progressIndicatorColor(status: OudsProgressIndicatorStatus): Color {
+    val monochrome = LocalColorMode.current?.monochrome == true
+    return if (monochrome) OudsTheme.componentsTokens.progressIndicatorMonochrome.colorContentIndicator.value else status.color()
+
+}
+
+@Composable
+internal fun progressIndicatorTrackColor(track: Boolean): Color {
+    val monochrome = LocalColorMode.current?.monochrome == true
+    return with(OudsTheme.componentsTokens) {
+        when {
+            track -> if (monochrome) progressIndicatorMonochrome.colorContentTrack.value else progressIndicator.colorContentTrack.value
+            else -> Color.Transparent
+        }
+    }
 }

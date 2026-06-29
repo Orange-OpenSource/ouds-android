@@ -33,8 +33,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.extensions.value
-import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -155,13 +153,8 @@ private fun OudsCircularProgressIndicator(
             }
         val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
         val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
-        val monochrome = LocalColorMode.current?.monochrome == true
-        val monochromeTokens = OudsTheme.componentsTokens.progressIndicatorMonochrome
-        val color = if (monochrome) monochromeTokens.colorContentIndicator.value else status.color()
-        val trackColor = when {
-            track -> if (monochrome) monochromeTokens.colorContentTrack.value else colorContentTrack.value
-            else -> Color.Transparent
-        }
+        val color = progressIndicatorColor(status = status)
+        val trackColor = progressIndicatorTrackColor(track = track)
 
         nullableProgress?.let {
             CircularProgressIndicator(
