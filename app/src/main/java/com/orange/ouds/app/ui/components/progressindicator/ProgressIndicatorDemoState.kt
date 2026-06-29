@@ -25,7 +25,8 @@ open class ProgressIndicatorDemoState(
     type: Type,
     status: OudsProgressIndicatorStatus,
     track: Boolean,
-    animated: Boolean
+    animated: Boolean,
+    onColoredBox: Boolean
 ) {
 
     companion object {
@@ -39,7 +40,8 @@ open class ProgressIndicatorDemoState(
                         type,
                         status,
                         track,
-                        animated
+                        animated,
+                        onColoredBox
                     )
                 }
             },
@@ -49,7 +51,8 @@ open class ProgressIndicatorDemoState(
                     list[1] as Type,
                     list[2] as OudsProgressIndicatorStatus,
                     list[3] as Boolean,
-                    list[4] as Boolean
+                    list[4] as Boolean,
+                    list[5] as Boolean
                 )
             }
         )
@@ -64,6 +67,8 @@ open class ProgressIndicatorDemoState(
     var track by mutableStateOf(track)
 
     var animated by mutableStateOf(animated)
+
+    var onColoredBox: Boolean by mutableStateOf(onColoredBox)
 
     val progress: Float
         get() = progressText.toFloatOrNull() ?: 0f

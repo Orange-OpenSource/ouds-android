@@ -15,7 +15,6 @@
 
 package com.orange.ouds.theme.sosh.tokens.components
 
-import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor

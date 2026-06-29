@@ -25,7 +25,8 @@ fun rememberCircularProgressIndicatorDemoState(
     type: Type = Type.Determinate,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
-    animated: Boolean = true
+    animated: Boolean = true,
+    onColoredBox: Boolean = false
 ) = rememberSaveable(progressText, type, status, track, animated, saver = ProgressIndicatorDemoState.Saver) {
-    ProgressIndicatorDemoState(progressText, type, status, track, animated)
+    ProgressIndicatorDemoState(progressText, type, status, track, animated, onColoredBox)
 }
