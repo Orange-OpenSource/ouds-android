@@ -54,6 +54,11 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             selectedChipIndex = ProgressIndicatorDemoState.Type.entries.indexOf(type),
             onSelectionChange = { index: Int -> type = ProgressIndicatorDemoState.Type.entries[index] }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_onColoredBackground_tech),
+            checked = onColoredBox,
+            onCheckedChange = { onColoredBox = it },
+        )
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             CustomizationTextInput(
                 applyTopPadding = true,
