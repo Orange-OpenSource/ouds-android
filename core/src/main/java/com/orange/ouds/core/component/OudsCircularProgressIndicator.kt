@@ -156,9 +156,9 @@ private fun OudsCircularProgressIndicator(
         val color = progressIndicatorColor(status = status)
         val trackColor = progressIndicatorTrackColor(track = track)
 
-        nullableProgress?.let {
+        if (nullableProgress != null || LocalInspectionMode.current) {
             CircularProgressIndicator(
-                progress = nullableProgress,
+                progress = nullableProgress.orElse { { 0.75f } },
                 modifier = progressIndicatorModifier,
                 color = color,
                 strokeWidth = strokeWidth,
@@ -166,7 +166,7 @@ private fun OudsCircularProgressIndicator(
                 strokeCap = strokeCap,
                 gapSize = gapSize
             )
-        }.orElse {
+        } else {
             CircularProgressIndicator(
                 modifier = progressIndicatorModifier,
                 color = color,
