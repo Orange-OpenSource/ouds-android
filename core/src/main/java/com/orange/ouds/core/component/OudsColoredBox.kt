@@ -268,6 +268,8 @@ internal fun PreviewOudsColoredBox(
                 chevron = OudsLinkChevron.Next,
                 onClick = {},
             )
+            OudsCircularProgressIndicator()
+            OudsLinearProgressIndicator()
         }
     }
 }
