@@ -20,15 +20,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.core.app.LocaleManagerCompat
-import androidx.core.os.ConfigurationCompat
-import androidx.core.os.LocaleListCompat
 import com.orange.ouds.core.extensions.isHighContrastModeEnabled
 import com.orange.ouds.foundation.RestrictedOudsApi
-import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.locale.getLanguage
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -185,14 +180,6 @@ fun OudsTheme(
         val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
         val context = LocalContext.current
-        val applicationLocaleList = if (!LocalInspectionMode.current) {
-            LocaleManagerCompat.getApplicationLocales(context)
-        } else {
-            LocaleListCompat.getEmptyLocaleList()
-        }
-        val locale = applicationLocaleList.get(0)
-            .orElse { ConfigurationCompat.getLocales(LocalConfiguration.current).get(0) }
-            .orElse { java.util.Locale.getDefault() }
 
         CompositionLocalProvider(
             LocalDarkThemeEnabled provides darkThemeEnabled,
@@ -205,7 +192,7 @@ fun OudsTheme(
             LocalBorders provides borderTokens.getBorders(),
             LocalEffects provides effectTokens.getEffects(),
             LocalElevations provides elevationTokens.getElevations(),
-            LocalTypography provides fontTokens.getTypography(getFontFamily(locale), windowWidthSizeClass),
+            LocalTypography provides fontTokens.getTypography(getFontFamily(language = getLanguage()), windowWidthSizeClass),
             LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
             LocalOpacities provides opacityTokens.getOpacities(),
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),

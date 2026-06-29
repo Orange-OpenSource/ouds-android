@@ -45,7 +45,8 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.wireframe.WireframeTheme
+//import com.orange.ouds.theme.orange.OrangeTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -109,7 +110,7 @@ internal fun PreviewCodeSnippet() = AppPreview {
         comment("Apply Orange theme")
         functionCall("OudsTheme") {
             trailingLambda = true
-            constructorCallArgument<OrangeTheme>("theme")
+            constructorCallArgument<WireframeTheme>("theme")
             functionCallArgument("darkThemeEnabled", "isSystemInDarkTheme")
             lambdaArgument("content") {
                 comment("Content")

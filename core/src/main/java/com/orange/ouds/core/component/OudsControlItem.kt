@@ -35,7 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
@@ -53,6 +52,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * The control item composable helps factorize common layout elements shared by [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem],
@@ -297,7 +297,7 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
             modifier = modifier
                 .padding(spacePaddingInlineErrorIcon.value)
                 .size(sizeErrorIcon.value),
-            painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
+            painter = painterResource(resource = OudsTheme.drawableResources.component.alert.importantFill),
             contentDescription = null,
             tint = errorColor(state = state)
         )

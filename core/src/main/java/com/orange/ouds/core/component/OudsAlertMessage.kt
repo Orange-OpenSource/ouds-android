@@ -42,7 +42,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -74,6 +73,7 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable
@@ -285,7 +285,7 @@ private fun OudsAlertMessage(
                     onClose?.let {
                         OudsButton(
                             icon = OudsButtonIcon(
-                                painter = painterResource(LocalDrawableResources.current.component.button.expurge),
+                                painter = painterResource(resource = LocalDrawableResources.current.component.button.expurge),
                                 contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
                             ),
                             onClick = onClose,

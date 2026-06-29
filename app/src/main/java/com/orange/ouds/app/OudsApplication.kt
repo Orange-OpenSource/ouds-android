@@ -18,9 +18,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.google.firebase.Firebase
 import com.google.firebase.crashlytics.crashlytics
-import com.orange.ouds.theme.orange.OrangeFontFamily
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
-import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
+//import com.orange.ouds.theme.orange.OrangeFontFamily
+//import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
+//import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -39,9 +39,9 @@ class OudsApplication : Application() {
         // Thus we use the Android Downloadable Fonts feature to retrieve the files on a remote server.
         // However the preferred way of using the Helvetica Neue font in the Orange themes is configuring
         // bundled font files with `OrangeHelveticaNeueLatin.Bundled` and/or `OrangeHelveticaNeueArabic.Bundled`.
-        OrangeFontFamily.preloadDownloadableFontFamilies(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
-            areDownloadableOrangeFontFamiliesPreloaded = true
-        }
+//        OrangeFontFamily.preloadDownloadableFontFamilies(this, listOf(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable)) {
+//            areDownloadableOrangeFontFamiliesPreloaded = true
+//        }
     }
 
     private fun initializeCrashlytics() {

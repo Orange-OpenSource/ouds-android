@@ -59,6 +59,7 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices. Radio button that does not show icon or text,
@@ -168,7 +169,7 @@ internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean
         if (selected) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(OudsTheme.drawableResources.component.radioButton.selected),
+                painter = painterResource(resource = OudsTheme.drawableResources.component.radioButton.selected),
                 tint = selectionColor(state = state, error = error),
                 contentDescription = null
             )

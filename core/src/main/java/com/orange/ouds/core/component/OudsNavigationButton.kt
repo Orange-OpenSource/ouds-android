@@ -25,6 +25,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Navigation button is a UI element that allows to move between different pages within a multipage interface.
@@ -77,7 +78,7 @@ fun OudsNavigationButton(
 
     OudsButton(
         nullableIcon = OudsButtonIcon(
-            painter = painterResource(iconResource),
+            painter = painterResource(resource = iconResource),
             contentDescription = "" // Not necessary because a label is present
         ),
         nullableLabel = label,

@@ -16,6 +16,8 @@ import com.orange.ouds.gradle.releaseVersion
 plugins {
     kotlin("jvm")
     alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.compose.multiplatform) apply false
+    id(libs.plugins.kotlin.multiplatform.get().pluginId) apply false
     id(libs.plugins.firebase.appdistribution.get().pluginId) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.google.services) apply false
@@ -35,9 +37,9 @@ dependencies {
     dokka(project(":core"))
     dokka(project(":global-raw-tokens"))
     dokka(project(":theme-contract"))
-    dokka(project(":theme-orange"))
-    dokka(project(":theme-orange-compact"))
-    dokka(project(":theme-sosh"))
+//    dokka(project(":theme-orange"))
+//    dokka(project(":theme-orange-compact"))
+//    dokka(project(":theme-sosh"))
     dokka(project(":theme-wireframe"))
 }
 

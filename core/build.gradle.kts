@@ -47,9 +47,9 @@ dependencies {
     implementation(project(":foundation"))
     api(project(":theme-contract"))
     // compileOnly dependencies on themes are needed for previews
-    compileOnly(project(":theme-orange"))
-    compileOnly(project(":theme-orange-compact"))
-    compileOnly(project(":theme-sosh"))
+//    compileOnly(project(":theme-orange"))
+//    compileOnly(project(":theme-orange-compact"))
+//    compileOnly(project(":theme-sosh"))
     compileOnly(project(":theme-wireframe"))
 
     implementation(platform(libs.androidx.compose.bom))
@@ -61,9 +61,11 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.material)
 
+    implementation(libs.compose.components.resources)
+
     testImplementation(project(":core-test"))
-    testImplementation(project(":theme-orange"))
-    androidTestImplementation(project(":theme-orange"))
+    //testImplementation(project(":theme-orange"))
+    //androidTestImplementation(project(":theme-orange"))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.kotlin.reflect)
     androidTestImplementation(libs.mockito.android)

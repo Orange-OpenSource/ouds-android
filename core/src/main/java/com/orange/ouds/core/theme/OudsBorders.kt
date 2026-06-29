@@ -37,7 +37,6 @@ import androidx.compose.ui.unit.isSpecified
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
-import java.util.Locale
 
 /**
  * Holds all the border-related properties defined in the OUDS theme.
@@ -217,7 +216,7 @@ enum class OudsBorderStyle {
          */
         fun fromString(string: String): OudsBorderStyle {
             return try {
-                OudsBorderStyle.valueOf(string.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() })
+                OudsBorderStyle.valueOf(string.lowercase().replaceFirstChar { it.uppercase() })
             } catch (exception: IllegalArgumentException) {
                 // If the provided border style value is unknown, return the default border style
                 None

@@ -84,6 +84,7 @@ import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding
@@ -1332,7 +1333,7 @@ internal fun OudsTextAreaDecorator(
                     if (hasError) {
                         Icon(
                             modifier = Modifier.size(buttonTokens.sizeIconOnly.value * iconScale),
-                            painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
+                            painter = painterResource(resource =  OudsTheme.drawableResources.component.alert.importantFill),
                             contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
                         )

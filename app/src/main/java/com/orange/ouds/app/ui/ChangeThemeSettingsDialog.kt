@@ -15,7 +15,6 @@ package com.orange.ouds.app.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -23,7 +22,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -53,7 +51,7 @@ fun ChangeThemeSettingsDialog(themeState: ThemeState, onThemeSettingsChange: (Ou
 
 @Composable
 private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSettingsChange: (OudsThemeSettings) -> Unit) {
-    var themeSettings by rememberSaveable { mutableStateOf(themeState.settings) }
+    var themeSettings by rememberSaveable(stateSaver = OudsThemeSettings.Saver) { mutableStateOf(themeState.settings) }
     DialogContent(
         title = stringResource(R.string.app_themeSettingsDialog_label)
     ) {
