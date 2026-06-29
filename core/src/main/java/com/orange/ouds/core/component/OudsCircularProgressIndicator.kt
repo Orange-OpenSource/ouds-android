@@ -25,8 +25,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.extensions.value
-import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -139,13 +137,8 @@ internal fun OudsCircularProgressIndicator(
             val gapSize = (10f / 360f * PI.toFloat() * maxWidth.value).dp
             val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
             val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
-            val monochrome = LocalColorMode.current?.monochrome == true
-            val monochromeTokens = OudsTheme.componentsTokens.progressIndicatorMonochrome
-            val circularProgressIndicatorColor = color.orElse { if (monochrome) monochromeTokens.colorContentIndicator.value else status.color() }
-            val trackColor = when {
-                track -> if (monochrome) monochromeTokens.colorContentTrack.value else colorContentTrack.value
-                else -> Color.Transparent
-            }
+            val circularProgressIndicatorColor = color.orElse { progressIndicatorColor(status = status) }
+            val trackColor = progressIndicatorTrackColor(track = track)
             val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)
 
             if (nullableProgress != null || LocalInspectionMode.current) {
