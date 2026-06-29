@@ -30,10 +30,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -154,15 +154,15 @@ private fun OudsLinearProgressIndicator(
             val progressIndicatorModifier = Modifier
                 .height(sizeLinearIndicatorHeight.dp * scale)
                 .fillMaxWidth()
-            val color = status.color()
-            val trackColor = if (track) colorContentTrack.value else Color.Transparent
+            val color = progressIndicatorColor(status = status)
+            val trackColor = progressIndicatorTrackColor(track = track)
             val gapSize = ProgressIndicatorDefaults.LinearIndicatorTrackGapSize * scale
             val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
             val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
 
-            nullableProgress?.let {
+            if (nullableProgress != null || LocalInspectionMode.current) {
                 LinearProgressIndicator(
-                    progress = nullableProgress,
+                    progress = nullableProgress.orElse { { 0.75f } },
                     modifier = progressIndicatorModifier,
                     color = color,
                     trackColor = trackColor,
@@ -174,7 +174,7 @@ private fun OudsLinearProgressIndicator(
                         }
                     }
                 )
-            }.orElse {
+            } else {
                 LinearProgressIndicator(
                     modifier = progressIndicatorModifier,
                     color = color,
@@ -221,13 +221,23 @@ internal fun PreviewOudsLinearProgressIndicator(
 ) {
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
-            OudsLinearProgressIndicator(
-                modifier = Modifier.padding(all = PreviewPaddingDefault),
-                progress = { 0.75f },
-                status = status,
-                track = track,
-                helperText = helperText
-            )
+            val linearProgressIndicatorPreview: @Composable () -> Unit = {
+                OudsLinearProgressIndicator(
+                    modifier = Modifier.padding(all = PreviewPaddingDefault),
+                    progress = { 0.75f },
+                    status = status,
+                    track = track,
+                    helperText = helperText
+                )
+            }
+
+            if (onColoredBackground) {
+                OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
+                    linearProgressIndicatorPreview()
+                }
+            } else {
+                linearProgressIndicatorPreview()
+            }
         }
     }
 }
@@ -250,7 +260,8 @@ internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThe
 internal data class OudsLinearProgressIndicatorPreviewParameter(
     val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     val track: Boolean = true,
-    val helperText: String? = null
+    val helperText: String? = null,
+    val onColoredBackground: Boolean = false
 )
 
 internal class OudsLinearProgressIndicatorPreviewParameterProvider :
@@ -261,5 +272,6 @@ private val previewParameterValues: List<OudsLinearProgressIndicatorPreviewParam
         OudsLinearProgressIndicatorPreviewParameter(),
         OudsLinearProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
         OudsLinearProgressIndicatorPreviewParameter(track = false),
-        OudsLinearProgressIndicatorPreviewParameter(helperText = "Loading...")
+        OudsLinearProgressIndicatorPreviewParameter(helperText = "Loading..."),
+        OudsLinearProgressIndicatorPreviewParameter(onColoredBackground = true)
     )

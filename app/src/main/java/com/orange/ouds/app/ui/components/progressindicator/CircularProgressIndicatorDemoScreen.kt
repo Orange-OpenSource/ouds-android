@@ -30,6 +30,7 @@ fun CircularProgressIndicatorDemoScreen() {
         bottomSheetContent = { ProgressIndicatorDemoBottomSheetContent(state = state) },
         codeSnippet = { circularProgressIndicatorDemoCodeSnippet(state = state) },
         demoContent = { CircularProgressIndicatorDemoContent(state = state) },
+        demoContentOnColoredBox = state.onColoredBox,
         version = OudsVersion.Component.ProgressIndicator
     )
 }
