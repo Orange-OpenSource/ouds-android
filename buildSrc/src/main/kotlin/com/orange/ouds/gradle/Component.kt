@@ -112,6 +112,6 @@ enum class Component {
             TextInput -> listOf("OudsTextInput")
         }
 
-        return filenames.map { "${project.rootProject.projectDir}/core/src/main/java/com/orange/ouds/core/component/$it.kt" }
+        return filenames.map { "${project.rootProject.projectDir}/core/src/commonMain/kotlin/com/orange/ouds/core/component/$it.kt" }
     }
 }

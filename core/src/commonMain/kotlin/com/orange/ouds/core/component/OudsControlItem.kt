@@ -1,0 +1,416 @@
+/*
+ * Software Name: OUDS Android
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Android library of reusable graphical components
+ */
+
+package com.orange.ouds.core.component
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.error
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
+import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.outerBorder
+import com.orange.ouds.core.component.content.OudsComponentContent
+import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.extensions.InteractionState
+import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.value
+import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
+import org.jetbrains.compose.resources.painterResource
+import kotlin.jvm.JvmOverloads
+
+/**
+ * The control item composable helps factorize common layout elements shared by [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem],
+ * and [OudsSwitchItem].
+ */
+@Suppress("DEPRECATION")
+@Composable
+internal fun OudsControlItem(
+    state: OudsControlState,
+    label: String,
+    description: String?,
+    icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean,
+    divider: Boolean,
+    enabled: Boolean,
+    readOnly: Boolean,
+    error: OudsError?,
+    indicator: @Composable () -> Unit,
+    indicatorPosition: OudsControlItemIndicatorPosition,
+    checkedContentComponentName: String,
+    checkedContentSelectionStatus: String,
+    backgroundColor: Color,
+    modifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
+    extraLabel: String? = null,
+    constrainedMaxWidth: Boolean = false,
+    handleHighContrastMode: Boolean = false
+) {
+    val previewState = getPreviewEnumEntry<OudsControlState>()
+    val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
+    val isDisabledPreviewState = previewState == OudsControlState.Disabled
+    val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
+
+    CheckedContent(
+        expression = !isForbidden,
+        exceptionMessage = {
+            val parameter = if (readOnly) "readOnly" else "disabled"
+            "An $checkedContentComponentName set to $parameter with error parameter activated is not allowed."
+        },
+        previewMessage = {
+            val stateDescription = if (isReadOnlyPreviewState) "Read only" else "Disabled"
+            "Error $checkedContentSelectionStatus status for $stateDescription state is not relevant"
+        },
+        edgeToEdgePreview = edgeToEdge
+    ) {
+        val controlItemTokens = OudsTheme.componentsTokens.controlItem
+
+        val itemIcon: (@Composable () -> Unit)? = if (error != null) {
+            {
+                ErrorIcon(
+                    state = state, modifier = if (error.message.isBlank()) {
+                        Modifier.semantics { error(" ") } // Allows Talkback to vocalize there is an error on this item even if error message is blank
+                    } else Modifier
+                )
+            }
+        } else {
+            icon?.let {
+                {
+                    icon.Content(
+                        extraParameters = OudsControlItemIcon.ExtraParameters(
+                            tint = if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+                        )
+                    )
+                }
+            }
+        }
+
+        val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) indicator else itemIcon
+        val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
+
+        Column(modifier = modifier) {
+            val shape = RoundedCornerShape(controlItemTokens.borderRadiusDefault.value)
+            Box(
+                modifier = Modifier
+                    .height(IntrinsicSize.Min)
+                    .heightIn(min = controlItemTokens.sizeMinHeightDefault.dp)
+                    .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) controlItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
+                    .background(color = backgroundColor, shape = shape)
+                    .then(contentModifier)
+                    .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Row(
+                    modifier = Modifier.padding(
+                        vertical = controlItemTokens.spacePaddingBlockDefault.value,
+                        horizontal = contentHorizontalPadding(edgeToEdge)
+                    ),
+                    horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
+                ) {
+                    leadingElement?.let { LeadingTrailingBox(leadingElement) }
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .align(Alignment.CenterVertically),
+                        verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                    ) {
+                        Text(text = label, style = OudsTheme.typography.label.large.default, color = labelColor(state = state, error = error))
+                        if (!extraLabel.isNullOrBlank()) {
+                            Text(
+                                text = extraLabel,
+                                style = OudsTheme.typography.label.medium.strong,
+                                color = extraLabelColor(state = state)
+                            )
+                        }
+                        if (!description.isNullOrBlank()) {
+                            Text(
+                                text = description,
+                                style = OudsTheme.typography.label.medium.default,
+                                color = descriptionColor(state = state)
+                            )
+                        }
+                    }
+                    trailingElement?.let { LeadingTrailingBox(trailingElement) }
+                }
+                if (divider) {
+                    OudsHorizontalDivider(
+                        modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
+                        color = dividerColor(state = state, error = error)
+                    )
+                }
+            }
+            if (error != null && error.message.isNotBlank()) {
+                ErrorMessageText(error = error, edgeToEdge = edgeToEdge)
+            }
+        }
+    }
+}
+
+internal enum class OudsControlItemIndicatorPosition {
+    Start, End
+}
+
+/**
+ * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
+ * It is not clickable and requires no content description because a control item label is always present.
+ */
+class OudsControlItemIcon private constructor(
+    graphicsObject: Any,
+    override val tinted: Boolean
+) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters, OudsControlItemIcon>(ExtraParameters::class, graphicsObject, "") {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val tint: Color
+    ) : OudsComponentContent.ExtraParameters()
+
+    /**
+     * Creates an instance of [OudsControlItemIcon].
+     *
+     * @param painter Painter of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
+     */
+    @JvmOverloads
+    constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
+
+    /**
+     * Creates an instance of [OudsControlItemIcon].
+     *
+     * @param imageVector Image vector of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
+     */
+    @JvmOverloads
+    constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
+
+    /**
+     * Creates an instance of [OudsControlItemIcon].
+     *
+     * @param bitmap Image bitmap of the icon.
+     * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+     *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+     *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
+     */
+    @JvmOverloads
+    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
+
+    override val tint: Color?
+        @Composable
+        get() = extraParameters.tint
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        super.Content(modifier.iconSize(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value, tinted))
+    }
+}
+
+@Composable
+internal fun rememberControlItemBackgroundColor(
+    enabled: Boolean,
+    readOnly: Boolean,
+    interactionState: InteractionState
+) = rememberInteractionColor(interactionState = interactionState) { controlItemInteractionState ->
+    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = controlItemInteractionState)
+    backgroundColor(state = state)
+}
+
+@Suppress("DEPRECATION")
+@Composable
+private fun LeadingTrailingBox(content: @Composable () -> Unit) {
+    val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
+    val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.value
+
+    val maxHeight = max(assetContainerMaxHeight, checkboxIndicatorSize)
+    Box(
+        modifier = Modifier
+            .heightIn(max = maxHeight)
+            .fillMaxHeight(),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
+}
+
+@Composable
+private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
+    with(OudsTheme.componentsTokens.controlItem) {
+        val modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+            .padding(top = spacePaddingBlockTopHelperText.value)
+            .clearAndSetSemantics {
+                error(error.message)
+            }
+        val style = OudsTheme.typography.label.medium.default
+        val color = OudsTheme.colorScheme.content.status.negative
+        if (error.annotatedMessage != null) {
+            Text(modifier = modifier, text = error.annotatedMessage.annotatedString(), style = style, color = color)
+        } else {
+            Text(modifier = modifier, text = error.message, style = style, color = color)
+        }
+    }
+}
+
+@Suppress("DEPRECATION")
+@Composable
+private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
+    with(OudsTheme.componentsTokens.controlItem) {
+        Icon(
+            modifier = modifier
+                .padding(spacePaddingInlineErrorIcon.value)
+                .size(sizeErrorIcon.value),
+            painter = painterResource(resource = OudsTheme.drawableResources.component.alert.importantFill),
+            contentDescription = null,
+            tint = errorColor(state = state)
+        )
+    }
+}
+
+@Suppress("DEPRECATION")
+@Composable
+private fun backgroundColor(state: OudsControlState): Color {
+    return with(OudsTheme.componentsTokens.controlItem) {
+        when (state) {
+            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
+            OudsControlState.Hovered -> colorBgHover.value
+            OudsControlState.Pressed -> colorBgPressed.value
+            OudsControlState.Focused -> colorBgFocus.value
+        }
+    }
+}
+
+@Composable
+private fun contentHorizontalPadding(edgeToEdge: Boolean) =
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
+
+@Composable
+private fun dividerColor(state: OudsControlState, error: OudsError?) =
+    if (error != null) {
+        errorColor(state = state)
+    } else {
+        OudsTheme.colorScheme.border.default
+    }
+
+@Composable
+private fun labelColor(state: OudsControlState, error: OudsError?) =
+    if (error != null) {
+        errorColor(state = state)
+    } else {
+        if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+    }
+
+@Composable
+private fun extraLabelColor(state: OudsControlState) =
+    if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
+
+@Composable
+private fun descriptionColor(state: OudsControlState) =
+    if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.muted
+
+internal data class OudsControlItemPreviewParameter<T, S>(
+    val value: T,
+    val extraParameter: S?,
+    val description: String? = null,
+    val divider: Boolean = false,
+    val hasIcon: Boolean = false,
+    val error: OudsError? = null,
+    val reversed: Boolean = false,
+    val extraLabel: String? = null
+)
+
+internal open class OudsControlItemPreviewParameterProvider<T, S>(
+    values: List<T>,
+    extraParameters: List<S> = listOf()
+) : BasicPreviewParameterProvider<OudsControlItemPreviewParameter<T, S>>(*getPreviewParameterValues(values, extraParameters).toTypedArray()) {
+
+    companion object {
+        val DefaultBooleanValues = listOf(false, false, true)
+    }
+}
+
+private fun <T, S> getPreviewParameterValues(values: List<T>, extraParameters: List<S> = listOf()): List<OudsControlItemPreviewParameter<T, S>> {
+    val extraLabel = "Extra label"
+    val description = "Description"
+    val reversedValues = listOf(false, true)
+
+    return buildList {
+        reversedValues.forEach { reversed ->
+            val parameters = List(3) { index ->
+                OudsControlItemPreviewParameter(
+                    value = values[index],
+                    extraParameter = extraParameters.getOrNull(index),
+                    reversed = reversed
+                ).run {
+                    when (index) {
+                        0 -> this
+                        1 -> copy(hasIcon = true, divider = true, extraLabel = extraLabel, description = description)
+                        else -> copy(description = description, divider = true, error = OudsError(ControlItemErrorMessage))
+                    }
+                }
+            }
+            addAll(parameters)
+        }
+    }
+}
+
+internal data class OudsControlItemHighContrastModePreviewParameter<T>(
+    val value: T,
+)
+
+internal open class OudsControlItemHighContrastModePreviewParameterProvider<T>(
+    values: List<T>
+) : BasicPreviewParameterProvider<OudsControlItemHighContrastModePreviewParameter<T>>(*getHighContrastModePreviewParameterValues(values).toTypedArray())
+
+private fun <T> getHighContrastModePreviewParameterValues(values: List<T>): List<OudsControlItemHighContrastModePreviewParameter<T>> {
+    return buildList {
+        List(2) { index ->
+            add(OudsControlItemHighContrastModePreviewParameter(value = values[index]))
+        }
+    }
+}
+
+internal class OudsControlItemConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+/**
+ * Error message used in control items previews.
+ */
+internal val ControlItemErrorMessage = "This field can't be activated"
