@@ -42,7 +42,12 @@ import kotlinx.parcelize.Parcelize
  *   For standard or business-oriented journeys, keep the default corners.
  *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
  *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
- *
+ * @property roundedCornerProgressIndicators Indicates if rounded corners should be applied to every card items.
+ *   Set to `false` for a square finish, or `true` for a finish with rounded corner.
+ *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
+ *   For standard or business-oriented journeys, keep the default corners.
+ *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
+ *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
@@ -50,5 +55,6 @@ data class OudsThemeSettings @JvmOverloads constructor(
     val roundedCornerButtons: Boolean? = null,
     val roundedCornerTextInputs: Boolean? = null,
     val roundedCornerAlertMessages: Boolean? = null,
-    val roundedCornerProgressIndicators: Boolean? = null
+    val roundedCornerProgressIndicators: Boolean? = null,
+    val roundedCornerCardItems: Boolean? = null
 ) : Parcelable

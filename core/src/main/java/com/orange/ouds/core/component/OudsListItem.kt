@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
@@ -50,6 +52,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -58,7 +61,9 @@ import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.LayeredTintedPainter
@@ -74,7 +79,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO List Item
+ * TODO Static List Item
  */
 @ExperimentalOudsApi
 @Composable
@@ -98,18 +103,18 @@ fun OudsListItem(
         label = label,
         nullableOnClick = null,
         modifier = modifier,
-        nullableChevron = null,
+        nullableIndicator = null,
         contentAlignment = contentAlignment,
         overline = overline,
         extraLabel = extraLabel,
         description = description,
         leading = leading,
         trailing = trailing,
-        divider = divider,
-        background = background,
+        decoration = if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider),
         helperText = helperText,
         boldLabel = boldLabel,
-        enabled = enabled
+        enabled = enabled,
+        card = false
     )
 }
 
@@ -120,7 +125,7 @@ fun OudsListItem(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    chevron: OudsListItemChevron = OudsListItemDefaults.Chevron,
+    indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
     contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     overline: String? = null,
     extraLabel: String? = null,
@@ -139,18 +144,18 @@ fun OudsListItem(
         label = label,
         nullableOnClick = onClick,
         modifier = modifier,
-        nullableChevron = chevron,
+        nullableIndicator = indicator,
         contentAlignment = contentAlignment,
         overline = overline,
         extraLabel = extraLabel,
         description = description,
         leading = leading,
         trailing = trailing,
-        divider = divider,
-        background = background,
+        decoration = if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider),
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        card = false,
         interactionSource = interactionSource
     )
 }
@@ -161,18 +166,18 @@ internal fun OudsListItem(
     label: String,
     nullableOnClick: (() -> Unit)?,
     modifier: Modifier,
-    nullableChevron: OudsListItemChevron?,
+    nullableIndicator: OudsListItemIndicator?,
     contentAlignment: OudsListItemContentAlignment,
     overline: String?,
     extraLabel: String?,
     description: String?,
     leading: OudsListItemLeadingTrailing?,
     trailing: OudsListItemLeadingTrailing?,
-    divider: Boolean,
-    background: Boolean,
+    decoration: OudsListItemDecoration,
     helperText: String?,
     boldLabel: Boolean,
     enabled: Boolean,
+    card: Boolean,
     interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -180,6 +185,9 @@ internal fun OudsListItem(
     val state = getListItemState(enabled = enabled, interactionState = interactionState)
 
     with(OudsTheme.componentsTokens.listItem) {
+        val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) borderRadiusRounded.value else borderRadiusDefault.value
+        val shape = RoundedCornerShape(borderRadius)
+
         Column(
             modifier = modifier.widthIn(min = sizeMinWidth.dp)
         ) {
@@ -187,7 +195,8 @@ internal fun OudsListItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(min = minHeight(size))
-                    .background(color = backgroundColor(state = state, background = background))
+                    .background(color = backgroundColor(state = state, decoration = decoration), shape = shape)
+                    .border(state = state, decoration = decoration, cornerRadius = borderRadius)
                     .outerBorder(state = state)
                     .containerPadding(size = size, contentAlignment = contentAlignment)
                     .semantics(mergeDescendants = true) {
@@ -201,12 +210,12 @@ internal fun OudsListItem(
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value),
                 verticalAlignment = verticalAlignment(contentAlignment)
             ) {
-                if (nullableChevron == OudsListItemChevron.Previous) {
+                if (nullableIndicator == OudsListItemIndicator.Previous) {
                     Icon(
                         modifier = Modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value),
-                        painter = painterResource(OudsTheme.drawableResources.component.controlItem.previous),
+                        painter = painterResource(nullableIndicator.drawableId),
                         contentDescription = "",
-                        tint = chevronColor(state = state)
+                        tint = indicatorColor(state = state)
                     )
                 } else {
                     leading?.let {
@@ -253,18 +262,14 @@ internal fun OudsListItem(
                     }
                 }
 
-                if (nullableChevron == OudsListItemChevron.Next) {
+                if (nullableIndicator != null && nullableIndicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
                     Icon(
                         modifier = Modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value),
-                        painter = painterResource(OudsTheme.drawableResources.component.controlItem.next),
+                        painter = painterResource(nullableIndicator.drawableId),
                         contentDescription = "",
-                        tint = chevronColor(state = state)
+                        tint = indicatorColor(state = state)
                     )
                 }
-            }
-
-            if (divider) {
-                OudsHorizontalDivider(color = OudsTheme.colorScheme.border.muted) // TODO add edgeToEdge management
             }
 
             if (!helperText.isNullOrBlank()) {
@@ -315,12 +320,55 @@ private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: 
 }
 
 @Composable
-private fun backgroundColor(state: OudsListItemState, background: Boolean) = with(OudsTheme.colorScheme.action.support) {
+private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDecoration?) = with(OudsTheme.colorScheme.action.support) {
+    val backgroundDecoration = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction
     when (state) {
-        OudsListItemState.Enabled, OudsListItemState.Disabled -> if (background) OudsTheme.colorScheme.action.support.enabled else Color.Transparent
+        OudsListItemState.Enabled, OudsListItemState.Disabled -> if (decoration is OudsListItemDecoration.Background) OudsTheme.colorScheme.action.support.enabled else Color.Transparent
+        OudsListItemState.Focused -> if (backgroundDecoration) focus else Color.Transparent
+        OudsListItemState.Hovered -> if (backgroundDecoration) hover else Color.Transparent
+        OudsListItemState.Pressed -> if (backgroundDecoration) pressed else Color.Transparent
+    }
+}
+
+@Composable
+private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, cornerRadius: Dp): Modifier {
+    val divider: Boolean
+    val outlined: Boolean
+    when (decoration) {
+        is OudsListItemDecoration.Outlined -> {
+            divider = false
+            outlined = true
+        }
+        is OudsListItemDecoration.OutlinedOnInteraction -> {
+            divider = false
+            outlined = state in listOf(OudsListItemState.Enabled, OudsListItemState.Disabled)
+        }
+        is OudsListItemDecoration.Background,
+        is OudsListItemDecoration.BackgroundOnInteraction,
+        is OudsListItemDecoration.None -> {
+            divider = decoration.divider
+            outlined = false
+        }
+    }
+    val outlineBorderColor = outlineBorderColor(state)
+    val width = OudsTheme.borders.width.default.takeUnlessHairline
+
+    return when {
+        width != null && outlined -> this.border(width = width, color = outlineBorderColor)
+        width != null && divider -> this.bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
+        else -> this
+    }
+
+}
+
+@Composable
+private fun outlineBorderColor(state: OudsListItemState) = with(OudsTheme.colorScheme.action) {
+    when (state) {
+        OudsListItemState.Enabled -> OudsTheme.colorScheme.border.default
         OudsListItemState.Focused -> focus
         OudsListItemState.Hovered -> hover
         OudsListItemState.Pressed -> pressed
+        OudsListItemState.Disabled -> disabled
     }
 }
 
@@ -340,7 +388,7 @@ private fun actionColor(state: OudsListItemState, tint: Color? = null) = when {
 }
 
 @Composable
-private fun chevronColor(state: OudsListItemState) = with(OudsTheme.colorScheme.action) {
+private fun indicatorColor(state: OudsListItemState) = with(OudsTheme.colorScheme.action) {
     when (state) {
         OudsListItemState.Enabled -> OudsTheme.componentsTokens.link.colorChevronEnabled.value
         OudsListItemState.Focused -> focus
@@ -375,9 +423,9 @@ object OudsListItemDefaults {
     val ContentAlignment = OudsListItemContentAlignment.Center
 
     /**
-     * Default navigation chevron of an [OudsListItem].
+     * Default navigation indicator of an [OudsListItem].
      */
-    val Chevron = OudsListItemChevron.Next
+    val Indicator = OudsListItemIndicator.Next
 }
 
 /**
@@ -411,19 +459,50 @@ enum class OudsListItemContentAlignment {
 }
 
 /**
- * Represents the navigation chevron of an [OudsListItem].
+ * Represents the navigation indicator of an [OudsListItem].
  */
-enum class OudsListItemChevron {
+sealed interface OudsListItemIndicator {
+
+    @get:Composable
+    val drawableId: Int
 
     /**
-     * Used in a standard navigation context. This chevron is positioned at the end of the list item and is not customizable.
+     * Used in a standard navigation context. This indicator is positioned at the end of the list item and is not customizable.
      */
-    Next,
+    object Next : OudsListItemIndicator {
+        override val drawableId
+            @Composable
+            get() = OudsTheme.drawableResources.component.controlItem.next
+    }
 
     /**
-     * Used for "backward" navigation. This chevron is positioned at the start of the list item and is not customizable.
+     * Used for "backward" navigation. This indicator is positioned at the start of the list item and is not customizable.
      */
-    Previous
+    object Previous : OudsListItemIndicator {
+        override val drawableId
+            @Composable
+            get() = OudsTheme.drawableResources.component.controlItem.previous
+    }
+
+    /**
+     * Used for "external" navigation (outside the current context). This indicator is positioned at the end of the list item and is not customizable.
+     */
+    object External : OudsListItemIndicator {
+        override val drawableId
+            @Composable
+            get() = OudsTheme.drawableResources.functional.actions.externalLink
+    }
+}
+
+/**
+ * TODO KDoc
+ */
+sealed class OudsListItemDecoration(val divider: Boolean) {
+    object Outlined : OudsListItemDecoration(false)
+    object OutlinedOnInteraction : OudsListItemDecoration(false)
+    class Background(divider: Boolean) : OudsListItemDecoration(divider)
+    class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
+    internal class None(divider: Boolean) : OudsListItemDecoration(divider)
 }
 
 internal enum class OudsListItemState {
@@ -984,8 +1063,10 @@ internal fun PreviewOudsStaticListItem(
             description = description,
             helperText = helperText,
             contentAlignment = contentAlignment,
-            leading = leadingContent,
-            trailing = trailingContent,
+            leading = leading,
+            trailing = trailing,
+            divider = divider,
+            background = background,
             enabled = enabled
         )
     }
@@ -1014,15 +1095,17 @@ internal fun PreviewOudsNavigationListItem(
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
             OudsListItem(
                 onClick = {},
-                chevron = chevron,
+                indicator = indicator,
                 label = label,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
                 helperText = helperText,
                 contentAlignment = contentAlignment,
-                leading = leadingContent,
-                trailing = trailingContent,
+                leading = leading,
+                trailing = trailing,
+                divider = divider,
+                background = background,
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() }
             )
@@ -1032,14 +1115,16 @@ internal fun PreviewOudsNavigationListItem(
 
 internal data class OudsListItemPreviewParameter(
     val label: String,
-    val chevron: OudsListItemChevron = OudsListItemDefaults.Chevron,
+    val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
+    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
     val overline: String? = null,
     val extraLabel: String? = null,
     val description: String? = null,
+    val leading: OudsListItemLeading? = null,
+    val trailing: OudsListItemTrailing? = null,
+    val divider: Boolean = true,
+    val background: Boolean = false,
     val helperText: String? = null,
-    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
-    val leadingContent: OudsListItemLeading? = null,
-    val trailingContent: OudsListItemTrailing? = null,
     val enabled: Boolean = true
 )
 
@@ -1060,22 +1145,26 @@ private val listItemPreviewParameterValues: List<OudsListItemPreviewParameter>
                 extraLabel = extraLabel,
                 description = description,
                 helperText = helperText,
-                leadingContent = OudsListItemLeading.Icon.Info(),
-                trailingContent = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
+                leading = OudsListItemLeading.Icon.Info(),
+                trailing = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, ""),
+                divider = true
             ),
             OudsListItemPreviewParameter(
                 label = label,
+                indicator = OudsListItemIndicator.External,
                 contentAlignment = OudsListItemContentAlignment.Top,
-                leadingContent = OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailingContent = OudsListItemTrailing.Text(label = label, extraLabel = extraLabel)
+                leading = OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
+                trailing = OudsListItemTrailing.Text(label = label, extraLabel = extraLabel),
+                background = true
             ),
             OudsListItemPreviewParameter(
                 label = label,
+                indicator = OudsListItemIndicator.Previous,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
-                leadingContent = OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageFormat.Panoramic),
-                trailingContent = OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageFormat.Square)
+                trailing = OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageFormat.Panoramic),
+                leading = OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageFormat.Square)
             )
         )
     }
