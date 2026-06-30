@@ -165,6 +165,9 @@ interface OudsDrawableResources {
         interface Actions {
             @get:DrawableRes
             val deleteCrossRound: Int
+
+            @get:DrawableRes
+            val externalLink: Int
         }
 
         interface Navigation {

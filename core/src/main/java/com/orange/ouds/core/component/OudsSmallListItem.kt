@@ -38,7 +38,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO Small List Item
+ * TODO Static Small List Item
  */
 @ExperimentalOudsApi
 @Composable
@@ -60,17 +60,17 @@ fun OudsSmallListItem(
         label = label,
         nullableOnClick = null,
         modifier = modifier,
-        nullableChevron = null, contentAlignment = contentAlignment,
+        nullableIndicator = null, contentAlignment = contentAlignment,
         overline = null,
         extraLabel = null,
         description = description,
         leading = leading,
         trailing = trailing,
-        divider = divider,
-        background = background,
+        decoration = if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider),
         helperText = helperText,
         boldLabel = boldLabel,
-        enabled = enabled
+        enabled = enabled,
+        card = false
     )
 }
 
@@ -81,7 +81,7 @@ fun OudsSmallListItem(
     label: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    chevron: OudsListItemChevron = OudsListItemDefaults.Chevron,
+    indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
     contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     description: String? = null,
     leading: OudsSmallListItemLeading? = null,
@@ -98,23 +98,23 @@ fun OudsSmallListItem(
         label = label,
         nullableOnClick = onClick,
         modifier = modifier,
-        nullableChevron = chevron,
+        nullableIndicator = indicator,
         contentAlignment = contentAlignment,
         overline = null,
         extraLabel = null,
         description = description,
         leading = leading,
         trailing = trailing,
-        divider = divider,
-        background = background,
+        decoration = if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider),
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        card = false,
         interactionSource = interactionSource
     )
 }
 
-private val SmallListItemAssetSize = OudsListItemAssetSize.Small
+internal val SmallListItemAssetSize = OudsListItemAssetSize.Small
 
 /**
  * A leading content of an [OudsSmallListItem].
@@ -407,8 +407,8 @@ internal fun PreviewOudsSmallStaticListItem(
             label = label,
             description = description,
             helperText = helperText,
-            leading = leadingContent,
-            trailing = trailingContent,
+            leading = leading,
+            trailing = trailing,
             enabled = enabled
         )
     }
@@ -437,13 +437,13 @@ internal fun PreviewOudsNavigationSmallListItem(
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
             OudsSmallListItem(
                 onClick = {},
-                chevron = chevron,
+                indicator = indicator,
                 label = label,
                 description = description,
                 helperText = helperText,
                 contentAlignment = contentAlignment,
-                leading = leadingContent,
-                trailing = trailingContent,
+                leading = leading,
+                trailing = trailing,
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() }
             )
@@ -453,12 +453,12 @@ internal fun PreviewOudsNavigationSmallListItem(
 
 internal data class OudsSmallListItemPreviewParameter(
     val label: String,
-    val chevron: OudsListItemChevron = OudsListItemDefaults.Chevron,
+    val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
     val description: String? = null,
     val helperText: String? = null,
     val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
-    val leadingContent: OudsSmallListItemLeading? = null,
-    val trailingContent: OudsSmallListItemTrailing? = null,
+    val leading: OudsSmallListItemLeading? = null,
+    val trailing: OudsSmallListItemTrailing? = null,
     val enabled: Boolean = true
 )
 
@@ -475,19 +475,19 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
                 label = label,
                 description = description,
                 helperText = helperText,
-                leadingContent = OudsSmallListItemLeading.Icon.Info,
-                trailingContent = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
+                leading = OudsSmallListItemLeading.Icon.Info,
+                trailing = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
                 contentAlignment = OudsListItemContentAlignment.Top,
-                leadingContent = OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailingContent = OudsSmallListItemTrailing.Text(label = label, style = OudsListItemTextStyle.LabelStrong)
+                leading = OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
+                trailing = OudsSmallListItemTrailing.Text(label = label, style = OudsListItemTextStyle.LabelStrong)
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
-                leadingContent = OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic),
-                trailingContent = OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
+                leading = OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic),
+                trailing = OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
             )
         )
     }

@@ -119,6 +119,7 @@ class OrangeDrawableResources : OudsDrawableResources {
 
         class Actions : OudsDrawableResources.Functional.Actions {
             override val deleteCrossRound = R.drawable.ic_orange_functional_actions_delete_cross_round
+            override val externalLink = R.drawable.ic_orange_functional_actions_external_link
         }
 
         class Navigation : OudsDrawableResources.Functional.Navigation {
