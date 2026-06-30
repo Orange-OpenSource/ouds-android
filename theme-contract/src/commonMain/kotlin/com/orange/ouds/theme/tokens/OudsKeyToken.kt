@@ -16,11 +16,4 @@ import com.orange.ouds.foundation.InternalOudsApi
 
 /** @suppress */
 @InternalOudsApi
-sealed interface OudsKeyToken {
-
-    val name: String
-        get() {
-            val packageName = this::class.java.`package`?.name.orEmpty()
-            return this::class.qualifiedName.orEmpty().removePrefix("$packageName.")
-        }
-}
+sealed interface OudsKeyToken

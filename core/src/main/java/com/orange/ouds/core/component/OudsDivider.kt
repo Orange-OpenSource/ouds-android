@@ -28,7 +28,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -170,4 +170,4 @@ internal fun PreviewOudsDivider(
     }
 }
 
-internal class OudsDividerPreviewParameterProvider : EnumPreviewParameterProvider(OudsDividerColor::class.java)
+internal class OudsDividerPreviewParameterProvider : BasicPreviewParameterProvider<OudsDividerColor>(*OudsDividerColor.entries.toTypedArray())

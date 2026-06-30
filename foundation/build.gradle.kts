@@ -82,6 +82,7 @@ kotlin {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
                 implementation(libs.compose.ui)
+                api(libs.compose.ui.tooling.preview)
             }
         }
 
@@ -96,7 +97,6 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
-                api(libs.androidx.compose.ui.tooling.preview)
                 implementation(libs.androidx.core)
             }
         }

@@ -63,7 +63,7 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
-import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -667,7 +667,8 @@ internal fun PreviewOudsExtendedFloatingActionButton(
     }
 }
 
-internal class OudsFloatingActionButtonPreviewParameterProvider : EnumPreviewParameterProvider(OudsFloatingActionButtonAppearance::class.java)
+internal class OudsFloatingActionButtonPreviewParameterProvider :
+    BasicPreviewParameterProvider<OudsFloatingActionButtonAppearance>(*OudsFloatingActionButtonAppearance.entries.toTypedArray())
 
 private enum class OudsExtendedFloatingActionButtonPreviewGridRow {
 

@@ -11,7 +11,7 @@
  */
 
 plugins {
-//    id("dokka")
+    id("dokka")
 //    id("library")
     id("paparazzi")
     alias(libs.plugins.compose.compiler)

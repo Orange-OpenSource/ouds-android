@@ -24,10 +24,3 @@ open class BasicPreviewParameterProvider<T>(vararg values: T) : PreviewParameter
 
     override val values = values.asSequence()
 }
-
-/**
- * A preview parameter provider for enum values.
- *
- * @param clazz The enum class.
- */
-open class EnumPreviewParameterProvider(clazz: Class<out Enum<*>>) : BasicPreviewParameterProvider<Enum<*>>(*clazz.enumConstants)

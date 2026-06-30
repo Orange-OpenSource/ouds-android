@@ -37,7 +37,7 @@ import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
-import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
@@ -270,4 +270,4 @@ internal fun PreviewOudsColoredBox(
     }
 }
 
-internal class OudsColoredBoxPreviewParameterProvider : EnumPreviewParameterProvider(OudsColoredBoxColor::class.java)
+internal class OudsColoredBoxPreviewParameterProvider : BasicPreviewParameterProvider<OudsColoredBoxColor>(*OudsColoredBoxColor.entries.toTypedArray())

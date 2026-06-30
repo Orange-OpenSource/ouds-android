@@ -11,7 +11,7 @@
  */
 
 plugins {
-    //id("dokka")
+    id("dokka")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose.multiplatform)
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
