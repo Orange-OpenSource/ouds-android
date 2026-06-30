@@ -1,3 +1,6 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
 /*
  * Software Name: OUDS Android
  * SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -47,6 +50,8 @@ kotlin {
         androidResources.enable = true
 
         withHostTestBuilder {
+        }.configure {
+            isIncludeAndroidResources = true
         }
 
         withDeviceTestBuilder {
@@ -100,10 +105,9 @@ kotlin {
             }
         }
 
-        androidUnitTest {
+        commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
-                implementation(project(":core-test"))
             }
         }
 
@@ -112,6 +116,12 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
+            }
+        }
+
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(project(":core-test"))
             }
         }
 
@@ -130,6 +140,39 @@ kotlin {
                 // part of KMP’s default source set hierarchy. Note that this source set depends
                 // on common by default and will correctly pull the iOS artifacts of any
                 // KMP dependencies declared in commonMain.
+            }
+        }
+    }
+}
+
+// Configure test tasks to use Java 21 for Paparazzi
+tasks.withType<Test>().configureEach {
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    })
+}
+
+// Fix for Paparazzi not finding Compose Multiplatform resources from transitive dependencies in androidHostTest
+// Issue: https://github.com/cashapp/paparazzi/issues/1060
+// This configuration adds the androidHostTest assets directory to Paparazzi's resource configuration
+afterEvaluate {
+    tasks.matching { it.name.startsWith("preparePaparazzi") }.configureEach {
+        doLast {
+            val resourcesJsonFile = file("build/intermediates/paparazzi/androidMain/resources.json")
+            if (resourcesJsonFile.exists()) {
+                @Suppress("UNCHECKED_CAST")
+                val json = JsonSlurper().parseText(resourcesJsonFile.readText()) as Map<String, Any>
+
+                @Suppress("UNCHECKED_CAST")
+                val projectAssetDirs = json["projectAssetDirs"] as MutableList<String>
+
+                // Add the androidHostTest merged assets directory where core module's Compose resources are located
+                val androidHostTestAssetsDir = "build/intermediates/assets/androidHostTest/mergeAndroidHostTestAssets"
+                if (!projectAssetDirs.contains(androidHostTestAssetsDir)) {
+                    projectAssetDirs.add(androidHostTestAssetsDir)
+                    resourcesJsonFile.writeText(JsonOutput.prettyPrint(JsonOutput.toJson(json)))
+                    logger.lifecycle("Added androidHostTest assets directory to Paparazzi resources configuration.")
+                }
             }
         }
     }

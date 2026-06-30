@@ -44,6 +44,8 @@ kotlin {
         androidResources.enable = true
         
         withHostTestBuilder {
+        }.configure {
+            isIncludeAndroidResources = true
         }
 
         withDeviceTestBuilder {
@@ -131,10 +133,11 @@ kotlin {
             }
         }
 
-        androidUnitTest {
+        getByName("androidHostTest") {
             dependencies {
                 implementation(project(":core-test"))
                 //testImplementation(project(":theme-orange"))
+                implementation(project(":theme-wireframe"))
             }
         }
 
@@ -145,6 +148,7 @@ kotlin {
 //                implementation(libs.core)
 
                 //androidTestImplementation(project(":theme-orange"))
+                implementation(project(":theme-wireframe"))
                 implementation(libs.androidx.compose.ui.test.junit4)
                 implementation(libs.kotlin.reflect)
                 implementation(libs.mockito.android)
@@ -182,3 +186,10 @@ kotlin {
 //        )
 //    }
 //}
+
+// Configure test tasks to use Java 21 for Paparazzi
+tasks.withType<Test>().configureEach {
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    })
+}

@@ -17,7 +17,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Devices
 import app.cash.paparazzi.DeviceConfig
+import app.cash.paparazzi.Environment
 import app.cash.paparazzi.Paparazzi
+import app.cash.paparazzi.detectEnvironment
 import com.android.ide.common.rendering.api.SessionParams
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.theme.OudsThemeContract
@@ -68,6 +70,7 @@ abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1,
 
     @get:Rule
     val paparazzi = Paparazzi(
+        environment = detectEnvironment().filterResources(),
         renderingMode = SessionParams.RenderingMode.SHRINK,
         deviceConfig = with(deviceConfig) {
             val width = if (widthDp > 0) (widthDp * density.dpiValue / 160f).toInt() else screenWidth
@@ -122,4 +125,19 @@ abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1,
             }
         }
     }
+}
+
+private fun Environment.filterResources(): Environment {
+    return copy(
+        resourcePackageNames = resourcePackageNames.filter { packageName ->
+            val resourceName = "$packageName.R"
+            try {
+                Class.forName(resourceName)
+                true
+            } catch (_: ClassNotFoundException) {
+                println("Skipping resource '$resourceName': not found in classpath. Test should proceed without any problem.")
+                false
+            }
+        }
+    )
 }
