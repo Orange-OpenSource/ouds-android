@@ -97,13 +97,13 @@ kotlin {
                 implementation(project(":foundation"))
                 implementation(project(":global-raw-tokens"))
                 implementation(project(":theme-contract"))
-                //testImplementation(project(":core-test"))
             }
         }
 
-        commonTest {
+        androidUnitTest {
             dependencies {
                 implementation(libs.kotlin.test)
+                implementation(project(":core-test"))
             }
         }
 

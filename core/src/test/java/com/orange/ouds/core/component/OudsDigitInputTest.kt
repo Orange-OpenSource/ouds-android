@@ -14,8 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import com.orange.ouds.core.test.OudsSnapshotTest
-import com.orange.ouds.theme.orange.OrangeTheme
-import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
+import com.orange.ouds.core.utilities.getPreviewTheme
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -24,7 +23,7 @@ import org.junit.runners.Parameterized
 internal class OudsDigitInputTest {
 
     @RunWith(Parameterized::class)
-    class Default(val parameter: OudsDigitInputPreviewParameter) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily())) {
+    class Default(val parameter: OudsDigitInputPreviewParameter) : OudsSnapshotTest(getPreviewTheme()) {
 
         companion object {
             @JvmStatic
@@ -43,7 +42,7 @@ internal class OudsDigitInputTest {
     }
 
     @RunWith(Parameterized::class)
-    class WithRoundedCorners(val parameter: Boolean) : OudsSnapshotTest(OrangeTheme(getPreviewOrangeFontFamily())) {
+    class WithRoundedCorners(val parameter: Boolean) : OudsSnapshotTest(getPreviewTheme()) {
 
         companion object {
             @JvmStatic
