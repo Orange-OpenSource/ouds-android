@@ -197,7 +197,7 @@ internal fun OudsListItem(
                     .heightIn(min = minHeight(size))
                     .background(color = backgroundColor(state = state, decoration = decoration), shape = shape)
                     .border(state = state, decoration = decoration, cornerRadius = borderRadius)
-                    .outerBorder(state = state)
+                    .outerBorder(state = state, shape = shape)
                     .containerPadding(size = size, contentAlignment = contentAlignment)
                     .semantics(mergeDescendants = true) {
                         if (nullableOnClick != null) {
@@ -354,7 +354,7 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
     val width = OudsTheme.borders.width.default.takeUnlessHairline
 
     return when {
-        width != null && outlined -> this.border(width = width, color = outlineBorderColor)
+        width != null && outlined -> this.border(width = width, color = outlineBorderColor, shape = RoundedCornerShape(cornerRadius))
         width != null && divider -> this.bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
         else -> this
     }
