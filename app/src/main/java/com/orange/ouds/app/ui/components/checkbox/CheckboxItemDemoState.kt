@@ -41,6 +41,7 @@ fun rememberCheckboxItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     constrainedMaxWidth: Boolean = false,
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
@@ -55,6 +56,7 @@ fun rememberCheckboxItemDemoState(
     label,
     description,
     constrainedMaxWidth,
+    annotatedText,
     saver = CheckboxItemDemoState.Saver
 ) {
     CheckboxItemDemoState(
@@ -70,7 +72,8 @@ fun rememberCheckboxItemDemoState(
         errorMessage,
         label,
         description,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        annotatedText
     )
 }
 
@@ -87,8 +90,9 @@ class CheckboxItemDemoState(
     errorMessage: String,
     label: String,
     description: String?,
-    constrainedMaxWidth: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
+    constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, annotatedText) {
 
     companion object {
         val Saver = listSaver(
@@ -116,7 +120,8 @@ class CheckboxItemDemoState(
                         errorMessage,
                         label,
                         description,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             }

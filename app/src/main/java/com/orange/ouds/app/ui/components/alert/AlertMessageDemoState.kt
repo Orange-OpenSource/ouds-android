@@ -21,6 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageDefaults
 import com.orange.ouds.core.component.OudsAlertMessageStatus
@@ -35,7 +36,8 @@ fun rememberAlertMessageDemoState(
     description: String? = null,
     actionLink: String? = null,
     actionLinkPosition: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
-    bulletList: Map<Int, String>? = null,
+    bulletList: List<String> = List(MaxBulletCount) { "" },
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     status,
     icon,
@@ -45,9 +47,10 @@ fun rememberAlertMessageDemoState(
     actionLink,
     actionLinkPosition,
     bulletList,
+    annotatedText,
     saver = AlertMessageDemoState.Saver
 ) {
-    AlertMessageDemoState(status, icon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList)
+    AlertMessageDemoState(status, icon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, annotatedText)
 }
 
 class AlertMessageDemoState(
@@ -58,7 +61,8 @@ class AlertMessageDemoState(
     description: String?,
     actionLink: String?,
     actionLinkPosition: OudsAlertMessageActionLinkPosition,
-    bulletList: Map<Int, String>?
+    bulletList: List<String>,
+    annotatedText: Boolean
 ) {
 
     @Suppress("UNCHECKED_CAST")
@@ -83,7 +87,8 @@ class AlertMessageDemoState(
                         description,
                         actionLink,
                         actionLinkPosition,
-                        bulletList
+                        bulletList,
+                        annotatedText
                     )
                 }
             },
@@ -99,7 +104,8 @@ class AlertMessageDemoState(
                     list[4] as String?,
                     list[5] as String?,
                     list[6] as OudsAlertMessageActionLinkPosition,
-                    list[7] as Map<Int, String>?
+                    list[7] as List<String>,
+                    list[8] as Boolean
                 )
             }
         )
@@ -129,8 +135,16 @@ class AlertMessageDemoState(
 
     val actionLinkPositionChipsEnabled: Boolean
         get() = !actionLink.isNullOrEmpty()
+    
+    var bulletList: List<String> by mutableStateOf(bulletList)
 
-    var bulletList: Map<Int, String>? by mutableStateOf(bulletList)
+    val descriptionTextInputEnabled: Boolean
+        get() = !annotatedText
+
+    val bulletListTextInputsEnabled: Boolean
+        get() = !annotatedText
+
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
 
     val enabledIcons: List<Icon>
         get() = if (status !in FunctionalStatuses) Icon.entries else listOf(Icon.Tinted)

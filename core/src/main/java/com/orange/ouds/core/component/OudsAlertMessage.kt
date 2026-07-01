@@ -258,18 +258,21 @@ private fun OudsAlertMessage(
                     val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
                     val descriptionColor = status.contentColor
                     val descriptionStyle = OudsTheme.typography.label.medium.default
-                    if (annotatedDescription != null) {
+                    if (!annotatedDescription.isNullOrBlank()) {
                         Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
-                    } else if (description != null) {
+                    } else if (!description.isNullOrBlank()) {
                         Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
-                    annotatedBulletList.orElse { bulletList }?.let { list ->
-                        Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
-                            list.forEach { label ->
-                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
+                    annotatedBulletList.orElse { bulletList }
+                        ?.filter { it.isNotBlank() }
+                        ?.takeIf { it.isNotEmpty() }
+                        ?.let { list ->
+                            Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
+                                list.forEach { label ->
+                                    OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
+                                }
                             }
                         }
-                    }
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
                     actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))

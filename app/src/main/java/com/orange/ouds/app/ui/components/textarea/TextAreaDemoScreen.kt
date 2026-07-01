@@ -12,15 +12,18 @@
 
 package com.orange.ouds.app.ui.components.textarea
 
+import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
+import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
@@ -33,6 +36,9 @@ import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -89,7 +95,8 @@ private fun TextAreaDemoBottomSheetContent(state: TextAreaDemoState) {
             label = stringResource(R.string.app_components_common_errorMessage_tech),
             value = errorMessage,
             onValueChange = { value -> errorMessage = value },
-            enabled = errorMessageTextInputEnabled
+            enabled = errorMessageTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -107,7 +114,9 @@ private fun TextAreaDemoBottomSheetContent(state: TextAreaDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
             value = helperText,
-            onValueChange = { value -> helperText = value }
+            onValueChange = { value -> helperText = value },
+            enabled = helperTextTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -120,28 +129,68 @@ private fun TextAreaDemoBottomSheetContent(state: TextAreaDemoState) {
             checked = constrainedMaxWidth,
             onCheckedChange = { constrainedMaxWidth = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(id = R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it }
+        )
     }
 }
 
 @Composable
 private fun TextAreaDemoContent(state: TextAreaDemoState) {
-    val focusManager = LocalFocusManager.current
     with(state) {
-        OudsTextArea(
-            textFieldState = textFieldState,
-            label = label,
-            placeholder = placeholder,
-            outlined = outlined,
-            loader = if (hasLoader) OudsTextInputLoader(null) else null,
-            enabled = enabled,
-            readOnly = readOnly,
-            autoResize = autoResize,
-            error = if (error) OudsError(errorMessage) else null,
-            helperText = helperText,
-            helperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null,
-            constrainedMaxWidth = constrainedMaxWidth,
-            onKeyboardAction = { focusManager.clearFocus() }
-        )
+        val focusManager = LocalFocusManager.current
+        val loader = if (hasLoader) OudsTextInputLoader(null) else null
+        val textAreaError = when {
+            error && annotatedText -> {
+                val errorHtml = stringResource(R.string.app_components_textArea_annotatedErrorMessage_text)
+                OudsError(buildOudsAnnotatedErrorMessage {
+                    appendHtml(errorHtml)
+                })
+            }
+            error -> OudsError(errorMessage)
+            else -> null
+        }
+        val textAreaHelperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = { }) else null
+        val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        if (annotatedText) {
+            val helperTextHtml = stringResource(R.string.app_components_textArea_annotatedHelperText_text)
+            val annotatedHelperText = buildOudsAnnotatedHelperText {
+                appendHtml(helperTextHtml)
+            }
+            OudsTextArea(
+                textFieldState = textFieldState,
+                label = label,
+                placeholder = placeholder,
+                outlined = outlined,
+                loader = loader,
+                enabled = enabled,
+                readOnly = readOnly,
+                autoResize = autoResize,
+                error = textAreaError,
+                helperText = annotatedHelperText,
+                helperLink = textAreaHelperLink,
+                constrainedMaxWidth = constrainedMaxWidth,
+                onKeyboardAction = onKeyboardAction
+            )
+        } else {
+            OudsTextArea(
+                textFieldState = textFieldState,
+                label = label,
+                placeholder = placeholder,
+                outlined = outlined,
+                loader = loader,
+                enabled = enabled,
+                readOnly = readOnly,
+                autoResize = autoResize,
+                error = textAreaError,
+                helperText = helperText,
+                helperLink = textAreaHelperLink,
+                constrainedMaxWidth = constrainedMaxWidth,
+                onKeyboardAction = onKeyboardAction
+            )
+        }
     }
 }
 
@@ -160,8 +209,8 @@ private fun Code.Builder.textAreaDemoCodeSnippet(state: TextAreaDemoState) {
             if (!enabled) enabledArgument(false)
             if (readOnly) readOnlyArgument(true)
             if (!autoResize) typedArgument("autoResize", autoResize)
-            if (error) errorArgument(errorMessage)
-            if (helperText.isNotEmpty()) typedArgument("helperText", helperText)
+            if (error) errorArgument(errorMessage, annotatedText)
+            helperTextArgument(helperText, annotatedText)
             if (helperLink.isNotEmpty()) {
                 constructorCallArgument<OudsTextInputHelperLink>("helperLink") {
                     typedArgument("text", helperLink)

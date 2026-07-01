@@ -37,7 +37,8 @@ fun rememberPasswordInputDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     prefix: String = "",
     helperText: String = "",
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     passwordInputState,
     label,
@@ -52,6 +53,7 @@ fun rememberPasswordInputDemoState(
     prefix,
     helperText,
     constrainedMaxWidth,
+    annotatedText,
     saver = PasswordInputDemoState.Saver
 ) {
     PasswordInputDemoState(
@@ -67,7 +69,8 @@ fun rememberPasswordInputDemoState(
         errorMessage,
         prefix,
         helperText,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        annotatedText
     )
 }
 
@@ -84,7 +87,8 @@ class PasswordInputDemoState(
     errorMessage: String,
     prefix: String,
     helperText: String,
-    constrainedMaxWidth: Boolean
+    constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
 ) {
 
     companion object {
@@ -104,7 +108,8 @@ class PasswordInputDemoState(
                         errorMessage,
                         prefix,
                         helperText,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             },
@@ -123,7 +128,8 @@ class PasswordInputDemoState(
                     list[9] as String,
                     list[10] as String,
                     list[11] as String,
-                    list[12] as Boolean
+                    list[12] as Boolean,
+                    list[13] as Boolean
                 )
             }
         )
@@ -155,6 +161,8 @@ class PasswordInputDemoState(
 
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
+
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader
 
@@ -162,11 +170,14 @@ class PasswordInputDemoState(
         get() = !readOnly && !hasLoader && enabled
 
     val errorMessageTextInputEnabled: Boolean
-        get() = error
+        get() = error && !annotatedText
 
     val readOnlySwitchEnabled: Boolean
         get() = !error && !hasLoader
 
     val loaderSwitchEnabled: Boolean
         get() = enabled && !readOnly && !error && passwordInputState.text.isNotEmpty()
+
+    val helperTextTextInputEnabled: Boolean
+        get() = !annotatedText
 }

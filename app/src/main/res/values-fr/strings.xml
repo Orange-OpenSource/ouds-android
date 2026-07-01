@@ -102,6 +102,10 @@
     <string name="app_components_alert_description_text">Les composants d\'alerte sont des éléments d\'interface utilisateur qui affichent des informations, des retours système ou des changements d\'état.</string>
     <string name="app_components_alert_alertMessage_description_text">Un Alert message (ou message d\'alerte) est un élément d\'interface utilisateur qui affiche des informations système, des changements d\'état ou une action requise&#160;; le tout grâce à une communication détaillée, visible, persistante et exploitable.</string>
     <string name="app_components_alert_inlineAlert_description_text">Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.</string>
+    <string name="app_components_alert_alertMessage_annotatedDescription_text"><![CDATA[Votre dernière tentative de paiement a été <b>refusée</b>. Veuillez vérifier vos informations de paiement ou votre <b>solde disponible</b> et réessayer, ou <a href="https://unified-design-system.orange.com">mettre à jour vos informations de paiement</a>.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet1_text"><![CDATA[Votre paiement a été <b>refusé</b>.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet2_text"><![CDATA[Vérifiez votre <b>solde disponible</b> avant de réessayer.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet3_text"><![CDATA[Mettez à jour vos <b>informations de paiement</b> si nécessaire.]]></string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.</string>
@@ -116,6 +120,9 @@
 
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_description_text">La Bullet list (ou liste à puces) est un élément d\'interface utilisateur qui permet de visualiser des éléments de texte individuels liés, regroupés par ordre alphabétique ; ces éléments commencent généralement par un chiffre ou une puce.</string>
+    <string name="app_components_bulletList_annotatedLabel1_text"><![CDATA[Votre paiement a été <b>refusé</b>.]]></string>
+    <string name="app_components_bulletList_annotatedLabel2_text"><![CDATA[Vérifiez votre <b>solde disponible</b> avant de réessayer.]]></string>
+    <string name="app_components_bulletList_annotatedLabel3_text"><![CDATA[Mettez à jour vos <a href="https://unified-design-system.orange.com">informations de paiement</a> si nécessaire.]]></string>
 
     <!-- Components: button -->
     <string name="app_components_button_description_text">Un Button (ou bouton) est un élément d\'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.</string>
@@ -124,6 +131,7 @@
     <string name="app_components_checkbox_description_text">Une Checkbox (ou case à cocher) est un élément d\'interface utilisateur qui permet de sélectionner plusieurs options parmi un ensemble de choix non exclusifs.</string>
     <string name="app_components_checkbox_checkbox_a11y">Description du contenu de la Checkbox %s</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">Description du contenu de la Checkbox indéterminée %s</string>
+    <string name="app_components_checkbox_checkboxItem_annotatedErrorMessage_text"><![CDATA[Vous devez sélectionner au <b>moins un service</b> pour continuer.]]></string>
 
     <!-- Components: chip -->
     <string name="app_components_chip_description_text">Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.</string>
@@ -153,9 +161,13 @@
 
     <!-- Components: password input -->
     <string name="app_components_passwordInput_description_text">Un Password input (ou champ de saisie de mot de passe) est un élément d\'interface utilisateur qui permet de capturer de manière sécurisée et confidentielle le mot de passe d\'un utilisateur.</string>
+    <string name="app_components_passwordInput_annotatedErrorMessage_text"><![CDATA[Votre mot de passe ne peut pas être <b>vide</b>.]]></string>
+    <string name="app_components_passwordInput_annotatedHelperText_text"><![CDATA[Votre mot de passe doit contenir entre <b>8</b> et <b>20</b> caractères.]]></string>
 
     <!-- Components: PIN code input -->
     <string name="app_components_pinCodeInput_description_text">Un PIN code input (ou champ de saisie de code PIN) est un élément d\'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d\'authentification ou de confirmation, tels qu\'un numéro d\'identification personnel (PIN) à quatre, six ou huit chiffres.</string>
+    <string name="app_components_pinCodeInput_annotatedErrorMessage_text"><![CDATA[<b>Échec de la vérification</b>. Vérifiez et saisissez le code correct.]]></string>
+    <string name="app_components_pinCodeInput_annotatedHelperText_text"><![CDATA[Saisissez le <b>code à usage unique</b> envoyé à votre appareil.]]></string>
 
     <!-- Components: progress indicator -->
     <string name="app_components_progressIndicator_description_text">Un Progress indicator affiche l\'avancement d\'une tâche et fournit un retour visuel. Il peut afficher une valeur précise (déterminée) ou simplement indiquer qu\'une action est en cours (indéterminée).</string>
@@ -165,20 +177,26 @@
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Un Radio button (ou bouton radio) est un élément d\'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.</string>
     <string name="app_components_radioButton_radioButton_a11y">Description du contenu du bouton radio %s</string>
+    <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[Veuillez sélectionner <b>un moyen de contact</b> pour continuer.]]></string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_description_text">Un Switch (ou interrupteur) est un élément d\'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.</string>
     <string name="app_components_switch_switch_a11y">Description du contenu du switch</string>
+    <string name="app_components_switchItem_annotatedErrorMessage_text"><![CDATA[Vous devez activer les <b>paiements automatiques</b> pour activer cette offre.]]></string>
 
     <!-- Components: tag -->
     <string name="app_components_tag_description_text">Un Tag (ou étiquette) est un élément d\'interface utilisateur qui affiche de courtes informations telles qu\'un libellé, un mot-clé ou une catégorie.</string>
 
     <!-- Components: text area -->
     <string name="app_components_textArea_description_text">Un Text area (ou zone de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner des blocs de données textuelles plus longs, tels que des commentaires, des messages ou des descriptions&#160;; en s\'étendant verticalement et en offrant plus d\'espace pour la saisie de texte.</string>
+    <string name="app_components_textArea_annotatedErrorMessage_text"><![CDATA[Vous avez <b>20</b> caractères en trop.]]></string>
+    <string name="app_components_textArea_annotatedHelperText_text"><![CDATA[Veuillez fournir une <b>description détaillée</b> de votre demande.]]></string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Un Text input (ou champ de saisie de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner une seule ligne de données textuelles, telles que des noms, des adresses électroniques ou des requêtes de recherche.</string>
     <string name="app_components_textInput_trailingAction_a11y">Description du contenu de l\'action de fin</string>
+    <string name="app_components_textInput_annotatedErrorMessage_text"><![CDATA[Ce champ ne peut pas être <b>vide</b>.]]></string>
+    <string name="app_components_textInput_annotatedHelperText_text"><![CDATA[Vous pouvez trouver votre <b>identifiant client</b> sur votre dernière facture.]]></string>
 
     <!-- Components: top app bar -->
     <string name="app_components_topAppBar_description_text">L\'App bar (ou barre d\'application) est un composant situé en haut de l\'écran qui affiche le titre et donne accès aux actions principales et aux éléments de navigation.</string>

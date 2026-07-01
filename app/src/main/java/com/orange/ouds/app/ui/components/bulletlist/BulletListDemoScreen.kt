@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
+import com.orange.ouds.app.ui.components.annotatedStringArgument
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MaxLevelCount
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
 import com.orange.ouds.app.ui.components.iconArgument
@@ -29,6 +30,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -44,6 +46,8 @@ import com.orange.ouds.core.component.OudsBulletListFontWeight
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
+import com.orange.ouds.core.component.common.text.OudsAnnotatedBulletListLabel
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBulletListLabel
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -113,7 +117,14 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_tech),
             value = label,
-            onValueChange = { value -> label = value }
+            onValueChange = { value -> label = value },
+            enabled = labelTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it },
         )
     }
 }
@@ -121,24 +132,28 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
 @Composable
 private fun BulletListDemoContent(state: BulletListDemoState) {
     with(state) {
-        val builder: OudsBulletListBuilder.() -> Unit = remember(levelCount, label) {
+        val label1Html = stringResource(R.string.app_components_bulletList_annotatedLabel1_text)
+        val label2Html = stringResource(R.string.app_components_bulletList_annotatedLabel2_text)
+        val label3Html = stringResource(R.string.app_components_bulletList_annotatedLabel3_text)
+
+        val builder: OudsBulletListBuilder.() -> Unit = remember(levelCount, label, annotatedText, label1Html, label2Html, label3Html) {
             {
                 when (levelCount) {
                     1 -> {
-                        item(label = label)
-                        item(label = label)
-                        item(label = label)
+                        bulletListDemoItem(this@with, label1Html)
+                        bulletListDemoItem(this@with, label2Html)
+                        bulletListDemoItem(this@with, label3Html)
                     }
                     2 -> {
-                        item(label = label) {
-                            item(label = label)
-                            item(label = label)
+                        bulletListDemoItem(this@with, label1Html) {
+                            bulletListDemoItem(this@with, label2Html)
+                            bulletListDemoItem(this@with, label3Html)
                         }
                     }
                     else -> {
-                        item(label = label) {
-                            item(label = label) {
-                                item(label = label)
+                        bulletListDemoItem(this@with, label1Html) {
+                            bulletListDemoItem(this@with, label2Html) {
+                                bulletListDemoItem(this@with, label3Html)
                             }
                         }
                     }
@@ -155,10 +170,9 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
             } else {
                 type
             },
-            textStyle = OudsBulletListTextStyle(fontSize, fontWeight)
-        ) {
-            builder()
-        }
+            textStyle = OudsBulletListTextStyle(fontSize, fontWeight),
+            builder = builder
+        )
     }
 }
 
@@ -190,19 +204,19 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
                 when (levelCount) {
                     1 -> {
                         repeat(3) {
-                            itemFunctionCall(label)
+                            itemFunctionCall(state)
                         }
                     }
                     2 -> {
-                        itemFunctionCall(label) {
-                            itemFunctionCall(label)
-                            itemFunctionCall(label)
+                        itemFunctionCall(state) {
+                            itemFunctionCall(state)
+                            itemFunctionCall(state)
                         }
                     }
                     else -> {
-                        itemFunctionCall(label) {
-                            itemFunctionCall(label) {
-                                itemFunctionCall(label)
+                        itemFunctionCall(state) {
+                            itemFunctionCall(state) {
+                                itemFunctionCall(state)
                             }
                         }
                     }
@@ -212,10 +226,16 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
     }
 }
 
-private fun Code.Builder.itemFunctionCall(label: String, content: (Code.Builder.() -> Unit)? = null) = functionCall("item") {
+private fun Code.Builder.itemFunctionCall(state: BulletListDemoState, content: (Code.Builder.() -> Unit)? = null) = functionCall("item") {
     trailingLambda = true
     isMultiline = false
-    labelArgument(label)
+    with(state) {
+        if (annotatedText) {
+            annotatedStringArgument<OudsAnnotatedBulletListLabel>("label")
+        } else {
+            labelArgument(label)
+        }
+    }
     content?.let {
         lambdaArgument("builder") {
             content()
@@ -261,6 +281,19 @@ private fun getUnorderedAssetClasses() = if (LocalInspectionMode.current) {
     )
 } else {
     OudsBulletListUnorderedAsset::class.sealedSubclasses
+}
+
+private fun OudsBulletListBuilder.bulletListDemoItem(state: BulletListDemoState, labelHtml: String, builder: (OudsBulletListBuilder.() -> Unit)? = null) {
+    with(state) {
+        if (annotatedText) {
+            val annotatedLabel = buildOudsAnnotatedBulletListLabel {
+                appendHtml(labelHtml)
+            }
+            item(label = annotatedLabel, builder = builder)
+        } else {
+            item(label = label, builder = builder)
+        }
+    }
 }
 
 @PreviewLightDark

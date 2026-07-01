@@ -123,6 +123,8 @@
     <string name="app_tokens_typography_lineHeight_tech" translatable="false">Line height: %s sp</string>
 
     <!-- Components -->
+    <string name="app_components_common_annotatedText_tech" translatable="false">Annotated text example</string>
+    <string name="app_components_common_annotatedTextHelperText_tech" translatable="false">"Supports annotated text. Use switch below for example.</string>
     <string name="app_components_common_appearance_tech" translatable="false">Appearance</string>
     <string name="app_components_common_color_tech" translatable="false">Color</string>
     <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
@@ -176,6 +178,10 @@
     <string name="app_components_alert_alertMessage_actionLink_tech" translatable="false">Action link</string>
     <string name="app_components_alert_alertMessage_actionLinkPosition_tech" translatable="false">Action link position</string>
     <string name="app_components_alert_alertMessage_bullet_tech" translatable="false">Bullet %d</string>
+    <string name="app_components_alert_alertMessage_annotatedDescription_text"><![CDATA[Your last payment attempt was <b>declined</b>. Please check your payment details or <b>available balance</b> and try again, or <a href="https://unified-design-system.orange.com">update your payment details</a>.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet1_text"><![CDATA[Your payment was <b>declined</b>.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet2_text"><![CDATA[Check your <b>available balance</b> before retrying.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet3_text"><![CDATA[Update your <b>payment details</b> if needed.]]></string>
     <string name="app_components_alert_inlineAlert_tech" translatable="false">Inline alert</string>
     <string name="app_components_alert_inlineAlert_description_text">Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.</string>
 
@@ -213,6 +219,9 @@
     <string name="app_components_bulletList_unorderedAsset_tech" translatable="false">Unordered asset</string>
     <string name="app_components_bulletList_unorderedAssetBrandColor_tech" translatable="false">Unordered asset brand color</string>
     <string name="app_components_bulletList_levelCount_tech" translatable="false">Level count</string>
+    <string name="app_components_bulletList_annotatedLabel1_text"><![CDATA[Your payment was <b>declined</b>.]]></string>
+    <string name="app_components_bulletList_annotatedLabel2_text"><![CDATA[Check your <b>available balance</b> before retrying.]]></string>
+    <string name="app_components_bulletList_annotatedLabel3_text"><![CDATA[Update your <a href="https://unified-design-system.orange.com">payment details</a> if needed.]]></string>
 
     <!-- Components: button -->
     <string name="app_components_button_tech" translatable="false">Button</string>
@@ -227,6 +236,7 @@
     <string name="app_components_checkbox_checkbox_tech" translatable="false">Checkbox</string>
     <string name="app_components_checkbox_checkbox_a11y">%s checkbox content description</string>
     <string name="app_components_checkbox_checkboxItem_tech" translatable="false">Checkbox item</string>
+    <string name="app_components_checkbox_checkboxItem_annotatedErrorMessage_text"><![CDATA[You must select at <b>least one service</b> to continue.]]></string>
     <string name="app_components_checkbox_indeterminateCheckbox_tech" translatable="false">Indeterminate checkbox</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">%s indeterminate checkbox content description</string>
     <string name="app_components_checkbox_indeterminateCheckboxItem_tech" translatable="false">Indeterminate checkbox item</string>
@@ -285,11 +295,15 @@
     <string name="app_components_passwordInput_lockIcon_tech" translatable="false">Lock icon</string>
     <string name="app_components_passwordInput_password_tech" translatable="false">Password</string>
     <string name="app_components_passwordInput_textObfuscationMode_tech" translatable="false">Text obfuscation mode</string>
+    <string name="app_components_passwordInput_annotatedErrorMessage_text"><![CDATA[Your password can\'t be <b>empty</b>.]]></string>
+    <string name="app_components_passwordInput_annotatedHelperText_text"><![CDATA[Your password must be between <b>8</b> and <b>20</b> characters long.]]></string>
 
     <!-- Components: PIN code input -->
     <string name="app_components_pinCodeInput_tech" translatable="false">PIN code input</string>
     <string name="app_components_pinCodeInput_description_text">PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a four, six or eight-digit personal identification number (PIN).</string>
     <string name="app_components_pinCodeInput_length_tech" translatable="false">Length</string>
+    <string name="app_components_pinCodeInput_annotatedErrorMessage_text"><![CDATA[<b>Verification failed</b>. Check and enter the correct code.]]></string>
+    <string name="app_components_pinCodeInput_annotatedHelperText_text"><![CDATA[Enter the <b>one-time code</b> sent to your device.]]></string>
 
     <!-- Components: progress indicator -->
     <string name="app_components_progressIndicator_tech" translatable="false">Progress indicator</string>
@@ -312,6 +326,7 @@
     <string name="app_components_radioButton_radioButtonItem_tech" translatable="false">Radio button item</string>
     <string name="app_components_radioButton_radioButtonItem_extraLabel_tech" translatable="false">Extra label</string>
     <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
+    <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[Please select <b>one contact method</b> to proceed.]]></string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_tech" translatable="false">Switch</string>
@@ -319,6 +334,7 @@
     <string name="app_components_switch_switch_tech" translatable="false">Switch</string>
     <string name="app_components_switch_switch_a11y">Switch content description</string>
     <string name="app_components_switch_switchItem_tech" translatable="false">Switch item</string>
+    <string name="app_components_switchItem_annotatedErrorMessage_text"><![CDATA[You must enable <b>automatic payments</b> to activate this offer.]]></string>
 
     <!-- Components: tag -->
     <string name="app_components_tag_tech" translatable="false">Tag</string>
@@ -332,6 +348,8 @@
     <string name="app_components_textArea_tech" translatable="false">Text area</string>
     <string name="app_components_textArea_description_text">Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding vertically and offering more space to input text.</string>
     <string name="app_components_textArea_autoResize_tech" translatable="false">Auto-resize</string>
+    <string name="app_components_textArea_annotatedErrorMessage_text"><![CDATA[You have <b>20</b> characters too many.]]></string>
+    <string name="app_components_textArea_annotatedHelperText_text"><![CDATA[Please provide a <b>detailed description</b> of your request.]]></string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_tech" translatable="false">Text input</string>
@@ -341,6 +359,8 @@
     <string name="app_components_textInput_trailingAction_a11y">Trailing action content description</string>
     <string name="app_components_textInput_suffix_tech" translatable="false">Suffix</string>
     <string name="app_components_textInput_helperLink_tech" translatable="false">Helper link</string>
+    <string name="app_components_textInput_annotatedErrorMessage_text"><![CDATA[This field can\'t be <b>empty</b>.]]></string>
+    <string name="app_components_textInput_annotatedHelperText_text"><![CDATA[You can find your <b>customer ID</b> on your latest invoice.]]></string>
 
     <!-- Components: top app bar -->
     <string name="app_components_topAppBar_tech" translatable="false">Top app bar</string>
