@@ -252,12 +252,14 @@ private val smallListItemPreviewParameterValues: List<OudsSmallCardItemPreviewPa
             ),
             OudsSmallCardItemPreviewParameter(
                 label = label,
+                indicator = OudsListItemIndicator.External,
                 contentAlignment = OudsListItemContentAlignment.Top,
                 leading = OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
                 trailing = OudsSmallListItemTrailing.Text(label = label, style = OudsListItemTextStyle.LabelStrong)
             ),
             OudsSmallCardItemPreviewParameter(
                 label = label,
+                indicator = OudsListItemIndicator.Previous,
                 decoration = OudsListItemDecoration.BackgroundOnInteraction(divider = true),
                 leading = OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic),
                 trailing = OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
