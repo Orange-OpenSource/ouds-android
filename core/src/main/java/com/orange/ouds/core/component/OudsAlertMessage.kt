@@ -263,13 +263,16 @@ private fun OudsAlertMessage(
                     } else if (!description.isNullOrBlank()) {
                         Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
-                    annotatedBulletList.orElse { bulletList }?.let { list ->
-                        Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
-                            list.forEach { label ->
-                                if (label.isNotBlank()) OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
+                    annotatedBulletList.orElse { bulletList }
+                        ?.filter { it.isNotBlank() }
+                        ?.takeIf { it.isNotEmpty() }
+                        ?.let { list ->
+                            Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
+                                list.forEach { label ->
+                                    OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
+                                }
                             }
                         }
-                    }
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
                     actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
