@@ -123,8 +123,8 @@
     <string name="app_tokens_typography_lineHeight_tech" translatable="false">Line height: %s sp</string>
 
     <!-- Components -->
-    <string name="app_components_common_annotatedText_tech" translatable="false">Annotated text</string>
-    <string name="app_components_common_annotatedTextHelperText_tech" translatable="false">This parameter supports annotated text.</string>
+    <string name="app_components_common_annotatedText_tech" translatable="false">Annotated text example</string>
+    <string name="app_components_common_annotatedTextHelperText_tech" translatable="false">"Supports annotated text. Use switch below for example.</string>
     <string name="app_components_common_appearance_tech" translatable="false">Appearance</string>
     <string name="app_components_common_color_tech" translatable="false">Color</string>
     <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
