@@ -945,7 +945,6 @@ internal sealed interface OudsButtonComponent {
 }
 
 internal enum class OudsButtonSize {
-
     Default, Small
 }
 
