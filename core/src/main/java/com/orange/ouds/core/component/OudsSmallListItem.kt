@@ -480,12 +480,14 @@ private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewPa
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
+                indicator = OudsListItemIndicator.External,
                 contentAlignment = OudsListItemContentAlignment.Top,
                 leading = OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
                 trailing = OudsSmallListItemTrailing.Text(label = label, style = OudsListItemTextStyle.LabelStrong)
             ),
             OudsSmallListItemPreviewParameter(
                 label = label,
+                indicator = OudsListItemIndicator.Previous,
                 leading = OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic),
                 trailing = OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
             )
