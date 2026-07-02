@@ -813,7 +813,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemImageSize,
+            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
         ) : this(painter, contentDescription, size.assetSize, format, contentScale)
@@ -831,7 +831,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemImageSize,
+            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
         ) : this(imageVector, contentDescription, size.assetSize, format, contentScale)
@@ -849,7 +849,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemImageSize,
+            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
         ) : this(bitmap, contentDescription, size.assetSize, format, contentScale)
@@ -972,7 +972,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemImageSize,
+            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
         ) : this(painter, contentDescription, size.assetSize, format, contentScale)
@@ -990,7 +990,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemImageSize,
+            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
         ) : this(imageVector, contentDescription, size.assetSize, format, contentScale)
@@ -1008,7 +1008,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemImageSize,
+            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
             contentScale: ContentScale = ContentScale.Fit
         ) : this(bitmap, contentDescription, size.assetSize, format, contentScale)
