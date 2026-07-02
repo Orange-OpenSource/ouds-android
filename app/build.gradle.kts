@@ -121,7 +121,7 @@ dependencies {
     implementation(project(":foundation"))
 //    implementation(project(":theme-orange"))
 //    implementation(project(":theme-orange-compact"))
-//    implementation(project(":theme-sosh"))
+    implementation(project(":theme-sosh"))
     implementation(project(":theme-wireframe"))
 
     implementation(libs.androidx.activity.compose)

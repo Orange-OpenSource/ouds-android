@@ -21,6 +21,8 @@ import androidx.compose.runtime.setValue
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
+import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
+import com.orange.ouds.theme.sosh.SoshTheme
 //import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
 //import com.orange.ouds.theme.orange.OrangeFontFamily
 //import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
@@ -39,7 +41,7 @@ fun rememberThemeState(
     themeNames: List<String> = listOf(
 //        ORANGE_THEME_NAME,
 //        ORANGE_COMPACT_THEME_NAME,
-//        SOSH_THEME_NAME,
+        SOSH_THEME_NAME,
         WIREFRAME_THEME_NAME
     ),
     currentThemeName: String = WIREFRAME_THEME_NAME,//ORANGE_THEME_NAME,
@@ -130,7 +132,7 @@ class ThemeState(
 //                        roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
 //                        roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
 //                    )
-//                    SOSH_THEME_NAME -> SoshTheme()
+                    SOSH_THEME_NAME -> SoshTheme()
                     WIREFRAME_THEME_NAME -> WireframeTheme()
                     else -> null
                 }

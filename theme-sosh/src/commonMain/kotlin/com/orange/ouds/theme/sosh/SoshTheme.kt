@@ -12,7 +12,7 @@
 
 package com.orange.ouds.theme.sosh
 
-import androidx.compose.ui.text.font.Font
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.orange.ouds.theme.OudsDrawableResources
@@ -40,6 +40,13 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
+import org.jetbrains.compose.resources.Font
+import ouds_android.theme_sosh.generated.resources.Res
+import ouds_android.theme_sosh.generated.resources.sosh_black
+import ouds_android.theme_sosh.generated.resources.sosh_bold
+import ouds_android.theme_sosh.generated.resources.sosh_medium
+import ouds_android.theme_sosh.generated.resources.sosh_regular
+import ouds_android.theme_sosh.generated.resources.sosh_thin
 
 const val SOSH_THEME_NAME = "Sosh"
 
@@ -54,15 +61,16 @@ class SoshTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings()
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = FontFamily(
-            Font(R.font.sosh_black, weight = FontWeight.Black),
-            Font(R.font.sosh_medium, weight = FontWeight.Medium),
-            Font(R.font.sosh_bold, weight = FontWeight.Bold),
-            Font(R.font.sosh_regular, weight = FontWeight.Normal),
-            Font(R.font.sosh_thin, weight = FontWeight.Thin)
+    @Composable
+    override fun getFontFamily(language: String): FontFamily {
+        return FontFamily(
+            Font(resource = Res.font.sosh_black, weight = FontWeight.Black),
+            Font(resource = Res.font.sosh_medium, weight = FontWeight.Medium),
+            Font(resource = Res.font.sosh_bold, weight = FontWeight.Bold),
+            Font(resource = Res.font.sosh_regular, weight = FontWeight.Normal),
+            Font(resource = Res.font.sosh_thin, weight = FontWeight.Thin)
         )
+    }
 
     override val colorTokens: OudsColorSemanticTokens
         get() = SoshColorSemanticTokens()
