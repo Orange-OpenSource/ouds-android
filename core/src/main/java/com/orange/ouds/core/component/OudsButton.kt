@@ -392,10 +392,16 @@ internal fun OudsButton(
                 horizontalArrangement = Arrangement.spacedBy(component.getColumnGap(size = size)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Next) {
+                val leadingText = when (component) {
+                    is OudsButtonComponent.NavigationButton if component.chevron == OudsNavigationButtonChevron.Next -> true
+                    OudsButtonComponent.Button,
+                    is OudsButtonComponent.NavigationButton -> false
+                }
+                if (label != null && leadingText) {
                     ButtonText(
                         label = label,
-                        color = contentColor.value
+                        color = contentColor.value,
+                        size = size
                     )
                 }
 
@@ -444,14 +450,11 @@ internal fun OudsButton(
                     }
                 }
 
-                if (label != null && component is OudsButtonComponent.Button) {
-                    ButtonText(label = label, color = contentColor.value)
-                }
-
-                if (label != null && component is OudsButtonComponent.NavigationButton && component.chevron == OudsNavigationButtonChevron.Previous) {
+                if (label != null && !leadingText) {
                     ButtonText(
                         label = label,
-                        color = contentColor.value
+                        color = contentColor.value,
+                        size = size
                     )
                 }
             }
@@ -460,12 +463,16 @@ internal fun OudsButton(
 }
 
 @Composable
-private fun ButtonText(label: String, color: Color) {
+private fun ButtonText(label: String, color: Color, size: OudsButtonSize) {
+    val style = when (size) {
+        OudsButtonSize.Default -> OudsTheme.typography.label.large.strong
+        OudsButtonSize.Small -> OudsTheme.typography.label.medium.strong
+    }
     Text(
         text = label,
         color = color,
         textAlign = TextAlign.Center,
-        style = OudsTheme.typography.label.large.strong.run {
+        style = with(style) {
             copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
         },
     )
