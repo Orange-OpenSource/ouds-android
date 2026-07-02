@@ -689,7 +689,7 @@ open class OudsListItemText internal constructor(
             extraLabel?.let {
                 Text(
                     text = extraLabel,
-                    style = OudsTheme.typography.label.large.strong,
+                    style = OudsTheme.typography.label.medium.strong,
                     color = OudsTheme.colorScheme.content.default
                 )
             }
