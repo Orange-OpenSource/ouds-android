@@ -23,7 +23,7 @@ object OudsVersion {
         const val BadgeIcon = "1.3.0"
         const val BottomSheet = "0.0.0"
         const val BulletList = "1.1.0"
-        const val Button = "3.2.0"
+        const val Button = "3.3.0"
         const val Checkbox = "2.4.0"
         const val Divider = "1.0.0"
         const val Fab = "0.0.0"

@@ -31,6 +31,7 @@ import com.orange.ouds.core.component.OudsCheckboxPreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCircularProgressIndicatorPreviewParameter
 import com.orange.ouds.core.component.OudsCircularProgressIndicatorPreviewParameterProvider
+import com.orange.ouds.core.component.OudsCircularProgressIndicatorSizedPreviewParameterProvider
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsColoredBoxPreviewParameterProvider
 import com.orange.ouds.core.component.OudsControlItemConstrainedMaxWidthPreviewParameterProvider
@@ -106,6 +107,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicator
+import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorSized
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
@@ -129,6 +131,7 @@ import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsNavigationButton
 import com.orange.ouds.core.component.PreviewOudsNavigationButtonOnTwoLines
+import com.orange.ouds.core.component.PreviewOudsNavigationButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
 import com.orange.ouds.core.component.PreviewOudsPasswordInputWithRichText
 import com.orange.ouds.core.component.PreviewOudsPinCodeInput
@@ -142,6 +145,10 @@ import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionT
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsSmallButton
+import com.orange.ouds.core.component.PreviewOudsSmallButtonOnTwoLines
+import com.orange.ouds.core.component.PreviewOudsSmallButtonWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsSmallButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
 import com.orange.ouds.core.component.PreviewOudsSuggestionChipWithUntintedIcon
@@ -530,17 +537,35 @@ interface OudsPreviewableComponent {
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
     }
 
-    object CircularProgressIndicator : OudsPreviewableComponent {
+    object CircularProgressIndicator {
 
-        override val parameters: List<Any> = OudsCircularProgressIndicatorPreviewParameterProvider().values.toList()
+        object Default : OudsPreviewableComponent {
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsCircularProgressIndicator(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsCircularProgressIndicatorPreviewParameter
-            )
+            override val parameters: List<Any> = OudsCircularProgressIndicatorPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCircularProgressIndicator(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsCircularProgressIndicatorPreviewParameter
+                )
+            }
+        }
+
+        object Sized : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsCircularProgressIndicatorSizedPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCircularProgressIndicatorSized(
+                    theme = theme,
+                    size = parameter as Float
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 
@@ -903,6 +928,18 @@ interface OudsPreviewableComponent {
             }
         }
 
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationButtonWithRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
         object OnTwoLines : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -1118,6 +1155,59 @@ interface OudsPreviewableComponent {
         }
 
         override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = true
+    }
+
+    object SmallButton {
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsButtonPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSmallButton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsButtonPreviewParameter
+                )
+            }
+        }
+
+        object WithRoundedCorners : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSmallButtonWithRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object OnTwoLines : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSmallButtonOnTwoLines(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSmallButtonWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
     }
 
     object SuggestionChip {
