@@ -57,7 +57,8 @@ import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import com.orange.ouds.theme.wireframe.WireframeTheme
+import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 import kotlin.enums.enumEntries
 import kotlin.math.ceil
 import kotlin.math.min
@@ -125,7 +126,7 @@ internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (Ou
     }
 }
 
-internal fun getPreviewTheme(): OudsThemeContract = WireframeTheme()//OrangeTheme(getPreviewOrangeFontFamily())
+internal fun getPreviewTheme(): OudsThemeContract = OrangeTheme(getPreviewOrangeFontFamily())
 
 internal fun buildPreviewAnnotatedErrorMessage() = buildOudsAnnotatedErrorMessage {
     append("Error message with ")

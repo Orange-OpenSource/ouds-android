@@ -42,7 +42,7 @@ kotlin {
         minSdk = libs.versions.androidMinSdk.get().toInt()
 
         androidResources.enable = true
-        
+
         withHostTestBuilder {
         }.configure {
             isIncludeAndroidResources = true
@@ -100,9 +100,9 @@ kotlin {
                 implementation(project(":foundation"))
                 api(project(":theme-contract"))
                 // compileOnly dependencies on themes are needed for previews
-                //    compileOnly(project(":theme-orange"))
+                compileOnly(project(":theme-orange"))
                 //    compileOnly(project(":theme-orange-compact"))
-                //    compileOnly(project(":theme-sosh"))
+                compileOnly(project(":theme-sosh"))
                 compileOnly(project(":theme-wireframe"))
 
                 //implementation(platform(libs.androidx.compose.bom))

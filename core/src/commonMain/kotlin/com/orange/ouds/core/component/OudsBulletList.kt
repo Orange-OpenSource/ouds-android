@@ -495,10 +495,12 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
                     val parentOrderedTypeCount = parentTypes.count { it is OudsBulletListType.Ordered }
                     val level = parentTypes.count()
                     val unorderedBulletLevel = level - parentOrderedTypeCount
+                    val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
+                    val bulletList = OudsTheme.drawableResources.component.bulletList
                     val iconRes = when (unorderedBulletLevel) {
-                        0 -> OudsTheme.drawableResources.component.bulletList.level0
-                        1 -> OudsTheme.drawableResources.component.bulletList.level1
-                        else -> OudsTheme.drawableResources.component.bulletList.level2
+                        0 -> if (isRtl) bulletList.level0Rtl ?: bulletList.level0 else bulletList.level0
+                        1 -> if (isRtl) bulletList.level1Rtl ?: bulletList.level1 else bulletList.level1
+                        else -> if (isRtl) bulletList.level2Rtl ?: bulletList.level2 else bulletList.level2
                     }
                     painterResource(resource = iconRes)
                 }

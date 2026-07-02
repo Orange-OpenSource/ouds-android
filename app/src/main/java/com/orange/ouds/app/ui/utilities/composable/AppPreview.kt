@@ -22,7 +22,8 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.InternalOudsApi
-import com.orange.ouds.theme.wireframe.WireframeTheme
+import com.orange.ouds.theme.orange.OrangeTheme
+import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 
 //import com.orange.ouds.theme.orange.OrangeTheme
 //import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
@@ -33,7 +34,7 @@ fun AppPreview(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    val theme = WireframeTheme()//OrangeTheme(getPreviewOrangeFontFamily())
+    val theme = OrangeTheme(getPreviewOrangeFontFamily())
     CompositionLocalProvider(value = LocalThemeDrawableResources provides ThemeDrawableResources(theme)) {
         OudsTheme(
             theme = theme,

@@ -81,6 +81,13 @@ interface OudsDrawableResources {
             val level2: DrawableResource
 
             val tick: DrawableResource
+
+            // Optional RTL variants - themes without RTL support can use default null
+            val level0Rtl: DrawableResource? get() = null
+
+            val level1Rtl: DrawableResource? get() = null
+
+            val level2Rtl: DrawableResource? get() = null
         }
 
         interface Button {

@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orange
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -38,7 +39,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
-import java.util.Locale
+import kotlin.jvm.JvmOverloads
 
 const val ORANGE_THEME_NAME = "Orange"
 
@@ -148,12 +149,9 @@ open class OrangeTheme @JvmOverloads constructor(
     override val name: String
         get() = ORANGE_THEME_NAME
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = getFontFamily(Locale.getDefault())
-
-    override fun getFontFamily(locale: Locale): FontFamily {
-        return orangeFontFamily.getFontFamily(locale)
+    @Composable
+    override fun getFontFamily(language: String): FontFamily {
+        return orangeFontFamily.getFontFamily(language)
     }
 
     override val settings: OudsThemeSettings
