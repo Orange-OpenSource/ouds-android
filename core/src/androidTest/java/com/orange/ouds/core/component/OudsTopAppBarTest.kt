@@ -21,7 +21,6 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extension.setOudsContent
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import org.junit.Rule
@@ -78,7 +77,7 @@ class OudsTopAppBarTest {
                             onClick = onIconClick
                         ),
                         OudsTopAppBarAction.Avatar(
-                            painter = CheckerboardPainter(4.dp, Color.White, Color.Black),
+                            painter = CheckerboardPainter,
                             contentDescription = imageAvatarContentDescription,
                             onClick = onImageAvatarClick
                         ),
