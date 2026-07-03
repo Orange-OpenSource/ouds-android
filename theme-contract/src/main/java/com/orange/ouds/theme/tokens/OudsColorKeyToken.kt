@@ -140,6 +140,12 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
         sealed interface Status : Content {
             data object Accent : Status
             data object Info : Status
+            sealed interface Inverse : Status {
+                data object Info : Inverse
+                data object Negative : Inverse
+                data object Positive : Inverse
+                data object Warning : Inverse
+            }
             data object Negative : Status
             data object Positive : Status
             data object Warning : Status

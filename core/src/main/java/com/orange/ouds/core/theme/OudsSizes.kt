@@ -39,7 +39,8 @@ data class OudsSizes internal constructor(
     val maxWidth: MaxWidth,
     val minInteractiveArea: Dp,
     @ExperimentalOudsApi val minInteractiveAreaDefault: Dp,
-    @ExperimentalOudsApi val minInteractiveAreaSmall: Dp
+    @ExperimentalOudsApi val minInteractiveAreaSmall: Dp,
+    @ExperimentalOudsApi val minInteractiveAreaSmallest: Dp
 ) {
     /**
      * Sizes for icons depending on their usage context.
@@ -587,9 +588,10 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                 )
             )
         ),
-        minInteractiveArea = minInteractiveArea.dp,
+        minInteractiveArea = minInteractiveAreaDefault.dp,
         minInteractiveAreaDefault = minInteractiveAreaDefault.dp,
-        minInteractiveAreaSmall = minInteractiveAreaSmall.dp
+        minInteractiveAreaSmall = minInteractiveAreaSmall.dp,
+        minInteractiveAreaSmallest = minInteractiveAreaSmallest.dp
     )
 }
 
@@ -708,7 +710,7 @@ val OudsSizeKeyToken.value: Dp
         is OudsSizeKeyToken.Icon.WithBody -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.Icon.WithLabel -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.MaxWidth -> OudsTheme.sizes.fromToken(this)
-        OudsSizeKeyToken.MinInteractiveArea -> OudsTheme.sizes.minInteractiveArea
         OudsSizeKeyToken.MinInteractiveAreaDefault -> OudsTheme.sizes.minInteractiveAreaDefault
         OudsSizeKeyToken.MinInteractiveAreaSmall -> OudsTheme.sizes.minInteractiveAreaSmall
+        OudsSizeKeyToken.MinInteractiveAreaSmallest -> OudsTheme.sizes.minInteractiveAreaSmallest
     }

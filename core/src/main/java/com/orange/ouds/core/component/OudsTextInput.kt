@@ -1189,7 +1189,7 @@ internal fun OudsTextInputDecorator(
                             Box(
                                 modifier = Modifier
                                     .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                                    .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxWidthHeightIconOnlyDefault.value * iconScale)
+                                    .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * iconScale)
                                     .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value),
                                 contentAlignment = Alignment.Center
                             ) {

@@ -40,7 +40,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Navigation Button
  *
- * > Design version: 3.2.1
+ * > Design version: 3.3.0
  *
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.

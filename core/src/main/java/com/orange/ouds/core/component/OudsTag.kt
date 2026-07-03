@@ -358,8 +358,8 @@ private fun bulletPadding(size: OudsTagSize): Dp {
 private fun loaderPadding(size: OudsTagSize): Dp {
     return with(OudsTheme.componentsTokens.tag) {
         when (size) {
-            OudsTagSize.Default -> spaceInsetLoaderDefault
-            OudsTagSize.Small -> spaceInsetLoaderSmall
+            OudsTagSize.Default -> spaceInsetProgressIndicatorDefault
+            OudsTagSize.Small -> spaceInsetProgressIndicatorSmall
         }.value
     }
 }

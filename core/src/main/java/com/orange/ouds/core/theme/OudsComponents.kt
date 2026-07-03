@@ -27,12 +27,12 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
@@ -1543,7 +1543,7 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         buttonMonochrome = buttonMonochrome.getButtonMonochrome(),
         checkbox = checkbox.getCheckbox(),
         chip = chip.getChip(),
-        controlItem = controlItem.getControlItem(),
+        controlItem = listItem.getControlItem(),
         divider = divider.getDivider(),
         icon = icon.getIcon(),
         inputTag = inputTag.getInputTag(),
@@ -1818,9 +1818,9 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
             iconOnlyDefault = sizeIconOnlyDefault.value,
             iconOnlySmall = sizeIconOnlySmall.value,
             loader = @Suppress("DEPRECATION") deprecated.sizeLoader.value,
-            maxHeightIconOnly = sizeMaxWidthHeightIconOnlyDefault.value,
-            maxWidthHeightIconOnlyDefault = sizeMaxWidthHeightIconOnlyDefault.value,
-            maxWidthHeightIconOnlySmall = sizeMaxWidthHeightIconOnlySmall.value,
+            maxHeightIconOnly = sizeMaxSizeIconOnlyDefault.value,
+            maxWidthHeightIconOnlyDefault = sizeMaxSizeIconOnlyDefault.value,
+            maxWidthHeightIconOnlySmall = sizeMaxSizeIconOnlySmall.value,
             minHeight = sizeMinHeightDefault.value,
             minHeightDefault = sizeMinHeightDefault.value,
             minHeightSmall = sizeMinHeightSmall.value,
@@ -1846,8 +1846,8 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
             inset = OudsComponents.Button.Space.Inset(
                 iconOnlyDefault = spaceInsetIconOnlyDefault.value,
                 iconOnlySmall = spaceInsetIconOnlySmall.value,
-                progressIndicatorOnlyDefault = spaceInsetProgressIndicartorOnlyDefault.value,
-                progressIndicatorOnlySmall = spaceInsetProgressIndicartorOnlySmall.value
+                progressIndicatorOnlyDefault = spaceInsetProgressIndicatorOnlyDefault.value,
+                progressIndicatorOnlySmall = spaceInsetProgressIndicatorOnlySmall.value
             ),
             paddingBlock = spacePaddingBlockDefault.value,
             paddingBlockDefault = spacePaddingBlockDefault.value,
@@ -2059,14 +2059,14 @@ private fun OudsChipTokens.getChip(): OudsComponents.Chip {
 }
 
 @Composable
-private fun OudsControlItemTokens.getControlItem(): OudsComponents.ControlItem {
+private fun OudsListItemTokens.getControlItem(): OudsComponents.ControlItem {
     return OudsComponents.ControlItem(
         border = OudsComponents.ControlItem.Border(
             radius = OudsComponents.ControlItem.Border.Radius(
                 currentIndicator = borderRadiusCurrentIndicator.value,
                 default = borderRadiusDefault.value,
                 media = borderRadiusMedia.value,
-                mediaRoundedCorner = borderRadiusMediaRoundedCorner.value,
+                mediaRoundedCorner = borderRadiusMediaRounded.value,
                 rounded = borderRadiusRounded.value
             ),
             width = OudsComponents.ControlItem.Border.Width(
@@ -2075,7 +2075,7 @@ private fun OudsControlItemTokens.getControlItem(): OudsComponents.ControlItem {
             )
         ),
         color = OudsComponents.ControlItem.Color(
-            badgeSafetyArea = colorBadgeSafetyArea.value,
+            badgeSafetyArea = colorBgBadgeSafetyArea.value,
             background = OudsComponents.ControlItem.Color.Background(
                 current = OudsComponents.ControlItem.Color.Background.Current(
                     disabled = colorBgCurrentDisabled.value,
@@ -2121,7 +2121,7 @@ private fun OudsControlItemTokens.getControlItem(): OudsComponents.ControlItem {
             currentIndicator = OudsComponents.ControlItem.Size.CurrentIndicator(
                 width = sizeCurrentIndicatorWidth.dp
             ),
-            minHeightCompact = sizeMinHeightCompact.value,
+            minHeightCompact = sizeMinHeightDefault.dp,
             minHeightDefault = sizeMinHeightDefault.dp,
             minWidth = sizeMinWidth.dp,
             maxWidth = sizeMaxWidth.dp,
@@ -2135,15 +2135,15 @@ private fun OudsControlItemTokens.getControlItem(): OudsComponents.ControlItem {
             rowGap = spaceRowGap.value,
             paddingBlock = OudsComponents.ControlItem.Space.PaddingBlock(
                 topHelperText = spacePaddingBlockTopHelperText.value,
-                bottomSlot = spacePaddingBlockBottomSlot.value,
-                densityCompact = spacePaddingBlockDensityCompact.value,
-                densityCompactTopAlignmentTopCounterweight = spacePaddingBlockDensityCompactTopAlignmentTopCounterweight.value,
-                densityCompactTopAlignmentTopTextContainer = spacePaddingBlockDensityCompactTopAlignmentTopTextContainer.value,
-                densityCompactBottomExpandContainer = spacePaddingBlockDensityCompactBottomExpandContainer.value,
-                densityDefault = spacePaddingBlockDensityDefault.value,
-                densityDefaultTopAlignmentTopCounterweight = spacePaddingBlockDensityDefaultTopAlignmentTopCounterweight.value,
-                densityDefaultTopAlignmentTopTextContainer = spacePaddingBlockDensityDefaultTopAlignmentTopTextContainer.value,
-                densityDefaultBottomExpandContainer = spacePaddingBlockDensityDefaultBottomExpandContainer.value,
+                bottomSlot = spacePaddingBlockBottomSlotListItemContainer.value,
+                densityCompact = spacePaddingBlockSmall.value,
+                densityCompactTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightSmall.value,
+                densityCompactTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerSmall.value,
+                densityCompactBottomExpandContainer = spacePaddingBlockBottomSlotListItemContainer.value,
+                densityDefault = spacePaddingBlockDefault.value,
+                densityDefaultTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightDefault.value,
+                densityDefaultTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerDefault.value,
+                densityDefaultBottomExpandContainer = spacePaddingBlockBottomSlotListItemContainer.value,
             )
         )
     )
@@ -2211,6 +2211,7 @@ private fun OudsInputTagTokens.getInputTag(): OudsComponents.InputTag {
 }
 
 @Composable
+@Suppress("DEPRECATION")
 private fun OudsLinkTokens.getLink(): OudsComponents.Link {
     return OudsComponents.Link(
         color = OudsComponents.Link.Color(
@@ -2231,9 +2232,9 @@ private fun OudsLinkTokens.getLink(): OudsComponents.Link {
             iconDefault = sizeIconDefault.value,
             iconSmall = sizeIconSmall.value,
             minHeightDefault = sizeMinHeightDefault.value,
-            minHeightSmall = sizeMinHeightSmall.dp,
-            minWidthDefault = sizeMinWidthDefault.value,
-            minWidthSmall = sizeMinWidthSmall.dp
+            minHeightSmall = sizeMinHeightSmall.value,
+            minWidthDefault = sizeMinWidth.dp,
+            minWidthSmall = sizeMinWidthSmall.value
         ),
         space = OudsComponents.Link.Space(
             columnGap = OudsComponents.Link.Space.ColumnGap(
@@ -2242,7 +2243,7 @@ private fun OudsLinkTokens.getLink(): OudsComponents.Link {
                 iconDefault = spaceColumnGapIconDefault.value,
                 iconSmall = spaceColumnGapIconSmall.value
             ),
-            paddingBlock = spacePaddingBlock.value,
+            paddingBlock = spacePaddingBlockDefault.value,
             paddingInline = spacePaddingInline.value
         )
     )
@@ -2400,10 +2401,10 @@ private fun OudsTagTokens.getTag(): OudsComponents.Tag {
             inset = OudsComponents.Tag.Space.Inset(
                 iconSmall = spaceInsetIconSmall.value,
                 bulletSmall = spaceInsetBulletSmall.value,
-                loaderSmall = spaceInsetLoaderSmall.value,
+                loaderSmall = spaceInsetProgressIndicatorSmall.value,
                 iconDefault = spaceInsetIconDefault.value,
                 bulletDefault = spaceInsetBulletDefault.dp,
-                loaderDefault = spaceInsetLoaderDefault.value
+                loaderDefault = spaceInsetProgressIndicatorDefault.value
             ),
             columnGap = OudsComponents.Tag.Space.ColumnGap(
                 small = spaceColumnGapSmall.value,
