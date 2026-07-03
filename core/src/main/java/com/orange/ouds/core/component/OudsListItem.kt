@@ -68,6 +68,7 @@ import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -1070,11 +1071,11 @@ internal fun PreviewOudsStaticListItem(
     }
 }
 
-@Preview(name = "Light", heightDp = 1000, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.ListItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 1000, // TODO set height in OudsPreviewableComponent
+    heightDp = OudsPreviewableComponent.ListItem.Navigation.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable

@@ -31,6 +31,7 @@ import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
@@ -392,12 +393,12 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsSmallStaticListItem(@PreviewParameter(OudsSmallListItemPreviewParameterProvider::class) parameter: OudsSmallListItemPreviewParameter) {
-    PreviewOudsSmallStaticListItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsStaticSmallListItem(@PreviewParameter(OudsSmallListItemPreviewParameterProvider::class) parameter: OudsSmallListItemPreviewParameter) {
+    PreviewOudsStaticSmallListItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsSmallStaticListItem(
+internal fun PreviewOudsStaticSmallListItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsSmallListItemPreviewParameter
@@ -414,11 +415,11 @@ internal fun PreviewOudsSmallStaticListItem(
     }
 }
 
-@Preview(name = "Light", heightDp = 700, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.SmallListItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 700, // TODO set height in OudsPreviewableComponent
+    heightDp = OudsPreviewableComponent.SmallListItem.Navigation.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable

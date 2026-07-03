@@ -27,6 +27,7 @@ import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
@@ -155,11 +156,34 @@ internal fun PreviewOudsStaticCardItem(
     }
 }
 
-@Preview(name = "Light", heightDp = 880, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
+@Preview(
+    name = "Light",
+    device = OudsPreviewDevice
+)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsStaticCardItemWithRoundedCorners() {
+    PreviewOudsStaticCardItemWithRoundedCorners(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsStaticCardItemWithRoundedCorners(theme: OudsThemeContract) =
+    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
+        OudsCardItem(
+            label = "Label",
+            decoration = OudsListItemDecoration.Outlined,
+            description = "Description",
+            overline = "Overline",
+            extraLabel = "Extra label",
+            helperText = "Helper text",
+        )
+    }
+
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.CardItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 1000, // TODO set height in OudsPreviewableComponent
+    heightDp = OudsPreviewableComponent.CardItem.Navigation.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -195,7 +219,7 @@ internal fun PreviewOudsNavigationCardItem(
     }
 }
 
-@Preview(name = "Light", heightDp = 880, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.CardItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationCardItemWithRoundedCorners() {
@@ -216,35 +240,6 @@ internal fun PreviewOudsNavigationCardItemWithRoundedCorners(theme: OudsThemeCon
             )
         }
     }
-
-@Preview(
-    name = "Dark",
-    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 880,
-    device = OudsPreviewDevice
-) // TODO set height in OudsPreviewableComponent
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticCardItemWithRoundedCorners() {
-    PreviewOudsStaticCardItemWithRoundedCorners(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
-}
-
-@Composable
-internal fun PreviewOudsStaticCardItemWithRoundedCorners(
-    theme: OudsThemeContract,
-    darkThemeEnabled: Boolean
-) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }, darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
-        OudsCardItem(
-            label = "Label",
-            decoration = OudsListItemDecoration.Outlined,
-            description = "Description",
-            overline = "Overline",
-            extraLabel = "Extra label",
-            helperText = "Helper text",
-        )
-    }
-}
 
 internal data class OudsCardItemPreviewParameter(
     val label: String,

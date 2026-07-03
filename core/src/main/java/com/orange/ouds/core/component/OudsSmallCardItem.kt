@@ -27,6 +27,7 @@ import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
@@ -118,12 +119,12 @@ fun OudsSmallCardItem(
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsSmallStaticCardItem(@PreviewParameter(OudsSmallCardItemPreviewParameterProvider::class) parameter: OudsSmallCardItemPreviewParameter) {
-    PreviewOudsSmallStaticCardItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsStaticSmallCardItem(@PreviewParameter(OudsSmallCardItemPreviewParameterProvider::class) parameter: OudsSmallCardItemPreviewParameter) {
+    PreviewOudsStaticSmallCardItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
-internal fun PreviewOudsSmallStaticCardItem(
+internal fun PreviewOudsStaticSmallCardItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsSmallCardItemPreviewParameter
@@ -141,11 +142,31 @@ internal fun PreviewOudsSmallStaticCardItem(
     }
 }
 
-@Preview(name = "Light", heightDp = 700, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
+
+@Preview(name = "Light", device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsStaticSmallCardItemWithRoundedCorners() {
+    PreviewOudsStaticSmallCardItemWithRoundedCorners(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsStaticSmallCardItemWithRoundedCorners(
+    theme: OudsThemeContract
+) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
+    OudsSmallCardItem(
+        label = "Label",
+        decoration = OudsListItemDecoration.Outlined,
+        description = "Description",
+        helperText = "Helper text",
+    )
+}
+
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.SmallCardItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 700, // TODO set height in OudsPreviewableComponent
+    heightDp = OudsPreviewableComponent.SmallCardItem.Navigation.PreviewHeightDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -179,7 +200,7 @@ internal fun PreviewOudsNavigationSmallCardItem(
     }
 }
 
-@Preview(name = "Light", heightDp = 700, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.SmallCardItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationSmallCardItemWithRoundedCorners() {
@@ -193,28 +214,6 @@ internal fun PreviewOudsNavigationSmallCardItemWithRoundedCorners(theme: OudsThe
             OudsSmallCardItem(
                 onClick = {},
                 label = "Label",
-                description = "Description",
-                helperText = "Helper text",
-            )
-        }
-    }
-
-@Preview(name = "Dark", uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL, heightDp = 700, device = OudsPreviewDevice) // TODO set height in OudsPreviewableComponent
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticSmallCardItemWithRoundedCorners() {
-    PreviewOudsStaticSmallCardItemWithRoundedCorners(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
-}
-
-@Composable
-internal fun PreviewOudsStaticSmallCardItemWithRoundedCorners(
-    theme: OudsThemeContract,
-    darkThemeEnabled: Boolean
-) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }, darkThemeEnabled = darkThemeEnabled) {
-        PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
-            OudsSmallCardItem(
-                label = "Label",
-                decoration = OudsListItemDecoration.Outlined,
                 description = "Description",
                 helperText = "Helper text",
             )
