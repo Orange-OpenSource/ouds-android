@@ -16,20 +16,31 @@
 package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.OudsDeprecatedTokensProvider
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
 
 /** @suppress */
 @InternalOudsApi
-interface OudsButtonTokens {
+interface OudsButtonTokens : OudsDeprecatedTokensProvider<OudsDeprecatedButtonTokens> {
+    val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius
     val borderRadiusDefault: OudsBorderKeyToken.Radius
     val borderRadiusRounded: OudsBorderKeyToken.Radius
     val borderRadiusSocial: OudsBorderKeyToken.Radius
+    val borderWidthAi: OudsBorderKeyToken.Width
+    val borderWidthAiInteraction: OudsBorderKeyToken.Width
     val borderWidthDefault: OudsBorderKeyToken.Width
     val borderWidthDefaultInteraction: OudsBorderKeyToken.Width
     val borderWidthDefaultInteractionMono: OudsBorderKeyToken.Width
+    val colorBgAiDisabled: OudsColorKeyToken
+    val colorBgAiEnabled: OudsColorKeyToken
+    val colorBgAiFocus: OudsColorKeyToken
+    val colorBgAiHover: OudsColorKeyToken
+    val colorBgAiLoading: OudsColorKeyToken
+    val colorBgAiPressed: OudsColorKeyToken
     val colorBgBrandEnabled: OudsColorKeyToken
     val colorBgBrandFocus: OudsColorKeyToken
     val colorBgBrandHover: OudsColorKeyToken
@@ -44,12 +55,24 @@ interface OudsButtonTokens {
     val colorBgMinimalFocus: OudsColorKeyToken
     val colorBgMinimalHover: OudsColorKeyToken
     val colorBgMinimalPressed: OudsColorKeyToken
+    val colorBorderAiDisabled: OudsColorKeyToken
+    val colorBorderAiEnabled: OudsColorKeyToken
+    val colorBorderAiFocus: OudsColorKeyToken
+    val colorBorderAiHover: OudsColorKeyToken
+    val colorBorderAiLoading: OudsColorKeyToken
+    val colorBorderAiPressed: OudsColorKeyToken
     val colorBorderDefaultDisabled: OudsColorKeyToken
     val colorBorderDefaultEnabled: OudsColorKeyToken
     val colorBorderDefaultFocus: OudsColorKeyToken
     val colorBorderDefaultHover: OudsColorKeyToken
     val colorBorderDefaultLoading: OudsColorKeyToken
     val colorBorderDefaultPressed: OudsColorKeyToken
+    val colorContentAiDisabled: OudsColorKeyToken
+    val colorContentAiEnabled: OudsColorKeyToken
+    val colorContentAiFocus: OudsColorKeyToken
+    val colorContentAiHover: OudsColorKeyToken
+    val colorContentAiLoading: OudsColorKeyToken
+    val colorContentAiPressed: OudsColorKeyToken
     val colorContentBrandEnabled: OudsColorKeyToken
     val colorContentBrandFocus: OudsColorKeyToken
     val colorContentBrandHover: OudsColorKeyToken
@@ -67,21 +90,40 @@ interface OudsButtonTokens {
     val colorContentMinimalHover: OudsColorKeyToken
     val colorContentMinimalLoading: OudsColorKeyToken
     val colorContentMinimalPressed: OudsColorKeyToken
-    val sizeIcon: OudsSizeKeyToken.Icon
-    val sizeIconOnly: OudsSizeKeyToken.Icon
-    val sizeLoader: OudsSizeKeyToken.Icon
-    val sizeMaxHeightIconOnly: OudsSizeKeyToken
-    val sizeMinHeight: OudsSizeKeyToken
-    val sizeMinWidth: OudsSizeKeyToken
-    val spaceColumnGapChevron: OudsSpaceKeyToken.ColumnGap
-    val spaceColumnGapIcon: OudsSpaceKeyToken.ColumnGap
-    val spaceColumnGapIconChevron: OudsSpaceKeyToken.ColumnGap
-    val spaceInsetIconOnly: OudsSpaceKeyToken.Inset
-    val spacePaddingBlock: OudsSpaceKeyToken.PaddingBlock
-    val spacePaddingInlineChevronEnd: OudsSpaceKeyToken.PaddingInline
-    val spacePaddingInlineChevronStart: OudsSpaceKeyToken.PaddingInline
-    val spacePaddingInlineEndIconStart: OudsSpaceKeyToken.PaddingInline
-    val spacePaddingInlineIconNone: OudsSpaceKeyToken.PaddingInline
-    val spacePaddingInlineIconStart: OudsSpaceKeyToken.PaddingInline
-    val spacePaddingInlineStartIconEnd: OudsSpaceKeyToken.PaddingInline
+    val sizeIconDefault: OudsSizeKeyToken.Icon
+    val sizeIconOnlyDefault: OudsSizeKeyToken.Icon
+    val sizeIconOnlySmall: OudsSizeKeyToken.Icon
+    val sizeIconSmall: OudsSizeKeyToken.Icon
+    val sizeMaxWidthHeightIconOnlyDefault: OudsSizeKeyToken
+    val sizeMaxWidthHeightIconOnlySmall: OudsSizeKeyToken
+    val sizeMinHeightDefault: OudsSizeKeyToken
+    val sizeMinHeightSmall: OudsSizeKeyToken
+    val sizeMinWidthDefault: OudsSizeKeyToken
+    val sizeMinWidthSmall: OudsSizeKeyToken
+    val sizeProgressIndicatorDefault: OudsSizeKeyToken.Icon
+    val sizeProgressIndicatorSmall: OudsSizeKeyToken.Icon
+    val spaceColumnGapChevronDefault: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapChevronSmall: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIconChevronDefault: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIconChevronSmall: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIconDefault: OudsSpaceKeyToken.ColumnGap
+    val spaceColumnGapIconSmall: OudsSpaceKeyToken.ColumnGap
+    val spaceInsetIconOnlyDefault: OudsSpaceKeyToken.Inset
+    val spaceInsetIconOnlySmall: OudsSpaceKeyToken.Inset
+    val spaceInsetProgressIndicartorOnlyDefault: OudsSpaceKeyToken.Inset
+    val spaceInsetProgressIndicartorOnlySmall: OudsSpaceKeyToken.Inset
+    val spacePaddingBlockDefault: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingBlockSmall: OudsSpaceKeyToken.PaddingBlock
+    val spacePaddingInlineChevronEndDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineChevronEndSmall: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineChevronStartDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineChevronStartSmall: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineEndIconStartDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineEndIconStartSmall: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineIconNoneDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineIconNoneSmall: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineIconStartDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineIconStartSmall: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineStartIconEndDefault: OudsSpaceKeyToken.PaddingInline
+    val spacePaddingInlineStartIconEndSmall: OudsSpaceKeyToken.PaddingInline
 }

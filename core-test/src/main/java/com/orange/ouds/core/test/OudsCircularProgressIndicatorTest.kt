@@ -13,19 +13,39 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsCircularProgressIndicatorTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.CircularProgressIndicator,
-    parameter,
-    OudsComponentTestSuite.theme
-) {
+@RunWith(Enclosed::class)
+internal class OudsCircularProgressIndicatorTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.CircularProgressIndicator.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CircularProgressIndicator.Default,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.CircularProgressIndicator.Default.parameters
+        }
+    }
+
+
+    @RunWith(Parameterized::class)
+    class Sized(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CircularProgressIndicator.Sized,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.CircularProgressIndicator.Sized.parameters
+        }
     }
 }

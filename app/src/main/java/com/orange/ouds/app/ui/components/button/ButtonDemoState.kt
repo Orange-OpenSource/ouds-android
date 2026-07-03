@@ -31,10 +31,11 @@ fun rememberButtonDemoState(
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    size: ButtonDemoState.Size = ButtonDemoState.Size.entries.first(),
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first(),
     icon: ButtonDemoState.Icon = ButtonDemoState.Icon.Tinted
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, layout, icon, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, layout, icon)
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, size, layout, icon, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, size, layout, icon)
 }
 
 class ButtonDemoState(
@@ -43,6 +44,7 @@ class ButtonDemoState(
     onColoredBox: Boolean,
     hasLoader: Boolean,
     appearance: OudsButtonAppearance,
+    size: Size,
     layout: Layout,
     icon: Icon
 ) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
@@ -56,25 +58,27 @@ class ButtonDemoState(
             save = { state ->
                 with(state) {
                     listOf(
+                        with(BaseButtonDemoState.Saver) { save(state) },
                         label,
                         appearance,
+                        size,
                         layout,
-                        icon,
-                        with(BaseButtonDemoState.Saver) { save(state) },
+                        icon
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                val baseButtonDemoState = list[4]?.let { BaseButtonDemoState.Saver.restore(it) }
+                val baseButtonDemoState = list[0]?.let { BaseButtonDemoState.Saver.restore(it) }
                 baseButtonDemoState?.run {
                     ButtonDemoState(
-                        list[0] as String,
+                        list[1] as String,
                         enabled,
                         onColoredBox,
                         hasLoader,
-                        list[1] as OudsButtonAppearance,
-                        list[2] as Layout,
-                        list[3] as Icon
+                        list[2] as OudsButtonAppearance,
+                        list[3] as Size,
+                        list[4] as Layout,
+                        list[5] as Icon
                     )
                 }
             }
@@ -82,6 +86,8 @@ class ButtonDemoState(
     }
 
     var label: String by mutableStateOf(label)
+
+    var size: Size by mutableStateOf(size)
 
     var layout: Layout by mutableStateOf(layout)
 
@@ -105,6 +111,11 @@ class ButtonDemoState(
 
     val enabledIcons: List<Icon>
         get() = if (layout != Layout.TextOnly) Icon.entries else emptyList()
+
+    enum class Size(@StringRes val labelRes: Int) {
+        Default(R.string.app_components_button_button_defaultSize_tech),
+        Small(R.string.app_components_common_smallSize_tech)
+    }
 
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
