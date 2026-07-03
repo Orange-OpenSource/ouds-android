@@ -16,6 +16,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -45,7 +46,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -187,25 +187,28 @@ internal fun OudsListItem(
         val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
         val shape = RoundedCornerShape(borderRadius)
 
+        val clickableModifier = if (nullableOnClick != null) {
+            Modifier.clickable(
+                onClick = nullableOnClick,
+                enabled = enabled,
+                interactionSource = interactionSource
+            )
+        } else {
+            Modifier
+        }
+
         Column(
             modifier = modifier.widthIn(min = this.size.minWidth)
         ) {
             Row(
-                modifier = Modifier
+                modifier = clickableModifier
                     .fillMaxWidth()
                     .heightIn(min = minHeight(size))
                     .background(color = backgroundColor(state = state, decoration = decoration), shape = shape)
                     .border(state = state, decoration = decoration, cornerRadius = borderRadius)
                     .outerBorder(state = state, shape = shape)
                     .containerPadding(size = size, contentAlignment = contentAlignment)
-                    .semantics(mergeDescendants = true) {
-                        if (nullableOnClick != null) {
-                            onClick(null) {
-                                nullableOnClick()
-                                true
-                            }
-                        }
-                    },
+                    .semantics(mergeDescendants = true) { },
                 horizontalArrangement = Arrangement.spacedBy(space.columnGap),
                 verticalAlignment = verticalAlignment(contentAlignment)
             ) {
