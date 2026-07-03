@@ -78,7 +78,35 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO Static List Item
+ * TODO update description when available and add version and guideline link
+ *
+ * Static list item displays non-clickable information in a structured format.
+ * They are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * A static list item can be used to present read-only information such as contact details,
+ * product specifications, or settings values.
+ * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * @param label The main label of the list item.
+ * @param modifier [Modifier] applied to the layout of the list item.
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the list item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the list item.
+ * @param divider Controls the display of a divider at the bottom of the list item. Defaults to `true`.
+ * @param background Controls whether the list item has a background color. Defaults to `false`.
+ * @param helperText Optional helper text displayed below the list item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsStaticListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
 @Composable
@@ -117,7 +145,40 @@ fun OudsListItem(
     )
 }
 
-// TODO Navigation List Item
+/**
+ * TODO update description when available and add version and guideline link
+ *
+ * Navigation list item allows users to navigate to another screen or perform an action.
+ * They are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * A navigation list item is clickable and typically includes a navigation indicator.
+ * It can be used for menu items, settings options, or any interactive list that leads to
+ * another destination. The indicator type can be customized to show forward navigation,
+ * backward navigation, or external links.
+ * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * @param label The main label of the list item.
+ * @param onClick Callback invoked when the list item is clicked.
+ * @param modifier [Modifier] applied to the layout of the list item.
+ * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the list item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the list item.
+ * @param divider Controls the display of a divider at the bottom of the list item. Defaults to `true`.
+ * @param background Controls whether the list item has a background color. Defaults to `false`.
+ * @param helperText Optional helper text displayed below the list item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithIndicatorsSample
+ */
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(

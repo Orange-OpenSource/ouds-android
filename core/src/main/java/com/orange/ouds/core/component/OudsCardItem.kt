@@ -36,7 +36,31 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO Static Card Item
+ * TODO update description when available and add version and guideline link
+ *
+ * Static card item displays non-clickable information in a card format with visual emphasis.
+ *
+ * A static card item can be used to present read-only information in a contained format.
+ * Cards are ideal for displaying grouped content like product cards, destination highlights, or
+ * feature summaries. The card supports various decorations outlined, background with ou without divider.
+ *
+ * @param label The main label of the card item.
+ * @param modifier [Modifier] applied to the layout of the card item.
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration] (with divider).
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the card item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
+ * @param helperText Optional helper text displayed below the card item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithAllElementsSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
 @Composable
@@ -75,7 +99,34 @@ fun OudsCardItem(
 }
 
 /**
- * TODO Navigation Card Item
+ * TODO update description when available and add version and guideline link
+ *
+ * Navigation card item allows users to navigate to another screen or perform an action in a card format.
+ *
+ * A navigation card item is clickable and presented in a card format with visual emphasis.
+ * It can be used for navigable product cards, destination selections, or feature highlights.
+ * The indicator type can be customized to show forward navigation, backward navigation, or
+ * external links. The card supports various decorations to adapt to different visual styles:
+ * outlined, background with ou without divider.
+ *
+ * @param label The main label of the card item.
+ * @param modifier [Modifier] applied to the layout of the card item.
+ * @param onClick Callback invoked when the card item is clicked.
+ * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the card item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
+ * @param helperText Optional helper text displayed below the card item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithIndicatorsSample
  */
 @ExperimentalOudsApi
 @Composable

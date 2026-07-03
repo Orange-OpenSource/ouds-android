@@ -39,7 +39,32 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO Static Small List Item
+ * TODO update description when available and add version and guideline link
+ *
+ * Static small list item displays non-clickable information in a compact format.
+ *
+ * A static small list item provides a condensed way to present read-only information.
+ * It is ideal for compact lists, quick settings displays, or dense information layouts.
+ * Unlike the standard list item, it omits overline and extra label to maintain a smaller footprint.
+ * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * @see [OudsSmallCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * @param label The main label of the small list item.
+ * @param modifier [Modifier] applied to the layout of the small list item.
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param description Optional text displayed below the [label].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the small list item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small list item.
+ * @param divider Controls the display of a divider at the bottom of the small list item. Defaults to `true`.
+ * @param background Controls whether the small list item has a background color. Defaults to `true`.
+ * @param helperText Optional helper text displayed below the small list item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the small list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
 @Composable
@@ -75,7 +100,38 @@ fun OudsSmallListItem(
     )
 }
 
-// TODO Navigation Small List Item
+/**
+ * TODO update description when available and add version and guideline link
+ *
+ * Navigation small list item allows users to navigate to another screen or perform an action in a compact format.
+ *
+ * A navigation small list item is clickable and provides a condensed way to navigate.
+ * It is ideal for compact menus, quick settings with actions, or dense navigation lists.
+ * The indicator type can be customized to show forward navigation, backward navigation, or
+ * external links. Unlike the standard list item, it omits overline and extra label to maintain
+ * a smaller footprint while remaining interactive.
+ * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * @see [OudsSmallCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * @param label The main label of the small list item.
+ * @param modifier [Modifier] applied to the layout of the small list item.
+ * @param onClick Callback invoked when the small list item is clicked.
+ * @param indicator The navigation indicator to display. Defaults to [OudsListItemDefaults.Indicator] (Next).
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemDefaults.ContentAlignment].
+ * @param description Optional text displayed below the [label].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the small list item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small list item.
+ * @param divider Controls the display of a divider at the bottom of the small list item. Defaults to `true`.
+ * @param background Controls whether the small list item has a background color. Defaults to `false`.
+ * @param helperText Optional helper text displayed below the small list item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the small list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithIndicatorsSample
+ */
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(

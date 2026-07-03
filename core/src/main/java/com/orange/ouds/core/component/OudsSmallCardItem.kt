@@ -39,7 +39,29 @@ typealias OudsSmallCardItemLeading = OudsSmallListItemLeading
 typealias OudsSmallCardItemTrailing = OudsSmallListItemTrailing
 
 /**
- * TODO Static Small Card Item
+ * TODO update description when available and add version and guideline link
+ *
+ * Static small card item displays non-clickable information in a compact card format.
+ *
+ * A static small card item combines the compact size of a small list item with the visual
+ * emphasis of a card. It is ideal for displaying condensed, grouped content in a contained
+ * format, such as compact feature cards, quick access tiles, or dense information grids.
+ * Unlike the standard card item, it omits overline and extra label to maintain a smaller footprint.
+ *
+ * @param label The main label of the small card item.
+ * @param modifier [Modifier] applied to the layout of the small card item.
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
+ * @param description Optional text displayed below the [label].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small card item.
+ * @param helperText Optional helper text displayed below the small card item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the small card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsStaticSmallCardItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
 @Composable
@@ -76,7 +98,32 @@ fun OudsSmallCardItem(
 }
 
 /**
- * TODO Navigation Small Card Item
+ * TODO update description when available and add version and guideline link
+ *
+ * Navigation small card item allows users to navigate to another screen or perform an action in a compact card format.
+ *
+ * A navigation small card item combines the compact size of a small list item with the visual
+ * emphasis of a card, while remaining interactive. It is ideal for compact, navigable feature cards,
+ * quick action tiles, or dense interactive grids. The indicator type can be customized to show
+ * forward navigation, backward navigation, or external links. Unlike the standard card item,
+ * it omits overline and extra label to maintain a smaller footprint while remaining clickable.
+ *
+ * @param label The main label of the small card item.
+ * @param modifier [Modifier] applied to the layout of the small card item.
+ * @param onClick Callback invoked when the small card item is clicked.
+ * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration] (with divider).
+ * @param description Optional text displayed below the [label].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small card item.
+ * @param helperText Optional helper text displayed below the small card item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param enabled Controls the enabled state of the small card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallCardItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithIndicatorsSample
  */
 @ExperimentalOudsApi
 @Composable
