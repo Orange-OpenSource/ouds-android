@@ -50,7 +50,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.outerBorder
@@ -64,7 +63,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
@@ -184,12 +182,12 @@ internal fun OudsListItem(
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getListItemState(enabled = enabled, interactionState = interactionState)
 
-    with(OudsTheme.componentsTokens.listItem) {
-        val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) borderRadiusRounded.value else borderRadiusDefault.value
+    with(OudsTheme.components.listItem) {
+        val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
         val shape = RoundedCornerShape(borderRadius)
 
         Column(
-            modifier = modifier.widthIn(min = sizeMinWidth.dp)
+            modifier = modifier.widthIn(min = this.size.minWidth)
         ) {
             Row(
                 modifier = Modifier
@@ -207,12 +205,12 @@ internal fun OudsListItem(
                             }
                         }
                     },
-                horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value),
+                horizontalArrangement = Arrangement.spacedBy(space.columnGap),
                 verticalAlignment = verticalAlignment(contentAlignment)
             ) {
                 if (nullableIndicator == OudsListItemIndicator.Previous) {
                     Icon(
-                        modifier = Modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value),
+                        modifier = Modifier.size(OudsTheme.components.controlItem.size.asset.small),
                         painter = painterResource(nullableIndicator.drawableId),
                         contentDescription = "",
                         tint = indicatorColor(state = state)
@@ -264,7 +262,7 @@ internal fun OudsListItem(
 
                 if (nullableIndicator != null && nullableIndicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
                     Icon(
-                        modifier = Modifier.size(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value),
+                        modifier = Modifier.size(OudsTheme.components.controlItem.size.asset.small),
                         painter = painterResource(nullableIndicator.drawableId),
                         contentDescription = "",
                         tint = indicatorColor(state = state)
@@ -275,8 +273,8 @@ internal fun OudsListItem(
             if (!helperText.isNullOrBlank()) {
                 Text(
                     modifier = Modifier
-                        .padding(top = spacePaddingBlockTopHelperText.value)
-                        .padding(horizontal = spacePaddingInline.value),
+                        .padding(top = space.paddingBlock.topHelperText)
+                        .padding(horizontal = space.paddingInline),
                     text = helperText,
                     style = OudsTheme.typography.label.medium.default,
                     color = contentColor(state = state, muted = true)
@@ -300,23 +298,23 @@ private fun getListItemState(enabled: Boolean, interactionState: InteractionStat
 }
 
 @Composable
-private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: OudsListItemContentAlignment) = with(OudsTheme.componentsTokens.listItem) {
+private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: OudsListItemContentAlignment) = with(OudsTheme.components.listItem) {
     when (size) {
         OudsListItemSize.Small -> when (contentAlignment) {
-            OudsListItemContentAlignment.Center -> padding(vertical = spacePaddingBlockSmall.value)
+            OudsListItemContentAlignment.Center -> padding(vertical = space.paddingBlock.small)
             OudsListItemContentAlignment.Top -> padding(
-                top = spacePaddingBlockTopAlignmentTopCounterweightSmall.value,
-                bottom = spacePaddingBlockSmall.value
+                top = space.paddingBlock.topAlignmentTopCounterweight.small,
+                bottom = space.paddingBlock.small
             )
         }
         OudsListItemSize.Default -> when (contentAlignment) {
-            OudsListItemContentAlignment.Center -> padding(vertical = spacePaddingBlockDefault.value)
+            OudsListItemContentAlignment.Center -> padding(vertical = space.paddingBlock.default)
             OudsListItemContentAlignment.Top -> padding(
-                top = spacePaddingBlockTopAlignmentTopCounterweightDefault.value,
-                bottom = spacePaddingBlockDefault.value
+                top = space.paddingBlock.topAlignmentTopCounterweight.default,
+                bottom = space.paddingBlock.default
             )
         }
-    }.padding(horizontal = spacePaddingInline.value)
+    }.padding(horizontal = space.paddingInline)
 }
 
 @Composable
@@ -390,7 +388,7 @@ private fun actionColor(state: OudsListItemState, tint: Color? = null) = when {
 @Composable
 private fun indicatorColor(state: OudsListItemState) = with(OudsTheme.colorScheme.action) {
     when (state) {
-        OudsListItemState.Enabled -> OudsTheme.componentsTokens.link.colorChevronEnabled.value
+        OudsListItemState.Enabled -> OudsTheme.components.link.color.chevron.enabled
         OudsListItemState.Focused -> focus
         OudsListItemState.Hovered -> hover
         OudsListItemState.Pressed -> pressed
@@ -399,10 +397,10 @@ private fun indicatorColor(state: OudsListItemState) = with(OudsTheme.colorSchem
 }
 
 @Composable
-private fun minHeight(size: OudsListItemSize) = with(OudsTheme.componentsTokens.listItem) {
+private fun minHeight(size: OudsListItemSize) = with(OudsTheme.components.listItem) {
     when (size) {
-        OudsListItemSize.Default -> sizeMinHeightDefault.dp
-        OudsListItemSize.Small -> sizeMinHeightSmall.value
+        OudsListItemSize.Default -> this.size.minHeightDefault
+        OudsListItemSize.Small -> this.size.minHeightSmall
     }
 }
 
@@ -534,12 +532,12 @@ enum class OudsListItemAssetSize {
 
     val value: Dp
         @Composable
-        get() = with(OudsTheme.componentsTokens.listItem) {
+        get() = with(OudsTheme.components.listItem) {
             when (this@OudsListItemAssetSize) {
-                Small -> sizeAssetSmall.value
-                Medium -> sizeAssetMedium.value
-                Large -> sizeAssetLarge.dp
-                ExtraLarge -> sizeAssetXlarge.dp
+                Small -> size.asset.small
+                Medium -> size.asset.medium
+                Large -> size.asset.large
+                ExtraLarge -> size.asset.extraLarge
             }
         }
 }
@@ -569,12 +567,12 @@ enum class OudsListItemIconStatus(
 
     Warning(
         {
-            val iconTokens = OudsTheme.componentsTokens.icon
+            val iconTokens = OudsTheme.components.icon
             LayeredTintedPainter(
                 backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                backPainterColor = iconTokens.color.content.status.warning.externalShape,
                 frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                frontPainterColor = iconTokens.color.content.status.warning.internalShape
             )
         },
         { stringResource(R.string.core_common_warning_a11y) }
@@ -674,7 +672,7 @@ open class OudsListItemText internal constructor(
             Text(
                 modifier = modifier.run {
                     if (extraParameters.contentAlignment == OudsListItemContentAlignment.Top) {
-                        padding(top = OudsTheme.componentsTokens.listItem.spacePaddingBlockTopAlignmentTopTextContainerSmall.value)
+                        padding(top = OudsTheme.components.listItem.space.paddingBlock.topAlignmentTopTextContainer.small)
                     } else {
                         this
                     }
