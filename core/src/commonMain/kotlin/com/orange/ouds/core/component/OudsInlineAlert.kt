@@ -21,7 +21,7 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.iconSize
@@ -72,7 +72,7 @@ fun OudsInlineAlert(
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status
 ) {
     with(OudsTheme.componentsTokens.alert) {
-        val scale = LocalConfiguration.current.fontScale
+        val scale = LocalDensity.current.fontScale
         Row(
             modifier = modifier.semantics(mergeDescendants = true) {},
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)

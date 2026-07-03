@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.hideFromAccessibility
@@ -134,7 +133,7 @@ private fun OudsCircularProgressIndicator(
     track: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val scale = LocalConfiguration.current.fontScale
+    val scale = LocalDensity.current.fontScale
     val density = LocalDensity.current
 
     with(OudsTheme.componentsTokens.progressIndicator) {

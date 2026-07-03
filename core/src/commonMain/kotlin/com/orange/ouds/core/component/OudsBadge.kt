@@ -33,7 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -244,7 +244,7 @@ private fun OudsBadge(
         // This allows to:
         // - get consistent sizes between count and icon badges
         // - get a round badge with low count values. Otherwise, a count badge with an increase text size and a value of 1 will look like a vertical ellipse
-        val scale = if (count != null || withIconStatus?.icon != null) LocalConfiguration.current.fontScale else 1.0f
+        val scale = if (count != null || withIconStatus?.icon != null) LocalDensity.current.fontScale else 1.0f
         val sizeDp = size(size) * scale
         Box(
             modifier = Modifier

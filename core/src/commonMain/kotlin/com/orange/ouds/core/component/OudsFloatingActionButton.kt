@@ -12,8 +12,6 @@
 
 package com.orange.ouds.core.component
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.Interaction
@@ -42,9 +40,11 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
+import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_TYPE_NORMAL
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.outerBorder
@@ -387,7 +387,7 @@ private fun OudsFloatingActionButton(
 @Composable
 private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
     val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnly.value
-    val iconScale = LocalConfiguration.current.fontScale
+    val iconScale = LocalDensity.current.fontScale
     icon.Content(
         modifier = Modifier
             .size(iconSize * iconScale)

@@ -32,7 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -66,7 +66,7 @@ internal fun OudsBasicChip(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getChipState(enabled = enabled, interactionState = interactionState)
-    val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
+    val iconScale = if (icon != null && label == null) LocalDensity.current.fontScale else 1.0f
     val shape = RoundedCornerShape(chipTokens.borderRadius.value)
 
     val contentColor = rememberInteractionColor(interactionState = interactionState) { chipInteractionState ->

@@ -33,7 +33,7 @@ import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.onClick
@@ -156,7 +156,7 @@ internal fun OudsAvatar(
             interactionSource = interactionSource
         )
 
-        val scale = LocalConfiguration.current.fontScale
+        val scale = LocalDensity.current.fontScale
         val contentModifier = Modifier
             .clip(CircleShape)
             .size(AvatarSize * scale)
