@@ -25,14 +25,15 @@ interface OudsComponentsTokens {
     val buttonMonochrome: OudsButtonMonoTokens
     val checkbox: OudsCheckboxTokens
     val chip: OudsChipTokens
-    val controlItem: OudsControlItemTokens
     val divider: OudsDividerTokens
     val icon: OudsIconTokens
     val inputTag: OudsInputTagTokens
     val link: OudsLinkTokens
     val linkMonochrome: OudsLinkMonoTokens
+    val listItem: OudsListItemTokens
     val pinCodeInput: OudsPinCodeInputTokens
     val progressIndicator: OudsProgressIndicatorTokens
+    val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens
     val radioButton: OudsRadioButtonTokens
     val switch: OudsSwitchTokens
     val tag: OudsTagTokens

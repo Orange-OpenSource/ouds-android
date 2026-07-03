@@ -15,12 +15,14 @@
 
 package com.orange.ouds.theme.orangecompact.tokens.components
 
+import com.orange.ouds.theme.orangecompact.tokens.components.deprecated.OrangeCompactDeprecatedTokensProvider
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
 
 internal data class OrangeCompactButtonTokens(
     override val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
@@ -123,4 +125,4 @@ internal data class OrangeCompactButtonTokens(
     override val spacePaddingInlineIconStartSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Large,
     override val spacePaddingInlineStartIconEndDefault: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge,
     override val spacePaddingInlineStartIconEndSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraLarge
-) : OudsButtonTokens
+) : OudsButtonTokens, OrangeCompactDeprecatedTokensProvider<OudsDeprecatedButtonTokens>

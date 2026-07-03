@@ -21,6 +21,8 @@ import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
+import com.orange.ouds.theme.wireframe.tokens.components.deprecated.WireframeDeprecatedTokensProvider
 
 internal data class WireframeButtonTokens(
     override val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
@@ -123,4 +125,4 @@ internal data class WireframeButtonTokens(
     override val spacePaddingInlineIconStartSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.Large,
     override val spacePaddingInlineStartIconEndDefault: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge,
     override val spacePaddingInlineStartIconEndSmall: OudsSpaceKeyToken.PaddingInline = OudsSpaceKeyToken.PaddingInline.TwoExtraLarge
-) : OudsButtonTokens
+) : OudsButtonTokens, WireframeDeprecatedTokensProvider<OudsDeprecatedButtonTokens>

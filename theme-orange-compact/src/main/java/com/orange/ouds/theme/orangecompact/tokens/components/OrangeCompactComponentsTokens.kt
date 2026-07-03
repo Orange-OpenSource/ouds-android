@@ -21,13 +21,14 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
@@ -44,14 +45,15 @@ internal data class OrangeCompactComponentsTokens(
     override val buttonMonochrome: OudsButtonMonoTokens = OrangeCompactButtonMonoTokens(),
     override val checkbox: OudsCheckboxTokens = OrangeCompactCheckboxTokens(),
     override val chip: OudsChipTokens = OrangeCompactChipTokens(),
-    override val controlItem: OudsControlItemTokens = OrangeCompactControlItemTokens(),
     override val divider: OudsDividerTokens = OrangeCompactDividerTokens(),
     override val icon: OudsIconTokens = OrangeCompactIconTokens(),
     override val inputTag: OudsInputTagTokens = OrangeCompactInputTagTokens(),
     override val link: OudsLinkTokens = OrangeCompactLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = OrangeCompactLinkMonoTokens(),
+    override val listItem: OudsListItemTokens = OrangeCompactListItemTokens(),
     override val pinCodeInput: OudsPinCodeInputTokens = OrangeCompactPinCodeInputTokens(),
     override val progressIndicator: OudsProgressIndicatorTokens = OrangeCompactProgressIndicatorTokens(),
+    override val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens = OrangeCompactProgressIndicatorMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = OrangeCompactRadioButtonTokens(),
     override val switch: OudsSwitchTokens = OrangeCompactSwitchTokens(),
     override val tag: OudsTagTokens = OrangeCompactTagTokens(),

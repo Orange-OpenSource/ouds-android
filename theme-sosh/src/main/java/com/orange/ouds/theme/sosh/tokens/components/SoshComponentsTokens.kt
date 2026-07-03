@@ -21,13 +21,14 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
@@ -44,14 +45,15 @@ internal data class SoshComponentsTokens(
     override val buttonMonochrome: OudsButtonMonoTokens = SoshButtonMonoTokens(),
     override val checkbox: OudsCheckboxTokens = SoshCheckboxTokens(),
     override val chip: OudsChipTokens = SoshChipTokens(),
-    override val controlItem: OudsControlItemTokens = SoshControlItemTokens(),
     override val divider: OudsDividerTokens = SoshDividerTokens(),
     override val icon: OudsIconTokens = SoshIconTokens(),
     override val inputTag: OudsInputTagTokens = SoshInputTagTokens(),
     override val link: OudsLinkTokens = SoshLinkTokens(),
+    override val listItem: OudsListItemTokens = SoshListItemTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = SoshLinkMonoTokens(),
     override val pinCodeInput: OudsPinCodeInputTokens = SoshPinCodeInputTokens(),
     override val progressIndicator: OudsProgressIndicatorTokens = SoshProgressIndicatorTokens(),
+    override val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens = SoshProgressIndicatorMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = SoshRadioButtonTokens(),
     override val switch: OudsSwitchTokens = SoshSwitchTokens(),
     override val tag: OudsTagTokens = SoshTagTokens(),
