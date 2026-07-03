@@ -12,6 +12,8 @@
 
 package com.orange.ouds.theme.orangecompact
 
+//import com.orange.ouds.theme.orange.OrangeFontProvider
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
@@ -20,7 +22,6 @@ import com.orange.ouds.theme.orange.OrangeBundledFontFamily
 import com.orange.ouds.theme.orange.OrangeDownloadableFontFamily
 import com.orange.ouds.theme.orange.OrangeDrawableResources
 import com.orange.ouds.theme.orange.OrangeFontFamily
-import com.orange.ouds.theme.orange.OrangeFontProvider
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orangecompact.tokens.components.OrangeCompactComponentsTokens
@@ -45,7 +46,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
-import java.util.Locale
+import kotlin.jvm.JvmOverloads
 
 const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
 
@@ -140,12 +141,9 @@ open class OrangeCompactTheme @JvmOverloads constructor(
     override val name: String
         get() = ORANGE_COMPACT_THEME_NAME
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = getFontFamily(Locale.getDefault())
-
-    override fun getFontFamily(locale: Locale): FontFamily {
-        return orangeFontFamily.getFontFamily(locale)
+    @Composable
+    override fun getFontFamily(language: String): FontFamily {
+        return orangeFontFamily.getFontFamily(language)
     }
 
     override val settings: OudsThemeSettings
