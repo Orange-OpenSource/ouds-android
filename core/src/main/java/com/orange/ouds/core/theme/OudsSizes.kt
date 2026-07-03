@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
@@ -37,10 +36,14 @@ import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 data class OudsSizes internal constructor(
     val icon: Icon,
     val maxWidth: MaxWidth,
+    @Deprecated(
+        "Please use minInteractiveAreaDefault instead.",
+        ReplaceWith("OudsTheme.sizes.minInteractiveAreaDefault")
+    )
     val minInteractiveArea: Dp,
-    @ExperimentalOudsApi val minInteractiveAreaDefault: Dp,
-    @ExperimentalOudsApi val minInteractiveAreaSmall: Dp,
-    @ExperimentalOudsApi val minInteractiveAreaSmallest: Dp
+    val minInteractiveAreaDefault: Dp,
+    val minInteractiveAreaSmall: Dp,
+    val minInteractiveAreaSmallest: Dp
 ) {
     /**
      * Sizes for icons depending on their usage context.
