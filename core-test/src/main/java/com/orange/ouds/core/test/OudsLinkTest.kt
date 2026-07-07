@@ -33,6 +33,19 @@ internal class OudsLinkTest {
         }
     }
 
+    @RunWith(Parameterized::class)
+    class CompactWindowWidthSizeClass(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Link.CompactWindowWidthSizeClass,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Link.CompactWindowWidthSizeClass.parameters
+        }
+    }
+
     class OnTwoLines : OudsComponentSnapshotTest(
         OudsPreviewableComponent.Link.OnTwoLines,
         parameter = null,
