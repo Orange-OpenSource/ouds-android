@@ -179,7 +179,7 @@ internal fun InternalOudsCircularProgressIndicator(
     scale: Float = 1.0f
 ) {
     val modifier = modifier
-        .size(@Suppress("DEPRECATION") OudsTheme.componentsTokens.button.deprecated.sizeLoader.value * scale)
+        .size(OudsTheme.componentsTokens.button.sizeProgressIndicatorDefault.value * scale)
         .semantics { hideFromAccessibility() }
     val strokeWidth = 3.dp * scale
     val trackColor = Color.Transparent

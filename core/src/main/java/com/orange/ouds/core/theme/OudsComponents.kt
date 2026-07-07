@@ -2246,7 +2246,7 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
             iconOnly = sizeIconOnlyDefault.value,
             iconOnlyDefault = sizeIconOnlyDefault.value,
             iconOnlySmall = sizeIconOnlySmall.value,
-            loader = deprecated.sizeLoader.value,
+            loader = sizeProgressIndicatorDefault.value,
             maxHeightIconOnly = sizeMaxSizeIconOnlyDefault.value,
             maxSizeIconOnlyDefault = sizeMaxSizeIconOnlyDefault.value,
             maxSizeIconOnlySmall = sizeMaxSizeIconOnlySmall.value,
