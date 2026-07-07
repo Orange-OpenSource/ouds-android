@@ -1165,44 +1165,45 @@ internal fun OudsTextInputDecorator(
                 if (hasError || state == OudsTextInputState.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
+                    
+                    val trailingContainerModifier = when {
+                        state == OudsTextInputState.Loading -> Modifier
+                            .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
+                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * iconScale)
+                            .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
+                        hasError && trailingIconButton == null -> Modifier
+                            .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
+                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value)
+                            .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
+                        else -> Modifier
+                    }
+
                     Row(
+                        modifier = trailingContainerModifier,
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
+                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value, Alignment.CenterHorizontally)
                     ) {
                         // Error icon
                         if (hasError) {
-                            Box(
-                                modifier = Modifier.padding(all = if (trailingIconButton != null) 0.dp else buttonTokens.spaceInsetIconOnlyDefault.value),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
-                                    painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                                    contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
-                                    tint = errorIconColor(state = state)
-                                )
-                            }
+                            Icon(
+                                modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
+                                painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
+                                contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
+                                tint = errorIconColor(state = state)
+                            )
                         }
 
                         // Loader
                         if (state == OudsTextInputState.Loading) {
-                            Box(
-                                modifier = Modifier
-                                    .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                                    .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * iconScale)
-                                    .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
-                                    val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
-                                    if (loader?.progress != null) {
-                                        OudsCircularProgressIndicator(
-                                            modifier = progressIndicatorModifier,
-                                            progress = { loader.progress }
-                                        )
-                                    } else {
-                                        OudsCircularProgressIndicator(modifier = progressIndicatorModifier)
-                                    }
+                            Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
+                                val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
+                                if (loader?.progress != null) {
+                                    OudsCircularProgressIndicator(
+                                        modifier = progressIndicatorModifier,
+                                        progress = { loader.progress }
+                                    )
+                                } else {
+                                    OudsCircularProgressIndicator(modifier = progressIndicatorModifier)
                                 }
                             }
                         } else {
