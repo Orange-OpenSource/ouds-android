@@ -39,4 +39,10 @@ internal class OudsFilterChipTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class OnTwoLines : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.FilterChip.OnTwoLines,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }
