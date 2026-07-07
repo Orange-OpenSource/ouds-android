@@ -1193,11 +1193,17 @@ internal fun OudsTextInputDecorator(
                                     .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value),
                                 contentAlignment = Alignment.Center
                             ) {
-                                InternalOudsCircularProgressIndicator(
-                                    color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                                    progress = loader?.progress,
-                                    scale = iconScale
-                                )
+                                Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
+                                    val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
+                                    if (loader?.progress != null) {
+                                        OudsCircularProgressIndicator(
+                                            modifier = progressIndicatorModifier,
+                                            progress = { loader.progress }
+                                        )
+                                    } else {
+                                        OudsCircularProgressIndicator(modifier = progressIndicatorModifier)
+                                    }
+                                }
                             }
                         } else {
                             trailingIconButton?.Content(
