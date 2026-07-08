@@ -35,7 +35,7 @@ object OudsVersion {
         const val NavigationButton = "3.3.0"
         const val NavigationCardItem = "1.0.0"
         const val NavigationListItem = "1.0.0"
-        const val PasswordInput = "1.3.0" // TODO Update to 1.3.1
+        const val PasswordInput = "1.3.1"
         const val PinCodeInput = "1.3.0"
         const val ProgressIndicator = "1.0.0"
         const val RadioButton = "1.4.0"
@@ -45,7 +45,7 @@ object OudsVersion {
         const val Switch = "1.5.0"
         const val Tag = "1.5.0"
         const val TextArea = "1.2.0" // TODO Update to 1.2.1
-        const val TextInput = "1.4.0" // TODO Update to 1.4.1
+        const val TextInput = "1.4.1"
     }
 
     object Tokens {

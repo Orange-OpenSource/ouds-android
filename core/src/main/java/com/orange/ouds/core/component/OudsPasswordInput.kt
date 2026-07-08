@@ -65,7 +65,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design name: Password Input
  *
- * > Design version: 1.3.0
+ * > Design version: 1.3.1
  *
  * @param state The editable text state of the password input, including the text itself, position of the cursor or selection and the text obfuscation mode.
  * @param modifier [Modifier] applied to the password input.
@@ -162,7 +162,7 @@ fun OudsPasswordInput(
  *
  * > Design name: Password Input
  *
- * > Design version: 1.3.0
+ * > Design version: 1.3.1
  *
  * @param state The editable text state of the password input, including the text itself, position of the cursor or selection and the text obfuscation mode.
  * @param modifier [Modifier] applied to the password input.

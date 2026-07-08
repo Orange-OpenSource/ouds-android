@@ -121,7 +121,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
@@ -237,7 +237,7 @@ fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
@@ -430,7 +430,7 @@ private fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -540,7 +540,7 @@ fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -727,7 +727,7 @@ private fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -836,7 +836,7 @@ fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
