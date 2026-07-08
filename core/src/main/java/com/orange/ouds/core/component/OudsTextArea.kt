@@ -104,7 +104,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param textFieldState The editable text state of the text area, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text area.
@@ -260,7 +260,7 @@ fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param textFieldState The editable text state of the text area, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text area.
@@ -492,7 +492,7 @@ private fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value Input text to be shown in the text area.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -643,7 +643,7 @@ fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value Input text to be shown in the text area.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -867,7 +867,7 @@ private fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text area.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -1018,7 +1018,7 @@ fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text area.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -1340,11 +1340,23 @@ internal fun OudsTextAreaDecorator(
 
                     // Loader
                     if (state == OudsTextInputState.Loading) {
-                        InternalOudsCircularProgressIndicator(
-                            color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                            progress = loader?.progress,
-                            scale = iconScale
-                        )
+                        val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
+                        val status = OudsProgressIndicatorStatus.Neutral
+                        val track = false
+                        if (loader?.progress != null) {
+                            OudsCircularProgressIndicator(
+                                modifier = progressIndicatorModifier,
+                                progress = { loader.progress },
+                                status = status,
+                                track = track
+                            )
+                        } else {
+                            OudsCircularProgressIndicator(
+                                modifier = progressIndicatorModifier,
+                                status = status,
+                                track = track
+                            )
+                        }
                     }
                 }
             }

@@ -44,7 +44,7 @@ object OudsVersion {
         const val SuggestionChip = "1.5.0"
         const val Switch = "1.5.0"
         const val Tag = "1.5.0"
-        const val TextArea = "1.2.0" // TODO Update to 1.2.1
+        const val TextArea = "1.2.1"
         const val TextInput = "1.4.1"
     }
 
