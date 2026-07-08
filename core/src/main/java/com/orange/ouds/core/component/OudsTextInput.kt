@@ -1165,7 +1165,7 @@ internal fun OudsTextInputDecorator(
                 if (hasError || state == OudsTextInputState.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
                     val iconScale = LocalConfiguration.current.fontScale
-                    
+
                     val trailingContainerModifier = when {
                         state == OudsTextInputState.Loading -> Modifier
                             .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
@@ -1197,13 +1197,21 @@ internal fun OudsTextInputDecorator(
                         if (state == OudsTextInputState.Loading) {
                             Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
                                 val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
+                                val status = OudsProgressIndicatorStatus.Neutral
+                                val track = false
                                 if (loader?.progress != null) {
                                     OudsCircularProgressIndicator(
                                         modifier = progressIndicatorModifier,
-                                        progress = { loader.progress }
+                                        progress = { loader.progress },
+                                        status = status,
+                                        track = track
                                     )
                                 } else {
-                                    OudsCircularProgressIndicator(modifier = progressIndicatorModifier)
+                                    OudsCircularProgressIndicator(
+                                        modifier = progressIndicatorModifier,
+                                        status = status,
+                                        track = track
+                                    )
                                 }
                             }
                         } else {
