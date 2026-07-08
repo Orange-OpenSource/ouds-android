@@ -20,6 +20,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.v2.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.orange.ouds.core.extension.setOudsContent
@@ -103,6 +104,31 @@ class OudsNavigationBarTest {
 
             onNodeWithText(Home).assertIsNotSelected()
             onNodeWithText(Home).performClick()
+            verify(onClick).invoke()
+        }
+    }
+
+    @Test
+    fun oudsNavigationBar_itemWithTestTag_clickSucceeds() {
+        val homeTestTag = "nav_item_home"
+        val onClick = mock<() -> Unit>()
+
+        with(composeTestRule) {
+            setOudsContent {
+                OudsNavigationBar(
+                    items = listOf(
+                        OudsNavigationBarItem(
+                            selected = false,
+                            onClick = onClick,
+                            icon = OudsNavigationBarItemIcon(Icons.Filled.Home),
+                            label = Home,
+                            testTag = homeTestTag
+                        )
+                    )
+                )
+            }
+
+            onNodeWithTag(homeTestTag).performClick()
             verify(onClick).invoke()
         }
     }

@@ -38,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -424,19 +425,22 @@ private fun Modifier.bottomBorder(): Modifier {
 open class OudsTopAppBarNavigationIcon private constructor(
     graphicsObjectProvider: @Composable (OudsTopAppBarNavigationIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsTopAppBarNavigationIcon) -> String,
-    onClick: () -> Unit
-) : OudsComponentIcon<Nothing, OudsTopAppBarNavigationIcon>(Nothing::class.java, graphicsObjectProvider, contentDescriptionProvider, onClick) {
+    onClick: () -> Unit,
+    val testTag: String?
+) : OudsComponentIcon<Nothing, OudsTopAppBarNavigationIcon>(Nothing::class.java, graphicsObjectProvider, contentDescriptionProvider, onClick, testTag) {
 
     /**
      * A predefined [OudsTopAppBarNavigationIcon] with a back icon.
      *
      * @constructor Creates an instance of [OudsTopAppBarNavigationIcon.Back].
      * @param onClick Callback invoked when the navigation icon is clicked.
+     * @param testTag Optional test tag to be applied to this navigation icon for UI testing purposes.
      */
-    class Back(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
+    class Back @JvmOverloads constructor(onClick: () -> Unit, testTag: String? = null) : OudsTopAppBarNavigationIcon(
         { painterResource(id = OudsTheme.drawableResources.functional.navigation.formChevronLeft) },
         { stringResource(R.string.core_topAppBar_backNavigationIcon_a11y) },
-        onClick
+        onClick,
+        testTag
     )
 
     /**
@@ -444,11 +448,13 @@ open class OudsTopAppBarNavigationIcon private constructor(
      *
      * @constructor Creates an instance of [OudsTopAppBarNavigationIcon.Close].
      * @param onClick Callback invoked when the navigation icon is clicked.
+     * @param testTag Optional test tag to be applied to this navigation icon for UI testing purposes.
      */
-    class Close(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
+    class Close @JvmOverloads constructor(onClick: () -> Unit, testTag: String? = null) : OudsTopAppBarNavigationIcon(
         { painterResource(id = OudsTheme.drawableResources.functional.actions.deleteCrossRound) },
         { stringResource(R.string.core_topAppBar_closeNavigationIcon_a11y) },
-        onClick
+        onClick,
+        testTag
     )
 
     /**
@@ -456,11 +462,13 @@ open class OudsTopAppBarNavigationIcon private constructor(
      *
      * @constructor Creates an instance of [OudsTopAppBarNavigationIcon.Menu].
      * @param onClick Callback invoked when the navigation icon is clicked.
+     * @param testTag Optional test tag to be applied to this navigation icon for UI testing purposes.
      */
-    class Menu(onClick: () -> Unit) : OudsTopAppBarNavigationIcon(
+    class Menu @JvmOverloads constructor(onClick: () -> Unit, testTag: String? = null) : OudsTopAppBarNavigationIcon(
         { painterResource(id = OudsTheme.drawableResources.functional.navigation.menuGridUiRound) },
         { stringResource(R.string.core_topAppBar_menuNavigationIcon_a11y) },
-        onClick
+        onClick,
+        testTag
     )
 
     /**
@@ -469,12 +477,15 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param painter Painter of the navigation icon.
      * @param contentDescription The content description associated with this [OudsTopAppBarNavigationIcon].
      * @param onClick Callback invoked when the navigation icon is clicked.
+     * @param testTag Optional test tag to be applied to this navigation icon for UI testing purposes.
      */
+    @JvmOverloads
     constructor(
         painter: Painter,
         contentDescription: String,
-        onClick: () -> Unit
-    ) : this({ painter }, { contentDescription }, onClick)
+        onClick: () -> Unit,
+        testTag: String? = null
+    ) : this({ painter }, { contentDescription }, onClick, testTag)
 
     /**
      * Creates an instance of [OudsTopAppBarNavigationIcon].
@@ -482,12 +493,15 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param imageVector Image vector of the navigation icon.
      * @param contentDescription The content description associated with this [OudsTopAppBarNavigationIcon].
      * @param onClick Callback invoked when the navigation icon is clicked.
+     * @param testTag Optional test tag to be applied to this navigation icon for UI testing purposes.
      */
+    @JvmOverloads
     constructor(
         imageVector: ImageVector,
         contentDescription: String,
-        onClick: () -> Unit
-    ) : this({ imageVector }, { contentDescription }, onClick)
+        onClick: () -> Unit,
+        testTag: String? = null
+    ) : this({ imageVector }, { contentDescription }, onClick, testTag)
 
     /**
      * Creates an instance of [OudsTopAppBarNavigationIcon].
@@ -495,12 +509,15 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param bitmap Image bitmap of the navigation icon.
      * @param contentDescription The content description associated with this [OudsTopAppBarNavigationIcon].
      * @param onClick Callback invoked when the navigation icon is clicked.
+     * @param testTag Optional test tag to be applied to this navigation icon for UI testing purposes.
      */
+    @JvmOverloads
     constructor(
         bitmap: ImageBitmap,
         contentDescription: String,
-        onClick: () -> Unit
-    ) : this({ bitmap }, { contentDescription }, onClick)
+        onClick: () -> Unit,
+        testTag: String? = null
+    ) : this({ bitmap }, { contentDescription }, onClick, testTag)
 }
 
 /**
@@ -515,8 +532,9 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         graphicsObject: Any,
         contentDescription: String,
         badge: OudsTopAppBarActionBadge?,
-        onClick: () -> Unit
-    ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>(Nothing::class.java, { graphicsObject }, { contentDescription }, onClick) {
+        onClick: () -> Unit,
+        val testTag: String?
+    ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>(Nothing::class.java, { graphicsObject }, { contentDescription }, onClick, testTag) {
 
         private val _badge = badge
         override val badge: OudsButtonIconBadge?
@@ -536,13 +554,16 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
          * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
+         * @param testTag Optional test tag to be applied to this icon for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             painter: Painter,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            onClick: () -> Unit
-        ) : this(painter as Any, contentDescription, badge, onClick)
+            onClick: () -> Unit,
+            testTag: String? = null
+        ) : this(painter as Any, contentDescription, badge, onClick, testTag)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
@@ -551,13 +572,16 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
          * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
+         * @param testTag Optional test tag to be applied to this icon for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            onClick: () -> Unit
-        ) : this(imageVector as Any, contentDescription, badge, onClick)
+            onClick: () -> Unit,
+            testTag: String? = null
+        ) : this(imageVector as Any, contentDescription, badge, onClick, testTag)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
@@ -566,13 +590,16 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
          * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
+         * @param testTag Optional test tag to be applied to this icon for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            onClick: () -> Unit
-        ) : this(bitmap as Any, contentDescription, badge, onClick)
+            onClick: () -> Unit,
+            testTag: String? = null
+        ) : this(bitmap as Any, contentDescription, badge, onClick, testTag)
     }
 
     /**
@@ -585,7 +612,8 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         private val monogramColor: Color?,
         private val monogramBackgroundColor: Color?,
         private val contentDescription: String,
-        private val onClick: (() -> Unit)?
+        private val onClick: (() -> Unit)?,
+        private val testTag: String?
     ) : OudsTopAppBarAction, OudsComponentContent<Nothing>(Nothing::class.java) {
 
         /**
@@ -594,12 +622,15 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param painter Painter of the avatar.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
+         * @param testTag Optional test tag to be applied to this avatar for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             painter: Painter,
             contentDescription: String,
-            onClick: (() -> Unit)?
-        ) : this(painter as Any, null, null, null, contentDescription, onClick)
+            onClick: (() -> Unit)?,
+            testTag: String? = null
+        ) : this(painter as Any, null, null, null, contentDescription, onClick, testTag)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Avatar].
@@ -607,12 +638,15 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param imageVector Image vector of the avatar.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
+         * @param testTag Optional test tag to be applied to this avatar for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            onClick: (() -> Unit)?
-        ) : this(imageVector as Any, null, null, null, contentDescription, onClick)
+            onClick: (() -> Unit)?,
+            testTag: String? = null
+        ) : this(imageVector as Any, null, null, null, contentDescription, onClick, testTag)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Avatar].
@@ -620,12 +654,15 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param bitmap Image bitmap of the avatar.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
+         * @param testTag Optional test tag to be applied to this avatar for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            onClick: (() -> Unit)?
-        ) : this(bitmap as Any, null, null, null, contentDescription, onClick)
+            onClick: (() -> Unit)?,
+            testTag: String? = null
+        ) : this(bitmap as Any, null, null, null, contentDescription, onClick, testTag)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Avatar].
@@ -635,21 +672,26 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param backgroundColor The background color of the monogram.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
+         * @param testTag Optional test tag to be applied to this avatar for UI testing purposes.
          */
+        @JvmOverloads
         constructor(
             monogram: Char,
             color: Color,
             backgroundColor: Color,
             contentDescription: String,
-            onClick: (() -> Unit)?
-        ) : this(null, monogram, color, backgroundColor, contentDescription, onClick)
+            onClick: (() -> Unit)?,
+            testTag: String? = null
+        ) : this(null, monogram, color, backgroundColor, contentDescription, onClick, testTag)
 
         @Composable
         override fun Content(modifier: Modifier) {
             OudsAvatar(
-                modifier = modifier.semantics {
-                    contentDescription = this@Avatar.contentDescription
-                },
+                modifier = modifier
+                    .semantics {
+                        contentDescription = this@Avatar.contentDescription
+                    }
+                    .run { if (testTag != null) testTag(testTag) else this },
                 graphicsObject = graphicsObject,
                 monogram = monogram,
                 monogramColor = monogramColor,

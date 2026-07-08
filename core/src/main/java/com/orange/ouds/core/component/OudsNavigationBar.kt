@@ -59,6 +59,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
@@ -199,16 +200,18 @@ fun OudsNavigationBar(
  * @param label Label of the item.
  * @param badge Optional badge displayed on the item icon.
  * @param interactionSource [MutableInteractionSource] that will be used to dispatch events when this item is pressed, hovered or focused.
+ * @param testTag Optional test tag to be applied to this item for UI testing purposes.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
-data class OudsNavigationBarItem(
+data class OudsNavigationBarItem @JvmOverloads constructor(
     val selected: Boolean,
     val onClick: () -> Unit,
     val icon: OudsNavigationBarItemIcon,
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
-    val interactionSource: MutableInteractionSource? = null
+    val interactionSource: MutableInteractionSource? = null,
+    val testTag: String? = null
 ) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
 
     @ConsistentCopyVisibility
@@ -239,7 +242,8 @@ data class OudsNavigationBarItem(
                         .indicator(state = state, selected = selected, iconPosition = iconPosition)
                         .semantics {
                             contentDescription = badge?.contentDescription.orEmpty()
-                        },
+                        }
+                        .run { if (testTag != null) testTag(testTag) else this },
                     selected = selected,
                     onClick = onClick,
                     icon = {

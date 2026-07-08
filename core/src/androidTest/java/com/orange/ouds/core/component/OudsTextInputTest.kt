@@ -432,4 +432,27 @@ internal class OudsTextInputTest {
             verify(onClick).invoke()
         }
     }
+
+    @Test
+    fun oudsTextInput_helperLinkWithTestTag_clickSucceeds() {
+        val helperLinkTestTag = "helper_link"
+        val onClick = mock<() -> Unit>()
+
+        with(composeTestRule) {
+            setOudsContent {
+                OudsTextInput(
+                    value = "",
+                    onValueChange = {},
+                    helperLink = OudsTextInputHelperLink(
+                        text = "Privacy Policy",
+                        onClick = onClick,
+                        testTag = helperLinkTestTag
+                    )
+                )
+            }
+
+            onNodeWithTag(helperLinkTestTag).performClick()
+            verify(onClick).invoke()
+        }
+    }
 }
