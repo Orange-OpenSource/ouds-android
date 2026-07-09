@@ -42,7 +42,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -323,19 +322,17 @@ object OudsAlertMessageDefaults {
  * @param label Text label of the link.
  * @param onClick Callback invoked when the link is clicked.
  * @param position [OudsAlertMessageActionLinkPosition] of the link within the alert message.
- * @param testTag Optional test tag to be applied to this action link for UI testing purposes.
  */
 data class OudsAlertMessageActionLink @JvmOverloads constructor(
     val label: String,
     val onClick: () -> Unit,
-    val position: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
-    val testTag: String? = null
+    val position: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition
 ) : OudsComponentContent<Nothing>(Nothing::class.java) {
-    
+
     @Composable
     override fun Content(modifier: Modifier) {
         OudsLink(
-            modifier = modifier.run { if (testTag != null) testTag(testTag) else this },
+            modifier = modifier.componentContentTestTag(),
             label = label,
             onClick = onClick
         )

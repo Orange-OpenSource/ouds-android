@@ -113,9 +113,8 @@ class OudsTopAppBarTest {
                 OudsTopAppBar(
                     title = "Title",
                     navigationIcon = OudsTopAppBarNavigationIcon.Back(
-                        onClick = onClick,
-                        testTag = navigationIconTestTag
-                    )
+                        onClick = onClick
+                    ).apply { testTag = navigationIconTestTag }
                 )
             }
 
@@ -138,9 +137,8 @@ class OudsTopAppBarTest {
                         OudsTopAppBarAction.Icon(
                             imageVector = Icons.Filled.AccountCircle,
                             contentDescription = "Settings",
-                            onClick = onClick,
-                            testTag = iconTestTag
-                        )
+                            onClick = onClick
+                        ).apply { testTag = iconTestTag }
                     )
                 )
             }
@@ -166,9 +164,8 @@ class OudsTopAppBarTest {
                             color = Color.White,
                             backgroundColor = Color.Black,
                             contentDescription = "Profile",
-                            onClick = onClick,
-                            testTag = avatarTestTag
-                        )
+                            onClick = onClick
+                        ).apply { testTag = avatarTestTag }
                     )
                 )
             }

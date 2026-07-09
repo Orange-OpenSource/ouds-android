@@ -20,7 +20,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.testTag
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
@@ -36,17 +35,15 @@ abstract class OudsComponentIcon<T, S> internal constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
     private val contentDescriptionProvider: @Composable (S) -> String,
-    private val onClick: (() -> Unit)? = null,
-    private val testTag: String? = null
+    private val onClick: (() -> Unit)? = null
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
     protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
         contentDescription: String,
-        onClick: (() -> Unit)? = null,
-        testTag: String? = null
-    ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick, testTag)
+        onClick: (() -> Unit)? = null
+    ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
 
     protected open val tint: Color?
         @Composable
@@ -71,7 +68,7 @@ abstract class OudsComponentIcon<T, S> internal constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
-        val iconModifier = modifier.run { if (testTag != null) testTag(testTag) else this }
+        val iconModifier = modifier.componentContentTestTag()
         @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {

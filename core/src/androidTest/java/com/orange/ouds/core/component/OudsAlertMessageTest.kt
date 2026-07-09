@@ -91,9 +91,8 @@ class OudsAlertMessageTest {
                     label = "Label",
                     actionLink = OudsAlertMessageActionLink(
                         label = "Learn More",
-                        onClick = onClick,
-                        testTag = actionLinkTestTag
-                    )
+                        onClick = onClick
+                    ).apply { testTag = actionLinkTestTag }
                 )
             }
 

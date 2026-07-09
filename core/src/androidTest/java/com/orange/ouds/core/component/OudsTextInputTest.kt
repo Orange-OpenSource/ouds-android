@@ -445,9 +445,8 @@ internal class OudsTextInputTest {
                     onValueChange = {},
                     helperLink = OudsTextInputHelperLink(
                         text = "Privacy Policy",
-                        onClick = onClick,
-                        testTag = helperLinkTestTag
-                    )
+                        onClick = onClick
+                    ).apply { testTag = helperLinkTestTag }
                 )
             }
 

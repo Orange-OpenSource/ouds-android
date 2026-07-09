@@ -55,7 +55,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -1220,7 +1219,7 @@ internal fun OudsTextInputDecorator(
             )
 
             // Helper link
-            OptionalHelperLink(state = state, helperLink = helperLink)
+            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
     }
 }
@@ -1298,21 +1297,6 @@ internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: Ouds
                 else -> OudsTextInputState.Enabled
             }
         }
-    }
-}
-
-@Composable
-internal fun OptionalHelperLink(state: OudsTextInputState, helperLink: OudsTextInputHelperLink?) {
-    if (!helperLink?.text.isNullOrBlank()) {
-        OudsLink(
-            modifier = Modifier
-                .padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value)
-                .run { if (helperLink.testTag != null) testTag(helperLink.testTag) else this },
-            label = helperLink.text,
-            onClick = helperLink.onClick,
-            size = OudsLinkSize.Small,
-            enabled = state != OudsTextInputState.Disabled
-        )
     }
 }
 
@@ -1455,9 +1439,32 @@ internal enum class OudsTextInputState {
  *
  * @param text The text to display in the link.
  * @param onClick Callback invoked when the link is clicked.
- * @param testTag Optional test tag to be applied to this link for UI testing purposes.
  */
-data class OudsTextInputHelperLink @JvmOverloads constructor(val text: String, val onClick: () -> Unit, val testTag: String? = null)
+data class OudsTextInputHelperLink(
+    val text: String,
+    val onClick: () -> Unit
+) : OudsComponentContent<OudsTextInputHelperLink.ExtraParameters>(OudsTextInputHelperLink.ExtraParameters::class.java) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val state: OudsTextInputState
+    ) : OudsComponentContent.ExtraParameters()
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        if (text.isNotBlank()) {
+            OudsLink(
+                modifier = Modifier
+                    .padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value)
+                    .componentContentTestTag(),
+                label = text,
+                onClick = onClick,
+                size = OudsLinkSize.Small,
+                enabled = extraParameters.state != OudsTextInputState.Disabled
+            )
+        }
+    }
+}
 
 /**
  * A circular loading indicator displayed in the text input.
@@ -1528,14 +1535,12 @@ class OudsTextInputLeadingIcon private constructor(
 class OudsTextInputTrailingIconButton private constructor(
     graphicsObject: Any,
     val contentDescription: String,
-    val onClick: () -> Unit,
-    val testTag: String?
+    val onClick: () -> Unit
 ) : OudsComponentIcon<OudsTextInputTrailingIconButton.ExtraParameters, OudsTextInputTrailingIconButton>(
     ExtraParameters::class.java,
     graphicsObject,
     contentDescription,
-    onClick,
-    testTag
+    onClick
 ) {
 
     @ConsistentCopyVisibility
@@ -1549,15 +1554,13 @@ class OudsTextInputTrailingIconButton private constructor(
      * @param painter Painter of the icon.
      * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
      * @param onClick Callback invoked when the button is clicked.
-     * @param testTag Optional test tag to be applied to this button for UI testing purposes.
      */
-    @JvmOverloads
+
     constructor(
         painter: Painter,
         contentDescription: String,
-        onClick: () -> Unit,
-        testTag: String? = null
-    ) : this(painter as Any, contentDescription, onClick, testTag)
+        onClick: () -> Unit
+    ) : this(painter as Any, contentDescription, onClick)
 
     /**
      * Creates an instance of [OudsTextInputTrailingIconButton].
@@ -1565,15 +1568,13 @@ class OudsTextInputTrailingIconButton private constructor(
      * @param imageVector Image vector of the icon.
      * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
      * @param onClick Callback invoked when the button is clicked.
-     * @param testTag Optional test tag to be applied to this button for UI testing purposes.
      */
-    @JvmOverloads
+
     constructor(
         imageVector: ImageVector,
         contentDescription: String,
-        onClick: () -> Unit,
-        testTag: String? = null
-    ) : this(imageVector as Any, contentDescription, onClick, testTag)
+        onClick: () -> Unit
+    ) : this(imageVector as Any, contentDescription, onClick)
 
     /**
      * Creates an instance of [OudsTextInputTrailingIconButton].
@@ -1581,15 +1582,13 @@ class OudsTextInputTrailingIconButton private constructor(
      * @param bitmap Image bitmap of the icon.
      * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
      * @param onClick Callback invoked when the button is clicked.
-     * @param testTag Optional test tag to be applied to this button for UI testing purposes.
      */
-    @JvmOverloads
+
     constructor(
         bitmap: ImageBitmap,
         contentDescription: String,
-        onClick: () -> Unit,
-        testTag: String? = null
-    ) : this(bitmap as Any, contentDescription, onClick, testTag)
+        onClick: () -> Unit
+    ) : this(bitmap as Any, contentDescription, onClick)
 
     override val enabled: Boolean?
         @Composable

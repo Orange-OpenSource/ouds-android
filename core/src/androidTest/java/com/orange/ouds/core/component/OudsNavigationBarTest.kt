@@ -121,9 +121,8 @@ class OudsNavigationBarTest {
                             selected = false,
                             onClick = onClick,
                             icon = OudsNavigationBarItemIcon(Icons.Filled.Home),
-                            label = Home,
-                            testTag = homeTestTag
-                        )
+                            label = Home
+                        ).apply { testTag = homeTestTag }
                     )
                 )
             }
