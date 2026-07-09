@@ -5,6 +5,23 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.6.0...1.7.0) (2026-07-08)
+
+### Features
+
+- **button** update button to version 3.3.0 and add OudsSmallButton APIs ([#1387](https://github.com/Orange-OpenSource/ouds-android/issues/1387))
+
+### Bug Fixes
+
+- **deps** update dependency androidx.hilt:hilt-navigation-compose to v1.4.0 ([#1414](https://github.com/Orange-OpenSource/ouds-android/issues/1414))
+- **deps** update dependency androidx.compose:compose-bom to v2026.06.01 ([#1415](https://github.com/Orange-OpenSource/ouds-android/issues/1415))
+- update OudsNavigationBarHeight to the correct value
+- **deps** update hilt to v2.60 ([#1395](https://github.com/Orange-OpenSource/ouds-android/issues/1395))
+- **deps** update grpc-java monorepo to v1.82.1 ([#1393](https://github.com/Orange-OpenSource/ouds-android/issues/1393))
+- **deps** update firebaseappdistribution to v5.3.0 ([#1382](https://github.com/Orange-OpenSource/ouds-android/issues/1382))
+- **deps** update firebasebom to v34.15.0 ([#1380](https://github.com/Orange-OpenSource/ouds-android/issues/1380))
+- **deps** update composebom to v2026.06.00 ([#1381](https://github.com/Orange-OpenSource/ouds-android/issues/1381))
+
 ## [1.6.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.5.0...1.6.0) (2026-06-19)
 
 ### Features
