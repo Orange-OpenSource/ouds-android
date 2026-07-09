@@ -202,7 +202,7 @@ fun OudsNavigationBar(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
-data class OudsNavigationBarItem @JvmOverloads constructor(
+data class OudsNavigationBarItem(
     val selected: Boolean,
     val onClick: () -> Unit,
     val icon: OudsNavigationBarItemIcon,

@@ -109,5 +109,5 @@ abstract class OudsComponentContent<T> internal constructor(private val extraPar
     @Composable
     internal abstract fun Content(modifier: Modifier)
 
-    protected fun Modifier.componentContentTestTag() = testTag?.let { testTag(it) }.orElse { this }
+    internal fun Modifier.componentContentTestTag() = testTag?.let { testTag(it) }.orElse { this }
 }

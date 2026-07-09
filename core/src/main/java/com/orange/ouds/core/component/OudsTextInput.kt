@@ -1555,7 +1555,6 @@ class OudsTextInputTrailingIconButton private constructor(
      * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
      * @param onClick Callback invoked when the button is clicked.
      */
-
     constructor(
         painter: Painter,
         contentDescription: String,
@@ -1569,7 +1568,6 @@ class OudsTextInputTrailingIconButton private constructor(
      * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
      * @param onClick Callback invoked when the button is clicked.
      */
-
     constructor(
         imageVector: ImageVector,
         contentDescription: String,
@@ -1583,7 +1581,6 @@ class OudsTextInputTrailingIconButton private constructor(
      * @param contentDescription The content description associated to this [OudsTextInputTrailingIconButton].
      * @param onClick Callback invoked when the button is clicked.
      */
-
     constructor(
         bitmap: ImageBitmap,
         contentDescription: String,
@@ -1787,7 +1784,7 @@ private val previewParameterValues: List<OudsTextInputPreviewParameter>
                 prefix = prefix,
                 suffix = suffix,
                 helperText = helperText,
-                helperLink = OudsTextInputHelperLink("Helper link", {})
+                helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
             OudsTextInputPreviewParameter("Error text", label = label, error = error, helperText = helperText),
             OudsTextInputPreviewParameter("", label = label, outlined = true)

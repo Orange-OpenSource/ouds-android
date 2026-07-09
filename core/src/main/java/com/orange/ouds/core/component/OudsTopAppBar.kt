@@ -38,7 +38,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -471,7 +470,6 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param contentDescription The content description associated with this [OudsTopAppBarNavigationIcon].
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
-    
     constructor(
         painter: Painter,
         contentDescription: String,
@@ -485,7 +483,6 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param contentDescription The content description associated with this [OudsTopAppBarNavigationIcon].
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
-    
     constructor(
         imageVector: ImageVector,
         contentDescription: String,
@@ -499,7 +496,6 @@ open class OudsTopAppBarNavigationIcon private constructor(
      * @param contentDescription The content description associated with this [OudsTopAppBarNavigationIcon].
      * @param onClick Callback invoked when the navigation icon is clicked.
      */
-    
     constructor(
         bitmap: ImageBitmap,
         contentDescription: String,
@@ -541,7 +537,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
          */
-        
         constructor(
             painter: Painter,
             contentDescription: String,
@@ -557,7 +552,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
          */
-        
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
@@ -573,7 +567,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param badge Optional badge displayed on the icon.
          * @param onClick Callback invoked when the icon is clicked.
          */
-        
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
@@ -602,7 +595,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
          */
-        
         constructor(
             painter: Painter,
             contentDescription: String,
@@ -616,7 +608,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
          */
-        
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
@@ -630,7 +621,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
          */
-        
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
@@ -646,7 +636,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Avatar].
          * @param onClick Callback invoked when the avatar is clicked.
          */
-        
         constructor(
             monogram: Char,
             color: Color,
@@ -657,7 +646,6 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
 
         @Composable
         override fun Content(modifier: Modifier) {
-            val tag = testTag
             OudsAvatar(
                 modifier = modifier
                     .semantics {

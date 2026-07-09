@@ -1541,7 +1541,7 @@ private val previewParameterValues: List<OudsTextAreaPreviewParameter>
                 label = label,
                 placeholder = placeholder,
                 helperText = helperText,
-                helperLink = OudsTextInputHelperLink("Helper link", {})
+                helperLink = OudsTextInputHelperLink("Helper link") {}
             ),
             OudsTextAreaPreviewParameter("Error text", label = label, error = error, helperText = helperText),
             OudsTextAreaPreviewParameter("", label = label, outlined = true)

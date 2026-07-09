@@ -323,7 +323,7 @@ object OudsAlertMessageDefaults {
  * @param onClick Callback invoked when the link is clicked.
  * @param position [OudsAlertMessageActionLinkPosition] of the link within the alert message.
  */
-data class OudsAlertMessageActionLink @JvmOverloads constructor(
+data class OudsAlertMessageActionLink(
     val label: String,
     val onClick: () -> Unit,
     val position: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition
