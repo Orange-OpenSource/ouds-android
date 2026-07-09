@@ -33,6 +33,12 @@ internal class OudsNavigationButtonTest {
         }
     }
 
+    class WithRoundedCorners : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.NavigationButton.WithRoundedCorners,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+
     class OnTwoLines : OudsComponentSnapshotTest(
         OudsPreviewableComponent.NavigationButton.OnTwoLines,
         parameter = null,

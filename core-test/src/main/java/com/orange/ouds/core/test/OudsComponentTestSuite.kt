@@ -42,6 +42,7 @@ import org.junit.runners.Suite
     OudsPinCodeInputTest::class,
     OudsRadioButtonItemTest::class,
     OudsRadioButtonTest::class,
+    OudsSmallButtonTest::class,
     OudsSuggestionChipTest::class,
     OudsSwitchItemTest::class,
     OudsSwitchTest::class,

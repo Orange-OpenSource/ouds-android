@@ -110,47 +110,35 @@ private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState
             tinted = icon == FloatingActionButtonDemoState.Icon.Tinted
         )
         when (size) {
-            FloatingActionButtonDemoState.Size.Small -> {
-                OudsSmallFloatingActionButton(
+            FloatingActionButtonDemoState.Size.Small -> OudsSmallFloatingActionButton(
+                icon = floatingActionButtonIcon,
+                onClick = {},
+                appearance = appearance
+            )
+            FloatingActionButtonDemoState.Size.Medium -> when (layout) {
+                FloatingActionButtonDemoState.Layout.IconOnly -> OudsFloatingActionButton(
                     icon = floatingActionButtonIcon,
                     onClick = {},
                     appearance = appearance
                 )
-            }
-            FloatingActionButtonDemoState.Size.Medium -> {
-                when (layout) {
-                    FloatingActionButtonDemoState.Layout.IconOnly -> {
-                        OudsFloatingActionButton(
-                            icon = floatingActionButtonIcon,
-                            onClick = {},
-                            appearance = appearance
-                        )
-                    }
-                    FloatingActionButtonDemoState.Layout.TextAndIcon -> {
-                        OudsExtendedFloatingActionButton(
-                            label = label,
-                            icon = floatingActionButtonIcon,
-                            onClick = {},
-                            expanded = expanded,
-                            appearance = appearance
-                        )
-                    }
-                    FloatingActionButtonDemoState.Layout.TextOnly -> {
-                        OudsExtendedFloatingActionButton(
-                            label = label,
-                            onClick = {},
-                            appearance = appearance
-                        )
-                    }
-                }
-            }
-            FloatingActionButtonDemoState.Size.Large -> {
-                OudsLargeFloatingActionButton(
+                FloatingActionButtonDemoState.Layout.TextAndIcon -> OudsExtendedFloatingActionButton(
+                    label = label,
                     icon = floatingActionButtonIcon,
+                    onClick = {},
+                    expanded = expanded,
+                    appearance = appearance
+                )
+                FloatingActionButtonDemoState.Layout.TextOnly -> OudsExtendedFloatingActionButton(
+                    label = label,
                     onClick = {},
                     appearance = appearance
                 )
             }
+            FloatingActionButtonDemoState.Size.Large -> OudsLargeFloatingActionButton(
+                icon = floatingActionButtonIcon,
+                onClick = {},
+                appearance = appearance
+            )
         }
     }
 }
@@ -167,7 +155,12 @@ private fun Code.Builder.floatingActionButtonDemoCodeSnippet(state: FloatingActi
                 labelArgument(label)
             }
             if (layout != FloatingActionButtonDemoState.Layout.TextOnly) {
-                iconArgument<OudsFloatingActionButtonIcon>("icon", themeDrawableResources.tipsAndTricks, R.string.app_components_common_icon_a11y, icon == FloatingActionButtonDemoState.Icon.Tinted)
+                iconArgument<OudsFloatingActionButtonIcon>(
+                    "icon",
+                    themeDrawableResources.tipsAndTricks,
+                    R.string.app_components_common_icon_a11y,
+                    icon == FloatingActionButtonDemoState.Icon.Tinted
+                )
             }
             if (layout == FloatingActionButtonDemoState.Layout.TextAndIcon && !expanded) {
                 typedArgument("expanded", expanded)

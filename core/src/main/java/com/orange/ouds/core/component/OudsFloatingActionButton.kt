@@ -385,7 +385,7 @@ private fun OudsFloatingActionButton(
 
 @Composable
 private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
-    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnly.value
+    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnlyDefault.value
     val iconScale = LocalConfiguration.current.fontScale
     icon.Content(
         modifier = Modifier

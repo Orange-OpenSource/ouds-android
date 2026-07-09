@@ -117,4 +117,6 @@ interface OudsSizeSemanticTokens {
     val maxWidthLabelXlargeMobile: Float
     val maxWidthLabelXlargeTablet: Float
     val minInteractiveArea: Float
+    val minInteractiveAreaDefault: Float
+    val minInteractiveAreaSmall: Float
 }
