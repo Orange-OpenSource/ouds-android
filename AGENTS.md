@@ -206,6 +206,29 @@ Always consider that changes affect multiple brands. Test components with:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
 
+## AI Skills
+
+Agent skills are located in the `skills/` directory at the repository root. The `.agents/`, `.claude/`, and `.opencode/` directories are symlinks to `skills/`, ensuring compatibility across all major AI agent tools.
+
+### Available skills
+
+| Skill | When to load |
+|---|---|
+| `ouds-android-vocabulary` | User asks about OUDS-specific terms: tokenator, raw token, semantic token, component token, theme, OudsThemeContract, OudsColoredBox, tinted, OudsError, etc. |
+| `ouds-android-framework-usage` | User needs to write or review Kotlin/Compose code using OUDS components, configure the theme, access tokens, or set up Gradle dependencies |
+
+### Skill structure
+
+```
+skills/
+├── ouds-android-vocabulary/
+│   └── SKILL.md                          ← vocabulary definitions and token hierarchy
+└── ouds-android-framework-usage/
+    ├── SKILL.md                          ← setup, themes, token access, common patterns, checklist
+    └── references/
+        └── components.md                 ← full component signatures and usage examples
+```
+
 ## Resources
 
 - **Documentation**: https://android.unified-design-system.orange.com/
