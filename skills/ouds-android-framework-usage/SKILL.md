@@ -123,7 +123,7 @@ fun MyView() {
         Text(
             text = stringResource(R.string.my_text),
             color = OudsTheme.colorScheme.content.default,
-            style = OudsTheme.fonts.bodyDefaultMedium
+            style = OudsTheme.typography.body.medium.default
         )
     }
 }
@@ -137,12 +137,12 @@ fun MyView() {
 | `OudsTheme.borders` | Border radius (`.radius.*`), style (`.style.*`), width (`.width.*`) |
 | `OudsTheme.spaces` | Spacing tokens (`.fixed.*`, `.scaled.*`) |
 | `OudsTheme.sizes` | Size tokens |
-| `OudsTheme.fonts` | Typography / font tokens |
+| `OudsTheme.typography` | Typography / font tokens |
 | `OudsTheme.elevations` | Elevation / shadow tokens |
 | `OudsTheme.grids` | Grid tokens |
 | `OudsTheme.opacities` | Opacity tokens |
 | `OudsTheme.effects` | Visual effect tokens |
-| `OudsTheme.componentsTokens.*` | Per-component tokens (`.button`, `.tag`, `.textInput`, etc.) |
+| `OudsTheme.components` | Component-level tokens for advanced customization (requires `@OptIn(RestrictedOudsApi::class)`) |
 
 ---
 
