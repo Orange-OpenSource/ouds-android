@@ -12,7 +12,7 @@ license: MIT
 | **token** | Named variable holding a design value (color, size, spacing, border…); most tokens are produced by Tokenator |
 | **raw token** | Token whose value is a primitive Kotlin/Compose type (`Color`, `Dp`, `Int`…); grouped in the `:global-raw-tokens` module (e.g. `OudsColorRawTokens`, `OudsBorderRawTokens`) |
 | **semantic token** | Token that references a raw token and carries semantic meaning (e.g. `actionColorTokens.enabled`); used directly inside components via `OudsTheme.*` |
-| **component token** | Token scoped to a specific component, referencing semantic tokens for per-component styling overrides (e.g. `OudsButtonTokens`, `OudsTagTokens`); accessed via `OudsTheme.componentsTokens.*` |
+ | **component token** | Token scoped to a specific component, referencing semantic tokens for per-component styling overrides (e.g. `OudsButtonTokens`, `OudsTagTokens`); exposed to consumers via `@OptIn(RestrictedOudsApi::class) OudsTheme.components` |
 | **OudsThemeContract** | Kotlin interface that every theme must implement; centralises all semantic token groups (`colorTokens`, `borderTokens`, `fontTokens`, `spaceTokens`, `componentsTokens`, etc.) and drawable resources |
 | **theme** | Cohesive set of tokens and assets (fonts, drawables) controlling the look and feel of an app; available themes: `OrangeTheme`, `OrangeCompactTheme`, `SoshTheme`, `WireframeTheme` |
 | **OudsTheme** | The Jetpack Compose entry-point composable that wraps your UI with a given theme; it also exposes static accessors (`OudsTheme.colorScheme`, `OudsTheme.spaces`, `OudsTheme.borders`, etc.) for reading token values inside composables |
@@ -33,12 +33,12 @@ Tokens are accessed via the `OudsTheme` static object inside any composable wrap
 | `OudsTheme.borders` | Border radius, style and width tokens |
 | `OudsTheme.spaces` | Spacing tokens (`fixed.*`, `scaled.*`) |
 | `OudsTheme.sizes` | Size tokens |
-| `OudsTheme.fonts` | Typography / font tokens |
+| `OudsTheme.typography` | Typography / font tokens |
 | `OudsTheme.elevations` | Elevation / shadow tokens |
 | `OudsTheme.grids` | Grid tokens |
 | `OudsTheme.opacities` | Opacity tokens |
 | `OudsTheme.effects` | Visual effect tokens |
-| `OudsTheme.componentsTokens.*` | Per-component tokens (button, tag, textInput, etc.) |
+| `OudsTheme.components` | Component-level tokens for advanced customization (requires `@OptIn(RestrictedOudsApi::class)`) |
 
 ## Token hierarchy
 
