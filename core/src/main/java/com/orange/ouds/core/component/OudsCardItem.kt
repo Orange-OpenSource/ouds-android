@@ -16,14 +16,11 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -32,7 +29,6 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.ExperimentalOudsApi
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -181,7 +177,7 @@ object OudsCardItemDefaults {
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticCardItem(@PreviewParameter(OudsCardItemPreviewParameterProvider::class) parameter: OudsCardItemPreviewParameter) {
+private fun PreviewOudsStaticCardItem(@PreviewParameter(OudsCardItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>) {
     PreviewOudsStaticCardItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -189,7 +185,7 @@ private fun PreviewOudsStaticCardItem(@PreviewParameter(OudsCardItemPreviewParam
 internal fun PreviewOudsStaticCardItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsCardItemPreviewParameter
+    parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsCardItem(
@@ -239,7 +235,7 @@ internal fun PreviewOudsStaticCardItemWithRoundedCorners(theme: OudsThemeContrac
 )
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsNavigationCardItem(@PreviewParameter(OudsCardItemPreviewParameterProvider::class) parameter: OudsCardItemPreviewParameter) {
+private fun PreviewOudsNavigationCardItem(@PreviewParameter(OudsCardItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>) {
     PreviewOudsNavigationCardItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -247,7 +243,7 @@ private fun PreviewOudsNavigationCardItem(@PreviewParameter(OudsCardItemPreviewP
 internal fun PreviewOudsNavigationCardItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsCardItemPreviewParameter
+    parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
@@ -292,57 +288,14 @@ internal fun PreviewOudsNavigationCardItemWithRoundedCorners(theme: OudsThemeCon
         }
     }
 
-internal data class OudsCardItemPreviewParameter(
-    val label: String,
-    val decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
-    val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
-    val overline: String? = null,
-    val extraLabel: String? = null,
-    val description: String? = null,
-    val leading: OudsListItemLeading? = null,
-    val trailing: OudsListItemTrailing? = null,
-    val helperText: String? = null,
-    val enabled: Boolean = true
-)
-
-internal class OudsCardItemPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsCardItemPreviewParameter>(*cardItemPreviewParameterValues.toTypedArray())
-
-private val cardItemPreviewParameterValues: List<OudsCardItemPreviewParameter>
-    get() {
-        val label = "Label"
-        val overline = "Overline"
-        val extraLabel = "Extra label"
-        val description = "Description"
-        val helperText = "Helper text"
-        return listOf(
-            OudsCardItemPreviewParameter(
-                label = label,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                helperText = helperText,
-                leading = OudsListItemLeading.Icon.Info(),
-                trailing = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, ""),
-            ),
-            OudsCardItemPreviewParameter(
-                label = label,
-                decoration = OudsListItemDecoration.Outlined,
-                indicator = OudsListItemIndicator.External,
-                contentAlignment = OudsListItemContentAlignment.Top,
-                leading = OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailing = OudsListItemTrailing.Text(label = label, extraLabel = extraLabel),
-            ),
-            OudsCardItemPreviewParameter(
-                label = label,
-                decoration = OudsListItemDecoration.BackgroundOnInteraction(divider = false),
-                indicator = OudsListItemIndicator.Previous,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                trailing = OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageFormat.Panoramic),
-                leading = OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageFormat.Square)
-            )
-        )
+internal class OudsCardItemPreviewParameterProvider : OudsBasicListItemPreviewParameterProvider<OudsListItemLeading, OudsListItemTrailing>(
+    leading = listItemPreviewParameterLeading,
+    trailing = listItemPreviewParameterTrailing,
+    decoration = { index ->
+        when (index) {
+            0 -> OudsCardItemDefaults.Decoration
+            1 -> OudsListItemDecoration.Outlined
+            else -> OudsListItemDecoration.BackgroundOnInteraction(divider = false)
+        }
     }
+)

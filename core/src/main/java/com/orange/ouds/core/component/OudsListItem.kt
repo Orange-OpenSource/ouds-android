@@ -1108,7 +1108,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticListItem(@PreviewParameter(OudsListItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter) {
+private fun PreviewOudsStaticListItem(@PreviewParameter(OudsListItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>) {
     PreviewOudsStaticListItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -1116,7 +1116,7 @@ private fun PreviewOudsStaticListItem(@PreviewParameter(OudsListItemPreviewParam
 internal fun PreviewOudsStaticListItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsListItemPreviewParameter
+    parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsListItem(
@@ -1128,8 +1128,8 @@ internal fun PreviewOudsStaticListItem(
             contentAlignment = contentAlignment,
             leading = leading,
             trailing = trailing,
-            divider = divider,
-            background = background,
+            divider = decoration.divider,
+            background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
             enabled = enabled
         )
     }
@@ -1144,7 +1144,7 @@ internal fun PreviewOudsStaticListItem(
 )
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsNavigationListItem(@PreviewParameter(OudsListItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter) {
+private fun PreviewOudsNavigationListItem(@PreviewParameter(OudsListItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>) {
     PreviewOudsNavigationListItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -1152,7 +1152,7 @@ private fun PreviewOudsNavigationListItem(@PreviewParameter(OudsListItemPreviewP
 internal fun PreviewOudsNavigationListItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsListItemPreviewParameter
+    parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
@@ -1167,8 +1167,8 @@ internal fun PreviewOudsNavigationListItem(
                 contentAlignment = contentAlignment,
                 leading = leading,
                 trailing = trailing,
-                divider = divider,
-                background = background,
+                divider = decoration.divider,
+                background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() }
             )
@@ -1176,58 +1176,92 @@ internal fun PreviewOudsNavigationListItem(
     }
 }
 
-internal data class OudsListItemPreviewParameter(
+internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing>(
     val label: String,
     val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
     val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
     val overline: String? = null,
     val extraLabel: String? = null,
     val description: String? = null,
-    val leading: OudsListItemLeading? = null,
-    val trailing: OudsListItemTrailing? = null,
-    val divider: Boolean = true,
-    val background: Boolean = false,
+    val leading: T? = null,
+    val trailing: S? = null,
+    val decoration: OudsListItemDecoration = OudsListItemDecoration.None(divider = true),
     val helperText: String? = null,
     val enabled: Boolean = true
 )
 
-internal class OudsListItemPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsListItemPreviewParameter>(*listItemPreviewParameterValues.toTypedArray())
+internal class OudsListItemPreviewParameterProvider : OudsBasicListItemPreviewParameterProvider<OudsListItemLeading, OudsListItemTrailing>(
+    leading = listItemPreviewParameterLeading,
+    trailing = listItemPreviewParameterTrailing
+)
 
-private val listItemPreviewParameterValues: List<OudsListItemPreviewParameter>
-    get() {
-        val label = "Label"
-        val overline = "Overline"
-        val extraLabel = "Extra label"
-        val description = "Description"
-        val helperText = "Helper text"
-        return listOf(
-            OudsListItemPreviewParameter(
+internal val listItemPreviewParameterLeading: (Int) -> OudsListItemLeading? = { index ->
+    when (index) {
+        0 -> OudsListItemLeading.Icon.Info()
+        1 -> OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
+        2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageFormat.Square)
+        else -> null
+    }
+}
+
+internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = { index ->
+    when (index) {
+        0 -> OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
+        1 -> OudsListItemTrailing.Text(label = "Label", extraLabel = "Extra label")
+        2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageFormat.Panoramic)
+        else -> null
+    }
+}
+
+internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing>(
+    leading: (Int) -> T?,
+    trailing: (Int) -> S?,
+    decoration: (Int) -> OudsListItemDecoration = { index ->
+        if (index == 1) OudsListItemDecoration.Background(divider = true) else OudsListItemDecoration.None(divider = true)
+    }
+) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration).toTypedArray())
+
+private fun <T, S> getListItemPreviewParameterValues(
+    leading: (Int) -> T?,
+    trailing: (Int) -> S?,
+    decoration: (Int) -> OudsListItemDecoration
+): List<OudsListItemPreviewParameter<T, S>> where T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing {
+    val label = "Label"
+    val overline = "Overline"
+    val extraLabel = "Extra label"
+    val description = "Description"
+    val helperText = "Helper text"
+
+    return List(3) { index ->
+        when (index) {
+            0 -> OudsListItemPreviewParameter(
                 label = label,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
                 helperText = helperText,
-                leading = OudsListItemLeading.Icon.Info(),
-                trailing = OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, ""),
-                divider = true
-            ),
-            OudsListItemPreviewParameter(
+                leading = leading(index),
+                trailing = trailing(index),
+                decoration = decoration(index)
+            )
+            1 -> OudsListItemPreviewParameter(
                 label = label,
                 indicator = OudsListItemIndicator.External,
                 contentAlignment = OudsListItemContentAlignment.Top,
-                leading = OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailing = OudsListItemTrailing.Text(label = label, extraLabel = extraLabel),
-                background = true
-            ),
-            OudsListItemPreviewParameter(
+                leading = leading(index),
+                trailing = trailing(index),
+                decoration = decoration(index)
+            )
+            else -> OudsListItemPreviewParameter(
                 label = label,
                 indicator = OudsListItemIndicator.Previous,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
-                trailing = OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageFormat.Panoramic),
-                leading = OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageFormat.Square)
+                leading = leading(index),
+                trailing = trailing(index),
+                decoration = decoration(index)
             )
-        )
+        }
     }
+}

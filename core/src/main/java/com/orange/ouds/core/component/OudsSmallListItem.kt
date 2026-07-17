@@ -35,7 +35,6 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
-import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -449,7 +448,7 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticSmallListItem(@PreviewParameter(OudsSmallListItemPreviewParameterProvider::class) parameter: OudsSmallListItemPreviewParameter) {
+private fun PreviewOudsStaticSmallListItem(@PreviewParameter(OudsSmallListItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>) {
     PreviewOudsStaticSmallListItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -457,7 +456,7 @@ private fun PreviewOudsStaticSmallListItem(@PreviewParameter(OudsSmallListItemPr
 internal fun PreviewOudsStaticSmallListItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsSmallListItemPreviewParameter
+    parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsSmallListItem(
@@ -480,7 +479,7 @@ internal fun PreviewOudsStaticSmallListItem(
 )
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsNavigationSmallListItem(@PreviewParameter(OudsSmallListItemPreviewParameterProvider::class) parameter: OudsSmallListItemPreviewParameter) {
+private fun PreviewOudsNavigationSmallListItem(@PreviewParameter(OudsSmallListItemPreviewParameterProvider::class) parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>) {
     PreviewOudsNavigationSmallListItem(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -488,7 +487,7 @@ private fun PreviewOudsNavigationSmallListItem(@PreviewParameter(OudsSmallListIt
 internal fun PreviewOudsNavigationSmallListItem(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsSmallListItemPreviewParameter
+    parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
@@ -508,45 +507,25 @@ internal fun PreviewOudsNavigationSmallListItem(
     }
 }
 
-internal data class OudsSmallListItemPreviewParameter(
-    val label: String,
-    val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    val description: String? = null,
-    val helperText: String? = null,
-    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
-    val leading: OudsSmallListItemLeading? = null,
-    val trailing: OudsSmallListItemTrailing? = null,
-    val enabled: Boolean = true
+internal class OudsSmallListItemPreviewParameterProvider : OudsBasicListItemPreviewParameterProvider<OudsSmallListItemLeading, OudsSmallListItemTrailing>(
+    leading = smallListItemPreviewParameterLeading,
+    trailing = smallListItemPreviewParameterTrailing
 )
 
-internal class OudsSmallListItemPreviewParameterProvider :
-    BasicPreviewParameterProvider<OudsSmallListItemPreviewParameter>(*smallListItemPreviewParameterValues.toTypedArray())
-
-private val smallListItemPreviewParameterValues: List<OudsSmallListItemPreviewParameter>
-    get() {
-        val label = "Label"
-        val description = "Description"
-        val helperText = "Helper text"
-        return listOf(
-            OudsSmallListItemPreviewParameter(
-                label = label,
-                description = description,
-                helperText = helperText,
-                leading = OudsSmallListItemLeading.Icon.Info,
-                trailing = OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
-            ),
-            OudsSmallListItemPreviewParameter(
-                label = label,
-                indicator = OudsListItemIndicator.External,
-                contentAlignment = OudsListItemContentAlignment.Top,
-                leading = OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, ""),
-                trailing = OudsSmallListItemTrailing.Text(label = label, style = OudsListItemTextStyle.LabelStrong)
-            ),
-            OudsSmallListItemPreviewParameter(
-                label = label,
-                indicator = OudsListItemIndicator.Previous,
-                leading = OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic),
-                trailing = OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
-            )
-        )
+internal val smallListItemPreviewParameterLeading: (Int) -> OudsSmallListItemLeading? = { index ->
+    when (index) {
+        0 -> OudsSmallListItemLeading.Icon.Info
+        1 -> OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
+        2 -> OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic)
+        else -> null
     }
+}
+
+internal val smallListItemPreviewParameterTrailing: (Int) -> OudsSmallListItemTrailing? = { index ->
+    when (index) {
+        0 -> OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
+        1 -> OudsSmallListItemTrailing.Text(label = "Label", style = OudsListItemTextStyle.LabelStrong)
+        2 -> OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
+        else -> null
+    }
+}

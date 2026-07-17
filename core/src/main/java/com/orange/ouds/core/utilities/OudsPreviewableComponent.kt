@@ -23,7 +23,6 @@ import com.orange.ouds.core.component.OudsBulletListPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
-import com.orange.ouds.core.component.OudsCardItemPreviewParameter
 import com.orange.ouds.core.component.OudsCardItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
@@ -51,8 +50,10 @@ import com.orange.ouds.core.component.OudsLinkCompactDensityPreviewParameterProv
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkSize
+import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemPreviewParameter
 import com.orange.ouds.core.component.OudsListItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationButtonPreviewParameter
@@ -70,10 +71,10 @@ import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameterProvider
-import com.orange.ouds.core.component.OudsSmallCardItemPreviewParameter
 import com.orange.ouds.core.component.OudsSmallCardItemPreviewParameterProvider
-import com.orange.ouds.core.component.OudsSmallListItemPreviewParameter
+import com.orange.ouds.core.component.OudsSmallListItemLeading
 import com.orange.ouds.core.component.OudsSmallListItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsSmallListItemTrailing
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameter
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchItemPreviewParameter
@@ -450,7 +451,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsNavigationCardItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsCardItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
                 )
             }
         }
@@ -476,7 +477,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsStaticCardItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsCardItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
                 )
             }
         }
@@ -956,7 +957,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsNavigationListItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsListItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
                 )
             }
         }
@@ -970,7 +971,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsStaticListItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsListItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
                 )
             }
         }
@@ -1367,7 +1368,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsNavigationSmallCardItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsSmallCardItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
                 )
             }
         }
@@ -1393,7 +1394,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsStaticSmallCardItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsSmallCardItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
                 )
             }
         }
@@ -1424,7 +1425,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsNavigationSmallListItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsSmallListItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
                 )
             }
         }
@@ -1438,7 +1439,7 @@ interface OudsPreviewableComponent {
                 PreviewOudsStaticSmallListItem(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsSmallListItemPreviewParameter
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
                 )
             }
         }
