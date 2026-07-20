@@ -41,7 +41,8 @@ fun rememberTextInputDemoState(
     suffix: String = "",
     helperText: String = "",
     helperLink: String = "",
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     textFieldState,
     label,
@@ -59,6 +60,7 @@ fun rememberTextInputDemoState(
     helperText,
     helperLink,
     constrainedMaxWidth,
+    annotatedText,
     saver = TextInputDemoState.Saver
 ) {
     TextInputDemoState(
@@ -77,7 +79,8 @@ fun rememberTextInputDemoState(
         suffix,
         helperText,
         helperLink,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        annotatedText
     )
 }
 
@@ -98,6 +101,7 @@ class TextInputDemoState(
     helperText: String,
     helperLink: String,
     constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
 ) {
 
     companion object {
@@ -121,7 +125,8 @@ class TextInputDemoState(
                         suffix,
                         helperText,
                         helperLink,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             },
@@ -143,7 +148,8 @@ class TextInputDemoState(
                     list[12] as String,
                     list[13] as String,
                     list[14] as String,
-                    list[15] as Boolean
+                    list[15] as Boolean,
+                    list[16] as Boolean
                 )
             }
         )
@@ -181,6 +187,8 @@ class TextInputDemoState(
 
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
+
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader
 
@@ -188,13 +196,16 @@ class TextInputDemoState(
         get() = !readOnly && !hasLoader && enabled
 
     val errorMessageTextInputEnabled: Boolean
-        get() = error
+        get() = error && !annotatedText
 
     val readOnlySwitchEnabled: Boolean
         get() = !error && !hasLoader
 
     val loaderSwitchEnabled: Boolean
         get() = enabled && !readOnly && !error && textFieldState.text.isNotEmpty()
+
+    val helperTextTextInputEnabled: Boolean
+        get() = !annotatedText
 
     enum class LeadingIcon(@StringRes val labelRes: Int) {
         None(R.string.app_components_common_none_tech),

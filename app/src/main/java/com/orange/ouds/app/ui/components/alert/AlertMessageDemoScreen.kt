@@ -22,13 +22,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.alert.AlertMessageDemoState.Companion.MaxBulletCount
+import com.orange.ouds.app.ui.components.annotatedStringArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
@@ -44,6 +45,10 @@ import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageBulletListLabel
+import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescription
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -123,7 +128,9 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_description_tech),
             value = description.orEmpty(),
-            onValueChange = { value -> description = value }
+            onValueChange = { value -> description = value },
+            enabled = descriptionTextInputEnabled,
+            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
         )
         CustomizationTextInput(
             applyTopPadding = true,
@@ -143,16 +150,23 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             selectedChipIndex = OudsAlertMessageActionLinkPosition.entries.indexOf(actionLinkPosition),
             onSelectionChange = { id -> actionLinkPosition = OudsAlertMessageActionLinkPosition.entries[id] }
         )
-        for (id in 1..MaxBulletCount) {
+        for (index in 0..<AlertMessageDemoState.MaxBulletCount) {
             CustomizationTextInput(
                 applyTopPadding = true,
-                label = stringResource(R.string.app_components_alert_alertMessage_bullet_tech, id),
-                value = bulletList?.get(id).orEmpty(),
+                label = stringResource(R.string.app_components_alert_alertMessage_bullet_tech, index + 1),
+                value = bulletList[index],
                 onValueChange = { value ->
-                    bulletList = bulletList.orEmpty().toMutableMap().apply { put(id, value) }
-                }
+                    bulletList = bulletList.toMutableList().apply { set(index, value) }.toList()
+                },
+                enabled = bulletListTextInputsEnabled,
+                helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
             )
         }
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_annotatedText_tech),
+            checked = annotatedText,
+            onCheckedChange = { annotatedText = it },
+        )
     }
 }
 
@@ -164,27 +178,59 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
             AlertMessageDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
             AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
-        OudsAlertMessage(
-            label = label,
-            description = description,
-            status = when (status) {
-                is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
-                is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(alertIcon)
-                is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
-                is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative
-                is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive
-                is OudsAlertMessageStatus.Warning -> OudsAlertMessageStatus.Warning
-            },
-            onClose = if (hasCloseButton) {
-                {}
-            } else {
-                null
-            },
-            actionLink = actionLink?.let { actionLinkLabel ->
-                OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
-            },
-            bulletList = bulletList?.toSortedMap()?.values?.toList()
-        )
+        val alertMessageStatus = when (status) {
+            is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
+            is OudsAlertMessageStatus.Neutral -> OudsAlertMessageStatus.Neutral(alertIcon)
+            is OudsAlertMessageStatus.Info -> OudsAlertMessageStatus.Info
+            is OudsAlertMessageStatus.Negative -> OudsAlertMessageStatus.Negative
+            is OudsAlertMessageStatus.Positive -> OudsAlertMessageStatus.Positive
+            is OudsAlertMessageStatus.Warning -> OudsAlertMessageStatus.Warning
+        }
+        val onClose = if (hasCloseButton) {
+            {}
+        } else {
+            null
+        }
+        val alertMessageActionLink = actionLink?.let { actionLinkLabel ->
+            OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
+        }
+        if (annotatedText) {
+            val annotatedDescriptionHtml = stringResource(R.string.app_components_alert_alertMessage_annotatedDescription_text)
+            val annotatedDescription = buildOudsAnnotatedAlertMessageDescription {
+                appendHtml(annotatedDescriptionHtml)
+            }
+            val annotatedBullet1Html = stringResource(R.string.app_components_alert_alertMessage_annotatedBullet1_text)
+            val annotatedBullet2Html = stringResource(R.string.app_components_alert_alertMessage_annotatedBullet2_text)
+            val annotatedBullet3Html = stringResource(R.string.app_components_alert_alertMessage_annotatedBullet3_text)
+            val annotatedBulletList = listOf(
+                buildOudsAnnotatedAlertMessageBulletListLabel {
+                    appendHtml(annotatedBullet1Html)
+                },
+                buildOudsAnnotatedAlertMessageBulletListLabel {
+                    appendHtml(annotatedBullet2Html)
+                },
+                buildOudsAnnotatedAlertMessageBulletListLabel {
+                    appendHtml(annotatedBullet3Html)
+                }
+            )
+            OudsAlertMessage(
+                label = label,
+                description = annotatedDescription,
+                status = alertMessageStatus,
+                onClose = onClose,
+                actionLink = alertMessageActionLink,
+                bulletList = annotatedBulletList
+            )
+        } else {
+            OudsAlertMessage(
+                label = label,
+                description = description,
+                status = alertMessageStatus,
+                onClose = onClose,
+                actionLink = alertMessageActionLink,
+                bulletList = bulletList
+            )
+        }
     }
 }
 
@@ -209,7 +255,11 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 }
             }
             labelArgument(label)
-            description?.let { typedArgument("description", description) }
+            if (annotatedText) {
+                annotatedStringArgument<OudsAnnotatedAlertMessageDescription>("description")
+            } else {
+                description?.let { typedArgument("description", description) }
+            }
             if (hasCloseButton) {
                 lambdaArgument("onClose") {
                     comment("Close alert message")
@@ -224,10 +274,18 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     typedArgument("position", actionLinkPosition)
                 }
             }
-            bulletList?.let { bulletLabelById ->
+            if (bulletList.any { it.isNotBlank() } || annotatedText) {
                 functionCallArgument("bulletList", "listOf") {
-                    bulletLabelById.toSortedMap().values.forEach { label ->
-                        typedArgument(null, label)
+                    if (annotatedText) {
+                        repeat(AlertMessageDemoState.MaxBulletCount) {
+                            annotatedStringArgument<OudsAnnotatedAlertMessageBulletListLabel>(null)
+                        }
+                    } else {
+                        bulletList.forEach { label ->
+                            if (label.isNotBlank()) {
+                                typedArgument(null, label)
+                            }
+                        }
                     }
                 }
             }

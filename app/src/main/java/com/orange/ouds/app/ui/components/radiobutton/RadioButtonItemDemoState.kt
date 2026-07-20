@@ -25,7 +25,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemDemoState
 
 @Composable
 fun rememberRadioButtonItemDemoState(
-    selectedValue: Int = RadioButtonItemDemoState.values.first(),
+    selectedValue: Int = RadioButtonItemDemoState.Values.first(),
     icon: ControlItemDemoState.Icon = ControlItemDemoState.Icon.None,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
@@ -38,7 +38,8 @@ fun rememberRadioButtonItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     extraLabel: String? = null,
     description: String? = null,
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     selectedValue,
     icon,
@@ -54,6 +55,7 @@ fun rememberRadioButtonItemDemoState(
     extraLabel,
     description,
     constrainedMaxWidth,
+    annotatedText,
     saver = RadioButtonItemDemoState.Saver
 ) {
     RadioButtonItemDemoState(
@@ -70,7 +72,8 @@ fun rememberRadioButtonItemDemoState(
         label,
         extraLabel,
         description,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        annotatedText
     )
 }
 
@@ -88,11 +91,12 @@ class RadioButtonItemDemoState(
     label: String,
     extraLabel: String?,
     description: String?,
-    constrainedMaxWidth: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth) {
+    constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
+) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, annotatedText) {
 
     companion object {
-        val values = listOf(1, 2)
+        val Values = listOf(1, 2)
         val Saver = listSaver(
             save = { state ->
                 with(state) {
@@ -121,7 +125,8 @@ class RadioButtonItemDemoState(
                         label,
                         list[2] as String?,
                         description,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             }

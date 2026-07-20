@@ -104,6 +104,10 @@
     <string name="app_components_alert_description_text">مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.</string>
     <string name="app_components_alert_alertMessage_description_text">Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.</string>
     <string name="app_components_alert_inlineAlert_description_text">Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.</string>
+    <string name="app_components_alert_alertMessage_annotatedDescription_text"><![CDATA[<b>فشلت</b> آخر محاولة دفع لك. يرجى التحقق من تفاصيل الدفع أو <b>الرصيد المتاح</b> لديك والمحاولة مرة أخرى، أو <a href="https://unified-design-system.orange.com">تحديث تفاصيل الدفع</a>.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet1_text"><![CDATA[<b>فشلت</b> عملية الدفع الخاصة بك.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet2_text"><![CDATA[تحقق من <b>رصيدك المتاح</b> قبل إعادة المحاولة.]]></string>
+    <string name="app_components_alert_alertMessage_annotatedBullet3_text"><![CDATA[قم بتحديث <b>تفاصيل الدفع</b> الخاصة بك إذا لزم الأمر.]]></string>
 
     <!-- Components: badge -->
     <string name="app_components_badge_description_text">Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.</string>
@@ -118,6 +122,9 @@
 
     <!-- Components: bullet list -->
     <string name="app_components_bulletList_description_text">Bullet list هي عنصر واجهة مستخدم يساعد على عرض عناصر نصية فردية ذات صلة مجمعة معًا؛ عادةً ما تبدأ برقم أو برمز نقطي.</string>
+    <string name="app_components_bulletList_annotatedLabel1_text"><![CDATA[<b>فشلت</b> عملية الدفع الخاصة بك.]]></string>
+    <string name="app_components_bulletList_annotatedLabel2_text"><![CDATA[تحقق من <b>رصيدك المتاح</b> قبل إعادة المحاولة.]]></string>
+    <string name="app_components_bulletList_annotatedLabel3_text"><![CDATA[قم بتحديث <a href="https://unified-design-system.orange.com">تفاصيل الدفع</a> الخاصة بك إذا لزم الأمر.]]></string>
 
     <!-- Components: button -->
     <string name="app_components_button_description_text">Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.</string>
@@ -126,6 +133,7 @@
     <string name="app_components_checkbox_description_text">Checkbox هو عنصر واجهة مستخدم يسمح باختيار خيارات متعددة من مجموعة من الخيارات غير الحصرية.</string>
     <string name="app_components_checkbox_checkbox_a11y">وصف محتوى مربع الاختيار %s</string>
     <string name="app_components_checkbox_indeterminateCheckbox_a11y">وصف محتوى مربع الاختيار غير المحدد %s</string>
+    <string name="app_components_checkbox_checkboxItem_annotatedErrorMessage_text"><![CDATA[يجب عليك اختيار <b>خدمة واحدة على الأقل</b> للمتابعة.]]></string>
 
     <!-- Components: chip -->
     <string name="app_components_chip_description_text">تساعد Chips   المستخدمين على إدخال المعلومات، القيام باختيارات، تصفية المحتوى، أو تنفيذ إجراءات.</string>
@@ -155,9 +163,13 @@
 
     <!-- Components: password input -->
     <string name="app_components_passwordInput_description_text"> Password Input هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.</string>
+    <string name="app_components_passwordInput_annotatedErrorMessage_text"><![CDATA[لا يمكن أن تكون كلمة المرور الخاصة بك <b>فارغة</b>.]]></string>
+    <string name="app_components_passwordInput_annotatedHelperText_text"><![CDATA[يجب أن تتراوح كلمة المرور الخاصة بك بين <b>8</b> و<b>20</b> حرفاً.]]></string>
 
     <!-- Components: PIN code input -->
     <string name="app_components_pinCodeInput_description_text">إدخال رمز PIN هو عنصر واجهة مستخدم يسمح بإدخال رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.</string>
+    <string name="app_components_pinCodeInput_annotatedErrorMessage_text"><![CDATA[<b>فشل التحقق</b>. تحقق من الرمز وأدخله بشكل صحيح.]]></string>
+    <string name="app_components_pinCodeInput_annotatedHelperText_text"><![CDATA[أدخل <b>الرمز لمرة واحدة</b> المرسل إلى جهازك.]]></string>
 
     <!-- Components: progress indicator -->
     <string name="app_components_progressIndicator_description_text">Progress indicator يُظهر تقدم مهمة ما ويقدم تغذية بصرية. يمكن أن يُظهر قيمة محددة (محدد) أو فقط أن شيئًا ما قيد التقدم (غير محدد).</string>
@@ -167,20 +179,26 @@
     <!-- Components: radio button -->
     <string name="app_components_radioButton_description_text">Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.</string>
     <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار %s</string>
+    <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[يرجى اختيار <b>طريقة اتصال واحدة</b> للمتابعة.]]></string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_description_text">Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً "تشغيل" و "إيقاف"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.</string>
     <string name="app_components_switch_switch_a11y">تبديل وصف المحتوى</string>
+    <string name="app_components_switchItem_annotatedErrorMessage_text"><![CDATA[يجب عليك تفعيل <b>الدفعات التلقائية</b> لتفعيل هذا العرض.]]></string>
 
     <!-- Components: tag -->
     <string name="app_components_tag_description_text">Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة.</string>
 
     <!-- Components: text area -->
     <string name="app_components_textArea_description_text">Text area هي عنصر واجهة مستخدم يتيح للمستخدمين كتابة أو تحرير أو اختيار كتل نصية طويلة، مثل التعليقات أو الرسائل أو الوصف، من خلال التمدد عمودياً وتوفير مساحة أكبر لإدخال النص.</string>
+    <string name="app_components_textArea_annotatedErrorMessage_text"><![CDATA[لديك <b>20</b> حرفاً زائداً.]]></string>
+    <string name="app_components_textArea_annotatedHelperText_text"><![CDATA[يرجى تقديم <b>وصف مفصل</b> لطلبك.]]></string>
 
     <!-- Components: text input -->
     <string name="app_components_textInput_description_text">Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.</string>
     <string name="app_components_textInput_trailingAction_a11y">وصف محتوى أيقونة النهاية</string>
+    <string name="app_components_textInput_annotatedErrorMessage_text"><![CDATA[لا يمكن أن يكون هذا الحقل <b>فارغاً</b>.]]></string>
+    <string name="app_components_textInput_annotatedHelperText_text"><![CDATA[يمكنك العثور على <b>معرف العميل</b> الخاص بك في آخر فاتورة لك.]]></string>
 
     <!-- Components: top app bar -->
     <string name="app_components_topAppBar_description_text">ُApp bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.</string>
