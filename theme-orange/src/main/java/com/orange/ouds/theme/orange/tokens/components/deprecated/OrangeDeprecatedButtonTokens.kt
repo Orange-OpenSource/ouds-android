@@ -12,10 +12,6 @@
 
 package com.orange.ouds.theme.orange.tokens.components.deprecated
 
-import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
 
-internal class OrangeDeprecatedButtonTokens(
-    @Deprecated("")
-    override val sizeLoader: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeExtraSmall
-) : OudsDeprecatedButtonTokens
+internal class OrangeDeprecatedButtonTokens : OudsDeprecatedButtonTokens

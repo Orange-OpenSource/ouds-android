@@ -18,6 +18,7 @@ import com.orange.ouds.foundation.InternalOudsApi
 @InternalOudsApi
 interface OudsColorSemanticTokens {
     val actionColorTokens: OudsColorActionSemanticTokens
+    val aiColorTokens: OudsColorAiSemanticTokens
     val alwaysColorTokens: OudsColorAlwaysSemanticTokens
     val backgroundColorTokens: OudsColorBgSemanticTokens
     val borderColorTokens: OudsColorBorderSemanticTokens

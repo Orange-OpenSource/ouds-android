@@ -308,8 +308,8 @@ internal fun OudsButton(
         val maxHeight = if (icon != null && label == null) {
             getTokenValue(
                 size = size,
-                default = buttonTokens.sizeMaxWidthHeightIconOnlyDefault,
-                small = buttonTokens.sizeMaxWidthHeightIconOnlySmall
+                default = buttonTokens.sizeMaxSizeIconOnlyDefault,
+                small = buttonTokens.sizeMaxSizeIconOnlySmall
             ) * iconScale
         } else {
             Dp.Unspecified

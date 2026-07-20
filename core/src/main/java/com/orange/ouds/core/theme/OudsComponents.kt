@@ -10,14 +10,16 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:Suppress("DEPRECATION")
+
 package com.orange.ouds.core.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
-import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.RestrictedOudsApi
+import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -27,13 +29,14 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
@@ -52,14 +55,17 @@ data class OudsComponents internal constructor(
     val buttonMonochrome: ButtonMonochrome,
     val checkbox: Checkbox,
     val chip: Chip,
+    @Deprecated("Please use listItem instead.", ReplaceWith("OudsTheme.components.listItem"))
     val controlItem: ControlItem,
     val divider: Divider,
     val icon: Icon,
     val inputTag: InputTag,
     val link: Link,
     val linkMonochrome: LinkMonochrome,
+    internal val listItem: ListItem,
     val pinCodeInput: PinCodeInput,
     val progressIndicator: ProgressIndicator,
+    internal val progressIndicatorMonochrome: ProgressIndicatorMonochrome,
     val radioButton: RadioButton,
     val switch: Switch,
     val tag: Tag,
@@ -340,7 +346,7 @@ data class OudsComponents internal constructor(
 
             @ConsistentCopyVisibility
             data class Radius internal constructor(
-                @ExperimentalOudsApi val aiIconOnly: Dp,
+                val aiIconOnly: Dp,
                 val default: Dp,
                 val rounded: Dp,
                 val social: Dp
@@ -348,8 +354,8 @@ data class OudsComponents internal constructor(
 
             @ConsistentCopyVisibility
             data class Width internal constructor(
-                @ExperimentalOudsApi val ai: Dp,
-                @ExperimentalOudsApi val aiInteraction: Dp,
+                val ai: Dp,
+                val aiInteraction: Dp,
                 val default: Dp,
                 val defaultInteraction: Dp,
                 val defaultInteractionMonochrome: Dp
@@ -398,7 +404,6 @@ data class OudsComponents internal constructor(
                 )
 
                 @ConsistentCopyVisibility
-                @ExperimentalOudsApi
                 data class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
@@ -426,7 +431,6 @@ data class OudsComponents internal constructor(
                 )
 
                 @ConsistentCopyVisibility
-                @ExperimentalOudsApi
                 data class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
@@ -475,7 +479,6 @@ data class OudsComponents internal constructor(
                 )
 
                 @ConsistentCopyVisibility
-                @ExperimentalOudsApi
                 data class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
@@ -489,52 +492,62 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
+            @Deprecated("Please use iconDefault instead.", ReplaceWith("OudsTheme.components.button.size.iconDefault"))
             val icon: Dp,
-            @ExperimentalOudsApi val iconDefault: Dp,
-            @ExperimentalOudsApi val iconSmall: Dp,
+            val iconDefault: Dp,
+            val iconSmall: Dp,
+            @Deprecated("Please use iconOnlyDefault instead.", ReplaceWith("OudsTheme.components.button.size.iconOnlyDefault"))
             val iconOnly: Dp,
-            @ExperimentalOudsApi val iconOnlyDefault: Dp,
-            @ExperimentalOudsApi val iconOnlySmall: Dp,
-            @Deprecated("This token is not part of OUDS anymore. OUDS buttons now use the OUDS circular progress indicator instead of a custom loader.") val loader: Dp,
+            val iconOnlyDefault: Dp,
+            val iconOnlySmall: Dp,
+            @Deprecated("Please use progressIndicatorDefault instead.", ReplaceWith("OudsTheme.components.button.size.progressIndicatorDefault"))
+            val loader: Dp,
+            @Deprecated("Please use maxSizeIconOnlyDefault instead.", ReplaceWith("OudsTheme.components.button.size.maxSizeIconOnlyDefault"))
             val maxHeightIconOnly: Dp,
-            @ExperimentalOudsApi val maxWidthHeightIconOnlyDefault: Dp,
-            @ExperimentalOudsApi val maxWidthHeightIconOnlySmall: Dp,
+            val maxSizeIconOnlyDefault: Dp,
+            val maxSizeIconOnlySmall: Dp,
+            @Deprecated("Please use minHeightDefault instead.", ReplaceWith("OudsTheme.components.button.size.minHeightDefault"))
             val minHeight: Dp,
-            @ExperimentalOudsApi val minHeightDefault: Dp,
-            @ExperimentalOudsApi val minHeightSmall: Dp,
+            val minHeightDefault: Dp,
+            val minHeightSmall: Dp,
+            @Deprecated("Please use minWidthDefault instead.", ReplaceWith("OudsTheme.components.button.size.minWidthDefault"))
             val minWidth: Dp,
-            @ExperimentalOudsApi val minWidthDefault: Dp,
-            @ExperimentalOudsApi val minWidthSmall: Dp,
-            @ExperimentalOudsApi val progressIndicatorDefault: Dp,
-            @ExperimentalOudsApi val progressIndicatorSmall: Dp
+            val minWidthDefault: Dp,
+            val minWidthSmall: Dp,
+            val progressIndicatorDefault: Dp,
+            val progressIndicatorSmall: Dp
         )
 
         @ConsistentCopyVisibility
         data class Space internal constructor(
             val columnGap: ColumnGap,
+            @Deprecated("Please use inset.iconOnlyDefault instead.", ReplaceWith("OudsTheme.components.button.space.inset.iconOnlyDefault"))
             val insetIconOnly: Dp,
             val inset: Inset,
+            @Deprecated("Please use paddingBlockDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingBlockDefault"))
             val paddingBlock: Dp,
-            @ExperimentalOudsApi val paddingBlockDefault: Dp,
-            @ExperimentalOudsApi val paddingBlockSmall: Dp,
+            val paddingBlockDefault: Dp,
+            val paddingBlockSmall: Dp,
             val paddingInline: PaddingInline
         ) {
 
             @ConsistentCopyVisibility
             data class ColumnGap internal constructor(
+                @Deprecated("Please use chevronDefault instead.", ReplaceWith("OudsTheme.components.button.space.columnGap.chevronDefault"))
                 val chevron: Dp,
-                @ExperimentalOudsApi val chevronDefault: Dp,
-                @ExperimentalOudsApi val chevronSmall: Dp,
+                val chevronDefault: Dp,
+                val chevronSmall: Dp,
+                @Deprecated("Please use iconDefault instead.", ReplaceWith("OudsTheme.components.button.space.columnGap.iconDefault"))
                 val icon: Dp,
-                @ExperimentalOudsApi val iconDefault: Dp,
-                @ExperimentalOudsApi val iconSmall: Dp,
+                val iconDefault: Dp,
+                val iconSmall: Dp,
+                @Deprecated("Please use iconChevronDefault instead.", ReplaceWith("OudsTheme.components.button.space.columnGap.iconChevronDefault"))
                 val iconChevron: Dp,
-                @ExperimentalOudsApi val iconChevronDefault: Dp,
-                @ExperimentalOudsApi val iconChevronSmall: Dp
+                val iconChevronDefault: Dp,
+                val iconChevronSmall: Dp
             )
 
             @ConsistentCopyVisibility
-            @ExperimentalOudsApi
             data class Inset internal constructor(
                 val iconOnlyDefault: Dp,
                 val iconOnlySmall: Dp,
@@ -544,24 +557,30 @@ data class OudsComponents internal constructor(
 
             @ConsistentCopyVisibility
             data class PaddingInline internal constructor(
+                @Deprecated("Please use chevronEndDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.chevronEndDefault"))
                 val chevronEnd: Dp,
-                @ExperimentalOudsApi val chevronEndDefault: Dp,
-                @ExperimentalOudsApi val chevronEndSmall: Dp,
+                val chevronEndDefault: Dp,
+                val chevronEndSmall: Dp,
+                @Deprecated("Please use chevronStartDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.chevronStartDefault"))
                 val chevronStart: Dp,
-                @ExperimentalOudsApi val chevronStartDefault: Dp,
-                @ExperimentalOudsApi val chevronStartSmall: Dp,
+                val chevronStartDefault: Dp,
+                val chevronStartSmall: Dp,
+                @Deprecated("Please use endIconStartDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.endIconStartDefault"))
                 val endIconStart: Dp,
-                @ExperimentalOudsApi val endIconStartDefault: Dp,
-                @ExperimentalOudsApi val endIconStartSmall: Dp,
+                val endIconStartDefault: Dp,
+                val endIconStartSmall: Dp,
+                @Deprecated("Please use iconNoneDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.iconNoneDefault"))
                 val iconNone: Dp,
-                @ExperimentalOudsApi val iconNoneDefault: Dp,
-                @ExperimentalOudsApi val iconNoneSmall: Dp,
+                val iconNoneDefault: Dp,
+                val iconNoneSmall: Dp,
+                @Deprecated("Please use iconStartDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.iconStartDefault"))
                 val iconStart: Dp,
-                @ExperimentalOudsApi val iconStartDefault: Dp,
-                @ExperimentalOudsApi val iconStartSmall: Dp,
+                val iconStartDefault: Dp,
+                val iconStartSmall: Dp,
+                @Deprecated("Please use startIconEndDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.startIconEndDefault"))
                 val startIconEnd: Dp,
-                @ExperimentalOudsApi val startIconEndDefault: Dp,
-                @ExperimentalOudsApi val startIconEndSmall: Dp
+                val startIconEndDefault: Dp,
+                val startIconEndSmall: Dp
             )
         }
     }
@@ -696,6 +715,8 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
+            @Deprecated("")
+            val indicator: Dp,
             val maxHeight: Dp,
             val minHeight: Dp,
             val minWidth: Dp
@@ -854,154 +875,358 @@ data class OudsComponents internal constructor(
     }
 
     @ConsistentCopyVisibility
+    @Deprecated("Please use OudsComponents.ListItem instead.")
     data class ControlItem internal constructor(
+        @Deprecated("Please use components.listItem.border instead.", ReplaceWith("OudsTheme.components.listItem.border"))
         val border: Border,
+        @Deprecated("Please use components.listItem.color instead.", ReplaceWith("OudsTheme.components.listItem.color"))
         val color: Color,
+        @Deprecated("Please use components.listItem.font instead.", ReplaceWith("OudsTheme.components.listItem.font"))
         val font: Font,
+        @Deprecated("Please use components.listItem.opacity instead.", ReplaceWith("OudsTheme.components.listItem.opacity"))
         val opacity: Opacity,
+        @Deprecated("Please use components.listItem.size instead.", ReplaceWith("OudsTheme.components.listItem.size"))
         val size: Size,
+        @Deprecated("Please use components.listItem.space instead.", ReplaceWith("OudsTheme.components.listItem.space"))
         val space: Space
     ) {
 
         @ConsistentCopyVisibility
+        @Deprecated("Please use OudsComponents.ListItem.Border instead.")
         data class Border internal constructor(
+            @Deprecated("Please use components.listItem.border.radius instead.", ReplaceWith("OudsTheme.components.listItem.border.radius"))
             val radius: Radius,
+            @Deprecated("Please use components.listItem.border.width instead.", ReplaceWith("OudsTheme.components.listItem.border.width"))
             val width: Width
         ) {
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Border.Radius instead.")
             data class Radius internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.border.radius.currentIndicator instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.radius.currentIndicator")
+                )
                 val currentIndicator: Dp,
+                @Deprecated(
+                    "Please use components.listItem.border.radius.default instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.radius.default")
+                )
                 val default: Dp,
+                @Deprecated(
+                    "Please use components.listItem.border.radius.media instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.radius.media")
+                )
                 val media: Dp,
+                @Deprecated(
+                    "Please use components.listItem.border.radius.mediaRounded instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.radius.mediaRounded")
+                )
                 val mediaRoundedCorner: Dp,
+                @Deprecated(
+                    "Please use components.listItem.border.radius.rounded instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.radius.rounded")
+                )
                 val rounded: Dp
             )
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Border.Width instead.")
             data class Width internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.border.width.currentPage instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.width.currentPage")
+                )
                 val currentPage: Dp,
+                @Deprecated(
+                    "Please use components.listItem.border.width.default instead.",
+                    ReplaceWith("OudsTheme.components.listItem.border.width.default")
+                )
                 val default: Dp
             )
         }
 
         @ConsistentCopyVisibility
+        @Deprecated("Please use OudsComponents.ListItem.Color instead.")
         data class Color internal constructor(
+            @Deprecated(
+                "Please use components.listItem.color.background.badge.safetyArea instead.",
+                ReplaceWith("OudsTheme.components.listItem.color.background.badge.safetyArea")
+            )
             val badgeSafetyArea: androidx.compose.ui.graphics.Color,
+            @Deprecated(
+                "Please use components.listItem.color.background instead.",
+                ReplaceWith("OudsTheme.components.listItem.color.background")
+            )
             val background: Background,
+            @Deprecated(
+                "Please use components.listItem.color.content instead.",
+                ReplaceWith("OudsTheme.components.listItem.color.content")
+            )
             val content: Content
         ) {
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Color.Background instead.")
             data class Background internal constructor(
+
+                @Deprecated(
+                    "Please use components.listItem.color.background.current instead.",
+                    ReplaceWith("OudsTheme.components.listItem.color.background.current")
+                )
                 val current: Current
             ) {
 
                 @ConsistentCopyVisibility
+                @Deprecated("Please use OudsComponents.ListItem.Color.Background.Current instead.")
                 data class Current internal constructor(
+                    @Deprecated(
+                        "Please use components.listItem.color.background.current.disabled instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.background.current.disabled")
+                    )
                     val disabled: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.background.current.enabled instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.background.current.enabled")
+                    )
                     val enabled: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.background.current.focus instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.background.current.focus")
+                    )
                     val focus: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.background.current.hover instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.background.current.hover")
+                    )
                     val hover: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.background.current.pressed instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.background.current.pressed")
+                    )
                     val pressed: androidx.compose.ui.graphics.Color
                 )
             }
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Color.Content instead.")
             data class Content internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.color.content.current instead.",
+                    ReplaceWith("OudsTheme.components.listItem.color.content.current")
+                )
                 val current: Current
             ) {
 
                 @ConsistentCopyVisibility
+                @Deprecated("Please use OudsComponents.ListItem.Color.Content.Current instead.")
                 data class Current internal constructor(
+                    @Deprecated(
+                        "Please use components.listItem.color.content.current.disabled instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.content.current.disabled")
+                    )
                     val disabled: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.content.current.enabled instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.content.current.enabled")
+                    )
                     val enabled: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.content.current.focus instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.content.current.focus")
+                    )
                     val focus: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.content.current.hover instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.content.current.hover")
+                    )
                     val hover: androidx.compose.ui.graphics.Color,
+                    @Deprecated(
+                        "Please use components.listItem.color.content.current.pressed instead.",
+                        ReplaceWith("OudsTheme.components.listItem.color.content.current.pressed")
+                    )
                     val pressed: androidx.compose.ui.graphics.Color
                 )
             }
         }
 
         @ConsistentCopyVisibility
+        @Deprecated("Please use OudsComponents.ListItem.Font instead.")
         data class Font internal constructor(
+            @Deprecated(
+                "Please use components.listItem.font.letterSpacing instead.",
+                ReplaceWith("OudsTheme.components.listItem.font.letterSpacing")
+            )
             val letterSpacing: LetterSpacing,
+            @Deprecated(
+                "Please use components.listItem.font.lineHeight instead.",
+                ReplaceWith("OudsTheme.components.listItem.font.lineHeight")
+            )
             val lineHeight: LineHeight,
+            @Deprecated(
+                "Please use components.listItem.font.size instead.",
+                ReplaceWith("OudsTheme.components.listItem.font.size")
+            )
             val size: Size
         ) {
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Font.LetterSpacing instead.")
             data class LetterSpacing internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.font.letterSpacing.avatarInitialExtraLarge instead.",
+                    ReplaceWith("OudsTheme.components.listItem.font.letterSpacing.avatarInitialExtraLarge")
+                )
                 val avatarInitialExtraLarge: Dp
             )
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Font.LineHeight instead.")
             data class LineHeight internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.font.lineHeight.avatarInitialExtraLarge instead.",
+                    ReplaceWith("OudsTheme.components.listItem.font.lineHeight.avatarInitialExtraLarge")
+                )
                 val avatarInitialExtraLarge: Dp
             )
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Font.Size instead.")
             data class Size internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.font.size.avatarInitialExtraLarge instead.",
+                    ReplaceWith("OudsTheme.components.listItem.font.size.avatarInitialExtraLarge")
+                )
                 val avatarInitialExtraLarge: Dp
             )
         }
 
         @ConsistentCopyVisibility
+        @Deprecated("Please use OudsComponents.ListItem.Opacity instead.")
         data class Opacity internal constructor(
+            @Deprecated(
+                "Please use components.listItem.opacity.currentDivider instead.",
+                ReplaceWith("OudsTheme.components.listItem.opacity.currentDivider")
+            )
             val currentDivider: Float,
+            @Deprecated(
+                "Please use components.listItem.opacity.currentIndicator instead.",
+                ReplaceWith("OudsTheme.components.listItem.opacity.currentIndicator")
+            )
             val currentIndicator: Float
         )
 
         @ConsistentCopyVisibility
+        @Deprecated("Please use OudsComponents.ListItem.Size instead.")
         data class Size internal constructor(
+            @Deprecated("Please use components.listItem.size.asset instead.", ReplaceWith("OudsTheme.components.listItem.size.asset"))
             val asset: Asset,
+            @Deprecated("Please use components.listItem.size.controlIndicator instead.", ReplaceWith("OudsTheme.components.listItem.size.controlIndicator"))
             val controlIndicator: Dp,
+            @Deprecated("Please use components.listItem.size.currentIndicator instead.", ReplaceWith("OudsTheme.components.listItem.size.currentIndicator"))
             val currentIndicator: CurrentIndicator,
+            @Deprecated("Please use components.listItem.size.flag instead.", ReplaceWith("OudsTheme.components.listItem.size.flag"))
             val flag: Flag,
+            @Deprecated("Please use components.listItem.size.maxWidth instead.", ReplaceWith("OudsTheme.components.listItem.size.maxWidth"))
             val maxWidth: Dp,
+            @Deprecated("Please use components.listItem.size.minHeightSmall instead.", ReplaceWith("OudsTheme.components.listItem.size.minHeightSmall"))
             val minHeightCompact: Dp,
+            @Deprecated("Please use components.listItem.size.minHeightDefault instead.", ReplaceWith("OudsTheme.components.listItem.size.minHeightDefault"))
             val minHeightDefault: Dp,
+            @Deprecated("Please use components.listItem.size.minWidth instead.", ReplaceWith("OudsTheme.components.listItem.size.minWidth"))
             val minWidth: Dp
         ) {
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Size.Asset instead.")
             data class Asset internal constructor(
+                @Deprecated("Please use components.listItem.size.asset.large instead.", ReplaceWith("OudsTheme.components.listItem.size.asset.large"))
                 val large: Dp,
+                @Deprecated("Please use components.listItem.size.asset.medium instead.", ReplaceWith("OudsTheme.components.listItem.size.asset.medium"))
                 val medium: Dp,
+                @Deprecated("Please use components.listItem.size.asset.small instead.", ReplaceWith("OudsTheme.components.listItem.size.asset.small"))
                 val small: Dp,
+                @Deprecated("Please use components.listItem.size.asset.extraLarge instead.", ReplaceWith("OudsTheme.components.listItem.size.asset.extraLarge"))
                 val extraLarge: Dp
             )
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Size.Flag instead.")
             data class Flag internal constructor(
+                @Deprecated("Please use components.listItem.size.flag.height instead.", ReplaceWith("OudsTheme.components.listItem.size.flag.height"))
                 val height: Dp
             )
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Size.CurrentIndicator instead.")
             data class CurrentIndicator internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.size.currentIndicator.width instead.",
+                    ReplaceWith("OudsTheme.components.listItem.size.currentIndicator.width")
+                )
                 val width: Dp
             )
         }
 
         @ConsistentCopyVisibility
+        @Deprecated("Please use OudsComponents.ListItem.Space instead.")
         data class Space internal constructor(
+            @Deprecated("Please use components.listItem.space.columnGap instead.", ReplaceWith("OudsTheme.components.listItem.space.columnGap"))
             val columnGap: Dp,
+            @Deprecated("Please use components.listItem.space.paddingBlock instead.", ReplaceWith("OudsTheme.components.listItem.space.paddingBlock"))
             val paddingBlock: PaddingBlock,
+            @Deprecated("Please use components.listItem.space.paddingInline instead.", ReplaceWith("OudsTheme.components.listItem.space.paddingInline"))
             val paddingInline: Dp,
+            @Deprecated("Please use components.listItem.space.rowGap instead.", ReplaceWith("OudsTheme.components.listItem.space.rowGap"))
             val rowGap: Dp
         ) {
 
             @ConsistentCopyVisibility
+            @Deprecated("Please use OudsComponents.ListItem.Space.PaddingBlock instead.")
             data class PaddingBlock internal constructor(
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.slotTextContainer instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.slotTextContainer")
+                )
                 val bottomSlot: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.small instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.small")
+                )
                 val densityCompact: Dp,
+                @Deprecated("This token has been removed.")
                 val densityCompactBottomExpandContainer: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.topAlignment.topCounterweightSmall instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.topAlignment.topCounterweightSmall")
+                )
                 val densityCompactTopAlignmentTopCounterweight: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.topAlignment.topTextContainerSmall instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.topAlignment.topTextContainerSmall")
+                )
                 val densityCompactTopAlignmentTopTextContainer: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.default instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.default")
+                )
                 val densityDefault: Dp,
+                @Deprecated("This token has been removed.")
                 val densityDefaultBottomExpandContainer: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.topAlignment.topCounterweightDefault instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.topAlignment.topCounterweightDefault")
+                )
                 val densityDefaultTopAlignmentTopCounterweight: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.topAlignment.topTextContainerDefault instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.topAlignment.topTextContainerDefault")
+                )
                 val densityDefaultTopAlignmentTopTextContainer: Dp,
+                @Deprecated(
+                    "Please use components.listItem.space.paddingBlock.topHelperText instead.",
+                    ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.topHelperText")
+                )
                 val topHelperText: Dp
             )
         }
@@ -1123,8 +1348,11 @@ data class OudsComponents internal constructor(
             @ConsistentCopyVisibility
             data class Chevron internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
+                @Deprecated("Please use color.content.focus instead.", ReplaceWith("OudsTheme.components.link.color.content.focus"))
                 val focus: androidx.compose.ui.graphics.Color,
+                @Deprecated("Please use color.content.hover instead.", ReplaceWith("OudsTheme.components.link.color.content.hover"))
                 val hover: androidx.compose.ui.graphics.Color,
+                @Deprecated("Please use color.content.pressed instead.", ReplaceWith("OudsTheme.components.link.color.content.pressed"))
                 val pressed: androidx.compose.ui.graphics.Color
             )
 
@@ -1141,16 +1369,20 @@ data class OudsComponents internal constructor(
         data class Size internal constructor(
             val iconDefault: Dp,
             val iconSmall: Dp,
+            val minHeightCompactDensity: Dp,
             val minHeightDefault: Dp,
             val minHeightSmall: Dp,
+            val minWidth: Dp,
+            @Deprecated("Please use minWidth instead.", ReplaceWith("OudsTheme.components.link.size.minWidth"))
             val minWidthDefault: Dp,
+            @Deprecated("This token has been removed.")
             val minWidthSmall: Dp
         )
 
         @ConsistentCopyVisibility
         data class Space internal constructor(
             val columnGap: ColumnGap,
-            val paddingBlock: Dp,
+            val paddingBlock: PaddingBlock,
             val paddingInline: Dp
         ) {
 
@@ -1160,6 +1392,14 @@ data class OudsComponents internal constructor(
                 val chevronSmall: Dp,
                 val iconDefault: Dp,
                 val iconSmall: Dp
+            )
+
+            @ConsistentCopyVisibility
+            data class PaddingBlock internal constructor(
+                val default: Dp,
+                val small: Dp,
+                val compactDensityDefault: Dp,
+                val compactDensitySmall: Dp
             )
         }
     }
@@ -1182,6 +1422,176 @@ data class OudsComponents internal constructor(
                 val hover: androidx.compose.ui.graphics.Color,
                 val pressed: androidx.compose.ui.graphics.Color
             )
+        }
+    }
+
+    @ConsistentCopyVisibility
+    data class ListItem internal constructor(
+        val border: Border,
+        val color: Color,
+        val font: Font,
+        val opacity: Opacity,
+        val size: Size,
+        val space: Space
+    ) {
+
+        @ConsistentCopyVisibility
+        data class Border internal constructor(
+            val radius: Radius,
+            val width: Width
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Radius internal constructor(
+                val currentIndicator: Dp,
+                val default: Dp,
+                @Deprecated("") val itemOnly: Dp,
+                val media: Dp,
+                val mediaRounded: Dp,
+                val rounded: Dp
+            )
+
+            @ConsistentCopyVisibility
+            data class Width internal constructor(
+                val currentPage: Dp,
+                val default: Dp
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Color internal constructor(
+            val background: Background,
+            val content: Content
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Background internal constructor(
+                val badge: Badge,
+                val current: Current
+            ) {
+
+                @ConsistentCopyVisibility
+                data class Badge internal constructor(
+                    val safetyArea: androidx.compose.ui.graphics.Color,
+                )
+
+                @ConsistentCopyVisibility
+                data class Current internal constructor(
+                    val disabled: androidx.compose.ui.graphics.Color,
+                    val enabled: androidx.compose.ui.graphics.Color,
+                    val focus: androidx.compose.ui.graphics.Color,
+                    val hover: androidx.compose.ui.graphics.Color,
+                    val pressed: androidx.compose.ui.graphics.Color
+                )
+            }
+
+            @ConsistentCopyVisibility
+            data class Content internal constructor(
+                val current: Current
+            ) {
+
+                @ConsistentCopyVisibility
+                data class Current internal constructor(
+                    val disabled: androidx.compose.ui.graphics.Color,
+                    val enabled: androidx.compose.ui.graphics.Color,
+                    val focus: androidx.compose.ui.graphics.Color,
+                    val hover: androidx.compose.ui.graphics.Color,
+                    val pressed: androidx.compose.ui.graphics.Color
+                )
+            }
+        }
+
+        @ConsistentCopyVisibility
+        data class Font internal constructor(
+            val letterSpacing: LetterSpacing,
+            val lineHeight: LineHeight,
+            val size: Size
+        ) {
+
+            @ConsistentCopyVisibility
+            data class LetterSpacing internal constructor(
+                val avatarInitialExtraLarge: Dp
+            )
+
+            @ConsistentCopyVisibility
+            data class LineHeight internal constructor(
+                val avatarInitialExtraLarge: Dp
+            )
+
+            @ConsistentCopyVisibility
+            data class Size internal constructor(
+                val avatarInitialExtraLarge: Dp
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Opacity internal constructor(
+            val currentDivider: Float,
+            val currentIndicator: Float
+        )
+
+        @ConsistentCopyVisibility
+        data class Size internal constructor(
+            val asset: Asset,
+            val controlIndicator: Dp,
+            val currentIndicator: CurrentIndicator,
+            val flag: Flag,
+            @Deprecated("") val icon: Dp,
+            @Deprecated("") val loader: Dp,
+            @Deprecated("") val maxHeightAssetsContainer: Dp,
+            val maxSizeLeadingTrailingSlot: Dp,
+            val maxWidth: Dp,
+            val minHeightDefault: Dp,
+            val minHeightSmall: Dp,
+            val minWidth: Dp
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Asset internal constructor(
+                val large: Dp,
+                val medium: Dp,
+                val small: Dp,
+                val extraLarge: Dp
+            )
+
+            @ConsistentCopyVisibility
+            data class Flag internal constructor(
+                val height: Dp
+            )
+
+            @ConsistentCopyVisibility
+            data class CurrentIndicator internal constructor(
+                val width: Dp
+            )
+        }
+
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
+            val columnGap: Dp,
+            val paddingBlock: PaddingBlock,
+            val paddingInline: Dp,
+            @Deprecated("") val paddingInlineErrorIcon: Dp,
+            val rowGap: Dp
+        ) {
+
+            @ConsistentCopyVisibility
+            data class PaddingBlock internal constructor(
+                val bottomSlotListItemContainer: Dp,
+                val default: Dp,
+                val small: Dp,
+                val slotTextContainer: Dp,
+                val topAlignment: TopAlignment,
+                val topHelperText: Dp
+            ) {
+
+                @ConsistentCopyVisibility
+                data class TopAlignment internal constructor(
+                    val topCounterweightDefault: Dp,
+                    val topCounterweightSmall: Dp,
+                    val topTextContainerDefault: Dp,
+                    val topTextContainerSmall: Dp
+                )
+            }
         }
     }
 
@@ -1243,6 +1653,23 @@ data class OudsComponents internal constructor(
         data class Space internal constructor(
             val paddingBlock: Dp
         )
+    }
+
+    @ConsistentCopyVisibility
+    data class ProgressIndicatorMonochrome internal constructor(
+        val color: Color
+    ) {
+        @ConsistentCopyVisibility
+        data class Color internal constructor(
+            val content: Content
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Content internal constructor(
+                val indicator: androidx.compose.ui.graphics.Color,
+                val track: androidx.compose.ui.graphics.Color
+            )
+        }
     }
 
     @ConsistentCopyVisibility
@@ -1543,14 +1970,16 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         buttonMonochrome = buttonMonochrome.getButtonMonochrome(),
         checkbox = checkbox.getCheckbox(),
         chip = chip.getChip(),
-        controlItem = controlItem.getControlItem(),
+        controlItem = getControlItem(listItem, accordion),
         divider = divider.getDivider(),
         icon = icon.getIcon(),
         inputTag = inputTag.getInputTag(),
         link = link.getLink(),
         linkMonochrome = linkMonochrome.getLinkMonochrome(),
+        listItem = listItem.getListItem(),
         pinCodeInput = pinCodeInput.getPinCodeInput(),
         progressIndicator = progressIndicator.getProgressIndicator(),
+        progressIndicatorMonochrome = progressIndicatorMonochrome.getProgressIndicatorMonochrome(),
         radioButton = radioButton.getRadioButton(),
         switch = switch.getSwitch(),
         tag = tag.getTag(),
@@ -1817,10 +2246,10 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
             iconOnly = sizeIconOnlyDefault.value,
             iconOnlyDefault = sizeIconOnlyDefault.value,
             iconOnlySmall = sizeIconOnlySmall.value,
-            loader = @Suppress("DEPRECATION") deprecated.sizeLoader.value,
-            maxHeightIconOnly = sizeMaxWidthHeightIconOnlyDefault.value,
-            maxWidthHeightIconOnlyDefault = sizeMaxWidthHeightIconOnlyDefault.value,
-            maxWidthHeightIconOnlySmall = sizeMaxWidthHeightIconOnlySmall.value,
+            loader = sizeProgressIndicatorDefault.value,
+            maxHeightIconOnly = sizeMaxSizeIconOnlyDefault.value,
+            maxSizeIconOnlyDefault = sizeMaxSizeIconOnlyDefault.value,
+            maxSizeIconOnlySmall = sizeMaxSizeIconOnlySmall.value,
             minHeight = sizeMinHeightDefault.value,
             minHeightDefault = sizeMinHeightDefault.value,
             minHeightSmall = sizeMinHeightSmall.value,
@@ -1846,8 +2275,8 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
             inset = OudsComponents.Button.Space.Inset(
                 iconOnlyDefault = spaceInsetIconOnlyDefault.value,
                 iconOnlySmall = spaceInsetIconOnlySmall.value,
-                progressIndicatorOnlyDefault = spaceInsetProgressIndicartorOnlyDefault.value,
-                progressIndicatorOnlySmall = spaceInsetProgressIndicartorOnlySmall.value
+                progressIndicatorOnlyDefault = spaceInsetProgressIndicatorOnlyDefault.value,
+                progressIndicatorOnlySmall = spaceInsetProgressIndicatorOnlySmall.value
             ),
             paddingBlock = spacePaddingBlockDefault.value,
             paddingBlockDefault = spacePaddingBlockDefault.value,
@@ -1960,6 +2389,7 @@ private fun OudsCheckboxTokens.getCheckbox(): OudsComponents.Checkbox {
             )
         ),
         size = OudsComponents.Checkbox.Size(
+            indicator = sizeIndicator.value,
             maxHeight = sizeMaxHeight.value,
             minHeight = sizeMinHeight.value,
             minWidth = sizeMinWidth.value
@@ -2059,94 +2489,96 @@ private fun OudsChipTokens.getChip(): OudsComponents.Chip {
 }
 
 @Composable
-private fun OudsControlItemTokens.getControlItem(): OudsComponents.ControlItem {
-    return OudsComponents.ControlItem(
-        border = OudsComponents.ControlItem.Border(
-            radius = OudsComponents.ControlItem.Border.Radius(
-                currentIndicator = borderRadiusCurrentIndicator.value,
-                default = borderRadiusDefault.value,
-                media = borderRadiusMedia.value,
-                mediaRoundedCorner = borderRadiusMediaRoundedCorner.value,
-                rounded = borderRadiusRounded.value
-            ),
-            width = OudsComponents.ControlItem.Border.Width(
-                currentPage = borderWidthCurrentPage.value,
-                default = borderWidthDefault.value
-            )
-        ),
-        color = OudsComponents.ControlItem.Color(
-            badgeSafetyArea = colorBadgeSafetyArea.value,
-            background = OudsComponents.ControlItem.Color.Background(
-                current = OudsComponents.ControlItem.Color.Background.Current(
-                    disabled = colorBgCurrentDisabled.value,
-                    enabled = colorBgCurrentEnabled.value,
-                    focus = colorBgCurrentFocus.value,
-                    hover = colorBgCurrentHover.value,
-                    pressed = colorBgCurrentPressed.value
+private fun getControlItem(listItemTokens: OudsListItemTokens, accordionTokens: OudsAccordionTokens): OudsComponents.ControlItem {
+    return with(listItemTokens) {
+        OudsComponents.ControlItem(
+            border = OudsComponents.ControlItem.Border(
+                radius = OudsComponents.ControlItem.Border.Radius(
+                    currentIndicator = borderRadiusCurrentIndicator.value,
+                    default = borderRadiusDefault.value,
+                    media = borderRadiusMedia.value,
+                    mediaRoundedCorner = borderRadiusMediaRounded.value,
+                    rounded = borderRadiusRounded.value
+                ),
+                width = OudsComponents.ControlItem.Border.Width(
+                    currentPage = borderWidthCurrentPage.value,
+                    default = borderWidthDefault.value
                 )
             ),
-            content = OudsComponents.ControlItem.Color.Content(
-                current = OudsComponents.ControlItem.Color.Content.Current(
-                    disabled = colorContentCurrentDisabled.value,
-                    enabled = colorContentCurrentEnabled.value,
-                    focus = colorContentCurrentFocus.value,
-                    hover = colorContentCurrentHover.value,
-                    pressed = colorContentCurrentPressed.value
+            color = OudsComponents.ControlItem.Color(
+                badgeSafetyArea = colorBgBadgeSafetyArea.value,
+                background = OudsComponents.ControlItem.Color.Background(
+                    current = OudsComponents.ControlItem.Color.Background.Current(
+                        disabled = colorBgCurrentDisabled.value,
+                        enabled = colorBgCurrentEnabled.value,
+                        focus = colorBgCurrentFocus.value,
+                        hover = colorBgCurrentHover.value,
+                        pressed = colorBgCurrentPressed.value
+                    )
+                ),
+                content = OudsComponents.ControlItem.Color.Content(
+                    current = OudsComponents.ControlItem.Color.Content.Current(
+                        disabled = colorContentCurrentDisabled.value,
+                        enabled = colorContentCurrentEnabled.value,
+                        focus = colorContentCurrentFocus.value,
+                        hover = colorContentCurrentHover.value,
+                        pressed = colorContentCurrentPressed.value
+                    )
                 )
-            )
-        ),
-        font = OudsComponents.ControlItem.Font(
-            letterSpacing = OudsComponents.ControlItem.Font.LetterSpacing(
-                avatarInitialExtraLarge = fontLetterSpacingAvatarInitialXlarge.dp
             ),
-            lineHeight = OudsComponents.ControlItem.Font.LineHeight(
-                avatarInitialExtraLarge = fontLineHeightAvatarInitialXlarge.dp
+            font = OudsComponents.ControlItem.Font(
+                letterSpacing = OudsComponents.ControlItem.Font.LetterSpacing(
+                    avatarInitialExtraLarge = fontLetterSpacingAvatarInitialXlarge.dp
+                ),
+                lineHeight = OudsComponents.ControlItem.Font.LineHeight(
+                    avatarInitialExtraLarge = fontLineHeightAvatarInitialXlarge.dp
+                ),
+                size = OudsComponents.ControlItem.Font.Size(
+                    avatarInitialExtraLarge = fontSizeAvatarInitialXlarge.dp
+                )
             ),
-            size = OudsComponents.ControlItem.Font.Size(
-                avatarInitialExtraLarge = fontSizeAvatarInitialXlarge.dp
-            )
-        ),
-        opacity = OudsComponents.ControlItem.Opacity(
-            currentDivider = opacityCurrentDivider.value,
-            currentIndicator = opacityCurrentIndicator.value
-        ),
-        size = OudsComponents.ControlItem.Size(
-            asset = OudsComponents.ControlItem.Size.Asset(
-                large = sizeAssetLarge.dp,
-                medium = sizeAssetMedium.value,
-                small = sizeAssetSmall.value,
-                extraLarge = sizeAssetXlarge.dp
+            opacity = OudsComponents.ControlItem.Opacity(
+                currentDivider = opacityCurrentDivider.value,
+                currentIndicator = opacityCurrentIndicator.value
             ),
-            controlIndicator = sizeControlIndicator.value,
-            currentIndicator = OudsComponents.ControlItem.Size.CurrentIndicator(
-                width = sizeCurrentIndicatorWidth.dp
+            size = OudsComponents.ControlItem.Size(
+                asset = OudsComponents.ControlItem.Size.Asset(
+                    large = sizeAssetLarge.dp,
+                    medium = sizeAssetMedium.value,
+                    small = sizeAssetSmall.value,
+                    extraLarge = sizeAssetXlarge.dp
+                ),
+                controlIndicator = sizeControlIndicator.value,
+                currentIndicator = OudsComponents.ControlItem.Size.CurrentIndicator(
+                    width = sizeCurrentIndicatorWidth.dp
+                ),
+                minHeightCompact = sizeMinHeightSmall.value,
+                minHeightDefault = sizeMinHeightDefault.dp,
+                minWidth = sizeMinWidth.dp,
+                maxWidth = sizeMaxWidth.dp,
+                flag = OudsComponents.ControlItem.Size.Flag(
+                    height = sizeFlagHeight.value
+                )
             ),
-            minHeightCompact = sizeMinHeightCompact.value,
-            minHeightDefault = sizeMinHeightDefault.dp,
-            minWidth = sizeMinWidth.dp,
-            maxWidth = sizeMaxWidth.dp,
-            flag = OudsComponents.ControlItem.Size.Flag(
-                height = sizeFlagHeight.value
-            )
-        ),
-        space = OudsComponents.ControlItem.Space(
-            paddingInline = spacePaddingInline.value,
-            columnGap = spaceColumnGap.value,
-            rowGap = spaceRowGap.value,
-            paddingBlock = OudsComponents.ControlItem.Space.PaddingBlock(
-                topHelperText = spacePaddingBlockTopHelperText.value,
-                bottomSlot = spacePaddingBlockBottomSlot.value,
-                densityCompact = spacePaddingBlockDensityCompact.value,
-                densityCompactTopAlignmentTopCounterweight = spacePaddingBlockDensityCompactTopAlignmentTopCounterweight.value,
-                densityCompactTopAlignmentTopTextContainer = spacePaddingBlockDensityCompactTopAlignmentTopTextContainer.value,
-                densityCompactBottomExpandContainer = spacePaddingBlockDensityCompactBottomExpandContainer.value,
-                densityDefault = spacePaddingBlockDensityDefault.value,
-                densityDefaultTopAlignmentTopCounterweight = spacePaddingBlockDensityDefaultTopAlignmentTopCounterweight.value,
-                densityDefaultTopAlignmentTopTextContainer = spacePaddingBlockDensityDefaultTopAlignmentTopTextContainer.value,
-                densityDefaultBottomExpandContainer = spacePaddingBlockDensityDefaultBottomExpandContainer.value,
+            space = OudsComponents.ControlItem.Space(
+                paddingInline = spacePaddingInline.value,
+                columnGap = spaceColumnGap.value,
+                rowGap = spaceRowGap.value,
+                paddingBlock = OudsComponents.ControlItem.Space.PaddingBlock(
+                    topHelperText = spacePaddingBlockTopHelperText.value,
+                    bottomSlot = spacePaddingBlockSlotTextContainer.value,
+                    densityCompact = spacePaddingBlockSmall.value,
+                    densityCompactTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightSmall.value,
+                    densityCompactTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerSmall.value,
+                    densityCompactBottomExpandContainer = accordionTokens.spacePaddingBlockBottomExpandContainerSmall.value,
+                    densityDefault = spacePaddingBlockDefault.value,
+                    densityDefaultTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightDefault.value,
+                    densityDefaultTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerDefault.value,
+                    densityDefaultBottomExpandContainer = accordionTokens.spacePaddingBlockBottomExpandContainerDefault.value,
+                )
             )
         )
-    )
+    }
 }
 
 @Composable
@@ -2230,10 +2662,12 @@ private fun OudsLinkTokens.getLink(): OudsComponents.Link {
         size = OudsComponents.Link.Size(
             iconDefault = sizeIconDefault.value,
             iconSmall = sizeIconSmall.value,
+            minHeightCompactDensity = sizeMinHeightCompactDensity.dp,
             minHeightDefault = sizeMinHeightDefault.value,
-            minHeightSmall = sizeMinHeightSmall.dp,
-            minWidthDefault = sizeMinWidthDefault.value,
-            minWidthSmall = sizeMinWidthSmall.dp
+            minHeightSmall = sizeMinHeightSmall.value,
+            minWidth = sizeMinWidth.dp,
+            minWidthDefault = sizeMinWidth.dp,
+            minWidthSmall = sizeMinWidthSmall.value
         ),
         space = OudsComponents.Link.Space(
             columnGap = OudsComponents.Link.Space.ColumnGap(
@@ -2242,7 +2676,12 @@ private fun OudsLinkTokens.getLink(): OudsComponents.Link {
                 iconDefault = spaceColumnGapIconDefault.value,
                 iconSmall = spaceColumnGapIconSmall.value
             ),
-            paddingBlock = spacePaddingBlock.value,
+            paddingBlock = OudsComponents.Link.Space.PaddingBlock(
+                default = spacePaddingBlockDefault.value,
+                small = spacePaddingBlockSmall.value,
+                compactDensityDefault = spacePaddingBlockCompactDensityDefault.value,
+                compactDensitySmall = spacePaddingBlockCompactDensitySmall.value
+            ),
             paddingInline = spacePaddingInline.value
         )
     )
@@ -2259,6 +2698,106 @@ private fun OudsLinkMonoTokens.getLinkMonochrome(): OudsComponents.LinkMonochrom
                 hover = colorContentHover.value,
                 pressed = colorContentPressed.value
             )
+        )
+    )
+}
+
+@Composable
+private fun OudsListItemTokens.getListItem(): OudsComponents.ListItem {
+    return OudsComponents.ListItem(
+        border = OudsComponents.ListItem.Border(
+            radius = OudsComponents.ListItem.Border.Radius(
+                currentIndicator = borderRadiusCurrentIndicator.value,
+                default = borderRadiusDefault.value,
+                itemOnly = borderRadiusItemOnly.value,
+                media = borderRadiusMedia.value,
+                mediaRounded = borderRadiusMediaRounded.value,
+                rounded = borderRadiusRounded.value
+            ),
+            width = OudsComponents.ListItem.Border.Width(
+                currentPage = borderWidthCurrentPage.value,
+                default = borderWidthDefault.value
+            )
+        ),
+        color = OudsComponents.ListItem.Color(
+            background = OudsComponents.ListItem.Color.Background(
+                badge = OudsComponents.ListItem.Color.Background.Badge(
+                    safetyArea = colorBgBadgeSafetyArea.value
+                ),
+                current = OudsComponents.ListItem.Color.Background.Current(
+                    disabled = colorBgCurrentDisabled.value,
+                    enabled = colorBgCurrentEnabled.value,
+                    focus = colorBgCurrentFocus.value,
+                    hover = colorBgCurrentHover.value,
+                    pressed = colorBgCurrentPressed.value
+                )
+            ),
+            content = OudsComponents.ListItem.Color.Content(
+                current = OudsComponents.ListItem.Color.Content.Current(
+                    disabled = colorContentCurrentDisabled.value,
+                    enabled = colorContentCurrentEnabled.value,
+                    focus = colorContentCurrentFocus.value,
+                    hover = colorContentCurrentHover.value,
+                    pressed = colorContentCurrentPressed.value
+                )
+            )
+        ),
+        font = OudsComponents.ListItem.Font(
+            letterSpacing = OudsComponents.ListItem.Font.LetterSpacing(
+                avatarInitialExtraLarge = fontLetterSpacingAvatarInitialXlarge.dp
+            ),
+            lineHeight = OudsComponents.ListItem.Font.LineHeight(
+                avatarInitialExtraLarge = fontLineHeightAvatarInitialXlarge.dp
+            ),
+            size = OudsComponents.ListItem.Font.Size(
+                avatarInitialExtraLarge = fontSizeAvatarInitialXlarge.dp
+            )
+        ),
+        opacity = OudsComponents.ListItem.Opacity(
+            currentDivider = opacityCurrentDivider.value,
+            currentIndicator = opacityCurrentIndicator.value
+        ),
+        size = OudsComponents.ListItem.Size(
+            asset = OudsComponents.ListItem.Size.Asset(
+                large = sizeAssetLarge.dp,
+                medium = sizeAssetMedium.value,
+                small = sizeAssetSmall.value,
+                extraLarge = sizeAssetXlarge.dp
+            ),
+            controlIndicator = sizeControlIndicator.value,
+            currentIndicator = OudsComponents.ListItem.Size.CurrentIndicator(
+                width = sizeCurrentIndicatorWidth.dp
+            ),
+            icon = sizeIcon.value,
+            loader = sizeLoader.value,
+            maxHeightAssetsContainer = sizeMaxHeightAssetsContainer.dp,
+            maxSizeLeadingTrailingSlot = sizeMaxSizeLeadingTrailingSlot.dp,
+            maxWidth = sizeMaxWidth.dp,
+            minHeightDefault = sizeMinHeightDefault.dp,
+            minHeightSmall = sizeMinHeightSmall.value,
+            minWidth = sizeMinWidth.dp,
+            flag = OudsComponents.ListItem.Size.Flag(
+                height = sizeFlagHeight.value
+            )
+        ),
+        space = OudsComponents.ListItem.Space(
+            columnGap = spaceColumnGap.value,
+            paddingBlock = OudsComponents.ListItem.Space.PaddingBlock(
+                bottomSlotListItemContainer = spacePaddingBlockBottomSlotListItemContainer.value,
+                default = spacePaddingBlockDefault.value,
+                small = spacePaddingBlockSmall.value,
+                slotTextContainer = spacePaddingBlockSlotTextContainer.value,
+                topAlignment = OudsComponents.ListItem.Space.PaddingBlock.TopAlignment(
+                    topCounterweightDefault = spacePaddingBlockTopAlignmentTopCounterweightDefault.value,
+                    topCounterweightSmall = spacePaddingBlockTopAlignmentTopCounterweightSmall.value,
+                    topTextContainerDefault = spacePaddingBlockTopAlignmentTopTextContainerDefault.value,
+                    topTextContainerSmall = spacePaddingBlockTopAlignmentTopTextContainerSmall.value
+                ),
+                topHelperText = spacePaddingBlockTopHelperText.value
+            ),
+            paddingInline = spacePaddingInline.value,
+            paddingInlineErrorIcon = spacePaddingInlineErrorIcon.value,
+            rowGap = spaceRowGap.value
         )
     )
 }
@@ -2295,6 +2834,18 @@ private fun OudsProgressIndicatorTokens.getProgressIndicator(): OudsComponents.P
         ),
         space = OudsComponents.ProgressIndicator.Space(
             paddingBlock = spacePaddingBlock.value
+        )
+    )
+}
+
+@Composable
+private fun OudsProgressIndicatorMonoTokens.getProgressIndicatorMonochrome(): OudsComponents.ProgressIndicatorMonochrome {
+    return OudsComponents.ProgressIndicatorMonochrome(
+        color = OudsComponents.ProgressIndicatorMonochrome.Color(
+            content = OudsComponents.ProgressIndicatorMonochrome.Color.Content(
+                indicator = colorContentIndicator.value,
+                track = colorContentTrack.value
+            )
         )
     )
 }
@@ -2400,10 +2951,10 @@ private fun OudsTagTokens.getTag(): OudsComponents.Tag {
             inset = OudsComponents.Tag.Space.Inset(
                 iconSmall = spaceInsetIconSmall.value,
                 bulletSmall = spaceInsetBulletSmall.value,
-                loaderSmall = spaceInsetLoaderSmall.value,
+                loaderSmall = spaceInsetProgressIndicatorSmall.value,
                 iconDefault = spaceInsetIconDefault.value,
                 bulletDefault = spaceInsetBulletDefault.dp,
-                loaderDefault = spaceInsetLoaderDefault.value
+                loaderDefault = spaceInsetProgressIndicatorDefault.value
             ),
             columnGap = OudsComponents.Tag.Space.ColumnGap(
                 small = spaceColumnGapSmall.value,

@@ -177,6 +177,7 @@ data class OudsSpaces internal constructor(
      * Spacing values used for inset positioning.
      *
      * @property none 0dp inset.
+     * @property fiveExtraSmall 5xs inset.
      * @property fourExtraSmall 4xs inset.
      * @property threeExtraSmall 3xs inset.
      * @property twoExtraSmall 2xs inset.
@@ -191,6 +192,7 @@ data class OudsSpaces internal constructor(
     @ConsistentCopyVisibility
     data class Inset internal constructor(
         val none: Dp,
+        val fiveExtraSmall: Dp,
         val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -310,6 +312,7 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
         ),
         inset = OudsSpaces.Inset(
             none = insetNone.dp,
+            fiveExtraSmall = inset5xsmall.dp,
             fourExtraSmall = inset4xsmall.dp,
             threeExtraSmall = inset3xsmall.dp,
             twoExtraSmall = inset2xsmall.dp,
@@ -418,6 +421,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     return when (token) {
         OudsSpaceKeyToken.Inset.None -> inset.none
+        OudsSpaceKeyToken.Inset.FiveExtraSmall -> inset.fiveExtraSmall
         OudsSpaceKeyToken.Inset.FourExtraSmall -> inset.fourExtraSmall
         OudsSpaceKeyToken.Inset.ThreeExtraSmall -> inset.threeExtraSmall
         OudsSpaceKeyToken.Inset.TwoExtraSmall -> inset.twoExtraSmall

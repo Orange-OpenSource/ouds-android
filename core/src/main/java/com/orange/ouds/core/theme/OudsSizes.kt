@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
@@ -37,9 +36,14 @@ import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 data class OudsSizes internal constructor(
     val icon: Icon,
     val maxWidth: MaxWidth,
+    @Deprecated(
+        "Please use minInteractiveAreaDefault instead.",
+        ReplaceWith("OudsTheme.sizes.minInteractiveAreaDefault")
+    )
     val minInteractiveArea: Dp,
-    @ExperimentalOudsApi val minInteractiveAreaDefault: Dp,
-    @ExperimentalOudsApi val minInteractiveAreaSmall: Dp
+    val minInteractiveAreaDefault: Dp,
+    val minInteractiveAreaSmall: Dp,
+    val minInteractiveAreaSmallest: Dp
 ) {
     /**
      * Sizes for icons depending on their usage context.
@@ -587,9 +591,10 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                 )
             )
         ),
-        minInteractiveArea = minInteractiveArea.dp,
+        minInteractiveArea = minInteractiveAreaDefault.dp,
         minInteractiveAreaDefault = minInteractiveAreaDefault.dp,
-        minInteractiveAreaSmall = minInteractiveAreaSmall.dp
+        minInteractiveAreaSmall = minInteractiveAreaSmall.dp,
+        minInteractiveAreaSmallest = minInteractiveAreaSmallest.dp
     )
 }
 
@@ -708,7 +713,7 @@ val OudsSizeKeyToken.value: Dp
         is OudsSizeKeyToken.Icon.WithBody -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.Icon.WithLabel -> OudsTheme.sizes.fromToken(this)
         is OudsSizeKeyToken.MaxWidth -> OudsTheme.sizes.fromToken(this)
-        OudsSizeKeyToken.MinInteractiveArea -> OudsTheme.sizes.minInteractiveArea
         OudsSizeKeyToken.MinInteractiveAreaDefault -> OudsTheme.sizes.minInteractiveAreaDefault
         OudsSizeKeyToken.MinInteractiveAreaSmall -> OudsTheme.sizes.minInteractiveAreaSmall
+        OudsSizeKeyToken.MinInteractiveAreaSmallest -> OudsTheme.sizes.minInteractiveAreaSmallest
     }

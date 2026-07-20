@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.wireframe.tokens.components
 
+import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -21,13 +22,14 @@ import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
-import com.orange.ouds.theme.tokens.components.OudsControlItemTokens
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 import com.orange.ouds.theme.tokens.components.OudsIconTokens
 import com.orange.ouds.theme.tokens.components.OudsInputTagTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
+import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
+import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
@@ -36,6 +38,7 @@ import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
 internal data class WireframeComponentsTokens(
+    override val accordion: OudsAccordionTokens = WireframeAccordionTokens(),
     override val alert: OudsAlertTokens = WireframeAlertTokens(),
     override val badge: OudsBadgeTokens = WireframeBadgeTokens(),
     override val bar: OudsBarTokens = WireframeBarTokens(),
@@ -44,14 +47,15 @@ internal data class WireframeComponentsTokens(
     override val buttonMonochrome: OudsButtonMonoTokens = WireframeButtonMonoTokens(),
     override val checkbox: OudsCheckboxTokens = WireframeCheckboxTokens(),
     override val chip: OudsChipTokens = WireframeChipTokens(),
-    override val controlItem: OudsControlItemTokens = WireframeControlItemTokens(),
     override val divider: OudsDividerTokens = WireframeDividerTokens(),
     override val icon: OudsIconTokens = WireframeIconTokens(),
     override val inputTag: OudsInputTagTokens = WireframeInputTagTokens(),
     override val link: OudsLinkTokens = WireframeLinkTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = WireframeLinkMonoTokens(),
+    override val listItem: OudsListItemTokens = WireframeListItemTokens(),
     override val pinCodeInput: OudsPinCodeInputTokens = WireframePinCodeInputTokens(),
     override val progressIndicator: OudsProgressIndicatorTokens = WireframeProgressIndicatorTokens(),
+    override val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens = WireframeProgressIndicatorMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = WireframeRadioButtonTokens(),
     override val switch: OudsSwitchTokens = WireframeSwitchTokens(),
     override val tag: OudsTagTokens = WireframeTagTokens(),

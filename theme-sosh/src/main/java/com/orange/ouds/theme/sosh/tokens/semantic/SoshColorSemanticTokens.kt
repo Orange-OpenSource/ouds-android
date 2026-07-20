@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.sosh.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
@@ -26,6 +27,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 
 internal data class SoshColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = SoshColorActionSemanticTokens(),
+    override val aiColorTokens: OudsColorAiSemanticTokens = SoshColorAiSemanticTokens(),
     override val alwaysColorTokens: OudsColorAlwaysSemanticTokens = SoshColorAlwaysSemanticTokens(),
     override val backgroundColorTokens: OudsColorBgSemanticTokens = SoshColorBgSemanticTokens(),
     override val borderColorTokens: OudsColorBorderSemanticTokens = SoshColorBorderSemanticTokens(),

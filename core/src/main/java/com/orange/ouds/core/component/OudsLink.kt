@@ -209,9 +209,10 @@ private fun OudsLink(
     val state = getLinkState(enabled = enabled, interactionState = interactionState)
     val isTextOnly = icon == null && chevron == null
 
+    @Suppress("DEPRECATION")
     val (minWidth, minHeight) = when (size) {
-        OudsLinkSize.Default -> linkTokens.sizeMinWidthDefault.value to linkTokens.sizeMinHeightDefault.value
-        OudsLinkSize.Small -> linkTokens.sizeMinWidthSmall.dp to linkTokens.sizeMinHeightSmall.dp
+        OudsLinkSize.Default -> linkTokens.sizeMinWidth.dp to linkTokens.sizeMinHeightDefault.value
+        OudsLinkSize.Small -> linkTokens.sizeMinWidthSmall.value to linkTokens.sizeMinHeightSmall.value
     }
 
     val monochrome = LocalColorMode.current?.monochrome == true
@@ -244,7 +245,7 @@ private fun OudsLink(
             .widthIn(min = minWidth)
             .heightIn(min = minHeight)
             .outerBorder(state = state)
-            .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlock.value)
+            .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlockDefault.value)
             .clickable(
                 interactionSource = interactionSource,
                 indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
@@ -350,6 +351,7 @@ private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
         if (monochrome) {
             linkContentColor(state = state, monochrome = true)
         } else {
+            @Suppress("DEPRECATION")
             when (state) {
                 OudsLinkState.Enabled -> colorChevronEnabled.value
                 OudsLinkState.Focused -> colorChevronFocus.value

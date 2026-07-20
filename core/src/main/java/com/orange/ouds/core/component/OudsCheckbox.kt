@@ -161,7 +161,7 @@ fun OudsTriStateCheckbox(
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlState.Disabled
     val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
-    val shape = RoundedCornerShape(OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value)
+    val shape = RoundedCornerShape(OudsTheme.componentsTokens.listItem.borderRadiusItemOnly.value)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
@@ -169,7 +169,7 @@ fun OudsTriStateCheckbox(
             "An OudsCheckbox or OudsTriStateCheckbox set to $parameter with error parameter activated is not allowed."
         },
         previewDashedBorderShape = shape,
-        previewDashedBorderPhase = OudsTheme.componentsTokens.controlItem.borderRadiusItemOnly.value
+        previewDashedBorderPhase = OudsTheme.componentsTokens.listItem.borderRadiusItemOnly.value
     ) {
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
@@ -311,7 +311,7 @@ private fun checkColor(state: OudsControlState, error: Boolean): Color {
 @Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
-    return with(OudsTheme.componentsTokens.controlItem) {
+    return with(OudsTheme.componentsTokens.listItem) {
         when (state) {
             OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
