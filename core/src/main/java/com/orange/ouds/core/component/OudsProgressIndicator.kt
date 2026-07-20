@@ -50,6 +50,26 @@ enum class OudsProgressIndicatorStatus {
 }
 
 /**
+ * The size of the gap between the progress indicator and the track.
+ */
+enum class OudsProgressIndicatorGapSize {
+
+    /**
+     * Uses the standard gap size.
+     * 
+     * Recommended for most use cases, providing balanced spacing and optimal visual clarity.
+     */
+    Default,
+
+    /**
+     * Reduces the gap between the progress indicator and the track.
+     * 
+     * Use when a more compact appearance is preferred or to better align with specific brand styles and visual directions.
+     */
+    Small
+}
+
+/**
  * Contains the default values used by [OudsCircularProgressIndicator] and [OudsLinearProgressIndicator].
  */
 object OudsProgressIndicatorDefaults {
@@ -58,6 +78,11 @@ object OudsProgressIndicatorDefaults {
      * The default status.
      */
     val Status = OudsProgressIndicatorStatus.Accent
+
+    /**
+     * The default gap size.
+     */
+    val GapSize = OudsProgressIndicatorGapSize.Default
 }
 
 @Composable
