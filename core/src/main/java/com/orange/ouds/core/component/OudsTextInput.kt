@@ -1196,7 +1196,9 @@ internal fun OudsTextInputDecorator(
                         // Loader
                         if (state == OudsTextInputState.Loading) {
                             Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
-                                val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
+                                val progressIndicatorModifier = Modifier
+                                    .size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
+                                    .semantics { hideFromAccessibility() }
                                 val status = OudsProgressIndicatorStatus.Neutral
                                 val track = false
                                 if (loader?.progress != null) {
