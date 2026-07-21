@@ -29,30 +29,6 @@ abstract class OudsComponentImage<T> internal constructor(
     private val contentScale: ContentScale = ContentScale.Fit
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
 
-    protected constructor(
-        extraParametersClass: Class<T>,
-        painter: Painter,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(extraParametersClass, painter as Any, contentDescription, alignment, contentScale)
-
-    protected constructor(
-        extraParametersClass: Class<T>,
-        imageVector: ImageVector,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(extraParametersClass, imageVector as Any, contentDescription, alignment, contentScale)
-
-    protected constructor(
-        extraParametersClass: Class<T>,
-        bitmap: ImageBitmap,
-        contentDescription: String,
-        alignment: Alignment = Alignment.Center,
-        contentScale: ContentScale = ContentScale.Fit
-    ) : this(extraParametersClass, bitmap as Any, contentDescription, alignment, contentScale)
-
     val painter: Painter? = graphicsObject as? Painter
     val imageVector: ImageVector? = graphicsObject as? ImageVector
     val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
