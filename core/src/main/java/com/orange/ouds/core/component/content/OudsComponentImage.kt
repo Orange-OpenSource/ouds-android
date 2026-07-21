@@ -53,7 +53,6 @@ abstract class OudsComponentImage<T> internal constructor(
                 alignment = alignment,
                 contentScale = contentScale
             )
-            else -> {}
         }
     }
 }
