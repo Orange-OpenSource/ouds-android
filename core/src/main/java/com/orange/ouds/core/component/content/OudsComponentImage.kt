@@ -29,10 +29,6 @@ abstract class OudsComponentImage<T> internal constructor(
     private val contentScale: ContentScale = ContentScale.Fit
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
 
-    val painter: Painter? = graphicsObject as? Painter
-    val imageVector: ImageVector? = graphicsObject as? ImageVector
-    val bitmap: ImageBitmap? = graphicsObject as? ImageBitmap
-
     @Composable
     override fun Content(modifier: Modifier) {
         when (graphicsObject) {
