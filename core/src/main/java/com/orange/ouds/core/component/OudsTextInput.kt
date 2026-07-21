@@ -1164,12 +1164,12 @@ internal fun OudsTextInputDecorator(
                 // Trailing elements
                 if (hasError || state == OudsTextInputState.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
-                    val iconScale = LocalConfiguration.current.fontScale
+                    val fontScale = LocalConfiguration.current.fontScale
 
                     val trailingContainerModifier = when {
                         state == OudsTextInputState.Loading -> Modifier
                             .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * iconScale)
+                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * fontScale)
                             .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
                         hasError && trailingIconButton == null -> Modifier
                             .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
@@ -1186,7 +1186,7 @@ internal fun OudsTextInputDecorator(
                         // Error icon
                         if (hasError) {
                             Icon(
-                                modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
+                                modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
                                 painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
                                 contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                                 tint = errorIconColor(state = state)
@@ -1196,23 +1196,7 @@ internal fun OudsTextInputDecorator(
                         // Loader
                         if (state == OudsTextInputState.Loading) {
                             Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
-                                val progressIndicatorModifier = Modifier.size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
-                                val status = OudsProgressIndicatorStatus.Neutral
-                                val track = false
-                                if (loader?.progress != null) {
-                                    OudsCircularProgressIndicator(
-                                        modifier = progressIndicatorModifier,
-                                        progress = { loader.progress },
-                                        status = status,
-                                        track = track
-                                    )
-                                } else {
-                                    OudsCircularProgressIndicator(
-                                        modifier = progressIndicatorModifier,
-                                        status = status,
-                                        track = track
-                                    )
-                                }
+                                OudsTextInputCircularProgressIndicator(loader)
                             }
                         } else {
                             trailingIconButton?.Content(
@@ -1237,6 +1221,30 @@ internal fun OudsTextInputDecorator(
             // Helper link
             OptionalHelperLink(state = state, helperLink = helperLink)
         }
+    }
+}
+
+@Composable
+internal fun OudsTextInputCircularProgressIndicator(loader: OudsTextInputLoader?) {
+    val fontScale = LocalConfiguration.current.fontScale
+    val progressIndicatorModifier = Modifier
+        .size(OudsTheme.components.button.size.progressIndicatorDefault * fontScale)
+        .semantics { hideFromAccessibility() }
+    val status = OudsProgressIndicatorStatus.Neutral
+    val track = false
+    if (loader?.progress != null) {
+        OudsCircularProgressIndicator(
+            modifier = progressIndicatorModifier,
+            progress = { loader.progress },
+            status = status,
+            track = track
+        )
+    } else {
+        OudsCircularProgressIndicator(
+            modifier = progressIndicatorModifier,
+            status = status,
+            track = track
+        )
     }
 }
 
