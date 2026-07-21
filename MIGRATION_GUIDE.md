@@ -71,9 +71,35 @@ val padding = OudsTheme.components.link.space.paddingBlock.default // Dp
 2. **Choose the appropriate property** based on your use case
 3. **Update references** to access the specific property
 
+#### Progress indicator: default status changed to Neutral
+
+The default `status` parameter for `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` has been changed from `Accent` to `Neutral`.
+
+**Impact:** Progress indicators without an explicit `status` parameter will now display using neutral colors instead of accent colors.
+
+**Before (v1.x):**
+```kotlin
+OudsLinearProgressIndicator() // Uses Accent status
+```
+
+**After (v2.0):**
+```kotlin
+// Now uses Neutral status by default
+OudsLinearProgressIndicator()
+
+// To maintain v1.x appearance:
+OudsLinearProgressIndicator(status = OudsProgressIndicatorStatus.Accent)
+```
+
+##### Migration steps
+
+1. **Review all progress indicator usages** in your codebase
+2. **For brand-related operations**, explicitly set `status = OudsProgressIndicatorStatus.Accent`
+3. **Test visually** to ensure progress indicators match your intended design
+
 ---
 
 ## Version history
 
-- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change
+- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress indicator default status change
 - **1.x.x** - Previous stable releases

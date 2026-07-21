@@ -114,7 +114,7 @@ object OudsProgressIndicatorDefaults {
     /**
      * The default status.
      */
-    val Status = OudsProgressIndicatorStatus.Accent
+    val Status = OudsProgressIndicatorStatus.Neutral
 
     /**
      * The default gap size.
