@@ -1326,12 +1326,12 @@ internal fun OudsTextAreaDecorator(
                         )
                 ) {
                     val buttonTokens = OudsTheme.componentsTokens.button
-                    val iconScale = LocalConfiguration.current.fontScale
 
                     // Error icon
                     if (hasError) {
+                        val fontScale = LocalConfiguration.current.fontScale
                         Icon(
-                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
+                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
                             painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
                             contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
@@ -1340,25 +1340,7 @@ internal fun OudsTextAreaDecorator(
 
                     // Loader
                     if (state == OudsTextInputState.Loading) {
-                        val progressIndicatorModifier = Modifier
-                            .size(buttonTokens.sizeProgressIndicatorDefault.value * iconScale)
-                            .semantics { hideFromAccessibility() }
-                        val status = OudsProgressIndicatorStatus.Neutral
-                        val track = false
-                        if (loader?.progress != null) {
-                            OudsCircularProgressIndicator(
-                                modifier = progressIndicatorModifier,
-                                progress = { loader.progress },
-                                status = status,
-                                track = track
-                            )
-                        } else {
-                            OudsCircularProgressIndicator(
-                                modifier = progressIndicatorModifier,
-                                status = status,
-                                track = track
-                            )
-                        }
+                        OudsTextInputCircularProgressIndicator(loader)
                     }
                 }
             }
