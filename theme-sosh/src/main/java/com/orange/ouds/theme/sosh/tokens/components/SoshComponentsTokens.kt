@@ -51,7 +51,6 @@ internal data class SoshComponentsTokens(
     override val icon: OudsIconTokens = SoshIconTokens(),
     override val inputTag: OudsInputTagTokens = SoshInputTagTokens(),
     override val link: OudsLinkTokens = SoshLinkTokens(),
-    override val listItem: OudsListItemTokens = SoshListItemTokens(),
     override val linkMonochrome: OudsLinkMonoTokens = SoshLinkMonoTokens(),
     override val listItem: OudsListItemTokens = SoshListItemTokens(),
     override val pinCodeInput: OudsPinCodeInputTokens = SoshPinCodeInputTokens(),

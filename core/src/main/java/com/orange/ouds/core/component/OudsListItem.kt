@@ -275,7 +275,7 @@ internal fun OudsListItem(
             ) {
                 if (nullableIndicator == OudsListItemIndicator.Previous) {
                     Icon(
-                        modifier = Modifier.size(OudsTheme.components.controlItem.size.asset.small),
+                        modifier = Modifier.size(this@with.size.asset.small),
                         painter = painterResource(nullableIndicator.drawableId),
                         contentDescription = "",
                         tint = indicatorColor(state = state)
@@ -327,7 +327,7 @@ internal fun OudsListItem(
 
                 if (nullableIndicator != null && nullableIndicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
                     Icon(
-                        modifier = Modifier.size(OudsTheme.components.controlItem.size.asset.small),
+                        modifier = Modifier.size(this@with.size.asset.small),
                         painter = painterResource(nullableIndicator.drawableId),
                         contentDescription = "",
                         tint = indicatorColor(state = state)
@@ -368,14 +368,14 @@ private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: 
         OudsListItemSize.Small -> when (contentAlignment) {
             OudsListItemContentAlignment.Center -> padding(vertical = space.paddingBlock.small)
             OudsListItemContentAlignment.Top -> padding(
-                top = space.paddingBlock.topAlignmentTopCounterweight.small,
+                top = space.paddingBlock.topAlignment.topCounterweightSmall,
                 bottom = space.paddingBlock.small
             )
         }
         OudsListItemSize.Default -> when (contentAlignment) {
             OudsListItemContentAlignment.Center -> padding(vertical = space.paddingBlock.default)
             OudsListItemContentAlignment.Top -> padding(
-                top = space.paddingBlock.topAlignmentTopCounterweight.default,
+                top = space.paddingBlock.topAlignment.topCounterweightDefault,
                 bottom = space.paddingBlock.default
             )
         }
@@ -737,7 +737,7 @@ open class OudsListItemText internal constructor(
             Text(
                 modifier = modifier.run {
                     if (extraParameters.contentAlignment == OudsListItemContentAlignment.Top) {
-                        padding(top = OudsTheme.components.listItem.space.paddingBlock.topAlignmentTopTextContainer.small)
+                        padding(top = OudsTheme.components.listItem.space.paddingBlock.topAlignment.topTextContainerSmall)
                     } else {
                         this
                     }
