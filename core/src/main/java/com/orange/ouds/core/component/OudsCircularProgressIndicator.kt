@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.size
@@ -23,13 +25,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -265,7 +270,13 @@ internal fun OudsCircularProgressIndicator(
     }
 }
 
-@OudsPreviewLightDark
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.CircularProgressIndicator.Default.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.CircularProgressIndicator.Default.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 private fun PreviewCircularProgressIndicator(@PreviewParameter(OudsCircularProgressIndicatorPreviewParameterProvider::class) parameter: OudsCircularProgressIndicatorPreviewParameter) {
     PreviewOudsCircularProgressIndicator(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
@@ -279,12 +290,14 @@ internal fun PreviewOudsCircularProgressIndicator(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val circularProgressIndicatorPreview: @Composable () -> Unit = {
-            OudsCircularProgressIndicator(
-                progress = { 0.75f },
-                status = status,
-                track = track,
-                gapSize = gapSize
-            )
+            PreviewEnumEntries<OudsProgressIndicatorStatus> { status ->
+                OudsCircularProgressIndicator(
+                    progress = { 0.75f },
+                    status = status,
+                    track = track,
+                    gapSize = gapSize
+                )
+            }
         }
 
         if (onColoredBackground) {
@@ -321,7 +334,6 @@ internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract,
 }
 
 internal data class OudsCircularProgressIndicatorPreviewParameter(
-    val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     val track: Boolean = true,
     val onColoredBackground: Boolean = false,
     val gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
@@ -333,7 +345,6 @@ internal class OudsCircularProgressIndicatorPreviewParameterProvider :
 private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewParameter>
     get() = listOf(
         OudsCircularProgressIndicatorPreviewParameter(),
-        OudsCircularProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
         OudsCircularProgressIndicatorPreviewParameter(track = false),
         OudsCircularProgressIndicatorPreviewParameter(onColoredBackground = true),
         OudsCircularProgressIndicatorPreviewParameter(gapSize = OudsProgressIndicatorGapSize.Small)

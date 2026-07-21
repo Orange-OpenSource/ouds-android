@@ -39,6 +39,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -325,27 +326,27 @@ internal fun PreviewOudsLinearProgressIndicator(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsLinearProgressIndicatorPreviewParameter
-) {
-    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        with(parameter) {
-            val linearProgressIndicatorPreview: @Composable () -> Unit = {
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
+        val linearProgressIndicatorPreview: @Composable () -> Unit = {
+            PreviewEnumEntries<OudsProgressIndicatorStatus>(maxEnumEntriesInEachRow = 1) { status ->
                 OudsLinearProgressIndicator(
-                    modifier = Modifier.padding(all = PreviewPaddingDefault),
                     progress = { 0.75f },
                     status = status,
                     track = track,
+                    stopIndicator = stopIndicator,
                     helperText = helperText,
                     gapSize = gapSize
                 )
             }
+        }
 
-            if (onColoredBackground) {
-                OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
-                    linearProgressIndicatorPreview()
-                }
-            } else {
+        if (onColoredBackground) {
+            OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
                 linearProgressIndicatorPreview()
             }
+        } else {
+            linearProgressIndicatorPreview()
         }
     }
 }
@@ -356,18 +357,16 @@ internal fun PreviewOudsLinearProgressIndicator(
 private fun PreviewOudsLinearProgressIndicatorWithLongHelperText() = PreviewOudsLinearProgressIndicatorWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThemeContract) {
-    OudsPreview(theme = theme) {
-        OudsLinearProgressIndicator(
-            modifier = Modifier.padding(all = PreviewPaddingDefault),
-            helperText = "Uploading file: http://download-website.com/directory/file.jpg"
-        )
-    }
+internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsLinearProgressIndicator(
+        modifier = Modifier.padding(all = PreviewPaddingDefault),
+        helperText = "Uploading file: http://download-website.com/directory/file.jpg"
+    )
 }
 
 internal data class OudsLinearProgressIndicatorPreviewParameter(
-    val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     val track: Boolean = true,
+    val stopIndicator: Boolean = false,
     val helperText: String? = null,
     val onColoredBackground: Boolean = false,
     val gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
@@ -379,8 +378,8 @@ internal class OudsLinearProgressIndicatorPreviewParameterProvider :
 private val previewParameterValues: List<OudsLinearProgressIndicatorPreviewParameter>
     get() = listOf(
         OudsLinearProgressIndicatorPreviewParameter(),
-        OudsLinearProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
         OudsLinearProgressIndicatorPreviewParameter(track = false),
+        OudsLinearProgressIndicatorPreviewParameter(stopIndicator = true),
         OudsLinearProgressIndicatorPreviewParameter(helperText = "Loading..."),
         OudsLinearProgressIndicatorPreviewParameter(onColoredBackground = true),
         OudsLinearProgressIndicatorPreviewParameter(gapSize = OudsProgressIndicatorGapSize.Small)

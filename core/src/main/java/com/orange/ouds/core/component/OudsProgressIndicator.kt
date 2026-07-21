@@ -26,25 +26,62 @@ import com.orange.ouds.core.theme.value
 enum class OudsProgressIndicatorStatus {
 
     /**
-     * Used for important, user-triggered actions like upload, submit, or confirm. Also use it when maintaining visual consistency with a branded interface
-     * or artistic direction.
+     * Used to highlight primary or brand-related actions.
+     * 
+     * Recommended for user-initiated operations such as uploads, downloads, installations, onboarding, or other key experiences where reinforcing the brand
+     * identity is appropriate.
      */
     Accent,
 
     /**
-     * Used for background or secondary processes. Use it when the indicator should not compete with the main content or when a more neutral tone
-     * is required.
+     * Default status used when progress has no specific semantic meaning.
+     * 
+     * Suitable for generic loading, processing, synchronization, or background tasks where only the completion progress needs to be communicated.
      */
-    Neutral;
+    Neutral,
 
+    /**
+     * Indicates progress related to an error, recovery, cancellation, or failure.
+     * 
+     * Use only when the progress itself communicates a negative operation, such as rolling back changes, removing content, or recovering from an error.
+     */
+    Negative,
+
+    /**
+     * Indicates successful progress or a process leading to a successful outcome.
+     * 
+     * Use for confirmation, completed validations, successful synchronization, or other positive system operations.
+     */
+    Positive,
+
+    /**
+     * Indicates informational or system-related processes.
+     * 
+     * Use for background synchronization, data retrieval, initialization, or informational operations that are neither positive nor negative.
+     */
+    Info,
+
+    /**
+     * Indicates progress related to an operation that requires user attention or should be monitored.
+     * 
+     * Use when the process involves caution, validation, or potentially disruptive actions.
+     */
+    Warning;
+    
     /**
      * The color associated with this status.
      */
     @Composable
     fun color(): Color {
-        return when (this) {
-            Neutral -> OudsTheme.colorScheme.content.default
-            Accent -> OudsTheme.colorScheme.action.loading
+        return with(OudsTheme.colorScheme.content) {
+            when (this@OudsProgressIndicatorStatus) {
+                Neutral -> default
+                Accent -> status.accent
+                Negative -> status.negative
+                Positive -> status.positive
+                Info -> status.info
+                Warning -> status.warning
+            }
         }
     }
 }
