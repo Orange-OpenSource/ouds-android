@@ -224,20 +224,21 @@ private fun OudsLink(
         } else {
             WindowWidthSizeClass.compute(currentWindowWidth())
         }
-        val minHeight = when (windowWidthSizeClass) {
-            WindowWidthSizeClass.EXTRA_COMPACT,
-            WindowWidthSizeClass.COMPACT -> sizeMinHeightCompactDensity.dp
-            WindowWidthSizeClass.MEDIUM -> getTokenValue(size = size, default = sizeMinHeightDefault, small = sizeMinHeightSmall)
-        }
-        val verticalPadding = when (windowWidthSizeClass) {
-            WindowWidthSizeClass.EXTRA_COMPACT,
-            WindowWidthSizeClass.COMPACT -> getTokenValue(
-                size = size,
-                default = spacePaddingBlockCompactDensityDefault,
-                small = spacePaddingBlockCompactDensitySmall
-            )
-            WindowWidthSizeClass.MEDIUM -> getTokenValue(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
-        }
+        val minHeight = windowWidthSizeClass.getTokenValue(
+            extraCompact = sizeMinHeightCompactDensity.dp,
+            compact = sizeMinHeightCompactDensity.dp,
+            medium = getTokenValue(size = size, default = sizeMinHeightDefault, small = sizeMinHeightSmall)
+        )
+        val spacePaddingBlockCompactDensity = getTokenValue(
+            size = size,
+            default = spacePaddingBlockCompactDensityDefault,
+            small = spacePaddingBlockCompactDensitySmall
+        )
+        val verticalPadding = windowWidthSizeClass.getTokenValue(
+            extraCompact = spacePaddingBlockCompactDensity,
+            compact = spacePaddingBlockCompactDensity,
+            medium = getTokenValue(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+        )
 
         val monochrome = LocalColorMode.current?.monochrome == true
         val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
