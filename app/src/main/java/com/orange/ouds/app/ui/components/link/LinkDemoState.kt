@@ -91,8 +91,9 @@ class LinkDemoState(
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
-        ChevronBack(R.string.app_components_link_backLayout_tech),
-        ChevronNext(R.string.app_components_link_nextLayout_tech)
+        IndicatorPrevious(R.string.app_components_link_previousLayout_tech),
+        IndicatorNext(R.string.app_components_link_nextInternalLayout_tech),
+        IndicatorExternal(R.string.app_components_link_nextExternalLayout_tech)
     }
 
     enum class Icon(@StringRes val labelRes: Int) {

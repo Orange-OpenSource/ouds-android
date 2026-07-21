@@ -44,7 +44,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.component.OudsLinkIcon.ExtraParameters
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -84,7 +83,7 @@ private val LocalWindowWidthSizeClass = staticCompositionLocalOf { WindowWidthSi
  *
  * > Design name: Link
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @param label Label describing what is being linked to.
  * @param onClick Callback invoked when the link is clicked.
@@ -105,7 +104,7 @@ fun OudsLink(
     OudsLink(
         label = label,
         icon = null,
-        chevron = null,
+        indicator = null,
         onClick = onClick,
         modifier = modifier,
         size = size,
@@ -125,7 +124,7 @@ fun OudsLink(
  *
  * > Design name: Link
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @param label Label describing what is being linked to.
  * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
@@ -150,7 +149,52 @@ fun OudsLink(
     OudsLink(
         label = label,
         icon = icon,
-        chevron = null,
+        indicator = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled,
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * This version of the link displays an [indicator] before ([OudsLinkIndicator.Previous]) or after ([OudsLinkIndicator.Next] or [OudsLinkIndicator.External]) a label.
+ *
+ * If it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param indicator Navigation indicator displayed in the link. See [OudsLinkIndicator] for allowed values.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
+ */
+@Composable
+fun OudsLink(
+    label: String,
+    indicator: OudsLinkIndicator,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true,
+) {
+    OudsLink(
+        label = label,
+        icon = null,
+        indicator = indicator,
         onClick = onClick,
         modifier = modifier,
         size = size,
@@ -172,7 +216,7 @@ fun OudsLink(
  *
  * > Design name: Link
  *
- * > Design version: 2.3.0
+ * > Design version: 2.4.0
  *
  * @param label Label describing what is being linked to.
  * @param chevron Navigation chevron displayed in the link. See [OudsLinkChevron] for allowed values.
@@ -181,12 +225,16 @@ fun OudsLink(
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  *
- * @sample com.orange.ouds.core.component.samples.OudsLinkWithChevronSample
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsLink(
     label: String,
-    chevron: OudsLinkChevron,
+    @Suppress("DEPRECATION") chevron: OudsLinkChevron,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
@@ -195,7 +243,7 @@ fun OudsLink(
     OudsLink(
         label = label,
         icon = null,
-        chevron = chevron,
+        indicator = chevron.toIndicator(),
         onClick = onClick,
         modifier = modifier,
         size = size,
@@ -207,7 +255,7 @@ fun OudsLink(
 private fun OudsLink(
     label: String,
     icon: OudsLinkIcon?,
-    chevron: OudsLinkChevron?,
+    indicator: OudsLinkIndicator?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
@@ -217,7 +265,7 @@ private fun OudsLink(
         val interactionSource = remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getLinkState(enabled = enabled, interactionState = interactionState)
-        val isTextOnly = icon == null && chevron == null
+        val isTextOnly = icon == null && indicator == null
 
         val windowWidthSizeClass = if (LocalInspectionMode.current) {
             LocalWindowWidthSizeClass.current
@@ -284,12 +332,12 @@ private fun OudsLink(
             var textStyle: TextStyle
             when (size) {
                 OudsLinkSize.Default -> {
-                    columnGap = if (chevron != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
+                    columnGap = if (indicator != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
                     iconSize = sizeIconDefault.value
                     textStyle = OudsTheme.typography.label.large.strong
                 }
                 OudsLinkSize.Small -> {
-                    columnGap = if (chevron != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
+                    columnGap = if (indicator != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
                     iconSize = sizeIconSmall.value
                     textStyle = OudsTheme.typography.label.medium.strong
                 }
@@ -299,16 +347,16 @@ private fun OudsLink(
                 textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
 
-            val iconTint = if (chevron != null) chevronColor.value else contentColor.value
+            val iconTint = if (indicator != null) chevronColor.value else contentColor.value
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(columnGap),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (icon != null || chevron == OudsLinkChevron.Back) {
+                if (icon != null || indicator == OudsLinkIndicator.Previous) {
                     icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
                         modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
-                        extraParameters = ExtraParameters(tint = iconTint)
+                        extraParameters = OudsLinkIcon.ExtraParameters(tint = iconTint)
                     )
                 }
                 Text(
@@ -317,13 +365,17 @@ private fun OudsLink(
                     color = contentColor.value,
                     style = textStyle
                 )
-                if (chevron == OudsLinkChevron.Next) {
-                    OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.next)).Content(
+                if (indicator != null && indicator != OudsLinkIndicator.Previous) {
+                    val indicatorPainterResId = when (indicator) {
+                        OudsLinkIndicator.Next -> OudsTheme.drawableResources.component.link.next
+                        OudsLinkIndicator.External -> OudsTheme.drawableResources.functional.actions.externalLink
+                    }
+                    OudsLinkIcon(painterResource(indicatorPainterResId)).Content(
                         modifier = Modifier
                             .size(iconSize)
                             .fillMaxHeight()
                             .align(Alignment.Bottom),
-                        extraParameters = ExtraParameters(tint = iconTint)
+                        extraParameters = OudsLinkIcon.ExtraParameters(tint = iconTint)
                     )
                 }
             }
@@ -430,17 +482,56 @@ enum class OudsLinkSize {
 /**
  * Represents the type of chevron displayed in an [OudsLink].
  */
+@Deprecated(
+    message = "OudsLinkChevron has been replaced with OudsLinkIndicator.",
+    replaceWith = ReplaceWith("OudsLinkIndicator"),
+    level = DeprecationLevel.WARNING
+)
 enum class OudsLinkChevron {
+
     /**
      * Used for "backward" navigation. This chevron is positioned before the label and features a "chevron left" icon, which is not customizable.
      */
+    @Deprecated(
+        message = "Use OudsLinkIndicator.Previous instead.",
+        replaceWith = ReplaceWith("OudsLinkIndicator.Previous")
+    )
     Back,
 
     /**
      * Used in a standard navigation context. This chevron is positioned after the label and features a "chevron right" icon, which is not customizable.
      */
-    Next
+    @Deprecated(
+        message = "Use OudsLinkIndicator.Next instead.",
+        replaceWith = ReplaceWith("OudsLinkIndicator.Next")
+    )
+    Next;
+
+    @Suppress("DEPRECATION")
+    internal fun toIndicator(): OudsLinkIndicator = when (this) {
+        Back -> OudsLinkIndicator.Previous
+        Next -> OudsLinkIndicator.Next
+    }
 }
+
+enum class OudsLinkIndicator {
+
+    /**
+     * Used for "backward" navigation. Positioned before the label, it features a "chevron left" icon, which is not customizable.
+     */
+    Previous,
+
+    /**
+     * Used in a standard navigation context. Positioned after the label, it features a "chevron right" icon, which is not customizable.
+     */
+    Next,
+
+    /**
+     * Used to navigate outside the current product, service or application. The external navigation indicator informs users that the destination belongs to another context.
+     */
+    External
+}
+
 
 /**
  * An icon in an [OudsLink].
@@ -449,7 +540,7 @@ enum class OudsLinkChevron {
 open class OudsLinkIcon private constructor(
     graphicsObject: Any,
     override val tinted: Boolean
-) : OudsComponentIcon<ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
+) : OudsComponentIcon<OudsLinkIcon.ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
@@ -518,7 +609,7 @@ internal fun PreviewOudsLink(
                 OudsLink(
                     icon = icon,
                     label = "Label",
-                    chevron = chevron,
+                    indicator = indicator,
                     onClick = {},
                     size = size
                 )
@@ -549,7 +640,7 @@ internal fun PreviewOudsLinkCompactWindowWidthSizeClass(theme: OudsThemeContract
             OudsLink(
                 icon = null,
                 label = "Label",
-                chevron = OudsLinkChevron.Next,
+                indicator = OudsLinkIndicator.Next,
                 onClick = {},
                 size = size
             )
@@ -567,10 +658,10 @@ internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         val label = "Link\non two lines"
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            listOf(OudsLinkChevron.Back, OudsLinkChevron.Next).forEach { chevron ->
+            listOf(OudsLinkIndicator.Previous, OudsLinkIndicator.Next).forEach { indicator ->
                 OudsLink(
                     label = label,
-                    chevron = chevron,
+                    indicator = indicator,
                     onClick = {},
                 )
             }
@@ -598,7 +689,7 @@ internal data class OudsLinkPreviewParameter(
     val hasIcon: Boolean,
     val onColoredBackground: Boolean,
     val size: OudsLinkSize,
-    val chevron: OudsLinkChevron? = null
+    val indicator: OudsLinkIndicator? = null
 )
 
 internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -606,14 +697,14 @@ internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<
 private val previewParameterValues: List<OudsLinkPreviewParameter>
     get() = buildList {
         OudsLinkSize.entries.forEach { size ->
-            add(OudsLinkPreviewParameter(hasIcon = false, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Back, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Next, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = true, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, onColoredBackground = true, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Back, onColoredBackground = true, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Next, onColoredBackground = true, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = true, onColoredBackground = true, size = size))
+            repeat(2) { index ->
+                val onColoredBackground = index == 1
+                add(OudsLinkPreviewParameter(hasIcon = false, onColoredBackground = onColoredBackground, size = size))
+                OudsLinkIndicator.entries.forEach { indicator ->
+                    add(OudsLinkPreviewParameter(hasIcon = false, indicator = indicator, onColoredBackground = onColoredBackground, size = size))
+                }
+                add(OudsLinkPreviewParameter(hasIcon = true, onColoredBackground = onColoredBackground, size = size))
+            }
         }
     }
 

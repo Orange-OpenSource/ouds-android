@@ -34,8 +34,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsLinkIcon
+import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsLinkSize
 import com.orange.ouds.theme.OudsVersion
 
@@ -122,19 +122,17 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     size = size
                 )
             }
-            LinkDemoState.Layout.ChevronBack -> {
+            LinkDemoState.Layout.IndicatorPrevious,
+            LinkDemoState.Layout.IndicatorNext,
+            LinkDemoState.Layout.IndicatorExternal -> {
+                val indicator = when (layout) {
+                    LinkDemoState.Layout.IndicatorPrevious -> OudsLinkIndicator.Previous
+                    LinkDemoState.Layout.IndicatorNext -> OudsLinkIndicator.Next
+                    else -> OudsLinkIndicator.External
+                }
                 OudsLink(
                     label = label,
-                    chevron = OudsLinkChevron.Back,
-                    onClick = {},
-                    enabled = enabled,
-                    size = size
-                )
-            }
-            LinkDemoState.Layout.ChevronNext -> {
-                OudsLink(
-                    label = label,
-                    chevron = OudsLinkChevron.Next,
+                    indicator = indicator,
                     onClick = {},
                     enabled = enabled,
                     size = size
@@ -151,9 +149,21 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsLinkIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == LinkDemoState.Icon.Tinted)
-                    LinkDemoState.Layout.ChevronBack -> typedArgument("chevron", OudsLinkChevron.Back)
-                    LinkDemoState.Layout.ChevronNext -> typedArgument("chevron", OudsLinkChevron.Next)
+                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsLinkIcon>(
+                        "icon",
+                        themeDrawableResources.tipsAndTricks,
+                        tinted = icon == LinkDemoState.Icon.Tinted
+                    )
+                    LinkDemoState.Layout.IndicatorPrevious,
+                    LinkDemoState.Layout.IndicatorNext,
+                    LinkDemoState.Layout.IndicatorExternal -> {
+                        val indicator = when (layout) {
+                            LinkDemoState.Layout.IndicatorPrevious -> OudsLinkIndicator.Previous
+                            LinkDemoState.Layout.IndicatorNext -> OudsLinkIndicator.Next
+                            else -> OudsLinkIndicator.External
+                        }
+                        typedArgument("indicator", indicator)
+                    }
                 }
                 onClickArgument()
                 enabledArgument(enabled)

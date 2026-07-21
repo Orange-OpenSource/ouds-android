@@ -78,6 +78,7 @@ abstract class ImportIconsTask : DefaultTask() {
 
             // Functional
             "functional/actions/delete-cross-round.svg",
+            "functional/actions/external-link.svg",
             "functional/navigation/form-chevron-left.svg",
             "functional/navigation/menu-grid-ui-round.svg",
             "functional/settings-and-tools/accessibility-hide.svg",
