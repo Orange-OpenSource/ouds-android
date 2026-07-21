@@ -64,7 +64,6 @@ object OudsProgressIndicatorDefaults {
 internal fun progressIndicatorColor(status: OudsProgressIndicatorStatus): Color {
     val monochrome = LocalColorMode.current?.monochrome == true
     return if (monochrome) OudsTheme.componentsTokens.progressIndicatorMonochrome.colorContentIndicator.value else status.color()
-
 }
 
 @Composable
@@ -72,7 +71,8 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
     val monochrome = LocalColorMode.current?.monochrome == true
     return with(OudsTheme.componentsTokens) {
         when {
-            track -> if (monochrome) progressIndicatorMonochrome.colorContentTrack.value else progressIndicator.colorContentTrack.value
+            track && monochrome -> progressIndicatorMonochrome.colorContentTrack.value
+            track && !monochrome -> progressIndicator.colorContentTrack.value
             else -> Color.Transparent
         }
     }
