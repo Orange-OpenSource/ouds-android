@@ -41,7 +41,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Filter Chip
  *
- * > Design version: 1.4.0
+ * > Design version: 1.5.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
@@ -90,7 +90,7 @@ fun OudsFilterChip(
  *
  * > Design name: Filter Chip
  *
- * > Design version: 1.4.0
+ * > Design version: 1.5.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
@@ -141,7 +141,7 @@ fun OudsFilterChip(
  *
  * > Design name: Filter Chip
  *
- * > Design version: 1.4.0
+ * > Design version: 1.5.0
  *
  * @param selected Whether this chip is selected or not.
  * @param onClick Called when this chip is clicked.
@@ -246,6 +246,23 @@ internal fun PreviewOudsFilterChipWithUntintedIcon(theme: OudsThemeContract) = O
             onClick = {}
         )
     }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsFilterChipOnTwoLines() {
+    PreviewOudsFilterChipOnTwoLines(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsFilterChipOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsFilterChip(
+        selected = false,
+        icon = OudsChipIcon(Icons.Filled.FavoriteBorder, ""),
+        label = "Filter chip\non two lines",
+        onClick = {}
+    )
 }
 
 internal data class OudsFilterChipPreviewParameter(

@@ -43,7 +43,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Suggestion Chip
  *
- * > Design version: 1.4.0
+ * > Design version: 1.5.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label displayed in the chip.
@@ -89,7 +89,7 @@ fun OudsSuggestionChip(
  *
  * > Design name: Suggestion Chip
  *
- * > Design version: 1.4.0
+ * > Design version: 1.5.0
  *
  * @param onClick Called when this chip is clicked.
  * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
@@ -137,7 +137,7 @@ fun OudsSuggestionChip(
  *
  * > Design name: Suggestion Chip
  *
- * > Design version: 1.4.0
+ * > Design version: 1.5.0
  *
  * @param onClick Called when this chip is clicked.
  * @param label Text label displayed in the chip.
@@ -388,6 +388,22 @@ internal fun PreviewOudsSuggestionChipWithUntintedIcon(theme: OudsThemeContract)
             onClick = {}
         )
     }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSuggestionChipOnTwoLines() {
+    PreviewOudsSuggestionChipOnTwoLines(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsSuggestionChipOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsSuggestionChip(
+        icon = OudsChipIcon(Icons.Filled.FavoriteBorder, ""),
+        label = "Suggestion chip\non two lines",
+        onClick = {}
+    )
 }
 
 internal data class OudsSuggestionChipPreviewParameter(

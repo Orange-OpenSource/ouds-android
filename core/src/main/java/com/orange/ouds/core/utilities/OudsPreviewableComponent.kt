@@ -112,6 +112,7 @@ import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
+import com.orange.ouds.core.component.PreviewOudsFilterChipOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsFilterChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButtonWithUntintedIcon
@@ -151,6 +152,7 @@ import com.orange.ouds.core.component.PreviewOudsSmallButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsSmallButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
+import com.orange.ouds.core.component.PreviewOudsSuggestionChipOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsSuggestionChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsSwitch
 import com.orange.ouds.core.component.PreviewOudsSwitchItem
@@ -639,6 +641,18 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsFilterChipWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object OnTwoLines : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsFilterChipOnTwoLines(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
@@ -1233,6 +1247,18 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsSuggestionChipWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object OnTwoLines : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsSuggestionChipOnTwoLines(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled

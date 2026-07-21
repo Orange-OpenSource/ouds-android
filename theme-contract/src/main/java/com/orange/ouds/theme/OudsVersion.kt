@@ -27,7 +27,7 @@ object OudsVersion {
         const val Checkbox = "2.4.0"
         const val Divider = "1.0.0"
         const val Fab = "0.0.0"
-        const val FilterChip = "1.4.0" // TODO Update to 1.5.0
+        const val FilterChip = "1.5.0"
         const val InlineAlert = "1.0.0"
         const val InputTag = "1.2.0"
         const val Link = "2.2.0" // TODO Update to 2.3.0
@@ -41,7 +41,7 @@ object OudsVersion {
         const val RadioButton = "1.4.0"
         const val StaticCardItem = "1.0.0"
         const val StaticListItem = "1.0.0"
-        const val SuggestionChip = "1.4.0" // TODO Update to 1.5.0
+        const val SuggestionChip = "1.5.0"
         const val Switch = "1.5.0"
         const val Tag = "1.5.0"
         const val TextArea = "1.2.0" // TODO Update to 1.2.1
