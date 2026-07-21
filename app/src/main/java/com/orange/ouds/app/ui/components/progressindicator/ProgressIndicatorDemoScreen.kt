@@ -88,7 +88,8 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
                                 .fillMaxSize()
                                 .background(status.color())
                         )
-                    }
+                    },
+                    enabled = statusDropdownMenuEnabled
                 )
             },
             selectedItemIndex = statuses.indexOf(status),

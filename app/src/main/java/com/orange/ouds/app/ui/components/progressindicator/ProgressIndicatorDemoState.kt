@@ -79,6 +79,9 @@ open class ProgressIndicatorDemoState(
     val animatedSwitchEnabled: Boolean
         get() = type == Type.Determinate
 
+    val statusDropdownMenuEnabled: Boolean
+        get() = !onColoredBox
+
     enum class Type(@StringRes val labelRes: Int) {
         Determinate(R.string.app_components_progressIndicator_determinate_tech),
         Indeterminate(R.string.app_components_progressIndicator_indeterminate_tech)
