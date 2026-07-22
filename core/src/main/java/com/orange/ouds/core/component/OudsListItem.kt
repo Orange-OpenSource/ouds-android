@@ -1359,12 +1359,12 @@ private fun <T, S> getListItemPreviewParameterValues(
                 helperText = helperText,
                 leading = leading(index),
                 trailing = trailing(index),
+                contentAlignment = OudsListItemContentAlignment.Top,
                 decoration = decoration(index)
             )
             1 -> OudsListItemPreviewParameter(
                 label = label,
                 indicator = OudsListItemIndicator.External,
-                contentAlignment = OudsListItemContentAlignment.Top,
                 leading = leading(index),
                 trailing = trailing(index),
                 decoration = decoration(index),

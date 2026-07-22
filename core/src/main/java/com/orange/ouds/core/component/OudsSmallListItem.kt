@@ -504,6 +504,7 @@ internal fun PreviewOudsStaticSmallListItem(
             helperText = helperText,
             leading = leading,
             trailing = trailing,
+            contentAlignment = contentAlignment,
             boldLabel = boldLabel,
             enabled = enabled
         )
