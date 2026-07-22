@@ -52,6 +52,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.outerBorder
@@ -300,7 +301,11 @@ internal fun OudsListItem(
                     }
                 }
 
-                Column(modifier = Modifier.weight(1f)) {
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(top = topTextContainerPadding(contentAlignment = contentAlignment, size = size))
+                ) {
                     if (!overline.isNullOrBlank()) {
                         Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
                     }
@@ -325,7 +330,12 @@ internal fun OudsListItem(
                             )
                         )
                         is OudsListItemLeadingTrailing.Text -> {
-                            trailing.PolymorphicContent(extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(contentAlignment = contentAlignment))
+                            trailing.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
+                                    contentAlignment = contentAlignment,
+                                    size = size
+                                )
+                            )
                         }
                         is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
                     }
@@ -485,6 +495,18 @@ private fun verticalAlignment(contentAlignment: OudsListItemContentAlignment) = 
     OudsListItemContentAlignment.Top -> Alignment.Top
 }
 
+@Composable
+private fun topTextContainerPadding(contentAlignment: OudsListItemContentAlignment, size: OudsListItemSize) =
+    with(OudsTheme.components.listItem.space.paddingBlock.topAlignment) {
+        when (contentAlignment) {
+            OudsListItemContentAlignment.Top -> when (size) {
+                OudsListItemSize.Default -> topTextContainerDefault
+                OudsListItemSize.Small -> topTextContainerSmall
+            }
+            OudsListItemContentAlignment.CenterVertically -> 0.dp
+        }
+    }
+
 /**
  * Default values for [OudsListItem].
  */
@@ -595,7 +617,8 @@ sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
     interface Text : OudsListItemLeadingTrailing {
         @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val contentAlignment: OudsListItemContentAlignment) : OudsComponentContent.ExtraParameters()
+        data class ExtraParameters internal constructor(internal val contentAlignment: OudsListItemContentAlignment, internal val size: OudsListItemSize) :
+            OudsComponentContent.ExtraParameters()
     }
 }
 
@@ -759,13 +782,9 @@ open class OudsListItemText internal constructor(
     override fun Content(modifier: Modifier) {
         Column(modifier = modifier) {
             Text(
-                modifier = modifier.run {
-                    if (extraParameters.contentAlignment == OudsListItemContentAlignment.Top) {
-                        padding(top = OudsTheme.components.listItem.space.paddingBlock.topAlignment.topTextContainerSmall)
-                    } else {
-                        this
-                    }
-                },
+                modifier = modifier.padding(
+                    top = topTextContainerPadding(contentAlignment = extraParameters.contentAlignment, size = extraParameters.size)
+                ),
                 text = label,
                 style = when (style) {
                     OudsListItemTextStyle.Label, OudsListItemTextStyle.LabelMuted -> OudsTheme.typography.label.large.default
