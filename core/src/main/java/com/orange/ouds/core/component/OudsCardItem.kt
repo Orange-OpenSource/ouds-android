@@ -42,7 +42,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
  * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
- * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration] (with divider).
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and [extraLabel].

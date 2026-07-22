@@ -111,7 +111,7 @@ fun OudsSmallCardItem(
  * @param onClick Callback invoked when the small card item is clicked.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
  * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
- * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration] (with divider).
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small card item.
