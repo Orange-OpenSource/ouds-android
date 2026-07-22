@@ -284,12 +284,7 @@ internal fun OudsListItem(
                 verticalAlignment = verticalAlignment(contentAlignment)
             ) {
                 if (indicator == OudsListItemIndicator.Previous) {
-                    Icon(
-                        modifier = Modifier.size(this@with.size.asset.small),
-                        painter = painterResource(indicator.drawableId),
-                        contentDescription = null,
-                        tint = indicatorColor(state = state)
-                    )
+                    Indicator(drawableId = indicator.drawableId, state = state)
                 } else {
                     leading?.let {
                         when (leading) {
@@ -336,12 +331,7 @@ internal fun OudsListItem(
                 }
 
                 if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
-                    Icon(
-                        modifier = Modifier.size(this@with.size.asset.small),
-                        painter = painterResource(indicator.drawableId),
-                        contentDescription = null,
-                        tint = indicatorColor(state = state)
-                    )
+                    Indicator(drawableId = indicator.drawableId, state = state)
                 }
             }
 
@@ -356,6 +346,18 @@ internal fun OudsListItem(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun Indicator(drawableId: Int, state: OudsListItemState) {
+    with(OudsTheme.components.listItem) {
+        Icon(
+            modifier = Modifier.size(size.asset.small),
+            painter = painterResource(drawableId),
+            contentDescription = null,
+            tint = indicatorColor(state = state)
+        )
     }
 }
 
