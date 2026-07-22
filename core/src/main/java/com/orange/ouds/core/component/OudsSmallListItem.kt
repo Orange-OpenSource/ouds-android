@@ -19,7 +19,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
@@ -538,8 +537,7 @@ internal fun PreviewOudsNavigationSmallListItem(
                 contentAlignment = contentAlignment,
                 leading = leading,
                 trailing = trailing,
-                enabled = enabled,
-                interactionSource = remember { MutableInteractionSource() }
+                enabled = enabled
             )
         }
     }

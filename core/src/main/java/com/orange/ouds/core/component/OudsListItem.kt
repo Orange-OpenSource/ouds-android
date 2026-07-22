@@ -1278,8 +1278,7 @@ internal fun PreviewOudsNavigationListItem(
                 trailing = trailing,
                 divider = decoration.divider,
                 background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
-                enabled = enabled,
-                interactionSource = remember { MutableInteractionSource() }
+                enabled = enabled
             )
         }
     }
