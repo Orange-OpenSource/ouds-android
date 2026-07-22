@@ -267,11 +267,10 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
     class Image internal constructor(
         graphicsObject: Any,
         contentDescription: String,
-        size: OudsListItemAssetSize,
         imageFormat: OudsListItemImageRatio,
         contentScale: ContentScale,
         roundedCorner: Boolean
-    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale, roundedCorner), OudsSmallListItemLeading {
+    ) : OudsListItemImage(graphicsObject, contentDescription, SmallListItemAssetSize, imageFormat, contentScale, roundedCorner), OudsSmallListItemLeading {
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
@@ -289,7 +288,7 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
             ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
             contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
-        ) : this(painter, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
+        ) : this(painter as Any, contentDescription, ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
@@ -307,7 +306,7 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
             ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
             contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
-        ) : this(imageVector, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
+        ) : this(imageVector as Any, contentDescription, ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
@@ -325,7 +324,7 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
             ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
             contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
-        ) : this(bitmap, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
+        ) : this(bitmap as Any, contentDescription, ratio, contentScale, roundedCorner)
     }
 }
 
@@ -416,11 +415,10 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
     class Image internal constructor(
         graphicsObject: Any,
         contentDescription: String,
-        size: OudsListItemAssetSize,
         imageFormat: OudsListItemImageRatio,
         contentScale: ContentScale,
         roundedCorner: Boolean
-    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale, roundedCorner), OudsSmallListItemTrailing {
+    ) : OudsListItemImage(graphicsObject, contentDescription, SmallListItemAssetSize, imageFormat, contentScale, roundedCorner), OudsSmallListItemTrailing {
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].
@@ -438,7 +436,7 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
             ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
             contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
-        ) : this(painter, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
+        ) : this(painter as Any, contentDescription, ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].
@@ -456,7 +454,7 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
             ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
             contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
-        ) : this(imageVector, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
+        ) : this(imageVector as Any, contentDescription, ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].
@@ -474,7 +472,7 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
             ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
             contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
-        ) : this(bitmap, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
+        ) : this(bitmap as Any, contentDescription, ratio, contentScale, roundedCorner)
     }
 
     /**
