@@ -21,6 +21,26 @@ import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.FontResource
 
 /**
+ * Preloads the downloadable font families for the Orange themes.
+ * Call this method if either the [OrangeFontFamily.latin] or [OrangeFontFamily.arabic] property of the [OrangeFontFamily] used to create the Orange theme
+ * instance is an implementation of [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]).
+ *
+ * Please note that downloading font files is not the preferred way of configuring font families for the Orange themes. See documentation of [OrangeTheme] for more information.
+ *
+ * **Android**: Downloads fonts using Android Downloadable Fonts feature.
+ * **iOS**: No-op since iOS embeds Helvetica Neue by default.
+ *
+ * @param context The context (Android only, can be Any on other platforms).
+ * @param downloadableFontFamilies The downloadable font families to preload.
+ * @param onComplete A callback that is called when the font families are fully loaded.
+ */
+expect fun preloadDownloadableFontFamilies(
+    context: Any,
+    downloadableFontFamilies: List<OrangeDownloadableFontFamily>,
+    onComplete: (success: Boolean) -> Unit
+)
+
+/**
  * The font family to use for the Orange themes.
  */
 // The primary constructor should theoretically contain nullable Latin and Arabic parameters but this leads to a platform declaration clash
@@ -29,123 +49,8 @@ class OrangeFontFamily private constructor() {
 
     companion object {
 
-        private var downloadedLatinFontFamily: FontFamily? = null
-        private var downloadedArabicFontFamily: FontFamily? = null
-
-        /**
-         * Preloads the downloadable font families for the Orange themes.
-         * Call this method if either the [latin] or [arabic] property of the [OrangeFontFamily] used to create the Orange theme
-         * instance is an implementation of [OrangeDownloadableFontFamily] ([OrangeHelveticaNeueLatin.Downloadable] or [OrangeHelveticaNeueArabic.Downloadable]).
-         *
-         * Please note that downloading font files is not the preferred way of configuring font families for the Orange themes. See documentation of [OrangeTheme] for more information.
-         *
-         * @param context The context.
-         * @param downloadableFontFamilies The downloadable font families to preload.
-         * @param onComplete A callback that is called when the font families are fully loaded.
-         */
-//        fun preloadDownloadableFontFamilies(
-//            context: Context,
-//            downloadableFontFamilies: List<OrangeDownloadableFontFamily>,
-//            onComplete: (success: Boolean) -> Unit
-//        ) {
-//            val downloadableFontFamiliesToPreload = downloadableFontFamilies.filter { downloadableFontFamily ->
-//                when (downloadableFontFamily) {
-//                    is OrangeHelveticaNeueLatin.Downloadable -> downloadedLatinFontFamily == null
-//                    is OrangeHelveticaNeueArabic.Downloadable -> downloadedArabicFontFamily == null
-//                }
-//            }
-//
-//            if (downloadableFontFamiliesToPreload.isEmpty()) {
-//                onComplete(true)
-//            } else {
-//                var preloadedDownloadableFontFamilyCount = 0
-//
-//                // Font requests require the list of sets of hashes for the certificates the provider is signed with.
-//                // As OrangeFontProvider is embedded in the app, it is signed with the app certificate.
-//                // That is why we can retrieve the certificate using methods on package manager.
-//                val certificates = try {
-//                    @Suppress("DEPRECATION")
-//                    val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) PackageManager.GET_SIGNING_CERTIFICATES else PackageManager.GET_SIGNATURES
-//                    val packageInfo = context.packageManager.getPackageInfo(context.packageName, flags)
-//                    val signatures = with(packageInfo) {
-//                        @Suppress("DEPRECATION")
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) signingInfo?.apkContentsSigners else signatures
-//                    }
-//                    listOf(signatures.orEmpty().map { it.toByteArray() })
-//                } catch (_: Exception) {
-//                    emptyList()
-//                }
-//
-//                var success = true
-//                val callbackExecutor = ContextCompat.getMainExecutor(context)
-//                downloadableFontFamiliesToPreload.forEach { downloadableFontFamily ->
-//                    val fontWeights = when (downloadableFontFamily) {
-//                        is OrangeHelveticaNeueLatin.Downloadable -> listOf(FontWeight.Normal, FontWeight.Medium, FontWeight.Bold)
-//                        is OrangeHelveticaNeueArabic.Downloadable -> listOf(FontWeight.Light, FontWeight.Normal, FontWeight.Bold)
-//                    }
-//                    val script = when (downloadableFontFamily) {
-//                        is OrangeHelveticaNeueLatin.Downloadable -> OrangeFontProvider.QUERY_SCRIPT_PARAMETER_VALUE_LATIN
-//                        is OrangeHelveticaNeueArabic.Downloadable -> OrangeFontProvider.QUERY_SCRIPT_PARAMETER_VALUE_ARABIC
-//                    }
-//                    val typefaces = mutableMapOf<FontWeight, Typeface?>()
-//
-//                    fontWeights.forEach { fontWeight ->
-//                        val query =
-//                            "${OrangeFontProvider.QUERY_WEIGHT_PARAMETER_KEY}=${fontWeight.weight}&${OrangeFontProvider.QUERY_SCRIPT_PARAMETER_KEY}=$script"
-//                        val fontRequest = FontRequest(OrangeFontProvider.AUTHORITY, context.packageName, query, certificates)
-//
-//                        val callback = object : FontsContractCompat.FontRequestCallback() {
-//
-//                            override fun onTypefaceRetrieved(typeface: Typeface?) {
-//                                onTypefaceRequestComplete(fontWeight, typeface)
-//                            }
-//
-//                            override fun onTypefaceRequestFailed(reason: Int) {
-//                                onTypefaceRequestComplete(fontWeight, null)
-//                            }
-//
-//                            private fun onTypefaceRequestComplete(fontWeight: FontWeight, typeface: Typeface?) {
-//                                typefaces[fontWeight] = typeface
-//                                if (typefaces.size == fontWeights.size) {
-//                                    if (typefaces.values.any { it == null }) {
-//                                        success = false
-//                                    } else {
-//                                        val fonts = typefaces.mapNotNull { (fontWeight, typeface) ->
-//                                            typeface?.let { Font(fontWeight, typeface) }
-//                                        }
-//                                        val downloadedFontFamily = FontFamily(fonts)
-//                                        when (downloadableFontFamily) {
-//                                            is OrangeHelveticaNeueLatin.Downloadable -> downloadedLatinFontFamily = downloadedFontFamily
-//                                            is OrangeHelveticaNeueArabic.Downloadable -> downloadedArabicFontFamily = downloadedFontFamily
-//                                        }
-//                                    }
-//                                    preloadedDownloadableFontFamilyCount++
-//                                    if (downloadableFontFamiliesToPreload.size == preloadedDownloadableFontFamilyCount) {
-//                                        onComplete(success)
-//                                    }
-//                                }
-//                            }
-//
-//                            private fun Font(weight: FontWeight, typeface: Typeface, style: FontStyle = FontStyle.Normal): Font {
-//                                val typefaceLoader = object : AndroidFont.TypefaceLoader {
-//                                    override fun loadBlocking(context: Context, font: AndroidFont): Typeface? = typeface
-//                                    override suspend fun awaitLoad(context: Context, font: AndroidFont): Typeface? = typeface
-//                                }
-//
-//                                return object : AndroidFont(FontLoadingStrategy.Blocking, typefaceLoader, Settings()) {
-//                                    override val weight: FontWeight = weight
-//                                    override val style: FontStyle = style
-//                                }
-//                            }
-//
-//                        }
-//
-//                        val style = if (fontWeight.weight >= FontWeight.Bold.weight) Typeface.BOLD else Typeface.NORMAL
-//                        FontsContractCompat.requestFont(context, fontRequest, style, null, callbackExecutor, callback)
-//                    }
-//                }
-//            }
-//        }
+        internal var downloadedLatinFontFamily: FontFamily? = null
+        internal var downloadedArabicFontFamily: FontFamily? = null
     }
 
     /** The Helvetica Neue Latin font family. */

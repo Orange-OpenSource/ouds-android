@@ -25,9 +25,6 @@ import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.orange.OrangeTheme
 import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
 
-//import com.orange.ouds.theme.orange.OrangeTheme
-//import com.orange.ouds.theme.orange.getPreviewOrangeFontFamily
-
 @OptIn(InternalOudsApi::class)
 @Composable
 fun AppPreview(

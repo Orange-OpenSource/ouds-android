@@ -16,5 +16,6 @@ import androidx.compose.runtime.Composable
 
 @Composable
 actual fun isHighContrastModeEnabled(): Boolean {
+    // TODO: implement high contrast mode on iOS
     return false
 }

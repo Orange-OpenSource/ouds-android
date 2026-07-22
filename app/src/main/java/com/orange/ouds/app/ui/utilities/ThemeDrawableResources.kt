@@ -44,6 +44,15 @@ class ThemeDrawableResources(val theme: OudsThemeContract) {
             else -> error(ThemeDrawableResources::call)
         }
 
+    val close: Int
+        @DrawableRes
+        get() = when (theme) {
+            is OrangeTheme, is OrangeCompactTheme -> R.drawable.ic_orange_close
+            is SoshTheme -> R.drawable.ic_sosh_close
+            is WireframeTheme -> R.drawable.ic_wireframe_close
+            else -> error(ThemeDrawableResources::close)
+        }
+
     val filters: Int
         @DrawableRes
         get() = when (theme) {

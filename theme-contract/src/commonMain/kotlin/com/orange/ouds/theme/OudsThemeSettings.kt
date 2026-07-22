@@ -68,12 +68,12 @@ data class OudsThemeSettings @JvmOverloads constructor(
                     )
                 }
             },
-            restore = { list ->
+            restore = { list: List<Any?> ->
                 OudsThemeSettings(
-                    roundedCornerButtons = list[0] as Boolean,
-                    roundedCornerTextInputs = list[1] as Boolean,
-                    roundedCornerAlertMessages = list[2] as Boolean,
-                    roundedCornerProgressIndicators = list[3] as Boolean
+                    roundedCornerButtons = list[0] as Boolean?,
+                    roundedCornerTextInputs = list[1] as Boolean?,
+                    roundedCornerAlertMessages = list[2] as Boolean?,
+                    roundedCornerProgressIndicators = list[3] as Boolean?
                 )
             }
         )

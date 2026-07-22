@@ -28,27 +28,16 @@ import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.forEachChangeReversed
 import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalRippleConfiguration
-import androidx.compose.material3.RichTooltip
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TooltipAnchorPosition
-import androidx.compose.material3.TooltipBox
-import androidx.compose.material3.TooltipDefaults
-import androidx.compose.material3.rememberTooltipState
+
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -71,10 +60,6 @@ import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.stringResource
-import ouds_android.core.generated.resources.Res
-import ouds_android.core.generated.resources.core_pinCodeInput_paste_label
 
 /**
  * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a
@@ -272,48 +257,12 @@ private fun OudsPinCodeInput(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-private fun OudsPinCodeInputTooltipBox(textFieldState: TextFieldState, length: OudsPinCodeInputLength, content: @Composable () -> Unit) {
-    val tooltipState = rememberTooltipState(isPersistent = true)
-    // TODO: Replace with OUDS tooltip when available 
-    TooltipBox(
-        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(
-            positioning = TooltipAnchorPosition.Above,
-            spacingBetweenTooltipAndAnchor = OudsTheme.spaces.fixed.extraSmall
-        ),
-        tooltip = {
-            val clipboard = LocalClipboard.current
-            val scope = rememberCoroutineScope()
-            RichTooltip {
-                CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                    TextButton(
-                        onClick = {
-                            scope.launch {
-//                                clipboard.getClipEntry()?.clipData?.let { clipData ->
-//                                    if (clipData.itemCount > 0) {
-//                                        val text = clipData.getItemAt(0).text.toString()
-//                                        textFieldState.edit {
-//                                            insert(selection.min, text)
-//                                            with(inputTransformation(length)) {
-//                                                transformInput()
-//                                            }
-//                                        }
-//                                    }
-//                                }
-                                tooltipState.dismiss()
-                            }
-                        }
-                    ) {
-                        Text(text = stringResource(Res.string.core_pinCodeInput_paste_label))
-                    }
-                }
-            }
-        },
-        state = tooltipState,
-        content = content
-    )
-}
+internal expect fun OudsPinCodeInputTooltipBox(
+    textFieldState: TextFieldState,
+    length: OudsPinCodeInputLength,
+    content: @Composable () -> Unit
+)
 
 @Composable
 private fun OudsPinCodeInputDecorator(
@@ -392,7 +341,7 @@ private fun smallDeviceSpecificRules(length: OudsPinCodeInputLength): Boolean {
 }
 
 @OptIn(ExperimentalFoundationApi::class)
-private fun inputTransformation(length: OudsPinCodeInputLength): InputTransformation {
+internal fun inputTransformation(length: OudsPinCodeInputLength): InputTransformation {
     return InputTransformation {
         changes.forEachChangeReversed { range, originalRange ->
             // Text is inserted with either keyboard inputs or pasting from the clipboard

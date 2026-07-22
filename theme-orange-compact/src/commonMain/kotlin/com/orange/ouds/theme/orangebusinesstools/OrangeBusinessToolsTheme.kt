@@ -16,7 +16,7 @@ import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.orange.OrangeBundledFontFamily
 import com.orange.ouds.theme.orange.OrangeDownloadableFontFamily
 import com.orange.ouds.theme.orange.OrangeFontFamily
-//import com.orange.ouds.theme.orange.OrangeFontProvider
+import com.orange.ouds.theme.orange.OrangeFontProvider
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME

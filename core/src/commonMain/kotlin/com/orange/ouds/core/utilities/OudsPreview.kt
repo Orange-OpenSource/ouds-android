@@ -94,12 +94,6 @@ fun OudsPreview(
     highContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    // Updating the configuration is only needed for UI tests
-    // It is not needed for Android Studio previews because the uiMode parameter of the @Preview annotation already configures the UI mode properly
-//    val configuration = LocalConfiguration.current.apply {
-//        isNightModeEnabled = darkThemeEnabled
-//    }
-    //CompositionLocalProvider(value = LocalConfiguration provides configuration) {
     OudsTheme(
         theme = theme,
         darkThemeEnabled = darkThemeEnabled
@@ -117,7 +111,6 @@ fun OudsPreview(
             }
         }
     }
-    //}
 }
 
 internal fun OudsThemeContract.mapSettings(transform: (OudsThemeSettings) -> (OudsThemeSettings)): OudsThemeContract {

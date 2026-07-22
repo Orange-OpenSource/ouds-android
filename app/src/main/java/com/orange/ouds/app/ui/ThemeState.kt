@@ -30,15 +30,6 @@ import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
 import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
-//import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-//import com.orange.ouds.theme.orange.OrangeFontFamily
-//import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
-//import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
-//import com.orange.ouds.theme.orange.OrangeTheme
-//import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
-//import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
-//import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
-//import com.orange.ouds.theme.sosh.SoshTheme
 import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
 import com.orange.ouds.theme.wireframe.WireframeTheme
 
@@ -51,7 +42,7 @@ fun rememberThemeState(
         SOSH_THEME_NAME,
         WIREFRAME_THEME_NAME
     ),
-    currentThemeName: String = WIREFRAME_THEME_NAME,//ORANGE_THEME_NAME,
+    currentThemeName: String = ORANGE_THEME_NAME,
     areDownloadableOrangeFontFamiliesPreloaded: Boolean = false
 ) = rememberSaveable(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded, saver = ThemeState.Saver) {
     ThemeState(settings, themeNames, currentThemeName, areDownloadableOrangeFontFamiliesPreloaded)
@@ -117,7 +108,7 @@ class ThemeState(
 
     private fun getCurrentTheme(name: String): OudsThemeContract {
         return themes.firstOrNull { it.name == name }
-            .orElse { themes.firstOrNull { it.name == WIREFRAME_THEME_NAME } }
+            .orElse { themes.firstOrNull { it.name == ORANGE_THEME_NAME } }
             .orElse { themes.first() }
     }
 
