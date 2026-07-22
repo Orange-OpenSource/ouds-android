@@ -386,7 +386,7 @@ private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: 
 private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDecoration?) = with(OudsTheme.colorScheme.action.support) {
     val backgroundDecoration = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction
     when (state) {
-        OudsListItemState.Enabled, OudsListItemState.Disabled -> if (decoration is OudsListItemDecoration.Background) OudsTheme.colorScheme.action.support.enabled else Color.Transparent
+        OudsListItemState.Enabled, OudsListItemState.Disabled -> if (decoration is OudsListItemDecoration.Background) enabled else Color.Transparent
         OudsListItemState.Focused -> if (backgroundDecoration) focus else Color.Transparent
         OudsListItemState.Hovered -> if (backgroundDecoration) hover else Color.Transparent
         OudsListItemState.Pressed -> if (backgroundDecoration) pressed else Color.Transparent
