@@ -41,6 +41,10 @@ import androidx.compose.ui.text.AnnotatedString
 class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString: AnnotatedString) :
     OudsAnnotatedString<OudsAnnotatedAlertMessageDescription>(annotatedString) {
 
+    override fun transform(transform: (AnnotatedString) -> AnnotatedString): OudsAnnotatedAlertMessageDescription {
+        return OudsAnnotatedAlertMessageDescription(transform(annotatedString))
+    }
+
     /**
      * Builder for creating [OudsAnnotatedAlertMessageDescription] with strong text and link formatting.
      *
@@ -51,7 +55,7 @@ class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString:
      * @param capacity Initial capacity for the underlying string builder. Defaults to 16.
      */
     class Builder(capacity: Int = 16) :
-        OudsAnnotatedString.Builder<OudsAnnotatedAlertMessageDescription>(capacity, OudsAnnotatedAlertMessageDescription::class.java),
+        OudsAnnotatedString.Builder<OudsAnnotatedAlertMessageDescription>(capacity),
         StrongBuilder, LinkBuilder {
 
         /**
@@ -79,6 +83,10 @@ class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString:
          */
         constructor(text: AnnotatedString) : this() {
             append(text)
+        }
+
+        override fun toAnnotatedString(): OudsAnnotatedAlertMessageDescription {
+            return OudsAnnotatedAlertMessageDescription(builder.toAnnotatedString())
         }
 
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
@@ -112,5 +120,5 @@ class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString:
  * @return The constructed annotated alert message description.
  */
 fun buildOudsAnnotatedAlertMessageDescription(builder: (OudsAnnotatedAlertMessageDescription.Builder).() -> Unit): OudsAnnotatedAlertMessageDescription {
-    return buildOudsAnnotatedString<OudsAnnotatedAlertMessageDescription, OudsAnnotatedAlertMessageDescription.Builder>(builder)
+    return buildOudsAnnotatedString({ OudsAnnotatedAlertMessageDescription.Builder() }, builder)
 }

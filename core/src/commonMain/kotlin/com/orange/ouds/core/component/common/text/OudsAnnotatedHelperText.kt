@@ -38,6 +38,10 @@ import androidx.compose.ui.text.AnnotatedString
  */
 class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedString) : OudsAnnotatedString<OudsAnnotatedHelperText>(annotatedString) {
 
+    override fun transform(transform: (AnnotatedString) -> AnnotatedString): OudsAnnotatedHelperText {
+        return OudsAnnotatedHelperText(transform(annotatedString))
+    }
+
     /**
      * Builder for creating [OudsAnnotatedHelperText] with strong text formatting.
      *
@@ -46,7 +50,7 @@ class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedStr
      *
      * @param capacity Initial capacity for the underlying string builder. Defaults to 16.
      */
-    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<OudsAnnotatedHelperText>(capacity, OudsAnnotatedHelperText::class.java), StrongBuilder {
+    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<OudsAnnotatedHelperText>(capacity), StrongBuilder {
 
         /**
          * Creates a builder initialized with plain text.
@@ -74,7 +78,11 @@ class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedStr
         constructor(text: AnnotatedString) : this() {
             append(text)
         }
-        
+
+        override fun toAnnotatedString(): OudsAnnotatedHelperText {
+            return OudsAnnotatedHelperText(builder.toAnnotatedString())
+        }
+
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
         override fun pushStrong(): Int = pushStrongImpl()
@@ -97,5 +105,5 @@ class OudsAnnotatedHelperText internal constructor(annotatedString: AnnotatedStr
  * @return The constructed annotated helper text.
  */
 fun buildOudsAnnotatedHelperText(builder: (OudsAnnotatedHelperText.Builder).() -> Unit): OudsAnnotatedHelperText {
-    return buildOudsAnnotatedString<OudsAnnotatedHelperText, OudsAnnotatedHelperText.Builder>(builder)
+    return buildOudsAnnotatedString({ OudsAnnotatedHelperText.Builder() }, builder)
 }

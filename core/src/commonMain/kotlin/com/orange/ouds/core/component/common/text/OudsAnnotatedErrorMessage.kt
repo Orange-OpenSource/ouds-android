@@ -40,6 +40,10 @@ import androidx.compose.ui.text.AnnotatedString
  */
 class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedString) : OudsAnnotatedString<OudsAnnotatedErrorMessage>(annotatedString) {
 
+    override fun transform(transform: (AnnotatedString) -> AnnotatedString): OudsAnnotatedErrorMessage {
+        return OudsAnnotatedErrorMessage(transform(annotatedString))
+    }
+
     /**
      * Builder for creating [OudsAnnotatedErrorMessage] with strong text formatting.
      *
@@ -48,7 +52,7 @@ class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedS
      *
      * @param capacity Initial capacity for the underlying string builder. Defaults to 16.
      */
-    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<OudsAnnotatedErrorMessage>(capacity, OudsAnnotatedErrorMessage::class.java),
+    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<OudsAnnotatedErrorMessage>(capacity),
         StrongBuilder {
 
         /**
@@ -78,6 +82,10 @@ class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedS
             append(text)
         }
 
+        override fun toAnnotatedString(): OudsAnnotatedErrorMessage {
+            return OudsAnnotatedErrorMessage(builder.toAnnotatedString())
+        }
+
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
         override fun pushStrong(): Int = pushStrongImpl()
@@ -99,5 +107,5 @@ class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedS
  * @return The constructed annotated error message.
  */
 fun buildOudsAnnotatedErrorMessage(builder: (OudsAnnotatedErrorMessage.Builder).() -> Unit): OudsAnnotatedErrorMessage {
-    return buildOudsAnnotatedString<OudsAnnotatedErrorMessage, OudsAnnotatedErrorMessage.Builder>(builder)
+    return buildOudsAnnotatedString({ OudsAnnotatedErrorMessage.Builder() }, builder)
 }

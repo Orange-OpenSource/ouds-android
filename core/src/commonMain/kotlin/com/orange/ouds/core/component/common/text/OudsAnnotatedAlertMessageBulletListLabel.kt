@@ -44,6 +44,10 @@ import androidx.compose.ui.text.AnnotatedString
 class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedString: AnnotatedString) :
     OudsAnnotatedString<OudsAnnotatedAlertMessageBulletListLabel>(annotatedString) {
 
+    override fun transform(transform: (AnnotatedString) -> AnnotatedString): OudsAnnotatedAlertMessageBulletListLabel {
+        return OudsAnnotatedAlertMessageBulletListLabel(transform(annotatedString))
+    }
+
     /**
      * Builder for creating [OudsAnnotatedAlertMessageBulletListLabel] with strong text and link formatting.
      *
@@ -54,7 +58,7 @@ class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedStr
      * @param capacity Initial capacity for the underlying string builder. Defaults to 16.
      */
     class Builder(capacity: Int = 16) :
-        OudsAnnotatedString.Builder<OudsAnnotatedAlertMessageBulletListLabel>(capacity, OudsAnnotatedAlertMessageBulletListLabel::class.java),
+        OudsAnnotatedString.Builder<OudsAnnotatedAlertMessageBulletListLabel>(capacity),
         StrongBuilder, LinkBuilder {
 
         /**
@@ -84,6 +88,10 @@ class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedStr
             append(text)
         }
 
+        override fun toAnnotatedString(): OudsAnnotatedAlertMessageBulletListLabel {
+            return OudsAnnotatedAlertMessageBulletListLabel(builder.toAnnotatedString())
+        }
+
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
 
         override fun pushStrong(): Int = pushStrongImpl()
@@ -111,5 +119,5 @@ class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedStr
  * @return The constructed annotated alert message bullet list label.
  */
 fun buildOudsAnnotatedAlertMessageBulletListLabel(builder: (OudsAnnotatedAlertMessageBulletListLabel.Builder).() -> Unit): OudsAnnotatedAlertMessageBulletListLabel {
-    return buildOudsAnnotatedString<OudsAnnotatedAlertMessageBulletListLabel, OudsAnnotatedAlertMessageBulletListLabel.Builder>(builder)
+    return buildOudsAnnotatedString({ OudsAnnotatedAlertMessageBulletListLabel.Builder() }, builder)
 }

@@ -39,6 +39,10 @@ import androidx.compose.ui.text.AnnotatedString
 class OudsAnnotatedBulletListLabel internal constructor(annotatedString: AnnotatedString) :
     OudsAnnotatedString<OudsAnnotatedBulletListLabel>(annotatedString) {
 
+    override fun transform(transform: (AnnotatedString) -> AnnotatedString): OudsAnnotatedBulletListLabel {
+        return OudsAnnotatedBulletListLabel(transform(annotatedString))
+    }
+
     /**
      * Builder for creating [OudsAnnotatedBulletListLabel] with strong text and link formatting.
      *
@@ -49,7 +53,7 @@ class OudsAnnotatedBulletListLabel internal constructor(annotatedString: Annotat
      * @param capacity Initial capacity for the underlying string builder. Defaults to 16.
      */
     class Builder(capacity: Int = 16) :
-        OudsAnnotatedString.Builder<OudsAnnotatedBulletListLabel>(capacity, OudsAnnotatedBulletListLabel::class.java),
+        OudsAnnotatedString.Builder<OudsAnnotatedBulletListLabel>(capacity),
         StrongBuilder, LinkBuilder {
 
         /**
@@ -77,6 +81,10 @@ class OudsAnnotatedBulletListLabel internal constructor(annotatedString: Annotat
          */
         constructor(text: AnnotatedString) : this() {
             append(text)
+        }
+
+        override fun toAnnotatedString(): OudsAnnotatedBulletListLabel {
+            return OudsAnnotatedBulletListLabel(builder.toAnnotatedString())
         }
 
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
@@ -108,5 +116,5 @@ class OudsAnnotatedBulletListLabel internal constructor(annotatedString: Annotat
  * @return The constructed annotated bullet list label.
  */
 fun buildOudsAnnotatedBulletListLabel(builder: (OudsAnnotatedBulletListLabel.Builder).() -> Unit): OudsAnnotatedBulletListLabel {
-    return buildOudsAnnotatedString<OudsAnnotatedBulletListLabel, OudsAnnotatedBulletListLabel.Builder>(builder)
+    return buildOudsAnnotatedString({ OudsAnnotatedBulletListLabel.Builder() }, builder)
 }

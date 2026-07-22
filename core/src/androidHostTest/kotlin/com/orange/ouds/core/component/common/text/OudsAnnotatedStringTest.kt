@@ -720,7 +720,11 @@ class OudsAnnotatedStringTest {
     //endregion
 }
 
-private class TestAnnotatedString(private val annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
+private class TestAnnotatedString(annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
+
+    override fun transform(transform: (AnnotatedString) -> AnnotatedString): TestAnnotatedString {
+        return TestAnnotatedString(transform(annotatedString))
+    }
 
     val spanStyles: List<AnnotatedString.Range<SpanStyle>> = annotatedString.spanStyles
 
@@ -730,7 +734,7 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
 
     fun getStrongAnnotations(): List<AnnotatedString.Range<String>> = getStringAnnotations().filter { it.item == StrongAnnotation }
 
-    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<TestAnnotatedString>(capacity, TestAnnotatedString::class.java), StrongBuilder,
+    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<TestAnnotatedString>(capacity), StrongBuilder,
         LinkBuilder {
 
         constructor(text: String) : this() {
@@ -739,6 +743,10 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
 
         constructor(text: TestAnnotatedString) : this() {
             append(text)
+        }
+
+        override fun toAnnotatedString(): TestAnnotatedString {
+            return TestAnnotatedString(builder.toAnnotatedString())
         }
 
         override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
@@ -754,5 +762,5 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
 }
 
 private fun buildTestAnnotatedString(builder: (TestAnnotatedString.Builder).() -> Unit): TestAnnotatedString {
-    return buildOudsAnnotatedString<TestAnnotatedString, TestAnnotatedString.Builder>(builder)
+    return buildOudsAnnotatedString({ TestAnnotatedString.Builder() }, builder)
 }

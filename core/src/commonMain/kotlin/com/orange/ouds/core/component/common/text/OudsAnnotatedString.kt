@@ -40,7 +40,7 @@ import com.orange.ouds.core.theme.OudsTheme
  *
  * This class implements [CharSequence], making it compatible with standard string operations.
  */
-open class OudsAnnotatedString<T> internal constructor(annotatedString: AnnotatedString) : CharSequence by annotatedString
+abstract class OudsAnnotatedString<T> internal constructor(annotatedString: AnnotatedString) : CharSequence by annotatedString
         where T : OudsAnnotatedString<T> {
 
     internal companion object {
@@ -48,7 +48,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         const val StrongAnnotation = "OudsAnnotatedString.StrongAnnotation"
     }
 
-    private val _annotatedString = annotatedString
+    protected val annotatedString = annotatedString
 
     // The link colors depend on the current light / dark mode as well as the current OudsColorMode
     // Thus this function must be accessed at the call site of the Text composable it is displayed into
@@ -59,7 +59,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         linkStyle: TextStyle = OudsTheme.typography.label.medium.strong
     ): AnnotatedString {
         val linkStyles = getTextLinkStyles(linkStyle)
-        return _annotatedString.mapAnnotations { range ->
+        return annotatedString.mapAnnotations { range ->
             when (val annotation = range.item) {
                 is StringAnnotation if (annotation.value == StrongAnnotation) -> {
                     with(range) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end) }
@@ -93,19 +93,19 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      * @see AnnotatedString.plus
      */
     operator fun plus(other: T): T {
-        return createInstance(_annotatedString.plus(other._annotatedString))
+        return transform { it.plus(other.annotatedString) }
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is OudsAnnotatedString<T>) return false
-        if (other._annotatedString != _annotatedString) return false
+        if (other.annotatedString != annotatedString) return false
         return true
     }
 
-    override fun hashCode(): Int = _annotatedString.hashCode()
+    override fun hashCode(): Int = annotatedString.hashCode()
 
-    override fun toString(): String = _annotatedString.toString()
+    override fun toString(): String = annotatedString.toString()
 
     /**
      * Create upper case transformed [OudsAnnotatedString].
@@ -121,7 +121,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   If empty locale list is passed, use the current locale instead.
      * @return An uppercase transformed string.
      */
-    fun toUpperCase(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.toUpperCase(localeList))
+    fun toUpperCase(localeList: LocaleList = LocaleList.current): T = transform { it.toUpperCase(localeList) }
 
     /**
      * Create lower case transformed [OudsAnnotatedString].
@@ -137,7 +137,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   If empty locale list is passed, use the current locale instead.
      * @return A lowercase transformed string.
      */
-    fun toLowerCase(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.toLowerCase(localeList))
+    fun toLowerCase(localeList: LocaleList = LocaleList.current): T = transform { it.toLowerCase(localeList) }
 
     /**
      * Create capitalized [OudsAnnotatedString].
@@ -154,7 +154,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   currently ignored since underlying Kotlin method is experimental.
      * @return A capitalized string.
      */
-    fun capitalize(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.capitalize(localeList))
+    fun capitalize(localeList: LocaleList = LocaleList.current): T = transform { it.capitalize(localeList) }
 
     /**
      * Create decapitalized [OudsAnnotatedString].
@@ -171,12 +171,16 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *   locale is currently ignored since underlying Kotlin method is experimental.
      * @return A decapitalized string.
      */
-    fun decapitalize(localeList: LocaleList = LocaleList.current): T = createInstance(_annotatedString.decapitalize(localeList))
+    fun decapitalize(localeList: LocaleList = LocaleList.current): T = transform { it.decapitalize(localeList) }
 
-    private fun createInstance(annotatedString: AnnotatedString): T {
-        @Suppress("UNCHECKED_CAST")
-        return createOudsAnnotatedString(annotatedString, this::class.java as Class<T>)
-    }
+    /**
+     * Transforms the content of this annotated string by applying the given transformation function.
+     * Subclasses must implement this to support transformations like toUpperCase(), toLowerCase(), etc.
+     *
+     * @param transform A function that transforms the underlying [AnnotatedString].
+     * @return A new instance of the same type with the transformed content.
+     */
+    protected abstract fun transform(transform: (AnnotatedString) -> AnnotatedString): T
 
     @Composable
     private fun getTextLinkStyles(linkStyle: TextStyle): TextLinkStyles {
@@ -202,9 +206,9 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      * 
      * @param capacity Initial capacity for the internal char buffer.
      */
-    open class Builder<T> internal constructor(capacity: Int, private val clazz: Class<T>) : Appendable where T : OudsAnnotatedString<T> {
+    abstract class Builder<T> internal constructor(capacity: Int) : Appendable where T : OudsAnnotatedString<T> {
 
-        private val builder = AnnotatedString.Builder(capacity)
+        protected val builder = AnnotatedString.Builder(capacity)
 
         /**
          * Appends the given [String] to this [Builder].
@@ -229,7 +233,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         override fun append(text: CharSequence?): Builder<T> = apply {
             when (text) {
                 // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
-                is OudsAnnotatedString<*> -> builder.append(text._annotatedString.filterSupportedAnnotations())
+                is OudsAnnotatedString<*> -> builder.append(text.annotatedString.filterSupportedAnnotations())
                 is AnnotatedString -> builder.append(text.filterSupportedAnnotations())
                 else -> builder.append(text)
             }
@@ -253,7 +257,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         override fun append(text: CharSequence?, start: Int, end: Int): Builder<T> = apply {
             when (text) {
                 // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
-                is OudsAnnotatedString<*> -> builder.append(text._annotatedString.filterSupportedAnnotations(), start, end)
+                is OudsAnnotatedString<*> -> builder.append(text.annotatedString.filterSupportedAnnotations(), start, end)
                 is AnnotatedString -> builder.append(text.filterSupportedAnnotations(), start, end)
                 else -> builder.append(text, start, end)
             }
@@ -268,12 +272,11 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
         /**
          * Constructs an [OudsAnnotatedString] based on the configurations applied to the [Builder].
+         * Subclasses must implement this to provide the correct instance type.
          * 
          * @return The constructed annotated string.
          */
-        open fun toAnnotatedString(): T {
-            return createOudsAnnotatedString(builder.toAnnotatedString(), clazz)
-        }
+        abstract fun toAnnotatedString(): T
 
         protected fun addStrongImpl(start: Int, end: Int) {
             builder.addStrongAnnotation(start, end)
@@ -499,21 +502,9 @@ inline fun <R : Any> OudsAnnotatedString.LinkBuilder.withLink(link: OudsLinkAnno
     }
 }
 
-internal inline fun <T, reified U> buildOudsAnnotatedString(noinline builder: (U).() -> Unit): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
-    return buildOudsAnnotatedString(U::class.java, builder)
-}
-
-@PublishedApi
-internal fun <T, U> buildOudsAnnotatedString(
-    builderClass: Class<T>,
-    builder: (T).() -> Unit
-): U where T : OudsAnnotatedString.Builder<U>, U : OudsAnnotatedString<U> {
-    return builderClass.getConstructor()
-        .newInstance()
-        .apply(builder)
-        .toAnnotatedString()
-}
-
-private fun <T> createOudsAnnotatedString(annotatedString: AnnotatedString, clazz: Class<T>): T where T : OudsAnnotatedString<T> {
-    return clazz.getConstructor(AnnotatedString::class.java).newInstance(annotatedString)
+internal inline fun <T, U> buildOudsAnnotatedString(
+    builderFactory: () -> U,
+    builder: (U).() -> Unit
+): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
+    return builderFactory().apply(builder).toAnnotatedString()
 }

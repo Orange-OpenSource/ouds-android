@@ -33,6 +33,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.jvm.JvmName
 
 internal fun interactionValuesIndication(vararg interactionValues: InteractionValue<*, *>): IndicationNodeFactory =
     InteractionValuesIndicationNodeFactory(values = interactionValues.toList())
