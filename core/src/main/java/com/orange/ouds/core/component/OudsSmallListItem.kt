@@ -283,8 +283,8 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(painter, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
 
@@ -301,8 +301,8 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(imageVector, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
 
@@ -319,8 +319,8 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(bitmap, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
     }
@@ -432,8 +432,8 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(painter, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
 
@@ -450,8 +450,8 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(imageVector, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
 
@@ -468,8 +468,8 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(bitmap, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner)
     }

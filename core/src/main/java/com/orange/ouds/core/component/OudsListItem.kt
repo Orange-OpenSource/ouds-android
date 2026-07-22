@@ -521,6 +521,26 @@ object OudsListItemDefaults {
      * Default navigation indicator of an [OudsListItem].
      */
     val Indicator = OudsListItemIndicator.Next
+
+    /**
+     * Default size of an [OudsListItem] icon.
+     */
+    val IconSize = OudsListItemIconSize.Medium
+
+    /**
+     * Default size of an [OudsListItem] image.
+     */
+    val ImageSize = OudsListItemImageSize.Medium
+
+    /**
+     * Default ratio of an [OudsListItem] image.
+     */
+    val ImageRatio = OudsListItemImageRatio.Square
+
+    /**
+     * Default content scale of an [OudsListItem] image.
+     */
+    val ImageContentScale = ContentScale.Fit
 }
 
 /**
@@ -884,7 +904,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Info)
+        class Info(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Info)
 
         /**
          * Creates an instance of [OudsListItemLeading.Icon] representing a negative status.
@@ -892,7 +912,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Negative)
+        class Negative(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Negative)
 
         /**
          * Creates an instance of [OudsListItemLeading.Icon] representing a positive status.
@@ -900,7 +920,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Positive)
+        class Positive(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Positive)
 
         /**
          * Creates an instance of [OudsListItemLeading.Icon] representing a warning status.
@@ -908,7 +928,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Warning)
+        class Warning(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Warning)
     }
 
     /**
@@ -937,9 +957,9 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            size: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
@@ -957,9 +977,9 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            size: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
@@ -977,9 +997,9 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            size: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
     }
@@ -1014,7 +1034,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
+            size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ painter as Any }, { contentDescription }, tinted, size, null)
 
@@ -1031,7 +1051,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
+            size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ imageVector as Any }, { contentDescription }, tinted, size, null)
 
@@ -1048,7 +1068,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
+            size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
@@ -1066,7 +1086,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Info)
+        class Info(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Info)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Icon] representing a negative status.
@@ -1074,7 +1094,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Negative)
+        class Negative(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Negative)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Icon] representing a positive status.
@@ -1082,7 +1102,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Positive)
+        class Positive(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Positive)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Icon] representing a warning status.
@@ -1090,7 +1110,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param size Size of the icon among [OudsListItemIconSize] values.
          */
-        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Warning)
+        class Warning(size: OudsListItemIconSize = OudsListItemDefaults.IconSize) : Icon(size, OudsListItemIconStatus.Warning)
     }
 
     /**
@@ -1119,9 +1139,9 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            size: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
@@ -1139,9 +1159,9 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            size: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
@@ -1159,9 +1179,9 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemImageSize = OudsListItemImageSize.Medium,
-            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit,
+            size: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
+            ratio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
+            contentScale: ContentScale = OudsListItemDefaults.ImageContentScale,
             roundedCorner: Boolean = false
         ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
     }
