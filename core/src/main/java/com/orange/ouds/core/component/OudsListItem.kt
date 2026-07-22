@@ -105,6 +105,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticListItemSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
@@ -126,7 +127,8 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Default,
@@ -144,7 +146,8 @@ fun OudsListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
-        card = false
+        card = false,
+        interactionSource = interactionSource
     )
 }
 
@@ -241,7 +244,7 @@ internal fun OudsListItem(
     boldLabel: Boolean,
     enabled: Boolean,
     card: Boolean,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource?
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()

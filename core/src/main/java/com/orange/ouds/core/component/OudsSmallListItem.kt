@@ -59,6 +59,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the small list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
@@ -78,6 +79,7 @@ fun OudsSmallListItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -95,7 +97,8 @@ fun OudsSmallListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
-        card = false
+        card = false,
+        interactionSource = interactionSource
     )
 }
 

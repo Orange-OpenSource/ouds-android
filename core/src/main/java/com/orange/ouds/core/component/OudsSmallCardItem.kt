@@ -53,6 +53,7 @@ typealias OudsSmallCardItemTrailing = OudsSmallListItemTrailing
  * @param helperText Optional helper text displayed below the small card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
@@ -71,6 +72,7 @@ fun OudsSmallCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -88,7 +90,8 @@ fun OudsSmallCardItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
-        card = true
+        card = true,
+        interactionSource = interactionSource
     )
 }
 
