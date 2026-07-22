@@ -1288,7 +1288,7 @@ internal fun PreviewOudsNavigationListItem(
 internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing>(
     val label: String,
     val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.CenterVertically,
+    val contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     val overline: String? = null,
     val extraLabel: String? = null,
     val description: String? = null,
