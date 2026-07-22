@@ -287,7 +287,7 @@ internal fun OudsListItem(
                     Icon(
                         modifier = Modifier.size(this@with.size.asset.small),
                         painter = painterResource(indicator.drawableId),
-                        contentDescription = "",
+                        contentDescription = null,
                         tint = indicatorColor(state = state)
                     )
                 } else {
@@ -339,7 +339,7 @@ internal fun OudsListItem(
                     Icon(
                         modifier = Modifier.size(this@with.size.asset.small),
                         painter = painterResource(indicator.drawableId),
-                        contentDescription = "",
+                        contentDescription = null,
                         tint = indicatorColor(state = state)
                     )
                 }
