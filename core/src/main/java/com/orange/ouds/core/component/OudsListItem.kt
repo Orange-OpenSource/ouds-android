@@ -1239,6 +1239,7 @@ internal fun PreviewOudsStaticListItem(
             trailing = trailing,
             divider = decoration.divider,
             background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
+            boldLabel = boldLabel,
             enabled = enabled
         )
     }
@@ -1295,6 +1296,7 @@ internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing
     val trailing: S? = null,
     val decoration: OudsListItemDecoration = OudsListItemDecoration.None(divider = true),
     val helperText: String? = null,
+    val boldLabel: Boolean = false,
     val enabled: Boolean = true
 )
 
@@ -1358,7 +1360,8 @@ private fun <T, S> getListItemPreviewParameterValues(
                 contentAlignment = OudsListItemContentAlignment.Top,
                 leading = leading(index),
                 trailing = trailing(index),
-                decoration = decoration(index)
+                decoration = decoration(index),
+                boldLabel = true
             )
             else -> OudsListItemPreviewParameter(
                 label = label,

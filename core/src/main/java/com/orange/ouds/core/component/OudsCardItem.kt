@@ -197,6 +197,7 @@ internal fun PreviewOudsStaticCardItem(
             contentAlignment = contentAlignment,
             leading = leading,
             trailing = trailing,
+            boldLabel = boldLabel,
             enabled = enabled
         )
     }

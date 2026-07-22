@@ -235,6 +235,7 @@ internal fun PreviewOudsNavigationSmallCardItem(
                 contentAlignment = contentAlignment,
                 leading = leading,
                 trailing = trailing,
+                boldLabel = boldLabel,
                 enabled = enabled
             )
         }
