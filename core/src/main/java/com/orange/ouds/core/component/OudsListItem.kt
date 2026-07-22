@@ -626,7 +626,7 @@ enum class OudsListItemIconSize {
         }
 }
 
-enum class OudsListItemIconStatus(
+internal enum class OudsListItemIconStatus(
     val painterProvider: @Composable () -> Painter,
     val contentDescriptionProvider: (@Composable () -> String) = { "" }
 ) {
