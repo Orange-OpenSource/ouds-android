@@ -140,7 +140,7 @@ fun OudsListItem(
         description = description,
         leading = leading,
         trailing = trailing,
-        decoration = if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider),
+        decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
@@ -214,7 +214,7 @@ fun OudsListItem(
         description = description,
         leading = leading,
         trailing = trailing,
-        decoration = if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider),
+        decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
@@ -506,6 +506,10 @@ private fun topTextContainerPadding(contentAlignment: OudsListItemContentAlignme
             OudsListItemContentAlignment.CenterVertically -> 0.dp
         }
     }
+
+internal fun listItemDecoration(background: Boolean, divider: Boolean): OudsListItemDecoration {
+    return if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider)
+}
 
 /**
  * Default values for [OudsListItem].
