@@ -878,21 +878,37 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
             status
         )
 
-        // TODO KDoc
-        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Info)
+        /**
+         * Creates an instance of [OudsListItemLeading.Icon] representing an info status.
+         * Use for neutral information that requires additional attention.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Info)
 
-        // TODO KDoc
-        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Negative)
+        /**
+         * Creates an instance of [OudsListItemLeading.Icon] representing a negative status.
+         * Use for errors, failures, destructive outcomes or critical problems.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Negative)
 
-        // TODO KDoc
-        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Positive)
+        /**
+         * Creates an instance of [OudsListItemLeading.Icon] representing a positive status.
+         * Use for successful, completed or beneficial states.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Positive)
 
-        // TODO KDoc
-        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Warning)
+        /**
+         * Creates an instance of [OudsListItemLeading.Icon] representing a warning status.
+         * Use for situations that may require caution or user awareness.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Warning)
     }
 
     /**
@@ -1044,21 +1060,37 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
             status
         )
 
-        // TODO KDoc
-        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Info)
+        /**
+         * Creates an instance of [OudsListItemTrailing.Icon] representing an info status.
+         * Use for neutral information that requires additional attention.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Info(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Info)
 
-        // TODO KDoc
-        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Negative)
+        /**
+         * Creates an instance of [OudsListItemTrailing.Icon] representing a negative status.
+         * Use for errors, failures, destructive outcomes or critical problems.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Negative(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Negative)
 
-        // TODO KDoc
-        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Positive)
+        /**
+         * Creates an instance of [OudsListItemTrailing.Icon] representing a positive status.
+         * Use for successful, completed or beneficial states.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Positive(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Positive)
 
-        // TODO KDoc
-        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) :
-            Icon(size, OudsListItemIconStatus.Warning)
+        /**
+         * Creates an instance of [OudsListItemTrailing.Icon] representing a warning status.
+         * Use for situations that may require caution or user awareness.
+         *
+         * @param size Size of the icon among [OudsListItemIconSize] values.
+         */
+        class Warning(size: OudsListItemIconSize = OudsListItemIconSize.Medium) : Icon(size, OudsListItemIconStatus.Warning)
     }
 
     /**

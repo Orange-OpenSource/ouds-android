@@ -233,16 +233,28 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
             status
         )
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemLeading.Icon] representing an info status.
+         * Use for neutral information that requires additional attention.
+         */
         object Info : Icon(OudsListItemIconStatus.Info)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemLeading.Icon] representing a negative status.
+         * Use for errors, failures, destructive outcomes or critical problems.
+         */
         object Negative : Icon(OudsListItemIconStatus.Negative)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemLeading.Icon] representing a positive status.
+         * Use for successful, completed or beneficial states.
+         */
         object Positive : Icon(OudsListItemIconStatus.Positive)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemLeading.Icon] representing a warning status.
+         * Use for situations that may require caution or user awareness.
+         */
         object Warning : Icon(OudsListItemIconStatus.Warning)
     }
 
@@ -255,8 +267,8 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
         size: OudsListItemAssetSize,
         imageFormat: OudsListItemImageRatio,
         contentScale: ContentScale,
-        roundeCorner: Boolean
-    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale, roundeCorner), OudsSmallListItemLeading {
+        roundedCorner: Boolean
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale, roundedCorner), OudsSmallListItemLeading {
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
@@ -370,16 +382,28 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
 
         private constructor(status: OudsListItemIconStatus) : this(status.painterProvider, status.contentDescriptionProvider, true, status)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemTrailing.Icon] representing an info status.
+         * Use for neutral information that requires additional attention.
+         */
         object Info : Icon(OudsListItemIconStatus.Info)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemTrailing.Icon] representing a negative status.
+         * Use for errors, failures, destructive outcomes or critical problems.
+         */
         object Negative : Icon(OudsListItemIconStatus.Negative)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemTrailing.Icon] representing a positive status.
+         * Use for successful, completed or beneficial states.
+         */
         object Positive : Icon(OudsListItemIconStatus.Positive)
 
-        // TODO KDoc
+        /**
+         * Creates an instance of [OudsSmallListItemTrailing.Icon] representing a warning status.
+         * Use for situations that may require caution or user awareness.
+         */
         object Warning : Icon(OudsListItemIconStatus.Warning)
     }
 
@@ -392,8 +416,8 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
         size: OudsListItemAssetSize,
         imageFormat: OudsListItemImageRatio,
         contentScale: ContentScale,
-        roundeCorner: Boolean
-    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale, roundeCorner), OudsSmallListItemTrailing {
+        roundedCorner: Boolean
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale, roundedCorner), OudsSmallListItemTrailing {
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].
