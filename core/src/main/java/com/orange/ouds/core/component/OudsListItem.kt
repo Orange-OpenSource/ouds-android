@@ -928,7 +928,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param size Size of the image among [OudsListItemImageSize] values.
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
@@ -948,7 +948,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param size Size of the image among [OudsListItemImageSize] values.
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
@@ -968,7 +968,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param size Size of the image among [OudsListItemImageSize] values.
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
@@ -1110,7 +1110,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param size Size of the image among [OudsListItemImageSize] values.
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
@@ -1130,7 +1130,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param size Size of the image among [OudsListItemImageSize] values.
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
@@ -1150,7 +1150,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param size Size of the icon among [OudsListItemImageSize] values.
+         * @param size Size of the image among [OudsListItemImageSize] values.
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
