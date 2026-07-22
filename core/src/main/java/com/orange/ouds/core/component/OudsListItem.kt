@@ -413,7 +413,7 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
         }
         is OudsListItemDecoration.OutlinedOnInteraction -> {
             divider = false
-            outlined = state in listOf(OudsListItemState.Enabled, OudsListItemState.Disabled)
+            outlined = state in listOf(OudsListItemState.Hovered, OudsListItemState.Pressed, OudsListItemState.Focused)
         }
         is OudsListItemDecoration.Background,
         is OudsListItemDecoration.BackgroundOnInteraction,
