@@ -51,7 +51,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label The main label of the small list item.
  * @param modifier [Modifier] applied to the layout of the small list item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small list item.
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small list item.

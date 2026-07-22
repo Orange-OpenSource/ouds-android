@@ -46,7 +46,7 @@ typealias OudsSmallCardItemTrailing = OudsSmallListItemTrailing
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.
@@ -108,7 +108,7 @@ fun OudsSmallCardItem(
  * @param modifier [Modifier] applied to the layout of the small card item.
  * @param onClick Callback invoked when the small card item is clicked.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration] (with divider).
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.

@@ -91,7 +91,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label The main label of the list item.
  * @param modifier [Modifier] applied to the layout of the list item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and [extraLabel].
@@ -163,7 +163,7 @@ fun OudsListItem(
  * @param onClick Callback invoked when the list item is clicked.
  * @param modifier [Modifier] applied to the layout of the list item.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.Center].
+ * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and [extraLabel].
@@ -366,14 +366,14 @@ private fun getListItemState(enabled: Boolean, interactionState: InteractionStat
 private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: OudsListItemContentAlignment) = with(OudsTheme.components.listItem) {
     when (size) {
         OudsListItemSize.Small -> when (contentAlignment) {
-            OudsListItemContentAlignment.Center -> padding(vertical = space.paddingBlock.small)
+            OudsListItemContentAlignment.CenterVertically -> padding(vertical = space.paddingBlock.small)
             OudsListItemContentAlignment.Top -> padding(
                 top = space.paddingBlock.topAlignment.topCounterweightSmall,
                 bottom = space.paddingBlock.small
             )
         }
         OudsListItemSize.Default -> when (contentAlignment) {
-            OudsListItemContentAlignment.Center -> padding(vertical = space.paddingBlock.default)
+            OudsListItemContentAlignment.CenterVertically -> padding(vertical = space.paddingBlock.default)
             OudsListItemContentAlignment.Top -> padding(
                 top = space.paddingBlock.topAlignment.topCounterweightDefault,
                 bottom = space.paddingBlock.default
@@ -471,7 +471,7 @@ private fun minHeight(size: OudsListItemSize) = with(OudsTheme.components.listIt
 
 @Composable
 private fun verticalAlignment(contentAlignment: OudsListItemContentAlignment) = when (contentAlignment) {
-    OudsListItemContentAlignment.Center -> Alignment.CenterVertically
+    OudsListItemContentAlignment.CenterVertically -> Alignment.CenterVertically
     OudsListItemContentAlignment.Top -> Alignment.Top
 }
 
@@ -483,7 +483,7 @@ object OudsListItemDefaults {
     /**
      * Default content alignment of an [OudsListItem].
      */
-    val ContentAlignment = OudsListItemContentAlignment.Center
+    val ContentAlignment = OudsListItemContentAlignment.CenterVertically
 
     /**
      * Default navigation indicator of an [OudsListItem].
@@ -513,7 +513,7 @@ enum class OudsListItemContentAlignment {
     /**
      * Elements are vertically centered.
      */
-    Center,
+    CenterVertically,
 
     /**
      * Elements are aligned to the top.
@@ -1179,7 +1179,7 @@ internal fun PreviewOudsNavigationListItem(
 internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing>(
     val label: String,
     val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.Center,
+    val contentAlignment: OudsListItemContentAlignment = OudsListItemContentAlignment.CenterVertically,
     val overline: String? = null,
     val extraLabel: String? = null,
     val description: String? = null,
