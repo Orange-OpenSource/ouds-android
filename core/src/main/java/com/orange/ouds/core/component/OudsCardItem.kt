@@ -206,10 +206,7 @@ internal fun PreviewOudsStaticCardItem(
     }
 }
 
-@Preview(
-    name = "Light",
-    device = OudsPreviewDevice
-)
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsStaticCardItemWithRoundedCorners() {
