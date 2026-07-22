@@ -76,9 +76,9 @@ fun OudsSmallCardItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
-        nullableOnClick = null,
+        onClick = null,
         modifier = modifier,
-        nullableIndicator = null,
+        indicator = null,
         contentAlignment = contentAlignment,
         overline = null,
         extraLabel = null,
@@ -141,9 +141,9 @@ fun OudsSmallCardItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
-        nullableOnClick = onClick,
+        onClick = onClick,
         modifier = modifier,
-        nullableIndicator = indicator,
+        indicator = indicator,
         contentAlignment = contentAlignment,
         overline = null,
         extraLabel = null,

@@ -83,9 +83,9 @@ fun OudsSmallListItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
-        nullableOnClick = null,
+        onClick = null,
         modifier = modifier,
-        nullableIndicator = null, contentAlignment = contentAlignment,
+        indicator = null, contentAlignment = contentAlignment,
         overline = null,
         extraLabel = null,
         description = description,
@@ -152,9 +152,9 @@ fun OudsSmallListItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
-        nullableOnClick = onClick,
+        onClick = onClick,
         modifier = modifier,
-        nullableIndicator = indicator,
+        indicator = indicator,
         contentAlignment = contentAlignment,
         overline = null,
         extraLabel = null,

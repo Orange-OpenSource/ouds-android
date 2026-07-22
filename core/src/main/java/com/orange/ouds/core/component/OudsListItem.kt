@@ -128,9 +128,9 @@ fun OudsListItem(
     OudsListItem(
         size = OudsListItemSize.Default,
         label = label,
-        nullableOnClick = null,
+        onClick = null,
         modifier = modifier,
-        nullableIndicator = null,
+        indicator = null,
         contentAlignment = contentAlignment,
         overline = overline,
         extraLabel = extraLabel,
@@ -202,9 +202,9 @@ fun OudsListItem(
     OudsListItem(
         size = OudsListItemSize.Default,
         label = label,
-        nullableOnClick = onClick,
+        onClick = onClick,
         modifier = modifier,
-        nullableIndicator = indicator,
+        indicator = indicator,
         contentAlignment = contentAlignment,
         overline = overline,
         extraLabel = extraLabel,
@@ -224,9 +224,9 @@ fun OudsListItem(
 internal fun OudsListItem(
     size: OudsListItemSize,
     label: String,
-    nullableOnClick: (() -> Unit)?,
+    onClick: (() -> Unit)?,
     modifier: Modifier,
-    nullableIndicator: OudsListItemIndicator?,
+    indicator: OudsListItemIndicator?,
     contentAlignment: OudsListItemContentAlignment,
     overline: String?,
     extraLabel: String?,
@@ -248,9 +248,9 @@ internal fun OudsListItem(
         val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
         val shape = RoundedCornerShape(borderRadius)
 
-        val clickableModifier = if (nullableOnClick != null) {
+        val clickableModifier = if (onClick != null) {
             Modifier.clickable(
-                onClick = nullableOnClick,
+                onClick = onClick,
                 enabled = enabled,
                 interactionSource = interactionSource
             )
@@ -273,10 +273,10 @@ internal fun OudsListItem(
                 horizontalArrangement = Arrangement.spacedBy(space.columnGap),
                 verticalAlignment = verticalAlignment(contentAlignment)
             ) {
-                if (nullableIndicator == OudsListItemIndicator.Previous) {
+                if (indicator == OudsListItemIndicator.Previous) {
                     Icon(
                         modifier = Modifier.size(this@with.size.asset.small),
-                        painter = painterResource(nullableIndicator.drawableId),
+                        painter = painterResource(indicator.drawableId),
                         contentDescription = "",
                         tint = indicatorColor(state = state)
                     )
@@ -325,10 +325,10 @@ internal fun OudsListItem(
                     }
                 }
 
-                if (nullableIndicator != null && nullableIndicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
+                if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
                     Icon(
                         modifier = Modifier.size(this@with.size.asset.small),
-                        painter = painterResource(nullableIndicator.drawableId),
+                        painter = painterResource(indicator.drawableId),
                         contentDescription = "",
                         tint = indicatorColor(state = state)
                     )
