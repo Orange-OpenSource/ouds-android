@@ -300,7 +300,7 @@ internal fun OudsListItem(
                 }
 
                 Column(modifier = Modifier.weight(1f)) {
-                    overline?.let {
+                    if (!overline.isNullOrBlank()) {
                         Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
                     }
                     Text(
