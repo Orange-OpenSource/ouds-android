@@ -39,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Shape
@@ -725,7 +726,8 @@ open class OudsListItemImage internal constructor(
     contentDescription: String,
     internal val size: OudsListItemAssetSize,
     override val ratio: OudsListItemImageRatio,
-    contentScale: ContentScale
+    contentScale: ContentScale,
+    internal val roundedCorner: Boolean
 ) : OudsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = contentScale), OudsListItemLeadingTrailing.Image {
 
     @Composable
@@ -734,6 +736,14 @@ open class OudsListItemImage internal constructor(
             modifier = modifier
                 .height(size.value)
                 .width(size.value * ratio.value)
+                .run {
+                    if (roundedCorner) {
+                        clip(RoundedCornerShape(OudsTheme.components.listItem.border.radius.mediaRounded))
+                    } else {
+                        this
+                    }
+                }
+
         )
     }
 }
@@ -874,8 +884,9 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         contentDescription: String,
         size: OudsListItemAssetSize,
         ratio: OudsListItemImageRatio,
-        contentScale: ContentScale
-    ) : OudsListItemImage(graphicsObject, contentDescription, size, ratio, contentScale), OudsListItemLeading {
+        contentScale: ContentScale,
+        roundedCorner: Boolean
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, ratio, contentScale, roundedCorner), OudsListItemLeading {
 
         /**
          * Creates an instance of [OudsListItemLeading.Image].
@@ -886,14 +897,16 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
+         * @param roundedCorner Controls whether the image is displayed with square or rounded corners. False by default.
          */
         constructor(
             painter: Painter,
             contentDescription: String,
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit
-        ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale)
+            contentScale: ContentScale = ContentScale.Fit,
+            roundedCorner: Boolean = false
+        ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsListItemLeading.Image].
@@ -904,14 +917,16 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
+         * @param roundedCorner Controls whether the image is displayed with square or rounded corners. False by default.
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit
-        ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale)
+            contentScale: ContentScale = ContentScale.Fit,
+            roundedCorner: Boolean = false
+        ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsListItemLeading.Image].
@@ -922,14 +937,16 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
+         * @param roundedCorner Controls whether the image is displayed with square or rounded corners. False by default.
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit
-        ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale)
+            contentScale: ContentScale = ContentScale.Fit,
+            roundedCorner: Boolean = false
+        ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
     }
 }
 
@@ -1033,8 +1050,9 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         contentDescription: String,
         size: OudsListItemAssetSize,
         ratio: OudsListItemImageRatio,
-        contentScale: ContentScale
-    ) : OudsListItemImage(graphicsObject, contentDescription, size, ratio, contentScale), OudsListItemTrailing {
+        contentScale: ContentScale,
+        roundedCorner: Boolean
+    ) : OudsListItemImage(graphicsObject, contentDescription, size, ratio, contentScale, roundedCorner), OudsListItemTrailing {
 
         /**
          * Creates an instance of [OudsListItemTrailing.Image].
@@ -1045,14 +1063,16 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
+         * @param roundedCorner Controls whether the image is displayed with square or rounded corners. False by default.
          */
         constructor(
             painter: Painter,
             contentDescription: String,
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit
-        ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale)
+            contentScale: ContentScale = ContentScale.Fit,
+            roundedCorner: Boolean = false
+        ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Image].
@@ -1063,14 +1083,16 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
+         * @param roundedCorner Controls whether the image is displayed with square or rounded corners. False by default.
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit
-        ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale)
+            contentScale: ContentScale = ContentScale.Fit,
+            roundedCorner: Boolean = false
+        ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Image].
@@ -1081,14 +1103,16 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
+         * @param roundedCorner Controls whether the image is displayed with square or rounded corners. False by default.
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
-            contentScale: ContentScale = ContentScale.Fit
-        ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale)
+            contentScale: ContentScale = ContentScale.Fit,
+            roundedCorner: Boolean = false
+        ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
     }
 
     /**
@@ -1213,7 +1237,7 @@ internal val listItemPreviewParameterLeading: (Int) -> OudsListItemLeading? = { 
     when (index) {
         0 -> OudsListItemLeading.Icon.Info()
         1 -> OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
-        2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageRatio.Square)
+        2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageRatio.Square, roundedCorner = true)
         else -> null
     }
 }
