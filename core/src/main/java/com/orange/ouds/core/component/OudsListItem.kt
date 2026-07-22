@@ -1210,7 +1210,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
          * @param label Label displayed in trailing.
          * @param extraLabel Label displayed below the main label.
          */
-        constructor(label: String, extraLabel: String? = null) : this(label, OudsListItemTextStyle.Label, extraLabel)
+        constructor(label: String, extraLabel: String) : this(label, OudsListItemTextStyle.Label, extraLabel)
     }
 }
 
