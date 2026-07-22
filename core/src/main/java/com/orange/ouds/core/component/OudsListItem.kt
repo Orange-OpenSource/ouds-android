@@ -616,11 +616,10 @@ internal enum class OudsListItemAssetSize {
 enum class OudsListItemIconSize {
     Medium, Large;
 
-    internal val assetSize: OudsListItemAssetSize
-        get() = when (this) {
-            Medium -> OudsListItemAssetSize.Medium
-            Large -> OudsListItemAssetSize.Large
-        }
+    internal fun toAssetSize() = when (this) {
+        Medium -> OudsListItemAssetSize.Medium
+        Large -> OudsListItemAssetSize.Large
+    }
 }
 
 internal enum class OudsListItemIconStatus(
@@ -685,12 +684,11 @@ enum class OudsListItemImageRatio {
 enum class OudsListItemImageSize {
     Medium, Large, ExtraLarge;
 
-    internal val assetSize: OudsListItemAssetSize
-        get() = when (this) {
-            Medium -> OudsListItemAssetSize.Medium
-            Large -> OudsListItemAssetSize.Large
-            ExtraLarge -> OudsListItemAssetSize.ExtraLarge
-        }
+    internal fun toAssetSize() = when (this) {
+        Medium -> OudsListItemAssetSize.Medium
+        Large -> OudsListItemAssetSize.Large
+        ExtraLarge -> OudsListItemAssetSize.ExtraLarge
+    }
 }
 
 enum class OudsListItemTextStyle {
@@ -790,7 +788,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         override val tinted: Boolean,
         size: OudsListItemIconSize,
         status: OudsListItemIconStatus?
-    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, size.assetSize, status), OudsListItemLeading {
+    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, size.toAssetSize(), status), OudsListItemLeading {
 
         /**
          * Creates an instance of [OudsListItemLeading.Icon].
@@ -895,7 +893,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(painter, contentDescription, size.assetSize, ratio, contentScale)
+        ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale)
 
         /**
          * Creates an instance of [OudsListItemLeading.Image].
@@ -913,7 +911,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(imageVector, contentDescription, size.assetSize, ratio, contentScale)
+        ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale)
 
         /**
          * Creates an instance of [OudsListItemLeading.Image].
@@ -931,7 +929,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(bitmap, contentDescription, size.assetSize, ratio, contentScale)
+        ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale)
     }
 }
 
@@ -949,7 +947,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         override val tinted: Boolean,
         size: OudsListItemIconSize,
         status: OudsListItemIconStatus?
-    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, size.assetSize, status), OudsListItemTrailing {
+    ) : OudsListItemIcon(graphicsObjectProvider, contentDescriptionProvider, tinted, size.toAssetSize(), status), OudsListItemTrailing {
 
         /**
          * Creates an instance of [OudsListItemTrailing.Icon].
@@ -1054,7 +1052,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(painter, contentDescription, size.assetSize, ratio, contentScale)
+        ) : this(painter, contentDescription, size.toAssetSize(), ratio, contentScale)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Image].
@@ -1072,7 +1070,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(imageVector, contentDescription, size.assetSize, ratio, contentScale)
+        ) : this(imageVector, contentDescription, size.toAssetSize(), ratio, contentScale)
 
         /**
          * Creates an instance of [OudsListItemTrailing.Image].
@@ -1090,7 +1088,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
             size: OudsListItemImageSize = OudsListItemImageSize.Medium,
             ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(bitmap, contentDescription, size.assetSize, ratio, contentScale)
+        ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale)
     }
 
     /**
