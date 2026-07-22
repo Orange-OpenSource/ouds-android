@@ -582,16 +582,13 @@ internal enum class OudsListItemState {
 }
 
 sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
-    sealed interface Asset : OudsListItemLeadingTrailing {
-        val size: OudsListItemAssetSize
-    }
-
-    interface Icon : Asset {
+    
+    interface Icon : OudsListItemLeadingTrailing {
         @ConsistentCopyVisibility
         data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
-    interface Image : Asset {
+    interface Image : OudsListItemLeadingTrailing {
         val format: OudsListItemImageFormat
     }
 
@@ -601,7 +598,7 @@ sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
     }
 }
 
-enum class OudsListItemAssetSize {
+internal enum class OudsListItemAssetSize {
     Small, Medium, Large, ExtraLarge;
 
     val value: Dp
@@ -619,7 +616,7 @@ enum class OudsListItemAssetSize {
 enum class OudsListItemIconSize {
     Medium, Large;
 
-    val assetSize: OudsListItemAssetSize
+    internal val assetSize: OudsListItemAssetSize
         get() = when (this) {
             Medium -> OudsListItemAssetSize.Medium
             Large -> OudsListItemAssetSize.Large
@@ -678,7 +675,7 @@ enum class OudsListItemImageFormat {
 enum class OudsListItemImageSize {
     Medium, Large, ExtraLarge;
 
-    val assetSize: OudsListItemAssetSize
+    internal val assetSize: OudsListItemAssetSize
         get() = when (this) {
             Medium -> OudsListItemAssetSize.Medium
             Large -> OudsListItemAssetSize.Large
@@ -694,7 +691,7 @@ open class OudsListItemIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
     override val tinted: Boolean,
-    override val size: OudsListItemAssetSize,
+    internal val size: OudsListItemAssetSize,
     internal val status: OudsListItemIconStatus?
 ) : OudsComponentIcon<OudsListItemLeadingTrailing.Icon.ExtraParameters, OudsListItemIcon>(
     OudsListItemLeadingTrailing.Icon.ExtraParameters::class.java,
@@ -718,7 +715,7 @@ open class OudsListItemIcon internal constructor(
 open class OudsListItemImage internal constructor(
     graphicsObject: Any,
     contentDescription: String,
-    override val size: OudsListItemAssetSize,
+    internal val size: OudsListItemAssetSize,
     override val format: OudsListItemImageFormat,
     contentScale: ContentScale
 ) : OudsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = contentScale), OudsListItemLeadingTrailing.Image {
