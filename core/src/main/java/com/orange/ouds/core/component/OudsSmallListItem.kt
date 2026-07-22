@@ -541,6 +541,8 @@ internal fun PreviewOudsNavigationSmallListItem(
                 contentAlignment = contentAlignment,
                 leading = leading,
                 trailing = trailing,
+                divider = divider,
+                background = background,
                 enabled = enabled
             )
         }
