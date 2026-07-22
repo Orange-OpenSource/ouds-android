@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsCardItem
 import com.orange.ouds.core.component.OudsListItemDecoration
-import com.orange.ouds.core.component.OudsListItemImageFormat
+import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
 import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemLeading
@@ -129,7 +129,7 @@ internal fun OudsCardItemWithImageSample() {
             painter = CheckerboardPainter,
             contentDescription = "Suite image",
             size = OudsListItemImageSize.Large,
-            format = OudsListItemImageFormat.Square
+            ratio = OudsListItemImageRatio.Square
         ),
         trailing = OudsListItemTrailing.Text(label = "€450/night", style = OudsListItemTextStyle.LabelStrong),
         decoration = OudsListItemDecoration.Outlined

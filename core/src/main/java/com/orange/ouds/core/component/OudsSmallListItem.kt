@@ -253,7 +253,7 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
         graphicsObject: Any,
         contentDescription: String,
         size: OudsListItemAssetSize,
-        imageFormat: OudsListItemImageFormat,
+        imageFormat: OudsListItemImageRatio,
         contentScale: ContentScale
     ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale), OudsSmallListItemLeading {
 
@@ -262,48 +262,48 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemImageFormat] values.
+         * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
+            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(painter, contentDescription, SmallListItemAssetSize, format, contentScale)
+        ) : this(painter, contentDescription, SmallListItemAssetSize, ratio, contentScale)
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemImageFormat] values.
+         * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
+            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(imageVector, contentDescription, SmallListItemAssetSize, format, contentScale)
+        ) : this(imageVector, contentDescription, SmallListItemAssetSize, ratio, contentScale)
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemImageFormat] values.
+         * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
+            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(bitmap, contentDescription, SmallListItemAssetSize, format, contentScale)
+        ) : this(bitmap, contentDescription, SmallListItemAssetSize, ratio, contentScale)
     }
 }
 
@@ -383,7 +383,7 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
         graphicsObject: Any,
         contentDescription: String,
         size: OudsListItemAssetSize,
-        imageFormat: OudsListItemImageFormat,
+        imageFormat: OudsListItemImageRatio,
         contentScale: ContentScale
     ) : OudsListItemImage(graphicsObject, contentDescription, size, imageFormat, contentScale), OudsSmallListItemTrailing {
 
@@ -392,48 +392,48 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
          *
          * @param painter Painter of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemImageFormat] values.
+         * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [painter].
          */
         constructor(
             painter: Painter,
             contentDescription: String,
-            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
+            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(painter, contentDescription, SmallListItemAssetSize, format, contentScale)
+        ) : this(painter, contentDescription, SmallListItemAssetSize, ratio, contentScale)
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].
          *
          * @param imageVector Image vector of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemImageFormat] values.
+         * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [imageVector].
          */
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
+            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(imageVector, contentDescription, SmallListItemAssetSize, format, contentScale)
+        ) : this(imageVector, contentDescription, SmallListItemAssetSize, ratio, contentScale)
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].
          *
          * @param bitmap Image bitmap of the image.
          * @param contentDescription The content description associated with this image.
-         * @param format Format of the image among [OudsListItemImageFormat] values.
+         * @param ratio Ratio of the image among [OudsListItemImageRatio] values.
          * @param contentScale Scale parameter used to determine the aspect ratio scaling to be used if the bounds are a different size from the intrinsic size
          * of the [bitmap].
          */
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            format: OudsListItemImageFormat = OudsListItemImageFormat.Square,
+            ratio: OudsListItemImageRatio = OudsListItemImageRatio.Square,
             contentScale: ContentScale = ContentScale.Fit
-        ) : this(bitmap, contentDescription, SmallListItemAssetSize, format, contentScale)
+        ) : this(bitmap, contentDescription, SmallListItemAssetSize, ratio, contentScale)
     }
 
     /**
@@ -516,7 +516,7 @@ internal val smallListItemPreviewParameterLeading: (Int) -> OudsSmallListItemLea
     when (index) {
         0 -> OudsSmallListItemLeading.Icon.Info
         1 -> OudsSmallListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
-        2 -> OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageFormat.Panoramic)
+        2 -> OudsSmallListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageRatio.Widescreen)
         else -> null
     }
 }
@@ -525,7 +525,7 @@ internal val smallListItemPreviewParameterTrailing: (Int) -> OudsSmallListItemTr
     when (index) {
         0 -> OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         1 -> OudsSmallListItemTrailing.Text(label = "Label", style = OudsListItemTextStyle.LabelStrong)
-        2 -> OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageFormat.Square)
+        2 -> OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageRatio.Square)
         else -> null
     }
 }

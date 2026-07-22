@@ -25,7 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsListItemDecoration
-import com.orange.ouds.core.component.OudsListItemImageFormat
+import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsSmallCardItem
@@ -108,7 +108,7 @@ internal fun OudsSmallCardItemWithImageSample() {
         leading = OudsSmallListItemLeading.Image(
             painter = CheckerboardPainter,
             contentDescription = "Offer image",
-            format = OudsListItemImageFormat.Square
+            ratio = OudsListItemImageRatio.Square
         ),
         trailing = OudsSmallListItemTrailing.Text(label = "-50%", style = OudsListItemTextStyle.LabelStrong),
         decoration = OudsListItemDecoration.Outlined

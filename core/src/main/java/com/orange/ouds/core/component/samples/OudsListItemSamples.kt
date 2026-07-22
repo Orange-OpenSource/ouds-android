@@ -25,7 +25,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsListItem
-import com.orange.ouds.core.component.OudsListItemImageFormat
+import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
 import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemLeading
@@ -131,7 +131,7 @@ internal fun OudsListItemWithImageSample() {
             painter = CheckerboardPainter,
             contentDescription = "Product image",
             size = OudsListItemImageSize.Large,
-            format = OudsListItemImageFormat.Square
+            ratio = OudsListItemImageRatio.Square
         ),
         trailing = OudsListItemTrailing.Text(label = "€29.99", style = OudsListItemTextStyle.Label)
     )

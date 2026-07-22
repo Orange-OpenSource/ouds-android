@@ -23,7 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsListItemImageFormat
+import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsSmallListItem
@@ -109,7 +109,7 @@ internal fun OudsSmallListItemWithImageSample() {
         leading = OudsSmallListItemLeading.Image(
             painter = CheckerboardPainter,
             contentDescription = "Content image",
-            format = OudsListItemImageFormat.Square
+            ratio = OudsListItemImageRatio.Square
         ),
         trailing = OudsSmallListItemTrailing.Text(label = "New", style = OudsListItemTextStyle.LabelStrong)
     )
