@@ -37,7 +37,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * A static card item can be used to present read-only information in a contained format.
  * Cards are ideal for displaying grouped content like product cards, destination highlights, or
- * feature summaries. The card supports various decorations outlined, background with ou without divider.
+ * feature summaries. The card supports various decorations outlined, background with or without divider.
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
@@ -105,7 +105,7 @@ fun OudsCardItem(
  * It can be used for navigable product cards, destination selections, or feature highlights.
  * The indicator type can be customized to show forward navigation, backward navigation, or
  * external links. The card supports various decorations to adapt to different visual styles:
- * outlined, background with ou without divider.
+ * outlined, background with or without divider.
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
