@@ -41,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -254,7 +255,7 @@ internal fun OudsListItem(
 
     with(OudsTheme.components.listItem) {
         val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
-        val shape = RoundedCornerShape(borderRadius)
+        val shape = shape(borderRadius)
 
         val clickableModifier = if (onClick != null) {
             Modifier.clickable(
@@ -275,7 +276,7 @@ internal fun OudsListItem(
                     .fillMaxWidth()
                     .heightIn(min = minHeight(size))
                     .background(color = backgroundColor.value, shape = shape)
-                    .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
+                    .border(state = state, decoration = decoration, shape = shape, borderRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
                     .containerPadding(size = size, contentAlignment = contentAlignment)
                     .semantics(mergeDescendants = true) { },
@@ -403,7 +404,7 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
 }
 
 @Composable
-private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, cornerRadius: Dp, outlineColor: Color): Modifier {
+private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, shape: Shape, borderRadius: Dp, outlineColor: Color): Modifier {
     val outlined: Boolean
     when (decoration) {
         is OudsListItemDecoration.Outlined -> {
@@ -421,12 +422,14 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
     val width = OudsTheme.borders.width.default.takeUnlessHairline
 
     return when {
-        width != null && outlined -> border(width = width, color = outlineColor, shape = RoundedCornerShape(cornerRadius))
-        width != null && decoration.divider -> bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
+        width != null && outlined -> border(width = width, color = outlineColor, shape = shape)
+        width != null && decoration.divider -> bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = borderRadius)
         else -> this
     }
-
 }
+
+@Composable
+private fun shape(borderRadius: Dp) = RoundedCornerShape(borderRadius)
 
 @Composable
 private fun outlineBorderColor(state: OudsListItemState) = with(OudsTheme.colorScheme.action) {
