@@ -421,8 +421,8 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
     val width = OudsTheme.borders.width.default.takeUnlessHairline
 
     return when {
-        width != null && outlined -> this.border(width = width, color = outlineColor, shape = RoundedCornerShape(cornerRadius))
-        width != null && decoration.divider -> this.bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
+        width != null && outlined -> border(width = width, color = outlineColor, shape = RoundedCornerShape(cornerRadius))
+        width != null && decoration.divider -> bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
         else -> this
     }
 
