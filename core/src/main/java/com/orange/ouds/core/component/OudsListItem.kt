@@ -404,21 +404,17 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
 
 @Composable
 private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, cornerRadius: Dp, outlineColor: Color): Modifier {
-    val divider: Boolean
     val outlined: Boolean
     when (decoration) {
         is OudsListItemDecoration.Outlined -> {
-            divider = false
             outlined = true
         }
         is OudsListItemDecoration.OutlinedOnInteraction -> {
-            divider = false
             outlined = state in listOf(OudsListItemState.Hovered, OudsListItemState.Pressed, OudsListItemState.Focused)
         }
         is OudsListItemDecoration.Background,
         is OudsListItemDecoration.BackgroundOnInteraction,
         is OudsListItemDecoration.None -> {
-            divider = decoration.divider
             outlined = false
         }
     }
@@ -426,7 +422,7 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
 
     return when {
         width != null && outlined -> this.border(width = width, color = outlineColor, shape = RoundedCornerShape(cornerRadius))
-        width != null && divider -> this.bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
+        width != null && decoration.divider -> this.bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
         else -> this
     }
 
