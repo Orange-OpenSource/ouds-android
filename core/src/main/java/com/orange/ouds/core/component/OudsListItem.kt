@@ -243,6 +243,14 @@ internal fun OudsListItem(
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getListItemState(enabled = enabled, interactionState = interactionState)
+    val backgroundColor = rememberInteractionColor(interactionState = interactionState) { listItemInteractionState ->
+        val listItemState = getListItemState(enabled = enabled, interactionState = listItemInteractionState)
+        backgroundColor(state = listItemState, decoration = decoration)
+    }
+    val outlineBorderColor = rememberInteractionColor(interactionState = interactionState) { listItemInteractionState ->
+        val listItemState = getListItemState(enabled = enabled, interactionState = listItemInteractionState)
+        outlineBorderColor(state = listItemState)
+    }
 
     with(OudsTheme.components.listItem) {
         val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
@@ -252,7 +260,8 @@ internal fun OudsListItem(
             Modifier.clickable(
                 onClick = onClick,
                 enabled = enabled,
-                interactionSource = interactionSource
+                interactionSource = interactionSource,
+                indication = interactionValuesIndication(backgroundColor, outlineBorderColor)
             )
         } else {
             Modifier
@@ -265,8 +274,8 @@ internal fun OudsListItem(
                 modifier = clickableModifier
                     .fillMaxWidth()
                     .heightIn(min = minHeight(size))
-                    .background(color = backgroundColor(state = state, decoration = decoration), shape = shape)
-                    .border(state = state, decoration = decoration, cornerRadius = borderRadius)
+                    .background(color = backgroundColor.value, shape = shape)
+                    .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
                     .containerPadding(size = size, contentAlignment = contentAlignment)
                     .semantics(mergeDescendants = true) { },
@@ -394,7 +403,7 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
 }
 
 @Composable
-private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, cornerRadius: Dp): Modifier {
+private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, cornerRadius: Dp, outlineColor: Color): Modifier {
     val divider: Boolean
     val outlined: Boolean
     when (decoration) {
@@ -413,11 +422,10 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
             outlined = false
         }
     }
-    val outlineBorderColor = outlineBorderColor(state)
     val width = OudsTheme.borders.width.default.takeUnlessHairline
 
     return when {
-        width != null && outlined -> this.border(width = width, color = outlineBorderColor, shape = RoundedCornerShape(cornerRadius))
+        width != null && outlined -> this.border(width = width, color = outlineColor, shape = RoundedCornerShape(cornerRadius))
         width != null && divider -> this.bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
         else -> this
     }
