@@ -463,7 +463,6 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                @Suppress("UNCHECKED_CAST")
                 PreviewOudsNavigationCardItemWithRoundedCorners(
                     theme = theme,
                     decoration = parameter as OudsListItemDecoration
@@ -492,7 +491,6 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                @Suppress("UNCHECKED_CAST")
                 PreviewOudsStaticCardItemWithRoundedCorners(
                     theme = theme,
                     decoration = parameter as OudsListItemDecoration
@@ -1386,7 +1384,6 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                @Suppress("UNCHECKED_CAST")
                 PreviewOudsNavigationSmallCardItemWithRoundedCorners(
                     theme = theme,
                     decoration = parameter as OudsListItemDecoration
@@ -1415,7 +1412,6 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                @Suppress("UNCHECKED_CAST")
                 PreviewOudsStaticSmallCardItemWithRoundedCorners(
                     theme = theme,
                     decoration = parameter as OudsListItemDecoration
