@@ -183,6 +183,9 @@ fun OudsListItem(
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
 @Composable
