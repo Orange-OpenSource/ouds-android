@@ -30,9 +30,6 @@ import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
-typealias OudsSmallCardItemLeading = OudsSmallListItemLeading
-typealias OudsSmallCardItemTrailing = OudsSmallListItemTrailing
-
 /**
  * TODO update description when available and add version and guideline link
  *
@@ -67,8 +64,8 @@ fun OudsSmallCardItem(
     contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
     description: String? = null,
-    leading: OudsSmallCardItemLeading? = null,
-    trailing: OudsSmallCardItemTrailing? = null,
+    leading: OudsSmallListItemLeading? = null,
+    trailing: OudsSmallListItemTrailing? = null,
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
@@ -133,8 +130,8 @@ fun OudsSmallCardItem(
     contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
     decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
     description: String? = null,
-    leading: OudsSmallCardItemLeading? = null,
-    trailing: OudsSmallCardItemTrailing? = null,
+    leading: OudsSmallListItemLeading? = null,
+    trailing: OudsSmallListItemTrailing? = null,
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
