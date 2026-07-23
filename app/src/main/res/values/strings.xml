@@ -276,6 +276,7 @@
     <!-- Components: link -->
     <string name="app_components_link_tech" translatable="false">Link</string>
     <string name="app_components_link_description_text">Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.</string>
+    <string name="app_components_link_density_tech" translatable="false">Density</string>
     <string name="app_components_link_previousLayout_tech" translatable="false">Previous</string>
     <string name="app_components_link_nextInternalLayout_tech" translatable="false">Next</string>
     <string name="app_components_link_nextExternalLayout_tech" translatable="false">External</string>

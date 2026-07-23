@@ -34,6 +34,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsLink
+import com.orange.ouds.core.component.OudsLinkDensity
 import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsLinkSize
@@ -76,6 +77,13 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
         )
         CustomizationFilterChips(
             applyTopPadding = true,
+            label = stringResource(R.string.app_components_link_density_tech),
+            chipLabels = OudsLinkDensity.entries.map { it.name },
+            selectedChipIndex = OudsLinkDensity.entries.indexOf(density),
+            onSelectionChange = { index -> density = OudsLinkDensity.entries[index] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
             label = stringResource(R.string.app_components_common_layout_tech),
             chipLabels = LinkDemoState.Layout.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = LinkDemoState.Layout.entries.indexOf(layout),
@@ -106,7 +114,8 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     label = label,
                     onClick = {},
                     enabled = enabled,
-                    size = size
+                    size = size,
+                    density = density
                 )
             }
             LinkDemoState.Layout.TextAndIcon -> {
@@ -119,7 +128,8 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     icon = OudsLinkIcon(painter, tinted = icon == LinkDemoState.Icon.Tinted),
                     onClick = {},
                     enabled = enabled,
-                    size = size
+                    size = size,
+                    density = density
                 )
             }
             LinkDemoState.Layout.IndicatorPrevious,
@@ -135,7 +145,8 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     indicator = indicator,
                     onClick = {},
                     enabled = enabled,
-                    size = size
+                    size = size,
+                    density = density
                 )
             }
         }
@@ -168,6 +179,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                 onClickArgument()
                 enabledArgument(enabled)
                 typedArgument("size", size)
+                typedArgument("density", density)
             }
         }
     }
