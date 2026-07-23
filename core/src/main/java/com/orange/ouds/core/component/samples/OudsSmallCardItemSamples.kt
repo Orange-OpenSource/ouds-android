@@ -15,6 +15,7 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.runtime.Composable
@@ -80,6 +81,22 @@ internal fun OudsNavigationSmallCardItemSample() {
 }
 
 @Composable
+internal fun OudsSmallCardItemWithAllElementsSample() {
+    OudsSmallCardItem(
+        label = "Paris, France",
+        description = "Discover the city of lights with exclusive deals.",
+        leading = OudsSmallListItemLeading.Icon(
+            imageVector = Icons.Outlined.Favorite,
+            contentDescription = "Favorite icon"
+        ),
+        trailing = OudsSmallListItemTrailing.Text(label = "From €299", style = OudsListItemTextStyle.LabelStrong),
+        helperText = "Limited time offer - Book now!",
+        boldLabel = true,
+        decoration = OudsListItemDecoration.Background(divider = true)
+    )
+}
+
+@Composable
 internal fun OudsSmallCardItemWithImageSample() {
     OudsSmallCardItem(
         label = "Special offer",
@@ -119,6 +136,13 @@ private fun PreviewOudsStaticSmallCardItemSample() = OudsPreview {
 private fun PreviewOudsNavigationSmallCardItemSample() = OudsPreview {
     OudsNavigationSmallCardItemSample()
 }
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSmallCardItemWithAllElementsSample() = OudsPreview {
+    OudsSmallCardItemWithAllElementsSample()
+}
+
 
 @PreviewLightDark
 @Composable

@@ -62,6 +62,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithAllElementsSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
@@ -132,6 +133,7 @@ fun OudsSmallListItem(
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithAllElementsSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */

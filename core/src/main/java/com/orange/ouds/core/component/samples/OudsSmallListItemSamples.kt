@@ -14,6 +14,7 @@ package com.orange.ouds.core.component.samples
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
@@ -81,6 +82,23 @@ internal fun OudsNavigationSmallListItemSample() {
 }
 
 @Composable
+internal fun OudsSmallListItemWithAllElementsSample() {
+    OudsSmallListItem(
+        label = "Main label",
+        description = "This is a description that provides additional context.",
+        leading = OudsSmallListItemLeading.Icon(
+            imageVector = Icons.Outlined.Favorite,
+            contentDescription = "Favorite icon"
+        ),
+        trailing = OudsSmallListItemTrailing.Text(label = "99+", style = OudsListItemTextStyle.Label),
+        helperText = "Helper text appears below the item",
+        boldLabel = true,
+        background = true,
+        divider = true
+    )
+}
+
+@Composable
 internal fun OudsSmallListItemWithImageSample() {
     OudsSmallListItem(
         label = "Compact view",
@@ -117,6 +135,12 @@ private fun PreviewOudsStaticSmallListItemSample() = OudsPreview {
 @Composable
 private fun PreviewOudsNavigationSmallListItemSample() = OudsPreview {
     OudsNavigationSmallListItemSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSmallListItemWithAllElementsSample() = OudsPreview {
+    OudsSmallListItemWithAllElementsSample()
 }
 
 @PreviewLightDark
