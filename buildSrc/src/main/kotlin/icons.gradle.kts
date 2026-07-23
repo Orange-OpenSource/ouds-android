@@ -70,6 +70,7 @@ abstract class ImportIconsTask : DefaultTask() {
             "component/checkbox/checkbox-selected.svg",
             "component/checkbox/checkbox-undetermined.svg",
             "component/chip/tick.svg",
+            "component/link/external-link.svg",
             "component/link/next.svg",
             "component/link/previous.svg",
             "component/radio-button/radio-button-selected.svg",
@@ -78,7 +79,6 @@ abstract class ImportIconsTask : DefaultTask() {
 
             // Functional
             "functional/actions/delete-cross-round.svg",
-            "functional/actions/external-link.svg",
             "functional/navigation/form-chevron-left.svg",
             "functional/navigation/menu-grid-ui-round.svg",
             "functional/settings-and-tools/accessibility-hide.svg",

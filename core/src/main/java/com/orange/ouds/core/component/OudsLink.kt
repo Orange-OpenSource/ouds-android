@@ -460,7 +460,7 @@ private fun OudsLink(
                 if (indicator != null && indicator != OudsLinkIndicator.Previous) {
                     val indicatorPainterResId = when (indicator) {
                         OudsLinkIndicator.Next -> OudsTheme.drawableResources.component.link.next
-                        OudsLinkIndicator.External -> OudsTheme.drawableResources.functional.actions.externalLink
+                        OudsLinkIndicator.External -> OudsTheme.drawableResources.component.link.externalLink
                     }
                     OudsLinkIcon(painterResource(indicatorPainterResId)).Content(
                         modifier = Modifier
