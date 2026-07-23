@@ -19,10 +19,6 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsCardItem
@@ -63,41 +59,6 @@ internal fun OudsStaticCardItemSample() {
 
 @Composable
 internal fun OudsNavigationCardItemSample() {
-    val places = listOf("Hotels", "Restaurants", "Activities")
-    var selectedPlace by rememberSaveable { mutableStateOf(places.first()) }
-
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        places.forEach { place ->
-            OudsCardItem(
-                label = place,
-                onClick = { selectedPlace = place },
-                indicator = OudsListItemIndicator.Next,
-                decoration = OudsListItemDecoration.Background(divider = false)
-            )
-        }
-    }
-}
-
-@Composable
-internal fun OudsCardItemWithAllElementsSample() {
-    OudsCardItem(
-        overline = "Featured destination",
-        label = "Paris, France",
-        extraLabel = "Special offer",
-        description = "Discover the city of lights with exclusive deals.",
-        leading = OudsListItemLeading.Icon(
-            imageVector = Icons.Outlined.Favorite,
-            contentDescription = "Favorite icon"
-        ),
-        trailing = OudsListItemTrailing.Text(label = "From €299", style = OudsListItemTextStyle.LabelStrong),
-        helperText = "Limited time offer - Book now!",
-        boldLabel = true,
-        decoration = OudsListItemDecoration.Background(divider = true)
-    )
-}
-
-@Composable
-internal fun OudsCardItemWithIndicatorsSample() {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         OudsCardItem(
             label = "Return to search",
@@ -118,6 +79,24 @@ internal fun OudsCardItemWithIndicatorsSample() {
             decoration = OudsListItemDecoration.Outlined
         )
     }
+}
+
+@Composable
+internal fun OudsCardItemWithAllElementsSample() {
+    OudsCardItem(
+        overline = "Featured destination",
+        label = "Paris, France",
+        extraLabel = "Special offer",
+        description = "Discover the city of lights with exclusive deals.",
+        leading = OudsListItemLeading.Icon(
+            imageVector = Icons.Outlined.Favorite,
+            contentDescription = "Favorite icon"
+        ),
+        trailing = OudsListItemTrailing.Text(label = "From €299", style = OudsListItemTextStyle.LabelStrong),
+        helperText = "Limited time offer - Book now!",
+        boldLabel = true,
+        decoration = OudsListItemDecoration.Background(divider = true)
+    )
 }
 
 @Composable
@@ -166,12 +145,6 @@ private fun PreviewOudsNavigationCardItemSample() = OudsPreview {
 @Composable
 private fun PreviewOudsCardItemWithAllElementsSample() = OudsPreview {
     OudsCardItemWithAllElementsSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsCardItemWithIndicatorsSample() = OudsPreview {
-    OudsCardItemWithIndicatorsSample()
 }
 
 @PreviewLightDark

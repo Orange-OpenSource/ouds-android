@@ -18,10 +18,6 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemIndicator
@@ -65,23 +61,6 @@ internal fun OudsStaticSmallListItemSample() {
 
 @Composable
 internal fun OudsNavigationSmallListItemSample() {
-    val options = listOf("General", "Privacy", "Notifications", "About")
-    var selectedOption by rememberSaveable { mutableStateOf(options.first()) }
-
-    Column {
-        options.forEach { option ->
-            OudsSmallListItem(
-                label = option,
-                onClick = { selectedOption = option },
-                indicator = OudsListItemIndicator.Next,
-                background = option == selectedOption
-            )
-        }
-    }
-}
-
-@Composable
-internal fun OudsSmallListItemWithIndicatorsSample() {
     Column {
         OudsSmallListItem(
             label = "Go back",
@@ -138,12 +117,6 @@ private fun PreviewOudsStaticSmallListItemSample() = OudsPreview {
 @Composable
 private fun PreviewOudsNavigationSmallListItemSample() = OudsPreview {
     OudsNavigationSmallListItemSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsSmallListItemWithIndicatorsSample() = OudsPreview {
-    OudsSmallListItemWithIndicatorsSample()
 }
 
 @PreviewLightDark

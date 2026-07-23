@@ -118,7 +118,6 @@ fun OudsSmallCardItem(
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallCardItemSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithIndicatorsSample
  */
 @ExperimentalOudsApi
 @Composable

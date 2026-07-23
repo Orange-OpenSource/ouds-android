@@ -132,7 +132,6 @@ fun OudsSmallListItem(
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithIndicatorsSample
  */
 @ExperimentalOudsApi
 @Composable

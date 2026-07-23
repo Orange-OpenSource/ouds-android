@@ -19,10 +19,6 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsListItem
 import com.orange.ouds.core.component.OudsListItemImageRatio
@@ -67,18 +63,22 @@ internal fun OudsStaticListItemSample() {
 
 @Composable
 internal fun OudsNavigationListItemSample() {
-    val menuItems = listOf("Profile", "Settings", "Privacy")
-    var selectedItem by rememberSaveable { mutableStateOf(menuItems.first()) }
-
     Column {
-        menuItems.forEach { item ->
-            OudsListItem(
-                label = item,
-                onClick = { selectedItem = item },
-                indicator = OudsListItemIndicator.Next,
-                background = item == selectedItem
-            )
-        }
+        OudsListItem(
+            label = "Back to previous screen",
+            onClick = { /* Navigate back */ },
+            indicator = OudsListItemIndicator.Previous
+        )
+        OudsListItem(
+            label = "Go to next screen",
+            onClick = { /* Navigate forward */ },
+            indicator = OudsListItemIndicator.Next
+        )
+        OudsListItem(
+            label = "Open external link",
+            onClick = { /* Open browser */ },
+            indicator = OudsListItemIndicator.External
+        )
     }
 }
 
@@ -99,27 +99,6 @@ internal fun OudsListItemWithAllElementsSample() {
         background = true,
         divider = true
     )
-}
-
-@Composable
-internal fun OudsListItemWithIndicatorsSample() {
-    Column {
-        OudsListItem(
-            label = "Back to previous screen",
-            onClick = { /* Navigate back */ },
-            indicator = OudsListItemIndicator.Previous
-        )
-        OudsListItem(
-            label = "Go to next screen",
-            onClick = { /* Navigate forward */ },
-            indicator = OudsListItemIndicator.Next
-        )
-        OudsListItem(
-            label = "Open external link",
-            onClick = { /* Open browser */ },
-            indicator = OudsListItemIndicator.External
-        )
-    }
 }
 
 @Composable
@@ -166,12 +145,6 @@ private fun PreviewOudsNavigationListItemSample() = OudsPreview {
 @Composable
 private fun PreviewOudsListItemWithAllElementsSample() = OudsPreview {
     OudsListItemWithAllElementsSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsListItemWithIndicatorsSample() = OudsPreview {
-    OudsListItemWithIndicatorsSample()
 }
 
 @PreviewLightDark

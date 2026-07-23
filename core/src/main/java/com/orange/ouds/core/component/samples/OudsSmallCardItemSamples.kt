@@ -18,10 +18,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsListItemDecoration
@@ -61,23 +57,6 @@ internal fun OudsStaticSmallCardItemSample() {
 
 @Composable
 internal fun OudsNavigationSmallCardItemSample() {
-    val features = listOf("Deals", "New Arrivals", "Popular")
-    var selectedFeature by rememberSaveable { mutableStateOf(features.first()) }
-
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        features.forEach { feature ->
-            OudsSmallCardItem(
-                label = feature,
-                onClick = { selectedFeature = feature },
-                indicator = OudsListItemIndicator.Next,
-                decoration = OudsListItemDecoration.Background(divider = false)
-            )
-        }
-    }
-}
-
-@Composable
-internal fun OudsSmallCardItemWithIndicatorsSample() {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         OudsSmallCardItem(
             label = "Previous",
@@ -139,12 +118,6 @@ private fun PreviewOudsStaticSmallCardItemSample() = OudsPreview {
 @Composable
 private fun PreviewOudsNavigationSmallCardItemSample() = OudsPreview {
     OudsNavigationSmallCardItemSample()
-}
-
-@PreviewLightDark
-@Composable
-private fun PreviewOudsSmallCardItemWithIndicatorsSample() = OudsPreview {
-    OudsSmallCardItemWithIndicatorsSample()
 }
 
 @PreviewLightDark
