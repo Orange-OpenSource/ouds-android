@@ -75,6 +75,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -1291,6 +1292,28 @@ internal fun PreviewOudsNavigationListItem(
                 enabled = enabled
             )
         }
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsNavigationListItemWithUntintedIcon() = PreviewOudsNavigationListItemWithUntintedIcon(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+        OudsListItem(
+            onClick = {},
+            label = "Label",
+            description = "Description",
+            leading = OudsListItemLeading.Icon(
+                painter = rememberRainbowHeartPainter(),
+                contentDescription = "",
+                tinted = false
+            ),
+            background = true,
+        )
     }
 }
 

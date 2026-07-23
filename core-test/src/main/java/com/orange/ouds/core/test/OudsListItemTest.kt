@@ -48,4 +48,10 @@ internal class OudsListItemTest {
             internal fun data() = OudsPreviewableComponent.ListItem.Navigation.parameters
         }
     }
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.ListItem.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }
