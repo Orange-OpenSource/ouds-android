@@ -45,7 +45,7 @@ import com.orange.ouds.core.component.OudsFloatingActionButtonPreviewParameterPr
 import com.orange.ouds.core.component.OudsInlineAlertPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinearProgressIndicatorPreviewParameter
 import com.orange.ouds.core.component.OudsLinearProgressIndicatorPreviewParameterProvider
-import com.orange.ouds.core.component.OudsLinkCompactWindowWidthSizeClassPreviewParameterProvider
+import com.orange.ouds.core.component.OudsLinkCompactDensityPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkSize
@@ -126,7 +126,7 @@ import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLinearProgressIndicator
 import com.orange.ouds.core.component.PreviewOudsLinearProgressIndicatorWithLongHelperText
 import com.orange.ouds.core.component.PreviewOudsLink
-import com.orange.ouds.core.component.PreviewOudsLinkCompactWindowWidthSizeClass
+import com.orange.ouds.core.component.PreviewOudsLinkCompactDensity
 import com.orange.ouds.core.component.PreviewOudsLinkOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsLinkWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsMediumTopAppBar
@@ -826,13 +826,13 @@ interface OudsPreviewableComponent {
             }
         }
 
-        object CompactWindowWidthSizeClass : OudsPreviewableComponent {
+        object CompactDensity : OudsPreviewableComponent {
 
-            override val parameters: List<Any> = OudsLinkCompactWindowWidthSizeClassPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsLinkCompactDensityPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsLinkCompactWindowWidthSizeClass(
+                PreviewOudsLinkCompactDensity(
                     theme = theme,
                     size = parameter as OudsLinkSize
                 )

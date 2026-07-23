@@ -27,7 +27,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -37,7 +36,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
@@ -53,7 +51,6 @@ import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.WindowWidthSizeClass
-import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -90,6 +87,7 @@ private val LocalWindowWidthSizeClass = staticCompositionLocalOf { WindowWidthSi
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  */
@@ -100,6 +98,7 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
     OudsLink(
         label = label,
@@ -109,6 +108,100 @@ fun OudsLink(
         modifier = modifier,
         size = size,
         enabled = enabled,
+        density = density
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkSample
+ */
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsLink(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true
+) {
+    OudsLink(
+        label = label,
+        icon = null,
+        indicator = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
+ */
+@Composable
+fun OudsLink(
+    label: String,
+    icon: OudsLinkIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
+) {
+    OudsLink(
+        label = label,
+        icon = icon,
+        indicator = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled,
+        density = density
     )
 }
 
@@ -137,6 +230,10 @@ fun OudsLink(
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
  */
+@Deprecated(
+    "Maintained for compatibility purposes. Use another overload.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsLink(
     label: String,
@@ -144,7 +241,7 @@ fun OudsLink(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true,
+    enabled: Boolean = true
 ) {
     OudsLink(
         label = label,
@@ -153,7 +250,7 @@ fun OudsLink(
         onClick = onClick,
         modifier = modifier,
         size = size,
-        enabled = enabled,
+        enabled = enabled
     )
 }
 
@@ -179,6 +276,7 @@ fun OudsLink(
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
@@ -190,6 +288,7 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
     OudsLink(
         label = label,
@@ -199,6 +298,7 @@ fun OudsLink(
         modifier = modifier,
         size = size,
         enabled = enabled,
+        density = density
     )
 }
 
@@ -228,8 +328,8 @@ fun OudsLink(
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
-    level = DeprecationLevel.HIDDEN
+    message = "Use overload with indicator parameter instead. Replace OudsLinkChevron.Back with OudsLinkIndicator.Previous, or OudsLinkChevron.Next with OudsLinkIndicator.Next.",
+    level = DeprecationLevel.WARNING
 )
 @Composable
 fun OudsLink(
@@ -259,7 +359,8 @@ private fun OudsLink(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
     with(OudsTheme.componentsTokens.link) {
         val interactionSource = remember { MutableInteractionSource() }
@@ -267,27 +368,18 @@ private fun OudsLink(
         val state = getLinkState(enabled = enabled, interactionState = interactionState)
         val isTextOnly = icon == null && indicator == null
 
-        val windowWidthSizeClass = if (LocalInspectionMode.current) {
-            LocalWindowWidthSizeClass.current
-        } else {
-            WindowWidthSizeClass.compute(currentWindowWidth())
+        val minHeight = when (density) {
+            OudsLinkDensity.Default -> getTokenValue(size = size, default = sizeMinHeightDefault, small = sizeMinHeightSmall)
+            OudsLinkDensity.Compact -> sizeMinHeightCompactDensity.dp
         }
-        val minHeight = windowWidthSizeClass.getTokenValue(
-            extraCompact = sizeMinHeightCompactDensity.dp,
-            compact = sizeMinHeightCompactDensity.dp,
-            medium = getTokenValue(size = size, default = sizeMinHeightDefault, small = sizeMinHeightSmall)
-        )
-        val spacePaddingBlockCompactDensity = getTokenValue(
-            size = size,
-            default = spacePaddingBlockCompactDensityDefault,
-            small = spacePaddingBlockCompactDensitySmall
-        )
-        val verticalPadding = windowWidthSizeClass.getTokenValue(
-            extraCompact = spacePaddingBlockCompactDensity,
-            compact = spacePaddingBlockCompactDensity,
-            medium = getTokenValue(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
-        )
-
+        val verticalPadding = when (density) {
+            OudsLinkDensity.Default -> getTokenValue(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+            OudsLinkDensity.Compact -> getTokenValue(
+                size = size,
+                default = spacePaddingBlockCompactDensityDefault,
+                small = spacePaddingBlockCompactDensitySmall
+            )
+        }
         val monochrome = LocalColorMode.current?.monochrome == true
         val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
             val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
@@ -461,6 +553,10 @@ object OudsLinkDefaults {
      */
     val Size = OudsLinkSize.Default
 
+    /**
+     * The default density.
+     */
+    val Density = OudsLinkDensity.Default
 }
 
 /**
@@ -492,19 +588,13 @@ enum class OudsLinkChevron {
     /**
      * Used for "backward" navigation. This chevron is positioned before the label and features a "chevron left" icon, which is not customizable.
      */
-    @Deprecated(
-        message = "Use OudsLinkIndicator.Previous instead.",
-        replaceWith = ReplaceWith("OudsLinkIndicator.Previous")
-    )
+    @Deprecated(message = "Use OudsLinkIndicator.Previous instead.")
     Back,
 
     /**
      * Used in a standard navigation context. This chevron is positioned after the label and features a "chevron right" icon, which is not customizable.
      */
-    @Deprecated(
-        message = "Use OudsLinkIndicator.Next instead.",
-        replaceWith = ReplaceWith("OudsLinkIndicator.Next")
-    )
+    @Deprecated(message = "Use OudsLinkIndicator.Next instead.")
     Next;
 
     @Suppress("DEPRECATION")
@@ -514,6 +604,9 @@ enum class OudsLinkChevron {
     }
 }
 
+/**
+ * Represents the type of navigation indicator displayed in an [OudsLink].
+ */
 enum class OudsLinkIndicator {
 
     /**
@@ -532,6 +625,25 @@ enum class OudsLinkIndicator {
     External
 }
 
+/**
+ * Represents the density of an [OudsLink].
+ */
+enum class OudsLinkDensity {
+
+    /**
+     * This is the default density of the component, recommended for most interfaces and primary navigation contexts.
+     * 
+     * This density which is used for the vast majority of applications, provides a comfortable touch target that meets accessibility recommendations.
+     */
+    Default,
+
+    /**
+     * Reduces the vertical footprint while preserving the same interaction and visual behavior.
+     * 
+     * Use in dense layouts where space is limited and a smaller touch target is acceptable (desktop or pointer-based contexts).
+     */
+    Compact
+}
 
 /**
  * An icon in an [OudsLink].
@@ -629,22 +741,21 @@ internal fun PreviewOudsLink(
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsLinkCompactWindowWidthSizeClass(@PreviewParameter(OudsLinkCompactWindowWidthSizeClassPreviewParameterProvider::class) size: OudsLinkSize) {
-    PreviewOudsLinkCompactWindowWidthSizeClass(theme = getPreviewTheme(), size = size)
+private fun PreviewOudsLinkCompactDensity(@PreviewParameter(OudsLinkCompactDensityPreviewParameterProvider::class) size: OudsLinkSize) {
+    PreviewOudsLinkCompactDensity(theme = getPreviewTheme(), size = size)
 }
 
 @Composable
-internal fun PreviewOudsLinkCompactWindowWidthSizeClass(theme: OudsThemeContract, size: OudsLinkSize) = OudsPreview(theme = theme) {
-    CompositionLocalProvider(LocalWindowWidthSizeClass provides WindowWidthSizeClass.COMPACT) {
-        PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
-            OudsLink(
-                icon = null,
-                label = "Label",
-                indicator = OudsLinkIndicator.Next,
-                onClick = {},
-                size = size
-            )
-        }
+internal fun PreviewOudsLinkCompactDensity(theme: OudsThemeContract, size: OudsLinkSize) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
+        OudsLink(
+            icon = null,
+            label = "Label",
+            indicator = OudsLinkIndicator.Next,
+            onClick = {},
+            size = size,
+            density = OudsLinkDensity.Compact
+        )
     }
 }
 
@@ -708,4 +819,4 @@ private val previewParameterValues: List<OudsLinkPreviewParameter>
         }
     }
 
-internal class OudsLinkCompactWindowWidthSizeClassPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkSize>(*OudsLinkSize.entries.toTypedArray())
+internal class OudsLinkCompactDensityPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkSize>(*OudsLinkSize.entries.toTypedArray())
