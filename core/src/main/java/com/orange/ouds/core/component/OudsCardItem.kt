@@ -44,7 +44,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
@@ -66,7 +66,7 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsCardItem(
     label: String,
     modifier: Modifier = Modifier,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
     overline: String? = null,
     extraLabel: String? = null,
@@ -84,7 +84,7 @@ fun OudsCardItem(
         onClick = null,
         modifier = modifier,
         indicator = null,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = overline,
         extraLabel = extraLabel,
         description = description,
@@ -114,7 +114,7 @@ fun OudsCardItem(
  * @param modifier [Modifier] applied to the layout of the card item.
  * @param onClick Callback invoked when the card item is clicked.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
@@ -138,7 +138,7 @@ fun OudsCardItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
     overline: String? = null,
     extraLabel: String? = null,
@@ -156,7 +156,7 @@ fun OudsCardItem(
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = overline,
         extraLabel = extraLabel,
         description = description,
@@ -202,7 +202,7 @@ internal fun PreviewOudsStaticCardItem(
             extraLabel = extraLabel,
             description = description,
             helperText = helperText,
-            contentAlignment = contentAlignment,
+            verticalAlignment = verticalAlignment,
             leading = leading,
             trailing = trailing,
             boldLabel = boldLabel,
@@ -262,7 +262,7 @@ internal fun PreviewOudsNavigationCardItem(
                 extraLabel = extraLabel,
                 description = description,
                 helperText = helperText,
-                contentAlignment = contentAlignment,
+                verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
                 enabled = enabled

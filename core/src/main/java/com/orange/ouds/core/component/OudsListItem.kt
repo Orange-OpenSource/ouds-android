@@ -95,7 +95,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label The main label of the list item.
  * @param modifier [Modifier] applied to the layout of the list item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and [extraLabel].
@@ -118,7 +118,7 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsListItem(
     label: String,
     modifier: Modifier = Modifier,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
@@ -137,7 +137,7 @@ fun OudsListItem(
         onClick = null,
         modifier = modifier,
         indicator = null,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = overline,
         extraLabel = extraLabel,
         description = description,
@@ -170,7 +170,7 @@ fun OudsListItem(
  * @param onClick Callback invoked when the list item is clicked.
  * @param modifier [Modifier] applied to the layout of the list item.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param overline Optional text displayed above the label.
  * @param extraLabel Optional strong accompanying label for the main label, displayed between the [label] and the [description].
  * @param description Optional text displayed below the [label] and [extraLabel].
@@ -195,7 +195,7 @@ fun OudsListItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
@@ -214,7 +214,7 @@ fun OudsListItem(
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = overline,
         extraLabel = extraLabel,
         description = description,
@@ -236,7 +236,7 @@ internal fun OudsListItem(
     onClick: (() -> Unit)?,
     modifier: Modifier,
     indicator: OudsListItemIndicator?,
-    contentAlignment: OudsListItemContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment,
     overline: String?,
     extraLabel: String?,
     description: String?,
@@ -286,10 +286,10 @@ internal fun OudsListItem(
                     .background(color = backgroundColor.value, shape = shape)
                     .border(state = state, decoration = decoration, shape = shape, borderRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
-                    .containerPadding(size = size, contentAlignment = contentAlignment)
+                    .containerPadding(size = size, verticalAlignment = verticalAlignment)
                     .semantics(mergeDescendants = true) { },
                 horizontalArrangement = Arrangement.spacedBy(space.columnGap),
-                verticalAlignment = verticalAlignment(contentAlignment)
+                verticalAlignment = verticalAlignment(verticalAlignment)
             ) {
                 if (indicator == OudsListItemIndicator.Previous) {
                     Indicator(drawableId = indicator.drawableId, state = state)
@@ -310,7 +310,7 @@ internal fun OudsListItem(
                 Column(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(top = topTextContainerPadding(contentAlignment = contentAlignment, size = size))
+                        .padding(top = topTextContainerPadding(verticalAlignment = verticalAlignment, size = size))
                 ) {
                     if (!overline.isNullOrBlank()) {
                         Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
@@ -338,7 +338,7 @@ internal fun OudsListItem(
                         is OudsListItemLeadingTrailing.Text -> {
                             trailing.PolymorphicContent(
                                 extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
-                                    contentAlignment = contentAlignment,
+                                    verticalAlignment = verticalAlignment,
                                     size = size
                                 )
                             )
@@ -392,18 +392,18 @@ private fun getListItemState(enabled: Boolean, interactionState: InteractionStat
 }
 
 @Composable
-private fun Modifier.containerPadding(size: OudsListItemSize, contentAlignment: OudsListItemContentAlignment) = with(OudsTheme.components.listItem) {
+private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment: OudsListItemVerticalAlignment) = with(OudsTheme.components.listItem) {
     when (size) {
-        OudsListItemSize.Small -> when (contentAlignment) {
-            OudsListItemContentAlignment.CenterVertically -> padding(vertical = space.paddingBlock.small)
-            OudsListItemContentAlignment.Top -> padding(
+        OudsListItemSize.Small -> when (verticalAlignment) {
+            OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.small)
+            OudsListItemVerticalAlignment.Top -> padding(
                 top = space.paddingBlock.topAlignment.topCounterweightSmall,
                 bottom = space.paddingBlock.small
             )
         }
-        OudsListItemSize.Default -> when (contentAlignment) {
-            OudsListItemContentAlignment.CenterVertically -> padding(vertical = space.paddingBlock.default)
-            OudsListItemContentAlignment.Top -> padding(
+        OudsListItemSize.Default -> when (verticalAlignment) {
+            OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.default)
+            OudsListItemVerticalAlignment.Top -> padding(
                 top = space.paddingBlock.topAlignment.topCounterweightDefault,
                 bottom = space.paddingBlock.default
             )
@@ -496,20 +496,20 @@ private fun minHeight(size: OudsListItemSize) = with(OudsTheme.components.listIt
 }
 
 @Composable
-private fun verticalAlignment(contentAlignment: OudsListItemContentAlignment) = when (contentAlignment) {
-    OudsListItemContentAlignment.CenterVertically -> Alignment.CenterVertically
-    OudsListItemContentAlignment.Top -> Alignment.Top
+private fun verticalAlignment(verticalAlignment: OudsListItemVerticalAlignment) = when (verticalAlignment) {
+    OudsListItemVerticalAlignment.CenterVertically -> Alignment.CenterVertically
+    OudsListItemVerticalAlignment.Top -> Alignment.Top
 }
 
 @Composable
-private fun topTextContainerPadding(contentAlignment: OudsListItemContentAlignment, size: OudsListItemSize) =
+private fun topTextContainerPadding(verticalAlignment: OudsListItemVerticalAlignment, size: OudsListItemSize) =
     with(OudsTheme.components.listItem.space.paddingBlock.topAlignment) {
-        when (contentAlignment) {
-            OudsListItemContentAlignment.Top -> when (size) {
+        when (verticalAlignment) {
+            OudsListItemVerticalAlignment.Top -> when (size) {
                 OudsListItemSize.Default -> topTextContainerDefault
                 OudsListItemSize.Small -> topTextContainerSmall
             }
-            OudsListItemContentAlignment.CenterVertically -> 0.dp
+            OudsListItemVerticalAlignment.CenterVertically -> 0.dp
         }
     }
 
@@ -523,9 +523,9 @@ internal fun listItemDecoration(background: Boolean, divider: Boolean): OudsList
 object OudsListItemDefaults {
 
     /**
-     * Default content alignment of an [OudsListItem].
+     * Default vertical alignment of an [OudsListItem].
      */
-    val ContentAlignment = OudsListItemContentAlignment.CenterVertically
+    val VerticalAlignment = OudsListItemVerticalAlignment.CenterVertically
 
     /**
      * Default navigation indicator of an [OudsListItem].
@@ -571,7 +571,7 @@ internal enum class OudsListItemSize {
 /**
  * Represents the vertical alignment of an [OudsListItem] content.
  */
-enum class OudsListItemContentAlignment {
+enum class OudsListItemVerticalAlignment {
     /**
      * Elements are vertically centered.
      */
@@ -647,7 +647,7 @@ sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
     interface Text : OudsListItemLeadingTrailing {
         @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val contentAlignment: OudsListItemContentAlignment, internal val size: OudsListItemSize) :
+        data class ExtraParameters internal constructor(internal val verticalAlignment: OudsListItemVerticalAlignment, internal val size: OudsListItemSize) :
             OudsComponentContent.ExtraParameters()
     }
 }
@@ -813,7 +813,7 @@ open class OudsListItemText internal constructor(
         Column(modifier = modifier) {
             Text(
                 modifier = modifier.padding(
-                    top = topTextContainerPadding(contentAlignment = extraParameters.contentAlignment, size = extraParameters.size)
+                    top = topTextContainerPadding(verticalAlignment = extraParameters.verticalAlignment, size = extraParameters.size)
                 ),
                 text = label,
                 style = when (style) {
@@ -1244,7 +1244,7 @@ internal fun PreviewOudsStaticListItem(
             extraLabel = extraLabel,
             description = description,
             helperText = helperText,
-            contentAlignment = contentAlignment,
+            verticalAlignment = verticalAlignment,
             leading = leading,
             trailing = trailing,
             divider = decoration.divider,
@@ -1284,7 +1284,7 @@ internal fun PreviewOudsNavigationListItem(
                 extraLabel = extraLabel,
                 description = description,
                 helperText = helperText,
-                contentAlignment = contentAlignment,
+                verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
                 divider = decoration.divider,
@@ -1320,7 +1320,7 @@ internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContr
 internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing>(
     val label: String,
     val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    val contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    val verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     val overline: String? = null,
     val extraLabel: String? = null,
     val description: String? = null,
@@ -1386,7 +1386,7 @@ private fun <T, S> getListItemPreviewParameterValues(
                 helperText = helperText,
                 leading = leading(index),
                 trailing = trailing(index),
-                contentAlignment = OudsListItemContentAlignment.Top,
+                verticalAlignment = OudsListItemVerticalAlignment.Top,
                 decoration = decoration(index)
             )
             1 -> OudsListItemPreviewParameter(

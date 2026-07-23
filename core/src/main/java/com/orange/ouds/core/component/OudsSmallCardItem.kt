@@ -42,7 +42,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.
@@ -62,7 +62,7 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsSmallCardItem(
     label: String,
     modifier: Modifier = Modifier,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
     description: String? = null,
     leading: OudsSmallListItemLeading? = null,
@@ -78,7 +78,7 @@ fun OudsSmallCardItem(
         onClick = null,
         modifier = modifier,
         indicator = null,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = null,
         extraLabel = null,
         description = description,
@@ -108,7 +108,7 @@ fun OudsSmallCardItem(
  * @param modifier [Modifier] applied to the layout of the small card item.
  * @param onClick Callback invoked when the small card item is clicked.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small card item.
@@ -130,7 +130,7 @@ fun OudsSmallCardItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
     description: String? = null,
     leading: OudsSmallListItemLeading? = null,
@@ -146,7 +146,7 @@ fun OudsSmallCardItem(
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = null,
         extraLabel = null,
         description = description,
@@ -235,7 +235,7 @@ internal fun PreviewOudsNavigationSmallCardItem(
                 label = label,
                 description = description,
                 helperText = helperText,
-                contentAlignment = contentAlignment,
+                verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
                 boldLabel = boldLabel,

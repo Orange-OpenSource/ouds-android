@@ -50,7 +50,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param label The main label of the small list item.
  * @param modifier [Modifier] applied to the layout of the small list item.
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemContentAlignment.CenterVertically].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small list item.
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small list item.
@@ -71,7 +71,7 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsSmallListItem(
     label: String,
     modifier: Modifier = Modifier,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     description: String? = null,
     leading: OudsSmallListItemLeading? = null,
     trailing: OudsSmallListItemTrailing? = null,
@@ -88,7 +88,7 @@ fun OudsSmallListItem(
         onClick = null,
         modifier = modifier,
         indicator = null,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = null,
         extraLabel = null,
         description = description,
@@ -121,7 +121,7 @@ fun OudsSmallListItem(
  * @param modifier [Modifier] applied to the layout of the small list item.
  * @param onClick Callback invoked when the small list item is clicked.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemDefaults.Indicator] (Next).
- * @param contentAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemDefaults.ContentAlignment].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemDefaults.VerticalAlignment].
  * @param description Optional text displayed below the [label].
  * @param leading Optional leading content such as an icon or image displayed at the start of the small list item.
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the small list item.
@@ -144,7 +144,7 @@ fun OudsSmallListItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
-    contentAlignment: OudsListItemContentAlignment = OudsListItemDefaults.ContentAlignment,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     description: String? = null,
     leading: OudsSmallListItemLeading? = null,
     trailing: OudsSmallListItemTrailing? = null,
@@ -161,7 +161,7 @@ fun OudsSmallListItem(
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
-        contentAlignment = contentAlignment,
+        verticalAlignment = verticalAlignment,
         overline = null,
         extraLabel = null,
         description = description,
@@ -507,7 +507,7 @@ internal fun PreviewOudsStaticSmallListItem(
             helperText = helperText,
             leading = leading,
             trailing = trailing,
-            contentAlignment = contentAlignment,
+            verticalAlignment = verticalAlignment,
             boldLabel = boldLabel,
             enabled = enabled
         )
@@ -541,7 +541,7 @@ internal fun PreviewOudsNavigationSmallListItem(
                 label = label,
                 description = description,
                 helperText = helperText,
-                contentAlignment = contentAlignment,
+                verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
                 divider = divider,
