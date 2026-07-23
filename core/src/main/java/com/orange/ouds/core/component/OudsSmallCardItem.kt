@@ -187,21 +187,21 @@ internal fun PreviewOudsStaticSmallCardItem(
     }
 }
 
-
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticSmallCardItemWithRoundedCorners() {
-    PreviewOudsStaticSmallCardItemWithRoundedCorners(theme = getPreviewTheme())
+private fun PreviewOudsStaticSmallCardItemWithRoundedCorners(@PreviewParameter(OudsCardItemWithRoundedCornersParameterProvider::class) decoration: OudsListItemDecoration) {
+    PreviewOudsStaticSmallCardItemWithRoundedCorners(theme = getPreviewTheme(), decoration = decoration)
 }
 
 @Composable
 internal fun PreviewOudsStaticSmallCardItemWithRoundedCorners(
-    theme: OudsThemeContract
+    theme: OudsThemeContract,
+    decoration: OudsListItemDecoration
 ) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
     OudsSmallCardItem(
         label = "Label",
-        decoration = OudsListItemDecoration.Outlined,
+        decoration = decoration,
         description = "Description",
         helperText = "Helper text",
     )
@@ -248,17 +248,18 @@ internal fun PreviewOudsNavigationSmallCardItem(
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.SmallCardItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsNavigationSmallCardItemWithRoundedCorners() {
-    PreviewOudsNavigationSmallCardItemWithRoundedCorners(theme = getPreviewTheme())
+private fun PreviewOudsNavigationSmallCardItemWithRoundedCorners(@PreviewParameter(OudsCardItemWithRoundedCornersParameterProvider::class) decoration: OudsListItemDecoration) {
+    PreviewOudsNavigationSmallCardItemWithRoundedCorners(theme = getPreviewTheme(), decoration = decoration)
 }
 
 @Composable
-internal fun PreviewOudsNavigationSmallCardItemWithRoundedCorners(theme: OudsThemeContract) =
+internal fun PreviewOudsNavigationSmallCardItemWithRoundedCorners(theme: OudsThemeContract, decoration: OudsListItemDecoration) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
             OudsSmallCardItem(
                 onClick = {},
                 label = "Label",
+                decoration = decoration,
                 description = "Description",
                 helperText = "Helper text",
             )

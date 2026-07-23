@@ -34,11 +34,19 @@ internal class OudsSmallCardItemTest {
         }
     }
 
-    class StaticWithRoundedCorners : OudsComponentSnapshotTest(
+    @RunWith(Parameterized::class)
+    class StaticWithRoundedCorners(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.SmallCardItem.StaticWithRoundedCorners,
-        parameter = null,
+        parameter,
         OudsComponentTestSuite.theme
-    )
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.SmallCardItem.StaticWithRoundedCorners.parameters
+        }
+    }
 
     @RunWith(Parameterized::class)
     class Navigation(parameter: Any) : OudsComponentSnapshotTest(
@@ -55,10 +63,18 @@ internal class OudsSmallCardItemTest {
         }
     }
 
-    class NavigationWithRoundedCorners : OudsComponentSnapshotTest(
+    @RunWith(Parameterized::class)
+    class NavigationWithRoundedCorners(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.SmallCardItem.NavigationWithRoundedCorners,
-        parameter = null,
+        parameter,
         OudsComponentTestSuite.theme,
         heightDp = OudsPreviewableComponent.SmallCardItem.Navigation.PreviewHeightDp
-    )
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.SmallCardItem.NavigationWithRoundedCorners.parameters
+        }
+    }
 }

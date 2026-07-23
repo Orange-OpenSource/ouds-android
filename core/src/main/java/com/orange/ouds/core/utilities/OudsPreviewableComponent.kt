@@ -24,6 +24,7 @@ import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsCardItemWithRoundedCornersParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameter
@@ -50,6 +51,7 @@ import com.orange.ouds.core.component.OudsLinkCompactDensityPreviewParameterProv
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkSize
+import com.orange.ouds.core.component.OudsListItemDecoration
 import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemPreviewParameter
 import com.orange.ouds.core.component.OudsListItemPreviewParameterProvider
@@ -457,12 +459,15 @@ interface OudsPreviewableComponent {
         }
 
         object NavigationWithRoundedCorners : OudsPreviewableComponent {
-            override val parameters: List<Any> = emptyList()
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 @Suppress("UNCHECKED_CAST")
-                PreviewOudsNavigationCardItemWithRoundedCorners(theme = theme)
+                PreviewOudsNavigationCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled && !highContrastModeEnabled
@@ -483,12 +488,15 @@ interface OudsPreviewableComponent {
         }
 
         object StaticWithRoundedCorners : OudsPreviewableComponent {
-            override val parameters: List<Any> = emptyList()
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 @Suppress("UNCHECKED_CAST")
-                PreviewOudsStaticCardItemWithRoundedCorners(theme = theme)
+                PreviewOudsStaticCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
@@ -1374,12 +1382,15 @@ interface OudsPreviewableComponent {
         }
 
         object NavigationWithRoundedCorners : OudsPreviewableComponent {
-            override val parameters: List<Any> = emptyList()
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 @Suppress("UNCHECKED_CAST")
-                PreviewOudsNavigationSmallCardItemWithRoundedCorners(theme = theme)
+                PreviewOudsNavigationSmallCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled && !highContrastModeEnabled
@@ -1400,12 +1411,15 @@ interface OudsPreviewableComponent {
         }
 
         object StaticWithRoundedCorners : OudsPreviewableComponent {
-            override val parameters: List<Any> = emptyList()
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 @Suppress("UNCHECKED_CAST")
-                PreviewOudsStaticSmallCardItemWithRoundedCorners(theme = theme)
+                PreviewOudsStaticSmallCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled

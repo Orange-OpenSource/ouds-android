@@ -16,10 +16,12 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -28,6 +30,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
@@ -209,16 +212,17 @@ internal fun PreviewOudsStaticCardItem(
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsStaticCardItemWithRoundedCorners() {
-    PreviewOudsStaticCardItemWithRoundedCorners(theme = getPreviewTheme())
+private fun PreviewOudsStaticCardItemWithRoundedCorners(@PreviewParameter(OudsCardItemWithRoundedCornersParameterProvider::class) decoration: OudsListItemDecoration) {
+    PreviewOudsStaticCardItemWithRoundedCorners(theme = getPreviewTheme(), decoration = decoration)
 }
 
 @Composable
-internal fun PreviewOudsStaticCardItemWithRoundedCorners(theme: OudsThemeContract) =
+internal fun PreviewOudsStaticCardItemWithRoundedCorners(theme: OudsThemeContract, decoration: OudsListItemDecoration) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
         OudsCardItem(
+            modifier = Modifier.padding(8.dp),
             label = "Label",
-            decoration = OudsListItemDecoration.Outlined,
+            decoration = decoration,
             description = "Description",
             overline = "Overline",
             extraLabel = "Extra label",
@@ -268,17 +272,18 @@ internal fun PreviewOudsNavigationCardItem(
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.CardItem.Navigation.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsNavigationCardItemWithRoundedCorners() {
-    PreviewOudsNavigationCardItemWithRoundedCorners(theme = getPreviewTheme())
+private fun PreviewOudsNavigationCardItemWithRoundedCorners(@PreviewParameter(OudsCardItemWithRoundedCornersParameterProvider::class) decoration: OudsListItemDecoration) {
+    PreviewOudsNavigationCardItemWithRoundedCorners(theme = getPreviewTheme(), decoration = decoration)
 }
 
 @Composable
-internal fun PreviewOudsNavigationCardItemWithRoundedCorners(theme: OudsThemeContract) =
+internal fun PreviewOudsNavigationCardItemWithRoundedCorners(theme: OudsThemeContract, decoration: OudsListItemDecoration) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
             OudsCardItem(
                 onClick = {},
                 label = "Label",
+                decoration = decoration,
                 description = "Description",
                 overline = "Overline",
                 extraLabel = "Extra label",
@@ -298,3 +303,6 @@ internal class OudsCardItemPreviewParameterProvider : OudsBasicListItemPreviewPa
         }
     }
 )
+
+internal class OudsCardItemWithRoundedCornersParameterProvider :
+    BasicPreviewParameterProvider<OudsListItemDecoration>(OudsListItemDecoration.Outlined, OudsListItemDecoration.Background(true))
