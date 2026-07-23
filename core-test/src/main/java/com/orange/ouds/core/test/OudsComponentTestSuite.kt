@@ -55,9 +55,8 @@ import org.junit.runners.Suite
     OudsTextInputTest::class,
     OudsTopAppBarTest::class
 )
-
 abstract class OudsComponentTestSuite {
-    
+
     companion object {
         lateinit var theme: OudsThemeContract
     }
