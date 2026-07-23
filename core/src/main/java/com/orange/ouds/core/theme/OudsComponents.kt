@@ -65,7 +65,7 @@ data class OudsComponents internal constructor(
     internal val listItem: ListItem,
     val pinCodeInput: PinCodeInput,
     val progressIndicator: ProgressIndicator,
-    internal val progressIndicatorMonochrome: ProgressIndicatorMonochrome,
+    val progressIndicatorMonochrome: ProgressIndicatorMonochrome,
     val radioButton: RadioButton,
     val switch: Switch,
     val tag: Tag,

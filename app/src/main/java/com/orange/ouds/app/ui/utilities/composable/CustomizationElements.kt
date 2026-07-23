@@ -235,19 +235,23 @@ fun CustomizationDropdownMenu(
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
-
+    val enabled = items.any { it.enabled }
     Column(
         modifier = modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        CustomizationText(label = label, enabled = items.any { it.enabled })
+        CustomizationText(label = label, enabled = enabled)
 
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
+            onExpandedChange = {
+                if (enabled) {
+                    expanded = !expanded
+                }
+            }
         ) {
             val leadingIconBoxModifier = Modifier.size(OudsTheme.sizes.icon.withLabel.medium.sizeMedium)
             TextField(
@@ -256,6 +260,7 @@ fun CustomizationDropdownMenu(
                     .fillMaxWidth(),
                 value = items[selectedItemIndex].label,
                 onValueChange = {},
+                enabled = enabled,
                 readOnly = true,
                 singleLine = true,
                 textStyle = valueLabelTextStyle,
