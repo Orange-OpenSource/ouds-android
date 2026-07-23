@@ -135,6 +135,22 @@ internal class OudsListItemTest {
     }
 
     @Test
+    fun oudsListItem_withBlankOverline_overlineNotDisplayed() {
+        with(composeTestRule) {
+            val overline = "   "
+
+            setOudsContent {
+                OudsListItem(
+                    label = "Label",
+                    overline = overline
+                )
+            }
+
+            onNodeWithText(overline).assertIsNotDisplayed()
+        }
+    }
+
+    @Test
     fun oudsListItem_withHelperText_helperTextDisplayed() {
         with(composeTestRule) {
             val helperText = "Helper text"
