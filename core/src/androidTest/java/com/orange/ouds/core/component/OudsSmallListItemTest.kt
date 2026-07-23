@@ -36,7 +36,7 @@ internal class OudsSmallListItemTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun oudsSmallListItem_navigation_click_succeeds() {
+    fun oudsSmallListItem_click_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsSmallListItem"
             val onClick = mock<() -> Unit>()
