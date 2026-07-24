@@ -270,10 +270,10 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
     class Image internal constructor(
         graphicsObject: Any,
         contentDescription: String,
-        imageFormat: OudsListItemImageRatio,
+        ratio: OudsListItemImageRatio,
         contentScale: ContentScale,
         roundedCorner: Boolean
-    ) : OudsListItemImage(graphicsObject, contentDescription, SmallListItemAssetSize, imageFormat, contentScale, roundedCorner), OudsSmallListItemLeading {
+    ) : OudsListItemImage(graphicsObject, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner), OudsSmallListItemLeading {
 
         /**
          * Creates an instance of [OudsSmallListItemLeading.Image].
@@ -418,10 +418,10 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
     class Image internal constructor(
         graphicsObject: Any,
         contentDescription: String,
-        imageFormat: OudsListItemImageRatio,
+        ratio: OudsListItemImageRatio,
         contentScale: ContentScale,
         roundedCorner: Boolean
-    ) : OudsListItemImage(graphicsObject, contentDescription, SmallListItemAssetSize, imageFormat, contentScale, roundedCorner), OudsSmallListItemTrailing {
+    ) : OudsListItemImage(graphicsObject, contentDescription, SmallListItemAssetSize, ratio, contentScale, roundedCorner), OudsSmallListItemTrailing {
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Image].

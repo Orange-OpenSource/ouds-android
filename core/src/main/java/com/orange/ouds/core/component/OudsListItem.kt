@@ -42,7 +42,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -263,7 +262,7 @@ internal fun OudsListItem(
 
     with(OudsTheme.components.listItem) {
         val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
-        val shape = shape(borderRadius)
+        val shape = shape(cornerRadius = borderRadius)
 
         val clickableModifier = if (onClick != null) {
             Modifier.clickable(
@@ -284,7 +283,7 @@ internal fun OudsListItem(
                     .fillMaxWidth()
                     .heightIn(min = minHeight(size))
                     .background(color = backgroundColor.value, shape = shape)
-                    .border(state = state, decoration = decoration, shape = shape, borderRadius = borderRadius, outlineColor = outlineBorderColor.value)
+                    .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
                     .containerPadding(size = size, verticalAlignment = verticalAlignment)
                     .semantics(mergeDescendants = true) { },
@@ -423,32 +422,23 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
 }
 
 @Composable
-private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, shape: Shape, borderRadius: Dp, outlineColor: Color): Modifier {
-    val outlined: Boolean
-    when (decoration) {
-        is OudsListItemDecoration.Outlined -> {
-            outlined = true
-        }
-        is OudsListItemDecoration.OutlinedOnInteraction -> {
-            outlined = state in listOf(OudsListItemState.Hovered, OudsListItemState.Pressed, OudsListItemState.Focused)
-        }
-        is OudsListItemDecoration.Background,
-        is OudsListItemDecoration.BackgroundOnInteraction,
-        is OudsListItemDecoration.None -> {
-            outlined = false
-        }
-    }
+private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDecoration, cornerRadius: Dp, outlineColor: Color): Modifier {
+    val outlined = decoration is OudsListItemDecoration.Outlined || (decoration is OudsListItemDecoration.OutlinedOnInteraction && state in listOf(
+        OudsListItemState.Hovered,
+        OudsListItemState.Pressed,
+        OudsListItemState.Focused
+    ))
     val width = OudsTheme.borders.width.default.takeUnlessHairline
 
     return when {
-        width != null && outlined -> border(width = width, color = outlineColor, shape = shape)
-        width != null && decoration.divider -> bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = borderRadius)
+        width != null && outlined -> border(width = width, color = outlineColor, shape = shape(cornerRadius = cornerRadius))
+        width != null && decoration.divider -> bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
         else -> this
     }
 }
 
 @Composable
-private fun shape(borderRadius: Dp) = RoundedCornerShape(borderRadius)
+private fun shape(cornerRadius: Dp) = RoundedCornerShape(cornerRadius)
 
 @Composable
 private fun outlineBorderColor(state: OudsListItemState) = with(OudsTheme.colorScheme.action) {
@@ -785,18 +775,12 @@ open class OudsListItemImage internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
+        val cornerRadius = with(OudsTheme.components.listItem.border.radius) { if (roundedCorner) mediaRounded else media }
         super.Content(
             modifier = modifier
                 .height(size.value)
                 .width(size.value * ratio.value)
-                .run {
-                    if (roundedCorner) {
-                        clip(RoundedCornerShape(OudsTheme.components.listItem.border.radius.mediaRounded))
-                    } else {
-                        this
-                    }
-                }
-
+                .clip(RoundedCornerShape(cornerRadius))
         )
     }
 }
@@ -862,7 +846,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             painter: Painter,
             contentDescription: String,
-            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
+            size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ painter as Any }, { contentDescription }, tinted, size, null)
 
@@ -879,7 +863,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
-            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
+            size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ imageVector as Any }, { contentDescription }, tinted, size, null)
 
@@ -896,7 +880,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
-            size: OudsListItemIconSize = OudsListItemIconSize.Medium,
+            size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
