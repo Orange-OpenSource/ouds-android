@@ -41,6 +41,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.core.component.OudsProgressIndicatorGapSize
 import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 import com.orange.ouds.foundation.extensions.toSentenceCase
 
@@ -99,6 +100,13 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             label = stringResource(R.string.app_components_progressIndicator_track_tech),
             checked = track,
             onCheckedChange = { track = it }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = false,
+            label = stringResource(R.string.app_components_progressIndicator_gapSize_tech),
+            chipLabels = OudsProgressIndicatorGapSize.entries.map { it.name },
+            selectedChipIndex = OudsProgressIndicatorGapSize.entries.indexOf(gapSize),
+            onSelectionChange = { index: Int -> gapSize = OudsProgressIndicatorGapSize.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_progressIndicator_animated_tech),

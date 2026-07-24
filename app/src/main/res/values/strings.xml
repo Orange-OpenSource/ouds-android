@@ -319,6 +319,7 @@
     <string name="app_components_progressIndicator_indeterminate_tech" translatable="false">Indeterminate</string>
     <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
     <string name="app_components_progressIndicator_track_tech" translatable="false">Track</string>
+    <string name="app_components_progressIndicator_gapSize_tech" translatable="false">Gap size</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_tech" translatable="false">Radio button</string>

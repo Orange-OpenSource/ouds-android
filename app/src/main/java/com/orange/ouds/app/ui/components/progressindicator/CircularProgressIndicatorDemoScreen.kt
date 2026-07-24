@@ -45,13 +45,15 @@ private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoSta
                 OudsCircularProgressIndicator(
                     progress = { progress },
                     status = status,
-                    track = track
+                    track = track,
+                    gapSize = gapSize
                 )
             }
             ProgressIndicatorDemoState.Type.Indeterminate -> {
                 OudsCircularProgressIndicator(
                     status = status,
-                    track = track
+                    track = track,
+                    gapSize = gapSize
                 )
             }
         }
