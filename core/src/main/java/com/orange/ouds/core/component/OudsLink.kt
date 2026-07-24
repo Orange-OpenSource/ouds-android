@@ -135,7 +135,7 @@ fun OudsLink(
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -231,7 +231,7 @@ fun OudsLink(
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
