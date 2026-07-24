@@ -16,6 +16,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,6 +26,7 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.ExperimentalOudsApi
@@ -200,6 +202,7 @@ internal fun PreviewOudsStaticSmallCardItemWithRoundedCorners(
     decoration: OudsListItemDecoration
 ) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
     OudsSmallCardItem(
+        modifier = Modifier.padding(PreviewPaddingDefault),
         label = "Label",
         decoration = decoration,
         description = "Description",

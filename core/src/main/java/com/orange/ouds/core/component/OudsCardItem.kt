@@ -21,12 +21,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.ExperimentalOudsApi
@@ -222,7 +222,7 @@ private fun PreviewOudsStaticCardItemWithRoundedCorners(@PreviewParameter(OudsCa
 internal fun PreviewOudsStaticCardItemWithRoundedCorners(theme: OudsThemeContract, decoration: OudsListItemDecoration) =
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCardItems = true) }) {
         OudsCardItem(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(PreviewPaddingDefault),
             label = "Label",
             decoration = decoration,
             description = "Description",
