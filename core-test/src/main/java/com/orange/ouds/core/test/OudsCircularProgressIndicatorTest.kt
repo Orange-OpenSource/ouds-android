@@ -24,7 +24,8 @@ internal class OudsCircularProgressIndicatorTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.CircularProgressIndicator.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        widthDp = OudsPreviewableComponent.CircularProgressIndicator.Default.PreviewWidthDp
     ) {
 
         companion object {

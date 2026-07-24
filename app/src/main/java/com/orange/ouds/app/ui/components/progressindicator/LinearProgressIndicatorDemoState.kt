@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Companion.InitialProgressValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Type
 import com.orange.ouds.core.component.OudsProgressIndicatorDefaults
+import com.orange.ouds.core.component.OudsProgressIndicatorGapSize
 import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 
 @Composable
@@ -29,12 +30,24 @@ fun rememberLinearProgressIndicatorDemoState(
     type: Type = Type.Determinate,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     animated: Boolean = true,
     onColoredBox: Boolean = false,
     stopIndicator: Boolean = false,
     helperText: String? = null
-) = rememberSaveable(progressText, type, status, track, animated, onColoredBox, stopIndicator, helperText, saver = LinearProgressIndicatorDemoState.Saver) {
-    LinearProgressIndicatorDemoState(progressText, type, status, track, animated, onColoredBox, stopIndicator, helperText)
+) = rememberSaveable(
+    progressText,
+    type,
+    status,
+    track,
+    gapSize,
+    animated,
+    onColoredBox,
+    stopIndicator,
+    helperText,
+    saver = LinearProgressIndicatorDemoState.Saver
+) {
+    LinearProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox, stopIndicator, helperText)
 }
 
 class LinearProgressIndicatorDemoState(
@@ -42,11 +55,12 @@ class LinearProgressIndicatorDemoState(
     type: Type,
     status: OudsProgressIndicatorStatus,
     track: Boolean,
+    gapSize: OudsProgressIndicatorGapSize,
     animated: Boolean,
     onColoredBox: Boolean,
     stopIndicator: Boolean,
     helperText: String?
-) : ProgressIndicatorDemoState(progressText, type, status, track, animated, onColoredBox) {
+) : ProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox) {
 
     companion object {
         val Saver = listSaver(
@@ -67,6 +81,7 @@ class LinearProgressIndicatorDemoState(
                         type,
                         status,
                         track,
+                        gapSize,
                         animated,
                         onColoredBox,
                         list[1] as Boolean,

@@ -543,6 +543,8 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
+            const val PreviewWidthDp = 410
+
             override val parameters: List<Any> = OudsCircularProgressIndicatorPreviewParameterProvider().values.toList()
 
             @Composable
