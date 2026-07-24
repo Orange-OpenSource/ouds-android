@@ -83,6 +83,7 @@ internal class WireframeDrawableResources : OudsDrawableResources {
         }
 
         class Link : OudsDrawableResources.Component.Link {
+            override val externalLink = R.drawable.ic_wireframe_component_link_external_link
             override val next = R.drawable.ic_wireframe_component_link_next
             override val previous = R.drawable.ic_wireframe_component_link_previous
         }

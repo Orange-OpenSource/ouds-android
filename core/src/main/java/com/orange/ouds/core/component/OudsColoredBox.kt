@@ -265,7 +265,7 @@ internal fun PreviewOudsColoredBox(
             OudsButton(label = "Button", onClick = {})
             OudsLink(
                 label = "Link",
-                chevron = OudsLinkChevron.Next,
+                indicator = OudsLinkIndicator.Next,
                 onClick = {},
             )
             OudsCircularProgressIndicator()

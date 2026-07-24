@@ -57,7 +57,7 @@ import com.orange.ouds.core.component.OudsFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkChevron
+import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
@@ -195,7 +195,7 @@ fun FloatingActionButtonIllustration() = ComponentIllustration {
 fun LinkIllustration() = ComponentIllustration {
     OudsLink(
         label = stringResource(id = R.string.app_components_common_label_label),
-        chevron = OudsLinkChevron.Next,
+        indicator = OudsLinkIndicator.Next,
         onClick = {}
     )
 }

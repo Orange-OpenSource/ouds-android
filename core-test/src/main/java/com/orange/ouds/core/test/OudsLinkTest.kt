@@ -33,6 +33,19 @@ internal class OudsLinkTest {
         }
     }
 
+    @RunWith(Parameterized::class)
+    class CompactDensity(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Link.CompactDensity,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Link.CompactDensity.parameters
+        }
+    }
+
     class OnTwoLines : OudsComponentSnapshotTest(
         OudsPreviewableComponent.Link.OnTwoLines,
         parameter = null,

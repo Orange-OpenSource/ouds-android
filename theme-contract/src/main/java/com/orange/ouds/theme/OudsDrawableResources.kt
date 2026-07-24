@@ -125,6 +125,9 @@ interface OudsDrawableResources {
 
         interface Link {
             @get:DrawableRes
+            val externalLink: Int
+
+            @get:DrawableRes
             val next: Int
 
             @get:DrawableRes

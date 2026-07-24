@@ -41,7 +41,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.component.OudsLinkIcon.ExtraParameters
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -60,6 +59,9 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import com.orange.ouds.theme.tokens.OudsKeyToken
+import com.orange.ouds.theme.tokens.OudsSizeKeyToken
+import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 /**
@@ -74,13 +76,14 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
  *
  * > Design name: Link
  *
- * > Design version: 2.2.0
+ * > Design version: 2.4.0
  *
  * @param label Label describing what is being linked to.
  * @param onClick Callback invoked when the link is clicked.
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  */
@@ -91,15 +94,17 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
     OudsLink(
         label = label,
         icon = null,
-        chevron = null,
+        indicator = null,
         onClick = onClick,
         modifier = modifier,
         size = size,
         enabled = enabled,
+        density = density
     )
 }
 
@@ -115,7 +120,52 @@ fun OudsLink(
  *
  * > Design name: Link
  *
- * > Design version: 2.2.0
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkSample
+ */
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsLink(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true
+) {
+    OudsLink(
+        label = label,
+        icon = null,
+        indicator = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
  *
  * @param label Label describing what is being linked to.
  * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
@@ -123,6 +173,7 @@ fun OudsLink(
  * @param modifier [Modifier] applied to the link.
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
  *
@@ -136,15 +187,114 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
     OudsLink(
         label = label,
         icon = icon,
-        chevron = null,
+        indicator = null,
         onClick = onClick,
         modifier = modifier,
         size = size,
         enabled = enabled,
+        density = density
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
+ */
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsLink(
+    label: String,
+    icon: OudsLinkIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true
+) {
+    OudsLink(
+        label = label,
+        icon = icon,
+        indicator = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * This version of the link displays an [indicator] before ([OudsLinkIndicator.Previous]) or after ([OudsLinkIndicator.Next] or [OudsLinkIndicator.External]) a label.
+ *
+ * If it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param indicator Navigation indicator displayed in the link. See [OudsLinkIndicator] for allowed values.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
+ */
+@Composable
+fun OudsLink(
+    label: String,
+    indicator: OudsLinkIndicator,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
+) {
+    OudsLink(
+        label = label,
+        icon = null,
+        indicator = indicator,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled,
+        density = density
     )
 }
 
@@ -162,7 +312,7 @@ fun OudsLink(
  *
  * > Design name: Link
  *
- * > Design version: 2.2.0
+ * > Design version: 2.4.0
  *
  * @param label Label describing what is being linked to.
  * @param chevron Navigation chevron displayed in the link. See [OudsLinkChevron] for allowed values.
@@ -171,12 +321,16 @@ fun OudsLink(
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  *
- * @sample com.orange.ouds.core.component.samples.OudsLinkWithChevronSample
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
+@Deprecated(
+    message = "Use overload with indicator parameter instead. Replace OudsLinkChevron.Back with OudsLinkIndicator.Previous, or OudsLinkChevron.Next with OudsLinkIndicator.Next.",
+    level = DeprecationLevel.WARNING
+)
 @Composable
 fun OudsLink(
     label: String,
-    chevron: OudsLinkChevron,
+    @Suppress("DEPRECATION") chevron: OudsLinkChevron,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
@@ -185,7 +339,7 @@ fun OudsLink(
     OudsLink(
         label = label,
         icon = null,
-        chevron = chevron,
+        indicator = chevron.toIndicator(),
         onClick = onClick,
         modifier = modifier,
         size = size,
@@ -197,111 +351,121 @@ fun OudsLink(
 private fun OudsLink(
     label: String,
     icon: OudsLinkIcon?,
-    chevron: OudsLinkChevron?,
+    indicator: OudsLinkIndicator?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
-    val linkTokens = OudsTheme.componentsTokens.link
-    val interactionSource = remember { MutableInteractionSource() }
-    val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getLinkState(enabled = enabled, interactionState = interactionState)
-    val isTextOnly = icon == null && chevron == null
+    with(OudsTheme.componentsTokens.link) {
+        val interactionSource = remember { MutableInteractionSource() }
+        val interactionState by interactionSource.collectInteractionStateAsState()
+        val state = getLinkState(enabled = enabled, interactionState = interactionState)
+        val isTextOnly = icon == null && indicator == null
 
-    @Suppress("DEPRECATION")
-    val (minWidth, minHeight) = when (size) {
-        OudsLinkSize.Default -> linkTokens.sizeMinWidth.dp to linkTokens.sizeMinHeightDefault.value
-        OudsLinkSize.Small -> linkTokens.sizeMinWidthSmall.value to linkTokens.sizeMinHeightSmall.value
-    }
+        val minHeight = when (density) {
+            OudsLinkDensity.Default -> getTokenValue(size = size, default = sizeMinHeightDefault, small = sizeMinHeightSmall)
+            OudsLinkDensity.Compact -> sizeMinHeightCompactDensity.dp
+        }
+        val verticalPadding = when (density) {
+            OudsLinkDensity.Default -> getTokenValue(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+            OudsLinkDensity.Compact -> getTokenValue(
+                size = size,
+                default = spacePaddingBlockCompactDensityDefault,
+                small = spacePaddingBlockCompactDensitySmall
+            )
+        }
+        val monochrome = LocalColorMode.current?.monochrome == true
+        val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
+            val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
+            linkContentColor(state = linkState, monochrome = monochrome)
+        }
 
-    val monochrome = LocalColorMode.current?.monochrome == true
-    val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
-        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        linkContentColor(state = linkState, monochrome = monochrome)
-    }
+        val chevronColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
+            val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
+            chevronColor(state = linkState, monochrome = monochrome)
+        }
 
-    val chevronColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
-        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        chevronColor(state = linkState, monochrome = monochrome)
-    }
+        // Underlined text style cannot be animated with alpha, thus we use an interaction boolean to make it appear while the other animations are ongoing
+        val isUnderlined = rememberInteractionValue(
+            interactionState = interactionState,
+            // The underlying animatable value is equal to 1f when isUnderlined is true and to 0f when isUnderlined is false,
+            // meaning that the animatable value will smoothly move back and forth between 0f and 1f during the animation
+            toAnimatableFloat = { if (it) 1f else 0f },
+            // isUnderlined is true if the underlying animatable value is greater than or equal to 0.5f, false otherwise
+            // meaning that the text will be underlined in the middle of the pressed animation and will come back to normal in the middle of the resting animation
+            fromAnimatableFloat = { it >= 0.5f }
+        ) { linkInteractionState ->
+            val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
+            isTextOnly || linkState in listOf(OudsLinkState.Hovered, OudsLinkState.Pressed, OudsLinkState.Focused)
+        }
 
-    // Underlined text style cannot be animated with alpha, thus we use an interaction boolean to make it appear while the other animations are ongoing
-    val isUnderlined = rememberInteractionValue(
-        interactionState = interactionState,
-        // The underlying animatable value is equal to 1f when isUnderlined is true and to 0f when isUnderlined is false,
-        // meaning that the animatable value will smoothly move back and forth between 0f and 1f during the animation
-        toAnimatableFloat = { if (it) 1f else 0f },
-        // isUnderlined is true if the underlying animatable value is greater than or equal to 0.5f, false otherwise
-        // meaning that the text will be underlined in the middle of the pressed animation and will come back to normal in the middle of the resting animation
-        fromAnimatableFloat = { it >= 0.5f }
-    ) { linkInteractionState ->
-        val linkState = getLinkState(enabled = enabled, interactionState = linkInteractionState)
-        isTextOnly || linkState in listOf(OudsLinkState.Hovered, OudsLinkState.Pressed, OudsLinkState.Focused)
-    }
-
-    Box(
-        modifier = modifier
-            .widthIn(min = minWidth)
-            .heightIn(min = minHeight)
-            .outerBorder(state = state)
-            .padding(horizontal = linkTokens.spacePaddingInline.value, vertical = linkTokens.spacePaddingBlockDefault.value)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
-                enabled = state != OudsLinkState.Disabled,
-                onClick = onClick
-            ),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        val columnGap: Dp
-        val iconSize: Dp
-        var textStyle: TextStyle
-        with(linkTokens) {
+        Box(
+            modifier = modifier
+                .widthIn(min = sizeMinWidth.dp)
+                .heightIn(min = minHeight)
+                .outerBorder(state = state)
+                .padding(horizontal = spacePaddingInline.value, vertical = verticalPadding)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
+                    enabled = state != OudsLinkState.Disabled,
+                    onClick = onClick
+                ),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            val columnGap: Dp
+            val iconSize: Dp
+            var textStyle: TextStyle
             when (size) {
                 OudsLinkSize.Default -> {
-                    columnGap = if (chevron != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
+                    columnGap = if (indicator != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
                     iconSize = sizeIconDefault.value
                     textStyle = OudsTheme.typography.label.large.strong
                 }
                 OudsLinkSize.Small -> {
-                    columnGap = if (chevron != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
+                    columnGap = if (indicator != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
                     iconSize = sizeIconSmall.value
                     textStyle = OudsTheme.typography.label.medium.strong
                 }
             }
-        }
 
-        if (isUnderlined.value) {
-            textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
-        }
-
-        val iconTint = if (chevron != null) chevronColor.value else contentColor.value
-
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(columnGap),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            if (icon != null || chevron == OudsLinkChevron.Back) {
-                icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
-                    modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
-                    extraParameters = ExtraParameters(tint = iconTint)
-                )
+            if (isUnderlined.value) {
+                textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
-            Text(
-                modifier = Modifier.weight(1f, fill = false),
-                text = label,
-                color = contentColor.value,
-                style = textStyle
-            )
-            if (chevron == OudsLinkChevron.Next) {
-                OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.next)).Content(
-                    modifier = Modifier
-                        .size(iconSize)
-                        .fillMaxHeight()
-                        .align(Alignment.Bottom),
-                    extraParameters = ExtraParameters(tint = iconTint)
+
+            val iconTint = if (indicator != null) chevronColor.value else contentColor.value
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(columnGap),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (icon != null || indicator == OudsLinkIndicator.Previous) {
+                    icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
+                        modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
+                        extraParameters = OudsLinkIcon.ExtraParameters(tint = iconTint)
+                    )
+                }
+                Text(
+                    modifier = Modifier.weight(1f, fill = false),
+                    text = label,
+                    color = contentColor.value,
+                    style = textStyle
                 )
+                if (indicator != null && indicator != OudsLinkIndicator.Previous) {
+                    val indicatorPainterResId = when (indicator) {
+                        OudsLinkIndicator.Next -> OudsTheme.drawableResources.component.link.next
+                        OudsLinkIndicator.External -> OudsTheme.drawableResources.component.link.externalLink
+                    }
+                    OudsLinkIcon(painterResource(indicatorPainterResId)).Content(
+                        modifier = Modifier
+                            .size(iconSize)
+                            .fillMaxHeight()
+                            .align(Alignment.Bottom),
+                        extraParameters = OudsLinkIcon.ExtraParameters(tint = iconTint)
+                    )
+                }
             }
         }
     }
@@ -351,18 +515,29 @@ private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
         if (monochrome) {
             linkContentColor(state = state, monochrome = true)
         } else {
-            @Suppress("DEPRECATION")
             when (state) {
                 OudsLinkState.Enabled -> colorChevronEnabled.value
-                OudsLinkState.Focused -> colorChevronFocus.value
-                OudsLinkState.Hovered -> colorChevronHover.value
-                OudsLinkState.Pressed -> colorChevronPressed.value
+                OudsLinkState.Focused -> colorContentFocus.value
+                OudsLinkState.Hovered -> colorContentHover.value
+                OudsLinkState.Pressed -> colorContentPressed.value
                 OudsLinkState.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
     }
 }
 
+@Composable
+private fun <T> getTokenValue(size: OudsLinkSize, default: T, small: T): Dp where T : OudsSizeKeyToken = getKeyToken(size, default, small).value
+
+@Composable
+private fun <T> getTokenValue(size: OudsLinkSize, default: T, small: T): Dp where T : OudsSpaceKeyToken = getKeyToken(size, default, small).value
+
+private fun <T> getKeyToken(size: OudsLinkSize, default: T, small: T): T where T : OudsKeyToken {
+    return when (size) {
+        OudsLinkSize.Default -> default
+        OudsLinkSize.Small -> small
+    }
+}
 
 /**
  * Contains the default values used by OUDS links.
@@ -374,6 +549,10 @@ object OudsLinkDefaults {
      */
     val Size = OudsLinkSize.Default
 
+    /**
+     * The default density.
+     */
+    val Density = OudsLinkDensity.Default
 }
 
 /**
@@ -395,16 +574,71 @@ enum class OudsLinkSize {
 /**
  * Represents the type of chevron displayed in an [OudsLink].
  */
+@Deprecated(
+    message = "OudsLinkChevron has been replaced with OudsLinkIndicator.",
+    replaceWith = ReplaceWith("OudsLinkIndicator"),
+    level = DeprecationLevel.WARNING
+)
 enum class OudsLinkChevron {
+
     /**
      * Used for "backward" navigation. This chevron is positioned before the label and features a "chevron left" icon, which is not customizable.
      */
+    @Deprecated(message = "Use OudsLinkIndicator.Previous instead.")
     Back,
 
     /**
      * Used in a standard navigation context. This chevron is positioned after the label and features a "chevron right" icon, which is not customizable.
      */
-    Next
+    @Deprecated(message = "Use OudsLinkIndicator.Next instead.")
+    Next;
+
+    @Suppress("DEPRECATION")
+    internal fun toIndicator(): OudsLinkIndicator = when (this) {
+        Back -> OudsLinkIndicator.Previous
+        Next -> OudsLinkIndicator.Next
+    }
+}
+
+/**
+ * Represents the type of navigation indicator displayed in an [OudsLink].
+ */
+enum class OudsLinkIndicator {
+
+    /**
+     * Used for "backward" navigation. Positioned before the label, it features a "chevron left" icon, which is not customizable.
+     */
+    Previous,
+
+    /**
+     * Used in a standard navigation context. Positioned after the label, it features a "chevron right" icon, which is not customizable.
+     */
+    Next,
+
+    /**
+     * Used to navigate outside the current product, service or application. The external navigation indicator informs users that the destination belongs to another context.
+     */
+    External
+}
+
+/**
+ * Represents the density of an [OudsLink].
+ */
+enum class OudsLinkDensity {
+
+    /**
+     * This is the default density of the component, recommended for most interfaces and primary navigation contexts.
+     * 
+     * This density which is used for the vast majority of applications, provides a comfortable touch target that meets accessibility recommendations.
+     */
+    Default,
+
+    /**
+     * Reduces the vertical footprint while preserving the same interaction and visual behavior.
+     * 
+     * Use in dense layouts where space is limited and a smaller touch target is acceptable (desktop or pointer-based contexts).
+     */
+    Compact
 }
 
 /**
@@ -414,7 +648,7 @@ enum class OudsLinkChevron {
 open class OudsLinkIcon private constructor(
     graphicsObject: Any,
     override val tinted: Boolean
-) : OudsComponentIcon<ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
+) : OudsComponentIcon<OudsLinkIcon.ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
@@ -483,7 +717,7 @@ internal fun PreviewOudsLink(
                 OudsLink(
                     icon = icon,
                     label = "Label",
-                    chevron = chevron,
+                    indicator = indicator,
                     onClick = {},
                     size = size
                 )
@@ -503,6 +737,27 @@ internal fun PreviewOudsLink(
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsLinkCompactDensity(@PreviewParameter(OudsLinkCompactDensityPreviewParameterProvider::class) size: OudsLinkSize) {
+    PreviewOudsLinkCompactDensity(theme = getPreviewTheme(), size = size)
+}
+
+@Composable
+internal fun PreviewOudsLinkCompactDensity(theme: OudsThemeContract, size: OudsLinkSize) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
+        OudsLink(
+            icon = null,
+            label = "Label",
+            indicator = OudsLinkIndicator.Next,
+            onClick = {},
+            size = size,
+            density = OudsLinkDensity.Compact
+        )
+    }
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getPreviewTheme())
 
 @Composable
@@ -510,10 +765,10 @@ internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         val label = "Link\non two lines"
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-            listOf(OudsLinkChevron.Back, OudsLinkChevron.Next).forEach { chevron ->
+            listOf(OudsLinkIndicator.Previous, OudsLinkIndicator.Next).forEach { indicator ->
                 OudsLink(
                     label = label,
-                    chevron = chevron,
+                    indicator = indicator,
                     onClick = {},
                 )
             }
@@ -541,7 +796,7 @@ internal data class OudsLinkPreviewParameter(
     val hasIcon: Boolean,
     val onColoredBackground: Boolean,
     val size: OudsLinkSize,
-    val chevron: OudsLinkChevron? = null
+    val indicator: OudsLinkIndicator? = null
 )
 
 internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -549,13 +804,15 @@ internal class OudsLinkPreviewParameterProvider : BasicPreviewParameterProvider<
 private val previewParameterValues: List<OudsLinkPreviewParameter>
     get() = buildList {
         OudsLinkSize.entries.forEach { size ->
-            add(OudsLinkPreviewParameter(hasIcon = false, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Back, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Next, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = true, onColoredBackground = false, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, onColoredBackground = true, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Back, onColoredBackground = true, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = false, chevron = OudsLinkChevron.Next, onColoredBackground = true, size = size))
-            add(OudsLinkPreviewParameter(hasIcon = true, onColoredBackground = true, size = size))
+            repeat(2) { index ->
+                val onColoredBackground = index == 1
+                add(OudsLinkPreviewParameter(hasIcon = false, onColoredBackground = onColoredBackground, size = size))
+                OudsLinkIndicator.entries.forEach { indicator ->
+                    add(OudsLinkPreviewParameter(hasIcon = false, indicator = indicator, onColoredBackground = onColoredBackground, size = size))
+                }
+                add(OudsLinkPreviewParameter(hasIcon = true, onColoredBackground = onColoredBackground, size = size))
+            }
         }
     }
+
+internal class OudsLinkCompactDensityPreviewParameterProvider : BasicPreviewParameterProvider<OudsLinkSize>(*OudsLinkSize.entries.toTypedArray())

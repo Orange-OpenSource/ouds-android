@@ -70,6 +70,7 @@ abstract class ImportIconsTask : DefaultTask() {
             "component/checkbox/checkbox-selected.svg",
             "component/checkbox/checkbox-undetermined.svg",
             "component/chip/tick.svg",
+            "component/link/external-link.svg",
             "component/link/next.svg",
             "component/link/previous.svg",
             "component/radio-button/radio-button-selected.svg",

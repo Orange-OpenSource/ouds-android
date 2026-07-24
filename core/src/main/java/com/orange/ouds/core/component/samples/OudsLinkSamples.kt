@@ -17,8 +17,8 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkChevron
 import com.orange.ouds.core.component.OudsLinkIcon
+import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
@@ -40,10 +40,10 @@ internal fun OudsLinkWithIconSample() {
 }
 
 @Composable
-internal fun OudsLinkWithChevronSample() {
+internal fun OudsLinkWithIndicatorSample() {
     OudsLink(
         label = "Link",
-        chevron = OudsLinkChevron.Next,
+        indicator = OudsLinkIndicator.Next,
         onClick = { /* Do something! */ },
     )
 }
@@ -71,8 +71,8 @@ private fun PreviewOudsLinkWithIconSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsLinkWithChevronSample() = OudsPreview {
-    OudsLinkWithChevronSample()
+private fun PreviewOudsLinkWithIndicatorSample() = OudsPreview {
+    OudsLinkWithIndicatorSample()
 }
 
 @PreviewLightDark
