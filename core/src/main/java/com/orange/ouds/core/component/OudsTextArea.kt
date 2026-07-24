@@ -193,7 +193,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -350,7 +350,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -575,7 +575,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -728,7 +728,7 @@ fun OudsTextArea(
 
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -950,7 +950,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -1102,7 +1102,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable

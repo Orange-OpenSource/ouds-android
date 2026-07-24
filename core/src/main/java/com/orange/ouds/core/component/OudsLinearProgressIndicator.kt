@@ -123,7 +123,7 @@ fun OudsLinearProgressIndicator(
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -217,7 +217,7 @@ fun OudsLinearProgressIndicator(
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable

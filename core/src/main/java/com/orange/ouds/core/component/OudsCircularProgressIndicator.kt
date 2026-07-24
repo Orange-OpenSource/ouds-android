@@ -116,7 +116,7 @@ fun OudsCircularProgressIndicator(
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -200,7 +200,7 @@ fun OudsCircularProgressIndicator(
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
  */
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
