@@ -507,6 +507,8 @@ internal fun PreviewOudsStaticSmallListItem(
             helperText = helperText,
             leading = leading,
             trailing = trailing,
+            divider = decoration.divider,
+            background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
             verticalAlignment = verticalAlignment,
             boldLabel = boldLabel,
             enabled = enabled
@@ -544,8 +546,8 @@ internal fun PreviewOudsNavigationSmallListItem(
                 verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
-                divider = divider,
-                background = background,
+                divider = decoration.divider,
+                background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
                 enabled = enabled
             )
         }

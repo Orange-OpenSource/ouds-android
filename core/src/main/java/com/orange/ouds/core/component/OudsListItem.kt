@@ -1329,8 +1329,6 @@ internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing
     val decoration: OudsListItemDecoration = OudsListItemDecoration.None(divider = true),
     val helperText: String? = null,
     val boldLabel: Boolean = false,
-    val divider: Boolean = true,
-    val background: Boolean = false,
     val enabled: Boolean = true
 )
 
