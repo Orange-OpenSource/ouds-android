@@ -261,7 +261,7 @@ internal fun OudsListItem(
     }
 
     with(OudsTheme.components.listItem) {
-        val borderRadius = if (card && LocalThemeSettings.current.roundedCornerCardItems == true) border.radius.rounded else border.radius.default
+        val borderRadius = borderRadius(card = card, focused = state == OudsListItemState.Focused)
         val shape = shape(cornerRadius = borderRadius)
 
         val clickableModifier = if (onClick != null) {
@@ -434,6 +434,16 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
         width != null && outlined -> border(width = width, color = outlineColor, shape = shape(cornerRadius = cornerRadius))
         width != null && decoration.divider -> bottomBorder(width = width, color = OudsTheme.colorScheme.border.muted, cornerRadius = cornerRadius)
         else -> this
+    }
+}
+
+@Composable
+private fun borderRadius(card: Boolean, focused: Boolean) = with(OudsTheme.components.listItem) {
+    when {
+        card && LocalThemeSettings.current.roundedCornerCardItems == true -> border.radius.rounded
+        card -> border.radius.default
+        focused -> border.radius.default
+        else -> 0.dp
     }
 }
 
