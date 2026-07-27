@@ -10,11 +10,17 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(InternalOudsApi::class)
+
 import com.android.ide.common.vectordrawable.Svg2Vector
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.gradle.requireTypedProperty
+import com.orange.ouds.theme.OudsDrawableResources
 import java.io.ByteArrayOutputStream
 import java.nio.file.Files.createTempDirectory
 import java.util.zip.ZipFile
+import kotlin.reflect.KClass
+import kotlin.reflect.full.declaredMemberProperties
 
 /**
  * Plugin that provides the importIcons task for importing OUDS icons from a zip file.
@@ -40,7 +46,7 @@ abstract class ImportIconsTask : DefaultTask() {
          * Paths are relative to the theme directory (e.g., "component/alert/important-fill.svg")
          * Add or remove icon paths here to update which icons are imported.
          */
-        private val IconPaths = setOf(
+        internal val IconPaths = setOf(
             // Communication
             "communication/accessibility/accessibility-vision.svg",
             "communication/security-and-safety/lock-closed.svg",
@@ -67,6 +73,8 @@ abstract class ImportIconsTask : DefaultTask() {
 
             // Component - Other
             "component/button/expurge.svg",
+            "component/button/next.svg",
+            "component/button/previous.svg",
             "component/checkbox/checkbox-selected.svg",
             "component/checkbox/checkbox-undetermined.svg",
             "component/chip/tick.svg",
@@ -88,27 +96,44 @@ abstract class ImportIconsTask : DefaultTask() {
         /**
          * Set of icon paths that should have android:autoMirrored="true" for RTL support.
          */
-        private val AutoMirroredIcons = setOf(
+        internal val AutoMirroredIcons = setOf(
+            "component/button/next.svg",
+            "component/button/previous.svg",
             "component/link/next.svg",
             "component/link/previous.svg",
             "functional/navigation/form-chevron-left.svg"
         )
 
         /**
-         * Transform function to customize the drawable resource name.
-         * The default behavior converts the SVG path to snake_case.
-         * Use this to remove redundant prefixes or rename specific icons.
+         * Converts an SVG path to a drawable resource name.
+         * 
+         * Examples:
+         * - "communication/accessibility/accessibility-vision.svg" → "communication_accessibility_vision"
+         * - "component/button/expurge.svg" → "component_button_expurge"
+         * - "component/bullet-list/bullet-level-0.svg" → "component_bullet_list_level0"
+         * 
+         * @param svgPath The SVG file path (e.g., "component/alert/important-fill.svg")
+         * @return The transformed drawable resource name in snake_case
          */
-        private fun transformResourceBaseName(resourceBaseName: String): String = when (resourceBaseName) {
-            "communication_accessibility_accessibility_vision" -> "communication_accessibility_vision"
-            "component_bullet_list_bullet_level_0" -> "component_bullet_list_level0"
-            "component_bullet_list_bullet_level_1" -> "component_bullet_list_level1"
-            "component_bullet_list_bullet_level_2" -> "component_bullet_list_level2"
-            "component_bullet_list_bullet_tick" -> "component_bullet_list_tick"
-            "component_checkbox_checkbox_selected" -> "component_checkbox_selected"
-            "component_checkbox_checkbox_undetermined" -> "component_checkbox_undetermined"
-            "component_radio_button_radio_button_selected" -> "component_radio_button_selected"
-            else -> resourceBaseName
+        internal fun svgPathToDrawableResourceName(svgPath: String): String {
+            val resourceName = svgPath
+                .removeSuffix(".svg")
+                .lowercase()
+                .replace("/", "_")
+                .replace("-", "_")
+
+            return when (resourceName) {
+                "communication_accessibility_accessibility_vision" -> "communication_accessibility_vision"
+                "component_bullet_list_bullet_level_0" -> "component_bullet_list_level0"
+                "component_bullet_list_bullet_level_1" -> "component_bullet_list_level1"
+                "component_bullet_list_bullet_level_2" -> "component_bullet_list_level2"
+                "component_bullet_list_bullet_tick" -> "component_bullet_list_tick"
+                "component_checkbox_checkbox_selected" -> "component_checkbox_selected"
+                "component_checkbox_checkbox_undetermined" -> "component_checkbox_undetermined"
+                "component_radio_button_radio_button_selected" -> "component_radio_button_selected"
+                "component_switch_selected_switch" -> "component_switch_selected"
+                else -> resourceName
+            }
         }
     }
 
@@ -211,14 +236,7 @@ abstract class ImportIconsTask : DefaultTask() {
                 val svgPath = file.toRelativeString(themeDir)
                 val theme = themeDir.toPath().last().toString()
                 if (IconPaths.contains(svgPath.lowercase())) {
-                    // Resource base name is the SVG path converted to snake case
-                    // Renaming (if any) is done explicitly in the transformResourceBaseName method
-                    val resourceBaseName = svgPath
-                        .removeSuffix(".svg")
-                        .lowercase()
-                        .replace("/", "_")
-                        .replace("-", "_")
-                    val resourceName = "ic_${theme}_${transformResourceBaseName(resourceBaseName)}"
+                    val resourceName = "ic_${theme}_${svgPathToDrawableResourceName(svgPath)}"
                     val autoMirrored = AutoMirroredIcons.contains(svgPath.lowercase())
                     icons.add(Icon(svgPath, resourceName, autoMirrored))
                 }
@@ -294,3 +312,83 @@ abstract class ImportIconsTask : DefaultTask() {
 }
 
 tasks.register<ImportIconsTask>("importIcons")
+
+/**
+ * Recursively extract drawable resource property paths from an interface hierarchy.
+ * 
+ * @param clazz The interface class to process
+ * @param path The dot-separated path built so far (e.g., "component.button")
+ * @return List of property paths in format "category.subcategory.propertyName"
+ */
+private fun extractDrawableResourcePropertyPathsRecursively(clazz: KClass<*>, path: String = ""): List<String> {
+    return clazz.declaredMemberProperties.flatMap { property ->
+        val propertyName = property.name
+        val newPath = if (path.isEmpty()) propertyName else "$path.$propertyName"
+        val returnTypeClassifier = property.returnType.classifier
+        when {
+            // Int property = drawable resource (leaf node)
+            returnTypeClassifier == Int::class -> listOf(newPath)
+            // Interface = another level in the hierarchy
+            returnTypeClassifier is KClass<*> && returnTypeClassifier.java.isInterface -> {
+                extractDrawableResourcePropertyPathsRecursively(returnTypeClassifier, newPath)
+            }
+            // Ignore other types (shouldn't happen in OudsDrawableResources)
+            else -> emptyList()
+        }
+    }
+}
+
+private fun drawableResourcePropertyPathToName(propertyPath: String): String {
+    return propertyPath
+        .replace(Regex("([a-z])([A-Z])"), "$1_$2")
+        .replace(Regex("([A-Z])([A-Z][a-z])"), "$1_$2")
+        .lowercase()
+        .replace(".", "_")
+}
+
+tasks.register<DefaultTask>("checkIcons") {
+    group = "verification"
+
+    doLast {
+        val drawableResourcePropertyPaths = extractDrawableResourcePropertyPathsRecursively(OudsDrawableResources::class)
+
+        // For each icon path, verify it maps to a property in OudsDrawableResources
+        val drawableResourceNames = drawableResourcePropertyPaths.map { drawableResourcePropertyPathToName(it) }
+        val surplusIconPaths = ImportIconsTask.IconPaths.filter { iconPath ->
+            val iconPathResourceName = ImportIconsTask.svgPathToDrawableResourceName(iconPath)
+            !drawableResourceNames.contains(iconPathResourceName)
+        }
+
+        // For each property, verify at least one icon path maps to it
+        val iconPathResourceNames = with(ImportIconsTask) { IconPaths.map { svgPathToDrawableResourceName(it) } }
+        val missingIconPaths = drawableResourcePropertyPaths.filter { propertyPath ->
+            val drawableResourceName = drawableResourcePropertyPathToName(propertyPath)
+            !iconPathResourceNames.contains(drawableResourceName)
+        }
+
+        // Report errors or success
+        if (missingIconPaths.isNotEmpty() || surplusIconPaths.isNotEmpty()) {
+            val message = buildString {
+                val appendErrorMessage: (String, List<String>) -> Unit = { errorMessage, iconPaths ->
+                    if (iconPaths.isNotEmpty()) {
+                        appendLine(
+                            """
+                        |${errorMessage}:
+                        |${iconPaths.joinToString("\n") { "  ${it}" }}
+                        """.trimMargin()
+                        )
+                    }
+                }
+                appendErrorMessage("One or more icon paths in IconPaths don't map to valid OudsDrawableResources properties", surplusIconPaths)
+                appendErrorMessage(
+                    "One or more drawables are defined in OudsDrawableResources but missing from IconPaths in icons.gradle.kts",
+                    missingIconPaths
+                )
+            }
+
+            throw GradleException(message)
+        }
+
+        logger.lifecycle("✅ All icons in IconPaths match OudsDrawableResources definitions.")
+    }
+}

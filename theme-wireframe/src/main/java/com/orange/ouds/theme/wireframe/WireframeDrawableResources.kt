@@ -93,7 +93,7 @@ internal class WireframeDrawableResources : OudsDrawableResources {
         }
 
         class Switch : OudsDrawableResources.Component.Switch {
-            override val selected = R.drawable.ic_wireframe_component_switch_selected_switch
+            override val selected = R.drawable.ic_wireframe_component_switch_selected
         }
 
         class Tag : OudsDrawableResources.Component.Tag {
