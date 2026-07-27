@@ -441,8 +441,7 @@ private fun Modifier.border(state: OudsListItemState, decoration: OudsListItemDe
 private fun borderRadius(card: Boolean, focused: Boolean) = with(OudsTheme.components.listItem) {
     when {
         card && LocalThemeSettings.current.roundedCornerCardItems == true -> border.radius.rounded
-        card -> border.radius.default
-        focused -> border.radius.default
+        card || focused -> border.radius.default
         else -> 0.dp
     }
 }
