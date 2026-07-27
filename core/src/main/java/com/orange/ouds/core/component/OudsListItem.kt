@@ -276,7 +276,7 @@ internal fun OudsListItem(
         }
 
         Column(
-            modifier = modifier.sizeIn(minWidth = this.size.minWidth, minHeight = minHeight(size))
+            modifier = modifier.sizeIn(minWidth = this.size.minWidth)
         ) {
             Row(
                 modifier = clickableModifier
