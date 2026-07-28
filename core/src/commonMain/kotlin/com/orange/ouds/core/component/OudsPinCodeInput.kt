@@ -16,9 +16,13 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicSecureTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
@@ -28,24 +32,32 @@ import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.forEachChangeReversed
 import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.rememberTextFieldState
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.semantics.hideFromAccessibility
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.substring
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
+import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalWindowWidth
 import com.orange.ouds.core.theme.OudsTheme
@@ -282,56 +294,48 @@ private fun OudsPinCodeInputDecorator(
         val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
         val totalHorizontalSpace = horizontalSpace * (length.value - 1)
         val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
-//        ConstraintLayout {
-//            val (row, helperTextErrorMessage) = createRefs()
-//            Row(
-//                modifier = Modifier
-//                    .constrainAs(row) {
-//                        top.linkTo(parent.top)
-//                        start.linkTo(parent.start)
-//                        end.linkTo(parent.end)
-//                    },
-//                horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
-//            ) {
-//                val isNonErrorPreview = LocalInspectionMode.current && error == null
-//                val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
-//                repeat(length.value) { index ->
-//                    val digitInputState = when {
-//                        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
-//                        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-//                        else -> OudsDigitInputState.Enabled
-//                    }
-//                    OudsDigitInput(
-//                        modifier = Modifier
-//                            .width(digitWidth)
-//                            .semantics { hideFromAccessibility() },
-//                        digit = textFieldState.text.getOrNull(index),
-//                        onClick = {
-//                            onDigitClick(index)
-//                            textFieldState.edit { placeCursorAfterCharAt(index) }
-//                        },
-//                        state = digitInputState,
-//                        outlined = outlined,
-//                        error = error != null,
-//                        placeholder = error == null,
-//                        smallDeviceSpecificRules = smallDeviceSpecificRules
-//                    )
-//                }
-//            }
-//            OudsTextInputHelperTextErrorMessage(
-//                modifier = Modifier.constrainAs(helperTextErrorMessage) {
-//                    top.linkTo(row.bottom)
-//                    bottom.linkTo(parent.bottom)
-//                    start.linkTo(row.start)
-//                    end.linkTo(row.end)
-//                    width = Dimension.fillToConstraints
-//                },
-//                enabled = true,
-//                error = error,
-//                helperText = helperText,
-//                annotatedHelperText = annotatedHelperText
-//            )
-//        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            var rowWidth by remember { mutableStateOf(Dp.Unspecified) }
+            val density = LocalDensity.current
+            Row(
+                modifier = Modifier.onSizeChanged {
+                    rowWidth = with(density) { it.width.toDp() }
+                },
+                horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
+            ) {
+                val isNonErrorPreview = LocalInspectionMode.current && error == null
+                val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
+                repeat(length.value) { index ->
+                    val digitInputState = when {
+                        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+                        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+                        else -> OudsDigitInputState.Enabled
+                    }
+                    OudsDigitInput(
+                        modifier = Modifier
+                            .width(digitWidth)
+                            .semantics { hideFromAccessibility() },
+                        digit = textFieldState.text.getOrNull(index),
+                        onClick = {
+                            onDigitClick(index)
+                            textFieldState.edit { placeCursorAfterCharAt(index) }
+                        },
+                        state = digitInputState,
+                        outlined = outlined,
+                        error = error != null,
+                        placeholder = error == null,
+                        smallDeviceSpecificRules = smallDeviceSpecificRules
+                    )
+                }
+            }
+            OudsTextInputHelperTextErrorMessage(
+                modifier = Modifier.width(rowWidth),
+                enabled = true,
+                error = error,
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText
+            )
+        }
     }
 }
 
