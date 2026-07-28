@@ -41,7 +41,6 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -348,8 +347,6 @@ private fun textStyle(size: OudsBadgeSize): TextStyle? {
         OudsBadgeSize.Small -> null
         OudsBadgeSize.Medium -> OudsTheme.typography.label.small.default
         OudsBadgeSize.Large -> OudsTheme.typography.label.medium.default
-    }?.run {
-        copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }
 }
 
