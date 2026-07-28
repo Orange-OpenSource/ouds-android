@@ -18,10 +18,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -36,11 +34,8 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -52,6 +47,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -361,16 +357,12 @@ private fun OudsLink(
         val isTextOnly = icon == null && indicator == null
 
         val minHeight = when (density) {
-            OudsLinkDensity.Default -> getTokenValue(size = size, default = this.size.minHeightDefault, small = this.size.minHeightSmall)
+            OudsLinkDensity.Default -> size.getTokenValue(default = this.size.minHeightDefault, small = this.size.minHeightSmall)
             OudsLinkDensity.Compact -> this.size.minHeightCompactDensity
         }
         val verticalPadding = when (density) {
-            OudsLinkDensity.Default -> getTokenValue(size = size, default = space.paddingBlock.default, small = space.paddingBlock.small)
-            OudsLinkDensity.Compact -> getTokenValue(
-                size = size,
-                default = space.paddingBlock.compactDensityDefault,
-                small = space.paddingBlock.compactDensitySmall
-            )
+            OudsLinkDensity.Default -> size.getTokenValue(default = space.paddingBlock.default, small = space.paddingBlock.small)
+            OudsLinkDensity.Compact -> size.getTokenValue(default = space.paddingBlock.compactDensityDefault, small = space.paddingBlock.compactDensitySmall)
         }
         val monochrome = LocalColorMode.current?.monochrome == true
         val contentColor = rememberInteractionColor(interactionState = interactionState) { linkInteractionState ->
@@ -411,36 +403,28 @@ private fun OudsLink(
                 ),
             contentAlignment = Alignment.CenterStart
         ) {
-            val columnGap: Dp
-            val iconSize: Dp
-            var textStyle: TextStyle
-            when (size) {
-                OudsLinkSize.Default -> {
-                    columnGap = if (indicator != null) space.columnGap.chevronDefault else space.columnGap.iconDefault
-                    iconSize = this@with.size.iconDefault
-                    textStyle = OudsTheme.typography.label.large.strong
-                }
-                OudsLinkSize.Small -> {
-                    columnGap = if (indicator != null) space.columnGap.chevronSmall else space.columnGap.iconSmall
-                    iconSize = this@with.size.iconSmall
-                    textStyle = OudsTheme.typography.label.medium.strong
-                }
-            }
+            val columnGap = size.getTokenValue(
+                default = if (indicator != null) space.columnGap.chevronDefault else space.columnGap.iconDefault,
+                small = if (indicator != null) space.columnGap.chevronSmall else space.columnGap.iconSmall
+            )
+            var textStyle = size.getTokenValue(default = OudsTheme.typography.label.large.strong, small = OudsTheme.typography.label.medium.strong)
 
             if (isUnderlined.value) {
                 textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
 
-            val iconTint = if (indicator != null) chevronColor.value else contentColor.value
-
             Row(
                 horizontalArrangement = Arrangement.spacedBy(columnGap),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (icon != null || indicator == OudsLinkIndicator.Previous) {
-                    icon.orElse { OudsLinkIcon(painterResource(OudsTheme.drawableResources.component.link.previous)) }.Content(
-                        modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
-                        extraParameters = OudsLinkIcon.ExtraParameters(tint = iconTint)
+                val iconTint = if (indicator != null) chevronColor.value else contentColor.value
+                val leadingIcon = icon != null || indicator == OudsLinkIndicator.Previous
+                if (leadingIcon) {
+                    LinkIcon(
+                        icon = icon,
+                        indicator = indicator,
+                        size = size,
+                        tint = iconTint
                     )
                 }
                 Text(
@@ -449,21 +433,41 @@ private fun OudsLink(
                     color = contentColor.value,
                     style = textStyle
                 )
-                if (indicator != null && indicator != OudsLinkIndicator.Previous) {
-                    val indicatorPainterResId = when (indicator) {
-                        OudsLinkIndicator.Next -> OudsTheme.drawableResources.component.link.next
-                        OudsLinkIndicator.External -> OudsTheme.drawableResources.component.link.externalLink
-                    }
-                    OudsLinkIcon(painterResource(indicatorPainterResId)).Content(
-                        modifier = Modifier
-                            .size(iconSize)
-                            .fillMaxHeight()
-                            .align(Alignment.Bottom),
-                        extraParameters = OudsLinkIcon.ExtraParameters(tint = iconTint)
+                if (!leadingIcon) {
+                    LinkIcon(
+                        icon = icon,
+                        indicator = indicator,
+                        size = size,
+                        tint = iconTint
                     )
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color) {
+    with(OudsTheme.components.link) {
+        val iconSize = size.getTokenValue(default = this.size.iconDefault, small = this.size.iconSmall)
+        val linkIcon = when {
+            icon != null -> icon
+            indicator != null -> {
+                val indicatorPainterResId = with(OudsTheme.drawableResources.component.link) {
+                    when (indicator) {
+                        OudsLinkIndicator.Previous -> previous
+                        OudsLinkIndicator.Next -> next
+                        OudsLinkIndicator.External -> externalLink
+                    }
+                }
+                OudsLinkIcon(painterResource(indicatorPainterResId))
+            }
+            else -> null
+        }
+        linkIcon?.Content(
+            modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
+            extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
+        )
     }
 }
 
@@ -522,14 +526,6 @@ private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
     }
 }
 
-@Composable
-private fun getTokenValue(size: OudsLinkSize, default: Dp, small: Dp): Dp {
-    return when (size) {
-        OudsLinkSize.Default -> default
-        OudsLinkSize.Small -> small
-    }
-}
-
 /**
  * Contains the default values used by OUDS links.
  */
@@ -559,7 +555,15 @@ enum class OudsLinkSize {
      * A small size for a link, particularly useful in an information-dense interface or in a component requiring the use
      * of small elements ("Inline alert" component, for example).
      */
-    Small
+    Small;
+
+    @Composable
+    internal fun <T> getTokenValue(default: T, small: T): T {
+        return when (this) {
+            Default -> default
+            Small -> small
+        }
+    }
 }
 
 /**
@@ -755,7 +759,7 @@ private fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getP
 internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         val label = "Link\non two lines"
-        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(PreviewPaddingDefault)) {
             listOf(OudsLinkIndicator.Previous, OudsLinkIndicator.Next).forEach { indicator ->
                 OudsLink(
                     label = label,
