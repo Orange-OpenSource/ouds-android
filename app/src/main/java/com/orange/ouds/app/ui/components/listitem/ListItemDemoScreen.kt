@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.listitem.ItemDemoState.Size
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -73,7 +74,7 @@ internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
 @Composable
 private fun ListItemDemoContent(state: ListItemDemoState) {
     with(state) {
-        if (navigationItem) {
+        if (clickable) {
             OudsListItem(
                 onClick = {},
                 indicator = indicator.toOudsListItemIndicator(),
@@ -110,4 +111,16 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
 }
 
 private fun Code.Builder.listItemDemoCodeSnippet(state: ListItemDemoState, themeDrawableResources: ThemeDrawableResources) {
+    with(state) {
+        val functionName = when (size) {
+            Size.Default -> "OudsListItem"
+            Size.Small -> "OudsSmallListItem"
+        }
+        functionCall(functionName) {
+            itemArguments(state, themeDrawableResources)
+
+            if (!divider) typedArgument("divider", divider)
+            if (background) typedArgument("background", background)
+        }
+    }
 }

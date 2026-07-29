@@ -24,12 +24,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.labelArgument
+import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberImagePainter
+import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIconSize
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
@@ -42,7 +50,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-internal fun ItemDemoBottomSheetTabs(state: ItemDemoState) {
+fun ItemDemoBottomSheetTabs(state: ItemDemoState) {
     with(state) {
         val scope = rememberCoroutineScope()
 
@@ -69,7 +77,7 @@ internal fun ItemDemoBottomSheetTabs(state: ItemDemoState) {
 }
 
 @Composable
-internal fun ItemDemoBottomSheetContent(state: ItemDemoState) {
+fun ItemDemoBottomSheetContent(state: ItemDemoState) {
     with(state) {
         HorizontalPager(state = pagerState, userScrollEnabled = false) { page ->
             Column {
@@ -86,7 +94,7 @@ fun itemGlobalCustomization(index: Int, content: @Composable () -> Unit) = ItemG
 @Composable
 fun ItemGlobalCustomizations(state: ItemDemoState, extraCustomizations: List<ItemGlobalCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
-        { ItemNavigationItemCustomization(state = state) },
+        { ItemClickableCustomization(state = state) },
         { ItemIndicatorCustomization(state = state) },
         { ItemContentAlignmentCustomization(state = state) },
         { ItemEnabledCustomization(state = state) },
@@ -99,12 +107,12 @@ fun ItemGlobalCustomizations(state: ItemDemoState, extraCustomizations: List<Ite
 }
 
 @Composable
-private fun ItemNavigationItemCustomization(state: ItemDemoState) {
+private fun ItemClickableCustomization(state: ItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_listItem_navigationItem_tech),
-            checked = navigationItem,
-            onCheckedChange = { navigationItem = it },
+            label = stringResource(R.string.app_components_listItem_clickable_tech),
+            checked = clickable,
+            onCheckedChange = { clickable = it },
         )
     }
 }
@@ -159,7 +167,7 @@ private fun ItemHelperTextCustomization(state: ItemDemoState) {
 }
 
 @Composable
-internal fun ItemLeadingCustomizationContent(state: ItemDemoState) {
+fun ItemLeadingCustomizationContent(state: ItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -210,7 +218,7 @@ internal fun ItemLeadingCustomizationContent(state: ItemDemoState) {
 }
 
 @Composable
-internal fun ItemTextContainerCustomizationContent(state: ItemDemoState) {
+fun ItemTextContainerCustomizationContent(state: ItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
@@ -247,7 +255,7 @@ internal fun ItemTextContainerCustomizationContent(state: ItemDemoState) {
 }
 
 @Composable
-internal fun ItemTrailingCustomizationContent(state: ItemDemoState) {
+fun ItemTrailingCustomizationContent(state: ItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -344,14 +352,14 @@ private val imagePainter
     get() = rememberImagePainter()
 
 @Composable
-internal fun itemDemoLeading(state: ItemDemoState): OudsListItemLeading? = with(state) {
+fun itemDemoLeading(state: ItemDemoState): OudsListItemLeading? = with(state) {
     when (leading) {
         ItemDemoState.Leading.None -> null
         ItemDemoState.Leading.Icon -> {
             when (leadingStatusIcon) {
                 ItemDemoState.StatusIcon.None -> OudsListItemLeading.Icon(
                     painter = iconPainter,
-                    contentDescription = "",
+                    contentDescription = stringResource(R.string.app_components_listItem_icon_a11y),
                     size = leadingIconSize
                 )
                 ItemDemoState.StatusIcon.Info -> OudsListItemLeading.Icon.Info(size = leadingIconSize)
@@ -362,7 +370,7 @@ internal fun itemDemoLeading(state: ItemDemoState): OudsListItemLeading? = with(
         }
         ItemDemoState.Leading.Image -> OudsListItemLeading.Image(
             painter = imagePainter,
-            contentDescription = "",
+            contentDescription = stringResource(R.string.app_components_listItem_image_a11y),
             size = leadingImageSize,
             ratio = leadingImageRatio,
             roundedCorner = leadingImageRoundedCorners,
@@ -372,14 +380,14 @@ internal fun itemDemoLeading(state: ItemDemoState): OudsListItemLeading? = with(
 }
 
 @Composable
-internal fun itemDemoTrailing(state: ItemDemoState): OudsListItemTrailing? = with(state) {
+fun itemDemoTrailing(state: ItemDemoState): OudsListItemTrailing? = with(state) {
     when (trailing) {
         ItemDemoState.Trailing.None -> null
         ItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
                 ItemDemoState.StatusIcon.None -> OudsListItemTrailing.Icon(
                     painter = iconPainter,
-                    contentDescription = "",
+                    contentDescription = stringResource(R.string.app_components_listItem_icon_a11y),
                     size = trailingIconSize
                 )
                 ItemDemoState.StatusIcon.Info -> OudsListItemTrailing.Icon.Info(size = trailingIconSize)
@@ -390,7 +398,7 @@ internal fun itemDemoTrailing(state: ItemDemoState): OudsListItemTrailing? = wit
         }
         ItemDemoState.Trailing.Image -> OudsListItemTrailing.Image(
             painter = imagePainter,
-            contentDescription = "",
+            contentDescription = stringResource(R.string.app_components_listItem_image_a11y),
             size = trailingImageSize,
             ratio = trailingImageRatio,
             roundedCorner = trailingImageRoundedCorners,
@@ -409,5 +417,158 @@ internal fun itemDemoTrailing(state: ItemDemoState): OudsListItemTrailing? = wit
                 )
             }
         }
+    }
+}
+
+fun FunctionCall.Builder.itemArguments(state: ItemDemoState, themeDrawableResources: ThemeDrawableResources) {
+    with(state) {
+        if (clickable) {
+            onClickArgument {
+                comment("Do something")
+            }
+            if (indicator != ItemDemoState.Indicator.Next) {
+                typedArgument("indicator", indicator.toOudsListItemIndicator())
+            }
+        }
+
+        labelArgument(label)
+
+        if (verticalAlignment != OudsListItemDefaults.VerticalAlignment) {
+            typedArgument("verticalAlignment", verticalAlignment)
+        }
+
+        if (!overline.isNullOrBlank()) typedArgument("overline", overline)
+        if (!extraLabel.isNullOrBlank()) typedArgument("extraLabel", extraLabel)
+        if (!description.isNullOrBlank()) typedArgument("description", description)
+
+        val leadingParameterName = "leading"
+        val trailingParameterName = "trailing"
+        when (leading) {
+            ItemDemoState.Leading.Icon -> addIconCodeSnippet<
+                    OudsListItemLeading.Icon,
+                    OudsListItemLeading.Icon.Info,
+                    OudsListItemLeading.Icon.Negative,
+                    OudsListItemLeading.Icon.Positive,
+                    OudsListItemLeading.Icon.Warning
+                    >(
+                argumentName = leadingParameterName,
+                statusIcon = leadingStatusIcon,
+                iconSize = leadingIconSize,
+                themeDrawableResources = themeDrawableResources
+            )
+            ItemDemoState.Leading.Image -> addImageCodeSnippet<OudsListItemLeading.Image>(
+                argumentName = leadingParameterName,
+                imageSize = leadingImageSize,
+                imageRatio = leadingImageRatio,
+                roundedCorners = leadingImageRoundedCorners
+            )
+            ItemDemoState.Leading.None -> {}
+        }
+
+        when (trailing) {
+            ItemDemoState.Trailing.Icon -> addIconCodeSnippet<
+                    OudsListItemTrailing.Icon,
+                    OudsListItemTrailing.Icon.Info,
+                    OudsListItemTrailing.Icon.Negative,
+                    OudsListItemTrailing.Icon.Positive,
+                    OudsListItemTrailing.Icon.Warning
+                    >(
+                argumentName = trailingParameterName,
+                statusIcon = trailingStatusIcon,
+                iconSize = trailingIconSize,
+                themeDrawableResources = themeDrawableResources
+            )
+            ItemDemoState.Trailing.Image -> addImageCodeSnippet<OudsListItemTrailing.Image>(
+                argumentName = trailingParameterName,
+                imageSize = trailingImageSize,
+                imageRatio = trailingImageRatio,
+                roundedCorners = trailingImageRoundedCorners
+            )
+            ItemDemoState.Trailing.Text -> {
+                constructorCallArgument<OudsListItemTrailing.Text>(trailingParameterName) {
+                    labelArgument(trailingTextLabel)
+                    if (trailingTextStyle == OudsListItemTextStyle.Label && !trailingTextExtraLabel.isNullOrBlank()) {
+                        typedArgument("extraLabel", trailingTextExtraLabel)
+                    } else if (trailingTextStyle != OudsListItemTextStyle.Label) {
+                        typedArgument("style", trailingTextStyle)
+                    }
+                }
+            }
+            ItemDemoState.Trailing.None -> {}
+        }
+
+        if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
+        if (boldLabel) typedArgument("boldLabel", boldLabel)
+        if (!enabled) enabledArgument(enabled)
+    }
+}
+
+inline fun <reified IconType, reified IconInfo, reified IconNegative, reified IconPositive, reified IconWarning> FunctionCall.Builder.addIconCodeSnippet(
+    argumentName: String,
+    statusIcon: ItemDemoState.StatusIcon,
+    iconSize: OudsListItemIconSize,
+    themeDrawableResources: ThemeDrawableResources
+) {
+    val sizeParameterName = "size"
+    when (statusIcon) {
+        ItemDemoState.StatusIcon.Info -> {
+            constructorCallArgument<IconInfo>(argumentName) {
+                if (iconSize != OudsListItemDefaults.IconSize) {
+                    typedArgument(sizeParameterName, iconSize)
+                }
+            }
+        }
+        ItemDemoState.StatusIcon.Negative -> {
+            constructorCallArgument<IconNegative>(argumentName) {
+                if (iconSize != OudsListItemDefaults.IconSize) {
+                    typedArgument(sizeParameterName, iconSize)
+                }
+            }
+        }
+        ItemDemoState.StatusIcon.Positive -> {
+            constructorCallArgument<IconPositive>(argumentName) {
+                if (iconSize != OudsListItemDefaults.IconSize) {
+                    typedArgument(sizeParameterName, iconSize)
+                }
+            }
+        }
+        ItemDemoState.StatusIcon.Warning -> {
+            constructorCallArgument<IconWarning>(argumentName) {
+                if (iconSize != OudsListItemDefaults.IconSize) {
+                    typedArgument(sizeParameterName, iconSize)
+                }
+            }
+        }
+        ItemDemoState.StatusIcon.None -> {
+            constructorCallArgument<IconType>(argumentName) {
+                painterArgument(themeDrawableResources.tipsAndTricks)
+                contentDescriptionArgument(R.string.app_components_listItem_icon_a11y)
+                if (iconSize != OudsListItemDefaults.IconSize) {
+                    typedArgument(sizeParameterName, iconSize)
+                }
+            }
+        }
+    }
+}
+
+inline fun <reified ImageType> FunctionCall.Builder.addImageCodeSnippet(
+    argumentName: String,
+    imageSize: OudsListItemImageSize,
+    imageRatio: OudsListItemImageRatio,
+    roundedCorners: Boolean
+) {
+    constructorCallArgument<ImageType>(argumentName) {
+        painterArgument(R.drawable.ic_untinted_widescreen)
+        contentDescriptionArgument(R.string.app_components_listItem_image_a11y)
+        if (imageSize != OudsListItemDefaults.ImageSize) {
+            typedArgument("size", imageSize)
+        }
+        if (imageRatio != OudsListItemDefaults.ImageRatio) {
+            typedArgument("ratio", imageRatio)
+        }
+        if (roundedCorners) {
+            typedArgument("roundedCorner", true)
+        }
+        rawArgument("contentScale", "ContentScale.Crop")
     }
 }

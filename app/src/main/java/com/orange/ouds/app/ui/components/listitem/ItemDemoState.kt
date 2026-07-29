@@ -30,7 +30,7 @@ open class ItemDemoState(
     size: Size,
     selectedTabIndex: Int,
     label: String,
-    navigationItem: Boolean,
+    clickable: Boolean,
     indicator: Indicator,
     verticalAlignment: OudsListItemVerticalAlignment,
     overline: String?,
@@ -66,7 +66,7 @@ open class ItemDemoState(
                         size,
                         selectedTabIndex,
                         label,
-                        navigationItem,
+                        clickable,
                         indicator,
                         verticalAlignment,
                         overline,
@@ -137,6 +137,8 @@ open class ItemDemoState(
 
     var boldLabel: Boolean by mutableStateOf(boldLabel)
 
+    var clickable: Boolean by mutableStateOf(clickable)
+
     var description: String? by mutableStateOf(description)
 
     var divider: Boolean by mutableStateOf(divider)
@@ -149,7 +151,7 @@ open class ItemDemoState(
 
     var indicator: Indicator by mutableStateOf(indicator)
     val indicatorEnabled: Boolean
-        get() = navigationItem
+        get() = clickable
 
     var label: String by mutableStateOf(label)
 
@@ -165,8 +167,6 @@ open class ItemDemoState(
     var leadingImageRoundedCorners: Boolean by mutableStateOf(leadingImageRoundedCorners)
     val leadingImageOptionsEnabled: Boolean
         get() = leading == Leading.Image
-
-    var navigationItem: Boolean by mutableStateOf(navigationItem)
 
     var overline: String? by mutableStateOf(overline)
 
