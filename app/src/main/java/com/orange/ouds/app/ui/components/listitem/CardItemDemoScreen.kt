@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.listitem.ItemDemoState.Size
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -35,11 +34,11 @@ import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
-fun CardItemDemoScreen(size: ItemDemoState.Size) {
+fun CardItemDemoScreen(size: BaseListItemDemoState.Size) {
     val state = rememberCardItemDemoState(size = size)
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
-        bottomSheetTabs = { ItemDemoBottomSheetTabs(state = state) },
+        bottomSheetTabs = { BaseListItemDemoBottomSheetTabs(state = state) },
         bottomSheetContent = { CardItemDemoBottomSheetContent(state = state) },
         codeSnippet = { cardItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { CardItemDemoContent(state = state) },
@@ -50,14 +49,14 @@ fun CardItemDemoScreen(size: ItemDemoState.Size) {
 
 @Composable
 private fun CardItemDemoBottomSheetContent(state: CardItemDemoState) {
-    ItemDemoBottomSheetContent(state = state)
+    BaseListItemDemoBottomSheetContent(state = state)
 }
 
 @Composable
 internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
     with(state) {
         val extraCustomizations = listOf(
-            itemGlobalCustomization(3) {
+            baseListItemGlobalCustomization(3) {
                 CustomizationFilterChips(
                     applyTopPadding = true,
                     label = stringResource(R.string.app_components_listItem_cardItem_decoration_tech),
@@ -70,7 +69,7 @@ internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
                     onSelectionChange = { index -> decoration = CardItemDemoState.Decoration.entries[index] }
                 )
             },
-            itemGlobalCustomization(4) {
+            baseListItemGlobalCustomization(4) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_common_divider_tech),
                     checked = divider,
@@ -79,7 +78,7 @@ internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
                 )
             }
         )
-        ItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
+        BaseListItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
     }
 }
 
@@ -98,8 +97,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
-                leading = itemDemoLeading(state = state),
-                trailing = itemDemoTrailing(state = state),
+                leading = baseListItemDemoLeading(state = state),
+                trailing = baseListItemDemoTrailing(state = state),
                 decoration = decoration.toOudsListItemDecoration(divider = divider),
                 helperText = helperText,
                 boldLabel = boldLabel,
@@ -113,8 +112,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
-                leading = itemDemoLeading(state = state),
-                trailing = itemDemoTrailing(state = state),
+                leading = baseListItemDemoLeading(state = state),
+                trailing = baseListItemDemoTrailing(state = state),
                 decoration = decoration.toOudsListItemDecoration(divider = divider),
                 helperText = helperText,
                 boldLabel = boldLabel,
@@ -127,8 +126,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
 private fun Code.Builder.cardItemDemoCodeSnippet(state: CardItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         val functionName = when (size) {
-            Size.Default -> "OudsCardItem"
-            Size.Small -> "OudsSmallCardItem"
+            BaseListItemDemoState.Size.Default -> "OudsCardItem"
+            BaseListItemDemoState.Size.Small -> "OudsSmallCardItem"
         }
         functionCall(functionName) {
             val decorationParameterName = "decoration"
@@ -149,7 +148,7 @@ private fun Code.Builder.cardItemDemoCodeSnippet(state: CardItemDemoState, theme
                 )
             }
 
-            itemArguments(state, themeDrawableResources)
+            baseListItemArguments(state, themeDrawableResources)
         }
     }
 }

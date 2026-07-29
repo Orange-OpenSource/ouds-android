@@ -26,7 +26,7 @@ import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemVerticalAlignment
 
 
-open class ItemDemoState(
+open class BaseListItemDemoState(
     size: Size,
     selectedTabIndex: Int,
     label: String,
@@ -95,7 +95,7 @@ open class ItemDemoState(
                 }
             },
             restore = { list: List<Any?> ->
-                ItemDemoState(
+                BaseListItemDemoState(
                     list[0] as Size,
                     list[1] as Int,
                     list[2] as String,
@@ -195,15 +195,15 @@ open class ItemDemoState(
         Global, Leading, TextContainer, Trailing;
 
         @Composable
-        fun Content(state: ItemDemoState) {
+        fun Content(state: BaseListItemDemoState) {
             when (this) {
                 Global -> when (state) {
                     is CardItemDemoState -> CardItemGlobalCustomizationContent(state = state)
                     is ListItemDemoState -> ListItemGlobalCustomizationContent(state = state)
                 }
-                Leading -> ItemLeadingCustomizationContent(state = state)
-                TextContainer -> ItemTextContainerCustomizationContent(state = state)
-                Trailing -> ItemTrailingCustomizationContent(state = state)
+                Leading -> BaseListItemLeadingCustomizationContent(state = state)
+                TextContainer -> BaseListItemTextContainerCustomizationContent(state = state)
+                Trailing -> BaseListItemTrailingCustomizationContent(state = state)
             }
         }
     }

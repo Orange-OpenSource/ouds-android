@@ -18,7 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.listitem.ItemDemoState.Size
+import com.orange.ouds.app.ui.components.listitem.BaseListItemDemoState.Size
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -30,11 +30,11 @@ import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
-fun ListItemDemoScreen(size: ItemDemoState.Size) {
+fun ListItemDemoScreen(size: BaseListItemDemoState.Size) {
     val state = rememberListItemDemoState(size = size)
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
-        bottomSheetTabs = { ItemDemoBottomSheetTabs(state = state) },
+        bottomSheetTabs = { BaseListItemDemoBottomSheetTabs(state = state) },
         bottomSheetContent = { ListItemDemoBottomSheetContent(state = state) },
         codeSnippet = { listItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { ListItemDemoContent(state = state) },
@@ -45,7 +45,7 @@ fun ListItemDemoScreen(size: ItemDemoState.Size) {
 
 @Composable
 private fun ListItemDemoBottomSheetContent(state: ListItemDemoState) {
-    ItemDemoBottomSheetContent(state = state)
+    BaseListItemDemoBottomSheetContent(state = state)
 }
 
 
@@ -53,21 +53,21 @@ private fun ListItemDemoBottomSheetContent(state: ListItemDemoState) {
 internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
     with(state) {
         val extraCustomizations = listOf(
-            itemGlobalCustomization(3) {
+            baseListItemGlobalCustomization(3) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_common_divider_tech),
                     checked = divider,
                     onCheckedChange = { divider = it },
                 )
             },
-            itemGlobalCustomization(4) {
+            baseListItemGlobalCustomization(4) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_listItem_background_tech),
                     checked = background,
                     onCheckedChange = { background = it },
                 )
             },
-            itemGlobalCustomization(6) {
+            baseListItemGlobalCustomization(6) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_common_edgeToEdge_tech),
                     checked = edgeToEdge,
@@ -75,7 +75,7 @@ internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
                 )
             }
         )
-        ItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
+        BaseListItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
     }
 }
 
@@ -94,8 +94,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
-                leading = itemDemoLeading(state = state),
-                trailing = itemDemoTrailing(state = state),
+                leading = baseListItemDemoLeading(state = state),
+                trailing = baseListItemDemoTrailing(state = state),
                 divider = divider,
                 background = background,
                 helperText = helperText,
@@ -111,8 +111,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
-                leading = itemDemoLeading(state = state),
-                trailing = itemDemoTrailing(state = state),
+                leading = baseListItemDemoLeading(state = state),
+                trailing = baseListItemDemoTrailing(state = state),
                 divider = divider,
                 background = background,
                 helperText = helperText,
@@ -131,7 +131,7 @@ private fun Code.Builder.listItemDemoCodeSnippet(state: ListItemDemoState, theme
             Size.Small -> "OudsSmallListItem"
         }
         functionCall(functionName) {
-            itemArguments(state, themeDrawableResources)
+            baseListItemArguments(state, themeDrawableResources)
 
             if (!divider) typedArgument("divider", divider)
             if (background) typedArgument("background", background)

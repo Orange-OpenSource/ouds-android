@@ -32,24 +32,24 @@ import com.orange.ouds.core.component.OudsListItemVerticalAlignment
 fun rememberListItemDemoState(
     background: Boolean = false,
     edgeToEdge: Boolean = true,
-    size: ItemDemoState.Size,
+    size: BaseListItemDemoState.Size,
     selectedTabIndex: Int = 0,
     label: String = stringResource(id = R.string.app_components_common_label_label),
     clickable: Boolean = false,
-    indicator: ItemDemoState.Indicator = ItemDemoState.Indicator.Next,
+    indicator: BaseListItemDemoState.Indicator = BaseListItemDemoState.Indicator.Next,
     verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
-    leading: ItemDemoState.Leading = ItemDemoState.Leading.None,
+    leading: BaseListItemDemoState.Leading = BaseListItemDemoState.Leading.None,
     leadingIconSize: OudsListItemIconSize = OudsListItemDefaults.IconSize,
-    leadingStatusIcon: ItemDemoState.StatusIcon = ItemDemoState.StatusIcon.None,
+    leadingStatusIcon: BaseListItemDemoState.StatusIcon = BaseListItemDemoState.StatusIcon.None,
     leadingImageSize: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
     leadingImageRatio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
     leadingImageRoundedCorners: Boolean = false,
-    trailing: ItemDemoState.Trailing = ItemDemoState.Trailing.None,
+    trailing: BaseListItemDemoState.Trailing = BaseListItemDemoState.Trailing.None,
     trailingIconSize: OudsListItemIconSize = OudsListItemDefaults.IconSize,
-    trailingStatusIcon: ItemDemoState.StatusIcon = ItemDemoState.StatusIcon.None,
+    trailingStatusIcon: BaseListItemDemoState.StatusIcon = BaseListItemDemoState.StatusIcon.None,
     trailingImageSize: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
     trailingImageRatio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
     trailingImageRoundedCorners: Boolean = false,
@@ -129,7 +129,7 @@ fun rememberListItemDemoState(
     }
 
     val pagerState = rememberPagerState(initialPage = selectedTabIndex) {
-        ItemDemoState.CustomizationTab.entries.size
+        BaseListItemDemoState.CustomizationTab.entries.size
     }
     state.pagerState = pagerState
     return state
@@ -166,7 +166,7 @@ class ListItemDemoState(
     helperText: String?,
     boldLabel: Boolean,
     enabled: Boolean,
-) : ItemDemoState(
+) : BaseListItemDemoState(
     size,
     selectedTabIndex,
     label,
@@ -204,12 +204,12 @@ class ListItemDemoState(
                     listOf(
                         background,
                         edgeToEdge,
-                        with(ItemDemoState.Saver) { save(state) }
+                        with(BaseListItemDemoState.Saver) { save(state) }
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                val itemDemoState = list[2]?.let { ItemDemoState.Saver.restore(it) }
+                val itemDemoState = list[2]?.let { BaseListItemDemoState.Saver.restore(it) }
                 itemDemoState?.run {
                     ListItemDemoState(
                         list[0] as Boolean,
