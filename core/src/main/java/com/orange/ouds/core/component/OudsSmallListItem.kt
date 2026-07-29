@@ -519,7 +519,8 @@ internal fun PreviewOudsStaticSmallListItem(
             background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
             verticalAlignment = verticalAlignment,
             boldLabel = boldLabel,
-            enabled = enabled
+            enabled = enabled,
+            edgeToEdge = false
         )
     }
 }
@@ -556,7 +557,8 @@ internal fun PreviewOudsNavigationSmallListItem(
                 trailing = trailing,
                 divider = decoration.divider,
                 background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
-                enabled = enabled
+                enabled = enabled,
+                edgeToEdge = false
             )
         }
     }

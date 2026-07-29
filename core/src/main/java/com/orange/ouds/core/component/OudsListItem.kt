@@ -1330,7 +1330,8 @@ internal fun PreviewOudsStaticListItem(
             divider = decoration.divider,
             background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
             boldLabel = boldLabel,
-            enabled = enabled
+            enabled = enabled,
+            edgeToEdge = false
         )
     }
 }
@@ -1369,7 +1370,8 @@ internal fun PreviewOudsNavigationListItem(
                 trailing = trailing,
                 divider = decoration.divider,
                 background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
-                enabled = enabled
+                enabled = enabled,
+                edgeToEdge = false
             )
         }
     }
@@ -1393,6 +1395,7 @@ internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContr
                 tinted = false
             ),
             background = true,
+            edgeToEdge = false
         )
     }
 }
