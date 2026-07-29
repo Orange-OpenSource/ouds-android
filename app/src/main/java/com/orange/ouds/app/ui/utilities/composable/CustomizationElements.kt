@@ -81,7 +81,7 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
 @JvmName("CustomizationFilterChipsLabels")
 @Composable
 fun CustomizationFilterChips(
-    label: String,
+    label: String?,
     chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
@@ -103,7 +103,7 @@ fun CustomizationFilterChips(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomizationFilterChips(
-    label: String,
+    label: String?,
     chips: List<CustomizationFilterChip>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
@@ -116,9 +116,11 @@ fun CustomizationFilterChips(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .semantics(mergeDescendants = true) {}
+            .semantics(mergeDescendants = true) {},
     ) {
-        CustomizationText(label = label, enabled = chips.any { it.enabled })
+        label?.let {
+            CustomizationText(label = label, enabled = chips.any { it.enabled })
+        }
 
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold

@@ -30,7 +30,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
@@ -102,7 +102,7 @@ private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState
     with(state) {
         val painter = when (icon) {
             FloatingActionButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
-            FloatingActionButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+            FloatingActionButtonDemoState.Icon.Untinted -> rememberUntintedRoundedIconPainter()
         }
         val floatingActionButtonIcon = OudsFloatingActionButtonIcon(
             painter = painter,

@@ -45,13 +45,15 @@ fun DemoScreen(
     demoContent: @Composable () -> Unit,
     demoContentOnColoredBox: Boolean = false,
     demoContentPaddingValues: PaddingValues = PaddingValues(horizontal = OudsTheme.grids.margin),
+    bottomSheetTabs: (@Composable () -> Unit)? = null,
     description: String? = null,
     version: String? = null
 ) {
     Screen {
         CustomizationBottomSheetScaffold(
             bottomSheetScaffoldState = rememberBottomSheetScaffoldState(),
-            bottomSheetContent = bottomSheetContent
+            bottomSheetContent = bottomSheetContent,
+            bottomSheetTabs = bottomSheetTabs
         ) {
             if (description != null) {
                 DetailScreenDescription(

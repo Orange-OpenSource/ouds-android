@@ -38,7 +38,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagAsset
@@ -167,7 +167,7 @@ private fun TagDemoContent(state: TagDemoState) {
             val loader = if (hasLoader) OudsTagLoader(null) else null
             val painter = when (icon) {
                 TagDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
-                TagDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+                TagDemoState.Icon.Untinted -> rememberUntintedRoundedIconPainter()
             }
             val tagIcon = OudsTagAsset.Icon(painter = painter, tinted = icon == TagDemoState.Icon.Tinted)
             val alpha = if (visible) 1f else 0f

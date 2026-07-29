@@ -31,7 +31,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -82,7 +82,7 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
             repeat(ChipDemoState.ChipCount) { index ->
                 val painter = when (icon) {
                     ChipDemoState.Icon.Tinted -> painterResource(id = icons[index % icons.count()])
-                    ChipDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+                    ChipDemoState.Icon.Untinted -> rememberUntintedRoundedIconPainter()
                 }
                 val chipIcon = OudsChipIcon(
                     painter = painter,

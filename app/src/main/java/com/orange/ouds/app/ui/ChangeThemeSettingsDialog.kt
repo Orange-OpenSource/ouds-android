@@ -15,7 +15,6 @@ package com.orange.ouds.app.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -23,7 +22,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -62,6 +60,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
                 checked = when (themeSetting) {
                     ThemeSetting.RoundedCornerAlertMessages -> themeSettings.roundedCornerAlertMessages.orElse { false }
                     ThemeSetting.RoundedCornerButtons -> themeSettings.roundedCornerButtons.orElse { false }
+                    ThemeSetting.RoundedCornerCardItems -> themeSettings.roundedCornerCardItems.orElse { false }
                     ThemeSetting.RoundedCornerProgressIndicators -> themeSettings.roundedCornerProgressIndicators.orElse { false }
                     ThemeSetting.RoundedCornerTextInputs -> themeSettings.roundedCornerTextInputs.orElse { false }
                 },
@@ -70,6 +69,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
                     themeSettings = when (themeSetting) {
                         ThemeSetting.RoundedCornerAlertMessages -> themeSettings.copy(roundedCornerAlertMessages = checked)
                         ThemeSetting.RoundedCornerButtons -> themeSettings.copy(roundedCornerButtons = checked)
+                        ThemeSetting.RoundedCornerCardItems -> themeSettings.copy(roundedCornerCardItems = checked)
                         ThemeSetting.RoundedCornerProgressIndicators -> themeSettings.copy(roundedCornerProgressIndicators = checked)
                         ThemeSetting.RoundedCornerTextInputs -> themeSettings.copy(roundedCornerTextInputs = checked)
                     }
@@ -104,6 +104,7 @@ private fun getSupportedThemeSettings(theme: OudsThemeContract): List<ThemeSetti
             when (themeSetting) {
                 ThemeSetting.RoundedCornerAlertMessages -> roundedCornerAlertMessages != null
                 ThemeSetting.RoundedCornerButtons -> roundedCornerButtons != null
+                ThemeSetting.RoundedCornerCardItems -> roundedCornerCardItems != null
                 ThemeSetting.RoundedCornerProgressIndicators -> roundedCornerProgressIndicators != null
                 ThemeSetting.RoundedCornerTextInputs -> roundedCornerTextInputs != null
             }
@@ -120,13 +121,14 @@ object ChangeThemeSettingsDialog {
 
 private enum class ThemeSetting {
 
-    RoundedCornerAlertMessages, RoundedCornerButtons, RoundedCornerProgressIndicators, RoundedCornerTextInputs;
+    RoundedCornerAlertMessages, RoundedCornerButtons, RoundedCornerCardItems, RoundedCornerProgressIndicators, RoundedCornerTextInputs;
 
     val titleResId: Int
         @StringRes
         get() = when (this) {
             RoundedCornerAlertMessages -> R.string.app_themeSettingsDialog_roundedCornerAlertMessages_label
             RoundedCornerButtons -> R.string.app_themeSettingsDialog_roundedCornerButtons_label
+            RoundedCornerCardItems -> R.string.app_themeSettingsDialog_roundedCornerCardItems_label
             RoundedCornerProgressIndicators -> R.string.app_themeSettingsDialog_roundedCornerProgressIndicators_label
             RoundedCornerTextInputs -> R.string.app_themeSettingsDialog_roundedCornerTextInputs_label
         }

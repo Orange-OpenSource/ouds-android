@@ -55,7 +55,7 @@ inline fun <reified T> FunctionCall.Builder.iconArgument(
     tinted: Boolean = true
 ) {
     constructorCallArgument<T>(name) {
-        painterArgument(if (tinted) resId else R.drawable.ic_untinted_icon)
+        painterArgument(if (tinted) resId else R.drawable.ic_untinted_square)
         contentDescriptionResId?.let { contentDescriptionArgument(it) }
         if (!tinted) tintedArgument(tinted)
     }

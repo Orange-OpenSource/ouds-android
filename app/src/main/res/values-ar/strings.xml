@@ -36,6 +36,7 @@
     <string name="app_themeSettingsDialog_label">تغيير إعدادات السمة</string>
     <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">رسائل التنبيه بزوايا مستديرة</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">زر بزوايا مستديرة</string>
+    <string name="app_themeSettingsDialog_roundedCornerCardItems_label">عناصر بطاقات ذات زوايا مستديرة</string>
     <string name="app_themeSettingsDialog_roundedCornerProgressIndicators_label">مؤشرات التقدم ذات الزوايا المستديرة</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">حقول إدخال نص بزوايا مستديرة</string>
 
@@ -152,6 +153,9 @@
 
     <!-- Components: link -->
     <string name="app_components_link_description_text">Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي</string>
+
+    <!-- Components: list item -->
+    <string name="app_components_listItem_description_text">List item عبارة عن صف أفقي يُستخدم لعرض وحدة معلوماتية ضمن قائمة. وتُرتَّب عناصر القائمة بشكل عمودي لتنظيم المحتوى المترابط وتسهيل المسح البصري السريع والتفاعل؛ حيث يمكن أن يشتمل كل عنصر على مكونات -مثل التسمية والنص التوضيحي والأيقونات والصور- وذلك حسب السياق.</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_description_text">Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.</string>

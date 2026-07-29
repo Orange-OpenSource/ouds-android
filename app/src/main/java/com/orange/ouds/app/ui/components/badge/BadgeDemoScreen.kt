@@ -44,7 +44,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsBadge
 import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
@@ -217,7 +217,7 @@ private fun getBadgeWithIconStatus(state: BadgeDemoState): OudsIconBadgeStatus {
     with(state) {
         val badgeIcon = when (icon) {
             BadgeDemoState.Icon.Tinted -> OudsBadgeIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
-            BadgeDemoState.Icon.Untinted -> OudsBadgeIcon(painter = rememberUntintedIconPainter(), tinted = false)
+            BadgeDemoState.Icon.Untinted -> OudsBadgeIcon(painter = rememberUntintedRoundedIconPainter(), tinted = false)
         }
         return when (status) {
             OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(badgeIcon)

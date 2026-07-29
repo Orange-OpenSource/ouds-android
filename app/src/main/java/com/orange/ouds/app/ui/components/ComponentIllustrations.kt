@@ -58,6 +58,8 @@ import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkIndicator
+import com.orange.ouds.core.component.OudsListItem
+import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
@@ -75,6 +77,7 @@ import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.component.rememberOudsPasswordInputState
 import com.orange.ouds.core.theme.isOudsInDarkTheme
+import com.orange.ouds.foundation.ExperimentalOudsApi
 
 @Composable
 fun AlertIllustration() = ComponentIllustration {
@@ -199,6 +202,18 @@ fun LinkIllustration() = ComponentIllustration {
         onClick = {}
     )
 }
+
+@OptIn(ExperimentalOudsApi::class)
+@Composable
+fun ListItemIllustration() = ComponentIllustration {
+    OudsListItem(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        label = stringResource(id = R.string.app_components_common_label_label),
+        description = stringResource(id = R.string.app_components_common_description_tech),
+        leading = OudsListItemLeading.Icon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks), "")
+    )
+}
+
 
 @Composable
 fun NavigationBarIllustration() = ComponentIllustration {

@@ -619,13 +619,36 @@ sealed interface OudsListItemIndicator {
 }
 
 /**
- * TODO KDoc
+ * Represents the decoration applied to an [OudsCardItem] or an [OudsSmallCardItem].
+ * Decorations allow customizing the visual appearance of card items, such as adding a background, an outline, or a divider.
  */
 sealed class OudsListItemDecoration(val divider: Boolean) {
+    /**
+     * An outline is displayed around the card item. Use when the item needs clearer visual separation from a surface with a similar background.
+     */
     object Outlined : OudsListItemDecoration(false)
+
+    /**
+     * An outline is displayed around the card item only on interaction states (hovered, pressed, focused).
+     */
     object OutlinedOnInteraction : OudsListItemDecoration(false)
+
+    /**
+     * A background is applied to the card.
+     * Use it when the card item needs stronger visual separation from its surrounding context or represents a distinct destination within a card-based layout.
+     *
+     * @property divider Controls the display of a divider at the bottom of the item. Set it to `true` when several items are vertically grouped within the same
+     * shared surface and additional visual separation improves scanning. Avoid using a divider when each item already has a clearly separated background.
+     */
     class Background(divider: Boolean) : OudsListItemDecoration(divider)
+
+    /**
+     * A background is applied to the card item only on interaction states (hovered, pressed, focused).
+     *
+     * @property divider Controls the display of a divider at the bottom of the item.
+     */
     class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
+
     internal class None(divider: Boolean) : OudsListItemDecoration(divider)
 }
 

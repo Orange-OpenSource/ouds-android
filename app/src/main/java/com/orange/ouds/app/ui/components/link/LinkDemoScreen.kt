@@ -32,7 +32,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkDensity
 import com.orange.ouds.core.component.OudsLinkIcon
@@ -121,7 +121,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
             LinkDemoState.Layout.TextAndIcon -> {
                 val painter = when (icon) {
                     LinkDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
-                    LinkDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+                    LinkDemoState.Icon.Untinted -> rememberUntintedRoundedIconPainter()
                 }
                 OudsLink(
                     label = label,

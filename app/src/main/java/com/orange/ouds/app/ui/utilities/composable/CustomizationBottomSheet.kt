@@ -74,6 +74,7 @@ fun CustomizationBottomSheetScaffold(
     bottomSheetScaffoldState: BottomSheetScaffoldState,
     titleResId: Int = R.string.app_common_customize_label,
     bottomSheetContent: @Composable ColumnScope.() -> Unit,
+    bottomSheetTabs: (@Composable () -> Unit)?,
     content: @Composable ColumnScope.() -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -130,11 +131,17 @@ fun CustomizationBottomSheetScaffold(
                 )
             }
 
+            val sheetContentModifier = if (bottomSheetTabs == null) {
+                Modifier.heightIn(max = customizationContentMaxHeight)
+            } else {
+                bottomSheetTabs()
+                Modifier.height(customizationContentMaxHeight) // Fix content height in case of tabs in order to prevent sheet resizing on tab selection
+            }
+
             val scrollState = rememberScrollState()
 
             Column(
-                modifier = Modifier
-                    .heightIn(max = customizationContentMaxHeight)
+                modifier = sheetContentModifier
                     .verticalScrollbar(scrollState)
                     .verticalScroll(scrollState)
                     .padding(bottom = OudsTheme.spaces.fixed.small)
@@ -198,10 +205,12 @@ private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
         val scrollBarHeight = (viewportHeight / totalContentHeight) * viewportHeight
         val scrollBarStartOffset = (scrollState.value.toFloat() / totalContentHeight) * viewportHeight
 
-        drawRect(
-            color = scrollBarColor,
-            topLeft = Offset(viewportWidth - scrollBarWidth.toPx(), scrollBarStartOffset),
-            size = Size(scrollBarWidth.toPx(), scrollBarHeight)
-        )
+        if (viewportHeight > scrollBarHeight) {
+            drawRect(
+                color = scrollBarColor,
+                topLeft = Offset(viewportWidth - scrollBarWidth.toPx(), scrollBarStartOffset),
+                size = Size(scrollBarWidth.toPx(), scrollBarHeight)
+            )
+        }
     }
 }

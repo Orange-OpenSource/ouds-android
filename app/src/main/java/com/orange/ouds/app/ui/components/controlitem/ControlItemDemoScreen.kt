@@ -30,7 +30,7 @@ import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsControlItemIcon
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
@@ -90,7 +90,7 @@ private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
 private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(id = R.string.app_components_controlItem_divider_tech),
+            label = stringResource(R.string.app_components_common_divider_tech),
             checked = divider,
             onCheckedChange = { divider = it },
         )
@@ -210,7 +210,7 @@ fun controlItemIcon(state: ControlItemDemoState): OudsControlItemIcon? {
     return when (state.icon) {
         ControlItemDemoState.Icon.None -> null
         ControlItemDemoState.Icon.Tinted -> OudsControlItemIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks))
-        ControlItemDemoState.Icon.Untinted -> OudsControlItemIcon(painter = rememberUntintedIconPainter(), tinted = false)
+        ControlItemDemoState.Icon.Untinted -> OudsControlItemIcon(painter = rememberUntintedRoundedIconPainter(), tinted = false)
     }
 }
 

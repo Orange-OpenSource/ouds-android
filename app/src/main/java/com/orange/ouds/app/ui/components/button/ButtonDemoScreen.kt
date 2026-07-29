@@ -32,7 +32,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
@@ -120,7 +120,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
     with(state) {
         val painter = when (icon) {
             ButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
-            ButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
+            ButtonDemoState.Icon.Untinted -> rememberUntintedRoundedIconPainter()
         }
         val buttonIcon = OudsButtonIcon(
             painter = painter,
