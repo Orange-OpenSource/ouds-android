@@ -1,5 +1,6 @@
 [versions]
 activityCompose = "1.13.0"
+annotation = "1.8.0"
 appcompat = "1.7.1"
 androidCompileSdk = "37"
 androidMinSdk = "23"
@@ -39,6 +40,7 @@ zxing = "3.5.4"
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 android-tools-sdk-common = { group = "com.android.tools", name = "sdk-common", version.ref = "sdkCommon" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }

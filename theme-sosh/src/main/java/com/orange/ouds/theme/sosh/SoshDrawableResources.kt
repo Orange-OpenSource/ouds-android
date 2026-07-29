@@ -93,7 +93,7 @@ internal class SoshDrawableResources : OudsDrawableResources {
         }
 
         class Switch : OudsDrawableResources.Component.Switch {
-            override val selected = R.drawable.ic_sosh_component_switch_selected_switch
+            override val selected = R.drawable.ic_sosh_component_switch_selected
         }
 
         class Tag : OudsDrawableResources.Component.Tag {
