@@ -66,7 +66,7 @@ fun OudsFilterChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsFilterChip(
+    OudsFilterChipImpl(
         selected = selected,
         onClick = onClick,
         nullableLabel = label,
@@ -117,7 +117,7 @@ fun OudsFilterChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsFilterChip(
+    OudsFilterChipImpl(
         selected = selected,
         onClick = onClick,
         nullableLabel = null,
@@ -170,7 +170,7 @@ fun OudsFilterChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsFilterChip(
+    OudsFilterChipImpl(
         selected = selected,
         onClick = onClick,
         nullableLabel = label,
@@ -182,8 +182,7 @@ fun OudsFilterChip(
 }
 
 @Composable
-@JvmName("OudsFilterChipNullableLabelAndIcon")
-private fun OudsFilterChip(
+private fun OudsFilterChipImpl(
     selected: Boolean,
     onClick: () -> Unit,
     nullableLabel: String?,
@@ -219,7 +218,7 @@ internal fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: B
             val label = if (hasLabel) "Label" else null
             val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
             PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-                OudsFilterChip(
+                OudsFilterChipImpl(
                     selected = selected,
                     nullableIcon = icon,
                     nullableLabel = label,
@@ -239,7 +238,7 @@ private fun PreviewOudsFilterChipWithUntintedIcon() {
 @Composable
 internal fun PreviewOudsFilterChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
-        OudsFilterChip(
+        OudsFilterChipImpl(
             selected = false,
             nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
             nullableLabel = "Label",

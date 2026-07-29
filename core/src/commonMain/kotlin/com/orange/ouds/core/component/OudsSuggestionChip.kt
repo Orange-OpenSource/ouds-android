@@ -66,7 +66,7 @@ fun OudsSuggestionChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsBasicSuggestionChip(
+    OudsBasicSuggestionChipImpl(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = null,
@@ -114,7 +114,7 @@ fun OudsSuggestionChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsBasicSuggestionChip(
+    OudsBasicSuggestionChipImpl(
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
@@ -164,7 +164,7 @@ fun OudsSuggestionChip(
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
-    OudsBasicSuggestionChip(
+    OudsBasicSuggestionChipImpl(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = icon,
@@ -210,7 +210,7 @@ fun OudsBasicSuggestionChip(
     interactionSource: MutableInteractionSource? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
-    OudsBasicSuggestionChip(
+    OudsBasicSuggestionChipImpl(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = null,
@@ -257,7 +257,7 @@ fun OudsBasicSuggestionChip(
     interactionSource: MutableInteractionSource? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
-    OudsBasicSuggestionChip(
+    OudsBasicSuggestionChipImpl(
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
@@ -306,7 +306,7 @@ fun OudsBasicSuggestionChip(
     interactionSource: MutableInteractionSource? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
-    OudsBasicSuggestionChip(
+    OudsBasicSuggestionChipImpl(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = icon,
@@ -321,8 +321,7 @@ fun OudsBasicSuggestionChip(
 private fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(OudsChipIconPosition.Start)
 
 @Composable
-@JvmName("OudsSuggestionChipNullableLabelAndIcon")
-private fun OudsBasicSuggestionChip(
+private fun OudsBasicSuggestionChipImpl(
     onClick: () -> Unit,
     nullableLabel: String?,
     nullableIcon: OudsChipIcon?,
