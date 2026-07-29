@@ -401,24 +401,25 @@ private fun getListItemState(enabled: Boolean, interactionState: InteractionStat
 }
 
 @Composable
-private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment: OudsListItemVerticalAlignment, edgeToEdge: Boolean) = with(OudsTheme.components.listItem) {
-    when (size) {
-        OudsListItemSize.Small -> when (verticalAlignment) {
-            OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.small)
-            OudsListItemVerticalAlignment.Top -> padding(
-                top = space.paddingBlock.topAlignment.topCounterweightSmall,
-                bottom = space.paddingBlock.small
-            )
-        }
-        OudsListItemSize.Default -> when (verticalAlignment) {
-            OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.default)
-            OudsListItemVerticalAlignment.Top -> padding(
-                top = space.paddingBlock.topAlignment.topCounterweightDefault,
-                bottom = space.paddingBlock.default
-            )
-        }
-    }.padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-}
+private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment: OudsListItemVerticalAlignment, edgeToEdge: Boolean) =
+    with(OudsTheme.components.listItem) {
+        when (size) {
+            OudsListItemSize.Small -> when (verticalAlignment) {
+                OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.small)
+                OudsListItemVerticalAlignment.Top -> padding(
+                    top = space.paddingBlock.topAlignment.topCounterweightSmall,
+                    bottom = space.paddingBlock.small
+                )
+            }
+            OudsListItemSize.Default -> when (verticalAlignment) {
+                OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.default)
+                OudsListItemVerticalAlignment.Top -> padding(
+                    top = space.paddingBlock.topAlignment.topCounterweightDefault,
+                    bottom = space.paddingBlock.default
+                )
+            }
+        }.padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+    }
 
 @Composable
 private fun contentHorizontalPadding(edgeToEdge: Boolean) =
@@ -703,8 +704,20 @@ internal enum class OudsListItemAssetSize {
         }
 }
 
+/**
+ * Represents the size of an [OudsListItemIcon].
+ */
 enum class OudsListItemIconSize {
-    Medium, Large;
+
+    /**
+     * Use for standard and compact list items. This is the preferred size when the icon provides secondary visual support.
+     */
+    Medium,
+
+    /**
+     * Use when the icon needs stronger prominence or when the item has a larger height, multiline content or additional supporting information.
+     */
+    Large;
 
     internal fun toAssetSize() = when (this) {
         Medium -> OudsListItemAssetSize.Medium
@@ -771,8 +784,24 @@ enum class OudsListItemImageRatio {
         }
 }
 
+/**
+ * Controls the dimensions and visual prominence of an [OudsListItemImage].
+ */
 enum class OudsListItemImageSize {
-    Medium, Large, ExtraLarge;
+    /**
+     * Use in compact or information-dense lists where the image remains secondary to the text.
+     */
+    Medium,
+
+    /**
+     * Use in standard content lists where visual identification is important.
+     */
+    Large,
+
+    /**
+     * Use when the image is a significant part of the content, such as a product or media preview.
+     */
+    ExtraLarge;
 
     internal fun toAssetSize() = when (this) {
         Medium -> OudsListItemAssetSize.Medium
@@ -781,8 +810,26 @@ enum class OudsListItemImageSize {
     }
 }
 
+/**
+ * Represents the text style of a text in an [OudsListItem].
+ */
 enum class OudsListItemTextStyle {
-    Label, LabelMuted, LabelStrong
+
+    /**
+     * Use [Label] for standard secondary information that should remain clearly readable without drawing more attention than the primary label.
+     */
+    Label,
+
+    /**
+     * Use [LabelMuted] for low-priority metadata that supports the item but is not essential to its immediate understanding.
+     */
+    LabelMuted,
+
+    /**
+     * Use [LabelStrong] when the trailing value requires additional visual emphasis, for example when users need to compare important values across
+     * a navigation list.
+     */
+    LabelStrong
 }
 
 open class OudsListItemIcon internal constructor(
@@ -915,6 +962,7 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
 
         /**
          * Creates an instance of [OudsListItemLeading.Icon].
+         * Use an icon to reinforce the meaning of the destination or help users identify a familiar category, object or service.
          *
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated with this [OudsListItemLeading.Icon].
@@ -1227,7 +1275,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
     }
 
     /**
-     * Label as a list item trailing content.
+     * Text as a list item trailing content.
      */
     class Text private constructor(
         label: String,
@@ -1237,6 +1285,7 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
 
         /**
          * Creates an instance of [OudsListItemTrailing.Text].
+         * Use it to display a short value or secondary piece of information associated with the navigation destination.
          *
          * @param label Label displayed in trailing.
          * @param style Style applied to the label among [OudsListItemTextStyle] values.
@@ -1244,7 +1293,8 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         constructor(label: String, style: OudsListItemTextStyle = OudsListItemTextStyle.Label) : this(label, style, null)
 
         /**
-         * Creates an instance of [OudsListItemTrailing.Text].
+         * Creates an instance of [OudsListItemTrailing.Text] with an extra label.
+         * Use it when a value requires a short qualifier, unit or supporting label.
          * Note that when an [extraLabel] is provided, the [label] retains the [OudsListItemTextStyle.Label] style.
          *
          * @param label Label displayed in trailing.
