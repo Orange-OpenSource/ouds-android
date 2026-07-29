@@ -65,6 +65,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
+import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
@@ -105,6 +106,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticListItemSample
@@ -128,6 +131,7 @@ fun OudsListItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -146,6 +150,7 @@ fun OudsListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        edgeToEdge = edgeToEdge,
         card = false,
         interactionSource = interactionSource
     )
@@ -180,6 +185,8 @@ fun OudsListItem(
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemSample
@@ -205,6 +212,7 @@ fun OudsListItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -223,6 +231,7 @@ fun OudsListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        edgeToEdge = edgeToEdge,
         card = false,
         interactionSource = interactionSource
     )
@@ -245,6 +254,7 @@ internal fun OudsListItem(
     helperText: String?,
     boldLabel: Boolean,
     enabled: Boolean,
+    edgeToEdge: Boolean,
     card: Boolean,
     interactionSource: MutableInteractionSource?
 ) {
@@ -285,7 +295,7 @@ internal fun OudsListItem(
                     .background(color = backgroundColor.value, shape = shape)
                     .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
-                    .containerPadding(size = size, verticalAlignment = verticalAlignment)
+                    .containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge)
                     .semantics(mergeDescendants = true) { },
                 horizontalArrangement = Arrangement.spacedBy(space.columnGap),
                 verticalAlignment = verticalAlignment(verticalAlignment)
@@ -391,7 +401,7 @@ private fun getListItemState(enabled: Boolean, interactionState: InteractionStat
 }
 
 @Composable
-private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment: OudsListItemVerticalAlignment) = with(OudsTheme.components.listItem) {
+private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment: OudsListItemVerticalAlignment, edgeToEdge: Boolean) = with(OudsTheme.components.listItem) {
     when (size) {
         OudsListItemSize.Small -> when (verticalAlignment) {
             OudsListItemVerticalAlignment.CenterVertically -> padding(vertical = space.paddingBlock.small)
@@ -407,8 +417,12 @@ private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment:
                 bottom = space.paddingBlock.default
             )
         }
-    }.padding(horizontal = space.paddingInline)
+    }.padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
 }
+
+@Composable
+private fun contentHorizontalPadding(edgeToEdge: Boolean) =
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.listItem.spacePaddingInline.value
 
 @Composable
 private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDecoration?) = with(OudsTheme.colorScheme.action.support) {

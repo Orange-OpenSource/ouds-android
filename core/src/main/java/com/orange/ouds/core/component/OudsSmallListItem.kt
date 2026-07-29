@@ -59,6 +59,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the small list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
@@ -80,6 +82,7 @@ fun OudsSmallListItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -98,6 +101,7 @@ fun OudsSmallListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        edgeToEdge = edgeToEdge,
         card = false,
         interactionSource = interactionSource
     )
@@ -130,6 +134,8 @@ fun OudsSmallListItem(
  * @param helperText Optional helper text displayed below the small list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
@@ -153,6 +159,7 @@ fun OudsSmallListItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    edgeToEdge: Boolean= true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -171,6 +178,7 @@ fun OudsSmallListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        edgeToEdge = edgeToEdge,
         card = false,
         interactionSource = interactionSource
     )

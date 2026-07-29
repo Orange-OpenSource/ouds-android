@@ -31,6 +31,7 @@ import com.orange.ouds.core.component.OudsListItemVerticalAlignment
 @Composable
 fun rememberListItemDemoState(
     background: Boolean = false,
+    edgeToEdge: Boolean = true,
     size: ItemDemoState.Size,
     selectedTabIndex: Int = 0,
     label: String = stringResource(id = R.string.app_components_common_label_label),
@@ -62,6 +63,7 @@ fun rememberListItemDemoState(
 ): ListItemDemoState {
     val state = rememberSaveable(
         background,
+        edgeToEdge,
         size,
         selectedTabIndex,
         label,
@@ -94,6 +96,7 @@ fun rememberListItemDemoState(
     ) {
         ListItemDemoState(
             background,
+            edgeToEdge,
             size,
             selectedTabIndex,
             label,
@@ -134,6 +137,7 @@ fun rememberListItemDemoState(
 
 class ListItemDemoState(
     background: Boolean,
+    edgeToEdge: Boolean,
     size: Size,
     selectedTabIndex: Int,
     label: String,
@@ -199,15 +203,17 @@ class ListItemDemoState(
                 with(state) {
                     listOf(
                         background,
+                        edgeToEdge,
                         with(ItemDemoState.Saver) { save(state) }
                     )
                 }
             },
             restore = { list: List<Any?> ->
-                val itemDemoState = list[1]?.let { ItemDemoState.Saver.restore(it) }
+                val itemDemoState = list[2]?.let { ItemDemoState.Saver.restore(it) }
                 itemDemoState?.run {
                     ListItemDemoState(
                         list[0] as Boolean,
+                        list[1] as Boolean,
                         size,
                         selectedTabIndex,
                         label,
@@ -243,5 +249,7 @@ class ListItemDemoState(
     }
 
     var background: Boolean by mutableStateOf(background)
+
+    var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
 
 }

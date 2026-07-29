@@ -13,7 +13,9 @@
 package com.orange.ouds.app.ui.components.listitem
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.listitem.ItemDemoState.Size
@@ -64,6 +66,13 @@ internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
                     checked = background,
                     onCheckedChange = { background = it },
                 )
+            },
+            itemGlobalCustomization(6) {
+                CustomizationSwitchItem(
+                    label = stringResource(R.string.app_components_common_edgeToEdge_tech),
+                    checked = edgeToEdge,
+                    onCheckedChange = { edgeToEdge = it },
+                )
             }
         )
         ItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
@@ -74,8 +83,10 @@ internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
 @Composable
 private fun ListItemDemoContent(state: ListItemDemoState) {
     with(state) {
+        val modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)
         if (clickable) {
             OudsListItem(
+                modifier = modifier,
                 onClick = {},
                 indicator = indicator.toOudsListItemIndicator(),
                 label = label,
@@ -90,9 +101,11 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 helperText = helperText,
                 boldLabel = boldLabel,
                 enabled = enabled,
+                edgeToEdge = edgeToEdge
             )
         } else {
             OudsListItem(
+                modifier = modifier,
                 label = label,
                 verticalAlignment = verticalAlignment,
                 overline = overline,
@@ -105,6 +118,7 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 helperText = helperText,
                 boldLabel = boldLabel,
                 enabled = enabled,
+                edgeToEdge = edgeToEdge
             )
         }
     }
@@ -121,6 +135,7 @@ private fun Code.Builder.listItemDemoCodeSnippet(state: ListItemDemoState, theme
 
             if (!divider) typedArgument("divider", divider)
             if (background) typedArgument("background", background)
+            if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)
         }
     }
 }

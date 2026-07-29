@@ -94,6 +94,7 @@ fun OudsCardItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        edgeToEdge = false,
         card = true,
         interactionSource = interactionSource
     )
@@ -166,6 +167,7 @@ fun OudsCardItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        edgeToEdge = false,
         card = true,
         interactionSource = interactionSource
     )

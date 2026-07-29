@@ -210,7 +210,8 @@ fun ListItemIllustration() = ComponentIllustration {
         modifier = Modifier.padding(horizontal = 12.dp),
         label = stringResource(id = R.string.app_components_common_label_label),
         description = stringResource(id = R.string.app_components_common_description_tech),
-        leading = OudsListItemLeading.Icon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks), "")
+        leading = OudsListItemLeading.Icon(painterResource(LocalThemeDrawableResources.current.tipsAndTricks), ""),
+        edgeToEdge = false
     )
 }
 

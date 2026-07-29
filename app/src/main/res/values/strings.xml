@@ -131,6 +131,7 @@
     <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
     <string name="app_components_common_description_tech" translatable="false">Description</string>
     <string name="app_components_common_divider_tech" translatable="false">Divider</string>
+    <string name="app_components_common_edgeToEdge_tech" translatable="false">Edge to edge</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_tech" translatable="false">Error</string>
     <string name="app_components_common_errorMessage_label">@string/app_components_common_errorMessage_tech</string>
@@ -261,7 +262,6 @@
     <string name="app_components_coloredBackground_link_label">Link</string>
 
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_edgeToEdge_tech" translatable="false">Edge to edge</string>
     <string name="app_components_controlItem_reversed_tech" translatable="false">Reversed</string>
 
     <!-- Components: divider -->
