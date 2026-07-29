@@ -430,9 +430,9 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
     val backgroundDecoration = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction
     when (state) {
         OudsListItemState.Enabled, OudsListItemState.Disabled -> if (decoration is OudsListItemDecoration.Background) enabled else Color.Transparent
-        OudsListItemState.Focused -> if (backgroundDecoration) focus else Color.Transparent
-        OudsListItemState.Hovered -> if (backgroundDecoration) hover else Color.Transparent
-        OudsListItemState.Pressed -> if (backgroundDecoration) pressed else Color.Transparent
+        OudsListItemState.Focused -> if (backgroundDecoration || decoration is OudsListItemDecoration.None) focus else Color.Transparent
+        OudsListItemState.Hovered -> if (backgroundDecoration || decoration is OudsListItemDecoration.None) hover else Color.Transparent
+        OudsListItemState.Pressed -> if (backgroundDecoration || decoration is OudsListItemDecoration.None) pressed else Color.Transparent
     }
 }
 
