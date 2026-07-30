@@ -49,7 +49,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -59,9 +58,6 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import com.orange.ouds.theme.tokens.OudsKeyToken
-import com.orange.ouds.theme.tokens.OudsSizeKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
 
 /**
@@ -358,22 +354,22 @@ private fun OudsLink(
     enabled: Boolean = true,
     density: OudsLinkDensity = OudsLinkDefaults.Density
 ) {
-    with(OudsTheme.componentsTokens.link) {
+    with(OudsTheme.components.link) {
         val interactionSource = remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getLinkState(enabled = enabled, interactionState = interactionState)
         val isTextOnly = icon == null && indicator == null
 
         val minHeight = when (density) {
-            OudsLinkDensity.Default -> getTokenValue(size = size, default = sizeMinHeightDefault, small = sizeMinHeightSmall)
-            OudsLinkDensity.Compact -> sizeMinHeightCompactDensity.dp
+            OudsLinkDensity.Default -> getTokenValue(size = size, default = this.size.minHeightDefault, small = this.size.minHeightSmall)
+            OudsLinkDensity.Compact -> this.size.minHeightCompactDensity
         }
         val verticalPadding = when (density) {
-            OudsLinkDensity.Default -> getTokenValue(size = size, default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+            OudsLinkDensity.Default -> getTokenValue(size = size, default = space.paddingBlock.default, small = space.paddingBlock.small)
             OudsLinkDensity.Compact -> getTokenValue(
                 size = size,
-                default = spacePaddingBlockCompactDensityDefault,
-                small = spacePaddingBlockCompactDensitySmall
+                default = space.paddingBlock.compactDensityDefault,
+                small = space.paddingBlock.compactDensitySmall
             )
         }
         val monochrome = LocalColorMode.current?.monochrome == true
@@ -403,10 +399,10 @@ private fun OudsLink(
 
         Box(
             modifier = modifier
-                .widthIn(min = sizeMinWidth.dp)
+                .widthIn(min = this.size.minWidth)
                 .heightIn(min = minHeight)
                 .outerBorder(state = state)
-                .padding(horizontal = spacePaddingInline.value, vertical = verticalPadding)
+                .padding(horizontal = space.paddingInline, vertical = verticalPadding)
                 .clickable(
                     interactionSource = interactionSource,
                     indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
@@ -420,13 +416,13 @@ private fun OudsLink(
             var textStyle: TextStyle
             when (size) {
                 OudsLinkSize.Default -> {
-                    columnGap = if (indicator != null) spaceColumnGapChevronDefault.value else spaceColumnGapIconDefault.value
-                    iconSize = sizeIconDefault.value
+                    columnGap = if (indicator != null) space.columnGap.chevronDefault else space.columnGap.iconDefault
+                    iconSize = this@with.size.iconDefault
                     textStyle = OudsTheme.typography.label.large.strong
                 }
                 OudsLinkSize.Small -> {
-                    columnGap = if (indicator != null) spaceColumnGapChevronSmall.value else spaceColumnGapIconSmall.value
-                    iconSize = sizeIconSmall.value
+                    columnGap = if (indicator != null) space.columnGap.chevronSmall else space.columnGap.iconSmall
+                    iconSize = this@with.size.iconSmall
                     textStyle = OudsTheme.typography.label.medium.strong
                 }
             }
@@ -487,22 +483,22 @@ private fun getLinkState(enabled: Boolean, interactionState: InteractionState): 
 @Composable
 internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color {
     return if (monochrome) {
-        with(OudsTheme.componentsTokens.linkMonochrome) {
+        with(OudsTheme.components.linkMonochrome) {
             when (state) {
-                OudsLinkState.Enabled -> colorContentEnabled
-                OudsLinkState.Focused -> colorContentFocus
-                OudsLinkState.Hovered -> colorContentHover
-                OudsLinkState.Pressed -> colorContentPressed
-                OudsLinkState.Disabled -> colorContentDisabled
-            }.value
+                OudsLinkState.Enabled -> color.content.enabled
+                OudsLinkState.Focused -> color.content.focus
+                OudsLinkState.Hovered -> color.content.hover
+                OudsLinkState.Pressed -> color.content.pressed
+                OudsLinkState.Disabled -> color.content.disabled
+            }
         }
     } else {
-        with(OudsTheme.componentsTokens.link) {
+        with(OudsTheme.components.link) {
             when (state) {
-                OudsLinkState.Enabled -> colorContentEnabled.value
-                OudsLinkState.Focused -> colorContentFocus.value
-                OudsLinkState.Hovered -> colorContentHover.value
-                OudsLinkState.Pressed -> colorContentPressed.value
+                OudsLinkState.Enabled -> color.content.enabled
+                OudsLinkState.Focused -> color.content.focus
+                OudsLinkState.Hovered -> color.content.hover
+                OudsLinkState.Pressed -> color.content.pressed
                 OudsLinkState.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
@@ -511,15 +507,15 @@ internal fun linkContentColor(state: OudsLinkState, monochrome: Boolean): Color 
 
 @Composable
 private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
-    return with(OudsTheme.componentsTokens.link) {
+    return with(OudsTheme.components.link) {
         if (monochrome) {
             linkContentColor(state = state, monochrome = true)
         } else {
             when (state) {
-                OudsLinkState.Enabled -> colorChevronEnabled.value
-                OudsLinkState.Focused -> colorContentFocus.value
-                OudsLinkState.Hovered -> colorContentHover.value
-                OudsLinkState.Pressed -> colorContentPressed.value
+                OudsLinkState.Enabled -> color.chevron.enabled
+                OudsLinkState.Focused -> color.content.focus
+                OudsLinkState.Hovered -> color.content.hover
+                OudsLinkState.Pressed -> color.content.pressed
                 OudsLinkState.Disabled -> OudsTheme.colorScheme.action.disabled
             }
         }
@@ -527,12 +523,7 @@ private fun chevronColor(state: OudsLinkState, monochrome: Boolean): Color {
 }
 
 @Composable
-private fun <T> getTokenValue(size: OudsLinkSize, default: T, small: T): Dp where T : OudsSizeKeyToken = getKeyToken(size, default, small).value
-
-@Composable
-private fun <T> getTokenValue(size: OudsLinkSize, default: T, small: T): Dp where T : OudsSpaceKeyToken = getKeyToken(size, default, small).value
-
-private fun <T> getKeyToken(size: OudsLinkSize, default: T, small: T): T where T : OudsKeyToken {
+private fun getTokenValue(size: OudsLinkSize, default: Dp, small: Dp): Dp {
     return when (size) {
         OudsLinkSize.Default -> default
         OudsLinkSize.Small -> small
