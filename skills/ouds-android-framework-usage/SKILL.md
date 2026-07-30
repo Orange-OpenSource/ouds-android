@@ -233,8 +233,15 @@ OudsButton(label = stringResource(R.string.submit), onClick = { })
 
 ---
 
-## 7. Components reference
+## 7. Reference documentation
+
+### Components reference
 
 See [`references/components.md`](references/components.md) for the full list of components with signatures and usage examples.
 
-**Index:** [Button](#button) · [SmallButton](#smallbutton) · [Tag](#tag) · [Badge](#badge) · [AlertMessage](#alertmessage) · [InlineAlert](#inlinealert) · [BulletList](#bulletlist) · [CheckboxItem](#checkboxitem) · [RadioButtonItem](#radiobuttonitem) · [SwitchItem](#switchitem) · [TextInput](#textinput) · [TextArea](#textarea) · [PasswordInput](#passwordinput) · [PinCodeInput](#pincodeinput) · [FilterChip / SuggestionChip](#filterchip--suggestionchip) · [Link](#link) · [Divider](#divider) · [NavigationBar](#navigationbar) · [TopAppBar](#topappbar) · [ColoredBox](#coloredbox)
+**Component Index:** [Button](#button) · [SmallButton](#smallbutton) · [Tag](#tag) · [Badge](#badge) · [AlertMessage](#alertmessage) · [InlineAlert](#inlinealert) · [BulletList](#bulletlist) · [CheckboxItem](#checkboxitem) · [RadioButtonItem](#radiobuttonitem) · [SwitchItem](#switchitem) · [TextInput](#textinput) · [TextArea](#textarea) · [PasswordInput](#passwordinput) · [PinCodeInput](#pincodeinput) · [FilterChip / SuggestionChip](#filterchip--suggestionchip) · [Link](#link) · [Divider](#divider) · [NavigationBar](#navigationbar) · [TopAppBar](#topappbar) · [ColoredBox](#coloredbox)
+
+### Tokens reference
+
+- **Semantic tokens:** See [`references/tokens.md`](references/tokens.md) for color scheme, typography, spacing, sizes, borders, elevations, opacities, effects, and grids
+- **Component tokens:** See [`references/component-tokens.md`](references/component-tokens.md) for advanced component-level tokens (`@RestrictedOudsApi`)
