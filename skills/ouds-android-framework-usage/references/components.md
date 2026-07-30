@@ -3,6 +3,57 @@
 All components are in the `com.orange.ouds.core.component` package.  
 All user-visible strings must use `stringResource(R.string.*)` — never hardcode.
 
+> **Naming Convention:** All OUDS components follow the `Ouds*` prefix naming pattern (e.g., `OudsButton`, `OudsTag`, `OudsTextInput`).
+
+## Table of Contents
+
+**Action**
+- [Button](#button) — Default and small buttons
+- [FloatingActionButton](#floatingactionbutton) — Floating action button (FAB)
+- [NavigationButton](#navigationbutton) — Navigation button with chevron
+- [SmallButton](#smallbutton) — Small size button variant
+
+**Alerts & Messages**
+- [AlertMessage](#alertmessage) — Full-featured alert with actions
+- [InlineAlert](#inlinealert) — Compact inline alert
+
+**Content Display**
+- [BulletList](#bulletlist) — Ordered, unordered, and bare lists
+
+**Control**
+- [Checkbox](#checkbox) — Standalone checkbox
+- [CheckboxItem](#checkboxitem) — Checkbox with label and description
+- [RadioButton](#radiobutton) — Standalone radio button
+- [RadioButtonItem](#radiobuttonitem) — Radio button with label and description
+- [Switch](#switch) — Standalone switch
+- [SwitchItem](#switchitem) — Toggle switch with label and description
+  - **Chip**
+    - [FilterChip](#filterchip) — Selectable filter chip
+    - [SuggestionChip](#suggestionchip) — Suggestion and action chip
+
+**Indicator**
+- [Badge](#badge) — Count and status badges
+- [CircularProgressIndicator](#circularprogressindicator) — Circular loading indicator
+- [LinearProgressIndicator](#linearprogressindicator) — Linear loading indicator
+- [Tag](#tag) — Status and category tags
+
+**Layout**
+- [BottomSheetScaffold](#bottomsheetscaffold) — Standard bottom sheet scaffold
+- [ColoredBox](#coloredbox) — Colored surface container
+- [Divider](#divider) — Horizontal and vertical dividers
+- [ModalBottomSheet](#modalbottomsheet) — Modal bottom sheet
+
+**Navigation**
+- [Link](#link) — Text link with optional icon/chevron
+- [NavigationBar](#navigationbar) — Bottom navigation bar
+- [TopAppBar](#topappbar) — Top app bar with variants
+
+**Text Inputs**
+- [TextInput](#textinput) — Single-line text field
+- [TextArea](#textarea) — Multi-line text field
+- [PasswordInput](#passwordinput) — Password field with visibility toggle
+- [PinCodeInput](#pincodeinput) — PIN code input (4 or 6 digits)
+
 ---
 
 ## Button
@@ -69,6 +120,125 @@ OudsSmallButton(
     label = stringResource(R.string.action),
     onClick = { }
 )
+```
+
+---
+
+## FloatingActionButton
+
+**Sizes:** `OudsFloatingActionButton` (default) · `OudsSmallFloatingActionButton` · `OudsLargeFloatingActionButton` · `OudsExtendedFloatingActionButton` (with text)  
+**Appearances:** `OudsFloatingActionButtonAppearance` — `Primary`, `Secondary`
+
+```kotlin
+// Icon only (default size)
+OudsFloatingActionButton(
+    icon = OudsFloatingActionButtonIcon(
+        imageVector = Icons.Filled.Add,
+        contentDescription = stringResource(R.string.add)
+    ),
+    onClick = { }
+)
+
+// Small size
+OudsSmallFloatingActionButton(
+    icon = OudsFloatingActionButtonIcon(
+        imageVector = Icons.Filled.Edit,
+        contentDescription = stringResource(R.string.edit)
+    ),
+    onClick = { }
+)
+
+// Large size
+OudsLargeFloatingActionButton(
+    icon = OudsFloatingActionButtonIcon(
+        imageVector = Icons.Filled.FavoriteBorder,
+        contentDescription = stringResource(R.string.favorite)
+    ),
+    onClick = { }
+)
+
+// Extended (with text)
+OudsExtendedFloatingActionButton(
+    text = stringResource(R.string.create),
+    icon = OudsFloatingActionButtonIcon(imageVector = Icons.Filled.Add, contentDescription = ""),
+    onClick = { }
+)
+
+// With secondary appearance
+OudsFloatingActionButton(
+    icon = OudsFloatingActionButtonIcon(
+        imageVector = Icons.Filled.Settings,
+        contentDescription = stringResource(R.string.settings)
+    ),
+    appearance = OudsFloatingActionButtonAppearance.Secondary,
+    onClick = { }
+)
+
+// With untinted icon (multi-color)
+OudsFloatingActionButton(
+    icon = OudsFloatingActionButtonIcon(
+        painter = myBrandPainter,
+        contentDescription = stringResource(R.string.brand_action),
+        tinted = false
+    ),
+    onClick = { }
+)
+```
+
+---
+
+## NavigationButton
+
+**Chevrons:** `OudsNavigationButtonChevron` — `Next`, `Previous`  
+**Appearances:** `OudsNavigationButtonAppearance` — `Default`, `Strong`, `Brand`, `Minimal`  
+**Note:** `Brand` appearance is forbidden inside `OudsColoredBox`.  
+Inside `OudsColoredBox`, the button automatically adopts its monochrome variant.
+
+```kotlin
+// Icon only (chevron)
+OudsNavigationButton(
+    chevron = OudsNavigationButtonChevron.Next,
+    onClick = { }
+)
+
+// With label
+OudsNavigationButton(
+    label = stringResource(R.string.next),
+    chevron = OudsNavigationButtonChevron.Next,
+    onClick = { }
+)
+
+// Previous chevron
+OudsNavigationButton(
+    label = stringResource(R.string.previous),
+    chevron = OudsNavigationButtonChevron.Previous,
+    onClick = { }
+)
+
+// With appearance
+OudsNavigationButton(
+    label = stringResource(R.string.next),
+    chevron = OudsNavigationButtonChevron.Next,
+    appearance = OudsNavigationButtonAppearance.Strong,
+    onClick = { }
+)
+
+// With loader
+OudsNavigationButton(
+    label = stringResource(R.string.next),
+    chevron = OudsNavigationButtonChevron.Next,
+    loader = OudsButtonLoader(progress = null), // indeterminate
+    onClick = { }
+)
+
+// On colored background — colors adjusted automatically
+OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
+    OudsNavigationButton(
+        label = stringResource(R.string.next),
+        chevron = OudsNavigationButtonChevron.Next,
+        onClick = { }
+    )
+}
 ```
 
 ---
@@ -173,6 +343,89 @@ BadgedBox(
 ) {
     Icon(imageVector = Icons.Filled.Notifications, contentDescription = null)
 }
+```
+
+---
+
+## CircularProgressIndicator
+
+**Statuses:** `OudsProgressIndicatorStatus` — `Accent` (default), `Neutral`  
+**Variants:** Determinate (with progress value) · Indeterminate (loading animation)  
+**Track:** Optional background track for better visibility
+
+```kotlin
+// Indeterminate (loading)
+OudsCircularProgressIndicator()
+
+// Determinate (with progress)
+OudsCircularProgressIndicator(progress = { 0.75f })
+
+// With status
+OudsCircularProgressIndicator(
+    progress = { 0.5f },
+    status = OudsProgressIndicatorStatus.Neutral
+)
+
+// Without track (minimal)
+OudsCircularProgressIndicator(
+    progress = { 0.75f },
+    track = false
+)
+
+// Custom size
+OudsCircularProgressIndicator(
+    modifier = Modifier.size(64.dp),
+    progress = { 0.75f }
+)
+```
+
+---
+
+## LinearProgressIndicator
+
+**Statuses:** `OudsProgressIndicatorStatus` — `Accent` (default), `Neutral`  
+**Variants:** Determinate (with progress value) · Indeterminate (loading animation)  
+**Track:** Optional background track for better visibility  
+**Stop Indicator:** Optional end marker for accessibility (required if contrast < 3:1)
+
+```kotlin
+// Indeterminate (loading)
+OudsLinearProgressIndicator(
+    helperText = stringResource(R.string.loading)
+)
+
+// Determinate (with progress)
+OudsLinearProgressIndicator(
+    progress = { 0.75f },
+    helperText = stringResource(R.string.loading_percent, 75)
+)
+
+// With status
+OudsLinearProgressIndicator(
+    progress = { 0.5f },
+    status = OudsProgressIndicatorStatus.Neutral,
+    helperText = stringResource(R.string.uploading)
+)
+
+// Without track (minimal)
+OudsLinearProgressIndicator(
+    progress = { 0.75f },
+    track = false
+)
+
+// With stop indicator (for accessibility)
+OudsLinearProgressIndicator(
+    progress = { 0.75f },
+    stopIndicator = true,
+    helperText = stringResource(R.string.processing)
+)
+
+// Full width with helper text
+OudsLinearProgressIndicator(
+    modifier = Modifier.fillMaxWidth(),
+    progress = { 0.75f },
+    helperText = "Uploading file: document.pdf"
+)
 ```
 
 ---
@@ -426,6 +679,109 @@ OudsSwitchItem(
 
 ---
 
+## Checkbox
+
+**Standalone checkbox** without label — use when checkbox is nested within another component with an alternative label.  
+**See also:** [CheckboxItem](#checkboxitem) for checkbox with label and description.
+
+```kotlin
+var checked by remember { mutableStateOf(false) }
+
+// Basic checkbox
+OudsCheckbox(
+    checked = checked,
+    onCheckedChange = { checked = it }
+)
+
+// Disabled
+OudsCheckbox(
+    checked = checked,
+    onCheckedChange = { checked = it },
+    enabled = false
+)
+
+// Tri-state checkbox
+var state by remember { mutableStateOf(ToggleableState.Off) }
+OudsTriStateCheckbox(
+    state = state,
+    onClick = {
+        state = when (state) {
+            ToggleableState.On -> ToggleableState.Off
+            ToggleableState.Off -> ToggleableState.Indeterminate
+            ToggleableState.Indeterminate -> ToggleableState.On
+        }
+    }
+)
+```
+
+---
+
+## RadioButton
+
+**Standalone radio button** without label — use when radio button is nested within another component with an alternative label.  
+**See also:** [RadioButtonItem](#radiobuttonitem) for radio button with label and description.  
+**Always** wrap a group of radio buttons in `Modifier.selectableGroup()`.
+
+```kotlin
+val options = listOf("Option A", "Option B", "Option C")
+var selected by remember { mutableStateOf(options[0]) }
+
+Column(modifier = Modifier.selectableGroup()) {
+    options.forEach { option ->
+        OudsRadioButton(
+            selected = option == selected,
+            onClick = { selected = option }
+        )
+    }
+}
+
+// Disabled
+OudsRadioButton(
+    selected = true,
+    onClick = null,
+    enabled = false
+)
+```
+
+---
+
+## Switch
+
+**Standalone switch** without label — use when switch is nested within another component with an alternative label.  
+**See also:** [SwitchItem](#switchitem) for switch with label and description.
+
+```kotlin
+var checked by remember { mutableStateOf(true) }
+
+// Basic switch
+OudsSwitch(
+    checked = checked,
+    onCheckedChange = { checked = it }
+)
+
+// Disabled
+OudsSwitch(
+    checked = checked,
+    onCheckedChange = { checked = it },
+    enabled = false
+)
+
+// With icon (when checked)
+OudsSwitch(
+    checked = checked,
+    onCheckedChange = { checked = it },
+    thumbContent = {
+        Icon(
+            imageVector = Icons.Filled.Check,
+            contentDescription = null,
+            modifier = Modifier.size(16.dp)
+        )
+    }
+)
+```
+
+---
+
 ## TextInput
 
 Two API variants: **state-based** (`textFieldState`) and **value-based** (`value` + `onValueChange`).  
@@ -566,33 +922,58 @@ OudsPinCodeInput(
 
 ---
 
-## FilterChip / SuggestionChip
+## FilterChip
+
+**Selectable chip** used for filtering content.
 
 ```kotlin
-// Filter chip — text
+// Text only
 OudsFilterChip(text = stringResource(R.string.label), onClick = { })
 
-// Filter chip — with icon
+// With icon
 OudsFilterChip(
     icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder),
     text = stringResource(R.string.label),
     onClick = { }
 )
 
-// Filter chip — icon only
+// Icon only
 OudsFilterChip(
     icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder),
     contentDescription = stringResource(R.string.label_desc),
     onClick = { }
 )
 
-// Suggestion chip
+// Selected state
+var selected by remember { mutableStateOf(false) }
+OudsFilterChip(
+    text = stringResource(R.string.label),
+    selected = selected,
+    onClick = { selected = !selected }
+)
+```
+
+---
+
+## SuggestionChip
+
+**Action chip** used for suggestions and quick actions.
+
+```kotlin
+// Text only
 OudsSuggestionChip(text = stringResource(R.string.label), onClick = { })
 
-// Suggestion chip — with icon
+// With icon
 OudsSuggestionChip(
     icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder),
     text = stringResource(R.string.label),
+    onClick = { }
+)
+
+// Icon only
+OudsSuggestionChip(
+    icon = OudsChipIcon(imageVector = Icons.Filled.Add),
+    contentDescription = stringResource(R.string.add_desc),
     onClick = { }
 )
 ```
@@ -706,10 +1087,19 @@ OudsLargeTopAppBar(
 
 ## ColoredBox
 
-Creates a colored surface where child OUDS components automatically switch to their monochrome variant.  
-**Colors:** `OudsColoredBoxColor` — `BrandPrimary`, `StatusNeutralEmphasized`, `StatusAccentEmphasized`, `StatusPositiveEmphasized`, `StatusInfoEmphasized`, `StatusWarningEmphasized`, `StatusNegativeEmphasized`, and more.
+Creates a colored surface where child OUDS components automatically switch to their monochrome variant.
+
+**Colors:** 24 values organized by category:
+- **Background** (5): `BackgroundInverseHigh`, `BackgroundInverseLow`, `BackgroundPrimary`, `BackgroundSecondary`, `BackgroundTertiary`
+- **Brand** (3): `BrandPrimary`, `BrandSecondary`, `BrandTertiary`
+- **Overlay** (3): `OverlayDropdown`, `OverlayModal`, `OverlayTooltip`
+- **Status** (8): `StatusAccentEmphasized`, `StatusAccentMuted`, `StatusInfoEmphasized`, `StatusInfoMuted`, `StatusNegativeEmphasized`, `StatusNegativeMuted`, `StatusPositiveEmphasized`, `StatusPositiveMuted`, `StatusWarningEmphasized`, `StatusWarningMuted`
+- **Surface** (5): `SurfaceInverseHigh`, `SurfaceInverseLow`, `SurfacePrimary`, `SurfaceSecondary`, `SurfaceTertiary`
+
+> **Note:** Not all colors are supported by all themes. Check `color.isSupported` before using a color in production code.
 
 ```kotlin
+// Basic usage
 OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
     // Child OUDS components adopt monochrome colors automatically
     OudsButton(label = stringResource(R.string.action), onClick = { })
@@ -717,5 +1107,117 @@ OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         text = stringResource(R.string.description),
         color = OudsTheme.colorScheme.content.default
     )
+}
+
+// Check if color is supported by current theme
+val color = OudsColoredBoxColor.BrandPrimary
+if (color.isSupported) {
+    OudsColoredBox(color = color) {
+        // Content
+    }
+}
+
+// Different color categories
+OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) { /* Brand colors */ }
+OudsColoredBox(color = OudsColoredBoxColor.StatusPositiveEmphasized) { /* Status colors */ }
+OudsColoredBox(color = OudsColoredBoxColor.SurfacePrimary) { /* Surface colors */ }
+```
+
+---
+
+## BottomSheetScaffold
+
+**Standard bottom sheet** that co-exists with main screen content, allowing simultaneous interaction.  
+**See also:** [ModalBottomSheet](#modalbottomsheet) for modal behavior that blocks main content.
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyScreen() {
+    val scaffoldState = rememberBottomSheetScaffoldState()
+
+    OudsBottomSheetScaffold(
+        sheetContent = {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(stringResource(R.string.sheet_title))
+                Text(stringResource(R.string.sheet_content))
+            }
+        },
+        sheetPeekHeight = 128.dp,
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                Text(stringResource(R.string.main_content))
+            }
+        }
+    )
+}
+
+// Without drag handle
+OudsBottomSheetScaffold(
+    sheetContent = { /* content */ },
+    sheetDragHandle = false,
+    content = { /* main content */ }
+)
+
+// With custom peek height
+OudsBottomSheetScaffold(
+    sheetContent = { /* content */ },
+    sheetPeekHeight = 200.dp,
+    content = { /* main content */ }
+)
+```
+
+---
+
+## ModalBottomSheet
+
+**Modal bottom sheet** that appears in front of app content and blocks interaction until dismissed.  
+**See also:** [BottomSheetScaffold](#bottomsheetscaffold) for non-modal variant.
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyScreen() {
+    var showBottomSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState()
+
+    Button(onClick = { showBottomSheet = true }) {
+        Text(stringResource(R.string.show_sheet))
+    }
+
+    if (showBottomSheet) {
+        OudsModalBottomSheet(
+            onDismissRequest = { showBottomSheet = false },
+            sheetState = sheetState
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(stringResource(R.string.sheet_title))
+                Text(stringResource(R.string.sheet_content))
+                Button(onClick = { showBottomSheet = false }) {
+                    Text(stringResource(R.string.close))
+                }
+            }
+        }
+    }
+}
+
+// Without drag handle
+OudsModalBottomSheet(
+    onDismissRequest = { /* dismiss */ },
+    dragHandle = false
+) {
+    // Content
+}
+
+// With gestures disabled
+OudsModalBottomSheet(
+    onDismissRequest = { /* dismiss */ },
+    sheetGesturesEnabled = false
+) {
+    // Content
 }
 ```
