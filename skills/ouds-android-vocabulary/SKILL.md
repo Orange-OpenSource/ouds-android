@@ -1,6 +1,6 @@
 ---
 name: ouds-android-vocabulary
-description: Use when the user asks about OUDS-specific terms such as tokenator, token, raw token, semantic token, component token, theme, OudsThemeContract, OudsTheme, component, OudsColoredBox, Tokenator
+description: Use this skill whenever the user asks about OUDS-specific terminology, concepts, or vocabulary. This includes questions about tokens (raw, semantic, component), Tokenator, OudsThemeContract, OudsTheme, OudsColoredBox, tinted parameters, OudsError, or any OUDS-specific classes and patterns. ALWAYS trigger when the user asks to explain, define, clarify, or understand the difference between OUDS concepts, even if they don't explicitly say 'what is' or 'define'. Also trigger when they ask about relationships between OUDS architecture elements (e.g., how tokens relate to each other, theme hierarchy).
 license: MIT
 ---
 

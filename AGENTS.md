@@ -214,8 +214,8 @@ Agent skills are located in the `skills/` directory at the repository root. The 
 
 | Skill | When to load |
 |---|---|
-| `ouds-android-vocabulary` | User asks about OUDS-specific terms: tokenator, raw token, semantic token, component token, theme, OudsThemeContract, OudsColoredBox, tinted, OudsError, etc. |
-| `ouds-android-framework-usage` | User needs to write or review Kotlin/Compose code using OUDS components, configure the theme, access tokens, or set up Gradle dependencies |
+| `ouds-android-vocabulary` | User asks to explain, define, or understand OUDS-specific terminology and concepts (tokens, Tokenator, OudsThemeContract, tinted, OudsError, etc.) or relationships between OUDS architecture elements |
+| `ouds-android-framework-usage` | User needs to write code, create components, set up OUDS, configure themes, access tokens, or use any Ouds* component in Kotlin/Compose |
 
 ### Skill structure
 
