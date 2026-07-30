@@ -1,5 +1,5 @@
 ---
-name: ouds-android-framework-usage
+name: using-ouds-android
 description: Use this skill whenever the user needs to write code using OUDS Android components, set up the library, configure themes, or access design tokens in Kotlin/Compose. This includes adding dependencies, wrapping UI with OudsTheme, creating any Ouds* component (OudsButton, OudsTextInput, OudsNavigationBar, etc.), accessing tokens via OudsTheme.colorScheme/spaces/typography, configuring fonts, handling tinted/untinted icons, using OudsColoredBox, showing error messages, or switching themes dynamically. ALWAYS trigger when the user asks to 'create', 'show me how', 'write a composable', 'set up', or 'access' anything related to OUDS components or tokens, even if they don't explicitly mention 'OUDS framework'.
 license: MIT
 ---

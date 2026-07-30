@@ -1,5 +1,5 @@
 ---
-name: ouds-android-vocabulary
+name: understanding-ouds-android-vocabulary
 description: Use this skill whenever the user asks about OUDS-specific terminology, concepts, or vocabulary. This includes questions about tokens (raw, semantic, component), Tokenator, OudsThemeContract, OudsTheme, OudsColoredBox, tinted parameters, OudsError, or any OUDS-specific classes and patterns. ALWAYS trigger when the user asks to explain, define, clarify, or understand the difference between OUDS concepts, even if they don't explicitly say 'what is' or 'define'. Also trigger when they ask about relationships between OUDS architecture elements (e.g., how tokens relate to each other, theme hierarchy).
 license: MIT
 ---
@@ -61,5 +61,5 @@ Figma design tokens
 
 | Task | Skill to load |
 |---|---|
-| Write or review Kotlin/Compose code using OUDS components or tokens | `ouds-android-framework-usage` |
-| Ask about OUDS-specific terminology | `ouds-android-vocabulary` (this skill) |
+| Write or review Kotlin/Compose code using OUDS components or tokens | `using-ouds-android` |
+| Ask about OUDS-specific terminology | `understanding-ouds-android-vocabulary` (this skill) |
