@@ -7,7 +7,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [BulletList](#bulletlist) — Ordered, unordered, and bare lists
+- [OudsBulletList](#bulletlist) — Ordered, unordered, and bare lists
 
 ---
 

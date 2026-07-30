@@ -7,8 +7,8 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [AlertMessage](#alertmessage) — Full-featured alert with actions
-- [InlineAlert](#inlinealert) — Compact inline alert
+- [OudsAlertMessage](#alertmessage) — Full-featured alert with actions
+- [OudsInlineAlert](#inlinealert) — Compact inline alert
 
 ---
 

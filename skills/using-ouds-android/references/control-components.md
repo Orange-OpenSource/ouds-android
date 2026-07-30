@@ -7,15 +7,15 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [Checkbox](#checkbox) — Standalone checkbox
-- [CheckboxItem](#checkboxitem) — Checkbox with label and description
-- [RadioButton](#radiobutton) — Standalone radio button
-- [RadioButtonItem](#radiobuttonitem) — Radio button with label and description
-- [Switch](#switch) — Standalone switch
-- [SwitchItem](#switchitem) — Toggle switch with label and description
+- [OudsCheckbox](#checkbox) — Standalone checkbox
+- [OudsCheckboxItem](#checkboxitem) — Checkbox with label and description
+- [OudsRadioButton](#radiobutton) — Standalone radio button
+- [OudsRadioButtonItem](#radiobuttonitem) — Radio button with label and description
+- [OudsSwitch](#switch) — Standalone switch
+- [OudsSwitchItem](#switchitem) — Toggle switch with label and description
   - **Chip**
-    - [FilterChip](#filterchip) — Selectable filter chip
-    - [SuggestionChip](#suggestionchip) — Suggestion and action chip
+    - [OudsFilterChip](#filterchip) — Selectable filter chip
+    - [OudsSuggestionChip](#suggestionchip) — Suggestion and action chip
 
 ---
 
@@ -154,7 +154,7 @@ OudsSwitchItem(
 ## Checkbox
 
 **Standalone checkbox** without label — use when checkbox is nested within another component with an alternative label.  
-**See also:** [CheckboxItem](#checkboxitem) for checkbox with label and description.
+**See also:** [OudsCheckboxItem](#checkboxitem) for checkbox with label and description.
 
 ```kotlin
 var checked by remember { mutableStateOf(false) }
@@ -191,7 +191,7 @@ OudsTriStateCheckbox(
 ## RadioButton
 
 **Standalone radio button** without label — use when radio button is nested within another component with an alternative label.  
-**See also:** [RadioButtonItem](#radiobuttonitem) for radio button with label and description.  
+**See also:** [OudsRadioButtonItem](#radiobuttonitem) for radio button with label and description.  
 **Always** wrap a group of radio buttons in `Modifier.selectableGroup()`.
 
 ```kotlin
@@ -220,7 +220,7 @@ OudsRadioButton(
 ## Switch
 
 **Standalone switch** without label — use when switch is nested within another component with an alternative label.  
-**See also:** [SwitchItem](#switchitem) for switch with label and description.
+**See also:** [OudsSwitchItem](#switchitem) for switch with label and description.
 
 ```kotlin
 var checked by remember { mutableStateOf(true) }

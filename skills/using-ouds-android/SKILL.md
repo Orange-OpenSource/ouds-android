@@ -409,28 +409,28 @@ error = OudsError(
 Component documentation is organized by category. When the user asks about specific components, consult the relevant reference file:
 
 - **Action components** (buttons, FAB): [`references/action-components.md`](references/action-components.md)
-    - Button, FloatingActionButton, NavigationButton, SmallButton
+    - OudsButton, OudsFloatingActionButton, OudsNavigationButton, OudsSmallButton
 
 - **Alert components** (alerts, messages): [`references/alert-components.md`](references/alert-components.md)
-    - AlertMessage, InlineAlert
+    - OudsAlertMessage, OudsInlineAlert
 
 - **Content components** (lists): [`references/content-components.md`](references/content-components.md)
-    - BulletList
+    - OudsBulletList
 
 - **Control components** (checkboxes, switches, chips): [`references/control-components.md`](references/control-components.md)
-    - Checkbox, CheckboxItem, RadioButton, RadioButtonItem, Switch, SwitchItem, FilterChip, SuggestionChip
+    - OudsCheckbox, OudsCheckboxItem, OudsRadioButton, OudsRadioButtonItem, OudsSwitch, OudsSwitchItem, OudsFilterChip, OudsSuggestionChip
 
 - **Indicator components** (badges, progress, tags): [`references/indicator-components.md`](references/indicator-components.md)
-    - Badge, CircularProgressIndicator, LinearProgressIndicator, Tag
+    - OudsBadge, OudsCircularProgressIndicator, OudsLinearProgressIndicator, OudsTag
 
 - **Input components** (text fields): [`references/input-components.md`](references/input-components.md)
-    - TextInput, TextArea, PasswordInput, PinCodeInput
+    - OudsTextInput, OudsTextArea, OudsPasswordInput, OudsPinCodeInput
 
 - **Layout components** (containers, dividers): [`references/layout-components.md`](references/layout-components.md)
-    - BottomSheetScaffold, ColoredBox, Divider, ModalBottomSheet
+    - OudsBottomSheetScaffold, OudsColoredBox, OudsDivider, OudsModalBottomSheet
 
 - **Navigation components** (links, bars): [`references/navigation-components.md`](references/navigation-components.md)
-    - Link, NavigationBar, TopAppBar
+    - OudsLink, OudsNavigationBar, OudsTopAppBar
 
 **Complete component index:** See [`references/components-index.md`](references/components-index.md) for a full cross-reference of all components.
 

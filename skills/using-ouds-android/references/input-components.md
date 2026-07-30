@@ -7,16 +7,16 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [TextInput](#textinput) — Single-line text field
-- [TextArea](#textarea) — Multi-line text field
-- [PasswordInput](#passwordinput) — Password field with visibility toggle
-- [PinCodeInput](#pincodeinput) — PIN code input (4 or 6 digits)
+- [OudsTextInput](#textinput) — Single-line text field
+- [OudsTextArea](#textarea) — Multi-line text field
+- [OudsPasswordInput](#passwordinput) — Password field with visibility toggle
+- [OudsPinCodeInput](#pincodeinput) — PIN code input (4 or 6 digits)
 
 ---
 
 ## TextInput
 
-Two API variants: **state-based** (`textFieldState`) and **value-based** (`value` + `onValueChange`).  
+Two API variants for OudsTextInput: **state-based** (`textFieldState`) and **value-based** (`value` + `onValueChange`).  
 Prefer the state-based API for new code.
 
 ```kotlin
@@ -77,7 +77,7 @@ OudsTextInput(
 
 ## TextArea
 
-Same two API variants as `TextInput` (state-based / value-based).
+Same two API variants as `OudsTextInput` (state-based / value-based).
 
 ```kotlin
 // State-based
