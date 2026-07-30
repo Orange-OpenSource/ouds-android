@@ -430,9 +430,9 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
     val backgroundDecoration = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction
     when (state) {
         OudsListItemState.Enabled, OudsListItemState.Disabled -> if (decoration is OudsListItemDecoration.Background) enabled else Color.Transparent
-        OudsListItemState.Focused -> if (backgroundDecoration || decoration is OudsListItemDecoration.None) focus else Color.Transparent
-        OudsListItemState.Hovered -> if (backgroundDecoration || decoration is OudsListItemDecoration.None) hover else Color.Transparent
-        OudsListItemState.Pressed -> if (backgroundDecoration || decoration is OudsListItemDecoration.None) pressed else Color.Transparent
+        OudsListItemState.Focused -> if (backgroundDecoration) focus else Color.Transparent
+        OudsListItemState.Hovered -> if (backgroundDecoration) hover else Color.Transparent
+        OudsListItemState.Pressed -> if (backgroundDecoration) pressed else Color.Transparent
     }
 }
 
@@ -528,7 +528,7 @@ private fun topTextContainerPadding(verticalAlignment: OudsListItemVerticalAlign
     }
 
 internal fun listItemDecoration(background: Boolean, divider: Boolean): OudsListItemDecoration {
-    return if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.None(divider)
+    return if (background) OudsListItemDecoration.Background(divider) else OudsListItemDecoration.BackgroundOnInteraction(divider)
 }
 
 /**
@@ -663,8 +663,6 @@ sealed class OudsListItemDecoration(val divider: Boolean) {
      * @property divider Controls the display of a divider at the bottom of the item.
      */
     class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
-
-    internal class None(divider: Boolean) : OudsListItemDecoration(divider)
 }
 
 internal enum class OudsListItemState {
@@ -1328,7 +1326,7 @@ internal fun PreviewOudsStaticListItem(
             leading = leading,
             trailing = trailing,
             divider = decoration.divider,
-            background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
+            background = decoration is OudsListItemDecoration.Background,
             boldLabel = boldLabel,
             enabled = enabled,
             edgeToEdge = false
@@ -1369,7 +1367,7 @@ internal fun PreviewOudsNavigationListItem(
                 leading = leading,
                 trailing = trailing,
                 divider = decoration.divider,
-                background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
+                background = decoration is OudsListItemDecoration.Background,
                 enabled = enabled,
                 edgeToEdge = false
             )
@@ -1409,7 +1407,7 @@ internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing
     val description: String? = null,
     val leading: T? = null,
     val trailing: S? = null,
-    val decoration: OudsListItemDecoration = OudsListItemDecoration.None(divider = true),
+    val decoration: OudsListItemDecoration = OudsListItemDecoration.BackgroundOnInteraction(divider = true),
     val helperText: String? = null,
     val boldLabel: Boolean = false,
     val enabled: Boolean = true
@@ -1442,7 +1440,7 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
     leading: (Int) -> T?,
     trailing: (Int) -> S?,
     decoration: (Int) -> OudsListItemDecoration = { index ->
-        if (index == 1) OudsListItemDecoration.Background(divider = true) else OudsListItemDecoration.None(divider = true)
+        if (index == 1) OudsListItemDecoration.Background(divider = true) else OudsListItemDecoration.BackgroundOnInteraction(divider = true)
     }
 ) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration).toTypedArray())
 

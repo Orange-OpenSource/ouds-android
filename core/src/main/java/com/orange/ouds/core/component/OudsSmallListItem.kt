@@ -159,7 +159,7 @@ fun OudsSmallListItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    edgeToEdge: Boolean= true,
+    edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -516,7 +516,7 @@ internal fun PreviewOudsStaticSmallListItem(
             leading = leading,
             trailing = trailing,
             divider = decoration.divider,
-            background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
+            background = decoration is OudsListItemDecoration.Background,
             verticalAlignment = verticalAlignment,
             boldLabel = boldLabel,
             enabled = enabled,
@@ -556,7 +556,7 @@ internal fun PreviewOudsNavigationSmallListItem(
                 leading = leading,
                 trailing = trailing,
                 divider = decoration.divider,
-                background = decoration is OudsListItemDecoration.Background || decoration is OudsListItemDecoration.BackgroundOnInteraction,
+                background = decoration is OudsListItemDecoration.Background,
                 enabled = enabled,
                 edgeToEdge = false
             )
