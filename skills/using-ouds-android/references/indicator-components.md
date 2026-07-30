@@ -7,10 +7,10 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [Badge](#badge) — Count and status badges
-- [CircularProgressIndicator](#circularprogressindicator) — Circular loading indicator
-- [LinearProgressIndicator](#linearprogressindicator) — Linear loading indicator
-- [Tag](#tag) — Status and category tags
+- [OudsBadge](#badge) — Count and status badges
+- [OudsCircularProgressIndicator](#circularprogressindicator) — Circular loading indicator
+- [OudsLinearProgressIndicator](#linearprogressindicator) — Linear loading indicator
+- [OudsTag](#tag) — Status and category tags
 
 ---
 

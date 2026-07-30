@@ -7,9 +7,9 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [Link](#link) — Text link with optional icon/chevron
-- [NavigationBar](#navigationbar) — Bottom navigation bar
-- [TopAppBar](#topappbar) — Top app bar with variants
+- [OudsLink](#link) — Text link with optional icon/chevron
+- [OudsNavigationBar](#navigationbar) — Bottom navigation bar
+- [OudsTopAppBar](#topappbar) — Top app bar with variants
 
 ---
 

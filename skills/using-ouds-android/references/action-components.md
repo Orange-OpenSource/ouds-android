@@ -7,10 +7,10 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [Button](#button) — Default and small buttons
-- [FloatingActionButton](#floatingactionbutton) — Floating action button (FAB)
-- [NavigationButton](#navigationbutton) — Navigation button with chevron
-- [SmallButton](#smallbutton) — Small size button variant
+- [OudsButton](#button) — Default and small buttons
+- [OudsFloatingActionButton](#floatingactionbutton) — Floating action button (FAB)
+- [OudsNavigationButton](#navigationbutton) — Navigation button with chevron
+- [OudsSmallButton](#smallbutton) — Small size button variant
 
 ---
 

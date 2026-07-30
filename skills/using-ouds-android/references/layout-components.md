@@ -7,10 +7,10 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [BottomSheetScaffold](#bottomsheetscaffold) — Standard bottom sheet scaffold
-- [ColoredBox](#coloredbox) — Colored surface container
-- [Divider](#divider) — Horizontal and vertical dividers
-- [ModalBottomSheet](#modalbottomsheet) — Modal bottom sheet
+- [OudsBottomSheetScaffold](#bottomsheetscaffold) — Standard bottom sheet scaffold
+- [OudsColoredBox](#coloredbox) — Colored surface container
+- [OudsDivider](#divider) — Horizontal and vertical dividers
+- [OudsModalBottomSheet](#modalbottomsheet) — Modal bottom sheet
 
 ---
 
@@ -69,7 +69,7 @@ OudsVerticalDivider(modifier = Modifier.height(50.dp))
 ## BottomSheetScaffold
 
 **Standard bottom sheet** that co-exists with main screen content, allowing simultaneous interaction.  
-**See also:** [ModalBottomSheet](#modalbottomsheet) for modal behavior that blocks main content.
+**See also:** [OudsModalBottomSheet](#modalbottomsheet) for modal behavior that blocks main content.
 
 ```kotlin
 @OptIn(ExperimentalMaterial3Api::class)
@@ -117,7 +117,7 @@ OudsBottomSheetScaffold(
 ## ModalBottomSheet
 
 **Modal bottom sheet** that appears in front of app content and blocks interaction until dismissed.  
-**See also:** [BottomSheetScaffold](#bottomsheetscaffold) for non-modal variant.
+**See also:** [OudsBottomSheetScaffold](#bottomsheetscaffold) for non-modal variant.
 
 ```kotlin
 @OptIn(ExperimentalMaterial3Api::class)

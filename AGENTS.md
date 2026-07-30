@@ -227,14 +227,14 @@ skills/
     ├── SKILL.md                          ← setup, themes, token access, common patterns, checklist, troubleshooting
     └── references/
         ├── components-index.md           ← complete component cross-reference
-        ├── action-components.md          ← Button, FloatingActionButton, NavigationButton, SmallButton
-        ├── alert-components.md           ← AlertMessage, InlineAlert
-        ├── content-components.md         ← BulletList
-        ├── control-components.md         ← Checkbox, CheckboxItem, RadioButton, RadioButtonItem, Switch, SwitchItem, FilterChip, SuggestionChip
-        ├── indicator-components.md       ← Badge, CircularProgressIndicator, LinearProgressIndicator, Tag
-        ├── input-components.md           ← TextInput, TextArea, PasswordInput, PinCodeInput
-        ├── layout-components.md          ← BottomSheetScaffold, ColoredBox, Divider, ModalBottomSheet
-        ├── navigation-components.md      ← Link, NavigationBar, TopAppBar
+        ├── action-components.md          ← OudsButton, OudsFloatingActionButton, OudsNavigationButton, OudsSmallButton
+        ├── alert-components.md           ← OudsAlertMessage, OudsInlineAlert
+        ├── content-components.md         ← OudsBulletList
+        ├── control-components.md         ← OudsCheckbox, OudsCheckboxItem, OudsRadioButton, OudsRadioButtonItem, OudsSwitch, OudsSwitchItem, OudsFilterChip, OudsSuggestionChip
+        ├── indicator-components.md       ← OudsBadge, OudsCircularProgressIndicator, OudsLinearProgressIndicator, OudsTag
+        ├── input-components.md           ← OudsTextInput, OudsTextArea, OudsPasswordInput, OudsPinCodeInput
+        ├── layout-components.md          ← OudsBottomSheetScaffold, OudsColoredBox, OudsDivider, OudsModalBottomSheet
+        ├── navigation-components.md      ← OudsLink, OudsNavigationBar, OudsTopAppBar
         ├── component-tokens.md           ← advanced component-level tokens
         └── tokens.md                     ← semantic tokens (color, typography, spacing, etc.)
 ```
