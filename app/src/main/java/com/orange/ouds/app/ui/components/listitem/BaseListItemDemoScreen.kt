@@ -90,12 +90,12 @@ fun BaseListItemDemoBottomSheetContent(state: BaseListItemDemoState) {
 @Composable
 fun BaseListItemDemoState.CustomizationTab.Content(state: BaseListItemDemoState) {
     when (this) {
-        BaseListItemDemoState.CustomizationTab.Global -> when (state) {
+        BaseListItemDemoState.CustomizationTab.General -> when (state) {
             is CardItemDemoState -> CardItemGlobalCustomizationContent(state = state)
             is ListItemDemoState -> ListItemGlobalCustomizationContent(state = state)
         }
         BaseListItemDemoState.CustomizationTab.Leading -> BaseListItemLeadingCustomizationContent(state = state)
-        BaseListItemDemoState.CustomizationTab.TextContainer -> BaseListItemTextContainerCustomizationContent(state = state)
+        BaseListItemDemoState.CustomizationTab.Texts -> BaseListItemTextsCustomizationContent(state = state)
         BaseListItemDemoState.CustomizationTab.Trailing -> BaseListItemTrailingCustomizationContent(state = state)
     }
 }
@@ -111,7 +111,6 @@ fun BaseListItemGlobalCustomizations(state: BaseListItemDemoState, extraCustomiz
         { BaseListItemIndicatorCustomization(state = state) },
         { BaseListItemVerticalAlignmentCustomization(state = state) },
         { BaseListItemEnabledCustomization(state = state) },
-        { BaseListItemHelperTextCustomization(state = state) }
     )
     extraCustomizations.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -163,18 +162,6 @@ private fun BaseListItemEnabledCustomization(state: BaseListItemDemoState) {
             label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
-        )
-    }
-}
-
-@Composable
-private fun BaseListItemHelperTextCustomization(state: BaseListItemDemoState) {
-    with(state) {
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_common_helperText_tech),
-            value = helperText.orEmpty(),
-            onValueChange = { value -> helperText = value }
         )
     }
 }
@@ -236,7 +223,7 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
 }
 
 @Composable
-fun BaseListItemTextContainerCustomizationContent(state: BaseListItemDemoState) {
+fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
     with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
@@ -269,6 +256,12 @@ fun BaseListItemTextContainerCustomizationContent(state: BaseListItemDemoState) 
                 onValueChange = { value -> extraLabel = value }
             )
         }
+        CustomizationTextInput(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_common_helperText_tech),
+            value = helperText.orEmpty(),
+            onValueChange = { value -> helperText = value }
+        )
     }
 }
 

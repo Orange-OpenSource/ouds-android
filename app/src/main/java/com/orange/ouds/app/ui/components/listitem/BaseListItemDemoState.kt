@@ -192,7 +192,7 @@ open class BaseListItemDemoState(
     var verticalAlignment: OudsListItemVerticalAlignment by mutableStateOf(verticalAlignment)
 
     enum class CustomizationTab {
-        Global, Leading, TextContainer, Trailing
+        General, Leading, Texts, Trailing
     }
 
     enum class Size {
