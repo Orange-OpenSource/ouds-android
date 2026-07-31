@@ -195,7 +195,6 @@ class CardItemDemoState(
 ) {
     companion object {
 
-        @Suppress("UNCHECKED_CAST")
         val Saver = listSaver(
             save = { state ->
                 with(state) {
