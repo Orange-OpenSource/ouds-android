@@ -305,9 +305,9 @@
     <string name="app_components_listItem_icon_a11y">Icon content description</string>
     <string name="app_components_listItem_image_a11y">Image content description</string>
     <string name="app_components_listItem_trailingText_tech" translatable="false">Text</string>
-    <string name="app_components_listItem_trailingTextLabel_tech" translatable="false">Trailing text label</string>
-    <string name="app_components_listItem_trailingTextStyle_tech" translatable="false">Trailing text style</string>
-    <string name="app_components_listItem_trailingTextExtraLabel_tech" translatable="false">Trailing text extra label</string>
+    <string name="app_components_listItem_trailingTextLabel_tech" translatable="false">Text label</string>
+    <string name="app_components_listItem_trailingTextStyle_tech" translatable="false">Text style</string>
+    <string name="app_components_listItem_trailingTextExtraLabel_tech" translatable="false">Text extra label</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_tech" translatable="false">Navigation bar</string>
