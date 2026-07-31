@@ -39,7 +39,7 @@ fun ListItemDemoScreen(size: BaseListItemDemoState.Size) {
         codeSnippet = { listItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { ListItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
-        version = OudsVersion.Component.ListItem
+        version = OudsVersion.Component.NavigationListItem
     )
 }
 

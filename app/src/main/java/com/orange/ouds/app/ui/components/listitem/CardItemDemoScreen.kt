@@ -43,7 +43,7 @@ fun CardItemDemoScreen(size: BaseListItemDemoState.Size) {
         codeSnippet = { cardItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { CardItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
-        version = OudsVersion.Component.ListItem
+        version = OudsVersion.Component.NavigationCardItem
     )
 }
 
