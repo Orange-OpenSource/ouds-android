@@ -47,6 +47,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
@@ -137,7 +138,8 @@ fun CustomizationFilterChips(
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
                 .focusProperties { canFocus = chipsRowCanFocus }
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+                .padding(horizontal = OudsTheme.grids.margin)
+                .padding(top = if (label != null) OudsTheme.spaces.fixed.extraSmall else 0.dp, bottom = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
             chips.forEachIndexed { index, chip ->
