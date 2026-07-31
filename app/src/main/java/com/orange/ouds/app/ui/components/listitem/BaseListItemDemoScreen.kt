@@ -96,7 +96,7 @@ fun BaseListItemGlobalCustomizations(state: BaseListItemDemoState, extraCustomiz
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
         { BaseListItemClickableCustomization(state = state) },
         { BaseListItemIndicatorCustomization(state = state) },
-        { BaseListItemContentAlignmentCustomization(state = state) },
+        { BaseListItemVerticalAlignmentCustomization(state = state) },
         { BaseListItemEnabledCustomization(state = state) },
         { BaseListItemHelperTextCustomization(state = state) }
     )
@@ -131,11 +131,11 @@ private fun BaseListItemIndicatorCustomization(state: BaseListItemDemoState) {
 }
 
 @Composable
-private fun BaseListItemContentAlignmentCustomization(state: BaseListItemDemoState) {
+private fun BaseListItemVerticalAlignmentCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_listItem_contentAlignment_tech),
+            label = stringResource(R.string.app_components_listItem_verticalAlignment_tech),
             chipLabels = OudsListItemVerticalAlignment.entries.map { it.name.toSentenceCase() },
             selectedChipIndex = OudsListItemVerticalAlignment.entries.indexOf(verticalAlignment),
             onSelectionChange = { index -> verticalAlignment = OudsListItemVerticalAlignment.entries[index] }
