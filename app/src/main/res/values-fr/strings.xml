@@ -154,7 +154,7 @@
 
     <!-- Components: list item -->
     <string name="app_components_listItem_description_text">Un List item (ou élément de liste) est un élément construit horizontalement et utilisé pour afficher une entité d\'information au sein d\'une liste. Ces éléments sont empilés verticalement pour organiser les contenus associés et faciliter une lecture rapide ainsi que l\'interaction. Chaque élément peut contenir, selon le contexte, des composants tels qu\'une étiquette, un texte d\'accompagnement, des icônes ou des images.</string>
-    <string name="app_components_listItem_icon_a11y">Description de l\'icon</string>
+    <string name="app_components_listItem_icon_a11y">Description de l\'icône</string>
     <string name="app_components_listItem_image_a11y">Description de l\'image</string>
 
     <!-- Components: navigation bar -->
