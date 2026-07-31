@@ -206,8 +206,8 @@ class CardItemDemoState(
                 }
             },
             restore = { list: List<Any?> ->
-                val itemDemoState = list[1]?.let { BaseListItemDemoState.Saver.restore(it) }
-                itemDemoState?.run {
+                val baseListItemDemoState = list[1]?.let { BaseListItemDemoState.Saver.restore(it) }
+                baseListItemDemoState?.run {
                     CardItemDemoState(
                         list[0] as Decoration,
                         size,

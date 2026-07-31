@@ -209,8 +209,8 @@ class ListItemDemoState(
                 }
             },
             restore = { list: List<Any?> ->
-                val itemDemoState = list[2]?.let { BaseListItemDemoState.Saver.restore(it) }
-                itemDemoState?.run {
+                val baseListItemDemoState = list[2]?.let { BaseListItemDemoState.Saver.restore(it) }
+                baseListItemDemoState?.run {
                     ListItemDemoState(
                         list[0] as Boolean,
                         list[1] as Boolean,
