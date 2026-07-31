@@ -130,15 +130,17 @@ fun CustomizationBottomSheetScaffold(
                     color = OudsTheme.colorScheme.content.default
                 )
             }
-
-            val sheetContentModifier = if (bottomSheetTabs == null) {
-                Modifier.heightIn(max = customizationContentMaxHeight)
-            } else {
+            
+            if (bottomSheetTabs != null) {
                 bottomSheetTabs()
-                Modifier.height(customizationContentMaxHeight) // Fix content height in case of tabs in order to prevent sheet resizing on tab selection
             }
 
             val scrollState = rememberScrollState()
+            val sheetContentModifier = if (bottomSheetTabs == null) {
+                Modifier.heightIn(max = customizationContentMaxHeight)
+            } else {
+                Modifier.height(customizationContentMaxHeight) // Fix content height in case of tabs in order to prevent sheet resizing on tab selection
+            }
 
             Column(
                 modifier = sheetContentModifier
