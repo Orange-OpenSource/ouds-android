@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.listitem.BaseListItemDemoState.Size
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -35,19 +34,13 @@ fun ListItemDemoScreen(size: BaseListItemDemoState.Size) {
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetTabs = { BaseListItemDemoBottomSheetTabs(state = state) },
-        bottomSheetContent = { ListItemDemoBottomSheetContent(state = state) },
+        bottomSheetContent = { BaseListItemDemoBottomSheetContent(state = state) },
         codeSnippet = { listItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { ListItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.NavigationListItem
     )
 }
-
-@Composable
-private fun ListItemDemoBottomSheetContent(state: ListItemDemoState) {
-    BaseListItemDemoBottomSheetContent(state = state)
-}
-
 
 @Composable
 internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
@@ -127,8 +120,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
 private fun Code.Builder.listItemDemoCodeSnippet(state: ListItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         val functionName = when (size) {
-            Size.Default -> "OudsListItem"
-            Size.Small -> "OudsSmallListItem"
+            BaseListItemDemoState.Size.Default -> "OudsListItem"
+            BaseListItemDemoState.Size.Small -> "OudsSmallListItem"
         }
         functionCall(functionName) {
             baseListItemArguments(state, themeDrawableResources)

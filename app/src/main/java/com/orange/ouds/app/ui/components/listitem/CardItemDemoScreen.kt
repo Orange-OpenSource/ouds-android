@@ -39,17 +39,12 @@ fun CardItemDemoScreen(size: BaseListItemDemoState.Size) {
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
         bottomSheetTabs = { BaseListItemDemoBottomSheetTabs(state = state) },
-        bottomSheetContent = { CardItemDemoBottomSheetContent(state = state) },
+        bottomSheetContent = { BaseListItemDemoBottomSheetContent(state = state) },
         codeSnippet = { cardItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { CardItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.NavigationCardItem
     )
-}
-
-@Composable
-private fun CardItemDemoBottomSheetContent(state: CardItemDemoState) {
-    BaseListItemDemoBottomSheetContent(state = state)
 }
 
 @Composable
