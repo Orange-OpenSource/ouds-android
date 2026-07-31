@@ -14,6 +14,7 @@ import groovy.json.JsonSlurper
  */
 
 plugins {
+    id("kmp-maven-central-publish")
     id("dokka")
 //    id("library")
     id("paparazzi")

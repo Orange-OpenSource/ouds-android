@@ -16,7 +16,7 @@ import com.orange.ouds.gradle.artifactId
 import com.orange.ouds.gradle.isSnapshot
 
 plugins {
-    id("com.android.library")
+//    id("com.android.library")
     `maven-publish`
     signing
 }
@@ -68,7 +68,9 @@ afterEvaluate {
                 }
 
                 create<MavenPublication>(MavenCentralPublishPluginExtension.VARIANT) {
-                    from(components["release"])
+                    // Use "kotlin" component for KMP projects, "release" for Android library projects
+                    val componentName = if (components.findByName("kotlin") != null) "kotlin" else "release"
+                    from(components[componentName])
                     this.groupId = groupId
                     this.artifactId = artifactId
                     this.version = version

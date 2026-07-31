@@ -12,6 +12,7 @@
 
 plugins {
     id("dokka")
+    id("kmp-maven-central-publish")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose.multiplatform)
     id(libs.plugins.kotlin.multiplatform.get().pluginId)

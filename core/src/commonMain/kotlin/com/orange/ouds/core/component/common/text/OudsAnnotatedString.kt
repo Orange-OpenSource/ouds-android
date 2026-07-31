@@ -213,53 +213,53 @@ abstract class OudsAnnotatedString<T> internal constructor(annotatedString: Anno
         /**
          * Appends the given [String] to this [Builder].
          *
-         * @param text The text to append.
+         * @param value The text to append.
          * @return This [Builder] instance.
          */
-        override fun append(char: Char): Builder<T> = apply { builder.append(char) }
+        override fun append(value: Char): Builder<T> = apply { builder.append(value) }
 
         /**
-         * Appends [text] to this [Builder] if non-null, and returns this [Builder].
+         * Appends [value] to this [Builder] if non-null, and returns this [Builder].
          *
-         * If [text] is an [OudsAnnotatedString], all spans and annotations will be copied over as well.
+         * If [value] is an [OudsAnnotatedString], all spans and annotations will be copied over as well.
          * No other subtypes of [CharSequence] will be treated specially. For example, any
          * platform-specific types, such as `SpannedString` on Android, will only have their text
          * copied and any other information held in the sequence, such as Android `Span`s, will be
          * dropped.
          *
-         * @param text The text to append.
+         * @param value The text to append.
          * @return This [Builder] instance.
          */
-        override fun append(text: CharSequence?): Builder<T> = apply {
-            when (text) {
+        override fun append(value: CharSequence?): Builder<T> = apply {
+            when (value) {
                 // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
-                is OudsAnnotatedString<*> -> builder.append(text.annotatedString.filterSupportedAnnotations())
-                is AnnotatedString -> builder.append(text.filterSupportedAnnotations())
-                else -> builder.append(text)
+                is OudsAnnotatedString<*> -> builder.append(value.annotatedString.filterSupportedAnnotations())
+                is AnnotatedString -> builder.append(value.filterSupportedAnnotations())
+                else -> builder.append(value)
             }
         }
 
         /**
-         * Appends the range of [text] between [start] (inclusive) and [end] (exclusive) to this
+         * Appends the range of [value] between [startIndex] (inclusive) and [endIndex] (exclusive) to this
          * [Builder] if non-null, and returns this [Builder].
          *
-         * If [text] is an [OudsAnnotatedString], all spans and annotations from [text] between [start]
-         * and [end] will be copied over as well. No other subtypes of [CharSequence] will be
+         * If [value] is an [OudsAnnotatedString], all spans and annotations from [value] between [startIndex]
+         * and [endIndex] will be copied over as well. No other subtypes of [CharSequence] will be
          * treated specially. For example, any platform-specific types, such as `SpannedString` on
          * Android, will only have their text copied and any other information held in the sequence,
          * such as Android `Span`s, will be dropped.
          *
-         * @param text The text to append.
-         * @param start The index of the first character in [text] to copy over (inclusive).
-         * @param end The index after the last character in [text] to copy over (exclusive).
+         * @param value The text to append.
+         * @param startIndex The index of the first character in [value] to copy over (inclusive).
+         * @param endIndex The index after the last character in [value] to copy over (exclusive).
          * @return This [Builder] instance.
          */
-        override fun append(text: CharSequence?, start: Int, end: Int): Builder<T> = apply {
-            when (text) {
+        override fun append(value: CharSequence?, startIndex: Int, endIndex: Int): Builder<T> = apply {
+            when (value) {
                 // The append method of AnnotatedString.Builder preserves annotations if the CharSequence is an AnnotatedString
-                is OudsAnnotatedString<*> -> builder.append(text.annotatedString.filterSupportedAnnotations(), start, end)
-                is AnnotatedString -> builder.append(text.filterSupportedAnnotations(), start, end)
-                else -> builder.append(text, start, end)
+                is OudsAnnotatedString<*> -> builder.append(value.annotatedString.filterSupportedAnnotations(), startIndex, endIndex)
+                is AnnotatedString -> builder.append(value.filterSupportedAnnotations(), startIndex, endIndex)
+                else -> builder.append(value, startIndex, endIndex)
             }
         }
 

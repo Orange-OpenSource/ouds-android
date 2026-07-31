@@ -13,6 +13,7 @@
 plugins {
     id("dokka")
 //    id("library")
+    id("kmp-maven-central-publish")
     id("paparazzi")
 
     alias(libs.plugins.compose.compiler)

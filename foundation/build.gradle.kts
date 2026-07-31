@@ -12,6 +12,7 @@
 
 plugins {
     alias(libs.plugins.compose.compiler)
+    id("kmp-maven-central-publish")
     alias(libs.plugins.compose.multiplatform)
     id(libs.plugins.kotlin.multiplatform.get().pluginId)
     id(libs.plugins.android.kotlin.multiplatform.library.get().pluginId)

@@ -12,7 +12,6 @@
 
 package com.orange.ouds.theme.orangecompact
 
-//import com.orange.ouds.theme.orange.OrangeFontProvider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.OudsDrawableResources
@@ -24,6 +23,7 @@ import com.orange.ouds.theme.orange.OrangeDrawableResources
 import com.orange.ouds.theme.orange.OrangeFontFamily
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
+import com.orange.ouds.theme.orange.preloadDownloadableFontFamilies
 import com.orange.ouds.theme.orangecompact.tokens.components.OrangeCompactComponentsTokens
 import com.orange.ouds.theme.orangecompact.tokens.material.OrangeCompactMaterialColorTokens
 import com.orange.ouds.theme.orangecompact.tokens.semantic.OrangeCompactBorderSemanticTokens
@@ -91,7 +91,7 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * )
  * ```
  *
- * In order to enable the Android Downloadable Fonts feature for the Orange Compact theme, please also add [OrangeFontProvider] as a provider in your app manifest:
+ * In order to enable the Android Downloadable Fonts feature for the Orange Compact theme, please also add OrangeFontProvider as a provider in your app manifest:
  *
  * ```
  * <provider
@@ -106,7 +106,7 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * <uses-permission android:name="android.permission.INTERNET" />
  * ```
  *
- * Finally, call the [OrangeFontFamily.preloadDownloadableFontFamilies] method in the `onCreate` method of your application singleton or main activity,
+ * Finally, call the [preloadDownloadableFontFamilies] method in the `onCreate` method of your application singleton or main activity,
  * and use the `onComplete` parameter to update your UI when preload is complete:
  *
  * ```
@@ -124,7 +124,7 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  *
  * @param orangeFontFamily The Helvetica Neue font family to use for the Orange Compact theme.
  *   If an [OrangeBundledFontFamily] is used, the resource identifiers should reference Helvetica Neue font files.
- *   If an [OrangeDownloadableFontFamily] is used, the [OrangeFontFamily.preloadDownloadableFontFamilies] method should be called to download the Helvetica Neue font files through the Android Downloadable Fonts feature.
+ *   If an [OrangeDownloadableFontFamily] is used, the [preloadDownloadableFontFamilies] method should be called to download the Helvetica Neue font files through the Android Downloadable Fonts feature.
  * @param roundedCornerButtons Whether buttons have rounded corners.
  * @param roundedCornerTextInputs Whether text inputs have rounded corners.
  * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
