@@ -150,6 +150,7 @@ import com.orange.ouds.core.component.PreviewOudsNavigationButtonWithRoundedCorn
 import com.orange.ouds.core.component.PreviewOudsNavigationCardItem
 import com.orange.ouds.core.component.PreviewOudsNavigationCardItemWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsNavigationListItem
+import com.orange.ouds.core.component.PreviewOudsNavigationListItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsNavigationListItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsNavigationSmallCardItem
 import com.orange.ouds.core.component.PreviewOudsNavigationSmallCardItemWithRoundedCorners
@@ -992,6 +993,19 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsNavigationListItemWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+            const val PreviewHeightDp = 720
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
