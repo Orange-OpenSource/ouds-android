@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.orange.ouds.core.R
@@ -76,6 +77,27 @@ class OudsAlertMessageTest {
             }
 
             onNodeWithText(actionLinkLabel).assertDoesNotExist()
+        }
+    }
+
+    @Test
+    fun oudsAlertMessage_actionLinkWithTestTag_clickSucceeds() {
+        val actionLinkTestTag = "action_link"
+        val onClick = mock<() -> Unit>()
+
+        with(composeTestRule) {
+            setOudsContent {
+                OudsAlertMessage(
+                    label = "Label",
+                    actionLink = OudsAlertMessageActionLink(
+                        label = "Learn More",
+                        onClick = onClick
+                    ).apply { testTag = actionLinkTestTag }
+                )
+            }
+
+            onNodeWithTag(actionLinkTestTag).performClick()
+            verify(onClick).invoke()
         }
     }
 }

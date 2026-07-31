@@ -647,9 +647,11 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         @Composable
         override fun Content(modifier: Modifier) {
             OudsAvatar(
-                modifier = modifier.semantics {
-                    contentDescription = this@Avatar.contentDescription
-                },
+                modifier = modifier
+                    .semantics {
+                        contentDescription = this@Avatar.contentDescription
+                    }
+                    .componentContentTestTag(),
                 graphicsObject = graphicsObject,
                 monogram = monogram,
                 monogramColor = monogramColor,

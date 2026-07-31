@@ -239,7 +239,8 @@ data class OudsNavigationBarItem(
                         .indicator(state = state, selected = selected, iconPosition = iconPosition)
                         .semantics {
                             contentDescription = badge?.contentDescription.orEmpty()
-                        },
+                        }
+                        .componentContentTestTag(),
                     selected = selected,
                     onClick = onClick,
                     icon = {

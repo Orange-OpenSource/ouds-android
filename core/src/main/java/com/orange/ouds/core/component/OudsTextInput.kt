@@ -1219,7 +1219,7 @@ internal fun OudsTextInputDecorator(
             )
 
             // Helper link
-            OptionalHelperLink(state = state, helperLink = helperLink)
+            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
     }
 }
@@ -1297,19 +1297,6 @@ internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: Ouds
                 else -> OudsTextInputState.Enabled
             }
         }
-    }
-}
-
-@Composable
-internal fun OptionalHelperLink(state: OudsTextInputState, helperLink: OudsTextInputHelperLink?) {
-    if (!helperLink?.text.isNullOrBlank()) {
-        OudsLink(
-            modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
-            label = helperLink.text,
-            onClick = helperLink.onClick,
-            size = OudsLinkSize.Small,
-            enabled = state != OudsTextInputState.Disabled
-        )
     }
 }
 
@@ -1449,8 +1436,35 @@ internal enum class OudsTextInputState {
 
 /**
  * A helper link displayed below or in place of the helper text.
+ *
+ * @param text The text to display in the link.
+ * @param onClick Callback invoked when the link is clicked.
  */
-data class OudsTextInputHelperLink(val text: String, val onClick: () -> Unit)
+data class OudsTextInputHelperLink(
+    val text: String,
+    val onClick: () -> Unit
+) : OudsComponentContent<OudsTextInputHelperLink.ExtraParameters>(OudsTextInputHelperLink.ExtraParameters::class.java) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val state: OudsTextInputState
+    ) : OudsComponentContent.ExtraParameters()
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        if (text.isNotBlank()) {
+            OudsLink(
+                modifier = Modifier
+                    .padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value)
+                    .componentContentTestTag(),
+                label = text,
+                onClick = onClick,
+                size = OudsLinkSize.Small,
+                enabled = extraParameters.state != OudsTextInputState.Disabled
+            )
+        }
+    }
+}
 
 /**
  * A circular loading indicator displayed in the text input.

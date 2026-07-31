@@ -1355,7 +1355,7 @@ internal fun OudsTextAreaDecorator(
             )
 
             // Helper link
-            OptionalHelperLink(state = state, helperLink = helperLink)
+            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
     }
 }

@@ -215,6 +215,42 @@ internal fun OudsNavigationBarSample() {
 }
 ```
 
+### Testing components with testTag
+
+OUDS components that accept content objects (subclasses of `OudsComponentContent`) support a `testTag` property for UI testing. This provides an alternative to the standard `Modifier.testTag()` approach when the component content doesn't directly expose a modifier parameter.
+
+**Example:**
+
+```kotlin
+@Test
+fun oudsNavigationBar_itemClick_succeeds() {
+    val homeTestTag = "nav_item_home"
+    val onClick = mock<() -> Unit>()
+
+    composeTestRule.setContent {
+        OudsTheme(theme = OrangeTheme(getPreviewOrangeFontFamily())) {
+            OudsNavigationBar(
+                items = listOf(
+                    OudsNavigationBarItem(
+                        selected = false,
+                        onClick = onClick,
+                        icon = OudsNavigationBarItemIcon(Icons.Filled.Home),
+                        label = "Home"
+                    ).apply { testTag = homeTestTag }
+                )
+            )
+        }
+    }
+
+    composeTestRule.onNodeWithTag(homeTestTag).performClick()
+    verify(onClick).invoke()
+}
+```
+
+All component content classes that inherit from `OudsComponentContent` have this `testTag` property available. This includes classes like `OudsNavigationBarItem`, `OudsNavigationBarItemIcon`, `OudsTopAppBarNavigationIcon`, `OudsTopAppBarAction`, and many others.
+
+For components that expose a `modifier` parameter directly (like `OudsButton`, `OudsSwitch`, etc.), use the standard `Modifier.testTag()` approach.
+
 ### Available components and versions
 
 <table>

@@ -17,6 +17,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
 
@@ -46,6 +47,15 @@ internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableComposition
  * @suppress
  */
 abstract class OudsComponentContent<T> internal constructor(private val extraParametersClass: Class<T>) where T : OudsComponentContent.ExtraParameters {
+
+    /**
+     * Optional test tag for UI testing purposes.
+     *
+     * This property should only be used when writing UI tests and can be ignored in production code.
+     * Test tags provide stable identifiers for UI components that are independent of text content
+     * or accessibility semantics.
+     */
+    var testTag: String? = null
 
     /**
      * Extra parameters that can be passed to the `Content` method when other parameters than those provided by the user are needed to layout the component.
@@ -98,4 +108,6 @@ abstract class OudsComponentContent<T> internal constructor(private val extraPar
      */
     @Composable
     internal abstract fun Content(modifier: Modifier)
+
+    internal fun Modifier.componentContentTestTag() = testTag?.let { testTag(it) }.orElse { this }
 }

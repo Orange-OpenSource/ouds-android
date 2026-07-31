@@ -35,14 +35,14 @@ abstract class OudsComponentIcon<T, S> internal constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
     private val contentDescriptionProvider: @Composable (S) -> String,
-    private val onClick: (() -> Unit)? = null,
+    private val onClick: (() -> Unit)? = null
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
     protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
         contentDescription: String,
-        onClick: (() -> Unit)? = null,
+        onClick: (() -> Unit)? = null
     ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
 
     protected open val tint: Color?
@@ -68,6 +68,7 @@ abstract class OudsComponentIcon<T, S> internal constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
+        val iconModifier = modifier.componentContentTestTag()
         @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
@@ -81,16 +82,16 @@ abstract class OudsComponentIcon<T, S> internal constructor(
                     nullableLabel = null,
                     appearance = OudsButtonAppearance.Minimal,
                     onClick = onClick,
-                    modifier = modifier,
+                    modifier = iconModifier,
                     enabled = enabled.orElse { true },
                     iconOnlyBadge = badge
                 )
             }
         }.orElse {
             when (val graphicsObject = graphicsObject) {
-                is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-                is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
-                is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = modifier, tint = iconTint)
+                is Painter -> Icon(painter = graphicsObject, contentDescription = contentDescription, modifier = iconModifier, tint = iconTint)
+                is ImageVector -> Icon(imageVector = graphicsObject, contentDescription = contentDescription, modifier = iconModifier, tint = iconTint)
+                is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = iconModifier, tint = iconTint)
             }
         }
     }
