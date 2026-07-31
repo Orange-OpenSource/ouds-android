@@ -38,6 +38,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberImagePainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIcon
 import com.orange.ouds.core.component.OudsListItemIconSize
@@ -202,6 +203,13 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(leadingStatusIcon),
             onSelectionChange = { index -> leadingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_iconTint_tech),
+            chips = BaseListItemDemoState.IconTint.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = leadingIconOptionsEnabled) },
+            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(leadingIconTint),
+            onSelectionChange = { index -> leadingIconTint = BaseListItemDemoState.IconTint.entries[index] }
+        )
         if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
@@ -301,6 +309,13 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(trailingStatusIcon),
             onSelectionChange = { index -> trailingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_iconTint_tech),
+            chips = BaseListItemDemoState.IconTint.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = trailingIconOptionsEnabled) },
+            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(trailingIconTint),
+            onSelectionChange = { index -> trailingIconTint = BaseListItemDemoState.IconTint.entries[index] }
+        )
         if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
@@ -359,9 +374,11 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
     }
 }
 
-private val iconPainter
-    @Composable
-    get() = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+@Composable
+private fun iconPainter(iconTint: BaseListItemDemoState.IconTint) = when (iconTint) {
+    BaseListItemDemoState.IconTint.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+    BaseListItemDemoState.IconTint.Untinted -> rememberUntintedIconPainter()
+}
 
 private val imagePainter
     @Composable
@@ -374,9 +391,10 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
         BaseListItemDemoState.Leading.Icon -> {
             when (leadingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsListItemLeading.Icon(
-                    painter = iconPainter,
+                    painter = iconPainter(leadingIconTint),
                     contentDescription = stringResource(R.string.app_components_listItem_icon_a11y),
-                    size = leadingIconSize
+                    size = leadingIconSize,
+                    tinted = leadingIconTint == BaseListItemDemoState.IconTint.Tinted
                 )
                 BaseListItemDemoState.StatusIcon.Info -> OudsListItemLeading.Icon.Info(size = leadingIconSize)
                 BaseListItemDemoState.StatusIcon.Negative -> OudsListItemLeading.Icon.Negative(size = leadingIconSize)
@@ -428,9 +446,10 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsListItemTrailing.Icon(
-                    painter = iconPainter,
+                    painter = iconPainter(trailingIconTint),
                     contentDescription = stringResource(R.string.app_components_listItem_icon_a11y),
-                    size = trailingIconSize
+                    size = trailingIconSize,
+                    tinted = trailingIconTint == BaseListItemDemoState.IconTint.Tinted
                 )
                 BaseListItemDemoState.StatusIcon.Info -> OudsListItemTrailing.Icon.Info(size = trailingIconSize)
                 BaseListItemDemoState.StatusIcon.Negative -> OudsListItemTrailing.Icon.Negative(size = trailingIconSize)
@@ -522,6 +541,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 argumentName = leadingParameterName,
                 statusIcon = leadingStatusIcon,
                 iconSize = leadingIconSize,
+                iconTint = leadingIconTint,
                 themeDrawableResources = themeDrawableResources
             )
             BaseListItemDemoState.Leading.Image -> addImageCodeSnippet<OudsListItemLeading.Image>(
@@ -538,6 +558,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 argumentName = trailingParameterName,
                 statusIcon = trailingStatusIcon,
                 iconSize = trailingIconSize,
+                iconTint = trailingIconTint,
                 themeDrawableResources = themeDrawableResources
             )
             BaseListItemDemoState.Trailing.Image -> addImageCodeSnippet<OudsListItemTrailing.Image>(
@@ -569,6 +590,7 @@ private inline fun <reified IconType : OudsListItemIcon> FunctionCall.Builder.ad
     argumentName: String,
     statusIcon: BaseListItemDemoState.StatusIcon,
     iconSize: OudsListItemIconSize,
+    iconTint: BaseListItemDemoState.IconTint,
     themeDrawableResources: ThemeDrawableResources
 ) {
     val sizeParameterName = "size"
@@ -590,6 +612,9 @@ private inline fun <reified IconType : OudsListItemIcon> FunctionCall.Builder.ad
                 contentDescriptionArgument(R.string.app_components_listItem_icon_a11y)
                 if (iconSize != OudsListItemDefaults.IconSize) {
                     typedArgument(sizeParameterName, iconSize)
+                }
+                if (iconTint != BaseListItemDemoState.IconTint.Tinted) {
+                    typedArgument("tinted", false)
                 }
             }
         }
