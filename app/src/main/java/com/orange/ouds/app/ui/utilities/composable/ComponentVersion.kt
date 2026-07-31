@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsTag
@@ -40,7 +39,7 @@ fun ComponentVersion(version: String) {
         Text(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.app_components_common_version_label),
-            style = with(OudsTheme.typography.label.large.strong) { copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center)) },
+            style = OudsTheme.typography.label.large.strong,
             color = OudsTheme.colorScheme.content.default
         )
         OudsTag(modifier = Modifier.padding(start = 10.dp), label = version, appearance = OudsTagAppearance.Muted, status = OudsTagStatus.Info())

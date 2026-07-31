@@ -38,7 +38,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
@@ -152,9 +151,7 @@ fun OudsInputTag(
                 Text(
                     text = label,
                     color = contentColor.value,
-                    style = OudsTheme.typography.label.medium.moderate.run {
-                        copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
-                    }
+                    style = OudsTheme.typography.label.medium.moderate
                 )
                 Icon(
                     modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),

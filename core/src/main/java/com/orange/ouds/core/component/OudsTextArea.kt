@@ -1265,13 +1265,14 @@ internal fun OudsTextAreaDecorator(
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(modifier = Modifier.sizeIn(minWidth = sizeMinWidth.dp)) {
+            val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
-                    .padding(top = if (value.isEmpty() && state != OudsTextInputState.Focused) textAreaTokens.spacePaddingBlockTopEmpty.value else textAreaTokens.spacePaddingBlock.value)
-                    .padding(bottom = if (value.isEmpty() && state != OudsTextInputState.Focused) 0.dp else textAreaTokens.spacePaddingBlock.value)
+                    .padding(top = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else textAreaTokens.spacePaddingBlockTopEmpty.value)
+                    .padding(bottom = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else 0.dp)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
                     .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
@@ -1284,7 +1285,6 @@ internal fun OudsTextAreaDecorator(
                 ) {
                     // Label
                     if (!label.isNullOrBlank()) {
-                        val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -1318,10 +1318,10 @@ internal fun OudsTextAreaDecorator(
                         .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidthDefault.value)
                         .padding(
                             horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnlyDefault.value,
-                            vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
-                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
-                            } else {
+                            vertical = if (isSmallLabel) {
                                 textAreaTokens.spacePaddingBlockTrailingContainer.value
+                            } else {
+                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
                             }
                         )
                 ) {
