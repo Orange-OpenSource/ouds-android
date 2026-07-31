@@ -331,7 +331,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             chips = OudsListItemTextStyle.entries.map {
                 CustomizationFilterChip(
                     it.name.toSentenceCase(),
-                    trailingTextOptionsEnabled && ((!trailingTextExtraLabel.isNullOrBlank() && it == OudsListItemTextStyle.Label) || trailingTextExtraLabel.isNullOrBlank())
+                    trailingTextOptionsEnabled && (it == OudsListItemTextStyle.Label || trailingTextExtraLabel.isNullOrBlank())
                 )
             },
             selectedChipIndex = OudsListItemTextStyle.entries.indexOf(trailingTextStyle),
