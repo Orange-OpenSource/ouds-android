@@ -39,6 +39,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberImagePainter
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIconSize
+import com.orange.ouds.core.component.OudsListItemImage
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
 import com.orange.ouds.core.component.OudsListItemLeading
@@ -562,7 +563,7 @@ private inline fun <reified IconType, reified IconInfo, reified IconNegative, re
     }
 }
 
-private inline fun <reified ImageType> FunctionCall.Builder.addImageCodeSnippet(
+private inline fun <reified ImageType : OudsListItemImage> FunctionCall.Builder.addImageCodeSnippet(
     argumentName: String,
     imageSize: OudsListItemImageSize,
     imageRatio: OudsListItemImageRatio,
