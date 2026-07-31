@@ -36,8 +36,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
+import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberImagePainter
 import com.orange.ouds.core.component.OudsListItemDefaults
+import com.orange.ouds.core.component.OudsListItemIcon
 import com.orange.ouds.core.component.OudsListItemIconSize
 import com.orange.ouds.core.component.OudsListItemImage
 import com.orange.ouds.core.component.OudsListItemImageRatio
@@ -92,8 +94,8 @@ fun BaseListItemDemoBottomSheetContent(state: BaseListItemDemoState) {
 fun BaseListItemDemoState.CustomizationTab.Content(state: BaseListItemDemoState) {
     when (this) {
         BaseListItemDemoState.CustomizationTab.General -> when (state) {
-            is CardItemDemoState -> CardItemGlobalCustomizationContent(state = state)
-            is ListItemDemoState -> ListItemGlobalCustomizationContent(state = state)
+            is CardItemDemoState -> CardItemGeneralCustomizationContent(state = state)
+            is ListItemDemoState -> ListItemGeneralCustomizationContent(state = state)
         }
         BaseListItemDemoState.CustomizationTab.Leading -> BaseListItemLeadingCustomizationContent(state = state)
         BaseListItemDemoState.CustomizationTab.Texts -> BaseListItemTextsCustomizationContent(state = state)
@@ -101,12 +103,12 @@ fun BaseListItemDemoState.CustomizationTab.Content(state: BaseListItemDemoState)
     }
 }
 
-data class BaseListItemGlobalCustomization(val index: Int, val content: @Composable () -> Unit)
+data class BaseListItemGeneralCustomization(val index: Int, val content: @Composable () -> Unit)
 
-fun baseListItemGlobalCustomization(index: Int, content: @Composable () -> Unit) = BaseListItemGlobalCustomization(index, content)
+fun baseListItemGeneralCustomization(index: Int, content: @Composable () -> Unit) = BaseListItemGeneralCustomization(index, content)
 
 @Composable
-fun BaseListItemGlobalCustomizations(state: BaseListItemDemoState, extraCustomizations: List<BaseListItemGlobalCustomization> = listOf()) {
+fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomizations: List<BaseListItemGeneralCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
         { BaseListItemClickableCustomization(state = state) },
         { BaseListItemIndicatorCustomization(state = state) },
@@ -215,7 +217,7 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             onSelectionChange = { index -> leadingImageRatio = OudsListItemImageRatio.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_listItem_roundedCornersImage_tech),
+            label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
             checked = leadingImageRoundedCorners,
             onCheckedChange = { leadingImageRoundedCorners = it },
             enabled = leadingImageOptionsEnabled
@@ -314,7 +316,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             onSelectionChange = { index -> trailingImageRatio = OudsListItemImageRatio.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_listItem_roundedCornersImage_tech),
+            label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
             checked = trailingImageRoundedCorners,
             onCheckedChange = { trailingImageRoundedCorners = it },
             enabled = trailingImageOptionsEnabled
@@ -456,13 +458,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
         val leadingParameterName = "leading"
         val trailingParameterName = "trailing"
         when (leading) {
-            BaseListItemDemoState.Leading.Icon -> addIconCodeSnippet<
-                    OudsListItemLeading.Icon,
-                    OudsListItemLeading.Icon.Info,
-                    OudsListItemLeading.Icon.Negative,
-                    OudsListItemLeading.Icon.Positive,
-                    OudsListItemLeading.Icon.Warning
-                    >(
+            BaseListItemDemoState.Leading.Icon -> addIconCodeSnippet<OudsListItemLeading.Icon>(
                 argumentName = leadingParameterName,
                 statusIcon = leadingStatusIcon,
                 iconSize = leadingIconSize,
@@ -478,13 +474,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
         }
 
         when (trailing) {
-            BaseListItemDemoState.Trailing.Icon -> addIconCodeSnippet<
-                    OudsListItemTrailing.Icon,
-                    OudsListItemTrailing.Icon.Info,
-                    OudsListItemTrailing.Icon.Negative,
-                    OudsListItemTrailing.Icon.Positive,
-                    OudsListItemTrailing.Icon.Warning
-                    >(
+            BaseListItemDemoState.Trailing.Icon -> addIconCodeSnippet<OudsListItemTrailing.Icon>(
                 argumentName = trailingParameterName,
                 statusIcon = trailingStatusIcon,
                 iconSize = trailingIconSize,
@@ -515,7 +505,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
     }
 }
 
-private inline fun <reified IconType, reified IconInfo, reified IconNegative, reified IconPositive, reified IconWarning> FunctionCall.Builder.addIconCodeSnippet(
+private inline fun <reified IconType : OudsListItemIcon> FunctionCall.Builder.addIconCodeSnippet(
     argumentName: String,
     statusIcon: BaseListItemDemoState.StatusIcon,
     iconSize: OudsListItemIconSize,
@@ -523,29 +513,12 @@ private inline fun <reified IconType, reified IconInfo, reified IconNegative, re
 ) {
     val sizeParameterName = "size"
     when (statusIcon) {
-        BaseListItemDemoState.StatusIcon.Info -> {
-            constructorCallArgument<IconInfo>(argumentName) {
-                if (iconSize != OudsListItemDefaults.IconSize) {
-                    typedArgument(sizeParameterName, iconSize)
-                }
-            }
-        }
-        BaseListItemDemoState.StatusIcon.Negative -> {
-            constructorCallArgument<IconNegative>(argumentName) {
-                if (iconSize != OudsListItemDefaults.IconSize) {
-                    typedArgument(sizeParameterName, iconSize)
-                }
-            }
-        }
-        BaseListItemDemoState.StatusIcon.Positive -> {
-            constructorCallArgument<IconPositive>(argumentName) {
-                if (iconSize != OudsListItemDefaults.IconSize) {
-                    typedArgument(sizeParameterName, iconSize)
-                }
-            }
-        }
+        BaseListItemDemoState.StatusIcon.Info,
+        BaseListItemDemoState.StatusIcon.Negative,
+        BaseListItemDemoState.StatusIcon.Positive,
         BaseListItemDemoState.StatusIcon.Warning -> {
-            constructorCallArgument<IconWarning>(argumentName) {
+            val functionName = "${IconType::class.java.nestedName}.${statusIcon.name}"
+            functionCallArgument(argumentName, functionName) {
                 if (iconSize != OudsListItemDefaults.IconSize) {
                     typedArgument(sizeParameterName, iconSize)
                 }

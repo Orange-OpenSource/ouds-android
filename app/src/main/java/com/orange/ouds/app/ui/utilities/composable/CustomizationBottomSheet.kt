@@ -131,9 +131,7 @@ fun CustomizationBottomSheetScaffold(
                 )
             }
 
-            if (bottomSheetTabs != null) {
-                bottomSheetTabs()
-            }
+            bottomSheetTabs?.invoke()
 
             val scrollState = rememberScrollState()
             val sheetContentModifier = if (bottomSheetTabs == null) {

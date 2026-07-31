@@ -43,24 +43,24 @@ fun ListItemDemoScreen(size: BaseListItemDemoState.Size) {
 }
 
 @Composable
-internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
+internal fun ListItemGeneralCustomizationContent(state: ListItemDemoState) {
     with(state) {
         val extraCustomizations = listOf(
-            baseListItemGlobalCustomization(3) {
+            baseListItemGeneralCustomization(3) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_common_divider_tech),
                     checked = divider,
                     onCheckedChange = { divider = it },
                 )
             },
-            baseListItemGlobalCustomization(4) {
+            baseListItemGeneralCustomization(4) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_listItem_background_tech),
                     checked = background,
                     onCheckedChange = { background = it },
                 )
             },
-            baseListItemGlobalCustomization(6) {
+            baseListItemGeneralCustomization(6) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_common_edgeToEdge_tech),
                     checked = edgeToEdge,
@@ -68,7 +68,7 @@ internal fun ListItemGlobalCustomizationContent(state: ListItemDemoState) {
                 )
             }
         )
-        BaseListItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
+        BaseListItemGeneralCustomizations(state = state, extraCustomizations = extraCustomizations)
     }
 }
 

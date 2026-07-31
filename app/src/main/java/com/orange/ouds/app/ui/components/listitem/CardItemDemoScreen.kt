@@ -43,10 +43,10 @@ fun CardItemDemoScreen(size: BaseListItemDemoState.Size) {
 }
 
 @Composable
-internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
+internal fun CardItemGeneralCustomizationContent(state: CardItemDemoState) {
     with(state) {
         val extraCustomizations = listOf(
-            baseListItemGlobalCustomization(3) {
+            baseListItemGeneralCustomization(3) {
                 CustomizationFilterChips(
                     applyTopPadding = true,
                     label = stringResource(R.string.app_components_listItem_cardItem_decoration_tech),
@@ -59,7 +59,7 @@ internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
                     onSelectionChange = { index -> decoration = CardItemDemoState.Decoration.entries[index] }
                 )
             },
-            baseListItemGlobalCustomization(4) {
+            baseListItemGeneralCustomization(4) {
                 CustomizationSwitchItem(
                     label = stringResource(R.string.app_components_common_divider_tech),
                     checked = divider,
@@ -68,7 +68,7 @@ internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
                 )
             }
         )
-        BaseListItemGlobalCustomizations(state = state, extraCustomizations = extraCustomizations)
+        BaseListItemGeneralCustomizations(state = state, extraCustomizations = extraCustomizations)
     }
 }
 
