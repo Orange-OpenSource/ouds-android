@@ -12,10 +12,7 @@
 
 package com.orange.ouds.app.ui.components.listitem
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
@@ -28,7 +25,6 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsCardItem
 import com.orange.ouds.core.component.OudsListItemDecoration
-import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
@@ -42,7 +38,6 @@ fun CardItemDemoScreen(size: BaseListItemDemoState.Size) {
         bottomSheetContent = { BaseListItemDemoBottomSheetContent(state = state) },
         codeSnippet = { cardItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { CardItemDemoContent(state = state) },
-        demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.NavigationCardItem
     )
 }
@@ -81,10 +76,8 @@ internal fun CardItemGlobalCustomizationContent(state: CardItemDemoState) {
 @Composable
 private fun CardItemDemoContent(state: CardItemDemoState) {
     with(state) {
-        val modifier = Modifier.padding(horizontal = OudsTheme.grids.margin)
         if (clickable) {
             OudsCardItem(
-                modifier = modifier,
                 onClick = {},
                 indicator = indicator.toOudsListItemIndicator(),
                 label = label,
@@ -101,7 +94,6 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
             )
         } else {
             OudsCardItem(
-                modifier = modifier,
                 label = label,
                 verticalAlignment = verticalAlignment,
                 overline = overline,
