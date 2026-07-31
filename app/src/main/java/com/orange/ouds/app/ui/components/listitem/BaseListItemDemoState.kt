@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.components.listitem
 
 import androidx.compose.foundation.pager.PagerState
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -193,20 +192,7 @@ open class BaseListItemDemoState(
     var verticalAlignment: OudsListItemVerticalAlignment by mutableStateOf(verticalAlignment)
 
     enum class CustomizationTab {
-        Global, Leading, TextContainer, Trailing;
-
-        @Composable
-        fun Content(state: BaseListItemDemoState) {
-            when (this) {
-                Global -> when (state) {
-                    is CardItemDemoState -> CardItemGlobalCustomizationContent(state = state)
-                    is ListItemDemoState -> ListItemGlobalCustomizationContent(state = state)
-                }
-                Leading -> BaseListItemLeadingCustomizationContent(state = state)
-                TextContainer -> BaseListItemTextContainerCustomizationContent(state = state)
-                Trailing -> BaseListItemTrailingCustomizationContent(state = state)
-            }
-        }
+        Global, Leading, TextContainer, Trailing
     }
 
     enum class Size {

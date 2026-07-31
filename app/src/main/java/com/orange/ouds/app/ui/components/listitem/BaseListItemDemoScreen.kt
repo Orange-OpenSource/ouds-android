@@ -87,6 +87,19 @@ fun BaseListItemDemoBottomSheetContent(state: BaseListItemDemoState) {
     }
 }
 
+@Composable
+fun BaseListItemDemoState.CustomizationTab.Content(state: BaseListItemDemoState) {
+    when (this) {
+        BaseListItemDemoState.CustomizationTab.Global -> when (state) {
+            is CardItemDemoState -> CardItemGlobalCustomizationContent(state = state)
+            is ListItemDemoState -> ListItemGlobalCustomizationContent(state = state)
+        }
+        BaseListItemDemoState.CustomizationTab.Leading -> BaseListItemLeadingCustomizationContent(state = state)
+        BaseListItemDemoState.CustomizationTab.TextContainer -> BaseListItemTextContainerCustomizationContent(state = state)
+        BaseListItemDemoState.CustomizationTab.Trailing -> BaseListItemTrailingCustomizationContent(state = state)
+    }
+}
+
 data class BaseListItemGlobalCustomization(val index: Int, val content: @Composable () -> Unit)
 
 fun baseListItemGlobalCustomization(index: Int, content: @Composable () -> Unit) = BaseListItemGlobalCustomization(index, content)
