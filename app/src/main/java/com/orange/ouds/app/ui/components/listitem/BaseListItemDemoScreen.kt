@@ -214,7 +214,7 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             onSelectionChange = { index -> leadingImageRatio = OudsListItemImageRatio.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_listItem_imageRoundedCorner_tech),
+            label = stringResource(R.string.app_components_listItem_roundedCornersImage_tech),
             checked = leadingImageRoundedCorners,
             onCheckedChange = { leadingImageRoundedCorners = it },
             enabled = leadingImageOptionsEnabled
@@ -307,7 +307,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             onSelectionChange = { index -> trailingImageRatio = OudsListItemImageRatio.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_listItem_imageRoundedCorner_tech),
+            label = stringResource(R.string.app_components_listItem_roundedCornersImage_tech),
             checked = trailingImageRoundedCorners,
             onCheckedChange = { trailingImageRoundedCorners = it },
             enabled = trailingImageOptionsEnabled

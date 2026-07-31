@@ -298,7 +298,7 @@
     <string name="app_components_listItem_statusIcon_tech" translatable="false">Status icon</string>
     <string name="app_components_listItem_imageSize_tech" translatable="false">Image size</string>
     <string name="app_components_listItem_imageRatio_tech" translatable="false">Image ratio</string>
-    <string name="app_components_listItem_imageRoundedCorner_tech" translatable="false">Image rounded corners</string>
+    <string name="app_components_listItem_roundedCornersImage_tech" translatable="false">Rounded corners image</string>
     <string name="app_components_listItem_background_tech" translatable="false">Background</string>
     <string name="app_components_listItem_boldLabel_tech" translatable="false">Bold label</string>
     <string name="app_components_listItem_overline_tech" translatable="false">Overline</string>
