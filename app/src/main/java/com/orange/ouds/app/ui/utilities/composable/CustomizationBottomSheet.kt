@@ -130,7 +130,7 @@ fun CustomizationBottomSheetScaffold(
                     color = OudsTheme.colorScheme.content.default
                 )
             }
-            
+
             if (bottomSheetTabs != null) {
                 bottomSheetTabs()
             }
@@ -207,7 +207,7 @@ private fun Modifier.verticalScrollbar(scrollState: ScrollState): Modifier {
         val scrollBarHeight = (viewportHeight / totalContentHeight) * viewportHeight
         val scrollBarStartOffset = (scrollState.value.toFloat() / totalContentHeight) * viewportHeight
 
-        if (viewportHeight > scrollBarHeight) {
+        if (totalContentHeight > viewportHeight) {
             drawRect(
                 color = scrollBarColor,
                 topLeft = Offset(viewportWidth - scrollBarWidth.toPx(), scrollBarStartOffset),
