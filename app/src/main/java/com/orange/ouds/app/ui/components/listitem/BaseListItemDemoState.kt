@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.listitem
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
@@ -132,7 +133,7 @@ open class BaseListItemDemoState(
     val size: Size by mutableStateOf(size)
 
     lateinit var pagerState: PagerState
-    var selectedTabIndex: Int by mutableStateOf(selectedTabIndex)
+    var selectedTabIndex: Int by mutableIntStateOf(selectedTabIndex)
     val tabs = CustomizationTab.entries
 
     var boldLabel: Boolean by mutableStateOf(boldLabel)
