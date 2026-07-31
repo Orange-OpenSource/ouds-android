@@ -36,7 +36,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
@@ -122,7 +122,7 @@ private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
     with(state) {
         val alertIcon = when (icon) {
             InlineAlertDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
-            InlineAlertDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedRoundedIconPainter(), tinted = false)
+            InlineAlertDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         OudsInlineAlert(
             label = label,

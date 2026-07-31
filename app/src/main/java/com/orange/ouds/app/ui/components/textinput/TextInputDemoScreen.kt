@@ -39,7 +39,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLeadingIcon
@@ -180,7 +180,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
                 contentDescription = ""
             )
             TextInputDemoState.LeadingIcon.Untinted -> OudsTextInputLeadingIcon(
-                painter = rememberUntintedRoundedIconPainter(),
+                painter = rememberUntintedIconPainter(),
                 contentDescription = "",
                 tinted = false
             )

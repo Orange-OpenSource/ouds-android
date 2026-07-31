@@ -39,7 +39,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
-import com.orange.ouds.app.ui.utilities.rememberUntintedRoundedIconPainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
@@ -176,7 +176,7 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
         val alertIcon = when (icon) {
             AlertMessageDemoState.Icon.None -> null
             AlertMessageDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
-            AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedRoundedIconPainter(), tinted = false)
+            AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         val alertMessageStatus = when (status) {
             is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
