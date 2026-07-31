@@ -30,9 +30,9 @@ import com.orange.ouds.core.component.OudsListItemVerticalAlignment
 
 @Composable
 fun rememberListItemDemoState(
+    size: BaseListItemDemoState.Size,
     background: Boolean = false,
     edgeToEdge: Boolean = true,
-    size: BaseListItemDemoState.Size,
     selectedTabIndex: Int = 0,
     label: String = stringResource(id = R.string.app_components_common_label_label),
     clickable: Boolean = false,
