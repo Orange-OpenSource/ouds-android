@@ -215,7 +215,6 @@ fun ListItemIllustration() = ComponentIllustration {
     )
 }
 
-
 @Composable
 fun NavigationBarIllustration() = ComponentIllustration {
     val items = List(3) { index ->

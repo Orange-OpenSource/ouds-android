@@ -246,7 +246,6 @@ class CardItemDemoState(
 
     var decoration: Decoration by mutableStateOf(decoration)
 
-
     val dividerEnabled: Boolean
         get() = decoration in listOf(Decoration.Background, Decoration.BackgroundOnInteraction)
 

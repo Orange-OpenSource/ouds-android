@@ -251,5 +251,4 @@ class ListItemDemoState(
     var background: Boolean by mutableStateOf(background)
 
     var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
-
 }
