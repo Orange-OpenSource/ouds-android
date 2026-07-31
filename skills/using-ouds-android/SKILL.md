@@ -66,7 +66,7 @@ fun App() {
 
 ### OrangeTheme — font options
 
-**Bundled font** (copy `.ttf` files to `res/font/`):
+**Bundled font (recommended)** (copy `.ttf` files to `res/font/`):
 
 ```kotlin
 OrangeTheme(
@@ -150,8 +150,8 @@ fun MyView() {
 
 ## 4. OudsColoredBox — colored surfaces
 
-`OudsColoredBox` creates a semantically colored surface. All OUDS child components inside automatically switch to their **monochrome** variant for maximum
-contrast:
+`OudsColoredBox` creates a semantically colored surface. Some OUDS child components inside automatically switch to their **monochrome** variant for maximum
+contrast (such as `OudsButton` or `OudsLink`):
 
 ```kotlin
 OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
