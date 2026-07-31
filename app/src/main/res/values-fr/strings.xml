@@ -34,10 +34,11 @@
     <string name="app_themeSettingsDialog_apply_label">Appliquer</string>
     <string name="app_themeSettingsDialog_cancel_label">Annuler</string>
     <string name="app_themeSettingsDialog_label">Changer les réglages du thème</string>
-    <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Messages d\'alerte avec coins arrondis</string>
+    <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Alert messages avec coins arrondis</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">Buttons avec coins arrondis</string>
+    <string name="app_themeSettingsDialog_roundedCornerCardItems_label">Card items avec coins arrondis</string>
     <string name="app_themeSettingsDialog_roundedCornerProgressIndicators_label">Progress indicators avec coins arrondis</string>
-    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Text Inputs avec coins arrondis</string>
+    <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Text inputs avec coins arrondis</string>
 
     <!-- Bottom navigation -->
     <string name="app_bottomBar_tokens_label">Tokens</string>
@@ -150,6 +151,11 @@
 
     <!-- Components: link -->
     <string name="app_components_link_description_text">Un Link (ou lien) est un élément d\'interface utilisateur qui permet de naviguer d\'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.</string>
+
+    <!-- Components: list item -->
+    <string name="app_components_listItem_description_text">Un List item (ou élément de liste) est un élément construit horizontalement et utilisé pour afficher une entité d\'information au sein d\'une liste. Ces éléments sont empilés verticalement pour organiser les contenus associés et faciliter une lecture rapide ainsi que l\'interaction. Chaque élément peut contenir, selon le contexte, des composants tels qu\'une étiquette, un texte d\'accompagnement, des icônes ou des images.</string>
+    <string name="app_components_listItem_icon_a11y">Description de l\'icône</string>
+    <string name="app_components_listItem_image_a11y">Description de l\'image</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_description_text">Une Navigation bar (ou barre de navigation) permet d\'accéder aux principales destinations d\'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.</string>

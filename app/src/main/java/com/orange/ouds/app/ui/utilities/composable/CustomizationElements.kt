@@ -47,6 +47,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
@@ -81,7 +82,7 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
 @JvmName("CustomizationFilterChipsLabels")
 @Composable
 fun CustomizationFilterChips(
-    label: String,
+    label: String?,
     chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
@@ -103,7 +104,7 @@ fun CustomizationFilterChips(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomizationFilterChips(
-    label: String,
+    label: String?,
     chips: List<CustomizationFilterChip>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
@@ -116,9 +117,11 @@ fun CustomizationFilterChips(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .semantics(mergeDescendants = true) {}
+            .semantics(mergeDescendants = true) {},
     ) {
-        CustomizationText(label = label, enabled = chips.any { it.enabled })
+        label?.let {
+            CustomizationText(label = label, enabled = chips.any { it.enabled })
+        }
 
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
@@ -135,7 +138,8 @@ fun CustomizationFilterChips(
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
                 .focusProperties { canFocus = chipsRowCanFocus }
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+                .padding(horizontal = OudsTheme.grids.margin)
+                .padding(top = if (label != null) OudsTheme.spaces.fixed.extraSmall else 0.dp, bottom = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
             chips.forEachIndexed { index, chip ->

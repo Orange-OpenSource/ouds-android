@@ -39,6 +39,7 @@ internal class SoshDrawableResources : OudsDrawableResources {
         override val button = Button()
         override val checkbox = Checkbox()
         override val chip = Chip()
+        override val controlItem = ControlItem()
         override val link = Link()
         override val radioButton = RadioButton()
         override val switch = Switch()
@@ -82,6 +83,11 @@ internal class SoshDrawableResources : OudsDrawableResources {
             override val tick = R.drawable.ic_sosh_component_chip_tick
         }
 
+        class ControlItem : OudsDrawableResources.Component.ControlItem {
+            override val next = R.drawable.ic_sosh_component_control_item_next
+            override val previous = R.drawable.ic_sosh_component_control_item_previous
+        }
+
         class Link : OudsDrawableResources.Component.Link {
             override val externalLink = R.drawable.ic_sosh_component_link_external_link
             override val next = R.drawable.ic_sosh_component_link_next
@@ -109,6 +115,7 @@ internal class SoshDrawableResources : OudsDrawableResources {
 
         class Actions : OudsDrawableResources.Functional.Actions {
             override val deleteCrossRound = R.drawable.ic_sosh_functional_actions_delete_cross_round
+            override val externalLink = R.drawable.ic_sosh_functional_actions_external_link
         }
 
         class Navigation : OudsDrawableResources.Functional.Navigation {

@@ -78,7 +78,7 @@ private fun ControlItemIconCustomization(state: ControlItemDemoState) {
 private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(id = R.string.app_components_controlItem_edgeToEdge_tech),
+            label = stringResource(id = R.string.app_components_common_edgeToEdge_tech),
             checked = edgeToEdge,
             onCheckedChange = { edgeToEdge = it },
         )
@@ -90,7 +90,7 @@ private fun ControlItemEdgeToEdgeCustomization(state: ControlItemDemoState) {
 private fun ControlItemDividerCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
-            label = stringResource(id = R.string.app_components_controlItem_divider_tech),
+            label = stringResource(R.string.app_components_common_divider_tech),
             checked = divider,
             onCheckedChange = { divider = it },
         )

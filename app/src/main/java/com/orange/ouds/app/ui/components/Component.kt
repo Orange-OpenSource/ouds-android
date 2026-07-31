@@ -32,6 +32,9 @@ import com.orange.ouds.app.ui.components.coloredbackground.ColoredBackgroundDemo
 import com.orange.ouds.app.ui.components.divider.DividerDemoScreen
 import com.orange.ouds.app.ui.components.floatingactionbutton.FloatingActionButtonDemoScreen
 import com.orange.ouds.app.ui.components.link.LinkDemoScreen
+import com.orange.ouds.app.ui.components.listitem.BaseListItemDemoState
+import com.orange.ouds.app.ui.components.listitem.CardItemDemoScreen
+import com.orange.ouds.app.ui.components.listitem.ListItemDemoScreen
 import com.orange.ouds.app.ui.components.navigationbar.NavigationBarDemoScreen
 import com.orange.ouds.app.ui.components.passwordinput.PasswordInputDemoScreen
 import com.orange.ouds.app.ui.components.pincodeinput.PinCodeInputDemoScreen
@@ -142,6 +145,13 @@ sealed class Component(
         demoScreen = { LinkDemoScreen() }
     )
 
+    data object ListItem : Component(
+        R.string.app_components_listItem_tech,
+        R.string.app_components_listItem_description_text,
+        { ListItemIllustration() },
+        listOf(Variant.ListItem, Variant.SmallListItem, Variant.CardItem, Variant.SmallCardItem)
+    )
+
     data object NavigationBar : Component(
         R.string.app_components_navigationBar_tech,
         R.string.app_components_navigationBar_description_text,
@@ -250,6 +260,12 @@ sealed class Variant(
     // Divider
     data object HorizontalDivider : Variant(R.string.app_components_divider_horizontalDivider_tech, { DividerDemoScreen() })
     data object VerticalDivider : Variant(R.string.app_components_divider_verticalDivider_tech, { DividerDemoScreen(vertical = true) })
+
+    // List item
+    data object ListItem : Variant(R.string.app_components_listItem_listItem_tech, { ListItemDemoScreen(size = BaseListItemDemoState.Size.Default) })
+    data object SmallListItem : Variant(R.string.app_components_listItem_smallListItem_tech, { ListItemDemoScreen(size = BaseListItemDemoState.Size.Small) })
+    data object CardItem : Variant(R.string.app_components_listItem_cardItem_tech, { CardItemDemoScreen(size = BaseListItemDemoState.Size.Default) })
+    data object SmallCardItem : Variant(R.string.app_components_listItem_smallCardItem_tech, { CardItemDemoScreen(size = BaseListItemDemoState.Size.Small) })
 
     // Progress indicator
     data object CircularProgressIndicator :

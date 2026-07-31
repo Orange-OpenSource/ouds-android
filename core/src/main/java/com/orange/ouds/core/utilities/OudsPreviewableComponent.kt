@@ -23,6 +23,8 @@ import com.orange.ouds.core.component.OudsBulletListPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonPreviewParameter
 import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
+import com.orange.ouds.core.component.OudsCardItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsCardItemWithRoundedCornersParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemPreviewParameter
@@ -49,6 +51,11 @@ import com.orange.ouds.core.component.OudsLinkCompactDensityPreviewParameterProv
 import com.orange.ouds.core.component.OudsLinkPreviewParameter
 import com.orange.ouds.core.component.OudsLinkPreviewParameterProvider
 import com.orange.ouds.core.component.OudsLinkSize
+import com.orange.ouds.core.component.OudsListItemDecoration
+import com.orange.ouds.core.component.OudsListItemLeading
+import com.orange.ouds.core.component.OudsListItemPreviewParameter
+import com.orange.ouds.core.component.OudsListItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsNavigationBarItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationBarPreviewParameterProvider
 import com.orange.ouds.core.component.OudsNavigationButtonPreviewParameter
@@ -66,6 +73,10 @@ import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameterProvider
+import com.orange.ouds.core.component.OudsSmallCardItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsSmallListItemLeading
+import com.orange.ouds.core.component.OudsSmallListItemPreviewParameterProvider
+import com.orange.ouds.core.component.OudsSmallListItemTrailing
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameter
 import com.orange.ouds.core.component.OudsSuggestionChipPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSwitchItemPreviewParameter
@@ -136,6 +147,13 @@ import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsNavigationButton
 import com.orange.ouds.core.component.PreviewOudsNavigationButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsNavigationButtonWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsNavigationCardItem
+import com.orange.ouds.core.component.PreviewOudsNavigationCardItemWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsNavigationListItem
+import com.orange.ouds.core.component.PreviewOudsNavigationListItemWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsNavigationSmallCardItem
+import com.orange.ouds.core.component.PreviewOudsNavigationSmallCardItemWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsNavigationSmallListItem
 import com.orange.ouds.core.component.PreviewOudsPasswordInput
 import com.orange.ouds.core.component.PreviewOudsPasswordInputWithRichText
 import com.orange.ouds.core.component.PreviewOudsPinCodeInput
@@ -154,6 +172,12 @@ import com.orange.ouds.core.component.PreviewOudsSmallButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsSmallButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsSmallButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsSmallFloatingActionButton
+import com.orange.ouds.core.component.PreviewOudsStaticCardItem
+import com.orange.ouds.core.component.PreviewOudsStaticCardItemWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsStaticListItem
+import com.orange.ouds.core.component.PreviewOudsStaticSmallCardItem
+import com.orange.ouds.core.component.PreviewOudsStaticSmallCardItemWithRoundedCorners
+import com.orange.ouds.core.component.PreviewOudsStaticSmallListItem
 import com.orange.ouds.core.component.PreviewOudsSuggestionChip
 import com.orange.ouds.core.component.PreviewOudsSuggestionChipOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsSuggestionChipWithUntintedIcon
@@ -411,6 +435,67 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsButtonWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
+    object CardItem {
+
+        object Navigation : OudsPreviewableComponent {
+            const val PreviewHeightDp = 880
+
+            override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsNavigationCardItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
+                )
+            }
+        }
+
+        object NavigationWithRoundedCorners : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object Static : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsStaticCardItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
+                )
+            }
+        }
+
+        object StaticWithRoundedCorners : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsStaticCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
@@ -866,6 +951,50 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object ListItem {
+
+        object Navigation : OudsPreviewableComponent {
+            const val PreviewHeightDp = 1000
+
+            override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsNavigationListItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
+                )
+            }
+        }
+
+        object Static : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsStaticListItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
+                )
+            }
+        }
+
+        object WithUntintedIcon : OudsPreviewableComponent {
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationListItemWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
     object ModalBottomSheet : OudsPreviewableComponent {
 
         override val parameters: List<Any> = emptyList()
@@ -1241,6 +1370,100 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
+    object SmallCardItem {
+
+        object Navigation : OudsPreviewableComponent {
+            const val PreviewHeightDp = 700
+
+            override val parameters: List<Any> = OudsSmallCardItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsNavigationSmallCardItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
+                )
+            }
+        }
+
+        object NavigationWithRoundedCorners : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationSmallCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object Static : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsSmallCardItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsStaticSmallCardItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
+                )
+            }
+        }
+
+        object StaticWithRoundedCorners : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsCardItemWithRoundedCornersParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsStaticSmallCardItemWithRoundedCorners(
+                    theme = theme,
+                    decoration = parameter as OudsListItemDecoration
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
+    object SmallListItem {
+
+        object Navigation : OudsPreviewableComponent {
+            const val PreviewHeightDp = 700
+
+            override val parameters: List<Any> = OudsSmallListItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsNavigationSmallListItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
+                )
+            }
+        }
+
+        object Static : OudsPreviewableComponent {
+            override val parameters: List<Any> = OudsSmallListItemPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                @Suppress("UNCHECKED_CAST")
+                PreviewOudsStaticSmallListItem(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
+                )
+            }
         }
     }
 

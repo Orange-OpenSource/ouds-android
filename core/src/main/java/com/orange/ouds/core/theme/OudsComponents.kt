@@ -62,7 +62,7 @@ data class OudsComponents internal constructor(
     val inputTag: InputTag,
     val link: Link,
     val linkMonochrome: LinkMonochrome,
-    internal val listItem: ListItem,
+    val listItem: ListItem,
     val pinCodeInput: PinCodeInput,
     val progressIndicator: ProgressIndicator,
     val progressIndicatorMonochrome: ProgressIndicatorMonochrome,

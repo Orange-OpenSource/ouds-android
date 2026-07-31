@@ -46,6 +46,7 @@ interface OudsDrawableResources {
         val button: Button
         val checkbox: Checkbox
         val chip: Chip
+        val controlItem: ControlItem
         val link: Link
         val radioButton: RadioButton
         val switch: Switch
@@ -123,6 +124,14 @@ interface OudsDrawableResources {
             val tick: Int
         }
 
+        interface ControlItem {
+            @get:DrawableRes
+            val next: Int
+
+            @get:DrawableRes
+            val previous: Int
+        }
+
         interface Link {
             @get:DrawableRes
             val externalLink: Int
@@ -159,6 +168,9 @@ interface OudsDrawableResources {
         interface Actions {
             @get:DrawableRes
             val deleteCrossRound: Int
+
+            @get:DrawableRes
+            val externalLink: Int
         }
 
         interface Navigation {

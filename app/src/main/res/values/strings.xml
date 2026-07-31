@@ -39,6 +39,7 @@
     <string name="app_themeSettingsDialog_label">Change theme settings</string>
     <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Rounded corner alert messages</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner buttons</string>
+    <string name="app_themeSettingsDialog_roundedCornerCardItems_label">Rounded corner card items</string>
     <string name="app_themeSettingsDialog_roundedCornerProgressIndicators_label">Rounded corner progress indicators</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Rounded corner text inputs</string>
 
@@ -129,14 +130,18 @@
     <string name="app_components_common_color_tech" translatable="false">Color</string>
     <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
     <string name="app_components_common_description_tech" translatable="false">Description</string>
+    <string name="app_components_common_divider_tech" translatable="false">Divider</string>
+    <string name="app_components_common_edgeToEdge_tech" translatable="false">Edge to edge</string>
     <string name="app_components_common_error_a11y">Error message</string>
     <string name="app_components_common_error_tech" translatable="false">Error</string>
     <string name="app_components_common_errorMessage_label">@string/app_components_common_errorMessage_tech</string>
     <string name="app_components_common_errorMessage_tech" translatable="false">Error message</string>
+    <string name="app_components_common_extraLabel_tech" translatable="false">Extra label</string>
     <string name="app_components_common_helperText_tech" translatable="false">Helper text</string>
     <string name="app_components_common_icon_tech" translatable="false">Icon</string>
     <string name="app_components_common_icon_a11y">Icon</string>
     <string name="app_components_common_iconOnlyLayout_tech" translatable="false">Icon only</string>
+    <string name="app_components_common_image_tech" translatable="false">Image</string>
     <string name="app_components_common_label_label">@string/app_components_common_label_tech</string>
     <string name="app_components_common_label_tech" translatable="false">Label</string>
     <string name="app_components_common_layout_tech" translatable="false">Layout</string>
@@ -256,10 +261,7 @@
     <string name="app_components_coloredBackground_button_label">Button</string>
     <string name="app_components_coloredBackground_link_label">Link</string>
 
-
     <!-- Components: control item (common strings for checkbox/radio/switch items) -->
-    <string name="app_components_controlItem_edgeToEdge_tech" translatable="false">Edge to edge</string>
-    <string name="app_components_controlItem_divider_tech" translatable="false">Divider</string>
     <string name="app_components_controlItem_reversed_tech" translatable="false">Reversed</string>
 
     <!-- Components: divider -->
@@ -280,6 +282,32 @@
     <string name="app_components_link_previousLayout_tech" translatable="false">Previous</string>
     <string name="app_components_link_nextInternalLayout_tech" translatable="false">Next</string>
     <string name="app_components_link_nextExternalLayout_tech" translatable="false">External</string>
+
+    <!-- Components: list item -->
+    <string name="app_components_listItem_tech" translatable="false">List item</string>
+    <string name="app_components_listItem_description_text">List item is a horizontal row used to display a unit of information within a list. List items are vertically stacked to organise related content and support quick scanning and interaction. Each item can contain elements such as a label, supporting text, icons, images depending on the context.</string>
+    <string name="app_components_listItem_listItem_tech" translatable="false">@string/app_components_listItem_tech</string>
+    <string name="app_components_listItem_smallListItem_tech" translatable="false">Small list item</string>
+    <string name="app_components_listItem_cardItem_tech" translatable="false">Card item</string>
+    <string name="app_components_listItem_cardItem_decoration_tech" translatable="false">Decoration</string>
+    <string name="app_components_listItem_smallCardItem_tech" translatable="false">Small card item</string>
+    <string name="app_components_listItem_clickable_tech" translatable="false">Clickable</string>
+    <string name="app_components_listItem_indicator_tech" translatable="false">Indicator</string>
+    <string name="app_components_listItem_verticalAlignment_tech" translatable="false">Vertical alignment</string>
+    <string name="app_components_listItem_iconSize_tech" translatable="false">Icon size</string>
+    <string name="app_components_listItem_statusIcon_tech" translatable="false">Status icon</string>
+    <string name="app_components_listItem_imageSize_tech" translatable="false">Image size</string>
+    <string name="app_components_listItem_imageRatio_tech" translatable="false">Image ratio</string>
+    <string name="app_components_listItem_roundedCornerImage_tech" translatable="false">Rounded corner image</string>
+    <string name="app_components_listItem_background_tech" translatable="false">Background</string>
+    <string name="app_components_listItem_boldLabel_tech" translatable="false">Bold label</string>
+    <string name="app_components_listItem_overline_tech" translatable="false">Overline</string>
+    <string name="app_components_listItem_icon_a11y">Icon content description</string>
+    <string name="app_components_listItem_image_a11y">Image content description</string>
+    <string name="app_components_listItem_trailingText_tech" translatable="false">Text</string>
+    <string name="app_components_listItem_trailingTextLabel_tech" translatable="false">Text label</string>
+    <string name="app_components_listItem_trailingTextStyle_tech" translatable="false">Text style</string>
+    <string name="app_components_listItem_trailingTextExtraLabel_tech" translatable="false">Text extra label</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_tech" translatable="false">Navigation bar</string>
@@ -328,7 +356,6 @@
     <string name="app_components_radioButton_description_text">Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices.</string>
     <string name="app_components_radioButton_radioButton_tech" translatable="false">Radio button</string>
     <string name="app_components_radioButton_radioButtonItem_tech" translatable="false">Radio button item</string>
-    <string name="app_components_radioButton_radioButtonItem_extraLabel_tech" translatable="false">Extra label</string>
     <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
     <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[Please select <b>one contact method</b> to proceed.]]></string>
 
@@ -383,7 +410,6 @@
     <string name="app_components_topAppBar_actionCount_tech" translatable="false">Action count</string>
     <string name="app_components_topAppBar_lastActionIconBadge_tech" translatable="false">Last action icon badge</string>
     <string name="app_components_topAppBar_actionAvatar_tech" translatable="false">Action avatar</string>
-    <string name="app_components_topAppBar_imageActionAvatar_tech" translatable="false">Image</string>
     <string name="app_components_topAppBar_monogramActionAvatar_tech" translatable="false">Monogram</string>
     <string name="app_components_topAppBar_actionAvatarMonogram_tech" translatable="false">Action avatar monogram</string>
 
