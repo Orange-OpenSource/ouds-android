@@ -660,7 +660,8 @@ sealed class OudsListItemDecoration(val divider: Boolean) {
     /**
      * A background is applied to the card item only on interaction states (hovered, pressed, focused).
      *
-     * @property divider Controls the display of a divider at the bottom of the item.
+     * @property divider Controls the display of a divider at the bottom of the item. Set it to `true` when several items are vertically grouped within the same
+     * shared surface and additional visual separation improves scanning. Avoid using a divider when each item already has a clearly separated background.
      */
     class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
 }
