@@ -59,6 +59,7 @@ import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -104,6 +105,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
  *
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -177,6 +180,8 @@ fun OudsTopAppBar(
  *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
  *
  * @sample com.orange.ouds.core.component.samples.OudsCenterAlignedTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -260,6 +265,8 @@ fun OudsCenterAlignedTopAppBar(
  *   [collapsedHeight]
  *
  * @sample com.orange.ouds.core.component.samples.OudsMediumTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -345,6 +352,8 @@ fun OudsMediumTopAppBar(
  *   [collapsedHeight]
  *
  * @sample com.orange.ouds.core.component.samples.OudsLargeTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -515,6 +524,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         graphicsObject: Any,
         contentDescription: String,
         badge: OudsTopAppBarActionBadge?,
+        override val tinted: Boolean,
         onClick: () -> Unit
     ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>(Nothing::class.java, { graphicsObject }, { contentDescription }, onClick) {
 
@@ -535,14 +545,19 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param painter Painter of the icon.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
          * @param badge Optional badge displayed on the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+         *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+         *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          * @param onClick Callback invoked when the icon is clicked.
          */
+        @JvmOverloads
         constructor(
             painter: Painter,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
+            tinted: Boolean = true,
             onClick: () -> Unit
-        ) : this(painter as Any, contentDescription, badge, onClick)
+        ) : this(painter as Any, contentDescription, badge, tinted, onClick)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
@@ -550,14 +565,19 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param imageVector Image vector of the icon.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
          * @param badge Optional badge displayed on the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+         *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+         *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          * @param onClick Callback invoked when the icon is clicked.
          */
+        @JvmOverloads
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
+            tinted: Boolean = true,
             onClick: () -> Unit
-        ) : this(imageVector as Any, contentDescription, badge, onClick)
+        ) : this(imageVector as Any, contentDescription, badge, tinted, onClick)
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Icon].
@@ -565,14 +585,19 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          * @param bitmap Image bitmap of the icon.
          * @param contentDescription The content description associated with this [OudsTopAppBarAction.Icon].
          * @param badge Optional badge displayed on the icon.
+         * @param tinted Controls whether the icon should be tinted with the theme color. Defaults to `true`.
+         *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
+         *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          * @param onClick Callback invoked when the icon is clicked.
          */
+        @JvmOverloads
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
+            tinted: Boolean = true,
             onClick: () -> Unit
-        ) : this(bitmap as Any, contentDescription, badge, onClick)
+        ) : this(bitmap as Any, contentDescription, badge, tinted, onClick)
     }
 
     /**
@@ -769,13 +794,28 @@ internal fun PreviewOudsLargeTopAppBar(
     }
 }
 
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTopAppBarWithUntintedIcon() = PreviewOudsTopAppBarWithUntintedIcon(getPreviewTheme())
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun PreviewOudsTopAppBarWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsTopAppBar(
+        title = "Title",
+        navigationIcon = OudsTopAppBarNavigationIcon.Back(onClick = {}),
+        actions = listOf(OudsTopAppBarAction.Icon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false, onClick = {}))
+    )
+}
+
 internal data class OudsTopAppBarPreviewParameter(
     val title: String = "Title",
     val navigationIcon: OudsTopAppBarNavigationIcon? = null,
     val actions: List<OudsTopAppBarAction> = emptyList()
 )
 
-internal class OudsTopAppBarPreviewParameterProvider() : BasicPreviewParameterProvider<OudsTopAppBarPreviewParameter>(*previewParameterValues.toTypedArray())
+internal class OudsTopAppBarPreviewParameterProvider : BasicPreviewParameterProvider<OudsTopAppBarPreviewParameter>(*previewParameterValues.toTypedArray())
 
 private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
     get() = listOf(

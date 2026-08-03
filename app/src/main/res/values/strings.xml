@@ -409,6 +409,7 @@
     <string name="app_components_topAppBar_title_tech" translatable="false">Title</string>
     <string name="app_components_topAppBar_actionCount_tech" translatable="false">Action count</string>
     <string name="app_components_topAppBar_lastActionIconBadge_tech" translatable="false">Last action icon badge</string>
+    <string name="app_components_topAppBar_lastActionIcon_tech" translatable="false">Last action icon</string>
     <string name="app_components_topAppBar_actionAvatar_tech" translatable="false">Action avatar</string>
     <string name="app_components_topAppBar_monogramActionAvatar_tech" translatable="false">Monogram</string>
     <string name="app_components_topAppBar_actionAvatarMonogram_tech" translatable="false">Action avatar monogram</string>
