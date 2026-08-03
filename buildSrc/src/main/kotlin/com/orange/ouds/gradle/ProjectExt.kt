@@ -148,7 +148,7 @@ fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
     val serviceAccount = FileInputStream(serviceAccountFilePath)
     val credentials = GoogleCredentials.fromStream(serviceAccount).createScoped("https://www.googleapis.com/auth/cloud-platform")
     credentials.refresh()
-    val accessToken = credentials.accessToken.tokenValue
+    val accessToken = requireNotNull(credentials.accessToken?.tokenValue) { "Firebase API access token should not be null." }
     return FirebaseApi(accessToken, "756919609448", appId).action()
 }
 
