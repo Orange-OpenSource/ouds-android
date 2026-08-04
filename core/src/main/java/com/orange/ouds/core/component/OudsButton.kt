@@ -404,6 +404,8 @@ internal fun OudsButton(
                         default = if (label == null) buttonTokens.sizeIconOnlyDefault else buttonTokens.sizeIconDefault,
                         small = if (label == null) buttonTokens.sizeIconOnlySmall else buttonTokens.sizeIconSmall
                     )
+                    
+                    val iconContentDescription = icon.contentDescription
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
@@ -411,8 +413,8 @@ internal fun OudsButton(
                                 .semantics {
                                     contentDescription = when (label) {
                                         // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
-                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
-                                        null -> icon.contentDescription
+                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, $iconContentDescription"
+                                        null -> iconContentDescription
                                         else -> ""
                                     }
                                 },
@@ -774,7 +776,7 @@ object OudsButtonDefaults {
  */
 class OudsButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 

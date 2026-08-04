@@ -439,6 +439,25 @@ enum class OudsTagAppearance {
  */
 sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
 
+    override fun <T : OudsComponentContent.ExtraParameters> toComponentContent(): OudsComponentContent<T> {
+        @Suppress("UNCHECKED_CAST", "DEPRECATION")
+        return if (this == OudsIcon.Default) {
+            OudsIcon(
+                graphicsObjectProvider = { icon ->
+                    with(icon.extraParameters as ExtraParameters) {
+                        status.getDefaultIconPainter(appearance, enabled).orElse {
+                            error("No default icon for status ${status::class.simpleName}")
+                        }
+                    }
+                },
+                contentDescriptionProvider = { "" },
+                tinted = true
+            )
+        } else {
+            this
+        } as OudsComponentContent<T>
+    }
+
     /**
      * A bullet in an [OudsTag].
      * This bullet is non-clickable. No content description is needed because a tag always contains a label.
@@ -450,7 +469,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
             Box(
                 modifier = modifier
                     .size(10.dp)
-                    .background(extraParameters.tint, shape = RoundedCornerShape(percent = 50))
+                    .background(extraParameters.tint.orElse { Color.Unspecified }, shape = RoundedCornerShape(percent = 50))
             )
         }
     }
@@ -459,6 +478,8 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
      * An icon in an [OudsTag].
      * This icon is non-clickable. No content description is needed because a tag always contains a label.
      */
+    @Suppress("DEPRECATION")
+    @Deprecated("")
     class Icon private constructor(
         graphicsObject: Any,
         override val tinted: Boolean
@@ -524,13 +545,12 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
         }
     }
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
-        internal val tint: Color,
+    class ExtraParameters internal constructor(
+        tint: Color,
+        enabled: Boolean,
         internal val status: OudsTagStatus,
-        internal val appearance: OudsTagAppearance,
-        internal val enabled: Boolean
-    ) : OudsComponentContent.ExtraParameters()
+        internal val appearance: OudsTagAppearance
+    ) : OudsIcon.ExtraParameters(tint, enabled)
 }
 
 /**
@@ -584,7 +604,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Neutral] with an icon.
          */
+        @Suppress("DEPRECATION")
         constructor(asset: OudsTagAsset.Icon) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Neutral] with no asset.
@@ -606,7 +629,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Accent] with an icon.
          */
+        @Suppress("DEPRECATION")
         constructor(asset: OudsTagAsset.Icon) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Accent] with no asset.
@@ -627,7 +653,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Positive] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Positive] with no asset.
@@ -652,7 +681,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Info] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Info] with no asset.
@@ -677,7 +709,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Warning] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Warning] with no asset.
@@ -716,7 +751,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Negative] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Negative] with no asset.
@@ -799,8 +837,8 @@ internal fun PreviewOudsTag(
                 icon && row in listOf(
                     OudsTagStatus.Neutral::class.simpleName,
                     OudsTagStatus.Accent::class.simpleName
-                ) -> OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
-                icon -> OudsTagAsset.Icon.Default
+                ) -> OudsIcon(Icons.Outlined.FavoriteBorder, "")
+                icon -> OudsIcon.Default
                 else -> null
             }
             val status = when (row) {
@@ -844,7 +882,7 @@ internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPrev
         ).map { it.simpleName.orEmpty() },
     ) { column, row ->
         val size = enumValueOf<OudsTagSize>(column)
-        val asset = OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)
+        val asset = OudsIcon(rememberRainbowHeartPainter(), "", false)
         val status = when (row) {
             OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
             OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)

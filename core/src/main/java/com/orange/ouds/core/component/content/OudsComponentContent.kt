@@ -13,25 +13,9 @@
 package com.orange.ouds.core.component.content
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.orElse
-
-
-private val LocalExtraParametersByClass =
-    mutableMapOf<Class<out OudsComponentContent.ExtraParameters>, ProvidableCompositionLocal<out OudsComponentContent.ExtraParameters>>()
-
-internal fun <T> getLocalExtraParameters(clazz: Class<T>): ProvidableCompositionLocal<T> where T : OudsComponentContent.ExtraParameters {
-    return LocalExtraParametersByClass[clazz]?.asOrNull<ProvidableCompositionLocal<T>>().orElse {
-        staticCompositionLocalOf<T> { error("CompositionLocal LocalExtraParameters for class ${clazz.name} not present") }.also { compositionLocal ->
-            LocalExtraParametersByClass[clazz] = compositionLocal
-        }
-    }
-}
 
 /**
  * Content of a component.
@@ -65,9 +49,7 @@ abstract class OudsComponentContent<T> internal constructor(private val extraPar
     /**
      * The extra parameters.
      */
-    protected val extraParameters: T
-        @Composable
-        get() = getLocalExtraParameters(extraParametersClass).current
+    internal lateinit var extraParameters: T
 
     /**
      * The Jetpack Compose UI for this component content.
@@ -95,9 +77,8 @@ abstract class OudsComponentContent<T> internal constructor(private val extraPar
      */
     @Composable
     internal fun Content(modifier: Modifier, extraParameters: T) {
-        CompositionLocalProvider(getLocalExtraParameters(extraParametersClass) provides extraParameters) {
-            Content(modifier = modifier)
-        }
+        this.extraParameters = extraParameters
+        Content(modifier = modifier)
     }
 
     /**

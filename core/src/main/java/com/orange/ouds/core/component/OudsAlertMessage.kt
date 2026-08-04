@@ -238,10 +238,7 @@ private fun OudsAlertMessage(
                 modifier = Modifier
                     .padding(top = spacePaddingBlock.value)
                     .iconSize(sizeIcon.value * scale, status.icon.tinted),
-                extraParameters = OudsAlertIcon.ExtraParameters(
-                    tint = status.assetColor,
-                    status = status.value
-                )
+                extraParameters = OudsIcon.ExtraParameters(tint = status.assetColor)
             )
             Column(
                 modifier = Modifier
@@ -366,7 +363,9 @@ enum class OudsAlertMessageActionLinkPosition {
  * @property value The [OudsAlertStatus] associated with this status.
  * @property icon The [OudsAlertIcon] to be displayed in the alert message, or `null` if there is no icon.
  */
-sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val icon: OudsAlertIcon? = null) {
+sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val icon: OudsIcon?) {
+
+    private constructor(value: OudsAlertStatus, icon: OudsIcon.Default) : this(value, value.defaultIcon)
 
     /**
      * Neutral status can be used as a generic informative alert without semantic meaning or colour association.
@@ -375,7 +374,14 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
      *
      * @property icon The optional [OudsAlertIcon] to be displayed at the start of the alert message.
      */
-    class Neutral(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Neutral(), icon)
+    class Neutral(icon: OudsIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Neutral(), icon) {
+
+        @Suppress("DEPRECATION")
+        @Deprecated("")
+        constructor(icon: OudsAlertIcon) : this(icon = icon.toIcon())
+
+        constructor(icon: OudsIcon.Default) : this(icon = OudsAlertStatus.Neutral().defaultIcon)
+    }
 
     /**
      * Accent status uses brand colours to draw attention to promotional or highlighted information while remaining non-critical.
@@ -384,35 +390,42 @@ sealed class OudsAlertMessageStatus(internal val value: OudsAlertStatus, val ico
      *
      * @property icon The optional [OudsAlertIcon] to be displayed at the start of the alert message.
      */
-    class Accent(icon: OudsAlertIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Accent(), icon)
+    class Accent(icon: OudsIcon? = null) : OudsAlertMessageStatus(OudsAlertStatus.Accent(), icon) {
+
+        @Suppress("DEPRECATION")
+        @Deprecated("")
+        constructor(icon: OudsAlertIcon) : this(icon = icon.toIcon())
+
+        constructor(icon: OudsIcon.Default) : this(icon = OudsAlertStatus.Accent().defaultIcon)
+    }
 
     /**
      * Negative status communicates a critical issue or error that prevents the user from proceeding until it is resolved.
      * These alerts remain visible until the problem is fixed or dismissed by the user.
      * This status displays a dedicated default icon.
      */
-    data object Negative : OudsAlertMessageStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
+    data object Negative : OudsAlertMessageStatus(OudsAlertStatus.Negative(), OudsIcon.Default)
 
     /**
      * Positive status indicates that a task or process has been completed successfully.
      * These alerts reassure users and confirm that no further action is needed.
      * This status displays a dedicated default icon.
      */
-    data object Positive : OudsAlertMessageStatus(OudsAlertStatus.Positive(), OudsAlertIcon.Default)
+    data object Positive : OudsAlertMessageStatus(OudsAlertStatus.Positive(), OudsIcon.Default)
 
     /**
      * Info status is used to share neutral system information or service updates that do not require immediate action.
      * Ideal for background processes or status messages where users simply need to stay informed.
      * This status displays a dedicated default icon.
      */
-    data object Info : OudsAlertMessageStatus(OudsAlertStatus.Info(), OudsAlertIcon.Default)
+    data object Info : OudsAlertMessageStatus(OudsAlertStatus.Info(), OudsIcon.Default)
 
     /**
      * Used to draw attention to potential issues or upcoming changes that might affect the user’s service or experience.
      * Warnings encourage awareness but typically do not block actions.
      * This status displays a dedicated default icon.
      */
-    data object Warning : OudsAlertMessageStatus(OudsAlertStatus.Warning(), OudsAlertIcon.Default)
+    data object Warning : OudsAlertMessageStatus(OudsAlertStatus.Warning(), OudsIcon.Default)
 
     internal val assetColor
         @Composable
@@ -531,7 +544,7 @@ internal fun PreviewOudsAlertMessage(
             ).map { it.simpleName.orEmpty() },
             maxItemsInEachRow = 1
         ) { item ->
-            val icon = if (hasIcon) OudsAlertIcon(Icons.Outlined.FavoriteBorder) else null
+            val icon = if (hasIcon) OudsIcon(Icons.Outlined.FavoriteBorder, "") else null
             val status = when (item) {
                 OudsAlertMessageStatus.Neutral::class.simpleName -> OudsAlertMessageStatus.Neutral(icon)
                 OudsAlertMessageStatus.Accent::class.simpleName -> OudsAlertMessageStatus.Accent(icon)
@@ -604,7 +617,7 @@ internal fun PreviewOudsAlertMessageWithUntintedIcon(theme: OudsThemeContract) =
         ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
     ) { item ->
-        val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
+        val icon = OudsIcon(rememberRainbowHeartPainter(), "", tinted = false)
         val status = when (item) {
             OudsAlertMessageStatus.Neutral::class.simpleName -> OudsAlertMessageStatus.Neutral(icon)
             OudsAlertMessageStatus.Accent::class.simpleName -> OudsAlertMessageStatus.Accent(icon)

@@ -94,6 +94,13 @@ internal sealed class OudsAlertStatus(
         @Composable
         get() = defaultIconContentDescriptionProvider(this)
 
+    val defaultIcon: OudsIcon
+        get() = OudsIcon(
+            { defaultIconPainter.orElse { error("No default icon for status ${this::class.simpleName}") } },
+            { defaultIconContentDescription },
+            true
+        )
+
     /**
      * The asset color associated with this status.
      */
@@ -117,6 +124,8 @@ internal sealed class OudsAlertStatus(
  * This class handles the creation of the icon from different sources like [Painter], [ImageVector], or [ImageBitmap].
  * An accessibility description is not required, as the alert's main `label` should provide the necessary context.
  */
+@Deprecated("")
+@Suppress("DEPRECATION")
 open class OudsAlertIcon private constructor(
     graphicsObjectProvider: @Composable (OudsAlertIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsAlertIcon) -> String,

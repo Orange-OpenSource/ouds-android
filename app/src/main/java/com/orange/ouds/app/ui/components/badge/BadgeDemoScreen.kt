@@ -46,9 +46,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsBadge
-import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
@@ -192,7 +192,7 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
                     is OudsIconBadgeStatus.Neutral,
                     is OudsIconBadgeStatus.Accent -> {
                         functionCallArgument(statusParameterName, badgeWithIconStatus::class.java.nestedName) {
-                            iconArgument<OudsBadgeIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == BadgeDemoState.Icon.Tinted)
+                            iconArgument<OudsIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == BadgeDemoState.Icon.Tinted)
                         }
                     }
                     OudsIconBadgeStatus.Positive,
@@ -216,8 +216,12 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
 private fun getBadgeWithIconStatus(state: BadgeDemoState): OudsIconBadgeStatus {
     with(state) {
         val badgeIcon = when (icon) {
-            BadgeDemoState.Icon.Tinted -> OudsBadgeIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
-            BadgeDemoState.Icon.Untinted -> OudsBadgeIcon(painter = rememberUntintedIconPainter(), tinted = false)
+            BadgeDemoState.Icon.Tinted -> OudsIcon(
+                painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                contentDescription = "",
+                tinted = true
+            )
+            BadgeDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), contentDescription = "", tinted = false)
         }
         return when (status) {
             OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(badgeIcon)

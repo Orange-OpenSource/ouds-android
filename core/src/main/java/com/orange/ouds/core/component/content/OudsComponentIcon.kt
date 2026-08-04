@@ -24,6 +24,7 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonIconBadge
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -65,11 +66,15 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         @Suppress("UNCHECKED_CAST")
         get() = graphicsObjectProvider(this as S)
 
+    internal val contentDescription: String
+        @Composable
+        @Suppress("UNCHECKED_CAST")
+        get() = contentDescriptionProvider(this as S)
+
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
         val iconModifier = modifier.componentContentTestTag()
-        @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
                 is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
@@ -94,5 +99,13 @@ abstract class OudsComponentIcon<T, S> internal constructor(
                 is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = iconModifier, tint = iconTint)
             }
         }
+    }
+
+    internal fun toIcon(): OudsIcon {
+        return OudsIcon(
+            graphicsObjectProvider = { graphicsObject },
+            contentDescriptionProvider = { contentDescription },
+            tinted = tinted
+        )
     }
 }

@@ -16,11 +16,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
@@ -34,7 +34,7 @@ internal fun OudsAlertMessageSample() {
     OudsAlertMessage(
         label = "New features available",
         description = "We've added exciting new features to improve your experience.",
-        status = OudsAlertMessageStatus.Accent(OudsAlertIcon(imageVector = Icons.Filled.FavoriteBorder)),
+        status = OudsAlertMessageStatus.Accent(OudsIcon(imageVector = Icons.Filled.FavoriteBorder, "")),
         onClose = { /* Close the alert message */ },
         actionLink = OudsAlertMessageActionLink(label = "Learn more", onClick = { /* Navigate to features page */ }),
         bulletList = listOf(
@@ -52,7 +52,11 @@ internal fun OudsAlertMessageFunctionalWithTopEndActionLinkSample() {
         description = "Your account has been verified and is now fully activated.",
         status = OudsAlertMessageStatus.Positive,
         onClose = { /* Close the alert message */ },
-        actionLink = OudsAlertMessageActionLink(label = "Details", onClick = { /* Navigate to account details */ }, position = OudsAlertMessageActionLinkPosition.TopEnd),
+        actionLink = OudsAlertMessageActionLink(
+            label = "Details",
+            onClick = { /* Navigate to account details */ },
+            position = OudsAlertMessageActionLinkPosition.TopEnd
+        ),
         bulletList = listOf(
             "All features are now unlocked",
             "You can start using premium services",
@@ -92,7 +96,7 @@ internal fun OudsAlertMessageWithAnnotatedTextSample() {
     OudsAlertMessage(
         label = "Before you continue",
         description = description,
-        status = OudsAlertMessageStatus.Accent(OudsAlertIcon(imageVector = Icons.Filled.FavoriteBorder)),
+        status = OudsAlertMessageStatus.Accent(OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "")),
         onClose = { /* Close the alert message */ },
         bulletList = bulletList
     )
@@ -103,7 +107,7 @@ internal fun OudsAlertMessageNonFunctionalWithUntintedIconSample() {
     OudsAlertMessage(
         label = "New features available",
         description = "We've added exciting new features to improve your experience.",
-        status = OudsAlertMessageStatus.Accent(OudsAlertIcon(painter = rememberRainbowHeartPainter(), tinted = false)),
+        status = OudsAlertMessageStatus.Accent(OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false)),
         onClose = { /* Close the alert message */ }
     )
 }

@@ -1481,7 +1481,7 @@ data class OudsTextInputLoader(val progress: Float?)
  */
 class OudsTextInputLeadingIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsTextInputLeadingIcon.ExtraParameters, OudsTextInputLeadingIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
@@ -1534,7 +1534,7 @@ class OudsTextInputLeadingIcon private constructor(
  */
 class OudsTextInputTrailingIconButton private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     val onClick: () -> Unit
 ) : OudsComponentIcon<OudsTextInputTrailingIconButton.ExtraParameters, OudsTextInputTrailingIconButton>(
     ExtraParameters::class.java,

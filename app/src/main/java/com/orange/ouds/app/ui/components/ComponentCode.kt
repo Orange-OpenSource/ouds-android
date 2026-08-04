@@ -57,6 +57,7 @@ inline fun <reified T> FunctionCall.Builder.iconArgument(
     constructorCallArgument<T>(name) {
         painterArgument(if (tinted) resId else R.drawable.ic_untinted_square)
         contentDescriptionResId?.let { contentDescriptionArgument(it) }
+        // TODO: Handle non null contentDescription for OudsIcon and remove generic type
         if (!tinted) tintedArgument(tinted)
     }
 }

@@ -160,14 +160,17 @@ internal fun OudsBasicChip(
                 }
             }
             val iconContent: @Composable (Modifier) -> Unit = { modifier ->
-                icon?.Content(
-                    modifier = modifier
-                        .iconSize(chipTokens.sizeIcon.value * iconScale, tinted = icon.tinted)
-                        .semantics {
-                            contentDescription = if (label == null) icon.contentDescription else ""
-                        },
-                    extraParameters = OudsChipIcon.ExtraParameters(tint = contentColor.value)
-                )
+                if (icon != null) {
+                    val iconContentDescription = icon.contentDescription
+                    icon.Content(
+                        modifier = modifier
+                            .iconSize(chipTokens.sizeIcon.value * iconScale, tinted = icon.tinted)
+                            .semantics {
+                                contentDescription = if (label == null) iconContentDescription else ""
+                            },
+                        extraParameters = OudsChipIcon.ExtraParameters(tint = contentColor.value)
+                    )
+                }
             }
 
             val scope = remember { OudsChipScope() }

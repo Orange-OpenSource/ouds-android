@@ -387,11 +387,12 @@ private fun OudsFloatingActionButton(
 private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
     val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnlyDefault.value
     val iconScale = LocalConfiguration.current.fontScale
+    val iconContentDescription = icon.contentDescription
     icon.Content(
         modifier = Modifier
             .size(iconSize * iconScale)
             .semantics {
-                contentDescription = if (label.isNullOrBlank().not()) label else icon.contentDescription
+                contentDescription = if (label.isNullOrBlank().not()) label else iconContentDescription
             }
     )
 }
@@ -482,7 +483,7 @@ object OudsFloatingActionButtonDefaults {
  */
 class OudsFloatingActionButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     override val tinted: Boolean
 ) : OudsComponentIcon<Nothing, OudsFloatingActionButtonIcon>(
     Nothing::class.java,
