@@ -150,7 +150,7 @@ internal fun OudsAvatar(
     ) {
         OudsButton(
             modifier = Modifier.alpha(if (onClick != null) 1f else 0f), // If onClick is null, draw the button with alpha 0 anyway to get a consistent size for the avatar
-            icon = OudsButtonIcon(ColorPainter(Color.Transparent), ""), // Use transparent painter to scale the button with the font
+            icon = OudsIcon(ColorPainter(Color.Transparent), ""), // Use transparent painter to scale the button with the font
             onClick = { onClick?.invoke() },
             appearance = OudsButtonAppearance.Minimal,
             interactionSource = interactionSource

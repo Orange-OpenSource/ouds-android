@@ -35,8 +35,8 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
-import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsSmallButton
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
@@ -122,7 +122,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             ButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
             ButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
         }
-        val buttonIcon = OudsButtonIcon(
+        val buttonIcon = OudsIcon(
             painter = painter,
             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
             tinted = icon == ButtonDemoState.Icon.Tinted
@@ -191,7 +191,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
             }
             functionCall(functionName) {
                 if (layout in listOf(ButtonDemoState.Layout.IconOnly, ButtonDemoState.Layout.TextAndIcon)) {
-                    iconArgument<OudsButtonIcon>(
+                    iconArgument<OudsIcon>(
                         "icon",
                         themeDrawableResources.tipsAndTricks,
                         R.string.app_components_common_icon_a11y,

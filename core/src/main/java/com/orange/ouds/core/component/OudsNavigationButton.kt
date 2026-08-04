@@ -77,7 +77,7 @@ fun OudsNavigationButton(
     }
 
     OudsButton(
-        nullableIcon = OudsButtonIcon(
+        nullableIcon = OudsIcon(
             painter = painterResource(iconResource),
             contentDescription = "" // Not necessary because a label is present
         ),

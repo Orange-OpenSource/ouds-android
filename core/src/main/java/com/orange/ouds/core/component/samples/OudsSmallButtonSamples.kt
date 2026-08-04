@@ -16,9 +16,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsSmallButton
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -45,7 +45,7 @@ internal fun OudsSmallButtonTextOnlyOnColoredBackgroundSample() {
 @Composable
 internal fun OudsSmallButtonIconOnlySample() {
     OudsSmallButton(
-        icon = OudsButtonIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         ),
@@ -58,7 +58,7 @@ internal fun OudsSmallButtonIconOnlyOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsSmallButton(
-            icon = OudsButtonIcon(
+            icon = OudsIcon(
                 imageVector = Icons.Filled.FavoriteBorder,
                 contentDescription = "Content description"
             ),
@@ -70,7 +70,7 @@ internal fun OudsSmallButtonIconOnlyOnColoredBackgroundSample() {
 @Composable
 internal fun OudsSmallButtonTextAndIconSample() {
     OudsSmallButton(
-        icon = OudsButtonIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         ),
@@ -84,7 +84,7 @@ internal fun OudsSmallButtonTextAndIconOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsSmallButton(
-            icon = OudsButtonIcon(
+            icon = OudsIcon(
                 imageVector = Icons.Filled.FavoriteBorder,
                 contentDescription = ""
             ),
@@ -97,7 +97,7 @@ internal fun OudsSmallButtonTextAndIconOnColoredBackgroundSample() {
 @Composable
 internal fun OudsSmallButtonIconOnlyWithUntintedIconSample() {
     OudsSmallButton(
-        icon = OudsButtonIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "Content description",
             tinted = false
@@ -109,7 +109,7 @@ internal fun OudsSmallButtonIconOnlyWithUntintedIconSample() {
 @Composable
 internal fun OudsSmallButtonTextAndIconWithUntintedIconSample() {
     OudsSmallButton(
-        icon = OudsButtonIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "",
             tinted = false

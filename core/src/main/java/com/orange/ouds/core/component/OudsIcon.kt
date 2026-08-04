@@ -54,8 +54,8 @@ open class OudsIcon internal constructor(
     ) : this({ imageVector }, { contentDescription }, tinted)
 
     constructor(
-        imageBitmap: ImageBitmap,
+        bitmap: ImageBitmap,
         contentDescription: String,
         tinted: Boolean = true
-    ) : this({ imageBitmap }, { contentDescription }, tinted)
+    ) : this({ bitmap }, { contentDescription }, tinted)
 }

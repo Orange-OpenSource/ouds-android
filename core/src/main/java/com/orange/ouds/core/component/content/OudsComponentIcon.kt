@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
-import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonIconBadge
 import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.foundation.extensions.orElse
@@ -77,9 +76,9 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         val iconModifier = modifier.componentContentTestTag()
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
-                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
-                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription, tinted = tinted)
-                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is Painter -> OudsIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageVector -> OudsIcon(imageVector = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageBitmap -> OudsIcon(bitmap = graphicsObject, contentDescription = contentDescription, tinted = tinted)
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(

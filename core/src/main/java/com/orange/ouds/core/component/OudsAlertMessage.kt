@@ -284,7 +284,7 @@ private fun OudsAlertMessage(
                     }
                     onClose?.let {
                         OudsButton(
-                            icon = OudsButtonIcon(
+                            icon = OudsIcon(
                                 painter = painterResource(LocalDrawableResources.current.component.button.expurge),
                                 contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
                             ),
