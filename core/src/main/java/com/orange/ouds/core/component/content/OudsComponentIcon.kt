@@ -24,6 +24,8 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIconBadge
 import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsIconButton
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -32,19 +34,27 @@ import com.orange.ouds.foundation.extensions.orElse
  * @suppress
  */
 abstract class OudsComponentIcon<T, S> internal constructor(
-    extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
     private val contentDescriptionProvider: @Composable (S) -> String?,
     private val onClick: (() -> Unit)? = null
-) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
+) : OudsComponentContent<T>() where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
+    @Deprecated("")
+    @InternalOudsApi
     protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
+        contentDescription: String,
+        onClick: (() -> Unit)? = null
+    ) : this({ graphicsObject }, { contentDescription }, onClick)
+
+    internal constructor(
+        graphicsObject: Any,
         contentDescription: String?,
         onClick: (() -> Unit)? = null
-    ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
+    ) : this({ graphicsObject }, { contentDescription }, onClick)
 
+    @InternalOudsApi
     protected open val tint: Color?
         @Composable
         get() = null
@@ -105,6 +115,15 @@ abstract class OudsComponentIcon<T, S> internal constructor(
             graphicsObjectProvider = { graphicsObject },
             contentDescriptionProvider = { contentDescription },
             tinted = tinted
+        )
+    }
+
+    internal fun toIconButton(): OudsIconButton {
+        return OudsIconButton(
+            graphicsObjectProvider = { graphicsObject },
+            contentDescriptionProvider = { contentDescription },
+            tinted = tinted,
+            onClick = requireNotNull(onClick)
         )
     }
 }

@@ -20,18 +20,17 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 
-class OudsIcon internal constructor(
-    graphicsObjectProvider: @Composable (OudsIcon) -> Any,
-    contentDescriptionProvider: @Composable (OudsIcon) -> String?,
-    override val tinted: Boolean
-) : OudsComponentIcon<OudsIcon.ExtraParameters, OudsIcon>(graphicsObjectProvider, contentDescriptionProvider, null), OudsTagAsset {
+class OudsIconButton internal constructor(
+    graphicsObjectProvider: @Composable (OudsIconButton) -> Any,
+    contentDescriptionProvider: @Composable (OudsIconButton) -> String?,
+    override val tinted: Boolean,
+    onClick: () -> Unit
+) : OudsComponentIcon<OudsIconButton.ExtraParameters, OudsIconButton>(graphicsObjectProvider, contentDescriptionProvider, onClick) {
 
     open class ExtraParameters internal constructor(
         val tint: Color? = null,
         val enabled: Boolean = true
     ) : OudsComponentContent.ExtraParameters()
-
-    object Default : OudsTagAsset
 
     init {
         // Set default extra parameters to avoid UninitializedPropertyAccessException
@@ -40,21 +39,24 @@ class OudsIcon internal constructor(
 
     constructor(
         painter: Painter,
+        onClick: () -> Unit,
         contentDescription: String? = null,
         tinted: Boolean = true
-    ) : this({ painter }, { contentDescription }, tinted)
+    ) : this({ painter }, { contentDescription }, tinted, onClick)
 
     constructor(
         imageVector: ImageVector,
+        onClick: () -> Unit,
         contentDescription: String? = null,
         tinted: Boolean = true
-    ) : this({ imageVector }, { contentDescription }, tinted)
+    ) : this({ imageVector }, { contentDescription }, tinted, onClick)
 
     constructor(
         bitmap: ImageBitmap,
+        onClick: () -> Unit,
         contentDescription: String? = null,
         tinted: Boolean = true
-    ) : this({ bitmap }, { contentDescription }, tinted)
+    ) : this({ bitmap }, { contentDescription }, tinted, onClick)
 
     override val enabled: Boolean?
         @Composable

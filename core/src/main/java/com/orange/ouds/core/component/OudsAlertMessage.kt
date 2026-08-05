@@ -324,7 +324,7 @@ data class OudsAlertMessageActionLink(
     val label: String,
     val onClick: () -> Unit,
     val position: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition
-) : OudsComponentContent<Nothing>(Nothing::class.java) {
+) : OudsComponentContent<Nothing>() {
 
     @Composable
     override fun Content(modifier: Modifier) {

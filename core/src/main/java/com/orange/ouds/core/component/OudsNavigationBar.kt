@@ -209,7 +209,7 @@ data class OudsNavigationBarItem(
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
     val interactionSource: MutableInteractionSource? = null
-) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
+) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>() {
 
     @Deprecated("")
     constructor(

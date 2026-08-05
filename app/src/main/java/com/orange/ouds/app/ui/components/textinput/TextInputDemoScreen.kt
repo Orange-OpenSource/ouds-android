@@ -40,11 +40,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsIconButton
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLeadingIcon
 import com.orange.ouds.core.component.OudsTextInputLoader
-import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
@@ -175,19 +175,15 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
     with(state) {
         val textInputLeadingIcon = when (leadingIcon) {
             TextInputDemoState.LeadingIcon.None -> null
-            TextInputDemoState.LeadingIcon.Tinted -> OudsTextInputLeadingIcon(
-                painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                contentDescription = ""
-            )
-            TextInputDemoState.LeadingIcon.Untinted -> OudsTextInputLeadingIcon(
+            TextInputDemoState.LeadingIcon.Tinted -> OudsIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks))
+            TextInputDemoState.LeadingIcon.Untinted -> OudsIcon(
                 painter = rememberUntintedIconPainter(),
-                contentDescription = "",
                 tinted = false
             )
         }
         val textInputTrailingIcon = when (trailingIcon) {
             TextInputDemoState.TrailingIcon.None -> null
-            TextInputDemoState.TrailingIcon.Tinted -> OudsTextInputTrailingIconButton(
+            TextInputDemoState.TrailingIcon.Tinted -> OudsIconButton(
                 painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
                 contentDescription = stringResource(id = R.string.app_components_textInput_trailingAction_a11y),
                 onClick = {}
@@ -260,14 +256,14 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (leadingIcon != TextInputDemoState.LeadingIcon.None) {
-                iconArgument<OudsTextInputLeadingIcon>(
+                iconArgument<OudsIcon>(
                     "leadingIcon",
                     themeDrawableResources.tipsAndTricks,
                     tinted = leadingIcon == TextInputDemoState.LeadingIcon.Tinted
                 )
             }
             if (trailingIcon != TextInputDemoState.TrailingIcon.None) {
-                constructorCallArgument<OudsTextInputTrailingIconButton>("trailingIconButton") {
+                constructorCallArgument<OudsIconButton>("trailingIconButton") {
                     painterArgument(themeDrawableResources.tipsAndTricks)
                     contentDescriptionArgument(R.string.app_components_textInput_trailingAction_a11y)
                     onClickArgument {

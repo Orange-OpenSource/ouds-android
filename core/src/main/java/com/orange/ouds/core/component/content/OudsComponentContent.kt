@@ -25,12 +25,11 @@ import com.orange.ouds.foundation.extensions.orElse
  * This also allows grouping parameters that are related to the same content inside a component.
  * For instance, it is possible to create an `Icon` subclass to replace both `icon: @Composable () -> Unit` and `onIconClick: () -> Unit` parameters with a single `icon: Icon` parameter.
  *
- * @param extraParametersClass The extra parameters class.
  * @param T The type of extra parameters.
  *
  * @suppress
  */
-abstract class OudsComponentContent<T> internal constructor(private val extraParametersClass: Class<T>) where T : OudsComponentContent.ExtraParameters {
+abstract class OudsComponentContent<T> internal constructor() where T : OudsComponentContent.ExtraParameters {
 
     /**
      * Optional test tag for UI testing purposes.

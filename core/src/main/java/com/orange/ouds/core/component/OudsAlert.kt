@@ -131,7 +131,6 @@ open class OudsAlertIcon private constructor(
     contentDescriptionProvider: @Composable (OudsAlertIcon) -> String,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsAlertIcon.ExtraParameters, OudsAlertIcon>(
-    ExtraParameters::class.java,
     graphicsObjectProvider,
     contentDescriptionProvider
 ) {

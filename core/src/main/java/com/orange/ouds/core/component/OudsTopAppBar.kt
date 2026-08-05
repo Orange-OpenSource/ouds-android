@@ -425,7 +425,7 @@ open class OudsTopAppBarNavigationIcon private constructor(
     graphicsObjectProvider: @Composable (OudsTopAppBarNavigationIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsTopAppBarNavigationIcon) -> String,
     onClick: () -> Unit
-) : OudsComponentIcon<Nothing, OudsTopAppBarNavigationIcon>(Nothing::class.java, graphicsObjectProvider, contentDescriptionProvider, onClick) {
+) : OudsComponentIcon<Nothing, OudsTopAppBarNavigationIcon>(graphicsObjectProvider, contentDescriptionProvider, onClick) {
 
     /**
      * A predefined [OudsTopAppBarNavigationIcon] with a back icon.
@@ -516,7 +516,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         contentDescription: String,
         badge: OudsTopAppBarActionBadge?,
         onClick: () -> Unit
-    ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>(Nothing::class.java, { graphicsObject }, { contentDescription }, onClick) {
+    ) : OudsTopAppBarAction, OudsComponentIcon<Nothing, Icon>({ graphicsObject }, { contentDescription }, onClick) {
 
         private val _badge = badge
         override val badge: OudsButtonIconBadge?
@@ -586,7 +586,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         private val monogramBackgroundColor: Color?,
         private val contentDescription: String,
         private val onClick: (() -> Unit)?
-    ) : OudsTopAppBarAction, OudsComponentContent<Nothing>(Nothing::class.java) {
+    ) : OudsTopAppBarAction, OudsComponentContent<Nothing>() {
 
         /**
          * Creates an instance of [OudsTopAppBarAction.Avatar].

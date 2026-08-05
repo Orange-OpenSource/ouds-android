@@ -50,9 +50,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.component.OudsIconButton
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.OudsTextInput
-import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.theme.OudsTheme
 
 private val labelTextStyle: TextStyle
@@ -212,7 +212,7 @@ fun CustomizationTextInput(
         enabled = enabled,
         keyboardOptions = keyboardOptions,
         trailingIconButton = if (value.text.isNotEmpty()) {
-            OudsTextInputTrailingIconButton(
+            OudsIconButton(
                 painter = painterResource(com.orange.ouds.theme.orange.R.drawable.ic_orange_component_tag_close),
                 contentDescription = stringResource(R.string.app_components_common_textInputClearIcon_a11y),
                 onClick = {

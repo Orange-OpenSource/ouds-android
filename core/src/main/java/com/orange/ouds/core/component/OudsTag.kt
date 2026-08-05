@@ -462,7 +462,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
      * A bullet in an [OudsTag].
      * This bullet is non-clickable. No content description is needed because a tag always contains a label.
      */
-    data object Bullet : OudsTagAsset, OudsComponentContent<OudsTagAsset.ExtraParameters>(OudsTagAsset.ExtraParameters::class.java) {
+    data object Bullet : OudsTagAsset, OudsComponentContent<OudsTagAsset.ExtraParameters>() {
 
         @Composable
         override fun Content(modifier: Modifier) {
@@ -528,7 +528,6 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
          * for other statuses because the tag's `label` should provide the necessary context.
          */
         data object Default : OudsTagAsset, OudsComponentIcon<OudsTagAsset.ExtraParameters, Default>(
-            OudsTagAsset.ExtraParameters::class.java,
             { icon ->
                 with(icon.extraParameters) {
                     status.getDefaultIconPainter(appearance, enabled).orElse {
