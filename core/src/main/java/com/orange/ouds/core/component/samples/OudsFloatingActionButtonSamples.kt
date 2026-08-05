@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
-import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsLargeFloatingActionButton
 import com.orange.ouds.core.component.OudsSmallFloatingActionButton
 import com.orange.ouds.core.utilities.OudsPreview
@@ -29,7 +29,7 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 @Composable
 internal fun OudsFloatingActionButtonSample() {
     OudsFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         ),
@@ -40,7 +40,7 @@ internal fun OudsFloatingActionButtonSample() {
 @Composable
 internal fun OudsSmallFloatingActionButtonSample() {
     OudsSmallFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         ),
@@ -51,7 +51,7 @@ internal fun OudsSmallFloatingActionButtonSample() {
 @Composable
 internal fun OudsLargeFloatingActionButtonSample() {
     OudsLargeFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.Favorite,
             contentDescription = "Content description"
         ),
@@ -71,7 +71,7 @@ internal fun OudsExtendedFloatingActionButtonSampleWithLabelOnly() {
 internal fun OudsExtendedFloatingActionButtonSampleWithLabelAndIcon() {
     OudsExtendedFloatingActionButton(
         label = "Label",
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         ),
@@ -82,7 +82,7 @@ internal fun OudsExtendedFloatingActionButtonSampleWithLabelAndIcon() {
 @Composable
 internal fun OudsFloatingActionButtonWithUntintedIconSample() {
     OudsFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "Content description",
             tinted = false
@@ -95,7 +95,7 @@ internal fun OudsFloatingActionButtonWithUntintedIconSample() {
 @Composable
 internal fun OudsSmallFloatingActionButtonWithUntintedIconSample() {
     OudsSmallFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "Content description",
             tinted = false
@@ -108,7 +108,7 @@ internal fun OudsSmallFloatingActionButtonWithUntintedIconSample() {
 @Composable
 internal fun OudsLargeFloatingActionButtonWithUntintedIconSample() {
     OudsLargeFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "Content description",
             tinted = false
@@ -122,7 +122,7 @@ internal fun OudsLargeFloatingActionButtonWithUntintedIconSample() {
 internal fun OudsExtendedFloatingActionButtonWithUntintedIconSample() {
     OudsExtendedFloatingActionButton(
         label = "Label",
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "",
             tinted = false

@@ -31,7 +31,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
-import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 
@@ -206,11 +206,11 @@ private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoSt
 }
 
 @Composable
-fun controlItemIcon(state: ControlItemDemoState): OudsControlItemIcon? {
+fun controlItemIcon(state: ControlItemDemoState): OudsIcon? {
     return when (state.icon) {
         ControlItemDemoState.Icon.None -> null
-        ControlItemDemoState.Icon.Tinted -> OudsControlItemIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks))
-        ControlItemDemoState.Icon.Untinted -> OudsControlItemIcon(painter = rememberUntintedIconPainter(), tinted = false)
+        ControlItemDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks), contentDescription = "")
+        ControlItemDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), contentDescription = "", tinted = false)
     }
 }
 
@@ -236,7 +236,7 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         labelArgument(label)
         if (!description.isNullOrBlank()) typedArgument("description", description)
         if (icon != ControlItemDemoState.Icon.None) {
-            iconArgument<OudsControlItemIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == ControlItemDemoState.Icon.Tinted)
+            iconArgument<OudsIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == ControlItemDemoState.Icon.Tinted)
         }
         if (!edgeToEdge) typedArgument("edgeToEdge", edgeToEdge)
         if (divider) typedArgument("divider", divider)

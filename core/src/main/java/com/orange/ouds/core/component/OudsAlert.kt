@@ -190,6 +190,7 @@ open class OudsAlertIcon private constructor(
         @Composable
         get() = extraParameters.tint
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color,

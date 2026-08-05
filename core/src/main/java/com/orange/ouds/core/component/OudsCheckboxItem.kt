@@ -95,7 +95,7 @@ fun OudsCheckboxItem(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     description: String? = null,
-    icon: OudsControlItemIcon? = null,
+    icon: OudsIcon? = null,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -114,6 +114,86 @@ fun OudsCheckboxItem(
         modifier = modifier,
         description = description,
         icon = icon,
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Checkbox item is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox item covers a wider range of
+ * contexts by allowing to toggle the visibility of additional text labels and icon assets.
+ *
+ * The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider, or an icon,
+ * allowing it to suit various use cases.
+ *
+ * The OUDS checkbox item layout contains an [OudsCheckbox]. By clicking on a checkbox item, the user changes the checked state of its checkbox.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
+ *
+ * > Design name: Checkbox
+ *
+ * > Design version: 2.4.0
+ *
+ * @see [OudsTriStateCheckboxItem] If you need an indeterminate state for the item's checkbox.
+ * @see [OudsCheckbox] If you want to use a standalone checkbox without any other element.
+ *
+ * @param checked Controls the checked state of the item's checkbox.
+ * @param label The main label of the checkbox item.
+ * @param onCheckedChange Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
+ *   the checked state.
+ * @param modifier [Modifier] applied to the layout of the checkbox item.
+ * @param description Optional text displayed below the label.
+ * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param divider Controls the display of a divider at the bottom of the checkbox item.
+ * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
+ * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsCheckboxItem(
+    checked: Boolean,
+    label: String,
+    onCheckedChange: ((Boolean) -> Unit)?,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    @Suppress("DEPRECATION") icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsCheckboxItem(
+        checked = checked,
+        label = label,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        description = description,
+        icon = icon?.toIcon(),
         edgeToEdge = edgeToEdge,
         divider = divider,
         reversed = reversed,
@@ -181,7 +261,7 @@ fun OudsTriStateCheckboxItem(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
     description: String? = null,
-    icon: OudsControlItemIcon? = null,
+    icon: OudsIcon? = null,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -242,6 +322,91 @@ fun OudsTriStateCheckboxItem(
     )
 }
 
+/**
+ * Checkbox item is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox item covers a wider range of
+ * contexts by allowing to toggle the visibility of additional text labels and icon assets.
+ *
+ * This checkbox item supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is
+ * checked, all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are
+ * checked, the parent checkbox becomes an indeterminate checkbox.
+ *
+ * The **indeterminate checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as description,
+ * a divider, or an icon, allowing it to suit various use cases.
+ *
+ * The OUDS indeterminate checkbox item layout contains an [OudsTriStateCheckbox]. By clicking on an indeterminate checkbox item, the user changes the checked
+ * state of its checkbox.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-checkbox)
+ *
+ * > Design name: Checkbox
+ *
+ * > Design version: 2.4.0
+ *
+ * @see [OudsCheckboxItem] If you need a simple item's checkbox that represents [Boolean] state.
+ * @see [OudsTriStateCheckbox] If you only need an indeterminate standalone parent checkbox without any other element.
+ *
+ * @param state Controls whether item's TriStateCheckbox is checked, unchecked or in indeterminate state.
+ * @param label The main label of the checkbox item.
+ * @param onClick Callback invoked when checkbox item is being clicked, therefore the change of checkbox [ToggleableState] state is requested. If `null`, then
+ *   this is passive and relies entirely on a higher-level component to control the state.
+ * @param modifier [Modifier] applied to the layout of the checkbox item.
+ * @param description Optional text displayed below the label.
+ * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param divider Controls the display of a divider at the bottom of the checkbox item.
+ * @param reversed When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
+ * @param enabled Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the checkbox item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
+ *   if `null` is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsTriStateCheckboxItem(
+    state: ToggleableState,
+    label: String,
+    onClick: (() -> Unit)?,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    @Suppress("DEPRECATION") icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTriStateCheckboxItem(
+        state = state,
+        label = label,
+        onClick = onClick,
+        modifier = modifier,
+        description = description,
+        icon = icon?.toIcon(),
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource
+    )
+}
+
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.CheckboxItem.Default.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
@@ -271,7 +436,7 @@ internal fun PreviewOudsCheckboxItem(
                 divider = divider,
                 error = error,
                 reversed = reversed,
-                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
+                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "") else null,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }
@@ -325,7 +490,7 @@ internal fun PreviewOudsCheckboxItemWithLongDescription(theme: OudsThemeContract
         label = "Label",
         onCheckedChange = {},
         description = LoremIpsumText,
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
+        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "")
     )
 }
 
@@ -341,7 +506,7 @@ internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContr
             checked = true,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
             edgeToEdge = false,
             divider = true,
             error = OudsError(ControlItemErrorMessage),
@@ -365,7 +530,7 @@ internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(
         checked = true,
         label = "Label",
         onCheckedChange = {},
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
         constrainedMaxWidth = constrainedMaxWidth,
         edgeToEdge = false,
         divider = true
@@ -407,7 +572,7 @@ internal fun PreviewOudsCheckboxItemWithUntintedIcon(theme: OudsThemeContract) =
             checked = false,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
             divider = true
         )
     }

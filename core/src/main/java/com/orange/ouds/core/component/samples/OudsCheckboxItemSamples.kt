@@ -22,7 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsCheckboxItem
-import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
@@ -38,7 +38,7 @@ internal fun OudsCheckboxItemSample() {
         checked = checked,
         label = "Terms of use",
         description = "By checking this box, I acknowledge having read the conditions of use.",
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.FavoriteBorder),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -51,7 +51,7 @@ internal fun OudsTriStateCheckboxItemSample() {
         state = toggleableState,
         label = "My hobbies",
         description = "Select the hobbies you practice regularly.",
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.FavoriteBorder),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
         onClick = {
             toggleableState = when (toggleableState) {
                 ToggleableState.On -> ToggleableState.Off
@@ -118,7 +118,7 @@ internal fun OudsCheckboxItemWithUntintedIconSample() {
         checked = checked,
         label = "Terms of use",
         description = "By checking this box, I acknowledge having read the conditions of use.",
-        icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -131,7 +131,7 @@ internal fun OudsTriStateCheckboxItemWithUntintedIconSample() {
         state = toggleableState,
         label = "My hobbies",
         description = "Select the hobbies you practice regularly.",
-        icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
         onClick = {
             toggleableState = when (toggleableState) {
                 ToggleableState.On -> ToggleableState.Off

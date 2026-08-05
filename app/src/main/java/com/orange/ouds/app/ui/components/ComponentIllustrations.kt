@@ -54,8 +54,8 @@ import com.orange.ouds.core.component.OudsCircularProgressIndicator
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsFloatingActionButton
-import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsHorizontalDivider
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsListItem
@@ -186,7 +186,7 @@ fun DividerIllustration() = ComponentIllustration {
 @Composable
 fun FloatingActionButtonIllustration() = ComponentIllustration {
     OudsFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
+        icon = OudsIcon(
             painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
             contentDescription = ""
         ),

@@ -100,7 +100,7 @@ fun OudsRadioButtonItem(
     modifier: Modifier = Modifier,
     extraLabel: String? = null,
     description: String? = null,
-    icon: OudsControlItemIcon? = null,
+    icon: OudsIcon? = null,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     outlined: Boolean = false,
@@ -159,6 +159,91 @@ fun OudsRadioButtonItem(
         contentModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
         constrainedMaxWidth = constrainedMaxWidth,
         handleHighContrastMode = true
+    )
+}
+
+/**
+ * Radio button item is a UI element that allows to select a single option from a set of mutually exclusive choices.
+ * Radio button item covers a wider range of contexts by allowing to toggle the visibility of additional text labels and icon assets.
+ *
+ * The **radio button item variant** can function as a simple input with a label in a selection group, or it can be combined with optional elements such as
+ * extra label, description, a divider, or an icon, allowing it to suit various use cases.
+ *
+ * The OUDS radio button item layout contains an [OudsRadioButton]. By clicking on the radio button item, the user changes the selected state of its radio button.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-radio-button)
+ *
+ * > Design name: Radio Button
+ *
+ * > Design version: 1.4.0
+ *
+ * @see [OudsRadioButton] If you want to use a standalone radio button.
+ *
+ * @param selected Controls the selected state of the radio button.
+ * @param label The main label of the radio button item.
+ * @param onClick Callback invoked on radio button click. If `null`, then this radio button will not be interactable, unless something else handles its
+ *   input events and updates its state.
+ * @param modifier [Modifier] applied to the layout of the radio button item.
+ * @param extraLabel Optional strong accompanying label for the main label. It is displayed between the [label] and the [description].
+ * @param description Optional text displayed below the [label] and the [extraLabel].
+ * @param icon Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param divider Controls the display of a divider at the bottom of the radio button item.
+ * @param outlined When set to `true`, the radio button item, if selected, is outlined to stand out and draw the user's attention.
+ * @param reversed When `false`, the radio button has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
+ * @param enabled Controls the enabled state of the radio button item. When `false`, the radio button, the texts and the optional icon are disabled, and the item
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the radio button item. When `true` the item's radio button is disabled but the texts and the icon remain in
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the radio button item will be displayed in disabled state.
+ * @param error Optional [OudsError] to indicate that the radio button item should appear in error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's radio button. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsRadioButtonItem(
+    selected: Boolean,
+    label: String,
+    onClick: (() -> Unit)?,
+    modifier: Modifier = Modifier,
+    extraLabel: String? = null,
+    description: String? = null,
+    @Suppress("DEPRECATION") icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    outlined: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsRadioButtonItem(
+        selected = selected,
+        label = label,
+        onClick = onClick,
+        modifier = modifier,
+        extraLabel = extraLabel,
+        description = description,
+        icon = icon?.toIcon(),
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        outlined = outlined,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource
     )
 }
 
@@ -230,7 +315,7 @@ internal fun PreviewOudsRadioButtonItem(
                 error = error,
                 outlined = checkNotNull(extraParameter),
                 reversed = reversed,
-                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null
+                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "") else null
             )
         }
     }
@@ -284,7 +369,7 @@ internal fun PreviewOudsRadioButtonItemWithDescriptionText(theme: OudsThemeContr
         onClick = {},
         extraLabel = "Extra label",
         description = LoremIpsumText,
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
+        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "")
     )
 }
 
@@ -302,7 +387,7 @@ internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeCo
             label = "Label",
             onClick = {},
             extraLabel = "Extra label",
-            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
             edgeToEdge = false,
             divider = true,
             error = OudsError(ControlItemErrorMessage)
@@ -327,7 +412,7 @@ internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(
         label = "Label",
         onClick = {},
         extraLabel = "Extra label",
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
         edgeToEdge = false,
         divider = true,
         constrainedMaxWidth = constrainedMaxWidth
@@ -369,7 +454,7 @@ internal fun PreviewOudsRadioButtonItemWithUntintedIcon(theme: OudsThemeContract
             selected = false,
             label = "Label",
             onClick = {},
-            icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
             divider = true
         )
     }

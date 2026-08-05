@@ -403,6 +403,7 @@ open class OudsBadgeIcon internal constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, { "" }) {
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val enabled: Boolean,

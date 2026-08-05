@@ -58,13 +58,12 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
  * The control item composable helps factorize common layout elements shared by [OudsCheckboxItem], [OudsTriStateCheckboxItem], [OudsRadioButtonItem],
  * and [OudsSwitchItem].
  */
-@Suppress("DEPRECATION")
 @Composable
 internal fun OudsControlItem(
     state: OudsControlState,
     label: String,
     description: String?,
-    icon: OudsControlItemIcon?,
+    icon: OudsIcon?,
     edgeToEdge: Boolean,
     divider: Boolean,
     enabled: Boolean,
@@ -112,7 +111,8 @@ internal fun OudsControlItem(
             icon?.let {
                 {
                     icon.Content(
-                        extraParameters = OudsControlItemIcon.ExtraParameters(
+                        modifier = Modifier.iconSize(OudsTheme.componentsTokens.listItem.sizeAssetSmall.value, icon.tinted),
+                        extraParameters = OudsIcon.ExtraParameters(
                             tint = if (state == OudsControlState.Disabled) OudsTheme.colorScheme.content.disabled else OudsTheme.colorScheme.content.default
                         )
                     )
@@ -189,12 +189,15 @@ internal enum class OudsControlItemIndicatorPosition {
  * An icon in a control item like [OudsCheckboxItem] or [OudsRadioButtonItem].
  * It is not clickable and requires no content description because a control item label is always present.
  */
+@Suppress("DEPRECATION")
+@Deprecated("")
 class OudsControlItemIcon private constructor(
     graphicsObject: Any,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters, OudsControlItemIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
     @ConsistentCopyVisibility
+    @Deprecated("")
     data class ExtraParameters internal constructor(
         internal val tint: Color
     ) : OudsComponentContent.ExtraParameters()
@@ -412,4 +415,4 @@ internal class OudsControlItemConstrainedMaxWidthPreviewParameterProvider : Basi
 /**
  * Error message used in control items previews.
  */
-internal val ControlItemErrorMessage = "This field can't be activated"
+internal const val ControlItemErrorMessage = "This field can't be activated"

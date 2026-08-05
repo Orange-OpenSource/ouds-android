@@ -912,6 +912,7 @@ class OudsButtonIcon private constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color
