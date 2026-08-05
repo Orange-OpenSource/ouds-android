@@ -42,9 +42,9 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResourceProvider
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
-import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
@@ -60,7 +60,7 @@ fun BottomBar(currentRoute: String, navigateToRoute: (String) -> Unit, modifier:
                 items = BottomBarItem.entries.map { item ->
                     OudsNavigationBarItem(
                         selected = currentRoute == item.route,
-                        icon = OudsNavigationBarItemIcon(painter = painterResource(item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
+                        icon = OudsIcon(painter = painterResource(item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
                         label = stringResource(item.titleRes),
                         onClick = { navigateToRoute(item.route) }
                     )

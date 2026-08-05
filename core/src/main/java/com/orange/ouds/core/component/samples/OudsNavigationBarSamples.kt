@@ -24,10 +24,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemBadge
-import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -51,7 +51,7 @@ internal fun OudsNavigationBarSample() {
                     selectedItemIndex = index
                     // Do something else here
                 },
-                icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
+                icon = OudsIcon(imageVector = item.imageVector),
                 label = item.label,
                 badge = item.count?.let { count ->
                     OudsNavigationBarItemBadge(contentDescription = "$count unread emails", count = count)

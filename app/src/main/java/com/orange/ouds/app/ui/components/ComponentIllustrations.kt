@@ -62,7 +62,6 @@ import com.orange.ouds.core.component.OudsListItem
 import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
-import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
@@ -218,7 +217,7 @@ fun NavigationBarIllustration() = ComponentIllustration {
         OudsNavigationBarItem(
             selected = index == 0,
             onClick = {},
-            icon = OudsNavigationBarItemIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
+            icon = OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
             label = stringResource(R.string.app_components_common_label_label)
         )
     }
