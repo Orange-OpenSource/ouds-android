@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -161,7 +162,7 @@ internal fun OudsBasicChip(
             val iconContent: @Composable (Modifier) -> Unit = { modifier ->
                 icon?.Content(
                     modifier = modifier
-                        .size(chipTokens.sizeIcon.value * iconScale)
+                        .iconSize(chipTokens.sizeIcon.value * iconScale, tinted = icon.tinted)
                         .semantics {
                             contentDescription = if (label == null) icon.contentDescription else ""
                         },

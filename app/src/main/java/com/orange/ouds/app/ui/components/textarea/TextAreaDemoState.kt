@@ -37,7 +37,8 @@ fun rememberTextAreaDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     helperText: String = "",
     helperLink: String = "",
-    constrainedMaxWidth: Boolean = false
+    constrainedMaxWidth: Boolean = false,
+    annotatedText: Boolean = false
 ) = rememberSaveable(
     textFieldState,
     label,
@@ -52,6 +53,7 @@ fun rememberTextAreaDemoState(
     helperText,
     helperLink,
     constrainedMaxWidth,
+    annotatedText,
     saver = TextAreaDemoState.Saver
 ) {
     TextAreaDemoState(
@@ -67,7 +69,8 @@ fun rememberTextAreaDemoState(
         errorMessage,
         helperText,
         helperLink,
-        constrainedMaxWidth
+        constrainedMaxWidth,
+        annotatedText
     )
 }
 
@@ -84,7 +87,8 @@ class TextAreaDemoState(
     errorMessage: String,
     helperText: String,
     helperLink: String,
-    constrainedMaxWidth: Boolean
+    constrainedMaxWidth: Boolean,
+    annotatedText: Boolean
 ) {
 
     companion object {
@@ -105,7 +109,8 @@ class TextAreaDemoState(
                         errorMessage,
                         helperText,
                         helperLink,
-                        constrainedMaxWidth
+                        constrainedMaxWidth,
+                        annotatedText
                     )
                 }
             },
@@ -124,7 +129,8 @@ class TextAreaDemoState(
                     list[9] as String,
                     list[10] as String,
                     list[11] as String,
-                    list[12] as Boolean
+                    list[12] as Boolean,
+                    list[13] as Boolean
                 )
             }
         )
@@ -156,6 +162,8 @@ class TextAreaDemoState(
 
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
+
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader
 
@@ -163,11 +171,14 @@ class TextAreaDemoState(
         get() = !readOnly && !hasLoader && enabled
 
     val errorMessageTextInputEnabled: Boolean
-        get() = error
+        get() = error && !annotatedText
 
     val readOnlySwitchEnabled: Boolean
         get() = !error && !hasLoader
 
     val loaderSwitchEnabled: Boolean
         get() = enabled && !readOnly && !error && textFieldState.text.isNotEmpty()
+
+    val helperTextTextInputEnabled: Boolean
+        get() = !annotatedText
 }

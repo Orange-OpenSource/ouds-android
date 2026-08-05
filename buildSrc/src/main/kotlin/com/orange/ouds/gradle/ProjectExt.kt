@@ -248,7 +248,7 @@ fun <T> Project.gitChangelogApi(version: String? = null, action: GitChangelogApi
     addChangelogTags(version)
     return gitChangelogApiBuilder()
         .withFromRepo(project.rootDir)
-        .withSemanticMajorVersionPattern("BREAKING CHANGE")
+        .withSemanticMajorVersionPattern("!:")
         .withSemanticMinorVersionPattern("^feat")
         .withSemanticPatchVersionPattern("^fix")
         .action()

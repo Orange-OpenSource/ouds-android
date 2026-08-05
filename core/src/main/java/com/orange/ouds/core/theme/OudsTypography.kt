@@ -322,7 +322,7 @@ data class OudsTypography internal constructor(
 
 @Suppress("DEPRECATION")
 internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
-    val lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Proportional, trim = LineHeightStyle.Trim.None)
+    val lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Center, trim = LineHeightStyle.Trim.None)
     OudsTypography(
         fontFamily = fontFamily,
         display = OudsTypography.Display(

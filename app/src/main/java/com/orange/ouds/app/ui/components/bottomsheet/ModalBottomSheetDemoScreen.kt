@@ -117,10 +117,10 @@ private fun Code.Builder.modalBottomSheetDemoCodeSnippet(state: ModalBottomSheet
         typedArgument("sheetGesturesEnabled", state.sheetGesturesEnabled)
         functionCallArgument("sheetState", "rememberModalBottomSheetState")
         lambdaArgument("onDismissRequest") {
-            comment("do something on dismiss")
+            comment("Do something on dismiss")
         }
         lambdaArgument(null) {
-            comment("sheet content")
+            comment("Sheet content")
         }
     }
 }

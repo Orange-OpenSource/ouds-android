@@ -154,7 +154,7 @@ class TopAppBarDemoState(
     }
 
     enum class ActionAvatar(@StringRes val labelRes: Int) {
-        Image(R.string.app_components_topAppBar_imageActionAvatar_tech),
+        Image(R.string.app_components_common_image_tech),
         Monogram(R.string.app_components_topAppBar_monogramActionAvatar_tech)
     }
 

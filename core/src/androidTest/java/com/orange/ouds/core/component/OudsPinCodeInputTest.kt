@@ -118,16 +118,12 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_sequentialInput_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsPinCodeInput"
-            var pinCode = ""
+            var pinCode by mutableStateOf("")
 
             setOudsContent {
-                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
-                    value = value,
-                    onValueChange = {
-                        pinCode = it
-                        value = it
-                    },
+                    value = pinCode,
+                    onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four,
                     modifier = Modifier.testTag(testTag)
                 )
@@ -157,16 +153,12 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_maxLengthReached_replacesLastDigit() {
         with(composeTestRule) {
             val testTag = "OudsPinCodeInput"
-            var pinCode = "1234"
+            var pinCode by mutableStateOf("1234")
 
             setOudsContent {
-                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
-                    value = value,
-                    onValueChange = {
-                        value = it
-                        pinCode = it
-                    },
+                    value = pinCode,
+                    onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four,
                     modifier = Modifier.testTag(testTag)
                 )
@@ -210,18 +202,14 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_partialInput_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsPinCodeInput"
-            var pinCode = ""
+            var pinCode by mutableStateOf("")
             var focusManager: FocusManager? = null
 
             setOudsContent {
                 focusManager = LocalFocusManager.current
-                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
-                    value = value,
-                    onValueChange = {
-                        value = it
-                        pinCode = it
-                    },
+                    value = pinCode,
+                    onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four,
                     modifier = Modifier.testTag(testTag)
                 )
@@ -242,16 +230,12 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_replaceValue_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsPinCodeInput"
-            var pinCode = "1234"
+            var pinCode by mutableStateOf("1234")
 
             setOudsContent {
-                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
-                    value = value,
-                    onValueChange = {
-                        value = it
-                        pinCode = it
-                    },
+                    value = pinCode,
+                    onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four,
                     modifier = Modifier.testTag(testTag)
                 )
@@ -269,18 +253,14 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_clearValue_succeeds() {
         with(composeTestRule) {
             val testTag = "OudsPinCodeInput"
-            var pinCode = "1234"
+            var pinCode by mutableStateOf("1234")
             var focusManager: FocusManager? = null
 
             setOudsContent {
                 focusManager = LocalFocusManager.current
-                var value by remember { mutableStateOf(pinCode) }
                 OudsPinCodeInput(
-                    value = value,
-                    onValueChange = {
-                        value = it
-                        pinCode = it
-                    },
+                    value = pinCode,
+                    onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four,
                     modifier = Modifier.testTag(testTag)
                 )

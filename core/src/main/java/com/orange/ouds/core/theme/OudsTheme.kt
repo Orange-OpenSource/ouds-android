@@ -181,8 +181,6 @@ fun OudsTheme(
     content: @Composable () -> Unit
 ) {
     with(theme) {
-        val colorScheme = if (darkThemeEnabled) colorTokens.darkColorScheme else colorTokens.lightColorScheme
-        val materialColorScheme = if (darkThemeEnabled) materialColorTokens.materialDarkColorScheme else materialColorTokens.materialLightColorScheme
         val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
         val context = LocalContext.current
         val applicationLocaleList = if (!LocalInspectionMode.current) {
@@ -195,9 +193,7 @@ fun OudsTheme(
             .orElse { java.util.Locale.getDefault() }
 
         CompositionLocalProvider(
-            LocalDarkThemeEnabled provides darkThemeEnabled,
             LocalHighContrastModeEnabled provides context.isHighContrastModeEnabled(),
-            LocalColorScheme provides colorScheme,
             LocalLightColorScheme provides colorTokens.lightColorScheme,
             LocalDarkColorScheme provides colorTokens.darkColorScheme,
             LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
@@ -215,13 +211,10 @@ fun OudsTheme(
             LocalThemeSettings provides settings,
             LocalThemeName provides theme.name
         ) {
-            // Bind LocalComponents after the others because the getComponents method needs to access the other composition locals 
-            CompositionLocalProvider(LocalComponents provides componentsTokens.getComponents()) {
-                MaterialTheme(
-                    colorScheme = materialColorScheme,
-                    content = content
-                )
-            }
+            OudsColorSchemeContent(
+                darkThemeEnabled = darkThemeEnabled,
+                content = content
+            )
         }
     }
 }
@@ -236,22 +229,33 @@ fun OudsTheme(
  */
 @Composable
 fun OudsThemeTweak(tweak: OudsTheme.Tweak, content: @Composable () -> Unit) {
-    val tweakedToDark = when (tweak) {
+    val darkThemeEnabled = when (tweak) {
         OudsTheme.Tweak.Invert -> !LocalDarkThemeEnabled.current
         OudsTheme.Tweak.ForceDark -> true
         OudsTheme.Tweak.ForceLight -> false
     }
-    val colors = if (tweakedToDark) LocalDarkColorScheme.current else LocalLightColorScheme.current
-    val materialColorScheme = if (tweakedToDark) LocalMaterialDarkColorScheme.current else LocalMaterialLightColorScheme.current
+    OudsColorSchemeContent(
+        darkThemeEnabled = darkThemeEnabled,
+        content = content
+    )
+}
 
+@Composable
+private fun OudsColorSchemeContent(darkThemeEnabled: Boolean, content: @Composable () -> Unit) {
+    val colorScheme = if (darkThemeEnabled) LocalDarkColorScheme.current else LocalLightColorScheme.current
+    val materialColorScheme = if (darkThemeEnabled) LocalMaterialDarkColorScheme.current else LocalMaterialLightColorScheme.current
     CompositionLocalProvider(
-        LocalDarkThemeEnabled provides tweakedToDark,
-        LocalColorScheme provides colors
+        LocalDarkThemeEnabled provides darkThemeEnabled,
+        LocalColorScheme provides colorScheme
     ) {
-        MaterialTheme(
-            colorScheme = materialColorScheme,
-            content = content
-        )
+        // Bind LocalComponents after the others because the getComponents method needs to access the other composition locals
+        val components = LocalComponentsTokens.current.getComponents()
+        CompositionLocalProvider(LocalComponents provides components) {
+            MaterialTheme(
+                colorScheme = materialColorScheme,
+                content = content
+            )
+        }
     }
 }
 

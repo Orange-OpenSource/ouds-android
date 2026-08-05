@@ -647,9 +647,11 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
         @Composable
         override fun Content(modifier: Modifier) {
             OudsAvatar(
-                modifier = modifier.semantics {
-                    contentDescription = this@Avatar.contentDescription
-                },
+                modifier = modifier
+                    .semantics {
+                        contentDescription = this@Avatar.contentDescription
+                    }
+                    .componentContentTestTag(),
                 graphicsObject = graphicsObject,
                 monogram = monogram,
                 monogramColor = monogramColor,
@@ -792,11 +794,7 @@ private val previewParameterValues: List<OudsTopAppBarPreviewParameter>
                     onClick = {}
                 ),
                 OudsTopAppBarAction.Avatar(
-                    painter = CheckerboardPainter(
-                        squareSize = 6.dp,
-                        primaryColor = Color(0xff247a85),
-                        secondaryColor = Color(0xfffbcd00)
-                    ),
+                    painter = CheckerboardPainter,
                     contentDescription = "",
                     onClick = {}
                 ),

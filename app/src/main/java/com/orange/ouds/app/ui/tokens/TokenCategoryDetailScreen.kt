@@ -119,24 +119,22 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     item {
                         Spacer(modifier = Modifier.height(OudsTheme.spaces.fixed.medium))
                     }
-                    if (tokenProperty != TokenProperty.SizeMinInteractiveArea) {
-                        stickyHeader {
-                            tokenProperty.nameRes?.let {
-                                Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .background(color = OudsTheme.colorScheme.background.primary)
-                                        .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
-                                        .semantics {
-                                            heading()
-                                        },
-                                    text = stringResource(id = tokenProperty.nameRes),
-                                    color = OudsTheme.colorScheme.content.default,
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
-                                    style = OudsTheme.typography.heading.medium
-                                )
-                            }
+                    stickyHeader {
+                        tokenProperty.nameRes?.let {
+                            Text(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(color = OudsTheme.colorScheme.background.primary)
+                                    .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin)
+                                    .semantics {
+                                        heading()
+                                    },
+                                text = stringResource(id = tokenProperty.nameRes),
+                                color = OudsTheme.colorScheme.content.default,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                style = OudsTheme.typography.heading.medium
+                            )
                         }
                     }
                     item {

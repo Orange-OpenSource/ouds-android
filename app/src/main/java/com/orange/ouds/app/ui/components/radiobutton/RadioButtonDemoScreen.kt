@@ -76,7 +76,7 @@ private fun RadioButtonDemoContent(state: RadioButtonDemoState) {
         horizontalArrangement = Arrangement.Center
     ) {
         with(state) {
-            RadioButtonDemoState.values.forEach { value ->
+            RadioButtonDemoState.Values.forEach { value ->
                 val contentDescription = stringResource(R.string.app_components_radioButton_radioButton_a11y, value.toString())
                 OudsRadioButton(
                     modifier = Modifier.semantics {
@@ -97,7 +97,7 @@ private fun Code.Builder.radioButtonDemoCodeSnippet(state: RadioButtonDemoState)
     with(state) {
         comment("First radio button")
         functionCall("OudsRadioButton") {
-            typedArgument("selected", selectedValue == RadioButtonDemoState.values.first())
+            typedArgument("selected", selectedValue == RadioButtonDemoState.Values.first())
             onClickArgument {
                 comment("Change state")
             }

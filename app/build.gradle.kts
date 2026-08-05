@@ -38,7 +38,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 13
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 14
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -195,6 +195,7 @@ gradle.projectsEvaluated {
     tasks["preBuild"].apply {
         dependsOn(":checkDocumentation")
         dependsOn(":checkNotice")
+        dependsOn(":checkIcons")
         dependsOn(tasks["updateAppChangelog"])
     }
     updateBuildConfig()

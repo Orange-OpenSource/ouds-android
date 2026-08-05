@@ -36,7 +36,8 @@ fun rememberBulletListDemoState(
     fontSize: OudsBulletListFontSize = OudsBulletListDefaults.TextStyle.fontSize,
     fontWeight: OudsBulletListFontWeight = OudsBulletListDefaults.TextStyle.fontWeight,
     levelCount: Int = BulletListDemoState.MinLevelCount,
-    label: String = stringResource(R.string.app_components_common_label_label)
+    label: String = stringResource(R.string.app_components_common_label_label),
+    annotatedText: Boolean = false
 ): BulletListDemoState {
     return rememberSaveable(
         type,
@@ -46,17 +47,10 @@ fun rememberBulletListDemoState(
         fontWeight,
         levelCount,
         label,
+        annotatedText,
         saver = BulletListDemoState.Saver
     ) {
-        BulletListDemoState(
-            type = type,
-            unorderedAssetClassName = unorderedAssetClassName,
-            unorderedAssetBrandColor = unorderedAssetBrandColor,
-            fontSize = fontSize,
-            fontWeight = fontWeight,
-            levelCount = levelCount,
-            label = label
-        )
+        BulletListDemoState(type, unorderedAssetClassName, unorderedAssetBrandColor, fontSize, fontWeight, levelCount, label, annotatedText)
     }
 }
 
@@ -67,7 +61,8 @@ class BulletListDemoState(
     fontSize: OudsBulletListFontSize,
     fontWeight: OudsBulletListFontWeight,
     levelCount: Int,
-    label: String
+    label: String,
+    annotatedText: Boolean
 ) {
 
     companion object {
@@ -84,7 +79,8 @@ class BulletListDemoState(
                         fontSize,
                         fontWeight,
                         levelCount,
-                        label
+                        label,
+                        annotatedText
                     )
                 }
             },
@@ -97,7 +93,8 @@ class BulletListDemoState(
                     list[3] as OudsBulletListFontSize,
                     list[4] as OudsBulletListFontWeight,
                     list[5] as Int,
-                    list[6] as String
+                    list[6] as String,
+                    list[7] as Boolean
                 )
             }
         )
@@ -117,10 +114,14 @@ class BulletListDemoState(
 
     var label: String by mutableStateOf(label)
 
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
+
     val unorderedAssetChipsEnabled: Boolean
         get() = type is OudsBulletListType.Unordered
 
     val unorderedAssetBrandColorSwitchEnabled: Boolean
         get() = type is OudsBulletListType.Unordered
 
+    val labelTextInputEnabled: Boolean
+        get() = !annotatedText
 }

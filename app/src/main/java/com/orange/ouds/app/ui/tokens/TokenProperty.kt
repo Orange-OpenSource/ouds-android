@@ -145,7 +145,13 @@ sealed class TokenProperty<T>(
 
     data object SizeMinInteractiveArea : TokenProperty<TokenCategory.Dimension.Size>(
         nameRes = R.string.app_tokens_dimension_size_minInteractiveArea_tech,
-        tokens = getTokens<OudsSizes> { _, parameter -> parameter.name == OudsSizes::minInteractiveArea.name },
+        tokens = getTokens<OudsSizes> { _, parameter ->
+            parameter.name in listOf(
+                OudsSizes::minInteractiveAreaDefault.name,
+                OudsSizes::minInteractiveAreaSmall.name,
+                OudsSizes::minInteractiveAreaSmallest.name
+            )
+        },
         categoryClass = TokenCategory.Dimension.Size::class
     )
 

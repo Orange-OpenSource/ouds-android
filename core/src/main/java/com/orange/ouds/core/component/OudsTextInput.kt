@@ -121,7 +121,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
@@ -237,7 +237,7 @@ fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param textFieldState The editable text state of the text input, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text input.
@@ -430,7 +430,7 @@ private fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -540,7 +540,7 @@ fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value Input text to be shown in the text field.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -727,7 +727,7 @@ private fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -836,7 +836,7 @@ fun OudsTextInput(
  *
  * > Design name: Text Input
  *
- * > Design version: 1.4.0
+ * > Design version: 1.4.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text input.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -1164,40 +1164,39 @@ internal fun OudsTextInputDecorator(
                 // Trailing elements
                 if (hasError || state == OudsTextInputState.Loading || trailingIconButton != null) {
                     val buttonTokens = OudsTheme.componentsTokens.button
-                    val iconScale = LocalConfiguration.current.fontScale
+                    val fontScale = LocalConfiguration.current.fontScale
+
+                    val trailingContainerModifier = when {
+                        state == OudsTextInputState.Loading -> Modifier
+                            .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
+                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * fontScale)
+                            .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
+                        hasError && trailingIconButton == null -> Modifier
+                            .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
+                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value)
+                            .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
+                        else -> Modifier
+                    }
+
                     Row(
+                        modifier = trailingContainerModifier,
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value)
+                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value, Alignment.CenterHorizontally)
                     ) {
                         // Error icon
                         if (hasError) {
-                            Box(
-                                modifier = Modifier.padding(all = if (trailingIconButton != null) 0.dp else buttonTokens.spaceInsetIconOnlyDefault.value),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
-                                    painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                                    contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
-                                    tint = errorIconColor(state = state)
-                                )
-                            }
+                            Icon(
+                                modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
+                                painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
+                                contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
+                                tint = errorIconColor(state = state)
+                            )
                         }
 
                         // Loader
                         if (state == OudsTextInputState.Loading) {
-                            Box(
-                                modifier = Modifier
-                                    .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                                    .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxWidthHeightIconOnlyDefault.value * iconScale)
-                                    .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                InternalOudsCircularProgressIndicator(
-                                    color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                                    progress = loader?.progress,
-                                    scale = iconScale
-                                )
+                            Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
+                                OudsTextInputCircularProgressIndicator(loader)
                             }
                         } else {
                             trailingIconButton?.Content(
@@ -1220,8 +1219,32 @@ internal fun OudsTextInputDecorator(
             )
 
             // Helper link
-            OptionalHelperLink(state = state, helperLink = helperLink)
+            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
+    }
+}
+
+@Composable
+internal fun OudsTextInputCircularProgressIndicator(loader: OudsTextInputLoader?) {
+    val fontScale = LocalConfiguration.current.fontScale
+    val progressIndicatorModifier = Modifier
+        .size(OudsTheme.components.button.size.progressIndicatorDefault * fontScale)
+        .semantics { hideFromAccessibility() }
+    val status = OudsProgressIndicatorStatus.Neutral
+    val track = false
+    if (loader?.progress != null) {
+        OudsCircularProgressIndicator(
+            modifier = progressIndicatorModifier,
+            progress = { loader.progress },
+            status = status,
+            track = track
+        )
+    } else {
+        OudsCircularProgressIndicator(
+            modifier = progressIndicatorModifier,
+            status = status,
+            track = track
+        )
     }
 }
 
@@ -1274,19 +1297,6 @@ internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: Ouds
                 else -> OudsTextInputState.Enabled
             }
         }
-    }
-}
-
-@Composable
-internal fun OptionalHelperLink(state: OudsTextInputState, helperLink: OudsTextInputHelperLink?) {
-    if (!helperLink?.text.isNullOrBlank()) {
-        OudsLink(
-            modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
-            label = helperLink.text,
-            onClick = helperLink.onClick,
-            size = OudsLinkSize.Small,
-            enabled = state != OudsTextInputState.Disabled
-        )
     }
 }
 
@@ -1426,8 +1436,35 @@ internal enum class OudsTextInputState {
 
 /**
  * A helper link displayed below or in place of the helper text.
+ *
+ * @param text The text to display in the link.
+ * @param onClick Callback invoked when the link is clicked.
  */
-data class OudsTextInputHelperLink(val text: String, val onClick: () -> Unit)
+data class OudsTextInputHelperLink(
+    val text: String,
+    val onClick: () -> Unit
+) : OudsComponentContent<OudsTextInputHelperLink.ExtraParameters>(OudsTextInputHelperLink.ExtraParameters::class.java) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val state: OudsTextInputState
+    ) : OudsComponentContent.ExtraParameters()
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        if (text.isNotBlank()) {
+            OudsLink(
+                modifier = Modifier
+                    .padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value)
+                    .componentContentTestTag(),
+                label = text,
+                onClick = onClick,
+                size = OudsLinkSize.Small,
+                enabled = extraParameters.state != OudsTextInputState.Disabled
+            )
+        }
+    }
+}
 
 /**
  * A circular loading indicator displayed in the text input.

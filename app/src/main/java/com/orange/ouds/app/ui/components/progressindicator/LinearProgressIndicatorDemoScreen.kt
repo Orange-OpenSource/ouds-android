@@ -33,6 +33,7 @@ fun LinearProgressIndicatorDemoScreen() {
         bottomSheetContent = { LinearProgressIndicatorDemoBottomSheetContent(state = state) },
         codeSnippet = { linearProgressIndicatorDemoCodeSnippet(state = state) },
         demoContent = { LinearProgressIndicatorDemoContent(state = state) },
+        demoContentOnColoredBox = state.onColoredBox,
         version = OudsVersion.Component.ProgressIndicator
     )
 }
@@ -68,14 +69,16 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
                     status = status,
                     track = track,
                     stopIndicator = stopIndicator,
-                    helperText = helperText
+                    helperText = helperText,
+                    gapSize = gapSize
                 )
             }
             ProgressIndicatorDemoState.Type.Indeterminate -> {
                 OudsLinearProgressIndicator(
                     status = status,
                     track = track,
-                    helperText = helperText
+                    helperText = helperText,
+                    gapSize = gapSize
                 )
             }
         }

@@ -30,6 +30,7 @@ fun CircularProgressIndicatorDemoScreen() {
         bottomSheetContent = { ProgressIndicatorDemoBottomSheetContent(state = state) },
         codeSnippet = { circularProgressIndicatorDemoCodeSnippet(state = state) },
         demoContent = { CircularProgressIndicatorDemoContent(state = state) },
+        demoContentOnColoredBox = state.onColoredBox,
         version = OudsVersion.Component.ProgressIndicator
     )
 }
@@ -44,13 +45,15 @@ private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoSta
                 OudsCircularProgressIndicator(
                     progress = { progress },
                     status = status,
-                    track = track
+                    track = track,
+                    gapSize = gapSize
                 )
             }
             ProgressIndicatorDemoState.Type.Indeterminate -> {
                 OudsCircularProgressIndicator(
                     status = status,
-                    track = track
+                    track = track,
+                    gapSize = gapSize
                 )
             }
         }

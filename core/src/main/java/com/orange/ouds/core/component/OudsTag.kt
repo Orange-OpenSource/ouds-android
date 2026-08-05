@@ -42,7 +42,6 @@ import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -235,8 +234,6 @@ private fun textStyle(size: OudsTagSize): TextStyle {
     return when (size) {
         OudsTagSize.Default -> OudsTheme.typography.label.medium.strong
         OudsTagSize.Small -> OudsTheme.typography.label.small.moderate
-    }.run {
-        copy(lineHeightStyle = lineHeightStyle?.copy(alignment = LineHeightStyle.Alignment.Center))
     }
 }
 
@@ -358,8 +355,8 @@ private fun bulletPadding(size: OudsTagSize): Dp {
 private fun loaderPadding(size: OudsTagSize): Dp {
     return with(OudsTheme.componentsTokens.tag) {
         when (size) {
-            OudsTagSize.Default -> spaceInsetLoaderDefault
-            OudsTagSize.Small -> spaceInsetLoaderSmall
+            OudsTagSize.Default -> spaceInsetProgressIndicatorDefault
+            OudsTagSize.Small -> spaceInsetProgressIndicatorSmall
         }.value
     }
 }

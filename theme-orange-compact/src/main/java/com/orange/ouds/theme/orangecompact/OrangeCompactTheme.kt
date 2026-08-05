@@ -128,13 +128,15 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * @param roundedCornerTextInputs Whether text inputs have rounded corners.
  * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
  * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
+ * @param roundedCornerCardItems Whether card items have rounded corners.
  */
 open class OrangeCompactTheme @JvmOverloads constructor(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = true,
     private val roundedCornerAlertMessages: Boolean = false,
-    private val roundedCornerProgressIndicators: Boolean = false
+    private val roundedCornerProgressIndicators: Boolean = false,
+    private val roundedCornerCardItems: Boolean = false
 ) : OudsThemeContract {
 
     override val name: String
@@ -149,7 +151,7 @@ open class OrangeCompactTheme @JvmOverloads constructor(
     }
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators)
+        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators, roundedCornerCardItems)
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeCompactColorSemanticTokens()

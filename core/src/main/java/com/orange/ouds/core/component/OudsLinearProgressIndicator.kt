@@ -30,15 +30,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
@@ -54,7 +55,56 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Progress Indicator
  *
- * > Design version: 0.1.0
+ * > Design version: 1.0.0
+ *
+ * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
+ *   into the range.
+ * @param modifier The [Modifier] to be applied to this linear progress indicator.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
+ * @param track Whether the track is displayed or not.
+ *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
+ *   easier to read (for determinate variant).
+ *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
+ *   appearance is needed.
+ * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
+ *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
+ * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
+ *   progress value.
+ * @param gapSize The size of the gap between the progress indicator and the track.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
+ */
+@Composable
+fun OudsLinearProgressIndicator(
+    progress: () -> Float,
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    stopIndicator: Boolean = false,
+    helperText: String? = null,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
+) {
+    OudsLinearProgressIndicator(
+        nullableProgress = progress,
+        modifier = modifier,
+        status = status,
+        track = track,
+        stopIndicator = stopIndicator,
+        helperText = helperText,
+        gapSize = gapSize
+    )
+}
+
+// TODO Update description and add design guideline link when available
+/**
+ * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
+ * progress (indeterminate). Best used inside layouts to show progress.
+ *
+ * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+ *
+ * > Design name: Progress Indicator
+ *
+ * > Design version: 1.0.0
  *
  * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  *   into the range.
@@ -72,6 +122,10 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
  */
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsLinearProgressIndicator(
     progress: () -> Float,
@@ -100,7 +154,53 @@ fun OudsLinearProgressIndicator(
  *
  * > Design name: Progress Indicator
  *
- * > Design version: 0.1.0
+ * > Design version: 1.0.0
+ *
+ * @param modifier The [Modifier] to be applied to this linear progress indicator.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
+ * @param track Whether the track is displayed or not.
+ *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
+ *   easier to read (for determinate variant).
+ *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
+ *   appearance is needed.
+ * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
+ *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
+ * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
+ *   progress value.
+ * @param gapSize The size of the gap between the progress indicator and the track.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
+ */
+@Composable
+fun OudsLinearProgressIndicator(
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    stopIndicator: Boolean = false,
+    helperText: String? = null,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+) {
+    OudsLinearProgressIndicator(
+        nullableProgress = null,
+        modifier = modifier,
+        status = status,
+        track = track,
+        stopIndicator = stopIndicator,
+        helperText = helperText,
+        gapSize = gapSize
+    )
+}
+
+// TODO Update description and add design guideline link when available
+/**
+ * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
+ * progress (indeterminate). Best used inside layouts to show progress.
+ *
+ * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * > Design name: Progress Indicator
+ *
+ * > Design version: 1.0.0
  *
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
@@ -116,6 +216,10 @@ fun OudsLinearProgressIndicator(
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
  */
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsLinearProgressIndicator(
     modifier: Modifier = Modifier,
@@ -142,7 +246,8 @@ private fun OudsLinearProgressIndicator(
     track: Boolean,
     stopIndicator: Boolean,
     helperText: String?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 ) {
     val scale = LocalConfiguration.current.fontScale
     with(OudsTheme.componentsTokens.progressIndicator) {
@@ -154,19 +259,22 @@ private fun OudsLinearProgressIndicator(
             val progressIndicatorModifier = Modifier
                 .height(sizeLinearIndicatorHeight.dp * scale)
                 .fillMaxWidth()
-            val color = status.color()
-            val trackColor = if (track) colorContentTrack.value else Color.Transparent
-            val gapSize = ProgressIndicatorDefaults.LinearIndicatorTrackGapSize * scale
+            val color = progressIndicatorColor(status = status)
+            val trackColor = progressIndicatorTrackColor(track = track)
+            val gapSizeValue = when (gapSize) {
+                OudsProgressIndicatorGapSize.Default -> ProgressIndicatorDefaults.LinearIndicatorTrackGapSize
+                OudsProgressIndicatorGapSize.Small -> 1.dp
+            } * scale
             val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
             val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
 
-            nullableProgress?.let {
+            if (nullableProgress != null || LocalInspectionMode.current) {
                 LinearProgressIndicator(
-                    progress = nullableProgress,
+                    progress = nullableProgress.orElse { { 0.75f } },
                     modifier = progressIndicatorModifier,
                     color = color,
                     trackColor = trackColor,
-                    gapSize = gapSize,
+                    gapSize = gapSizeValue,
                     strokeCap = strokeCap,
                     drawStopIndicator = {
                         if (stopIndicator) {
@@ -174,12 +282,12 @@ private fun OudsLinearProgressIndicator(
                         }
                     }
                 )
-            }.orElse {
+            } else {
                 LinearProgressIndicator(
                     modifier = progressIndicatorModifier,
                     color = color,
                     trackColor = trackColor,
-                    gapSize = gapSize,
+                    gapSize = gapSizeValue,
                     strokeCap = strokeCap
                 )
             }
@@ -218,16 +326,27 @@ internal fun PreviewOudsLinearProgressIndicator(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     parameter: OudsLinearProgressIndicatorPreviewParameter
-) {
-    OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-        with(parameter) {
-            OudsLinearProgressIndicator(
-                modifier = Modifier.padding(all = PreviewPaddingDefault),
-                progress = { 0.75f },
-                status = status,
-                track = track,
-                helperText = helperText
-            )
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
+        val linearProgressIndicatorPreview: @Composable () -> Unit = {
+            PreviewEnumEntries<OudsProgressIndicatorStatus>(maxEnumEntriesInEachRow = 1) { status ->
+                OudsLinearProgressIndicator(
+                    progress = { 0.75f },
+                    status = status,
+                    track = track,
+                    stopIndicator = stopIndicator,
+                    helperText = helperText,
+                    gapSize = gapSize
+                )
+            }
+        }
+
+        if (onColoredBackground) {
+            OudsColoredBox(color = OudsColoredBoxColor.BrandPrimary) {
+                linearProgressIndicatorPreview()
+            }
+        } else {
+            linearProgressIndicatorPreview()
         }
     }
 }
@@ -238,19 +357,19 @@ internal fun PreviewOudsLinearProgressIndicator(
 private fun PreviewOudsLinearProgressIndicatorWithLongHelperText() = PreviewOudsLinearProgressIndicatorWithLongHelperText(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThemeContract) {
-    OudsPreview(theme = theme) {
-        OudsLinearProgressIndicator(
-            modifier = Modifier.padding(all = PreviewPaddingDefault),
-            helperText = "Uploading file: http://download-website.com/directory/file.jpg"
-        )
-    }
+internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsLinearProgressIndicator(
+        modifier = Modifier.padding(all = PreviewPaddingDefault),
+        helperText = "Uploading file: http://download-website.com/directory/file.jpg"
+    )
 }
 
 internal data class OudsLinearProgressIndicatorPreviewParameter(
-    val status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     val track: Boolean = true,
-    val helperText: String? = null
+    val stopIndicator: Boolean = false,
+    val helperText: String? = null,
+    val onColoredBackground: Boolean = false,
+    val gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 )
 
 internal class OudsLinearProgressIndicatorPreviewParameterProvider :
@@ -259,7 +378,9 @@ internal class OudsLinearProgressIndicatorPreviewParameterProvider :
 private val previewParameterValues: List<OudsLinearProgressIndicatorPreviewParameter>
     get() = listOf(
         OudsLinearProgressIndicatorPreviewParameter(),
-        OudsLinearProgressIndicatorPreviewParameter(status = OudsProgressIndicatorStatus.Neutral),
         OudsLinearProgressIndicatorPreviewParameter(track = false),
-        OudsLinearProgressIndicatorPreviewParameter(helperText = "Loading...")
+        OudsLinearProgressIndicatorPreviewParameter(stopIndicator = true),
+        OudsLinearProgressIndicatorPreviewParameter(helperText = "Loading..."),
+        OudsLinearProgressIndicatorPreviewParameter(onColoredBackground = true),
+        OudsLinearProgressIndicatorPreviewParameter(gapSize = OudsProgressIndicatorGapSize.Small)
     )

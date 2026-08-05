@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsProgressIndicatorGapSize
 import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 
 open class ProgressIndicatorDemoState(
@@ -25,7 +26,9 @@ open class ProgressIndicatorDemoState(
     type: Type,
     status: OudsProgressIndicatorStatus,
     track: Boolean,
-    animated: Boolean
+    gapSize: OudsProgressIndicatorGapSize,
+    animated: Boolean,
+    onColoredBox: Boolean
 ) {
 
     companion object {
@@ -39,7 +42,9 @@ open class ProgressIndicatorDemoState(
                         type,
                         status,
                         track,
-                        animated
+                        gapSize,
+                        animated,
+                        onColoredBox
                     )
                 }
             },
@@ -49,7 +54,9 @@ open class ProgressIndicatorDemoState(
                     list[1] as Type,
                     list[2] as OudsProgressIndicatorStatus,
                     list[3] as Boolean,
-                    list[4] as Boolean
+                    list[4] as OudsProgressIndicatorGapSize,
+                    list[5] as Boolean,
+                    list[6] as Boolean
                 )
             }
         )
@@ -63,7 +70,11 @@ open class ProgressIndicatorDemoState(
 
     var track by mutableStateOf(track)
 
+    var gapSize by mutableStateOf(gapSize)
+
     var animated by mutableStateOf(animated)
+
+    var onColoredBox: Boolean by mutableStateOf(onColoredBox)
 
     val progress: Float
         get() = progressText.toFloatOrNull() ?: 0f
@@ -73,6 +84,9 @@ open class ProgressIndicatorDemoState(
 
     val animatedSwitchEnabled: Boolean
         get() = type == Type.Determinate
+
+    val statusDropdownMenuEnabled: Boolean
+        get() = !onColoredBox
 
     enum class Type(@StringRes val labelRes: Int) {
         Determinate(R.string.app_components_progressIndicator_determinate_tech),

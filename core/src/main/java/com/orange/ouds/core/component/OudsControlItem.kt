@@ -98,7 +98,7 @@ internal fun OudsControlItem(
         },
         edgeToEdgePreview = edgeToEdge
     ) {
-        val controlItemTokens = OudsTheme.componentsTokens.controlItem
+        val listItemTokens = OudsTheme.componentsTokens.listItem
 
         val itemIcon: (@Composable () -> Unit)? = if (error != null) {
             {
@@ -124,12 +124,12 @@ internal fun OudsControlItem(
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
         Column(modifier = modifier) {
-            val shape = RoundedCornerShape(controlItemTokens.borderRadiusDefault.value)
+            val shape = RoundedCornerShape(listItemTokens.borderRadiusDefault.value)
             Box(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
-                    .heightIn(min = controlItemTokens.sizeMinHeightDefault.dp)
-                    .widthIn(min = controlItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) controlItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
+                    .heightIn(min = listItemTokens.sizeMinHeightDefault.dp)
+                    .widthIn(min = listItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) listItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .background(color = backgroundColor, shape = shape)
                     .then(contentModifier)
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
@@ -137,17 +137,17 @@ internal fun OudsControlItem(
             ) {
                 Row(
                     modifier = Modifier.padding(
-                        vertical = controlItemTokens.spacePaddingBlockDefault.value,
+                        vertical = listItemTokens.spacePaddingBlockDefault.value,
                         horizontal = contentHorizontalPadding(edgeToEdge)
                     ),
-                    horizontalArrangement = Arrangement.spacedBy(controlItemTokens.spaceColumnGap.value)
+                    horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
                 ) {
                     leadingElement?.let { LeadingTrailingBox(leadingElement) }
                     Column(
                         modifier = Modifier
                             .weight(1f)
                             .align(Alignment.CenterVertically),
-                        verticalArrangement = Arrangement.spacedBy(controlItemTokens.spaceRowGap.value)
+                        verticalArrangement = Arrangement.spacedBy(listItemTokens.spaceRowGap.value)
                     ) {
                         Text(text = label, style = OudsTheme.typography.label.large.default, color = labelColor(state = state, error = error))
                         if (!extraLabel.isNullOrBlank()) {
@@ -238,7 +238,7 @@ class OudsControlItemIcon private constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier.iconSize(OudsTheme.componentsTokens.controlItem.sizeAssetSmall.value, tinted))
+        super.Content(modifier.iconSize(OudsTheme.componentsTokens.listItem.sizeAssetSmall.value, tinted))
     }
 }
 
@@ -255,7 +255,7 @@ internal fun rememberControlItemBackgroundColor(
 @Suppress("DEPRECATION")
 @Composable
 private fun LeadingTrailingBox(content: @Composable () -> Unit) {
-    val assetContainerMaxHeight = OudsTheme.componentsTokens.controlItem.sizeMaxHeightAssetsContainer.dp
+    val assetContainerMaxHeight = OudsTheme.componentsTokens.listItem.sizeMaxHeightAssetsContainer.dp
     val checkboxIndicatorSize = OudsTheme.componentsTokens.checkbox.sizeMinHeight.value
 
     val maxHeight = max(assetContainerMaxHeight, checkboxIndicatorSize)
@@ -271,7 +271,7 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 
 @Composable
 private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
-    with(OudsTheme.componentsTokens.controlItem) {
+    with(OudsTheme.componentsTokens.listItem) {
         val modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
@@ -292,7 +292,7 @@ private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
 @Suppress("DEPRECATION")
 @Composable
 private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
-    with(OudsTheme.componentsTokens.controlItem) {
+    with(OudsTheme.componentsTokens.listItem) {
         Icon(
             modifier = modifier
                 .padding(spacePaddingInlineErrorIcon.value)
@@ -307,7 +307,7 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
 @Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
-    return with(OudsTheme.componentsTokens.controlItem) {
+    return with(OudsTheme.componentsTokens.listItem) {
         when (state) {
             OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
@@ -319,7 +319,7 @@ private fun backgroundColor(state: OudsControlState): Color {
 
 @Composable
 private fun contentHorizontalPadding(edgeToEdge: Boolean) =
-    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.controlItem.spacePaddingInline.value
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.listItem.spacePaddingInline.value
 
 @Composable
 private fun dividerColor(state: OudsControlState, error: OudsError?) =

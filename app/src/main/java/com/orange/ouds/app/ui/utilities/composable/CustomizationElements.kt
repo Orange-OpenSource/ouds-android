@@ -47,6 +47,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsSwitchItem
@@ -81,7 +82,7 @@ fun CustomizationSwitchItem(label: String, checked: Boolean, onCheckedChange: (B
 @JvmName("CustomizationFilterChipsLabels")
 @Composable
 fun CustomizationFilterChips(
-    label: String,
+    label: String?,
     chipLabels: List<String>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
@@ -103,7 +104,7 @@ fun CustomizationFilterChips(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomizationFilterChips(
-    label: String,
+    label: String?,
     chips: List<CustomizationFilterChip>,
     selectedChipIndex: Int,
     onSelectionChange: (Int) -> Unit,
@@ -116,9 +117,11 @@ fun CustomizationFilterChips(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .semantics(mergeDescendants = true) {}
+            .semantics(mergeDescendants = true) {},
     ) {
-        CustomizationText(label = label, enabled = chips.any { it.enabled })
+        label?.let {
+            CustomizationText(label = label, enabled = chips.any { it.enabled })
+        }
 
         // Setting an horizontalScroll in the Row breaks the canFocus parameter of the focusProperties Modifier
         // in the parent Column of CustomizationBottomSheetScaffold
@@ -128,14 +131,15 @@ fun CustomizationFilterChips(
         } else {
             true
         }
-        
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(state = rememberScrollState())
                 .selectableGroup()
                 .focusProperties { canFocus = chipsRowCanFocus }
-                .padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
+                .padding(horizontal = OudsTheme.grids.margin)
+                .padding(top = if (label != null) OudsTheme.spaces.fixed.extraSmall else 0.dp, bottom = OudsTheme.spaces.fixed.extraSmall),
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
         ) {
             chips.forEachIndexed { index, chip ->
@@ -159,6 +163,9 @@ fun CustomizationTextInput(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    suffix: String? = null,
+    helperText: String? = null,
+    resetValue: String = ""
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(text = value, selection = TextRange(value.length))) }
 
@@ -173,6 +180,9 @@ fun CustomizationTextInput(
         modifier = modifier,
         enabled = enabled,
         keyboardOptions = keyboardOptions,
+        suffix = suffix,
+        helperText = helperText,
+        resetValue = resetValue
     )
 }
 
@@ -186,6 +196,7 @@ fun CustomizationTextInput(
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     suffix: String? = null,
+    helperText: String? = null,
     resetValue: String = ""
 ) {
     @Suppress("NAME_SHADOWING")
@@ -211,6 +222,7 @@ fun CustomizationTextInput(
             null
         },
         suffix = suffix,
+        helperText = helperText,
         keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() })
     )
 }
@@ -227,19 +239,23 @@ fun CustomizationDropdownMenu(
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier
-
+    val enabled = items.any { it.enabled }
     Column(
         modifier = modifier
             .fillMaxWidth()
             .semantics(mergeDescendants = true) {}
     ) {
-        CustomizationText(label = label, enabled = items.any { it.enabled })
+        CustomizationText(label = label, enabled = enabled)
 
         var expanded by remember { mutableStateOf(false) }
         ExposedDropdownMenuBox(
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.extraSmall),
             expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
+            onExpandedChange = {
+                if (enabled) {
+                    expanded = !expanded
+                }
+            }
         ) {
             val leadingIconBoxModifier = Modifier.size(OudsTheme.sizes.icon.withLabel.medium.sizeMedium)
             TextField(
@@ -248,6 +264,7 @@ fun CustomizationDropdownMenu(
                     .fillMaxWidth(),
                 value = items[selectedItemIndex].label,
                 onValueChange = {},
+                enabled = enabled,
                 readOnly = true,
                 singleLine = true,
                 textStyle = valueLabelTextStyle,

@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsLinkDefaults
+import com.orange.ouds.core.component.OudsLinkDensity
 import com.orange.ouds.core.component.OudsLinkSize
 
 @Composable
@@ -30,10 +31,11 @@ fun rememberLinkDemoState(
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     size: OudsLinkSize = OudsLinkDefaults.Size,
+    density: OudsLinkDensity = OudsLinkDefaults.Density,
     layout: LinkDemoState.Layout = LinkDemoState.Layout.entries.first(),
     icon: LinkDemoState.Icon = LinkDemoState.Icon.Tinted
-) = rememberSaveable(label, enabled, onColoredBox, size, layout, icon, saver = LinkDemoState.Saver) {
-    LinkDemoState(label, enabled, onColoredBox, size, layout, icon)
+) = rememberSaveable(label, enabled, onColoredBox, size, density, layout, icon, saver = LinkDemoState.Saver) {
+    LinkDemoState(label, enabled, onColoredBox, size, density, layout, icon)
 }
 
 class LinkDemoState(
@@ -41,6 +43,7 @@ class LinkDemoState(
     enabled: Boolean,
     onColoredBox: Boolean,
     size: OudsLinkSize,
+    density: OudsLinkDensity,
     layout: Layout,
     icon: Icon
 ) {
@@ -55,6 +58,7 @@ class LinkDemoState(
                         enabled,
                         onColoredBox,
                         size,
+                        density,
                         layout,
                         icon
                     )
@@ -66,8 +70,9 @@ class LinkDemoState(
                     list[1] as Boolean,
                     list[2] as Boolean,
                     list[3] as OudsLinkSize,
-                    list[4] as Layout,
-                    list[5] as Icon
+                    list[4] as OudsLinkDensity,
+                    list[5] as Layout,
+                    list[6] as Icon
                 )
             }
         )
@@ -81,6 +86,8 @@ class LinkDemoState(
 
     var size: OudsLinkSize by mutableStateOf(size)
 
+    var density: OudsLinkDensity by mutableStateOf(density)
+
     var layout: Layout by mutableStateOf(layout)
 
     var icon: Icon by mutableStateOf(icon)
@@ -91,8 +98,9 @@ class LinkDemoState(
     enum class Layout(@StringRes val labelRes: Int) {
         TextOnly(R.string.app_components_common_textOnlyLayout_tech),
         TextAndIcon(R.string.app_components_common_textAndIconLayout_tech),
-        ChevronBack(R.string.app_components_link_backLayout_tech),
-        ChevronNext(R.string.app_components_link_nextLayout_tech)
+        IndicatorPrevious(R.string.app_components_link_previousLayout_tech),
+        IndicatorNext(R.string.app_components_link_nextInternalLayout_tech),
+        IndicatorExternal(R.string.app_components_link_nextExternalLayout_tech)
     }
 
     enum class Icon(@StringRes val labelRes: Int) {

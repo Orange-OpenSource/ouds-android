@@ -16,7 +16,10 @@
 
     {{#commits}}
       {{#ifCommitType . type='feat'}}
+          {{#ifCommitBreaking .}}
+          {{else}}
 -{{#eachCommitScope .}} **{{.}}**{{/eachCommitScope}} {{commitDescriptionWithPullRequestUrl .}}
+          {{/ifCommitBreaking}}
       {{/ifCommitType}}
     {{/commits}}
   {{/ifContainsType}}
@@ -26,7 +29,10 @@
 
     {{#commits}}
       {{#ifCommitType . type='fix'}}
+          {{#ifCommitBreaking .}}
+          {{else}}
 -{{#eachCommitScope .}} **{{.}}**{{/eachCommitScope}} {{commitDescriptionWithPullRequestUrl .}}
+          {{/ifCommitBreaking}}
       {{/ifCommitType}}
     {{/commits}}
   {{/ifContainsType}}

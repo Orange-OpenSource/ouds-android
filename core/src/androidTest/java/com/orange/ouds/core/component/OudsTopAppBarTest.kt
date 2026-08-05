@@ -19,8 +19,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extension.setOudsContent
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import org.junit.Rule
@@ -77,7 +77,7 @@ class OudsTopAppBarTest {
                             onClick = onIconClick
                         ),
                         OudsTopAppBarAction.Avatar(
-                            painter = CheckerboardPainter(4.dp, Color.White, Color.Black),
+                            painter = CheckerboardPainter,
                             contentDescription = imageAvatarContentDescription,
                             onClick = onImageAvatarClick
                         ),
@@ -98,6 +98,79 @@ class OudsTopAppBarTest {
             verify(onImageAvatarClick).invoke()
             onNodeWithContentDescription(monogramAvatarContentDescription).performClick()
             verify(onMonogramAvatarClick).invoke()
+        }
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Test
+    fun oudsTopAppBar_navigationIconWithTestTag_clickSucceeds() {
+        val navigationIconTestTag = "nav_icon"
+        val onClick = mock<() -> Unit>()
+
+        with(composeTestRule) {
+            setOudsContent {
+                OudsTopAppBar(
+                    title = "Title",
+                    navigationIcon = OudsTopAppBarNavigationIcon.Back(
+                        onClick = onClick
+                    ).apply { testTag = navigationIconTestTag }
+                )
+            }
+
+            onNodeWithTag(navigationIconTestTag).performClick()
+            verify(onClick).invoke()
+        }
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Test
+    fun oudsTopAppBar_actionIconWithTestTag_clickSucceeds() {
+        val iconTestTag = "action_icon"
+        val onClick = mock<() -> Unit>()
+
+        with(composeTestRule) {
+            setOudsContent {
+                OudsTopAppBar(
+                    title = "Title",
+                    actions = listOf(
+                        OudsTopAppBarAction.Icon(
+                            imageVector = Icons.Filled.AccountCircle,
+                            contentDescription = "Settings",
+                            onClick = onClick
+                        ).apply { testTag = iconTestTag }
+                    )
+                )
+            }
+
+            onNodeWithTag(iconTestTag).performClick()
+            verify(onClick).invoke()
+        }
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Test
+    fun oudsTopAppBar_actionAvatarWithTestTag_clickSucceeds() {
+        val avatarTestTag = "action_avatar"
+        val onClick = mock<() -> Unit>()
+
+        with(composeTestRule) {
+            setOudsContent {
+                OudsTopAppBar(
+                    title = "Title",
+                    actions = listOf(
+                        OudsTopAppBarAction.Avatar(
+                            monogram = 'A',
+                            color = Color.White,
+                            backgroundColor = Color.Black,
+                            contentDescription = "Profile",
+                            onClick = onClick
+                        ).apply { testTag = avatarTestTag }
+                    )
+                )
+            }
+
+            onNodeWithTag(avatarTestTag).performClick()
+            verify(onClick).invoke()
         }
     }
 }

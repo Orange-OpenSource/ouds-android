@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.orangecompact.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
@@ -26,6 +27,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 
 internal data class OrangeCompactColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = OrangeCompactColorActionSemanticTokens(),
+    override val aiColorTokens: OudsColorAiSemanticTokens = OrangeCompactColorAiSemanticTokens(),
     override val alwaysColorTokens: OudsColorAlwaysSemanticTokens = OrangeCompactColorAlwaysSemanticTokens(),
     override val backgroundColorTokens: OudsColorBgSemanticTokens = OrangeCompactColorBgSemanticTokens(),
     override val borderColorTokens: OudsColorBorderSemanticTokens = OrangeCompactColorBorderSemanticTokens(),

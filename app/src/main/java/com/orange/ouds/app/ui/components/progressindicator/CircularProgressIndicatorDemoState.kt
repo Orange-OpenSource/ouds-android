@@ -17,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Companion.InitialProgressValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Type
 import com.orange.ouds.core.component.OudsProgressIndicatorDefaults
+import com.orange.ouds.core.component.OudsProgressIndicatorGapSize
 import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 
 @Composable
@@ -25,7 +26,9 @@ fun rememberCircularProgressIndicatorDemoState(
     type: Type = Type.Determinate,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
-    animated: Boolean = true
-) = rememberSaveable(progressText, type, status, track, animated, saver = ProgressIndicatorDemoState.Saver) {
-    ProgressIndicatorDemoState(progressText, type, status, track, animated)
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
+    animated: Boolean = true,
+    onColoredBox: Boolean = false
+) = rememberSaveable(progressText, type, status, track, gapSize, animated, onColoredBox, saver = ProgressIndicatorDemoState.Saver) {
+    ProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox)
 }

@@ -224,13 +224,7 @@ internal fun PreviewOudsAvatar(
             )
         } else {
             OudsAvatar(
-                painter = remember {
-                    CheckerboardPainter(
-                        squareSize = 6.dp,
-                        primaryColor = Color(0xff247a85),
-                        secondaryColor = Color(0xfffbcd00)
-                    )
-                },
+                painter = remember { CheckerboardPainter },
                 onClick = {}
             )
         }

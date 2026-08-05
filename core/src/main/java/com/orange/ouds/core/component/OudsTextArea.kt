@@ -104,7 +104,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param textFieldState The editable text state of the text area, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text area.
@@ -193,7 +193,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -260,7 +260,7 @@ fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param textFieldState The editable text state of the text area, including both the text itself and position of the cursor or selection.
  * @param modifier [Modifier] applied to the text area.
@@ -350,7 +350,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -492,7 +492,7 @@ private fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value Input text to be shown in the text area.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -575,7 +575,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -643,7 +643,7 @@ fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value Input text to be shown in the text area.
  * @param onValueChange Callback that is triggered when the input service updates the text. An updated text comes as a parameter of the callback.
@@ -728,7 +728,7 @@ fun OudsTextArea(
 
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -867,7 +867,7 @@ private fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text area.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -950,7 +950,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -1018,7 +1018,7 @@ fun OudsTextArea(
  *
  * > Design name: Text Area
  *
- * > Design version: 1.2.0
+ * > Design version: 1.2.1
  *
  * @param value The [androidx.compose.ui.text.input.TextFieldValue] to be shown in the text area.
  * @param onValueChange Called when the input service updates the values in [TextFieldValue].
@@ -1102,7 +1102,7 @@ fun OudsTextArea(
 }
 
 @Deprecated(
-    "Maintained for compatibility purposes. Use another overload.",
+    "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
 )
 @Composable
@@ -1265,13 +1265,14 @@ internal fun OudsTextAreaDecorator(
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(modifier = Modifier.sizeIn(minWidth = sizeMinWidth.dp)) {
+            val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
                     .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
-                    .padding(top = if (value.isEmpty() && state != OudsTextInputState.Focused) textAreaTokens.spacePaddingBlockTopEmpty.value else textAreaTokens.spacePaddingBlock.value)
-                    .padding(bottom = if (value.isEmpty() && state != OudsTextInputState.Focused) 0.dp else textAreaTokens.spacePaddingBlock.value)
+                    .padding(top = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else textAreaTokens.spacePaddingBlockTopEmpty.value)
+                    .padding(bottom = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else 0.dp)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
                     .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
@@ -1284,7 +1285,6 @@ internal fun OudsTextAreaDecorator(
                 ) {
                     // Label
                     if (!label.isNullOrBlank()) {
-                        val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -1318,20 +1318,20 @@ internal fun OudsTextAreaDecorator(
                         .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidthDefault.value)
                         .padding(
                             horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnlyDefault.value,
-                            vertical = if (value.isEmpty() && state != OudsTextInputState.Focused) {
-                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
-                            } else {
+                            vertical = if (isSmallLabel) {
                                 textAreaTokens.spacePaddingBlockTrailingContainer.value
+                            } else {
+                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
                             }
                         )
                 ) {
                     val buttonTokens = OudsTheme.componentsTokens.button
-                    val iconScale = LocalConfiguration.current.fontScale
 
                     // Error icon
                     if (hasError) {
+                        val fontScale = LocalConfiguration.current.fontScale
                         Icon(
-                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * iconScale),
+                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
                             painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
                             contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
@@ -1340,11 +1340,7 @@ internal fun OudsTextAreaDecorator(
 
                     // Loader
                     if (state == OudsTextInputState.Loading) {
-                        InternalOudsCircularProgressIndicator(
-                            color = OudsTheme.componentsTokens.button.colorContentMinimalLoading.value,
-                            progress = loader?.progress,
-                            scale = iconScale
-                        )
+                        OudsTextInputCircularProgressIndicator(loader)
                     }
                 }
             }
@@ -1359,7 +1355,7 @@ internal fun OudsTextAreaDecorator(
             )
 
             // Helper link
-            OptionalHelperLink(state = state, helperLink = helperLink)
+            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
     }
 }
