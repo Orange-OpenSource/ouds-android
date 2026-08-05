@@ -16,8 +16,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsLink
-import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -34,7 +34,7 @@ internal fun OudsLinkSample() {
 internal fun OudsLinkWithIconSample() {
     OudsLink(
         label = "Link",
-        icon = OudsLinkIcon(imageVector = Icons.Filled.FavoriteBorder),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         onClick = { /* Do something! */ },
     )
 }
@@ -52,7 +52,7 @@ internal fun OudsLinkWithIndicatorSample() {
 internal fun OudsLinkWithUntintedIconSample() {
     OudsLink(
         label = "Link",
-        icon = OudsLinkIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
         onClick = { /* Do something! */ },
     )
 }

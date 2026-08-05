@@ -112,7 +112,7 @@ fun OudsFilterChip(
 fun OudsFilterChip(
     selected: Boolean,
     onClick: () -> Unit,
-    icon: OudsChipIcon,
+    icon: OudsIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -122,6 +122,57 @@ fun OudsFilterChip(
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
+ * Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
+ * and selected Filter Chips remain visually distinct to indicate active filters.
+ *
+ * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
+ * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
+ *
+ * > Design name: Filter Chip
+ *
+ * > Design version: 1.5.0
+ *
+ * @param selected Whether this chip is selected or not.
+ * @param onClick Called when this chip is clicked.
+ * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlyWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsFilterChip(
+    selected: Boolean,
+    onClick: () -> Unit,
+    @Suppress("DEPRECATION") icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsFilterChip(
+        selected = selected,
+        onClick = onClick,
+        icon = icon.toIcon(),
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -165,7 +216,7 @@ fun OudsFilterChip(
     selected: Boolean,
     onClick: () -> Unit,
     label: String,
-    icon: OudsChipIcon,
+    icon: OudsIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -181,13 +232,67 @@ fun OudsFilterChip(
     )
 }
 
+/**
+ * Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
+ * Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
+ * and selected Filter Chips remain visually distinct to indicate active filters.
+ *
+ * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
+ * Ideal when a visual cue helps reinforce the filter’s meaning.
+ * Other layouts are available for this component: *text only* and *icon only*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-filter-chip)
+ *
+ * > Design name: Filter Chip
+ *
+ * > Design version: 1.5.0
+ *
+ * @param selected Whether this chip is selected or not.
+ * @param onClick Called when this chip is clicked.
+ * @param label Text label displayed in the chip.
+ * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsFilterChip(
+    selected: Boolean,
+    onClick: () -> Unit,
+    label: String,
+    @Suppress("DEPRECATION") icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsFilterChip(
+        selected = selected,
+        onClick = onClick,
+        label = label,
+        icon = icon.toIcon(),
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource
+    )
+}
+
 @Composable
 @JvmName("OudsFilterChipNullableLabelAndIcon")
 private fun OudsFilterChip(
     selected: Boolean,
     onClick: () -> Unit,
     nullableLabel: String?,
-    nullableIcon: OudsChipIcon?,
+    nullableIcon: OudsIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -217,7 +322,7 @@ internal fun PreviewOudsFilterChip(theme: OudsThemeContract, darkThemeEnabled: B
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
             val label = if (hasLabel) "Label" else null
-            val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
+            val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder) else null
             PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
                 OudsFilterChip(
                     selected = selected,
@@ -241,7 +346,7 @@ internal fun PreviewOudsFilterChipWithUntintedIcon(theme: OudsThemeContract) = O
     PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
         OudsFilterChip(
             selected = false,
-            nullableIcon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            nullableIcon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             nullableLabel = "Label",
             onClick = {}
         )
@@ -259,7 +364,7 @@ private fun PreviewOudsFilterChipOnTwoLines() {
 internal fun PreviewOudsFilterChipOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsFilterChip(
         selected = false,
-        icon = OudsChipIcon(Icons.Filled.FavoriteBorder, ""),
+        icon = OudsIcon(Icons.Filled.FavoriteBorder),
         label = "Filter chip\non two lines",
         onClick = {}
     )

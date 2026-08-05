@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBasicSuggestionChip
-import com.orange.ouds.core.component.OudsChipIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsSuggestionChip
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -43,7 +43,7 @@ internal fun OudsSuggestionChipTextOnlySample() {
 internal fun OudsSuggestionChipIconOnlySample() {
     OudsSuggestionChip(
         onClick = { /* Do something! */ },
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         )
@@ -55,7 +55,7 @@ internal fun OudsSuggestionChipTextAndIconSample() {
     OudsSuggestionChip(
         onClick = { /* Do something! */ },
         label = "Label",
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         )
@@ -66,7 +66,7 @@ internal fun OudsSuggestionChipTextAndIconSample() {
 internal fun OudsSuggestionChipIconOnlyWithUntintedIconSample() {
     OudsSuggestionChip(
         onClick = { /* Do something! */ },
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "Content description",
             tinted = false
@@ -79,7 +79,7 @@ internal fun OudsSuggestionChipTextAndIconWithUntintedIconSample() {
     OudsSuggestionChip(
         onClick = { /* Do something! */ },
         label = "Label",
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "",
             tinted = false
@@ -108,7 +108,7 @@ internal fun OudsBasicSuggestionChipTextOnlySample() {
 internal fun OudsBasicSuggestionChipIconOnlySample() {
     OudsBasicSuggestionChip(
         onClick = { /* Do something! */ },
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         )
@@ -122,7 +122,7 @@ internal fun OudsBasicSuggestionChipTextAndIconSample() {
     OudsBasicSuggestionChip(
         onClick = { /* Do something! */ },
         label = "Label",
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         )

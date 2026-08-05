@@ -55,7 +55,7 @@ internal fun OudsBasicChip(
     selected: Boolean,
     onClick: () -> Unit,
     label: String?,
-    icon: OudsChipIcon?,
+    icon: OudsIcon?,
     iconPosition: OudsChipIconPosition,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -168,7 +168,7 @@ internal fun OudsBasicChip(
                             .semantics {
                                 contentDescription = if (label == null) iconContentDescription else ""
                             },
-                        extraParameters = OudsChipIcon.ExtraParameters(tint = contentColor.value)
+                        extraParameters = OudsIcon.ExtraParameters(tint = contentColor.value)
                     )
                 }
             }
@@ -273,7 +273,7 @@ private fun tickColor(state: OudsChipState, selected: Boolean): Color? {
 }
 
 @Composable
-private fun contentPadding(label: String?, icon: OudsChipIcon?, iconPosition: OudsChipIconPosition, selected: Boolean): PaddingValues {
+private fun contentPadding(label: String?, icon: OudsIcon?, iconPosition: OudsChipIconPosition, selected: Boolean): PaddingValues {
     return with(OudsTheme.componentsTokens.chip) {
         // If chip layout starts with an icon or the tick then we use spacePaddingInlineIcon as the start padding, otherwise spacePaddingInlineIconNone
         val start = if (selected

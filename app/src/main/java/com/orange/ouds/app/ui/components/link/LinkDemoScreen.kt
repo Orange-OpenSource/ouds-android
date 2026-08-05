@@ -33,9 +33,9 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkDensity
-import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsLinkSize
 import com.orange.ouds.theme.OudsVersion
@@ -125,7 +125,7 @@ private fun LinkDemoContent(state: LinkDemoState) {
                 }
                 OudsLink(
                     label = label,
-                    icon = OudsLinkIcon(painter, tinted = icon == LinkDemoState.Icon.Tinted),
+                    icon = OudsIcon(painter, tinted = icon == LinkDemoState.Icon.Tinted),
                     onClick = {},
                     enabled = enabled,
                     size = size,
@@ -160,7 +160,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                 labelArgument(label)
                 when (layout) {
                     LinkDemoState.Layout.TextOnly -> {}
-                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsLinkIcon>(
+                    LinkDemoState.Layout.TextAndIcon -> iconArgument<OudsIcon>(
                         "icon",
                         themeDrawableResources.tipsAndTricks,
                         tinted = icon == LinkDemoState.Icon.Tinted
