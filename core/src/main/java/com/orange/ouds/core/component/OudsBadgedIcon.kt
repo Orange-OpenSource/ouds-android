@@ -154,7 +154,7 @@ internal fun PreviewOudsBadgedIcon(
             Icon(
                 modifier = Modifier.size(size),
                 imageVector = Icons.Filled.FavoriteBorder,
-                contentDescription = "",
+                contentDescription = null,
                 tint = OudsTheme.colorScheme.content.default
             )
         }

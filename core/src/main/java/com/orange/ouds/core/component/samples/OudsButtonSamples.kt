@@ -70,10 +70,7 @@ internal fun OudsButtonIconOnlyOnColoredBackgroundSample() {
 @Composable
 internal fun OudsButtonTextAndIconSample() {
     OudsButton(
-        icon = OudsIcon(
-            imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = ""
-        ),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         label = "Label",
         onClick = { /* Do something! */ }
     )
@@ -84,10 +81,7 @@ internal fun OudsButtonTextAndIconOnColoredBackgroundSample() {
     OudsColoredBox(color = OudsColoredBoxColor.StatusInfoEmphasized) {
         // The colors of this button are automatically adjusted to maximize the contrast with the colored background.
         OudsButton(
-            icon = OudsIcon(
-                imageVector = Icons.Filled.FavoriteBorder,
-                contentDescription = ""
-            ),
+            icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
             label = "Label",
             onClick = { /* Do something! */ }
         )
@@ -111,7 +105,6 @@ internal fun OudsButtonTextAndIconWithUntintedIconSample() {
     OudsButton(
         icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
-            contentDescription = "",
             tinted = false
         ),
         label = "Label",

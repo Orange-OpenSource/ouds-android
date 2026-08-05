@@ -53,7 +53,7 @@ internal fun OudsTagWithDefaultIconSample() {
 internal fun OudsTagWithIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Neutral(asset = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""))
+        status = OudsTagStatus.Neutral(asset = OudsIcon(imageVector = Icons.Filled.FavoriteBorder))
     )
 }
 
@@ -61,7 +61,7 @@ internal fun OudsTagWithIconSample() {
 internal fun OudsTagWithUntintedIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Neutral(asset = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false))
+        status = OudsTagStatus.Neutral(asset = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false))
     )
 }
 

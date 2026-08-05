@@ -121,12 +121,8 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
     with(state) {
         val alertIcon = when (icon) {
-            InlineAlertDemoState.Icon.Tinted -> OudsIcon(
-                painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
-                contentDescription = "",
-                tinted = true
-            )
-            InlineAlertDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), contentDescription = "", tinted = false)
+            InlineAlertDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            InlineAlertDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         OudsInlineAlert(
             label = label,

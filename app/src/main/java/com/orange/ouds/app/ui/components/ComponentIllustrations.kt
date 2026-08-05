@@ -186,10 +186,7 @@ fun DividerIllustration() = ComponentIllustration {
 @Composable
 fun FloatingActionButtonIllustration() = ComponentIllustration {
     OudsFloatingActionButton(
-        icon = OudsIcon(
-            painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
-            contentDescription = ""
-        ),
+        icon = OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
         onClick = {}
     )
 }

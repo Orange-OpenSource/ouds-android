@@ -175,12 +175,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
     with(state) {
         val alertIcon = when (icon) {
             AlertMessageDemoState.Icon.None -> null
-            AlertMessageDemoState.Icon.Tinted -> OudsIcon(
-                painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
-                contentDescription = "",
-                tinted = true
-            )
-            AlertMessageDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), contentDescription = "", tinted = false)
+            AlertMessageDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            AlertMessageDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         val alertMessageStatus = when (status) {
             is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)

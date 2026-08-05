@@ -34,14 +34,14 @@ import com.orange.ouds.foundation.extensions.orElse
 abstract class OudsComponentIcon<T, S> internal constructor(
     extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
-    private val contentDescriptionProvider: @Composable (S) -> String,
+    private val contentDescriptionProvider: @Composable (S) -> String?,
     private val onClick: (() -> Unit)? = null
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
     protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
-        contentDescription: String,
+        contentDescription: String?,
         onClick: (() -> Unit)? = null
     ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
 
@@ -65,7 +65,7 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         @Suppress("UNCHECKED_CAST")
         get() = graphicsObjectProvider(this as S)
 
-    internal val contentDescription: String
+    internal val contentDescription: String?
         @Composable
         @Suppress("UNCHECKED_CAST")
         get() = contentDescriptionProvider(this as S)

@@ -36,7 +36,7 @@ internal fun OudsSwitchItemSample() {
         checked = checked,
         label = "Notifications",
         description = "Display app notifications in the notification center",
-        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -70,7 +70,7 @@ internal fun OudsSwitchItemWithUntintedIconSample() {
         checked = checked,
         label = "Notifications",
         description = "Display app notifications in the notification center",
-        icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
         onCheckedChange = { value -> checked = value }
     )
 }

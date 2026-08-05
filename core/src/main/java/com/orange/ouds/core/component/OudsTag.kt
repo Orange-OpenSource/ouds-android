@@ -837,7 +837,7 @@ internal fun PreviewOudsTag(
                 icon && row in listOf(
                     OudsTagStatus.Neutral::class.simpleName,
                     OudsTagStatus.Accent::class.simpleName
-                ) -> OudsIcon(Icons.Outlined.FavoriteBorder, "")
+                ) -> OudsIcon(Icons.Outlined.FavoriteBorder)
                 icon -> OudsIcon.Default
                 else -> null
             }

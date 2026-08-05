@@ -255,7 +255,7 @@ internal fun PreviewOudsSwitchItem(
                 label = "Label",
                 onCheckedChange = {},
                 description = description,
-                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "") else null,
+                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call) else null,
                 divider = divider,
                 reversed = reversed,
                 error = error,
@@ -277,7 +277,7 @@ internal fun PreviewOudsSwitchItemWithLongDescription(theme: OudsThemeContract) 
         label = "Label",
         onCheckedChange = {},
         description = LoremIpsumText,
-        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "")
+        icon = OudsIcon(imageVector = Icons.Filled.Call)
     )
 }
 
@@ -293,7 +293,7 @@ internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContrac
             checked = true,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
+            icon = OudsIcon(imageVector = Icons.Filled.Call),
             edgeToEdge = false,
             divider = true,
             error = OudsError(ControlItemErrorMessage),
@@ -317,7 +317,7 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(
         checked = true,
         label = "Label",
         onCheckedChange = {},
-        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
+        icon = OudsIcon(imageVector = Icons.Filled.Call),
         constrainedMaxWidth = constrainedMaxWidth,
         edgeToEdge = false,
         divider = true
@@ -359,7 +359,7 @@ internal fun PreviewOudsSwitchItemWithUntintedIcon(theme: OudsThemeContract) = O
             checked = false,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             divider = true
         )
     }

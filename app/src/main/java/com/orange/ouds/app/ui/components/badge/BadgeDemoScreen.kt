@@ -216,12 +216,8 @@ private fun Code.Builder.badgeDemoCodeSnippet(state: BadgeDemoState, badgeWithIc
 private fun getBadgeWithIconStatus(state: BadgeDemoState): OudsIconBadgeStatus {
     with(state) {
         val badgeIcon = when (icon) {
-            BadgeDemoState.Icon.Tinted -> OudsIcon(
-                painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
-                contentDescription = "",
-                tinted = true
-            )
-            BadgeDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), contentDescription = "", tinted = false)
+            BadgeDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            BadgeDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         return when (status) {
             OudsBadgeStatus.Neutral -> OudsIconBadgeStatus.Neutral(badgeIcon)

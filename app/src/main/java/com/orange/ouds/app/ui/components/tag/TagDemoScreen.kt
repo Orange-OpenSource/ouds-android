@@ -170,7 +170,7 @@ private fun TagDemoContent(state: TagDemoState) {
                 TagDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
                 TagDemoState.Icon.Untinted -> rememberUntintedIconPainter()
             }
-            val tagIcon = OudsIcon(painter = painter, contentDescription = "", tinted = icon == TagDemoState.Icon.Tinted)
+            val tagIcon = OudsIcon(painter = painter, tinted = icon == TagDemoState.Icon.Tinted)
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),

@@ -34,7 +34,7 @@ internal fun OudsAlertMessageSample() {
     OudsAlertMessage(
         label = "New features available",
         description = "We've added exciting new features to improve your experience.",
-        status = OudsAlertMessageStatus.Accent(OudsIcon(imageVector = Icons.Filled.FavoriteBorder, "")),
+        status = OudsAlertMessageStatus.Accent(OudsIcon(imageVector = Icons.Filled.FavoriteBorder)),
         onClose = { /* Close the alert message */ },
         actionLink = OudsAlertMessageActionLink(label = "Learn more", onClick = { /* Navigate to features page */ }),
         bulletList = listOf(
@@ -96,7 +96,7 @@ internal fun OudsAlertMessageWithAnnotatedTextSample() {
     OudsAlertMessage(
         label = "Before you continue",
         description = description,
-        status = OudsAlertMessageStatus.Accent(OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "")),
+        status = OudsAlertMessageStatus.Accent(OudsIcon(imageVector = Icons.Filled.FavoriteBorder)),
         onClose = { /* Close the alert message */ },
         bulletList = bulletList
     )
@@ -107,7 +107,7 @@ internal fun OudsAlertMessageNonFunctionalWithUntintedIconSample() {
     OudsAlertMessage(
         label = "New features available",
         description = "We've added exciting new features to improve your experience.",
-        status = OudsAlertMessageStatus.Accent(OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false)),
+        status = OudsAlertMessageStatus.Accent(OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false)),
         onClose = { /* Close the alert message */ }
     )
 }

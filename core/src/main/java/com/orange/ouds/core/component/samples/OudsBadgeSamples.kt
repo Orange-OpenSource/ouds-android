@@ -73,7 +73,7 @@ internal fun OudsBadgeWithCustomIconSample() {
             contentDescription = "Favorite"
         },
         status = OudsIconBadgeStatus.Accent(
-            OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "")
+            OudsIcon(imageVector = Icons.Filled.FavoriteBorder)
         ),
         size = OudsBadgeSize.Large
     )
@@ -115,7 +115,7 @@ internal fun OudsBadgeWithUntintedCustomIconSample() {
             contentDescription = "Favorite"
         },
         status = OudsIconBadgeStatus.Neutral(
-            OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false)
+            OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false)
         ),
         size = OudsBadgeSize.Large
     )

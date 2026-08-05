@@ -41,7 +41,7 @@ internal fun OudsRadioButtonItemSample() {
             OudsRadioButtonItem(
                 selected = method == selectedMethod,
                 label = method,
-                icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
+                icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
                 onClick = { selectedMethod = method },
                 divider = true
             )
@@ -85,7 +85,7 @@ internal fun OudsRadioButtonItemWithUntintedIconSample() {
             OudsRadioButtonItem(
                 selected = method == selectedMethod,
                 label = method,
-                icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+                icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
                 onClick = { selectedMethod = method },
                 divider = true
             )

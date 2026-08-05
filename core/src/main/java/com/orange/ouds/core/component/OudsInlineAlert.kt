@@ -219,7 +219,7 @@ internal fun PreviewOudsInlineAlert(
         ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
     ) { item ->
-        val icon = OudsIcon(Icons.Outlined.FavoriteBorder, "")
+        val icon = OudsIcon(Icons.Outlined.FavoriteBorder)
         val status = when (item) {
             OudsInlineAlertStatus.Neutral::class.simpleName -> OudsInlineAlertStatus.Neutral(icon)
             OudsInlineAlertStatus.Accent::class.simpleName -> OudsInlineAlertStatus.Accent(icon)
@@ -252,7 +252,7 @@ internal fun PreviewOudsInlineAlertWithUntintedIcon(theme: OudsThemeContract) = 
         ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
     ) { item ->
-        val icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false)
+        val icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false)
         val status = when (item) {
             OudsInlineAlertStatus.Neutral::class.simpleName -> OudsInlineAlertStatus.Neutral(icon)
             OudsInlineAlertStatus.Accent::class.simpleName -> OudsInlineAlertStatus.Accent(icon)

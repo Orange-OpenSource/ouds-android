@@ -544,7 +544,7 @@ internal fun PreviewOudsAlertMessage(
             ).map { it.simpleName.orEmpty() },
             maxItemsInEachRow = 1
         ) { item ->
-            val icon = if (hasIcon) OudsIcon(Icons.Outlined.FavoriteBorder, "") else null
+            val icon = if (hasIcon) OudsIcon(Icons.Outlined.FavoriteBorder) else null
             val status = when (item) {
                 OudsAlertMessageStatus.Neutral::class.simpleName -> OudsAlertMessageStatus.Neutral(icon)
                 OudsAlertMessageStatus.Accent::class.simpleName -> OudsAlertMessageStatus.Accent(icon)

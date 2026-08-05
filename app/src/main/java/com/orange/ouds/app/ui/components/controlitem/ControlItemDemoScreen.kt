@@ -209,8 +209,8 @@ private fun ControlItemConstrainedMaxWidthCustomization(state: ControlItemDemoSt
 fun controlItemIcon(state: ControlItemDemoState): OudsIcon? {
     return when (state.icon) {
         ControlItemDemoState.Icon.None -> null
-        ControlItemDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks), contentDescription = "")
-        ControlItemDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), contentDescription = "", tinted = false)
+        ControlItemDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks))
+        ControlItemDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), tinted = false)
     }
 }
 

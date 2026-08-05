@@ -315,7 +315,7 @@ internal fun PreviewOudsRadioButtonItem(
                 error = error,
                 outlined = checkNotNull(extraParameter),
                 reversed = reversed,
-                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "") else null
+                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call) else null
             )
         }
     }
@@ -369,7 +369,7 @@ internal fun PreviewOudsRadioButtonItemWithDescriptionText(theme: OudsThemeContr
         onClick = {},
         extraLabel = "Extra label",
         description = LoremIpsumText,
-        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "")
+        icon = OudsIcon(imageVector = Icons.Filled.Call)
     )
 }
 
@@ -387,7 +387,7 @@ internal fun PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled(theme: OudsThemeCo
             label = "Label",
             onClick = {},
             extraLabel = "Extra label",
-            icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
+            icon = OudsIcon(imageVector = Icons.Filled.Call),
             edgeToEdge = false,
             divider = true,
             error = OudsError(ControlItemErrorMessage)
@@ -412,7 +412,7 @@ internal fun PreviewOudsRadioButtonItemConstrainedMaxWidth(
         label = "Label",
         onClick = {},
         extraLabel = "Extra label",
-        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
+        icon = OudsIcon(imageVector = Icons.Filled.Call),
         edgeToEdge = false,
         divider = true,
         constrainedMaxWidth = constrainedMaxWidth
@@ -454,7 +454,7 @@ internal fun PreviewOudsRadioButtonItemWithUntintedIcon(theme: OudsThemeContract
             selected = false,
             label = "Label",
             onClick = {},
-            icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             divider = true
         )
     }

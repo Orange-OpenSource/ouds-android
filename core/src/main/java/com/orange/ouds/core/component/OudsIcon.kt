@@ -22,7 +22,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 
 open class OudsIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsIcon) -> Any,
-    contentDescriptionProvider: @Composable (OudsIcon) -> String,
+    contentDescriptionProvider: @Composable (OudsIcon) -> String?,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsIcon.ExtraParameters, OudsIcon>(ExtraParameters::class.java, graphicsObjectProvider, contentDescriptionProvider), OudsTagAsset {
 
@@ -43,19 +43,19 @@ open class OudsIcon internal constructor(
 
     constructor(
         painter: Painter,
-        contentDescription: String,
+        contentDescription: String? = null,
         tinted: Boolean = true
     ) : this({ painter }, { contentDescription }, tinted)
 
     constructor(
         imageVector: ImageVector,
-        contentDescription: String,
+        contentDescription: String? = null,
         tinted: Boolean = true
     ) : this({ imageVector }, { contentDescription }, tinted)
 
     constructor(
         bitmap: ImageBitmap,
-        contentDescription: String,
+        contentDescription: String? = null,
         tinted: Boolean = true
     ) : this({ bitmap }, { contentDescription }, tinted)
 }

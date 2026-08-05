@@ -535,7 +535,7 @@ internal fun OudsButton(
                         small = if (label == null) buttonTokens.sizeIconOnlySmall else buttonTokens.sizeIconSmall
                     )
 
-                    val iconContentDescription = icon.contentDescription
+                    val iconContentDescription = icon.contentDescription.orEmpty()
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
@@ -1080,7 +1080,7 @@ internal fun PreviewOudsButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) appearance.name else null
-        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder, "") else null
+        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder) else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 when {
@@ -1124,7 +1124,7 @@ internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) = Oud
     val appearance = OudsButtonAppearance.Default
     PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
-            icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             label = appearance.name,
             onClick = {},
             appearance = appearance
@@ -1142,7 +1142,7 @@ private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconB
 internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
-            nullableIcon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+            nullableIcon = OudsIcon(Icons.Filled.FavoriteBorder),
             nullableLabel = null,
             onClick = {},
             appearance = OudsButtonAppearance.Minimal,
@@ -1159,7 +1159,7 @@ private fun PreviewOudsButtonOnTwoLines() = PreviewOudsButtonOnTwoLines(getPrevi
 @Composable
 internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsButton(
-        nullableIcon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+        nullableIcon = OudsIcon(Icons.Filled.FavoriteBorder),
         nullableLabel = "Button\non two lines",
         onClick = {},
     )
@@ -1176,7 +1176,6 @@ internal fun PreviewOudsButtonWithUntintedIcon(theme: OudsThemeContract) = OudsP
         OudsButton(
             nullableIcon = OudsIcon(
                 painter = rememberRainbowHeartPainter(),
-                contentDescription = "",
                 tinted = false
             ),
             nullableLabel = "Label",

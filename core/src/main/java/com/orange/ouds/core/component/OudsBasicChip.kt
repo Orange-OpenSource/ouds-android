@@ -161,7 +161,7 @@ internal fun OudsBasicChip(
             }
             val iconContent: @Composable (Modifier) -> Unit = { modifier ->
                 if (icon != null) {
-                    val iconContentDescription = icon.contentDescription
+                    val iconContentDescription = icon.contentDescription.orEmpty()
                     icon.Content(
                         modifier = modifier
                             .iconSize(chipTokens.sizeIcon.value * iconScale, tinted = icon.tinted)

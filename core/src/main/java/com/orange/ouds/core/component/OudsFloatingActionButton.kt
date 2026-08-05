@@ -572,7 +572,7 @@ private fun OudsFloatingActionButton(
 private fun Icon(icon: OudsIcon, label: String? = null, large: Boolean = false) {
     val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnlyDefault.value
     val iconScale = LocalConfiguration.current.fontScale
-    val iconContentDescription = icon.contentDescription
+    val iconContentDescription = icon.contentDescription.orEmpty()
     icon.Content(
         modifier = Modifier
             .size(iconSize * iconScale)
@@ -750,7 +750,7 @@ internal fun PreviewOudsFloatingActionButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsFloatingActionButton(
-            icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             onClick = {},
             appearance = appearance
         )
@@ -772,7 +772,7 @@ internal fun PreviewOudsSmallFloatingActionButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsSmallFloatingActionButton(
-            icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             onClick = {},
             appearance = appearance
         )
@@ -800,7 +800,7 @@ internal fun PreviewOudsLargeFloatingActionButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsLargeFloatingActionButton(
-            icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             onClick = {},
             appearance = appearance
         )
@@ -845,7 +845,7 @@ internal fun PreviewOudsExtendedFloatingActionButton(
             OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconCollapsed -> {
                 OudsExtendedFloatingActionButton(
                     label = "Label",
-                    icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+                    icon = OudsIcon(Icons.Filled.FavoriteBorder),
                     onClick = {},
                     expanded = row == OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconExpanded,
                     appearance = appearance

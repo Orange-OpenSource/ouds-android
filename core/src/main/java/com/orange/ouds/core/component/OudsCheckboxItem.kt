@@ -436,7 +436,7 @@ internal fun PreviewOudsCheckboxItem(
                 divider = divider,
                 error = error,
                 reversed = reversed,
-                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "") else null,
+                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call) else null,
                 interactionSource = remember { MutableInteractionSource() }
             )
         }
@@ -490,7 +490,7 @@ internal fun PreviewOudsCheckboxItemWithLongDescription(theme: OudsThemeContract
         label = "Label",
         onCheckedChange = {},
         description = LoremIpsumText,
-        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = "")
+        icon = OudsIcon(imageVector = Icons.Filled.Call)
     )
 }
 
@@ -506,7 +506,7 @@ internal fun PreviewOudsCheckboxItemWithEdgeToEdgeDisabled(theme: OudsThemeContr
             checked = true,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
+            icon = OudsIcon(imageVector = Icons.Filled.Call),
             edgeToEdge = false,
             divider = true,
             error = OudsError(ControlItemErrorMessage),
@@ -530,7 +530,7 @@ internal fun PreviewOudsCheckboxItemConstrainedMaxWidth(
         checked = true,
         label = "Label",
         onCheckedChange = {},
-        icon = OudsIcon(imageVector = Icons.Filled.Call, contentDescription = ""),
+        icon = OudsIcon(imageVector = Icons.Filled.Call),
         constrainedMaxWidth = constrainedMaxWidth,
         edgeToEdge = false,
         divider = true
@@ -572,7 +572,7 @@ internal fun PreviewOudsCheckboxItemWithUntintedIcon(theme: OudsThemeContract) =
             checked = false,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             divider = true
         )
     }

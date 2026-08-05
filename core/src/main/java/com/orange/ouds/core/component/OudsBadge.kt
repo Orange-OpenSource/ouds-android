@@ -717,8 +717,8 @@ internal fun PreviewOudsBadgeWithIcon(theme: OudsThemeContract, darkThemeEnabled
             ).map { it.simpleName.orEmpty() },
         ) { column, row ->
             val status = when (row) {
-                OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsIcon(Icons.Filled.FavoriteBorder, ""))
-                OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsIcon(Icons.Filled.FavoriteBorder, ""))
+                OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsIcon(Icons.Filled.FavoriteBorder))
+                OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsIcon(Icons.Filled.FavoriteBorder))
                 OudsIconBadgeStatus.Positive::class.simpleName -> OudsIconBadgeStatus.Positive
                 OudsIconBadgeStatus.Warning::class.simpleName -> OudsIconBadgeStatus.Warning
                 OudsIconBadgeStatus.Negative::class.simpleName -> OudsIconBadgeStatus.Negative

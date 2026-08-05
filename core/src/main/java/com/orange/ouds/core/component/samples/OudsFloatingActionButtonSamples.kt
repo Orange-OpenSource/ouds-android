@@ -71,10 +71,7 @@ internal fun OudsExtendedFloatingActionButtonSampleWithLabelOnly() {
 internal fun OudsExtendedFloatingActionButtonSampleWithLabelAndIcon() {
     OudsExtendedFloatingActionButton(
         label = "Label",
-        icon = OudsIcon(
-            imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = ""
-        ),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         onClick = { /* Do something! */ }
     )
 }
@@ -124,7 +121,6 @@ internal fun OudsExtendedFloatingActionButtonWithUntintedIconSample() {
         label = "Label",
         icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
-            contentDescription = "",
             tinted = false
         ),
         onClick = { /* Do something! */ },

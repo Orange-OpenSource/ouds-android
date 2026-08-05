@@ -38,7 +38,7 @@ internal fun OudsCheckboxItemSample() {
         checked = checked,
         label = "Terms of use",
         description = "By checking this box, I acknowledge having read the conditions of use.",
-        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -51,7 +51,7 @@ internal fun OudsTriStateCheckboxItemSample() {
         state = toggleableState,
         label = "My hobbies",
         description = "Select the hobbies you practice regularly.",
-        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         onClick = {
             toggleableState = when (toggleableState) {
                 ToggleableState.On -> ToggleableState.Off
@@ -118,7 +118,7 @@ internal fun OudsCheckboxItemWithUntintedIconSample() {
         checked = checked,
         label = "Terms of use",
         description = "By checking this box, I acknowledge having read the conditions of use.",
-        icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -131,7 +131,7 @@ internal fun OudsTriStateCheckboxItemWithUntintedIconSample() {
         state = toggleableState,
         label = "My hobbies",
         description = "Select the hobbies you practice regularly.",
-        icon = OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
         onClick = {
             toggleableState = when (toggleableState) {
                 ToggleableState.On -> ToggleableState.Off

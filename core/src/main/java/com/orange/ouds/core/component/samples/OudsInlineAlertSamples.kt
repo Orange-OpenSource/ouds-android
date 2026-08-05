@@ -40,7 +40,7 @@ internal fun OudsInlineAlertFunctionalStatusSample() {
 internal fun OudsInlineAlertNonFunctionalWithUntintedIconSample() {
     OudsInlineAlert(
         label = "Label",
-        status = OudsInlineAlertStatus.Accent(OudsIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false))
+        status = OudsInlineAlertStatus.Accent(OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false))
     )
 }
 

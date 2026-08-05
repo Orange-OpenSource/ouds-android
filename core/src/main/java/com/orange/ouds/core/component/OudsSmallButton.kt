@@ -385,7 +385,7 @@ internal fun PreviewOudsSmallButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) appearance.name else null
-        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder, "") else null
+        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder) else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 when {
@@ -431,7 +431,7 @@ internal fun PreviewOudsSmallButtonWithRoundedCorners(
     val appearance = OudsButtonAppearance.Default
     PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsSmallButton(
-            icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             label = appearance.name,
             onClick = {},
             appearance = appearance
@@ -447,7 +447,7 @@ private fun PreviewOudsSmallButtonOnTwoLines() = PreviewOudsSmallButtonOnTwoLine
 @Composable
 internal fun PreviewOudsSmallButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsSmallButton(
-        icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
+        icon = OudsIcon(Icons.Filled.FavoriteBorder),
         label = "Button\non two lines",
         onClick = {},
     )
@@ -464,7 +464,6 @@ internal fun PreviewOudsSmallButtonWithUntintedIcon(theme: OudsThemeContract) = 
         OudsSmallButton(
             icon = OudsIcon(
                 painter = rememberRainbowHeartPainter(),
-                contentDescription = "",
                 tinted = false
             ),
             label = "Label",
