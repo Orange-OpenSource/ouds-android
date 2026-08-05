@@ -20,11 +20,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 
-open class OudsIcon internal constructor(
+class OudsIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsIcon) -> String?,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsIcon.ExtraParameters, OudsIcon>(ExtraParameters::class.java, graphicsObjectProvider, contentDescriptionProvider), OudsTagAsset {
+
+    init {
+        // Set default extra parameters to avoid UninitializedPropertyAccessException
+        extraParameters = ExtraParameters()
+    }
 
     object Default : OudsTagAsset
 
