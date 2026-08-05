@@ -5,7 +5,45 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.7.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.6.0...1.7.0) (2026-07-08)
+## [2.0.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.7.0...2.0.0) (2026-08-04)
+
+### Breaking changes
+
+- update tokens 2.6.0 ([#1413](https://github.com/Orange-OpenSource/ouds-android/issues/1413))
+
+### Features
+
+- **list-item** add OudsListItem, OudsSmallListItem, OudsCardItem and OudsSmallCardItem version 0.1.0 ([#1412](https://github.com/Orange-OpenSource/ouds-android/issues/1412))
+- add testTag property on OudsComponentContent ([#1423](https://github.com/Orange-OpenSource/ouds-android/issues/1423))
+- **link** update link to version 2.4.0 ([#1418](https://github.com/Orange-OpenSource/ouds-android/issues/1418))
+- **linear-progress-indicator** **circular-progress-indicator** add functional statuses and gap size parameter to progress indicators ([#1449](https://github.com/Orange-OpenSource/ouds-android/issues/1449))
+- **progress-indicator** add monochrome progress indicator variants ([#1392](https://github.com/Orange-OpenSource/ouds-android/issues/1392))
+- **text-area** update text area to version 1.2.1 ([#1421](https://github.com/Orange-OpenSource/ouds-android/issues/1421))
+- update themes drawable resources to version 2.0 ([#1425](https://github.com/Orange-OpenSource/ouds-android/issues/1425))
+- **text-input** **password-input** update text input to version 1.4.1 and password input to version 1.3.1 ([#1420](https://github.com/Orange-OpenSource/ouds-android/issues/1420))
+- **filter-chip** **suggestion-chip** update filter chip and suggestion chip to version 1.5.0 ([#1419](https://github.com/Orange-OpenSource/ouds-android/issues/1419))
+
+### Bug Fixes
+
+- **deps** update dependency androidx.constraintlayout:constraintlayout-compose to v1.1.2 ([#1470](https://github.com/Orange-OpenSource/ouds-android/issues/1470))
+- **deps** update grpc-java monorepo to v1.83.1 ([#1474](https://github.com/Orange-OpenSource/ouds-android/issues/1474))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.17.0 ([#1477](https://github.com/Orange-OpenSource/ouds-android/issues/1477))
+- texts in all components are not vertically aligned correctly ([#1461](https://github.com/Orange-OpenSource/ouds-android/issues/1461))
+- components colors from OudsTheme.components are wrong when using OudsThemeTweak ([#1464](https://github.com/Orange-OpenSource/ouds-android/issues/1464))
+- **deps** update dependency androidx.annotation:annotation to v1.10.0 ([#1463](https://github.com/Orange-OpenSource/ouds-android/issues/1463))
+- update themes drawable resources to version 2.1 ([#1458](https://github.com/Orange-OpenSource/ouds-android/issues/1458))
+- **deps** update dependency com.android.tools:sdk-common to v32.3.1 ([#1456](https://github.com/Orange-OpenSource/ouds-android/issues/1456))
+- **deps** update grpc-java monorepo to v1.83.0 ([#1455](https://github.com/Orange-OpenSource/ouds-android/issues/1455))
+- **deps** update gradle to v9.3.1 ([#1457](https://github.com/Orange-OpenSource/ouds-android/issues/1457))
+- **deps** update dependency com.android.tools:sdk-common to v32.3.0 ([#1440](https://github.com/Orange-OpenSource/ouds-android/issues/1440))
+- **deps** update gradle to v9.3.0 ([#1441](https://github.com/Orange-OpenSource/ouds-android/issues/1441))
+- **deps** update kotlin monorepo to v2.4.10 ([#1437](https://github.com/Orange-OpenSource/ouds-android/issues/1437))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.49.0 ([#1432](https://github.com/Orange-OpenSource/ouds-android/issues/1432))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.16.0 ([#1433](https://github.com/Orange-OpenSource/ouds-android/issues/1433))
+- **deps** update grpc-java monorepo to v1.82.2 ([#1435](https://github.com/Orange-OpenSource/ouds-android/issues/1435))
+- **deps** update hilt to v2.60.1 ([#1429](https://github.com/Orange-OpenSource/ouds-android/issues/1429))
+
+## [1.7.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.6.0...1.7.0) (2026-07-09)
 
 ### Features
 
