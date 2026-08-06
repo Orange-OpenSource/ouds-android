@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.ExperimentalOudsApi
@@ -81,6 +82,13 @@ class OudsChipIcon private constructor(
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
+
+    /**
+     * Creates an instance of [OudsChipIcon] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     */
+    constructor(iconData: OudsIconData) : this(iconData.graphicsObject, iconData.contentDescription.orEmpty(), iconData.tinted)
 
     override val tint: Color?
         @Composable

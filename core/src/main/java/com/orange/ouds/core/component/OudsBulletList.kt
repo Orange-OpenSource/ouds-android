@@ -66,6 +66,7 @@ import com.orange.ouds.core.component.common.text.withLink
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.theme.OudsTheme
@@ -472,6 +473,13 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
          * @param bitmap Image bitmap to be used as a bullet.
          */
         constructor(bitmap: ImageBitmap) : this(bitmap as Any)
+
+        /**
+         * Creates an instance of [OudsBulletListUnorderedAsset.Icon].
+         *
+         * @param iconData Icon data containing the icon and its tinting information.
+         */
+        constructor(iconData: OudsIconData) : this(iconData.graphicsObject)
 
         override val tint: Color?
             @Composable

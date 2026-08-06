@@ -58,6 +58,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsComponentImage
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.InteractionState
@@ -977,6 +978,19 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
             tinted: Boolean = true
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
+        /**
+         * Creates an instance of [OudsListItemLeading.Icon] from [OudsIconData].
+         *
+         * @param iconData The icon data containing graphics object, content description, and tinting preference.
+         */
+        constructor(iconData: OudsIconData) : this(
+            { iconData.graphicsObject },
+            { iconData.contentDescription.orEmpty() },
+            iconData.tinted,
+            OudsListItemDefaults.IconSize,
+            null
+        )
+
         private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
             { status.painterProvider() },
             { status.contentDescriptionProvider() },
@@ -1158,6 +1172,19 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
             size: OudsListItemIconSize = OudsListItemDefaults.IconSize,
             tinted: Boolean = true
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
+
+        /**
+         * Creates an instance of [OudsListItemTrailing.Icon] from [OudsIconData].
+         *
+         * @param iconData The icon data containing graphics object, content description, and tinting preference.
+         */
+        constructor(iconData: OudsIconData) : this(
+            { iconData.graphicsObject },
+            { iconData.contentDescription.orEmpty() },
+            iconData.tinted,
+            OudsListItemDefaults.IconSize,
+            null
+        )
 
         private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
             { status.painterProvider() },

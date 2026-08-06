@@ -79,6 +79,7 @@ import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
@@ -1523,6 +1524,13 @@ class OudsTextInputLeadingIcon private constructor(
      */
     constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
 
+    /**
+     * Creates an instance of [OudsTextInputLeadingIcon] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     */
+    constructor(iconData: OudsIconData) : this(iconData.graphicsObject, iconData.contentDescription.orEmpty(), iconData.tinted)
+
     override val tint: Color?
         @Composable
         get() = extraParameters.tint
@@ -1586,6 +1594,14 @@ class OudsTextInputTrailingIconButton private constructor(
         contentDescription: String,
         onClick: () -> Unit
     ) : this(bitmap as Any, contentDescription, onClick)
+
+    /**
+     * Creates an instance of [OudsTextInputTrailingIconButton] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     * @param onClick Callback invoked when the button is clicked.
+     */
+    constructor(iconData: OudsIconData, onClick: () -> Unit) : this(iconData.graphicsObject, iconData.contentDescription.orEmpty(), onClick)
 
     override val enabled: Boolean?
         @Composable

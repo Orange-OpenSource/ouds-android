@@ -59,6 +59,7 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
@@ -818,6 +819,13 @@ class OudsButtonIcon private constructor(
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
+
+    /**
+     * Creates an instance of [OudsButtonIcon] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     */
+    constructor(iconData: OudsIconData) : this(iconData.graphicsObject, iconData.contentDescription.orEmpty(), iconData.tinted)
 
     override val tint: Color?
         @Composable

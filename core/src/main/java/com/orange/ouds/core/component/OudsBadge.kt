@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
@@ -442,6 +443,13 @@ open class OudsBadgeIcon internal constructor(
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this({ bitmap }, tinted)
+
+    /**
+     * Creates an instance of [OudsBadgeIcon] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     */
+    constructor(iconData: OudsIconData) : this(graphicsObjectProvider = { iconData.graphicsObject }, tinted = iconData.tinted)
 
     override val enabled: Boolean?
         @Composable

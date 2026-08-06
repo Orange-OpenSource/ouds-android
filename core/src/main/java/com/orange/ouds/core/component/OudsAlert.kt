@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
@@ -176,6 +177,13 @@ open class OudsAlertIcon private constructor(
      */
     @JvmOverloads
     constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this({ bitmap }, { "" }, tinted)
+
+    /**
+     * Creates an instance of [OudsAlertIcon] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     */
+    constructor(iconData: OudsIconData) : this({ iconData.graphicsObject }, { iconData.contentDescription.orEmpty() }, iconData.tinted)
 
     override val tint: Color?
         @Composable

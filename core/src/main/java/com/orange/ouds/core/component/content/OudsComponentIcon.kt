@@ -33,8 +33,8 @@ import com.orange.ouds.foundation.extensions.orElse
  */
 abstract class OudsComponentIcon<T, S> internal constructor(
     extraParametersClass: Class<T>,
-    private val graphicsObjectProvider: @Composable (S) -> Any,
-    private val contentDescriptionProvider: @Composable (S) -> String,
+    internal val graphicsObjectProvider: @Composable (S) -> Any,
+    internal val contentDescriptionProvider: @Composable (S) -> String,
     private val onClick: (() -> Unit)? = null
 ) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 

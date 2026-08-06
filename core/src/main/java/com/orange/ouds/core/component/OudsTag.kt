@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.iconSize
@@ -496,6 +497,16 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
          */
         @JvmOverloads
         constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
+
+        /**
+         * Creates an instance of [OudsTagAsset.Icon].
+         *
+         * @param iconData Icon data containing the icon and its tinting information.
+         */
+        constructor(iconData: OudsIconData) : this(
+            graphicsObject = iconData.graphicsObject,
+            tinted = iconData.tinted
+        )
 
         override val tint: Color?
             @Composable

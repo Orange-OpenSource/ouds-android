@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.component.content.OudsIconData
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.value
@@ -501,6 +502,14 @@ open class OudsTopAppBarNavigationIcon private constructor(
         contentDescription: String,
         onClick: () -> Unit
     ) : this({ bitmap }, { contentDescription }, onClick)
+
+    /**
+     * Creates an instance of [OudsTopAppBarNavigationIcon] from [OudsIconData].
+     *
+     * @param iconData The icon data containing graphics object, content description, and tinting preference.
+     * @param onClick Callback invoked when the navigation icon is clicked.
+     */
+    constructor(iconData: OudsIconData, onClick: () -> Unit) : this({ iconData.graphicsObject }, { iconData.contentDescription.orEmpty() }, onClick)
 }
 
 /**
@@ -573,6 +582,20 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
             badge: OudsTopAppBarActionBadge? = null,
             onClick: () -> Unit
         ) : this(bitmap as Any, contentDescription, badge, onClick)
+
+        /**
+         * Creates an instance of [OudsTopAppBarAction.Icon] from [OudsIconData].
+         *
+         * @param iconData The icon data containing graphics object, content description, and tinting preference.
+         * @param badge Optional badge displayed on the icon.
+         * @param onClick Callback invoked when the icon is clicked.
+         */
+        @JvmOverloads
+        constructor(
+            iconData: OudsIconData,
+            badge: OudsTopAppBarActionBadge? = null,
+            onClick: () -> Unit
+        ) : this(iconData.graphicsObject, iconData.contentDescription.orEmpty(), badge, onClick)
     }
 
     /**
