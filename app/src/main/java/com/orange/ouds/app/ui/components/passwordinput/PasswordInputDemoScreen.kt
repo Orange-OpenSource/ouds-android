@@ -33,8 +33,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsPasswordInput
-import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
@@ -152,7 +152,7 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
 private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
     with(state) {
         val focusManager = LocalFocusManager.current
-        val loader = if (hasLoader) OudsTextInputLoader(null) else null
+        val loader = if (hasLoader) OudsLoader(null) else null
         val passwordInputError = when {
             error && annotatedText -> {
                 val errorMessageHtml = stringResource(R.string.app_components_passwordInput_annotatedErrorMessage_text)
@@ -213,7 +213,7 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             typedArgument("outlined", outlined)
             if (lockIcon) typedArgument("lockIcon", lockIcon)
             if (hasLoader) {
-                constructorCallArgument<OudsTextInputLoader>("loader") {
+                constructorCallArgument<OudsLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }

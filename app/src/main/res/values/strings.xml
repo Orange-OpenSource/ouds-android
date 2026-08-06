@@ -234,7 +234,7 @@
     <string name="app_components_button_button_tech" translatable="false">Button</string>
     <string name="app_components_button_button_defaultSize_tech" translatable="false">Default</string>
     <string name="app_components_button_navigationButton_tech" translatable="false">Navigation button</string>
-    <string name="app_components_button_navigationButton_chevron_tech" translatable="false">Chevron</string>
+    <string name="app_components_button_navigationButton_indicator_tech" translatable="false">Indicator</string>
 
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_tech" translatable="false">Checkbox</string>

@@ -73,13 +73,12 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlyOnColoredBackgroundSample
  */
 @Composable
-@ExperimentalOudsApi
 fun OudsSmallButton(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    loader: OudsLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -92,6 +91,69 @@ fun OudsSmallButton(
         loader = loader,
         appearance = appearance,
         size = OudsButtonSize.Small,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
+ *
+ * This version of the button uses the *text only* layout, which is the most common layout.
+ * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in a "List item" component, for example).
+ * The default size is available via [OudsButton].
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
+ *
+ * > Design version: 3.3.0
+ *
+ * **Note**: This API is currently marked as experimental because it has been released ahead of
+ * the tokens 2.6.0 update. It will be stabilized once tokens 2.6.0 is integrated.
+ *
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param onClick Callback invoked when the button is clicked.
+ * @param modifier [Modifier] applied to the button.
+ * @param enabled Controls the enabled state of the button when there is no [loader].
+ *   When `false`, this button will not be clickable.
+ *   Has no effect if [loader] is provided.
+ * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlyOnColoredBackgroundSample
+ */
+@Deprecated("")
+@Composable
+fun OudsSmallButton(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader?,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsSmallButton(
+        label = label,
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        loader = loader?.toLoader(),
+        appearance = appearance,
         interactionSource = interactionSource
     )
 }
@@ -140,13 +202,12 @@ fun OudsSmallButton(
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonIconOnlyWithUntintedIconSample
  */
 @Composable
-@ExperimentalOudsApi
 fun OudsSmallButton(
     icon: OudsIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    loader: OudsLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -208,13 +269,12 @@ fun OudsSmallButton(
  */
 @Composable
 @ExperimentalOudsApi
-@Suppress("DEPRECATION")
 fun OudsSmallButton(
-    icon: OudsButtonIcon,
+    @Suppress("DEPRECATION") icon: OudsButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -223,7 +283,7 @@ fun OudsSmallButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        loader = loader,
+        loader = loader?.toLoader(),
         appearance = appearance,
         interactionSource = interactionSource
     )
@@ -282,7 +342,7 @@ fun OudsSmallButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    loader: OudsLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -346,15 +406,13 @@ fun OudsSmallButton(
  */
 @Deprecated("")
 @Composable
-@ExperimentalOudsApi
-@Suppress("DEPRECATION")
 fun OudsSmallButton(
-    icon: OudsButtonIcon,
+    @Suppress("DEPRECATION") icon: OudsButtonIcon,
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -364,7 +422,7 @@ fun OudsSmallButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        loader = loader,
+        loader = loader?.toLoader(),
         appearance = appearance,
         interactionSource = interactionSource
     )

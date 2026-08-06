@@ -35,8 +35,8 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
-import com.orange.ouds.core.component.OudsButtonLoader
 import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsSmallButton
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
@@ -127,7 +127,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
             tinted = icon == ButtonDemoState.Icon.Tinted
         )
-        val loader = if (hasLoader) OudsButtonLoader(null) else null
+        val loader = if (hasLoader) OudsLoader(null) else null
 
         when (size) {
             ButtonDemoState.Size.Default -> when (layout) {
@@ -204,7 +204,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
                 onClickArgument()
                 enabledArgument(enabled)
                 if (hasLoader) {
-                    constructorCallArgument<OudsButtonLoader>("loader") {
+                    constructorCallArgument<OudsLoader>("loader") {
                         typedArgument("progress", null)
                     }
                 }

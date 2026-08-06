@@ -42,9 +42,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsIconButton
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
@@ -189,7 +189,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
                 onClick = {}
             )
         }
-        val loader = if (hasLoader) OudsTextInputLoader(null) else null
+        val loader = if (hasLoader) OudsLoader(null) else null
         val textInputError = when {
             error && annotatedText -> {
                 val errorHtml = stringResource(R.string.app_components_textInput_annotatedErrorMessage_text)
@@ -272,7 +272,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
                 }
             }
             if (hasLoader) {
-                constructorCallArgument<OudsTextInputLoader>("loader") {
+                constructorCallArgument<OudsLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }

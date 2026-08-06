@@ -19,8 +19,8 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.core.component.OudsNavigationButtonAppearance
-import com.orange.ouds.core.component.OudsNavigationButtonChevron
 import com.orange.ouds.core.component.OudsNavigationButtonDefaults
+import com.orange.ouds.core.component.OudsNavigationButtonIndicator
 
 @Composable
 fun rememberNavigationButtonDemoState(
@@ -28,10 +28,10 @@ fun rememberNavigationButtonDemoState(
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
+    indicator: OudsNavigationButtonIndicator = OudsNavigationButtonDefaults.Indicator,
     label: String? = null
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, chevron, saver = NavigationButtonDemoState.Saver) {
-    NavigationButtonDemoState(enabled, onColoredBox, hasLoader, appearance, chevron, label)
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, indicator, saver = NavigationButtonDemoState.Saver) {
+    NavigationButtonDemoState(enabled, onColoredBox, hasLoader, appearance, indicator, label)
 }
 
 class NavigationButtonDemoState(
@@ -39,7 +39,7 @@ class NavigationButtonDemoState(
     onColoredBox: Boolean,
     hasLoader: Boolean,
     appearance: OudsNavigationButtonAppearance,
-    chevron: OudsNavigationButtonChevron,
+    indicator: OudsNavigationButtonIndicator,
     label: String?
 ) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
 
@@ -53,7 +53,7 @@ class NavigationButtonDemoState(
                 with(state) {
                     listOf(
                         appearance,
-                        chevron,
+                        indicator,
                         label,
                         with(BaseButtonDemoState.Saver) { save(state) }
                     )
@@ -67,7 +67,7 @@ class NavigationButtonDemoState(
                         onColoredBox,
                         hasLoader,
                         list[0] as OudsNavigationButtonAppearance,
-                        list[1] as OudsNavigationButtonChevron,
+                        list[1] as OudsNavigationButtonIndicator,
                         list[2] as String?
                     )
                 }
@@ -85,7 +85,7 @@ class NavigationButtonDemoState(
             }
         }
 
-    var chevron: OudsNavigationButtonChevron by mutableStateOf(chevron)
+    var indicator: OudsNavigationButtonIndicator by mutableStateOf(indicator)
 
     var label: String? by mutableStateOf(label)
 

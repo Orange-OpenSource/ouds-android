@@ -40,10 +40,10 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagAsset
-import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.foundation.extensions.toSentenceCase
@@ -165,7 +165,7 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
-            val loader = if (hasLoader) OudsTagLoader(null) else null
+            val loader = if (hasLoader) OudsLoader(null) else null
             val painter = when (icon) {
                 TagDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
                 TagDemoState.Icon.Untinted -> rememberUntintedIconPainter()
@@ -252,7 +252,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                 }
             }
             if (hasLoader) {
-                constructorCallArgument<OudsTagLoader>("loader") {
+                constructorCallArgument<OudsLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }

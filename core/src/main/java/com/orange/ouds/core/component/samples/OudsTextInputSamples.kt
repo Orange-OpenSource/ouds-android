@@ -24,9 +24,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsIconButton
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
@@ -65,7 +65,7 @@ internal fun OudsTextInputValueBasedSample() {
         ),
         prefix = "Prefix",
         suffix = "Suffix",
-        loader = OudsTextInputLoader(null),
+        loader = OudsLoader(null),
         helperText = "Helper text",
         helperLink = OudsTextInputHelperLink(text = "Helper link", onClick = { })
     )

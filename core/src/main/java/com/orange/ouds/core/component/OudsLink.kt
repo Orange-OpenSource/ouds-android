@@ -363,8 +363,7 @@ fun OudsLink(
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
 @Deprecated(
-    message = "Use overload with indicator parameter instead. Replace OudsLinkChevron.Back with OudsLinkIndicator.Previous, or OudsLinkChevron.Next with OudsLinkIndicator.Next.",
-    level = DeprecationLevel.WARNING
+    message = "Use overload with indicator parameter instead. Replace OudsLinkChevron.Back with OudsLinkIndicator.Previous, or OudsLinkChevron.Next with OudsLinkIndicator.Next."
 )
 @Composable
 fun OudsLink(
@@ -618,8 +617,7 @@ enum class OudsLinkSize {
  */
 @Deprecated(
     message = "OudsLinkChevron has been replaced with OudsLinkIndicator.",
-    replaceWith = ReplaceWith("OudsLinkIndicator"),
-    level = DeprecationLevel.WARNING
+    replaceWith = ReplaceWith("OudsLinkIndicator")
 )
 enum class OudsLinkChevron {
 

@@ -180,7 +180,7 @@ fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
@@ -322,7 +322,7 @@ fun OudsTextInput(
         suffix = suffix,
         enabled = enabled,
         readOnly = readOnly,
-        loader = loader,
+        loader = loader?.toLoader(),
         outlined = outlined,
         error = error,
         helperText = helperText,
@@ -413,7 +413,7 @@ fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: OudsAnnotatedHelperText,
@@ -555,7 +555,7 @@ fun OudsTextInput(
         suffix = suffix,
         enabled = enabled,
         readOnly = readOnly,
-        loader = loader,
+        loader = loader?.toLoader(),
         outlined = outlined,
         error = error,
         helperText = helperText,
@@ -582,7 +582,7 @@ private fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
@@ -718,7 +718,7 @@ fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
@@ -854,7 +854,7 @@ fun OudsTextInput(
         suffix = suffix,
         enabled = enabled,
         readOnly = readOnly,
-        loader = loader,
+        loader = loader?.toLoader(),
         outlined = outlined,
         error = error,
         helperText = helperText,
@@ -939,7 +939,7 @@ fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: OudsAnnotatedHelperText,
@@ -1075,7 +1075,7 @@ fun OudsTextInput(
         suffix = suffix,
         enabled = enabled,
         readOnly = readOnly,
-        loader = loader,
+        loader = loader?.toLoader(),
         outlined = outlined,
         error = error,
         helperText = helperText,
@@ -1102,7 +1102,7 @@ private fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
@@ -1236,7 +1236,7 @@ fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
@@ -1371,7 +1371,7 @@ fun OudsTextInput(
         suffix = suffix,
         enabled = enabled,
         readOnly = readOnly,
-        loader = loader,
+        loader = loader?.toLoader(),
         outlined = outlined,
         error = error,
         helperText = helperText,
@@ -1456,7 +1456,7 @@ fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: OudsAnnotatedHelperText,
@@ -1592,7 +1592,7 @@ fun OudsTextInput(
         suffix = suffix,
         enabled = enabled,
         readOnly = readOnly,
-        loader = loader,
+        loader = loader?.toLoader(),
         outlined = outlined,
         error = error,
         helperText = helperText,
@@ -1619,7 +1619,7 @@ private fun OudsTextInput(
     suffix: String? = null,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
+    loader: OudsLoader? = null,
     outlined: Boolean = false,
     error: OudsError? = null,
     helperText: String? = null,
@@ -1735,7 +1735,7 @@ internal fun OudsTextInputDecorator(
     trailingIconButton: OudsIconButton?,
     prefix: String?,
     suffix: String?,
-    loader: OudsTextInputLoader?,
+    loader: OudsLoader?,
     outlined: Boolean,
     error: OudsError?,
     helperText: String?,
@@ -1902,7 +1902,7 @@ internal fun OudsTextInputDecorator(
 }
 
 @Composable
-internal fun OudsTextInputCircularProgressIndicator(loader: OudsTextInputLoader?) {
+internal fun OudsTextInputCircularProgressIndicator(loader: OudsLoader?) {
     val fontScale = LocalConfiguration.current.fontScale
     val progressIndicatorModifier = Modifier
         .size(OudsTheme.components.button.size.progressIndicatorDefault * fontScale)
@@ -1961,7 +1961,7 @@ internal fun OudsTextInputHelperTextErrorMessage(
 }
 
 @Composable
-internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
+internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsLoader?, interactionState: InteractionState): OudsTextInputState {
     return getPreviewEnumEntry<OudsTextInputState>().orElse {
         if (loader != null) {
             OudsTextInputState.Loading
@@ -2150,7 +2150,11 @@ data class OudsTextInputHelperLink(
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsTextInputLoader(val progress: Float?)
+@Deprecated("")
+data class OudsTextInputLoader(val progress: Float?) {
+
+    internal fun toLoader() = OudsLoader(progress)
+}
 
 /**
  * A leading icon in an [OudsTextInput].
