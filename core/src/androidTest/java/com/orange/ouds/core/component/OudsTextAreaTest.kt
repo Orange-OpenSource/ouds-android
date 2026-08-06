@@ -14,6 +14,9 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
@@ -81,22 +84,21 @@ internal class OudsTextAreaTest {
     @Test
     fun oudsTextArea_textFieldValueChange_succeeds() {
         with(composeTestRule) {
+            var textFieldValue by mutableStateOf(TextFieldValue("Text", TextRange(4)))
             val testTag = "OudsTextArea"
-            val onValueChange = mock<(TextFieldValue) -> Unit>()
 
             setOudsContent {
-                val text = "Text"
                 OudsTextArea(
-                    value = TextFieldValue(text, TextRange(text.length)),
-                    onValueChange = onValueChange,
+                    value = textFieldValue,
+                    onValueChange = { textFieldValue = it },
                     modifier = Modifier.testTag(testTag)
                 )
             }
 
             onNodeWithTag(testTag).performClick()
             onNodeWithTag(testTag).performTextInput(" changed")
-            val expectedText = "Text changed"
-            verify(onValueChange).invoke(TextFieldValue(expectedText, TextRange(expectedText.length)))
+            val expectedTextFieldValue = TextFieldValue("Text changed", TextRange(12))
+            Assert.assertEquals(expectedTextFieldValue, textFieldValue)
         }
     }
 
