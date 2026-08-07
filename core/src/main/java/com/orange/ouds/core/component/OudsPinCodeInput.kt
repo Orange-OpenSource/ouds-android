@@ -61,6 +61,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.substring
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -251,32 +252,54 @@ private fun OudsPinCodeInput(
         textFieldState = textFieldState,
         length = length
     ) {
-        BasicSecureTextField(
-            modifier = modifier
-                .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
-                .focusRequester(focusRequester),
-            state = textFieldState,
-            keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
-            onKeyboardAction = onKeyboardAction,
-            inputTransformation = inputTransformation(length),
-            interactionSource = interactionSource,
-            decorator = {
-                OudsPinCodeInputDecorator(
-                    textFieldState = textFieldState,
-                    length = length,
-                    outlined = outlined,
+        BoxWithConstraints(contentAlignment = Alignment.Center) {
+            ConstraintLayout {
+                val (secureTextField, helperTextErrorMessage) = createRefs()
+                BasicSecureTextField(
+                    modifier = modifier
+                        .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+                        .constrainAs(secureTextField) {
+                            top.linkTo(parent.top)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        }
+                        .focusRequester(focusRequester),
+                    state = textFieldState,
+                    keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
+                    onKeyboardAction = onKeyboardAction,
+                    inputTransformation = inputTransformation(length),
+                    interactionSource = interactionSource,
+                    decorator = {
+                        OudsPinCodeInputDecorator(
+                            textFieldState = textFieldState,
+                            length = length,
+                            outlined = outlined,
+                            error = error,
+                            onDigitClick = {
+                                focusRequester.requestFocus()
+                                // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
+                                keyboardController?.show()
+                            },
+                            maxWidth = this@BoxWithConstraints.maxWidth,
+                            interactionSource = interactionSource
+                        )
+                    }
+                )
+                OudsTextInputHelperTextErrorMessage(
+                    modifier = Modifier.constrainAs(helperTextErrorMessage) {
+                        top.linkTo(secureTextField.bottom)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(secureTextField.start)
+                        end.linkTo(secureTextField.end)
+                        width = Dimension.fillToConstraints
+                    },
+                    enabled = true,
                     error = error,
                     helperText = helperText,
-                    annotatedHelperText = annotatedHelperText,
-                    onDigitClick = {
-                        focusRequester.requestFocus()
-                        // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
-                        keyboardController?.show()
-                    },
-                    interactionSource = interactionSource
+                    annotatedHelperText = annotatedHelperText
                 )
             }
-        )
+        }
     }
 }
 
@@ -329,66 +352,39 @@ private fun OudsPinCodeInputDecorator(
     length: OudsPinCodeInputLength,
     outlined: Boolean,
     error: OudsError?,
-    helperText: String?,
-    annotatedHelperText: OudsAnnotatedHelperText?,
     onDigitClick: (Int) -> Unit,
+    maxWidth: Dp,
     interactionSource: MutableInteractionSource
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
     val smallDeviceSpecificRules = smallDeviceSpecificRules(length)
-    BoxWithConstraints(contentAlignment = Alignment.Center) {
-        val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
-        val totalHorizontalSpace = horizontalSpace * (length.value - 1)
-        val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
-        ConstraintLayout {
-            val (row, helperTextErrorMessage) = createRefs()
-            Row(
-                modifier = Modifier
-                    .constrainAs(row) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
-            ) {
-                val isNonErrorPreview = LocalInspectionMode.current && error == null
-                val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
-                repeat(length.value) { index ->
-                    val digitInputState = when {
-                        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
-                        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-                        else -> OudsDigitInputState.Enabled
-                    }
-                    OudsDigitInput(
-                        modifier = Modifier
-                            .width(digitWidth)
-                            .semantics { hideFromAccessibility() },
-                        digit = textFieldState.text.getOrNull(index),
-                        onClick = {
-                            onDigitClick(index)
-                            textFieldState.edit { placeCursorAfterCharAt(index) }
-                        },
-                        state = digitInputState,
-                        outlined = outlined,
-                        error = error != null,
-                        placeholder = error == null,
-                        smallDeviceSpecificRules = smallDeviceSpecificRules
-                    )
-                }
+    val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
+    val totalHorizontalSpace = horizontalSpace * (length.value - 1)
+    val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
+    Row(horizontalArrangement = Arrangement.spacedBy(horizontalSpace)) {
+        val isNonErrorPreview = LocalInspectionMode.current && error == null
+        val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
+        repeat(length.value) { index ->
+            val digitInputState = when {
+                (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+                interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+                else -> OudsDigitInputState.Enabled
             }
-            OudsTextInputHelperTextErrorMessage(
-                modifier = Modifier.constrainAs(helperTextErrorMessage) {
-                    top.linkTo(row.bottom)
-                    bottom.linkTo(parent.bottom)
-                    start.linkTo(row.start)
-                    end.linkTo(row.end)
-                    width = Dimension.fillToConstraints
+            OudsDigitInput(
+                modifier = Modifier
+                    .width(digitWidth)
+                    .semantics { hideFromAccessibility() },
+                digit = textFieldState.text.getOrNull(index),
+                onClick = {
+                    onDigitClick(index)
+                    textFieldState.edit { placeCursorAfterCharAt(index) }
                 },
-                enabled = true,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText
+                state = digitInputState,
+                outlined = outlined,
+                error = error != null,
+                placeholder = error == null,
+                smallDeviceSpecificRules = smallDeviceSpecificRules
             )
         }
     }
