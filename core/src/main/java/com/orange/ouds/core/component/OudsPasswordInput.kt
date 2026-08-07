@@ -279,6 +279,9 @@ private fun OudsPasswordInput(
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = null,
         basicTextField = {
             BasicSecureTextField(
                 modifier = modifier.textInputSemantic(label),
@@ -316,8 +319,6 @@ private fun OudsPasswordInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = null,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
                 },

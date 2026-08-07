@@ -434,6 +434,9 @@ private fun OudsTextArea(
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
@@ -460,8 +463,6 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth,
                         scrollState = scrollState,
                     )
@@ -810,6 +811,9 @@ private fun OudsTextArea(
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
@@ -837,8 +841,6 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
@@ -1184,6 +1186,9 @@ private fun OudsTextArea(
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
                 modifier = modifier.textInputSemantic(label),
@@ -1211,8 +1216,6 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth,
                     )
                 }
@@ -1251,8 +1254,6 @@ internal fun OudsTextAreaDecorator(
     outlined: Boolean,
     error: OudsError?,
     helperText: String?,
-    annotatedHelperText: OudsAnnotatedHelperText?,
-    helperLink: OudsTextInputHelperLink?,
     constrainedMaxWidth: Boolean,
     scrollState: ScrollState = rememberScrollState(),
 ) {
@@ -1344,18 +1345,6 @@ internal fun OudsTextAreaDecorator(
                     }
                 }
             }
-
-            // Helper text / Error description
-            OudsTextInputHelperTextErrorMessage(
-                modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
-                enabled = state != OudsTextInputState.Disabled,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText
-            )
-
-            // Helper link
-            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
     }
 }
