@@ -44,7 +44,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
- * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
+ * @param indicator Indicator of the navigation button. See [OudsNavigationButtonIndicator] for allowed values.
  * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
  *   or in contexts where clarity is critical.
  * @param enabled Controls the enabled state of the button when there is no [loader].
@@ -63,31 +63,84 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsNavigationButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
+    indicator: OudsNavigationButtonIndicator = OudsNavigationButtonDefaults.Indicator,
     label: String? = null,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    loader: OudsLoader? = null,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     val drawableResources = LocalDrawableResources.current
-    val iconResource = when (chevron) {
-        OudsNavigationButtonChevron.Next -> drawableResources.component.button.next
-        OudsNavigationButtonChevron.Previous -> drawableResources.component.button.previous
+    val iconResource = when (indicator) {
+        OudsNavigationButtonIndicator.Next -> drawableResources.component.button.next
+        OudsNavigationButtonIndicator.Previous -> drawableResources.component.button.previous
     }
 
     OudsButton(
-        nullableIcon = OudsButtonIcon(
-            painter = painterResource(iconResource),
-            contentDescription = "" // Not necessary because a label is present
-        ),
+        nullableIcon = OudsIcon(painter = painterResource(iconResource)),
         nullableLabel = label,
         onClick = onClick,
         modifier = modifier,
-        component = OudsButtonComponent.NavigationButton(chevron),
+        component = OudsButtonComponent.NavigationButton(indicator),
         enabled = enabled,
         loader = loader,
         appearance = appearance.toButtonAppearance(),
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Navigation button is a UI element that allows to move between different pages within a multipage interface.
+ * Navigation button is typically arrange in sequence to indicate the user's current position and provide controls to access previous, next, or specific pages.
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ *
+ * Rounded corners can be enabled or disabled using the [com.orange.ouds.theme.OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-button)
+ *
+ * > Design name: Navigation Button
+ *
+ * > Design version: 3.3.0
+ *
+ * @param onClick Callback invoked when the button is clicked.
+ * @param modifier [Modifier] applied to the button.
+ * @param chevron Chevron of the navigation button. See [OudsNavigationButtonChevron] for allowed values.
+ * @param label Label displayed in the button describing the navigation action. This makes the action more explicit and accessible especially for new users
+ *   or in contexts where clarity is critical.
+ * @param enabled Controls the enabled state of the button when there is no [loader].
+ *   When `false`, this button will not be clickable.
+ *   Has no effect if [loader] is provided.
+ * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
+ * @param appearance Appearance of the button among [OudsNavigationButtonAppearance] values.
+ *   A button with [OudsNavigationButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting interactions for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonTextAndIconSample
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonIconOnlySample
+ */
+@Deprecated("")
+@Composable
+fun OudsNavigationButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    @Suppress("DEPRECATION") chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
+    label: String? = null,
+    enabled: Boolean = true,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader?,
+    appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsNavigationButton(
+        onClick = onClick,
+        modifier = modifier,
+        indicator = chevron.toIndicator(),
+        label = label,
+        enabled = enabled,
+        loader = loader?.toLoader(),
+        appearance = appearance,
         interactionSource = interactionSource
     )
 }
@@ -105,20 +158,55 @@ object OudsNavigationButtonDefaults {
     /**
      * Default chevron of an [OudsNavigationButton].
      */
+    @Suppress("DEPRECATION")
+    @Deprecated("Use OudsNavigationButtonDefaults.Indicator instead.")
     val Chevron = OudsNavigationButtonChevron.Next
+
+    /**
+     * Default indicator of an [OudsNavigationButton].
+     */
+    val Indicator = OudsNavigationButtonIndicator.Next
 }
 
 /**
  * Represents the chevron of an [OudsNavigationButton]. Its position in the button changes depending on its value.
  */
+@Deprecated(
+    message = "OudsNavigationButtonChevron has been replaced with OudsNavigationButtonIndicator.",
+    replaceWith = ReplaceWith("OudsNavigationButtonIndicator")
+)
 enum class OudsNavigationButtonChevron {
     /**
      * The Next chevron button is used to move the user forward in a sequence of content, steps or pages.
      */
+    @Deprecated(message = "Use OudsNavigationButtonIndicator.Next instead.")
     Next,
 
     /**
      * The Previous chevron button allows the user to return to the prior step, page, or section.
+     */
+    @Deprecated(message = "Use OudsNavigationButtonIndicator.Previous instead.")
+    Previous;
+
+    @Suppress("DEPRECATION")
+    internal fun toIndicator(): OudsNavigationButtonIndicator = when (this) {
+        Previous -> OudsNavigationButtonIndicator.Previous
+        Next -> OudsNavigationButtonIndicator.Next
+    }
+}
+
+/**
+ * Represents the type of navigation indicator displayed in an [OudsNavigationButton].
+ */
+enum class OudsNavigationButtonIndicator {
+
+    /**
+     * The Previous indicator button allows the user to return to the prior step, page, or section.
+     */
+    Next,
+    
+    /**
+     * The Next indicator button is used to move the user forward in a sequence of content, steps or pages.
      */
     Previous
 }
@@ -186,14 +274,14 @@ internal fun PreviewOudsNavigationButton(
             PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 if (hasLabel) {
                     OudsNavigationButton(
-                        label = chevron.name,
-                        chevron = chevron,
+                        label = indicator.name,
+                        indicator = indicator,
                         onClick = {},
                         appearance = appearance
                     )
                 } else {
                     OudsNavigationButton(
-                        chevron = chevron,
+                        indicator = indicator,
                         onClick = {},
                         appearance = appearance
                     )
@@ -238,14 +326,14 @@ private fun PreviewOudsNavigationButtonOnTwoLines() = PreviewOudsNavigationButto
 internal fun PreviewOudsNavigationButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsNavigationButton(
         label = "Navigation button\non two lines",
-        chevron = OudsNavigationButtonChevron.Next,
+        indicator = OudsNavigationButtonIndicator.Next,
         onClick = {},
     )
 }
 
 internal data class OudsNavigationButtonPreviewParameter(
     val appearance: OudsNavigationButtonAppearance,
-    val chevron: OudsNavigationButtonChevron,
+    val indicator: OudsNavigationButtonIndicator,
     val hasLabel: Boolean,
     val onColoredBox: Boolean = false
 )
@@ -256,10 +344,10 @@ internal class OudsNavigationButtonPreviewParameterProvider :
 private val previewParameterValues: List<OudsNavigationButtonPreviewParameter>
     get() = buildList {
         OudsNavigationButtonAppearance.entries.forEach { appearance ->
-            OudsNavigationButtonChevron.entries.forEach { chevron ->
+            OudsNavigationButtonIndicator.entries.forEach { indicator ->
                 val parameters = listOf(
-                    OudsNavigationButtonPreviewParameter(appearance, chevron, hasLabel = true),
-                    OudsNavigationButtonPreviewParameter(appearance, chevron, hasLabel = false),
+                    OudsNavigationButtonPreviewParameter(appearance, indicator, hasLabel = true),
+                    OudsNavigationButtonPreviewParameter(appearance, indicator, hasLabel = false),
                 )
                 addAll(parameters)
                 addAll(parameters.map { it.copy(onColoredBox = true) })

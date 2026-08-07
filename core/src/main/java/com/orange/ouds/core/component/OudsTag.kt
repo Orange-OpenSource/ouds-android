@@ -130,7 +130,7 @@ fun OudsTag(
     status: OudsTagStatus = OudsTagDefaults.Status,
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
-    loader: OudsTagLoader? = null
+    loader: OudsLoader? = null
 ) {
     val hasLoader = loader != null
     val hasAsset = status.asset != null || hasLoader
@@ -190,6 +190,87 @@ fun OudsTag(
             )
         }
     }
+}
+
+/**
+ * Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
+ *
+ * Tags have six statuses depending on the context of the information they represent. Each status is designed
+ * to convey a specific meaning and ensure clarity in communication.
+ *
+ * Four different layouts are supported:
+ *   - Text only: when [status] asset is `null`, the tag displays only text.
+ *     Used for simple labels, categories, or keywords without additional visual elements.
+ *   - Text and bullet: when [status] asset is equal to [OudsTagAsset.Bullet], the tag displays a small indicator (bullet) alongside the text.
+ *     Used to show status, presence, or activity next to the label.
+ *   - Text and icon: when [status] asset is an [OudsTagAsset.Icon] or an [OudsTagAsset.Icon.Default], the tag includes an icon before the text.
+ *     Used to visually reinforce the meaning of the tag, such as status, type, or action.
+ *   - Text and loader: when [loader] is not `null`, the tag combines a loading spinner (or progress indicator) with text.
+ *     Used to indicate that a process or action related to the tag is in progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-tag)
+ *
+ * > Design name: Tag
+ *
+ * > Design version: 1.5.0
+ *
+ * @param label The label displayed in the tag.
+ * @param modifier [Modifier] applied to the tag.
+ * @param enabled Controls the enabled appearance of the tag.
+ *   A tag with a loading spinner cannot be disabled. This will throw an [IllegalStateException].
+ * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines the tag's background
+ *   and content colors.
+ * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
+ *   There are two types of statuses:
+ *   - Non-functional statuses ([OudsTagStatus.Neutral] or [OudsTagStatus.Accent]) used to display categories, default states, or to draw attention without
+ *   carrying a specific functional meaning (unlike functional tags such as success, info, etc.).
+ *   Using a non-functional status, you can provide an icon related to the tag’s context to enhance recognition by providing an [OudsTagAsset.Icon]
+ *   as the asset of the status.
+ *   - Functional statuses communicate specific information or system feedback: [OudsTagStatus.Positive], [OudsTagStatus.Warning], [OudsTagStatus.Negative],
+ *   [OudsTagStatus.Info].
+ *   Each functional status has its dedicated functional icon that matches the meaning of the tag. This icon will appear by providing [OudsTagAsset.Icon.Default]
+ *   as the asset of the status.
+ * @param roundedCorners Controls the shape of the tag.
+ *   When `true`, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
+ *   When `false`, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in a business context to label
+ *   promotions, offers or important notices.
+ * @param size The size of the tag.
+ * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
+ * tag is in progress.
+ *   A disabled tag cannot have a loader. This will throw an [IllegalStateException].
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithBulletSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithDefaultIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTagWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsTag(
+    label: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
+    status: OudsTagStatus = OudsTagDefaults.Status,
+    roundedCorners: Boolean = true,
+    size: OudsTagSize = OudsTagDefaults.Size,
+    @Suppress("DEPRECATION") loader: OudsTagLoader?
+) {
+    OudsTag(
+        label = label,
+        modifier = modifier,
+        enabled = enabled,
+        appearance = appearance,
+        status = status,
+        roundedCorners = roundedCorners,
+        size = size,
+        loader = loader?.toLoader()
+    )
 }
 
 @Composable
@@ -439,18 +520,37 @@ enum class OudsTagAppearance {
  */
 sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
 
+    override fun <T : OudsComponentContent.ExtraParameters> toComponentContent(): OudsComponentContent<T> {
+        @Suppress("UNCHECKED_CAST", "DEPRECATION")
+        return if (this == OudsIcon.Default) {
+            OudsIcon(
+                graphicsObjectProvider = { icon ->
+                    with(icon.extraParameters as ExtraParameters) {
+                        status.getDefaultIconPainter(appearance, enabled).orElse {
+                            error("No default icon for status ${status::class.simpleName}")
+                        }
+                    }
+                },
+                contentDescriptionProvider = { "" },
+                tinted = true
+            )
+        } else {
+            this
+        } as OudsComponentContent<T>
+    }
+
     /**
      * A bullet in an [OudsTag].
      * This bullet is non-clickable. No content description is needed because a tag always contains a label.
      */
-    data object Bullet : OudsTagAsset, OudsComponentContent<OudsTagAsset.ExtraParameters>(OudsTagAsset.ExtraParameters::class.java) {
+    data object Bullet : OudsTagAsset, OudsComponentContent<OudsTagAsset.ExtraParameters>() {
 
         @Composable
         override fun Content(modifier: Modifier) {
             Box(
                 modifier = modifier
                     .size(10.dp)
-                    .background(extraParameters.tint, shape = RoundedCornerShape(percent = 50))
+                    .background(extraParameters.tint.orElse { Color.Unspecified }, shape = RoundedCornerShape(percent = 50))
             )
         }
     }
@@ -459,6 +559,8 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
      * An icon in an [OudsTag].
      * This icon is non-clickable. No content description is needed because a tag always contains a label.
      */
+    @Suppress("DEPRECATION")
+    @Deprecated("")
     class Icon private constructor(
         graphicsObject: Any,
         override val tinted: Boolean
@@ -507,7 +609,6 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
          * for other statuses because the tag's `label` should provide the necessary context.
          */
         data object Default : OudsTagAsset, OudsComponentIcon<OudsTagAsset.ExtraParameters, Default>(
-            OudsTagAsset.ExtraParameters::class.java,
             { icon ->
                 with(icon.extraParameters) {
                     status.getDefaultIconPainter(appearance, enabled).orElse {
@@ -524,13 +625,12 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
         }
     }
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
-        internal val tint: Color,
+    class ExtraParameters internal constructor(
+        tint: Color,
+        enabled: Boolean,
         internal val status: OudsTagStatus,
-        internal val appearance: OudsTagAppearance,
-        internal val enabled: Boolean
-    ) : OudsComponentContent.ExtraParameters()
+        internal val appearance: OudsTagAppearance
+    ) : OudsIcon.ExtraParameters(tint, enabled)
 }
 
 /**
@@ -540,7 +640,11 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsTagLoader(val progress: Float?)
+@Deprecated("")
+data class OudsTagLoader(val progress: Float?) {
+
+    internal fun toLoader() = OudsLoader(progress)
+}
 
 /**
  * Represents the size of an OUDS tag.
@@ -584,7 +688,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Neutral] with an icon.
          */
+        @Suppress("DEPRECATION")
         constructor(asset: OudsTagAsset.Icon) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Neutral] with no asset.
@@ -606,7 +713,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Accent] with an icon.
          */
+        @Suppress("DEPRECATION")
         constructor(asset: OudsTagAsset.Icon) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Accent] with no asset.
@@ -627,7 +737,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Positive] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Positive] with no asset.
@@ -652,7 +765,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Info] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Info] with no asset.
@@ -677,7 +793,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Warning] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Warning] with no asset.
@@ -716,7 +835,10 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
         /**
          * Creates an instance of [OudsTagStatus.Negative] with its default dedicated icon.
          */
+        @Deprecated("")
         constructor(asset: OudsTagAsset.Icon.Default) : this(asset as? OudsTagAsset)
+
+        constructor(asset: OudsIcon.Default) : this(asset as? OudsTagAsset)
 
         /**
          * Creates an instance of [OudsTagStatus.Negative] with no asset.
@@ -799,8 +921,8 @@ internal fun PreviewOudsTag(
                 icon && row in listOf(
                     OudsTagStatus.Neutral::class.simpleName,
                     OudsTagStatus.Accent::class.simpleName
-                ) -> OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
-                icon -> OudsTagAsset.Icon.Default
+                ) -> OudsIcon(Icons.Outlined.FavoriteBorder)
+                icon -> OudsIcon.Default
                 else -> null
             }
             val status = when (row) {
@@ -844,7 +966,7 @@ internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPrev
         ).map { it.simpleName.orEmpty() },
     ) { column, row ->
         val size = enumValueOf<OudsTagSize>(column)
-        val asset = OudsTagAsset.Icon(rememberRainbowHeartPainter(), false)
+        val asset = OudsIcon(rememberRainbowHeartPainter(), "", false)
         val status = when (row) {
             OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
             OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
@@ -865,7 +987,7 @@ internal data class OudsTagPreviewParameter(
     val bullet: Boolean = false,
     val appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     val roundedCorners: Boolean = true,
-    val loader: OudsTagLoader? = null,
+    val loader: OudsLoader? = null,
     val enabled: Boolean = true
 )
 
@@ -877,7 +999,7 @@ private val previewParameterValues: List<OudsTagPreviewParameter>
         OudsTagPreviewParameter(bullet = true, appearance = OudsTagAppearance.Muted),
         OudsTagPreviewParameter(icon = true, appearance = OudsTagAppearance.Muted),
         OudsTagPreviewParameter(icon = true, roundedCorners = false),
-        OudsTagPreviewParameter(loader = OudsTagLoader(0.6f)),
+        OudsTagPreviewParameter(loader = OudsLoader(0.6f)),
         OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
     )
 

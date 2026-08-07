@@ -273,9 +273,9 @@ private fun OudsBadge(
             }
             withIconStatus?.icon?.Content(
                 modifier = Modifier.fillMaxSize(),
-                extraParameters = OudsBadgeIcon.ExtraParameters(
+                extraParameters = OudsIcon.ExtraParameters(
                     enabled = enabled,
-                    status = withIconStatus
+                    tint = iconColor(status = withIconStatus.toBadgeStatus(), enabled = enabled)
                 )
             )
         }
@@ -396,11 +396,14 @@ const val OudsBadgeMaxCount = 99
  * An icon in an [OudsBadge].
  * This icon is not clickable.
  */
+@Suppress("DEPRECATION")
+@Deprecated("")
 open class OudsBadgeIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsBadgeIcon) -> Any,
     override val tinted: Boolean
-) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, { "" }) {
+) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(graphicsObjectProvider, { "" }) {
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val enabled: Boolean,
@@ -449,7 +452,7 @@ open class OudsBadgeIcon internal constructor(
 
     override val tint: Color?
         @Composable
-        get() = if (tinted) iconColor(status = extraParameters.status.toBadgeStatus(), enabled = extraParameters.enabled) else null
+        get() = iconColor(status = extraParameters.status.toBadgeStatus(), enabled = extraParameters.enabled)
 
 }
 
@@ -516,7 +519,7 @@ enum class OudsBadgeStatus {
  * For a badge without icon, please use [OudsBadgeStatus].
  * A content description should be specified at [OudsBadge] level through semantics Modifier.
  */
-sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
+sealed class OudsIconBadgeStatus(val icon: OudsIcon) {
 
     /**
      * Used for general labels without specific emphasis.
@@ -524,7 +527,12 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Neutral] with a custom icon.
      */
-    class Neutral(icon: OudsBadgeIcon) : OudsIconBadgeStatus(icon)
+    class Neutral(icon: OudsIcon) : OudsIconBadgeStatus(icon) {
+
+        @Deprecated("")
+        @Suppress("DEPRECATION")
+        constructor(icon: OudsBadgeIcon) : this(icon.toIcon())
+    }
 
     /**
      * Employed to highlight discovery or exploration-related content.
@@ -532,7 +540,12 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Accent] with a custom icon.
      */
-    class Accent(icon: OudsBadgeIcon) : OudsIconBadgeStatus(icon)
+    class Accent(icon: OudsIcon) : OudsIconBadgeStatus(icon) {
+
+        @Deprecated("")
+        @Suppress("DEPRECATION")
+        constructor(icon: OudsBadgeIcon) : this(icon.toIcon())
+    }
 
     /**
      * Indicates success, completion, or approval.
@@ -540,7 +553,13 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Positive] with its default dedicated icon.
      */
-    data object Positive : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.tickConfirmationFill) }, true))
+    data object Positive : OudsIconBadgeStatus(
+        OudsIcon(
+            { painterResource(OudsTheme.drawableResources.component.badgeIcon.tickConfirmationFill) },
+            { "" },
+            true
+        )
+    )
 
     /**
      * Provides informational context without urgency.
@@ -548,7 +567,13 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Info] with its default dedicated icon.
      */
-    data object Info : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.infoFill) }, true))
+    data object Info : OudsIconBadgeStatus(
+        OudsIcon(
+            { painterResource(OudsTheme.drawableResources.component.badgeIcon.infoFill) },
+            { "" },
+            true
+        )
+    )
 
     /**
      * Negatives the user to potential risks or cautionary messages.
@@ -557,9 +582,9 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      * @constructor Creates an instance of [OudsIconBadgeStatus.Warning] with its default dedicated icon.
      */
     data object Warning : OudsIconBadgeStatus(
-        OudsBadgeIcon(
+        OudsIcon(
             { icon ->
-                if (icon.enabled == true) {
+                if (icon.extraParameters.enabled) {
                     val iconTokens = OudsTheme.componentsTokens.icon
                     LayeredTintedPainter(
                         backPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningExternalShape),
@@ -571,6 +596,7 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
                     painterResource(OudsTheme.drawableResources.component.badgeIcon.warningExternalShape)
                 }
             },
+            { "" },
             true
         )
     )
@@ -582,7 +608,13 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
      *
      * @constructor Creates an instance of [OudsIconBadgeStatus.Negative] with its default dedicated icon.
      */
-    data object Negative : OudsIconBadgeStatus(OudsBadgeIcon({ painterResource(OudsTheme.drawableResources.component.badgeIcon.errorFill) }, true))
+    data object Negative : OudsIconBadgeStatus(
+        OudsIcon(
+            { painterResource(OudsTheme.drawableResources.component.badgeIcon.errorFill) },
+            { "" },
+            true
+        )
+    )
 
     /**
      * The color associated with this status.
@@ -685,8 +717,8 @@ internal fun PreviewOudsBadgeWithIcon(theme: OudsThemeContract, darkThemeEnabled
             ).map { it.simpleName.orEmpty() },
         ) { column, row ->
             val status = when (row) {
-                OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(Icons.Filled.FavoriteBorder))
-                OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(Icons.Filled.FavoriteBorder))
+                OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsIcon(Icons.Filled.FavoriteBorder))
+                OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsIcon(Icons.Filled.FavoriteBorder))
                 OudsIconBadgeStatus.Positive::class.simpleName -> OudsIconBadgeStatus.Positive
                 OudsIconBadgeStatus.Warning::class.simpleName -> OudsIconBadgeStatus.Warning
                 OudsIconBadgeStatus.Negative::class.simpleName -> OudsIconBadgeStatus.Negative
@@ -732,8 +764,8 @@ internal fun PreviewOudsBadgeWithUntintedIcon(theme: OudsThemeContract) = OudsPr
         ).map { it.simpleName.orEmpty() },
     ) { column, row ->
         val status = when (row) {
-            OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsBadgeIcon(rememberRainbowHeartPainter(), tinted = false))
-            OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsBadgeIcon(rememberRainbowHeartPainter(), tinted = false))
+            OudsIconBadgeStatus.Neutral::class.simpleName -> OudsIconBadgeStatus.Neutral(OudsIcon(rememberRainbowHeartPainter(), "", tinted = false))
+            OudsIconBadgeStatus.Accent::class.simpleName -> OudsIconBadgeStatus.Accent(OudsIcon(rememberRainbowHeartPainter(), "", tinted = false))
             else -> error("Unknown row $row.")
         }
         val size = enumValueOf<OudsBadgeSize>(column)

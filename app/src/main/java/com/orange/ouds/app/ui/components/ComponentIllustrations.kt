@@ -54,15 +54,14 @@ import com.orange.ouds.core.component.OudsCircularProgressIndicator
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsFloatingActionButton
-import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
 import com.orange.ouds.core.component.OudsHorizontalDivider
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsListItem
 import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
-import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
@@ -186,10 +185,7 @@ fun DividerIllustration() = ComponentIllustration {
 @Composable
 fun FloatingActionButtonIllustration() = ComponentIllustration {
     OudsFloatingActionButton(
-        icon = OudsFloatingActionButtonIcon(
-            painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks),
-            contentDescription = ""
-        ),
+        icon = OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
         onClick = {}
     )
 }
@@ -221,7 +217,7 @@ fun NavigationBarIllustration() = ComponentIllustration {
         OudsNavigationBarItem(
             selected = index == 0,
             onClick = {},
-            icon = OudsNavigationBarItemIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
+            icon = OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks)),
             label = stringResource(R.string.app_components_common_label_label)
         )
     }

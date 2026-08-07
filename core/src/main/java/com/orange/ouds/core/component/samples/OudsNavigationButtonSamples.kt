@@ -15,13 +15,13 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsNavigationButton
-import com.orange.ouds.core.component.OudsNavigationButtonChevron
+import com.orange.ouds.core.component.OudsNavigationButtonIndicator
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
 internal fun OudsNavigationButtonIconOnlySample() {
     OudsNavigationButton(
-        chevron = OudsNavigationButtonChevron.Next,
+        indicator = OudsNavigationButtonIndicator.Next,
         onClick = { /* Navigate to next screen */ }
     )
 }
@@ -30,7 +30,7 @@ internal fun OudsNavigationButtonIconOnlySample() {
 internal fun OudsNavigationButtonTextAndIconSample() {
     OudsNavigationButton(
         label = "Next",
-        chevron = OudsNavigationButtonChevron.Next,
+        indicator = OudsNavigationButtonIndicator.Next,
         onClick = { /* Navigate to next screen */ }
     )
 }

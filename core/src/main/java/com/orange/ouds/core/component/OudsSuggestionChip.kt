@@ -109,7 +109,7 @@ fun OudsSuggestionChip(
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
-    icon: OudsChipIcon,
+    icon: OudsIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -118,6 +118,54 @@ fun OudsSuggestionChip(
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
+ *
+ * This version of the chip uses the *icon only* layout which uses only an icon, making it a compact option for limited space.
+ * Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
+ *
+ * > Design name: Suggestion Chip
+ *
+ * > Design version: 1.5.0
+ *
+ * @param onClick Called when this chip is clicked.
+ * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlyWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsSuggestionChip(
+    onClick: () -> Unit,
+    @Suppress("DEPRECATION") icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsSuggestionChip(
+        onClick = onClick,
+        icon = icon.toIcon(),
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -159,7 +207,7 @@ fun OudsSuggestionChip(
 fun OudsSuggestionChip(
     onClick: () -> Unit,
     label: String,
-    icon: OudsChipIcon,
+    icon: OudsIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -168,6 +216,57 @@ fun OudsSuggestionChip(
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Suggestion chip is a UI element that allows to present recommended or predictive options based on user's input or context,
+ * and is commonly used to capture filtering decisions. Suggestion chip is typically non-selected by default and can be tapped
+ * or clicked to apply the suggestion, streamlining input and enhancing usability.
+ *
+ * This version of the chip uses the *text + icon* layout which combines text with an icon to enhance clarity and recognition.
+ * Ideal when a visual cue helps reinforce the filter's meaning.
+ * Other layouts are available for this component: *text only* and *icon only*.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-suggestion-chip)
+ *
+ * > Design name: Suggestion Chip
+ *
+ * > Design version: 1.5.0
+ *
+ * @param onClick Called when this chip is clicked.
+ * @param label Text label displayed in the chip.
+ * @param icon Icon displayed in the chip. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param modifier The [Modifier] to be applied to this chip.
+ * @param enabled Controls the enabled state of this chip. When `false`, this component will not
+ *   respond to user input, and it will appear visually disabled and disabled to accessibility
+ *   services.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
+ *   preview the chip in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsSuggestionChip(
+    onClick: () -> Unit,
+    label: String,
+    @Suppress("DEPRECATION") icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsSuggestionChip(
+        onClick = onClick,
+        label = label,
+        icon = icon.toIcon(),
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -251,7 +350,7 @@ fun OudsBasicSuggestionChip(
 @ExperimentalOudsApi
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
-    icon: OudsChipIcon,
+    icon: OudsIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
@@ -300,7 +399,7 @@ fun OudsBasicSuggestionChip(
 fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
     label: String,
-    icon: OudsChipIcon,
+    icon: OudsIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
@@ -325,7 +424,7 @@ private fun OudsChipScope.DefaultSuggestionChipContent() = DefaultChipContent(Ou
 private fun OudsBasicSuggestionChip(
     onClick: () -> Unit,
     nullableLabel: String?,
-    nullableIcon: OudsChipIcon?,
+    nullableIcon: OudsIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
@@ -360,7 +459,7 @@ internal fun PreviewOudsSuggestionChip(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) "Label" else null
-        val icon = if (hasIcon) OudsChipIcon(Icons.Filled.FavoriteBorder, "") else null
+        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder) else null
         PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
             when {
                 label != null && icon != null -> OudsSuggestionChip(onClick = {}, label = label, icon = icon)
@@ -383,7 +482,7 @@ private fun PreviewOudsSuggestionChipWithUntintedIcon() {
 internal fun PreviewOudsSuggestionChipWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsChipState>(maxEnumEntriesInEachRow = 3) {
         OudsSuggestionChip(
-            icon = OudsChipIcon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             label = "Label",
             onClick = {}
         )
@@ -400,7 +499,7 @@ private fun PreviewOudsSuggestionChipOnTwoLines() {
 @Composable
 internal fun PreviewOudsSuggestionChipOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsSuggestionChip(
-        icon = OudsChipIcon(Icons.Filled.FavoriteBorder, ""),
+        icon = OudsIcon(Icons.Filled.FavoriteBorder, ""),
         label = "Suggestion chip\non two lines",
         onClick = {}
     )

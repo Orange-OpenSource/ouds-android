@@ -37,7 +37,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
-import com.orange.ouds.core.component.OudsAlertIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
 import com.orange.ouds.foundation.extensions.orElse
@@ -65,8 +65,8 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
             // Fixes a bug where calling sealedSubclasses returns an empty list in Compose previews
             // See https://issuetracker.google.com/issues/240601093
             listOf(
-                OudsInlineAlertStatus.Accent(OudsAlertIcon.Default),
-                OudsInlineAlertStatus.Neutral(OudsAlertIcon.Default),
+                OudsInlineAlertStatus.Accent(OudsIcon.Default),
+                OudsInlineAlertStatus.Neutral(OudsIcon.Default),
                 OudsInlineAlertStatus.Positive,
                 OudsInlineAlertStatus.Info,
                 OudsInlineAlertStatus.Warning,
@@ -76,8 +76,8 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
             OudsInlineAlertStatus::class.sealedSubclasses.mapNotNull { kClass ->
                 tryOrNull {
                     when (kClass) {
-                        OudsInlineAlertStatus.Neutral::class -> OudsInlineAlertStatus.Neutral(OudsAlertIcon.Default)
-                        OudsInlineAlertStatus.Accent::class -> OudsInlineAlertStatus.Accent(OudsAlertIcon.Default)
+                        OudsInlineAlertStatus.Neutral::class -> OudsInlineAlertStatus.Neutral(OudsIcon.Default)
+                        OudsInlineAlertStatus.Accent::class -> OudsInlineAlertStatus.Accent(OudsIcon.Default)
                         else -> kClass.objectInstance
                     }
                 }
@@ -121,8 +121,8 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
 private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
     with(state) {
         val alertIcon = when (icon) {
-            InlineAlertDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
-            InlineAlertDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
+            InlineAlertDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            InlineAlertDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         OudsInlineAlert(
             label = label,
@@ -146,7 +146,7 @@ private fun Code.Builder.inlineAlertDemoCodeSnippet(state: InlineAlertDemoState,
                 is OudsInlineAlertStatus.Accent,
                 is OudsInlineAlertStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
-                        iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == InlineAlertDemoState.Icon.Tinted)
+                        iconArgument<OudsIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == InlineAlertDemoState.Icon.Tinted)
                     }
                 }
                 OudsInlineAlertStatus.Info,

@@ -40,11 +40,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
-import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescription
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
@@ -175,8 +175,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
     with(state) {
         val alertIcon = when (icon) {
             AlertMessageDemoState.Icon.None -> null
-            AlertMessageDemoState.Icon.Tinted -> OudsAlertIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
-            AlertMessageDemoState.Icon.Untinted -> OudsAlertIcon(painter = rememberUntintedIconPainter(), tinted = false)
+            AlertMessageDemoState.Icon.Tinted -> OudsIcon(painter = painterResource(LocalThemeDrawableResources.current.tipsAndTricks), tinted = true)
+            AlertMessageDemoState.Icon.Untinted -> OudsIcon(painter = rememberUntintedIconPainter(), tinted = false)
         }
         val alertMessageStatus = when (status) {
             is OudsAlertMessageStatus.Accent -> OudsAlertMessageStatus.Accent(alertIcon)
@@ -243,7 +243,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                 is OudsAlertMessageStatus.Neutral -> {
                     functionCallArgument(statusParameterName, status::class.java.nestedName) {
                         if (icon != AlertMessageDemoState.Icon.None) {
-                            iconArgument<OudsAlertIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == AlertMessageDemoState.Icon.Tinted)
+                            iconArgument<OudsIcon>("icon", themeDrawableResources.tipsAndTricks, tinted = icon == AlertMessageDemoState.Icon.Tinted)
                         }
                     }
                 }

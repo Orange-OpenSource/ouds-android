@@ -838,7 +838,6 @@ open class OudsListItemIcon internal constructor(
     internal val size: OudsListItemAssetSize,
     internal val status: OudsListItemIconStatus?
 ) : OudsComponentIcon<OudsListItemLeadingTrailing.Icon.ExtraParameters, OudsListItemIcon>(
-    OudsListItemLeadingTrailing.Icon.ExtraParameters::class.java,
     graphicsObjectProvider,
     contentDescriptionProvider
 ), OudsListItemLeadingTrailing.Icon {
@@ -863,7 +862,7 @@ open class OudsListItemImage internal constructor(
     override val ratio: OudsListItemImageRatio,
     contentScale: ContentScale,
     internal val roundedCorner: Boolean
-) : OudsComponentImage<Nothing>(Nothing::class.java, graphicsObject, contentDescription, contentScale = contentScale), OudsListItemLeadingTrailing.Image {
+) : OudsComponentImage<Nothing>(graphicsObject, contentDescription, contentScale = contentScale), OudsListItemLeadingTrailing.Image {
 
     @Composable
     override fun Content(modifier: Modifier) {
@@ -881,8 +880,7 @@ open class OudsListItemText internal constructor(
     private val label: String,
     private val style: OudsListItemTextStyle,
     private val extraLabel: String?
-) : OudsComponentContent<OudsListItemLeadingTrailing.Text.ExtraParameters>(OudsListItemLeadingTrailing.Text.ExtraParameters::class.java),
-    OudsListItemLeadingTrailing.Text {
+) : OudsComponentContent<OudsListItemLeadingTrailing.Text.ExtraParameters>(), OudsListItemLeadingTrailing.Text {
 
     @Composable
     override fun Content(modifier: Modifier) {

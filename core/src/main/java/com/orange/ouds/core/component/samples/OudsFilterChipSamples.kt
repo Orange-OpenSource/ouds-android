@@ -20,8 +20,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsChipIcon
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
@@ -41,7 +41,7 @@ internal fun OudsFilterChipIconOnlySample() {
     OudsFilterChip(
         selected = selected,
         onClick = { selected = !selected },
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = "Content description"
         )
@@ -55,7 +55,7 @@ internal fun OudsFilterChipTextAndIconSample() {
         selected = selected,
         onClick = { selected = !selected },
         label = "Label",
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
             contentDescription = ""
         )
@@ -68,7 +68,7 @@ internal fun OudsFilterChipIconOnlyWithUntintedIconSample() {
     OudsFilterChip(
         selected = selected,
         onClick = { selected = !selected },
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "Content description",
             tinted = false
@@ -83,7 +83,7 @@ internal fun OudsFilterChipTextAndIconWithUntintedIconSample() {
         selected = selected,
         onClick = { selected = !selected },
         label = "Label",
-        icon = OudsChipIcon(
+        icon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
             contentDescription = "",
             tinted = false

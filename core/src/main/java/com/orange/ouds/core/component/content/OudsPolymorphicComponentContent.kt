@@ -20,26 +20,32 @@ import androidx.compose.ui.Modifier
  * This interface is typically implemented by sealed interface where subclasses are different implementations of [OudsComponentContent].
  */
 // Using extension methods instead of adding them to the interface allows to use the internal keyword
-interface OudsPolymorphicComponentContent
+interface OudsPolymorphicComponentContent {
+
+    fun <T> toComponentContent(): OudsComponentContent<T> where T : OudsComponentContent.ExtraParameters {
+        @Suppress("UNCHECKED_CAST")
+        return this as OudsComponentContent<T>
+    }
+}
 
 @Composable
 internal fun OudsPolymorphicComponentContent.PolymorphicContent() {
-    return (this as OudsComponentContent<*>).Content()
+    return toComponentContent<Nothing>().Content()
 }
 
 @Composable
 internal fun OudsPolymorphicComponentContent.PolymorphicContent(modifier: Modifier) {
-    return (this as OudsComponentContent<*>).Content(modifier)
+    return toComponentContent<Nothing>().Content(modifier)
 }
 
 @Composable
 internal fun <T> OudsPolymorphicComponentContent.PolymorphicContent(extraParameters: T) where T : OudsComponentContent.ExtraParameters {
     @Suppress("UNCHECKED_CAST")
-    return (this as OudsComponentContent<T>).Content(extraParameters)
+    return toComponentContent<T>().Content(extraParameters)
 }
 
 @Composable
 internal fun <T> OudsPolymorphicComponentContent.PolymorphicContent(modifier: Modifier, extraParameters: T) where T : OudsComponentContent.ExtraParameters {
     @Suppress("UNCHECKED_CAST")
-    return (this as OudsComponentContent<T>).Content(modifier, extraParameters)
+    return toComponentContent<T>().Content(modifier, extraParameters)
 }

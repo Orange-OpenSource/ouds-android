@@ -19,9 +19,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
@@ -34,7 +34,7 @@ internal fun OudsTextAreaStateBasedSample() {
         textFieldState = rememberTextFieldState("I would like to report an issue with my recent order. The product arrived damaged and I would appreciate a replacement or refund."),
         label = "Feedback",
         placeholder = "Share your thoughts or report an issue",
-        loader = OudsTextInputLoader(null),
+        loader = OudsLoader(null),
         helperText = "Please provide as much detail as possible (minimum 20 characters)",
         helperLink = OudsTextInputHelperLink(text = "Guidelines", onClick = { /* Open guidelines */ })
     )
@@ -48,7 +48,7 @@ internal fun OudsTextAreaValueBasedSample() {
         onValueChange = { value = it },
         label = "Feedback",
         placeholder = "Share your thoughts or report an issue",
-        loader = OudsTextInputLoader(null),
+        loader = OudsLoader(null),
         helperText = "Please provide as much detail as possible (minimum 20 characters)",
         helperLink = OudsTextInputHelperLink(text = "Guidelines", onClick = { /* Open guidelines */ })
     )

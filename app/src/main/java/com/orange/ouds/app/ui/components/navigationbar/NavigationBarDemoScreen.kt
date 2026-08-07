@@ -36,10 +36,10 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsNavigationBar
 import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemBadge
-import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -96,7 +96,7 @@ private fun NavigationBarDemoContent(state: NavigationBarDemoState) {
                     selected = selectedItemId == index,
                     onClick = { selectedItemId = index },
                     label = label,
-                    icon = OudsNavigationBarItemIcon(painter = painterResource(id = item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
+                    icon = OudsIcon(painter = painterResource(id = item.iconResourceProvider.getResource(LocalThemeDrawableResources.current))),
                     badge = if (isLastItem) {
                         when (lastItemBadge) {
                             NavigationBarDemoState.ItemBadge.None -> null
@@ -134,7 +134,7 @@ private fun Code.Builder.navigationBarDemoCodeSnippet(
                         typedArgument("selected", index == state.selectedItemId)
                         onClickArgument()
                         labelArgument(label)
-                        iconArgument<OudsNavigationBarItemIcon>("icon", item.iconResourceProvider.getResource(themeDrawableResources))
+                        iconArgument<OudsIcon>("icon", item.iconResourceProvider.getResource(themeDrawableResources))
                         if (isLastItem && lastItemBadge != NavigationBarDemoState.ItemBadge.None) {
                             constructorCallArgument<OudsNavigationBarItemBadge>("badge") {
                                 when (lastItemBadge) {

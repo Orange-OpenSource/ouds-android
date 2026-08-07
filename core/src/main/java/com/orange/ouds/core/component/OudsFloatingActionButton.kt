@@ -92,7 +92,7 @@ import com.orange.ouds.theme.OudsThemeContract
  */
 @Composable
 fun OudsFloatingActionButton(
-    icon: OudsFloatingActionButtonIcon,
+    icon: OudsIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = OudsFloatingActionButtonDefaults.shape,
@@ -141,13 +141,57 @@ fun OudsFloatingActionButton(
  *   preview the FAB in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
  *
+ * @sample com.orange.ouds.core.component.samples.OudsFloatingActionButtonSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsFloatingActionButtonWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsFloatingActionButton(
+    @Suppress("DEPRECATION") icon: OudsFloatingActionButtonIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
+    appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsFloatingActionButton(
+        icon = icon.toIcon(),
+        onClick = onClick,
+        modifier = modifier,
+        shape = shape,
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * The FAB represents the most important action on a screen. It puts key actions within reach.
+ *
+ * FAB typically contains an icon, for a FAB with text and an icon, see
+ * [OudsExtendedFloatingActionButton].
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonWithUntintedIconSample
  */
 @Composable
 fun OudsSmallFloatingActionButton(
-    icon: OudsFloatingActionButtonIcon,
+    icon: OudsIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = OudsFloatingActionButtonDefaults.shape,
@@ -196,13 +240,57 @@ fun OudsSmallFloatingActionButton(
  *   preview the FAB in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
  *
+ * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSmallFloatingActionButtonWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsSmallFloatingActionButton(
+    @Suppress("DEPRECATION") icon: OudsFloatingActionButtonIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
+    appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsSmallFloatingActionButton(
+        icon = icon.toIcon(),
+        onClick = onClick,
+        modifier = modifier,
+        shape = shape,
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * The FAB represents the most important action on a screen. It puts key actions within reach.
+ *
+ * FAB typically contains an icon, for a FAB with text and an icon, see
+ * [OudsExtendedFloatingActionButton].
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
  * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonWithUntintedIconSample
  */
 @Composable
 fun OudsLargeFloatingActionButton(
-    icon: OudsFloatingActionButtonIcon,
+    icon: OudsIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = OudsFloatingActionButtonDefaults.shape,
@@ -229,6 +317,50 @@ fun OudsLargeFloatingActionButton(
             Icon(icon = icon, large = true)
         }
     }
+}
+
+/**
+ * The FAB represents the most important action on a screen. It puts key actions within reach.
+ *
+ * FAB typically contains an icon, for a FAB with text and an icon, see
+ * [OudsExtendedFloatingActionButton].
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
+ * @param appearance Appearance of the FAB among [OudsFloatingActionButtonAppearance] values.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLargeFloatingActionButtonWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsLargeFloatingActionButton(
+    @Suppress("DEPRECATION") icon: OudsFloatingActionButtonIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
+    appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsLargeFloatingActionButton(
+        icon = icon.toIcon(),
+        onClick = onClick,
+        modifier = modifier,
+        shape = shape,
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
 }
 
 /**
@@ -316,7 +448,7 @@ fun OudsExtendedFloatingActionButton(
 @Composable
 fun OudsExtendedFloatingActionButton(
     label: String,
-    icon: OudsFloatingActionButtonIcon,
+    icon: OudsIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     expanded: Boolean = true,
@@ -345,6 +477,59 @@ fun OudsExtendedFloatingActionButton(
             interactionSource = interactionSource
         )
     }
+}
+
+/**
+ * Extended FABs help people take primary actions. They're wider than FABs to accommodate a text
+ * label and larger target area.
+ *
+ * The other extended floating action button overload is for FABs without an icon.
+ *
+ * Default content description for accessibility is extended from the extended fabs icon. For custom
+ * behavior, you can provide your own via [Modifier.semantics].
+ *
+ * > Design name: FAB
+ *
+ * > Design version: Draft
+ *
+ * @param label Label displayed inside this FAB.
+ * @param icon Icon for this FAB.
+ * @param onClick Called when this FAB is clicked.
+ * @param modifier The [Modifier] to be applied to this FAB.
+ * @param shape Defines the shape of this FAB's container and shadow.
+ * @param expanded Controls the expansion state of this FAB. In an expanded state, the FAB will show
+ *   both the [icon] and [label]. In a collapsed state, the FAB will show only the [icon].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and
+ *   emitting [Interaction]s for this FAB. You can use this to change the FAB's appearance or
+ *   preview the FAB in different states. Note that if `null` is provided, interactions will still
+ *   happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonSampleWithLabelAndIcon
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsExtendedFloatingActionButtonWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsExtendedFloatingActionButton(
+    label: String,
+    @Suppress("DEPRECATION") icon: OudsFloatingActionButtonIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    expanded: Boolean = true,
+    shape: Shape = OudsFloatingActionButtonDefaults.shape,
+    appearance: OudsFloatingActionButtonAppearance = OudsFloatingActionButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsExtendedFloatingActionButton(
+        label = label,
+        icon = icon.toIcon(),
+        onClick = onClick,
+        modifier = modifier,
+        expanded = expanded,
+        shape = shape,
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
 }
 
 @Composable
@@ -384,14 +569,15 @@ private fun OudsFloatingActionButton(
 }
 
 @Composable
-private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
+private fun Icon(icon: OudsIcon, label: String? = null, large: Boolean = false) {
     val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnlyDefault.value
     val iconScale = LocalConfiguration.current.fontScale
+    val iconContentDescription = icon.contentDescription.orEmpty()
     icon.Content(
         modifier = Modifier
             .size(iconSize * iconScale)
             .semantics {
-                contentDescription = if (label.isNullOrBlank().not()) label else icon.contentDescription
+                contentDescription = if (label.isNullOrBlank().not()) label else iconContentDescription
             }
     )
 }
@@ -480,9 +666,11 @@ object OudsFloatingActionButtonDefaults {
 /**
  * An icon in an [OudsFloatingActionButton].
  */
+@Suppress("DEPRECATION")
+@Deprecated("")
 class OudsFloatingActionButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     override val tinted: Boolean
 ) : OudsComponentIcon<Nothing, OudsFloatingActionButtonIcon>(
     Nothing::class.java,
@@ -562,7 +750,7 @@ internal fun PreviewOudsFloatingActionButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsFloatingActionButton(
-            icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             onClick = {},
             appearance = appearance
         )
@@ -584,7 +772,7 @@ internal fun PreviewOudsSmallFloatingActionButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsSmallFloatingActionButton(
-            icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             onClick = {},
             appearance = appearance
         )
@@ -612,7 +800,7 @@ internal fun PreviewOudsLargeFloatingActionButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsLargeFloatingActionButton(
-            icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             onClick = {},
             appearance = appearance
         )
@@ -657,7 +845,7 @@ internal fun PreviewOudsExtendedFloatingActionButton(
             OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconCollapsed -> {
                 OudsExtendedFloatingActionButton(
                     label = "Label",
-                    icon = OudsFloatingActionButtonIcon(Icons.Filled.FavoriteBorder, ""),
+                    icon = OudsIcon(Icons.Filled.FavoriteBorder),
                     onClick = {},
                     expanded = row == OudsExtendedFloatingActionButtonPreviewGridRow.LabelAndIconExpanded,
                     appearance = appearance
@@ -685,7 +873,7 @@ private fun PreviewOudsFloatingActionButtonWithUntintedIcon() {
 internal fun PreviewOudsFloatingActionButtonWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsFloatingActionButtonState> {
         OudsFloatingActionButton(
-            icon = OudsFloatingActionButtonIcon(rememberRainbowHeartPainter(), "", tinted = false),
+            icon = OudsIcon(rememberRainbowHeartPainter(), "", tinted = false),
             onClick = {}
         )
     }

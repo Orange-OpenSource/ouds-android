@@ -35,12 +35,15 @@ import com.orange.ouds.foundation.RestrictedOudsApi
  * An icon in an [OudsFilterChip] or an [OudsSuggestionChip].
  * This icon is not clickable.
  */
+@Suppress("DEPRECATION")
+@Deprecated("")
 class OudsChipIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsChipIcon.ExtraParameters, OudsChipIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color

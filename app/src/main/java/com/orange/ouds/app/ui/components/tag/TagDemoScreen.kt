@@ -39,10 +39,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagAsset
-import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.foundation.extensions.toSentenceCase
@@ -164,12 +165,12 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
-            val loader = if (hasLoader) OudsTagLoader(null) else null
+            val loader = if (hasLoader) OudsLoader(null) else null
             val painter = when (icon) {
                 TagDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
                 TagDemoState.Icon.Untinted -> rememberUntintedIconPainter()
             }
-            val tagIcon = OudsTagAsset.Icon(painter = painter, tinted = icon == TagDemoState.Icon.Tinted)
+            val tagIcon = OudsIcon(painter = painter, tinted = icon == TagDemoState.Icon.Tinted)
             val alpha = if (visible) 1f else 0f
             OudsTag(
                 modifier = Modifier.alpha(alpha),
@@ -189,22 +190,22 @@ private fun TagDemoContent(state: TagDemoState) {
                     is OudsTagStatus.Positive -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Positive()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Positive(asset = OudsTagAsset.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Positive(asset = OudsTagAsset.Icon.Default)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Positive(asset = OudsIcon.Default)
                     }
                     is OudsTagStatus.Warning -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Warning()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Warning(asset = OudsTagAsset.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Warning(asset = OudsTagAsset.Icon.Default)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Warning(asset = OudsIcon.Default)
                     }
                     is OudsTagStatus.Negative -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Negative()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Negative(asset = OudsTagAsset.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Negative(asset = OudsTagAsset.Icon.Default)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Negative(asset = OudsIcon.Default)
                     }
                     is OudsTagStatus.Info -> when (layout) {
                         TagDemoState.Layout.TextOnly -> OudsTagStatus.Info()
                         TagDemoState.Layout.TextAndBullet -> OudsTagStatus.Info(asset = OudsTagAsset.Bullet)
-                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Info(asset = OudsTagAsset.Icon.Default)
+                        TagDemoState.Layout.TextAndIcon -> OudsTagStatus.Info(asset = OudsIcon.Default)
                     }
                 },
                 size = size,
@@ -237,7 +238,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                     TagDemoState.Layout.TextAndIcon -> {
                         when (status) {
                             is OudsTagStatus.Neutral,
-                            is OudsTagStatus.Accent -> iconArgument<OudsTagAsset.Icon>(
+                            is OudsTagStatus.Accent -> iconArgument<OudsIcon>(
                                 assetParameterName,
                                 themeDrawableResources.tipsAndTricks,
                                 tinted = icon == TagDemoState.Icon.Tinted
@@ -245,13 +246,13 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                             is OudsTagStatus.Positive,
                             is OudsTagStatus.Warning,
                             is OudsTagStatus.Info,
-                            is OudsTagStatus.Negative -> rawArgument(assetParameterName, OudsTagAsset.Icon.Default::class.java.nestedName)
+                            is OudsTagStatus.Negative -> rawArgument(assetParameterName, OudsIcon.Default::class.java.nestedName)
                         }
                     }
                 }
             }
             if (hasLoader) {
-                constructorCallArgument<OudsTagLoader>("loader") {
+                constructorCallArgument<OudsLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }

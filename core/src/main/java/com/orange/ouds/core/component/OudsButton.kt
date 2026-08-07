@@ -129,13 +129,135 @@ fun OudsButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    loader: OudsLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
         nullableIcon = null,
         nullableLabel = label,
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        loader = loader,
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
+ *
+ * This version of the button uses the *text only* layout, which is the most common layout.
+ * Other layouts are available for this component: *text + icon* and *icon only*.
+ *
+ * This is the default size of the component. This size is used for the vast majority of applications.
+ * A small size is also available via [OudsSmallButton].
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
+ *
+ * > Design version: 3.3.0
+ *
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param onClick Callback invoked when the button is clicked.
+ * @param modifier [Modifier] applied to the button.
+ * @param enabled Controls the enabled state of the button when there is no [loader].
+ *   When `false`, this button will not be clickable.
+ *   Has no effect if [loader] is provided.
+ * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlyOnColoredBackgroundSample
+ */
+@Deprecated("")
+@Composable
+fun OudsButton(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader?,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsButton(
+        label = label,
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        loader = loader?.toLoader(),
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
+ *
+ * This version of the button uses the *icon only* layout, which is typically used in business or back-office interfaces. It is rarely used alone (usually part of a group of elements).
+ * Other layouts are available for this component: *text only* and *text + icon*.
+ *
+ * This is the default size of the component. This size is used for the vast majority of applications.
+ * A small size is also available via [OudsSmallButton].
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
+ *
+ * > Design version: 3.3.0
+ *
+ * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param onClick Callback invoked when the button is clicked.
+ * @param modifier [Modifier] applied to the button.
+ * @param enabled Controls the enabled state of the button when there is no [loader].
+ *   When `false`, this button will not be clickable.
+ *   Has no effect if [loader] is provided.
+ * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyOnColoredBackgroundSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyWithUntintedIconSample
+ */
+@Composable
+fun OudsButton(
+    icon: OudsIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    loader: OudsLoader? = null,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsButton(
+        nullableIcon = icon,
+        nullableLabel = null,
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
@@ -185,19 +307,84 @@ fun OudsButton(
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyWithUntintedIconSample
  */
+@Deprecated("")
 @Composable
 fun OudsButton(
-    icon: OudsButtonIcon,
+    @Suppress("DEPRECATION") icon: OudsButtonIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader? = null,
+    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsButton(
+        icon = icon.toIcon(),
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        loader = loader?.toLoader(),
+        appearance = appearance,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+ * Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
+ *
+ * This version of the button uses the *text + icon* layout, which should remain specific to clearly identified contexts (e.g., the use of an icon with a
+ * "Play" button is standard in the context of TV or video streaming).
+ * Other layouts are available for this component: *text only* and *icon only*.
+ *
+ * This is the default size of the component. This size is used for the vast majority of applications.
+ * A small size is also available via [OudsSmallButton].
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with these specific colors can be customized by overriding [OudsButtonMonoTokens].
+ *
+ * Rounded corners can be enabled or disabled using the [OudsThemeSettings.roundedCornerButtons] property in the settings of the theme provided
+ * when calling the [com.orange.ouds.core.theme.OudsTheme] method.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-button)
+ *
+ * > Design name: Button
+ *
+ * > Design version: 3.3.0
+ *
+ * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
+ * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
+ * @param onClick Callback invoked when the button is clicked.
+ * @param modifier [Modifier] applied to the button.
+ * @param enabled Controls the enabled state of the button when there is no [loader].
+ *   When `false`, this button will not be clickable.
+ *   Has no effect if [loader] is provided.
+ * @param loader An optional loading progress indicator displayed in the button to indicate an ongoing operation.
+ * @param appearance Appearance of the button among [OudsButtonAppearance] values.
+ *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconOnColoredBackgroundSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconWithUntintedIconSample
+ */
+@Composable
+fun OudsButton(
+    icon: OudsIcon,
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    loader: OudsLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
         nullableIcon = icon,
-        nullableLabel = null,
+        nullableLabel = label,
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
@@ -249,24 +436,25 @@ fun OudsButton(
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconWithUntintedIconSample
  */
+@Deprecated("")
 @Composable
 fun OudsButton(
-    icon: OudsButtonIcon,
+    @Suppress("DEPRECATION") icon: OudsButtonIcon,
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    @Suppress("DEPRECATION") loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsButton(
-        nullableIcon = icon,
-        nullableLabel = label,
+        icon = icon.toIcon(),
+        label = label,
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        loader = loader,
+        loader = loader?.toLoader(),
         appearance = appearance,
         interactionSource = interactionSource
     )
@@ -275,13 +463,13 @@ fun OudsButton(
 @Composable
 @JvmName("OudsButtonNullableIconAndLabel")
 internal fun OudsButton(
-    nullableIcon: OudsButtonIcon?,
+    nullableIcon: OudsIcon?,
     nullableLabel: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     component: OudsButtonComponent = OudsButtonComponent.Button,
     enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
+    loader: OudsLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     iconOnlyBadge: OudsButtonIconBadge? = null,
     size: OudsButtonSize = OudsButtonSize.Default,
@@ -387,7 +575,7 @@ internal fun OudsButton(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 val leadingText = when (component) {
-                    is OudsButtonComponent.NavigationButton if component.chevron == OudsNavigationButtonChevron.Next -> true
+                    is OudsButtonComponent.NavigationButton if component.indicator == OudsNavigationButtonIndicator.Next -> true
                     OudsButtonComponent.Button,
                     is OudsButtonComponent.NavigationButton -> false
                 }
@@ -404,6 +592,8 @@ internal fun OudsButton(
                         default = if (label == null) buttonTokens.sizeIconOnlyDefault else buttonTokens.sizeIconDefault,
                         small = if (label == null) buttonTokens.sizeIconOnlySmall else buttonTokens.sizeIconSmall
                     )
+
+                    val iconContentDescription = icon.contentDescription.orEmpty()
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
                             modifier = Modifier
@@ -411,12 +601,12 @@ internal fun OudsButton(
                                 .semantics {
                                     contentDescription = when (label) {
                                         // Ugly workaround to make TalkBack read badge and icon content descriptions correctly
-                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, ${icon.contentDescription}"
-                                        null -> icon.contentDescription
+                                        null if iconOnlyBadge != null -> "${iconOnlyBadge.contentDescription}, $iconContentDescription"
+                                        null -> iconContentDescription
                                         else -> ""
                                     }
                                 },
-                            extraParameters = OudsButtonIcon.ExtraParameters(tint = contentColor.value)
+                            extraParameters = OudsIcon.ExtraParameters(tint = contentColor.value)
                         )
                     }
                     if (iconOnlyBadge != null && label == null) {
@@ -470,7 +660,7 @@ private fun ButtonText(label: String, color: Color, size: OudsButtonSize) {
 }
 
 @Composable
-private fun getButtonState(enabled: Boolean, loader: OudsButtonLoader?, interactionState: InteractionState): OudsButtonState {
+private fun getButtonState(enabled: Boolean, loader: OudsLoader?, interactionState: InteractionState): OudsButtonState {
     return getPreviewEnumEntry<OudsButtonState>().orElse {
         if (loader != null) {
             OudsButtonState.Loading
@@ -708,7 +898,7 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
 }
 
 @Composable
-private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?, size: OudsButtonSize): PaddingValues {
+private fun contentPadding(component: OudsButtonComponent, icon: OudsIcon?, label: String?, size: OudsButtonSize): PaddingValues {
     return with(OudsTheme.componentsTokens.button) {
         when (component) {
             is OudsButtonComponent.Button -> when {
@@ -733,12 +923,12 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                 label != null -> {
                     val startPadding: Dp
                     val endPadding: Dp
-                    when (component.chevron) {
-                        OudsNavigationButtonChevron.Next -> {
+                    when (component.indicator) {
+                        OudsNavigationButtonIndicator.Next -> {
                             startPadding = size.getTokenValue(default = spacePaddingInlineStartIconEndDefault, small = spacePaddingInlineStartIconEndSmall)
                             endPadding = size.getTokenValue(default = spacePaddingInlineChevronEndDefault, small = spacePaddingInlineChevronEndSmall)
                         }
-                        OudsNavigationButtonChevron.Previous -> {
+                        OudsNavigationButtonIndicator.Previous -> {
                             startPadding = size.getTokenValue(default = spacePaddingInlineChevronStartDefault, small = spacePaddingInlineChevronStartSmall)
                             endPadding = size.getTokenValue(default = spacePaddingInlineEndIconStartDefault, small = spacePaddingInlineEndIconStartSmall)
                         }
@@ -772,12 +962,15 @@ object OudsButtonDefaults {
  * An icon in an [OudsButton].
  * This icon is non-clickable.
  */
+@Deprecated("")
+@Suppress("DEPRECATION")
 class OudsButtonIcon private constructor(
     graphicsObject: Any,
-    val contentDescription: String,
+    contentDescription: String,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color
@@ -865,7 +1058,11 @@ enum class OudsButtonAppearance {
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsButtonLoader(val progress: Float?)
+@Deprecated("")
+data class OudsButtonLoader(val progress: Float?) {
+
+    internal fun toLoader() = OudsLoader(progress)
+}
 
 internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
 
@@ -900,11 +1097,11 @@ internal sealed interface OudsButtonComponent {
     }
 
     /**
-     * Configuration for an [OudsNavigationButton] (including a chevron).
+     * Configuration for an [OudsNavigationButton] (including an indicator).
      *
-     * @property chevron The chevron to display in the button.
+     * @property indicator The indicator to display in the button.
      */
-    class NavigationButton(val chevron: OudsNavigationButtonChevron) : OudsButtonComponent {
+    class NavigationButton(val indicator: OudsNavigationButtonIndicator) : OudsButtonComponent {
 
         @Composable
         override fun getColumnGap(size: OudsButtonSize): Dp {
@@ -945,7 +1142,7 @@ internal fun PreviewOudsButton(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         val label = if (hasLabel) appearance.name else null
-        val icon = if (hasIcon) OudsButtonIcon(Icons.Filled.FavoriteBorder, "") else null
+        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder) else null
         val content: @Composable () -> Unit = {
             PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
                 when {
@@ -989,7 +1186,7 @@ internal fun PreviewOudsButtonWithRoundedCorners(theme: OudsThemeContract) = Oud
     val appearance = OudsButtonAppearance.Default
     PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
-            icon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            icon = OudsIcon(Icons.Filled.FavoriteBorder),
             label = appearance.name,
             onClick = {},
             appearance = appearance
@@ -1007,7 +1204,7 @@ private fun PreviewOudsButtonWithIconBadge(@PreviewParameter(OudsButtonWithIconB
 internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
-            nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+            nullableIcon = OudsIcon(Icons.Filled.FavoriteBorder),
             nullableLabel = null,
             onClick = {},
             appearance = OudsButtonAppearance.Minimal,
@@ -1024,7 +1221,7 @@ private fun PreviewOudsButtonOnTwoLines() = PreviewOudsButtonOnTwoLines(getPrevi
 @Composable
 internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsButton(
-        nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
+        nullableIcon = OudsIcon(Icons.Filled.FavoriteBorder),
         nullableLabel = "Button\non two lines",
         onClick = {},
     )
@@ -1039,9 +1236,8 @@ private fun PreviewOudsButtonWithUntintedIcon() = PreviewOudsButtonWithUntintedI
 internal fun PreviewOudsButtonWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     PreviewEnumEntries<OudsButtonState>(maxEnumEntriesInEachRow = 2) {
         OudsButton(
-            nullableIcon = OudsButtonIcon(
+            nullableIcon = OudsIcon(
                 painter = rememberRainbowHeartPainter(),
-                contentDescription = "",
                 tinted = false
             ),
             nullableLabel = "Label",

@@ -79,10 +79,7 @@ fun OudsInlineAlert(
         ) {
             status.icon.Content(
                 modifier = Modifier.iconSize(sizeIcon.value * scale, status.icon.tinted),
-                extraParameters = OudsAlertIcon.ExtraParameters(
-                    tint = status.assetColor,
-                    status = status.value
-                )
+                extraParameters = OudsIcon.ExtraParameters(tint = status.assetColor)
             )
             Text(
                 modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
@@ -103,7 +100,7 @@ object OudsInlineAlertDefaults {
     /**
      * Default status of an [OudsInlineAlert].
      */
-    val Status: OudsInlineAlertStatus = OudsInlineAlertStatus.Neutral(OudsAlertIcon.Default)
+    val Status: OudsInlineAlertStatus = OudsInlineAlertStatus.Neutral(OudsIcon.Default)
 }
 
 /**
@@ -114,7 +111,9 @@ object OudsInlineAlertDefaults {
  * @property value The [OudsAlertStatus] associated with this status.
  * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
  */
-sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon: OudsAlertIcon) {
+sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, icon: OudsIcon? = null) {
+
+    val icon: OudsIcon = icon ?: value.defaultIcon
 
     /**
      * Neutral status can be used for generic informational messages that provide context but carry no semantic meaning.
@@ -122,10 +121,17 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      *
      * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
-    class Neutral(icon: OudsAlertIcon) : OudsInlineAlertStatus(
+    class Neutral(icon: OudsIcon?) : OudsInlineAlertStatus(
         OudsAlertStatus.Neutral({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartRecommend) }),
         icon
-    )
+    ) {
+
+        @Suppress("DEPRECATION")
+        @Deprecated("")
+        constructor(icon: OudsAlertIcon) : this(icon = icon.toIcon())
+
+        constructor(icon: OudsIcon.Default) : this(icon = null)
+    }
 
     /**
      * Accent status uses brand colours and can include decorative icons to draw attention to key marketing or communication content.
@@ -133,34 +139,41 @@ sealed class OudsInlineAlertStatus(internal val value: OudsAlertStatus, val icon
      *
      * @property icon The [OudsAlertIcon] to be displayed in the inline alert.
      */
-    class Accent(icon: OudsAlertIcon) : OudsInlineAlertStatus(
+    class Accent(icon: OudsIcon?) : OudsInlineAlertStatus(
         OudsAlertStatus.Accent({ painterResource(OudsTheme.drawableResources.functional.socialAndEngagement.heartRecommend) }),
         icon
-    )
+    ) {
+
+        @Suppress("DEPRECATION")
+        @Deprecated("")
+        constructor(icon: OudsAlertIcon) : this(icon = icon.toIcon())
+
+        constructor(icon: OudsIcon.Default) : this(icon = null)
+    }
 
     /**
      * Negative status indicates a failure, error, or blocking issue that needs user attention.
      * It uses the red “error” color and includes the standardized error icon.
      */
-    object Negative : OudsInlineAlertStatus(OudsAlertStatus.Negative(), OudsAlertIcon.Default)
+    object Negative : OudsInlineAlertStatus(OudsAlertStatus.Negative())
 
     /**
      * Positive status confirms that an action was completed successfully.
      * It uses a green color and the standard success icon.
      */
-    object Positive : OudsInlineAlertStatus(OudsAlertStatus.Positive(), OudsAlertIcon.Default)
+    object Positive : OudsInlineAlertStatus(OudsAlertStatus.Positive())
 
     /**
      * Info status provides neutral information or updates about the system or account status.
      * It uses blue for neutrality and clarity, and a dedicated default icon.
      */
-    object Info : OudsInlineAlertStatus(OudsAlertStatus.Info(), OudsAlertIcon.Default)
+    object Info : OudsInlineAlertStatus(OudsAlertStatus.Info())
 
     /**
      * Warning status draws attention to potential issues or upcoming changes.
      * It uses yellow to signal caution while remaining non-blocking and a dedicated default icon.
      */
-    object Warning : OudsInlineAlertStatus(OudsAlertStatus.Warning(), OudsAlertIcon.Default)
+    object Warning : OudsInlineAlertStatus(OudsAlertStatus.Warning())
 
     val assetColor
         @Composable
@@ -206,7 +219,7 @@ internal fun PreviewOudsInlineAlert(
         ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
     ) { item ->
-        val icon = OudsAlertIcon(Icons.Outlined.FavoriteBorder)
+        val icon = OudsIcon(Icons.Outlined.FavoriteBorder)
         val status = when (item) {
             OudsInlineAlertStatus.Neutral::class.simpleName -> OudsInlineAlertStatus.Neutral(icon)
             OudsInlineAlertStatus.Accent::class.simpleName -> OudsInlineAlertStatus.Accent(icon)
@@ -239,7 +252,7 @@ internal fun PreviewOudsInlineAlertWithUntintedIcon(theme: OudsThemeContract) = 
         ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
     ) { item ->
-        val icon = OudsAlertIcon(rememberRainbowHeartPainter(), tinted = false)
+        val icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false)
         val status = when (item) {
             OudsInlineAlertStatus.Neutral::class.simpleName -> OudsInlineAlertStatus.Neutral(icon)
             OudsInlineAlertStatus.Accent::class.simpleName -> OudsInlineAlertStatus.Accent(icon)

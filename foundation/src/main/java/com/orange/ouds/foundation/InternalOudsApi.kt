@@ -20,6 +20,7 @@ package com.orange.ouds.foundation
 @RequiresOptIn(message = "This API is internal to OUDS Android.")
 @Target(
     AnnotationTarget.CLASS,
+    AnnotationTarget.CONSTRUCTOR,
     AnnotationTarget.FUNCTION,
     AnnotationTarget.PROPERTY,
     AnnotationTarget.PROPERTY_GETTER,

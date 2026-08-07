@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAsset
 import com.orange.ouds.core.component.OudsTagSize
@@ -44,7 +45,7 @@ internal fun OudsTagWithBulletSample() {
 internal fun OudsTagWithDefaultIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Positive(asset = OudsTagAsset.Icon.Default)
+        status = OudsTagStatus.Positive(asset = OudsIcon.Default)
     )
 }
 
@@ -52,7 +53,7 @@ internal fun OudsTagWithDefaultIconSample() {
 internal fun OudsTagWithIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Neutral(asset = OudsTagAsset.Icon(imageVector = Icons.Filled.FavoriteBorder))
+        status = OudsTagStatus.Neutral(asset = OudsIcon(imageVector = Icons.Filled.FavoriteBorder))
     )
 }
 
@@ -60,7 +61,7 @@ internal fun OudsTagWithIconSample() {
 internal fun OudsTagWithUntintedIconSample() {
     OudsTag(
         label = "Tag",
-        status = OudsTagStatus.Neutral(asset = OudsTagAsset.Icon(painter = rememberRainbowHeartPainter(), tinted = false))
+        status = OudsTagStatus.Neutral(asset = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false))
     )
 }
 

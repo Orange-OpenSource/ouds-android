@@ -18,7 +18,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.constrainedMaxWidthArgument
 import com.orange.ouds.app.ui.components.enabledArgument
@@ -28,17 +27,17 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -141,7 +140,7 @@ private fun TextAreaDemoBottomSheetContent(state: TextAreaDemoState) {
 private fun TextAreaDemoContent(state: TextAreaDemoState) {
     with(state) {
         val focusManager = LocalFocusManager.current
-        val loader = if (hasLoader) OudsTextInputLoader(null) else null
+        val loader = if (hasLoader) OudsLoader(null) else null
         val textAreaError = when {
             error && annotatedText -> {
                 val errorHtml = stringResource(R.string.app_components_textArea_annotatedErrorMessage_text)
@@ -202,7 +201,7 @@ private fun Code.Builder.textAreaDemoCodeSnippet(state: TextAreaDemoState) {
             if (placeholder.isNotEmpty()) typedArgument("placeholder", placeholder)
             typedArgument("outlined", outlined)
             if (hasLoader) {
-                constructorCallArgument<OudsTextInputLoader>("loader") {
+                constructorCallArgument<OudsLoader>("loader") {
                     typedArgument("progress", null)
                 }
             }

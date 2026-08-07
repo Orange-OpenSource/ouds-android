@@ -22,8 +22,10 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
-import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonIconBadge
+import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsIconButton
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -32,19 +34,27 @@ import com.orange.ouds.foundation.extensions.orElse
  * @suppress
  */
 abstract class OudsComponentIcon<T, S> internal constructor(
-    extraParametersClass: Class<T>,
     private val graphicsObjectProvider: @Composable (S) -> Any,
-    private val contentDescriptionProvider: @Composable (S) -> String,
+    private val contentDescriptionProvider: @Composable (S) -> String?,
     private val onClick: (() -> Unit)? = null
-) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
+) : OudsComponentContent<T>() where T : OudsComponentContent.ExtraParameters, S : OudsComponentIcon<T, S> {
 
+    @Deprecated("")
+    @InternalOudsApi
     protected constructor(
         extraParametersClass: Class<T>,
         graphicsObject: Any,
         contentDescription: String,
         onClick: (() -> Unit)? = null
-    ) : this(extraParametersClass, { graphicsObject }, { contentDescription }, onClick)
+    ) : this({ graphicsObject }, { contentDescription }, onClick)
 
+    internal constructor(
+        graphicsObject: Any,
+        contentDescription: String?,
+        onClick: (() -> Unit)? = null
+    ) : this({ graphicsObject }, { contentDescription }, onClick)
+
+    @InternalOudsApi
     protected open val tint: Color?
         @Composable
         get() = null
@@ -65,16 +75,20 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         @Suppress("UNCHECKED_CAST")
         get() = graphicsObjectProvider(this as S)
 
+    internal val contentDescription: String?
+        @Composable
+        @Suppress("UNCHECKED_CAST")
+        get() = contentDescriptionProvider(this as S)
+
     @Composable
     override fun Content(modifier: Modifier) {
         val iconTint = if (tinted) tint.orElse { LocalContentColor.current } else Color.Unspecified
         val iconModifier = modifier.componentContentTestTag()
-        @Suppress("UNCHECKED_CAST") val contentDescription = contentDescriptionProvider(this as S)
         onClick?.let { onClick ->
             when (val graphicsObject = graphicsObject) {
-                is Painter -> OudsButtonIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
-                is ImageVector -> OudsButtonIcon(imageVector = graphicsObject, contentDescription = contentDescription, tinted = tinted)
-                is ImageBitmap -> OudsButtonIcon(bitmap = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is Painter -> OudsIcon(painter = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageVector -> OudsIcon(imageVector = graphicsObject, contentDescription = contentDescription, tinted = tinted)
+                is ImageBitmap -> OudsIcon(bitmap = graphicsObject, contentDescription = contentDescription, tinted = tinted)
                 else -> null
             }?.let { buttonIcon ->
                 OudsButton(
@@ -94,5 +108,22 @@ abstract class OudsComponentIcon<T, S> internal constructor(
                 is ImageBitmap -> Icon(bitmap = graphicsObject, contentDescription = contentDescription, modifier = iconModifier, tint = iconTint)
             }
         }
+    }
+
+    internal fun toIcon(): OudsIcon {
+        return OudsIcon(
+            graphicsObjectProvider = { graphicsObject },
+            contentDescriptionProvider = { contentDescription },
+            tinted = tinted
+        )
+    }
+
+    internal fun toIconButton(): OudsIconButton {
+        return OudsIconButton(
+            graphicsObjectProvider = { graphicsObject },
+            contentDescriptionProvider = { contentDescription },
+            tinted = tinted,
+            onClick = requireNotNull(onClick)
+        )
     }
 }

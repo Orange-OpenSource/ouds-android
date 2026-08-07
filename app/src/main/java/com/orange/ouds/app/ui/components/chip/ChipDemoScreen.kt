@@ -32,7 +32,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
-import com.orange.ouds.core.component.OudsChipIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
@@ -68,7 +68,7 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
 }
 
 @Composable
-fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon: OudsChipIcon) -> Unit) {
+fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon: OudsIcon) -> Unit) {
     with(state) {
         val themeDrawableResources = LocalThemeDrawableResources.current
         val icons = listOf(
@@ -84,7 +84,7 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
                     ChipDemoState.Icon.Tinted -> painterResource(id = icons[index % icons.count()])
                     ChipDemoState.Icon.Untinted -> rememberUntintedIconPainter()
                 }
-                val chipIcon = OudsChipIcon(
+                val chipIcon = OudsIcon(
                     painter = painter,
                     contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
                     tinted = icon == ChipDemoState.Icon.Tinted
@@ -98,7 +98,7 @@ fun ChipDemoContent(state: ChipDemoState, content: @Composable (index: Int, icon
 fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResources: ThemeDrawableResources) = with(state) {
     onClickArgument()
     if (layout in listOf(ChipDemoState.Layout.IconOnly, ChipDemoState.Layout.TextAndIcon)) {
-        iconArgument<OudsChipIcon>("icon", themeDrawableResources.call, R.string.app_components_common_icon_a11y, icon == ChipDemoState.Icon.Tinted)
+        iconArgument<OudsIcon>("icon", themeDrawableResources.call, R.string.app_components_common_icon_a11y, icon == ChipDemoState.Icon.Tinted)
     }
     if (layout in listOf(ChipDemoState.Layout.TextOnly, ChipDemoState.Layout.TextAndIcon)) {
         val separator = if (label.isBlank()) "" else " "

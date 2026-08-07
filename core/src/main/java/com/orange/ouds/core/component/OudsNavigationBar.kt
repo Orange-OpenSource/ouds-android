@@ -205,11 +205,21 @@ fun OudsNavigationBar(
 data class OudsNavigationBarItem(
     val selected: Boolean,
     val onClick: () -> Unit,
-    val icon: OudsNavigationBarItemIcon,
+    val icon: OudsIcon,
     val label: String? = null,
     val badge: OudsNavigationBarItemBadge? = null,
     val interactionSource: MutableInteractionSource? = null
-) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
+) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>() {
+
+    @Deprecated("")
+    constructor(
+        selected: Boolean,
+        onClick: () -> Unit,
+        @Suppress("DEPRECATION") icon: OudsNavigationBarItemIcon,
+        label: String? = null,
+        badge: OudsNavigationBarItemBadge? = null,
+        interactionSource: MutableInteractionSource? = null
+    ) : this(selected, onClick, icon.toIcon(), label, badge, interactionSource)
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
@@ -228,55 +238,56 @@ data class OudsNavigationBarItem(
         }
         val iconPosition = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 
-        with(OudsTheme.componentsTokens.bar) {
-            val selectedContentColor = contentColor(state = state, selected = true)
-            val unselectedContentColor = contentColor(state = state, selected = false)
+        val selectedContentColor = contentColor(state = state, selected = true)
+        val unselectedContentColor = contentColor(state = state, selected = false)
 
-            CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                ShortNavigationBarItem(
-                    modifier = modifier
-                        .fillMaxHeight()
-                        .indicator(state = state, selected = selected, iconPosition = iconPosition)
-                        .semantics {
-                            contentDescription = badge?.contentDescription.orEmpty()
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            ShortNavigationBarItem(
+                modifier = modifier
+                    .fillMaxHeight()
+                    .indicator(state = state, selected = selected, iconPosition = iconPosition)
+                    .semantics {
+                        contentDescription = badge?.contentDescription.orEmpty()
+                    }
+                    .componentContentTestTag(),
+                selected = selected,
+                onClick = onClick,
+                icon = {
+                    val iconContent: @Composable () -> Unit = {
+                        icon.Content(modifier = Modifier.size(OudsNavigationBarItemIconSize))
+                    }
+                    if (badge != null) {
+                        OudsBadgedIcon(
+                            modifier = Modifier.size(OudsNavigationBarItemIconSize),
+                            badgeCount = badge.count,
+                            badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                        ) {
+                            iconContent()
                         }
-                        .componentContentTestTag(),
-                    selected = selected,
-                    onClick = onClick,
-                    icon = {
-                        if (badge != null) {
-                            OudsBadgedIcon(
-                                modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
-                                badgeCount = badge.count,
-                                badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
-                            ) {
-                                icon.Content()
-                            }
-                        } else {
-                            icon.Content()
-                        }
-                    },
-                    iconPosition = iconPosition,
-                    label = label?.let {
-                        {
-                            Text(
-                                text = it,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.label.small.moderate
-                            )
-                        }
-                    },
-                    colors = ShortNavigationBarItemDefaults.colors(
-                        selectedIconColor = selectedContentColor,
-                        selectedTextColor = selectedContentColor,
-                        selectedIndicatorColor = materialIndicatorColor(state = state, selected = selected),
-                        unselectedIconColor = unselectedContentColor,
-                        unselectedTextColor = unselectedContentColor,
-                    ),
-                    interactionSource = interactionSource
-                )
-            }
+                    } else {
+                        iconContent()
+                    }
+                },
+                iconPosition = iconPosition,
+                label = label?.let {
+                    {
+                        Text(
+                            text = it,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OudsTheme.typography.label.small.moderate
+                        )
+                    }
+                },
+                colors = ShortNavigationBarItemDefaults.colors(
+                    selectedIconColor = selectedContentColor,
+                    selectedTextColor = selectedContentColor,
+                    selectedIndicatorColor = materialIndicatorColor(state = state, selected = selected),
+                    unselectedIconColor = unselectedContentColor,
+                    unselectedTextColor = unselectedContentColor,
+                ),
+                interactionSource = interactionSource
+            )
         }
     }
 }
@@ -392,9 +403,13 @@ private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
     }
 }
 
+internal val OudsNavigationBarItemIconSize = 24.dp
+
 /**
  * An icon in an [OudsNavigationBarItem].
  */
+@Suppress("DEPRECATION")
+@Deprecated("")
 class OudsNavigationBarItemIcon private constructor(
     graphicsObject: Any,
 ) : OudsComponentIcon<Nothing, OudsNavigationBarItemIcon>(Nothing::class.java, graphicsObject, "") {
@@ -552,7 +567,7 @@ internal fun PreviewOudsNavigationBar(
                 OudsNavigationBarItem(
                     selected = index == 0,
                     onClick = {},
-                    icon = OudsNavigationBarItemIcon(imageVector = item.imageVector),
+                    icon = OudsIcon(imageVector = item.imageVector),
                     label = item.label,
                     badge = item.badge
                 )
@@ -573,7 +588,7 @@ internal fun PreviewOudsNavigationBarItem(
             val item = OudsNavigationBarItem(
                 selected = selected,
                 onClick = {},
-                icon = OudsNavigationBarItemIcon(imageVector = Icons.Default.Star),
+                icon = OudsIcon(imageVector = Icons.Default.Star),
                 label = "Label"
             )
             PreviewEnumEntries<OudsNavigationBarItemState> {

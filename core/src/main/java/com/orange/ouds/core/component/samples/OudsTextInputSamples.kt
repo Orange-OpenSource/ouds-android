@@ -22,11 +22,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.orange.ouds.core.component.OudsIcon
+import com.orange.ouds.core.component.OudsIconButton
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
-import com.orange.ouds.core.component.OudsTextInputLeadingIcon
-import com.orange.ouds.core.component.OudsTextInputLoader
-import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
@@ -40,9 +40,9 @@ internal fun OudsTextInputStateBasedSample() {
         textFieldState = rememberTextFieldState("Text"),
         label = "Label",
         placeholder = "Placeholder",
-        leadingIcon = OudsTextInputLeadingIcon(
+        leadingIcon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = ""
+            contentDescription = "Content description"
         ),
         prefix = "Prefix",
         suffix = "Suffix",
@@ -59,13 +59,13 @@ internal fun OudsTextInputValueBasedSample() {
         onValueChange = { value = it },
         label = "Label",
         placeholder = "Placeholder",
-        leadingIcon = OudsTextInputLeadingIcon(
+        leadingIcon = OudsIcon(
             imageVector = Icons.Filled.FavoriteBorder,
-            contentDescription = ""
+            contentDescription = "Content description"
         ),
         prefix = "Prefix",
         suffix = "Suffix",
-        loader = OudsTextInputLoader(null),
+        loader = OudsLoader(null),
         helperText = "Helper text",
         helperLink = OudsTextInputHelperLink(text = "Helper link", onClick = { })
     )
@@ -77,7 +77,7 @@ internal fun OudsTextInputStateBasedErrorSample() {
         textFieldState = rememberTextFieldState(),
         label = "Label",
         placeholder = "Placeholder",
-        trailingIconButton = OudsTextInputTrailingIconButton(
+        trailingIconButton = OudsIconButton(
             imageVector = Icons.Filled.DateRange,
             contentDescription = "Display calendar",
             onClick = { }),
@@ -94,7 +94,7 @@ internal fun OudsTextInputValueBasedErrorSample() {
         onValueChange = { value = it },
         label = "Label",
         placeholder = "Placeholder",
-        trailingIconButton = OudsTextInputTrailingIconButton(
+        trailingIconButton = OudsIconButton(
             imageVector = Icons.Filled.DateRange,
             contentDescription = "Display calendar",
             onClick = { }),
@@ -187,9 +187,9 @@ internal fun OudsTextInputStateBasedWithUntintedLeadingIconSample() {
         textFieldState = rememberTextFieldState("Text"),
         label = "Label",
         placeholder = "Placeholder",
-        leadingIcon = OudsTextInputLeadingIcon(
+        leadingIcon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
-            contentDescription = "",
+            contentDescription = "Content description",
             tinted = false
         )
     )
@@ -203,9 +203,9 @@ internal fun OudsTextInputValueBasedWithUntintedLeadingIconSample() {
         onValueChange = { value = it },
         label = "Label",
         placeholder = "Placeholder",
-        leadingIcon = OudsTextInputLeadingIcon(
+        leadingIcon = OudsIcon(
             painter = rememberRainbowHeartPainter(),
-            contentDescription = "",
+            contentDescription = "Content description",
             tinted = false
         )
     )

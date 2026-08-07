@@ -21,7 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.core.component.OudsAlertIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsInlineAlertDefaults
 import com.orange.ouds.core.component.OudsInlineAlertStatus
 
@@ -67,8 +67,8 @@ class InlineAlertDemoState(
             restore = { list: List<Any?> ->
                 val statusClassName = list[1] as String
                 val status = when (val kClass = Class.forName(statusClassName).kotlin) {
-                    OudsInlineAlertStatus.Neutral::class -> OudsInlineAlertStatus.Neutral(OudsAlertIcon.Default)
-                    OudsInlineAlertStatus.Accent::class -> OudsInlineAlertStatus.Accent(OudsAlertIcon.Default)
+                    OudsInlineAlertStatus.Neutral::class -> OudsInlineAlertStatus.Neutral(OudsIcon.Default)
+                    OudsInlineAlertStatus.Accent::class -> OudsInlineAlertStatus.Accent(OudsIcon.Default)
                     else -> kClass.objectInstance as OudsInlineAlertStatus
                 }
 

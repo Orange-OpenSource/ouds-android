@@ -22,12 +22,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 
 abstract class OudsComponentImage<T> internal constructor(
-    extraParametersClass: Class<T>,
     private val graphicsObject: Any,
     private val contentDescription: String?,
     private val alignment: Alignment = Alignment.Center,
     private val contentScale: ContentScale = ContentScale.Fit
-) : OudsComponentContent<T>(extraParametersClass) where T : OudsComponentContent.ExtraParameters {
+) : OudsComponentContent<T>() where T : OudsComponentContent.ExtraParameters {
 
     @Composable
     override fun Content(modifier: Modifier) {

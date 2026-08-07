@@ -20,7 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
@@ -36,7 +36,7 @@ internal fun OudsSwitchItemSample() {
         checked = checked,
         label = "Notifications",
         description = "Display app notifications in the notification center",
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.FavoriteBorder),
+        icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
         onCheckedChange = { value -> checked = value }
     )
 }
@@ -70,7 +70,7 @@ internal fun OudsSwitchItemWithUntintedIconSample() {
         checked = checked,
         label = "Notifications",
         description = "Display app notifications in the notification center",
-        icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+        icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
         onCheckedChange = { value -> checked = value }
     )
 }

@@ -174,7 +174,7 @@ fun OudsLink(
 @Composable
 fun OudsLink(
     label: String,
-    icon: OudsLinkIcon,
+    icon: OudsIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
@@ -185,6 +185,54 @@ fun OudsLink(
         label = label,
         icon = icon,
         indicator = null,
+        onClick = onClick,
+        modifier = modifier,
+        size = size,
+        enabled = enabled,
+        density = density
+    )
+}
+
+/**
+ * Link is a UI element that allows to navigate from one location to another, either within the same page
+ * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+ * and it communicates its interactive nature visually and semantically.
+ *
+ * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
+ * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
+ *
+ * > Design name: Link
+ *
+ * > Design version: 2.4.0
+ *
+ * @param label Label describing what is being linked to.
+ * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
+ * @param onClick Callback invoked when the link is clicked.
+ * @param modifier [Modifier] applied to the link.
+ * @param size Size of the link. See [OudsLinkSize] for available sizes.
+ * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
+ * @param density Density of the link. See [OudsLinkDensity] for available densities.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsLink(
+    label: String,
+    @Suppress("DEPRECATION") icon: OudsLinkIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: OudsLinkSize = OudsLinkDefaults.Size,
+    enabled: Boolean = true,
+    density: OudsLinkDensity = OudsLinkDefaults.Density
+) {
+    OudsLink(
+        label = label,
+        icon = icon.toIcon(),
         onClick = onClick,
         modifier = modifier,
         size = size,
@@ -225,7 +273,7 @@ fun OudsLink(
 @Composable
 fun OudsLink(
     label: String,
-    icon: OudsLinkIcon,
+    @Suppress("DEPRECATION") icon: OudsLinkIcon,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
@@ -233,8 +281,7 @@ fun OudsLink(
 ) {
     OudsLink(
         label = label,
-        icon = icon,
-        indicator = null,
+        icon = icon.toIcon(),
         onClick = onClick,
         modifier = modifier,
         size = size,
@@ -316,8 +363,7 @@ fun OudsLink(
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
 @Deprecated(
-    message = "Use overload with indicator parameter instead. Replace OudsLinkChevron.Back with OudsLinkIndicator.Previous, or OudsLinkChevron.Next with OudsLinkIndicator.Next.",
-    level = DeprecationLevel.WARNING
+    message = "Use overload with indicator parameter instead. Replace OudsLinkChevron.Back with OudsLinkIndicator.Previous, or OudsLinkChevron.Next with OudsLinkIndicator.Next."
 )
 @Composable
 fun OudsLink(
@@ -342,7 +388,7 @@ fun OudsLink(
 @Composable
 private fun OudsLink(
     label: String,
-    icon: OudsLinkIcon?,
+    icon: OudsIcon?,
     indicator: OudsLinkIndicator?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -447,7 +493,7 @@ private fun OudsLink(
 }
 
 @Composable
-private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color) {
+private fun LinkIcon(icon: OudsIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color) {
     with(OudsTheme.components.link) {
         val iconSize = size.getTokenValue(default = this.size.iconDefault, small = this.size.iconSmall)
         val linkIcon = when {
@@ -460,13 +506,13 @@ private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: O
                         OudsLinkIndicator.External -> externalLink
                     }
                 }
-                OudsLinkIcon(painterResource(indicatorPainterResId))
+                OudsIcon(painterResource(indicatorPainterResId))
             }
             else -> null
         }
         linkIcon?.Content(
             modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
-            extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
+            extraParameters = OudsIcon.ExtraParameters(tint = tint)
         )
     }
 }
@@ -571,8 +617,7 @@ enum class OudsLinkSize {
  */
 @Deprecated(
     message = "OudsLinkChevron has been replaced with OudsLinkIndicator.",
-    replaceWith = ReplaceWith("OudsLinkIndicator"),
-    level = DeprecationLevel.WARNING
+    replaceWith = ReplaceWith("OudsLinkIndicator")
 )
 enum class OudsLinkChevron {
 
@@ -640,11 +685,14 @@ enum class OudsLinkDensity {
  * An icon in an [OudsLink].
  * This icon is non-clickable and no content description is needed because a link label is always present.
  */
+@Suppress("DEPRECATION")
+@Deprecated("")
 open class OudsLinkIcon private constructor(
     graphicsObject: Any,
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsLinkIcon.ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
+    @Deprecated("")
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(
         internal val tint: Color
@@ -706,7 +754,7 @@ internal fun PreviewOudsLink(
     parameter: OudsLinkPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        val icon = if (hasIcon) OudsLinkIcon(Icons.Filled.FavoriteBorder) else null
+        val icon = if (hasIcon) OudsIcon(Icons.Filled.FavoriteBorder) else null
         val linkPreview: @Composable () -> Unit = {
             PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
                 OudsLink(
@@ -781,7 +829,7 @@ internal fun PreviewOudsLinkWithUntintedIcon(theme: OudsThemeContract) = OudsPre
     PreviewEnumEntries<OudsLinkState>(maxEnumEntriesInEachRow = 3) {
         OudsLink(
             label = "Label",
-            icon = OudsLinkIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             onClick = {}
         )
     }

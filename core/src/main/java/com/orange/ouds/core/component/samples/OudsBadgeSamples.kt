@@ -25,9 +25,9 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBadge
-import com.orange.ouds.core.component.OudsBadgeIcon
 import com.orange.ouds.core.component.OudsBadgeSize
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsIconBadgeStatus
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -73,7 +73,7 @@ internal fun OudsBadgeWithCustomIconSample() {
             contentDescription = "Favorite"
         },
         status = OudsIconBadgeStatus.Accent(
-            OudsBadgeIcon(imageVector = Icons.Filled.FavoriteBorder)
+            OudsIcon(imageVector = Icons.Filled.FavoriteBorder)
         ),
         size = OudsBadgeSize.Large
     )
@@ -115,7 +115,7 @@ internal fun OudsBadgeWithUntintedCustomIconSample() {
             contentDescription = "Favorite"
         },
         status = OudsIconBadgeStatus.Neutral(
-            OudsBadgeIcon(painter = rememberRainbowHeartPainter(), tinted = false)
+            OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false)
         ),
         size = OudsBadgeSize.Large
     )

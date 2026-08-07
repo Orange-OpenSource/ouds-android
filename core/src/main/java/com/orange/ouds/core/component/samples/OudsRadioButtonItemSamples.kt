@@ -23,7 +23,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsRadioButtonItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
@@ -41,7 +41,7 @@ internal fun OudsRadioButtonItemSample() {
             OudsRadioButtonItem(
                 selected = method == selectedMethod,
                 label = method,
-                icon = OudsControlItemIcon(imageVector = Icons.Filled.FavoriteBorder),
+                icon = OudsIcon(imageVector = Icons.Filled.FavoriteBorder),
                 onClick = { selectedMethod = method },
                 divider = true
             )
@@ -85,7 +85,7 @@ internal fun OudsRadioButtonItemWithUntintedIconSample() {
             OudsRadioButtonItem(
                 selected = method == selectedMethod,
                 label = method,
-                icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+                icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
                 onClick = { selectedMethod = method },
                 divider = true
             )

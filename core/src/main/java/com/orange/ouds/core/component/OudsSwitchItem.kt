@@ -94,7 +94,7 @@ fun OudsSwitchItem(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     description: String? = null,
-    icon: OudsControlItemIcon? = null,
+    icon: OudsIcon? = null,
     edgeToEdge: Boolean = true,
     divider: Boolean = false,
     reversed: Boolean = false,
@@ -149,6 +149,86 @@ fun OudsSwitchItem(
     )
 }
 
+/**
+ * Switch item is a UI element that allows to toggle between two states, typically "On" and "Off", and used to enable or disable features, options or settings.
+ * Switch item covers a wider range of contexts by allowing to toggle the visibility of additional text labels and icon assets.
+ *
+ * The **switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as description, a divider,
+ * or an icon, allowing it to suit various use cases.
+ * It can be used in a list as a list item or as a single element to validate general conditions, for example.
+ *
+ * The OUDS switch item layout contains an [OudsSwitch]. By clicking the switch item, the user changes the checked state of its switch.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-switch)
+ *
+ * > Design name: Switch
+ *
+ * > Design version: 1.5.0
+ *
+ * @see [OudsSwitch] If you want to use a standalone switch.
+ *
+ * @param checked Controls the checked state of the item's switch.
+ * @param label The main label of the switch item.
+ * @param onCheckedChange Callback invoked on switch item click. If `null`, then this is passive and relies entirely on a higher-level component to control
+ *   the checked state.
+ * @param modifier [Modifier] applied to the layout of the switch item.
+ * @param description Optional text displayed below the label.
+ * @param icon Optional icon displayed in the item. By default, it has a leading position. If [reversed] is set to `true`, it is displayed as a trailing element.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param divider Controls the display of a divider at the bottom of the switch item.
+ * @param reversed When `false`, the switch has a trailing position and the optional [icon] has a leading position. Otherwise, it is reversed.
+ * @param enabled Controls the enabled state of the switch item. When `false`, the switch, the texts and the optional icon are disabled, and the item
+ *   will not be clickable.
+ * @param readOnly Controls the read-only state of the switch item. When `true`, the item's switch is disabled but the texts and the icon remain in the
+ *   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in the disabled state.
+ * @param error Optional [OudsError] to provide if the switch item should appear in an error state, `null` otherwise.
+ * @param constrainedMaxWidth When `true`, the item width is constrained to a maximum value defined by the design system.
+ *   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+ *   Defaults to `false`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's switch. Note that if `null`
+ *   is provided, interactions will still happen internally.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSwitchItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithAnnotatedErrorMessageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithUntintedIconSample
+ */
+@Deprecated("")
+@Composable
+fun OudsSwitchItem(
+    checked: Boolean,
+    label: String,
+    onCheckedChange: ((Boolean) -> Unit)?,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    @Suppress("DEPRECATION") icon: OudsControlItemIcon?,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsSwitchItem(
+        checked = checked,
+        label = label,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        description = description,
+        icon = icon?.toIcon(),
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource
+    )
+}
+
 @Preview(name = "Light", heightDp = OudsPreviewableComponent.SwitchItem.Default.PreviewHeightDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
@@ -175,7 +255,7 @@ internal fun PreviewOudsSwitchItem(
                 label = "Label",
                 onCheckedChange = {},
                 description = description,
-                icon = if (hasIcon) OudsControlItemIcon(imageVector = Icons.Filled.Call) else null,
+                icon = if (hasIcon) OudsIcon(imageVector = Icons.Filled.Call) else null,
                 divider = divider,
                 reversed = reversed,
                 error = error,
@@ -197,7 +277,7 @@ internal fun PreviewOudsSwitchItemWithLongDescription(theme: OudsThemeContract) 
         label = "Label",
         onCheckedChange = {},
         description = LoremIpsumText,
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call)
+        icon = OudsIcon(imageVector = Icons.Filled.Call)
     )
 }
 
@@ -213,7 +293,7 @@ internal fun PreviewOudsSwitchItemWithEdgeToEdgeDisabled(theme: OudsThemeContrac
             checked = true,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+            icon = OudsIcon(imageVector = Icons.Filled.Call),
             edgeToEdge = false,
             divider = true,
             error = OudsError(ControlItemErrorMessage),
@@ -237,7 +317,7 @@ internal fun PreviewOudsSwitchItemConstrainedMaxWidth(
         checked = true,
         label = "Label",
         onCheckedChange = {},
-        icon = OudsControlItemIcon(imageVector = Icons.Filled.Call),
+        icon = OudsIcon(imageVector = Icons.Filled.Call),
         constrainedMaxWidth = constrainedMaxWidth,
         edgeToEdge = false,
         divider = true
@@ -279,7 +359,7 @@ internal fun PreviewOudsSwitchItemWithUntintedIcon(theme: OudsThemeContract) = O
             checked = false,
             label = "Label",
             onCheckedChange = {},
-            icon = OudsControlItemIcon(painter = rememberRainbowHeartPainter(), tinted = false),
+            icon = OudsIcon(painter = rememberRainbowHeartPainter(), tinted = false),
             divider = true
         )
     }

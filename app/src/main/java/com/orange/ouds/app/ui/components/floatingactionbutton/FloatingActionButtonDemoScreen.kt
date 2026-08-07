@@ -34,7 +34,7 @@ import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButtonAppearance
-import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.component.OudsLargeFloatingActionButton
 import com.orange.ouds.core.component.OudsSmallFloatingActionButton
 
@@ -104,7 +104,7 @@ private fun FloatingActionButtonDemoContent(state: FloatingActionButtonDemoState
             FloatingActionButtonDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
             FloatingActionButtonDemoState.Icon.Untinted -> rememberUntintedIconPainter()
         }
-        val floatingActionButtonIcon = OudsFloatingActionButtonIcon(
+        val floatingActionButtonIcon = OudsIcon(
             painter = painter,
             contentDescription = stringResource(id = R.string.app_components_common_icon_a11y),
             tinted = icon == FloatingActionButtonDemoState.Icon.Tinted
@@ -155,7 +155,7 @@ private fun Code.Builder.floatingActionButtonDemoCodeSnippet(state: FloatingActi
                 labelArgument(label)
             }
             if (layout != FloatingActionButtonDemoState.Layout.TextOnly) {
-                iconArgument<OudsFloatingActionButtonIcon>(
+                iconArgument<OudsIcon>(
                     "icon",
                     themeDrawableResources.tipsAndTricks,
                     R.string.app_components_common_icon_a11y,

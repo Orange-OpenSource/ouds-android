@@ -450,7 +450,7 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
      * This allows for complete visual customization of the bullet, for instance by using a Solaris icon.
      */
     class Icon private constructor(graphicsObject: Any) : OudsBulletListUnorderedAsset,
-        OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Icon>(OudsBulletListUnorderedAsset.ExtraParameters::class.java, graphicsObject, "") {
+        OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Icon>(graphicsObject, "") {
 
         /**
          * Creates an instance of [OudsBulletListUnorderedAsset.Icon].
@@ -488,7 +488,6 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
      */
     data object Bullet : OudsBulletListUnorderedAsset,
         OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Bullet>(
-            OudsBulletListUnorderedAsset.ExtraParameters::class.java,
             {
                 with(extraParameters) {
                     val parentOrderedTypeCount = parentTypes.count { it is OudsBulletListType.Ordered }
@@ -513,7 +512,6 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
      * A bullet represented by a tick (check) icon.
      */
     data object Tick : OudsBulletListUnorderedAsset, OudsComponentIcon<OudsBulletListUnorderedAsset.ExtraParameters, Tick>(
-        OudsBulletListUnorderedAsset.ExtraParameters::class.java,
         { painterResource(OudsTheme.drawableResources.component.bulletList.tick) },
         { "" }
     ) {

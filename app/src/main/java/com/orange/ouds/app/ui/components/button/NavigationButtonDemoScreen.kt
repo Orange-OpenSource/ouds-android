@@ -27,11 +27,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
-import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsLoader
 import com.orange.ouds.core.component.OudsNavigationButton
 import com.orange.ouds.core.component.OudsNavigationButtonAppearance
-import com.orange.ouds.core.component.OudsNavigationButtonChevron
 import com.orange.ouds.core.component.OudsNavigationButtonDefaults
+import com.orange.ouds.core.component.OudsNavigationButtonIndicator
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -64,10 +64,10 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
         )
         CustomizationFilterChips(
             applyTopPadding = true,
-            label = stringResource(R.string.app_components_button_navigationButton_chevron_tech),
-            chipLabels = OudsNavigationButtonChevron.entries.map { it.name },
-            selectedChipIndex = OudsNavigationButtonChevron.entries.indexOf(chevron),
-            onSelectionChange = { index -> chevron = OudsNavigationButtonChevron.entries[index] }
+            label = stringResource(R.string.app_components_button_navigationButton_indicator_tech),
+            chipLabels = OudsNavigationButtonIndicator.entries.map { it.name },
+            selectedChipIndex = OudsNavigationButtonIndicator.entries.indexOf(indicator),
+            onSelectionChange = { index -> indicator = OudsNavigationButtonIndicator.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -94,10 +94,10 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
 @Composable
 private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
     with(state) {
-        val loader = if (hasLoader) OudsButtonLoader(null) else null
+        val loader = if (hasLoader) OudsLoader(null) else null
         OudsNavigationButton(
             label = label,
-            chevron = chevron,
+            indicator = indicator,
             onClick = {},
             enabled = enabled,
             loader = loader,
@@ -111,11 +111,11 @@ private fun Code.Builder.navigationButtonDemoCodeSnippet(state: NavigationButton
         coloredBoxCall(onColoredBox) {
             functionCall("OudsNavigationButton") {
                 label?.let { labelArgument(label) }
-                typedArgument("chevron", chevron)
+                typedArgument("indicator", indicator)
                 onClickArgument()
                 if (!enabled) enabledArgument(enabled)
                 if (hasLoader) {
-                    constructorCallArgument<OudsButtonLoader>("loader") {
+                    constructorCallArgument<OudsLoader>("loader") {
                         typedArgument("progress", null)
                     }
                 }

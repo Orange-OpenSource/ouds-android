@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
-import com.orange.ouds.core.component.OudsButtonIcon
+import com.orange.ouds.core.component.OudsIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.tryOrNull
@@ -324,7 +324,7 @@ internal fun PreviewCode() = AppPreview {
         newline()
         functionCall("OudsComponent") {
             trailingLambda = true
-            constructorCallArgument<OudsButtonIcon>("icon") {
+            constructorCallArgument<OudsIcon>("icon") {
                 functionCallArgument("painter", "painterResource") {
                     typedArgument("id", themeDrawableResources.tipsAndTricks)
                 }
