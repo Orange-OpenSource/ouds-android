@@ -234,9 +234,8 @@ fun OudsTriStateCheckboxItem(
             ToggleableState.Indeterminate -> "Indeterminate"
         },
         backgroundColor = backgroundColor.value,
-        modifier = modifier
-            .then(toggleableModifier)
-            .semantics(mergeDescendants = true) {},
+        modifier = modifier.semantics(mergeDescendants = true) {},
+        contentModifier = toggleableModifier,
         handleHighContrastMode = true,
         constrainedMaxWidth = constrainedMaxWidth
     )

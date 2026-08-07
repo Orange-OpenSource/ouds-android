@@ -142,9 +142,8 @@ fun OudsSwitchItem(
         checkedContentComponentName = "OudsSwitchItem",
         checkedContentSelectionStatus = if (checked) "Selected" else "Unselected",
         backgroundColor = backgroundColor.value,
-        modifier = modifier
-            .then(toggleableModifier)
-            .semantics(mergeDescendants = true) {},
+        modifier = modifier.semantics(mergeDescendants = true) {},
+        contentModifier = toggleableModifier,
         constrainedMaxWidth = constrainedMaxWidth
     )
 }
