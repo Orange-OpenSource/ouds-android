@@ -157,6 +157,16 @@ fun <T> Project.sonatypeOssrhStagingApi(action: SonatypeOssrhStagingApi.() -> T)
     return SonatypeOssrhStagingApi(token).action()
 }
 
+fun <T> Project.orangeDeveloperInsideApi(action: OrangeDeveloperInsideApi.() -> T): T {
+    val authorizationHeader = Environment.getVariables("ORANGE_DEVELOPER_INSIDE_AUTHORIZATION_HEADER").first()
+    return OrangeDeveloperInsideApi(authorizationHeader).action()
+}
+
+fun <T> Project.omaApi(accessToken: String, action: OmaApi.() -> T): T {
+    val (appId, appToken) = Environment.getVariables("OMA_APP_ID", "OMA_APP_TOKEN")
+    return OmaApi(accessToken, appId, appToken).action()
+}
+
 val Project.artifactId: String
     get() = "ouds-$name"
 

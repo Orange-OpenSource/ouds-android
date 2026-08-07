@@ -22,13 +22,23 @@ abstract class Api() {
 
     protected open val curlOptions: List<String> = emptyList()
 
-    protected fun Project.launchRequest(endpoint: String, method: String, body: String? = null): String {
+    protected fun Project.launchRequest(
+        endpoint: String,
+        method: String,
+        body: String? = null,
+        form: String? = null,
+        baseUrl: String = this@Api.baseUrl
+    ): String {
         val args = buildList {
             add("-X")
             add(method)
             headers.forEach { header ->
                 add("-H")
                 add("${header.key}: ${header.value.joinToString(", ")}")
+            }
+            if (form != null) {
+                add("-F")
+                add(form)
             }
             curlOptions.forEach { add("--$it") }
             if ((method == "POST" || method == "PUT" || method == "PATCH") && body != null) {

@@ -14,8 +14,11 @@ import com.orange.ouds.gradle.Environment
 import com.orange.ouds.gradle.SonatypeOssrhStagingRepository
 import com.orange.ouds.gradle.artifactId
 import com.orange.ouds.gradle.execute
+import com.orange.ouds.gradle.gitHubRestApi
 import com.orange.ouds.gradle.isPublished
 import com.orange.ouds.gradle.isSnapshot
+import com.orange.ouds.gradle.omaApi
+import com.orange.ouds.gradle.orangeDeveloperInsideApi
 import com.orange.ouds.gradle.releaseVersion
 import com.orange.ouds.gradle.requireTypedProperty
 import com.orange.ouds.gradle.sonatypeOssrhStagingApi
@@ -165,4 +168,28 @@ tasks.register<DefaultTask>("publishToCentralPublisherPortal") {
     val publishTasks = getTasksByName("publish", true)
     dependsOn(*publishTasks.toTypedArray(), tasks["finalizeUploadToCentralPublisherPortal"])
     tasks["finalizeUploadToCentralPublisherPortal"].mustRunAfter(*publishTasks.toTypedArray())
+}
+
+tasks.register<DefaultTask>("publishToGitHub") {
+    group = "publishing"
+    doLast {
+        val ref = Environment.getVariables("GITHUB_REF").first()
+        val tag = ref.substringAfter("refs/tags/")
+        gitHubRestApi {
+            publishRelease(tag, draft = true, prerelease = false)
+        }
+    }
+}
+
+tasks.register<DefaultTask>("publishToGooglePlayStore") {
+    group = "publishing"
+    doLast {
+        orangeDeveloperInsideApi {
+            val accessToken = getAccessToken()
+            omaApi(accessToken) {
+                val filePath = project.requireTypedProperty<String>("filePath")
+                createArtifact(filePath)
+            }
+        }
+    }
 }
