@@ -1,7 +1,7 @@
 [versions]
 activityCompose = "1.13.0"
 annotation = "1.10.0"
-appcompat = "1.7.1"
+appcompat = "1.8.0"
 androidCompileSdk = "37"
 androidMinSdk = "23"
 androidTargetSdk = "37"
