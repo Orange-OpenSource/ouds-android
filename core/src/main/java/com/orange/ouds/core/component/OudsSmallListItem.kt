@@ -241,8 +241,8 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
         ) : this({ bitmap }, { contentDescription }, tinted, null)
 
         private constructor(status: OudsListItemIconStatus) : this(
-            { status.painterProvider() },
-            { status.contentDescriptionProvider() },
+            { status.painter },
+            { status.contentDescription },
             true,
             status
         )
@@ -393,7 +393,7 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
             bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true
         ) : this({ bitmap }, { contentDescription }, tinted, null)
 
-        private constructor(status: OudsListItemIconStatus) : this(status.painterProvider, status.contentDescriptionProvider, true, status)
+        private constructor(status: OudsListItemIconStatus) : this({ status.painter }, { status.contentDescription }, true, status)
 
         /**
          * Creates an instance of [OudsSmallListItemTrailing.Icon] representing an info status.

@@ -67,7 +67,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
-import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -724,42 +723,37 @@ enum class OudsListItemIconSize {
     }
 }
 
-internal enum class OudsListItemIconStatus(
-    val painterProvider: @Composable () -> Painter,
-    val contentDescriptionProvider: (@Composable () -> String) = { "" }
-) {
-    Negative(
-        { painterResource(OudsTheme.drawableResources.component.alert.importantFill) },
-        { stringResource(R.string.core_common_error_a11y) }
-    ),
+internal enum class OudsListItemIconStatus {
 
-    Positive({ painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill) }),
+    Negative, Positive, Info, Warning;
 
-    Info({ painterResource(OudsTheme.drawableResources.component.alert.infoFill) }),
+    private fun toAlertStatus(): OudsAlertStatus {
+        return when (this) {
+            Negative -> OudsAlertStatus.Negative()
+            Positive -> OudsAlertStatus.Positive()
+            Info -> OudsAlertStatus.Info()
+            Warning -> OudsAlertStatus.Warning()
+        }
+    }
 
-    Warning(
-        {
-            val iconTokens = OudsTheme.components.icon
-            LayeredTintedPainter(
-                backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                backPainterColor = iconTokens.color.content.status.warning.externalShape,
-                frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                frontPainterColor = iconTokens.color.content.status.warning.internalShape
-            )
-        },
-        { stringResource(R.string.core_common_warning_a11y) }
-    );
+    val painter: Painter
+        @Composable
+        get() = OudsAlertStatus.getDefaultIconPainter(toAlertStatus()).orElse {
+            error("No painter for status ${this::class.simpleName}")
+        }
+
+    val contentDescription: String
+        @Composable
+        get() = when (this) {
+            Negative -> stringResource(id = R.string.core_common_error_a11y)
+            Warning -> stringResource(id = R.string.core_common_warning_a11y)
+            Positive,
+            Info -> ""
+        }
 
     val tint
         @Composable
-        get() = with(OudsTheme.colorScheme.content) {
-            when (this@OudsListItemIconStatus) {
-                Positive -> status.positive
-                Warning -> Color.Unspecified
-                Negative -> status.negative
-                Info -> status.info
-            }
-        }
+        get() = toAlertStatus().assetColor
 }
 
 /**
@@ -978,8 +972,8 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
         private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
-            { status.painterProvider() },
-            { status.contentDescriptionProvider() },
+            { status.painter },
+            { status.contentDescription },
             true,
             size,
             status
@@ -1160,8 +1154,8 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
         private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
-            { status.painterProvider() },
-            { status.contentDescriptionProvider() },
+            { status.painter },
+            { status.contentDescription },
             true,
             size,
             status
