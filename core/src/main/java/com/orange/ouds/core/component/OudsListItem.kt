@@ -611,7 +611,7 @@ sealed interface OudsListItemIndicator {
     object Next : OudsListItemIndicator {
         override val drawableId
             @Composable
-            get() = OudsTheme.drawableResources.component.controlItem.next
+            get() = OudsTheme.drawableResources.component.listItem.next
     }
 
     /**
@@ -620,7 +620,7 @@ sealed interface OudsListItemIndicator {
     object Previous : OudsListItemIndicator {
         override val drawableId
             @Composable
-            get() = OudsTheme.drawableResources.component.controlItem.previous
+            get() = OudsTheme.drawableResources.component.listItem.previous
     }
 
     /**
