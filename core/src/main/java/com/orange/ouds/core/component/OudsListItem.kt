@@ -1397,7 +1397,7 @@ private fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled() = PreviewOudsN
 
 @Composable
 internal fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsControlState>(maxEnumEntriesInEachRow = 1) {
+    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
         OudsListItem(
             onClick = {},
             label = "Label",
