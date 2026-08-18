@@ -21,7 +21,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.listitem.BaseListItemDemoState.IconTint
 import com.orange.ouds.core.component.OudsListItemDecoration
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIconSize
@@ -44,14 +43,14 @@ fun rememberCardItemDemoState(
     description: String? = null,
     leading: BaseListItemDemoState.Leading = BaseListItemDemoState.Leading.None,
     leadingIconSize: OudsListItemIconSize = OudsListItemDefaults.IconSize,
-    leadingIconTint: BaseListItemDemoState.IconTint = IconTint.Tinted,
+    leadingIconTint: BaseListItemDemoState.IconTint = BaseListItemDemoState.IconTint.Tinted,
     leadingStatusIcon: BaseListItemDemoState.StatusIcon = BaseListItemDemoState.StatusIcon.None,
     leadingImageSize: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
     leadingImageRatio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
     leadingImageRoundedCorners: Boolean = false,
     trailing: BaseListItemDemoState.Trailing = BaseListItemDemoState.Trailing.None,
     trailingIconSize: OudsListItemIconSize = OudsListItemDefaults.IconSize,
-    trailingIconTint: BaseListItemDemoState.IconTint = IconTint.Tinted,
+    trailingIconTint: BaseListItemDemoState.IconTint = BaseListItemDemoState.IconTint.Tinted,
     trailingStatusIcon: BaseListItemDemoState.StatusIcon = BaseListItemDemoState.StatusIcon.None,
     trailingImageSize: OudsListItemImageSize = OudsListItemDefaults.ImageSize,
     trailingImageRatio: OudsListItemImageRatio = OudsListItemDefaults.ImageRatio,
