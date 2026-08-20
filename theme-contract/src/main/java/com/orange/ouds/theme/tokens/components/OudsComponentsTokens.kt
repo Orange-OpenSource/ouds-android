@@ -41,4 +41,5 @@ interface OudsComponentsTokens {
     val tag: OudsTagTokens
     val textArea: OudsTextAreaTokens
     val textInput: OudsTextInputTokens
+    val typography: OudsTypographyTokens
 }
