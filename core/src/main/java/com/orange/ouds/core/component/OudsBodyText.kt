@@ -24,10 +24,15 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
+// TODO Add design guideline link when available
 /**
  * Body styles are designed for everyday text content such as paragraphs, descriptions, and informational messages. They prioritize readability and provide
  * a comfortable reading experience across all screen sizes. Multiple size options allow content importance to be expressed while maintaining consistency.
  * Their typography automatically scales across breakpoints to support responsive layouts.
+ *
+ * > Design name: Body
+ *
+ * > Design version: 1.0.0
  *
  * @param text Text to display.
  * @param modifier [Modifier] applied to the body text.
