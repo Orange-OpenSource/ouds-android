@@ -35,6 +35,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param text Text to display.
  * @param modifier [Modifier] applied to the display text.
  * @param size Size of the display text.
+ * 
+ * @sample com.orange.ouds.core.component.samples.OudsDisplayTextSample
  */
 @Composable
 fun OudsDisplayText(

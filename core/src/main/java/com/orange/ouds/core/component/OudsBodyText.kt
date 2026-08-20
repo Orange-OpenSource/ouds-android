@@ -33,6 +33,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the body text.
  * @param size Size of the body text.
  * @param weight Weight of the body text.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsBodyTextSample
  */
 @Composable
 fun OudsBodyText(
