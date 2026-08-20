@@ -29,11 +29,16 @@ import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
+// TODO Add design guideline link when available
 /**
  * Heading styles are used to structure content and define the hierarchy of information within an interface.
  * Available in multiple sizes, they help users quickly understand the organization of a page or section.
  * Their size automatically adjusts across breakpoints to ensure optimal readability on all devices.
  * Headings serve as the primary entry point for visual navigation.
+ *
+ * > Design name: Heading
+ *
+ * > Design version: 1.0.0
  *
  * @param text Text to display.
  * @param modifier [Modifier] applied to the heading text.
