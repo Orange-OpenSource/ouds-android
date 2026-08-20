@@ -45,8 +45,8 @@ fun OudsHeadingText(
     modifier: Modifier = Modifier,
     size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size
 ) {
-    Column {
-        Text(text = text, modifier = modifier, color = OudsTheme.colorScheme.content.default, style = size.textStyle)
+    Column(modifier = modifier) {
+        Text(text = text, color = OudsTheme.colorScheme.content.default, style = size.textStyle)
         with(OudsTheme.components.typography) {
             // Marker is only displayed if the theme allows marker for heading large texts AND if the marker parameter for the component is set to `true`.
             if (size is OudsHeadingTextSize.Large && headingLargeMarker && size.marker) {
