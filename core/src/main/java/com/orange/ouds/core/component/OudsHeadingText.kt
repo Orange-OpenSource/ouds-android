@@ -38,6 +38,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param text Text to display.
  * @param modifier [Modifier] applied to the heading text.
  * @param size Size of the heading text.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsHeadingTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsHeadingTextLargeWithMarkerSample
+ * @sample com.orange.ouds.core.component.samples.OudsHeadingTextLargeWithoutMarkerSample
  */
 @Composable
 fun OudsHeadingText(
