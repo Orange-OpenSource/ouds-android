@@ -101,6 +101,7 @@ import com.orange.ouds.core.component.PreviewOudsAlertMessageWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBadgeWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsBodyText
 import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsBulletListRtl
@@ -122,6 +123,7 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicator
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorSized
 import com.orange.ouds.core.component.PreviewOudsColoredBox
+import com.orange.ouds.core.component.PreviewOudsDisplayText
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
@@ -129,9 +131,11 @@ import com.orange.ouds.core.component.PreviewOudsFilterChipOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsFilterChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButtonWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsHeadingText
 import com.orange.ouds.core.component.PreviewOudsInlineAlert
 import com.orange.ouds.core.component.PreviewOudsInlineAlertWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInputTag
+import com.orange.ouds.core.component.PreviewOudsLabelText
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLinearProgressIndicator
@@ -310,6 +314,19 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
+    object BodyText : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsBodyText(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
         }
     }
 
@@ -678,6 +695,19 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object DisplayText : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsDisplayText(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
+        }
+    }
+
     object Divider {
 
         object Horizontal : OudsPreviewableComponent {
@@ -827,6 +857,19 @@ interface OudsPreviewableComponent {
         }
     }
 
+    object HeadingText : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsHeadingText(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
+        }
+    }
+
     object InlineAlert {
 
         object Default : OudsPreviewableComponent {
@@ -863,6 +906,19 @@ interface OudsPreviewableComponent {
         @Composable
         override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
             PreviewOudsInputTag(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled
+            )
+        }
+    }
+
+    object LabelText : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = emptyList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsLabelText(
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled
             )
