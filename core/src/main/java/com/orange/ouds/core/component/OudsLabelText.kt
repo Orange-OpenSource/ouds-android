@@ -24,10 +24,15 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
+// TODO Add design guideline link when available
 /**
  * Label styles are intended for compact interface elements such as buttons, form fields, badges, and other small components.
  * Unlike other typography categories, they are not responsive and maintain a fixed size across all breakpoints. This ensures visual consistency and
  * predictable behavior within space-constrained UI elements. Labels should be preferred whenever content is displayed within small components.
+ *
+ * > Design name: Label
+ *
+ * > Design version: 1.0.0
  *
  * @param text Text to display.
  * @param modifier [Modifier] applied to the label text.
