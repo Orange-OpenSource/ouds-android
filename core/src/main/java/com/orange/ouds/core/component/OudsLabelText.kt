@@ -33,6 +33,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the label text.
  * @param size Size of the label text.
  * @param weight Weight of the label text.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLabelTextSample
  */
 @Composable
 fun OudsLabelText(
