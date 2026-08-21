@@ -22,21 +22,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Paragraph
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
+import com.orange.ouds.core.component.common.text.OudsAnnotatedDisplayText
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
@@ -49,7 +48,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * Variants automatically adapt across breakpoints to maintain a consistent visual hierarchy on every screen size.
  * Use them sparingly to preserve their impact and effectiveness.
  *
- * An overload accepting annotated string is available for rich text formatting.
+ * An overload accepting annotated types is available for rich text formatting.
  *
  * > Design name: Display
  *
@@ -115,13 +114,13 @@ fun OudsDisplayText(
  * Variants automatically adapt across breakpoints to maintain a consistent visual hierarchy on every screen size.
  * Use them sparingly to preserve their impact and effectiveness.
  *
- * An overload accepting annotated string is available for rich text formatting.
+ * An overload accepting plain text is available for simple text without formatting.
  *
  * > Design name: Display
  *
  * > Design version: 1.0.0
  *
- * @param text Text to be displayed. Note: Use rich text in compliance with guidelines and accessibility criteria.
+ * @param text [OudsAnnotatedDisplayText] to be displayed.
  * @param modifier [Modifier] applied to the display text.
  * @param size Size of the display text.
  * @param color Color of the display text.
@@ -147,7 +146,7 @@ fun OudsDisplayText(
  */
 @Composable
 fun OudsDisplayText(
-    text: AnnotatedString,
+    text: OudsAnnotatedDisplayText,
     modifier: Modifier = Modifier,
     size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size,
     color: Color = OudsDisplayTextDefaults.Color,
@@ -161,7 +160,7 @@ fun OudsDisplayText(
 ) {
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
-        text = text,
+        text = text.annotatedString(),
         color = color,
         style = size.textStyle,
         textAlign = textAlign,
@@ -266,13 +265,14 @@ internal fun PreviewOudsDisplayTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    OudsDisplayText(
-        text = buildAnnotatedString {
-            append("Display with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
-            append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Normal)) { append("normal text") }
-        },
-        size = OudsDisplayTextSize.Small
-    )
+    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
+    PreviewEnumEntries<OudsDisplayTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
+        OudsDisplayText(
+            text = buildOudsAnnotatedDisplayText {
+                append("Display with ")
+                withColor(color = highlightColor) { append("highlighted text") }
+            },
+            size = textSize
+        )
+    }
 }

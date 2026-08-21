@@ -20,18 +20,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Paragraph
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
+import com.orange.ouds.core.component.common.text.OudsAnnotatedBodyText
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBodyText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -146,7 +147,7 @@ fun OudsBodyText(
  */
 @Composable
 fun OudsBodyText(
-    text: AnnotatedString,
+    text: OudsAnnotatedBodyText,
     modifier: Modifier = Modifier,
     size: OudsBodyTextSize = OudsBodyTextDefaults.Size,
     weight: OudsTextWeight = OudsBodyTextDefaults.Weight,
@@ -159,9 +160,10 @@ fun OudsBodyText(
     minLines: Int = 1,
     onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
+    val strongAndLinkStyle = textStyle(size = size, weight = weight, forceStrong = true)
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
-        text = text,
+        text = text.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle),
         color = color,
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,
@@ -251,22 +253,22 @@ enum class OudsTextWeight {
 }
 
 @Composable
-private fun textStyle(size: OudsBodyTextSize, weight: OudsTextWeight): TextStyle = with(OudsTheme.typography.body) {
+private fun textStyle(size: OudsBodyTextSize, weight: OudsTextWeight, forceStrong: Boolean = false): TextStyle = with(OudsTheme.typography.body) {
     when (size) {
         OudsBodyTextSize.Large -> when (weight) {
-            OudsTextWeight.Default -> large.default
-            OudsTextWeight.Moderate -> large.moderate
-            OudsTextWeight.Strong -> large.strong
+            OudsTextWeight.Default if !forceStrong -> large.default
+            OudsTextWeight.Moderate if !forceStrong -> large.moderate
+            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> large.strong
         }
         OudsBodyTextSize.Medium -> when (weight) {
-            OudsTextWeight.Default -> medium.default
-            OudsTextWeight.Moderate -> medium.moderate
-            OudsTextWeight.Strong -> medium.strong
+            OudsTextWeight.Default if !forceStrong -> medium.default
+            OudsTextWeight.Moderate if !forceStrong -> medium.moderate
+            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> medium.strong
         }
         OudsBodyTextSize.Small -> when (weight) {
-            OudsTextWeight.Default -> small.default
-            OudsTextWeight.Moderate -> small.moderate
-            OudsTextWeight.Strong -> small.strong
+            OudsTextWeight.Default if !forceStrong -> small.default
+            OudsTextWeight.Moderate if !forceStrong -> small.moderate
+            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> small.strong
         }
     }
 }
@@ -300,13 +302,18 @@ internal fun PreviewOudsBodyTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    OudsBodyText(
-        text = buildAnnotatedString {
-            append("Body with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
-            append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
-        },
-        size = OudsBodyTextSize.Large
-    )
+    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
+    PreviewEnumEntries<OudsBodyTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
+        OudsBodyText(
+            text = buildOudsAnnotatedBodyText {
+                append("Body with ")
+                withStrong {
+                    withColor(color = highlightColor) { append("highlighted text") }
+                }
+                append(" and ")
+                withLink(link = OudsLinkAnnotation.Url("https://example.com")) { append("link") }
+            },
+            size = textSize
+        )
+    }
 }

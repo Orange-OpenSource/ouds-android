@@ -24,21 +24,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Paragraph
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
@@ -52,7 +51,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * Their size automatically adjusts across breakpoints to ensure optimal readability on all devices.
  * Headings serve as the primary entry point for visual navigation.
  *
- * An overload accepting annotated string is available for rich text formatting.
+ * An overload accepting annotated types is available for rich text formatting.
  *
  * > Design name: Heading
  *
@@ -127,7 +126,7 @@ fun OudsHeadingText(
  *
  * > Design version: 1.1.0
  *
- * @param text Text to be displayed. Note: Use rich text in compliance with guidelines and accessibility criteria.
+ * @param text [OudsAnnotatedHeadingText] to be displayed.
  * @param modifier [Modifier] applied to the heading text.
  * @param size Size of the heading text.
  * @param color Color of the heading text.
@@ -153,7 +152,7 @@ fun OudsHeadingText(
  */
 @Composable
 fun OudsHeadingText(
-    text: AnnotatedString,
+    text: OudsAnnotatedHeadingText,
     modifier: Modifier = Modifier,
     size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size,
     color: Color = OudsHeadingTextDefaults.Color,
@@ -184,7 +183,7 @@ fun OudsHeadingText(
 @Composable
 private fun OudsHeadingText(
     text: String?,
-    annotatedText: AnnotatedString?,
+    annotatedText: OudsAnnotatedHeadingText?,
     modifier: Modifier = Modifier,
     size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size,
     color: Color = OudsHeadingTextDefaults.Color,
@@ -199,7 +198,7 @@ private fun OudsHeadingText(
     Column(modifier = modifier.widthIn(max = size.maxWidth)) {
         if (!annotatedText.isNullOrBlank()) {
             Text(
-                text = annotatedText,
+                text = annotatedText.annotatedString(),
                 color = color,
                 style = size.textStyle,
                 textAlign = textAlign,
@@ -352,13 +351,30 @@ internal fun PreviewOudsHeadingTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    OudsHeadingText(
-        text = buildAnnotatedString {
-            append("Heading with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
-            append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Normal)) { append("normal text") }
-        },
-        size = OudsHeadingTextSize.Large(marker = false)
-    )
+    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
+
+    PreviewFlowRow(
+        items = listOf(
+            OudsHeadingTextSize.ExtraLarge::class,
+            OudsHeadingTextSize.Large::class,
+            OudsHeadingTextSize.Medium::class,
+            OudsHeadingTextSize.Small::class
+        ).map { it.simpleName.orEmpty() },
+        maxItemsInEachRow = 1
+    ) {
+        val textSize = when (it) {
+            OudsHeadingTextSize.ExtraLarge::class.simpleName -> OudsHeadingTextSize.ExtraLarge
+            OudsHeadingTextSize.Large::class.simpleName -> OudsHeadingTextSize.Large(marker = false)
+            OudsHeadingTextSize.Medium::class.simpleName -> OudsHeadingTextSize.Medium
+            OudsHeadingTextSize.Small::class.simpleName -> OudsHeadingTextSize.Small
+            else -> error("Unknown text size $it.")
+        }
+        OudsHeadingText(
+            text = buildOudsAnnotatedHeadingText {
+                append("Heading with ")
+                withColor(highlightColor) { append("highlighted text") }
+            },
+            size = textSize
+        )
+    }
 }
