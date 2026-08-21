@@ -45,6 +45,9 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.OudsNavigationBarHeight
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -96,8 +99,8 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                     modifier = Modifier.listItemHorizontalPadding(),
                     headlineContent = {
                         Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
-                            Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
-                            Text(text = version, style = OudsTheme.typography.body.large.default)
+                            OudsHeadingText(text = stringResource(id = R.string.app_about_name_label), size = OudsHeadingTextSize.ExtraLarge)
+                            OudsBodyText(text = version)
                             if (issueNumbers != null) {
                                 val issues = buildAnnotatedString {
                                     append(pluralStringResource(R.plurals.app_about_issues_tech, issueNumbers.count()))
