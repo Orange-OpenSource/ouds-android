@@ -15,13 +15,11 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsDisplayText
 import com.orange.ouds.core.component.OudsDisplayTextSize
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -36,13 +34,12 @@ internal fun OudsDisplayTextSample() {
 
 @Composable
 internal fun OudsDisplayWithAnnotatedTextSample() {
+    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
     OudsDisplayText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
-        text = buildAnnotatedString {
+        text = buildOudsAnnotatedDisplayText {
             append("Label with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
-            append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Normal)) { append("normal text") }
+            withColor(color = highlightColor) { append("highlighted text") }
         },
         size = OudsDisplayTextSize.Small
     )
