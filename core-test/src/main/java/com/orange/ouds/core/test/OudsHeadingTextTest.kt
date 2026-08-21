@@ -13,9 +13,21 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
+import org.junit.runner.RunWith
 
-internal class OudsHeadingTextTest : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.HeadingText,
-    parameter = null,
-    OudsComponentTestSuite.theme
-)
+@RunWith(Enclosed::class)
+internal class OudsHeadingTextTest {
+
+    class Default : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.HeadingText.Default,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+
+    class WithAnnotatedText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.HeadingText.WithAnnotatedText,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+}

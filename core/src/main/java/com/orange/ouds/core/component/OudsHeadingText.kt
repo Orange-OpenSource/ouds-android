@@ -25,6 +25,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -59,12 +62,66 @@ fun OudsHeadingText(
     size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size,
     color: Color = OudsHeadingTextDefaults.Color
 ) {
+    OudsHeadingText(
+        text = text,
+        annotatedText = null,
+        modifier = modifier,
+        size = size,
+        color = color
+    )
+}
+
+// TODO Add design guideline link when available
+/**
+ * Heading styles are used to structure content and define the hierarchy of information within an interface.
+ * Available in multiple sizes, they help users quickly understand the organization of a page or section.
+ * Their size automatically adjusts across breakpoints to ensure optimal readability on all devices.
+ * Headings serve as the primary entry point for visual navigation.
+ *
+ * Note: This version with rich text is intended for themes that do not support marker on the heading text. (e.g. `SoshTheme`)
+ * Otherwise, please use the overload accepting plain text.
+ *
+ * > Design name: Heading
+ *
+ * > Design version: 1.0.0
+ *
+ * @param text Text to display.
+ * @param modifier [Modifier] applied to the heading text.
+ * @param size Size of the heading text.
+ * @param color Color of the heading text.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsHeadingTextWithAnnotatedTextSample
+ */
+@Composable
+fun OudsHeadingText(
+    text: OudsAnnotatedHeadingText,
+    modifier: Modifier = Modifier,
+    size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size, //TODO Do we have to restrict size to Large?
+    color: Color = OudsHeadingTextDefaults.Color
+) {
+    OudsHeadingText(
+        text = null,
+        annotatedText = text,
+        modifier = modifier,
+        size = size,
+        color = color
+    )
+}
+
+@Composable
+private fun OudsHeadingText(
+    text: String?,
+    annotatedText: OudsAnnotatedHeadingText?,
+    modifier: Modifier = Modifier,
+    size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size,
+    color: Color = OudsHeadingTextDefaults.Color
+) {
     Column(modifier = modifier.widthIn(max = size.maxWidth)) {
-        Text(
-            text = text,
-            color = color,
-            style = size.textStyle
-        )
+        if (!annotatedText.isNullOrBlank()) {
+            Text(text = annotatedText.annotatedString(), color = color, style = size.textStyle)
+        } else if (text != null) {
+            Text(text = text, color = color, style = size.textStyle)
+        }
         with(OudsTheme.components.typography) {
             // Marker is only displayed if the theme allows marker for heading large texts AND if the marker parameter for the component is set to `true`.
             if (size is OudsHeadingTextSize.Large && headingLargeMarker && size.marker) {
@@ -179,4 +236,27 @@ internal fun PreviewOudsHeadingText(
             OudsHeadingText("Heading", size = size)
         }
     }
+}
+
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsHeadingTextWithAnnotatedText() {
+    PreviewOudsHeadingTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsHeadingTextWithAnnotatedText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    val color = OudsTheme.colorScheme.content.brandPrimary
+    val text = buildOudsAnnotatedHeadingText {
+        append("Heading with ")
+        withColor(color) {
+            append("colored text")
+        }
+    }
+    OudsHeadingText(text, size = OudsHeadingTextSize.Large(marker = false))
 }
