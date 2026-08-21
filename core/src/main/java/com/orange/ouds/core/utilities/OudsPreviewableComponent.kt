@@ -137,6 +137,7 @@ import com.orange.ouds.core.component.PreviewOudsFilterChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsHeadingText
+import com.orange.ouds.core.component.PreviewOudsHeadingTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsInlineAlert
 import com.orange.ouds.core.component.PreviewOudsInlineAlertWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInputTag
@@ -962,16 +963,32 @@ interface OudsPreviewableComponent {
     }
 
     @InternalOudsApi
-    object HeadingText : OudsPreviewableComponent {
+    object HeadingText {
+        
+        object Default : OudsPreviewableComponent {
 
-        override val parameters: List<Any> = emptyList()
+            override val parameters: List<Any> = emptyList()
 
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsHeadingText(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled
-            )
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsHeadingText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsHeadingTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
