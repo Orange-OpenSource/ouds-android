@@ -96,7 +96,7 @@ fun OudsHeadingText(
 fun OudsHeadingText(
     text: OudsAnnotatedHeadingText,
     modifier: Modifier = Modifier,
-    size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size, //TODO Do we have to restrict size to Large?
+    size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size, //TODO Do we have to restrict size to Large without marker?
     color: Color = OudsHeadingTextDefaults.Color
 ) {
     OudsHeadingText(
