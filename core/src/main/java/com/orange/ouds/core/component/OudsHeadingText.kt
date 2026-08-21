@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -45,6 +46,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param text Text to display.
  * @param modifier [Modifier] applied to the heading text.
  * @param size Size of the heading text.
+ * @param color Color of the heading text.
  *
  * @sample com.orange.ouds.core.component.samples.OudsHeadingTextSample
  * @sample com.orange.ouds.core.component.samples.OudsHeadingTextLargeWithMarkerSample
@@ -54,12 +56,13 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsHeadingText(
     text: String,
     modifier: Modifier = Modifier,
-    size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size
+    size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size,
+    color: Color = OudsHeadingTextDefaults.Color
 ) {
     Column(modifier = modifier.widthIn(max = size.maxWidth)) {
         Text(
             text = text,
-            color = OudsTheme.colorScheme.content.default,
+            color = color,
             style = size.textStyle
         )
         with(OudsTheme.components.typography) {
@@ -87,6 +90,13 @@ object OudsHeadingTextDefaults {
      * Default size of an [OudsHeadingText].
      */
     val Size = OudsHeadingTextSize.Large()
+
+    /**
+     * Default color of an [OudsHeadingText].
+     */
+    val Color
+        @Composable
+        get() = OudsTheme.colorScheme.content.default
 }
 
 /**
