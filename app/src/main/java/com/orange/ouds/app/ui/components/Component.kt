@@ -49,6 +49,10 @@ import com.orange.ouds.app.ui.components.tag.TagDemoScreen
 import com.orange.ouds.app.ui.components.textarea.TextAreaDemoScreen
 import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
 import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoScreen
+import com.orange.ouds.app.ui.components.typography.BodyTextDemoScreen
+import com.orange.ouds.app.ui.components.typography.DisplayTextDemoScreen
+import com.orange.ouds.app.ui.components.typography.HeadingTextDemoScreen
+import com.orange.ouds.app.ui.components.typography.LabelTextDemoScreen
 import com.orange.ouds.app.ui.utilities.previewCompatibleClass
 
 val components = Component::class.sealedSubclasses.mapNotNull { it.objectInstance }
@@ -221,6 +225,13 @@ sealed class Component(
         { TopAppBarIllustration() },
         demoScreen = { TopAppBarDemoScreen() }
     )
+
+    data object Typography : Component(
+        R.string.app_components_typography_tech,
+        R.string.app_components_typography_description_text,
+        { TypographyIllustration() },
+        listOf(Variant.BodyText, Variant.DisplayText, Variant.HeadingText, Variant.LabelText)
+    )
 }
 
 sealed class Variant(
@@ -289,5 +300,11 @@ sealed class Variant(
     // Tag
     data object Tag : Variant(R.string.app_components_tag_tag_tech, { TagDemoScreen() })
     data object InputTag : Variant(R.string.app_components_tag_inputTag_tech, { InputTagDemoScreen() })
+
+    // Typography
+    data object BodyText : Variant(R.string.app_components_typography_bodyText_tech, { BodyTextDemoScreen() })
+    data object DisplayText : Variant(R.string.app_components_typography_displayText_tech, { DisplayTextDemoScreen() })
+    data object HeadingText : Variant(R.string.app_components_typography_headingText_tech, { HeadingTextDemoScreen() })
+    data object LabelText : Variant(R.string.app_components_typography_labelText_tech, { LabelTextDemoScreen() })
 
 }
