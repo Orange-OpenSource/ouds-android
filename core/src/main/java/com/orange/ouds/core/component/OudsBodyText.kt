@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
@@ -40,6 +41,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the body text.
  * @param size Size of the body text.
  * @param weight Weight of the body text.
+ * @param color Color of the body text.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBodyTextSample
  */
@@ -48,12 +50,13 @@ fun OudsBodyText(
     text: String,
     modifier: Modifier = Modifier,
     size: OudsBodyTextSize = OudsBodyTextDefaults.Size,
-    weight: OudsTextWeight = OudsBodyTextDefaults.Weight
+    weight: OudsTextWeight = OudsBodyTextDefaults.Weight,
+    color: Color = OudsBodyTextDefaults.Color
 ) {
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text,
-        color = OudsTheme.colorScheme.content.default,
+        color = color,
         style = textStyle(size = size, weight = weight)
     )
 }
@@ -72,6 +75,13 @@ object OudsBodyTextDefaults {
      * Default weight of an [OudsBodyText].
      */
     val Weight = OudsTextWeight.Default
+
+    /**
+     * Default color of an [OudsBodyText].
+     */
+    val Color
+        @Composable
+        get() = OudsTheme.colorScheme.content.default
 }
 
 /**
