@@ -15,14 +15,15 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBodyText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -38,13 +39,16 @@ internal fun OudsBodyTextSample() {
 
 @Composable
 internal fun OudsBodyWithAnnotatedTextSample() {
+    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
     OudsBodyText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
-        text = buildAnnotatedString {
-            append("Body with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
-            append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+        text = buildOudsAnnotatedBodyText {
+            withStrong {
+                withColor(color = highlightColor) { append("Important update") }
+            }
+            append(", see details ")
+            withLink(link = OudsLinkAnnotation.Url("https://example.com/details")) { append("here") }
+            append(".")
         },
         size = OudsBodyTextSize.Large
     )

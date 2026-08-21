@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component.common.text
 
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -718,6 +720,247 @@ class OudsAnnotatedStringTest {
     }
 
     //endregion
+
+    //region OudsAnnotatedString.ColorBuilder tests
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_withColor_addsColorAnnotation() {
+        val annotatedString = buildTestAnnotatedString {
+            append("This is ")
+            withColor(Color.Red) {
+                append("red text")
+            }
+            append(" and normal")
+        }
+
+        assertEquals("This is red text and normal", annotatedString.text)
+        // Verify color annotation is present
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(8, colorAnnotations[0].start) // "This is " has 8 characters
+        assertEquals(16, colorAnnotations[0].end) // "This is red text" has 16 characters
+        assertEquals(Color.Red.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_addColor_addsColorAnnotationToRange() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("This is red text and normal")
+        builder.addColor(Color.Blue, 8, 16) // "red text"
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("This is red text and normal", annotatedString.text)
+        // Verify color annotation is present at the specified range
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(8, colorAnnotations[0].start)
+        assertEquals(16, colorAnnotations[0].end)
+        assertEquals(Color.Blue.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_pushColorAndPop_addsColorAnnotation() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Normal ")
+        builder.pushColor(Color.Green)
+        builder.append("green")
+        builder.pop()
+        builder.append(" text")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Normal green text", annotatedString.text)
+        // Verify color annotation is present
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(7, colorAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(12, colorAnnotations[0].end) // "Normal green" has 12 characters
+        assertEquals(Color.Green.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_pushColorWithIndexAndPop_addsColorAnnotation() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Normal ")
+        val index = builder.pushColor(Color.Magenta)
+        builder.append("magenta")
+        builder.pop(index)
+        builder.append(" text")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Normal magenta text", annotatedString.text)
+        // Verify color annotation is present
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(7, colorAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(14, colorAnnotations[0].end) // "Normal magenta" has 14 characters
+        assertEquals(Color.Magenta.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_nestedPushColorAndPop_worksCorrectly() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Start ")
+        builder.pushColor(Color.Red)
+        builder.append("outer ")
+        builder.pushColor(Color.Blue)
+        builder.append("inner")
+        builder.pop()
+        builder.append(" outer")
+        builder.pop()
+        builder.append(" end")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Start outer inner outer end", annotatedString.text)
+        // Verify nested color annotations are present
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(2, colorAnnotations.size)
+        assertEquals(6, colorAnnotations[0].start) // "Start " has 6 characters, outer starts
+        assertEquals(23, colorAnnotations[0].end) // "Start outer inner outer" has 23 characters
+        assertEquals(Color.Red.toArgb().toString(), colorAnnotations[0].item)
+        assertEquals(12, colorAnnotations[1].start) // "Start outer " has 12 characters, inner starts
+        assertEquals(17, colorAnnotations[1].end) // "Start outer inner" has 17 characters
+        assertEquals(Color.Blue.toArgb().toString(), colorAnnotations[1].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_nestStrongWithinColor_succeeds() {
+        val annotatedString = buildTestAnnotatedString {
+            append("Text ")
+            withColor(Color.Yellow) {
+                append("colored ")
+                withStrong {
+                    append("and bold")
+                }
+            }
+        }
+
+        assertEquals("Text colored and bold", annotatedString.text)
+        // Verify both color and strong annotations are present
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(5, colorAnnotations[0].start) // "Text " has 5 characters
+        assertEquals(21, colorAnnotations[0].end) // "Text colored and bold" has 21 characters
+        assertEquals(Color.Yellow.toArgb().toString(), colorAnnotations[0].item)
+
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(13, strongAnnotations[0].start) // "Text colored " has 13 characters
+        assertEquals(21, strongAnnotations[0].end) // "Text colored and bold" has 21 characters
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_nestColorWithinStrong_succeeds() {
+        val annotatedString = buildTestAnnotatedString {
+            withStrong {
+                append("Bold with ")
+                withColor(Color.Cyan) {
+                    append("cyan")
+                }
+            }
+        }
+
+        assertEquals("Bold with cyan", annotatedString.text)
+        // Verify both strong and color annotations are present
+        val strongAnnotations = annotatedString.getStrongAnnotations()
+        assertEquals(1, strongAnnotations.size)
+        assertEquals(0, strongAnnotations[0].start)
+        assertEquals(14, strongAnnotations[0].end) // "Bold with cyan" has 14 characters
+
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(10, colorAnnotations[0].start) // "Bold with " has 10 characters
+        assertEquals(14, colorAnnotations[0].end) // "Bold with cyan" has 14 characters
+        assertEquals(Color.Cyan.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_multipleColors_worksCorrectly() {
+        val annotatedString = buildTestAnnotatedString {
+            withColor(Color.Red) {
+                append("Red")
+            }
+            append(" and ")
+            withColor(Color.Blue) {
+                append("Blue")
+            }
+            append(" and ")
+            withColor(Color.Green) {
+                append("Green")
+            }
+        }
+
+        assertEquals("Red and Blue and Green", annotatedString.text)
+        // Verify all color annotations are present
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(3, colorAnnotations.size)
+
+        // Red
+        assertEquals(0, colorAnnotations[0].start)
+        assertEquals(3, colorAnnotations[0].end) // "Red" has 3 characters
+        assertEquals(Color.Red.toArgb().toString(), colorAnnotations[0].item)
+
+        // Blue
+        assertEquals(8, colorAnnotations[1].start) // "Red and " has 8 characters
+        assertEquals(12, colorAnnotations[1].end) // "Red and Blue" has 12 characters
+        assertEquals(Color.Blue.toArgb().toString(), colorAnnotations[1].item)
+
+        // Green
+        assertEquals(17, colorAnnotations[2].start) // "Red and Blue and " has 17 characters
+        assertEquals(22, colorAnnotations[2].end) // "Red and Blue and Green" has 22 characters
+        assertEquals(Color.Green.toArgb().toString(), colorAnnotations[2].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_appendAnnotatedStringWithColors_preservesAnnotations() {
+        val existing = buildTestAnnotatedString {
+            append("Existing ")
+            withColor(Color.Red) {
+                append("red")
+            }
+        }
+
+        val builder = TestAnnotatedString.Builder()
+        builder.append("New ")
+        builder.append(existing)
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("New Existing red", annotatedString.text)
+        // Verify that color annotations from the appended string are preserved
+        val colorAnnotations = annotatedString.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(13, colorAnnotations[0].start) // "New Existing " has 13 characters
+        assertEquals(16, colorAnnotations[0].end) // "New Existing red" has 16 characters
+        assertEquals(Color.Red.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    @Test
+    fun oudsAnnotatedStringColorBuilder_appendAnnotatedStringWithSpanStyleColors_convertsToColorAnnotations() {
+        // Create an AnnotatedString with a SpanStyle that has a color
+        val annotatedString = buildAnnotatedString {
+            append("Normal ")
+            withStyle(SpanStyle(color = Color.Magenta)) {
+                append("magenta")
+            }
+        }
+
+        // Append to OudsAnnotatedString builder
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Prefix ")
+        builder.append(annotatedString)
+        val result = builder.toAnnotatedString()
+
+        // Verify text is fully preserved
+        assertEquals("Prefix Normal magenta", result.text)
+
+        // Verify color from SpanStyle was converted to color annotation
+        val colorAnnotations = result.getColorAnnotations()
+        assertEquals(1, colorAnnotations.size)
+        assertEquals(14, colorAnnotations[0].start) // "Prefix Normal " has 14 characters
+        assertEquals(21, colorAnnotations[0].end) // "Prefix Normal magenta" has 21 characters
+        assertEquals(Color.Magenta.toArgb().toString(), colorAnnotations[0].item)
+    }
+
+    //endregion
 }
 
 private class TestAnnotatedString(private val annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
@@ -730,8 +973,10 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
 
     fun getStrongAnnotations(): List<AnnotatedString.Range<String>> = getStringAnnotations().filter { it.item == StrongAnnotation }
 
+    fun getColorAnnotations(): List<AnnotatedString.Range<String>> = with(annotatedString) { getStringAnnotations(ColorAnnotationTag, 0, length) }
+
     class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<TestAnnotatedString>(capacity, TestAnnotatedString::class.java), StrongBuilder,
-        LinkBuilder {
+        LinkBuilder, ColorBuilder {
 
         constructor(text: String) : this() {
             append(text)
@@ -750,6 +995,10 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
         override fun addLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) = addLinkImpl(clickable, start, end)
 
         override fun pushLink(link: OudsLinkAnnotation): Int = pushLinkImpl(link)
+
+        override fun addColor(color: Color, start: Int, end: Int) = addColorImpl(color, start, end)
+
+        override fun pushColor(color: Color): Int = pushColorImpl(color)
     }
 }
 

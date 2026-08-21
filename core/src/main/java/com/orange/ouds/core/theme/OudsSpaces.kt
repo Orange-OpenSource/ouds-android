@@ -41,15 +41,10 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 data class OudsSpaces internal constructor(
     val fixed: Fixed,
     val scaled: Scaled,
-    @RestrictedOudsApi
     val paddingInline: PaddingInline,
-    @RestrictedOudsApi
     val paddingBlock: PaddingBlock,
-    @RestrictedOudsApi
     val inset: Inset,
-    @RestrictedOudsApi
     val columnGap: ColumnGap,
-    @RestrictedOudsApi
     val rowGap: RowGap
 ) {
 
@@ -266,7 +261,6 @@ data class OudsSpaces internal constructor(
     )
 }
 
-@OptIn(RestrictedOudsApi::class)
 internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     OudsSpaces(
         fixed = OudsSpaces.Fixed(
