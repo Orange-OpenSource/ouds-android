@@ -18,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsHeadingText
 import com.orange.ouds.core.component.OudsHeadingTextSize
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -48,6 +50,23 @@ internal fun OudsHeadingTextLargeWithoutMarkerSample() {
     )
 }
 
+@Composable
+internal fun OudsHeadingTextWithAnnotatedTextSample() {
+    val color = OudsTheme.colorScheme.content.brandPrimary
+    val text = buildOudsAnnotatedHeadingText {
+        append("Heading with ")
+        withColor(color) {
+            append("colored text")
+        }
+    }
+
+    OudsHeadingText(
+        modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
+        text = text,
+        size = OudsHeadingTextSize.Large(marker = false)
+    )
+}
+
 
 @PreviewLightDark
 @Composable
@@ -66,3 +85,10 @@ private fun PreviewOudsHeadingTextLargeWithMarkerSample() = OudsPreview {
 private fun PreviewOudsHeadingTextLargeWithoutMarkerSample() = OudsPreview {
     OudsHeadingTextLargeWithoutMarkerSample()
 }
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsHeadingTextWithAnnotatedTextSample() = OudsPreview {
+    OudsHeadingTextWithAnnotatedTextSample()
+}
+
