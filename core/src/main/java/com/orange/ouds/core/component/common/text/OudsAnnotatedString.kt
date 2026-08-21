@@ -369,7 +369,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
             if (this@Builder is ColorBuilder) {
                 // Color annotations
-                getStringAnnotations(0, length).filter { it.item == ColorAnnotationTag }
+                getStringAnnotations(ColorAnnotationTag, 0, length)
                     .forEach { range ->
                         with(range) {
                             builder.addStringAnnotation(ColorAnnotationTag, item, start, end)
