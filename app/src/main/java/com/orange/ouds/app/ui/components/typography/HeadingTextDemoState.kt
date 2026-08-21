@@ -27,12 +27,21 @@ fun rememberHeadingTextDemoState(
     text: String = stringResource(id = R.string.app_components_typography_common_text_label),
     size: HeadingTextDemoState.Size = HeadingTextDemoState.Size.Large,
     headingLargeMarker: Boolean = true,
-) = rememberSaveable(text, size, headingLargeMarker, saver = HeadingTextDemoState.Saver) { HeadingTextDemoState(text, size, headingLargeMarker) }
+    annotatedText: Boolean = false
+) = rememberSaveable(text, size, headingLargeMarker, annotatedText, saver = HeadingTextDemoState.Saver) {
+    HeadingTextDemoState(
+        text,
+        size,
+        headingLargeMarker,
+        annotatedText
+    )
+}
 
 class HeadingTextDemoState(
     text: String,
     size: Size,
-    headingLargeMarker: Boolean
+    headingLargeMarker: Boolean,
+    annotatedText: Boolean
 ) : TypographyDemoState(text) {
 
     companion object {
@@ -43,7 +52,8 @@ class HeadingTextDemoState(
                     listOf(
                         with(TypographyDemoState.Saver) { save(state) },
                         size,
-                        headingLargeMarker
+                        headingLargeMarker,
+                        annotatedText
                     )
                 }
             },
@@ -53,7 +63,8 @@ class HeadingTextDemoState(
                     HeadingTextDemoState(
                         text,
                         list[1] as Size,
-                        list[2] as Boolean
+                        list[2] as Boolean,
+                        list[3] as Boolean
                     )
                 }
             }
@@ -65,6 +76,8 @@ class HeadingTextDemoState(
     var headingLargeMarker by mutableStateOf(headingLargeMarker)
     val headingLargeMarkerSwitchEnabled
         get() = size == Size.Large
+
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
 
     enum class Size {
         ExtraLarge, Large, Medium, Small;
