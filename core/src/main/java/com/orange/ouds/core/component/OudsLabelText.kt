@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
@@ -40,6 +41,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param modifier [Modifier] applied to the label text.
  * @param size Size of the label text.
  * @param weight Weight of the label text.
+ * @param color Color of the label text.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLabelTextSample
  */
@@ -48,7 +50,8 @@ fun OudsLabelText(
     text: String,
     modifier: Modifier = Modifier,
     size: OudsLabelTextSize = OudsLabelTextDefaults.Size,
-    weight: OudsTextWeight = OudsLabelTextDefaults.Weight
+    weight: OudsTextWeight = OudsLabelTextDefaults.Weight,
+    color: Color = OudsLabelTextDefaults.Color
 ) {
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
@@ -72,6 +75,13 @@ object OudsLabelTextDefaults {
      * Default weight of an [OudsLabelText].
      */
     val Weight = OudsTextWeight.Default
+
+    /**
+     * Default color of an [OudsLabelText].
+     */
+    val Color
+        @Composable
+        get() = OudsTheme.colorScheme.content.default
 }
 
 /**
