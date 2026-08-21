@@ -19,12 +19,13 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
 
@@ -39,11 +40,10 @@ fun DialogContent(
             .clip(shape = RoundedCornerShape(28.dp))
             .background(OudsTheme.colorScheme.background.primary)
     ) {
-        Text(
+        OudsHeadingText(
             text = title,
-            color = OudsTheme.colorScheme.content.default,
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.large),
-            style = OudsTheme.typography.heading.medium
+            size = OudsHeadingTextSize.Medium
         )
         Column(modifier = Modifier.padding(contentPadding)) {
             content()
