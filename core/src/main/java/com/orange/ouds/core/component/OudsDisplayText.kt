@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
@@ -42,6 +43,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param text Text to display.
  * @param modifier [Modifier] applied to the display text.
  * @param size Size of the display text.
+ * @param color Color of the display text.
  *
  * @sample com.orange.ouds.core.component.samples.OudsDisplayTextSample
  */
@@ -49,12 +51,13 @@ import com.orange.ouds.theme.OudsThemeContract
 fun OudsDisplayText(
     text: String,
     modifier: Modifier = Modifier,
-    size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size
+    size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size,
+    color: Color = OudsDisplayTextDefaults.Color
 ) {
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text,
-        color = OudsTheme.colorScheme.content.default,
+        color = color,
         style = size.textStyle
     )
 }
@@ -68,6 +71,13 @@ object OudsDisplayTextDefaults {
      * Default size of an [OudsDisplayText].
      */
     val Size = OudsDisplayTextSize.Large
+
+    /**
+     * Default color of an [OudsDisplayText].
+     */
+    val Color
+        @Composable
+        get() = OudsTheme.colorScheme.content.default
 }
 
 /**
