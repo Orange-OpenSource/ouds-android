@@ -15,10 +15,12 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -49,7 +51,12 @@ fun OudsDisplayText(
     modifier: Modifier = Modifier,
     size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size
 ) {
-    Text(text = text, modifier = modifier, color = OudsTheme.colorScheme.content.default, style = size.textStyle)
+    Text(
+        modifier = modifier.widthIn(max = size.maxWidth),
+        text = text,
+        color = OudsTheme.colorScheme.content.default,
+        style = size.textStyle
+    )
 }
 
 /**
@@ -88,6 +95,16 @@ enum class OudsDisplayTextSize {
     val textStyle: TextStyle
         @Composable
         get() = with(OudsTheme.typography.display) {
+            when (this@OudsDisplayTextSize) {
+                Large -> large
+                Medium -> medium
+                Small -> small
+            }
+        }
+
+    val maxWidth: Dp
+        @Composable
+        get() = with(OudsTheme.sizes.maxWidth.display) {
             when (this@OudsDisplayTextSize) {
                 Large -> large
                 Medium -> medium

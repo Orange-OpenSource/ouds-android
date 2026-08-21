@@ -16,12 +16,14 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -54,8 +56,12 @@ fun OudsHeadingText(
     modifier: Modifier = Modifier,
     size: OudsHeadingTextSize = OudsHeadingTextDefaults.Size
 ) {
-    Column(modifier = modifier) {
-        Text(text = text, color = OudsTheme.colorScheme.content.default, style = size.textStyle)
+    Column(modifier = modifier.widthIn(max = size.maxWidth)) {
+        Text(
+            text = text,
+            color = OudsTheme.colorScheme.content.default,
+            style = size.textStyle
+        )
         with(OudsTheme.components.typography) {
             // Marker is only displayed if the theme allows marker for heading large texts AND if the marker parameter for the component is set to `true`.
             if (size is OudsHeadingTextSize.Large && headingLargeMarker && size.marker) {
@@ -121,6 +127,17 @@ sealed interface OudsHeadingTextSize {
     val textStyle: TextStyle
         @Composable
         get() = with(OudsTheme.typography.heading) {
+            when (this@OudsHeadingTextSize) {
+                is ExtraLarge -> extraLarge
+                is Large -> large
+                is Medium -> medium
+                is Small -> small
+            }
+        }
+
+    val maxWidth: Dp
+        @Composable
+        get() = with(OudsTheme.sizes.maxWidth.heading) {
             when (this@OudsHeadingTextSize) {
                 is ExtraLarge -> extraLarge
                 is Large -> large

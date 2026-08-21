@@ -13,10 +13,12 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -48,7 +50,12 @@ fun OudsBodyText(
     size: OudsBodyTextSize = OudsBodyTextDefaults.Size,
     weight: OudsTextWeight = OudsBodyTextDefaults.Weight
 ) {
-    Text(text = text, modifier = modifier, color = OudsTheme.colorScheme.content.default, style = textStyle(size = size, weight = weight))
+    Text(
+        modifier = modifier.widthIn(max = size.maxWidth),
+        text = text,
+        color = OudsTheme.colorScheme.content.default,
+        style = textStyle(size = size, weight = weight)
+    )
 }
 
 /**
@@ -84,7 +91,17 @@ enum class OudsBodyTextSize {
     /**
      * A compact body text size intended for supporting information, secondary content, and dense layouts where space efficiency is important.
      */
-    Small
+    Small;
+
+    val maxWidth: Dp
+        @Composable
+        get() = with(OudsTheme.sizes.maxWidth.body) {
+            when (this@OudsBodyTextSize) {
+                Large -> large
+                Medium -> medium
+                Small -> small
+            }
+        }
 }
 
 /**

@@ -13,10 +13,12 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -48,7 +50,12 @@ fun OudsLabelText(
     size: OudsLabelTextSize = OudsLabelTextDefaults.Size,
     weight: OudsTextWeight = OudsLabelTextDefaults.Weight
 ) {
-    Text(text = text, modifier = modifier, color = OudsTheme.colorScheme.content.default, style = textStyle(size = size, weight = weight))
+    Text(
+        modifier = modifier.widthIn(max = size.maxWidth),
+        text = text,
+        color = OudsTheme.colorScheme.content.default,
+        style = textStyle(size = size, weight = weight)
+    )
 }
 
 /**
@@ -90,7 +97,18 @@ enum class OudsLabelTextSize {
     /**
      * The most compact label size, optimized for dense interfaces and small UI components. Use it when space is limited while preserving legibility.
      */
-    Small
+    Small;
+
+    val maxWidth: Dp
+        @Composable
+        get() = with(OudsTheme.sizes.maxWidth.label) {
+            when (this@OudsLabelTextSize) {
+                ExtraLarge -> extraLarge
+                Large -> large
+                Medium -> medium
+                Small -> small
+            }
+        }
 }
 
 @Composable
