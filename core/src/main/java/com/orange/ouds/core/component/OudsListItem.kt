@@ -880,7 +880,7 @@ open class OudsListItemText internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        Column(modifier = modifier) {
+        Column(modifier = modifier, horizontalAlignment = Alignment.End) {
             Text(
                 modifier = modifier.padding(
                     top = topTextContainerPadding(verticalAlignment = extraParameters.verticalAlignment, size = extraParameters.size)
