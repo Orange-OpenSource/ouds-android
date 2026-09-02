@@ -48,6 +48,8 @@ import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsListItemVerticalAlignment
+import com.orange.ouds.core.component.OudsSmallListItemLeading
+import com.orange.ouds.core.component.OudsSmallListItemTrailing
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.launch
 
@@ -394,6 +396,32 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
 }
 
 @Composable
+fun baseSmallListItemDemoLeading(state: BaseListItemDemoState): OudsSmallListItemLeading? = with(state) {
+    when (leading) {
+        BaseListItemDemoState.Leading.None -> null
+        BaseListItemDemoState.Leading.Icon -> {
+            when (leadingStatusIcon) {
+                BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemLeading.Icon(
+                    painter = iconPainter,
+                    contentDescription = stringResource(R.string.app_components_listItem_icon_a11y)
+                )
+                BaseListItemDemoState.StatusIcon.Info -> OudsSmallListItemLeading.Icon.Info
+                BaseListItemDemoState.StatusIcon.Negative -> OudsSmallListItemLeading.Icon.Negative
+                BaseListItemDemoState.StatusIcon.Positive -> OudsSmallListItemLeading.Icon.Positive
+                BaseListItemDemoState.StatusIcon.Warning -> OudsSmallListItemLeading.Icon.Warning
+            }
+        }
+        BaseListItemDemoState.Leading.Image -> OudsSmallListItemLeading.Image(
+            painter = imagePainter,
+            contentDescription = stringResource(R.string.app_components_listItem_image_a11y),
+            ratio = leadingImageRatio,
+            roundedCorner = leadingImageRoundedCorners,
+            contentScale = ContentScale.Crop
+        )
+    }
+}
+
+@Composable
 fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing? = with(state) {
     when (trailing) {
         BaseListItemDemoState.Trailing.None -> null
@@ -431,6 +459,38 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
                 )
             }
         }
+    }
+}
+
+@Composable
+fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListItemTrailing? = with(state) {
+    when (trailing) {
+        BaseListItemDemoState.Trailing.None -> null
+        BaseListItemDemoState.Trailing.Icon -> {
+            when (trailingStatusIcon) {
+                BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemTrailing.Icon(
+                    painter = iconPainter,
+                    contentDescription = stringResource(R.string.app_components_listItem_icon_a11y)
+                )
+                BaseListItemDemoState.StatusIcon.Info -> OudsSmallListItemTrailing.Icon.Info
+                BaseListItemDemoState.StatusIcon.Negative -> OudsSmallListItemTrailing.Icon.Negative
+                BaseListItemDemoState.StatusIcon.Positive -> OudsSmallListItemTrailing.Icon.Positive
+                BaseListItemDemoState.StatusIcon.Warning -> OudsSmallListItemTrailing.Icon.Warning
+            }
+        }
+        BaseListItemDemoState.Trailing.Image ->
+            OudsSmallListItemTrailing.Image(
+                painter = imagePainter,
+                contentDescription = stringResource(R.string.app_components_listItem_image_a11y),
+                ratio = trailingImageRatio,
+                roundedCorner = trailingImageRoundedCorners,
+                contentScale = ContentScale.Crop
+            )
+        BaseListItemDemoState.Trailing.Text ->
+            OudsSmallListItemTrailing.Text(
+                label = trailingTextLabel,
+                style = trailingTextStyle
+            )
     }
 }
 
