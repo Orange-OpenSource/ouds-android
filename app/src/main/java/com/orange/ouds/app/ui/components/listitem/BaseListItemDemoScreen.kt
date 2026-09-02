@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
@@ -607,14 +608,14 @@ private inline fun <reified IconType : OudsListItemIcon> FunctionCall.Builder.ad
             }
         }
         BaseListItemDemoState.StatusIcon.None -> {
-            constructorCallArgument<IconType>(argumentName) {
-                painterArgument(themeDrawableResources.tipsAndTricks)
-                contentDescriptionArgument(R.string.app_components_listItem_icon_a11y)
+            iconArgument<IconType>(
+                argumentName,
+                themeDrawableResources.tipsAndTricks,
+                R.string.app_components_listItem_icon_a11y,
+                iconTint == BaseListItemDemoState.IconTint.Tinted
+            ) {
                 if (iconSize != OudsListItemDefaults.IconSize) {
                     typedArgument(sizeParameterName, iconSize)
-                }
-                if (iconTint != BaseListItemDemoState.IconTint.Tinted) {
-                    typedArgument("tinted", false)
                 }
             }
         }
