@@ -25,6 +25,7 @@ import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,6 +79,23 @@ internal fun OudsLargeTopAppBarSample() {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun OudsTopAppBarWithUntintedIconSample() {
+    OudsTopAppBar(
+        title = "Title",
+        navigationIcon = OudsTopAppBarNavigationIcon.Back {},
+        actions = listOf(
+            OudsTopAppBarAction.Icon(
+                painter = rememberRainbowHeartPainter(),
+                contentDescription = "",
+                tinted = false,
+                onClick = {}
+            )
+        )
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsTopAppBarSample() = OudsPreview {
@@ -100,4 +118,10 @@ private fun PreviewOudsMediumTopAppBarSample() = OudsPreview {
 @Composable
 private fun PreviewOudsLargeTopAppBarSample() = OudsPreview {
     OudsLargeTopAppBarSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsTopAppBarWithUntintedIconSample() = OudsPreview {
+    OudsTopAppBarWithUntintedIconSample()
 }

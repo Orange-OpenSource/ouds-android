@@ -49,15 +49,17 @@ internal inline fun <reified T> FunctionCall.Builder.annotatedStringArgument(nam
 }
 
 inline fun <reified T> FunctionCall.Builder.iconArgument(
-    name: String,
+    name: String?,
     @DrawableRes resId: Int,
     @StringRes contentDescriptionResId: Int? = null,
-    tinted: Boolean = true
+    tinted: Boolean = true,
+    noinline init: FunctionCall.Builder.() -> Unit = {}
 ) {
     constructorCallArgument<T>(name) {
         painterArgument(if (tinted) resId else R.drawable.ic_untinted_square)
         contentDescriptionResId?.let { contentDescriptionArgument(it) }
         if (!tinted) tintedArgument(tinted)
+        init()
     }
 }
 

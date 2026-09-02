@@ -30,6 +30,7 @@ fun rememberTopAppBarDemoState(
     title: String = stringResource(id = R.string.app_components_topAppBar_title_label),
     actionCount: Int = 2,
     lastActionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
+    lastActionIcon: TopAppBarDemoState.Icon = TopAppBarDemoState.Icon.Tinted,
     actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
     actionAvatarMonogram: Char = 'A'
 ) = rememberSaveable(
@@ -39,11 +40,12 @@ fun rememberTopAppBarDemoState(
     title,
     actionCount,
     lastActionIconBadge,
+    lastActionIcon,
     actionAvatar,
     actionAvatarMonogram,
     saver = TopAppBarDemoState.Saver
 ) {
-    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionCount, lastActionIconBadge, actionAvatar, actionAvatarMonogram)
+    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionCount, lastActionIconBadge, lastActionIcon, actionAvatar, actionAvatarMonogram)
 }
 
 class TopAppBarDemoState(
@@ -53,6 +55,7 @@ class TopAppBarDemoState(
     title: String,
     actionCount: Int,
     lastActionIconBadge: ActionIconBadge,
+    lastActionIcon: Icon,
     actionAvatar: ActionAvatar,
     actionAvatarMonogram: Char
 ) {
@@ -72,6 +75,7 @@ class TopAppBarDemoState(
                         title,
                         actionCount,
                         lastActionIconBadge,
+                        lastActionIcon,
                         actionAvatar,
                         actionAvatarMonogram
                     )
@@ -85,8 +89,9 @@ class TopAppBarDemoState(
                     list[3] as String,
                     list[4] as Int,
                     list[5] as ActionIconBadge,
-                    list[6] as ActionAvatar,
-                    list[7] as Char
+                    list[6] as Icon,
+                    list[7] as ActionAvatar,
+                    list[8] as Char
                 )
             }
         )
@@ -117,6 +122,8 @@ class TopAppBarDemoState(
 
     var lastActionIconBadge: ActionIconBadge by mutableStateOf(lastActionIconBadge)
 
+    var lastActionIcon: Icon by mutableStateOf(lastActionIcon)
+
     var actionAvatar: ActionAvatar by mutableStateOf(actionAvatar)
 
     var actionAvatarMonogram: Char by mutableStateOf(actionAvatarMonogram)
@@ -124,7 +131,7 @@ class TopAppBarDemoState(
     val centerAlignedSwitchEnabled: Boolean
         get() = size == Size.Small
 
-    val lastActionIconBadgeFilterChipsEnabled: Boolean
+    val lastActionIconOptionsEnabled: Boolean
         get() = actions.contains(Action.Icon)
 
     val actionAvatarFilterChipsEnabled: Boolean
@@ -161,5 +168,10 @@ class TopAppBarDemoState(
     enum class Action {
         Icon,
         Avatar
+    }
+
+    enum class Icon(@StringRes val labelRes: Int) {
+        Tinted(R.string.app_components_common_tintedIcon_tech),
+        Untinted(R.string.app_components_common_untintedIcon_tech)
     }
 }
