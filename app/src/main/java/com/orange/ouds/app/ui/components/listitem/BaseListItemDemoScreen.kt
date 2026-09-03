@@ -421,7 +421,7 @@ fun baseSmallListItemDemoLeading(state: BaseListItemDemoState): OudsSmallListIte
         BaseListItemDemoState.Leading.Icon -> {
             when (leadingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemLeading.Icon(
-                    painter = iconPainter,
+                    painter = iconPainter(leadingIconTint),
                     contentDescription = stringResource(R.string.app_components_listItem_icon_a11y)
                 )
                 BaseListItemDemoState.StatusIcon.Info -> OudsSmallListItemLeading.Icon.Info
@@ -489,7 +489,7 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemTrailing.Icon(
-                    painter = iconPainter,
+                    painter = iconPainter(trailingIconTint),
                     contentDescription = stringResource(R.string.app_components_listItem_icon_a11y)
                 )
                 BaseListItemDemoState.StatusIcon.Info -> OudsSmallListItemTrailing.Icon.Info
