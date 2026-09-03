@@ -1323,8 +1323,7 @@ internal fun PreviewOudsStaticListItem(
             divider = decoration.divider,
             background = decoration is OudsListItemDecoration.Background,
             boldLabel = boldLabel,
-            enabled = enabled,
-            edgeToEdge = false
+            enabled = enabled
         )
     }
 }
@@ -1349,7 +1348,7 @@ internal fun PreviewOudsNavigationListItem(
     parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+        PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsListItem(
                 onClick = {},
                 indicator = indicator,
@@ -1363,8 +1362,7 @@ internal fun PreviewOudsNavigationListItem(
                 trailing = trailing,
                 divider = decoration.divider,
                 background = decoration is OudsListItemDecoration.Background,
-                enabled = enabled,
-                edgeToEdge = false
+                enabled = enabled
             )
         }
     }
@@ -1377,7 +1375,7 @@ private fun PreviewOudsNavigationListItemWithUntintedIcon() = PreviewOudsNavigat
 
 @Composable
 internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
         OudsListItem(
             onClick = {},
             label = "Label",
@@ -1386,6 +1384,27 @@ internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContr
                 painter = rememberRainbowHeartPainter(),
                 contentDescription = "",
                 tinted = false
+            ),
+            background = true
+        )
+    }
+}
+
+@Preview(heightDp = OudsPreviewableComponent.ListItem.WithEdgeToEdgeDisabled.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled() = PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+        OudsListItem(
+            onClick = {},
+            label = "Label",
+            description = "Description",
+            trailing = OudsListItemTrailing.Icon(
+                imageVector = Icons.Outlined.FavoriteBorder,
+                contentDescription = ""
             ),
             background = true,
             edgeToEdge = false

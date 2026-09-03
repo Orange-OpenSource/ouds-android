@@ -295,6 +295,7 @@
     <string name="app_components_listItem_indicator_tech" translatable="false">Indicator</string>
     <string name="app_components_listItem_verticalAlignment_tech" translatable="false">Vertical alignment</string>
     <string name="app_components_listItem_iconSize_tech" translatable="false">Icon size</string>
+    <string name="app_components_listItem_iconTint_tech" translatable="false">Icon tint</string>
     <string name="app_components_listItem_statusIcon_tech" translatable="false">Status icon</string>
     <string name="app_components_listItem_imageSize_tech" translatable="false">Image size</string>
     <string name="app_components_listItem_imageRatio_tech" translatable="false">Image ratio</string>
