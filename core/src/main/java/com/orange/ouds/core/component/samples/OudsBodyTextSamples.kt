@@ -15,6 +15,10 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
@@ -32,8 +36,28 @@ internal fun OudsBodyTextSample() {
     )
 }
 
+@Composable
+internal fun OudsBodyWithAnnotatedTextSample() {
+    OudsBodyText(
+        modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
+        text = buildAnnotatedString {
+            append("Body with ")
+            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
+            append(" and ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+        },
+        size = OudsBodyTextSize.Large
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsBodyTextSample() = OudsPreview {
     OudsBodyTextSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsBodyWithAnnotatedTextSample() = OudsPreview {
+    OudsBodyWithAnnotatedTextSample()
 }
