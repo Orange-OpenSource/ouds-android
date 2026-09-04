@@ -430,6 +430,7 @@ private fun OudsTextArea(
     val scrollState = rememberScrollState()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -439,7 +440,7 @@ private fun OudsTextArea(
         helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 state = textFieldState,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
@@ -807,6 +808,7 @@ private fun OudsTextArea(
     val emptyText = value.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -816,7 +818,7 @@ private fun OudsTextArea(
         helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -1182,6 +1184,7 @@ private fun OudsTextArea(
     val emptyText = value.text.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -1191,7 +1194,7 @@ private fun OudsTextArea(
         helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),

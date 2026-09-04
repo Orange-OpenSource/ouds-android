@@ -369,6 +369,7 @@ private fun OudsTextInput(
     val emptyText = textFieldState.text.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -378,7 +379,7 @@ private fun OudsTextInput(
         helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 state = textFieldState,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
@@ -667,6 +668,7 @@ private fun OudsTextInput(
     val emptyText = value.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -676,7 +678,7 @@ private fun OudsTextInput(
         helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -964,6 +966,7 @@ private fun OudsTextInput(
     val emptyText = value.text.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -973,7 +976,7 @@ private fun OudsTextInput(
         helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -1022,7 +1025,8 @@ internal fun OudsTextInput(
     helperText: String?,
     annotatedHelperText: OudsAnnotatedHelperText?,
     helperLink: OudsTextInputHelperLink?,
-    basicTextField: @Composable () -> Unit
+    basicTextField: @Composable () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val isForbidden = (state == OudsTextInputState.Loading && (emptyText || error != null)) || (error != null && state in listOf(
         OudsTextInputState.ReadOnly,
@@ -1049,7 +1053,7 @@ internal fun OudsTextInput(
             }
         }
     ) {
-        Column {
+        Column(modifier = modifier) {
             basicTextField()
 
             // Helper text / Error description
