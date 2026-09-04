@@ -32,7 +32,8 @@ fun rememberTopAppBarDemoState(
     lastActionIconBadge: TopAppBarDemoState.ActionIconBadge = TopAppBarDemoState.ActionIconBadge.None,
     lastActionIcon: TopAppBarDemoState.Icon = TopAppBarDemoState.Icon.Tinted,
     actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
-    actionAvatarMonogram: Char = 'A'
+    actionAvatarMonogram: Char = 'A',
+    subtitle: String? = null
 ) = rememberSaveable(
     size,
     centerAligned,
@@ -43,9 +44,21 @@ fun rememberTopAppBarDemoState(
     lastActionIcon,
     actionAvatar,
     actionAvatarMonogram,
+    subtitle,
     saver = TopAppBarDemoState.Saver
 ) {
-    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionCount, lastActionIconBadge, lastActionIcon, actionAvatar, actionAvatarMonogram)
+    TopAppBarDemoState(
+        size,
+        centerAligned,
+        navigationIcon,
+        title,
+        actionCount,
+        lastActionIconBadge,
+        lastActionIcon,
+        actionAvatar,
+        actionAvatarMonogram,
+        subtitle
+    )
 }
 
 class TopAppBarDemoState(
@@ -57,7 +70,8 @@ class TopAppBarDemoState(
     lastActionIconBadge: ActionIconBadge,
     lastActionIcon: Icon,
     actionAvatar: ActionAvatar,
-    actionAvatarMonogram: Char
+    actionAvatarMonogram: Char,
+    subtitle: String?
 ) {
     companion object {
 
@@ -77,7 +91,8 @@ class TopAppBarDemoState(
                         lastActionIconBadge,
                         lastActionIcon,
                         actionAvatar,
-                        actionAvatarMonogram
+                        actionAvatarMonogram,
+                        subtitle
                     )
                 }
             },
@@ -91,7 +106,8 @@ class TopAppBarDemoState(
                     list[5] as ActionIconBadge,
                     list[6] as Icon,
                     list[7] as ActionAvatar,
-                    list[8] as Char
+                    list[8] as Char,
+                    list[9] as String?
                 )
             }
         )
@@ -127,6 +143,8 @@ class TopAppBarDemoState(
     var actionAvatar: ActionAvatar by mutableStateOf(actionAvatar)
 
     var actionAvatarMonogram: Char by mutableStateOf(actionAvatarMonogram)
+
+    var subtitle: String? by mutableStateOf(subtitle)
 
     val centerAlignedSwitchEnabled: Boolean
         get() = size == Size.Small

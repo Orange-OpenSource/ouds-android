@@ -129,6 +129,12 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
             onValueChange = { value -> actionAvatarMonogram = value.firstOrNull().orElse { ' ' } },
             enabled = actionAvatarMonogramTextInputEnabled
         )
+        CustomizationTextInput(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_subtitle_tech),
+            value = subtitle.orEmpty(),
+            onValueChange = { value -> subtitle = value }
+        )
     }
 }
 
@@ -200,13 +206,15 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
                     OudsCenterAlignedTopAppBar(
                         title = title,
                         navigationIcon = navigationIcon,
-                        actions = topAppBarActions
+                        actions = topAppBarActions,
+                        subtitle = subtitle
                     )
                 } else {
                     OudsTopAppBar(
                         title = title,
                         navigationIcon = navigationIcon,
-                        actions = topAppBarActions
+                        actions = topAppBarActions,
+                        subtitle = subtitle
                     )
                 }
             }
@@ -214,14 +222,16 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
                 OudsMediumTopAppBar(
                     title = title,
                     navigationIcon = navigationIcon,
-                    actions = topAppBarActions
+                    actions = topAppBarActions,
+                    subtitle = subtitle
                 )
             }
             TopAppBarDemoState.Size.Large -> {
                 OudsLargeTopAppBar(
                     title = title,
                     navigationIcon = navigationIcon,
-                    actions = topAppBarActions
+                    actions = topAppBarActions,
+                    subtitle = subtitle
                 )
             }
         }

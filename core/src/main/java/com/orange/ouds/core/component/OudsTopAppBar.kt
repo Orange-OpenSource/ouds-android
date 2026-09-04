@@ -16,6 +16,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -744,7 +745,15 @@ fun OudsLargeTopAppBar(
 
 @Composable
 private fun TopAppBarTitle(title: String, subtitle: String?, topAppBarSize: OudsTopAppBarSize, centerAligned: Boolean) {
-    Column(horizontalAlignment = if (centerAligned) Alignment.CenterHorizontally else Alignment.Start) {
+    val bottomPadding = when (topAppBarSize) {
+        OudsTopAppBarSize.Small -> 0.dp
+        OudsTopAppBarSize.Medium,
+        OudsTopAppBarSize.Large -> 12.dp
+    }
+    Column(
+        modifier = Modifier.padding(bottom = bottomPadding),
+        horizontalAlignment = if (centerAligned) Alignment.CenterHorizontally else Alignment.Start
+    ) {
         val maxLines = if (topAppBarSize == OudsTopAppBarSize.Small) 1 else Int.MAX_VALUE
         Text(
             text = title,
@@ -767,36 +776,20 @@ private fun TopAppBarTitle(title: String, subtitle: String?, topAppBarSize: Ouds
 
 @Composable
 private fun subtitleTextStyle(topAppBarSize: OudsTopAppBarSize): TextStyle {
-    val fontFamily = OudsTheme.typography.fontFamily
-    val fontWeight = FontWeight.Medium
-    val lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Center, trim = LineHeightStyle.Trim.None)
-
-    return when (topAppBarSize) {
-        OudsTopAppBarSize.Small -> TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = fontWeight,
-            fontSize = 12.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.5.sp,
-            lineHeightStyle = lineHeightStyle
-        )
-        OudsTopAppBarSize.Medium -> TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = fontWeight,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.1.sp,
-            lineHeightStyle = lineHeightStyle
-        )
-        OudsTopAppBarSize.Large -> TextStyle(
-            fontFamily = fontFamily,
-            fontWeight = fontWeight,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
-            letterSpacing = 0.15.sp,
-            lineHeightStyle = lineHeightStyle
-        )
+    val (fontSize, lineHeight, letterSpacing) = when (topAppBarSize) {
+        OudsTopAppBarSize.Small -> Triple(12.sp, 16.sp, 0.5.sp)
+        OudsTopAppBarSize.Medium -> Triple(14.sp, 20.sp, 0.1.sp)
+        OudsTopAppBarSize.Large -> Triple(16.sp, 24.sp, 0.15.sp)
     }
+
+    return TextStyle(
+        fontFamily = OudsTheme.typography.fontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = fontSize,
+        lineHeight = lineHeight,
+        letterSpacing = letterSpacing,
+        lineHeightStyle = LineHeightStyle(alignment = LineHeightStyle.Alignment.Center, trim = LineHeightStyle.Trim.None)
+    )
 }
 
 @Composable

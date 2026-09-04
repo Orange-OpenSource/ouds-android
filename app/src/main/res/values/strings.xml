@@ -414,6 +414,7 @@
     <string name="app_components_topAppBar_actionAvatar_tech" translatable="false">Action avatar</string>
     <string name="app_components_topAppBar_monogramActionAvatar_tech" translatable="false">Monogram</string>
     <string name="app_components_topAppBar_actionAvatarMonogram_tech" translatable="false">Action avatar monogram</string>
+    <string name="app_components_topAppBar_subtitle_tech" translatable="false">Subtitle</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
