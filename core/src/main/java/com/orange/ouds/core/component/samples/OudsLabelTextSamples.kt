@@ -15,6 +15,10 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsLabelText
 import com.orange.ouds.core.component.OudsLabelTextSize
@@ -32,8 +36,29 @@ internal fun OudsLabelTextSample() {
     )
 }
 
+@Composable
+internal fun OudsLabelWithAnnotatedTextSample() {
+    OudsLabelText(
+        modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
+        text = buildAnnotatedString {
+            append("Label with ")
+            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
+            append(" and ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+        },
+        size = OudsLabelTextSize.Large
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsLabelTextSample() = OudsPreview {
     OudsLabelTextSample()
 }
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsLabelWithAnnotatedTextSample() = OudsPreview {
+    OudsLabelWithAnnotatedTextSample()
+}
+

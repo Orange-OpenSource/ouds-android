@@ -13,12 +13,9 @@
 package com.orange.ouds.core.component.common.text
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.LinkInteractionListener
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.StringAnnotation
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
@@ -49,7 +46,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     internal companion object {
 
         const val StrongAnnotation = "OudsAnnotatedString.StrongAnnotation"
-        const val ColorAnnotationTag = "ColorAnnotation"
     }
 
     private val _annotatedString = annotatedString
@@ -63,15 +59,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         linkStyle: TextStyle = OudsTheme.typography.label.medium.strong
     ): AnnotatedString {
         val linkStyles = getTextLinkStyles(linkStyle)
-
-        // First, collect color annotations to apply them as SpanStyles
-        val colorRanges = _annotatedString.getStringAnnotations(ColorAnnotationTag, 0, _annotatedString.length).map { range ->
-            val color = Color(range.item.toInt())
-            AnnotatedString.Range(SpanStyle(color = color), range.start, range.end)
-        }
-
-        // Then process other annotations
-        val processedAnnotations = _annotatedString.mapAnnotations { range ->
+        return _annotatedString.mapAnnotations { range ->
             when (val annotation = range.item) {
                 is StringAnnotation if (annotation.value == StrongAnnotation) -> {
                     with(range) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end) }
@@ -87,22 +75,11 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                 else -> range
             }
         }
-
-        return if (colorRanges.isEmpty()) {
-            processedAnnotations
-        } else {
-            androidx.compose.ui.text.buildAnnotatedString {
-                append(processedAnnotations)
-                colorRanges.forEach { range ->
-                    addStyle(range.item, range.start, range.end)
-                }
-            }
-        }
     }
 
     /**
      * The plain text content without any formatting annotations.
-     * 
+     *
      * @see AnnotatedString.text
      */
     val text: String = annotatedString.text
@@ -112,7 +89,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *
      * @param other The annotated string to append.
      * @return A new annotated string containing both strings with their annotations preserved.
-     * 
+     *
      * @see AnnotatedString.plus
      */
     operator fun plus(other: T): T {
@@ -222,7 +199,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     /**
      * Builder class for annotated string. Enables construction of an [OudsAnnotatedString] using methods
      * such as [append].
-     * 
+     *
      * @param capacity Initial capacity for the internal char buffer.
      */
     open class Builder<T> internal constructor(capacity: Int, private val clazz: Class<T>) : Appendable where T : OudsAnnotatedString<T> {
@@ -291,7 +268,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
         /**
          * Constructs an [OudsAnnotatedString] based on the configurations applied to the [Builder].
-         * 
+         *
          * @return The constructed annotated string.
          */
         open fun toAnnotatedString(): T {
@@ -310,29 +287,15 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
             builder.addLink(clickable.linkAnnotation, start, end)
         }
 
-        protected fun addColorImpl(color: Color, start: Int, end: Int) {
-            builder.addColorAnnotation(color, start, end)
-        }
-
         protected fun pushStrongImpl(): Int = builder.pushStringAnnotation("", StrongAnnotation)
 
         protected fun pushLinkImpl(link: OudsLinkAnnotation): Int = builder.pushLink(link.linkAnnotation)
-
-        protected fun pushColorImpl(color: Color): Int = builder.pushColorAnnotation(color)
 
         fun pop(): Unit = builder.pop()
 
         fun pop(index: Int): Unit = builder.pop(index)
 
         private fun AnnotatedString.Builder.addStrongAnnotation(start: Int, end: Int) = addStringAnnotation("", StrongAnnotation, start, end)
-
-        private fun AnnotatedString.Builder.addColorAnnotation(color: Color, start: Int, end: Int) {
-            addStringAnnotation(ColorAnnotationTag, color.toArgb().toString(), start, end)
-        }
-
-        private fun AnnotatedString.Builder.pushColorAnnotation(color: Color): Int {
-            return pushStringAnnotation(ColorAnnotationTag, color.toArgb().toString())
-        }
 
         private fun AnnotatedString.filterSupportedAnnotations(): AnnotatedString {
             val builder = AnnotatedString.Builder(text)
@@ -367,24 +330,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                     }
             }
 
-            if (this@Builder is ColorBuilder) {
-                // Color annotations
-                getStringAnnotations(ColorAnnotationTag, 0, length)
-                    .forEach { range ->
-                        with(range) {
-                            builder.addStringAnnotation(ColorAnnotationTag, item, start, end)
-                        }
-                    }
-
-                // Span styles with color
-                spanStyles.forEach { range ->
-                    val color = range.item.color
-                    if (color != Color.Unspecified) {
-                        with(range) { builder.addColorAnnotation(color, start, end) }
-                    }
-                }
-            }
-
             return builder.toAnnotatedString()
         }
     }
@@ -398,7 +343,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * Ends the style or annotation that was added via a push operation before.
          *
          * This is typically used after manually pushing annotations with [StrongBuilder.pushStrong] or [LinkBuilder.pushLink].
-         * 
+         *
          * For most use cases, prefer using the [withStrong] or [withLink] DSL helpers which
          * automatically manage the annotation stack.
          */
@@ -407,10 +352,10 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         /**
          * Ends the styles or annotation up to and `including` the [StrongBuilder.pushStrong] or [LinkBuilder.pushLink]
          * that returned the given index.
-         * 
+         *
          * For most use cases, prefer using the [withStrong] or [withLink] DSL helpers which
          * automatically manage the annotation stack.
-         * 
+         *
          * @param index The index returned by a previous push operation.
          */
         fun pop(index: Int)
@@ -437,7 +382,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * Applies strong (bold/emphasized) style to any appended text until a corresponding [pop] is called.
          *
          * For most use cases, prefer using the [withStrong] DSL helper which automatically manages the stack.
-         * 
+         *
          * @return The index of the pushed annotation, to be used with [pop] when done.
          */
         fun pushStrong(): Int
@@ -485,42 +430,13 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         /**
          * Attach the given [OudsLinkAnnotation] to any appended text until a corresponding [pop] is
          * called.
-         * 
+         *
          * For most use cases, prefer using the [withLink] DSL helper which automatically manages the stack.
          *
          * @param link An [OudsLinkAnnotation] object that stores the URL or clickable tag being linked to.
          * @return The index of the pushed annotation, to be used with [pop] when done.
          */
         fun pushLink(link: OudsLinkAnnotation): Int
-    }
-
-    /**
-     * Interface for builders that support colored text annotations.
-     *
-     * Implementations can add colors either by specifying ranges with [addColor],
-     * or by using the push/pop pattern with [pushColor] and [pop]. For most use cases,
-     * prefer using the [withColor] DSL helper.
-     */
-    interface ColorBuilder : BaseBuilder {
-
-        /**
-         * Adds a color to a specific range of text.
-         *
-         * @param color The color to apply.
-         * @param start The inclusive starting offset of the range.
-         * @param end The exclusive end offset of the range.
-         */
-        fun addColor(color: Color, start: Int, end: Int)
-
-        /**
-         * Applies a color to any appended text until a corresponding [pop] is called.
-         *
-         * For most use cases, prefer using the [withColor] DSL helper which automatically manages the stack.
-         * 
-         * @param color The color to apply.
-         * @return The index of the pushed annotation, to be used with [pop] when done.
-         */
-        fun pushColor(color: Color): Int
     }
 }
 
@@ -576,35 +492,6 @@ inline fun <R : Any> OudsAnnotatedString.StrongBuilder.withStrong(block: OudsAnn
  */
 inline fun <R : Any> OudsAnnotatedString.LinkBuilder.withLink(link: OudsLinkAnnotation, block: OudsAnnotatedString.LinkBuilder.() -> R): R {
     val index = pushLink(link)
-    return try {
-        block(this)
-    } finally {
-        pop(index)
-    }
-}
-
-/**
- * DSL helper for applying color to a block of text.
- *
- * This is the recommended way to add colored text as it automatically manages
- * the annotation stack.
- *
- * Example:
- * ```
- * buildOudsAnnotatedHeadingText {
- *     append("This is ")
- *     withColor(OudsTheme.colorScheme.content.brandSecondary) {
- *         append("brand secondary text")
- *     }
- * }
- * ```
- *
- * @param color The color to apply to the text.
- * @param block The lambda that appends the text to be colored.
- * @return The result of the block.
- */
-inline fun <R : Any> OudsAnnotatedString.ColorBuilder.withColor(color: Color, block: OudsAnnotatedString.ColorBuilder.() -> R): R {
-    val index = pushColor(color)
     return try {
         block(this)
     } finally {
