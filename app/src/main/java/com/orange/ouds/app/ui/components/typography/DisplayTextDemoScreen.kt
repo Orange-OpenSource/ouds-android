@@ -19,7 +19,6 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsDisplayText
 import com.orange.ouds.core.component.OudsDisplayTextSize
@@ -47,12 +46,7 @@ private fun DisplayTextDemoBottomSheetContent(state: DisplayTextDemoState) {
             selectedChipIndex = OudsDisplayTextSize.entries.indexOf(size),
             onSelectionChange = { index: Int -> size = OudsDisplayTextSize.entries[index] }
         )
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_typography_common_text_tech),
-            value = text,
-            onValueChange = { value -> text = value }
-        )
+        TypographyDemoBottomSheetContent(state)
     }
 }
 
@@ -70,7 +64,7 @@ private fun DisplayTextDemoContent(state: DisplayTextDemoState) {
 private fun Code.Builder.displayTextDemoCodeSnippet(state: DisplayTextDemoState) {
     with(state) {
         functionCall("OudsDisplayText") {
-            typedArgument("text", text)
+            typographyArguments(state = state)
             typedArgument("size", size)
         }
     }

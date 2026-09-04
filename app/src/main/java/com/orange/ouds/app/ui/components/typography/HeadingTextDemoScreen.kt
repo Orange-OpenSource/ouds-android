@@ -17,26 +17,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
-import com.orange.ouds.app.ui.components.annotatedStringArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsHeadingText
-import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
-import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
-import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
+
 
 @Composable
 fun HeadingTextDemoScreen() {
@@ -76,18 +76,7 @@ private fun HeadingTextDemoBottomSheetContent(state: HeadingTextDemoState) {
                 color = if (headingLargeMarkerSwitchEnabled) OudsTheme.colorScheme.content.default else OudsTheme.colorScheme.content.disabled
             )
         }
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_typography_common_text_tech),
-            value = text,
-            onValueChange = { value -> text = value },
-            helperText = stringResource(id = R.string.app_components_common_annotatedTextHelperText_tech)
-        )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_common_annotatedText_tech),
-            checked = annotatedText,
-            onCheckedChange = { annotatedText = it },
-        )
+        TypographyDemoBottomSheetContent(state)
     }
 }
 
@@ -98,11 +87,13 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
             with(OudsTheme.colorScheme.content) {
                 val color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }
                 OudsHeadingText(
-                    text = buildOudsAnnotatedHeadingText {
+                    text = buildAnnotatedString {
                         append("Heading with ")
-                        withColor(color) {
+                        withStyle(SpanStyle(color = color)) {
                             append("colored text")
                         }
+                        append(" and ")
+                        withStyle(SpanStyle(fontWeight = FontWeight.Normal)) { append("normal text") }
                     },
                     size = size.toOudsHeadingTextSize(marker = headingLargeMarker)
                 )
@@ -119,11 +110,7 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
 private fun Code.Builder.headingTextDemoCodeSnippet(state: HeadingTextDemoState) {
     with(state) {
         functionCall("OudsHeadingText") {
-            if (annotatedText) {
-                annotatedStringArgument<OudsAnnotatedHeadingText>("text")
-            } else {
-                typedArgument("text", text)
-            }
+            typographyArguments(state = state)
 
             if (size == HeadingTextDemoState.Size.Large) {
                 functionCallArgument("size", "OudsHeadingTextSize.Large") {
