@@ -206,6 +206,39 @@ Always consider that changes affect multiple brands. Test components with:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
 
+## AI Skills
+
+Agent skills are located in the `skills/` directory at the repository root. The `.agents/`, `.claude/`, and `.opencode/` directories are symlinks to `skills/`, ensuring compatibility across all major AI agent tools.
+
+### Available skills
+
+| Skill | When to load |
+|---|---|
+| `understanding-ouds-android-vocabulary` | User asks to explain, define, or understand OUDS-specific terminology and concepts (tokens, Tokenator, OudsThemeContract, tinted, OudsError, etc.) or relationships between OUDS architecture elements |
+| `using-ouds-android` | User needs to write code, create components, set up OUDS, configure themes, access tokens, or use any Ouds* component in Kotlin/Compose |
+
+### Skill structure
+
+```
+skills/
+├── understanding-ouds-android-vocabulary/
+│   └── SKILL.md                          ← vocabulary definitions and token hierarchy
+└── using-ouds-android/
+    ├── SKILL.md                          ← setup, themes, token access, common patterns, checklist, troubleshooting
+    └── references/
+        ├── components-index.md           ← complete component cross-reference
+        ├── action-components.md          ← OudsButton, OudsFloatingActionButton, OudsNavigationButton, OudsSmallButton
+        ├── alert-components.md           ← OudsAlertMessage, OudsInlineAlert
+        ├── content-components.md         ← OudsBulletList
+        ├── control-components.md         ← OudsCheckbox, OudsCheckboxItem, OudsRadioButton, OudsRadioButtonItem, OudsSwitch, OudsSwitchItem, OudsFilterChip, OudsSuggestionChip
+        ├── indicator-components.md       ← OudsBadge, OudsCircularProgressIndicator, OudsLinearProgressIndicator, OudsTag
+        ├── input-components.md           ← OudsTextInput, OudsTextArea, OudsPasswordInput, OudsPinCodeInput
+        ├── layout-components.md          ← OudsBottomSheetScaffold, OudsColoredBox, OudsDivider, OudsModalBottomSheet
+        ├── navigation-components.md      ← OudsLink, OudsNavigationBar, OudsTopAppBar
+        ├── component-tokens.md           ← advanced component-level tokens
+        └── tokens.md                     ← semantic tokens (color, typography, spacing, etc.)
+```
+
 ## Resources
 
 - **Documentation**: https://android.unified-design-system.orange.com/
