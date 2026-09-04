@@ -18,7 +18,8 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 
 open class TypographyDemoState(
-    text: String
+    text: String,
+    annotatedText: Boolean = false
 ) {
     companion object {
 
@@ -26,17 +27,21 @@ open class TypographyDemoState(
             save = { state ->
                 with(state) {
                     listOf(
-                        text
+                        text,
+                        annotatedText
                     )
                 }
             },
             restore = { list: List<Any?> ->
                 TypographyDemoState(
-                    list[0] as String
+                    list[0] as String,
+                    list[1] as Boolean
                 )
             }
         )
     }
 
     var text by mutableStateOf(text)
+
+    var annotatedText: Boolean by mutableStateOf(annotatedText)
 }

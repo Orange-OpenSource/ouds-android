@@ -28,14 +28,16 @@ import com.orange.ouds.core.component.OudsTextWeight
 fun rememberLabelTextDemoState(
     text: String = stringResource(id = R.string.app_components_typography_common_text_label),
     size: OudsLabelTextSize = OudsLabelTextDefaults.Size,
-    weight: OudsTextWeight = OudsLabelTextDefaults.Weight
-) = rememberSaveable(text, size, weight, saver = LabelTextDemoState.Saver) { LabelTextDemoState(text, size, weight) }
+    weight: OudsTextWeight = OudsLabelTextDefaults.Weight,
+    annotatedText: Boolean = false
+) = rememberSaveable(text, size, weight, annotatedText, saver = LabelTextDemoState.Saver) { LabelTextDemoState(text, size, weight, annotatedText) }
 
 class LabelTextDemoState(
     text: String,
     size: OudsLabelTextSize,
-    weight: OudsTextWeight
-) : TypographyDemoState(text) {
+    weight: OudsTextWeight,
+    annotatedText: Boolean
+) : TypographyDemoState(text, annotatedText) {
 
     companion object {
 
@@ -55,7 +57,8 @@ class LabelTextDemoState(
                     LabelTextDemoState(
                         text,
                         list[1] as OudsLabelTextSize,
-                        list[2] as OudsTextWeight
+                        list[2] as OudsTextWeight,
+                        annotatedText
                     )
                 }
             }

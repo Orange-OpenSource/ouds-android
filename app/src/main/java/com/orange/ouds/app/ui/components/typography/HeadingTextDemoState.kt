@@ -42,7 +42,7 @@ class HeadingTextDemoState(
     size: Size,
     headingLargeMarker: Boolean,
     annotatedText: Boolean
-) : TypographyDemoState(text) {
+) : TypographyDemoState(text, annotatedText) {
 
     companion object {
 
@@ -52,8 +52,7 @@ class HeadingTextDemoState(
                     listOf(
                         with(TypographyDemoState.Saver) { save(state) },
                         size,
-                        headingLargeMarker,
-                        annotatedText
+                        headingLargeMarker
                     )
                 }
             },
@@ -64,7 +63,7 @@ class HeadingTextDemoState(
                         text,
                         list[1] as Size,
                         list[2] as Boolean,
-                        list[3] as Boolean
+                        annotatedText
                     )
                 }
             }
@@ -76,8 +75,6 @@ class HeadingTextDemoState(
     var headingLargeMarker by mutableStateOf(headingLargeMarker)
     val headingLargeMarkerSwitchEnabled
         get() = size == Size.Large
-
-    var annotatedText: Boolean by mutableStateOf(annotatedText)
 
     enum class Size {
         ExtraLarge, Large, Medium, Small;

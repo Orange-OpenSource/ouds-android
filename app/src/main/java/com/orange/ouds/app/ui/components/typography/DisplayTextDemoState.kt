@@ -26,13 +26,15 @@ import com.orange.ouds.core.component.OudsDisplayTextSize
 @Composable
 fun rememberDisplayTextDemoState(
     text: String = stringResource(id = R.string.app_components_typography_common_text_label),
-    size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size
-) = rememberSaveable(text, size, saver = DisplayTextDemoState.Saver) { DisplayTextDemoState(text, size) }
+    size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size,
+    annotatedText: Boolean = false
+) = rememberSaveable(text, size, annotatedText, saver = DisplayTextDemoState.Saver) { DisplayTextDemoState(text, size, annotatedText) }
 
 class DisplayTextDemoState(
     text: String,
     size: OudsDisplayTextSize,
-) : TypographyDemoState(text) {
+    annotatedText: Boolean
+) : TypographyDemoState(text, annotatedText) {
 
     companion object {
 
@@ -50,7 +52,8 @@ class DisplayTextDemoState(
                 typographyDemoState?.run {
                     DisplayTextDemoState(
                         text,
-                        list[1] as OudsDisplayTextSize
+                        list[1] as OudsDisplayTextSize,
+                        annotatedText
                     )
                 }
             }
