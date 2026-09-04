@@ -20,8 +20,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.Paragraph
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -36,14 +46,33 @@ import com.orange.ouds.theme.OudsThemeContract
  * Variants automatically adapt across breakpoints to maintain a consistent visual hierarchy on every screen size.
  * Use them sparingly to preserve their impact and effectiveness.
  *
+ * An overload accepting annotated string is available for rich text formatting.
+ *
  * > Design name: Display
  *
  * > Design version: 1.0.0
  *
- * @param text Text to display.
+ * @param text Text to be displayed.
  * @param modifier [Modifier] applied to the display text.
  * @param size Size of the display text.
  * @param color Color of the display text.
+ * @param textAlign Alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight Line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow How visual overflow should be handled.
+ * @param softWrap Whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
  *
  * @sample com.orange.ouds.core.component.samples.OudsDisplayTextSample
  */
@@ -52,13 +81,93 @@ fun OudsDisplayText(
     text: String,
     modifier: Modifier = Modifier,
     size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size,
-    color: Color = OudsDisplayTextDefaults.Color
+    color: Color = OudsDisplayTextDefaults.Color,
+    textAlign: TextAlign? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
+    onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text,
         color = color,
-        style = size.textStyle
+        style = size.textStyle,
+        textAlign = textAlign,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        minLines = minLines,
+        onTextLayout = onTextLayout
+    )
+}
+
+// TODO Add design guideline link when available
+/**
+ * Display styles are intended for high-impact content such as landing pages, marketing campaigns, and key messages. Their large type sizes help capture
+ * attention and establish strong visual emphasis.
+ * Variants automatically adapt across breakpoints to maintain a consistent visual hierarchy on every screen size.
+ * Use them sparingly to preserve their impact and effectiveness.
+ *
+ * An overload accepting annotated string is available for rich text formatting.
+ *
+ * > Design name: Display
+ *
+ * > Design version: 1.0.0
+ *
+ * @param text Text to be displayed. Note: Use rich text in compliance with guidelines and accessibility criteria.
+ * @param modifier [Modifier] applied to the display text.
+ * @param size Size of the display text.
+ * @param color Color of the display text.
+ * @param textAlign Alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight Line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow How visual overflow should be handled.
+ * @param softWrap Whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout Callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsDisplayWithAnnotatedTextSample
+ */
+@Composable
+fun OudsDisplayText(
+    text: AnnotatedString,
+    modifier: Modifier = Modifier,
+    size: OudsDisplayTextSize = OudsDisplayTextDefaults.Size,
+    color: Color = OudsDisplayTextDefaults.Color,
+    textAlign: TextAlign? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
+    Text(
+        modifier = modifier.widthIn(max = size.maxWidth),
+        text = text,
+        color = color,
+        style = size.textStyle,
+        textAlign = textAlign,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        minLines = minLines,
+        onTextLayout = onTextLayout
     )
 }
 
@@ -140,4 +249,27 @@ internal fun PreviewOudsDisplayText(
             OudsDisplayText("Display", size = size)
         }
     }
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsDisplayTextWithAnnotatedText() {
+    PreviewOudsDisplayTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsDisplayTextWithAnnotatedText(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsDisplayText(
+        text = buildAnnotatedString {
+            append("Display with ")
+            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
+            append(" and ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Normal)) { append("normal text") }
+        },
+        size = OudsDisplayTextSize.Small
+    )
 }
