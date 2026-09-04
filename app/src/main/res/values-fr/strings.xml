@@ -211,6 +211,11 @@
     <string name="app_components_topAppBar_thirdAction_a11y">Troisième action</string>
     <string name="app_components_topAppBar_title_label">Titre</string>
 
+    <!-- Components: typography -->
+    <string name="app_components_typography_description_text">Les composants de typographie offrent un système complet de styles de texte pour créer des hiérarchies claires et des interfaces lisibles.</string>
+    <string name="app_components_typography_common_text_label">Texte</string>
+    <string name="app_components_typography_headingText_markerNote_text">Note: Ce paramètre n\'a aucun effet car le thème courant ne fournit pas de marqueur pour le heading text large.</string>
+
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
     <string name="app_about_issueNumber_label">#%s</string>

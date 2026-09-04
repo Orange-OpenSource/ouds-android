@@ -43,6 +43,7 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
+import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
 @ConsistentCopyVisibility
 @RestrictedOudsApi
@@ -70,7 +71,8 @@ data class OudsComponents internal constructor(
     val switch: Switch,
     val tag: Tag,
     val textArea: TextArea,
-    val textInput: TextInput
+    val textInput: TextInput,
+    val typography: Typography
 ) {
 
     @ConsistentCopyVisibility
@@ -1957,6 +1959,23 @@ data class OudsComponents internal constructor(
             )
         }
     }
+
+    @ConsistentCopyVisibility
+    data class Typography internal constructor(
+        val headingLargeMarker: Boolean,
+        val space: Space
+    ) {
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
+            val paddingBlock: PaddingBlock,
+        ) {
+            @ConsistentCopyVisibility
+            data class PaddingBlock internal constructor(
+                val bottomHeadingLargeMarker: Dp,
+                val topHeadingLargeMarker: Dp
+            )
+        }
+    }
 }
 
 @Composable
@@ -1984,7 +2003,8 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         switch = switch.getSwitch(),
         tag = tag.getTag(),
         textArea = textArea.getTextArea(),
-        textInput = textInput.getTextInput()
+        textInput = textInput.getTextInput(),
+        typography = typography.getTypography()
     )
 }
 
@@ -3032,6 +3052,19 @@ private fun OudsTextInputTokens.getTextInput(): OudsComponents.TextInput {
             ),
             rowGap = OudsComponents.TextInput.Space.RowGap(
                 labelInput = spaceRowGapLabelInput.value
+            )
+        )
+    )
+}
+
+@Composable
+private fun OudsTypographyTokens.getTypography(): OudsComponents.Typography {
+    return OudsComponents.Typography(
+        headingLargeMarker = headingLargeMarker,
+        space = OudsComponents.Typography.Space(
+            paddingBlock = OudsComponents.Typography.Space.PaddingBlock(
+                bottomHeadingLargeMarker = spacePaddingBlockBottomHeadingLargeMarker.value,
+                topHeadingLargeMarker = spacePaddingBlockTopHeadingLargeMarker.value
             )
         )
     )

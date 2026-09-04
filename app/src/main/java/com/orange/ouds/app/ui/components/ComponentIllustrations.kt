@@ -55,6 +55,8 @@ import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsFilterChip
 import com.orange.ouds.core.component.OudsFloatingActionButton
 import com.orange.ouds.core.component.OudsFloatingActionButtonIcon
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkIndicator
@@ -330,6 +332,14 @@ fun TopAppBarIllustration() = ComponentIllustration {
                 onClick = {}
             )
         )
+    )
+}
+
+@Composable
+fun TypographyIllustration() = ComponentIllustration {
+    OudsHeadingText(
+        text = stringResource(id = R.string.app_components_typography_common_text_label),
+        size = OudsHeadingTextSize.Large()
     )
 }
 

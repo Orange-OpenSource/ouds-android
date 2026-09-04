@@ -46,6 +46,7 @@ object OudsVersion {
         const val Tag = "1.5.0"
         const val TextArea = "1.2.1"
         const val TextInput = "1.4.1"
+        const val Typography = "1.0.0"
     }
 
     object Tokens {

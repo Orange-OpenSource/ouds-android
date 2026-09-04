@@ -415,6 +415,20 @@
     <string name="app_components_topAppBar_monogramActionAvatar_tech" translatable="false">Monogram</string>
     <string name="app_components_topAppBar_actionAvatarMonogram_tech" translatable="false">Action avatar monogram</string>
 
+    <!-- Components: typography -->
+    <string name="app_components_typography_tech" translatable="false">Typography</string>
+    <string name="app_components_typography_description_text">Typography components provide a comprehensive system of text styles for creating clear hierarchies and readable interfaces.</string>
+    <string name="app_components_typography_bodyText_tech" translatable="false">Body text</string>
+    <string name="app_components_typography_labelText_tech" translatable="false">Label text</string>
+    <string name="app_components_typography_headingText_tech" translatable="false">Heading text</string>
+    <string name="app_components_typography_displayText_tech" translatable="false">Display text</string>
+    <string name="app_components_typography_common_size_tech" translatable="false">Size</string>
+    <string name="app_components_typography_common_weight_tech" translatable="false">Weight</string>
+    <string name="app_components_typography_common_text_label">@string/app_components_typography_common_text_tech</string>
+    <string name="app_components_typography_common_text_tech" translatable="false">Text</string>
+    <string name="app_components_typography_headingText_marker_tech" translatable="false">Marker</string>
+    <string name="app_components_typography_headingText_markerNote_text">Note: This setting has no effect because the current theme does not provide a marker for the large heading text.</string>
+
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
     <plurals name="app_about_issues_tech" translatable="false">

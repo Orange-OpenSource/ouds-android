@@ -23,6 +23,7 @@ class OrangeDrawableResources : OudsDrawableResources {
     override val communication = Communication()
     override val component = Component()
     override val functional = Functional()
+    override val other = Other()
 
     class Communication : OudsDrawableResources.Communication {
         override val accessibility = Accessibility()
@@ -135,5 +136,9 @@ class OrangeDrawableResources : OudsDrawableResources {
         class SocialAndEngagement : OudsDrawableResources.Functional.SocialAndEngagement {
             override val heartRecommend = R.drawable.ic_orange_functional_social_and_engagement_heart_recommend
         }
+    }
+
+    class Other : OudsDrawableResources.Other {
+        override val headingTextMarker = R.drawable.ic_orange_component_heading_text_marker
     }
 }

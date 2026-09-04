@@ -36,6 +36,7 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
+import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
 internal data class OrangeComponentsTokens(
     override val accordion: OudsAccordionTokens = OrangeAccordionTokens(),
@@ -60,5 +61,6 @@ internal data class OrangeComponentsTokens(
     override val switch: OudsSwitchTokens = OrangeSwitchTokens(),
     override val tag: OudsTagTokens = OrangeTagTokens(),
     override val textArea: OudsTextAreaTokens = OrangeTextAreaTokens(),
-    override val textInput: OudsTextInputTokens = OrangeTextInputTokens()
+    override val textInput: OudsTextInputTokens = OrangeTextInputTokens(),
+    override val typography: OudsTypographyTokens = OrangeTypographyTokens()
 ) : OudsComponentsTokens

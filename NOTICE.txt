@@ -123,6 +123,7 @@ theme-orange/src/main/res/drawable/ic_orange_component_button_previous.xml
 theme-orange/src/main/res/drawable/ic_orange_component_checkbox_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_component_checkbox_undetermined.xml
 theme-orange/src/main/res/drawable/ic_orange_component_chip_tick.xml
+theme-orange/src/main/res/drawable/ic_orange_component_heading_text_marker.xml
 theme-orange/src/main/res/drawable/ic_orange_component_link_external_link.xml
 theme-orange/src/main/res/drawable/ic_orange_component_link_next.xml
 theme-orange/src/main/res/drawable/ic_orange_component_link_previous.xml
@@ -205,6 +206,7 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_component_button_previous.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_checkbox_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_checkbox_undetermined.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_chip_tick.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_component_heading_text_marker.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_external_link.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_next.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_previous.xml

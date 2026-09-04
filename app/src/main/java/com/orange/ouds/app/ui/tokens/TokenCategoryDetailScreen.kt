@@ -68,6 +68,11 @@ import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsBodyTextSize
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
@@ -213,10 +218,11 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
                     OudsTheme.typography.body.large.strong
                 }
             )
-            Text(
+            OudsBodyText(
                 modifier = Modifier.fillMaxWidth(),
                 text = token.literalValue,
-                style = OudsTheme.typography.body.medium.default.copy(color = OudsTheme.colorScheme.content.muted)
+                size = OudsBodyTextSize.Medium,
+                color = OudsTheme.colorScheme.content.muted
             )
         }
     }
@@ -290,10 +296,10 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.small)
             ) {
-                Text(
+                OudsLabelText(
                     text = stringResource(R.string.app_tokens_common_viewCodeExample_label),
-                    style = OudsTheme.typography.label.large.strong,
-                    color = OudsTheme.colorScheme.content.default
+                    size = OudsLabelTextSize.Large,
+                    weight = OudsTextWeight.Strong,
                 )
                 Icon(
                     modifier = Modifier.rotate(linkChevronRotation),
