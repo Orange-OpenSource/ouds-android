@@ -13,17 +13,23 @@
 package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
-import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -55,30 +61,43 @@ private fun BodyTextDemoBottomSheetContent(state: BodyTextDemoState) {
             selectedChipIndex = OudsTextWeight.entries.indexOf(weight),
             onSelectionChange = { index: Int -> weight = OudsTextWeight.entries[index] }
         )
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_typography_common_text_tech),
-            value = text,
-            onValueChange = { value -> text = value }
-        )
+        TypographyDemoBottomSheetContent(state)
     }
 }
 
 @Composable
 private fun BodyTextDemoContent(state: BodyTextDemoState) {
     with(state) {
-        OudsBodyText(
-            text = text,
-            size = size,
-            weight = weight
-        )
+        if (annotatedText) {
+            with(OudsTheme.colorScheme.content) {
+                val color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }
+                OudsBodyText(
+                    text = buildAnnotatedString {
+                        append("Heading with ")
+                        withStyle(SpanStyle(color = color)) {
+                            append("colored text")
+                        }
+                        append(" and ")
+                        withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+                    },
+                    size = size,
+                    weight = weight
+                )
+            }
+        } else {
+            OudsBodyText(
+                text = text,
+                size = size,
+                weight = weight
+            )
+        }
     }
 }
 
 private fun Code.Builder.bodyTextDemoCodeSnippet(state: BodyTextDemoState) {
     with(state) {
         functionCall("OudsBodyText") {
-            typedArgument("text", text)
+            typographyArguments(state = state)
             typedArgument("size", size)
             typedArgument("weight", weight)
         }
