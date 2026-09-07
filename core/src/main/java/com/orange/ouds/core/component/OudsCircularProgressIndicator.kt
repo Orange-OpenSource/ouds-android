@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
@@ -227,7 +226,7 @@ internal fun OudsCircularProgressIndicator(
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     color: Color? = null
 ) {
-    with(OudsTheme.componentsTokens.progressIndicator) {
+    with(OudsTheme.components.progressIndicator) {
         val scale = LocalConfiguration.current.fontScale
         val defaultSize = OudsCircularProgressIndicatorSize * scale
 
@@ -240,8 +239,8 @@ internal fun OudsCircularProgressIndicator(
                 // The small gap corresponds to 1 dp for the standard size
                 OudsProgressIndicatorGapSize.Small -> maxWidth.value / OudsCircularProgressIndicatorSize.value
             }.dp
-            val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
-            val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
+            val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) border.radius.rounded else border.radius.default
+            val strokeCap = if (borderRadius > 0.dp) StrokeCap.Round else StrokeCap.Butt
             val circularProgressIndicatorColor = color.orElse { progressIndicatorColor(status = status) }
             val trackColor = progressIndicatorTrackColor(track = track)
             val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)

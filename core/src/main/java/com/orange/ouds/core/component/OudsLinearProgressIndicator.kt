@@ -43,7 +43,6 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -352,14 +351,14 @@ private fun OudsLinearProgressIndicator(
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 ) {
     val scale = LocalConfiguration.current.fontScale
-    with(OudsTheme.componentsTokens.progressIndicator) {
+    with(OudsTheme.components.progressIndicator) {
         Column(
             modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(spacePaddingBlock.value)
+            verticalArrangement = Arrangement.spacedBy(space.paddingBlock)
         ) {
             val progressIndicatorModifier = Modifier
-                .height(sizeLinearIndicatorHeight.dp * scale)
+                .height(size.linearIndicatorHeight * scale)
                 .fillMaxWidth()
             val color = progressIndicatorColor(status = status)
             val trackColor = progressIndicatorTrackColor(track = track)
@@ -367,8 +366,8 @@ private fun OudsLinearProgressIndicator(
                 OudsProgressIndicatorGapSize.Default -> ProgressIndicatorDefaults.LinearIndicatorTrackGapSize
                 OudsProgressIndicatorGapSize.Small -> 1.dp
             } * scale
-            val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) borderRadiusRounded else borderRadiusDefault
-            val strokeCap = if (borderRadius.value > 0.dp) StrokeCap.Round else StrokeCap.Butt
+            val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) border.radius.rounded else border.radius.default
+            val strokeCap = if (borderRadius > 0.dp) StrokeCap.Round else StrokeCap.Butt
 
             if (nullableProgress != null || LocalInspectionMode.current) {
                 LinearProgressIndicator(
