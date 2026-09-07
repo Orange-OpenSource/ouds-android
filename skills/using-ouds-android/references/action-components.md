@@ -117,7 +117,7 @@ OudsLargeFloatingActionButton(
 
 // Extended (with text)
 OudsExtendedFloatingActionButton(
-    text = stringResource(R.string.create),
+    label = stringResource(R.string.create),
     icon = OudsFloatingActionButtonIcon(imageVector = Icons.Filled.Add, contentDescription = ""),
     onClick = { }
 )
