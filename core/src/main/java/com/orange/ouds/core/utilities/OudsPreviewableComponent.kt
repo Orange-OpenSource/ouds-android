@@ -2042,7 +2042,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithRoundedCorners : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 900
+            const val PreviewHeightDp = 960
 
             override val parameters: List<Any> = emptyList()
 
