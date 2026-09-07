@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
@@ -37,13 +36,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.core.component.OudsCodeText
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.orange.OrangeTheme
 import kotlinx.coroutines.CoroutineScope
@@ -67,14 +65,12 @@ fun CodeSnippet(code: String, modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall),
             verticalAlignment = Alignment.Top
         ) {
-            Text(
+            OudsCodeText(
                 modifier = Modifier
                     .weight(1f)
                     .padding(vertical = OudsTheme.spaces.fixed.medium)
                     .padding(start = OudsTheme.spaces.fixed.medium),
-                text = code,
-                style = TextStyle(fontFamily = FontFamily.Monospace),
-                color = OudsTheme.colorScheme.content.default
+                text = code
             )
             val context = LocalContext.current
             val clipboard: Clipboard = LocalClipboard.current
