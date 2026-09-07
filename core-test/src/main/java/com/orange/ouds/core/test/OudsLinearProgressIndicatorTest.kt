@@ -34,8 +34,8 @@ internal class OudsLinearProgressIndicatorTest {
         }
     }
 
-    class WithLongHelperText : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.LinearProgressIndicator.WithLongHelperText,
+    class WithHelperText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.LinearProgressIndicator.WithHelperText,
         parameter = null,
         OudsComponentTestSuite.theme
     )
