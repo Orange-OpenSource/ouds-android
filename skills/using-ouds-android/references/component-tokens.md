@@ -611,7 +611,7 @@ fun MyButton(text: String, onClick: () -> Unit) {
 ## References
 
 - **Semantic Tokens:** See [`tokens.md`](tokens.md) for standard design tokens
-- **Components:** See [`components.md`](components.md) for standard OUDS components
+- **Components:** See [`components-index.md`](components-index.md) for standard OUDS components
 - **Documentation:** https://android.unified-design-system.orange.com/
 - **Repository:** https://github.com/Orange-OpenSource/ouds-android
 - **Design System:** https://unified-design-system.orange.com/
