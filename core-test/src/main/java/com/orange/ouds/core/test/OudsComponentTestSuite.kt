@@ -28,6 +28,7 @@ import org.junit.runners.Suite
     OudsCheckboxItemTest::class,
     OudsCheckboxTest::class,
     OudsCircularProgressIndicatorTest::class,
+    OudsCodeTextTest::class,
     OudsColoredBoxTest::class,
     OudsDisplayTextTest::class,
     OudsDividerTest::class,

@@ -50,6 +50,7 @@ import com.orange.ouds.app.ui.components.textarea.TextAreaDemoScreen
 import com.orange.ouds.app.ui.components.textinput.TextInputDemoScreen
 import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoScreen
 import com.orange.ouds.app.ui.components.typography.BodyTextDemoScreen
+import com.orange.ouds.app.ui.components.typography.CodeTextDemoScreen
 import com.orange.ouds.app.ui.components.typography.DisplayTextDemoScreen
 import com.orange.ouds.app.ui.components.typography.HeadingTextDemoScreen
 import com.orange.ouds.app.ui.components.typography.LabelTextDemoScreen
@@ -230,7 +231,7 @@ sealed class Component(
         R.string.app_components_typography_tech,
         R.string.app_components_typography_description_text,
         { TypographyIllustration() },
-        listOf(Variant.BodyText, Variant.DisplayText, Variant.HeadingText, Variant.LabelText)
+        listOf(Variant.BodyText, Variant.CodeText, Variant.DisplayText, Variant.HeadingText, Variant.LabelText)
     )
 }
 
@@ -303,6 +304,7 @@ sealed class Variant(
 
     // Typography
     data object BodyText : Variant(R.string.app_components_typography_bodyText_tech, { BodyTextDemoScreen() })
+    data object CodeText : Variant(R.string.app_components_typography_codeText_tech, { CodeTextDemoScreen() })
     data object DisplayText : Variant(R.string.app_components_typography_displayText_tech, { DisplayTextDemoScreen() })
     data object HeadingText : Variant(R.string.app_components_typography_headingText_tech, { HeadingTextDemoScreen() })
     data object LabelText : Variant(R.string.app_components_typography_labelText_tech, { LabelTextDemoScreen() })
