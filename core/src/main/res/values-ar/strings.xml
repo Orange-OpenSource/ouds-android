@@ -39,6 +39,8 @@
 
     <string name="core_pinCodeInput_paste_label">لصق</string>
 
+    <string name="core_progressIndicator_progressHelperText_label">%1$d٪</string>
+
     <string name="core_textInput_empty_a11y">فارغ</string>
 
     <string name="core_topAppBar_backNavigationIcon_a11y">رجوع</string>
