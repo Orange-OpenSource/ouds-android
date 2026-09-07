@@ -15,7 +15,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Link
 
-**Chevrons:** `OudsLinkChevron` — `Next`, `Back`
+**Indicators:** `OudsLinkIndicator` — `Next`, `Back`, `External`
 
 ```kotlin
 // Text only
@@ -31,10 +31,17 @@ OudsLink(
     onClick = { }
 )
 
-// With chevron
+// With indicator
 OudsLink(
     label = stringResource(R.string.link_label),
-    chevron = OudsLinkChevron.Next,
+    indicator = OudsLinkIndicator.Next,
+    onClick = { }
+)
+
+// With external indicator
+OudsLink(
+    label = stringResource(R.string.link_label),
+    indicator = OudsLinkIndicator.External,
     onClick = { }
 )
 
