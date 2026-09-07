@@ -16,7 +16,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,12 +24,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.orange.ouds.core.component.OudsCodeText
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
@@ -65,13 +62,11 @@ internal fun CheckedContent(
             contentAlignment = Alignment.Center
         ) {
             Box(modifier = Modifier.alpha(0f)) { content() } // Add content but hide it in order to make room for the text
-            Text(
+            OudsCodeText(
                 modifier = Modifier.padding(previewMessagePaddingValues),
                 text = previewMessage(),
                 color = color,
-                textAlign = TextAlign.Center,
-                fontSize = 14.sp,
-                style = TextStyle(fontFamily = FontFamily.Monospace)
+                textAlign = TextAlign.Center
             )
         }
     }
