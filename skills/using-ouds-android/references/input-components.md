@@ -10,7 +10,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsTextInput](#textinput) — Single-line text field
 - [OudsTextArea](#textarea) — Multi-line text field
 - [OudsPasswordInput](#passwordinput) — Password field with visibility toggle
-- [OudsPinCodeInput](#pincodeinput) — PIN code input (4 or 6 digits)
+- [OudsPinCodeInput](#pincodeinput) — PIN code input (4, 6 or 8 digits)
 
 ---
 
@@ -131,7 +131,7 @@ OudsPasswordInput(
 
 ## PinCodeInput
 
-**Lengths:** `OudsPinCodeInputLength` — `Four`, `Six`
+**Lengths:** `OudsPinCodeInputLength` — `Four`, `Six`, `Eight`
 
 ```kotlin
 var value by remember { mutableStateOf("") }

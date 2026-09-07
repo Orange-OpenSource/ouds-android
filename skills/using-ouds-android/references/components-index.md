@@ -61,7 +61,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsTextInput](input-components.md#textinput) — Single-line text field
 - [OudsTextArea](input-components.md#textarea) — Multi-line text field
 - [OudsPasswordInput](input-components.md#passwordinput) — Password field with visibility toggle
-- [OudsPinCodeInput](input-components.md#pincodeinput) — PIN code input (4 or 6 digits)
+- [OudsPinCodeInput](input-components.md#pincodeinput) — PIN code input (4, 6 or 8 digits)
 
 ### Layout Components
 
