@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +35,7 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
@@ -102,10 +102,7 @@ private fun ColoredBackgroundDemoContent(state: ColoredBackgroundDemoState) {
                 verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = color.name.toSentenceCase(),
-                    color = OudsTheme.colorScheme.content.default
-                )
+                OudsBodyText(text = color.name.toSentenceCase())
                 OudsButton(
                     label = stringResource(id = R.string.app_components_coloredBackground_button_label),
                     onClick = {}

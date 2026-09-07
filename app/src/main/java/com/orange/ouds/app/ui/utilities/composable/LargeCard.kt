@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardDefaults.cardElevation
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -29,6 +28,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.priorityClickable
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.theme.OudsTheme
 
 /**
@@ -57,15 +58,14 @@ fun LargeCard(
     ) {
         Column(modifier = Modifier.background(OudsTheme.colorScheme.overlay.dropdown)) {
             illustration()
-            Text(
+            OudsHeadingText(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(OudsTheme.spaces.fixed.medium),
                 text = title,
-                color = OudsTheme.colorScheme.content.default,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
-                style = OudsTheme.typography.heading.medium
+                size = OudsHeadingTextSize.Medium
             )
         }
     }
