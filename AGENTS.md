@@ -208,7 +208,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
 
 ## AI Skills
 
-Agent skills are located in the `skills/` directory at the repository root. The `.agents/`, `.claude/`, and `.opencode/` directories are symlinks to `skills/`, ensuring compatibility across all major AI agent tools.
+Agent skills are located in the `skills/` directory at the repository root. The `.agents/`, `.claude/`, and `.opencode/` directories contain `skills` symlinks pointing to the root `skills/` directory, ensuring compatibility across all major AI agent tools.
 
 ### Available skills
 
