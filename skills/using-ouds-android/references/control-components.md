@@ -293,12 +293,12 @@ OudsFilterChip(
 
 ```kotlin
 // Text only
-OudsSuggestionChip(text = stringResource(R.string.label), onClick = { })
+OudsSuggestionChip(label = stringResource(R.string.label), onClick = { })
 
 // With icon
 OudsSuggestionChip(
-    icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder),
-    text = stringResource(R.string.label),
+    label = stringResource(R.string.label),
+    icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
     onClick = { }
 )
 
