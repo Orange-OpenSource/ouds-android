@@ -9,13 +9,12 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 - [OudsCheckbox](#checkbox) — Standalone checkbox
 - [OudsCheckboxItem](#checkboxitem) — Checkbox with label and description
+- [OudsFilterChip](#filterchip) — Selectable filter chip
 - [OudsRadioButton](#radiobutton) — Standalone radio button
 - [OudsRadioButtonItem](#radiobuttonitem) — Radio button with label and description
+- [OudsSuggestionChip](#suggestionchip) — Suggestion and action chip
 - [OudsSwitch](#switch) — Standalone switch
 - [OudsSwitchItem](#switchitem) — Toggle switch with label and description
-  - **Chip**
-    - [OudsFilterChip](#filterchip) — Selectable filter chip
-    - [OudsSuggestionChip](#suggestionchip) — Suggestion and action chip
 
 ---
 

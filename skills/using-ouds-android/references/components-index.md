@@ -28,13 +28,12 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 - [OudsCheckbox](control-components.md#checkbox) — Standalone checkbox
 - [OudsCheckboxItem](control-components.md#checkboxitem) — Checkbox with label and description
+- [OudsFilterChip](control-components.md#filterchip) — Selectable filter chip
 - [OudsRadioButton](control-components.md#radiobutton) — Standalone radio button
 - [OudsRadioButtonItem](control-components.md#radiobuttonitem) — Radio button with label and description
+- [OudsSuggestionChip](control-components.md#suggestionchip) — Suggestion and action chip
 - [OudsSwitch](control-components.md#switch) — Standalone switch
 - [OudsSwitchItem](control-components.md#switchitem) — Toggle switch with label and description
-    - **Chip**
-        - [OudsFilterChip](control-components.md#filterchip) — Selectable filter chip
-        - [OudsSuggestionChip](control-components.md#suggestionchip) — Suggestion and action chip
 
 ### Dialog Components
 
