@@ -32,6 +32,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsRadioButton](control-components.md#radiobutton) — Standalone radio button
 - [OudsRadioButtonItem](control-components.md#radiobuttonitem) — Radio button with label and description
 - [OudsSuggestionChip](control-components.md#suggestionchip) — Suggestion and action chip
+- [OudsBasicSuggestionChip](control-components.md#basicsuggestionchip) — Advanced suggestion chip with custom content (experimental)
 - [OudsSwitch](control-components.md#switch) — Standalone switch
 - [OudsSwitchItem](control-components.md#switchitem) — Toggle switch with label and description
 

@@ -13,6 +13,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsRadioButton](#radiobutton) — Standalone radio button
 - [OudsRadioButtonItem](#radiobuttonitem) — Radio button with label and description
 - [OudsSuggestionChip](#suggestionchip) — Suggestion and action chip
+- [OudsBasicSuggestionChip](#basicsuggestionchip) — Advanced suggestion chip with custom content (experimental)
 - [OudsSwitch](#switch) — Standalone switch
 - [OudsSwitchItem](#switchitem) — Toggle switch with label and description
 
@@ -303,8 +304,74 @@ OudsSuggestionChip(
 
 // Icon only
 OudsSuggestionChip(
-    icon = OudsChipIcon(imageVector = Icons.Filled.Add),
-    contentDescription = stringResource(R.string.add_desc),
+    icon = OudsChipIcon(imageVector = Icons.Filled.Add, contentDescription = stringResource(R.string.add_desc)),
+    onClick = { }
+)
+
+// With untinted icon
+OudsSuggestionChip(
+    label = stringResource(R.string.label),
+    icon = OudsChipIcon(painter = myPainter, contentDescription = "", tinted = false),
     onClick = { }
 )
 ```
+
+---
+
+## BasicSuggestionChip
+
+**Advanced suggestion chip** with customizable content — experimental API for implementing components that look close to a standard OUDS suggestion chip.
+
+> **⚠️ Experimental API**: This component is annotated with `@ExperimentalOudsApi` and `@RestrictedOudsApi`. Use with caution as the API may change.
+
+Signature: `OudsBasicSuggestionChip(onClick, label, modifier, enabled?, interactionSource?, content?)`  
+Variants: Icon only and text + icon overloads available
+
+```kotlin
+// Text only with custom content
+OudsBasicSuggestionChip(
+    onClick = { },
+    label = stringResource(R.string.label),
+    content = {
+        // Custom content using OudsChipScope
+        DefaultChipContent()
+    }
+)
+
+// Icon only with custom content
+OudsBasicSuggestionChip(
+    onClick = { },
+    icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
+    content = {
+        // Custom content using OudsChipScope
+        DefaultChipContent()
+    }
+)
+
+// Text + icon with custom content
+OudsBasicSuggestionChip(
+    onClick = { },
+    label = stringResource(R.string.label),
+    icon = OudsChipIcon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = ""),
+    content = {
+        // Custom content using OudsChipScope
+        DefaultChipContent()
+    }
+)
+
+// With untinted icon and custom content
+OudsBasicSuggestionChip(
+    onClick = { },
+    label = stringResource(R.string.label),
+    icon = OudsChipIcon(painter = myPainter, contentDescription = "", tinted = false),
+    content = {
+        // Custom chip content implementation
+        DefaultChipContent()
+    }
+)
+```
+
+> **See also:** Official samples in source code:
+> - `com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextOnlySample`
+> - `com.orange.ouds.core.component.samples.OudsBasicSuggestionChipIconOnlySample`
+> - `com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextAndIconSample`
