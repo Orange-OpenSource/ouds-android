@@ -56,10 +56,3 @@ Figma design tokens
                                 │
                                 └── :core   ← Ouds* composables read tokens via OudsTheme.*
 ```
-
-## When to load which skill
-
-| Task                                                                | Skill to load                                        |
-|---------------------------------------------------------------------|------------------------------------------------------|
-| Write or review Kotlin/Compose code using OUDS components or tokens | `using-ouds-android`                                 |
-| Ask about OUDS-specific terminology                                 | `understanding-ouds-android-vocabulary` (this skill) |
