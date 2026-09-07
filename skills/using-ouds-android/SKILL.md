@@ -411,14 +411,14 @@ Component documentation is organized by category. When the user asks about speci
 - **Action components** (buttons, FAB): [`references/action-components.md`](references/action-components.md)
     - OudsButton, OudsFloatingActionButton, OudsNavigationButton, OudsSmallButton
 
-- **Alert components** (alerts, messages): [`references/alert-components.md`](references/alert-components.md)
-    - OudsAlertMessage, OudsInlineAlert
-
-- **Content components** (lists): [`references/content-components.md`](references/content-components.md)
+- **Content display components** (lists): [`references/content-display-components.md`](references/content-display-components.md)
     - OudsBulletList
 
 - **Control components** (checkboxes, switches, chips): [`references/control-components.md`](references/control-components.md)
     - OudsCheckbox, OudsCheckboxItem, OudsRadioButton, OudsRadioButtonItem, OudsSwitch, OudsSwitchItem, OudsFilterChip, OudsSuggestionChip
+
+- **Dialog components** (alerts, messages): [`references/dialog-components.md`](references/dialog-components.md)
+    - OudsAlertMessage, OudsBottomSheetScaffold, OudsInlineAlert, OudsModalBottomSheet
 
 - **Indicator components** (badges, progress, tags): [`references/indicator-components.md`](references/indicator-components.md)
     - OudsBadge, OudsCircularProgressIndicator, OudsLinearProgressIndicator, OudsTag
@@ -427,7 +427,7 @@ Component documentation is organized by category. When the user asks about speci
     - OudsTextInput, OudsTextArea, OudsPasswordInput, OudsPinCodeInput
 
 - **Layout components** (containers, dividers): [`references/layout-components.md`](references/layout-components.md)
-    - OudsBottomSheetScaffold, OudsColoredBox, OudsDivider, OudsModalBottomSheet
+    - OudsColoredBox, OudsDivider
 
 - **Navigation components** (links, bars): [`references/navigation-components.md`](references/navigation-components.md)
     - OudsLink, OudsNavigationBar, OudsTopAppBar

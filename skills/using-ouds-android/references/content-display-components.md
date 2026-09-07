@@ -1,4 +1,4 @@
-# OUDS Android — Content Components
+# OUDS Android — Content Display Components
 
 All components are in the `com.orange.ouds.core.component` package.  
 All user-visible strings must use `stringResource(R.string.*)` — never hardcode.

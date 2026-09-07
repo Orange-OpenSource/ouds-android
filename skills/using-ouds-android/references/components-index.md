@@ -8,6 +8,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 ## Table of Contents by Category
 
 ### Action Components
+
 [→ See full documentation](action-components.md)
 
 - [OudsButton](action-components.md#button) — Default and small buttons
@@ -15,18 +16,14 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsNavigationButton](action-components.md#navigationbutton) — Navigation button with chevron
 - [OudsSmallButton](action-components.md#smallbutton) — Small size button variant
 
-### Alert Components
-[→ See full documentation](alert-components.md)
+### Content Display Components
 
-- [OudsAlertMessage](alert-components.md#alertmessage) — Full-featured alert with actions
-- [OudsInlineAlert](alert-components.md#inlinealert) — Compact inline alert
+[→ See full documentation](content-display-components.md)
 
-### Content Components
-[→ See full documentation](content-components.md)
-
-- [OudsBulletList](content-components.md#bulletlist) — Ordered, unordered, and bare lists
+- [OudsBulletList](content-display-components.md#bulletlist) — Ordered, unordered, and bare lists
 
 ### Control Components
+
 [→ See full documentation](control-components.md)
 
 - [OudsCheckbox](control-components.md#checkbox) — Standalone checkbox
@@ -35,11 +32,21 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsRadioButtonItem](control-components.md#radiobuttonitem) — Radio button with label and description
 - [OudsSwitch](control-components.md#switch) — Standalone switch
 - [OudsSwitchItem](control-components.md#switchitem) — Toggle switch with label and description
-  - **Chip**
-    - [OudsFilterChip](control-components.md#filterchip) — Selectable filter chip
-    - [OudsSuggestionChip](control-components.md#suggestionchip) — Suggestion and action chip
+    - **Chip**
+        - [OudsFilterChip](control-components.md#filterchip) — Selectable filter chip
+        - [OudsSuggestionChip](control-components.md#suggestionchip) — Suggestion and action chip
+
+### Dialog Components
+
+[→ See full documentation](dialog-components.md)
+
+- [OudsAlertMessage](dialog-components.md#alertmessage) — Full-featured alert with actions
+- [OudsBottomSheetScaffold](dialog-components.md#bottomsheetscaffold) — Standard bottom sheet scaffold
+- [OudsInlineAlert](dialog-components.md#inlinealert) — Compact inline alert
+- [OudsModalBottomSheet](dialog-components.md#modalbottomsheet) — Modal bottom sheet
 
 ### Indicator Components
+
 [→ See full documentation](indicator-components.md)
 
 - [OudsBadge](indicator-components.md#badge) — Count and status badges
@@ -48,6 +55,7 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsTag](indicator-components.md#tag) — Status and category tags
 
 ### Input Components
+
 [→ See full documentation](input-components.md)
 
 - [OudsTextInput](input-components.md#textinput) — Single-line text field
@@ -56,14 +64,14 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsPinCodeInput](input-components.md#pincodeinput) — PIN code input (4 or 6 digits)
 
 ### Layout Components
+
 [→ See full documentation](layout-components.md)
 
-- [OudsBottomSheetScaffold](layout-components.md#bottomsheetscaffold) — Standard bottom sheet scaffold
 - [OudsColoredBox](layout-components.md#coloredbox) — Colored surface container
 - [OudsDivider](layout-components.md#divider) — Horizontal and vertical dividers
-- [OudsModalBottomSheet](layout-components.md#modalbottomsheet) — Modal bottom sheet
 
 ### Navigation Components
+
 [→ See full documentation](navigation-components.md)
 
 - [OudsLink](navigation-components.md#link) — Text link with optional icon/chevron

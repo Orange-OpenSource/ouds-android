@@ -1,4 +1,4 @@
-# OUDS Android — Alert Components
+# OUDS Android — Dialog Components
 
 All components are in the `com.orange.ouds.core.component` package.  
 All user-visible strings must use `stringResource(R.string.*)` — never hardcode.
@@ -8,7 +8,9 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 ## Table of Contents
 
 - [OudsAlertMessage](#alertmessage) — Full-featured alert with actions
+- [OudsBottomSheetScaffold](#bottomsheetscaffold) — Standard bottom sheet scaffold
 - [OudsInlineAlert](#inlinealert) — Compact inline alert
+- [OudsModalBottomSheet](#modalbottomsheet) — Modal bottom sheet
 
 ---
 
@@ -67,6 +69,54 @@ OudsAlertMessage(
 
 ---
 
+## BottomSheetScaffold
+
+**Standard bottom sheet** that co-exists with main screen content, allowing simultaneous interaction.  
+**See also:** [OudsModalBottomSheet](#modalbottomsheet) for modal behavior that blocks main content.
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyScreen() {
+    val scaffoldState = rememberBottomSheetScaffoldState()
+
+    OudsBottomSheetScaffold(
+        sheetContent = {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(stringResource(R.string.sheet_title))
+                Text(stringResource(R.string.sheet_content))
+            }
+        },
+        sheetPeekHeight = 128.dp,
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                Text(stringResource(R.string.main_content))
+            }
+        }
+    )
+}
+
+// Without drag handle
+OudsBottomSheetScaffold(
+    sheetContent = { /* content */ },
+    sheetDragHandle = false,
+    content = { /* main content */ }
+)
+
+// With custom peek height
+OudsBottomSheetScaffold(
+    sheetContent = { /* content */ },
+    sheetPeekHeight = 200.dp,
+    content = { /* main content */ }
+)
+```
+
+---
+
 ## InlineAlert
 
 **Statuses:** `OudsInlineAlertStatus` — `Neutral`, `Accent(icon?)`, `Positive`, `Warning`, `Negative`, `Info`  
@@ -96,4 +146,55 @@ OudsInlineAlert(
     label = stringResource(R.string.label),
     status = OudsInlineAlertStatus.Accent(OudsAlertIcon(painter = myPainter, tinted = false))
 )
+```
+
+---
+
+## ModalBottomSheet
+
+**Modal bottom sheet** that appears in front of app content and blocks interaction until dismissed.  
+**See also:** [OudsBottomSheetScaffold](#bottomsheetscaffold) for non-modal variant.
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyScreen() {
+    var showBottomSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState()
+
+    Button(onClick = { showBottomSheet = true }) {
+        Text(stringResource(R.string.show_sheet))
+    }
+
+    if (showBottomSheet) {
+        OudsModalBottomSheet(
+            onDismissRequest = { showBottomSheet = false },
+            sheetState = sheetState
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(stringResource(R.string.sheet_title))
+                Text(stringResource(R.string.sheet_content))
+                Button(onClick = { showBottomSheet = false }) {
+                    Text(stringResource(R.string.close))
+                }
+            }
+        }
+    }
+}
+
+// Without drag handle
+OudsModalBottomSheet(
+    onDismissRequest = { /* dismiss */ },
+    dragHandle = false
+) {
+    // Content
+}
+
+// With gestures disabled
+OudsModalBottomSheet(
+    onDismissRequest = { /* dismiss */ },
+    sheetGesturesEnabled = false
+) {
+    // Content
+}
 ```
