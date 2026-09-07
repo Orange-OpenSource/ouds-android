@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -46,9 +45,11 @@ import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
 import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsHeadingText
 import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.OudsNavigationBarHeight
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 
 private val oudsAboutMenuItems = listOf(
@@ -115,7 +116,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                                         }
                                     }
                                 }
-                                Text(text = issues, style = OudsTheme.typography.body.medium.default)
+                                OudsBodyText(text = issues, size = OudsBodyTextSize.Medium)
                             }
                         }
                     }
@@ -132,7 +133,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                             }
                         }
                         .listItemHorizontalPadding(),
-                    headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.large.strong) }
+                    headlineContent = { OudsBodyText(text = stringResource(id = item.labelRes), weight = OudsTextWeight.Strong) }
                 )
             }
         }
