@@ -98,11 +98,11 @@ OrangeFontFamily.preloadDownloadableFontFamilies(context, listOf(OrangeHelvetica
 
 ```kotlin
 OrangeTheme(
+    roundedCornerButtons = true,
+    roundedCornerTextInputs = true,
+    roundedCornerAlertMessages = true,
+    roundedCornerProgressIndicators = true,
     orangeFontFamily = ...,
-roundedCornerButtons = true,
-roundedCornerTextInputs = true,
-roundedCornerAlertMessages = true,
-roundedCornerProgressIndicators = true
 )
 ```
 
