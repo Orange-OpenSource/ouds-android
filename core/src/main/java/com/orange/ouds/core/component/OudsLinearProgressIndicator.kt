@@ -15,9 +15,11 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
@@ -31,20 +33,26 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
+import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.PreviewPaddingDefault
+import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import kotlin.math.round
 
 // TODO Update description and add design guideline link when available
 /**
@@ -53,9 +61,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  *   into the range.
@@ -90,6 +98,55 @@ fun OudsLinearProgressIndicator(
         status = status,
         track = track,
         stopIndicator = stopIndicator,
+        helperText = OudsLinearProgressIndicatorHelperText(false, helperText),
+        gapSize = gapSize
+    )
+}
+
+// TODO Update description and add design guideline link when available
+/**
+ * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
+ * progress (indeterminate). Best used inside layouts to show progress.
+ *
+ * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+ *
+ * > Design name: Linear Progress Indicator
+ *
+ * > Design version: 1.1.0
+ *
+ * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
+ *   into the range.
+ * @param modifier The [Modifier] to be applied to this linear progress indicator.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
+ * @param track Whether the track is displayed or not.
+ *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
+ *   easier to read (for determinate variant).
+ *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
+ *   appearance is needed.
+ * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
+ *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
+ * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
+ *   progress value.
+ * @param gapSize The size of the gap between the progress indicator and the track.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
+ */
+@Composable
+fun OudsLinearProgressIndicator(
+    progress: () -> Float,
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    stopIndicator: Boolean = false,
+    helperText: OudsLinearProgressIndicatorHelperText,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
+) {
+    OudsLinearProgressIndicator(
+        nullableProgress = progress,
+        modifier = modifier,
+        status = status,
+        track = track,
+        stopIndicator = stopIndicator,
         helperText = helperText,
         gapSize = gapSize
     )
@@ -102,9 +159,9 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  *   into the range.
@@ -136,7 +193,7 @@ fun OudsLinearProgressIndicator(
     helperText: String? = null
 ) {
     OudsLinearProgressIndicator(
-        nullableProgress = progress,
+        progress = progress,
         modifier = modifier,
         status = status,
         track = track,
@@ -152,9 +209,9 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
@@ -186,6 +243,52 @@ fun OudsLinearProgressIndicator(
         status = status,
         track = track,
         stopIndicator = stopIndicator,
+        helperText = OudsLinearProgressIndicatorHelperText(false, helperText),
+        gapSize = gapSize
+    )
+}
+
+// TODO Update description and add design guideline link when available
+/**
+ * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
+ * progress (indeterminate). Best used inside layouts to show progress.
+ *
+ * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * > Design name: Linear Progress Indicator
+ *
+ * > Design version: 1.1.0
+ *
+ * @param modifier The [Modifier] to be applied to this linear progress indicator.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
+ * @param track Whether the track is displayed or not.
+ *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
+ *   easier to read (for determinate variant).
+ *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
+ *   appearance is needed.
+ * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
+ *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
+ * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
+ *   progress value.
+ * @param gapSize The size of the gap between the progress indicator and the track.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
+ */
+@Composable
+fun OudsLinearProgressIndicator(
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    stopIndicator: Boolean = false,
+    helperText: OudsLinearProgressIndicatorHelperText,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+) {
+    OudsLinearProgressIndicator(
+        nullableProgress = null,
+        modifier = modifier,
+        status = status,
+        track = track,
+        stopIndicator = stopIndicator,
         helperText = helperText,
         gapSize = gapSize
     )
@@ -198,9 +301,9 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
@@ -229,7 +332,6 @@ fun OudsLinearProgressIndicator(
     helperText: String? = null
 ) {
     OudsLinearProgressIndicator(
-        nullableProgress = null,
         modifier = modifier,
         status = status,
         track = track,
@@ -245,7 +347,7 @@ private fun OudsLinearProgressIndicator(
     status: OudsProgressIndicatorStatus,
     track: Boolean,
     stopIndicator: Boolean,
-    helperText: String?,
+    helperText: OudsLinearProgressIndicatorHelperText?,
     modifier: Modifier = Modifier,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 ) {
@@ -292,15 +394,10 @@ private fun OudsLinearProgressIndicator(
                 )
             }
 
-            if (!helperText.isNullOrBlank()) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = helperText,
-                    style = OudsTheme.typography.label.medium.default,
-                    color = OudsTheme.colorScheme.content.default,
-                    textAlign = TextAlign.Center
-                )
-            }
+            helperText?.Content(
+                modifier = Modifier.fillMaxWidth(),
+                extraParameters = OudsLinearProgressIndicatorHelperText.ExtraParameters(nullableProgress)
+            )
         }
     }
 }
@@ -315,9 +412,96 @@ private fun DrawScope.stopIndicator(color: Color, strokeCap: StrokeCap) {
     )
 }
 
+class OudsLinearProgressIndicatorHelperText(
+    val progress: Boolean,
+    val text: String?,
+    val progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.progressAlignment(text),
+    val textAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.textAlignment(progress)
+) : OudsComponentContent<OudsLinearProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val progress: (() -> Float)?
+    ) : OudsComponentContent.ExtraParameters()
+
+    private fun Alignment.Horizontal.getBias(layoutDirection: LayoutDirection): Float {
+        val space = 100
+        val horizontalPosition = align(0, space, layoutDirection)
+        return horizontalPosition.toFloat() * 2f / space.toFloat() - 1f
+    }
+
+    @Composable
+    private fun Alignment.Horizontal.toTextAlign(): TextAlign {
+        val bias = getBias(LocalLayoutDirection.current)
+        return when {
+            bias > -0.5f && bias < 0.5f -> TextAlign.Center
+            bias <= -0.5f -> TextAlign.Start
+            else -> TextAlign.End
+        }
+    }
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        val layoutDirection = LocalLayoutDirection.current
+        val textInfo = buildList {
+            if (progress) {
+                extraParameters.progress?.let { progressLambda ->
+                    val progressValue = round(progressLambda() * 100).toInt()
+                    val progressText = stringResource(R.string.core_progressIndicator_progressHelperText_label, progressValue)
+                    add(progressText to progressAlignment)
+                }
+            }
+            if (!text.isNullOrBlank()) {
+                add(text to textAlignment)
+            }
+        }
+
+        if (textInfo.isNotEmpty()) {
+            Row(
+                modifier = modifier,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                val textModifier = if (textInfo.size == 1) Modifier.fillMaxWidth() else Modifier
+                textInfo.sortedBy { it.second.getBias(layoutDirection) }
+                    .forEachIndexed { index, it ->
+                        val textAlign = when {
+                            textInfo.size == 1 -> it.second.toTextAlign()
+                            index == 0 -> TextAlign.Start
+                            index == textInfo.lastIndex -> TextAlign.End
+                            else -> TextAlign.Center
+                        }
+                        if (index != 0) {
+                            // The Spacer allows to specify a spacing when using Arrangement.SpaceBetween
+                            Spacer(modifier = Modifier.width(OudsTheme.components.progressIndicator.space.columnGap))
+                        }
+                        Text(
+                            modifier = textModifier,
+                            text = it.first,
+                            style = OudsTheme.typography.label.medium.default,
+                            color = OudsTheme.colorScheme.content.default,
+                            textAlign = textAlign
+                        )
+                    }
+            }
+        }
+    }
+}
+
+private object OudsLinearProgressIndicatorHelperTextDefauts {
+
+    fun progressAlignment(text: String?): Alignment.Horizontal {
+        return if (text == null) Alignment.CenterHorizontally else Alignment.Start
+    }
+
+    fun textAlignment(progress: Boolean): Alignment.Horizontal {
+        return if (!progress) Alignment.CenterHorizontally else Alignment.End
+    }
+}
+
 @OudsPreviewLightDark
 @Composable
-private fun PreviewLinearProgressIndicator(@PreviewParameter(OudsLinearProgressIndicatorPreviewParameterProvider::class) parameter: OudsLinearProgressIndicatorPreviewParameter) {
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsLinearProgressIndicator(@PreviewParameter(OudsLinearProgressIndicatorPreviewParameterProvider::class) parameter: OudsLinearProgressIndicatorPreviewParameter) {
     PreviewOudsLinearProgressIndicator(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
@@ -354,14 +538,35 @@ internal fun PreviewOudsLinearProgressIndicator(
 @OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsLinearProgressIndicatorWithLongHelperText() = PreviewOudsLinearProgressIndicatorWithLongHelperText(theme = getPreviewTheme())
+private fun PreviewOudsLinearProgressIndicatorWithHelperText() = PreviewOudsLinearProgressIndicatorWithHelperText(theme = getPreviewTheme())
 
 @Composable
-internal fun PreviewOudsLinearProgressIndicatorWithLongHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    OudsLinearProgressIndicator(
-        modifier = Modifier.padding(all = PreviewPaddingDefault),
-        helperText = "Uploading file: http://download-website.com/directory/file.jpg"
+internal fun PreviewOudsLinearProgressIndicatorWithHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    val loadingText = "Loading..."
+    val multiLineText = "Uploading file\nhttp://download-website.com/directory/file.jpg"
+    val helperTexts = listOf(
+        OudsLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.Start),
+        OudsLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.CenterHorizontally),
+        OudsLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.End),
+        OudsLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.Start),
+        OudsLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.CenterHorizontally),
+        OudsLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.End),
+        OudsLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.Start, textAlignment = Alignment.End),
+        OudsLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.End, textAlignment = Alignment.Start),
+        OudsLinearProgressIndicatorHelperText(true, multiLineText, textAlignment = Alignment.CenterHorizontally)
     )
+
+    PreviewFlowRow(
+        items = helperTexts.indices.map { it.toString() },
+        itemName = { "" },
+        maxItemsInEachRow = 1
+    ) { item ->
+        val index = item.toInt()
+        OudsLinearProgressIndicator(
+            progress = { 0.75f },
+            helperText = helperTexts[index]
+        )
+    }
 }
 
 internal data class OudsLinearProgressIndicatorPreviewParameter(
