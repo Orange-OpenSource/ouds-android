@@ -35,6 +35,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
  * @property heading Styles for headings and titles.
  * @property body Styles for body text (paragraphs, descriptions).
  * @property label Styles for smaller utility text (e.g., captions, labels).
+ * @property code Styles dedicated to technical content such as code snippets, commands, system values, and identifiers.
  */
 @ConsistentCopyVisibility
 data class OudsTypography internal constructor(
@@ -42,7 +43,8 @@ data class OudsTypography internal constructor(
     val display: Display,
     val heading: Heading,
     val body: Body,
-    val label: Label
+    val label: Label,
+    val code: Code
 ) {
     /**
      * Styles for large, prominent text, typically used for major application titles.
@@ -318,6 +320,16 @@ data class OudsTypography internal constructor(
             val small: TextStyle
         )
     }
+
+    /**
+     * Styles dedicated to technical content such as code snippets, commands, system values, and identifiers.
+     *
+     * @property medium Medium code text style.
+     */
+    @ConsistentCopyVisibility
+    data class Code internal constructor(
+        val medium: TextStyle
+    )
 }
 
 @Suppress("DEPRECATION")
@@ -457,6 +469,16 @@ internal fun OudsFontSemanticTokens.getTypography(fontFamily: FontFamily, window
                 small = labelSmallTextStyle(fontFamily, FontWeight(weightLabelStrong), lineHeightStyle, windowWidthSizeClass),
             )
         ),
+        code = OudsTypography.Code(
+            medium = TextStyle(
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight(weightCode),
+                fontSize = sizeCodeMedium.sp,
+                lineHeight = lineHeightCodeMedium.sp,
+                letterSpacing = letterSpacingCodeMedium.sp,
+                lineHeightStyle = lineHeightStyle
+            )
+        )
     )
 }
 
@@ -596,6 +618,7 @@ private fun OudsTypography.fromToken(token: OudsTypographyKeyToken): TextStyle {
         OudsTypographyKeyToken.Label.Large.Strong -> label.large.strong
         OudsTypographyKeyToken.Label.Medium.Strong -> label.medium.strong
         OudsTypographyKeyToken.Label.Small.Strong -> label.small.strong
+        OudsTypographyKeyToken.Code.Medium -> code.medium
     }
 }
 

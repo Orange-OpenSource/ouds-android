@@ -123,6 +123,8 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicator
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorSized
+import com.orange.ouds.core.component.PreviewOudsCodeText
+import com.orange.ouds.core.component.PreviewOudsCodeTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsColoredBox
 import com.orange.ouds.core.component.PreviewOudsDisplayText
 import com.orange.ouds.core.component.PreviewOudsDisplayTextWithAnnotatedText
@@ -698,6 +700,35 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+    }
+
+    object CodeText {
+
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCodeText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCodeTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
