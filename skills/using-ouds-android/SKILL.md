@@ -424,13 +424,13 @@ Component documentation is organized by category. When the user asks about speci
     - OudsBadge, OudsCircularProgressIndicator, OudsLinearProgressIndicator, OudsTag
 
 - **Input components** (text fields): [`references/input-components.md`](references/input-components.md)
-    - OudsTextInput, OudsTextArea, OudsPasswordInput, OudsPinCodeInput
+    - OudsInputTag, OudsPasswordInput, OudsPinCodeInput, OudsTextArea, OudsTextInput
 
 - **Layout components** (containers, dividers): [`references/layout-components.md`](references/layout-components.md)
     - OudsColoredBox, OudsDivider
 
-- **Navigation components** (links, bars): [`references/navigation-components.md`](references/navigation-components.md)
-    - OudsLink, OudsNavigationBar, OudsTopAppBar
+- **Navigation components** (links, bars, cards, lists): [`references/navigation-components.md`](references/navigation-components.md)
+    - OudsCardItem, OudsLink, OudsListItem, OudsNavigationBar, OudsSmallCardItem, OudsSmallListItem, OudsTopAppBar
 
 **Complete component index:** See [`references/components-index.md`](references/components-index.md) for a full cross-reference of all components.
 

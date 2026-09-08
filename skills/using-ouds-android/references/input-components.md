@@ -7,10 +7,24 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## Table of Contents
 
-- [OudsTextInput](#textinput) — Single-line text field
-- [OudsTextArea](#textarea) — Multi-line text field
+- [OudsInputTag](#inputtag) — Input tag with removal action
 - [OudsPasswordInput](#passwordinput) — Password field with visibility toggle
 - [OudsPinCodeInput](#pincodeinput) — PIN code input (4, 6 or 8 digits)
+- [OudsTextArea](#textarea) — Multi-line text field
+- [OudsTextInput](#textinput) — Single-line text field
+
+---
+
+## InputTag
+
+Input tag allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a tag.
+
+```kotlin
+OudsInputTag(
+    label = "Input tag",
+    onClick = { /* Do something! */ }
+)
+```
 
 ---
 

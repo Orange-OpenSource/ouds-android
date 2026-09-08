@@ -58,10 +58,11 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 [→ See full documentation](input-components.md)
 
-- [OudsTextInput](input-components.md#textinput) — Single-line text field
-- [OudsTextArea](input-components.md#textarea) — Multi-line text field
+- [OudsInputTag](input-components.md#inputtag) — Input tag with removal action
 - [OudsPasswordInput](input-components.md#passwordinput) — Password field with visibility toggle
 - [OudsPinCodeInput](input-components.md#pincodeinput) — PIN code input (4, 6 or 8 digits)
+- [OudsTextArea](input-components.md#textarea) — Multi-line text field
+- [OudsTextInput](input-components.md#textinput) — Single-line text field
 
 ### Layout Components
 
@@ -74,6 +75,10 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 [→ See full documentation](navigation-components.md)
 
+- [OudsCardItem](navigation-components.md#carditem) — Card item with label, description, and optional elements
 - [OudsLink](navigation-components.md#link) — Text link with optional icon/chevron
+- [OudsListItem](navigation-components.md#listitem) — List item with label, description, and optional elements
 - [OudsNavigationBar](navigation-components.md#navigationbar) — Bottom navigation bar
+- [OudsSmallCardItem](navigation-components.md#smallcarditem) — Compact card item variant
+- [OudsSmallListItem](navigation-components.md#smalllistitem) — Compact list item variant
 - [OudsTopAppBar](navigation-components.md#topappbar) — Top app bar with variants

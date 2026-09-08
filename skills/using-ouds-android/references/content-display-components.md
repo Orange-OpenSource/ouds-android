@@ -13,27 +13,63 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ## BulletList
 
-**Types:** `OudsBulletListType` — `Unordered` (default, `brandColor: Boolean`), `Ordered`, `Bare`
+**Types:** `OudsBulletListType.Unordered(brandColor: Boolean = true)`, `OudsBulletListType.Ordered`, `OudsBulletListType.Bare`  
+**API:** DSL builder pattern with `item()` function
 
 ```kotlin
-// Unordered (brand color)
+// Unordered (brand color by default)
 OudsBulletList {
-    item(label = stringResource(R.string.item_1))
-    item(label = stringResource(R.string.item_2), subListType = OudsBulletListType.Unordered(brandColor = false)) {
-        item(label = stringResource(R.string.sub_item_1))
+    item(label = "Milk")
+    item(label = "Vegetables", subListType = OudsBulletListType.Unordered(brandColor = false)) {
+        item(label = "Tomatoes")
+        item(label = "Salad") {
+            item(label = "Lettuce")
+            item(label = "Arugula")
+        }
     }
 }
 
 // Ordered
 OudsBulletList(type = OudsBulletListType.Ordered) {
-    item(label = stringResource(R.string.step_1))
-    item(label = stringResource(R.string.step_2)) {
-        item(label = stringResource(R.string.sub_step_1))
+    item(label = "Prepare the ingredients")
+    item(label = "Cook the pasta") {
+        item(label = "Boil water in a large pot")
+        item(label = "Add salt and then the pasta") {
+            item(label = "Cook for 8-10 minutes")
+            item(label = "Stir occasionally")
+        }
     }
+    item(label = "Drain the pasta and serve")
 }
 
 // Bare (no bullet)
 OudsBulletList(type = OudsBulletListType.Bare) {
-    item(label = stringResource(R.string.item_1))
+    item(label = "Event Planning")
+    item(label = "Logistic Team") {
+        item(label = "Venue Booking")
+        item(label = "Catering")
+    }
+    item(label = "Communication Team") {
+        item(label = "Invitations")
+        item(label = "Social Media")
+    }
+}
+
+// With annotated labels (strong text, links)
+OudsBulletList {
+    item(
+        label = buildOudsAnnotatedBulletListLabel {
+            withStrong { append("Important notice:") }
+            append(" Read the following information carefully")
+        }
+    )
+    item(
+        label = buildOudsAnnotatedBulletListLabel {
+            append("Product details available on our ")
+            withLink(OudsLinkAnnotation.Url("https://example.com/products")) {
+                append("website")
+            }
+        }
+    )
 }
 ```
