@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalThemeSettings
@@ -47,8 +48,6 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 import kotlin.math.PI
-
-private val OudsCircularProgressIndicatorSize = 48.dp
 
 // TODO Update description and add design guideline link when available
 /**
@@ -84,7 +83,8 @@ fun OudsCircularProgressIndicator(
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default,
-    helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null
+    helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null,
+    progressSize: Dp = OudsProgressIndicatorDefaults.CircularSize
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = progress,
@@ -92,7 +92,8 @@ fun OudsCircularProgressIndicator(
         status = status,
         track = track,
         gapSize = gapSize,
-        helperText = helperText
+        helperText = helperText,
+        progressSize = progressSize
     )
 }
 
@@ -220,7 +221,8 @@ fun OudsCircularProgressIndicator(
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
-    helperText: String? = null
+    helperText: String? = null,
+    progressSize: Dp = OudsProgressIndicatorDefaults.CircularSize
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = null,
@@ -228,7 +230,8 @@ fun OudsCircularProgressIndicator(
         status = status,
         track = track,
         gapSize = gapSize,
-        helperText = OudsCircularProgressIndicatorHelperText(false, helperText)
+        helperText = OudsCircularProgressIndicatorHelperText(false, helperText),
+        progressSize = progressSize
     )
 }
 
@@ -326,25 +329,27 @@ internal fun OudsCircularProgressIndicator(
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     helperText: OudsCircularProgressIndicatorHelperText? = null,
+    progressSize: Dp = OudsProgressIndicatorDefaults.CircularSize,
     color: Color? = null
 ) {
     with(OudsTheme.components.progressIndicator) {
         Column(
+            modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(space.paddingBlock)
         ) {
             val scale = LocalConfiguration.current.fontScale
-            val defaultSize = OudsCircularProgressIndicatorSize * scale
+            val scaledProgressSize = progressSize * scale
 
             // We deliberatly set the modifier here because we want the user to be able to control the circle size
-            BoxWithConstraints(modifier = modifier.size(defaultSize)) {
+            BoxWithConstraints(modifier = Modifier.size(scaledProgressSize)) {
                 // The stroke width is equal to 25% of the radius, 12.5% of the diameter
                 val strokeWidth = maxWidth * 0.125f
                 val gapSizeValue = when (gapSize) {
                     // The default gap corresponds to a 14-degree angle converted into a distance on the circle
                     OudsProgressIndicatorGapSize.Default -> 14f / 360f * PI.toFloat() * maxWidth.value
                     // The small gap corresponds to 1 dp for the standard size
-                    OudsProgressIndicatorGapSize.Small -> maxWidth.value / OudsCircularProgressIndicatorSize.value
+                    OudsProgressIndicatorGapSize.Small -> maxWidth.value / OudsProgressIndicatorDefaults.CircularSize.value
                 }.dp
                 val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) border.radius.rounded else border.radius.default
                 val strokeCap = if (borderRadius > 0.dp) StrokeCap.Round else StrokeCap.Butt
@@ -480,7 +485,7 @@ internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract,
         content = { item ->
             val gapSize = enumValueOf<OudsProgressIndicatorGapSize>(item)
             OudsCircularProgressIndicator(
-                modifier = Modifier.size(size.dp),
+                progressSize = size.dp,
                 progress = { 0.75f },
                 gapSize = gapSize
             )
@@ -509,7 +514,7 @@ private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewPar
 
 internal class OudsCircularProgressIndicatorSizedPreviewParameterProvider :
     BasicPreviewParameterProvider<Float>(
-        OudsCircularProgressIndicatorSize.value / 2f,
-        OudsCircularProgressIndicatorSize.value,
-        OudsCircularProgressIndicatorSize.value * 2f
+        OudsProgressIndicatorDefaults.CircularSize.value / 2f,
+        OudsProgressIndicatorDefaults.CircularSize.value,
+        OudsProgressIndicatorDefaults.CircularSize.value * 2f
     )
