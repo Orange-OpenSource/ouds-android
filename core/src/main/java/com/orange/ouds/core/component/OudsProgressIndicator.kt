@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalColorMode
@@ -125,6 +126,8 @@ object OudsProgressIndicatorDefaults {
      * The default gap size.
      */
     val GapSize = OudsProgressIndicatorGapSize.Default
+    
+    val CircularSize = 48.dp
 }
 
 @Composable
