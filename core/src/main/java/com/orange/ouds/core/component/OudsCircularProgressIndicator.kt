@@ -15,16 +15,20 @@ package com.orange.ouds.core.component
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -77,10 +81,60 @@ fun OudsCircularProgressIndicator(
     modifier: Modifier = Modifier,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default,
+    helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = progress,
+        modifier = modifier,
+        status = status,
+        track = track,
+        gapSize = gapSize,
+        helperText = helperText
+    )
+}
+
+// TODO Update description and add design guideline link when available
+/**
+ * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
+ *
+ * This version of the circular progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+ *
+ * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
+ * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
+ * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design name: Circular Progress Indicator
+ *
+ * > Design version: 1.2.0
+ *
+ * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
+ *   into the range.
+ * @param modifier The [Modifier] to be applied to this circular progress indicator.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
+ * @param track Whether the track is displayed or not.
+ *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
+ *   easier to read (for determinate variant).
+ *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
+ *   appearance is needed.
+ * @param gapSize The size of the gap between the progress indicator and the track.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
+ */
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsCircularProgressIndicator(
+    progress: () -> Float,
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
+) {
+    OudsCircularProgressIndicator(
+        progress = progress,
         modifier = modifier,
         status = status,
         track = track,
@@ -126,7 +180,7 @@ fun OudsCircularProgressIndicator(
     track: Boolean = true
 ) {
     OudsCircularProgressIndicator(
-        nullableProgress = progress,
+        progress = progress,
         modifier = modifier,
         status = status,
         track = track
@@ -163,10 +217,56 @@ fun OudsCircularProgressIndicator(
     modifier: Modifier = Modifier,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
+    helperText: String? = null
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = null,
+        modifier = modifier,
+        status = status,
+        track = track,
+        gapSize = gapSize,
+        helperText = OudsCircularProgressIndicatorHelperText(false, helperText)
+    )
+}
+
+// TODO Update description and add design guideline link when available
+/**
+ * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
+ *
+ * This version of the circular progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
+ * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
+ * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design name: Circular Progress Indicator
+ *
+ * > Design version: 1.2.0
+ *
+ * @param modifier The [Modifier] to be applied to this circular progress indicator.
+ * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
+ * @param track Whether the track is displayed or not.
+ *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
+ *   easier to read (for determinate variant).
+ *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
+ *   appearance is needed.
+ * @param gapSize The size of the gap between the progress indicator and the track.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
+ */
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsCircularProgressIndicator(
+    modifier: Modifier = Modifier,
+    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
+    track: Boolean = true,
+    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+) {
+    OudsCircularProgressIndicator(
         modifier = modifier,
         status = status,
         track = track,
@@ -209,7 +309,6 @@ fun OudsCircularProgressIndicator(
     track: Boolean = true
 ) {
     OudsCircularProgressIndicator(
-        nullableProgress = null,
         modifier = modifier,
         status = status,
         track = track
@@ -224,49 +323,75 @@ internal fun OudsCircularProgressIndicator(
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
+    helperText: OudsCircularProgressIndicatorHelperText? = null,
     color: Color? = null
 ) {
     with(OudsTheme.components.progressIndicator) {
-        val scale = LocalConfiguration.current.fontScale
-        val defaultSize = OudsCircularProgressIndicatorSize * scale
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(space.paddingBlock)
+        ) {
+            val scale = LocalConfiguration.current.fontScale
+            val defaultSize = OudsCircularProgressIndicatorSize * scale
 
-        BoxWithConstraints(modifier = modifier.size(defaultSize)) {
-            // The stroke width is equal to 25% of the radius, 12.5% of the diameter
-            val strokeWidth = maxWidth * 0.125f
-            val gapSizeValue = when (gapSize) {
-                // The default gap corresponds to a 14-degree angle converted into a distance on the circle
-                OudsProgressIndicatorGapSize.Default -> 14f / 360f * PI.toFloat() * maxWidth.value
-                // The small gap corresponds to 1 dp for the standard size
-                OudsProgressIndicatorGapSize.Small -> maxWidth.value / OudsCircularProgressIndicatorSize.value
-            }.dp
-            val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) border.radius.rounded else border.radius.default
-            val strokeCap = if (borderRadius > 0.dp) StrokeCap.Round else StrokeCap.Butt
-            val circularProgressIndicatorColor = color.orElse { progressIndicatorColor(status = status) }
-            val trackColor = progressIndicatorTrackColor(track = track)
-            val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)
+            // We deliberatly set the modifier here because we want the user to be able to control the circle size
+            BoxWithConstraints(modifier = modifier.size(defaultSize)) {
+                // The stroke width is equal to 25% of the radius, 12.5% of the diameter
+                val strokeWidth = maxWidth * 0.125f
+                val gapSizeValue = when (gapSize) {
+                    // The default gap corresponds to a 14-degree angle converted into a distance on the circle
+                    OudsProgressIndicatorGapSize.Default -> 14f / 360f * PI.toFloat() * maxWidth.value
+                    // The small gap corresponds to 1 dp for the standard size
+                    OudsProgressIndicatorGapSize.Small -> maxWidth.value / OudsCircularProgressIndicatorSize.value
+                }.dp
+                val borderRadius = if (LocalThemeSettings.current.roundedCornerProgressIndicators == true) border.radius.rounded else border.radius.default
+                val strokeCap = if (borderRadius > 0.dp) StrokeCap.Round else StrokeCap.Butt
+                val circularProgressIndicatorColor = color.orElse { progressIndicatorColor(status = status) }
+                val trackColor = progressIndicatorTrackColor(track = track)
+                val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)
 
-            if (nullableProgress != null || LocalInspectionMode.current) {
-                CircularProgressIndicator(
-                    progress = nullableProgress.orElse { { 0.75f } },
-                    modifier = progressIndicatorModifier,
-                    color = circularProgressIndicatorColor,
-                    strokeWidth = strokeWidth,
-                    trackColor = trackColor,
-                    strokeCap = strokeCap,
-                    gapSize = gapSizeValue
-                )
-            } else {
-                CircularProgressIndicator(
-                    modifier = progressIndicatorModifier,
-                    color = circularProgressIndicatorColor,
-                    strokeWidth = strokeWidth,
-                    trackColor = trackColor,
-                    strokeCap = strokeCap,
-                    gapSize = gapSizeValue
-                )
+                if (nullableProgress != null || LocalInspectionMode.current) {
+                    CircularProgressIndicator(
+                        progress = nullableProgress.orElse { { 0.75f } },
+                        modifier = progressIndicatorModifier,
+                        color = circularProgressIndicatorColor,
+                        strokeWidth = strokeWidth,
+                        trackColor = trackColor,
+                        strokeCap = strokeCap,
+                        gapSize = gapSizeValue
+                    )
+                } else {
+                    CircularProgressIndicator(
+                        modifier = progressIndicatorModifier,
+                        color = circularProgressIndicatorColor,
+                        strokeWidth = strokeWidth,
+                        trackColor = trackColor,
+                        strokeCap = strokeCap,
+                        gapSize = gapSizeValue
+                    )
+                }
             }
+
+            helperText?.Content(extraParameters = OudsProgressIndicatorHelperText.ExtraParameters(nullableProgress))
         }
     }
+}
+
+class OudsDeterminateCircularProgressIndicatorHelperText(
+    progress: Boolean,
+    text: String?
+) : OudsCircularProgressIndicatorHelperText(progress, text)
+
+open class OudsCircularProgressIndicatorHelperText internal constructor(
+    progress: Boolean,
+    text: String?
+) : OudsProgressIndicatorHelperText(progress, text, Alignment.CenterHorizontally, Alignment.CenterHorizontally) {
+
+    @Composable
+    override fun getHorizontalArrangement(alignments: List<Alignment.Horizontal>): Arrangement.Horizontal = Arrangement.Center
+
+    @Composable
+    override fun getTextAlign(alignment: Alignment.Horizontal, index: Int, count: Int): TextAlign = TextAlign.Unspecified
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.CircularProgressIndicator.Default.PreviewWidthDp, device = OudsPreviewDevice)
@@ -294,7 +419,8 @@ internal fun PreviewOudsCircularProgressIndicator(
                     progress = { 0.75f },
                     status = status,
                     track = track,
-                    gapSize = gapSize
+                    gapSize = gapSize,
+                    helperText = helperText
                 )
             }
         }
@@ -335,7 +461,8 @@ internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract,
 internal data class OudsCircularProgressIndicatorPreviewParameter(
     val track: Boolean = true,
     val onColoredBackground: Boolean = false,
-    val gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+    val gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
+    val helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null
 )
 
 internal class OudsCircularProgressIndicatorPreviewParameterProvider :
@@ -346,7 +473,8 @@ private val previewParameterValues: List<OudsCircularProgressIndicatorPreviewPar
         OudsCircularProgressIndicatorPreviewParameter(),
         OudsCircularProgressIndicatorPreviewParameter(track = false),
         OudsCircularProgressIndicatorPreviewParameter(onColoredBackground = true),
-        OudsCircularProgressIndicatorPreviewParameter(gapSize = OudsProgressIndicatorGapSize.Small)
+        OudsCircularProgressIndicatorPreviewParameter(gapSize = OudsProgressIndicatorGapSize.Small),
+        OudsCircularProgressIndicatorPreviewParameter(helperText = OudsDeterminateCircularProgressIndicatorHelperText(true, null)),
     )
 
 internal class OudsCircularProgressIndicatorSizedPreviewParameterProvider :
