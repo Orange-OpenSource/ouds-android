@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -413,7 +414,7 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
                         Text(
                             text = progressIndicatorProgressHelperText(progressLambda),
                             style = style,
-                            color = color,
+                            color = color
                         )
                     }
                 }
@@ -421,7 +422,7 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
                     Text(
                         text = text,
                         style = style,
-                        color = color,
+                        color = color
                     )
                 }
             }
@@ -491,6 +492,36 @@ internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract,
             )
         }
     )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsCircularProgressIndicatorWithHelperText() = PreviewOudsCircularProgressIndicatorWithHelperText(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsCircularProgressIndicatorWithHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    val loadingText = "Loading..."
+    val multiLineText = "Uploading file\nhttp://download-website.com/directory/file.jpg"
+    val helperTexts = listOf(
+        OudsDeterminateCircularProgressIndicatorHelperText(true, null),
+        OudsDeterminateCircularProgressIndicatorHelperText(false, loadingText),
+        OudsDeterminateCircularProgressIndicatorHelperText(true, loadingText),
+        OudsDeterminateCircularProgressIndicatorHelperText(true, multiLineText)
+    )
+
+    PreviewFlowRow(
+        items = helperTexts.indices.map { it.toString() },
+        itemName = { "" },
+        maxItemsInEachRow = 1
+    ) { item ->
+        val index = item.toInt()
+        OudsCircularProgressIndicator(
+            modifier = Modifier.fillMaxWidth(),
+            progress = { 0.75f },
+            helperText = helperTexts[index]
+        )
+    }
 }
 
 internal data class OudsCircularProgressIndicatorPreviewParameter(
