@@ -54,8 +54,34 @@ tasks.register<DefaultTask>("archiveDocumentation") {
 }
 
 tasks.register<DefaultTask>("prepareRelease") {
-    dependsOn(tasks["archiveDocumentation"], tasks["updateVersion"])
+    dependsOn(tasks["archiveDocumentation"], tasks["updateVersion"], tasks["remindSkillsUpdate"])
     tasks["archiveDocumentation"].mustRunAfter(tasks["updateVersion"])
+    tasks["remindSkillsUpdate"].mustRunAfter(tasks["archiveDocumentation"])
+}
+
+tasks.register<DefaultTask>("remindSkillsUpdate") {
+    doLast {
+        logger.lifecycle("")
+        logger.lifecycle("═══════════════════════════════════════════════════════════")
+        logger.lifecycle("⚠️  IMPORTANT: Skills Update Required")
+        logger.lifecycle("═══════════════════════════════════════════════════════════")
+        logger.lifecycle("")
+        logger.lifecycle("Now, ask an AI agent to update the project skills and")
+        logger.lifecycle("verify the modifications before continuing.")
+        logger.lifecycle("")
+        logger.lifecycle("Steps:")
+        logger.lifecycle("  1. Open your AI agent (OpenCode, Claude, etc.)")
+        logger.lifecycle("  2. Copy and paste this message to your AI agent:")
+        logger.lifecycle("")
+        logger.lifecycle("     \"Use the prompt skills/maintenance/update-skills-prompt.md")
+        logger.lifecycle("      to update the project skills\"")
+        logger.lifecycle("")
+        logger.lifecycle("  3. Review the generated skills update report")
+        logger.lifecycle("  4. Verify and commit the changes to skills files")
+        logger.lifecycle("")
+        logger.lifecycle("═══════════════════════════════════════════════════════════")
+        logger.lifecycle("")
+    }
 }
 
 tasks.register<DefaultTask>("tagRelease") {
