@@ -15,12 +15,16 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.ProgressIndicatorDefaults.drawStopIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +36,9 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -386,7 +392,7 @@ private fun OudsLinearProgressIndicator(
 
             helperText?.Content(
                 modifier = Modifier.fillMaxWidth(),
-                extraParameters = OudsProgressIndicatorHelperText.ExtraParameters(nullableProgress)
+                extraParameters = OudsLinearProgressIndicatorHelperText.ExtraParameters(nullableProgress)
             )
         }
     }
@@ -415,39 +421,70 @@ class OudsIndeterminateLinearProgressIndicatorHelperText(
 ) : OudsLinearProgressIndicatorHelperText(false, text, Alignment.CenterHorizontally, alignment)
 
 open class OudsLinearProgressIndicatorHelperText internal constructor(
-    progress: Boolean,
-    text: String?,
-    progressAlignment: Alignment.Horizontal,
-    textAlignment: Alignment.Horizontal
-) : OudsProgressIndicatorHelperText(progress, text, progressAlignment, textAlignment) {
+    val progress: Boolean,
+    val text: String?,
+    val progressAlignment: Alignment.Horizontal,
+    val textAlignment: Alignment.Horizontal
+) : OudsComponentContent<OudsLinearProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
 
-    @Composable
-    override fun getHorizontalArrangement(alignments: List<Alignment.Horizontal>): Arrangement.Horizontal {
-        return if (alignments.size == 1) {
-            val bias = alignments.first().getBias(LocalLayoutDirection.current)
-            when {
-                bias > -0.5f && bias < 0.5f -> Arrangement.Center
-                bias <= -0.5f -> Arrangement.Start
-                else -> Arrangement.End
-            }
-        } else {
-            Arrangement.SpaceBetween
-        }
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val progress: (() -> Float)?
+    ) : OudsComponentContent.ExtraParameters()
+
+    protected fun Alignment.Horizontal.getBias(layoutDirection: LayoutDirection): Float {
+        val space = 100
+        val horizontalPosition = align(0, space, layoutDirection)
+        return horizontalPosition.toFloat() * 2f / space.toFloat() - 1f
     }
 
     @Composable
-    override fun getTextAlign(alignment: Alignment.Horizontal, index: Int, count: Int): TextAlign {
-        return when {
-            count == 1 -> {
-                val bias = alignment.getBias(LocalLayoutDirection.current)
-                when {
-                    bias > -0.5f && bias < 0.5f -> TextAlign.Center
-                    bias <= -0.5f -> TextAlign.Start
-                    else -> TextAlign.End
+    override fun Content(modifier: Modifier) {
+        val layoutDirection = LocalLayoutDirection.current
+        val textInfos = buildList {
+            if (progress) {
+                extraParameters.progress?.let { progressLambda ->
+                    add(progressIndicatorProgressHelperText(progressLambda) to progressAlignment)
                 }
             }
-            index == 0 -> TextAlign.Start
-            else -> TextAlign.End
+            if (!text.isNullOrBlank()) {
+                add(text to textAlignment)
+            }
+        }
+
+        if (textInfos.isNotEmpty()) {
+            Row(
+                modifier = modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                val textModifier = if (textInfos.size == 1) Modifier.fillMaxWidth() else Modifier
+                textInfos.sortedBy { it.second.getBias(layoutDirection) }
+                    .forEachIndexed { index, textInfo ->
+                        if (index != 0) {
+                            // The Spacer allows to specify a spacing when arrangement is Arrangement.SpaceBetween
+                            Spacer(modifier = Modifier.width(OudsTheme.components.progressIndicator.space.columnGap))
+                        }
+                        val textAlign = when {
+                            textInfos.size == 1 -> {
+                                val bias = textInfo.second.getBias(LocalLayoutDirection.current)
+                                when {
+                                    bias > -0.5f && bias < 0.5f -> TextAlign.Center
+                                    bias <= -0.5f -> TextAlign.Start
+                                    else -> TextAlign.End
+                                }
+                            }
+                            index == 0 -> TextAlign.Start
+                            else -> TextAlign.End
+                        }
+                        Text(
+                            modifier = textModifier,
+                            text = textInfo.first,
+                            style = OudsTheme.typography.label.medium.default,
+                            color = OudsTheme.colorScheme.content.default,
+                            textAlign = textAlign
+                        )
+                    }
+            }
         }
     }
 }

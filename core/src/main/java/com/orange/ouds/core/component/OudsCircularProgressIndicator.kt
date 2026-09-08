@@ -18,9 +18,11 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +30,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -372,7 +374,7 @@ internal fun OudsCircularProgressIndicator(
                 }
             }
 
-            helperText?.Content(extraParameters = OudsProgressIndicatorHelperText.ExtraParameters(nullableProgress))
+            helperText?.Content(extraParameters = OudsCircularProgressIndicatorHelperText.ExtraParameters(nullableProgress))
         }
     }
 }
@@ -383,15 +385,43 @@ class OudsDeterminateCircularProgressIndicatorHelperText(
 ) : OudsCircularProgressIndicatorHelperText(progress, text)
 
 open class OudsCircularProgressIndicatorHelperText internal constructor(
-    progress: Boolean,
-    text: String?
-) : OudsProgressIndicatorHelperText(progress, text, Alignment.CenterHorizontally, Alignment.CenterHorizontally) {
+    val progress: Boolean,
+    val text: String?
+) : OudsComponentContent<OudsCircularProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val progress: (() -> Float)?
+    ) : OudsComponentContent.ExtraParameters()
 
     @Composable
-    override fun getHorizontalArrangement(alignments: List<Alignment.Horizontal>): Arrangement.Horizontal = Arrangement.Center
-
-    @Composable
-    override fun getTextAlign(alignment: Alignment.Horizontal, index: Int, count: Int): TextAlign = TextAlign.Unspecified
+    override fun Content(modifier: Modifier) {
+        if (progress || !text.isNullOrBlank()) {
+            Row(
+                modifier = modifier,
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.components.progressIndicator.space.columnGap)
+            ) {
+                val style = OudsTheme.typography.label.medium.default
+                val color = OudsTheme.colorScheme.content.default
+                if (progress) {
+                    extraParameters.progress?.let { progressLambda ->
+                        Text(
+                            text = progressIndicatorProgressHelperText(progressLambda),
+                            style = style,
+                            color = color,
+                        )
+                    }
+                }
+                if (!text.isNullOrBlank()) {
+                    Text(
+                        text = text,
+                        style = style,
+                        color = color,
+                    )
+                }
+            }
+        }
+    }
 }
 
 @Preview(name = "Light", widthDp = OudsPreviewableComponent.CircularProgressIndicator.Default.PreviewWidthDp, device = OudsPreviewDevice)
