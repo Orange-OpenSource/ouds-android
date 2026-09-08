@@ -217,6 +217,24 @@ Agent skills are located in the `skills/` directory at the repository root. The 
 | `understanding-ouds-android-vocabulary` | User asks to explain, define, or understand OUDS-specific terminology and concepts (tokens, Tokenator, OudsThemeContract, tinted, OudsError, etc.) or relationships between OUDS architecture elements |
 | `using-ouds-android` | User needs to write code, create components, set up OUDS, configure themes, access tokens, or use any Ouds* component in Kotlin/Compose |
 
+### Maintaining Skills
+
+The skills must be kept synchronized with code changes to ensure AI agents have accurate, up-to-date information.
+
+**When to update skills:**
+
+- Before each release
+
+**How to update:**
+
+1. Navigate to `skills/maintenance/update-skills-prompt.md`
+2. Copy the prompt and execute it with your AI agent
+3. Review the generated report and proposed changes
+4. Commit the updated skills
+
+The update prompt automatically detects changes in components, tokens, themes, integration setup, patterns, and deprecations by analyzing the codebase source
+code, KDoc documentation, and demo app.
+
 ## Resources
 
 - **Documentation**: https://android.unified-design-system.orange.com/
