@@ -49,4 +49,10 @@ internal class OudsCircularProgressIndicatorTest {
             internal fun data() = OudsPreviewableComponent.CircularProgressIndicator.Sized.parameters
         }
     }
+
+    class WithHelperText : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CircularProgressIndicator.WithHelperText,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }
