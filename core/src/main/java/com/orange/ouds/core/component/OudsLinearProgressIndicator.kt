@@ -15,16 +15,12 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.ProgressIndicatorDefaults.drawStopIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,13 +30,9 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
-import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -51,7 +43,6 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.math.round
 
 // TODO Update description and add design guideline link when available
 /**
@@ -97,7 +88,7 @@ fun OudsLinearProgressIndicator(
         status = status,
         track = track,
         stopIndicator = stopIndicator,
-        helperText = OudsLinearProgressIndicatorHelperText(false, helperText),
+        helperText = OudsDeterminateLinearProgressIndicatorHelperText(false, helperText),
         gapSize = gapSize
     )
 }
@@ -137,7 +128,7 @@ fun OudsLinearProgressIndicator(
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     stopIndicator: Boolean = false,
-    helperText: OudsLinearProgressIndicatorHelperText,
+    helperText: OudsDeterminateLinearProgressIndicatorHelperText,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
 ) {
     OudsLinearProgressIndicator(
@@ -242,7 +233,7 @@ fun OudsLinearProgressIndicator(
         status = status,
         track = track,
         stopIndicator = stopIndicator,
-        helperText = OudsLinearProgressIndicatorHelperText(false, helperText),
+        helperText = OudsIndeterminateLinearProgressIndicatorHelperText(helperText),
         gapSize = gapSize
     )
 }
@@ -279,7 +270,7 @@ fun OudsLinearProgressIndicator(
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     stopIndicator: Boolean = false,
-    helperText: OudsLinearProgressIndicatorHelperText,
+    helperText: OudsIndeterminateLinearProgressIndicatorHelperText,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 ) {
     OudsLinearProgressIndicator(
@@ -347,8 +338,8 @@ private fun OudsLinearProgressIndicator(
     track: Boolean,
     stopIndicator: Boolean,
     helperText: OudsLinearProgressIndicatorHelperText?,
-    modifier: Modifier = Modifier,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+    gapSize: OudsProgressIndicatorGapSize,
+    modifier: Modifier = Modifier
 ) {
     val scale = LocalConfiguration.current.fontScale
     with(OudsTheme.components.progressIndicator) {
@@ -395,7 +386,7 @@ private fun OudsLinearProgressIndicator(
 
             helperText?.Content(
                 modifier = Modifier.fillMaxWidth(),
-                extraParameters = OudsLinearProgressIndicatorHelperText.ExtraParameters(nullableProgress)
+                extraParameters = OudsProgressIndicatorHelperText.ExtraParameters(nullableProgress)
             )
         }
     }
@@ -411,77 +402,52 @@ private fun DrawScope.stopIndicator(color: Color, strokeCap: StrokeCap) {
     )
 }
 
-class OudsLinearProgressIndicatorHelperText(
-    val progress: Boolean,
-    val text: String?,
-    val progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.progressAlignment(text),
-    val textAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.textAlignment(progress)
-) : OudsComponentContent<OudsLinearProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
+class OudsDeterminateLinearProgressIndicatorHelperText(
+    progress: Boolean,
+    text: String?,
+    progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.progressAlignment(text),
+    textAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.textAlignment(progress)
+) : OudsLinearProgressIndicatorHelperText(progress, text, progressAlignment, textAlignment)
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
-        internal val progress: (() -> Float)?
-    ) : OudsComponentContent.ExtraParameters()
+class OudsIndeterminateLinearProgressIndicatorHelperText(
+    text: String?,
+    alignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.textAlignment(false)
+) : OudsLinearProgressIndicatorHelperText(false, text, Alignment.CenterHorizontally, alignment)
 
-    private fun Alignment.Horizontal.getBias(layoutDirection: LayoutDirection): Float {
-        val space = 100
-        val horizontalPosition = align(0, space, layoutDirection)
-        return horizontalPosition.toFloat() * 2f / space.toFloat() - 1f
-    }
+open class OudsLinearProgressIndicatorHelperText internal constructor(
+    progress: Boolean,
+    text: String?,
+    progressAlignment: Alignment.Horizontal,
+    textAlignment: Alignment.Horizontal
+) : OudsProgressIndicatorHelperText(progress, text, progressAlignment, textAlignment) {
 
     @Composable
-    private fun Alignment.Horizontal.toTextAlign(): TextAlign {
-        val bias = getBias(LocalLayoutDirection.current)
-        return when {
-            bias > -0.5f && bias < 0.5f -> TextAlign.Center
-            bias <= -0.5f -> TextAlign.Start
-            else -> TextAlign.End
+    override fun getHorizontalArrangement(alignments: List<Alignment.Horizontal>): Arrangement.Horizontal {
+        return if (alignments.size == 1) {
+            val bias = alignments.first().getBias(LocalLayoutDirection.current)
+            when {
+                bias > -0.5f && bias < 0.5f -> Arrangement.Center
+                bias <= -0.5f -> Arrangement.Start
+                else -> Arrangement.End
+            }
+        } else {
+            Arrangement.SpaceBetween
         }
     }
 
     @Composable
-    override fun Content(modifier: Modifier) {
-        val layoutDirection = LocalLayoutDirection.current
-        val textInfo = buildList {
-            if (progress) {
-                extraParameters.progress?.let { progressLambda ->
-                    val progressValue = round(progressLambda() * 100).toInt()
-                    val progressText = stringResource(R.string.core_progressIndicator_progressHelperText_label, progressValue)
-                    add(progressText to progressAlignment)
+    override fun getTextAlign(alignment: Alignment.Horizontal, index: Int, count: Int): TextAlign {
+        return when {
+            count == 1 -> {
+                val bias = alignment.getBias(LocalLayoutDirection.current)
+                when {
+                    bias > -0.5f && bias < 0.5f -> TextAlign.Center
+                    bias <= -0.5f -> TextAlign.Start
+                    else -> TextAlign.End
                 }
             }
-            if (!text.isNullOrBlank()) {
-                add(text to textAlignment)
-            }
-        }
-
-        if (textInfo.isNotEmpty()) {
-            Row(
-                modifier = modifier,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                val textModifier = if (textInfo.size == 1) Modifier.fillMaxWidth() else Modifier
-                textInfo.sortedBy { it.second.getBias(layoutDirection) }
-                    .forEachIndexed { index, it ->
-                        val textAlign = when {
-                            textInfo.size == 1 -> it.second.toTextAlign()
-                            index == 0 -> TextAlign.Start
-                            index == textInfo.lastIndex -> TextAlign.End
-                            else -> TextAlign.Center
-                        }
-                        if (index != 0) {
-                            // The Spacer allows to specify a spacing when using Arrangement.SpaceBetween
-                            Spacer(modifier = Modifier.width(OudsTheme.components.progressIndicator.space.columnGap))
-                        }
-                        Text(
-                            modifier = textModifier,
-                            text = it.first,
-                            style = OudsTheme.typography.label.medium.default,
-                            color = OudsTheme.colorScheme.content.default,
-                            textAlign = textAlign
-                        )
-                    }
-            }
+            index == 0 -> TextAlign.Start
+            else -> TextAlign.End
         }
     }
 }
@@ -544,15 +510,15 @@ internal fun PreviewOudsLinearProgressIndicatorWithHelperText(theme: OudsThemeCo
     val loadingText = "Loading..."
     val multiLineText = "Uploading file\nhttp://download-website.com/directory/file.jpg"
     val helperTexts = listOf(
-        OudsLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.Start),
-        OudsLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.CenterHorizontally),
-        OudsLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.End),
-        OudsLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.Start),
-        OudsLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.CenterHorizontally),
-        OudsLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.End),
-        OudsLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.Start, textAlignment = Alignment.End),
-        OudsLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.End, textAlignment = Alignment.Start),
-        OudsLinearProgressIndicatorHelperText(true, multiLineText, textAlignment = Alignment.CenterHorizontally)
+        OudsDeterminateLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.Start),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.CenterHorizontally),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.End),
+        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.Start),
+        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.CenterHorizontally),
+        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.End),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.Start, textAlignment = Alignment.End),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.End, textAlignment = Alignment.Start),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, multiLineText, textAlignment = Alignment.CenterHorizontally)
     )
 
     PreviewFlowRow(

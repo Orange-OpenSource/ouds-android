@@ -12,12 +12,26 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.LayoutDirection
+import com.orange.ouds.core.R
+import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import kotlin.math.round
 
 /**
  * The status of an [OudsCircularProgressIndicator] or an [OudsLinearProgressIndicator].
@@ -138,6 +152,68 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
             track && monochrome -> progressIndicatorMonochrome.colorContentTrack.value
             track && !monochrome -> progressIndicator.colorContentTrack.value
             else -> Color.Transparent
+        }
+    }
+}
+
+abstract class OudsProgressIndicatorHelperText internal constructor(
+    val progress: Boolean,
+    val text: String?,
+    val progressAlignment: Alignment.Horizontal,
+    val textAlignment: Alignment.Horizontal
+) : OudsComponentContent<OudsProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
+
+    @Composable
+    protected abstract fun getHorizontalArrangement(alignments: List<Alignment.Horizontal>): Arrangement.Horizontal
+
+    @Composable
+    protected abstract fun getTextAlign(alignment: Alignment.Horizontal, index: Int, count: Int): TextAlign
+
+    @ConsistentCopyVisibility
+    data class ExtraParameters internal constructor(
+        internal val progress: (() -> Float)?
+    ) : OudsComponentContent.ExtraParameters()
+
+    protected fun Alignment.Horizontal.getBias(layoutDirection: LayoutDirection): Float {
+        val space = 100
+        val horizontalPosition = align(0, space, layoutDirection)
+        return horizontalPosition.toFloat() * 2f / space.toFloat() - 1f
+    }
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        val layoutDirection = LocalLayoutDirection.current
+        val textInfos = buildList {
+            if (progress) {
+                extraParameters.progress?.let { progressLambda ->
+                    val progressValue = round(progressLambda() * 100).toInt()
+                    val progressText = stringResource(R.string.core_progressIndicator_progressHelperText_label, progressValue)
+                    add(progressText to progressAlignment)
+                }
+            }
+            if (!text.isNullOrBlank()) {
+                add(text to textAlignment)
+            }
+        }.sortedBy { it.second.getBias(layoutDirection) }
+
+        if (textInfos.isNotEmpty()) {
+            Row(
+                modifier = modifier,
+                horizontalArrangement = getHorizontalArrangement(textInfos.map { it.second })
+            ) {
+                textInfos.forEachIndexed { index, textInfo ->
+                    if (index != 0) {
+                        // The Spacer allows to specify a spacing whatever the value of horizontalArrangement is
+                        Spacer(modifier = Modifier.width(OudsTheme.components.progressIndicator.space.columnGap))
+                    }
+                    Text(
+                        text = textInfo.first,
+                        style = OudsTheme.typography.label.medium.default,
+                        color = OudsTheme.colorScheme.content.default,
+                        textAlign = getTextAlign(textInfo.second, index, textInfos.size)
+                    )
+                }
+            }
         }
     }
 }
