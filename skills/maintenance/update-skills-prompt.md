@@ -76,6 +76,7 @@ For each identified change, determine:
 #### Vocabulary terms exclusion policy
 
 **DO NOT add to `understanding-ouds-android-vocabulary/SKILL.md`:**
+- **Any OUDS composable component**, even if it has special behavior (e.g., `OudsColoredBox`, `OudsButton`, `OudsTag`) — components belong in `using-ouds-android/references/` only
 - Component-specific parameter classes and wrapper types (e.g., `OudsListItemLeading`, `OudsTextInputLeadingIcon`, `OudsError`, `OudsButtonIcon`, `OudsControlItemIcon`)
 - Enum classes that are component-specific configuration options (e.g., `OudsButtonAppearance`, `OudsTagStatus`, `OudsBulletListType`)
 - Builder pattern helper classes
@@ -83,12 +84,11 @@ For each identified change, determine:
 - Any class that serves as a parameter type in component APIs
 
 **DO add to vocabulary:**
-- High-level framework entry points (e.g., `OudsTheme`, `OudsThemeContract`)
-- Special composables with unique cross-component behavior (e.g., `OudsColoredBox`)
+- High-level framework entry points that are **not components** (e.g., `OudsTheme`, `OudsThemeContract`)
 - Core architectural terms (e.g., `token`, `Tokenator`, `raw token`, `semantic token`, `component token`)
 - Top-level abstractions (e.g., `theme`, `component`)
 
-**Rule of thumb**: The vocabulary should explain "how OUDS Android architecture works at a high level", not "how to use specific components or their parameters". If it's documented in KDoc and used as a parameter, it stays in component references only.
+**Rule of thumb**: The vocabulary should explain "how OUDS Android architecture works at a high level", not "how to use specific components or their parameters". Components (Ouds* composables) are documented exclusively in `using-ouds-android/references/`, never in vocabulary.
 
 ### Step 3: Update (MINIMAL level of detail)
 
@@ -108,8 +108,7 @@ For each change, apply modifications with a MINIMAL level of detail:
     - Name and 1-line description
     - Available layouts/appearances/sizes
     - 2-3 basic examples **copied directly from official samples**
-    - Note about OudsColoredBox if applicable
-    - Note about specific rules (e.g., "Negative forbidden in OudsColoredBox")
+    - Note about special component interactions if applicable (e.g., "Negative appearance forbidden in OudsColoredBox")
 
 **API modifications**:
 
