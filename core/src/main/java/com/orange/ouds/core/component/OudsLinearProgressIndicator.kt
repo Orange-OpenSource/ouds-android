@@ -408,6 +408,19 @@ private fun DrawScope.stopIndicator(color: Color, strokeCap: StrokeCap) {
     )
 }
 
+/**
+ * Configuration for helper text displayed alongside a determinate linear progress indicator.
+ *
+ * Helper text can display the current progress percentage and/or a custom text label with configurable alignment.
+ *
+ * Note: When both progress and label are displayed, expected values for alignments are [Alignment.Start]
+ * and [Alignment.End]. Other alignment combinations may produce unexpected results.
+ *
+ * @param progress Whether to display the progress percentage (e.g., "75%").
+ * @param label Custom text label to display.
+ * @param progressAlignment Horizontal alignment for the progress percentage text.
+ * @param labelAlignment Horizontal alignment for the custom label text.
+ */
 class OudsDeterminateLinearProgressIndicatorHelperText(
     progress: Boolean = true,
     label: String? = null,
@@ -415,11 +428,25 @@ class OudsDeterminateLinearProgressIndicatorHelperText(
     labelAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.labelAlignment(progress)
 ) : OudsLinearProgressIndicatorHelperText(progress, label, progressAlignment, labelAlignment)
 
+/**
+ * Configuration for helper text displayed alongside an indeterminate linear progress indicator.
+ *
+ * @param label Text label to display.
+ * @param alignment Horizontal alignment for the label text.
+ */
 class OudsIndeterminateLinearProgressIndicatorHelperText(
     label: String,
     alignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.labelAlignment(false)
 ) : OudsLinearProgressIndicatorHelperText(false, label, Alignment.CenterHorizontally, alignment)
 
+/**
+ * Base class for helper text configuration in linear progress indicators.
+ *
+ * @property progress Whether to display the progress percentage.
+ * @property label Custom text label.
+ * @property progressAlignment Horizontal alignment for the progress percentage.
+ * @property labelAlignment Horizontal alignment for the custom label.
+ */
 open class OudsLinearProgressIndicatorHelperText internal constructor(
     val progress: Boolean,
     val label: String?,
@@ -432,7 +459,8 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
         internal val progress: (() -> Float)?
     ) : OudsComponentContent.ExtraParameters()
 
-    protected fun Alignment.Horizontal.getBias(layoutDirection: LayoutDirection): Float {
+    private fun Alignment.Horizontal.getBias(layoutDirection: LayoutDirection): Float {
+        // Calculate alignment bias from -1 (start) to 1 (end) for determining display order
         val space = 100
         val horizontalPosition = align(0, space, layoutDirection)
         return horizontalPosition.toFloat() * 2f / space.toFloat() - 1f
@@ -441,7 +469,7 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val layoutDirection = LocalLayoutDirection.current
-        val textInfos = buildList {
+        val textItems = buildList {
             if (progress) {
                 extraParameters.progress?.let { progressLambda ->
                     add(progressIndicatorHelperTextProgress(progressLambda) to progressAlignment)
@@ -452,21 +480,21 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
             }
         }
 
-        if (textInfos.isNotEmpty()) {
+        if (textItems.isNotEmpty()) {
             Row(
                 modifier = modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                val textModifier = if (textInfos.size == 1) Modifier.fillMaxWidth() else Modifier
-                textInfos.sortedBy { it.second.getBias(layoutDirection) }
-                    .forEachIndexed { index, textInfo ->
-                        if (index != 0) {
+                val textModifier = if (textItems.size == 1) Modifier.fillMaxWidth() else Modifier
+                textItems.sortedBy { it.second.getBias(layoutDirection) }
+                    .forEachIndexed { index, textItem ->
+                        if (index > 0) {
                             // The Spacer allows to specify a spacing when arrangement is Arrangement.SpaceBetween
                             Spacer(modifier = Modifier.width(OudsTheme.components.progressIndicator.space.columnGap))
                         }
                         val textAlign = when {
-                            textInfos.size == 1 -> {
-                                val bias = textInfo.second.getBias(LocalLayoutDirection.current)
+                            textItems.size == 1 -> {
+                                val bias = textItem.second.getBias(LocalLayoutDirection.current)
                                 when {
                                     bias > -0.5f && bias < 0.5f -> TextAlign.Center
                                     bias <= -0.5f -> TextAlign.Start
@@ -478,7 +506,7 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
                         }
                         Text(
                             modifier = textModifier,
-                            text = textInfo.first,
+                            text = textItem.first,
                             style = OudsTheme.typography.label.medium.default,
                             color = OudsTheme.colorScheme.content.default,
                             textAlign = textAlign
