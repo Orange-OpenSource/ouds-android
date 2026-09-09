@@ -239,7 +239,7 @@ fun OudsLinearProgressIndicator(
         status = status,
         track = track,
         stopIndicator = stopIndicator,
-        helperText = OudsIndeterminateLinearProgressIndicatorHelperText(helperText),
+        helperText = helperText?.let { OudsIndeterminateLinearProgressIndicatorHelperText(it) },
         gapSize = gapSize
     )
 }
@@ -409,22 +409,22 @@ private fun DrawScope.stopIndicator(color: Color, strokeCap: StrokeCap) {
 }
 
 class OudsDeterminateLinearProgressIndicatorHelperText(
-    progress: Boolean,
-    text: String?,
-    progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.progressAlignment(text),
-    textAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.textAlignment(progress)
-) : OudsLinearProgressIndicatorHelperText(progress, text, progressAlignment, textAlignment)
+    progress: Boolean = true,
+    label: String? = null,
+    progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.progressAlignment(label),
+    labelAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.labelAlignment(progress)
+) : OudsLinearProgressIndicatorHelperText(progress, label, progressAlignment, labelAlignment)
 
 class OudsIndeterminateLinearProgressIndicatorHelperText(
-    text: String?,
-    alignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.textAlignment(false)
-) : OudsLinearProgressIndicatorHelperText(false, text, Alignment.CenterHorizontally, alignment)
+    label: String,
+    alignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.labelAlignment(false)
+) : OudsLinearProgressIndicatorHelperText(false, label, Alignment.CenterHorizontally, alignment)
 
 open class OudsLinearProgressIndicatorHelperText internal constructor(
     val progress: Boolean,
-    val text: String?,
+    val label: String?,
     val progressAlignment: Alignment.Horizontal,
-    val textAlignment: Alignment.Horizontal
+    val labelAlignment: Alignment.Horizontal
 ) : OudsComponentContent<OudsLinearProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
 
     @ConsistentCopyVisibility
@@ -444,11 +444,11 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
         val textInfos = buildList {
             if (progress) {
                 extraParameters.progress?.let { progressLambda ->
-                    add(progressIndicatorProgressHelperText(progressLambda) to progressAlignment)
+                    add(progressIndicatorHelperTextProgress(progressLambda) to progressAlignment)
                 }
             }
-            if (!text.isNullOrBlank()) {
-                add(text to textAlignment)
+            if (!label.isNullOrBlank()) {
+                add(label to labelAlignment)
             }
         }
 
@@ -495,7 +495,7 @@ private object OudsLinearProgressIndicatorHelperTextDefauts {
         return if (text == null) Alignment.CenterHorizontally else Alignment.Start
     }
 
-    fun textAlignment(progress: Boolean): Alignment.Horizontal {
+    fun labelAlignment(progress: Boolean): Alignment.Horizontal {
         return if (!progress) Alignment.CenterHorizontally else Alignment.End
     }
 }
@@ -544,18 +544,18 @@ private fun PreviewOudsLinearProgressIndicatorWithHelperText() = PreviewOudsLine
 
 @Composable
 internal fun PreviewOudsLinearProgressIndicatorWithHelperText(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    val loadingText = "Loading..."
-    val multiLineText = "Uploading file\nhttp://download-website.com/directory/file.jpg"
+    val loadingLabel = "Loading..."
+    val multiLineLabel = "Uploading file\nhttp://download-website.com/directory/file.jpg"
     val helperTexts = listOf(
         OudsDeterminateLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.Start),
         OudsDeterminateLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.CenterHorizontally),
         OudsDeterminateLinearProgressIndicatorHelperText(true, null, progressAlignment = Alignment.End),
-        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.Start),
-        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.CenterHorizontally),
-        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingText, textAlignment = Alignment.End),
-        OudsDeterminateLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.Start, textAlignment = Alignment.End),
-        OudsDeterminateLinearProgressIndicatorHelperText(true, loadingText, progressAlignment = Alignment.End, textAlignment = Alignment.Start),
-        OudsDeterminateLinearProgressIndicatorHelperText(true, multiLineText, textAlignment = Alignment.CenterHorizontally)
+        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingLabel, labelAlignment = Alignment.Start),
+        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingLabel, labelAlignment = Alignment.CenterHorizontally),
+        OudsDeterminateLinearProgressIndicatorHelperText(false, loadingLabel, labelAlignment = Alignment.End),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, loadingLabel, progressAlignment = Alignment.Start, labelAlignment = Alignment.End),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, loadingLabel, progressAlignment = Alignment.End, labelAlignment = Alignment.Start),
+        OudsDeterminateLinearProgressIndicatorHelperText(true, multiLineLabel, labelAlignment = Alignment.CenterHorizontally)
     )
 
     PreviewFlowRow(
