@@ -21,6 +21,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
@@ -30,12 +33,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorProducer
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -413,32 +422,61 @@ private fun OudsLink(
                 textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(columnGap),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                val iconTint = if (indicator != null) chevronColor.value else contentColor.value
-                val leadingIcon = icon != null || indicator == OudsLinkIndicator.Previous
-                if (leadingIcon) {
+            val iconTint = if (indicator != null) chevronColor.value else contentColor.value
+            val trailingIndicator = indicator != null && indicator != OudsLinkIndicator.Previous
+            if (trailingIndicator) {
+                val inlineTrailingIconId = "trailingIcon"
+                val text = buildAnnotatedString {
+                    append(label)
+                    appendInlineContent(inlineTrailingIconId, "[$inlineTrailingIconId]")
+                }
+                val inlineTrailingIcon = mapOf(
+                    Pair(
+                        inlineTrailingIconId,
+                        InlineTextContent(
+                            Placeholder(
+                                width = with(LocalDensity.current) {
+                                    (size.iconSize() + columnGap).toSp()
+                                },
+                                height = with(LocalDensity.current) {
+                                    size.iconSize().toSp()
+                                },
+                                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                            )
+                        ) {
+                            LinkIcon(
+                                modifier = Modifier.padding(start = columnGap),
+                                icon = icon,
+                                indicator = indicator,
+                                size = size,
+                                tint = iconTint
+                            )
+                        },
+                    )
+                )
+
+                BasicText(
+                    text = text,
+                    inlineContent = inlineTrailingIcon,
+                    color = ColorProducer { contentColor.value },
+                    style = textStyle
+                )
+            } else {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(columnGap),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     LinkIcon(
                         icon = icon,
                         indicator = indicator,
                         size = size,
                         tint = iconTint
                     )
-                }
-                Text(
-                    modifier = Modifier.weight(1f, fill = false),
-                    text = label,
-                    color = contentColor.value,
-                    style = textStyle
-                )
-                if (!leadingIcon) {
-                    LinkIcon(
-                        icon = icon,
-                        indicator = indicator,
-                        size = size,
-                        tint = iconTint
+                    Text(
+                        modifier = Modifier.weight(1f, fill = false),
+                        text = label,
+                        color = contentColor.value,
+                        style = textStyle
                     )
                 }
             }
@@ -447,28 +485,25 @@ private fun OudsLink(
 }
 
 @Composable
-private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color) {
-    with(OudsTheme.components.link) {
-        val iconSize = size.getTokenValue(default = this.size.iconDefault, small = this.size.iconSmall)
-        val linkIcon = when {
-            icon != null -> icon
-            indicator != null -> {
-                val indicatorPainterResId = with(OudsTheme.drawableResources.component.link) {
-                    when (indicator) {
-                        OudsLinkIndicator.Previous -> previous
-                        OudsLinkIndicator.Next -> next
-                        OudsLinkIndicator.External -> externalLink
-                    }
+private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color, modifier: Modifier = Modifier) {
+    val linkIcon = when {
+        icon != null -> icon
+        indicator != null -> {
+            val indicatorPainterResId = with(OudsTheme.drawableResources.component.link) {
+                when (indicator) {
+                    OudsLinkIndicator.Previous -> previous
+                    OudsLinkIndicator.Next -> next
+                    OudsLinkIndicator.External -> externalLink
                 }
-                OudsLinkIcon(painterResource(indicatorPainterResId))
             }
-            else -> null
+            OudsLinkIcon(painterResource(indicatorPainterResId))
         }
-        linkIcon?.Content(
-            modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
-            extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
-        )
+        else -> null
     }
+    linkIcon?.Content(
+        modifier = modifier.iconSize(size.iconSize(), icon?.tinted.orElse { true }),
+        extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
+    )
 }
 
 @Composable
@@ -562,6 +597,16 @@ enum class OudsLinkSize {
         return when (this) {
             Default -> default
             Small -> small
+        }
+    }
+
+    @Composable
+    internal fun iconSize(): Dp {
+        return with(OudsTheme.components.link) {
+            when (this@OudsLinkSize) {
+                Default -> size.iconDefault
+                Small -> size.iconSmall
+            }
         }
     }
 }
