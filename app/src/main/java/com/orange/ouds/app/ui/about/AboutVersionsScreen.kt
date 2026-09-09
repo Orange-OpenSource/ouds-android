@@ -14,18 +14,10 @@ package com.orange.ouds.app.ui.about
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -36,6 +28,10 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.declaredMemberProperties
@@ -74,9 +70,9 @@ private fun VersionsSectionTitle(@StringRes titleRes: Int, modifier: Modifier = 
     ListItem(
         modifier = modifier.listItemHorizontalPadding(),
         headlineContent = {
-            Text(
+            OudsHeadingText(
                 text = stringResource(id = titleRes),
-                style = OudsTheme.typography.heading.medium
+                size = OudsHeadingTextSize.Medium
             )
         }
     )
@@ -87,16 +83,13 @@ private fun Version(version: Version) {
     ListItem(
         modifier = Modifier.listItemHorizontalPadding(),
         headlineContent = {
-            Text(
+            OudsBodyText(
                 text = version.name,
-                style = OudsTheme.typography.body.large.strong
+                weight = OudsTextWeight.Strong
             )
         },
         trailingContent = {
-            Text(
-                text = version.value,
-                style = OudsTheme.typography.body.large.default
-            )
+            OudsBodyText(text = version.value)
         }
     )
 }

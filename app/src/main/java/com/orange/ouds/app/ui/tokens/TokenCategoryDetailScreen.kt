@@ -68,6 +68,13 @@ import com.orange.ouds.app.ui.utilities.composable.ImageIllustration
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsBodyTextSize
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsBorderStyle
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsTypography
@@ -103,14 +110,14 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                             .padding(top = OudsTheme.spaces.fixed.medium)
                             .clickable { onSubcategoryClick(subcategory.id) }
                     ) {
-                        Text(
+                        OudsHeadingText(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = OudsTheme.spaces.fixed.medium, horizontal = OudsTheme.grids.margin),
                             text = stringResource(id = subcategory.nameRes),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            style = OudsTheme.typography.heading.medium
+                            size = OudsHeadingTextSize.Medium
                         )
                     }
                 }
@@ -121,7 +128,7 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                     }
                     stickyHeader {
                         tokenProperty.nameRes?.let {
-                            Text(
+                            OudsHeadingText(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .background(color = OudsTheme.colorScheme.background.primary)
@@ -130,10 +137,9 @@ fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClic
                                         heading()
                                     },
                                 text = stringResource(id = tokenProperty.nameRes),
-                                color = OudsTheme.colorScheme.content.default,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.heading.medium
+                                size = OudsHeadingTextSize.Medium
                             )
                         }
                     }
@@ -213,10 +219,11 @@ private fun TokenRow(tokenProperty: TokenProperty<out TokenCategory<*>>, token: 
                     OudsTheme.typography.body.large.strong
                 }
             )
-            Text(
+            OudsBodyText(
                 modifier = Modifier.fillMaxWidth(),
                 text = token.literalValue,
-                style = OudsTheme.typography.body.medium.default.copy(color = OudsTheme.colorScheme.content.muted)
+                size = OudsBodyTextSize.Medium,
+                color = OudsTheme.colorScheme.content.muted
             )
         }
     }
@@ -290,10 +297,10 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.small)
             ) {
-                Text(
+                OudsLabelText(
                     text = stringResource(R.string.app_tokens_common_viewCodeExample_label),
-                    style = OudsTheme.typography.label.large.strong,
-                    color = OudsTheme.colorScheme.content.default
+                    size = OudsLabelTextSize.Large,
+                    weight = OudsTextWeight.Strong,
                 )
                 Icon(
                     modifier = Modifier.rotate(linkChevronRotation),

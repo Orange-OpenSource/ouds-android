@@ -42,6 +42,8 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.painterResource
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -185,13 +187,12 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
         else -> null
     }
     if (textResId != null) {
-        Text(
+        OudsBodyText(
             modifier = modifier
                 .background(color = OudsTheme.colorScheme.background.primary)
                 .background(color = OudsTheme.colorScheme.surface.secondary),
             text = stringResource(id = textResId),
-            color = OudsTheme.colorScheme.content.default,
-            style = OudsTheme.typography.body.medium.default
+            size = OudsBodyTextSize.Medium
         )
     }
 }

@@ -15,16 +15,17 @@ package com.orange.ouds.app.ui.utilities.composable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsLabelText
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
@@ -36,11 +37,10 @@ fun ComponentVersion(version: String) {
             .padding(bottom = OudsTheme.spaces.fixed.medium),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
+        OudsLabelText(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.app_components_common_version_label),
-            style = OudsTheme.typography.label.large.strong,
-            color = OudsTheme.colorScheme.content.default
+            weight = OudsTextWeight.Strong
         )
         OudsTag(modifier = Modifier.padding(start = 10.dp), label = version, appearance = OudsTagAppearance.Muted, status = OudsTagStatus.Info())
     }
