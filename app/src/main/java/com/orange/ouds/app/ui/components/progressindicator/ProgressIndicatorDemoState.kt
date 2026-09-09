@@ -28,7 +28,9 @@ open class ProgressIndicatorDemoState(
     track: Boolean,
     gapSize: OudsProgressIndicatorGapSize,
     animated: Boolean,
-    onColoredBox: Boolean
+    onColoredBox: Boolean,
+    helperTextProgress: Boolean,
+    helperTextLabel: String?
 ) {
 
     companion object {
@@ -44,7 +46,9 @@ open class ProgressIndicatorDemoState(
                         track,
                         gapSize,
                         animated,
-                        onColoredBox
+                        onColoredBox,
+                        helperTextProgress,
+                        helperTextLabel
                     )
                 }
             },
@@ -56,7 +60,9 @@ open class ProgressIndicatorDemoState(
                     list[3] as Boolean,
                     list[4] as OudsProgressIndicatorGapSize,
                     list[5] as Boolean,
-                    list[6] as Boolean
+                    list[6] as Boolean,
+                    list[7] as Boolean,
+                    list[8] as String?
                 )
             }
         )
@@ -76,6 +82,10 @@ open class ProgressIndicatorDemoState(
 
     var onColoredBox: Boolean by mutableStateOf(onColoredBox)
 
+    var helperTextProgress: Boolean by mutableStateOf(helperTextProgress)
+
+    var helperTextLabel: String? by mutableStateOf(helperTextLabel)
+
     val progress: Float
         get() = progressText.toFloatOrNull() ?: 0f
 
@@ -87,6 +97,9 @@ open class ProgressIndicatorDemoState(
 
     val statusDropdownMenuEnabled: Boolean
         get() = !onColoredBox
+
+    val helperTextProgressEnabled: Boolean
+        get() = type == Type.Determinate
 
     enum class Type(@StringRes val labelRes: Int) {
         Determinate(R.string.app_components_progressIndicator_determinate_tech),

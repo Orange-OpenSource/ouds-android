@@ -149,7 +149,7 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
 }
 
 @Composable
-internal fun progressIndicatorProgressHelperText(progress: () -> Float): String {
+internal fun progressIndicatorHelperTextProgress(progress: () -> Float): String {
     val progressValue = round(progress() * 100).toInt()
     return stringResource(R.string.core_progressIndicator_progressHelperText_label, progressValue)
 }

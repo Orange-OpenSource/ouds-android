@@ -114,6 +114,18 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             onCheckedChange = { animated = it },
             enabled = animatedSwitchEnabled
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_progressIndicator_helperTextProgress_tech),
+            checked = helperTextProgress,
+            onCheckedChange = { helperTextProgress = it },
+            enabled = helperTextProgressEnabled
+        )
+        CustomizationTextInput(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_progressIndicator_helperTextLabel_tech),
+            value = helperTextLabel.orEmpty(),
+            onValueChange = { value -> helperTextLabel = value }
+        )
     }
 }
 
