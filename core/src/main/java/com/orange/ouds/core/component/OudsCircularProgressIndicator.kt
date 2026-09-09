@@ -386,13 +386,13 @@ internal fun OudsCircularProgressIndicator(
 }
 
 class OudsDeterminateCircularProgressIndicatorHelperText(
-    progress: Boolean,
-    text: String?
-) : OudsCircularProgressIndicatorHelperText(progress, text)
+    progress: Boolean = true,
+    label: String? = null
+) : OudsCircularProgressIndicatorHelperText(progress, label)
 
 open class OudsCircularProgressIndicatorHelperText internal constructor(
     val progress: Boolean,
-    val text: String?
+    val label: String?
 ) : OudsComponentContent<OudsCircularProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
 
     @ConsistentCopyVisibility
@@ -402,7 +402,7 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        if (progress || !text.isNullOrBlank()) {
+        if (progress || !label.isNullOrBlank()) {
             Row(
                 modifier = modifier,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.components.progressIndicator.space.columnGap)
@@ -412,15 +412,15 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
                 if (progress) {
                     extraParameters.progress?.let { progressLambda ->
                         Text(
-                            text = progressIndicatorProgressHelperText(progressLambda),
+                            text = progressIndicatorHelperTextProgress(progressLambda),
                             style = style,
                             color = color
                         )
                     }
                 }
-                if (!text.isNullOrBlank()) {
+                if (!label.isNullOrBlank()) {
                     Text(
-                        text = text,
+                        text = label,
                         style = style,
                         color = color
                     )

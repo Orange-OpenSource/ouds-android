@@ -351,6 +351,10 @@
     <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
     <string name="app_components_progressIndicator_track_tech" translatable="false">Track</string>
     <string name="app_components_progressIndicator_gapSize_tech" translatable="false">Gap size</string>
+    <string name="app_components_progressIndicator_helperTextProgress_tech" translatable="false">Helper text progress</string>
+    <string name="app_components_progressIndicator_helperTextLabel_tech" translatable="false">Helper text label</string>
+    <string name="app_components_progressIndicator_helperTextProgressAlignment_tech" translatable="false">Helper text progress alignment</string>
+    <string name="app_components_progressIndicator_helperTextLabelAlignment_tech" translatable="false">Helper text label alignment</string>
 
     <!-- Components: radio button -->
     <string name="app_components_radioButton_tech" translatable="false">Radio button</string>

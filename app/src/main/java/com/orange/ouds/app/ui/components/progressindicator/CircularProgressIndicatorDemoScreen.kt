@@ -20,6 +20,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCircularProgressIndicator
+import com.orange.ouds.core.component.OudsDeterminateCircularProgressIndicatorHelperText
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -42,18 +43,28 @@ private fun CircularProgressIndicatorDemoContent(state: ProgressIndicatorDemoSta
     with(state) {
         when (type) {
             ProgressIndicatorDemoState.Type.Determinate -> {
+                val circularProgressIndicatorHelperText = if (helperTextProgress || !helperTextLabel.isNullOrBlank()) {
+                    OudsDeterminateCircularProgressIndicatorHelperText(
+                        progress = helperTextProgress,
+                        label = helperTextLabel
+                    )
+                } else {
+                    null
+                }
                 OudsCircularProgressIndicator(
                     progress = { progress },
                     status = status,
                     track = track,
-                    gapSize = gapSize
+                    gapSize = gapSize,
+                    helperText = circularProgressIndicatorHelperText
                 )
             }
             ProgressIndicatorDemoState.Type.Indeterminate -> {
                 OudsCircularProgressIndicator(
                     status = status,
                     track = track,
-                    gapSize = gapSize
+                    gapSize = gapSize,
+                    helperText = helperTextLabel
                 )
             }
         }
@@ -65,6 +76,23 @@ private fun Code.Builder.circularProgressIndicatorDemoCodeSnippet(state: Progres
 
     functionCall("OudsCircularProgressIndicator") {
         progressIndicatorArguments(state = state)
+        with(state) {
+            when (type) {
+                ProgressIndicatorDemoState.Type.Determinate -> {
+                    if (helperTextProgress || !helperTextLabel.isNullOrBlank()) {
+                        constructorCallArgument<OudsDeterminateCircularProgressIndicatorHelperText>("helperText") {
+                            typedArgument("progress", helperTextProgress)
+                            typedArgument("label", helperTextLabel)
+                        }
+                    }
+                }
+                ProgressIndicatorDemoState.Type.Indeterminate -> {
+                    if (!helperTextLabel.isNullOrBlank()) {
+                        typedArgument("helperText", helperTextLabel)
+                    }
+                }
+            }
+        }
     }
 }
 

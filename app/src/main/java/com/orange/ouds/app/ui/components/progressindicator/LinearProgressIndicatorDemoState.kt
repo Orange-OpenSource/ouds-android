@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Companion.InitialProgressValue
 import com.orange.ouds.app.ui.components.progressindicator.ProgressIndicatorDemoState.Type
 import com.orange.ouds.core.component.OudsProgressIndicatorDefaults
@@ -33,8 +34,11 @@ fun rememberLinearProgressIndicatorDemoState(
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     animated: Boolean = true,
     onColoredBox: Boolean = false,
+    helperTextProgress: Boolean = true,
+    helperTextLabel: String? = null,
     stopIndicator: Boolean = false,
-    helperText: String? = null
+    helperTextProgressAlignment: LinearProgressIndicatorDemoState.HelperTextAlignment = LinearProgressIndicatorDemoState.HelperTextAlignment.CenterHorizontally,
+    helperTextLabelAlignment: LinearProgressIndicatorDemoState.HelperTextAlignment = LinearProgressIndicatorDemoState.HelperTextAlignment.CenterHorizontally
 ) = rememberSaveable(
     progressText,
     type,
@@ -43,11 +47,27 @@ fun rememberLinearProgressIndicatorDemoState(
     gapSize,
     animated,
     onColoredBox,
+    helperTextProgress,
+    helperTextLabel,
     stopIndicator,
-    helperText,
+    helperTextProgressAlignment,
+    helperTextLabelAlignment,
     saver = LinearProgressIndicatorDemoState.Saver
 ) {
-    LinearProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox, stopIndicator, helperText)
+    LinearProgressIndicatorDemoState(
+        progressText,
+        type,
+        status,
+        track,
+        gapSize,
+        animated,
+        onColoredBox,
+        helperTextProgress,
+        helperTextLabel,
+        stopIndicator,
+        helperTextProgressAlignment,
+        helperTextLabelAlignment
+    )
 }
 
 class LinearProgressIndicatorDemoState(
@@ -58,9 +78,12 @@ class LinearProgressIndicatorDemoState(
     gapSize: OudsProgressIndicatorGapSize,
     animated: Boolean,
     onColoredBox: Boolean,
+    helperTextProgress: Boolean,
+    helperTextLabel: String?,
     stopIndicator: Boolean,
-    helperText: String?
-) : ProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox) {
+    helperTextProgressAlignment: HelperTextAlignment,
+    helperTextLabelAlignment: HelperTextAlignment
+) : ProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox, helperTextProgress, helperTextLabel) {
 
     companion object {
         val Saver = listSaver(
@@ -69,7 +92,8 @@ class LinearProgressIndicatorDemoState(
                     listOf(
                         with(ProgressIndicatorDemoState.Saver) { save(state) },
                         stopIndicator,
-                        helperText
+                        helperTextProgressAlignment,
+                        helperTextLabelAlignment
                     )
                 }
             },
@@ -84,8 +108,11 @@ class LinearProgressIndicatorDemoState(
                         gapSize,
                         animated,
                         onColoredBox,
+                        helperTextProgress,
+                        helperTextLabel,
                         list[1] as Boolean,
-                        list[2] as String?
+                        list[2] as HelperTextAlignment,
+                        list[3] as HelperTextAlignment
                     )
                 }
             }
@@ -94,8 +121,26 @@ class LinearProgressIndicatorDemoState(
 
     var stopIndicator by mutableStateOf(stopIndicator)
 
-    var helperText by mutableStateOf(helperText)
+    var helperTextProgressAlignment by mutableStateOf(helperTextProgressAlignment)
+
+    var helperTextLabelAlignment by mutableStateOf(helperTextLabelAlignment)
 
     val stopIndicatorSwitchEnabled: Boolean
         get() = type == Type.Determinate
+
+    val helperTextProgressAlignmentEnabled: Boolean
+        get() = helperTextProgress && helperTextProgressEnabled
+
+    val helperTextLabelAlignmentEnabled: Boolean
+        get() = !helperTextLabel.isNullOrBlank()
+
+    enum class HelperTextAlignment {
+        Start, CenterHorizontally, End;
+
+        fun toHorizontalAlignment() = when (this) {
+            Start -> Alignment.Start
+            CenterHorizontally -> Alignment.CenterHorizontally
+            End -> Alignment.End
+        }
+    }
 }
