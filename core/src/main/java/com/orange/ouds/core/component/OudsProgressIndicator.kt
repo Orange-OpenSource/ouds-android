@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -126,7 +127,7 @@ object OudsProgressIndicatorDefaults {
      * The default gap size.
      */
     val GapSize = OudsProgressIndicatorGapSize.Default
-    
+
     val CircularSize = 48.dp
 }
 
@@ -150,6 +151,6 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
 
 @Composable
 internal fun progressIndicatorHelperTextProgress(progress: () -> Float): String {
-    val progressValue = round(progress() * 100).toInt()
+    val progressValue = remember(progress()) { round(progress() * 100).toInt() }
     return stringResource(R.string.core_progressIndicator_progressHelperText_label, progressValue)
 }

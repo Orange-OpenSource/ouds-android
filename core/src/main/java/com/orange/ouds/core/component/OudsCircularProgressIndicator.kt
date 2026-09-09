@@ -385,11 +385,25 @@ internal fun OudsCircularProgressIndicator(
     }
 }
 
+/**
+ * Configuration for helper text displayed alongside a determinate circular progress indicator.
+ *
+ * Helper text can display the current progress percentage and/or a custom text label.
+ *
+ * @param progress Whether to display the progress percentage (e.g., "75%").
+ * @param label Custom text label to display.
+ */
 class OudsDeterminateCircularProgressIndicatorHelperText(
     progress: Boolean = true,
     label: String? = null
 ) : OudsCircularProgressIndicatorHelperText(progress, label)
 
+/**
+ * Base class for helper text configuration in circular progress indicators.
+ *
+ * @property progress Whether to display the progress percentage.
+ * @property label Custom text label.
+ */
 open class OudsCircularProgressIndicatorHelperText internal constructor(
     val progress: Boolean,
     val label: String?
