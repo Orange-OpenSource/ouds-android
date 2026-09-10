@@ -35,7 +35,7 @@
 
     <string name="core_pinCodeInput_paste_label">Coller</string>
 
-    <string name="core_progressIndicator_progressHelperText_label">%1$d\u00A0%%</string>
+    <string name="core_progressIndicator_helperTextProgress_label">%1$d\u00A0%%</string>
 
     <string name="core_textInput_empty_a11y">Vide</string>
 

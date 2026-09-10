@@ -35,7 +35,7 @@
 
     <string name="core_pinCodeInput_paste_label">Paste</string>
 
-    <string name="core_progressIndicator_progressHelperText_label">%1$d%%</string>
+    <string name="core_progressIndicator_helperTextProgress_label">%1$d%%</string>
 
     <string name="core_textInput_empty_a11y">Empty</string>
 
