@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -74,6 +75,9 @@ import kotlin.math.PI
  *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
  *   appearance is needed.
  * @param gapSize The size of the gap between the progress indicator and the track.
+ * @param helperText Configuration for helper text displayed below the progress indicator. See [OudsDeterminateCircularProgressIndicatorHelperText].
+ * @param indicatorSize The size (diameter) of the circular progress indicator. Use this parameter instead of applying size modifiers to control
+ *   the indicator size.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
  */
@@ -85,7 +89,7 @@ fun OudsCircularProgressIndicator(
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default,
     helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null,
-    progressSize: Dp = OudsProgressIndicatorDefaults.CircularSize
+    indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = progress,
@@ -94,7 +98,7 @@ fun OudsCircularProgressIndicator(
         track = track,
         gapSize = gapSize,
         helperText = helperText,
-        progressSize = progressSize
+        indicatorSize = indicatorSize
     )
 }
 
@@ -213,6 +217,9 @@ fun OudsCircularProgressIndicator(
  *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
  *   appearance is needed.
  * @param gapSize The size of the gap between the progress indicator and the track.
+ * @param helperText Text label to display below the progress indicator.
+ * @param indicatorSize The size (diameter) of the circular progress indicator. Use this parameter instead of applying size modifiers to control
+ *   the indicator size.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
  */
@@ -223,7 +230,7 @@ fun OudsCircularProgressIndicator(
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     helperText: String? = null,
-    progressSize: Dp = OudsProgressIndicatorDefaults.CircularSize
+    indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = null,
@@ -232,7 +239,7 @@ fun OudsCircularProgressIndicator(
         track = track,
         gapSize = gapSize,
         helperText = OudsCircularProgressIndicatorHelperText(false, helperText),
-        progressSize = progressSize
+        indicatorSize = indicatorSize
     )
 }
 
@@ -330,7 +337,7 @@ internal fun OudsCircularProgressIndicator(
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     helperText: OudsCircularProgressIndicatorHelperText? = null,
-    progressSize: Dp = OudsProgressIndicatorDefaults.CircularSize,
+    indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize,
     color: Color? = null
 ) {
     with(OudsTheme.components.progressIndicator) {
@@ -340,10 +347,9 @@ internal fun OudsCircularProgressIndicator(
             verticalArrangement = Arrangement.spacedBy(space.paddingBlock)
         ) {
             val scale = LocalConfiguration.current.fontScale
-            val scaledProgressSize = progressSize * scale
+            val scaledIndicatorSize = indicatorSize * scale
 
-            // We deliberatly set the modifier here because we want the user to be able to control the circle size
-            BoxWithConstraints(modifier = Modifier.size(scaledProgressSize)) {
+            BoxWithConstraints(modifier = Modifier.size(scaledIndicatorSize)) {
                 // The stroke width is equal to 25% of the radius, 12.5% of the diameter
                 val strokeWidth = maxWidth * 0.125f
                 val gapSizeValue = when (gapSize) {
@@ -428,7 +434,8 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
                         Text(
                             text = progressIndicatorHelperTextProgress(progressLambda),
                             style = style,
-                            color = color
+                            color = color,
+                            textAlign = TextAlign.Center
                         )
                     }
                 }
@@ -436,7 +443,8 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
                     Text(
                         text = label,
                         style = style,
-                        color = color
+                        color = color,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -500,7 +508,7 @@ internal fun PreviewOudsCircularProgressIndicatorSized(theme: OudsThemeContract,
         content = { item ->
             val gapSize = enumValueOf<OudsProgressIndicatorGapSize>(item)
             OudsCircularProgressIndicator(
-                progressSize = size.dp,
+                indicatorSize = size.dp,
                 progress = { 0.75f },
                 gapSize = gapSize
             )

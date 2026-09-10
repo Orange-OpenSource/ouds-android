@@ -72,8 +72,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
  *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
- *   progress value.
+ * @param helperText Text label to display below the progress indicator. For more control over helper text display (including progress percentage),
+ *   use the overload that accepts [OudsDeterminateLinearProgressIndicatorHelperText].
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
@@ -89,7 +89,7 @@ fun OudsLinearProgressIndicator(
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
 ) {
     OudsLinearProgressIndicator(
-        nullableProgress = progress,
+        progress = progress,
         modifier = modifier,
         status = status,
         track = track,
@@ -121,8 +121,8 @@ fun OudsLinearProgressIndicator(
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
  *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
- *   progress value.
+ * @param helperText Configuration for helper text displayed below the progress indicator. Allows displaying progress percentage and/or custom label
+ *   with configurable alignment. See [OudsDeterminateLinearProgressIndicatorHelperText].
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
@@ -218,8 +218,8 @@ fun OudsLinearProgressIndicator(
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
  *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
- *   progress value.
+ * @param helperText Text label to display below the progress indicator. For more control over alignment,
+ *   use the overload that accepts [OudsIndeterminateLinearProgressIndicatorHelperText].
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
@@ -264,8 +264,8 @@ fun OudsLinearProgressIndicator(
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
  *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
- *   progress value.
+ * @param helperText Configuration for helper text displayed below the progress indicator with configurable alignment.
+ *   See [OudsIndeterminateLinearProgressIndicatorHelperText].
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
@@ -469,7 +469,7 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
     @Composable
     override fun Content(modifier: Modifier) {
         val layoutDirection = LocalLayoutDirection.current
-        val textItems = buildList {
+        val textInfos = buildList {
             if (progress) {
                 extraParameters.progress?.let { progressLambda ->
                     add(progressIndicatorHelperTextProgress(progressLambda) to progressAlignment)
@@ -480,33 +480,36 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
             }
         }
 
-        if (textItems.isNotEmpty()) {
+        if (textInfos.isNotEmpty()) {
             Row(
                 modifier = modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                val textModifier = if (textItems.size == 1) Modifier.fillMaxWidth() else Modifier
-                textItems.sortedBy { it.second.getBias(layoutDirection) }
-                    .forEachIndexed { index, textItem ->
+                val textModifier = if (textInfos.size == 1) Modifier.fillMaxWidth() else Modifier
+                // Sort texts by their bias to know which one should be displayed first
+                textInfos.sortedBy { it.second.getBias(layoutDirection) }
+                    .forEachIndexed { index, textInfo ->
                         if (index > 0) {
                             // The Spacer allows to specify a spacing when arrangement is Arrangement.SpaceBetween
                             Spacer(modifier = Modifier.width(OudsTheme.components.progressIndicator.space.columnGap))
                         }
                         val textAlign = when {
-                            textItems.size == 1 -> {
-                                val bias = textItem.second.getBias(LocalLayoutDirection.current)
+                            // If there is only one text, apply the fillMaxWidth modifier and compute the bias to get the text alignment
+                            textInfos.size == 1 -> {
+                                val bias = textInfo.second.getBias(LocalLayoutDirection.current)
                                 when {
                                     bias > -0.5f && bias < 0.5f -> TextAlign.Center
                                     bias <= -0.5f -> TextAlign.Start
                                     else -> TextAlign.End
                                 }
                             }
+                            // If both texts are displayed, align the first one with TextAlign.Start and the second one with TextAlign.End
                             index == 0 -> TextAlign.Start
                             else -> TextAlign.End
                         }
                         Text(
                             modifier = textModifier,
-                            text = textItem.first,
+                            text = textInfo.first,
                             style = OudsTheme.typography.label.medium.default,
                             color = OudsTheme.colorScheme.content.default,
                             textAlign = textAlign

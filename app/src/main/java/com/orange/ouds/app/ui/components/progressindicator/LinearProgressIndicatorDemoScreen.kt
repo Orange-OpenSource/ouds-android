@@ -49,15 +49,15 @@ private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressI
         ProgressIndicatorDemoBottomSheetContent(state = state)
         val helperTextAlignments = LinearProgressIndicatorDemoState.HelperTextAlignment.entries
         CustomizationFilterChips(
-            applyTopPadding = false,
-            label = stringResource(R.string.app_components_progressIndicator_helperTextProgressAlignment_tech),
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_helperTextProgressAlignment_tech),
             chips = helperTextAlignments.map { CustomizationFilterChip(it.name.toSentenceCase(), helperTextProgressAlignmentEnabled) },
             selectedChipIndex = helperTextAlignments.indexOf(helperTextProgressAlignment),
             onSelectionChange = { index -> helperTextProgressAlignment = helperTextAlignments[index] }
         )
         CustomizationFilterChips(
-            applyTopPadding = false,
-            label = stringResource(R.string.app_components_progressIndicator_helperTextLabelAlignment_tech),
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_helperTextLabelAlignment_tech),
             chips = helperTextAlignments.map { CustomizationFilterChip(it.name.toSentenceCase(), helperTextLabelAlignmentEnabled) },
             selectedChipIndex = helperTextAlignments.indexOf(helperTextLabelAlignment),
             onSelectionChange = { index -> helperTextLabelAlignment = helperTextAlignments[index] }
@@ -129,7 +129,7 @@ private fun LinearProgressIndicatorDemoContent(state: LinearProgressIndicatorDem
 
 private fun Code.Builder.linearProgressIndicatorDemoCodeSnippet(state: LinearProgressIndicatorDemoState) {
     progressIndicatorAnimationInitialization(state)
-    
+
     functionCall("OudsLinearProgressIndicator") {
         progressIndicatorArguments(state = state)
         with(state) {
