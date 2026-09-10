@@ -128,6 +128,9 @@ object OudsProgressIndicatorDefaults {
      */
     val GapSize = OudsProgressIndicatorGapSize.Default
 
+    /**
+     * The default size for the circular progress indicator.
+     */
     val CircularSize = 48.dp
 }
 
@@ -152,5 +155,5 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
 @Composable
 internal fun progressIndicatorHelperTextProgress(progress: () -> Float): String {
     val progressValue = remember(progress()) { round(progress() * 100).toInt() }
-    return stringResource(R.string.core_progressIndicator_progressHelperText_label, progressValue)
+    return stringResource(R.string.core_progressIndicator_helperTextProgress_label, progressValue)
 }
