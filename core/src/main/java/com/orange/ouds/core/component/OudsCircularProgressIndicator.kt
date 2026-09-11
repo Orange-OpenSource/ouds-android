@@ -346,7 +346,7 @@ internal fun OudsCircularProgressIndicator(
         Column(
             modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(space.paddingBlock)
+            verticalArrangement = Arrangement.spacedBy(space.paddingBlock, alignment = Alignment.CenterVertically)
         ) {
             val scale = LocalConfiguration.current.fontScale
             val scaledIndicatorSize = indicatorSize * scale
