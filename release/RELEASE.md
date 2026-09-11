@@ -32,7 +32,9 @@ This file lists all the steps to follow when releasing a new version of OUDS And
     ./gradlew prepareRelease -Pversion=X.Y.Z
     ```
 
-- Verify the changes mentioned above, then commit and push.
+- Verify the changes mentioned above, then commit
+
+- Follow the steps to update project skills, then commit and push.
 
 - Create a new pull request named `chore: prepare release X.Y.Z` on GitHub to merge your branch into `develop`.
 
