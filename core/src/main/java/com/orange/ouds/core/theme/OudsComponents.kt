@@ -1651,6 +1651,7 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Space internal constructor(
+            val columnGap: Dp,
             val paddingBlock: Dp
         )
     }
@@ -2833,6 +2834,7 @@ private fun OudsProgressIndicatorTokens.getProgressIndicator(): OudsComponents.P
             linearIndicatorHeight = sizeLinearIndicatorHeight.dp
         ),
         space = OudsComponents.ProgressIndicator.Space(
+            columnGap = spaceColumnGap.value,
             paddingBlock = spacePaddingBlock.value
         )
     )

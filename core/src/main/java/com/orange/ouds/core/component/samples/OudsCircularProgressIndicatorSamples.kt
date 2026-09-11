@@ -15,6 +15,7 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsCircularProgressIndicator
+import com.orange.ouds.core.component.OudsDeterminateCircularProgressIndicatorHelperText
 import com.orange.ouds.core.utilities.OudsPreview
 
 @Composable
@@ -23,8 +24,24 @@ internal fun OudsCircularProgressIndicatorDeterminateSample() {
 }
 
 @Composable
+internal fun OudsCircularProgressIndicatorDeterminateWithHelperTextSample() {
+    OudsCircularProgressIndicator(
+        progress = { 0.75f },
+        helperText = OudsDeterminateCircularProgressIndicatorHelperText(
+            progress = true,
+            label = "Loading..."
+        )
+    )
+}
+
+@Composable
 internal fun OudsCircularProgressIndicatorIndeterminateSample() {
     OudsCircularProgressIndicator()
+}
+
+@Composable
+internal fun OudsCircularProgressIndicatorIndeterminateWithHelperTextSample() {
+    OudsCircularProgressIndicator(helperText = "Please wait...")
 }
 
 @PreviewLightDark
@@ -35,6 +52,18 @@ private fun PreviewOudsCircularProgressIndicatorDeterminateSample() = OudsPrevie
 
 @PreviewLightDark
 @Composable
+private fun PreviewOudsCircularProgressIndicatorDeterminateWithHelperTextSample() = OudsPreview {
+    OudsCircularProgressIndicatorDeterminateWithHelperTextSample()
+}
+
+@PreviewLightDark
+@Composable
 private fun PreviewOudsCircularProgressIndicatorIndeterminateSample() = OudsPreview {
     OudsCircularProgressIndicatorIndeterminateSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsCircularProgressIndicatorIndeterminateWithHelperTextSample() = OudsPreview {
+    OudsCircularProgressIndicatorIndeterminateWithHelperTextSample()
 }

@@ -25,17 +25,18 @@ enum class Component {
     BulletList,
     Button,
     Checkbox,
+    CircularProgressIndicator,
     Divider,
     Fab,
     FilterChip,
     InlineAlert,
     InputTag,
+    LinearProgressIndicator,
     Link,
     NavigationBar,
     NavigationButton,
     PasswordInput,
     PinCodeInput,
-    ProgressIndicator,
     RadioButton,
     SuggestionChip,
     Switch,
@@ -55,17 +56,18 @@ enum class Component {
                 Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
+                Component.CircularProgressIndicator -> CircularProgressIndicator
                 Component.Divider -> Divider
                 Component.Fab -> Fab
                 Component.FilterChip -> FilterChip
                 Component.InlineAlert -> InlineAlert
                 Component.InputTag -> InputTag
+                Component.LinearProgressIndicator -> LinearProgressIndicator
                 Component.Link -> Link
                 Component.NavigationBar -> NavigationBar
                 Component.NavigationButton -> NavigationButton
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
-                Component.ProgressIndicator -> ProgressIndicator
                 Component.RadioButton -> RadioButton
                 Component.SuggestionChip -> SuggestionChip
                 Component.Switch -> Switch
@@ -93,17 +95,18 @@ enum class Component {
             BulletList -> listOf("OudsBulletList")
             Button -> listOf("OudsButton")
             Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
+            CircularProgressIndicator -> listOf("OudsCircularProgressIndicator")
             Divider -> listOf("OudsDivider")
             Fab -> listOf("OudsFloatingActionButton")
             FilterChip -> listOf("OudsFilterChip")
             InlineAlert -> listOf("OudsInlineAlert")
             InputTag -> listOf("OudsInputTag")
+            LinearProgressIndicator -> listOf("OudsLinearProgressIndicator")
             Link -> listOf("OudsLink")
             NavigationBar -> listOf("OudsNavigationBar")
             NavigationButton -> listOf("OudsNavigationButton")
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
-            ProgressIndicator -> listOf("OudsCircularProgressIndicator", "OudsLinearProgressIndicator")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             SuggestionChip -> listOf("OudsSuggestionChip")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")

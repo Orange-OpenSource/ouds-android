@@ -28,7 +28,9 @@ fun rememberCircularProgressIndicatorDemoState(
     track: Boolean = true,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
     animated: Boolean = true,
-    onColoredBox: Boolean = false
+    onColoredBox: Boolean = false,
+    helperTextProgress: Boolean = true,
+    helperTextLabel: String? = null
 ) = rememberSaveable(progressText, type, status, track, gapSize, animated, onColoredBox, saver = ProgressIndicatorDemoState.Saver) {
-    ProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox)
+    ProgressIndicatorDemoState(progressText, type, status, track, gapSize, animated, onColoredBox, helperTextProgress, helperTextLabel)
 }
