@@ -17,13 +17,10 @@ import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -44,19 +41,18 @@ internal class OudsTextAreaTest {
     @Test
     fun oudsTextArea_stringValueChange_succeeds() {
         with(composeTestRule) {
-            val testTag = "OudsTextArea"
+            val value = "Text"
             val onValueChange = mock<(String) -> Unit>()
 
             setOudsContent {
                 OudsTextArea(
-                    value = "Text",
-                    onValueChange = onValueChange,
-                    modifier = Modifier.testTag(testTag)
+                    value = value,
+                    onValueChange = onValueChange
                 )
             }
 
-            onNodeWithTag(testTag).performClick()
-            onNodeWithTag(testTag).performTextInput(" changed")
+            onNodeWithText(value).performClick()
+            onNodeWithText(value).performTextInput(" changed")
             verify(onValueChange).invoke("Text changed")
         }
     }
@@ -65,18 +61,14 @@ internal class OudsTextAreaTest {
     fun oudsTextArea_textFieldStateChange_succeeds() {
         with(composeTestRule) {
             var textFieldState: TextFieldState? = null
-            val testTag = "OudsTextArea"
 
             setOudsContent {
                 textFieldState = rememberTextFieldState(initialText = "Text")
-                OudsTextArea(
-                    textFieldState = textFieldState,
-                    modifier = Modifier.testTag(testTag)
-                )
+                OudsTextArea(textFieldState = textFieldState)
             }
-
-            onNodeWithTag(testTag).performClick()
-            onNodeWithTag(testTag).performTextInput(" changed")
+            
+            onNodeWithText(textFieldState?.text.toString()).performClick()
+            onNodeWithText(textFieldState?.text.toString()).performTextInput(" changed")
             Assert.assertEquals("Text changed", textFieldState?.text.toString())
         }
     }
@@ -85,18 +77,16 @@ internal class OudsTextAreaTest {
     fun oudsTextArea_textFieldValueChange_succeeds() {
         with(composeTestRule) {
             var textFieldValue by mutableStateOf(TextFieldValue("Text", TextRange(4)))
-            val testTag = "OudsTextArea"
 
             setOudsContent {
                 OudsTextArea(
                     value = textFieldValue,
-                    onValueChange = { textFieldValue = it },
-                    modifier = Modifier.testTag(testTag)
+                    onValueChange = { textFieldValue = it }
                 )
             }
 
-            onNodeWithTag(testTag).performClick()
-            onNodeWithTag(testTag).performTextInput(" changed")
+            onNodeWithText(textFieldValue.text).performClick()
+            onNodeWithText(textFieldValue.text).performTextInput(" changed")
             val expectedTextFieldValue = TextFieldValue("Text changed", TextRange(12))
             Assert.assertEquals(expectedTextFieldValue, textFieldValue)
         }

@@ -252,11 +252,14 @@ private fun OudsPinCodeInput(
         textFieldState = textFieldState,
         length = length
     ) {
-        BoxWithConstraints(contentAlignment = Alignment.Center) {
+        BoxWithConstraints(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
             ConstraintLayout {
                 val (secureTextField, helperTextErrorMessage) = createRefs()
                 BasicSecureTextField(
-                    modifier = modifier
+                    modifier = Modifier
                         .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
                         .constrainAs(secureTextField) {
                             top.linkTo(parent.top)
