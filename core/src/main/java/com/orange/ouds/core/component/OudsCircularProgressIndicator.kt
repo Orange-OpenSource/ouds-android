@@ -80,6 +80,7 @@ import kotlin.math.PI
  *   the indicator size.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
+ * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateWithHelperTextSample
  */
 @Composable
 fun OudsCircularProgressIndicator(
@@ -222,6 +223,7 @@ fun OudsCircularProgressIndicator(
  *   the indicator size.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
+ * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateWithHelperTextSample
  */
 @Composable
 fun OudsCircularProgressIndicator(

@@ -126,6 +126,8 @@ fun OudsLinearProgressIndicator(
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateWithHelperTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateWithHelperTextStringSample
  */
 @Composable
 fun OudsLinearProgressIndicator(
@@ -269,6 +271,7 @@ fun OudsLinearProgressIndicator(
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
+ * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateWithHelperTextSample
  */
 @Composable
 fun OudsLinearProgressIndicator(
