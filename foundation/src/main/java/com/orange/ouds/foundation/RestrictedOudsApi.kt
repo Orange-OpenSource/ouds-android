@@ -14,19 +14,27 @@ package com.orange.ouds.foundation
 
 /**
  * An annotation for restricted OUDS Android APIs that provide building blocks for custom
- * component development.
+ * component development and advanced theme customization.
  *
  * These APIs offer advanced customization capabilities beyond what standard OUDS components
- * provide. While stable and supported, they are restricted to specific use cases and should
- * only be used when standard OUDS components are insufficient for your requirements.
+ * and theme configuration provide. While stable and supported, they are restricted to specific
+ * use cases and should only be used when standard OUDS APIs are insufficient for your requirements.
  *
- * **Prefer using standard OUDS components** (e.g., `OudsSuggestionChip`) when possible,
- * as they provide a higher-level, more convenient API.
+ * **Prefer using standard OUDS components** (e.g., `OudsSuggestionChip`) and theme configuration
+ * when possible, as they provide a higher-level, more convenient API.
  *
- * APIs marked with this annotation include:
+ * ## APIs marked with this annotation include:
+ *
+ * ### Component Development
  * - "Basic" component variants that expose content/layout parameters (e.g., `OudsBasicSuggestionChip`)
  * - Direct access to component tokens via `OudsTheme.components`
- * - Other low-level building blocks for custom component development
+ * - Component token classes and interfaces
+ *
+ * ### Advanced Theme Customization
+ * - Token data classes for granular token overrides
+ * - Drawable resource data classes for icon and graphic customization
+ * - Font family configuration classes for typography customization
+ * - Other low-level building blocks for custom theme development
  *
  * Any usage of a declaration annotated with `@RestrictedOudsApi` must be accepted either by
  * annotating that usage with the [OptIn] annotation, e.g. `@OptIn(RestrictedOudsApi::class)`,
@@ -34,7 +42,7 @@ package com.orange.ouds.foundation
  */
 @RequiresOptIn(
     level = RequiresOptIn.Level.ERROR,
-    message = "This is a restricted OUDS API. Use only when standard OUDS components are insufficient."
+    message = "This is a restricted OUDS API for advanced customization. Use only when standard OUDS components and theme configuration are insufficient for your needs."
 )
 @Target(
     AnnotationTarget.CLASS,
