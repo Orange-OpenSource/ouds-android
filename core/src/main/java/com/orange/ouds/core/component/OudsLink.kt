@@ -44,7 +44,6 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -601,14 +600,7 @@ enum class OudsLinkSize {
     }
 
     @Composable
-    internal fun iconSize(): Dp {
-        return with(OudsTheme.components.link) {
-            when (this@OudsLinkSize) {
-                Default -> size.iconDefault
-                Small -> size.iconSmall
-            }
-        }
-    }
+    internal fun iconSize() = with(OudsTheme.components.link) { getTokenValue(size.iconDefault, size.iconSmall) }
 }
 
 /**
