@@ -5,7 +5,36 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.7.0...2.0.0) (2026-08-04)
+## [2.1.0](https://github.com/Orange-OpenSource/ouds-android/compare/2.0.0...2.1.0) (2026-09-14)
+
+### Features
+
+- add agentic AI skills ([#1436](https://github.com/Orange-OpenSource/ouds-android/issues/1436))
+- **top-app-bar** add tinted parameter to OudsTopAppBarAction icon ([#1479](https://github.com/Orange-OpenSource/ouds-android/issues/1479))
+
+### Bug Fixes
+
+- **link** display trailing icon inline after the last character ([#1550](https://github.com/Orange-OpenSource/ouds-android/issues/1550))
+- **deps** update dependency androidx.compose:compose-bom to v2026.09.00 ([#1560](https://github.com/Orange-OpenSource/ouds-android/issues/1560))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.19.0 ([#1558](https://github.com/Orange-OpenSource/ouds-android/issues/1558))
+- **password-input** **pin-code-input** **text-area** **text-input** fix a bug where the modifier was not applied to helper text and error message in input components ([#1536](https://github.com/Orange-OpenSource/ouds-android/issues/1536))
+- **deps** update kotlin monorepo to v2.4.20 ([#1553](https://github.com/Orange-OpenSource/ouds-android/issues/1553))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.52.0 ([#1545](https://github.com/Orange-OpenSource/ouds-android/issues/1545))
+- **deps** update dependency com.android.tools:sdk-common to v32.4.0 ([#1538](https://github.com/Orange-OpenSource/ouds-android/issues/1538))
+- **deps** update gradle to v9.4.0 ([#1539](https://github.com/Orange-OpenSource/ouds-android/issues/1539))
+- **deps** update grpc-java monorepo to v1.84.0 ([#1537](https://github.com/Orange-OpenSource/ouds-android/issues/1537))
+- **list-item** trailing text is now horizontally end-aligned ([#1513](https://github.com/Orange-OpenSource/ouds-android/issues/1513))
+- **deps** update dependency androidx.compose:compose-bom to v2026.08.00 ([#1507](https://github.com/Orange-OpenSource/ouds-android/issues/1507))
+- **deps** update dependency com.android.tools:sdk-common to v32.3.2 ([#1524](https://github.com/Orange-OpenSource/ouds-android/issues/1524))
+- **deps** update dependency com.google.firebase:firebase-bom to v34.18.0 ([#1520](https://github.com/Orange-OpenSource/ouds-android/issues/1520))
+- **deps** update gradle to v9.3.2 ([#1525](https://github.com/Orange-OpenSource/ouds-android/issues/1525))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.51.0 ([#1527](https://github.com/Orange-OpenSource/ouds-android/issues/1527))
+- **deps** update dependency dev.chrisbanes.haze:haze to v1.7.3 ([#1531](https://github.com/Orange-OpenSource/ouds-android/issues/1531))
+- error and helper text in various components should not be clickable ([#1500](https://github.com/Orange-OpenSource/ouds-android/issues/1500))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.50.0 ([#1475](https://github.com/Orange-OpenSource/ouds-android/issues/1475))
+- **deps** update dependency androidx.appcompat:appcompat to v1.8.0 ([#1506](https://github.com/Orange-OpenSource/ouds-android/issues/1506))
+
+## [2.0.0](https://github.com/Orange-OpenSource/ouds-android/compare/1.7.0...2.0.0) (2026-08-05)
 
 ### Breaking changes
 
