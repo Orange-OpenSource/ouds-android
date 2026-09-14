@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.ColorProducer
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.Placeholder
@@ -44,6 +45,7 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -421,6 +423,7 @@ private fun OudsLink(
             }
 
             val iconTint = if (indicator != null) chevronColor.value else contentColor.value
+            val iconSize = size.iconSize() * LocalConfiguration.current.fontScale
             val trailingIndicator = indicator != null && indicator != OudsLinkIndicator.Previous
             if (trailingIndicator) {
                 val inlineTrailingIconId = "trailingIcon"
@@ -434,10 +437,10 @@ private fun OudsLink(
                         InlineTextContent(
                             Placeholder(
                                 width = with(LocalDensity.current) {
-                                    (size.iconSize() + columnGap).toSp()
+                                    (iconSize + columnGap).toSp()
                                 },
                                 height = with(LocalDensity.current) {
-                                    size.iconSize().toSp()
+                                    iconSize.toSp()
                                 },
                                 placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
                             )
@@ -446,7 +449,7 @@ private fun OudsLink(
                                 modifier = Modifier.padding(start = columnGap),
                                 icon = icon,
                                 indicator = indicator,
-                                size = size,
+                                size = iconSize,
                                 tint = iconTint
                             )
                         },
@@ -467,7 +470,7 @@ private fun OudsLink(
                     LinkIcon(
                         icon = icon,
                         indicator = indicator,
-                        size = size,
+                        size = iconSize,
                         tint = iconTint
                     )
                     Text(
@@ -483,7 +486,7 @@ private fun OudsLink(
 }
 
 @Composable
-private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color, modifier: Modifier = Modifier) {
+private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: Dp, tint: Color, modifier: Modifier = Modifier) {
     val linkIcon = when {
         icon != null -> icon
         indicator != null -> {
@@ -499,7 +502,7 @@ private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: O
         else -> null
     }
     linkIcon?.Content(
-        modifier = modifier.iconSize(size.iconSize(), icon?.tinted.orElse { true }),
+        modifier = modifier.iconSize(size, icon?.tinted.orElse { true }),
         extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
     )
 }
