@@ -186,6 +186,11 @@ abstract class ImportIconsTask : DefaultTask() {
 
                 logger.lifecycle("✓ Found icons directory ${rootDir.name}")
 
+                val versionRegex = Regex("OUDS Icons V([\\d\\.]+).*")
+                val iconsPackVersion = versionRegex.find(rootDir.name)?.groupValues?.get(1)
+                    ?: throw GradleException("Could not extract version from directory name: ${rootDir.name}")
+                logger.lifecycle("✓ Found icons directory ${rootDir.name} (version $iconsPackVersion)")
+
                 // Validate themes exist
                 SupportedThemes.forEach { theme ->
                     val themeDir = File(rootDir, theme)
@@ -218,6 +223,8 @@ abstract class ImportIconsTask : DefaultTask() {
                 icons.forEachIndexed { index, icon ->
                     processIcon(icon, index, icons.size, rootDir)
                 }
+
+                updateIconsPackVersion(iconsPackVersion)
             } finally {
                 tempDir.deleteRecursively()
             }
@@ -294,6 +301,23 @@ abstract class ImportIconsTask : DefaultTask() {
         }
 
         return vectorDrawable.replace("android:fillColor=\"currentColor\"", "android:fillColor=\"#000000\"")
+    }
+
+    private fun updateIconsPackVersion(version: String) {
+        val oudsDrawableResourcesFile = File(
+            project.rootDir,
+            "theme-contract/src/main/java/com/orange/ouds/theme/OudsDrawableResources.kt"
+        )
+
+        val content = oudsDrawableResourcesFile.readText()
+        val versionConstantName = "OudsIconsPackVersion"
+        val updatedContent = content.replace(
+            Regex("""const val $versionConstantName = ".*""""),
+            """const val $versionConstantName = "$version""""
+        )
+
+        oudsDrawableResourcesFile.writeText(updatedContent)
+        logger.lifecycle("✓ Updated $versionConstantName to \"$version\"")
     }
 
     private fun printSummary() {
