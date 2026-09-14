@@ -21,6 +21,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Text
@@ -30,12 +33,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorProducer
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -47,7 +57,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -413,32 +422,62 @@ private fun OudsLink(
                 textStyle = textStyle.copy(textDecoration = TextDecoration.Underline)
             }
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(columnGap),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                val iconTint = if (indicator != null) chevronColor.value else contentColor.value
-                val leadingIcon = icon != null || indicator == OudsLinkIndicator.Previous
-                if (leadingIcon) {
-                    LinkIcon(
-                        icon = icon,
-                        indicator = indicator,
-                        size = size,
-                        tint = iconTint
-                    )
+            val iconTint = if (indicator != null) chevronColor.value else contentColor.value
+            val iconSize = size.iconSize() * LocalConfiguration.current.fontScale
+            val trailingIndicator = indicator != null && indicator != OudsLinkIndicator.Previous
+            if (trailingIndicator) {
+                val inlineTrailingIconId = "trailingIcon"
+                val text = buildAnnotatedString {
+                    append(label)
+                    appendInlineContent(inlineTrailingIconId, "[$inlineTrailingIconId]")
                 }
-                Text(
-                    modifier = Modifier.weight(1f, fill = false),
-                    text = label,
-                    color = contentColor.value,
+                val inlineTrailingIcon = mapOf(
+                    Pair(
+                        inlineTrailingIconId,
+                        InlineTextContent(
+                            Placeholder(
+                                width = with(LocalDensity.current) {
+                                    (iconSize + columnGap).toSp()
+                                },
+                                height = with(LocalDensity.current) {
+                                    iconSize.toSp()
+                                },
+                                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                            )
+                        ) {
+                            LinkIcon(
+                                modifier = Modifier.padding(start = columnGap),
+                                icon = icon,
+                                indicator = indicator,
+                                size = iconSize,
+                                tint = iconTint
+                            )
+                        },
+                    )
+                )
+
+                BasicText(
+                    text = text,
+                    inlineContent = inlineTrailingIcon,
+                    color = ColorProducer { contentColor.value },
                     style = textStyle
                 )
-                if (!leadingIcon) {
+            } else {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(columnGap),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     LinkIcon(
                         icon = icon,
                         indicator = indicator,
-                        size = size,
+                        size = iconSize,
                         tint = iconTint
+                    )
+                    Text(
+                        modifier = Modifier.weight(1f, fill = false),
+                        text = label,
+                        color = contentColor.value,
+                        style = textStyle
                     )
                 }
             }
@@ -447,28 +486,25 @@ private fun OudsLink(
 }
 
 @Composable
-private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: OudsLinkSize, tint: Color) {
-    with(OudsTheme.components.link) {
-        val iconSize = size.getTokenValue(default = this.size.iconDefault, small = this.size.iconSmall)
-        val linkIcon = when {
-            icon != null -> icon
-            indicator != null -> {
-                val indicatorPainterResId = with(OudsTheme.drawableResources.component.link) {
-                    when (indicator) {
-                        OudsLinkIndicator.Previous -> previous
-                        OudsLinkIndicator.Next -> next
-                        OudsLinkIndicator.External -> externalLink
-                    }
+private fun LinkIcon(icon: OudsLinkIcon?, indicator: OudsLinkIndicator?, size: Dp, tint: Color, modifier: Modifier = Modifier) {
+    val linkIcon = when {
+        icon != null -> icon
+        indicator != null -> {
+            val indicatorPainterResId = with(OudsTheme.drawableResources.component.link) {
+                when (indicator) {
+                    OudsLinkIndicator.Previous -> previous
+                    OudsLinkIndicator.Next -> next
+                    OudsLinkIndicator.External -> externalLink
                 }
-                OudsLinkIcon(painterResource(indicatorPainterResId))
             }
-            else -> null
+            OudsLinkIcon(painterResource(indicatorPainterResId))
         }
-        linkIcon?.Content(
-            modifier = Modifier.iconSize(iconSize, icon?.tinted.orElse { true }),
-            extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
-        )
+        else -> null
     }
+    linkIcon?.Content(
+        modifier = modifier.iconSize(size, icon?.tinted.orElse { true }),
+        extraParameters = OudsLinkIcon.ExtraParameters(tint = tint)
+    )
 }
 
 @Composable
@@ -564,6 +600,9 @@ enum class OudsLinkSize {
             Small -> small
         }
     }
+
+    @Composable
+    internal fun iconSize() = with(OudsTheme.components.link) { getTokenValue(size.iconDefault, size.iconSmall) }
 }
 
 /**
@@ -759,14 +798,12 @@ private fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getP
 internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         val label = "Link\non two lines"
-        Row(horizontalArrangement = Arrangement.spacedBy(PreviewPaddingDefault)) {
-            listOf(OudsLinkIndicator.Previous, OudsLinkIndicator.Next).forEach { indicator ->
-                OudsLink(
-                    label = label,
-                    indicator = indicator,
-                    onClick = {},
-                )
-            }
+        PreviewEnumEntries<OudsLinkIndicator>(maxEnumEntriesInEachRow = 1) { indicator ->
+            OudsLink(
+                label = label,
+                indicator = indicator,
+                onClick = {},
+            )
         }
     }
 }
