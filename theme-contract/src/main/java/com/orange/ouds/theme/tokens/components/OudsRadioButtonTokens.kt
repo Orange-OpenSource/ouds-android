@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsRadioButtonTokens {
     val borderRadius: OudsBorderKeyToken.Radius
     val borderWidthSelected: OudsBorderKeyToken.Width
