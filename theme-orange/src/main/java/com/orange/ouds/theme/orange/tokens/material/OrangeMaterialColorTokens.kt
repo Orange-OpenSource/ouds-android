@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class OrangeMaterialColorTokens(
+data class OrangeMaterialColorTokens(
     override val backgroundDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
     override val backgroundLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
     override val errorContainerDark: Color = Color.Unspecified,

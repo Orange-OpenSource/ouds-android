@@ -25,7 +25,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 
-internal data class OrangeColorSemanticTokens(
+data class OrangeColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = OrangeColorActionSemanticTokens(),
     override val aiColorTokens: OudsColorAiSemanticTokens = OrangeColorAiSemanticTokens(),
     override val alwaysColorTokens: OudsColorAlwaysSemanticTokens = OrangeColorAlwaysSemanticTokens(),

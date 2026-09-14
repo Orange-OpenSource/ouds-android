@@ -21,7 +21,7 @@ import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class OrangeProgressIndicatorMonoTokens(
+data class OrangeProgressIndicatorMonoTokens(
     override val colorContentIndicator: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Neutral.Emphasized.Black, OudsColorKeyToken.Repository.Neutral.Muted.White),
     override val colorContentTrack: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorFunctionalGrayLight400, OudsColorRawTokens.ColorFunctionalGrayDark480)
 ) : OudsProgressIndicatorMonoTokens

@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class OrangeTextAreaTokens(
+data class OrangeTextAreaTokens(
     override val sizeMaxHeightAssetsContainer: Float = OudsDimensionRawTokens.Dimension1100,
     override val sizeMaxHeightInput: Float = OudsDimensionRawTokens.Dimension2500,
     override val sizeMaxWidth: Float = OudsDimensionRawTokens.Dimension6000,

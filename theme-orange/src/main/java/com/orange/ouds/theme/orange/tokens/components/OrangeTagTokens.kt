@@ -21,7 +21,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class OrangeTagTokens(
+data class OrangeTagTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val sizeAssetDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,
     override val sizeAssetSmall: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Small.SizeSmall,

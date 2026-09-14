@@ -22,7 +22,7 @@ import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class OrangeProgressIndicatorTokens(
+data class OrangeProgressIndicatorTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val colorContentTrack: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorFunctionalGrayLight400, OudsColorRawTokens.ColorFunctionalGrayDark480),

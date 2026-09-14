@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class OrangePinCodeInputTokens(
+data class OrangePinCodeInputTokens(
     override val sizeMaxWidth: Float = OudsDimensionRawTokens.Dimension700,
     override val sizeMinWidth: Float = OudsDimensionRawTokens.Dimension550,
     override val spaceColumnGapDigitInput: OudsSpaceKeyToken.ColumnGap = OudsSpaceKeyToken.ColumnGap.Medium
