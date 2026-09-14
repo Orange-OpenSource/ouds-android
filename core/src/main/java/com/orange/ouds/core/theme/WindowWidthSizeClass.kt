@@ -12,9 +12,9 @@
 
 package com.orange.ouds.core.theme
 
-import androidx.compose.material3.adaptive.currentWindowSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
@@ -79,4 +79,4 @@ enum class WindowWidthSizeClass {
  * Returns the current window width in dp.
  */
 @Composable
-internal fun currentWindowWidth() = with(LocalDensity.current) { currentWindowSize().toSize().toDpSize().width }
+internal fun currentWindowWidth() = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.toSize().toDpSize().width }

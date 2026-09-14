@@ -148,13 +148,23 @@ fun <T> Project.firebaseApi(appId: String, action: FirebaseApi.() -> T): T {
     val serviceAccount = FileInputStream(serviceAccountFilePath)
     val credentials = GoogleCredentials.fromStream(serviceAccount).createScoped("https://www.googleapis.com/auth/cloud-platform")
     credentials.refresh()
-    val accessToken = credentials.accessToken.tokenValue
+    val accessToken = requireNotNull(credentials.accessToken?.tokenValue) { "Firebase API access token should not be null." }
     return FirebaseApi(accessToken, "756919609448", appId).action()
 }
 
 fun <T> Project.sonatypeOssrhStagingApi(action: SonatypeOssrhStagingApi.() -> T): T {
     val token = Environment.getVariables("CENTRAL_PUBLISHER_PORTAL_TOKEN").first()
     return SonatypeOssrhStagingApi(token).action()
+}
+
+fun <T> Project.orangeDeveloperInsideApi(action: OrangeDeveloperInsideApi.() -> T): T {
+    val authorizationHeader = Environment.getVariables("ORANGE_DEVELOPER_INSIDE_AUTHORIZATION_HEADER").first()
+    return OrangeDeveloperInsideApi(authorizationHeader).action()
+}
+
+fun <T> Project.omaApi(accessToken: String, action: OmaApi.() -> T): T {
+    val (appId, appToken) = Environment.getVariables("OMA_APP_ID", "OMA_APP_TOKEN")
+    return OmaApi(accessToken, appId, appToken).action()
 }
 
 val Project.artifactId: String

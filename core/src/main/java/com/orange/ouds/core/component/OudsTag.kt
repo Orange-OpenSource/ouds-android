@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
@@ -54,7 +53,6 @@ import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
-import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewGrid
@@ -174,7 +172,7 @@ fun OudsTag(
                                 }
                                 .padding(all = assetPadding),
                             extraParameters = OudsTagAsset.ExtraParameters(
-                                tint = assetColor(status = status, appearance = appearance, enabled = enabled, isBullet = isBulletAsset),
+                                tint = assetColor(status = status, appearance = appearance, enabled = enabled),
                                 status = status,
                                 appearance = appearance,
                                 enabled = enabled
@@ -260,22 +258,13 @@ private fun backgroundColor(status: OudsTagStatus, appearance: OudsTagAppearance
 }
 
 @Composable
-private fun assetColor(status: OudsTagStatus, appearance: OudsTagAppearance, enabled: Boolean, isBullet: Boolean): Color {
+private fun assetColor(status: OudsTagStatus, appearance: OudsTagAppearance, enabled: Boolean): Color {
     return when (appearance) {
         OudsTagAppearance.Emphasized -> contentColor(status = status, appearance = appearance, hasLoader = false, enabled = enabled)
-        OudsTagAppearance.Muted -> when {
-            !enabled -> OudsTheme.colorScheme.content.onAction.disabled
-            !isBullet && status is OudsTagStatus.Warning -> Color.Unspecified // Case of two colors icon. Colors are managed by the `LayeredTintedPainter`.
-            else -> with(OudsTheme.colorScheme.content) {
-                when (status) {
-                    is OudsTagStatus.Accent -> this.status.accent
-                    is OudsTagStatus.Info -> this.status.info
-                    is OudsTagStatus.Negative -> this.status.negative
-                    is OudsTagStatus.Neutral -> default
-                    is OudsTagStatus.Positive -> this.status.positive
-                    is OudsTagStatus.Warning -> this.status.warning
-                }
-            }
+        OudsTagAppearance.Muted -> if (!enabled) {
+            OudsTheme.colorScheme.content.onAction.disabled
+        } else {
+            status.toAlertStatus(appearance, enabled).assetColor
         }
     }
 }
@@ -510,9 +499,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
             OudsTagAsset.ExtraParameters::class.java,
             { icon ->
                 with(icon.extraParameters) {
-                    status.getDefaultIconPainter(appearance, enabled).orElse {
-                        error("No default icon for status ${status::class.simpleName}")
-                    }
+                    status.getPainter(appearance = appearance, enabled = enabled)
                 }
             },
             { icon -> icon.extraParameters.status.defaultIconContentDescription }
@@ -564,12 +551,30 @@ enum class OudsTagSize {
  */
 sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
 
-    @Composable
-    internal open fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter? = null
+    internal fun toAlertStatus(appearance: OudsTagAppearance, enabled: Boolean): OudsAlertStatus {
+        return when (this) {
+            is Neutral -> OudsAlertStatus.Neutral()
+            is Accent -> OudsAlertStatus.Accent()
+            is Positive -> OudsAlertStatus.Positive()
+            is Warning -> {
+                val layeredTintedPainter = appearance == OudsTagAppearance.Muted && enabled && asset !is OudsTagAsset.Bullet
+                OudsAlertStatus.Warning(layeredTintedPainter = layeredTintedPainter)
+            }
+            is Negative -> OudsAlertStatus.Negative()
+            is Info -> OudsAlertStatus.Info()
+        }
+    }
 
     internal open val defaultIconContentDescription: String
         @Composable
         get() = ""
+
+    @Composable
+    internal fun getPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter {
+        return OudsAlertStatus.getDefaultIconPainter(status = toAlertStatus(appearance, enabled)).orElse {
+            error("No painter for status ${this::class.simpleName}")
+        }
+    }
 
     /**
      * Default or inactive status. Used for standard labels, categories, or when no specific status needs to be communicated.
@@ -633,10 +638,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
          * Creates an instance of [OudsTagStatus.Positive] with no asset.
          */
         constructor() : this(null)
-
-        @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
-            painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
     }
 
     /**
@@ -658,10 +659,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
          * Creates an instance of [OudsTagStatus.Info] with no asset.
          */
         constructor() : this(null)
-
-        @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
-            painterResource(OudsTheme.drawableResources.component.alert.infoFill)
     }
 
     /**
@@ -683,20 +680,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
          * Creates an instance of [OudsTagStatus.Warning] with no asset.
          */
         constructor() : this(null)
-
-        @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean): Painter {
-            val iconTokens = OudsTheme.componentsTokens.icon
-            return when {
-                appearance == OudsTagAppearance.Emphasized || !enabled -> painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)
-                else -> LayeredTintedPainter(
-                    backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                    backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                    frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                    frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
-                )
-            }
-        }
 
         override val defaultIconContentDescription
             @Composable
@@ -722,10 +705,6 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
          * Creates an instance of [OudsTagStatus.Negative] with no asset.
          */
         constructor() : this(null)
-
-        @Composable
-        override fun getDefaultIconPainter(appearance: OudsTagAppearance, enabled: Boolean) =
-            painterResource(OudsTheme.drawableResources.component.alert.importantFill)
 
         override val defaultIconContentDescription
             @Composable

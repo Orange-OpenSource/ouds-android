@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
 import com.orange.ouds.app.ui.components.enabledArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
@@ -38,6 +39,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberImagePainter
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIcon
 import com.orange.ouds.core.component.OudsListItemIconSize
@@ -48,6 +50,8 @@ import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsListItemVerticalAlignment
+import com.orange.ouds.core.component.OudsSmallListItemLeading
+import com.orange.ouds.core.component.OudsSmallListItemTrailing
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.launch
 
@@ -200,6 +204,13 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(leadingStatusIcon),
             onSelectionChange = { index -> leadingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_iconTint_tech),
+            chips = BaseListItemDemoState.IconTint.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = leadingIconOptionsEnabled) },
+            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(leadingIconTint),
+            onSelectionChange = { index -> leadingIconTint = BaseListItemDemoState.IconTint.entries[index] }
+        )
         if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
@@ -299,6 +310,13 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(trailingStatusIcon),
             onSelectionChange = { index -> trailingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
         )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_iconTint_tech),
+            chips = BaseListItemDemoState.IconTint.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = trailingIconOptionsEnabled) },
+            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(trailingIconTint),
+            onSelectionChange = { index -> trailingIconTint = BaseListItemDemoState.IconTint.entries[index] }
+        )
         if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
@@ -357,9 +375,11 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
     }
 }
 
-private val iconPainter
-    @Composable
-    get() = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+@Composable
+private fun iconPainter(iconTint: BaseListItemDemoState.IconTint) = when (iconTint) {
+    BaseListItemDemoState.IconTint.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
+    BaseListItemDemoState.IconTint.Untinted -> rememberUntintedIconPainter()
+}
 
 private val imagePainter
     @Composable
@@ -372,9 +392,10 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
         BaseListItemDemoState.Leading.Icon -> {
             when (leadingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsListItemLeading.Icon(
-                    painter = iconPainter,
+                    painter = iconPainter(leadingIconTint),
                     contentDescription = stringResource(R.string.app_components_listItem_icon_a11y),
-                    size = leadingIconSize
+                    size = leadingIconSize,
+                    tinted = leadingIconTint == BaseListItemDemoState.IconTint.Tinted
                 )
                 BaseListItemDemoState.StatusIcon.Info -> OudsListItemLeading.Icon.Info(size = leadingIconSize)
                 BaseListItemDemoState.StatusIcon.Negative -> OudsListItemLeading.Icon.Negative(size = leadingIconSize)
@@ -394,15 +415,42 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
 }
 
 @Composable
+fun baseSmallListItemDemoLeading(state: BaseListItemDemoState): OudsSmallListItemLeading? = with(state) {
+    when (leading) {
+        BaseListItemDemoState.Leading.None -> null
+        BaseListItemDemoState.Leading.Icon -> {
+            when (leadingStatusIcon) {
+                BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemLeading.Icon(
+                    painter = iconPainter(leadingIconTint),
+                    contentDescription = stringResource(R.string.app_components_listItem_icon_a11y)
+                )
+                BaseListItemDemoState.StatusIcon.Info -> OudsSmallListItemLeading.Icon.Info
+                BaseListItemDemoState.StatusIcon.Negative -> OudsSmallListItemLeading.Icon.Negative
+                BaseListItemDemoState.StatusIcon.Positive -> OudsSmallListItemLeading.Icon.Positive
+                BaseListItemDemoState.StatusIcon.Warning -> OudsSmallListItemLeading.Icon.Warning
+            }
+        }
+        BaseListItemDemoState.Leading.Image -> OudsSmallListItemLeading.Image(
+            painter = imagePainter,
+            contentDescription = stringResource(R.string.app_components_listItem_image_a11y),
+            ratio = leadingImageRatio,
+            roundedCorner = leadingImageRoundedCorners,
+            contentScale = ContentScale.Crop
+        )
+    }
+}
+
+@Composable
 fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing? = with(state) {
     when (trailing) {
         BaseListItemDemoState.Trailing.None -> null
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsListItemTrailing.Icon(
-                    painter = iconPainter,
+                    painter = iconPainter(trailingIconTint),
                     contentDescription = stringResource(R.string.app_components_listItem_icon_a11y),
-                    size = trailingIconSize
+                    size = trailingIconSize,
+                    tinted = trailingIconTint == BaseListItemDemoState.IconTint.Tinted
                 )
                 BaseListItemDemoState.StatusIcon.Info -> OudsListItemTrailing.Icon.Info(size = trailingIconSize)
                 BaseListItemDemoState.StatusIcon.Negative -> OudsListItemTrailing.Icon.Negative(size = trailingIconSize)
@@ -434,6 +482,38 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
     }
 }
 
+@Composable
+fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListItemTrailing? = with(state) {
+    when (trailing) {
+        BaseListItemDemoState.Trailing.None -> null
+        BaseListItemDemoState.Trailing.Icon -> {
+            when (trailingStatusIcon) {
+                BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemTrailing.Icon(
+                    painter = iconPainter(trailingIconTint),
+                    contentDescription = stringResource(R.string.app_components_listItem_icon_a11y)
+                )
+                BaseListItemDemoState.StatusIcon.Info -> OudsSmallListItemTrailing.Icon.Info
+                BaseListItemDemoState.StatusIcon.Negative -> OudsSmallListItemTrailing.Icon.Negative
+                BaseListItemDemoState.StatusIcon.Positive -> OudsSmallListItemTrailing.Icon.Positive
+                BaseListItemDemoState.StatusIcon.Warning -> OudsSmallListItemTrailing.Icon.Warning
+            }
+        }
+        BaseListItemDemoState.Trailing.Image ->
+            OudsSmallListItemTrailing.Image(
+                painter = imagePainter,
+                contentDescription = stringResource(R.string.app_components_listItem_image_a11y),
+                ratio = trailingImageRatio,
+                roundedCorner = trailingImageRoundedCorners,
+                contentScale = ContentScale.Crop
+            )
+        BaseListItemDemoState.Trailing.Text ->
+            OudsSmallListItemTrailing.Text(
+                label = trailingTextLabel,
+                style = trailingTextStyle
+            )
+    }
+}
+
 fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         if (clickable) {
@@ -462,6 +542,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 argumentName = leadingParameterName,
                 statusIcon = leadingStatusIcon,
                 iconSize = leadingIconSize,
+                iconTint = leadingIconTint,
                 themeDrawableResources = themeDrawableResources
             )
             BaseListItemDemoState.Leading.Image -> addImageCodeSnippet<OudsListItemLeading.Image>(
@@ -478,6 +559,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 argumentName = trailingParameterName,
                 statusIcon = trailingStatusIcon,
                 iconSize = trailingIconSize,
+                iconTint = trailingIconTint,
                 themeDrawableResources = themeDrawableResources
             )
             BaseListItemDemoState.Trailing.Image -> addImageCodeSnippet<OudsListItemTrailing.Image>(
@@ -509,6 +591,7 @@ private inline fun <reified IconType : OudsListItemIcon> FunctionCall.Builder.ad
     argumentName: String,
     statusIcon: BaseListItemDemoState.StatusIcon,
     iconSize: OudsListItemIconSize,
+    iconTint: BaseListItemDemoState.IconTint,
     themeDrawableResources: ThemeDrawableResources
 ) {
     val sizeParameterName = "size"
@@ -525,9 +608,12 @@ private inline fun <reified IconType : OudsListItemIcon> FunctionCall.Builder.ad
             }
         }
         BaseListItemDemoState.StatusIcon.None -> {
-            constructorCallArgument<IconType>(argumentName) {
-                painterArgument(themeDrawableResources.tipsAndTricks)
-                contentDescriptionArgument(R.string.app_components_listItem_icon_a11y)
+            iconArgument<IconType>(
+                argumentName,
+                themeDrawableResources.tipsAndTricks,
+                R.string.app_components_listItem_icon_a11y,
+                iconTint == BaseListItemDemoState.IconTint.Tinted
+            ) {
                 if (iconSize != OudsListItemDefaults.IconSize) {
                     typedArgument(sizeParameterName, iconSize)
                 }

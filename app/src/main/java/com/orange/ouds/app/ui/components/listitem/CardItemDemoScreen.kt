@@ -25,6 +25,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsCardItem
 import com.orange.ouds.core.component.OudsListItemDecoration
+import com.orange.ouds.core.component.OudsSmallCardItem
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
@@ -77,35 +78,67 @@ internal fun CardItemGeneralCustomizationContent(state: CardItemDemoState) {
 private fun CardItemDemoContent(state: CardItemDemoState) {
     with(state) {
         if (clickable) {
-            OudsCardItem(
-                onClick = {},
-                indicator = indicator.toOudsListItemIndicator(),
-                label = label,
-                verticalAlignment = verticalAlignment,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                leading = baseListItemDemoLeading(state = state),
-                trailing = baseListItemDemoTrailing(state = state),
-                decoration = decoration.toOudsListItemDecoration(divider = divider),
-                helperText = helperText,
-                boldLabel = boldLabel,
-                enabled = enabled,
-            )
+            when (size) {
+                BaseListItemDemoState.Size.Default ->
+                    OudsCardItem(
+                        onClick = {},
+                        indicator = indicator.toOudsListItemIndicator(),
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        overline = overline,
+                        extraLabel = extraLabel,
+                        description = description,
+                        leading = baseListItemDemoLeading(state = state),
+                        trailing = baseListItemDemoTrailing(state = state),
+                        decoration = decoration.toOudsListItemDecoration(divider = divider),
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                    )
+                BaseListItemDemoState.Size.Small ->
+                    OudsSmallCardItem(
+                        onClick = {},
+                        indicator = indicator.toOudsListItemIndicator(),
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        description = description,
+                        leading = baseSmallListItemDemoLeading(state = state),
+                        trailing = baseSmallListItemDemoTrailing(state = state),
+                        decoration = decoration.toOudsListItemDecoration(divider = divider),
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                    )
+            }
         } else {
-            OudsCardItem(
-                label = label,
-                verticalAlignment = verticalAlignment,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                leading = baseListItemDemoLeading(state = state),
-                trailing = baseListItemDemoTrailing(state = state),
-                decoration = decoration.toOudsListItemDecoration(divider = divider),
-                helperText = helperText,
-                boldLabel = boldLabel,
-                enabled = enabled,
-            )
+            when (size) {
+                BaseListItemDemoState.Size.Default ->
+                    OudsCardItem(
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        overline = overline,
+                        extraLabel = extraLabel,
+                        description = description,
+                        leading = baseListItemDemoLeading(state = state),
+                        trailing = baseListItemDemoTrailing(state = state),
+                        decoration = decoration.toOudsListItemDecoration(divider = divider),
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                    )
+                BaseListItemDemoState.Size.Small ->
+                    OudsSmallCardItem(
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        description = description,
+                        leading = baseSmallListItemDemoLeading(state = state),
+                        trailing = baseSmallListItemDemoTrailing(state = state),
+                        decoration = decoration.toOudsListItemDecoration(divider = divider),
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                    )
+            }
         }
     }
 }

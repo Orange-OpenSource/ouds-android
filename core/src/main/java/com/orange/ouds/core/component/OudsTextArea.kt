@@ -430,13 +430,17 @@ private fun OudsTextArea(
     val scrollState = rememberScrollState()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 state = textFieldState,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
@@ -460,8 +464,6 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth,
                         scrollState = scrollState,
                     )
@@ -806,13 +808,17 @@ private fun OudsTextArea(
     val emptyText = value.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -837,8 +843,6 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
@@ -1180,13 +1184,17 @@ private fun OudsTextArea(
     val emptyText = value.text.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -1211,8 +1219,6 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth,
                     )
                 }
@@ -1251,8 +1257,6 @@ internal fun OudsTextAreaDecorator(
     outlined: Boolean,
     error: OudsError?,
     helperText: String?,
-    annotatedHelperText: OudsAnnotatedHelperText?,
-    helperLink: OudsTextInputHelperLink?,
     constrainedMaxWidth: Boolean,
     scrollState: ScrollState = rememberScrollState(),
 ) {
@@ -1344,18 +1348,6 @@ internal fun OudsTextAreaDecorator(
                     }
                 }
             }
-
-            // Helper text / Error description
-            OudsTextInputHelperTextErrorMessage(
-                modifier = Modifier.padding(horizontal = spacePaddingInlineDefault.value),
-                enabled = state != OudsTextInputState.Disabled,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText
-            )
-
-            // Helper link
-            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
         }
     }
 }

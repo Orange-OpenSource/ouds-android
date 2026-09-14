@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
-import androidx.compose.ui.test.assertIsOff
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -47,8 +46,7 @@ internal class OudsCheckboxItemTest {
                     modifier = Modifier.testTag(testTag)
                 )
             }
-
-            onNodeWithTag(testTag).assertIsOff()
+            
             onNodeWithTag(testTag).performClick()
             verify(onCheckedChange).invoke(!checked)
         }

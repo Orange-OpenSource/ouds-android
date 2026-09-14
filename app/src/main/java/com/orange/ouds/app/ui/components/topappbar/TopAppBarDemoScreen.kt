@@ -24,6 +24,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.colorArgument
 import com.orange.ouds.app.ui.components.contentDescriptionArgument
+import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.topappbar.TopAppBarDemoState.Companion.ActionIconBadgeCount
@@ -37,6 +38,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
+import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.OudsLargeTopAppBar
 import com.orange.ouds.core.component.OudsMediumTopAppBar
@@ -102,9 +104,16 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_lastActionIconBadge_tech),
-            chips = TopAppBarDemoState.ActionIconBadge.entries.map { CustomizationFilterChip(it.name, lastActionIconBadgeFilterChipsEnabled) },
+            chips = TopAppBarDemoState.ActionIconBadge.entries.map { CustomizationFilterChip(it.name, lastActionIconOptionsEnabled) },
             selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(lastActionIconBadge),
             onSelectionChange = { index -> lastActionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[index] },
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_topAppBar_lastActionIcon_tech),
+            chips = TopAppBarDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), lastActionIconOptionsEnabled) },
+            selectedChipIndex = TopAppBarDemoState.Icon.entries.indexOf(lastActionIcon),
+            onSelectionChange = { index -> lastActionIcon = TopAppBarDemoState.Icon.entries[index] }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -157,10 +166,12 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
             val contentDescription = getActionContentDescriptionResId(index)?.let { stringResource(it) }.orEmpty()
             when (action) {
                 TopAppBarDemoState.Action.Icon -> {
+                    val tinted = lastActionIcon == TopAppBarDemoState.Icon.Tinted || index != lastActionIconIndex
                     OudsTopAppBarAction.Icon(
-                        painter = painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks),
+                        painter = if (tinted) painterResource(id = themeDrawableResources.tipsAndTricks) else rememberUntintedIconPainter(),
                         contentDescription = contentDescription,
                         badge = if (index == lastActionIconIndex) lastTopAppBarActionIconBadge else null,
+                        tinted = tinted,
                         onClick = {}
                     )
                 }
@@ -258,11 +269,12 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
                         val contentDescriptionResId = getActionContentDescriptionResId(index)
                         when (action) {
                             TopAppBarDemoState.Action.Icon -> {
-                                constructorCallArgument<OudsTopAppBarAction.Icon>(null) {
-                                    painterArgument(themeDrawableResources.tipsAndTricks)
-                                    if (contentDescriptionResId != null) {
-                                        contentDescriptionArgument(contentDescriptionResId)
-                                    }
+                                iconArgument<OudsTopAppBarAction.Icon>(
+                                    null,
+                                    themeDrawableResources.tipsAndTricks,
+                                    contentDescriptionResId,
+                                    lastActionIcon == TopAppBarDemoState.Icon.Tinted
+                                ) {
                                     val lastActionIconIndex = actions.indexOfLast { it == TopAppBarDemoState.Action.Icon }
                                     if (lastActionIconIndex == index && lastActionIconBadge != TopAppBarDemoState.ActionIconBadge.None) {
                                         constructorCallArgument<OudsTopAppBarActionBadge>("badge") {

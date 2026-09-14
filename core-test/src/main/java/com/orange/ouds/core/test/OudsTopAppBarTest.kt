@@ -19,7 +19,7 @@ import org.junit.runners.Parameterized
 
 
 @RunWith(Enclosed::class)
-internal class OudsTopAppBarTest() {
+internal class OudsTopAppBarTest {
 
     @RunWith(Parameterized::class)
     class Default(parameter: Any) : OudsComponentSnapshotTest(
@@ -76,4 +76,10 @@ internal class OudsTopAppBarTest() {
             internal fun data() = OudsPreviewableComponent.TopAppBar.Large.parameters
         }
     }
+
+    class WithUntintedIcon : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TopAppBar.WithUntintedIcon,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

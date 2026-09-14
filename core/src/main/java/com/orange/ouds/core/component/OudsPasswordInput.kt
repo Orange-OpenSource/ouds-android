@@ -275,13 +275,17 @@ private fun OudsPasswordInput(
     val emptyText = state.text.isEmpty()
 
     OudsTextInput(
+        modifier = modifier,
         state = passwordInputState,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
+        helperText = helperText,
+        annotatedHelperText = annotatedHelperText,
+        helperLink = null,
         basicTextField = {
             BasicSecureTextField(
-                modifier = modifier.textInputSemantic(label),
+                modifier = Modifier.textInputSemantic(label),
                 state = state.textFieldState,
                 enabled = textInputEnabled(state = passwordInputState),
                 readOnly = readOnly,
@@ -316,8 +320,6 @@ private fun OudsPasswordInput(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = null,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
                 },

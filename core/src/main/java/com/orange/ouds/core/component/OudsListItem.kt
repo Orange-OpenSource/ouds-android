@@ -67,7 +67,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
-import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -611,7 +610,7 @@ sealed interface OudsListItemIndicator {
     object Next : OudsListItemIndicator {
         override val drawableId
             @Composable
-            get() = OudsTheme.drawableResources.component.controlItem.next
+            get() = OudsTheme.drawableResources.component.listItem.next
     }
 
     /**
@@ -620,7 +619,7 @@ sealed interface OudsListItemIndicator {
     object Previous : OudsListItemIndicator {
         override val drawableId
             @Composable
-            get() = OudsTheme.drawableResources.component.controlItem.previous
+            get() = OudsTheme.drawableResources.component.listItem.previous
     }
 
     /**
@@ -724,42 +723,37 @@ enum class OudsListItemIconSize {
     }
 }
 
-internal enum class OudsListItemIconStatus(
-    val painterProvider: @Composable () -> Painter,
-    val contentDescriptionProvider: (@Composable () -> String) = { "" }
-) {
-    Negative(
-        { painterResource(OudsTheme.drawableResources.component.alert.importantFill) },
-        { stringResource(R.string.core_common_error_a11y) }
-    ),
+internal enum class OudsListItemIconStatus {
 
-    Positive({ painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill) }),
+    Negative, Positive, Info, Warning;
 
-    Info({ painterResource(OudsTheme.drawableResources.component.alert.infoFill) }),
+    private fun toAlertStatus(): OudsAlertStatus {
+        return when (this) {
+            Negative -> OudsAlertStatus.Negative()
+            Positive -> OudsAlertStatus.Positive()
+            Info -> OudsAlertStatus.Info()
+            Warning -> OudsAlertStatus.Warning()
+        }
+    }
 
-    Warning(
-        {
-            val iconTokens = OudsTheme.components.icon
-            LayeredTintedPainter(
-                backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                backPainterColor = iconTokens.color.content.status.warning.externalShape,
-                frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                frontPainterColor = iconTokens.color.content.status.warning.internalShape
-            )
-        },
-        { stringResource(R.string.core_common_warning_a11y) }
-    );
+    val painter: Painter
+        @Composable
+        get() = OudsAlertStatus.getDefaultIconPainter(toAlertStatus()).orElse {
+            error("No painter for status ${this::class.simpleName}")
+        }
+
+    val contentDescription: String
+        @Composable
+        get() = when (this) {
+            Negative -> stringResource(id = R.string.core_common_error_a11y)
+            Warning -> stringResource(id = R.string.core_common_warning_a11y)
+            Positive,
+            Info -> ""
+        }
 
     val tint
         @Composable
-        get() = with(OudsTheme.colorScheme.content) {
-            when (this@OudsListItemIconStatus) {
-                Positive -> status.positive
-                Warning -> Color.Unspecified
-                Negative -> status.negative
-                Info -> status.info
-            }
-        }
+        get() = toAlertStatus().assetColor
 }
 
 /**
@@ -886,7 +880,7 @@ open class OudsListItemText internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        Column(modifier = modifier) {
+        Column(modifier = modifier, horizontalAlignment = Alignment.End) {
             Text(
                 modifier = modifier.padding(
                     top = topTextContainerPadding(verticalAlignment = extraParameters.verticalAlignment, size = extraParameters.size)
@@ -978,8 +972,8 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
         private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
-            { status.painterProvider() },
-            { status.contentDescriptionProvider() },
+            { status.painter },
+            { status.contentDescription },
             true,
             size,
             status
@@ -1160,8 +1154,8 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         ) : this({ bitmap as Any }, { contentDescription }, tinted, size, null)
 
         private constructor(size: OudsListItemIconSize, status: OudsListItemIconStatus) : this(
-            { status.painterProvider() },
-            { status.contentDescriptionProvider() },
+            { status.painter },
+            { status.contentDescription },
             true,
             size,
             status
@@ -1329,8 +1323,7 @@ internal fun PreviewOudsStaticListItem(
             divider = decoration.divider,
             background = decoration is OudsListItemDecoration.Background,
             boldLabel = boldLabel,
-            enabled = enabled,
-            edgeToEdge = false
+            enabled = enabled
         )
     }
 }
@@ -1355,7 +1348,7 @@ internal fun PreviewOudsNavigationListItem(
     parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+        PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsListItem(
                 onClick = {},
                 indicator = indicator,
@@ -1369,8 +1362,7 @@ internal fun PreviewOudsNavigationListItem(
                 trailing = trailing,
                 divider = decoration.divider,
                 background = decoration is OudsListItemDecoration.Background,
-                enabled = enabled,
-                edgeToEdge = false
+                enabled = enabled
             )
         }
     }
@@ -1383,7 +1375,7 @@ private fun PreviewOudsNavigationListItemWithUntintedIcon() = PreviewOudsNavigat
 
 @Composable
 internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
         OudsListItem(
             onClick = {},
             label = "Label",
@@ -1392,6 +1384,27 @@ internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContr
                 painter = rememberRainbowHeartPainter(),
                 contentDescription = "",
                 tinted = false
+            ),
+            background = true
+        )
+    }
+}
+
+@Preview(heightDp = OudsPreviewableComponent.ListItem.WithEdgeToEdgeDisabled.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled() = PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
+        OudsListItem(
+            onClick = {},
+            label = "Label",
+            description = "Description",
+            trailing = OudsListItemTrailing.Icon(
+                imageVector = Icons.Outlined.FavoriteBorder,
+                contentDescription = ""
             ),
             background = true,
             edgeToEdge = false

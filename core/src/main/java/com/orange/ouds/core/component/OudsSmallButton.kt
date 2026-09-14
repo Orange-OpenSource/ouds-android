@@ -26,7 +26,6 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
-import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
@@ -73,7 +72,6 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlyOnColoredBackgroundSample
  */
 @Composable
-@ExperimentalOudsApi
 fun OudsSmallButton(
     label: String,
     onClick: () -> Unit,
@@ -140,7 +138,6 @@ fun OudsSmallButton(
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonIconOnlyWithUntintedIconSample
  */
 @Composable
-@ExperimentalOudsApi
 fun OudsSmallButton(
     icon: OudsButtonIcon,
     onClick: () -> Unit,
@@ -209,7 +206,6 @@ fun OudsSmallButton(
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextAndIconWithUntintedIconSample
  */
 @Composable
-@ExperimentalOudsApi
 fun OudsSmallButton(
     icon: OudsButtonIcon,
     label: String,

@@ -36,6 +36,7 @@ android {
             languageVersion.set(JavaLanguageVersion.of(21))
         }
         unitTests.all { it.javaLauncher.set(javaLauncher) }
+        unitTests.isReturnDefaultValues = true
     }
 
     buildTypes {

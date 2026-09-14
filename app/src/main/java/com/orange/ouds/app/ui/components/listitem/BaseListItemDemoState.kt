@@ -38,12 +38,14 @@ open class BaseListItemDemoState(
     description: String?,
     leading: Leading,
     leadingIconSize: OudsListItemIconSize,
+    leadingIconTint: IconTint,
     leadingStatusIcon: StatusIcon,
     leadingImageSize: OudsListItemImageSize,
     leadingImageRatio: OudsListItemImageRatio,
     leadingImageRoundedCorners: Boolean,
     trailing: Trailing,
     trailingIconSize: OudsListItemIconSize,
+    trailingIconTint: IconTint,
     trailingStatusIcon: StatusIcon,
     trailingImageSize: OudsListItemImageSize,
     trailingImageRatio: OudsListItemImageRatio,
@@ -74,12 +76,14 @@ open class BaseListItemDemoState(
                         description,
                         leading,
                         leadingIconSize,
+                        leadingIconTint,
                         leadingStatusIcon,
                         leadingImageSize,
                         leadingImageRatio,
                         leadingImageRoundedCorners,
                         trailing,
                         trailingIconSize,
+                        trailingIconTint,
                         trailingStatusIcon,
                         trailingImageSize,
                         trailingImageRatio,
@@ -107,23 +111,25 @@ open class BaseListItemDemoState(
                     list[8] as String?,
                     list[9] as Leading,
                     list[10] as OudsListItemIconSize,
-                    list[11] as StatusIcon,
-                    list[12] as OudsListItemImageSize,
-                    list[13] as OudsListItemImageRatio,
-                    list[14] as Boolean,
-                    list[15] as Trailing,
-                    list[16] as OudsListItemIconSize,
-                    list[17] as StatusIcon,
-                    list[18] as OudsListItemImageSize,
-                    list[19] as OudsListItemImageRatio,
-                    list[20] as Boolean,
-                    list[21] as String,
-                    list[22] as String?,
-                    list[23] as OudsListItemTextStyle,
-                    list[24] as Boolean,
-                    list[25] as String?,
+                    list[11] as IconTint,
+                    list[12] as StatusIcon,
+                    list[13] as OudsListItemImageSize,
+                    list[14] as OudsListItemImageRatio,
+                    list[15] as Boolean,
+                    list[16] as Trailing,
+                    list[17] as OudsListItemIconSize,
+                    list[18] as IconTint,
+                    list[19] as StatusIcon,
+                    list[20] as OudsListItemImageSize,
+                    list[21] as OudsListItemImageRatio,
+                    list[22] as Boolean,
+                    list[23] as String,
+                    list[24] as String?,
+                    list[25] as OudsListItemTextStyle,
                     list[26] as Boolean,
-                    list[27] as Boolean,
+                    list[27] as String?,
+                    list[28] as Boolean,
+                    list[29] as Boolean,
                 )
             }
         )
@@ -158,6 +164,7 @@ open class BaseListItemDemoState(
     var leading: Leading by mutableStateOf(leading)
 
     var leadingIconSize: OudsListItemIconSize by mutableStateOf(leadingIconSize)
+    var leadingIconTint: IconTint by mutableStateOf(leadingIconTint)
     var leadingStatusIcon: StatusIcon by mutableStateOf(leadingStatusIcon)
     val leadingIconOptionsEnabled: Boolean
         get() = leading == Leading.Icon
@@ -173,6 +180,7 @@ open class BaseListItemDemoState(
     var trailing: Trailing by mutableStateOf(trailing)
 
     var trailingIconSize: OudsListItemIconSize by mutableStateOf(trailingIconSize)
+    var trailingIconTint: IconTint by mutableStateOf(trailingIconTint)
     var trailingStatusIcon: StatusIcon by mutableStateOf(trailingStatusIcon)
     val trailingIconOptionsEnabled: Boolean
         get() = trailing == Trailing.Icon
@@ -221,4 +229,7 @@ open class BaseListItemDemoState(
         None, Info, Negative, Positive, Warning
     }
 
+    enum class IconTint {
+        Tinted, Untinted
+    }
 }

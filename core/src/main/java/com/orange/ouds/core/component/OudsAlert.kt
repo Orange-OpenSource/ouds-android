@@ -55,26 +55,30 @@ internal sealed class OudsAlertStatus(
 
     class Warning(
         defaultIconPainterProvider: (@Composable (OudsAlertStatus) -> Painter?) = { getDefaultIconPainter(it) },
-        defaultIconContentDescriptionProvider: (@Composable (OudsAlertStatus) -> String) = { stringResource(R.string.core_common_warning_a11y) }
-    ) :
-        OudsAlertStatus(defaultIconPainterProvider, defaultIconContentDescriptionProvider)
+        defaultIconContentDescriptionProvider: (@Composable (OudsAlertStatus) -> String) = { stringResource(R.string.core_common_warning_a11y) },
+        val layeredTintedPainter: Boolean = true
+    ) : OudsAlertStatus(defaultIconPainterProvider, defaultIconContentDescriptionProvider)
 
     companion object {
 
         @Composable
-        protected fun getDefaultIconPainter(status: OudsAlertStatus): Painter? {
+        internal fun getDefaultIconPainter(status: OudsAlertStatus): Painter? {
             return when (status) {
                 is Negative -> painterResource(OudsTheme.drawableResources.component.alert.importantFill)
                 is Positive -> painterResource(OudsTheme.drawableResources.component.alert.tickConfirmationFill)
                 is Info -> painterResource(OudsTheme.drawableResources.component.alert.infoFill)
                 is Warning -> {
-                    val iconTokens = OudsTheme.componentsTokens.icon
-                    LayeredTintedPainter(
-                        backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                        backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
-                        frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                        frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
-                    )
+                    if (status.layeredTintedPainter) {
+                        val iconTokens = OudsTheme.componentsTokens.icon
+                        LayeredTintedPainter(
+                            backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
+                            backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                            frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
+                            frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                        )
+                    } else {
+                        painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)
+                    }
                 }
                 is Accent,
                 is Neutral -> null
@@ -97,14 +101,14 @@ internal sealed class OudsAlertStatus(
     /**
      * The asset color associated with this status.
      */
-    val assetColor
+    val assetColor: Color
         @Composable
         get() = with(OudsTheme.colorScheme.content) {
             when (this@OudsAlertStatus) {
                 is Neutral -> default
                 is Accent -> status.accent
                 is Positive -> status.positive
-                is Warning -> Color.Unspecified
+                is Warning -> if (layeredTintedPainter) Color.Unspecified else status.warning
                 is Negative -> status.negative
                 is Info -> status.info
             }

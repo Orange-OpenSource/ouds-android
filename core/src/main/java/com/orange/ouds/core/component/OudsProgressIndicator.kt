@@ -67,21 +67,23 @@ enum class OudsProgressIndicatorStatus {
      * Use when the process involves caution, validation, or potentially disruptive actions.
      */
     Warning;
-    
+
     /**
      * The color associated with this status.
      */
     @Composable
     fun color(): Color {
-        return with(OudsTheme.colorScheme.content) {
-            when (this@OudsProgressIndicatorStatus) {
-                Neutral -> default
-                Accent -> status.accent
-                Negative -> status.negative
-                Positive -> status.positive
-                Info -> status.info
-                Warning -> status.warning
-            }
+        return toAlertStatus().assetColor
+    }
+
+    private fun toAlertStatus(): OudsAlertStatus {
+        return when (this) {
+            Negative -> OudsAlertStatus.Negative()
+            Positive -> OudsAlertStatus.Positive()
+            Info -> OudsAlertStatus.Info()
+            Warning -> OudsAlertStatus.Warning(layeredTintedPainter = false)
+            Accent -> OudsAlertStatus.Accent()
+            Neutral -> OudsAlertStatus.Neutral()
         }
     }
 }

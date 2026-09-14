@@ -24,6 +24,7 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsListItem
+import com.orange.ouds.core.component.OudsSmallListItem
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
@@ -78,41 +79,80 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
     with(state) {
         val modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)
         if (clickable) {
-            OudsListItem(
-                modifier = modifier,
-                onClick = {},
-                indicator = indicator.toOudsListItemIndicator(),
-                label = label,
-                verticalAlignment = verticalAlignment,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                leading = baseListItemDemoLeading(state = state),
-                trailing = baseListItemDemoTrailing(state = state),
-                divider = divider,
-                background = background,
-                helperText = helperText,
-                boldLabel = boldLabel,
-                enabled = enabled,
-                edgeToEdge = edgeToEdge
-            )
+            when (size) {
+                BaseListItemDemoState.Size.Default ->
+                    OudsListItem(
+                        modifier = modifier,
+                        onClick = {},
+                        indicator = indicator.toOudsListItemIndicator(),
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        overline = overline,
+                        extraLabel = extraLabel,
+                        description = description,
+                        leading = baseListItemDemoLeading(state = state),
+                        trailing = baseListItemDemoTrailing(state = state),
+                        divider = divider,
+                        background = background,
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                        edgeToEdge = edgeToEdge
+                    )
+                BaseListItemDemoState.Size.Small ->
+                    OudsSmallListItem(
+                        modifier = modifier,
+                        onClick = {},
+                        indicator = indicator.toOudsListItemIndicator(),
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        description = description,
+                        leading = baseSmallListItemDemoLeading(state = state),
+                        trailing = baseSmallListItemDemoTrailing(state = state),
+                        divider = divider,
+                        background = background,
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                        edgeToEdge = edgeToEdge
+                    )
+            }
         } else {
-            OudsListItem(
-                modifier = modifier,
-                label = label,
-                verticalAlignment = verticalAlignment,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                leading = baseListItemDemoLeading(state = state),
-                trailing = baseListItemDemoTrailing(state = state),
-                divider = divider,
-                background = background,
-                helperText = helperText,
-                boldLabel = boldLabel,
-                enabled = enabled,
-                edgeToEdge = edgeToEdge
-            )
+            when (size) {
+                BaseListItemDemoState.Size.Default ->
+                    OudsListItem(
+                        modifier = modifier,
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        overline = overline,
+                        extraLabel = extraLabel,
+                        description = description,
+                        leading = baseListItemDemoLeading(state = state),
+                        trailing = baseListItemDemoTrailing(state = state),
+                        divider = divider,
+                        background = background,
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                        edgeToEdge = edgeToEdge
+                    )
+                BaseListItemDemoState.Size.Small ->
+                    OudsSmallListItem(
+                        modifier = modifier,
+                        label = label,
+                        verticalAlignment = verticalAlignment,
+                        description = description,
+                        leading = baseSmallListItemDemoLeading(state = state),
+                        trailing = baseSmallListItemDemoTrailing(state = state),
+                        divider = divider,
+                        background = background,
+                        helperText = helperText,
+                        boldLabel = boldLabel,
+                        enabled = enabled,
+                        edgeToEdge = edgeToEdge
+                    )
+            }
+
         }
     }
 }
