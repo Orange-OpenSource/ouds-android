@@ -55,7 +55,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -796,14 +795,12 @@ private fun PreviewOudsLinkOnTwoLines() = PreviewOudsLinkOnTwoLines(theme = getP
 internal fun PreviewOudsLinkOnTwoLines(theme: OudsThemeContract) {
     OudsPreview(theme = theme) {
         val label = "Link\non two lines"
-        Row(horizontalArrangement = Arrangement.spacedBy(PreviewPaddingDefault)) {
-            listOf(OudsLinkIndicator.Previous, OudsLinkIndicator.Next).forEach { indicator ->
-                OudsLink(
-                    label = label,
-                    indicator = indicator,
-                    onClick = {},
-                )
-            }
+        PreviewEnumEntries<OudsLinkIndicator>(maxEnumEntriesInEachRow = 1) { indicator ->
+            OudsLink(
+                label = label,
+                indicator = indicator,
+                onClick = {},
+            )
         }
     }
 }
