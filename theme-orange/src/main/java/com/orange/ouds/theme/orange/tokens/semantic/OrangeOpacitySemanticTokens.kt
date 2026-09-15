@@ -15,9 +15,11 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.tokens.raw.OudsOpacityRawTokens
 
+@RestrictedOudsApi
 data class OrangeOpacitySemanticTokens(
     override val disabled: Float = OudsOpacityRawTokens.Opacity200,
     override val invisible: Float = OudsOpacityRawTokens.Opacity0,

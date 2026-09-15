@@ -15,6 +15,7 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
@@ -24,6 +25,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangeSwitchTokens(
     override val borderRadiusCursor: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderRadiusTrack: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,

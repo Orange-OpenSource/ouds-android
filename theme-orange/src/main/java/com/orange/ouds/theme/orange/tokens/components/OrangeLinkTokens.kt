@@ -15,12 +15,14 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLinkTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangeLinkTokens(
     override val colorChevronEnabled: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
     @Deprecated("") override val colorChevronFocus: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,

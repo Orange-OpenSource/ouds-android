@@ -15,9 +15,11 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
+@RestrictedOudsApi
 data class OrangeEffectSemanticTokens(
     override val blurDrag: Int = OudsEffectRawTokens.EffectBlur480
 ) : OudsEffectSemanticTokens

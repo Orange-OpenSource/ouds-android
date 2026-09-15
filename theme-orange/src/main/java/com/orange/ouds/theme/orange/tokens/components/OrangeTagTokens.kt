@@ -15,12 +15,14 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangeTagTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val sizeAssetDefault: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Medium.SizeSmall,

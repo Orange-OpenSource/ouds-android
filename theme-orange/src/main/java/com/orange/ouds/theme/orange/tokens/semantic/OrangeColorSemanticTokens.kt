@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
@@ -25,6 +26,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 
+@RestrictedOudsApi
 data class OrangeColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = OrangeColorActionSemanticTokens(),
     override val aiColorTokens: OudsColorAiSemanticTokens = OrangeColorAiSemanticTokens(),

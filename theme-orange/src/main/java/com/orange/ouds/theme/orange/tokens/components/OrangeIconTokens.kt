@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsIconTokens
 
+@RestrictedOudsApi
 data class OrangeIconTokens(
     override val colorContentStatusWarningExternalShape: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Warning.Medium, OudsColorKeyToken.Repository.Warning.Low),
     override val colorContentStatusWarningInternalShape: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Warning.High, OudsColorKeyToken.Opacity.Transparent),

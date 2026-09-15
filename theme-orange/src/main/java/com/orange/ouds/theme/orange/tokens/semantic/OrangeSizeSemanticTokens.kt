@@ -15,9 +15,11 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangeSizeSemanticTokens(
     override val iconDecorative2xlarge: Float = OudsDimensionRawTokens.Dimension900,
     override val iconDecorative2xsmall: Float = OudsDimensionRawTokens.Dimension200,

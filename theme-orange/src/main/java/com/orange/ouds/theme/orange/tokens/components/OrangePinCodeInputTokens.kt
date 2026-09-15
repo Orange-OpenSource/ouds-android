@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangePinCodeInputTokens(
     override val sizeMaxWidth: Float = OudsDimensionRawTokens.Dimension700,
     override val sizeMinWidth: Float = OudsDimensionRawTokens.Dimension550,

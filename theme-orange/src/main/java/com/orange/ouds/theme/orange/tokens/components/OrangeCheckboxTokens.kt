@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSizeKeyToken
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 
+@RestrictedOudsApi
 data class OrangeCheckboxTokens(
     override val borderRadius: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderWidthSelected: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Medium,

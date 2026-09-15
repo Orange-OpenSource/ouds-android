@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangeBadgeTokens(
     override val sizeLarge: Float = OudsDimensionRawTokens.Dimension250,
     override val sizeMedium: Float = OudsDimensionRawTokens.Dimension200,

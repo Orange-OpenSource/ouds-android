@@ -12,6 +12,7 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
@@ -37,6 +38,7 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 
+@RestrictedOudsApi
 data class OrangeComponentsTokens(
     override val accordion: OudsAccordionTokens = OrangeAccordionTokens(),
     override val alert: OudsAlertTokens = OrangeAlertTokens(),

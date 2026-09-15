@@ -15,8 +15,10 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorModeSemanticTokens
 
+@RestrictedOudsApi
 data class OrangeColorModeSemanticTokens(
     override val navigationBarDark: String = "dark",
     override val navigationBarLight: String = "dark",

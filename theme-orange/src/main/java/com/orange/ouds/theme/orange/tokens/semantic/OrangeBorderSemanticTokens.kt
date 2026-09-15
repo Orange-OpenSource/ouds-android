@@ -15,9 +15,11 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.tokens.raw.OudsBorderRawTokens
 
+@RestrictedOudsApi
 data class OrangeBorderSemanticTokens(
     override val radiusDefault: Float = OudsBorderRawTokens.BorderRadius0,
     override val radiusLarge: Float = OudsBorderRawTokens.BorderRadius300,

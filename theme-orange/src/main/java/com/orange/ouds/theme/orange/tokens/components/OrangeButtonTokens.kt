@@ -15,6 +15,7 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.orange.tokens.components.deprecated.OrangeDeprecatedTokensProvider
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
@@ -24,6 +25,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedButtonTokens
 
+@RestrictedOudsApi
 data class OrangeButtonTokens(
     override val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,

@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
+@RestrictedOudsApi
 data class OrangeTextAreaTokens(
     override val sizeMaxHeightAssetsContainer: Float = OudsDimensionRawTokens.Dimension1100,
     override val sizeMaxHeightInput: Float = OudsDimensionRawTokens.Dimension2500,
