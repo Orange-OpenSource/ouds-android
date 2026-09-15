@@ -186,6 +186,9 @@
     <string name="app_components_radioButton_radioButton_a11y">Description du contenu du bouton radio %s</string>
     <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[Veuillez sélectionner <b>un moyen de contact</b> pour continuer.]]></string>
 
+    <!-- Components: skeleton -->
+    <string name="app_components_skeleton_description_text">Un Skeleton est un élément d’interface utilisateur qui indique que le contenu est en cours de chargement.</string>
+
     <!-- Components: switch -->
     <string name="app_components_switch_description_text">Un Switch (ou interrupteur) est un élément d\'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.</string>
     <string name="app_components_switch_switch_a11y">Description du contenu du switch</string>
