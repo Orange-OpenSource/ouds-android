@@ -33,6 +33,7 @@ import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsSkeletonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
@@ -59,6 +60,7 @@ internal data class SoshComponentsTokens(
     override val progressIndicator: OudsProgressIndicatorTokens = SoshProgressIndicatorTokens(),
     override val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens = SoshProgressIndicatorMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = SoshRadioButtonTokens(),
+    override val skeleton: OudsSkeletonTokens = SoshSkeletonTokens(),
     override val switch: OudsSwitchTokens = SoshSwitchTokens(),
     override val tag: OudsTagTokens = SoshTagTokens(),
     override val textArea: OudsTextAreaTokens = SoshTextAreaTokens(),
