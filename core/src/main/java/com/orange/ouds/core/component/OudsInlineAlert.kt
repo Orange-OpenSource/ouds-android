@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -58,6 +59,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *   [OudsInlineAlertStatus.Warning], [OudsInlineAlertStatus.Negative], [OudsInlineAlertStatus.Info].
  *   These alerts follow strict semantic conventions for icon, color, and tone — ensuring clear, accessible communication across all digital products.
  *   Each type has a dedicated, standardized icon that expresses its meaning clearly.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalStatusSample
  *
@@ -65,35 +68,42 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsInlineAlert(
     label: String,
     modifier: Modifier = Modifier,
-    status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status
+    status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
-        Row(
-            modifier = modifier.semantics(mergeDescendants = true) {},
-            horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
-        ) {
-            status.icon.Content(
-                modifier = Modifier.iconSize(sizeAsset.value * scale, status.icon.tinted),
-                extraParameters = OudsAlertIcon.ExtraParameters(
-                    tint = status.assetColor,
-                    status = status.value
+        SkeletonLayout(
+            modifier = modifier,
+            skeleton = skeleton,
+            securityMargin = true
+        ) { contentModifier ->
+            Row(
+                modifier = contentModifier.semantics(mergeDescendants = true) {},
+                horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
+            ) {
+                status.icon.Content(
+                    modifier = Modifier.iconSize(sizeAsset.value * scale, status.icon.tinted),
+                    extraParameters = OudsAlertIcon.ExtraParameters(
+                        tint = status.assetColor,
+                        status = status.value
+                    )
                 )
-            )
-            Text(
-                modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
-                text = label,
-                color = status.textColor,
-                style = OudsTheme.typography.label.large.moderate
-            )
+                Text(
+                    modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
+                    text = label,
+                    color = status.textColor,
+                    style = OudsTheme.typography.label.large.moderate
+                )
+            }
         }
     }
 }
-
 
 /**
  * Default values for [OudsInlineAlert].
@@ -250,6 +260,25 @@ internal fun PreviewOudsInlineAlertWithUntintedIcon(theme: OudsThemeContract) = 
             status = status
         )
     }
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsInlineAlertSkeleton() {
+    PreviewOudsInlineAlertSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsInlineAlertSkeleton(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsInlineAlert(
+        label = "Very long label that needs more than one line to be displayed.",
+        status = OudsInlineAlertStatus.Negative,
+        skeleton = OudsSkeleton(rememberOudsSkeletonState())
+    )
 }
 
 internal class OudsInlineAlertPreviewParameterProvider :

@@ -41,7 +41,8 @@ fun rememberCheckboxItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     constrainedMaxWidth: Boolean = false,
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
@@ -57,6 +58,7 @@ fun rememberCheckboxItemDemoState(
     description,
     constrainedMaxWidth,
     annotatedText,
+    skeleton,
     saver = CheckboxItemDemoState.Saver
 ) {
     CheckboxItemDemoState(
@@ -73,7 +75,8 @@ fun rememberCheckboxItemDemoState(
         label,
         description,
         constrainedMaxWidth,
-        annotatedText
+        annotatedText,
+        skeleton
     )
 }
 
@@ -91,8 +94,23 @@ class CheckboxItemDemoState(
     label: String,
     description: String?,
     constrainedMaxWidth: Boolean,
-    annotatedText: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, annotatedText) {
+    annotatedText: Boolean,
+    skeleton: Boolean
+) : ControlItemDemoState(
+    icon,
+    edgeToEdge,
+    divider,
+    reversed,
+    enabled,
+    readOnly,
+    error,
+    errorMessage,
+    label,
+    description,
+    constrainedMaxWidth,
+    annotatedText,
+    skeleton
+) {
 
     companion object {
         val Saver = listSaver(
@@ -121,7 +139,8 @@ class CheckboxItemDemoState(
                         label,
                         description,
                         constrainedMaxWidth,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             }
@@ -129,5 +148,6 @@ class CheckboxItemDemoState(
     }
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
+
     var toggleableStateValues: Pair<ToggleableState, ToggleableState> by mutableStateOf(toggleableStateValues)
 }

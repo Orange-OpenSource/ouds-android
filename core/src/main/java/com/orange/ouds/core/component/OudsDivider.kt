@@ -27,6 +27,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -162,7 +163,7 @@ internal fun PreviewOudsDivider(
     darkThemeEnabled: Boolean,
     orientation: OudsDividerOrientation,
     color: OudsDividerColor
-) = OudsPreview(theme = theme, modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, modifier = Modifier.padding(PreviewPaddingDefault), darkThemeEnabled = darkThemeEnabled) {
     val length = 100.dp
     when (orientation) {
         OudsDividerOrientation.Horizontal -> OudsHorizontalDivider(modifier = Modifier.width(length), color = color)

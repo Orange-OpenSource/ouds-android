@@ -62,7 +62,8 @@ fun rememberListItemDemoState(
     divider: Boolean = true,
     helperText: String? = null,
     boldLabel: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    skeleton: Boolean = false
 ): ListItemDemoState {
     val state = rememberSaveable(
         background,
@@ -97,6 +98,7 @@ fun rememberListItemDemoState(
         helperText,
         boldLabel,
         enabled,
+        skeleton,
         saver = ListItemDemoState.Saver
     ) {
         ListItemDemoState(
@@ -131,7 +133,8 @@ fun rememberListItemDemoState(
             divider,
             helperText,
             boldLabel,
-            enabled
+            enabled,
+            skeleton
         )
     }
 
@@ -175,6 +178,7 @@ class ListItemDemoState(
     helperText: String?,
     boldLabel: Boolean,
     enabled: Boolean,
+    skeleton: Boolean
 ) : BaseListItemDemoState(
     size,
     selectedTabIndex,
@@ -205,7 +209,8 @@ class ListItemDemoState(
     divider,
     helperText,
     boldLabel,
-    enabled
+    enabled,
+    skeleton
 ) {
 
     companion object {
@@ -254,7 +259,8 @@ class ListItemDemoState(
                         divider,
                         helperText,
                         boldLabel,
-                        enabled
+                        enabled,
+                        skeleton
                     )
                 }
             }

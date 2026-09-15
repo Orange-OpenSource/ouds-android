@@ -55,6 +55,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -64,6 +65,7 @@ import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -114,6 +116,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticListItemSample
@@ -121,6 +125,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(
@@ -138,7 +143,8 @@ fun OudsListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Default,
@@ -158,7 +164,8 @@ fun OudsListItem(
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -197,6 +204,8 @@ fun OudsListItem(
  * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemSample
@@ -204,6 +213,7 @@ fun OudsListItem(
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(
@@ -223,7 +233,8 @@ fun OudsListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Default,
@@ -243,7 +254,8 @@ fun OudsListItem(
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -266,17 +278,18 @@ internal fun OudsListItem(
     enabled: Boolean,
     edgeToEdge: Boolean,
     card: Boolean,
-    interactionSource: MutableInteractionSource?
+    interactionSource: MutableInteractionSource?,
+    skeleton: OudsSkeleton?
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getListItemState(enabled = enabled, interactionState = interactionState)
+    val state = getListItemState(enabled = enabled, skeleton = skeleton, interactionState = interactionState)
     val backgroundColor = rememberInteractionColor(interactionState = interactionState) { listItemInteractionState ->
-        val listItemState = getListItemState(enabled = enabled, interactionState = listItemInteractionState)
+        val listItemState = getListItemState(enabled = enabled, skeleton = skeleton, interactionState = listItemInteractionState)
         backgroundColor(state = listItemState, decoration = decoration)
     }
     val outlineBorderColor = rememberInteractionColor(interactionState = interactionState) { listItemInteractionState ->
-        val listItemState = getListItemState(enabled = enabled, interactionState = listItemInteractionState)
+        val listItemState = getListItemState(enabled = enabled, skeleton = skeleton, interactionState = listItemInteractionState)
         outlineBorderColor(state = listItemState)
     }
 
@@ -287,7 +300,7 @@ internal fun OudsListItem(
         val clickableModifier = if (onClick != null) {
             Modifier.clickable(
                 onClick = onClick,
-                enabled = enabled,
+                enabled = state.areInteractionsEnabled,
                 interactionSource = interactionSource,
                 indication = interactionValuesIndication(backgroundColor, outlineBorderColor)
             )
@@ -295,92 +308,97 @@ internal fun OudsListItem(
             Modifier
         }
 
-        Column(
-            modifier = modifier.sizeIn(minWidth = this.size.minWidth)
-        ) {
-            Row(
-                modifier = clickableModifier
-                    .fillMaxWidth()
-                    .heightIn(min = minHeight(size))
-                    .background(color = backgroundColor.value, shape = shape)
-                    .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
-                    .outerBorder(state = state, shape = shape)
-                    .containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge)
-                    .semantics(mergeDescendants = true) { },
-                horizontalArrangement = Arrangement.spacedBy(space.columnGap),
-                verticalAlignment = verticalAlignment(verticalAlignment)
-            ) {
-                if (indicator == OudsListItemIndicator.Previous) {
-                    Indicator(drawableId = indicator.drawableId, state = state)
-                } else {
-                    leading?.let {
-                        when (leading) {
-                            is OudsListItemLeadingTrailing.Icon -> {
-                                leading.PolymorphicContent(
-                                    extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
+        SkeletonLayout(
+            modifier = modifier,
+            componentState = state,
+            state = skeleton?.state,
+            securityMargin = true
+        ) { contentModifier ->
+            Column(modifier = contentModifier.sizeIn(minWidth = this.size.minWidth)) {
+                Row(
+                    modifier = clickableModifier
+                        .fillMaxWidth()
+                        .heightIn(min = minHeight(size))
+                        .background(color = backgroundColor.value, shape = shape)
+                        .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
+                        .outerBorder(state = state, shape = shape)
+                        .containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge)
+                        .semantics(mergeDescendants = true) { },
+                    horizontalArrangement = Arrangement.spacedBy(space.columnGap),
+                    verticalAlignment = verticalAlignment(verticalAlignment)
+                ) {
+                    if (indicator == OudsListItemIndicator.Previous) {
+                        Indicator(drawableId = indicator.drawableId, state = state)
+                    } else {
+                        leading?.let {
+                            when (leading) {
+                                is OudsListItemLeadingTrailing.Icon -> {
+                                    leading.PolymorphicContent(
+                                        extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
+                                    )
+                                }
+                                is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
+                                is OudsListItemLeadingTrailing.Text -> {}
+                            }
+                        }
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(top = topTextContainerPadding(verticalAlignment = verticalAlignment, size = size))
+                    ) {
+                        if (!overline.isNullOrBlank()) {
+                            Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
+                        }
+                        Text(
+                            text = label,
+                            style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
+                            color = contentColor(state = state)
+                        )
+                        if (!extraLabel.isNullOrBlank()) {
+                            Text(text = extraLabel, style = OudsTheme.typography.label.medium.strong, color = contentColor(state = state))
+                        }
+                        if (!description.isNullOrBlank()) {
+                            Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
+                        }
+                    }
+
+                    trailing?.let {
+                        when (trailing) {
+                            is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(
+                                    state = state
+                                )
+                            )
+                            is OudsListItemLeadingTrailing.Text -> {
+                                trailing.PolymorphicContent(
+                                    extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
+                                        state = state,
+                                        verticalAlignment = verticalAlignment,
+                                        size = size
+                                    )
                                 )
                             }
-                            is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
-                            is OudsListItemLeadingTrailing.Text -> {}
+                            is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
                         }
+                    }
+
+                    if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
+                        Indicator(drawableId = indicator.drawableId, state = state)
                     }
                 }
 
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(top = topTextContainerPadding(verticalAlignment = verticalAlignment, size = size))
-                ) {
-                    if (!overline.isNullOrBlank()) {
-                        Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
-                    }
+                if (!helperText.isNullOrBlank()) {
                     Text(
-                        text = label,
-                        style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
-                        color = contentColor(state = state)
+                        modifier = Modifier
+                            .padding(top = space.paddingBlock.topHelperText)
+                            .padding(horizontal = space.paddingInline),
+                        text = helperText,
+                        style = OudsTheme.typography.label.medium.default,
+                        color = contentColor(state = state, muted = true)
                     )
-                    if (!extraLabel.isNullOrBlank()) {
-                        Text(text = extraLabel, style = OudsTheme.typography.label.medium.strong, color = contentColor(state = state))
-                    }
-                    if (!description.isNullOrBlank()) {
-                        Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
-                    }
                 }
-
-                trailing?.let {
-                    when (trailing) {
-                        is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
-                            extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(
-                                state = state
-                            )
-                        )
-                        is OudsListItemLeadingTrailing.Text -> {
-                            trailing.PolymorphicContent(
-                                extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
-                                    state = state,
-                                    verticalAlignment = verticalAlignment,
-                                    size = size
-                                )
-                            )
-                        }
-                        is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
-                    }
-                }
-
-                if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
-                    Indicator(drawableId = indicator.drawableId, state = state)
-                }
-            }
-
-            if (!helperText.isNullOrBlank()) {
-                Text(
-                    modifier = Modifier
-                        .padding(top = space.paddingBlock.topHelperText)
-                        .padding(horizontal = space.paddingInline),
-                    text = helperText,
-                    style = OudsTheme.typography.label.medium.default,
-                    color = contentColor(state = state, muted = true)
-                )
             }
         }
     }
@@ -399,9 +417,10 @@ private fun Indicator(drawableId: Int, state: OudsListItemState) {
 }
 
 @Composable
-private fun getListItemState(enabled: Boolean, interactionState: InteractionState): OudsListItemState {
+private fun getListItemState(enabled: Boolean, skeleton: OudsSkeleton?, interactionState: InteractionState): OudsListItemState {
     return getPreviewEnumEntry<OudsListItemState>().orElse {
         when {
+            skeleton != null -> OudsListItemState.Skeleton
             !enabled -> OudsListItemState.Disabled
             interactionState == InteractionState.Hovered -> OudsListItemState.Hovered
             interactionState == InteractionState.Pressed -> OudsListItemState.Pressed
@@ -444,6 +463,7 @@ private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDe
         OudsListItemState.Focused -> if (backgroundDecoration) focus else Color.Transparent
         OudsListItemState.Hovered -> if (backgroundDecoration) hover else Color.Transparent
         OudsListItemState.Pressed -> if (backgroundDecoration) pressed else Color.Transparent
+        OudsListItemState.Skeleton -> Color.Transparent
     }
 }
 
@@ -483,6 +503,7 @@ private fun outlineBorderColor(state: OudsListItemState) = with(OudsTheme.colorS
         OudsListItemState.Hovered -> hover
         OudsListItemState.Pressed -> pressed
         OudsListItemState.Disabled -> disabled
+        OudsListItemState.Skeleton -> Color.Transparent
     }
 }
 
@@ -509,6 +530,7 @@ private fun indicatorColor(state: OudsListItemState) = with(OudsTheme.colorSchem
         OudsListItemState.Hovered -> hover
         OudsListItemState.Pressed -> pressed
         OudsListItemState.Disabled -> disabled
+        OudsListItemState.Skeleton -> Color.Transparent
     }
 }
 
@@ -677,8 +699,13 @@ sealed class OudsListItemDecoration(val divider: Boolean) {
     class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
 }
 
-internal enum class OudsListItemState {
-    Enabled, Hovered, Pressed, Disabled, Focused
+internal enum class OudsListItemState : OudsComponentState {
+    Enabled, Hovered, Pressed, Disabled, Focused, Skeleton;
+
+    companion object {
+
+        val StaticStates = listOf(Enabled, Disabled, Skeleton)
+    }
 }
 
 sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
@@ -1330,12 +1357,7 @@ internal fun PreviewOudsStaticListItem(
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(
             maxEnumEntriesInEachRow = 1,
-            filter = {
-                it in listOf(
-                    OudsListItemState.Enabled,
-                    OudsListItemState.Disabled
-                )
-            }
+            filter = { it in OudsListItemState.StaticStates }
         ) {
             OudsListItem(
                 label = label,
@@ -1395,7 +1417,13 @@ internal fun PreviewOudsNavigationListItem(
     }
 }
 
-@OudsPreview
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.ListItem.WithUntintedIcon.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.ListItem.WithUntintedIcon.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationListItemWithUntintedIcon() = PreviewOudsNavigationListItemWithUntintedIcon(getPreviewTheme())

@@ -20,6 +20,8 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.component.OudsSkeleton
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -42,13 +44,15 @@ private fun FilterChipDemoContent(state: FilterChipDemoState) {
             val label = "$label$separator${index + 1}"
             val selected = selectedValues[index]
             val onClick = { selectedValues = selectedValues.toMutableList().also { it[index] = !it[index] } }
+            val filterChipSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
             when (layout) {
                 ChipDemoState.Layout.TextOnly -> {
                     OudsFilterChip(
                         selected = selected,
                         onClick = onClick,
                         label = label,
-                        enabled = enabled
+                        enabled = enabled,
+                        skeleton = filterChipSkeleton
                     )
                 }
                 ChipDemoState.Layout.TextAndIcon -> {
@@ -57,7 +61,8 @@ private fun FilterChipDemoContent(state: FilterChipDemoState) {
                         onClick = onClick,
                         label = label,
                         icon = icon,
-                        enabled = enabled
+                        enabled = enabled,
+                        skeleton = filterChipSkeleton
                     )
                 }
                 ChipDemoState.Layout.IconOnly -> {
@@ -65,7 +70,8 @@ private fun FilterChipDemoContent(state: FilterChipDemoState) {
                         selected = selected,
                         onClick = onClick,
                         icon = icon,
-                        enabled = enabled
+                        enabled = enabled,
+                        skeleton = filterChipSkeleton
                     )
                 }
             }

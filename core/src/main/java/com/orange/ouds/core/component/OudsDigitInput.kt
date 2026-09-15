@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -39,14 +41,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.bottomBorder
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -55,6 +58,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 internal fun OudsDigitInput(
@@ -66,7 +70,8 @@ internal fun OudsDigitInput(
     error: Boolean = false,
     placeholder: Boolean = true,
     hiddenDigit: Boolean = true,
-    smallDeviceSpecificRules: Boolean = false
+    smallDeviceSpecificRules: Boolean = false,
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     @Suppress("NAME_SHADOWING") val state = getPreviewEnumEntry<OudsDigitInputState>().orElse { state }
 
@@ -80,58 +85,65 @@ internal fun OudsDigitInput(
     ) {
         val textInputTokens = OudsTheme.componentsTokens.textInput
         val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
-
-        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = error)
-        val borderColor = borderColor(state = state, outlined = outlined, error = error)
-        val borderWidth = borderWidth(state = state, outlined = outlined)
-
-        var cursorVisible by remember(state) { mutableStateOf(state == OudsDigitInputState.Focused) }
-        val cursorBlinkEnabled = LocalCursorBlinkEnabled.current
-        LaunchedEffect(state, cursorBlinkEnabled) {
-            if (state == OudsDigitInputState.Focused && cursorBlinkEnabled) {
-                while (true) {
-                    delay(500)
-                    cursorVisible = !cursorVisible
-                }
-            }
-        }
         val minWidth = if (smallDeviceSpecificRules) Dp.Unspecified else pinCodeInputTokens.sizeMinWidth.dp
-        val horizontalPadding = if (smallDeviceSpecificRules) 0.dp else textInputTokens.spacePaddingInlineDefault.value
-        Row(
+        SkeletonLayout(
             modifier = Modifier
-                .clickable(
-                    onClick = onClick,
-                    interactionSource = null,
-                    indication = null
-                )
                 .heightIn(min = textInputTokens.sizeMinHeight.dp)
                 .widthIn(min = minWidth, max = pinCodeInputTokens.sizeMaxWidth.dp)
-                .then(modifier) // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
-                .background(color = backgroundColor, shape = digitInputShape)
-                .digitInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined)
-                .padding(
-                    horizontal = horizontalPadding,
-                    vertical = textInputTokens.spacePaddingBlockDefault.value
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            val text = when {
-                digit?.isDigit() == true && hiddenDigit -> OudsPasswordInputTextObfuscationCharacter.toString()
-                digit?.isDigit() == true && !hiddenDigit -> digit.toString()
-                placeholder && state != OudsDigitInputState.Focused -> OudsDigitInputPlaceholder.toString()
-                else -> ""
+                .then(modifier), // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
+            componentState = state,
+            securityMargin = false,
+            state = skeleton?.state,
+            shape = digitInputShape
+        ) { contentModifier ->
+            val backgroundColor = backgroundColor(state = state, outlined = outlined, error = error)
+            val borderColor = borderColor(state = state, outlined = outlined, error = error)
+            val borderWidth = borderWidth(state = state, outlined = outlined)
+
+            var cursorVisible by remember(state) { mutableStateOf(state == OudsDigitInputState.Focused) }
+            val cursorBlinkEnabled = LocalCursorBlinkEnabled.current
+            LaunchedEffect(state, cursorBlinkEnabled) {
+                if (state == OudsDigitInputState.Focused && cursorBlinkEnabled) {
+                    while (true) {
+                        delay(500.milliseconds)
+                        cursorVisible = !cursorVisible
+                    }
+                }
             }
-            val textStyle = OudsTheme.typography.label.large.moderate
-            val textColor = if (digit != null) textColor(state = state) else placeholderColor(state = state)
-            Text(text = text, style = textStyle, color = textColor)
-            if (state == OudsDigitInputState.Focused) {
-                Text(
-                    modifier = Modifier.alpha(if (cursorVisible) 1.0f else 0.0f),
-                    text = OudsDigitInputCursor.toString(),
-                    style = textStyle,
-                    color = cursorColor(error = error)
-                )
+            val horizontalPadding = if (smallDeviceSpecificRules) 0.dp else textInputTokens.spacePaddingInlineDefault.value
+            Row(
+                modifier = contentModifier
+                    .clickable(
+                        onClick = onClick,
+                        interactionSource = null,
+                        indication = null
+                    )
+                    .background(color = backgroundColor, shape = digitInputShape)
+                    .digitInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined)
+                    .padding(
+                        horizontal = horizontalPadding,
+                        vertical = textInputTokens.spacePaddingBlockDefault.value
+                    ),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                val text = when {
+                    digit?.isDigit() == true && hiddenDigit -> OudsPasswordInputTextObfuscationCharacter.toString()
+                    digit?.isDigit() == true && !hiddenDigit -> digit.toString()
+                    placeholder && state != OudsDigitInputState.Focused -> OudsDigitInputPlaceholder.toString()
+                    else -> ""
+                }
+                val textStyle = OudsTheme.typography.label.large.moderate
+                val textColor = if (digit != null) textColor(state = state) else placeholderColor(state = state)
+                Text(text = text, style = textStyle, color = textColor)
+                if (state == OudsDigitInputState.Focused) {
+                    Text(
+                        modifier = Modifier.alpha(if (cursorVisible) 1.0f else 0.0f),
+                        text = OudsDigitInputCursor.toString(),
+                        style = textStyle,
+                        color = cursorColor(error = error)
+                    )
+                }
             }
         }
     }
@@ -157,8 +169,9 @@ private fun backgroundColor(state: OudsDigitInputState, outlined: Boolean, error
             OudsDigitInputState.Enabled -> OudsTheme.colorScheme.action.support.enabled
             OudsDigitInputState.Hovered -> OudsTheme.colorScheme.action.support.hover
             OudsDigitInputState.Focused -> OudsTheme.colorScheme.action.support.pressed
-            OudsDigitInputState.ReadOnly -> Color.Transparent
             OudsDigitInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
+            OudsDigitInputState.ReadOnly,
+            OudsDigitInputState.Skeleton -> Color.Transparent
         }
     }
 }
@@ -172,7 +185,8 @@ private fun borderColor(state: OudsDigitInputState, outlined: Boolean, error: Bo
                 OudsDigitInputState.Hovered -> hover
                 OudsDigitInputState.Focused -> pressed
                 OudsDigitInputState.ReadOnly,
-                OudsDigitInputState.Disabled -> Color.Unspecified
+                OudsDigitInputState.Disabled,
+                OudsDigitInputState.Skeleton -> null
             }
         }
     } else {
@@ -183,6 +197,7 @@ private fun borderColor(state: OudsDigitInputState, outlined: Boolean, error: Bo
             OudsDigitInputState.Focused -> textInputTokens.colorBorderFocus.value
             OudsDigitInputState.ReadOnly -> if (outlined) null else OudsTheme.colorScheme.border.muted
             OudsDigitInputState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsDigitInputState.Skeleton -> null
         }
     }
 }
@@ -196,6 +211,7 @@ private fun borderWidth(state: OudsDigitInputState, outlined: Boolean): Dp? {
             OudsDigitInputState.Disabled -> borderWidthDefault
             OudsDigitInputState.ReadOnly -> if (outlined) null else borderWidthDefault
             OudsDigitInputState.Focused -> borderWidthFocus
+            OudsDigitInputState.Skeleton -> null
         }
     }?.value?.takeUnlessHairline
 }
@@ -226,11 +242,19 @@ internal const val OudsDigitInputPlaceholder = '-'
 
 internal const val OudsDigitInputCursor = '|'
 
-internal enum class OudsDigitInputState {
-    Enabled, Hovered, Focused, ReadOnly, Disabled
+internal enum class OudsDigitInputState : OudsComponentState {
+    Enabled, Hovered, Focused, ReadOnly, Disabled, Skeleton
 }
 
-@OudsPreviewLightDark
+internal const val OudsDigitInputPreviewWidthDp = 410
+
+@Preview(name = "Light", widthDp = OudsDigitInputPreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsDigitInputPreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInput(@PreviewParameter(OudsDigitInputPreviewParameterProvider::class) parameter: OudsDigitInputPreviewParameter) = OudsPreview {
@@ -278,7 +302,7 @@ private val previewParameterValues: List<OudsDigitInputPreviewParameter>
         )
     }
 
-@Preview(name = "Light", device = OudsPreviewDevice)
+@Preview(name = "Light", widthDp = OudsDigitInputPreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInputWithRoundedCorners(@PreviewParameter(OudsDigitInputWithRoundedCornersPreviewParameterProvider::class) outlined: Boolean) =
