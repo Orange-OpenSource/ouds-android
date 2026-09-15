@@ -55,7 +55,7 @@ private val OudsCircularProgressIndicatorSize = 48.dp
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -99,7 +99,7 @@ fun OudsCircularProgressIndicator(
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -144,7 +144,7 @@ fun OudsCircularProgressIndicator(
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -185,7 +185,7 @@ fun OudsCircularProgressIndicator(
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
