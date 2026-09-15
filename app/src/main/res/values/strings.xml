@@ -431,5 +431,7 @@
     <string name="app_about_versions_label">Versions</string>
     <string name="app_about_versions_tokens_label">Tokens</string>
     <string name="app_about_versions_components_label">Components</string>
+    <string name="app_about_versions_icons_label">Icons</string>
+    <string name="app_about_versions_iconsPack_label" translatable="false">Icons pack</string>
 
 </resources>
