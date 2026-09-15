@@ -66,6 +66,8 @@ fun AboutVersionsScreen() {
                     modifier = Modifier.padding(top = OudsTheme.spaces.fixed.small),
                     titleRes = R.string.app_about_versions_icons_label
                 )
+            }
+            item {
                 @OptIn(InternalOudsApi::class)
                 Version(version = Version(name = stringResource(R.string.app_about_versions_iconsPack_label), value = OudsIconsPackVersion))
             }
