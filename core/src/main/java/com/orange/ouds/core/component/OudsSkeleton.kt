@@ -12,15 +12,31 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.lerp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -46,11 +62,43 @@ fun OudsSkeleton(
 ) {
     with(OudsTheme.components.skeleton) {
         val verticalPadding = if (securityMargin) OudsTheme.spaces.paddingBlock.threeExtraSmall else 0.dp
-        Box(
+        BoxWithConstraints(
             modifier = modifier
                 .padding(vertical = verticalPadding)
                 .background(color.background)
-        )
+                .clipToBounds()
+        ) {
+            // Don't display gradient in previews
+            if (!LocalInspectionMode.current) {
+                val infiniteTransition = rememberInfiniteTransition()
+                val progress by infiniteTransition.animateFloat(
+                    initialValue = 0f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = keyframes {
+                            durationMillis = 1250 // 800ms movement + 450ms pause
+                            0f at 0 using CubicBezierEasing(0.42f, 0.0f, 0.58f, 1.0f)
+                            1f at 800 // Holds at 1f from 800ms to 1250ms (450ms pause)
+                        },
+                        repeatMode = RepeatMode.Restart
+                    )
+                )
+                val skeletonWidthPx = with(LocalDensity.current) { maxWidth.toPx() }
+                val offset = lerp(-skeletonWidthPx, skeletonWidthPx, progress)
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .offset { IntOffset(offset.toInt(), 0) }
+                        .background(
+                            brush = Brush.horizontalGradient(
+                                0.0f to color.gradient.startEnd,
+                                0.5f to color.gradient.middle,
+                                1.0f to color.gradient.startEnd
+                            )
+                        )
+                )
+            }
+        }
     }
 }
 
