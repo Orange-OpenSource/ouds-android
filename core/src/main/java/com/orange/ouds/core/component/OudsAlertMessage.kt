@@ -222,11 +222,11 @@ private fun OudsAlertMessage(
         Row(
             modifier = modifier
                 .widthIn(min = sizeMinWidth.dp)
-                .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) sizeMinHeightBottomActionPlacement.dp else sizeMinHeight.value)
+                .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) sizeMinHeightBottomAction.dp else sizeMinHeight.value)
                 .background(color = status.backgroundColor, shape = shape)
                 .clip(shape)
                 .run {
-                    borderWidth.value.takeUnlessHairline?.let {
+                    OudsTheme.componentsTokens.alertMessage.borderWidth.value.takeUnlessHairline?.let {
                         border(width = it, color = status.borderColor, shape = shape)
                     } ?: this
                 }
@@ -237,7 +237,7 @@ private fun OudsAlertMessage(
             status.icon?.Content(
                 modifier = Modifier
                     .padding(top = spacePaddingBlock.value)
-                    .iconSize(sizeIcon.value * scale, status.icon.tinted),
+                    .iconSize(sizeAsset.value * scale, status.icon.tinted),
                 extraParameters = OudsAlertIcon.ExtraParameters(
                     tint = status.assetColor,
                     status = status.value
@@ -267,7 +267,7 @@ private fun OudsAlertMessage(
                         ?.filter { it.isNotBlank() }
                         ?.takeIf { it.isNotEmpty() }
                         ?.let { list ->
-                            Column(verticalArrangement = Arrangement.spacedBy(spaceRowGapBullet.value)) {
+                            Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.alertMessage.spaceRowGapBullet.value)) {
                                 list.forEach { label ->
                                     OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
                                 }
@@ -275,7 +275,7 @@ private fun OudsAlertMessage(
                         }
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
-                    actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
+                    actionLink.Content()
                 }
             }
 
