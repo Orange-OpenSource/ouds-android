@@ -288,7 +288,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                         stateDescription = linkStateDescription
                     },
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.small)
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_common_viewCodeExample_label),
