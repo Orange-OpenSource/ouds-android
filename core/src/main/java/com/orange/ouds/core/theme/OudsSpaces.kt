@@ -17,6 +17,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
@@ -40,10 +41,15 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 data class OudsSpaces internal constructor(
     val fixed: Fixed,
     val scaled: Scaled,
+    @RestrictedOudsApi
     val paddingInline: PaddingInline,
+    @RestrictedOudsApi
     val paddingBlock: PaddingBlock,
+    @RestrictedOudsApi
     val inset: Inset,
+    @RestrictedOudsApi
     val columnGap: ColumnGap,
+    @RestrictedOudsApi
     val rowGap: RowGap
 ) {
 
@@ -123,6 +129,8 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl padding.
      * @property threeExtraLarge 3xl padding.
      * @property fourExtraLarge 4xl padding.
+     * @property fiveExtraLarge 5xl padding.
+     * @property sixExtraLarge 6xl padding.
      */
     @ConsistentCopyVisibility
     data class PaddingInline internal constructor(
@@ -138,6 +146,8 @@ data class OudsSpaces internal constructor(
         val twoExtraLarge: Dp,
         val threeExtraLarge: Dp,
         val fourExtraLarge: Dp,
+        val fiveExtraLarge: Dp,
+        val sixExtraLarge: Dp
     )
 
 
@@ -156,6 +166,7 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl padding.
      * @property threeExtraLarge 3xl padding.
      * @property fourExtraLarge 4xl padding.
+     * @property fiveExtraLarge 5xl padding.
      */
     @ConsistentCopyVisibility
     data class PaddingBlock internal constructor(
@@ -171,6 +182,7 @@ data class OudsSpaces internal constructor(
         val twoExtraLarge: Dp,
         val threeExtraLarge: Dp,
         val fourExtraLarge: Dp,
+        val fiveExtraLarge: Dp,
     )
 
     /**
@@ -254,6 +266,7 @@ data class OudsSpaces internal constructor(
     )
 }
 
+@OptIn(RestrictedOudsApi::class)
 internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     OudsSpaces(
         fixed = OudsSpaces.Fixed(
@@ -295,6 +308,8 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             twoExtraLarge = paddingInline2xlarge.dp,
             threeExtraLarge = paddingInline3xlarge.dp,
             fourExtraLarge = paddingInline4xlarge.dp,
+            fiveExtraLarge = paddingInline5xlarge.dp,
+            sixExtraLarge = paddingInline6xlarge.dp,
         ),
         paddingBlock = OudsSpaces.PaddingBlock(
             none = paddingBlockNone.dp,
@@ -309,6 +324,7 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             twoExtraLarge = paddingBlock2xlarge.dp,
             threeExtraLarge = paddingBlock3xlarge.dp,
             fourExtraLarge = paddingBlock4xlarge.dp,
+            fiveExtraLarge = paddingBlock5xlarge.dp,
         ),
         inset = OudsSpaces.Inset(
             none = insetNone.dp,
@@ -381,6 +397,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
     return when (token) {
@@ -396,9 +413,12 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
         OudsSpaceKeyToken.PaddingInline.TwoExtraLarge -> paddingInline.twoExtraLarge
         OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge -> paddingInline.threeExtraLarge
         OudsSpaceKeyToken.PaddingInline.FourExtraLarge -> paddingInline.fourExtraLarge
+        OudsSpaceKeyToken.PaddingInline.FiveExtraLarge -> paddingInline.fiveExtraLarge
+        OudsSpaceKeyToken.PaddingInline.SixExtraLarge -> paddingInline.sixExtraLarge
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
     return when (token) {
@@ -414,9 +434,11 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
         OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge -> paddingBlock.twoExtraLarge
         OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge -> paddingBlock.threeExtraLarge
         OudsSpaceKeyToken.PaddingBlock.FourExtraLarge -> paddingBlock.fourExtraLarge
+        OudsSpaceKeyToken.PaddingBlock.FiveExtraLarge -> paddingBlock.fiveExtraLarge
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     return when (token) {
@@ -435,6 +457,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
     return when (token) {
@@ -450,6 +473,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
     return when (token) {

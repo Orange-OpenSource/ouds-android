@@ -34,7 +34,7 @@ fun LinearProgressIndicatorDemoScreen() {
         codeSnippet = { linearProgressIndicatorDemoCodeSnippet(state = state) },
         demoContent = { LinearProgressIndicatorDemoContent(state = state) },
         demoContentOnColoredBox = state.onColoredBox,
-        version = OudsVersion.Component.ProgressIndicator
+        version = OudsVersion.Component.LinearProgressIndicator
     )
 }
 

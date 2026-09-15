@@ -66,6 +66,7 @@
     <string name="app_tokens_dimension_space_insetHeader_text">Les insets incluent le padding gauche, droit, haut et bas, avec tous les paramètres égaux.</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">L\'écart de colonne (column gap) est l\'espacement horizontal entre les éléments.</string>
     <string name="app_tokens_dimension_space_rowGapHeader_text">L\'écart de ligne (row gap) est l\'espacement vertical entre les éléments.</string>
+    <string name="app_tokens_dimension_space_restrictedTokens_text">Restricted to components creation.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_description_text">La taille fait référence aux mesures spécifiques utilisées pour définir les dimensions des éléments d\'interface utilisateur au sein du système de design.</string>
