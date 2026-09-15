@@ -39,6 +39,7 @@ object OudsVersion {
         const val PinCodeInput = "1.3.0"
         const val ProgressIndicator = "1.0.0"
         const val RadioButton = "1.4.0"
+        const val Skeleton = "1.0.0"
         const val StaticCardItem = "0.1.0"
         const val StaticListItem = "0.1.0"
         const val SuggestionChip = "1.5.0"
