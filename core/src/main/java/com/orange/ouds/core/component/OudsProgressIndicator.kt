@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
@@ -18,6 +20,7 @@ import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /**
  * The status of an [OudsCircularProgressIndicator] or an [OudsLinearProgressIndicator].
