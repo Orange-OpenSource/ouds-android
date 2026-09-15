@@ -363,10 +363,13 @@ tasks.register<DefaultTask>("checkIcons") {
         }
 
         // For each property, verify at least one icon path maps to it
+        // Exclude properties under "other" as they are not imported from the icon kit
         val iconPathResourceNames = with(ImportIconsTask) { IconPaths.map { svgPathToDrawableResourceName(it) } }
         val missingIconPaths = drawableResourcePropertyPaths.filter { propertyPath ->
-            val drawableResourceName = drawableResourcePropertyPathToName(propertyPath)
-            !iconPathResourceNames.contains(drawableResourceName)
+            !propertyPath.startsWith("other.") && run {
+                val drawableResourceName = drawableResourcePropertyPathToName(propertyPath)
+                !iconPathResourceNames.contains(drawableResourceName)
+            }
         }
 
         // Report errors or success

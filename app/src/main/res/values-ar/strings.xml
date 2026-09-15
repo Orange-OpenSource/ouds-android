@@ -213,6 +213,11 @@
     <string name="app_components_topAppBar_thirdAction_a11y">الإجراء الثالث</string>
     <string name="app_components_topAppBar_title_label">عنوان</string>
 
+    <!-- Components: typography -->
+    <string name="app_components_typography_description_text">توفر مكونات الطباعة (Typography) نظاماً شاملاً لأنماط النصوص، مما يتيح إنشاء تسلسلات هرمية واضحة وواجهات سهلة القراءة.</string>
+    <string name="app_components_typography_common_text_label">نص</string>
+    <string name="app_components_typography_headingText_markerNote_text">ملاحظة: ليس لهذا الإعداد أي تأثير لأن السمة الحالية لا توفر علامة لنص العنوان الكبير.</string>
+
     <!-- About -->
     <string name="app_about_name_label">أدوات نظام التصميم</string>
     <string name="app_about_issueNumber_label">#%s</string>

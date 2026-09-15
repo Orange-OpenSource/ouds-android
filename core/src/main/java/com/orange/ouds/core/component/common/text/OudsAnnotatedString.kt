@@ -79,7 +79,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
     /**
      * The plain text content without any formatting annotations.
-     * 
+     *
      * @see AnnotatedString.text
      */
     val text: String = annotatedString.text
@@ -89,7 +89,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
      *
      * @param other The annotated string to append.
      * @return A new annotated string containing both strings with their annotations preserved.
-     * 
+     *
      * @see AnnotatedString.plus
      */
     operator fun plus(other: T): T {
@@ -199,7 +199,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     /**
      * Builder class for annotated string. Enables construction of an [OudsAnnotatedString] using methods
      * such as [append].
-     * 
+     *
      * @param capacity Initial capacity for the internal char buffer.
      */
     open class Builder<T> internal constructor(capacity: Int, private val clazz: Class<T>) : Appendable where T : OudsAnnotatedString<T> {
@@ -209,7 +209,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         /**
          * Appends the given [String] to this [Builder].
          *
-         * @param text The text to append.
+         * @param char The character to append.
          * @return This [Builder] instance.
          */
         override fun append(char: Char): Builder<T> = apply { builder.append(char) }
@@ -268,7 +268,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
         /**
          * Constructs an [OudsAnnotatedString] based on the configurations applied to the [Builder].
-         * 
+         *
          * @return The constructed annotated string.
          */
         open fun toAnnotatedString(): T {
@@ -343,7 +343,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * Ends the style or annotation that was added via a push operation before.
          *
          * This is typically used after manually pushing annotations with [StrongBuilder.pushStrong] or [LinkBuilder.pushLink].
-         * 
+         *
          * For most use cases, prefer using the [withStrong] or [withLink] DSL helpers which
          * automatically manage the annotation stack.
          */
@@ -352,10 +352,10 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         /**
          * Ends the styles or annotation up to and `including` the [StrongBuilder.pushStrong] or [LinkBuilder.pushLink]
          * that returned the given index.
-         * 
+         *
          * For most use cases, prefer using the [withStrong] or [withLink] DSL helpers which
          * automatically manage the annotation stack.
-         * 
+         *
          * @param index The index returned by a previous push operation.
          */
         fun pop(index: Int)
@@ -382,7 +382,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
          * Applies strong (bold/emphasized) style to any appended text until a corresponding [pop] is called.
          *
          * For most use cases, prefer using the [withStrong] DSL helper which automatically manages the stack.
-         * 
+         *
          * @return The index of the pushed annotation, to be used with [pop] when done.
          */
         fun pushStrong(): Int
@@ -430,7 +430,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         /**
          * Attach the given [OudsLinkAnnotation] to any appended text until a corresponding [pop] is
          * called.
-         * 
+         *
          * For most use cases, prefer using the [withLink] DSL helper which automatically manages the stack.
          *
          * @param link An [OudsLinkAnnotation] object that stores the URL or clickable tag being linked to.
