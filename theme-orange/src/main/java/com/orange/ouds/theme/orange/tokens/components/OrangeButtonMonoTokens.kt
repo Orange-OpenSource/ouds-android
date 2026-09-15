@@ -15,11 +15,13 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
-internal data class OrangeButtonMonoTokens(
+@RestrictedOudsApi
+data class OrangeButtonMonoTokens(
     override val colorBgDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
     override val colorBgDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
     override val colorBgDefaultFocus: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.Higher, OudsColorKeyToken.Repository.Opacity.White.Higher),

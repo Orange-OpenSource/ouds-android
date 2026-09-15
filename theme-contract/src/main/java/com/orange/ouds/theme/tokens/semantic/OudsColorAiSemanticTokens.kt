@@ -16,10 +16,10 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsColorAiSemanticTokens {
     val aiPrimaryDark: Color
     val aiPrimaryLight: Color

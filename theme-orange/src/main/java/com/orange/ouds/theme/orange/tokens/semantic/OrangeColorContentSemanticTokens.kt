@@ -16,11 +16,13 @@
 package com.orange.ouds.theme.orange.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.orange.tokens.raw.OrangeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class OrangeColorContentSemanticTokens(
+@RestrictedOudsApi
+data class OrangeColorContentSemanticTokens(
     override val contentBrandPrimaryDark: Color = OrangeColorRawTokens.ColorOrange500,
     override val contentBrandPrimaryLight: Color = OrangeColorRawTokens.ColorOrange550,
     override val contentBrandSecondaryDark: Color = Color.Unspecified,

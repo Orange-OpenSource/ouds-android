@@ -15,6 +15,7 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
@@ -22,7 +23,8 @@ import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class OrangeProgressIndicatorTokens(
+@RestrictedOudsApi
+data class OrangeProgressIndicatorTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.None,
     override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val colorContentTrack: OudsLightDarkColor = OudsLightDarkColor(OudsColorRawTokens.ColorFunctionalGrayLight400, OudsColorRawTokens.ColorFunctionalGrayDark480),

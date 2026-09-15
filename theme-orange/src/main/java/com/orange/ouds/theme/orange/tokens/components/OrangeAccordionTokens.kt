@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.components
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
 
-internal data class OrangeAccordionTokens(
+@RestrictedOudsApi
+data class OrangeAccordionTokens(
     override val spacePaddingBlockBottomExpandContainerDefault: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge,
     override val spacePaddingBlockBottomExpandContainerSmall: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge,
     override val spacePaddingBlockTopExpandContainer: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall

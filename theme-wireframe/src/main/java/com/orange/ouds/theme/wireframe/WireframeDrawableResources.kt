@@ -12,123 +12,128 @@
 
 package com.orange.ouds.theme.wireframe
 
+import androidx.annotation.DrawableRes
 import com.orange.ouds.theme.OudsDrawableResources
 
-internal class WireframeDrawableResources : OudsDrawableResources {
-    override val communication = Communication()
-    override val component = Component()
-    override val functional = Functional()
+internal data class WireframeDrawableResources(
+    override val communication: OudsDrawableResources.Communication = Communication(),
+    override val component: OudsDrawableResources.Component = Component(),
+    override val functional: OudsDrawableResources.Functional = Functional()
+) : OudsDrawableResources {
 
-    class Communication : OudsDrawableResources.Communication {
-        override val accessibility = Accessibility()
-        override val securityAndSafety = SecurityAndSafety()
+    data class Communication(
+        override val accessibility: OudsDrawableResources.Communication.Accessibility = Accessibility(),
+        override val securityAndSafety: OudsDrawableResources.Communication.SecurityAndSafety = SecurityAndSafety()
+    ) : OudsDrawableResources.Communication {
 
-        class Accessibility : OudsDrawableResources.Communication.Accessibility {
-            override val vision = R.drawable.ic_wireframe_communication_accessibility_vision
-        }
+        data class Accessibility(
+            @DrawableRes override val vision: Int = R.drawable.ic_wireframe_communication_accessibility_vision
+        ) : OudsDrawableResources.Communication.Accessibility
 
-        class SecurityAndSafety : OudsDrawableResources.Communication.SecurityAndSafety {
-            override val lockClosed = R.drawable.ic_wireframe_communication_security_and_safety_lock_closed
-        }
+        data class SecurityAndSafety(
+            @DrawableRes override val lockClosed: Int = R.drawable.ic_wireframe_communication_security_and_safety_lock_closed
+        ) : OudsDrawableResources.Communication.SecurityAndSafety
     }
 
-    class Component : OudsDrawableResources.Component {
-        override val alert = Alert()
-        override val badgeIcon = BadgeIcon()
-        override val bulletList = BulletList()
-        override val button = Button()
-        override val checkbox = Checkbox()
-        override val chip = Chip()
-        override val link = Link()
-        override val listItem = ListItem()
-        override val radioButton = RadioButton()
-        override val switch = Switch()
-        override val tag = Tag()
+    data class Component(
+        override val alert: OudsDrawableResources.Component.Alert = Alert(),
+        override val badgeIcon: OudsDrawableResources.Component.BadgeIcon = BadgeIcon(),
+        override val bulletList: OudsDrawableResources.Component.BulletList = BulletList(),
+        override val button: OudsDrawableResources.Component.Button = Button(),
+        override val checkbox: OudsDrawableResources.Component.Checkbox = Checkbox(),
+        override val chip: OudsDrawableResources.Component.Chip = Chip(),
+        override val link: OudsDrawableResources.Component.Link = Link(),
+        override val listItem: OudsDrawableResources.Component.ListItem = ListItem(),
+        override val radioButton: OudsDrawableResources.Component.RadioButton = RadioButton(),
+        override val switch: OudsDrawableResources.Component.Switch = Switch(),
+        override val tag: OudsDrawableResources.Component.Tag = Tag()
+    ) : OudsDrawableResources.Component {
 
-        class Alert : OudsDrawableResources.Component.Alert {
-            override val importantFill = R.drawable.ic_wireframe_component_alert_important_fill
-            override val infoFill = R.drawable.ic_wireframe_component_alert_info_fill
-            override val tickConfirmationFill = R.drawable.ic_wireframe_component_alert_tick_confirmation_fill
-            override val warningExternalShape = R.drawable.ic_wireframe_component_alert_warning_external_shape
-            override val warningInternalShape = R.drawable.ic_wireframe_component_alert_warning_internal_shape
-        }
+        data class Alert(
+            @DrawableRes override val importantFill: Int = R.drawable.ic_wireframe_component_alert_important_fill,
+            @DrawableRes override val infoFill: Int = R.drawable.ic_wireframe_component_alert_info_fill,
+            @DrawableRes override val tickConfirmationFill: Int = R.drawable.ic_wireframe_component_alert_tick_confirmation_fill,
+            @DrawableRes override val warningExternalShape: Int = R.drawable.ic_wireframe_component_alert_warning_external_shape,
+            @DrawableRes override val warningInternalShape: Int = R.drawable.ic_wireframe_component_alert_warning_internal_shape
+        ) : OudsDrawableResources.Component.Alert
 
-        class BadgeIcon : OudsDrawableResources.Component.BadgeIcon {
-            override val errorFill = R.drawable.ic_wireframe_component_badge_icon_error_fill
-            override val infoFill = R.drawable.ic_wireframe_component_badge_icon_info_fill
-            override val tickConfirmationFill = R.drawable.ic_wireframe_component_badge_icon_tick_confirmation_fill
-            override val warningExternalShape = R.drawable.ic_wireframe_component_badge_icon_warning_external_shape
-            override val warningInternalShape = R.drawable.ic_wireframe_component_badge_icon_warning_internal_shape
-        }
+        data class BadgeIcon(
+            @DrawableRes override val errorFill: Int = R.drawable.ic_wireframe_component_badge_icon_error_fill,
+            @DrawableRes override val infoFill: Int = R.drawable.ic_wireframe_component_badge_icon_info_fill,
+            @DrawableRes override val tickConfirmationFill: Int = R.drawable.ic_wireframe_component_badge_icon_tick_confirmation_fill,
+            @DrawableRes override val warningExternalShape: Int = R.drawable.ic_wireframe_component_badge_icon_warning_external_shape,
+            @DrawableRes override val warningInternalShape: Int = R.drawable.ic_wireframe_component_badge_icon_warning_internal_shape
+        ) : OudsDrawableResources.Component.BadgeIcon
 
-        class BulletList : OudsDrawableResources.Component.BulletList {
-            override val level0 = R.drawable.ic_wireframe_component_bullet_list_level0
-            override val level1 = R.drawable.ic_wireframe_component_bullet_list_level1
-            override val level2 = R.drawable.ic_wireframe_component_bullet_list_level2
-            override val tick = R.drawable.ic_wireframe_component_bullet_list_tick
-        }
+        data class BulletList(
+            @DrawableRes override val level0: Int = R.drawable.ic_wireframe_component_bullet_list_level0,
+            @DrawableRes override val level1: Int = R.drawable.ic_wireframe_component_bullet_list_level1,
+            @DrawableRes override val level2: Int = R.drawable.ic_wireframe_component_bullet_list_level2,
+            @DrawableRes override val tick: Int = R.drawable.ic_wireframe_component_bullet_list_tick
+        ) : OudsDrawableResources.Component.BulletList
 
-        class Button : OudsDrawableResources.Component.Button {
-            override val expurge = R.drawable.ic_wireframe_component_button_expurge
-            override val next = R.drawable.ic_wireframe_component_button_next
-            override val previous = R.drawable.ic_wireframe_component_button_previous
-        }
+        data class Button(
+            @DrawableRes override val expurge: Int = R.drawable.ic_wireframe_component_button_expurge,
+            @DrawableRes override val next: Int = R.drawable.ic_wireframe_component_button_next,
+            @DrawableRes override val previous: Int = R.drawable.ic_wireframe_component_button_previous
+        ) : OudsDrawableResources.Component.Button
 
-        class Checkbox : OudsDrawableResources.Component.Checkbox {
-            override val selected = R.drawable.ic_wireframe_component_checkbox_selected
-            override val undetermined = R.drawable.ic_wireframe_component_checkbox_undetermined
-        }
+        data class Checkbox(
+            @DrawableRes override val selected: Int = R.drawable.ic_wireframe_component_checkbox_selected,
+            @DrawableRes override val undetermined: Int = R.drawable.ic_wireframe_component_checkbox_undetermined
+        ) : OudsDrawableResources.Component.Checkbox
 
-        class Chip : OudsDrawableResources.Component.Chip {
-            override val tick = R.drawable.ic_wireframe_component_chip_tick
-        }
+        data class Chip(
+            @DrawableRes override val tick: Int = R.drawable.ic_wireframe_component_chip_tick
+        ) : OudsDrawableResources.Component.Chip
 
-        class Link : OudsDrawableResources.Component.Link {
-            override val externalLink = R.drawable.ic_wireframe_component_link_external_link
-            override val next = R.drawable.ic_wireframe_component_link_next
-            override val previous = R.drawable.ic_wireframe_component_link_previous
-        }
+        data class Link(
+            @DrawableRes override val externalLink: Int = R.drawable.ic_wireframe_component_link_external_link,
+            @DrawableRes override val next: Int = R.drawable.ic_wireframe_component_link_next,
+            @DrawableRes override val previous: Int = R.drawable.ic_wireframe_component_link_previous
+        ) : OudsDrawableResources.Component.Link
 
-        class ListItem : OudsDrawableResources.Component.ListItem {
-            override val next = R.drawable.ic_wireframe_component_list_item_next
-            override val previous = R.drawable.ic_wireframe_component_list_item_previous
-        }
+        data class ListItem(
+            @DrawableRes override val next: Int = R.drawable.ic_wireframe_component_list_item_next,
+            @DrawableRes override val previous: Int = R.drawable.ic_wireframe_component_list_item_previous
+        ) : OudsDrawableResources.Component.ListItem
 
-        class RadioButton : OudsDrawableResources.Component.RadioButton {
-            override val selected = R.drawable.ic_wireframe_component_radio_button_selected
-        }
+        data class RadioButton(
+            @DrawableRes override val selected: Int = R.drawable.ic_wireframe_component_radio_button_selected
+        ) : OudsDrawableResources.Component.RadioButton
 
-        class Switch : OudsDrawableResources.Component.Switch {
-            override val selected = R.drawable.ic_wireframe_component_switch_selected
-        }
+        data class Switch(
+            @DrawableRes override val selected: Int = R.drawable.ic_wireframe_component_switch_selected
+        ) : OudsDrawableResources.Component.Switch
 
-        class Tag : OudsDrawableResources.Component.Tag {
-            override val close = R.drawable.ic_wireframe_component_tag_close
-        }
+        data class Tag(
+            @DrawableRes override val close: Int = R.drawable.ic_wireframe_component_tag_close
+        ) : OudsDrawableResources.Component.Tag
     }
 
-    class Functional : OudsDrawableResources.Functional {
-        override val actions = Actions()
-        override val navigation = Navigation()
-        override val settingsAndTools = SettingsAndTools()
-        override val socialAndEngagement = SocialAndEngagement()
+    data class Functional(
+        override val actions: OudsDrawableResources.Functional.Actions = Actions(),
+        override val navigation: OudsDrawableResources.Functional.Navigation = Navigation(),
+        override val settingsAndTools: OudsDrawableResources.Functional.SettingsAndTools = SettingsAndTools(),
+        override val socialAndEngagement: OudsDrawableResources.Functional.SocialAndEngagement = SocialAndEngagement()
+    ) : OudsDrawableResources.Functional {
 
-        class Actions : OudsDrawableResources.Functional.Actions {
-            override val deleteCrossRound = R.drawable.ic_wireframe_functional_actions_delete_cross_round
-            override val externalLink = R.drawable.ic_wireframe_functional_actions_external_link
-        }
+        data class Actions(
+            @DrawableRes override val deleteCrossRound: Int = R.drawable.ic_wireframe_functional_actions_delete_cross_round,
+            @DrawableRes override val externalLink: Int = R.drawable.ic_wireframe_functional_actions_external_link
+        ) : OudsDrawableResources.Functional.Actions
 
-        class Navigation : OudsDrawableResources.Functional.Navigation {
-            override val formChevronLeft = R.drawable.ic_wireframe_functional_navigation_form_chevron_left
-            override val menuGridUiRound = R.drawable.ic_wireframe_functional_navigation_menu_grid_ui_round
-        }
+        data class Navigation(
+            @DrawableRes override val formChevronLeft: Int = R.drawable.ic_wireframe_functional_navigation_form_chevron_left,
+            @DrawableRes override val menuGridUiRound: Int = R.drawable.ic_wireframe_functional_navigation_menu_grid_ui_round
+        ) : OudsDrawableResources.Functional.Navigation
 
-        class SettingsAndTools : OudsDrawableResources.Functional.SettingsAndTools {
-            override val accessibilityHide = R.drawable.ic_wireframe_functional_settings_and_tools_accessibility_hide
-        }
+        data class SettingsAndTools(
+            @DrawableRes override val accessibilityHide: Int = R.drawable.ic_wireframe_functional_settings_and_tools_accessibility_hide
+        ) : OudsDrawableResources.Functional.SettingsAndTools
 
-        class SocialAndEngagement : OudsDrawableResources.Functional.SocialAndEngagement {
-            override val heartRecommend = R.drawable.ic_wireframe_functional_social_and_engagement_heart_recommend
-        }
+        data class SocialAndEngagement(
+            @DrawableRes override val heartRecommend: Int = R.drawable.ic_wireframe_functional_social_and_engagement_heart_recommend
+        ) : OudsDrawableResources.Functional.SocialAndEngagement
     }
 }

@@ -12,10 +12,10 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsColorSemanticTokens {
     val actionColorTokens: OudsColorActionSemanticTokens
     val aiColorTokens: OudsColorAiSemanticTokens

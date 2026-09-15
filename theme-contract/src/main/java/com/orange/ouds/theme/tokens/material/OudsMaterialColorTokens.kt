@@ -16,10 +16,10 @@
 package com.orange.ouds.theme.tokens.material
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsMaterialColorTokens {
     val backgroundDark: Color
     val backgroundLight: Color

@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.getSystemService
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
+import com.orange.ouds.app.CustomTheme
 import com.orange.ouds.app.OudsApplication
 import com.orange.ouds.app.ui.navigation.appNavGraph
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -104,7 +105,7 @@ fun MainScreen(
     var changeThemeSettingsDialogVisible by rememberSaveable { mutableStateOf(false) }
 
     OudsTheme(
-        theme = mainState.themeState.currentTheme,
+        theme = CustomTheme(),
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
         val hazeState = rememberHazeState(blurEnabled = true)

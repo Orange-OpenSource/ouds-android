@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /**
  * @suppress
  */
-@InternalOudsApi
+@RestrictedOudsApi
 sealed interface OudsSpaceKeyToken : OudsKeyToken {
     sealed interface ColumnGap : OudsSpaceKeyToken {
         data object ExtraLarge : ColumnGap

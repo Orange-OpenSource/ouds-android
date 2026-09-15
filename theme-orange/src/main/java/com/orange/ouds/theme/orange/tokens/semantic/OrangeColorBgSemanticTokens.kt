@@ -16,11 +16,13 @@
 package com.orange.ouds.theme.orange.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.orange.tokens.raw.OrangeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class OrangeColorBgSemanticTokens(
+@RestrictedOudsApi
+data class OrangeColorBgSemanticTokens(
     override val bgInverseHighDark: Color = OudsColorRawTokens.ColorFunctionalGrayLight160,
     override val bgInverseHighLight: Color = OudsColorRawTokens.ColorFunctionalGrayDark880,
     override val bgInverseLowDark: Color = OudsColorRawTokens.ColorFunctionalGrayDark640,
