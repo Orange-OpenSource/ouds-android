@@ -12,6 +12,7 @@
 
 package com.orange.ouds.app.ui.components.checkbox
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,13 +25,17 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckbox
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsTriStateCheckbox
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -71,13 +76,18 @@ private fun CheckboxDemoBottomSheetContent(state: CheckboxDemoState) {
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
 @Composable
 private fun CheckboxDemoContent(state: CheckboxDemoState) {
     with(state) {
-        Row {
+        Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)) {
             CheckboxIdentifier.entries.forEach { identifier ->
                 val contentDescription = stringResource(R.string.app_components_checkbox_checkbox_a11y, identifier.name)
                 OudsCheckbox(
@@ -96,7 +106,8 @@ private fun CheckboxDemoContent(state: CheckboxDemoState) {
                     },
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = controlError(error)
+                    error = controlError(error),
+                    skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
                 )
             }
         }
@@ -106,7 +117,7 @@ private fun CheckboxDemoContent(state: CheckboxDemoState) {
 @Composable
 private fun IndeterminateCheckboxDemoContent(state: CheckboxDemoState) {
     with(state) {
-        Row {
+        Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)) {
             CheckboxIdentifier.entries.forEach { identifier ->
                 val contentDescription = stringResource(R.string.app_components_checkbox_indeterminateCheckbox_a11y, identifier.name)
                 OudsTriStateCheckbox(
@@ -127,7 +138,8 @@ private fun IndeterminateCheckboxDemoContent(state: CheckboxDemoState) {
                     },
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = controlError(error)
+                    error = controlError(error),
+                    skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
                 )
             }
         }
@@ -157,6 +169,7 @@ private fun Code.Builder.checkboxDemoCodeSnippet(state: CheckboxDemoState, indet
             enabledArgument(enabled)
             readOnlyArgument(readOnly)
             if (error) errorArgument(R.string.app_components_common_error_a11y)
+            if (skeleton) skeletonArgument()
         }
     }
 }

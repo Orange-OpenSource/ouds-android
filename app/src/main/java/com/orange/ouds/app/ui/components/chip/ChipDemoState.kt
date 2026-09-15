@@ -23,7 +23,8 @@ open class ChipDemoState(
     enabled: Boolean,
     layout: Layout,
     label: String,
-    icon: Icon
+    icon: Icon,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -37,7 +38,8 @@ open class ChipDemoState(
                         enabled,
                         layout,
                         label,
-                        icon
+                        icon,
+                        skeleton
                     )
                 }
             },
@@ -46,7 +48,8 @@ open class ChipDemoState(
                     list[0] as Boolean,
                     list[1] as Layout,
                     list[2] as String,
-                    list[3] as Icon
+                    list[3] as Icon,
+                    list[4] as Boolean
                 )
             }
         )
@@ -59,6 +62,8 @@ open class ChipDemoState(
     var label: String by mutableStateOf(label)
 
     var icon: Icon by mutableStateOf(icon)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val enabledIcons: List<Icon>
         get() = if (layout != Layout.TextOnly) Icon.entries else emptyList()

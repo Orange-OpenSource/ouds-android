@@ -26,28 +26,30 @@ import com.orange.ouds.core.component.OudsButtonDefaults
 
 @Composable
 fun rememberButtonDemoState(
-    label: String = stringResource(id = R.string.app_components_common_label_label),
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
+    skeleton: Boolean = false,
+    label: String = stringResource(id = R.string.app_components_common_label_label),
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     size: ButtonDemoState.Size = ButtonDemoState.Size.entries.first(),
     layout: ButtonDemoState.Layout = ButtonDemoState.Layout.entries.first(),
     icon: ButtonDemoState.Icon = ButtonDemoState.Icon.Tinted
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, size, layout, icon, saver = ButtonDemoState.Saver) {
-    ButtonDemoState(label, enabled, onColoredBox, hasLoader, appearance, size, layout, icon)
+) = rememberSaveable(enabled, onColoredBox, hasLoader, skeleton, label, appearance, size, layout, icon, saver = ButtonDemoState.Saver) {
+    ButtonDemoState(enabled, onColoredBox, hasLoader, skeleton, label, appearance, size, layout, icon)
 }
 
 class ButtonDemoState(
-    label: String,
     enabled: Boolean,
     onColoredBox: Boolean,
     hasLoader: Boolean,
+    skeleton: Boolean,
+    label: String,
     appearance: OudsButtonAppearance,
     size: Size,
     layout: Layout,
     icon: Icon
-) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
+) : BaseButtonDemoState(enabled, onColoredBox, hasLoader, skeleton) {
 
     companion object {
 
@@ -71,10 +73,11 @@ class ButtonDemoState(
                 val baseButtonDemoState = list[0]?.let { BaseButtonDemoState.Saver.restore(it) }
                 baseButtonDemoState?.run {
                     ButtonDemoState(
-                        list[1] as String,
                         enabled,
                         onColoredBox,
                         hasLoader,
+                        skeleton,
+                        list[1] as String,
                         list[2] as OudsButtonAppearance,
                         list[3] as Size,
                         list[4] as Layout,

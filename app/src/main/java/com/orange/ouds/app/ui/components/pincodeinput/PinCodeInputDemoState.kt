@@ -32,9 +32,10 @@ fun rememberPinCodeInputDemoState(
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     helperText: String = "",
     hiddenCharacters: Boolean = true,
-    annotatedText: Boolean = false
-) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, hiddenCharacters, annotatedText, saver = PinCodeInputDemoState.Saver) {
-    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText, hiddenCharacters, annotatedText)
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
+) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, hiddenCharacters, annotatedText, skeleton, saver = PinCodeInputDemoState.Saver) {
+    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText, hiddenCharacters, annotatedText, skeleton)
 }
 
 class PinCodeInputDemoState(
@@ -45,7 +46,8 @@ class PinCodeInputDemoState(
     errorMessage: String,
     helperText: String,
     hiddenCharacters: Boolean,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -60,7 +62,8 @@ class PinCodeInputDemoState(
                         errorMessage,
                         helperText,
                         hiddenCharacters,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             },
@@ -73,7 +76,8 @@ class PinCodeInputDemoState(
                     list[4] as String,
                     list[5] as String,
                     list[6] as Boolean,
-                    list[7] as Boolean
+                    list[7] as Boolean,
+                    list[8] as Boolean
                 )
             }
         )
@@ -94,6 +98,8 @@ class PinCodeInputDemoState(
     var hiddenCharacters: Boolean by mutableStateOf(hiddenCharacters)
 
     var annotatedText: Boolean by mutableStateOf(annotatedText)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val errorMessageTextInputEnabled: Boolean
         get() = error && !annotatedText

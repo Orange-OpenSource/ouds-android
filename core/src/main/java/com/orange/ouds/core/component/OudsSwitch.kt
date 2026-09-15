@@ -51,6 +51,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -83,9 +84,12 @@ import com.orange.ouds.theme.OudsThemeContract
  * but the user cannot modify it. Note that if it is set to `true` and [enabled] is set to `false`, the switch will be displayed in disabled state.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this switch. Note that if `null`
  * is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSwitch(
     checked: Boolean,
@@ -93,18 +97,19 @@ fun OudsSwitch(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val switchTokens = OudsTheme.componentsTokens.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
             value = checked,
             onValueChange = onCheckedChange,
-            enabled = enabled && !readOnly,
+            enabled = state.areInteractionsEnabled,
             role = Role.Switch,
             interactionSource = interactionSource,
             indication = null
@@ -113,18 +118,27 @@ fun OudsSwitch(
         Modifier
     }
 
-    Box(
-        modifier = modifier
-            .widthIn(min = switchTokens.sizeMinWidth.dp)
-            .heightIn(min = switchTokens.sizeMinHeight.dp, max = switchTokens.sizeMaxHeight.dp)
-            .then(toggleableModifier),
-        contentAlignment = Alignment.Center,
-    ) {
-        OudsSwitchIndicator(
-            modifier = Modifier.outerBorder(state = state, shape = indicatorShape()),
-            state = state,
-            checked = checked
-        )
+    val shape = indicatorShape()
+    SkeletonLayout(
+        modifier = modifier,
+        componentState = state,
+        state = skeleton?.state,
+        securityMargin = false,
+        shape = shape
+    ) { contentModifier ->
+        Box(
+            modifier = contentModifier
+                .widthIn(min = switchTokens.sizeMinWidth.dp)
+                .heightIn(min = switchTokens.sizeMinHeight.dp, max = switchTokens.sizeMaxHeight.dp)
+                .then(toggleableModifier),
+            contentAlignment = Alignment.Center,
+        ) {
+            OudsSwitchIndicator(
+                modifier = Modifier.outerBorder(state = state, shape = shape),
+                state = state,
+                checked = checked
+            )
+        }
     }
 }
 
@@ -191,6 +205,7 @@ private fun indicatorBackgroundColor(state: OudsControlState, checked: Boolean):
             OudsControlState.Pressed,
             OudsControlState.Focused -> if (checked) colorTrackSelectedInteraction.value else colorTrackUnselectedInteraction.value
             OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsControlState.Skeleton -> Color.Transparent
         }
     }
 }
@@ -219,6 +234,7 @@ private fun checkColor(state: OudsControlState, checked: Boolean): Color? {
             OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.primary
             OudsControlState.Pressed -> null
             OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsControlState.Skeleton -> Color.Transparent
         }
     } else {
         null
