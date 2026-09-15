@@ -83,6 +83,56 @@ In the example above, you can see that Orange theme includes several customizabl
 As a consequence, you are responsible for obtaining the necessary font files from the official [Orange Brand portal](https://brand.orange.com/en/brand-basics/typography)
 and including them in your application's `res/font` directory. The example above shows how to provide these local font resources to the `OrangeTheme`.
 
+### 3. Advanced Customization: Subclassing Orange Theme
+
+For advanced use cases where you need to override specific tokens or drawable resources while keeping the Orange theme as a base, you can create a custom theme by subclassing `OrangeTheme`.
+
+All token classes and drawable resource classes are implemented as data classes, allowing granular customization through constructor parameters.
+
+**Example: Customizing semantic tokens, component tokens, and drawable resources**
+
+```kotlin
+@OptIn(RestrictedOudsApi::class)
+class CustomOrangeTheme(
+    orangeFontFamily: OrangeFontFamily,
+    roundedCornerButtons: Boolean = false,
+    roundedCornerTextInputs: Boolean = false
+) : OrangeTheme(
+    orangeFontFamily = orangeFontFamily,
+    roundedCornerButtons = roundedCornerButtons,
+    roundedCornerTextInputs = roundedCornerTextInputs
+) {
+    // Override specific semantic tokens
+    override val colorTokens: OudsColorSemanticTokens
+        get() = OrangeColorSemanticTokens(
+            contentColorTokens = OrangeColorContentSemanticTokens(
+                contentBrandPrimaryLight = OrangeColorRawTokens.ColorDecorativeAmber600,
+                contentBrandPrimaryDark = OrangeColorRawTokens.ColorDecorativeAmber100
+            )
+        )
+    
+    // Override specific component tokens
+    override val componentsTokens: OudsComponentsTokens
+        get() = OrangeComponentsTokens(
+            button = OrangeButtonTokens(
+                colorBgBrandEnabled = OudsColorKeyToken.Content.BrandPrimary
+            )
+        )
+    
+    // Override specific drawable resources
+    override val drawableResources: OudsDrawableResources
+        get() = OrangeDrawableResources(
+            component = OrangeDrawableResources.Component(
+                button = OrangeDrawableResources.Component.Button(
+                    next = R.drawable.my_custom_next_icon
+                )
+            )
+        )
+}
+```
+
+> ⚠️ **Note:** These APIs are marked with `@RestrictedOudsApi` and require opt-in. Use them only when standard theme configuration is insufficient for your needs.
+
 ## Relationship with other modules
 
 | Module | Role | Analogy |
