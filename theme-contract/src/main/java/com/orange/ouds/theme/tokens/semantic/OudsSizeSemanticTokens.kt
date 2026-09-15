@@ -94,8 +94,6 @@ interface OudsSizeSemanticTokens {
     val maxWidthBodyMediumTablet: Float
     val maxWidthBodySmallMobile: Float
     val maxWidthBodySmallTablet: Float
-    val maxWidthBoxedTextMobile: Float
-    val maxWidthBoxedTextTablet: Float
     val maxWidthDisplayLargeMobile: Float
     val maxWidthDisplayLargeTablet: Float
     val maxWidthDisplayMediumMobile: Float
