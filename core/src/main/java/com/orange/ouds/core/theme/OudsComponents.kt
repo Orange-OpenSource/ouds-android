@@ -11,6 +11,7 @@
  */
 
 @file:Suppress("DEPRECATION")
+@file:OptIn(RestrictedOudsApi::class)
 
 package com.orange.ouds.core.theme
 

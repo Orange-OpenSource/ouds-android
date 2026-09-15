@@ -66,6 +66,7 @@
     <string name="app_tokens_dimension_space_insetHeader_text">الهوامش الداخلية تتضمن الحشو من اليسار واليمين والأعلى والأسفل، مع جميع المعلمات متساوية.</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">الفاصل بين الأعمدة هو التباعد الأفقي بين العناصر.</string>
     <string name="app_tokens_dimension_space_rowGapHeader_text">الفاصل بين الصفوف هو التباعد العمودي بين العناصر.</string>
+    <string name="app_tokens_dimension_space_restrictedTokens_text">يقتصر على إنشاء المكونات</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_description_text">يشير الحجم إلى القياسات المحددة التي تُستخدم لتعريف أبعاد عناصر واجهة المستخدم داخل نظام التصميم.</string>
