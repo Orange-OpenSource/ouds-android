@@ -183,9 +183,7 @@ abstract class ImportIconsTask : DefaultTask() {
                     ?.filter { it.isDirectory && !it.name.startsWith("__") && !it.name.startsWith(".") }
                     ?.firstOrNull { it.name.matches(Regex("OUDS Icons V\\d+\\.\\d+.*")) }
                     ?: throw GradleException("Invalid zip structure: no 'OUDS Icons V*.*' directory found.")
-
-                logger.lifecycle("✓ Found icons directory ${rootDir.name}")
-
+                
                 val versionRegex = Regex("OUDS Icons V([\\d\\.]+).*")
                 val iconsPackVersion = versionRegex.find(rootDir.name)?.groupValues?.get(1)
                     ?: throw GradleException("Could not extract version from directory name: ${rootDir.name}")
