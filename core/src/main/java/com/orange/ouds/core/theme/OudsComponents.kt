@@ -41,6 +41,7 @@ import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsSkeletonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
@@ -70,6 +71,7 @@ data class OudsComponents internal constructor(
     val progressIndicator: ProgressIndicator,
     val progressIndicatorMonochrome: ProgressIndicatorMonochrome,
     val radioButton: RadioButton,
+    val skeleton: Skeleton,
     val switch: Switch,
     val tag: Tag,
     val textArea: TextArea,
@@ -1745,6 +1747,25 @@ data class OudsComponents internal constructor(
     }
 
     @ConsistentCopyVisibility
+    data class Skeleton internal constructor(
+        val color: Color
+    ) {
+
+        @ConsistentCopyVisibility
+        data class Color internal constructor(
+            val background: androidx.compose.ui.graphics.Color,
+            val gradient: Gradient
+        ) {
+
+            @ConsistentCopyVisibility
+            data class Gradient internal constructor(
+                val startEnd: androidx.compose.ui.graphics.Color,
+                val middle: androidx.compose.ui.graphics.Color
+            )
+        }
+    }
+
+    @ConsistentCopyVisibility
     data class Switch internal constructor(
         val border: Border,
         val color: Color,
@@ -2021,6 +2042,7 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         progressIndicator = progressIndicator.getProgressIndicator(),
         progressIndicatorMonochrome = progressIndicatorMonochrome.getProgressIndicatorMonochrome(),
         radioButton = radioButton.getRadioButton(),
+        skeleton = skeleton.getSkeleton(),
         switch = switch.getSwitch(),
         tag = tag.getTag(),
         textArea = textArea.getTextArea(),
@@ -2923,6 +2945,19 @@ private fun OudsRadioButtonTokens.getRadioButton(): OudsComponents.RadioButton {
             maxHeight = sizeMaxHeight.value,
             minHeight = sizeMinHeight.value,
             minWidth = sizeMinWidth.value
+        )
+    )
+}
+
+@Composable
+private fun OudsSkeletonTokens.getSkeleton(): OudsComponents.Skeleton {
+    return OudsComponents.Skeleton(
+        color = OudsComponents.Skeleton.Color(
+            background = colorBg.value,
+            gradient = OudsComponents.Skeleton.Color.Gradient(
+                startEnd = colorGradientStartEnd.value,
+                middle = colorGradientMiddle.value
+            )
         )
     )
 }
