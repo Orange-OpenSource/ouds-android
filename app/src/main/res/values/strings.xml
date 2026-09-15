@@ -94,6 +94,7 @@
     <string name="app_tokens_dimension_space_columnGapHeader_text">Column gap is the horizontal spacing between elements.</string>
     <string name="app_tokens_dimension_space_rowGap_tech" translatable="false">Row gap</string>
     <string name="app_tokens_dimension_space_rowGapHeader_text">Row gap is the vertical spacing between elements.</string>
+    <string name="app_tokens_dimension_space_restrictedTokens_text">Réservés à la création de composants.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_tech" translatable="false">Size</string>

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 
@@ -40,10 +41,15 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 data class OudsSpaces internal constructor(
     val fixed: Fixed,
     val scaled: Scaled,
+    @RestrictedOudsApi
     val paddingInline: PaddingInline,
+    @RestrictedOudsApi
     val paddingBlock: PaddingBlock,
+    @RestrictedOudsApi
     val inset: Inset,
+    @RestrictedOudsApi
     val columnGap: ColumnGap,
+    @RestrictedOudsApi
     val rowGap: RowGap
 ) {
 
@@ -260,6 +266,7 @@ data class OudsSpaces internal constructor(
     )
 }
 
+@OptIn(RestrictedOudsApi::class)
 internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     OudsSpaces(
         fixed = OudsSpaces.Fixed(
@@ -390,6 +397,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
     return when (token) {
@@ -410,6 +418,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
     return when (token) {
@@ -429,6 +438,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     return when (token) {
@@ -447,6 +457,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
     return when (token) {
@@ -462,6 +473,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
     }
 }
 
+@OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
     return when (token) {
