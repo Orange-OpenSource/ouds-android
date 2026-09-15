@@ -15,8 +15,14 @@
 
 package com.orange.ouds.theme.tokens.components
 
+import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
+
 /** @suppress */
 @InternalOudsApi
 interface OudsIconTokens {
-  
+    val colorContentStatusWarningExternalShape: OudsColorKeyToken
+    val colorContentStatusWarningInternalShape: OudsColorKeyToken
+    val colorContentStatusWarningInverseExternalShape: OudsColorKeyToken
+    val colorContentStatusWarningInverseInternalShape: OudsColorKeyToken
 }
