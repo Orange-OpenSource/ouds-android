@@ -360,6 +360,11 @@
     <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
     <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[Please select <b>one contact method</b> to proceed.]]></string>
 
+    <!-- Components: skeleton -->
+    <string name="app_components_skeleton_tech" translatable="false">Skeleton</string>
+    <string name="app_components_skeleton_description_text">A skeleton is a UI element that indicates when content is loading.</string>
+    <string name="app_components_skeleton_securityMargin_tech" translatable="false">Security margin</string>
+
     <!-- Components: switch -->
     <string name="app_components_switch_tech" translatable="false">Switch</string>
     <string name="app_components_switch_description_text">Switch is a UI element that allows to toggle between two states, typically \“On\” and \“Off\”, and used to enable or disable features, options or settings.</string>

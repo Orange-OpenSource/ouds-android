@@ -187,6 +187,9 @@
     <string name="app_components_radioButton_radioButton_a11y">وصف محتوى زر الاختيار %s</string>
     <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[يرجى اختيار <b>طريقة اتصال واحدة</b> للمتابعة.]]></string>
 
+    <!-- Components: skeleton -->
+    <string name="app_components_skeleton_description_text">الـ Skeleton هو عنصر في واجهة المستخدم يشير إلى أن المحتوى قيد التحميل.</string>
+
     <!-- Components: switch -->
     <string name="app_components_switch_description_text">Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً "تشغيل" و "إيقاف"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.</string>
     <string name="app_components_switch_switch_a11y">تبديل وصف المحتوى</string>
