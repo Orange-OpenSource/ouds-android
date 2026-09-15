@@ -123,6 +123,8 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl padding.
      * @property threeExtraLarge 3xl padding.
      * @property fourExtraLarge 4xl padding.
+     * @property fiveExtraLarge 5xl padding.
+     * @property sixExtraLarge 6xl padding.
      */
     @ConsistentCopyVisibility
     data class PaddingInline internal constructor(
@@ -138,6 +140,8 @@ data class OudsSpaces internal constructor(
         val twoExtraLarge: Dp,
         val threeExtraLarge: Dp,
         val fourExtraLarge: Dp,
+        val fiveExtraLarge: Dp,
+        val sixExtraLarge: Dp
     )
 
 
@@ -156,6 +160,7 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl padding.
      * @property threeExtraLarge 3xl padding.
      * @property fourExtraLarge 4xl padding.
+     * @property fiveExtraLarge 5xl padding.
      */
     @ConsistentCopyVisibility
     data class PaddingBlock internal constructor(
@@ -171,6 +176,7 @@ data class OudsSpaces internal constructor(
         val twoExtraLarge: Dp,
         val threeExtraLarge: Dp,
         val fourExtraLarge: Dp,
+        val fiveExtraLarge: Dp,
     )
 
     /**
@@ -295,6 +301,8 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             twoExtraLarge = paddingInline2xlarge.dp,
             threeExtraLarge = paddingInline3xlarge.dp,
             fourExtraLarge = paddingInline4xlarge.dp,
+            fiveExtraLarge = paddingInline5xlarge.dp,
+            sixExtraLarge = paddingInline6xlarge.dp,
         ),
         paddingBlock = OudsSpaces.PaddingBlock(
             none = paddingBlockNone.dp,
@@ -309,6 +317,7 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             twoExtraLarge = paddingBlock2xlarge.dp,
             threeExtraLarge = paddingBlock3xlarge.dp,
             fourExtraLarge = paddingBlock4xlarge.dp,
+            fiveExtraLarge = paddingBlock5xlarge.dp,
         ),
         inset = OudsSpaces.Inset(
             none = insetNone.dp,
@@ -396,6 +405,8 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
         OudsSpaceKeyToken.PaddingInline.TwoExtraLarge -> paddingInline.twoExtraLarge
         OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge -> paddingInline.threeExtraLarge
         OudsSpaceKeyToken.PaddingInline.FourExtraLarge -> paddingInline.fourExtraLarge
+        OudsSpaceKeyToken.PaddingInline.FiveExtraLarge -> paddingInline.fiveExtraLarge
+        OudsSpaceKeyToken.PaddingInline.SixExtraLarge -> paddingInline.sixExtraLarge
     }
 }
 
@@ -414,6 +425,7 @@ private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
         OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge -> paddingBlock.twoExtraLarge
         OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge -> paddingBlock.threeExtraLarge
         OudsSpaceKeyToken.PaddingBlock.FourExtraLarge -> paddingBlock.fourExtraLarge
+        OudsSpaceKeyToken.PaddingBlock.FiveExtraLarge -> paddingBlock.fiveExtraLarge
     }
 }
 
