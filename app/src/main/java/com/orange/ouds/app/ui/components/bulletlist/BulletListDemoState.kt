@@ -37,7 +37,8 @@ fun rememberBulletListDemoState(
     fontWeight: OudsBulletListFontWeight = OudsBulletListDefaults.TextStyle.fontWeight,
     levelCount: Int = BulletListDemoState.MinLevelCount,
     label: String = stringResource(R.string.app_components_common_label_label),
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ): BulletListDemoState {
     return rememberSaveable(
         type,
@@ -48,9 +49,10 @@ fun rememberBulletListDemoState(
         levelCount,
         label,
         annotatedText,
+        skeleton,
         saver = BulletListDemoState.Saver
     ) {
-        BulletListDemoState(type, unorderedAssetClassName, unorderedAssetBrandColor, fontSize, fontWeight, levelCount, label, annotatedText)
+        BulletListDemoState(type, unorderedAssetClassName, unorderedAssetBrandColor, fontSize, fontWeight, levelCount, label, annotatedText, skeleton)
     }
 }
 
@@ -62,7 +64,8 @@ class BulletListDemoState(
     fontWeight: OudsBulletListFontWeight,
     levelCount: Int,
     label: String,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -80,7 +83,8 @@ class BulletListDemoState(
                         fontWeight,
                         levelCount,
                         label,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             },
@@ -94,7 +98,8 @@ class BulletListDemoState(
                     list[4] as OudsBulletListFontWeight,
                     list[5] as Int,
                     list[6] as String,
-                    list[7] as Boolean
+                    list[7] as Boolean,
+                    list[8] as Boolean
                 )
             }
         )
@@ -115,6 +120,8 @@ class BulletListDemoState(
     var label: String by mutableStateOf(label)
 
     var annotatedText: Boolean by mutableStateOf(annotatedText)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val unorderedAssetChipsEnabled: Boolean
         get() = type is OudsBulletListType.Unordered

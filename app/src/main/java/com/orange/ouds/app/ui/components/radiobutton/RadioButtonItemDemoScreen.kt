@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemCustomization
 import com.orange.ouds.app.ui.components.controlitem.controlItemError
 import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemSkeleton
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -107,7 +108,8 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     enabled = enabled,
                     readOnly = readOnly,
                     error = error,
-                    constrainedMaxWidth = constrainedMaxWidth
+                    constrainedMaxWidth = constrainedMaxWidth,
+                    skeleton = controlItemSkeleton(this@with)
                 )
             }
         }

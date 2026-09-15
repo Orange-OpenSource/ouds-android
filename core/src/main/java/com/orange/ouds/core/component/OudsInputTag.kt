@@ -41,9 +41,11 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
@@ -52,6 +54,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -76,30 +79,34 @@ import com.orange.ouds.theme.OudsThemeContract
  *   emitting [Interaction]s for this input tag. You can use this to change the input tag's appearance or
  *   preview the input tag in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsInputTagSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsInputTag(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val tagTokens = OudsTheme.componentsTokens.tag
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getInputTagState(enabled = enabled, interactionState = interactionState)
+    val state = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = interactionState)
     val shape = RoundedCornerShape(tagTokens.borderRadius.value)
 
     val backgroundColor = rememberInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
-        val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
+        val inputTagState = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = inputTagInteractionState)
         backgroundColor(state = inputTagState)
     }
 
     val contentColor = rememberInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
-        val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
+        val inputTagState = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = inputTagInteractionState)
         contentColor(state = inputTagState)
     }
 
@@ -108,36 +115,42 @@ fun OudsInputTag(
         toAnimatableFloat = { it?.value.orElse { 0f } },
         fromAnimatableFloat = { it.dp }
     ) { inputTagInteractionState ->
-        val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
+        val inputTagState = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = inputTagInteractionState)
         borderWidth(state = inputTagState)
     }
-    val borderColor = rememberInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
-        val inputTagState = getInputTagState(enabled = enabled, interactionState = inputTagInteractionState)
+    val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
+        val inputTagState = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = inputTagInteractionState)
         borderColor(state = inputTagState)
     }
 
-    Box(modifier = modifier) {
-        Box(
-            modifier = Modifier
-                .heightIn(min = tagTokens.sizeMinHeightInteractiveArea.value)
-                .clickable(
-                    enabled = enabled,
-                    interactionSource = interactionSource,
-                    indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
-                    onClick = onClick,
-                    onClickLabel = stringResource(R.string.core_inputTag_remove_a11y),
-                    role = Role.Button
-                ),
-            contentAlignment = Alignment.CenterStart
-        ) {
+    Box(
+        modifier = modifier
+            .heightIn(min = tagTokens.sizeMinHeightInteractiveArea.value)
+            .clickable(
+                enabled = state.areInteractionsEnabled,
+                interactionSource = interactionSource,
+                indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
+                onClick = onClick,
+                onClickLabel = stringResource(R.string.core_inputTag_remove_a11y),
+                role = Role.Button
+            ),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        SkeletonLayout(
+            modifier = Modifier,
+            componentState = state,
+            state = skeleton?.state,
+            securityMargin = false,
+            shape = shape
+        ) { contentModifier ->
             Row(
-                modifier = Modifier
+                modifier = contentModifier
                     .widthIn(min = tagTokens.sizeMinWidthDefault.dp)
                     .heightIn(min = tagTokens.sizeMinHeightDefault.dp)
                     .background(color = backgroundColor.value, shape = shape)
                     .run {
-                        borderWidth.value?.let { borderWidth ->
-                            border(width = borderWidth, color = borderColor.value, shape = shape)
+                        ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
+                            border(width = borderWidth, color = borderColor, shape = shape)
                         }.orElse {
                             this
                         }
@@ -165,9 +178,10 @@ fun OudsInputTag(
 }
 
 @Composable
-private fun getInputTagState(interactionState: InteractionState, enabled: Boolean): OudsInputTagState {
+private fun getInputTagState(enabled: Boolean, skeleton: OudsSkeleton?, interactionState: InteractionState): OudsInputTagState {
     return getPreviewEnumEntry<OudsInputTagState>().orElse {
         when {
+            skeleton != null -> OudsInputTagState.Skeleton
             !enabled -> OudsInputTagState.Disabled
             interactionState == InteractionState.Hovered -> OudsInputTagState.Hovered
             interactionState == InteractionState.Pressed -> OudsInputTagState.Pressed
@@ -185,7 +199,8 @@ private fun backgroundColor(state: OudsInputTagState): Color {
             OudsInputTagState.Focused -> colorBgFocus.value
             OudsInputTagState.Hovered -> colorBgHover.value
             OudsInputTagState.Pressed -> colorBgPressed.value
-            OudsInputTagState.Disabled -> Color.Transparent
+            OudsInputTagState.Disabled,
+            OudsInputTagState.Skeleton -> Color.Transparent
         }
     }
 }
@@ -199,12 +214,13 @@ private fun borderWidth(state: OudsInputTagState): Dp? {
             OudsInputTagState.Hovered,
             OudsInputTagState.Pressed,
             OudsInputTagState.Focused -> borderWidthDefaultInteraction
+            OudsInputTagState.Skeleton -> null
         }
-    }.value.takeUnlessHairline
+    }?.value?.takeUnlessHairline
 }
 
 @Composable
-private fun borderColor(state: OudsInputTagState): Color {
+private fun borderColor(state: OudsInputTagState): Color? {
     return with(OudsTheme.componentsTokens.inputTag) {
         when (state) {
             OudsInputTagState.Enabled -> colorBorderEnabled.value
@@ -212,6 +228,7 @@ private fun borderColor(state: OudsInputTagState): Color {
             OudsInputTagState.Hovered -> colorBorderHover.value
             OudsInputTagState.Pressed -> colorBorderPressed.value
             OudsInputTagState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsInputTagState.Skeleton -> null
         }
     }
 }
@@ -225,12 +242,13 @@ private fun contentColor(state: OudsInputTagState): Color {
             OudsInputTagState.Hovered -> colorContentHover.value
             OudsInputTagState.Pressed -> colorContentPressed.value
             OudsInputTagState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsInputTagState.Skeleton -> Color.Transparent
         }
     }
 }
 
-private enum class OudsInputTagState {
-    Enabled, Hovered, Pressed, Disabled, Focused
+private enum class OudsInputTagState : OudsComponentState {
+    Enabled, Hovered, Pressed, Disabled, Focused, Skeleton
 }
 
 @OudsPreviewLightDark

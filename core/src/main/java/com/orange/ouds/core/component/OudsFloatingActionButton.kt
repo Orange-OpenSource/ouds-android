@@ -47,6 +47,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -279,7 +280,7 @@ fun OudsExtendedFloatingActionButton(
             elevation = elevation,
             interactionSource = interactionSource
         ) {
-            Text(label = label)
+            FloatingActionButtonText(label = label)
         }
     }
 }
@@ -331,7 +332,7 @@ fun OudsExtendedFloatingActionButton(
         interactionSource = interactionSource
     ) { state, indication, containerColor, contentColor, elevation ->
         ExtendedFloatingActionButton(
-            text = { Text(label = label) },
+            text = { FloatingActionButtonText(label = label) },
             icon = { Icon(icon = icon, label = label) },
             onClick = onClick,
             modifier = modifier
@@ -397,7 +398,7 @@ private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, larg
 }
 
 @Composable
-private fun Text(label: String) {
+private fun FloatingActionButtonText(label: String) {
     Text(text = label, style = OudsTheme.typography.label.large.strong)
 }
 
@@ -551,7 +552,7 @@ enum class OudsFloatingActionButtonAppearance {
     Brand
 }
 
-internal enum class OudsFloatingActionButtonState {
+internal enum class OudsFloatingActionButtonState : OudsComponentState {
     Enabled, Hovered, Pressed, Focused
 }
 

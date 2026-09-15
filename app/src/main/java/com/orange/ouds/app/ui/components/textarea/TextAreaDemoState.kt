@@ -38,7 +38,8 @@ fun rememberTextAreaDemoState(
     helperText: String = "",
     helperLink: String = "",
     constrainedMaxWidth: Boolean = false,
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     textFieldState,
     label,
@@ -54,6 +55,7 @@ fun rememberTextAreaDemoState(
     helperLink,
     constrainedMaxWidth,
     annotatedText,
+    skeleton,
     saver = TextAreaDemoState.Saver
 ) {
     TextAreaDemoState(
@@ -70,7 +72,8 @@ fun rememberTextAreaDemoState(
         helperText,
         helperLink,
         constrainedMaxWidth,
-        annotatedText
+        annotatedText,
+        skeleton
     )
 }
 
@@ -88,7 +91,8 @@ class TextAreaDemoState(
     helperText: String,
     helperLink: String,
     constrainedMaxWidth: Boolean,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -110,7 +114,8 @@ class TextAreaDemoState(
                         helperText,
                         helperLink,
                         constrainedMaxWidth,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             },
@@ -130,7 +135,8 @@ class TextAreaDemoState(
                     list[10] as String,
                     list[11] as String,
                     list[12] as Boolean,
-                    list[13] as Boolean
+                    list[13] as Boolean,
+                    list[14] as Boolean
                 )
             }
         )
@@ -163,6 +169,8 @@ class TextAreaDemoState(
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
     var annotatedText: Boolean by mutableStateOf(annotatedText)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader

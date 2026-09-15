@@ -43,6 +43,7 @@ enum class Component {
     PasswordInput,
     PinCodeInput,
     RadioButton,
+    Skeleton,
     SuggestionChip,
     Switch,
     Tag,
@@ -79,6 +80,7 @@ enum class Component {
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
+                Component.Skeleton -> Skeleton
                 Component.SuggestionChip -> SuggestionChip
                 Component.Switch -> Switch
                 Component.Tag -> Tag
@@ -123,6 +125,7 @@ enum class Component {
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
+            Skeleton -> listOf("OudsSkeleton")
             SuggestionChip -> listOf("OudsSuggestionChip")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")
             Tag -> listOf("OudsTag")
