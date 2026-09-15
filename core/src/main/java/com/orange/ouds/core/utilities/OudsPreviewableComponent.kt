@@ -75,6 +75,7 @@ import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameterProvider
+import com.orange.ouds.core.component.OudsSkeletonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSmallCardItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSmallListItemLeading
 import com.orange.ouds.core.component.OudsSmallListItemPreviewParameterProvider
@@ -175,6 +176,7 @@ import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithDescriptionT
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithEdgeToEdgeDisabled
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsSkeleton
 import com.orange.ouds.core.component.PreviewOudsSmallButton
 import com.orange.ouds.core.component.PreviewOudsSmallButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsSmallButtonWithRoundedCorners
@@ -1809,6 +1811,21 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+    }
+
+    @InternalOudsApi
+    object Skeleton : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsSkeletonPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsSkeleton(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                securityMargin = parameter as Boolean
+            )
         }
     }
 
