@@ -93,8 +93,6 @@ internal data class OrangeSizeSemanticTokens(
     override val maxWidthBodyMediumTablet: Float = OudsDimensionRawTokens.Dimension6000,
     override val maxWidthBodySmallMobile: Float = OudsDimensionRawTokens.Dimension6000,
     override val maxWidthBodySmallTablet: Float = OudsDimensionRawTokens.Dimension6000,
-    override val maxWidthBoxedTextMobile: Float = OudsDimensionRawTokens.Dimension7000,
-    override val maxWidthBoxedTextTablet: Float = OudsDimensionRawTokens.Dimension8000,
     override val maxWidthDisplayLargeMobile: Float = OudsDimensionRawTokens.Dimension9000,
     override val maxWidthDisplayLargeTablet: Float = OudsDimensionRawTokens.Dimension9000,
     override val maxWidthDisplayMediumMobile: Float = OudsDimensionRawTokens.Dimension9000,
