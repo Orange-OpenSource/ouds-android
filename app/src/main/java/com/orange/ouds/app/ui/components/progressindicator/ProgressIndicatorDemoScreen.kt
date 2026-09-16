@@ -109,7 +109,7 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             onSelectionChange = { index: Int -> gapSize = OudsProgressIndicatorGapSize.entries[index] }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_progressIndicator_animated_tech),
+            label = stringResource(R.string.app_components_common_animated_tech),
             checked = animated,
             onCheckedChange = { animated = it },
             enabled = animatedSwitchEnabled
