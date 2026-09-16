@@ -47,6 +47,11 @@ private fun SkeletonDemoBottomSheetContent(state: SkeletonDemoState) {
             checked = securityMargin,
             onCheckedChange = { securityMargin = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_animated_tech),
+            checked = state.skeletonState.isAnimationRunning,
+            onCheckedChange = { with(state.skeletonState) { if (it) startAnimation() else stopAnimation() } },
+        )
     }
 }
 
@@ -55,6 +60,7 @@ private fun SkeletonDemoContent(state: SkeletonDemoState) {
     with(state) {
         OudsSkeleton(
             modifier = Modifier.size(200.dp, 62.dp),
+            state = state.skeletonState,
             securityMargin = securityMargin
         )
     }
@@ -64,6 +70,7 @@ private fun Code.Builder.skeletonDemoCodeSnippet(state: SkeletonDemoState) {
     with(state) {
         functionCall("OudsSkeleton") {
             rawArgument("modifier", "Modifier.size(200.dp, 62.dp)")
+            functionCallArgument("state", "rememberOudsSkeletonState")
             typedArgument("securityMargin", securityMargin)
         }
     }
