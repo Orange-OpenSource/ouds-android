@@ -77,7 +77,7 @@ fun OudsSkeleton(
                 .background(color.background)
                 .clipToBounds()
         ) {
-            if (!LocalInspectionMode.current && state.isAnimationRunning) {
+            if (state.isAnimationRunning) {
                 val infiniteTransition = rememberInfiniteTransition()
                 val progress by infiniteTransition.animateFloat(
                     initialValue = 0f,
@@ -96,7 +96,13 @@ fun OudsSkeleton(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .offset { IntOffset(offset.toInt(), 0) }
+                        .run {
+                            if (!LocalInspectionMode.current) {
+                                offset { IntOffset(offset.toInt(), 0) }
+                            } else {
+                                this
+                            }
+                        }
                         .background(
                             brush = Brush.horizontalGradient(
                                 0.0f to color.gradient.startEnd,
@@ -113,20 +119,36 @@ fun OudsSkeleton(
 @OudsPreviewLightDark
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsSkeleton(@PreviewParameter(OudsSkeletonPreviewParameterProvider::class) securityMargin: Boolean) {
-    PreviewOudsSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), securityMargin = securityMargin)
+private fun PreviewOudsSkeleton(@PreviewParameter(OudsSkeletonPreviewParameterProvider::class) parameter: OudsSkeletonPreviewParameter) {
+    PreviewOudsSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
 internal fun PreviewOudsSkeleton(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    securityMargin: Boolean
+    parameter: OudsSkeletonPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    OudsSkeleton(
-        modifier = Modifier.size(width = 200.dp, height = 62.dp),
-        securityMargin = securityMargin
-    )
+    with(parameter) {
+        OudsSkeleton(
+            modifier = Modifier.size(width = 200.dp, height = 62.dp),
+            state = rememberOudsSkeletonState(initialIsAnimationRunning = isAnimationRunning),
+            securityMargin = securityMargin
+        )
+    }
 }
 
-internal class OudsSkeletonPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(true, false)
+internal data class OudsSkeletonPreviewParameter(
+    val securityMargin: Boolean,
+    val isAnimationRunning: Boolean
+)
+
+internal class OudsSkeletonPreviewParameterProvider : BasicPreviewParameterProvider<OudsSkeletonPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OudsSkeletonPreviewParameter>
+    get() = listOf(
+        OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = false),
+        OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = false),
+        OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = true),
+        OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = true),
+    )
