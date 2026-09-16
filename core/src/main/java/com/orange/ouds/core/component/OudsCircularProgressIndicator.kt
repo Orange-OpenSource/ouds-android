@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -37,6 +39,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -55,7 +58,7 @@ private val OudsCircularProgressIndicatorSize = 48.dp
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -99,7 +102,7 @@ fun OudsCircularProgressIndicator(
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -144,7 +147,7 @@ fun OudsCircularProgressIndicator(
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -185,7 +188,7 @@ fun OudsCircularProgressIndicator(
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
  *
- * > Design name: Progress Indicator
+ * > Design name: Circular Progress Indicator
  *
  * > Design version: 1.0.0
  *

@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -42,6 +44,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -53,7 +56,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -102,7 +105,7 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -152,7 +155,7 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -198,7 +201,7 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *

@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -33,6 +35,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -78,7 +81,7 @@ fun OudsInlineAlert(
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
             status.icon.Content(
-                modifier = Modifier.iconSize(sizeIcon.value * scale, status.icon.tinted),
+                modifier = Modifier.iconSize(sizeAsset.value * scale, status.icon.tinted),
                 extraParameters = OudsAlertIcon.ExtraParameters(
                     tint = status.assetColor,
                     status = status.value

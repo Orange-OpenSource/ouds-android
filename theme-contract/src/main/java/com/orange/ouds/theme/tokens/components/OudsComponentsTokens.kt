@@ -19,6 +19,7 @@ import com.orange.ouds.foundation.InternalOudsApi
 interface OudsComponentsTokens {
     val accordion: OudsAccordionTokens
     val alert: OudsAlertTokens
+    val alertMessage: OudsAlertMessageTokens
     val badge: OudsBadgeTokens
     val bar: OudsBarTokens
     val bulletList: OudsBulletListTokens
@@ -40,4 +41,5 @@ interface OudsComponentsTokens {
     val tag: OudsTagTokens
     val textArea: OudsTextAreaTokens
     val textInput: OudsTextInputTokens
+    val typography: OudsTypographyTokens
 }

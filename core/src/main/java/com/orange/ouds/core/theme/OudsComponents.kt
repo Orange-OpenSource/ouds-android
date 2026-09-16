@@ -11,6 +11,7 @@
  */
 
 @file:Suppress("DEPRECATION")
+@file:OptIn(RestrictedOudsApi::class)
 
 package com.orange.ouds.core.theme
 
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
+import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -43,11 +45,13 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
+import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
 @ConsistentCopyVisibility
 @RestrictedOudsApi
 data class OudsComponents internal constructor(
     val alert: Alert,
+    val alertMessage: AlertMessage,
     val badge: Badge,
     val bar: Bar,
     val bulletList: BulletList,
@@ -70,7 +74,8 @@ data class OudsComponents internal constructor(
     val switch: Switch,
     val tag: Tag,
     val textArea: TextArea,
-    val textInput: TextInput
+    val textInput: TextInput,
+    val typography: Typography
 ) {
 
     @ConsistentCopyVisibility
@@ -83,6 +88,10 @@ data class OudsComponents internal constructor(
         @ConsistentCopyVisibility
         data class Border internal constructor(
             val radius: Radius,
+            @Deprecated(
+                "Please use alertMessage.border.width instead.",
+                ReplaceWith("OudsTheme.components.alertMessage.border.width")
+            )
             val width: Dp
         ) {
 
@@ -95,8 +104,18 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
+            val asset: Dp,
+            @Deprecated(
+                "Please use asset instead.",
+                ReplaceWith("OudsTheme.components.alert.size.asset")
+            )
             val icon: Dp,
             val minHeight: Dp,
+            val minHeightBottomAction: Dp,
+            @Deprecated(
+                "Please use minHeightBottomAction instead.",
+                ReplaceWith("OudsTheme.components.alert.size.minHeightBottomAction")
+            )
             val minHeightBottomActionPlacement: Dp,
             val minWidth: Dp
         )
@@ -108,7 +127,28 @@ data class OudsComponents internal constructor(
             val paddingBlock: Dp,
             val paddingInline: Dp,
             val rowGap: Dp,
+            @Deprecated("")
             val rowGapAction: Dp,
+            @Deprecated(
+                "Please use alertMessage.space.rowGapBullet instead.",
+                ReplaceWith("OudsTheme.components.alertMessage.space.rowGapBullet")
+            )
+            val rowGapBullet: Dp
+        )
+    }
+
+    @ConsistentCopyVisibility
+    data class AlertMessage internal constructor(
+        val border: Border,
+        val space: Space
+    ) {
+        @ConsistentCopyVisibility
+        data class Border internal constructor(
+            val width: Dp
+        )
+
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
             val rowGapBullet: Dp
         )
     }
@@ -1957,12 +1997,30 @@ data class OudsComponents internal constructor(
             )
         }
     }
+
+    @ConsistentCopyVisibility
+    data class Typography internal constructor(
+        val headingLargeMarker: Boolean,
+        val space: Space
+    ) {
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
+            val paddingBlock: PaddingBlock,
+        ) {
+            @ConsistentCopyVisibility
+            data class PaddingBlock internal constructor(
+                val bottomHeadingLargeMarker: Dp,
+                val topHeadingLargeMarker: Dp
+            )
+        }
+    }
 }
 
 @Composable
 internal fun OudsComponentsTokens.getComponents(): OudsComponents {
     return OudsComponents(
-        alert = alert.getAlert(),
+        alert = alert.getAlert(alertMessage = alertMessage.getAlertMessage()),
+        alertMessage = alertMessage.getAlertMessage(),
         badge = badge.getBadge(),
         bar = bar.getBar(),
         bulletList = bulletList.getBulletList(),
@@ -1984,24 +2042,27 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         switch = switch.getSwitch(),
         tag = tag.getTag(),
         textArea = textArea.getTextArea(),
-        textInput = textInput.getTextInput()
+        textInput = textInput.getTextInput(),
+        typography = typography.getTypography()
     )
 }
 
 @Composable
-private fun OudsAlertTokens.getAlert(): OudsComponents.Alert {
+private fun OudsAlertTokens.getAlert(alertMessage: OudsComponents.AlertMessage): OudsComponents.Alert {
     return OudsComponents.Alert(
         border = OudsComponents.Alert.Border(
             radius = OudsComponents.Alert.Border.Radius(
                 default = borderRadiusDefault.value,
                 rounded = borderRadiusRounded.value
             ),
-            width = borderWidth.value
+            width = alertMessage.border.width
         ),
         size = OudsComponents.Alert.Size(
-            icon = sizeIcon.value,
+            asset = sizeAsset.value,
+            icon = sizeAsset.value,
             minHeight = sizeMinHeight.value,
-            minHeightBottomActionPlacement = sizeMinHeightBottomActionPlacement.dp,
+            minHeightBottomAction = sizeMinHeightBottomAction.dp,
+            minHeightBottomActionPlacement = sizeMinHeightBottomAction.dp,
             minWidth = sizeMinWidth.dp
         ),
         space = OudsComponents.Alert.Space(
@@ -2011,6 +2072,18 @@ private fun OudsAlertTokens.getAlert(): OudsComponents.Alert {
             columnGapAction = spaceColumnGapAction.value,
             rowGap = spaceRowGap.value,
             rowGapAction = spaceRowGapAction.value,
+            rowGapBullet = alertMessage.space.rowGapBullet
+        )
+    )
+}
+
+@Composable
+private fun OudsAlertMessageTokens.getAlertMessage(): OudsComponents.AlertMessage {
+    return OudsComponents.AlertMessage(
+        border = OudsComponents.AlertMessage.Border(
+            width = borderWidth.value
+        ),
+        space = OudsComponents.AlertMessage.Space(
             rowGapBullet = spaceRowGapBullet.value
         )
     )
@@ -3032,6 +3105,19 @@ private fun OudsTextInputTokens.getTextInput(): OudsComponents.TextInput {
             ),
             rowGap = OudsComponents.TextInput.Space.RowGap(
                 labelInput = spaceRowGapLabelInput.value
+            )
+        )
+    )
+}
+
+@Composable
+private fun OudsTypographyTokens.getTypography(): OudsComponents.Typography {
+    return OudsComponents.Typography(
+        headingLargeMarker = headingLargeMarker,
+        space = OudsComponents.Typography.Space(
+            paddingBlock = OudsComponents.Typography.Space.PaddingBlock(
+                bottomHeadingLargeMarker = spacePaddingBlockBottomHeadingLargeMarker.value,
+                topHeadingLargeMarker = spacePaddingBlockTopHeadingLargeMarker.value
             )
         )
     )

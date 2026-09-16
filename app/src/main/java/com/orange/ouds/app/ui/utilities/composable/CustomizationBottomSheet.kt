@@ -32,7 +32,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -58,7 +57,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
+import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBottomSheetScaffold
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -123,11 +124,10 @@ fun CustomizationBottomSheetScaffold(
                     contentDescription = null,
                     tint = OudsTheme.colorScheme.content.default
                 )
-                Text(
+                OudsBodyText(
                     modifier = Modifier.padding(start = OudsTheme.spaces.fixed.medium),
                     text = stringResource(id = titleResId),
-                    style = OudsTheme.typography.body.large.strong,
-                    color = OudsTheme.colorScheme.content.default
+                    weight = OudsTextWeight.Strong,
                 )
             }
 

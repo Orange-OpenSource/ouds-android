@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.sosh.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
+import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -36,10 +37,12 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
+import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
 internal data class SoshComponentsTokens(
     override val accordion: OudsAccordionTokens = SoshAccordionTokens(),
     override val alert: OudsAlertTokens = SoshAlertTokens(),
+    override val alertMessage: OudsAlertMessageTokens = SoshAlertMessageTokens(),
     override val badge: OudsBadgeTokens = SoshBadgeTokens(),
     override val bar: OudsBarTokens = SoshBarTokens(),
     override val bulletList: OudsBulletListTokens = SoshBulletListTokens(),
@@ -60,5 +63,6 @@ internal data class SoshComponentsTokens(
     override val switch: OudsSwitchTokens = SoshSwitchTokens(),
     override val tag: OudsTagTokens = SoshTagTokens(),
     override val textArea: OudsTextAreaTokens = SoshTextAreaTokens(),
-    override val textInput: OudsTextInputTokens = SoshTextInputTokens()
+    override val textInput: OudsTextInputTokens = SoshTextInputTokens(),
+    override val typography: OudsTypographyTokens = SoshTypographyTokens()
 ) : OudsComponentsTokens

@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.orangecompact.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
+import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -36,10 +37,12 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
+import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
 internal data class OrangeCompactComponentsTokens(
     override val accordion: OudsAccordionTokens = OrangeCompactAccordionTokens(),
     override val alert: OudsAlertTokens = OrangeCompactAlertTokens(),
+    override val alertMessage: OudsAlertMessageTokens = OrangeCompactAlertMessageTokens(),
     override val badge: OudsBadgeTokens = OrangeCompactBadgeTokens(),
     override val bar: OudsBarTokens = OrangeCompactBarTokens(),
     override val bulletList: OudsBulletListTokens = OrangeCompactBulletListTokens(),
@@ -60,5 +63,6 @@ internal data class OrangeCompactComponentsTokens(
     override val switch: OudsSwitchTokens = OrangeCompactSwitchTokens(),
     override val tag: OudsTagTokens = OrangeCompactTagTokens(),
     override val textArea: OudsTextAreaTokens = OrangeCompactTextAreaTokens(),
-    override val textInput: OudsTextInputTokens = OrangeCompactTextInputTokens()
+    override val textInput: OudsTextInputTokens = OrangeCompactTextInputTokens(),
+    override val typography: OudsTypographyTokens = OrangeCompactTypographyTokens()
 ) : OudsComponentsTokens

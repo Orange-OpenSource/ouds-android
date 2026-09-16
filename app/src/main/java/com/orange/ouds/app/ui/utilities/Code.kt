@@ -15,18 +15,15 @@ package com.orange.ouds.app.ui.utilities
 import android.content.Context
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.BottomBarItem
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.core.component.OudsButtonIcon
-import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.component.OudsCodeText
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.extensions.tryOrNull
 import kotlin.properties.Delegates
@@ -358,9 +355,7 @@ internal fun PreviewCode() = AppPreview {
         }
     }
     val context = LocalContext.current
-    Text(
+    OudsCodeText(
         text = code.format(context),
-        style = TextStyle(fontFamily = FontFamily.Monospace),
-        color = OudsTheme.colorScheme.content.default
     )
 }

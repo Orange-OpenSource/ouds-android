@@ -13,6 +13,7 @@
 package com.orange.ouds.theme.wireframe.tokens.components
 
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
+import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -36,10 +37,12 @@ import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
+import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
 internal data class WireframeComponentsTokens(
     override val accordion: OudsAccordionTokens = WireframeAccordionTokens(),
     override val alert: OudsAlertTokens = WireframeAlertTokens(),
+    override val alertMessage: OudsAlertMessageTokens = WireframeAlertMessageTokens(),
     override val badge: OudsBadgeTokens = WireframeBadgeTokens(),
     override val bar: OudsBarTokens = WireframeBarTokens(),
     override val bulletList: OudsBulletListTokens = WireframeBulletListTokens(),
@@ -60,5 +63,6 @@ internal data class WireframeComponentsTokens(
     override val switch: OudsSwitchTokens = WireframeSwitchTokens(),
     override val tag: OudsTagTokens = WireframeTagTokens(),
     override val textArea: OudsTextAreaTokens = WireframeTextAreaTokens(),
-    override val textInput: OudsTextInputTokens = WireframeTextInputTokens()
+    override val textInput: OudsTextInputTokens = WireframeTextInputTokens(),
+    override val typography: OudsTypographyTokens = WireframeTypographyTokens()
 ) : OudsComponentsTokens

@@ -42,6 +42,10 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.LightDarkResourceId
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.painterResource
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsBodyTextSize
+import com.orange.ouds.core.component.OudsInlineAlert
+import com.orange.ouds.core.component.OudsInlineAlertStatus
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.dashedBorder
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -110,12 +114,21 @@ fun SpaceHeader(
     spaceTokenProperty: TokenProperty<TokenCategory.Dimension.Space>,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = modifier
-            .background(color = OudsTheme.colorScheme.surface.secondary)
-            .padding(all = OudsTheme.spaces.fixed.medium)
-    ) {
-        SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)) {
+        if (spaceTokenProperty in listOf(
+                TokenProperty.SpacePaddingInline, TokenProperty.SpaceInset, TokenProperty.SpacePaddingBlock, TokenProperty.SpaceColumnGap,
+                TokenProperty.SpaceRowGap
+            )
+        ) {
+            OudsInlineAlert(label = stringResource(R.string.app_tokens_dimension_space_restrictedTokens_text), status = OudsInlineAlertStatus.Warning)
+        }
+        Box(
+            modifier = Modifier
+                .background(color = OudsTheme.colorScheme.surface.secondary)
+                .padding(all = OudsTheme.spaces.fixed.medium)
+        ) {
+            SpaceHeaderContent(spaceTokenProperty = spaceTokenProperty)
+        }
     }
 }
 
@@ -185,13 +198,12 @@ private fun SpaceHeaderText(spaceTokenProperty: TokenProperty<TokenCategory.Dime
         else -> null
     }
     if (textResId != null) {
-        Text(
+        OudsBodyText(
             modifier = modifier
                 .background(color = OudsTheme.colorScheme.background.primary)
                 .background(color = OudsTheme.colorScheme.surface.secondary),
             text = stringResource(id = textResId),
-            color = OudsTheme.colorScheme.content.default,
-            style = OudsTheme.typography.body.medium.default
+            size = OudsBodyTextSize.Medium
         )
     }
 }

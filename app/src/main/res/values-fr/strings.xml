@@ -66,6 +66,7 @@
     <string name="app_tokens_dimension_space_insetHeader_text">Les insets incluent le padding gauche, droit, haut et bas, avec tous les paramètres égaux.</string>
     <string name="app_tokens_dimension_space_columnGapHeader_text">L\'écart de colonne (column gap) est l\'espacement horizontal entre les éléments.</string>
     <string name="app_tokens_dimension_space_rowGapHeader_text">L\'écart de ligne (row gap) est l\'espacement vertical entre les éléments.</string>
+    <string name="app_tokens_dimension_space_restrictedTokens_text">Restricted to components creation.</string>
 
     <!-- Tokens: dimension/size -->
     <string name="app_tokens_dimension_size_description_text">La taille fait référence aux mesures spécifiques utilisées pour définir les dimensions des éléments d\'interface utilisateur au sein du système de design.</string>
@@ -210,6 +211,11 @@
     <string name="app_components_topAppBar_secondAction_a11y">Deuxième action</string>
     <string name="app_components_topAppBar_thirdAction_a11y">Troisième action</string>
     <string name="app_components_topAppBar_title_label">Titre</string>
+
+    <!-- Components: typography -->
+    <string name="app_components_typography_description_text">Les composants de typographie offrent un système complet de styles de texte pour créer des hiérarchies claires et des interfaces lisibles.</string>
+    <string name="app_components_typography_common_text_label">Texte</string>
+    <string name="app_components_typography_headingText_markerNote_text">Note: Ce paramètre n\'a aucun effet car le thème courant ne fournit pas de marqueur pour le heading text large.</string>
 
     <!-- About -->
     <string name="app_about_name_label">Design System Toolbox</string>
