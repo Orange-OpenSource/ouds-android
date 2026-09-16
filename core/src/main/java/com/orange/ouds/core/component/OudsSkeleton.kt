@@ -54,10 +54,19 @@ import com.orange.ouds.theme.OudsThemeContract
  * > Design name: Skeleton
  *
  * > Design version: 1.0.0
+ *
+ * @param modifier The [Modifier] to be applied to the skeleton.
+ * @param state The [OudsSkeletonState] that controls the skeleton's animation behavior. 
+ *   Defaults to a remembered state with animation running.
+ * @param securityMargin Whether to apply vertical padding to the skeleton. Defaults to true.
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsSkeletonSample
+ * @sample com.orange.ouds.core.component.samples.OudsSkeletonWithTimedAnimationSample
  */
 @Composable
 fun OudsSkeleton(
     modifier: Modifier = Modifier,
+    state: OudsSkeletonState = rememberOudsSkeletonState(),
     securityMargin: Boolean = true
 ) {
     with(OudsTheme.components.skeleton) {
@@ -68,17 +77,16 @@ fun OudsSkeleton(
                 .background(color.background)
                 .clipToBounds()
         ) {
-            // Don't display gradient in previews
-            if (!LocalInspectionMode.current) {
+            if (!LocalInspectionMode.current && state.isAnimationRunning) {
                 val infiniteTransition = rememberInfiniteTransition()
                 val progress by infiniteTransition.animateFloat(
                     initialValue = 0f,
                     targetValue = 1f,
                     animationSpec = infiniteRepeatable(
                         animation = keyframes {
-                            durationMillis = 1250 // 800ms movement + 450ms pause
+                            durationMillis = OudsSkeletonState.AnimationDuration // 800ms movement + 450ms pause
                             0f at 0 using CubicBezierEasing(0.42f, 0.0f, 0.58f, 1.0f)
-                            1f at 800 // Holds at 1f from 800ms to 1250ms (450ms pause)
+                            1f at OudsSkeletonState.ShimmerAnimationDuration // Holds at 1f from 800ms to 1250ms (450ms pause)
                         },
                         repeatMode = RepeatMode.Restart
                     )

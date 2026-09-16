@@ -125,6 +125,7 @@
     <string name="app_tokens_typography_lineHeight_tech" translatable="false">Line height: %s sp</string>
 
     <!-- Components -->
+    <string name="app_components_common_animated_tech" translatable="false">Animated</string>
     <string name="app_components_common_annotatedText_tech" translatable="false">Annotated text example</string>
     <string name="app_components_common_annotatedTextHelperText_tech" translatable="false">"Supports annotated text. Use switch below for example.</string>
     <string name="app_components_common_appearance_tech" translatable="false">Appearance</string>
@@ -346,7 +347,6 @@
     <string name="app_components_progressIndicator_linearProgressIndicator_tech" translatable="false">Linear progress indicator</string>
     <string name="app_components_progressIndicator_linearProgressIndicator_description_text">A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.</string>
     <string name="app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech" translatable="false">Stop indicator</string>
-    <string name="app_components_progressIndicator_animated_tech" translatable="false">Animated</string>
     <string name="app_components_progressIndicator_determinate_tech" translatable="false">Determinate</string>
     <string name="app_components_progressIndicator_indeterminate_tech" translatable="false">Indeterminate</string>
     <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
@@ -369,7 +369,7 @@
     <string name="app_components_skeleton_tech" translatable="false">Skeleton</string>
     <string name="app_components_skeleton_description_text">A skeleton is a UI element that indicates when content is loading.</string>
     <string name="app_components_skeleton_securityMargin_tech" translatable="false">Security margin</string>
-
+    
     <!-- Components: switch -->
     <string name="app_components_switch_tech" translatable="false">Switch</string>
     <string name="app_components_switch_description_text">Switch is a UI element that allows to toggle between two states, typically \“On\” and \“Off\”, and used to enable or disable features, options or settings.</string>
