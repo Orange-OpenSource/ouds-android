@@ -75,7 +75,7 @@ fun rememberPasswordInputDemoState(
 }
 
 class PasswordInputDemoState(
-    passwordInputState: OudsPasswordInputState,
+    val passwordInputState: OudsPasswordInputState,
     label: String,
     placeholder: String,
     outlined: Boolean,
@@ -134,8 +134,6 @@ class PasswordInputDemoState(
             }
         )
     }
-
-    var passwordInputState: OudsPasswordInputState by mutableStateOf(passwordInputState)
 
     var label: String by mutableStateOf(label)
 

@@ -18,15 +18,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.orange.ouds.core.component.OudsSkeletonState
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 
 @Composable
 fun rememberSkeletonDemoState(
+    skeletonState: OudsSkeletonState = rememberOudsSkeletonState(),
     securityMargin: Boolean = false
-) = rememberSaveable(securityMargin, saver = SkeletonDemoState.Saver) {
-    SkeletonDemoState(securityMargin)
+) = rememberSaveable(skeletonState, securityMargin, saver = SkeletonDemoState.Saver) {
+    SkeletonDemoState(skeletonState, securityMargin)
 }
 
 class SkeletonDemoState(
+    val skeletonState: OudsSkeletonState,
     securityMargin: Boolean
 ) {
 
@@ -36,13 +40,16 @@ class SkeletonDemoState(
             save = { state ->
                 with(state) {
                     listOf(
+                        with(OudsSkeletonState.Saver) { save(skeletonState) },
                         securityMargin
                     )
                 }
             },
             restore = { list: List<Any?> ->
+                val skeletonState = list[0]?.let { OudsSkeletonState.Saver.restore(it) }
                 SkeletonDemoState(
-                    list[0] as Boolean
+                    skeletonState as OudsSkeletonState,
+                    list[1] as Boolean
                 )
             }
         )
