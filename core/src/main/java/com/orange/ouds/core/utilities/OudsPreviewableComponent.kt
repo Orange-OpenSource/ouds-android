@@ -73,6 +73,7 @@ import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameter
 import com.orange.ouds.core.component.OudsRadioButtonPreviewParameterProvider
+import com.orange.ouds.core.component.OudsSkeletonPreviewParameter
 import com.orange.ouds.core.component.OudsSkeletonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSmallCardItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsSmallListItemLeading
@@ -1623,7 +1624,7 @@ interface OudsPreviewableComponent {
             PreviewOudsSkeleton(
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
-                securityMargin = parameter as Boolean
+                parameter = parameter as OudsSkeletonPreviewParameter
             )
         }
     }
