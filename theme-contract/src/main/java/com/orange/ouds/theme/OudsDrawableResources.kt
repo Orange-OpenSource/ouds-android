@@ -16,6 +16,13 @@ import androidx.annotation.DrawableRes
 import com.orange.ouds.foundation.InternalOudsApi
 
 /**
+ * Version of the icons pack
+ * @suppress
+ */
+@InternalOudsApi
+const val OudsIconsPackVersion = "2.3"
+
+/**
  * @suppress
  */
 @InternalOudsApi

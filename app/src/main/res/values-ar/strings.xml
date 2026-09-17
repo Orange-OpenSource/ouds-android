@@ -225,5 +225,6 @@
     <string name="app_about_versions_label">الإصدارات</string>
     <string name="app_about_versions_tokens_label">الرموز</string>
     <string name="app_about_versions_components_label">المكونات</string>
+    <string name="app_about_versions_icons_label">أيقونة</string>
 
 </resources>

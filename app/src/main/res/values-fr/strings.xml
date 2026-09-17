@@ -223,4 +223,6 @@
     <string name="app_about_versions_label">Versions</string>
     <string name="app_about_versions_tokens_label">Tokens</string>
     <string name="app_about_versions_components_label">Composants</string>
+    <string name="app_about_versions_icons_label">Icônes</string>
+
 </resources>
