@@ -10,8 +10,6 @@
  * Software description: Android library of reusable graphical components 
  */
 
-@file:OptIn(RestrictedOudsApi::class)
-
 package com.orange.ouds.core.component.common.text
 
 import androidx.compose.runtime.Composable
@@ -32,7 +30,6 @@ import com.orange.ouds.core.component.OudsLinkState
 import com.orange.ouds.core.component.linkContentColor
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.RestrictedOudsApi
 
 /**
  * Base class for annotated strings with rich text formatting support in OUDS components.

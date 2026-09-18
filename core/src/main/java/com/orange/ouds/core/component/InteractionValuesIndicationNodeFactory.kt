@@ -10,8 +10,6 @@
  * Software description: Android library of reusable graphical components
  */
 
-@file:OptIn(RestrictedOudsApi::class)
-
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.Animatable
@@ -29,7 +27,6 @@ import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.node.DelegatableNode
 import androidx.compose.ui.node.DrawModifierNode
 import com.orange.ouds.core.extensions.InteractionState
-import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
