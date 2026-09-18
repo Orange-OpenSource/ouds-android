@@ -56,6 +56,11 @@ internal fun OudsLinearProgressIndicatorIndeterminateSample() {
 }
 
 @Composable
+internal fun OudsLinearProgressIndicatorIndeterminateWithHelperTextStringSample() {
+    OudsLinearProgressIndicator(helperText = "Processing...")
+}
+
+@Composable
 internal fun OudsLinearProgressIndicatorIndeterminateWithHelperTextSample() {
     OudsLinearProgressIndicator(
         helperText = OudsIndeterminateLinearProgressIndicatorHelperText(
@@ -87,6 +92,12 @@ private fun PreviewOudsLinearProgressIndicatorDeterminateWithHelperTextSample() 
 @Composable
 private fun PreviewOudsLinearProgressIndicatorIndeterminateSample() = OudsPreview {
     OudsLinearProgressIndicatorIndeterminateSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsLinearProgressIndicatorIndeterminateWithHelperTextStringSample() = OudsPreview {
+    OudsLinearProgressIndicatorIndeterminateWithHelperTextStringSample()
 }
 
 @PreviewLightDark
