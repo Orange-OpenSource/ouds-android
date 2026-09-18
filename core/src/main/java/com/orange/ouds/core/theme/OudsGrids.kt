@@ -43,10 +43,10 @@ data class OudsGrids internal constructor(
 
 internal fun OudsGridSemanticTokens.getGrids(windowWidthSizeClass: WindowWidthSizeClass) = with(windowWidthSizeClass) {
     OudsGrids(
-        minWidth = getTokenValue(extraCompactMinWidth, compactMinWidth, mediumMinWidth).dp,
-        maxWidth = getTokenValue(extraCompactMaxWidth, compactMaxWidth, mediumMaxWidth).dp,
-        margin = getTokenValue(extraCompactMargin, compactMargin, mediumMargin).dp,
-        columnGap = getTokenValue(extraCompactColumnGap, compactColumnGap, mediumColumnGap).dp
+        minWidth = getTokenValue(extraCompactMinWidth, compactMinWidth, mediumMinWidth, largeMinWidth, extraLargeMinWidth).dp,
+        maxWidth = getTokenValue(extraCompactMaxWidth, compactMaxWidth, mediumMaxWidth, largeMaxWidth, extraLargeMaxWidth).dp,
+        margin = getTokenValue(extraCompactMargin, compactMargin, mediumMargin, largeMargin, extraLargeMargin).dp,
+        columnGap = getTokenValue(extraCompactColumnGap, compactColumnGap, mediumColumnGap, largeColumnGap, extraLargeColumnGap).dp
     )
 }
 

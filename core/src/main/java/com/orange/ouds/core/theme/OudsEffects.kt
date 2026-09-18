@@ -25,20 +25,24 @@ import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
  * Visual effects, such as blurs and shadows, add depth and realism to the UI,
  * helping to define hierarchy and interaction states.
  *
+ * @property blurBackdrop The radius of the blur effect applied to the backdrop displayed behind an element.
  * @property blurDrag The radius of the blur effect applied to an element when it is being dragged.
  */
 @ConsistentCopyVisibility
 data class OudsEffects internal constructor(
+    val blurBackdrop: Int,
     val blurDrag: Int
 )
 
 internal fun OudsEffectSemanticTokens.getEffects() = OudsEffects(
+    blurBackdrop = blurBackdrop,
     blurDrag = blurDrag,
 )
 
 @Stable
 private fun OudsEffects.fromToken(token: OudsEffectKeyToken): Int {
     return when (token) {
+        OudsEffectKeyToken.Blur.Backdrop -> blurBackdrop
         OudsEffectKeyToken.Blur.Drag -> blurDrag
     }
 }
