@@ -32,6 +32,7 @@ import com.orange.ouds.theme.tokens.components.OudsPinCodeInputTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsProgressIndicatorTokens
 import com.orange.ouds.theme.tokens.components.OudsRadioButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsSkeletonTokens
 import com.orange.ouds.theme.tokens.components.OudsSwitchTokens
 import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
@@ -57,6 +58,7 @@ internal data class WireframeComponentsTokens(
     override val progressIndicator: OudsProgressIndicatorTokens = WireframeProgressIndicatorTokens(),
     override val progressIndicatorMonochrome: OudsProgressIndicatorMonoTokens = WireframeProgressIndicatorMonoTokens(),
     override val radioButton: OudsRadioButtonTokens = WireframeRadioButtonTokens(),
+    override val skeleton: OudsSkeletonTokens = WireframeSkeletonTokens(),
     override val switch: OudsSwitchTokens = WireframeSwitchTokens(),
     override val tag: OudsTagTokens = WireframeTagTokens(),
     override val textArea: OudsTextAreaTokens = WireframeTextAreaTokens(),
