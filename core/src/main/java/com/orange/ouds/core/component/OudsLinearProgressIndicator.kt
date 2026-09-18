@@ -113,6 +113,8 @@ fun OudsLinearProgressIndicator(
  *
  * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
  *   into the range.
+ * @param helperText Configuration for helper text displayed below the progress indicator. Allows displaying progress percentage and/or custom label
+ *   with configurable alignment. See [OudsDeterminateLinearProgressIndicatorHelperText].
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
  * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
  * @param track Whether the track is displayed or not.
@@ -122,8 +124,6 @@ fun OudsLinearProgressIndicator(
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
  *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Configuration for helper text displayed below the progress indicator. Allows displaying progress percentage and/or custom label
- *   with configurable alignment. See [OudsDeterminateLinearProgressIndicatorHelperText].
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateWithHelperTextSample
@@ -131,11 +131,11 @@ fun OudsLinearProgressIndicator(
 @Composable
 fun OudsLinearProgressIndicator(
     progress: () -> Float,
+    helperText: OudsDeterminateLinearProgressIndicatorHelperText,
     modifier: Modifier = Modifier,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     stopIndicator: Boolean = false,
-    helperText: OudsDeterminateLinearProgressIndicatorHelperText,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
 ) {
     OudsLinearProgressIndicator(
@@ -258,6 +258,8 @@ fun OudsLinearProgressIndicator(
  * > Design version: 1.1.0
  *
  * @param modifier The [Modifier] to be applied to this linear progress indicator.
+ * @param helperText Configuration for helper text displayed below the progress indicator with configurable alignment.
+ *   See [OudsIndeterminateLinearProgressIndicatorHelperText].
  * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
  * @param track Whether the track is displayed or not.
  *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
@@ -266,8 +268,6 @@ fun OudsLinearProgressIndicator(
  *   appearance is needed.
  * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
  *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Configuration for helper text displayed below the progress indicator with configurable alignment.
- *   See [OudsIndeterminateLinearProgressIndicatorHelperText].
  * @param gapSize The size of the gap between the progress indicator and the track.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateWithHelperTextSample
@@ -275,10 +275,10 @@ fun OudsLinearProgressIndicator(
 @Composable
 fun OudsLinearProgressIndicator(
     modifier: Modifier = Modifier,
+    helperText: OudsIndeterminateLinearProgressIndicatorHelperText,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
     stopIndicator: Boolean = false,
-    helperText: OudsIndeterminateLinearProgressIndicatorHelperText,
     gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 ) {
     OudsLinearProgressIndicator(
