@@ -45,8 +45,31 @@ import com.orange.ouds.core.component.OudsProgressIndicatorGapSize
 import com.orange.ouds.core.component.OudsProgressIndicatorStatus
 import com.orange.ouds.foundation.extensions.toSentenceCase
 
+data class ProgressIndicatorCustomization(val index: Int, val content: @Composable () -> Unit)
+
+fun progressIndicatorCustomization(index: Int, content: @Composable () -> Unit) = ProgressIndicatorCustomization(index, content)
+
 @Composable
-fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
+fun ProgressIndicatorCustomizations(state: ProgressIndicatorDemoState, extraCustomizations: List<ProgressIndicatorCustomization> = listOf()) {
+    val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
+        { ProgressIndicatorTypeCustomization(state = state) },
+        { ProgressIndicatorOnColoredBoxCustomization(state = state) },
+        { ProgressIndicatorProgressCustomization(state = state) },
+        { ProgressIndicatorStatusCustomization(state = state) },
+        { ProgressIndicatorTrackCustomization(state = state) },
+        { ProgressIndicatorGapSizeCustomization(state = state) },
+        { ProgressIndicatorAnimatedCustomization(state = state) },
+        { ProgressIndicatorHelperTextProgressCustomization(state = state) },
+        { ProgressIndicatorHelperTextLabelCustomization(state = state) }
+    )
+    extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
+        customizations.add(minOf(index, customizations.count()), content)
+    }
+    customizations.forEach { it() }
+}
+
+@Composable
+private fun ProgressIndicatorTypeCustomization(state: ProgressIndicatorDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
@@ -55,11 +78,23 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             selectedChipIndex = ProgressIndicatorDemoState.Type.entries.indexOf(type),
             onSelectionChange = { index: Int -> type = ProgressIndicatorDemoState.Type.entries[index] }
         )
+    }
+}
+
+@Composable
+private fun ProgressIndicatorOnColoredBoxCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_onColoredBackground_tech),
             checked = onColoredBox,
             onCheckedChange = { onColoredBox = it },
         )
+    }
+}
+
+@Composable
+private fun ProgressIndicatorProgressCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             CustomizationTextInput(
                 applyTopPadding = true,
@@ -76,6 +111,12 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
                 resetValue = ProgressIndicatorDemoState.InitialProgressValue.toString()
             )
         }
+    }
+}
+
+@Composable
+private fun ProgressIndicatorStatusCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         val statuses = OudsProgressIndicatorStatus.entries
         CustomizationDropdownMenu(
             applyTopPadding = true,
@@ -96,11 +137,23 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             selectedItemIndex = statuses.indexOf(status),
             onSelectionChange = { status = statuses[it] }
         )
+    }
+}
+
+@Composable
+private fun ProgressIndicatorTrackCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_progressIndicator_track_tech),
             checked = track,
             onCheckedChange = { track = it }
         )
+    }
+}
+
+@Composable
+private fun ProgressIndicatorGapSizeCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CustomizationFilterChips(
             applyTopPadding = false,
             label = stringResource(R.string.app_components_progressIndicator_gapSize_tech),
@@ -108,18 +161,36 @@ fun ProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
             selectedChipIndex = OudsProgressIndicatorGapSize.entries.indexOf(gapSize),
             onSelectionChange = { index: Int -> gapSize = OudsProgressIndicatorGapSize.entries[index] }
         )
+    }
+}
+
+@Composable
+private fun ProgressIndicatorAnimatedCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_progressIndicator_animated_tech),
             checked = animated,
             onCheckedChange = { animated = it },
             enabled = animatedSwitchEnabled
         )
+    }
+}
+
+@Composable
+private fun ProgressIndicatorHelperTextProgressCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_progressIndicator_helperTextProgress_tech),
             checked = helperTextProgress,
             onCheckedChange = { helperTextProgress = it },
             enabled = helperTextProgressEnabled
         )
+    }
+}
+
+@Composable
+fun ProgressIndicatorHelperTextLabelCustomization(state: ProgressIndicatorDemoState) {
+    with(state) {
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_progressIndicator_helperTextLabel_tech),

@@ -55,7 +55,7 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemConstrainedMaxWidthCustomization(state = state) },
         { ControlItemAnnotatedTextCustomization(state = state) }
     )
-    extraCustomizations.forEach { (index, content) ->
+    extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
     }
     customizations.forEach { it() }

@@ -46,28 +46,36 @@ fun LinearProgressIndicatorDemoScreen() {
 @Composable
 private fun LinearProgressIndicatorDemoBottomSheetContent(state: LinearProgressIndicatorDemoState) {
     with(state) {
-        ProgressIndicatorDemoBottomSheetContent(state = state)
         val helperTextAlignments = LinearProgressIndicatorDemoState.HelperTextAlignment.entries
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_helperTextProgressAlignment_tech),
-            chips = helperTextAlignments.map { CustomizationFilterChip(it.name.toSentenceCase(), helperTextProgressAlignmentEnabled) },
-            selectedChipIndex = helperTextAlignments.indexOf(helperTextProgressAlignment),
-            onSelectionChange = { index -> helperTextProgressAlignment = helperTextAlignments[index] }
+        val extraCustomizations = listOf(
+            progressIndicatorCustomization(index = 8) {
+                CustomizationFilterChips(
+                    applyTopPadding = true,
+                    label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_helperTextProgressAlignment_tech),
+                    chips = helperTextAlignments.map { CustomizationFilterChip(it.name.toSentenceCase(), helperTextProgressAlignmentEnabled) },
+                    selectedChipIndex = helperTextAlignments.indexOf(helperTextProgressAlignment),
+                    onSelectionChange = { index -> helperTextProgressAlignment = helperTextAlignments[index] }
+                )
+            },
+            progressIndicatorCustomization(index = 10) {
+                CustomizationFilterChips(
+                    applyTopPadding = true,
+                    label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_helperTextLabelAlignment_tech),
+                    chips = helperTextAlignments.map { CustomizationFilterChip(it.name.toSentenceCase(), helperTextLabelAlignmentEnabled) },
+                    selectedChipIndex = helperTextAlignments.indexOf(helperTextLabelAlignment),
+                    onSelectionChange = { index -> helperTextLabelAlignment = helperTextAlignments[index] }
+                )
+            },
+            progressIndicatorCustomization(index = 11) {
+                CustomizationSwitchItem(
+                    label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech),
+                    checked = stopIndicator,
+                    onCheckedChange = { stopIndicator = it },
+                    enabled = stopIndicatorSwitchEnabled
+                )
+            }
         )
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_helperTextLabelAlignment_tech),
-            chips = helperTextAlignments.map { CustomizationFilterChip(it.name.toSentenceCase(), helperTextLabelAlignmentEnabled) },
-            selectedChipIndex = helperTextAlignments.indexOf(helperTextLabelAlignment),
-            onSelectionChange = { index -> helperTextLabelAlignment = helperTextAlignments[index] }
-        )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech),
-            checked = stopIndicator,
-            onCheckedChange = { stopIndicator = it },
-            enabled = stopIndicatorSwitchEnabled
-        )
+        ProgressIndicatorCustomizations(state = state, extraCustomizations = extraCustomizations)
     }
 }
 

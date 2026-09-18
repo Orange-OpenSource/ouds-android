@@ -62,7 +62,7 @@ private fun RadioButtonItemDemoBottomSheetContent(state: RadioButtonItemDemoStat
                     onCheckedChange = { outlined = it },
                 )
             },
-            controlItemCustomization(9) {
+            controlItemCustomization(10) {
                 CustomizationTextInput(
                     applyTopPadding = true,
                     label = stringResource(R.string.app_components_common_extraLabel_tech),
