@@ -2000,7 +2000,7 @@ data class OudsComponents internal constructor(
 @Composable
 internal fun OudsComponentsTokens.getComponents(): OudsComponents {
     return OudsComponents(
-        alert = alert.getAlert(alertMessage = alertMessage.getAlertMessage()),
+        alert = alert.getAlert(alertMessage),
         alertMessage = alertMessage.getAlertMessage(),
         badge = badge.getBadge(),
         bar = bar.getBar(),
@@ -2028,14 +2028,14 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
 }
 
 @Composable
-private fun OudsAlertTokens.getAlert(alertMessage: OudsComponents.AlertMessage): OudsComponents.Alert {
+private fun OudsAlertTokens.getAlert(alertMessageTokens: OudsAlertMessageTokens): OudsComponents.Alert {
     return OudsComponents.Alert(
         border = OudsComponents.Alert.Border(
             radius = OudsComponents.Alert.Border.Radius(
                 default = borderRadiusDefault.value,
                 rounded = borderRadiusRounded.value
             ),
-            width = alertMessage.border.width
+            width = alertMessageTokens.borderWidth.value
         ),
         size = OudsComponents.Alert.Size(
             asset = sizeAsset.value,
@@ -2052,7 +2052,7 @@ private fun OudsAlertTokens.getAlert(alertMessage: OudsComponents.AlertMessage):
             columnGapAction = spaceColumnGapAction.value,
             rowGap = spaceRowGap.value,
             rowGapAction = spaceRowGapAction.value,
-            rowGapBullet = alertMessage.space.rowGapBullet
+            rowGapBullet = alertMessageTokens.spaceRowGapBullet.value
         )
     )
 }
