@@ -125,7 +125,7 @@ data class OudsComponents internal constructor(
             val paddingBlock: Dp,
             val paddingInline: Dp,
             val rowGap: Dp,
-            @Deprecated("")
+            @Deprecated("This token is no longer used in OUDS.")
             val rowGapAction: Dp,
             @Deprecated(
                 "Please use alertMessage.space.rowGapBullet instead.",
@@ -753,7 +753,7 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
-            @Deprecated("")
+            @Deprecated("This token is no longer used in OUDS.")
             val indicator: Dp,
             val maxHeight: Dp,
             val minHeight: Dp,
@@ -1232,7 +1232,7 @@ data class OudsComponents internal constructor(
                     ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.small")
                 )
                 val densityCompact: Dp,
-                @Deprecated("This token has been removed.")
+                @Deprecated("This token is no longer used in OUDS.")
                 val densityCompactBottomExpandContainer: Dp,
                 @Deprecated(
                     "Please use components.listItem.space.paddingBlock.topAlignment.topCounterweightSmall instead.",
@@ -1249,7 +1249,7 @@ data class OudsComponents internal constructor(
                     ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.default")
                 )
                 val densityDefault: Dp,
-                @Deprecated("This token has been removed.")
+                @Deprecated("This token is no longer used in OUDS.")
                 val densityDefaultBottomExpandContainer: Dp,
                 @Deprecated(
                     "Please use components.listItem.space.paddingBlock.topAlignment.topCounterweightDefault instead.",
@@ -1413,7 +1413,7 @@ data class OudsComponents internal constructor(
             val minWidth: Dp,
             @Deprecated("Please use minWidth instead.", ReplaceWith("OudsTheme.components.link.size.minWidth"))
             val minWidthDefault: Dp,
-            @Deprecated("This token has been removed.")
+            @Deprecated("Please do not use this token anymore. It will be removed in a future version.")
             val minWidthSmall: Dp
         )
 
@@ -1483,7 +1483,7 @@ data class OudsComponents internal constructor(
             data class Radius internal constructor(
                 val currentIndicator: Dp,
                 val default: Dp,
-                @Deprecated("") val itemOnly: Dp,
+                @Deprecated("This token is no longer used in OUDS.") val itemOnly: Dp,
                 val media: Dp,
                 val mediaRounded: Dp,
                 val rounded: Dp
@@ -1574,9 +1574,9 @@ data class OudsComponents internal constructor(
             val controlIndicator: Dp,
             val currentIndicator: CurrentIndicator,
             val flag: Flag,
-            @Deprecated("") val icon: Dp,
-            @Deprecated("") val loader: Dp,
-            @Deprecated("") val maxHeightAssetsContainer: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val icon: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val loader: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val maxHeightAssetsContainer: Dp,
             val maxSizeLeadingTrailingSlot: Dp,
             val maxWidth: Dp,
             val minHeightDefault: Dp,
@@ -1608,7 +1608,7 @@ data class OudsComponents internal constructor(
             val columnGap: Dp,
             val paddingBlock: PaddingBlock,
             val paddingInline: Dp,
-            @Deprecated("") val paddingInlineErrorIcon: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val paddingInlineErrorIcon: Dp,
             val rowGap: Dp
         ) {
 
