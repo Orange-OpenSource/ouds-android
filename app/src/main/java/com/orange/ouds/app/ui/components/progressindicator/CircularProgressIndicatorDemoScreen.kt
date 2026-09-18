@@ -28,12 +28,17 @@ fun CircularProgressIndicatorDemoScreen() {
     val state = rememberCircularProgressIndicatorDemoState()
     DemoScreen(
         description = stringResource(id = Variant.CircularProgressIndicator.descriptionRes),
-        bottomSheetContent = { ProgressIndicatorDemoBottomSheetContent(state = state) },
+        bottomSheetContent = { CircularProgressIndicatorDemoBottomSheetContent(state = state) },
         codeSnippet = { circularProgressIndicatorDemoCodeSnippet(state = state) },
         demoContent = { CircularProgressIndicatorDemoContent(state = state) },
         demoContentOnColoredBox = state.onColoredBox,
         version = OudsVersion.Component.CircularProgressIndicator
     )
+}
+
+@Composable
+private fun CircularProgressIndicatorDemoBottomSheetContent(state: ProgressIndicatorDemoState) {
+    ProgressIndicatorCustomizations(state = state)
 }
 
 @Composable
