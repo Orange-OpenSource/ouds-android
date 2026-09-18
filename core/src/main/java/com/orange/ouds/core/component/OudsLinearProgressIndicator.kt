@@ -427,8 +427,8 @@ private fun DrawScope.stopIndicator(color: Color, strokeCap: StrokeCap) {
 class OudsDeterminateLinearProgressIndicatorHelperText(
     progress: Boolean = true,
     label: String? = null,
-    progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.progressAlignment(label),
-    labelAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.labelAlignment(progress)
+    progressAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefaults.progressAlignment(label),
+    labelAlignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefaults.labelAlignment(progress)
 ) : OudsLinearProgressIndicatorHelperText(progress, label, progressAlignment, labelAlignment)
 
 /**
@@ -439,7 +439,7 @@ class OudsDeterminateLinearProgressIndicatorHelperText(
  */
 class OudsIndeterminateLinearProgressIndicatorHelperText(
     label: String,
-    alignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefauts.labelAlignment(false)
+    alignment: Alignment.Horizontal = OudsLinearProgressIndicatorHelperTextDefaults.labelAlignment(false)
 ) : OudsLinearProgressIndicatorHelperText(false, label, Alignment.CenterHorizontally, alignment)
 
 /**
@@ -523,7 +523,7 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
     }
 }
 
-private object OudsLinearProgressIndicatorHelperTextDefauts {
+private object OudsLinearProgressIndicatorHelperTextDefaults {
 
     fun progressAlignment(text: String?): Alignment.Horizontal {
         return if (text == null) Alignment.CenterHorizontally else Alignment.Start
