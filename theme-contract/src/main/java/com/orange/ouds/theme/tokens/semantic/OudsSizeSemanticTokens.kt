@@ -15,10 +15,10 @@
 
 package com.orange.ouds.theme.tokens.semantic
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsSizeSemanticTokens {
     val iconDecorative2xlarge: Float
     val iconDecorative2xsmall: Float

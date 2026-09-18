@@ -15,11 +15,11 @@
 
 package com.orange.ouds.theme.tokens.components
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsDividerTokens {
     val borderWidth: OudsBorderKeyToken.Width
 }

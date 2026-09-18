@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.orange.tokens.semantic
 
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class OrangeSpaceSemanticTokens(
+@RestrictedOudsApi
+data class OrangeSpaceSemanticTokens(
     override val columnGap2xlarge: Float = OudsDimensionRawTokens.Dimension300,
     override val columnGap2xsmall: Float = OudsDimensionRawTokens.Dimension50,
     override val columnGap3xsmall: Float = OudsDimensionRawTokens.DimensionOutOfSystem50,

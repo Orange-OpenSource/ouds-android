@@ -16,10 +16,10 @@
 package com.orange.ouds.theme.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsColorRepositorySemanticTokens {
     val repositoryAccentHigh: Color
     val repositoryAccentHigher: Color

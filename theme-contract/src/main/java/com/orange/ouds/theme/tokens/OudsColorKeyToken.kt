@@ -15,12 +15,12 @@
 
 package com.orange.ouds.theme.tokens
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /**
  * @suppress
  */
-@InternalOudsApi
+@RestrictedOudsApi
 sealed interface OudsColorKeyToken : OudsKeyToken {
     sealed interface Action : OudsColorKeyToken {
         data object Disabled : Action

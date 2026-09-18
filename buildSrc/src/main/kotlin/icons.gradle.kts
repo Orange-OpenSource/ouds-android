@@ -10,10 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-@file:OptIn(InternalOudsApi::class)
+@file:OptIn(InternalOudsApi::class, RestrictedOudsApi::class)
 
 import com.android.ide.common.vectordrawable.Svg2Vector
 import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.gradle.requireTypedProperty
 import com.orange.ouds.theme.OudsDrawableResources
 import java.io.ByteArrayOutputStream

@@ -12,8 +12,8 @@
 
 package com.orange.ouds.theme.tokens.components.deprecated
 
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /** @suppress */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsDeprecatedButtonTokens

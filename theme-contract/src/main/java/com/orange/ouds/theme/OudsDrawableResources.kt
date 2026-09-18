@@ -13,7 +13,7 @@
 package com.orange.ouds.theme
 
 import androidx.annotation.DrawableRes
-import com.orange.ouds.foundation.InternalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 /**
  * Version of the icons pack
@@ -25,7 +25,7 @@ const val OudsIconsPackVersion = "2.3"
 /**
  * @suppress
  */
-@InternalOudsApi
+@RestrictedOudsApi
 interface OudsDrawableResources {
     val communication: Communication
     val component: Component
