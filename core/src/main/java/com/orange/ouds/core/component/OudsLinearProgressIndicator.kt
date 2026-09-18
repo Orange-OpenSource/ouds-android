@@ -499,7 +499,7 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
                         val textAlign = when {
                             // If there is only one text, apply the fillMaxWidth modifier and compute the bias to get the text alignment
                             textInfos.size == 1 -> {
-                                val bias = textInfo.second.getBias(LocalLayoutDirection.current)
+                                val bias = textInfo.second.getBias(layoutDirection)
                                 when {
                                     bias > -0.5f && bias < 0.5f -> TextAlign.Center
                                     bias <= -0.5f -> TextAlign.Start
