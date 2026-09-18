@@ -10,8 +10,6 @@
  * Software description: Android library of reusable graphical components 
  */
 
-@file:OptIn(RestrictedOudsApi::class)
-
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.interaction.Interaction
@@ -28,7 +26,6 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
-import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
