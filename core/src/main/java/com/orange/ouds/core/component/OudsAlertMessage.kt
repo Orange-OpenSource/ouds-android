@@ -275,7 +275,8 @@ private fun OudsAlertMessage(
                         }
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
-                    actionLink.Content()
+                    @Suppress("DEPRECATION")
+                    actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
                 }
             }
 
