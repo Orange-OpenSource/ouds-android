@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import com.orange.ouds.core.theme.WindowWidthSizeClass.Companion.compute
+import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
 /**
  * Defines width-based size classes to support responsive layouts in the OUDS design system.
@@ -58,12 +59,17 @@ enum class WindowWidthSizeClass {
     EXTRA_LARGE;
 
     companion object {
+
         /**
          * Computes the [WindowWidthSizeClass] based on the provided window width.
          *
          * @param windowWidth The width of the window in [Dp].
          * @return The corresponding [WindowWidthSizeClass].
          */
+        @Deprecated(
+            "Please use compute(dpWidth: Float) instead.",
+            ReplaceWith("compute(dpWidth = windowWidth.value)")
+        )
         fun compute(windowWidth: Dp): WindowWidthSizeClass {
             return when {
                 windowWidth < 390.dp -> EXTRA_COMPACT
@@ -71,6 +77,30 @@ enum class WindowWidthSizeClass {
                 windowWidth < 840.dp -> MEDIUM
                 windowWidth < 1600.dp -> LARGE
                 else -> EXTRA_LARGE
+            }
+        }
+
+        /**
+         * Computes the [WindowWidthSizeClass] based on the provided window width.
+         *
+         * @param dpWidth The width of the window in [Dp].
+         * @return The corresponding [WindowWidthSizeClass].
+         */
+        @Composable
+        fun compute(dpWidth: Float): WindowWidthSizeClass {
+            val gridSemanticTokens = LocalGridSemanticTokens.current
+            return compute(dpWidth, gridSemanticTokens)
+        }
+
+        internal fun compute(dpWidth: Float, gridSemanticTokens: OudsGridSemanticTokens): WindowWidthSizeClass {
+            return with(gridSemanticTokens) {
+                when {
+                    dpWidth < compactMinWidth -> EXTRA_COMPACT
+                    dpWidth < mediumMinWidth -> COMPACT
+                    dpWidth < largeMinWidth -> MEDIUM
+                    dpWidth < extraLargeMinWidth -> LARGE
+                    else -> EXTRA_LARGE
+                }
             }
         }
     }
