@@ -57,7 +57,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Heading
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param text Text to be displayed.
  * @param modifier [Modifier] applied to the heading text.
@@ -126,7 +126,7 @@ fun OudsHeadingText(
  *
  * > Design name: Heading
  *
- * > Design version: 1.0.0
+ * > Design version: 1.1.0
  *
  * @param text Text to be displayed. Note: Use rich text in compliance with guidelines and accessibility criteria.
  * @param modifier [Modifier] applied to the heading text.
