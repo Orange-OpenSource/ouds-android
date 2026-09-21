@@ -17,7 +17,6 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -231,10 +230,9 @@ private fun OudsHeadingText(
             if (size is OudsHeadingTextSize.Large && headingLargeMarker && size.marker) {
                 OudsTheme.drawableResources.other.headingTextMarker?.let { resId ->
                     Icon(
-                        modifier = Modifier.padding(top = space.paddingBlock.topHeadingLargeMarker, bottom = space.paddingBlock.bottomHeadingLargeMarker),
                         painter = painterResource(id = resId),
                         contentDescription = null,
-                        tint = OudsTheme.colorScheme.content.brandPrimary
+                        tint = colorContentMarker
                     )
                 }
             }
