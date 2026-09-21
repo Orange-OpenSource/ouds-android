@@ -19,22 +19,35 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.orange.ouds.core.theme.OudsTheme
@@ -43,6 +56,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+import kotlin.math.roundToInt
 
 /**
  * A skeleton is a UI element that indicates when content is loading. The skeleton enhances user experience by
@@ -95,7 +109,7 @@ fun OudsSkeleton(
                 val offset = lerp(-skeletonWidthPx, skeletonWidthPx, progress)
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .matchParentSize()
                         .run {
                             if (!LocalInspectionMode.current) {
                                 offset { IntOffset(offset.toInt(), 0) }
@@ -152,3 +166,54 @@ private val previewParameterValues: List<OudsSkeletonPreviewParameter>
         OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = true),
         OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = true),
     )
+
+data class OudsSkeleton(val state: OudsSkeletonState)
+
+@Composable
+internal fun <T> SkeletonLayout(
+    componentState: T,
+    skeletonState: OudsSkeletonState?,
+    securityMargin: Boolean,
+    modifier: Modifier = Modifier,
+    shape: Shape = RectangleShape,
+    content: @Composable (Modifier) -> Unit
+) where T : Enum<T> {
+    if (componentState.name == "Skeleton") {
+        var contentSize by remember { mutableStateOf(IntSize.Zero) }
+        var contentOffset by remember { mutableStateOf(Offset.Zero) }
+
+        Box {
+            // Render content to reserve space but make it invisible
+            content(
+                modifier
+                    .alpha(0f)
+                    .onGloballyPositioned { layoutCoordinates ->
+                        contentSize = layoutCoordinates.size
+                        contentOffset = layoutCoordinates.positionInParent()
+                    }
+            )
+
+            // Render skeleton on top matching content's exact size and position
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalRippleConfiguration provides null) {
+                OudsSkeleton(
+                    modifier = Modifier
+                        .offset {
+                            with(contentOffset) { IntOffset(x.roundToInt(), y.roundToInt()) }
+                        }
+                        .size(
+                            width = with(density) { contentSize.width.toDp() },
+                            height = with(density) { contentSize.height.toDp() }
+                        )
+                        .clip(shape)
+                        .clickable {},
+                    state = skeletonState ?: rememberOudsSkeletonState(initialIsAnimationRunning = !LocalInspectionMode.current),
+                    securityMargin = securityMargin
+                )
+            }
+        }
+    } else {
+        // Render content as is
+        content(modifier)
+    }
+}

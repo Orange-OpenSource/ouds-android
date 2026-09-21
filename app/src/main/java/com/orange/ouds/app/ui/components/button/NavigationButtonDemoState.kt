@@ -27,21 +27,23 @@ fun rememberNavigationButtonDemoState(
     enabled: Boolean = true,
     onColoredBox: Boolean = false,
     hasLoader: Boolean = false,
+    skeleton: Boolean = false,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
     chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
     label: String? = null
-) = rememberSaveable(label, enabled, onColoredBox, hasLoader, appearance, chevron, saver = NavigationButtonDemoState.Saver) {
-    NavigationButtonDemoState(enabled, onColoredBox, hasLoader, appearance, chevron, label)
+) = rememberSaveable(label, enabled, onColoredBox, hasLoader, skeleton, appearance, chevron, saver = NavigationButtonDemoState.Saver) {
+    NavigationButtonDemoState(enabled, onColoredBox, hasLoader, skeleton, appearance, chevron, label)
 }
 
 class NavigationButtonDemoState(
     enabled: Boolean,
     onColoredBox: Boolean,
     hasLoader: Boolean,
+    skeleton: Boolean,
     appearance: OudsNavigationButtonAppearance,
     chevron: OudsNavigationButtonChevron,
     label: String?
-) : BaseButtonDemoState(enabled, onColoredBox, hasLoader) {
+) : BaseButtonDemoState(enabled, onColoredBox, hasLoader, skeleton) {
 
     companion object {
 
@@ -66,6 +68,7 @@ class NavigationButtonDemoState(
                         enabled,
                         onColoredBox,
                         hasLoader,
+                        skeleton,
                         list[0] as OudsNavigationButtonAppearance,
                         list[1] as OudsNavigationButtonChevron,
                         list[2] as String?

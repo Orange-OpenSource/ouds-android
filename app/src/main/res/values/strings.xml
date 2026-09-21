@@ -155,6 +155,7 @@
     <string name="app_components_common_prefix_tech" translatable="false">Prefix</string>
     <string name="app_components_common_readOnly_tech" translatable="false">Read only</string>
     <string name="app_components_common_size_tech" translatable="false">Size</string>
+    <string name="app_components_common_skeleton_tech" translatable="false">Skeleton</string>
     <string name="app_components_common_smallSize_tech" translatable="false">Small</string>
     <string name="app_components_common_mediumSize_tech" translatable="false">Medium</string>
     <string name="app_components_common_largeSize_tech" translatable="false">Large</string>
@@ -369,7 +370,7 @@
     <string name="app_components_skeleton_tech" translatable="false">Skeleton</string>
     <string name="app_components_skeleton_description_text">A skeleton is a UI element that indicates when content is loading.</string>
     <string name="app_components_skeleton_securityMargin_tech" translatable="false">Security margin</string>
-    
+
     <!-- Components: switch -->
     <string name="app_components_switch_tech" translatable="false">Switch</string>
     <string name="app_components_switch_description_text">Switch is a UI element that allows to toggle between two states, typically \“On\” and \“Off\”, and used to enable or disable features, options or settings.</string>
