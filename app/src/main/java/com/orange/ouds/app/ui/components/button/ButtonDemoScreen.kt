@@ -37,7 +37,9 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallButton
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
@@ -111,6 +113,11 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -128,6 +135,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             tinted = icon == ButtonDemoState.Icon.Tinted
         )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
+        val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
 
         when (size) {
             ButtonDemoState.Size.Default -> when (layout) {
@@ -136,7 +144,8 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = skeleton
                 )
                 ButtonDemoState.Layout.TextAndIcon -> OudsButton(
                     icon = buttonIcon,
@@ -144,14 +153,16 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = skeleton
                 )
                 ButtonDemoState.Layout.IconOnly -> OudsButton(
                     icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = skeleton
                 )
             }
             ButtonDemoState.Size.Small -> when (layout) {
