@@ -56,16 +56,20 @@ enum class Component {
                 Component.Badge -> Badge
                 Component.BadgeCount -> BadgeCount
                 Component.BadgeIcon -> BadgeIcon
+                Component.Body -> Body
                 Component.BottomSheet -> BottomSheet
                 Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
                 Component.CircularProgressIndicator -> CircularProgressIndicator
+                Component.Display -> Display
                 Component.Divider -> Divider
                 Component.Fab -> Fab
                 Component.FilterChip -> FilterChip
+                Component.Heading -> Heading
                 Component.InlineAlert -> InlineAlert
                 Component.InputTag -> InputTag
+                Component.Label -> Label
                 Component.LinearProgressIndicator -> LinearProgressIndicator
                 Component.Link -> Link
                 Component.NavigationBar -> NavigationBar
@@ -78,7 +82,6 @@ enum class Component {
                 Component.Tag -> Tag
                 Component.TextArea -> TextArea
                 Component.TextInput -> TextInput
-                Body, Display, Label, Heading -> Typography
             }
         }
 
