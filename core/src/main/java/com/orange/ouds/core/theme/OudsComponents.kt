@@ -2000,6 +2000,7 @@ data class OudsComponents internal constructor(
 
     @ConsistentCopyVisibility
     data class Typography internal constructor(
+        val colorContentMarker: androidx.compose.ui.graphics.Color,
         val headingLargeMarker: Boolean,
         val space: Space
     ) {
@@ -2009,7 +2010,9 @@ data class OudsComponents internal constructor(
         ) {
             @ConsistentCopyVisibility
             data class PaddingBlock internal constructor(
+                @Deprecated("This token is no longer used in OUDS.")
                 val bottomHeadingLargeMarker: Dp,
+                @Deprecated("This token is no longer used in OUDS.")
                 val topHeadingLargeMarker: Dp
             )
         }
@@ -3111,6 +3114,7 @@ private fun OudsTextInputTokens.getTextInput(): OudsComponents.TextInput {
 @Composable
 private fun OudsTypographyTokens.getTypography(): OudsComponents.Typography {
     return OudsComponents.Typography(
+        colorContentMarker = colorContentMarker.value,
         headingLargeMarker = headingLargeMarker,
         space = OudsComponents.Typography.Space(
             paddingBlock = OudsComponents.Typography.Space.PaddingBlock(
