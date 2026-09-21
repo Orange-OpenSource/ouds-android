@@ -40,7 +40,7 @@ fun BodyTextDemoScreen() {
         bottomSheetContent = { BodyTextDemoBottomSheetContent(state = state) },
         codeSnippet = { bodyTextDemoCodeSnippet(state = state) },
         demoContent = { BodyTextDemoContent(state = state) },
-        version = OudsVersion.Component.Typography
+        version = OudsVersion.Component.Body
     )
 }
 

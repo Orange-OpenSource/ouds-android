@@ -45,7 +45,7 @@ fun HeadingTextDemoScreen() {
         bottomSheetContent = { HeadingTextDemoBottomSheetContent(state = state) },
         codeSnippet = { headingTextDemoCodeSnippet(state = state) },
         demoContent = { HeadingTextDemoContent(state = state) },
-        version = OudsVersion.Component.Typography
+        version = OudsVersion.Component.Heading
     )
 }
 
