@@ -21,36 +21,27 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInParent
+import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.orange.ouds.core.theme.OudsTheme
@@ -61,7 +52,6 @@ import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-import kotlin.math.roundToInt
 
 /**
  * A skeleton is a UI element that indicates when content is loading. The skeleton enhances user experience by
@@ -163,41 +153,29 @@ internal fun <T> SkeletonLayout(
     content: @Composable (Modifier) -> Unit
 ) where T : Enum<T> {
     if (componentState.name == "Skeleton") {
-        var contentSize by remember { mutableStateOf(IntSize.Zero) }
-        var contentOffset by remember { mutableStateOf(Offset.Zero) }
+        // Use SubcomposeLayout instead of a Box with onGloballyPositioned otherwise skeleton is not displayed in the previews
+        SubcomposeLayout(modifier.clip(shape)) { constraints ->
+            val contentPlaceables = subcompose("content") {
+                content(Modifier.alpha(0.0f))
+            }.map { it.measure(constraints) }
 
-        Box {
-            // Render content to reserve space but make it invisible
-            content(
-                modifier
-                    .alpha(0f)
-                    .onGloballyPositioned { layoutCoordinates ->
-                        contentSize = layoutCoordinates.size
-                        contentOffset = layoutCoordinates.positionInParent()
-                    }
-            )
+            val width = contentPlaceables.maxOfOrNull { it.width } ?: 0
+            val height = contentPlaceables.maxOfOrNull { it.height } ?: 0
 
-            // Render skeleton on top matching content's exact size and position
-            val density = LocalDensity.current
-            CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            val skeletonPlaceables = subcompose("skeleton") {
                 OudsSkeleton(
-                    modifier = Modifier
-                        .offset {
-                            with(contentOffset) { IntOffset(x.roundToInt(), y.roundToInt()) }
-                        }
-                        .size(
-                            width = with(density) { contentSize.width.toDp() },
-                            height = with(density) { contentSize.height.toDp() }
-                        )
-                        .clip(shape)
-                        .clickable {},
+                    modifier = Modifier.size(width.toDp(), height.toDp()),
                     state = skeletonState ?: rememberOudsSkeletonState(initialIsAnimationRunning = !LocalInspectionMode.current),
                     securityMargin = securityMargin
                 )
+            }.map { it.measure(constraints) }
+
+            layout(width, height) {
+                contentPlaceables.forEach { it.place(x = 0, y = 0) }
+                skeletonPlaceables.forEach { it.place(x = 0, y = 0) }
             }
         }
     } else {
-        // Render content as is
         content(modifier)
     }
 }
