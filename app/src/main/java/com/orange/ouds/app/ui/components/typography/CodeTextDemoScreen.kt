@@ -69,7 +69,7 @@ private fun CodeTextDemoContent(state: TypographyDemoState) {
 private fun Code.Builder.codeTextDemoCodeSnippet(state: TypographyDemoState) {
     with(state) {
         functionCall("OudsCodeText") {
-            typographyArguments(state = state)
+            typographyArguments(state = state, annotatedTextFunctionName = "buildAnnotatedString")
         }
     }
 }
