@@ -17,10 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
@@ -31,6 +27,8 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
@@ -85,15 +83,12 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
     with(state) {
         if (annotatedText) {
             with(OudsTheme.colorScheme.content) {
-                val color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }
                 OudsHeadingText(
-                    text = buildAnnotatedString {
+                    text = buildOudsAnnotatedHeadingText {
                         append("Heading with ")
-                        withStyle(SpanStyle(color = color)) {
+                        withColor(color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }) {
                             append("colored text")
                         }
-                        append(" and ")
-                        withStyle(SpanStyle(fontWeight = FontWeight.Normal)) { append("normal text") }
                     },
                     size = size.toOudsHeadingTextSize(marker = headingLargeMarker)
                 )
@@ -110,7 +105,7 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
 private fun Code.Builder.headingTextDemoCodeSnippet(state: HeadingTextDemoState) {
     with(state) {
         functionCall("OudsHeadingText") {
-            typographyArguments(state = state)
+            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedHeadingText")
 
             if (size == HeadingTextDemoState.Size.Large) {
                 functionCallArgument("size", "OudsHeadingTextSize.Large") {

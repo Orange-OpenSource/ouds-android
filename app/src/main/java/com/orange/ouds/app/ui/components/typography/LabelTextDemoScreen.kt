@@ -15,10 +15,6 @@ package com.orange.ouds.app.ui.components.typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
@@ -28,6 +24,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLabelText
 import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedLabelText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
@@ -70,15 +69,14 @@ private fun LabelTextDemoContent(state: LabelTextDemoState) {
     with(state) {
         if (annotatedText) {
             with(OudsTheme.colorScheme.content) {
-                val color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }
                 OudsLabelText(
-                    text = buildAnnotatedString {
-                        append("Heading with ")
-                        withStyle(SpanStyle(color = color)) {
+                    text = buildOudsAnnotatedLabelText {
+                        append("Label with ")
+                        withColor(color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }) {
                             append("colored text")
                         }
                         append(" and ")
-                        withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+                        withStrong { append("strong text") }
                     },
                     size = size,
                     weight = weight
@@ -96,9 +94,8 @@ private fun LabelTextDemoContent(state: LabelTextDemoState) {
 
 private fun Code.Builder.labelTextDemoCodeSnippet(state: LabelTextDemoState) {
     with(state) {
-        val displayText = text.ifBlank { "Label" }
         functionCall("OudsLabelText") {
-            typographyArguments(state = state)
+            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedLabelText")
             typedArgument("size", size)
             typedArgument("weight", weight)
         }

@@ -37,12 +37,12 @@ fun TypographyDemoBottomSheetContent(state: TypographyDemoState) {
     }
 }
 
-fun FunctionCall.Builder.typographyArguments(state: TypographyDemoState) = with(state) {
+fun FunctionCall.Builder.typographyArguments(state: TypographyDemoState, annotatedTextFunctionName: String) = with(state) {
     if (annotatedText) {
-        functionCallArgument("text", "buildAnnotatedString") {
+        functionCallArgument("text", annotatedTextFunctionName) {
             trailingLambda = true
             lambdaArgument("builder") {
-                comment("Build annotated string")
+                comment("Build annotated text")
             }
         }
     } else {

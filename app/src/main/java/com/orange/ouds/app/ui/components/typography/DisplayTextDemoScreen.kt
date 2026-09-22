@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -22,6 +23,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsDisplayText
 import com.orange.ouds.core.component.OudsDisplayTextSize
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -53,18 +58,31 @@ private fun DisplayTextDemoBottomSheetContent(state: DisplayTextDemoState) {
 @Composable
 private fun DisplayTextDemoContent(state: DisplayTextDemoState) {
     with(state) {
-        val displayText = text.ifBlank { stringResource(id = R.string.app_components_common_label_label) }
-        OudsDisplayText(
-            text = displayText,
-            size = size
-        )
+        if (annotatedText) {
+            with(OudsTheme.colorScheme.content) {
+                OudsDisplayText(
+                    text = buildOudsAnnotatedDisplayText {
+                        append("Display with ")
+                        withColor(color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }) {
+                            append("colored text")
+                        }
+                    },
+                    size = size
+                )
+            }
+        } else {
+            OudsDisplayText(
+                text = text,
+                size = size
+            )
+        }
     }
 }
 
 private fun Code.Builder.displayTextDemoCodeSnippet(state: DisplayTextDemoState) {
     with(state) {
         functionCall("OudsDisplayText") {
-            typographyArguments(state = state)
+            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedDisplayText")
             typedArgument("size", size)
         }
     }
