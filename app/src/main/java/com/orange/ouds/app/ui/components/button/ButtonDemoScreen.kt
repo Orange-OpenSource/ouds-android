@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -171,7 +172,8 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = skeleton
                 )
                 ButtonDemoState.Layout.TextAndIcon -> OudsSmallButton(
                     icon = buttonIcon,
@@ -179,14 +181,16 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = skeleton
                 )
                 ButtonDemoState.Layout.IconOnly -> OudsSmallButton(
                     icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = skeleton
                 )
             }
         }
@@ -220,6 +224,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
                     }
                 }
                 typedArgument("appearance", appearance)
+                skeletonArgument(skeleton)
             }
         }
     }

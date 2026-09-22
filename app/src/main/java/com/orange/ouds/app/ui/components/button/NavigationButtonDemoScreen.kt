@@ -21,6 +21,7 @@ import com.orange.ouds.app.ui.components.coloredBoxCall
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
@@ -32,6 +33,8 @@ import com.orange.ouds.core.component.OudsNavigationButton
 import com.orange.ouds.core.component.OudsNavigationButtonAppearance
 import com.orange.ouds.core.component.OudsNavigationButtonChevron
 import com.orange.ouds.core.component.OudsNavigationButtonDefaults
+import com.orange.ouds.core.component.OudsSkeleton
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -88,6 +91,11 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
             value = label.orEmpty(),
             onValueChange = { value -> label = value.ifEmpty { null } }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -95,13 +103,15 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
 private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
     with(state) {
         val loader = if (hasLoader) OudsButtonLoader(null) else null
+        val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         OudsNavigationButton(
             label = label,
             chevron = chevron,
             onClick = {},
             enabled = enabled,
             loader = loader,
-            appearance = appearance
+            appearance = appearance,
+            skeleton = skeleton
         )
     }
 }
@@ -120,6 +130,7 @@ private fun Code.Builder.navigationButtonDemoCodeSnippet(state: NavigationButton
                     }
                 }
                 if (appearance != OudsNavigationButtonDefaults.Appearance) typedArgument("appearance", appearance)
+                skeletonArgument(skeleton)
             }
         }
     }
