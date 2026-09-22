@@ -86,6 +86,6 @@ class OudsAnnotatedDisplayText internal constructor(annotatedString: AnnotatedSt
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated display text.
  */
-fun buildOudsAnnotatedDisplayText(builder: (OudsAnnotatedDisplayText.Builder).() -> Unit): OudsAnnotatedDisplayText {
+inline fun buildOudsAnnotatedDisplayText(builder: (OudsAnnotatedDisplayText.Builder).() -> Unit): OudsAnnotatedDisplayText {
     return buildOudsAnnotatedString<OudsAnnotatedDisplayText, OudsAnnotatedDisplayText.Builder>(builder)
 }

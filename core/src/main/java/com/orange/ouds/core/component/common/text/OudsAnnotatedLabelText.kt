@@ -99,6 +99,6 @@ class OudsAnnotatedLabelText internal constructor(annotatedString: AnnotatedStri
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated display text.
  */
-fun buildOudsAnnotatedLabelText(builder: (OudsAnnotatedLabelText.Builder).() -> Unit): OudsAnnotatedLabelText {
+inline fun buildOudsAnnotatedLabelText(builder: (OudsAnnotatedLabelText.Builder).() -> Unit): OudsAnnotatedLabelText {
     return buildOudsAnnotatedString<OudsAnnotatedLabelText, OudsAnnotatedLabelText.Builder>(builder)
 }
