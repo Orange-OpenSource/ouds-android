@@ -98,6 +98,6 @@ class OudsAnnotatedErrorMessage internal constructor(annotatedString: AnnotatedS
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated error message.
  */
-fun buildOudsAnnotatedErrorMessage(builder: (OudsAnnotatedErrorMessage.Builder).() -> Unit): OudsAnnotatedErrorMessage {
+inline fun buildOudsAnnotatedErrorMessage(builder: (OudsAnnotatedErrorMessage.Builder).() -> Unit): OudsAnnotatedErrorMessage {
     return buildOudsAnnotatedString<OudsAnnotatedErrorMessage, OudsAnnotatedErrorMessage.Builder>(builder)
 }
