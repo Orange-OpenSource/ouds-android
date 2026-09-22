@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -33,6 +35,7 @@ import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
     error("OudsTheme not found. $compositionLocalName CompositionLocal not present.")
@@ -49,6 +52,7 @@ internal val LocalEffects = staticCompositionLocalOf<OudsEffects> { missingCompo
 internal val LocalElevations = staticCompositionLocalOf<OudsElevations> { missingCompositionLocalError("LocalElevations") }
 internal val LocalTypography = staticCompositionLocalOf<OudsTypography> { missingCompositionLocalError("LocalTypography") }
 internal val LocalGrids = staticCompositionLocalOf<OudsGrids> { missingCompositionLocalError("LocalGrids") }
+internal val LocalGridSemanticTokens = staticCompositionLocalOf<OudsGridSemanticTokens> { missingCompositionLocalError("LocalGridSemanticTokens") }
 internal val LocalOpacities = staticCompositionLocalOf<OudsOpacities> { missingCompositionLocalError("LocalOpacities") }
 internal val LocalSizes = staticCompositionLocalOf<OudsSizes> { missingCompositionLocalError("LocalSizes") }
 internal val LocalSpaces = staticCompositionLocalOf<OudsSpaces> { missingCompositionLocalError("LocalSpaces") }
@@ -181,7 +185,7 @@ fun OudsTheme(
     content: @Composable () -> Unit
 ) {
     with(theme) {
-        val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth())
+        val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth().value, theme.gridTokens)
         val context = LocalContext.current
         val applicationLocaleList = if (!LocalInspectionMode.current) {
             LocaleManagerCompat.getApplicationLocales(context)
@@ -203,6 +207,7 @@ fun OudsTheme(
             LocalElevations provides elevationTokens.getElevations(),
             LocalTypography provides fontTokens.getTypography(getFontFamily(locale), windowWidthSizeClass),
             LocalGrids provides gridTokens.getGrids(windowWidthSizeClass),
+            LocalGridSemanticTokens provides gridTokens,
             LocalOpacities provides opacityTokens.getOpacities(),
             LocalSizes provides sizeTokens.getSizes(windowWidthSizeClass),
             LocalSpaces provides spaceTokens.getSpaces(windowWidthSizeClass),

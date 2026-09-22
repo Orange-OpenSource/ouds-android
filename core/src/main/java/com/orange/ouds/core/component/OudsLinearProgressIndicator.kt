@@ -53,7 +53,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -102,7 +102,7 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -152,7 +152,7 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *
@@ -198,7 +198,7 @@ fun OudsLinearProgressIndicator(
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
  *
- * > Design name: Progress Indicator
+ * > Design name: Linear Progress Indicator
  *
  * > Design version: 1.0.0
  *

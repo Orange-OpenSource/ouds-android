@@ -137,7 +137,7 @@ fun OudsNavigationBar(
     val windowWidthSizeClass = if (LocalInspectionMode.current) {
         LocalWindowWidthSizeClass.current
     } else {
-        WindowWidthSizeClass.compute(currentWindowWidth())
+        WindowWidthSizeClass.compute(dpWidth = currentWindowWidth().value)
     }
 
     with(OudsTheme.componentsTokens.bar) {
@@ -224,7 +224,7 @@ data class OudsNavigationBarItem(
         val windowWidthSizeClass = if (LocalInspectionMode.current) {
             LocalWindowWidthSizeClass.current
         } else {
-            WindowWidthSizeClass.compute(currentWindowWidth())
+            WindowWidthSizeClass.compute(dpWidth = currentWindowWidth().value)
         }
         val iconPosition = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 

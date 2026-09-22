@@ -11,6 +11,7 @@
  */
 
 @file:Suppress("DEPRECATION")
+@file:OptIn(RestrictedOudsApi::class)
 
 package com.orange.ouds.core.theme
 
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
+import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.theme.tokens.components.OudsBarTokens
@@ -48,6 +50,7 @@ import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 @RestrictedOudsApi
 data class OudsComponents internal constructor(
     val alert: Alert,
+    val alertMessage: AlertMessage,
     val badge: Badge,
     val bar: Bar,
     val bulletList: BulletList,
@@ -83,6 +86,10 @@ data class OudsComponents internal constructor(
         @ConsistentCopyVisibility
         data class Border internal constructor(
             val radius: Radius,
+            @Deprecated(
+                "Please use alertMessage.border.width instead.",
+                ReplaceWith("OudsTheme.components.alertMessage.border.width")
+            )
             val width: Dp
         ) {
 
@@ -95,8 +102,18 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
+            val asset: Dp,
+            @Deprecated(
+                "Please use asset instead.",
+                ReplaceWith("OudsTheme.components.alert.size.asset")
+            )
             val icon: Dp,
             val minHeight: Dp,
+            val minHeightBottomAction: Dp,
+            @Deprecated(
+                "Please use minHeightBottomAction instead.",
+                ReplaceWith("OudsTheme.components.alert.size.minHeightBottomAction")
+            )
             val minHeightBottomActionPlacement: Dp,
             val minWidth: Dp
         )
@@ -108,7 +125,28 @@ data class OudsComponents internal constructor(
             val paddingBlock: Dp,
             val paddingInline: Dp,
             val rowGap: Dp,
+            @Deprecated("This token is no longer used in OUDS.")
             val rowGapAction: Dp,
+            @Deprecated(
+                "Please use alertMessage.space.rowGapBullet instead.",
+                ReplaceWith("OudsTheme.components.alertMessage.space.rowGapBullet")
+            )
+            val rowGapBullet: Dp
+        )
+    }
+
+    @ConsistentCopyVisibility
+    data class AlertMessage internal constructor(
+        val border: Border,
+        val space: Space
+    ) {
+        @ConsistentCopyVisibility
+        data class Border internal constructor(
+            val width: Dp
+        )
+
+        @ConsistentCopyVisibility
+        data class Space internal constructor(
             val rowGapBullet: Dp
         )
     }
@@ -715,7 +753,7 @@ data class OudsComponents internal constructor(
 
         @ConsistentCopyVisibility
         data class Size internal constructor(
-            @Deprecated("")
+            @Deprecated("This token is no longer used in OUDS.")
             val indicator: Dp,
             val maxHeight: Dp,
             val minHeight: Dp,
@@ -1194,7 +1232,7 @@ data class OudsComponents internal constructor(
                     ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.small")
                 )
                 val densityCompact: Dp,
-                @Deprecated("This token has been removed.")
+                @Deprecated("This token is no longer used in OUDS.")
                 val densityCompactBottomExpandContainer: Dp,
                 @Deprecated(
                     "Please use components.listItem.space.paddingBlock.topAlignment.topCounterweightSmall instead.",
@@ -1211,7 +1249,7 @@ data class OudsComponents internal constructor(
                     ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.default")
                 )
                 val densityDefault: Dp,
-                @Deprecated("This token has been removed.")
+                @Deprecated("This token is no longer used in OUDS.")
                 val densityDefaultBottomExpandContainer: Dp,
                 @Deprecated(
                     "Please use components.listItem.space.paddingBlock.topAlignment.topCounterweightDefault instead.",
@@ -1375,7 +1413,7 @@ data class OudsComponents internal constructor(
             val minWidth: Dp,
             @Deprecated("Please use minWidth instead.", ReplaceWith("OudsTheme.components.link.size.minWidth"))
             val minWidthDefault: Dp,
-            @Deprecated("This token has been removed.")
+            @Deprecated("This token is no longer used in OUDS.")
             val minWidthSmall: Dp
         )
 
@@ -1445,7 +1483,7 @@ data class OudsComponents internal constructor(
             data class Radius internal constructor(
                 val currentIndicator: Dp,
                 val default: Dp,
-                @Deprecated("") val itemOnly: Dp,
+                @Deprecated("This token is no longer used in OUDS.") val itemOnly: Dp,
                 val media: Dp,
                 val mediaRounded: Dp,
                 val rounded: Dp
@@ -1536,9 +1574,9 @@ data class OudsComponents internal constructor(
             val controlIndicator: Dp,
             val currentIndicator: CurrentIndicator,
             val flag: Flag,
-            @Deprecated("") val icon: Dp,
-            @Deprecated("") val loader: Dp,
-            @Deprecated("") val maxHeightAssetsContainer: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val icon: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val loader: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val maxHeightAssetsContainer: Dp,
             val maxSizeLeadingTrailingSlot: Dp,
             val maxWidth: Dp,
             val minHeightDefault: Dp,
@@ -1570,7 +1608,7 @@ data class OudsComponents internal constructor(
             val columnGap: Dp,
             val paddingBlock: PaddingBlock,
             val paddingInline: Dp,
-            @Deprecated("") val paddingInlineErrorIcon: Dp,
+            @Deprecated("This token is no longer used in OUDS.") val paddingInlineErrorIcon: Dp,
             val rowGap: Dp
         ) {
 
@@ -1962,7 +2000,8 @@ data class OudsComponents internal constructor(
 @Composable
 internal fun OudsComponentsTokens.getComponents(): OudsComponents {
     return OudsComponents(
-        alert = alert.getAlert(),
+        alert = alert.getAlert(alertMessage),
+        alertMessage = alertMessage.getAlertMessage(),
         badge = badge.getBadge(),
         bar = bar.getBar(),
         bulletList = bulletList.getBulletList(),
@@ -1970,7 +2009,7 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         buttonMonochrome = buttonMonochrome.getButtonMonochrome(),
         checkbox = checkbox.getCheckbox(),
         chip = chip.getChip(),
-        controlItem = getControlItem(listItem, accordion),
+        controlItem = listItem.getControlItem(accordion),
         divider = divider.getDivider(),
         icon = icon.getIcon(),
         inputTag = inputTag.getInputTag(),
@@ -1989,19 +2028,21 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
 }
 
 @Composable
-private fun OudsAlertTokens.getAlert(): OudsComponents.Alert {
+private fun OudsAlertTokens.getAlert(alertMessageTokens: OudsAlertMessageTokens): OudsComponents.Alert {
     return OudsComponents.Alert(
         border = OudsComponents.Alert.Border(
             radius = OudsComponents.Alert.Border.Radius(
                 default = borderRadiusDefault.value,
                 rounded = borderRadiusRounded.value
             ),
-            width = borderWidth.value
+            width = alertMessageTokens.borderWidth.value
         ),
         size = OudsComponents.Alert.Size(
-            icon = sizeIcon.value,
+            asset = sizeAsset.value,
+            icon = sizeAsset.value,
             minHeight = sizeMinHeight.value,
-            minHeightBottomActionPlacement = sizeMinHeightBottomActionPlacement.dp,
+            minHeightBottomAction = sizeMinHeightBottomAction.dp,
+            minHeightBottomActionPlacement = sizeMinHeightBottomAction.dp,
             minWidth = sizeMinWidth.dp
         ),
         space = OudsComponents.Alert.Space(
@@ -2011,6 +2052,18 @@ private fun OudsAlertTokens.getAlert(): OudsComponents.Alert {
             columnGapAction = spaceColumnGapAction.value,
             rowGap = spaceRowGap.value,
             rowGapAction = spaceRowGapAction.value,
+            rowGapBullet = alertMessageTokens.spaceRowGapBullet.value
+        )
+    )
+}
+
+@Composable
+private fun OudsAlertMessageTokens.getAlertMessage(): OudsComponents.AlertMessage {
+    return OudsComponents.AlertMessage(
+        border = OudsComponents.AlertMessage.Border(
+            width = borderWidth.value
+        ),
+        space = OudsComponents.AlertMessage.Space(
             rowGapBullet = spaceRowGapBullet.value
         )
     )
@@ -2489,96 +2542,94 @@ private fun OudsChipTokens.getChip(): OudsComponents.Chip {
 }
 
 @Composable
-private fun getControlItem(listItemTokens: OudsListItemTokens, accordionTokens: OudsAccordionTokens): OudsComponents.ControlItem {
-    return with(listItemTokens) {
-        OudsComponents.ControlItem(
-            border = OudsComponents.ControlItem.Border(
-                radius = OudsComponents.ControlItem.Border.Radius(
-                    currentIndicator = borderRadiusCurrentIndicator.value,
-                    default = borderRadiusDefault.value,
-                    media = borderRadiusMedia.value,
-                    mediaRoundedCorner = borderRadiusMediaRounded.value,
-                    rounded = borderRadiusRounded.value
-                ),
-                width = OudsComponents.ControlItem.Border.Width(
-                    currentPage = borderWidthCurrentPage.value,
-                    default = borderWidthDefault.value
+private fun OudsListItemTokens.getControlItem(accordionTokens: OudsAccordionTokens): OudsComponents.ControlItem {
+    return OudsComponents.ControlItem(
+        border = OudsComponents.ControlItem.Border(
+            radius = OudsComponents.ControlItem.Border.Radius(
+                currentIndicator = borderRadiusCurrentIndicator.value,
+                default = borderRadiusDefault.value,
+                media = borderRadiusMedia.value,
+                mediaRoundedCorner = borderRadiusMediaRounded.value,
+                rounded = borderRadiusRounded.value
+            ),
+            width = OudsComponents.ControlItem.Border.Width(
+                currentPage = borderWidthCurrentPage.value,
+                default = borderWidthDefault.value
+            )
+        ),
+        color = OudsComponents.ControlItem.Color(
+            badgeSafetyArea = colorBgBadgeSafetyArea.value,
+            background = OudsComponents.ControlItem.Color.Background(
+                current = OudsComponents.ControlItem.Color.Background.Current(
+                    disabled = colorBgCurrentDisabled.value,
+                    enabled = colorBgCurrentEnabled.value,
+                    focus = colorBgCurrentFocus.value,
+                    hover = colorBgCurrentHover.value,
+                    pressed = colorBgCurrentPressed.value
                 )
             ),
-            color = OudsComponents.ControlItem.Color(
-                badgeSafetyArea = colorBgBadgeSafetyArea.value,
-                background = OudsComponents.ControlItem.Color.Background(
-                    current = OudsComponents.ControlItem.Color.Background.Current(
-                        disabled = colorBgCurrentDisabled.value,
-                        enabled = colorBgCurrentEnabled.value,
-                        focus = colorBgCurrentFocus.value,
-                        hover = colorBgCurrentHover.value,
-                        pressed = colorBgCurrentPressed.value
-                    )
-                ),
-                content = OudsComponents.ControlItem.Color.Content(
-                    current = OudsComponents.ControlItem.Color.Content.Current(
-                        disabled = colorContentCurrentDisabled.value,
-                        enabled = colorContentCurrentEnabled.value,
-                        focus = colorContentCurrentFocus.value,
-                        hover = colorContentCurrentHover.value,
-                        pressed = colorContentCurrentPressed.value
-                    )
-                )
-            ),
-            font = OudsComponents.ControlItem.Font(
-                letterSpacing = OudsComponents.ControlItem.Font.LetterSpacing(
-                    avatarInitialExtraLarge = fontLetterSpacingAvatarInitialXlarge.dp
-                ),
-                lineHeight = OudsComponents.ControlItem.Font.LineHeight(
-                    avatarInitialExtraLarge = fontLineHeightAvatarInitialXlarge.dp
-                ),
-                size = OudsComponents.ControlItem.Font.Size(
-                    avatarInitialExtraLarge = fontSizeAvatarInitialXlarge.dp
-                )
-            ),
-            opacity = OudsComponents.ControlItem.Opacity(
-                currentDivider = opacityCurrentDivider.value,
-                currentIndicator = opacityCurrentIndicator.value
-            ),
-            size = OudsComponents.ControlItem.Size(
-                asset = OudsComponents.ControlItem.Size.Asset(
-                    large = sizeAssetLarge.dp,
-                    medium = sizeAssetMedium.value,
-                    small = sizeAssetSmall.value,
-                    extraLarge = sizeAssetXlarge.dp
-                ),
-                controlIndicator = sizeControlIndicator.value,
-                currentIndicator = OudsComponents.ControlItem.Size.CurrentIndicator(
-                    width = sizeCurrentIndicatorWidth.dp
-                ),
-                minHeightCompact = sizeMinHeightSmall.value,
-                minHeightDefault = sizeMinHeightDefault.dp,
-                minWidth = sizeMinWidth.dp,
-                maxWidth = sizeMaxWidth.dp,
-                flag = OudsComponents.ControlItem.Size.Flag(
-                    height = sizeFlagHeight.value
-                )
-            ),
-            space = OudsComponents.ControlItem.Space(
-                paddingInline = spacePaddingInline.value,
-                columnGap = spaceColumnGap.value,
-                rowGap = spaceRowGap.value,
-                paddingBlock = OudsComponents.ControlItem.Space.PaddingBlock(
-                    topHelperText = spacePaddingBlockTopHelperText.value,
-                    bottomSlot = spacePaddingBlockSlotTextContainer.value,
-                    densityCompact = spacePaddingBlockSmall.value,
-                    densityCompactTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightSmall.value,
-                    densityCompactTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerSmall.value,
-                    densityCompactBottomExpandContainer = accordionTokens.spacePaddingBlockBottomExpandContainerSmall.value,
-                    densityDefault = spacePaddingBlockDefault.value,
-                    densityDefaultTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightDefault.value,
-                    densityDefaultTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerDefault.value,
-                    densityDefaultBottomExpandContainer = accordionTokens.spacePaddingBlockBottomExpandContainerDefault.value,
+            content = OudsComponents.ControlItem.Color.Content(
+                current = OudsComponents.ControlItem.Color.Content.Current(
+                    disabled = colorContentCurrentDisabled.value,
+                    enabled = colorContentCurrentEnabled.value,
+                    focus = colorContentCurrentFocus.value,
+                    hover = colorContentCurrentHover.value,
+                    pressed = colorContentCurrentPressed.value
                 )
             )
+        ),
+        font = OudsComponents.ControlItem.Font(
+            letterSpacing = OudsComponents.ControlItem.Font.LetterSpacing(
+                avatarInitialExtraLarge = fontLetterSpacingAvatarInitialXlarge.dp
+            ),
+            lineHeight = OudsComponents.ControlItem.Font.LineHeight(
+                avatarInitialExtraLarge = fontLineHeightAvatarInitialXlarge.dp
+            ),
+            size = OudsComponents.ControlItem.Font.Size(
+                avatarInitialExtraLarge = fontSizeAvatarInitialXlarge.dp
+            )
+        ),
+        opacity = OudsComponents.ControlItem.Opacity(
+            currentDivider = opacityCurrentDivider.value,
+            currentIndicator = opacityCurrentIndicator.value
+        ),
+        size = OudsComponents.ControlItem.Size(
+            asset = OudsComponents.ControlItem.Size.Asset(
+                large = sizeAssetLarge.dp,
+                medium = sizeAssetMedium.value,
+                small = sizeAssetSmall.value,
+                extraLarge = sizeAssetXlarge.dp
+            ),
+            controlIndicator = sizeControlIndicator.value,
+            currentIndicator = OudsComponents.ControlItem.Size.CurrentIndicator(
+                width = sizeCurrentIndicatorWidth.dp
+            ),
+            minHeightCompact = sizeMinHeightSmall.value,
+            minHeightDefault = sizeMinHeightDefault.dp,
+            minWidth = sizeMinWidth.dp,
+            maxWidth = sizeMaxWidth.dp,
+            flag = OudsComponents.ControlItem.Size.Flag(
+                height = sizeFlagHeight.value
+            )
+        ),
+        space = OudsComponents.ControlItem.Space(
+            paddingInline = spacePaddingInline.value,
+            columnGap = spaceColumnGap.value,
+            rowGap = spaceRowGap.value,
+            paddingBlock = OudsComponents.ControlItem.Space.PaddingBlock(
+                topHelperText = spacePaddingBlockTopHelperText.value,
+                bottomSlot = spacePaddingBlockSlotTextContainer.value,
+                densityCompact = spacePaddingBlockSmall.value,
+                densityCompactTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightSmall.value,
+                densityCompactTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerSmall.value,
+                densityCompactBottomExpandContainer = accordionTokens.spacePaddingBlockBottomExpandContainerSmall.value,
+                densityDefault = spacePaddingBlockDefault.value,
+                densityDefaultTopAlignmentTopCounterweight = spacePaddingBlockTopAlignmentTopCounterweightDefault.value,
+                densityDefaultTopAlignmentTopTextContainer = spacePaddingBlockTopAlignmentTopTextContainerDefault.value,
+                densityDefaultBottomExpandContainer = accordionTokens.spacePaddingBlockBottomExpandContainerDefault.value,
+            )
         )
-    }
+    )
 }
 
 @Composable

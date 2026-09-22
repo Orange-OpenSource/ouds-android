@@ -78,7 +78,7 @@ fun OudsInlineAlert(
             horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
         ) {
             status.icon.Content(
-                modifier = Modifier.iconSize(sizeIcon.value * scale, status.icon.tinted),
+                modifier = Modifier.iconSize(sizeAsset.value * scale, status.icon.tinted),
                 extraParameters = OudsAlertIcon.ExtraParameters(
                     tint = status.assetColor,
                     status = status.value
