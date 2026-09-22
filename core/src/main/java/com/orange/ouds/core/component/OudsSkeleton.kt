@@ -32,6 +32,7 @@ import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -55,6 +56,7 @@ import androidx.compose.ui.util.lerp
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.areSystemAnimationsDisabled
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -94,40 +96,46 @@ fun OudsSkeleton(
                 .background(color.background)
                 .clipToBounds()
         ) {
-            if (state.isAnimationRunning) {
-                val infiniteTransition = rememberInfiniteTransition()
-                val progress by infiniteTransition.animateFloat(
-                    initialValue = 0f,
-                    targetValue = 1f,
-                    animationSpec = infiniteRepeatable(
-                        animation = keyframes {
-                            durationMillis = OudsSkeletonState.AnimationDuration // 800ms movement + 450ms pause
-                            0f at 0 using CubicBezierEasing(0.42f, 0.0f, 0.58f, 1.0f)
-                            1f at OudsSkeletonState.ShimmerAnimationDuration // Holds at 1f from 800ms to 1250ms (450ms pause)
-                        },
-                        repeatMode = RepeatMode.Restart
-                    )
-                )
-                val skeletonWidthPx = with(LocalDensity.current) { maxWidth.toPx() }
-                val offset = lerp(-skeletonWidthPx, skeletonWidthPx, progress)
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .run {
-                            if (!LocalInspectionMode.current) {
-                                offset { IntOffset(offset.toInt(), 0) }
-                            } else {
-                                this
-                            }
-                        }
-                        .background(
-                            brush = Brush.horizontalGradient(
-                                0.0f to color.gradient.startEnd,
-                                0.5f to color.gradient.middle,
-                                1.0f to color.gradient.startEnd
-                            )
+            val areSystemAnimationsDisabled = areSystemAnimationsDisabled()
+            // Force disposal and recreation of the animation block when key values change. 
+            // This ensures rememberInfiniteTransition() restarts properly when system 
+            // animations are re-enabled after being disabled.
+            key(state.isAnimationRunning, areSystemAnimationsDisabled) {
+                if (state.isAnimationRunning && !areSystemAnimationsDisabled) {
+                    val infiniteTransition = rememberInfiniteTransition()
+                    val progress by infiniteTransition.animateFloat(
+                        initialValue = 0f,
+                        targetValue = 1f,
+                        animationSpec = infiniteRepeatable(
+                            animation = keyframes {
+                                durationMillis = OudsSkeletonState.AnimationDuration // 800ms movement + 450ms pause
+                                0f at 0 using CubicBezierEasing(0.42f, 0.0f, 0.58f, 1.0f)
+                                1f at OudsSkeletonState.ShimmerAnimationDuration // Holds at 1f from 800ms to 1250ms (450ms pause)
+                            },
+                            repeatMode = RepeatMode.Restart
                         )
-                )
+                    )
+                    val skeletonWidthPx = with(LocalDensity.current) { maxWidth.toPx() }
+                    val offset = lerp(-skeletonWidthPx, skeletonWidthPx, progress)
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize()
+                            .run {
+                                if (!LocalInspectionMode.current) {
+                                    offset { IntOffset(offset.toInt(), 0) }
+                                } else {
+                                    this
+                                }
+                            }
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    0.0f to color.gradient.startEnd,
+                                    0.5f to color.gradient.middle,
+                                    1.0f to color.gradient.startEnd
+                                )
+                            )
+                    )
+                }
             }
         }
     }
