@@ -24,6 +24,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.StringAnnotation
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.decapitalize
 import androidx.compose.ui.text.font.FontWeight
@@ -615,12 +616,13 @@ inline fun <R : Any> OudsAnnotatedString.ColorBuilder.withColor(color: Color, bl
     }
 }
 
-internal inline fun <T, reified U> buildOudsAnnotatedString(noinline builder: (U).() -> Unit): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
+@PublishedApi
+internal inline fun <T, reified U> buildOudsAnnotatedString(builder: (U).() -> Unit): T where U : OudsAnnotatedString.Builder<T>, T : OudsAnnotatedString<T> {
     return buildOudsAnnotatedString(U::class.java, builder)
 }
 
 @PublishedApi
-internal fun <T, U> buildOudsAnnotatedString(
+internal inline fun <T, U> buildOudsAnnotatedString(
     builderClass: Class<T>,
     builder: (T).() -> Unit
 ): U where T : OudsAnnotatedString.Builder<U>, U : OudsAnnotatedString<U> {
