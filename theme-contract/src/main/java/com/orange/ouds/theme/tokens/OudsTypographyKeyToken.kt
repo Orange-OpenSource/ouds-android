@@ -71,4 +71,8 @@ sealed interface OudsTypographyKeyToken : OudsKeyToken {
             data object Strong : Small
         }
     }
+
+    sealed interface Code : OudsTypographyKeyToken {
+        data object Medium : Code
+    }
 }

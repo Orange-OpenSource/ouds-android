@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -80,6 +82,7 @@ import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings

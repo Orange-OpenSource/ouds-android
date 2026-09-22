@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -75,6 +77,7 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 

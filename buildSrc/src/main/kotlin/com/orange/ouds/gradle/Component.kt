@@ -21,17 +21,21 @@ enum class Component {
     Badge,
     BadgeCount,
     BadgeIcon,
+    Body,
     BottomSheet,
     BulletList,
     Button,
     Checkbox,
     CircularProgressIndicator,
+    Display,
     Divider,
     Fab,
     FilterChip,
+    Heading,
     InlineAlert,
     InputTag,
     LinearProgressIndicator,
+    Label,
     Link,
     NavigationBar,
     NavigationButton,
@@ -52,16 +56,20 @@ enum class Component {
                 Component.Badge -> Badge
                 Component.BadgeCount -> BadgeCount
                 Component.BadgeIcon -> BadgeIcon
+                Component.Body -> Body
                 Component.BottomSheet -> BottomSheet
                 Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
                 Component.CircularProgressIndicator -> CircularProgressIndicator
+                Component.Display -> Display
                 Component.Divider -> Divider
                 Component.Fab -> Fab
                 Component.FilterChip -> FilterChip
+                Component.Heading -> Heading
                 Component.InlineAlert -> InlineAlert
                 Component.InputTag -> InputTag
+                Component.Label -> Label
                 Component.LinearProgressIndicator -> LinearProgressIndicator
                 Component.Link -> Link
                 Component.NavigationBar -> NavigationBar
@@ -91,17 +99,21 @@ enum class Component {
             AlertMessage -> listOf("OudsAlertMessage")
             AppBar -> listOf("OudsTopAppBar")
             Badge, BadgeCount, BadgeIcon -> listOf("OudsBadge")
+            Body -> listOf("OudsBodyText")
             BottomSheet -> listOf("OudsBottomSheetScaffold", "OudsModalBottomSheet")
             BulletList -> listOf("OudsBulletList")
             Button -> listOf("OudsButton")
             Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
             CircularProgressIndicator -> listOf("OudsCircularProgressIndicator")
+            Display -> listOf("OudsDisplayText")
             Divider -> listOf("OudsDivider")
             Fab -> listOf("OudsFloatingActionButton")
             FilterChip -> listOf("OudsFilterChip")
+            Heading -> listOf("OudsHeadingText")
             InlineAlert -> listOf("OudsInlineAlert")
             InputTag -> listOf("OudsInputTag")
             LinearProgressIndicator -> listOf("OudsLinearProgressIndicator")
+            Label -> listOf("OudsLabelText")
             Link -> listOf("OudsLink")
             NavigationBar -> listOf("OudsNavigationBar")
             NavigationButton -> listOf("OudsNavigationButton")
