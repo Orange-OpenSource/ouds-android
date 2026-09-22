@@ -86,6 +86,6 @@ class OudsAnnotatedHeadingText internal constructor(annotatedString: AnnotatedSt
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated heading text.
  */
-fun buildOudsAnnotatedHeadingText(builder: (OudsAnnotatedHeadingText.Builder).() -> Unit): OudsAnnotatedHeadingText {
+inline fun buildOudsAnnotatedHeadingText(builder: (OudsAnnotatedHeadingText.Builder).() -> Unit): OudsAnnotatedHeadingText {
     return buildOudsAnnotatedString<OudsAnnotatedHeadingText, OudsAnnotatedHeadingText.Builder>(builder)
 }
