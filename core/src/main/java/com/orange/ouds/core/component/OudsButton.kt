@@ -121,6 +121,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the button will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlySample
  *
@@ -208,6 +209,7 @@ fun OudsButton(
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the button will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlySample
  *
@@ -299,6 +301,7 @@ fun OudsButton(
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the button will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconSample
  *

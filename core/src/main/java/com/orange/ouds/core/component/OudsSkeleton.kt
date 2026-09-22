@@ -130,43 +130,16 @@ fun OudsSkeleton(
     }
 }
 
-@OudsPreviewLightDark
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsSkeleton(@PreviewParameter(OudsSkeletonPreviewParameterProvider::class) parameter: OudsSkeletonPreviewParameter) {
-    PreviewOudsSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
-}
-
-@Composable
-internal fun PreviewOudsSkeleton(
-    theme: OudsThemeContract,
-    darkThemeEnabled: Boolean,
-    parameter: OudsSkeletonPreviewParameter
-) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    with(parameter) {
-        OudsSkeleton(
-            modifier = Modifier.size(width = 200.dp, height = 62.dp),
-            state = rememberOudsSkeletonState(initialIsAnimationRunning = isAnimationRunning),
-            securityMargin = securityMargin
-        )
-    }
-}
-
-internal data class OudsSkeletonPreviewParameter(
-    val securityMargin: Boolean,
-    val isAnimationRunning: Boolean
-)
-
-internal class OudsSkeletonPreviewParameterProvider : BasicPreviewParameterProvider<OudsSkeletonPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewParameterValues: List<OudsSkeletonPreviewParameter>
-    get() = listOf(
-        OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = false),
-        OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = false),
-        OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = true),
-        OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = true),
-    )
-
+/**
+ * A skeleton parameter used with components to improve the perceived loading time by providing a visual cue
+ * of where the component will appear once fully loaded.
+ *
+ * This is typically passed to component parameters like [OudsButton]'s `skeleton` parameter to display
+ * a skeleton state instead of the actual component content during data loading.
+ *
+ * @param state The [OudsSkeletonState] that controls the skeleton's animation behavior.
+ *   Use [rememberOudsSkeletonState] to create and remember the state in a composable.
+ */
 data class OudsSkeleton(val state: OudsSkeletonState)
 
 @Composable
@@ -217,3 +190,40 @@ internal fun <T> SkeletonLayout(
         content(modifier)
     }
 }
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsSkeleton(@PreviewParameter(OudsSkeletonPreviewParameterProvider::class) parameter: OudsSkeletonPreviewParameter) {
+    PreviewOudsSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsSkeleton(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    parameter: OudsSkeletonPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    with(parameter) {
+        OudsSkeleton(
+            modifier = Modifier.size(width = 200.dp, height = 62.dp),
+            state = rememberOudsSkeletonState(initialIsAnimationRunning = isAnimationRunning),
+            securityMargin = securityMargin
+        )
+    }
+}
+
+internal data class OudsSkeletonPreviewParameter(
+    val securityMargin: Boolean,
+    val isAnimationRunning: Boolean
+)
+
+internal class OudsSkeletonPreviewParameterProvider : BasicPreviewParameterProvider<OudsSkeletonPreviewParameter>(*previewParameterValues.toTypedArray())
+
+private val previewParameterValues: List<OudsSkeletonPreviewParameter>
+    get() = listOf(
+        OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = false),
+        OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = false),
+        OudsSkeletonPreviewParameter(securityMargin = true, isAnimationRunning = true),
+        OudsSkeletonPreviewParameter(securityMargin = false, isAnimationRunning = true),
+    )
