@@ -52,4 +52,10 @@ internal class OudsBulletListTest {
         null,
         OudsComponentTestSuite.theme
     )
+
+    class Skeleton : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.BulletList.Skeleton,
+        null,
+        OudsComponentTestSuite.theme
+    )
 }

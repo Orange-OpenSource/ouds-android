@@ -90,7 +90,7 @@ fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes resId: Int, coun
 
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
 
-fun FunctionCall.Builder.skeletonArgument(value: Boolean) {
+fun FunctionCall.Builder.skeletonArgument() {
     constructorCallArgument<OudsSkeleton>(Argument.Skeleton) {
         rawArgument(Argument.State, "rememberOudsSkeletonState()")
     }
