@@ -107,6 +107,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
             data object Medium : Body
             data object Small : Body
         }
+        data object BoxedText : MaxWidth
         sealed interface Display : MaxWidth {
             data object Large : Display
             data object Medium : Display
