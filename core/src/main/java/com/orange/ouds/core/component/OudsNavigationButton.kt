@@ -40,7 +40,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Navigation Button
  *
- * > Design version: 3.3.0
+ * > Design version: 3.4.0
  *
  * @param onClick Callback invoked when the button is clicked.
  * @param modifier [Modifier] applied to the button.
@@ -238,6 +238,20 @@ private fun PreviewOudsNavigationButtonOnTwoLines() = PreviewOudsNavigationButto
 internal fun PreviewOudsNavigationButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsNavigationButton(
         label = "Navigation button\non two lines",
+        chevron = OudsNavigationButtonChevron.Next,
+        onClick = {},
+    )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsNavigationButtonMaxWidthReached() = PreviewOudsNavigationButtonMaxWidthReached(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsNavigationButtonMaxWidthReached(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsNavigationButton(
+        label = "Navigation Button with a very very long label to reach max width",
         chevron = OudsNavigationButtonChevron.Next,
         onClick = {},
     )

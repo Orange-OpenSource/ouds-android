@@ -34,7 +34,7 @@ object OudsVersion {
         const val LinearProgressIndicator = "1.1.0"
         const val Link = "2.4.0"
         const val NavigationBar = "1.0.0"
-        const val NavigationButton = "3.3.0"
+        const val NavigationButton = "3.4.0"
         const val NavigationCardItem = "0.1.0"
         const val NavigationListItem = "0.1.0"
         const val PasswordInput = "1.3.1"

@@ -391,8 +391,10 @@ internal fun OudsButton(
                     OudsButtonComponent.Button,
                     is OudsButtonComponent.NavigationButton -> false
                 }
+                val textModifier = Modifier.weight(1f, fill = false)
                 if (label != null && leadingText) {
                     ButtonText(
+                        modifier = textModifier,
                         label = label,
                         color = contentColor.value,
                         size = size
@@ -445,6 +447,7 @@ internal fun OudsButton(
 
                 if (label != null && !leadingText) {
                     ButtonText(
+                        modifier = textModifier,
                         label = label,
                         color = contentColor.value,
                         size = size
@@ -456,12 +459,13 @@ internal fun OudsButton(
 }
 
 @Composable
-private fun ButtonText(label: String, color: Color, size: OudsButtonSize) {
+private fun ButtonText(label: String, color: Color, size: OudsButtonSize, modifier: Modifier = Modifier) {
     val style = when (size) {
         OudsButtonSize.Default -> OudsTheme.typography.label.large.strong
         OudsButtonSize.Small -> OudsTheme.typography.label.medium.strong
     }
     Text(
+        modifier = modifier,
         text = label,
         color = color,
         textAlign = TextAlign.Center,

@@ -147,6 +147,7 @@ import com.orange.ouds.core.component.PreviewOudsModalBottomSheet
 import com.orange.ouds.core.component.PreviewOudsNavigationBar
 import com.orange.ouds.core.component.PreviewOudsNavigationBarItem
 import com.orange.ouds.core.component.PreviewOudsNavigationButton
+import com.orange.ouds.core.component.PreviewOudsNavigationButtonMaxWidthReached
 import com.orange.ouds.core.component.PreviewOudsNavigationButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsNavigationButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsNavigationCardItem
@@ -1153,6 +1154,18 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsNavigationButtonOnTwoLines(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
+        }
+
+        object MaxWidthReached : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsNavigationButtonMaxWidthReached(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
