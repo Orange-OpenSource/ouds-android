@@ -728,7 +728,6 @@ fun OudsTextArea(
     )
 }
 
-
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN

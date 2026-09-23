@@ -112,28 +112,6 @@ fun OudsLink(
     )
 }
 
-/**
- * Link is a UI element that allows to navigate from one location to another, either within the same page
- * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
- * and it communicates its interactive nature visually and semantically.
- *
- * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
- *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
- *
- * > Design name: Link
- *
- * > Design version: 2.4.0
- *
- * @param label Label describing what is being linked to.
- * @param onClick Callback invoked when the link is clicked.
- * @param modifier [Modifier] applied to the link.
- * @param size Size of the link. See [OudsLinkSize] for available sizes.
- * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
- *
- * @sample com.orange.ouds.core.component.samples.OudsLinkSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
@@ -205,31 +183,6 @@ fun OudsLink(
     )
 }
 
-/**
- * Link is a UI element that allows to navigate from one location to another, either within the same page
- * or across different pages in the same resource, or to an external resource. Link's primary function is navigation
- * and it communicates its interactive nature visually and semantically.
- *
- * Note that if it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
- * The tokens associated with this variant can be customized by overriding [OudsLinkMonoTokens].
- *
- * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-link)
- *
- * > Design name: Link
- *
- * > Design version: 2.4.0
- *
- * @param label Label describing what is being linked to.
- * @param icon Icon displayed in the link that can be used to indicate the destination or type of content being referenced.
- * @param onClick Callback invoked when the link is clicked.
- * @param modifier [Modifier] applied to the link.
- * @param size Size of the link. See [OudsLinkSize] for available sizes.
- * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
- *
- * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
- *
- * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
