@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -63,7 +65,6 @@ import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -71,6 +72,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -213,31 +215,31 @@ private fun OudsAlertMessage(
     bulletList: List<String>? = null,
     annotatedBulletList: List<OudsAnnotatedAlertMessageBulletListLabel>? = null
 ) {
-    with(OudsTheme.componentsTokens.alert) {
+    with(OudsTheme.components.alert) {
         val scale = LocalConfiguration.current.fontScale
-        val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) borderRadiusRounded else borderRadiusDefault
-        val shape = RoundedCornerShape(borderRadius.value)
+        val borderRadius = if (LocalThemeSettings.current.roundedCornerAlertMessages == true) border.radius.rounded else border.radius.default
+        val shape = RoundedCornerShape(borderRadius)
         val hasCloseButton = onClose != null
         val hasActionLink = actionLink != null && actionLink.label.isNotBlank()
         Row(
             modifier = modifier
-                .widthIn(min = sizeMinWidth.dp)
-                .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) sizeMinHeightBottomAction.dp else sizeMinHeight.value)
+                .widthIn(min = size.minWidth)
+                .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) size.minHeightBottomAction else size.minHeight)
                 .background(color = status.backgroundColor, shape = shape)
                 .clip(shape)
                 .run {
-                    OudsTheme.componentsTokens.alertMessage.borderWidth.value.takeUnlessHairline?.let {
+                    OudsTheme.components.alertMessage.border.width.takeUnlessHairline?.let {
                         border(width = it, color = status.borderColor, shape = shape)
                     } ?: this
                 }
                 .semantics(mergeDescendants = true) {}
-                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
-            horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
+                .padding(start = space.paddingInline, end = if (hasCloseButton) 0.dp else space.paddingInline),
+            horizontalArrangement = Arrangement.spacedBy(space.columnGap)
         ) {
             status.icon?.Content(
                 modifier = Modifier
-                    .padding(top = spacePaddingBlock.value)
-                    .iconSize(sizeAsset.value * scale, status.icon.tinted),
+                    .padding(top = space.paddingBlock)
+                    .iconSize(size.asset * scale, status.icon.tinted),
                 extraParameters = OudsAlertIcon.ExtraParameters(
                     tint = status.assetColor,
                     status = status.value
@@ -246,9 +248,9 @@ private fun OudsAlertMessage(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(vertical = spacePaddingBlock.value)
+                    .padding(vertical = space.paddingBlock)
             ) {
-                Column(verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
+                Column(verticalArrangement = Arrangement.spacedBy(space.rowGap)) {
                     Text(
                         modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
                         text = label,
@@ -267,7 +269,7 @@ private fun OudsAlertMessage(
                         ?.filter { it.isNotBlank() }
                         ?.takeIf { it.isNotEmpty() }
                         ?.let { list ->
-                            Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.alertMessage.spaceRowGapBullet.value)) {
+                            Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.components.alertMessage.space.rowGapBullet)) {
                                 list.forEach { label ->
                                     OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
                                 }
@@ -276,13 +278,13 @@ private fun OudsAlertMessage(
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
                     @Suppress("DEPRECATION")
-                    actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
+                    actionLink.Content(modifier = Modifier.padding(top = space.rowGapAction))
                 }
             }
 
             val hasTopEndActionLink = hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.TopEnd
             if (hasCloseButton || hasTopEndActionLink) {
-                Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(space.columnGapAction)) {
                     if (hasTopEndActionLink) {
                         actionLink.Content()
                     }
@@ -472,7 +474,7 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min),
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.bulletList.spaceColumnGapBodyMedium.value)
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.components.bulletList.space.columnGap.bodyMedium)
     ) {
         Box(
             modifier = Modifier
