@@ -50,6 +50,7 @@ import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.areSystemAnimationsDisabled
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -141,7 +142,25 @@ fun OudsSkeleton(
  * @param state The [OudsSkeletonState] that controls the skeleton's animation behavior.
  *   Use [rememberOudsSkeletonState] to create and remember the state in a composable.
  */
-data class OudsSkeleton(val state: OudsSkeletonState)
+class OudsSkeleton(val state: OudsSkeletonState)
+
+@Composable
+internal fun SkeletonLayout(
+    skeleton: OudsSkeleton?,
+    securityMargin: Boolean,
+    modifier: Modifier = Modifier,
+    shape: Shape = RectangleShape,
+    content: @Composable (Modifier) -> Unit
+) {
+    SkeletonLayout(
+        visible = skeleton != null,
+        state = skeleton?.state,
+        securityMargin = securityMargin,
+        modifier = modifier,
+        shape = shape,
+        content = content
+    )
+}
 
 @Composable
 internal fun <T> SkeletonLayout(
@@ -152,7 +171,26 @@ internal fun <T> SkeletonLayout(
     shape: Shape = RectangleShape,
     content: @Composable (Modifier) -> Unit
 ) where T : Enum<T> {
-    if (componentState.name == "Skeleton") {
+    SkeletonLayout(
+        visible = componentState.name == "Skeleton",
+        state = skeletonState,
+        securityMargin = securityMargin,
+        modifier = modifier,
+        shape = shape,
+        content = content
+    )
+}
+
+@Composable
+private fun SkeletonLayout(
+    visible: Boolean,
+    state: OudsSkeletonState?,
+    securityMargin: Boolean,
+    modifier: Modifier = Modifier,
+    shape: Shape = RectangleShape,
+    content: @Composable (Modifier) -> Unit
+) {
+    if (visible) {
         // Use SubcomposeLayout instead of a Box with onGloballyPositioned otherwise skeleton is not displayed in the previews
         SubcomposeLayout(modifier.clip(shape)) { constraints ->
             val contentPlaceables = subcompose("content") {
@@ -163,9 +201,14 @@ internal fun <T> SkeletonLayout(
             val height = contentPlaceables.maxOfOrNull { it.height } ?: 0
 
             val skeletonPlaceables = subcompose("skeleton") {
+                val skeletonState = if (LocalInspectionMode.current) {
+                    rememberOudsSkeletonState(initialIsAnimationRunning = false)
+                } else {
+                    state.orElse { rememberOudsSkeletonState() }
+                }
                 OudsSkeleton(
                     modifier = Modifier.size(width.toDp(), height.toDp()),
-                    state = skeletonState ?: rememberOudsSkeletonState(initialIsAnimationRunning = !LocalInspectionMode.current),
+                    state = skeletonState,
                     securityMargin = securityMargin
                 )
             }.map { it.measure(constraints) }
