@@ -100,6 +100,7 @@ import com.orange.ouds.core.component.OudsTextInputWithRichTextPreviewParameterP
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
 import com.orange.ouds.core.component.PreviewOudsAlertMessage
+import com.orange.ouds.core.component.PreviewOudsAlertMessageSkeleton
 import com.orange.ouds.core.component.PreviewOudsAlertMessageWithRichText
 import com.orange.ouds.core.component.PreviewOudsAlertMessageWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBadge
@@ -280,6 +281,20 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+
+        @InternalOudsApi
+        object Skeleton : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsAlertMessageSkeleton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
