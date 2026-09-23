@@ -57,6 +57,7 @@ open class BaseListItemDemoState(
     helperText: String?,
     boldLabel: Boolean,
     enabled: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -94,7 +95,8 @@ open class BaseListItemDemoState(
                         divider,
                         helperText,
                         boldLabel,
-                        enabled
+                        enabled,
+                        skeleton
                     )
                 }
             },
@@ -130,6 +132,7 @@ open class BaseListItemDemoState(
                     list[27] as String?,
                     list[28] as Boolean,
                     list[29] as Boolean,
+                    list[30] as Boolean
                 )
             }
         )
@@ -198,6 +201,8 @@ open class BaseListItemDemoState(
         get() = trailing == Trailing.Text
 
     var verticalAlignment: OudsListItemVerticalAlignment by mutableStateOf(verticalAlignment)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     enum class CustomizationTab {
         General, Leading, Texts, Trailing

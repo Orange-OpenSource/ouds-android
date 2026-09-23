@@ -415,14 +415,15 @@ interface OudsPreviewableComponent {
             }
         }
 
+        @InternalOudsApi
         object Skeleton : OudsPreviewableComponent {
 
             const val PreviewHeightDp = 730
-            
+
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsBulletListSkeleton(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -525,7 +526,8 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 880
+
+            const val PreviewHeightDp = 1050
 
             override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
 
@@ -1107,7 +1109,8 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 1000
+
+            const val PreviewHeightDp = 1100
 
             override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
 
@@ -1140,6 +1143,8 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithUntintedIcon : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 720
+
             override val parameters: List<Any> = emptyList()
 
             @Composable
@@ -1152,6 +1157,7 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
             const val PreviewHeightDp = 720
 
             override val parameters: List<Any> = emptyList()
@@ -1610,7 +1616,8 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 700
+
+            const val PreviewHeightDp = 840
 
             override val parameters: List<Any> = OudsSmallCardItemPreviewParameterProvider().values.toList()
 
@@ -1676,7 +1683,8 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 700
+
+            const val PreviewHeightDp = 840
 
             override val parameters: List<Any> = OudsSmallListItemPreviewParameterProvider().values.toList()
 
