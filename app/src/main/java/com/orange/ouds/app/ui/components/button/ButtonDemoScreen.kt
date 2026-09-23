@@ -136,7 +136,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             tinted = icon == ButtonDemoState.Icon.Tinted
         )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
-        val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
+        val buttonSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
 
         when (size) {
             ButtonDemoState.Size.Default -> when (layout) {
@@ -146,7 +146,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance,
-                    skeleton = skeleton
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.TextAndIcon -> OudsButton(
                     icon = buttonIcon,
@@ -155,7 +155,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance,
-                    skeleton = skeleton
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.IconOnly -> OudsButton(
                     icon = buttonIcon,
@@ -163,7 +163,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance,
-                    skeleton = skeleton
+                    skeleton = buttonSkeleton
                 )
             }
             ButtonDemoState.Size.Small -> when (layout) {
@@ -173,7 +173,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance,
-                    skeleton = skeleton
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.TextAndIcon -> OudsSmallButton(
                     icon = buttonIcon,
@@ -182,7 +182,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance,
-                    skeleton = skeleton
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.IconOnly -> OudsSmallButton(
                     icon = buttonIcon,
@@ -190,7 +190,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     enabled = enabled,
                     loader = loader,
                     appearance = appearance,
-                    skeleton = skeleton
+                    skeleton = buttonSkeleton
                 )
             }
         }

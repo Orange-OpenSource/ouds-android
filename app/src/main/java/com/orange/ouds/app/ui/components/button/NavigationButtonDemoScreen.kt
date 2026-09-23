@@ -103,7 +103,7 @@ private fun NavigationButtonDemoBottomSheetContent(state: NavigationButtonDemoSt
 private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
     with(state) {
         val loader = if (hasLoader) OudsButtonLoader(null) else null
-        val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
+        val navigationButtonSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         OudsNavigationButton(
             label = label,
             chevron = chevron,
@@ -111,7 +111,7 @@ private fun NavigationButtonDemoContent(state: NavigationButtonDemoState) {
             enabled = enabled,
             loader = loader,
             appearance = appearance,
-            skeleton = skeleton
+            skeleton = navigationButtonSkeleton
         )
     }
 }
