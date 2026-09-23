@@ -88,7 +88,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Alert Message
  *
- * > Design version: 1.1.1
+ * > Design version: 1.2.0
  *
  * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
  * @param modifier [Modifier] applied to the alert message.
@@ -153,7 +153,7 @@ fun OudsAlertMessage(
  *
  * > Design name: Alert Message
  *
- * > Design version: 1.1.1
+ * > Design version: 1.2.0
  *
  * @param label Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
  * @param modifier [Modifier] applied to the alert message.
@@ -225,6 +225,7 @@ private fun OudsAlertMessage(
             modifier = modifier
                 .widthIn(min = size.minWidth)
                 .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) size.minHeightBottomAction else size.minHeight)
+                .height(IntrinsicSize.Min)
                 .background(color = status.backgroundColor, shape = shape)
                 .clip(shape)
                 .run {
@@ -236,15 +237,17 @@ private fun OudsAlertMessage(
                 .padding(start = space.paddingInline, end = if (hasCloseButton) 0.dp else space.paddingInline),
             horizontalArrangement = Arrangement.spacedBy(space.columnGap)
         ) {
-            status.icon?.Content(
-                modifier = Modifier
-                    .padding(top = space.paddingBlock)
-                    .iconSize(size.asset * scale, status.icon.tinted),
-                extraParameters = OudsAlertIcon.ExtraParameters(
-                    tint = status.assetColor,
-                    status = status.value
-                )
-            )
+            status.icon?.let { icon ->
+                Box(modifier = Modifier.fillMaxHeight().padding(vertical = space.paddingBlock)) {
+                    icon.Content(
+                        modifier = Modifier.iconSize(size.asset * scale, status.icon.tinted),
+                        extraParameters = OudsAlertIcon.ExtraParameters(
+                            tint = status.assetColor,
+                            status = status.value
+                        )
+                    )
+                }
+            }
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -252,12 +255,14 @@ private fun OudsAlertMessage(
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(space.rowGap)) {
                     Text(
-                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
+                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.boxedText),
                         text = label,
                         color = status.contentColor,
                         style = OudsTheme.typography.label.large.moderate
                     )
-                    val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
+                    val descriptionModifier = Modifier
+                        .widthIn(max = OudsTheme.sizes.maxWidth.boxedText)
+                        .padding(bottom = space.paddingBlockBottomContent)
                     val descriptionColor = status.contentColor
                     val descriptionStyle = OudsTheme.typography.label.medium.default
                     if (!annotatedDescription.isNullOrBlank()) {
@@ -269,7 +274,12 @@ private fun OudsAlertMessage(
                         ?.filter { it.isNotBlank() }
                         ?.takeIf { it.isNotEmpty() }
                         ?.let { list ->
-                            Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.components.alertMessage.space.rowGapBullet)) {
+                            Column(
+                                modifier = Modifier
+                                    .widthIn(max = OudsTheme.sizes.maxWidth.boxedText)
+                                    .padding(bottom = space.paddingBlockBottomContent),
+                                verticalArrangement = Arrangement.spacedBy(OudsTheme.components.alertMessage.space.rowGapBullet)
+                            ) {
                                 list.forEach { label ->
                                     OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
                                 }
@@ -277,8 +287,7 @@ private fun OudsAlertMessage(
                         }
                 }
                 if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
-                    @Suppress("DEPRECATION")
-                    actionLink.Content(modifier = Modifier.padding(top = space.rowGapAction))
+                    actionLink.Content()
                 }
             }
 
@@ -337,7 +346,11 @@ data class OudsAlertMessageActionLink(
         OudsLink(
             modifier = modifier.componentContentTestTag(),
             label = label,
-            onClick = onClick
+            onClick = onClick,
+            density = when (position) {
+                OudsAlertMessageActionLinkPosition.Bottom -> OudsLinkDensity.Compact
+                OudsAlertMessageActionLinkPosition.TopEnd -> OudsLinkDensity.Default
+            }
         )
     }
 }
