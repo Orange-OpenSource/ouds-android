@@ -300,7 +300,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     }
                 }
             }
-            skeletonArgument(skeleton)
+            if (skeleton) skeletonArgument()
         }
     }
 }

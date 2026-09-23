@@ -224,7 +224,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
                     }
                 }
                 typedArgument("appearance", appearance)
-                skeletonArgument(skeleton)
+                if (skeleton) skeletonArgument()
             }
         }
     }
