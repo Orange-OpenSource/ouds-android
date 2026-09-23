@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companio
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoState.Companion.MinLevelCount
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -46,8 +47,10 @@ import com.orange.ouds.core.component.OudsBulletListFontWeight
 import com.orange.ouds.core.component.OudsBulletListTextStyle
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsBulletListUnorderedAsset
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.text.OudsAnnotatedBulletListLabel
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBulletListLabel
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -126,6 +129,11 @@ private fun BulletListDemoBottomSheetContent(state: BulletListDemoState) {
             checked = annotatedText,
             onCheckedChange = { annotatedText = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it },
+        )
     }
 }
 
@@ -171,6 +179,7 @@ private fun BulletListDemoContent(state: BulletListDemoState) {
                 type
             },
             textStyle = OudsBulletListTextStyle(fontSize, fontWeight),
+            skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null,
             builder = builder
         )
     }
@@ -200,6 +209,7 @@ private fun Code.Builder.bulletListDemoCodeSnippet(state: BulletListDemoState, t
                     typedArgument(OudsBulletListTextStyle::fontWeight.name, fontWeight)
                 }
             }
+            if (skeleton) skeletonArgument()
             lambdaArgument("builder") {
                 when (levelCount) {
                     1 -> {

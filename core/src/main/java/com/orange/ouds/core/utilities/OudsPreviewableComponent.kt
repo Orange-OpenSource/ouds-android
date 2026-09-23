@@ -107,6 +107,7 @@ import com.orange.ouds.core.component.PreviewOudsBadgeWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsBulletListRtl
+import com.orange.ouds.core.component.PreviewOudsBulletListSkeleton
 import com.orange.ouds.core.component.PreviewOudsBulletListWithRichText
 import com.orange.ouds.core.component.PreviewOudsButton
 import com.orange.ouds.core.component.PreviewOudsButtonOnTwoLines
@@ -387,6 +388,21 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsBulletListWithRichText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        object Skeleton : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 730
+            
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBulletListSkeleton(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
                 )

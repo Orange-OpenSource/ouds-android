@@ -130,7 +130,7 @@ private fun Code.Builder.navigationButtonDemoCodeSnippet(state: NavigationButton
                     }
                 }
                 if (appearance != OudsNavigationButtonDefaults.Appearance) typedArgument("appearance", appearance)
-                skeletonArgument(skeleton)
+                if (skeleton) skeletonArgument()
             }
         }
     }
