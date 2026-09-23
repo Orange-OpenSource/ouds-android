@@ -123,6 +123,7 @@ data class OudsComponents internal constructor(
             val columnGap: Dp,
             val columnGapAction: Dp,
             val paddingBlock: Dp,
+            val paddingBlockBottomContent: Dp,
             val paddingInline: Dp,
             val rowGap: Dp,
             @Deprecated("This token is no longer used in OUDS.")
@@ -2048,6 +2049,7 @@ private fun OudsAlertTokens.getAlert(alertMessageTokens: OudsAlertMessageTokens)
         ),
         space = OudsComponents.Alert.Space(
             paddingBlock = spacePaddingBlock.value,
+            paddingBlockBottomContent = spacePaddingBlockBottomContent.value,
             paddingInline = spacePaddingInline.value,
             columnGap = spaceColumnGap.value,
             columnGapAction = spaceColumnGapAction.value,
