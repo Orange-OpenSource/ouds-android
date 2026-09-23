@@ -25,7 +25,9 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.core.component.OudsCardItem
 import com.orange.ouds.core.component.OudsListItemDecoration
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallCardItem
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
@@ -77,6 +79,7 @@ internal fun CardItemGeneralCustomizationContent(state: CardItemDemoState) {
 @Composable
 private fun CardItemDemoContent(state: CardItemDemoState) {
     with(state) {
+        val cardItemSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         if (clickable) {
             when (size) {
                 BaseListItemDemoState.Size.Default ->
@@ -94,6 +97,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
+                        skeleton = cardItemSkeleton
                     )
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallCardItem(
@@ -108,6 +112,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
+                        skeleton = cardItemSkeleton
                     )
             }
         } else {
@@ -125,6 +130,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
+                        skeleton = cardItemSkeleton
                     )
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallCardItem(
@@ -137,6 +143,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
+                        skeleton = cardItemSkeleton
                     )
             }
         }

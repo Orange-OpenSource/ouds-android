@@ -397,7 +397,7 @@ interface OudsPreviewableComponent {
         object Skeleton : OudsPreviewableComponent {
 
             const val PreviewHeightDp = 730
-            
+
             override val parameters: List<Any> = emptyList()
 
             @Composable
@@ -481,7 +481,8 @@ interface OudsPreviewableComponent {
     object CardItem {
 
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 880
+
+            const val PreviewHeightDp = 1050
 
             override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
 
@@ -1003,7 +1004,8 @@ interface OudsPreviewableComponent {
     object ListItem {
 
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 1000
+
+            const val PreviewHeightDp = 1100
 
             override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
 
@@ -1034,6 +1036,8 @@ interface OudsPreviewableComponent {
 
         object WithUntintedIcon : OudsPreviewableComponent {
 
+            const val PreviewHeightDp = 720
+
             override val parameters: List<Any> = emptyList()
 
             @Composable
@@ -1045,6 +1049,7 @@ interface OudsPreviewableComponent {
         }
 
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
+
             const val PreviewHeightDp = 720
 
             override val parameters: List<Any> = emptyList()
@@ -1439,7 +1444,8 @@ interface OudsPreviewableComponent {
     object SmallCardItem {
 
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 700
+
+            const val PreviewHeightDp = 840
 
             override val parameters: List<Any> = OudsSmallCardItemPreviewParameterProvider().values.toList()
 
@@ -1500,7 +1506,8 @@ interface OudsPreviewableComponent {
     object SmallListItem {
 
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 700
+
+            const val PreviewHeightDp = 840
 
             override val parameters: List<Any> = OudsSmallListItemPreviewParameterProvider().values.toList()
 
