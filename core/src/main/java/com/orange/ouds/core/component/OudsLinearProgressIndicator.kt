@@ -152,33 +152,6 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
-/**
- * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
- * progress (indeterminate). Best used inside layouts to show progress.
- *
- * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
- *
- * > Design name: Linear Progress Indicator
- *
- * > Design version: 1.1.0
- *
- * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
- *   into the range.
- * @param modifier The [Modifier] to be applied to this linear progress indicator.
- * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
- * @param track Whether the track is displayed or not.
- *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
- *   easier to read (for determinate variant).
- *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
- *   appearance is needed.
- * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
- *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
- *   progress value.
- *
- * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
@@ -295,31 +268,6 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
-/**
- * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
- * progress (indeterminate). Best used inside layouts to show progress.
- *
- * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
- *
- * > Design name: Linear Progress Indicator
- *
- * > Design version: 1.1.0
- *
- * @param modifier The [Modifier] to be applied to this linear progress indicator.
- * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
- * @param track Whether the track is displayed or not.
- *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
- *   easier to read (for determinate variant).
- *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
- *   appearance is needed.
- * @param stopIndicator Whether a stop indicator is displayed or not. It allows to identify the end of the track easily. To respect accessibility criteria, it
- *   is required if the track has a contrast below 3:1 with its container or the surface behind the container.
- * @param helperText Optional additional text displayed with the progress indicator. Helper text can provide context about the process or show the current
- *   progress value.
- *
- * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
