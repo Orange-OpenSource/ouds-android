@@ -68,7 +68,6 @@ import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -83,9 +82,6 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
-import com.orange.ouds.theme.tokens.OudsKeyToken
-import com.orange.ouds.theme.tokens.OudsSizeKeyToken
-import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
 /**
@@ -108,7 +104,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * > Design name: Button
  *
- * > Design version: 3.3.0
+ * > Design version: 3.4.0
  *
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
  * @param onClick Callback invoked when the button is clicked.
@@ -168,7 +164,7 @@ fun OudsButton(
  *
  * > Design name: Button
  *
- * > Design version: 3.3.0
+ * > Design version: 3.4.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param onClick Callback invoked when the button is clicked.
@@ -231,7 +227,7 @@ fun OudsButton(
  *
  * > Design name: Button
  *
- * > Design version: 3.3.0
+ * > Design version: 3.4.0
  *
  * @param icon Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
  * @param label Label displayed in the button describing the button action. Use action verbs or phrases to tell the user what will happen next.
@@ -299,22 +295,23 @@ internal fun OudsButton(
         exceptionMessage = { "An OudsButton with $appearance appearance displayed as a direct or indirect child of an OudsColoredBox is not allowed." },
         previewMessage = { if (icon != null && label == null) "⛔" else "Not on a\ncolored\nbackground" }
     ) {
-        val buttonTokens = OudsTheme.componentsTokens.button
+        val buttonTokens = OudsTheme.components.button
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getButtonState(enabled = enabled, loader = loader, interactionState = interactionState)
         val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
 
-        val minWidth = size.getTokenValue(default = buttonTokens.sizeMinWidthDefault, small = buttonTokens.sizeMinWidthSmall)
-        val minHeight = size.getTokenValue(default = buttonTokens.sizeMinHeightDefault, small = buttonTokens.sizeMinHeightSmall)
+        val minWidth = size.getValue(default = buttonTokens.size.minWidthDefault, small = buttonTokens.size.minWidthSmall)
+        val minHeight = size.getValue(default = buttonTokens.size.minHeightDefault, small = buttonTokens.size.minHeightSmall)
         val maxHeight = if (icon != null && label == null) {
-            size.getTokenValue(default = buttonTokens.sizeMaxSizeIconOnlyDefault, small = buttonTokens.sizeMaxSizeIconOnlySmall) * iconScale
+            size.getValue(default = buttonTokens.size.maxSizeIconOnlyDefault, small = buttonTokens.size.maxSizeIconOnlySmall) * iconScale
         } else {
             Dp.Unspecified
         }
 
-        val borderRadius = if (LocalThemeSettings.current.roundedCornerButtons == true) buttonTokens.borderRadiusRounded else buttonTokens.borderRadiusDefault
-        val shape = RoundedCornerShape(borderRadius.value)
+        val borderRadius =
+            if (LocalThemeSettings.current.roundedCornerButtons == true) buttonTokens.border.radius.rounded else buttonTokens.border.radius.default
+        val shape = RoundedCornerShape(borderRadius)
 
         val stateDescription = if (state == OudsButtonState.Loading) stringResource(id = R.string.core_common_loading_a11y) else ""
         val contentColor = rememberInteractionColor(interactionState = interactionState) { buttonInteractionState ->
@@ -340,7 +337,7 @@ internal fun OudsButton(
 
         Box(
             modifier = modifier
-                .widthIn(min = minWidth)
+                .widthIn(min = minWidth, max = buttonTokens.size.maxWidth)
                 .heightIn(min = minHeight, max = maxHeight)
                 .background(color = backgroundColor.value, shape = shape)
                 .run {
@@ -364,9 +361,9 @@ internal fun OudsButton(
             contentAlignment = Alignment.Center
         ) {
             if (state == OudsButtonState.Loading) {
-                val progressIndicatorSize = size.getTokenValue(
-                    default = buttonTokens.sizeProgressIndicatorDefault,
-                    small = buttonTokens.sizeProgressIndicatorSmall
+                val progressIndicatorSize = size.getValue(
+                    default = buttonTokens.size.progressIndicatorDefault,
+                    small = buttonTokens.size.progressIndicatorSmall
                 )
                 val modifier = Modifier
                     .size(progressIndicatorSize)
@@ -403,9 +400,9 @@ internal fun OudsButton(
                 }
 
                 if (icon != null) {
-                    val iconSize = size.getTokenValue(
-                        default = if (label == null) buttonTokens.sizeIconOnlyDefault else buttonTokens.sizeIconDefault,
-                        small = if (label == null) buttonTokens.sizeIconOnlySmall else buttonTokens.sizeIconSmall
+                    val iconSize = size.getValue(
+                        default = if (label == null) buttonTokens.size.iconOnlyDefault else buttonTokens.size.iconDefault,
+                        small = if (label == null) buttonTokens.size.iconOnlySmall else buttonTokens.size.iconSmall
                     )
                     val iconContent: @Composable () -> Unit = {
                         icon.Content(
@@ -491,14 +488,14 @@ private fun getButtonState(enabled: Boolean, loader: OudsButtonLoader?, interact
 
 @Composable
 private fun borderWidth(appearance: OudsButtonAppearance, state: OudsButtonState): Dp? {
-    return with(OudsTheme.componentsTokens.button) {
+    return with(OudsTheme.components.button) {
         when (appearance) {
             OudsButtonAppearance.Default -> when (state) {
                 OudsButtonState.Enabled,
-                OudsButtonState.Disabled -> borderWidthDefault.value
+                OudsButtonState.Disabled -> border.width.default
                 OudsButtonState.Hovered,
                 OudsButtonState.Pressed,
-                OudsButtonState.Loading -> if (LocalColorMode.current?.monochrome == true) borderWidthDefaultInteractionMono.value else borderWidthDefaultInteraction.value
+                OudsButtonState.Loading -> if (LocalColorMode.current?.monochrome == true) border.width.defaultInteractionMonochrome else border.width.defaultInteraction
                 OudsButtonState.Focused -> OudsTheme.borders.width.focusInset
             }
             OudsButtonAppearance.Strong,
@@ -512,16 +509,16 @@ private fun borderWidth(appearance: OudsButtonAppearance, state: OudsButtonState
 @Composable
 private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color? {
     return if (LocalColorMode.current?.monochrome == true) {
-        with(OudsTheme.componentsTokens.buttonMonochrome) {
+        with(OudsTheme.components.buttonMonochrome) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
-                    OudsButtonState.Enabled -> colorBorderDefaultEnabled
-                    OudsButtonState.Hovered -> colorBorderDefaultHover
-                    OudsButtonState.Pressed -> colorBorderDefaultPressed
-                    OudsButtonState.Loading -> colorBorderDefaultLoading
-                    OudsButtonState.Disabled -> colorBorderDefaultDisabled
-                    OudsButtonState.Focused -> colorBorderDefaultFocus
-                }.value
+                    OudsButtonState.Enabled -> color.border.default.enabled
+                    OudsButtonState.Hovered -> color.border.default.hover
+                    OudsButtonState.Pressed -> color.border.default.pressed
+                    OudsButtonState.Loading -> color.border.default.loading
+                    OudsButtonState.Disabled -> color.border.default.disabled
+                    OudsButtonState.Focused -> color.border.default.focus
+                }
                 OudsButtonAppearance.Strong,
                 OudsButtonAppearance.Minimal -> null
                 OudsButtonAppearance.Brand,
@@ -529,76 +526,76 @@ private fun borderColor(appearance: OudsButtonAppearance, state: OudsButtonState
             }
         }
     } else {
-        with(OudsTheme.componentsTokens.button) {
+        with(OudsTheme.components.button) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
-                    OudsButtonState.Enabled -> colorBorderDefaultEnabled
-                    OudsButtonState.Hovered -> colorBorderDefaultHover
-                    OudsButtonState.Pressed -> colorBorderDefaultPressed
-                    OudsButtonState.Loading -> colorBorderDefaultLoading
-                    OudsButtonState.Disabled -> colorBorderDefaultDisabled
-                    OudsButtonState.Focused -> colorBorderDefaultFocus
+                    OudsButtonState.Enabled -> color.border.default.enabled
+                    OudsButtonState.Hovered -> color.border.default.hover
+                    OudsButtonState.Pressed -> color.border.default.pressed
+                    OudsButtonState.Loading -> color.border.default.loading
+                    OudsButtonState.Disabled -> color.border.default.disabled
+                    OudsButtonState.Focused -> color.border.default.focus
                 }
                 OudsButtonAppearance.Strong,
                 OudsButtonAppearance.Brand,
                 OudsButtonAppearance.Minimal,
                 OudsButtonAppearance.Negative -> null
             }
-        }?.value
+        }
     }
 }
 
 @Composable
 private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color {
     return if (LocalColorMode.current?.monochrome == true) {
-        with(OudsTheme.componentsTokens.buttonMonochrome) {
+        with(OudsTheme.components.buttonMonochrome) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
-                    OudsButtonState.Enabled -> colorBgDefaultEnabled
-                    OudsButtonState.Focused -> colorBgDefaultFocus
-                    OudsButtonState.Hovered -> colorBgDefaultHover
-                    OudsButtonState.Pressed -> colorBgDefaultPressed
-                    OudsButtonState.Loading -> colorBgDefaultLoading
-                    OudsButtonState.Disabled -> colorBgDefaultDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.background.default.enabled
+                    OudsButtonState.Focused -> color.background.default.focus
+                    OudsButtonState.Hovered -> color.background.default.hover
+                    OudsButtonState.Pressed -> color.background.default.pressed
+                    OudsButtonState.Loading -> color.background.default.loading
+                    OudsButtonState.Disabled -> color.background.default.disabled
+                }
                 OudsButtonAppearance.Minimal -> when (state) {
                     OudsButtonState.Enabled,
                     OudsButtonState.Disabled,
                     OudsButtonState.Loading -> Color.Transparent
-                    OudsButtonState.Focused -> colorBgMinimalFocus.value
-                    OudsButtonState.Hovered -> colorBgMinimalHover.value
-                    OudsButtonState.Pressed -> colorBgMinimalPressed.value
+                    OudsButtonState.Focused -> color.background.minimal.focus
+                    OudsButtonState.Hovered -> color.background.minimal.hover
+                    OudsButtonState.Pressed -> color.background.minimal.pressed
                 }
                 OudsButtonAppearance.Strong -> when (state) {
-                    OudsButtonState.Enabled -> colorBgStrongEnabled
-                    OudsButtonState.Focused -> colorBgStrongFocus
-                    OudsButtonState.Hovered -> colorBgStrongHover
-                    OudsButtonState.Pressed -> colorBgStrongPressed
-                    OudsButtonState.Loading -> colorBgStrongLoading
-                    OudsButtonState.Disabled -> colorBgStrongDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.background.strong.enabled
+                    OudsButtonState.Focused -> color.background.strong.focus
+                    OudsButtonState.Hovered -> color.background.strong.hover
+                    OudsButtonState.Pressed -> color.background.strong.pressed
+                    OudsButtonState.Loading -> color.background.strong.loading
+                    OudsButtonState.Disabled -> color.background.strong.disabled
+                }
                 OudsButtonAppearance.Brand,
                 OudsButtonAppearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
-        with(OudsTheme.componentsTokens.button) {
+        with(OudsTheme.components.button) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
-                    OudsButtonState.Enabled -> colorBgDefaultEnabled
-                    OudsButtonState.Focused -> colorBgDefaultFocus
-                    OudsButtonState.Hovered -> colorBgDefaultHover
-                    OudsButtonState.Pressed -> colorBgDefaultPressed
-                    OudsButtonState.Loading -> colorBgDefaultLoading
-                    OudsButtonState.Disabled -> colorBgDefaultDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.background.default.enabled
+                    OudsButtonState.Focused -> color.background.default.focus
+                    OudsButtonState.Hovered -> color.background.default.hover
+                    OudsButtonState.Pressed -> color.background.default.pressed
+                    OudsButtonState.Loading -> color.background.default.loading
+                    OudsButtonState.Disabled -> color.background.default.disabled
+                }
                 OudsButtonAppearance.Minimal -> when (state) {
                     OudsButtonState.Enabled,
                     OudsButtonState.Disabled,
                     OudsButtonState.Loading -> Color.Transparent
-                    OudsButtonState.Focused -> colorBgMinimalFocus.value
-                    OudsButtonState.Hovered -> colorBgMinimalHover.value
-                    OudsButtonState.Pressed -> colorBgMinimalPressed.value
+                    OudsButtonState.Focused -> color.background.minimal.focus
+                    OudsButtonState.Hovered -> color.background.minimal.hover
+                    OudsButtonState.Pressed -> color.background.minimal.pressed
                 }
                 OudsButtonAppearance.Strong -> when (state) {
                     OudsButtonState.Enabled -> OudsTheme.colorScheme.action.enabled
@@ -609,11 +606,11 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
                     OudsButtonState.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
                 OudsButtonAppearance.Brand -> when (state) {
-                    OudsButtonState.Enabled -> colorBgBrandEnabled.value
-                    OudsButtonState.Focused -> colorBgBrandFocus.value
-                    OudsButtonState.Hovered -> colorBgBrandHover.value
-                    OudsButtonState.Pressed -> colorBgBrandPressed.value
-                    OudsButtonState.Loading -> colorBgBrandLoading.value
+                    OudsButtonState.Enabled -> color.background.brand.enabled
+                    OudsButtonState.Focused -> color.background.brand.focus
+                    OudsButtonState.Hovered -> color.background.brand.hover
+                    OudsButtonState.Pressed -> color.background.brand.pressed
+                    OudsButtonState.Loading -> color.background.brand.loading
                     OudsButtonState.Disabled -> OudsTheme.colorScheme.action.disabled
                 }
                 OudsButtonAppearance.Negative -> when (state) {
@@ -632,55 +629,55 @@ private fun backgroundColor(appearance: OudsButtonAppearance, state: OudsButtonS
 @Composable
 private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonState): Color {
     return if (LocalColorMode.current?.monochrome == true) {
-        with(OudsTheme.componentsTokens.buttonMonochrome) {
+        with(OudsTheme.components.buttonMonochrome) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
-                    OudsButtonState.Enabled -> colorContentDefaultEnabled
-                    OudsButtonState.Focused -> colorContentDefaultFocus
-                    OudsButtonState.Hovered -> colorContentDefaultHover
-                    OudsButtonState.Pressed -> colorContentDefaultPressed
-                    OudsButtonState.Loading -> colorContentDefaultLoading
-                    OudsButtonState.Disabled -> colorContentDefaultDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.content.default.enabled
+                    OudsButtonState.Focused -> color.content.default.focus
+                    OudsButtonState.Hovered -> color.content.default.hover
+                    OudsButtonState.Pressed -> color.content.default.pressed
+                    OudsButtonState.Loading -> color.content.default.loading
+                    OudsButtonState.Disabled -> color.content.default.disabled
+                }
                 OudsButtonAppearance.Minimal -> when (state) {
-                    OudsButtonState.Enabled -> colorContentMinimalEnabled
-                    OudsButtonState.Focused -> colorContentMinimalFocus
-                    OudsButtonState.Hovered -> colorContentMinimalHover
-                    OudsButtonState.Pressed -> colorContentMinimalPressed
-                    OudsButtonState.Loading -> colorContentMinimalLoading
-                    OudsButtonState.Disabled -> colorContentMinimalDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.content.minimal.enabled
+                    OudsButtonState.Focused -> color.content.minimal.focus
+                    OudsButtonState.Hovered -> color.content.minimal.hover
+                    OudsButtonState.Pressed -> color.content.minimal.pressed
+                    OudsButtonState.Loading -> color.content.minimal.loading
+                    OudsButtonState.Disabled -> color.content.minimal.disabled
+                }
                 OudsButtonAppearance.Strong -> when (state) {
-                    OudsButtonState.Enabled -> colorContentStrongEnabled
-                    OudsButtonState.Focused -> colorContentStrongFocus
-                    OudsButtonState.Hovered -> colorContentStrongHover
-                    OudsButtonState.Pressed -> colorContentStrongPressed
-                    OudsButtonState.Loading -> colorContentStrongLoading
-                    OudsButtonState.Disabled -> colorContentStrongDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.content.strong.enabled
+                    OudsButtonState.Focused -> color.content.strong.focus
+                    OudsButtonState.Hovered -> color.content.strong.hover
+                    OudsButtonState.Pressed -> color.content.strong.pressed
+                    OudsButtonState.Loading -> color.content.strong.loading
+                    OudsButtonState.Disabled -> color.content.strong.disabled
+                }
                 OudsButtonAppearance.Brand,
                 OudsButtonAppearance.Negative -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsButton
             }
         }
     } else {
-        with(OudsTheme.componentsTokens.button) {
+        with(OudsTheme.components.button) {
             when (appearance) {
                 OudsButtonAppearance.Default -> when (state) {
-                    OudsButtonState.Enabled -> colorContentDefaultEnabled
-                    OudsButtonState.Focused -> colorContentDefaultFocus
-                    OudsButtonState.Hovered -> colorContentDefaultHover
-                    OudsButtonState.Pressed -> colorContentDefaultPressed
-                    OudsButtonState.Loading -> colorContentDefaultLoading
-                    OudsButtonState.Disabled -> colorContentDefaultDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.content.default.enabled
+                    OudsButtonState.Focused -> color.content.default.focus
+                    OudsButtonState.Hovered -> color.content.default.hover
+                    OudsButtonState.Pressed -> color.content.default.pressed
+                    OudsButtonState.Loading -> color.content.default.loading
+                    OudsButtonState.Disabled -> color.content.default.disabled
+                }
                 OudsButtonAppearance.Minimal -> when (state) {
-                    OudsButtonState.Enabled -> colorContentMinimalEnabled
-                    OudsButtonState.Focused -> colorContentMinimalFocus
-                    OudsButtonState.Hovered -> colorContentMinimalHover
-                    OudsButtonState.Pressed -> colorContentMinimalPressed
-                    OudsButtonState.Loading -> colorContentMinimalLoading
-                    OudsButtonState.Disabled -> colorContentMinimalDisabled
-                }.value
+                    OudsButtonState.Enabled -> color.content.minimal.enabled
+                    OudsButtonState.Focused -> color.content.minimal.focus
+                    OudsButtonState.Hovered -> color.content.minimal.hover
+                    OudsButtonState.Pressed -> color.content.minimal.pressed
+                    OudsButtonState.Loading -> color.content.minimal.loading
+                    OudsButtonState.Disabled -> color.content.minimal.disabled
+                }
                 OudsButtonAppearance.Strong -> when (state) {
                     OudsButtonState.Enabled -> OudsTheme.colorScheme.content.onAction.enabled
                     OudsButtonState.Focused -> OudsTheme.colorScheme.content.onAction.focus
@@ -690,11 +687,11 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
                     OudsButtonState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
                 OudsButtonAppearance.Brand -> when (state) {
-                    OudsButtonState.Enabled -> colorContentBrandEnabled.value
-                    OudsButtonState.Focused -> colorContentBrandFocus.value
-                    OudsButtonState.Hovered -> colorContentBrandHover.value
-                    OudsButtonState.Pressed -> colorContentBrandPressed.value
-                    OudsButtonState.Loading -> colorContentBrandLoading.value
+                    OudsButtonState.Enabled -> color.content.brand.enabled
+                    OudsButtonState.Focused -> color.content.brand.focus
+                    OudsButtonState.Hovered -> color.content.brand.hover
+                    OudsButtonState.Pressed -> color.content.brand.pressed
+                    OudsButtonState.Loading -> color.content.brand.loading
                     OudsButtonState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
                 }
                 OudsButtonAppearance.Negative -> when (state) {
@@ -712,24 +709,24 @@ private fun contentColor(appearance: OudsButtonAppearance, state: OudsButtonStat
 
 @Composable
 private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?, label: String?, size: OudsButtonSize): PaddingValues {
-    return with(OudsTheme.componentsTokens.button) {
+    return with(OudsTheme.components.button) {
         when (component) {
             is OudsButtonComponent.Button -> when {
                 icon != null && label != null -> {
-                    val verticalPadding = size.getTokenValue(default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+                    val verticalPadding = size.getValue(default = space.paddingBlockDefault, small = space.paddingBlockSmall)
                     PaddingValues(
-                        start = size.getTokenValue(default = spacePaddingInlineIconStartDefault, small = spacePaddingInlineIconStartSmall),
+                        start = size.getValue(default = space.paddingInline.iconStartDefault, small = space.paddingInline.iconStartSmall),
                         top = verticalPadding,
-                        end = size.getTokenValue(default = spacePaddingInlineEndIconStartDefault, small = spacePaddingInlineEndIconStartSmall),
+                        end = size.getValue(default = space.paddingInline.endIconStartDefault, small = space.paddingInline.endIconStartSmall),
                         bottom = verticalPadding
                     )
                 }
                 icon != null && label == null -> PaddingValues(
-                    all = size.getTokenValue(default = spaceInsetIconOnlyDefault, small = spaceInsetIconOnlySmall),
+                    all = size.getValue(default = space.inset.iconOnlyDefault, small = space.inset.iconOnlySmall),
                 )
                 else -> PaddingValues(
-                    horizontal = size.getTokenValue(default = spacePaddingInlineIconNoneDefault, small = spacePaddingInlineIconNoneSmall),
-                    vertical = size.getTokenValue(default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+                    horizontal = size.getValue(default = space.paddingInline.iconNoneDefault, small = space.paddingInline.iconNoneSmall),
+                    vertical = size.getValue(default = space.paddingBlockDefault, small = space.paddingBlockSmall)
                 )
             }
             is OudsButtonComponent.NavigationButton -> when {
@@ -738,15 +735,15 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                     val endPadding: Dp
                     when (component.chevron) {
                         OudsNavigationButtonChevron.Next -> {
-                            startPadding = size.getTokenValue(default = spacePaddingInlineStartIconEndDefault, small = spacePaddingInlineStartIconEndSmall)
-                            endPadding = size.getTokenValue(default = spacePaddingInlineChevronEndDefault, small = spacePaddingInlineChevronEndSmall)
+                            startPadding = size.getValue(default = space.paddingInline.startIconEndDefault, small = space.paddingInline.startIconEndSmall)
+                            endPadding = size.getValue(default = space.paddingInline.chevronEndDefault, small = space.paddingInline.chevronEndSmall)
                         }
                         OudsNavigationButtonChevron.Previous -> {
-                            startPadding = size.getTokenValue(default = spacePaddingInlineChevronStartDefault, small = spacePaddingInlineChevronStartSmall)
-                            endPadding = size.getTokenValue(default = spacePaddingInlineEndIconStartDefault, small = spacePaddingInlineEndIconStartSmall)
+                            startPadding = size.getValue(default = space.paddingInline.chevronStartDefault, small = space.paddingInline.chevronStartSmall)
+                            endPadding = size.getValue(default = space.paddingInline.endIconStartDefault, small = space.paddingInline.endIconStartSmall)
                         }
                     }
-                    val verticalPadding = size.getTokenValue(default = spacePaddingBlockDefault, small = spacePaddingBlockSmall)
+                    val verticalPadding = size.getValue(default = space.paddingBlockDefault, small = space.paddingBlockSmall)
                     PaddingValues(
                         start = startPadding,
                         top = verticalPadding,
@@ -754,7 +751,7 @@ private fun contentPadding(component: OudsButtonComponent, icon: OudsButtonIcon?
                         bottom = verticalPadding
                     )
                 }
-                else -> PaddingValues(all = size.getTokenValue(default = spaceInsetIconOnlyDefault, small = spaceInsetIconOnlySmall))
+                else -> PaddingValues(all = size.getValue(default = space.inset.iconOnlyDefault, small = space.inset.iconOnlySmall))
             }
         }
     }
@@ -898,7 +895,7 @@ internal sealed interface OudsButtonComponent {
 
         @Composable
         override fun getColumnGap(size: OudsButtonSize): Dp {
-            return with(OudsTheme.componentsTokens.button) { size.getTokenValue(default = spaceColumnGapIconDefault, small = spaceColumnGapIconSmall) }
+            return with(OudsTheme.components.button) { size.getValue(default = space.columnGap.iconDefault, small = space.columnGap.iconSmall) }
         }
     }
 
@@ -911,7 +908,7 @@ internal sealed interface OudsButtonComponent {
 
         @Composable
         override fun getColumnGap(size: OudsButtonSize): Dp {
-            return OudsTheme.componentsTokens.button.spaceColumnGapChevronDefault.value
+            return OudsTheme.components.button.space.columnGap.chevronDefault
         }
     }
 }
@@ -919,17 +916,9 @@ internal sealed interface OudsButtonComponent {
 internal enum class OudsButtonSize {
     Default, Small;
 
-    @Composable
-    internal fun <T> getTokenValue(default: T, small: T): Dp where T : OudsSizeKeyToken = getKeyToken(default, small).value
-
-    @Composable
-    internal fun <T> getTokenValue(default: T, small: T): Dp where T : OudsSpaceKeyToken = getKeyToken(default, small).value
-
-    private fun <T> getKeyToken(default: T, small: T): T where T : OudsKeyToken {
-        return when (this) {
-            Default -> default
-            Small -> small
-        }
+    internal fun getValue(default: Dp, small: Dp) = when (this) {
+        Default -> default
+        Small -> small
     }
 }
 
@@ -1014,7 +1003,7 @@ internal fun PreviewOudsButtonWithIconBadge(theme: OudsThemeContract, count: Int
             nullableLabel = null,
             onClick = {},
             appearance = OudsButtonAppearance.Minimal,
-            iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.componentsTokens.bar.colorBorderBadge.value, count = count)
+            iconOnlyBadge = OudsButtonIconBadge("", OudsTheme.components.bar.color.border.badge, count = count)
         )
     }
 }
@@ -1029,6 +1018,19 @@ internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview
     OudsButton(
         nullableIcon = OudsButtonIcon(Icons.Filled.FavoriteBorder, ""),
         nullableLabel = "Button\non two lines",
+        onClick = {},
+    )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsButtonMaxWidthReached() = PreviewOudsButtonMaxWidthReached(getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsButtonMaxWidthReached(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    OudsButton(
+        label = "Button with a very very long label to reach max width",
         onClick = {},
     )
 }
