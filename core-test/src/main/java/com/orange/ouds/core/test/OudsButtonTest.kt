@@ -60,6 +60,12 @@ internal class OudsButtonTest {
         OudsComponentTestSuite.theme
     )
 
+    class MaxWidthReached : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Button.MaxWidthReached,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
+
     class WithUntintedIcon : OudsComponentSnapshotTest(
         OudsPreviewableComponent.Button.WithUntintedIcon,
         parameter = null,
