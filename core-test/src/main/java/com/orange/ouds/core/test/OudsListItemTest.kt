@@ -52,7 +52,8 @@ internal class OudsListItemTest {
     class WithUntintedIcon : OudsComponentSnapshotTest(
         OudsPreviewableComponent.ListItem.WithUntintedIcon,
         parameter = null,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.ListItem.WithUntintedIcon.PreviewHeightDp
     )
 
     class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
