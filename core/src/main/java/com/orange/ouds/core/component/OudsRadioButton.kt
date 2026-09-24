@@ -84,6 +84,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param error Optional [OudsError] to indicate that the radio button should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this radio button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the radio button will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
  */
@@ -96,7 +97,8 @@ fun OudsRadioButton(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
@@ -115,9 +117,9 @@ fun OudsRadioButton(
         val radioButtonTokens = OudsTheme.componentsTokens.radioButton
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
-        val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+        val state = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { radioButtonInteractionState ->
-            val radioButtonState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = radioButtonInteractionState)
+            val radioButtonState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = radioButtonInteractionState)
             backgroundColor(state = radioButtonState)
         }
 
@@ -132,27 +134,60 @@ fun OudsRadioButton(
             )
         } else Modifier
 
-        Box(
-            modifier = modifier
-                .widthIn(radioButtonTokens.sizeMinWidth.value)
-                .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
-                .background(color = backgroundColor.value, shape = shape)
-                .outerBorder(state = state, shape = shape, handleHighContrastMode = true)
-                .then(selectableModifier)
-                .run {
-                    error?.message?.let { description ->
-                        semantics {
-                            error(description)
+        SkeletonLayout(
+            modifier = modifier,
+            componentState = state,
+            skeletonState = skeleton?.state,
+            securityMargin = false,
+            shape = shape
+        ) { contentModifier ->
+            Box(
+                modifier = contentModifier
+                    .widthIn(radioButtonTokens.sizeMinWidth.value)
+                    .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
+                    .background(color = backgroundColor.value, shape = shape)
+                    .outerBorder(state = state, shape = shape, handleHighContrastMode = true)
+                    .then(selectableModifier)
+                    .run {
+                        error?.message?.let { description ->
+                            semantics {
+                                error(description)
+                            }
+                        }.orElse {
+                            this
                         }
-                    }.orElse {
-                        this
-                    }
-                },
-            contentAlignment = Alignment.Center,
-        ) {
-            OudsRadioButtonIndicator(state = state, selected = selected, error = error != null)
+                    },
+                contentAlignment = Alignment.Center,
+            ) {
+                OudsRadioButtonIndicator(state = state, selected = selected, error = error != null)
+            }
         }
     }
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsRadioButton(
+    selected: Boolean,
+    onClick: (() -> Unit)?,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsRadioButton(
+        selected = selected,
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        interactionSource = interactionSource
+    )
 }
 
 @Composable
@@ -197,8 +232,9 @@ private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp
             OudsControlState.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
             OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
             OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
-        }.value
-    }.takeUnlessHairline
+            OudsControlState.Skeleton -> null
+        }?.value
+    }?.takeUnlessHairline
 }
 
 @Composable
@@ -219,6 +255,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
                 OudsControlState.Hovered -> hover
                 OudsControlState.Pressed -> pressed
                 OudsControlState.Focused -> focus
+                OudsControlState.Skeleton -> Color.Transparent
             }
         }
     }
@@ -238,7 +275,10 @@ private fun selectionColor(state: OudsControlState, error: Boolean): Color {
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.listItem) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
+            OudsControlState.Enabled,
+            OudsControlState.Disabled,
+            OudsControlState.ReadOnly,
+            OudsControlState.Skeleton -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
             OudsControlState.Pressed -> colorBgPressed.value
             OudsControlState.Focused -> colorBgFocus.value

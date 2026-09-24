@@ -39,7 +39,8 @@ fun rememberRadioButtonItemDemoState(
     extraLabel: String? = null,
     description: String? = null,
     constrainedMaxWidth: Boolean = false,
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     selectedValue,
     icon,
@@ -56,6 +57,7 @@ fun rememberRadioButtonItemDemoState(
     description,
     constrainedMaxWidth,
     annotatedText,
+    skeleton,
     saver = RadioButtonItemDemoState.Saver
 ) {
     RadioButtonItemDemoState(
@@ -73,7 +75,8 @@ fun rememberRadioButtonItemDemoState(
         extraLabel,
         description,
         constrainedMaxWidth,
-        annotatedText
+        annotatedText,
+        skeleton
     )
 }
 
@@ -92,8 +95,23 @@ class RadioButtonItemDemoState(
     extraLabel: String?,
     description: String?,
     constrainedMaxWidth: Boolean,
-    annotatedText: Boolean
-) : ControlItemDemoState(icon, edgeToEdge, divider, reversed, enabled, readOnly, error, errorMessage, label, description, constrainedMaxWidth, annotatedText) {
+    annotatedText: Boolean,
+    skeleton: Boolean
+) : ControlItemDemoState(
+    icon,
+    edgeToEdge,
+    divider,
+    reversed,
+    enabled,
+    readOnly,
+    error,
+    errorMessage,
+    label,
+    description,
+    constrainedMaxWidth,
+    annotatedText,
+    skeleton
+) {
 
     companion object {
         val Values = listOf(1, 2)
@@ -126,7 +144,8 @@ class RadioButtonItemDemoState(
                         list[2] as String?,
                         description,
                         constrainedMaxWidth,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             }
@@ -134,6 +153,8 @@ class RadioButtonItemDemoState(
     }
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
+
     var outlined: Boolean by mutableStateOf(outlined)
+
     var extraLabel: String? by mutableStateOf(extraLabel)
 }

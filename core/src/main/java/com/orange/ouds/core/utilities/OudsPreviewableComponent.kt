@@ -594,7 +594,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 880
+            const val PreviewHeightDp = 1030
 
             override val parameters: List<Any> = OudsCheckboxItemPreviewParameterProvider().values.toList()
 
@@ -612,7 +612,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object HighContrastModeEnabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 680
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = OudsCheckboxItemHighContrastModePreviewParameterProvider().values.toList()
 
@@ -643,7 +643,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 840
+            const val PreviewHeightDp = 970
 
             override val parameters: List<Any> = emptyList()
 
@@ -687,7 +687,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithUntintedIcon : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 670
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = emptyList()
 
@@ -706,7 +706,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
-            const val PreviewWidthDp = 410
+            const val PreviewWidthDp = 480
 
             override val parameters: List<Any> = OudsCheckboxPreviewParameterProvider().values.toList()
 
@@ -723,7 +723,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object HighContrastModeEnabled : OudsPreviewableComponent {
 
-            const val PreviewWidthDp = 410
+            const val PreviewWidthDp = 480
 
             override val parameters: List<Any> = OudsCheckboxHighContrastModePreviewParameterProvider().values.toList()
 
@@ -1410,7 +1410,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 880
+            const val PreviewHeightDp = 1030
 
             override val parameters: List<Any> = OudsRadioButtonItemPreviewParameterProvider().values.toList()
 
@@ -1428,7 +1428,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object HighContrastModeEnabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 680
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = OudsRadioButtonItemHighContrastModePreviewParameterProvider().values.toList()
 
@@ -1459,7 +1459,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 880
+            const val PreviewHeightDp = 970
 
             override val parameters: List<Any> = emptyList()
 
@@ -1503,7 +1503,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithUntintedIcon : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 670
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = emptyList()
 
@@ -1522,7 +1522,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
-            const val PreviewWidthDp = 410
+            const val PreviewWidthDp = 480
 
             override val parameters: List<Any> = OudsRadioButtonPreviewParameterProvider().values.toList()
 
@@ -1539,7 +1539,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object HighContrastModeEnabled : OudsPreviewableComponent {
 
-            const val PreviewWidthDp = 410
+            const val PreviewWidthDp = 480
 
             override val parameters: List<Any> = emptyList()
 
@@ -1550,6 +1550,21 @@ interface OudsPreviewableComponent {
                     darkThemeEnabled = darkThemeEnabled
                 )
             }
+        }
+    }
+
+    @InternalOudsApi
+    object Skeleton : OudsPreviewableComponent {
+
+        override val parameters: List<Any> = OudsSkeletonPreviewParameterProvider().values.toList()
+
+        @Composable
+        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+            PreviewOudsSkeleton(
+                theme = theme,
+                darkThemeEnabled = darkThemeEnabled,
+                parameter = parameter as OudsSkeletonPreviewParameter
+            )
         }
     }
 
@@ -1766,7 +1781,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 880
+            const val PreviewHeightDp = 1030
 
             override val parameters: List<Any> = OudsSwitchItemPreviewParameterProvider().values.toList()
 
@@ -1797,7 +1812,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 850
+            const val PreviewHeightDp = 970
 
             override val parameters: List<Any> = emptyList()
 
@@ -1841,7 +1856,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithUntintedIcon : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 670
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = emptyList()
 
@@ -1851,21 +1866,6 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
-        }
-    }
-
-    @InternalOudsApi
-    object Skeleton : OudsPreviewableComponent {
-
-        override val parameters: List<Any> = OudsSkeletonPreviewParameterProvider().values.toList()
-
-        @Composable
-        override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
-            PreviewOudsSkeleton(
-                theme = theme,
-                darkThemeEnabled = darkThemeEnabled,
-                parameter = parameter as OudsSkeletonPreviewParameter
-            )
         }
     }
 

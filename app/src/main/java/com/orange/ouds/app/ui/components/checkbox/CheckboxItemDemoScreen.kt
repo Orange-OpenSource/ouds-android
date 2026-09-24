@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemError
 import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemSkeleton
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
@@ -85,7 +86,8 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     enabled = enabled,
                     readOnly = readOnly,
                     error = checkboxItemError(state = this, isLastItem = isLastItem),
-                    constrainedMaxWidth = constrainedMaxWidth
+                    constrainedMaxWidth = constrainedMaxWidth,
+                    skeleton = controlItemSkeleton(state = this)
                 )
             }
         }
@@ -120,7 +122,8 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     enabled = enabled,
                     readOnly = readOnly,
                     error = checkboxItemError(state = this, isLastItem = isLastItem),
-                    constrainedMaxWidth = constrainedMaxWidth
+                    constrainedMaxWidth = constrainedMaxWidth,
+                    skeleton = controlItemSkeleton(state = this)
                 )
             }
         }
