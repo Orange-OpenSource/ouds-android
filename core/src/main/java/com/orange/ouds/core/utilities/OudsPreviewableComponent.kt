@@ -1188,7 +1188,7 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 840
+            const val PreviewHeightDp = 980
 
             override val parameters: List<Any> = OudsPasswordInputPreviewParameterProvider().values.toList()
 
@@ -1726,7 +1726,7 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 1390
+            const val PreviewHeightDp = 1590
 
             override val parameters: List<Any> = OudsTextAreaPreviewParameterProvider().values.toList()
 
@@ -1742,7 +1742,7 @@ interface OudsPreviewableComponent {
 
         object WithRoundedCorners : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 900
+            const val PreviewHeightDp = 1110
 
             override val parameters: List<Any> = emptyList()
 
@@ -1799,7 +1799,7 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 1100
+            const val PreviewHeightDp = 1260
 
             override val parameters: List<Any> = OudsTextInputPreviewParameterProvider().values.toList()
 
@@ -1815,7 +1815,7 @@ interface OudsPreviewableComponent {
 
         object WithRoundedCorners : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 670
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = emptyList()
 
@@ -1869,7 +1869,7 @@ interface OudsPreviewableComponent {
 
         object WithUntintedLeadingIcon : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 670
+            const val PreviewHeightDp = 780
 
             override val parameters: List<Any> = emptyList()
 
