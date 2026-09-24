@@ -544,6 +544,7 @@ data class OudsComponents internal constructor(
             val maxHeightIconOnly: Dp,
             val maxSizeIconOnlyDefault: Dp,
             val maxSizeIconOnlySmall: Dp,
+            val maxWidth: Dp,
             @Deprecated("Please use minHeightDefault instead.", ReplaceWith("OudsTheme.components.button.size.minHeightDefault"))
             val minHeight: Dp,
             val minHeightDefault: Dp,
@@ -2304,6 +2305,7 @@ private fun OudsButtonTokens.getButton(): OudsComponents.Button {
             maxHeightIconOnly = sizeMaxSizeIconOnlyDefault.value,
             maxSizeIconOnlyDefault = sizeMaxSizeIconOnlyDefault.value,
             maxSizeIconOnlySmall = sizeMaxSizeIconOnlySmall.value,
+            maxWidth = sizeMaxWidth.dp,
             minHeight = sizeMinHeightDefault.value,
             minHeightDefault = sizeMinHeightDefault.value,
             minHeightSmall = sizeMinHeightSmall.value,
