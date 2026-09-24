@@ -139,6 +139,7 @@ import com.orange.ouds.core.component.PreviewOudsFilterChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInlineAlert
+import com.orange.ouds.core.component.PreviewOudsInlineAlertSkeleton
 import com.orange.ouds.core.component.PreviewOudsInlineAlertWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInputTag
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
@@ -994,6 +995,19 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+
+        object Skeleton : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsInlineAlertSkeleton(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
