@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
@@ -34,10 +35,12 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsPasswordInput
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsTextInputLoader
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -145,6 +148,11 @@ private fun PasswordInputDemoBottomSheetContent(state: PasswordInputDemoState) {
             checked = annotatedText,
             onCheckedChange = { annotatedText = it }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -164,6 +172,7 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             else -> null
         }
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        val passwordInputSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         if (annotatedText) {
             val helperTextHtml = stringResource(R.string.app_components_passwordInput_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
@@ -182,7 +191,8 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
                 prefix = prefix,
                 helperText = annotatedHelperText,
                 constrainedMaxWidth = constrainedMaxWidth,
-                onKeyboardAction = onKeyboardAction
+                onKeyboardAction = onKeyboardAction,
+                skeleton = passwordInputSkeleton
             )
         } else {
             OudsPasswordInput(
@@ -198,7 +208,8 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
                 prefix = prefix,
                 helperText = helperText,
                 constrainedMaxWidth = constrainedMaxWidth,
-                onKeyboardAction = onKeyboardAction
+                onKeyboardAction = onKeyboardAction,
+                skeleton = passwordInputSkeleton
             )
         }
     }
@@ -226,6 +237,7 @@ private fun Code.Builder.passwordInputDemoCodeSnippet(state: PasswordInputDemoSt
             lambdaArgument("onKeyboardAction") {
                 functionCall("focusManager.clearFocus")
             }
+            if (skeleton) skeletonArgument()
         }
     }
 }

@@ -144,10 +144,63 @@ private const val ComponentName = "OudsTextArea"
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedErrorSample
  */
+@Composable
+fun OudsTextArea(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextArea(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     textFieldState: TextFieldState,
@@ -181,7 +234,6 @@ fun OudsTextArea(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -230,7 +282,6 @@ fun OudsTextArea(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -238,8 +289,7 @@ fun OudsTextArea(
         onTextLayout = onTextLayout,
         inputTransformation = inputTransformation,
         outputTransformation = outputTransformation,
-        interactionSource = interactionSource,
-        autoResize = true
+        interactionSource = interactionSource
     )
 }
 
@@ -300,11 +350,64 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextArea(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextArea(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     textFieldState: TextFieldState,
@@ -337,8 +440,7 @@ fun OudsTextArea(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -386,8 +488,7 @@ fun OudsTextArea(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -395,8 +496,7 @@ fun OudsTextArea(
         onTextLayout = onTextLayout,
         inputTransformation = inputTransformation,
         outputTransformation = outputTransformation,
-        interactionSource = interactionSource,
-        autoResize = true
+        interactionSource = interactionSource
     )
 }
 
@@ -421,58 +521,66 @@ private fun OudsTextArea(
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
-    autoResize: Boolean = true
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
     val emptyText = textFieldState.text.isEmpty()
 
     val scrollState = rememberScrollState()
 
-    CheckedTextInput(
-        componentName = ComponentName,
-        state = state,
-        emptyText = emptyText,
-        readOnly = readOnly,
-        error = error,
-        basicTextField = {
-            BasicTextField(
-                modifier = modifier.textInputSemantic(label),
-                state = textFieldState,
-                enabled = textInputEnabled(state = state),
-                readOnly = readOnly,
-                textStyle = textInputTextStyle(state = state),
-                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = if (autoResize) maxLines else minLines),
-                cursorBrush = textInputCursorBrush(state = state, error = error != null),
-                keyboardOptions = keyboardOptions,
-                onKeyboardAction = onKeyboardAction,
-                onTextLayout = onTextLayout,
-                inputTransformation = inputTransformation,
-                outputTransformation = outputTransformation,
-                interactionSource = interactionSource,
-                decorator = { innerTextField ->
-                    OudsTextAreaDecorator(
-                        innerTextField = innerTextField,
-                        value = textFieldState.text.toString(),
-                        state = state,
-                        label = label,
-                        placeholder = placeholder,
-                        loader = loader,
-                        outlined = outlined,
-                        error = error,
-                        helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
-                        constrainedMaxWidth = constrainedMaxWidth,
-                        scrollState = scrollState,
-                    )
-                },
-                scrollState = scrollState
-            )
-        }
-    )
+    SkeletonLayout(
+        modifier = modifier,
+        componentState = state,
+        skeletonState = skeleton?.state,
+        securityMargin = false
+    ) { contentModifier ->
+        CheckedTextInput(
+            componentName = ComponentName,
+            state = state,
+            emptyText = emptyText,
+            readOnly = readOnly,
+            error = error,
+            basicTextField = {
+                BasicTextField(
+                    modifier = contentModifier.textInputSemantic(label),
+                    state = textFieldState,
+                    enabled = textInputEnabled(state = state),
+                    readOnly = readOnly,
+                    textStyle = textInputTextStyle(state = state),
+                    lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = if (autoResize) maxLines else minLines),
+                    cursorBrush = textInputCursorBrush(state = state, error = error != null),
+                    keyboardOptions = keyboardOptions,
+                    onKeyboardAction = onKeyboardAction,
+                    onTextLayout = onTextLayout,
+                    inputTransformation = inputTransformation,
+                    outputTransformation = outputTransformation,
+                    interactionSource = interactionSource,
+                    decorator = { innerTextField ->
+                        OudsTextAreaDecorator(
+                            innerTextField = innerTextField,
+                            value = textFieldState.text.toString(),
+                            state = state,
+                            label = label,
+                            placeholder = placeholder,
+                            loader = loader,
+                            outlined = outlined,
+                            error = error,
+                            helperText = helperText,
+                            annotatedHelperText = annotatedHelperText,
+                            helperLink = helperLink,
+                            constrainedMaxWidth = constrainedMaxWidth,
+                            scrollState = scrollState,
+                        )
+                    },
+                    scrollState = scrollState
+                )
+            }
+        )
+    }
 }
 
 /**
@@ -527,10 +635,63 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
  */
+@Composable
+fun OudsTextArea(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: String,
@@ -565,7 +726,6 @@ fun OudsTextArea(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -614,15 +774,13 @@ fun OudsTextArea(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource,
-        autoResize = true
+        interactionSource = interactionSource
     )
 }
 
@@ -678,11 +836,64 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextArea(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: String,
@@ -716,8 +927,7 @@ fun OudsTextArea(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -765,16 +975,14 @@ fun OudsTextArea(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource,
-        autoResize = true
+        interactionSource = interactionSource
     )
 }
 
@@ -799,55 +1007,63 @@ private fun OudsTextArea(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    autoResize: Boolean = true
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
     val emptyText = value.isEmpty()
 
-    CheckedTextInput(
-        componentName = ComponentName,
-        state = state,
-        emptyText = emptyText,
-        readOnly = readOnly,
-        error = error,
-        basicTextField = {
-            BasicTextField(
-                modifier = modifier.textInputSemantic(label),
-                value = value,
-                onValueChange = onValueChange,
-                enabled = textInputEnabled(state = state),
-                readOnly = readOnly,
-                textStyle = textInputTextStyle(state = state),
-                minLines = minLines,
-                maxLines = if (autoResize) maxLines else minLines,
-                cursorBrush = textInputCursorBrush(state = state, error = error != null),
-                keyboardOptions = keyboardOptions,
-                keyboardActions = keyboardActions,
-                onTextLayout = onTextLayout,
-                visualTransformation = visualTransformation,
-                interactionSource = interactionSource,
-                decorationBox = { innerTextField ->
-                    OudsTextAreaDecorator(
-                        innerTextField = innerTextField,
-                        value = value,
-                        state = state,
-                        label = label,
-                        placeholder = placeholder,
-                        loader = loader,
-                        outlined = outlined,
-                        error = error,
-                        helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
-                        constrainedMaxWidth = constrainedMaxWidth
-                    )
-                }
-            )
-        }
-    )
+    SkeletonLayout(
+        modifier = modifier,
+        componentState = state,
+        skeletonState = skeleton?.state,
+        securityMargin = false
+    ) { contentModifier ->
+        CheckedTextInput(
+            componentName = ComponentName,
+            state = state,
+            emptyText = emptyText,
+            readOnly = readOnly,
+            error = error,
+            basicTextField = {
+                BasicTextField(
+                    modifier = contentModifier.textInputSemantic(label),
+                    value = value,
+                    onValueChange = onValueChange,
+                    enabled = textInputEnabled(state = state),
+                    readOnly = readOnly,
+                    textStyle = textInputTextStyle(state = state),
+                    minLines = minLines,
+                    maxLines = if (autoResize) maxLines else minLines,
+                    cursorBrush = textInputCursorBrush(state = state, error = error != null),
+                    keyboardOptions = keyboardOptions,
+                    keyboardActions = keyboardActions,
+                    onTextLayout = onTextLayout,
+                    visualTransformation = visualTransformation,
+                    interactionSource = interactionSource,
+                    decorationBox = { innerTextField ->
+                        OudsTextAreaDecorator(
+                            innerTextField = innerTextField,
+                            value = value,
+                            state = state,
+                            label = label,
+                            placeholder = placeholder,
+                            loader = loader,
+                            outlined = outlined,
+                            error = error,
+                            helperText = helperText,
+                            annotatedHelperText = annotatedHelperText,
+                            helperLink = helperLink,
+                            constrainedMaxWidth = constrainedMaxWidth
+                        )
+                    }
+                )
+            }
+        )
+    }
 }
 
 /**
@@ -902,10 +1118,63 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
  */
+@Composable
+fun OudsTextArea(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: TextFieldValue,
@@ -940,7 +1209,6 @@ fun OudsTextArea(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -989,15 +1257,13 @@ fun OudsTextArea(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource,
-        autoResize = true
+        interactionSource = interactionSource
     )
 }
 
@@ -1053,11 +1319,64 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextArea(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextArea(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        autoResize = autoResize,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextArea(
     value: TextFieldValue,
@@ -1091,8 +1410,7 @@ fun OudsTextArea(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -1140,16 +1458,14 @@ fun OudsTextArea(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource,
-        autoResize = true
+        interactionSource = interactionSource
     )
 }
 
@@ -1174,55 +1490,63 @@ private fun OudsTextArea(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    autoResize: Boolean = true
+    autoResize: Boolean = true,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
     val emptyText = value.text.isEmpty()
 
-    CheckedTextInput(
-        componentName = ComponentName,
-        state = state,
-        emptyText = emptyText,
-        readOnly = readOnly,
-        error = error,
-        basicTextField = {
-            BasicTextField(
-                modifier = modifier.textInputSemantic(label),
-                value = value,
-                onValueChange = onValueChange,
-                enabled = textInputEnabled(state = state),
-                readOnly = readOnly,
-                textStyle = textInputTextStyle(state = state),
-                minLines = minLines,
-                maxLines = if (autoResize) maxLines else minLines,
-                cursorBrush = textInputCursorBrush(state = state, error = error != null),
-                keyboardOptions = keyboardOptions,
-                keyboardActions = keyboardActions,
-                onTextLayout = onTextLayout,
-                visualTransformation = visualTransformation,
-                interactionSource = interactionSource,
-                decorationBox = { innerTextField ->
-                    OudsTextAreaDecorator(
-                        innerTextField = innerTextField,
-                        value = value.text,
-                        state = state,
-                        label = label,
-                        placeholder = placeholder,
-                        loader = loader,
-                        outlined = outlined,
-                        error = error,
-                        helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = helperLink,
-                        constrainedMaxWidth = constrainedMaxWidth,
-                    )
-                }
-            )
-        }
-    )
+    SkeletonLayout(
+        modifier = modifier,
+        componentState = state,
+        skeletonState = skeleton?.state,
+        securityMargin = false
+    ) { contentModifier ->
+        CheckedTextInput(
+            componentName = ComponentName,
+            state = state,
+            emptyText = emptyText,
+            readOnly = readOnly,
+            error = error,
+            basicTextField = {
+                BasicTextField(
+                    modifier = contentModifier.textInputSemantic(label),
+                    value = value,
+                    onValueChange = onValueChange,
+                    enabled = textInputEnabled(state = state),
+                    readOnly = readOnly,
+                    textStyle = textInputTextStyle(state = state),
+                    minLines = minLines,
+                    maxLines = if (autoResize) maxLines else minLines,
+                    cursorBrush = textInputCursorBrush(state = state, error = error != null),
+                    keyboardOptions = keyboardOptions,
+                    keyboardActions = keyboardActions,
+                    onTextLayout = onTextLayout,
+                    visualTransformation = visualTransformation,
+                    interactionSource = interactionSource,
+                    decorationBox = { innerTextField ->
+                        OudsTextAreaDecorator(
+                            innerTextField = innerTextField,
+                            value = value.text,
+                            state = state,
+                            label = label,
+                            placeholder = placeholder,
+                            loader = loader,
+                            outlined = outlined,
+                            error = error,
+                            helperText = helperText,
+                            annotatedHelperText = annotatedHelperText,
+                            helperLink = helperLink,
+                            constrainedMaxWidth = constrainedMaxWidth,
+                        )
+                    }
+                )
+            }
+        )
+    }
 }
 
 /**

@@ -100,10 +100,61 @@ import com.orange.ouds.theme.OudsThemeSettings
  *   For example, to draw a cursor or selection around the text.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the password input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
  */
+@Composable
+fun OudsPasswordInput(
+    state: OudsPasswordInputState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    lockIcon: Boolean = false,
+    prefix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    constrainedMaxWidth: Boolean = false,
+    inputTransformation: InputTransformation? = null,
+    keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsPasswordInput(
+        state = state,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        lockIcon = lockIcon,
+        prefix = prefix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        constrainedMaxWidth = constrainedMaxWidth,
+        inputTransformation = inputTransformation,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsPasswordInput(
     state: OudsPasswordInputState,
@@ -138,7 +189,6 @@ fun OudsPasswordInput(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         constrainedMaxWidth = constrainedMaxWidth,
         inputTransformation = inputTransformation,
         keyboardOptions = keyboardOptions,
@@ -197,11 +247,62 @@ fun OudsPasswordInput(
  *   For example, to draw a cursor or selection around the text.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this password input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the password input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsPasswordInput(
+    state: OudsPasswordInputState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    lockIcon: Boolean = false,
+    prefix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    constrainedMaxWidth: Boolean = false,
+    inputTransformation: InputTransformation? = null,
+    keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsPasswordInput(
+        state = state,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        lockIcon = lockIcon,
+        prefix = prefix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        constrainedMaxWidth = constrainedMaxWidth,
+        inputTransformation = inputTransformation,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsPasswordInput(
     state: OudsPasswordInputState,
@@ -235,8 +336,7 @@ fun OudsPasswordInput(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         constrainedMaxWidth = constrainedMaxWidth,
         inputTransformation = inputTransformation,
         keyboardOptions = keyboardOptions,
@@ -266,66 +366,80 @@ private fun OudsPasswordInput(
     keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val passwordInputState = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val passwordInputState = getTextInputState(
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        skeleton = skeleton,
+        interactionState = interactionState
+    )
 
     val emptyText = state.text.isEmpty()
 
-    CheckedTextInput(
-        componentName = "OudsPasswordInput",
-        state = passwordInputState,
-        emptyText = emptyText,
-        readOnly = readOnly,
-        error = error,
-        basicTextField = {
-            BasicSecureTextField(
-                modifier = modifier.textInputSemantic(label),
-                state = state.textFieldState,
-                enabled = textInputEnabled(state = passwordInputState),
-                readOnly = readOnly,
-                textStyle = textInputTextStyle(state = passwordInputState),
-                cursorBrush = textInputCursorBrush(state = passwordInputState, error = error != null),
-                textObfuscationMode = state.textObfuscationMode,
-                keyboardOptions = keyboardOptions,
-                onKeyboardAction = onKeyboardAction,
-                onTextLayout = onTextLayout,
-                inputTransformation = inputTransformation,
-                interactionSource = interactionSource,
-                decorator = { innerTextField ->
-                    OudsTextInputDecorator(
-                        innerTextField = innerTextField,
-                        value = state.text.toString(),
-                        state = passwordInputState,
-                        label = label,
-                        placeholder = placeholder,
-                        leadingIcon = if (lockIcon) textInputLockIcon() else null,
-                        trailingIconButton = trailingIconButton(isPasswordHidden = state.textObfuscationMode != TextObfuscationMode.Visible) {
-                            with(state) {
-                                textObfuscationMode = if (textObfuscationMode == TextObfuscationMode.Visible) {
-                                    lastNonVisibleTextObfuscationMode
-                                } else {
-                                    TextObfuscationMode.Visible
+    SkeletonLayout(
+        modifier = modifier,
+        componentState = passwordInputState,
+        skeletonState = skeleton?.state,
+        securityMargin = false
+    ) { contentModifier ->
+        CheckedTextInput(
+            componentName = "OudsPasswordInput",
+            state = passwordInputState,
+            emptyText = emptyText,
+            readOnly = readOnly,
+            error = error,
+            basicTextField = {
+                BasicSecureTextField(
+                    modifier = contentModifier.textInputSemantic(label),
+                    state = state.textFieldState,
+                    enabled = textInputEnabled(state = passwordInputState),
+                    readOnly = readOnly,
+                    textStyle = textInputTextStyle(state = passwordInputState),
+                    cursorBrush = textInputCursorBrush(state = passwordInputState, error = error != null),
+                    textObfuscationMode = state.textObfuscationMode,
+                    keyboardOptions = keyboardOptions,
+                    onKeyboardAction = onKeyboardAction,
+                    onTextLayout = onTextLayout,
+                    inputTransformation = inputTransformation,
+                    interactionSource = interactionSource,
+                    decorator = { innerTextField ->
+                        OudsTextInputDecorator(
+                            innerTextField = innerTextField,
+                            value = state.text.toString(),
+                            state = passwordInputState,
+                            label = label,
+                            placeholder = placeholder,
+                            leadingIcon = if (lockIcon) textInputLockIcon() else null,
+                            trailingIconButton = trailingIconButton(isPasswordHidden = state.textObfuscationMode != TextObfuscationMode.Visible) {
+                                with(state) {
+                                    textObfuscationMode = if (textObfuscationMode == TextObfuscationMode.Visible) {
+                                        lastNonVisibleTextObfuscationMode
+                                    } else {
+                                        TextObfuscationMode.Visible
+                                    }
                                 }
-                            }
-                        },
-                        prefix = prefix,
-                        suffix = null,
-                        loader = loader,
-                        outlined = outlined,
-                        error = error,
-                        helperText = helperText,
-                        annotatedHelperText = annotatedHelperText,
-                        helperLink = null,
-                        constrainedMaxWidth = constrainedMaxWidth
-                    )
-                },
-                textObfuscationCharacter = OudsPasswordInputTextObfuscationCharacter
-            )
-        }
-    )
+                            },
+                            prefix = prefix,
+                            suffix = null,
+                            loader = loader,
+                            outlined = outlined,
+                            error = error,
+                            helperText = helperText,
+                            annotatedHelperText = annotatedHelperText,
+                            helperLink = null,
+                            constrainedMaxWidth = constrainedMaxWidth
+                        )
+                    },
+                    textObfuscationCharacter = OudsPasswordInputTextObfuscationCharacter
+                )
+            }
+        )
+    }
 }
 
 
