@@ -29,20 +29,23 @@ import com.orange.ouds.core.component.OudsInlineAlertStatus
 fun rememberInlineAlertDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
-    icon: InlineAlertDemoState.Icon = InlineAlertDemoState.Icon.Tinted
+    icon: InlineAlertDemoState.Icon = InlineAlertDemoState.Icon.Tinted,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     label,
     status,
     icon,
+    skeleton,
     saver = InlineAlertDemoState.Saver
 ) {
-    InlineAlertDemoState(label, status, icon)
+    InlineAlertDemoState(label, status, icon, skeleton)
 }
 
 class InlineAlertDemoState(
     label: String,
     status: OudsInlineAlertStatus,
-    icon: Icon = Icon.Tinted
+    icon: Icon,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -60,7 +63,8 @@ class InlineAlertDemoState(
                     listOf(
                         label,
                         status::class.java.name,
-                        icon
+                        icon,
+                        skeleton
                     )
                 }
             },
@@ -75,7 +79,8 @@ class InlineAlertDemoState(
                 InlineAlertDemoState(
                     list[0] as String,
                     status,
-                    list[2] as Icon
+                    list[2] as Icon,
+                    list[3] as Boolean
                 )
             }
         )
@@ -94,6 +99,8 @@ class InlineAlertDemoState(
     var label: String by mutableStateOf(label)
 
     var icon: Icon by mutableStateOf(icon)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val enabledIcons: List<Icon>
         get() = if (status !in FunctionalStatuses) Icon.entries else listOf(Icon.Tinted)
