@@ -15,7 +15,7 @@ package com.orange.ouds.app.ui.components.checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.state.ToggleableState
@@ -26,16 +26,18 @@ fun rememberCheckboxDemoState(
     toggleableStateValues: Pair<ToggleableState, ToggleableState> = Pair(ToggleableState.Off, ToggleableState.Off), // only used for indeterminate checkbox demo
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false
+    error: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     checkedValues,
     toggleableStateValues,
     enabled,
     readOnly,
     error,
+    skeleton,
     saver = CheckboxDemoState.Saver
 ) {
-    CheckboxDemoState(checkedValues, toggleableStateValues, enabled, readOnly, error)
+    CheckboxDemoState(checkedValues, toggleableStateValues, enabled, readOnly, error, skeleton)
 }
 
 class CheckboxDemoState(
@@ -43,37 +45,36 @@ class CheckboxDemoState(
     toggleableStateValues: Pair<ToggleableState, ToggleableState>,
     enabled: Boolean,
     readOnly: Boolean,
-    error: Boolean
+    error: Boolean,
+    skeleton: Boolean
 ) {
     companion object {
-        val Saver = run {
-            val checkedValuesKey = "checkedValues"
-            val toggleableStateValuesKey = "toggleableStateValues"
-            val enabledKey = "enabled"
-            val readOnlyKey = "readOnly"
-            val errorKey = "error"
-            mapSaver(
-                save = { state ->
-                    mapOf(
-                        checkedValuesKey to state.checkedValues,
-                        toggleableStateValuesKey to state.toggleableStateValues,
-                        enabledKey to state.enabled,
-                        readOnlyKey to state.readOnly,
-                        errorKey to state.error,
-                    )
-                },
-                restore = { map ->
-                    @Suppress("UNCHECKED_CAST")
-                    CheckboxDemoState(
-                        map[checkedValuesKey] as Pair<Boolean, Boolean>,
-                        map[toggleableStateValuesKey] as Pair<ToggleableState, ToggleableState>,
-                        map[enabledKey] as Boolean,
-                        map[readOnlyKey] as Boolean,
-                        map[errorKey] as Boolean
+
+        val Saver = listSaver(
+            save = { state ->
+                with(state) {
+                    listOf(
+                        checkedValues,
+                        toggleableStateValues,
+                        enabled,
+                        readOnly,
+                        error,
+                        skeleton
                     )
                 }
-            )
-        }
+            },
+            restore = { list: List<Any?> ->
+                @Suppress("UNCHECKED_CAST")
+                CheckboxDemoState(
+                    list[0] as Pair<Boolean, Boolean>,
+                    list[1] as Pair<ToggleableState, ToggleableState>,
+                    list[2] as Boolean,
+                    list[3] as Boolean,
+                    list[4] as Boolean,
+                    list[5] as Boolean
+                )
+            }
+        )
     }
 
     var checkedValues: Pair<Boolean, Boolean> by mutableStateOf(checkedValues)
@@ -86,6 +87,8 @@ class CheckboxDemoState(
 
     var error: Boolean by mutableStateOf(error)
 
+    var skeleton: Boolean by mutableStateOf(skeleton)
+
     val enabledSwitchEnabled: Boolean
         get() = !error
 
@@ -94,5 +97,4 @@ class CheckboxDemoState(
 
     val errorSwitchEnabled: Boolean
         get() = enabled && !readOnly
-
 }

@@ -21,13 +21,16 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
@@ -192,7 +195,7 @@ private fun SkeletonLayout(
 ) {
     if (visible) {
         // Use SubcomposeLayout instead of a Box with onGloballyPositioned otherwise skeleton is not displayed in the previews
-        SubcomposeLayout(modifier.clip(shape)) { constraints ->
+        SubcomposeLayout(modifier) { constraints ->
             val contentPlaceables = subcompose("content") {
                 content(Modifier.alpha(0.0f))
             }.map { it.measure(constraints) }
@@ -206,11 +209,16 @@ private fun SkeletonLayout(
                 } else {
                     state.orElse { rememberOudsSkeletonState() }
                 }
-                OudsSkeleton(
-                    modifier = Modifier.size(width.toDp(), height.toDp()),
-                    state = skeletonState,
-                    securityMargin = securityMargin
-                )
+                CompositionLocalProvider(LocalRippleConfiguration provides null) {
+                    OudsSkeleton(
+                        modifier = Modifier
+                            .size(width.toDp(), height.toDp())
+                            .clip(shape)
+                            .clickable {},
+                        state = skeletonState,
+                        securityMargin = securityMargin
+                    )
+                }
             }.map { it.measure(constraints) }
 
             layout(width, height) {

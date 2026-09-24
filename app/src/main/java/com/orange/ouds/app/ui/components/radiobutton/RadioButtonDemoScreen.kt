@@ -26,12 +26,16 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsRadioButton
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.OudsError
+import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -66,6 +70,11 @@ private fun RadioButtonDemoBottomSheetContent(state: RadioButtonDemoState) {
             onCheckedChange = { error = it },
             enabled = errorSwitchEnabled
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -73,7 +82,7 @@ private fun RadioButtonDemoBottomSheetContent(state: RadioButtonDemoState) {
 private fun RadioButtonDemoContent(state: RadioButtonDemoState) {
     Row(
         modifier = Modifier.selectableGroup(),
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
     ) {
         with(state) {
             RadioButtonDemoState.Values.forEach { value ->
@@ -86,7 +95,8 @@ private fun RadioButtonDemoContent(state: RadioButtonDemoState) {
                     onClick = { selectedValue = value },
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null
+                    error = if (error) OudsError(stringResource(R.string.app_components_common_error_a11y)) else null,
+                    skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
                 )
             }
         }
@@ -104,6 +114,7 @@ private fun Code.Builder.radioButtonDemoCodeSnippet(state: RadioButtonDemoState)
             enabledArgument(enabled)
             readOnlyArgument(readOnly)
             if (error) errorArgument(R.string.app_components_common_error_a11y)
+            if (skeleton) skeletonArgument()
         }
     }
 }
