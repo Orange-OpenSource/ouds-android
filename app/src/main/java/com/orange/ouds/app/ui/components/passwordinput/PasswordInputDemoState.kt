@@ -38,7 +38,8 @@ fun rememberPasswordInputDemoState(
     prefix: String = "",
     helperText: String = "",
     constrainedMaxWidth: Boolean = false,
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     passwordInputState,
     label,
@@ -54,6 +55,7 @@ fun rememberPasswordInputDemoState(
     helperText,
     constrainedMaxWidth,
     annotatedText,
+    skeleton,
     saver = PasswordInputDemoState.Saver
 ) {
     PasswordInputDemoState(
@@ -70,7 +72,8 @@ fun rememberPasswordInputDemoState(
         prefix,
         helperText,
         constrainedMaxWidth,
-        annotatedText
+        annotatedText,
+        skeleton
     )
 }
 
@@ -88,7 +91,8 @@ class PasswordInputDemoState(
     prefix: String,
     helperText: String,
     constrainedMaxWidth: Boolean,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -109,7 +113,8 @@ class PasswordInputDemoState(
                         prefix,
                         helperText,
                         constrainedMaxWidth,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             },
@@ -129,7 +134,8 @@ class PasswordInputDemoState(
                     list[10] as String,
                     list[11] as String,
                     list[12] as Boolean,
-                    list[13] as Boolean
+                    list[13] as Boolean,
+                    list[14] as Boolean
                 )
             }
         )
@@ -160,6 +166,8 @@ class PasswordInputDemoState(
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
 
     var annotatedText: Boolean by mutableStateOf(annotatedText)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val enabledSwitchEnabled: Boolean
         get() = !error && !hasLoader
