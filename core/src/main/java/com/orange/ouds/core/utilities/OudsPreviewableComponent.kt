@@ -229,7 +229,7 @@ interface OudsPreviewableComponent {
 
         object Default : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 1600
+            const val PreviewHeightDp = 1700
 
             override val parameters: List<Any> = OudsAlertMessagePreviewParameterProvider().values.toList()
 
