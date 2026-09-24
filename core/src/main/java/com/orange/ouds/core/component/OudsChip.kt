@@ -121,7 +121,10 @@ enum class OudsChipState {
     Disabled,
 
     /** The chip is focused. */
-    Focused
+    Focused,
+
+    /** The chip is displayed as a skeleton. */
+    Skeleton
 }
 
 internal enum class OudsChipIconPosition {
