@@ -19,7 +19,9 @@ import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSuggestionChip
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -40,12 +42,14 @@ private fun SuggestionChipDemoContent(state: SuggestionChipDemoState) {
         with(state) {
             val separator = if (label.isBlank()) "" else " "
             val label = "$label$separator${index + 1}"
+            val suggestionChipSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
             when (layout) {
                 ChipDemoState.Layout.TextOnly -> {
                     OudsSuggestionChip(
                         onClick = {},
                         label = label,
-                        enabled = enabled
+                        enabled = enabled,
+                        skeleton = suggestionChipSkeleton
                     )
                 }
                 ChipDemoState.Layout.TextAndIcon -> {
@@ -53,14 +57,16 @@ private fun SuggestionChipDemoContent(state: SuggestionChipDemoState) {
                         onClick = {},
                         label = label,
                         icon = icon,
-                        enabled = enabled
+                        enabled = enabled,
+                        skeleton = suggestionChipSkeleton
                     )
                 }
                 ChipDemoState.Layout.IconOnly -> {
                     OudsSuggestionChip(
                         onClick = {},
                         icon = icon,
-                        enabled = enabled
+                        enabled = enabled,
+                        skeleton = suggestionChipSkeleton
                     )
                 }
             }
