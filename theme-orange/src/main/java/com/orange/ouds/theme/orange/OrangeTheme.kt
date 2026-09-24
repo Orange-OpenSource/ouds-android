@@ -47,10 +47,18 @@ const val ORANGE_THEME_NAME = "Orange"
  *
  * This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
  *
- * The Helvetica Neue font files for the Orange theme are available at
- * [https://brand.orange.com/en/brand-basics/typography](https://brand.orange.com/en/brand-basics/typography) and can be used by copying the `ttf` files
- * in the `res/font` directory of the project and by using an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled]
- * or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed as the [OrangeTheme.orangeFontFamily] parameter:
+ * The Helvetica Neue font files for the Orange theme can be downloaded at the following links for their Latin version:
+ * - [https://assets.orange.com/pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf](https://assets.orange.com/pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf)
+ * - [https://assets.orange.com/pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf](https://assets.orange.com/pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf)
+ * - [https://assets.orange.com/pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf](https://assets.orange.com/pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf)
+ * Their Arabic version can be downloaded at the following links:
+ * - [https://assets.orange.com/pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf](https://assets.orange.com/pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf)
+ * - [https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf](https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf)
+ * - [https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf](https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf)
+ *
+ * The Helvetica Neue font family can be used the by copying the `ttf` files in the `res/font` directory of the project and by using an implementation of
+ * [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled] or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed
+ * as the [OrangeTheme.orangeFontFamily] parameter:
  *
  * ```
  * OrangeTheme(
@@ -159,7 +167,13 @@ open class OrangeTheme @JvmOverloads constructor(
     }
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators, roundedCornerCardItems)
+        get() = OudsThemeSettings(
+            roundedCornerButtons,
+            roundedCornerTextInputs,
+            roundedCornerAlertMessages,
+            roundedCornerProgressIndicators,
+            roundedCornerCardItems
+        )
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeColorSemanticTokens()
