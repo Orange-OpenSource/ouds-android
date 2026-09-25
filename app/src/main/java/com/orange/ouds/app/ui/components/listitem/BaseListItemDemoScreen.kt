@@ -12,13 +12,23 @@
 
 package com.orange.ouds.app.ui.components.listitem
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -32,6 +42,7 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.FunctionCall.Builder
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
@@ -41,6 +52,12 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberImagePainter
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsAlertMessage
+import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
+import com.orange.ouds.core.component.OudsListItemContent
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIcon
 import com.orange.ouds.core.component.OudsListItemIconSize
@@ -48,14 +65,26 @@ import com.orange.ouds.core.component.OudsListItemImage
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
 import com.orange.ouds.core.component.OudsListItemLeading
+import com.orange.ouds.core.component.OudsListItemScope
+import com.orange.ouds.core.component.OudsListItemState
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsListItemVerticalAlignment
 import com.orange.ouds.core.component.OudsSmallListItemLeading
 import com.orange.ouds.core.component.OudsSmallListItemTrailing
+import com.orange.ouds.core.component.OudsTagAppearance
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.launch
+import kotlin.reflect.KMutableProperty0
 
+private const val TrailingBadgeExampleCount = 7
+private val TrailingBadgeExampleStatus = OudsBadgeStatus.Negative
+private val TrailingTagExampleSize = OudsTagSize.Small
+private val TrailingTagExampleStatus = OudsTagStatus.Positive()
 
 @Composable
 fun BaseListItemDemoBottomSheetTabs(state: BaseListItemDemoState) {
@@ -115,11 +144,12 @@ fun baseListItemGeneralCustomization(index: Int, content: @Composable () -> Unit
 @Composable
 fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomizations: List<BaseListItemGeneralCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
-        { BaseListItemClickableCustomization(state = state) },
-        { BaseListItemIndicatorCustomization(state = state) },
-        { BaseListItemVerticalAlignmentCustomization(state = state) },
-        { BaseListItemEnabledCustomization(state = state) },
-        { BaseListItemSkeletonCustomization(state = state) }
+        { GeneralClickableCustomization(state = state) },
+        { GeneralIndicatorCustomization(state = state) },
+        { GeneralVerticalAlignmentCustomization(state = state) },
+        { GeneralEnabledCustomization(state = state) },
+        { GeneralBottomContentCustomization(state = state) },
+        { GeneralSkeletonCustomization(state = state) }
     )
     extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -128,7 +158,7 @@ fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomi
 }
 
 @Composable
-private fun BaseListItemClickableCustomization(state: BaseListItemDemoState) {
+private fun GeneralClickableCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_listItem_clickable_tech),
@@ -139,7 +169,7 @@ private fun BaseListItemClickableCustomization(state: BaseListItemDemoState) {
 }
 
 @Composable
-private fun BaseListItemIndicatorCustomization(state: BaseListItemDemoState) {
+private fun GeneralIndicatorCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -152,7 +182,7 @@ private fun BaseListItemIndicatorCustomization(state: BaseListItemDemoState) {
 }
 
 @Composable
-private fun BaseListItemVerticalAlignmentCustomization(state: BaseListItemDemoState) {
+private fun GeneralVerticalAlignmentCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -165,7 +195,7 @@ private fun BaseListItemVerticalAlignmentCustomization(state: BaseListItemDemoSt
 }
 
 @Composable
-private fun BaseListItemEnabledCustomization(state: BaseListItemDemoState) {
+private fun GeneralEnabledCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_common_enabled_tech),
@@ -176,7 +206,18 @@ private fun BaseListItemEnabledCustomization(state: BaseListItemDemoState) {
 }
 
 @Composable
-private fun BaseListItemSkeletonCustomization(state: BaseListItemDemoState) {
+private fun GeneralBottomContentCustomization(state: BaseListItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_listItem_bottomContent_tech),
+            checked = bottomContent,
+            onCheckedChange = { bottomContent = it },
+        )
+    }
+}
+
+@Composable
+private fun GeneralSkeletonCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_skeleton_tech),
@@ -189,63 +230,45 @@ private fun BaseListItemSkeletonCustomization(state: BaseListItemDemoState) {
 @Composable
 fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
     with(state) {
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = null,
-            chipLabels = BaseListItemDemoState.Leading.entries.map { it.name.toSentenceCase() },
-            selectedChipIndex = BaseListItemDemoState.Leading.entries.indexOf(leading),
-            onSelectionChange = { index -> leading = BaseListItemDemoState.Leading.entries[index] }
-        )
-        if (size == BaseListItemDemoState.Size.Default) {
+        Column {
             CustomizationFilterChips(
                 applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_iconSize_tech),
-                chips = OudsListItemIconSize.entries.map { CustomizationFilterChip(label = it.name.toSentenceCase(), enabled = leadingIconOptionsEnabled) },
-                selectedChipIndex = OudsListItemIconSize.entries.indexOf(leadingIconSize),
-                onSelectionChange = { index -> leadingIconSize = OudsListItemIconSize.entries[index] }
+                label = null,
+                chips = BaseListItemDemoState.Leading.entries.map {
+                    CustomizationFilterChip(
+                        label = it.name.toSentenceCase(),
+                        enabled = it in enabledLeadings
+                    )
+                },
+                selectedChipIndex = BaseListItemDemoState.Leading.entries.indexOf(leading),
+                onSelectionChange = { index ->
+                    leading = BaseListItemDemoState.Leading.entries[index]
+                }
             )
+            AnimatedVisibility(
+                visible = leadingIconSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                LeadingIconConfiguration(state = state)
+            }
+
+            AnimatedVisibility(
+                visible = leadingImageSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                LeadingImageConfiguration(state = state)
+            }
+
+            AnimatedVisibility(
+                visible = leadingContentSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                SettingsAlertMessage(configurableElement = ConfigurableElement.Content)
+            }
         }
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_listItem_statusIcon_tech),
-            chips = BaseListItemDemoState.StatusIcon.entries.map {
-                CustomizationFilterChip(
-                    label = it.name.toSentenceCase(),
-                    enabled = leadingIconOptionsEnabled
-                )
-            },
-            selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(leadingStatusIcon),
-            onSelectionChange = { index -> leadingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
-        )
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_listItem_iconTint_tech),
-            chips = BaseListItemDemoState.IconTint.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = leadingIconOptionsEnabled) },
-            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(leadingIconTint),
-            onSelectionChange = { index -> leadingIconTint = BaseListItemDemoState.IconTint.entries[index] }
-        )
-        if (size == BaseListItemDemoState.Size.Default) {
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_imageSize_tech),
-                chips = OudsListItemImageSize.entries.map { CustomizationFilterChip(label = it.name.toSentenceCase(), enabled = leadingImageOptionsEnabled) },
-                selectedChipIndex = OudsListItemImageSize.entries.indexOf(leadingImageSize),
-                onSelectionChange = { index -> leadingImageSize = OudsListItemImageSize.entries[index] }
-            )
-        }
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_listItem_imageRatio_tech),
-            chips = OudsListItemImageRatio.entries.map { CustomizationFilterChip(label = it.name.toSentenceCase(), enabled = leadingImageOptionsEnabled) },
-            selectedChipIndex = OudsListItemImageRatio.entries.indexOf(leadingImageRatio),
-            onSelectionChange = { index -> leadingImageRatio = OudsListItemImageRatio.entries[index] }
-        )
-        CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
-            checked = leadingImageRoundedCorners,
-            onCheckedChange = { leadingImageRoundedCorners = it },
-            enabled = leadingImageOptionsEnabled
-        )
     }
 }
 
@@ -256,13 +279,22 @@ fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_tech),
             value = label,
-            onValueChange = { value -> label = value }
+            onValueChange = { value -> label = value },
+            enabled = labelSettingsEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_listItem_boldLabel_tech),
             checked = boldLabel,
             onCheckedChange = { boldLabel = it },
+            enabled = labelSettingsEnabled
         )
+        if (state.size == BaseListItemDemoState.Size.Default) {
+            CustomizationSwitchItem(
+                label = stringResource(R.string.app_components_listItem_labelContent_tech),
+                checked = labelContent,
+                onCheckedChange = { labelContent = it },
+            )
+        }
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_description_tech),
@@ -283,6 +315,13 @@ fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
                 onValueChange = { value -> extraLabel = value }
             )
         }
+        if (state.size == BaseListItemDemoState.Size.Default) {
+            CustomizationSwitchItem(
+                label = stringResource(R.string.app_components_listItem_belowTextContent_tech),
+                checked = belowTextContent,
+                onCheckedChange = { belowTextContent = it }
+            )
+        }
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
@@ -295,95 +334,243 @@ fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
 @Composable
 fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
     with(state) {
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = null,
-            chipLabels = BaseListItemDemoState.Trailing.entries.map { it.name.toSentenceCase() },
-            selectedChipIndex = BaseListItemDemoState.Trailing.entries.indexOf(trailing),
-            onSelectionChange = { index -> trailing = BaseListItemDemoState.Trailing.entries[index] }
-        )
+        Column {
+            CustomizationFilterChips(
+                applyTopPadding = true,
+                label = null,
+                chips = BaseListItemDemoState.Trailing.entries.map {
+                    CustomizationFilterChip(
+                        label = it.name.toSentenceCase(),
+                        enabled = it in enabledTrailings
+                    )
+                },
+                selectedChipIndex = BaseListItemDemoState.Trailing.entries.indexOf(trailing),
+                onSelectionChange = { index ->
+                    trailing = BaseListItemDemoState.Trailing.entries[index]
+                }
+            )
+
+            AnimatedVisibility(
+                visible = trailingComponentSettingsAlertVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                SettingsAlertMessage(
+                    configurableElement = ConfigurableElement.Component(
+                        name = when (trailing) {
+                            BaseListItemDemoState.Trailing.Badge -> "OudsBadge"
+                            BaseListItemDemoState.Trailing.Tag -> "OudsTag"
+                            else -> null
+                        }
+                    )
+                )
+            }
+
+            AnimatedVisibility(
+                visible = trailingIconSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                TrailingIconConfiguration(state = state)
+            }
+
+            AnimatedVisibility(
+                visible = trailingImageSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                TrailingImageConfiguration(state = state)
+            }
+
+            AnimatedVisibility(
+                visible = trailingTextSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                TrailingTextConfiguration(state = state)
+            }
+
+            AnimatedVisibility(
+                visible = trailingContentSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                SettingsAlertMessage(configurableElement = ConfigurableElement.Content)
+            }
+        }
+    }
+}
+
+private sealed class ConfigurableElement {
+    object Content : ConfigurableElement()
+    class Component(val name: String?) : ConfigurableElement()
+}
+
+@Composable
+private fun SettingsAlertMessage(configurableElement: ConfigurableElement) {
+    val elementName: String?
+    val message: String
+    when (configurableElement) {
+        ConfigurableElement.Content -> {
+            elementName = stringResource(R.string.app_components_listItem_content_tech)
+            message = stringResource(R.string.app_components_listItem_contentSettingsAlertMessageDescription_text)
+        }
+        is ConfigurableElement.Component -> {
+            elementName = configurableElement.name
+            message = stringResource(R.string.app_components_listItem_componentSettingsAlertMessageDescription_text)
+        }
+    }
+    OudsAlertMessage(
+        modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
+        status = OudsAlertMessageStatus.Info,
+        label = elementName?.let { stringResource(R.string.app_components_listItem_settingsAlertMessageLabel_label, elementName) }.orEmpty(),
+        description = message
+    )
+}
+
+@Composable
+private fun LeadingTrailingIconConfiguration(
+    size: BaseListItemDemoState.Size,
+    iconSize: KMutableProperty0<OudsListItemIconSize>,
+    statusIcon: KMutableProperty0<BaseListItemDemoState.StatusIcon>,
+    iconTint: KMutableProperty0<BaseListItemDemoState.IconTint>
+) {
+    Column {
         if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
                 label = stringResource(R.string.app_components_listItem_iconSize_tech),
-                chips = OudsListItemIconSize.entries.map { CustomizationFilterChip(label = it.name.toSentenceCase(), enabled = trailingIconOptionsEnabled) },
-                selectedChipIndex = OudsListItemIconSize.entries.indexOf(trailingIconSize),
-                onSelectionChange = { index -> trailingIconSize = OudsListItemIconSize.entries[index] }
+                chips = OudsListItemIconSize.entries.map {
+                    CustomizationFilterChip(label = it.name.toSentenceCase())
+                },
+                selectedChipIndex = OudsListItemIconSize.entries.indexOf(iconSize.get()),
+                onSelectionChange = { index -> iconSize.set(OudsListItemIconSize.entries[index]) }
             )
         }
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_listItem_statusIcon_tech),
             chips = BaseListItemDemoState.StatusIcon.entries.map {
-                CustomizationFilterChip(
-                    label = it.name.toSentenceCase(),
-                    enabled = trailingIconOptionsEnabled
-                )
+                CustomizationFilterChip(label = it.name.toSentenceCase())
             },
-            selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(trailingStatusIcon),
-            onSelectionChange = { index -> trailingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
+            selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(statusIcon.get()),
+            onSelectionChange = { index -> statusIcon.set(BaseListItemDemoState.StatusIcon.entries[index]) }
         )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_listItem_iconTint_tech),
-            chips = BaseListItemDemoState.IconTint.entries.map { CustomizationFilterChip(it.name.toSentenceCase(), enabled = trailingIconOptionsEnabled) },
-            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(trailingIconTint),
-            onSelectionChange = { index -> trailingIconTint = BaseListItemDemoState.IconTint.entries[index] }
+            chips = BaseListItemDemoState.IconTint.entries.map {
+                CustomizationFilterChip(it.name.toSentenceCase())
+            },
+            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(iconTint.get()),
+            onSelectionChange = { index -> iconTint.set(BaseListItemDemoState.IconTint.entries[index]) }
         )
+    }
+}
+
+@Composable
+private fun LeadingTrailingImageConfiguration(
+    size: BaseListItemDemoState.Size,
+    imageSize: KMutableProperty0<OudsListItemImageSize>,
+    imageRatio: KMutableProperty0<OudsListItemImageRatio>,
+    imageRoundedCorners: KMutableProperty0<Boolean>,
+) {
+    Column {
         if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
                 label = stringResource(R.string.app_components_listItem_imageSize_tech),
-                chips = OudsListItemImageSize.entries.map { CustomizationFilterChip(label = it.name.toSentenceCase(), enabled = trailingImageOptionsEnabled) },
-                selectedChipIndex = OudsListItemImageSize.entries.indexOf(trailingImageSize),
-                onSelectionChange = { index -> trailingImageSize = OudsListItemImageSize.entries[index] }
+                chips = OudsListItemImageSize.entries.map {
+                    CustomizationFilterChip(
+                        label = it.name.toSentenceCase(),
+                    )
+                },
+                selectedChipIndex = OudsListItemImageSize.entries.indexOf(imageSize.get()),
+                onSelectionChange = { index -> imageSize.set(OudsListItemImageSize.entries[index]) }
             )
         }
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_listItem_imageRatio_tech),
-            chips = OudsListItemImageRatio.entries.map { CustomizationFilterChip(label = it.name.toSentenceCase(), enabled = trailingImageOptionsEnabled) },
-            selectedChipIndex = OudsListItemImageRatio.entries.indexOf(trailingImageRatio),
-            onSelectionChange = { index -> trailingImageRatio = OudsListItemImageRatio.entries[index] }
+            chips = OudsListItemImageRatio.entries.map {
+                CustomizationFilterChip(
+                    label = it.name.toSentenceCase(),
+                )
+            },
+            selectedChipIndex = OudsListItemImageRatio.entries.indexOf(imageRatio.get()),
+            onSelectionChange = { index -> imageRatio.set(OudsListItemImageRatio.entries[index]) }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
-            checked = trailingImageRoundedCorners,
-            onCheckedChange = { trailingImageRoundedCorners = it },
-            enabled = trailingImageOptionsEnabled
+            checked = imageRoundedCorners.get(),
+            onCheckedChange = { imageRoundedCorners.set(it) },
         )
-        CustomizationTextInput(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_listItem_trailingTextLabel_tech),
-            value = trailingTextLabel,
-            onValueChange = { value -> trailingTextLabel = value },
-            enabled = trailingTextOptionsEnabled
-        )
-        CustomizationFilterChips(
-            applyTopPadding = true,
-            label = stringResource(R.string.app_components_listItem_trailingTextStyle_tech),
-            chips = OudsListItemTextStyle.entries.map {
-                CustomizationFilterChip(
-                    it.name.toSentenceCase(),
-                    trailingTextOptionsEnabled && (it == OudsListItemTextStyle.Label || trailingTextExtraLabel.isNullOrBlank())
-                )
-            },
-            selectedChipIndex = OudsListItemTextStyle.entries.indexOf(trailingTextStyle),
-            onSelectionChange = { index -> trailingTextStyle = OudsListItemTextStyle.entries[index] },
-        )
-        if (size == BaseListItemDemoState.Size.Default) {
+    }
+}
+
+@Composable
+private fun LeadingIconConfiguration(state: BaseListItemDemoState) {
+    with(state) {
+        LeadingTrailingIconConfiguration(size, ::leadingIconSize, ::leadingStatusIcon, ::leadingIconTint)
+    }
+}
+
+@Composable
+private fun LeadingImageConfiguration(state: BaseListItemDemoState) {
+    with(state) {
+        LeadingTrailingImageConfiguration(size, ::leadingImageSize, ::leadingImageRatio, ::leadingImageRoundedCorners)
+    }
+}
+
+@Composable
+private fun TrailingIconConfiguration(state: BaseListItemDemoState) {
+    with(state) {
+        LeadingTrailingIconConfiguration(size, ::trailingIconSize, ::trailingStatusIcon, ::trailingIconTint)
+    }
+}
+
+@Composable
+private fun TrailingImageConfiguration(state: BaseListItemDemoState) {
+    with(state) {
+        LeadingTrailingImageConfiguration(size, ::trailingImageSize, ::trailingImageRatio, ::trailingImageRoundedCorners)
+    }
+}
+
+@Composable
+private fun TrailingTextConfiguration(state: BaseListItemDemoState) {
+    with(state) {
+        Column {
             CustomizationTextInput(
                 applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_trailingTextExtraLabel_tech),
-                value = trailingTextExtraLabel.orEmpty(),
-                onValueChange = { value ->
-                    trailingTextExtraLabel = value
-                    if (value.isNotBlank()) {
-                        trailingTextStyle = OudsListItemTextStyle.Label
-                    }
-                },
-                enabled = trailingTextOptionsEnabled
+                label = stringResource(R.string.app_components_listItem_trailingTextLabel_tech),
+                value = trailingTextLabel,
+                onValueChange = { value -> trailingTextLabel = value },
             )
+            CustomizationFilterChips(
+                applyTopPadding = true,
+                label = stringResource(R.string.app_components_listItem_trailingTextStyle_tech),
+                chips = OudsListItemTextStyle.entries.map {
+                    CustomizationFilterChip(
+                        label = it.name.toSentenceCase(),
+                        enabled = it == OudsListItemTextStyle.Label || trailingTextExtraLabel.isNullOrBlank()
+                    )
+                },
+                selectedChipIndex = OudsListItemTextStyle.entries.indexOf(trailingTextStyle),
+                onSelectionChange = { index -> trailingTextStyle = OudsListItemTextStyle.entries[index] },
+            )
+            if (size == BaseListItemDemoState.Size.Default) {
+                CustomizationTextInput(
+                    applyTopPadding = true,
+                    label = stringResource(R.string.app_components_listItem_trailingTextExtraLabel_tech),
+                    value = trailingTextExtraLabel.orEmpty(),
+                    onValueChange = { value ->
+                        trailingTextExtraLabel = value
+                        if (value.isNotBlank()) {
+                            trailingTextStyle = OudsListItemTextStyle.Label
+                        }
+                    }
+                )
+            }
         }
     }
 }
@@ -424,13 +611,14 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
             roundedCorner = leadingImageRoundedCorners,
             contentScale = ContentScale.Crop
         )
+        BaseListItemDemoState.Leading.Content -> OudsListItemLeading.Content { getBaseListItemContent(modifier = Modifier.fillMaxHeight()).invoke(this) }
     }
 }
 
 @Composable
 fun baseSmallListItemDemoLeading(state: BaseListItemDemoState): OudsSmallListItemLeading? = with(state) {
     when (leading) {
-        BaseListItemDemoState.Leading.None -> null
+        BaseListItemDemoState.Leading.None, BaseListItemDemoState.Leading.Content -> null
         BaseListItemDemoState.Leading.Icon -> {
             when (leadingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemLeading.Icon(
@@ -457,6 +645,10 @@ fun baseSmallListItemDemoLeading(state: BaseListItemDemoState): OudsSmallListIte
 fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing? = with(state) {
     when (trailing) {
         BaseListItemDemoState.Trailing.None -> null
+        BaseListItemDemoState.Trailing.Badge -> OudsListItemTrailing.Badge(
+            count = TrailingBadgeExampleCount,
+            status = TrailingBadgeExampleStatus
+        )
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsListItemTrailing.Icon(
@@ -479,6 +671,12 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
             roundedCorner = trailingImageRoundedCorners,
             contentScale = ContentScale.Crop
         )
+        BaseListItemDemoState.Trailing.Tag -> OudsListItemTrailing.Tag(
+            label = stringResource(R.string.app_components_common_label_tech),
+            appearance = OudsTagAppearance.Muted,
+            size = OudsTagSize.Small,
+            status = OudsTagStatus.Positive()
+        )
         BaseListItemDemoState.Trailing.Text -> {
             if (trailingTextStyle == OudsListItemTextStyle.Label && !trailingTextExtraLabel.isNullOrBlank()) {
                 OudsListItemTrailing.Text(
@@ -492,13 +690,19 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
                 )
             }
         }
+        BaseListItemDemoState.Trailing.Content -> OudsListItemTrailing.Content { getBaseListItemContent(modifier = Modifier.fillMaxHeight()).invoke(this) }
     }
 }
 
 @Composable
 fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListItemTrailing? = with(state) {
     when (trailing) {
-        BaseListItemDemoState.Trailing.None -> null
+        BaseListItemDemoState.Trailing.None, BaseListItemDemoState.Trailing.Content -> null
+        BaseListItemDemoState.Trailing.Badge ->
+            OudsSmallListItemTrailing.Badge(
+                count = TrailingBadgeExampleCount,
+                status = TrailingBadgeExampleStatus
+            )
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemTrailing.Icon(
@@ -519,11 +723,38 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
                 roundedCorner = trailingImageRoundedCorners,
                 contentScale = ContentScale.Crop
             )
+        BaseListItemDemoState.Trailing.Tag ->
+            OudsSmallListItemTrailing.Tag(
+                label = stringResource(R.string.app_components_common_label_label),
+                size = TrailingTagExampleSize,
+                status = TrailingTagExampleStatus
+            )
         BaseListItemDemoState.Trailing.Text ->
             OudsSmallListItemTrailing.Text(
                 label = trailingTextLabel,
                 style = trailingTextStyle
             )
+    }
+}
+
+fun getBaseListItemContentOrNull(contentActivated: Boolean): @Composable (OudsListItemScope.() -> Unit)? =
+    if (contentActivated) getBaseListItemContent() else null
+
+fun getBaseListItemContent(modifier: Modifier = Modifier): @Composable (OudsListItemScope.() -> Unit) = {
+    val enabled = state != OudsListItemState.Disabled
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
+            .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
+        contentAlignment = Alignment.Center
+    ) {
+        OudsLabelText(
+            text = stringResource(R.string.app_components_listItem_content_tech),
+            size = OudsLabelTextSize.Small,
+            weight = OudsTextWeight.Strong,
+            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled
+        )
     }
 }
 
@@ -538,7 +769,13 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
             }
         }
 
-        labelArgument(label)
+        if (labelContent) {
+            lambdaArgument("labelContent") {
+                comment("Custom label content")
+            }
+        } else {
+            labelArgument(label)
+        }
 
         if (verticalAlignment != OudsListItemDefaults.VerticalAlignment) {
             typedArgument("verticalAlignment", verticalAlignment)
@@ -551,38 +788,94 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
         val leadingParameterName = "leading"
         val trailingParameterName = "trailing"
         when (leading) {
-            BaseListItemDemoState.Leading.Icon -> addIconCodeSnippet<OudsListItemLeading.Icon>(
-                argumentName = leadingParameterName,
-                statusIcon = leadingStatusIcon,
-                iconSize = leadingIconSize,
-                iconTint = leadingIconTint,
-                themeDrawableResources = themeDrawableResources
-            )
-            BaseListItemDemoState.Leading.Image -> addImageCodeSnippet<OudsListItemLeading.Image>(
-                argumentName = leadingParameterName,
-                imageSize = leadingImageSize,
-                imageRatio = leadingImageRatio,
-                roundedCorners = leadingImageRoundedCorners
-            )
+            BaseListItemDemoState.Leading.Icon -> when (size) {
+                BaseListItemDemoState.Size.Default -> addIconCodeSnippet<OudsListItemLeading.Icon>(
+                    argumentName = leadingParameterName,
+                    statusIcon = leadingStatusIcon,
+                    iconSize = leadingIconSize,
+                    iconTint = leadingIconTint,
+                    themeDrawableResources = themeDrawableResources
+                )
+                BaseListItemDemoState.Size.Small -> addIconCodeSnippet<OudsSmallListItemLeading.Icon>(
+                    argumentName = leadingParameterName,
+                    statusIcon = leadingStatusIcon,
+                    iconSize = leadingIconSize,
+                    iconTint = leadingIconTint,
+                    themeDrawableResources = themeDrawableResources
+                )
+            }
+            BaseListItemDemoState.Leading.Image -> when (size) {
+                BaseListItemDemoState.Size.Default -> addImageCodeSnippet<OudsListItemLeading.Image>(
+                    argumentName = leadingParameterName,
+                    imageSize = leadingImageSize,
+                    imageRatio = leadingImageRatio,
+                    roundedCorners = leadingImageRoundedCorners
+                )
+                BaseListItemDemoState.Size.Small -> addImageCodeSnippet<OudsSmallListItemLeading.Image>(
+                    argumentName = leadingParameterName,
+                    imageSize = leadingImageSize,
+                    imageRatio = leadingImageRatio,
+                    roundedCorners = leadingImageRoundedCorners
+                )
+            }
             BaseListItemDemoState.Leading.None -> {}
+            BaseListItemDemoState.Leading.Content -> addContentCodeSnippet<OudsListItemLeading.Content>(argumentName = leadingParameterName)
         }
 
         when (trailing) {
-            BaseListItemDemoState.Trailing.Icon -> addIconCodeSnippet<OudsListItemTrailing.Icon>(
-                argumentName = trailingParameterName,
-                statusIcon = trailingStatusIcon,
-                iconSize = trailingIconSize,
-                iconTint = trailingIconTint,
-                themeDrawableResources = themeDrawableResources
-            )
-            BaseListItemDemoState.Trailing.Image -> addImageCodeSnippet<OudsListItemTrailing.Image>(
-                argumentName = trailingParameterName,
-                imageSize = trailingImageSize,
-                imageRatio = trailingImageRatio,
-                roundedCorners = trailingImageRoundedCorners
-            )
+            BaseListItemDemoState.Trailing.Badge -> {
+                val init: Builder.() -> Unit = {
+                    typedArgument("count", TrailingBadgeExampleCount)
+                    typedArgument("status", TrailingBadgeExampleStatus)
+                }
+                when (size) {
+                    BaseListItemDemoState.Size.Default -> constructorCallArgument<OudsListItemTrailing.Badge>(trailingParameterName, init)
+                    BaseListItemDemoState.Size.Small -> constructorCallArgument<OudsSmallListItemTrailing.Badge>(trailingParameterName, init)
+                }
+            }
+            BaseListItemDemoState.Trailing.Icon -> when (size) {
+                BaseListItemDemoState.Size.Default -> addIconCodeSnippet<OudsListItemTrailing.Icon>(
+                    argumentName = trailingParameterName,
+                    statusIcon = trailingStatusIcon,
+                    iconSize = trailingIconSize,
+                    iconTint = trailingIconTint,
+                    themeDrawableResources = themeDrawableResources
+                )
+                BaseListItemDemoState.Size.Small -> addIconCodeSnippet<OudsSmallListItemTrailing.Icon>(
+                    argumentName = trailingParameterName,
+                    statusIcon = trailingStatusIcon,
+                    iconSize = trailingIconSize,
+                    iconTint = trailingIconTint,
+                    themeDrawableResources = themeDrawableResources
+                )
+            }
+            BaseListItemDemoState.Trailing.Image -> when (size) {
+                BaseListItemDemoState.Size.Default -> addImageCodeSnippet<OudsListItemTrailing.Image>(
+                    argumentName = trailingParameterName,
+                    imageSize = trailingImageSize,
+                    imageRatio = trailingImageRatio,
+                    roundedCorners = trailingImageRoundedCorners
+                )
+                BaseListItemDemoState.Size.Small -> addImageCodeSnippet<OudsSmallListItemTrailing.Image>(
+                    argumentName = trailingParameterName,
+                    imageSize = trailingImageSize,
+                    imageRatio = trailingImageRatio,
+                    roundedCorners = trailingImageRoundedCorners
+                )
+            }
+            BaseListItemDemoState.Trailing.Tag -> {
+                val init: Builder.() -> Unit = {
+                    labelArgument(R.string.app_components_common_label_label)
+                    typedArgument("size", TrailingTagExampleSize)
+                    functionCallArgument("status", TrailingTagExampleStatus::class.java.nestedName)
+                }
+                when (size) {
+                    BaseListItemDemoState.Size.Default -> constructorCallArgument<OudsListItemTrailing.Tag>(trailingParameterName, init)
+                    BaseListItemDemoState.Size.Small -> constructorCallArgument<OudsSmallListItemTrailing.Tag>(trailingParameterName, init)
+                }
+            }
             BaseListItemDemoState.Trailing.Text -> {
-                constructorCallArgument<OudsListItemTrailing.Text>(trailingParameterName) {
+                val init: Builder.() -> Unit = {
                     labelArgument(trailingTextLabel)
                     if (trailingTextStyle == OudsListItemTextStyle.Label && !trailingTextExtraLabel.isNullOrBlank()) {
                         typedArgument("extraLabel", trailingTextExtraLabel)
@@ -590,14 +883,30 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                         typedArgument("style", trailingTextStyle)
                     }
                 }
+                when (size) {
+                    BaseListItemDemoState.Size.Default -> constructorCallArgument<OudsListItemTrailing.Text>(trailingParameterName, init)
+                    BaseListItemDemoState.Size.Small -> constructorCallArgument<OudsSmallListItemTrailing.Text>(trailingParameterName, init)
+                }
             }
             BaseListItemDemoState.Trailing.None -> {}
+            BaseListItemDemoState.Trailing.Content -> addContentCodeSnippet<OudsListItemTrailing.Content>(argumentName = trailingParameterName)
         }
 
         if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
         if (boldLabel) typedArgument("boldLabel", boldLabel)
         if (!enabled) enabledArgument(enabled)
         if (skeleton) skeletonArgument()
+    }
+}
+
+private inline fun <reified ContentType : OudsListItemContent> FunctionCall.Builder.addContentCodeSnippet(
+    argumentName: String
+) {
+    constructorCallArgument<ContentType>(argumentName) {
+        trailingLambda = true
+        lambdaArgument("content") {
+            comment("Custom content")
+        }
     }
 }
 

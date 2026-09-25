@@ -40,11 +40,15 @@ enum class Component {
     Link,
     NavigationBar,
     NavigationButton,
+    NavigationCardItem,
+    NavigationListItem,
     PasswordInput,
     PinCodeInput,
     RadioButton,
     Skeleton,
     SuggestionChip,
+    StaticCardItem,
+    StaticListItem,
     Switch,
     Tag,
     TextArea,
@@ -77,10 +81,14 @@ enum class Component {
                 Component.Link -> Link
                 Component.NavigationBar -> NavigationBar
                 Component.NavigationButton -> NavigationButton
+                Component.NavigationCardItem -> NavigationCardItem
+                Component.NavigationListItem -> NavigationListItem
                 Component.PasswordInput -> PasswordInput
                 Component.PinCodeInput -> PinCodeInput
                 Component.RadioButton -> RadioButton
                 Component.Skeleton -> Skeleton
+                Component.StaticCardItem -> StaticCardItem
+                Component.StaticListItem -> StaticListItem
                 Component.SuggestionChip -> SuggestionChip
                 Component.Switch -> Switch
                 Component.Tag -> Tag
@@ -122,10 +130,14 @@ enum class Component {
             Link -> listOf("OudsLink")
             NavigationBar -> listOf("OudsNavigationBar")
             NavigationButton -> listOf("OudsNavigationButton")
+            NavigationCardItem -> listOf("OudsCardItem", "OudsSmallCardItem")
+            NavigationListItem -> listOf("OudsListItem", "OudsSmallListItem")
             PasswordInput -> listOf("OudsPasswordInput")
             PinCodeInput -> listOf("OudsPinCodeInput")
             RadioButton -> listOf("OudsRadioButton", "OudsRadioButtonItem")
             Skeleton -> listOf("OudsSkeleton")
+            StaticCardItem -> listOf("OudsCardItem", "OudsSmallCardItem")
+            StaticListItem -> listOf("OudsListItem", "OudsSmallListItem")
             SuggestionChip -> listOf("OudsSuggestionChip")
             Switch -> listOf("OudsSwitch", "OudsSwitchItem")
             Tag -> listOf("OudsTag")

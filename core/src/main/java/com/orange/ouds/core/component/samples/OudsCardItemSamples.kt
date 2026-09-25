@@ -12,16 +12,32 @@
 
 package com.orange.ouds.core.component.samples
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsCardItem
+import com.orange.ouds.core.component.OudsInlineAlert
+import com.orange.ouds.core.component.OudsInlineAlertStatus
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsListItemDecoration
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
@@ -29,6 +45,11 @@ import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
+import com.orange.ouds.core.component.OudsTag
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -100,7 +121,7 @@ internal fun OudsCardItemWithAllElementsSample() {
 }
 
 @Composable
-internal fun OudsCardItemWithImageSample() {
+internal fun OudsCardItemWithLeadingImageAndTrailingTagSample() {
     OudsCardItem(
         label = "Premium Suite",
         description = "Spacious room with panoramic view",
@@ -110,7 +131,21 @@ internal fun OudsCardItemWithImageSample() {
             size = OudsListItemImageSize.Large,
             ratio = OudsListItemImageRatio.Square
         ),
-        trailing = OudsListItemTrailing.Text(label = "€450/night", style = OudsListItemTextStyle.LabelStrong),
+        trailing = OudsListItemTrailing.Tag(status = OudsTagStatus.Positive(), label = "Available", size = OudsTagSize.Small),
+        decoration = OudsListItemDecoration.Outlined
+    )
+}
+
+@Composable
+internal fun OudsCardItemWithLeadingIconAndTrailingBadgeSample() {
+    OudsCardItem(
+        label = "Messages",
+        description = "Unread notifications",
+        leading = OudsListItemLeading.Icon(
+            imageVector = Icons.Outlined.Email,
+            contentDescription = "Location icon"
+        ),
+        trailing = OudsListItemTrailing.Badge(count = 5),
         decoration = OudsListItemDecoration.Outlined
     )
 }
@@ -126,6 +161,152 @@ internal fun OudsCardItemWithUntintedIconSample() {
             tinted = false
         ),
         decoration = OudsListItemDecoration.Outlined
+    )
+}
+
+@Composable
+internal fun OudsStaticCardItemWithCustomContentsSample() {
+    OudsCardItem(
+        label = "Hotel Paradise",
+        description = "Luxury beachfront resort",
+        decoration = OudsListItemDecoration.Background(divider = true),
+        leading = OudsListItemLeading.Content {
+            Column(
+                modifier = Modifier
+                    .size(56.dp)
+                    .background(OudsTheme.colorScheme.surface.status.info.muted, RoundedCornerShape(8.dp)),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Star,
+                    contentDescription = "Rating",
+                    tint = OudsTheme.colorScheme.content.onStatus.warning.muted
+                )
+                OudsLabelText(text = "4.8", size = OudsLabelTextSize.Medium, weight = OudsTextWeight.Strong)
+            }
+        },
+        trailing = OudsListItemTrailing.Content {
+            OudsLabelText(text = "€299", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
+        },
+        belowTextContent = {
+            Row(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                OudsTag(label = "Pool", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
+                OudsTag(label = "WiFi", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
+            }
+        },
+        bottomContent = {
+            OudsLabelText(
+                text = "Only 2 rooms available",
+                size = OudsLabelTextSize.Small,
+                weight = OudsTextWeight.Strong,
+                color = OudsTheme.colorScheme.content.status.warning
+            )
+        }
+    )
+}
+
+@Composable
+internal fun OudsNavigationCardItemWithCustomContentsSample() {
+    OudsCardItem(
+        label = "City Tour Package",
+        description = "Guided tour with transport",
+        onClick = { /* Book tour */ },
+        indicator = OudsListItemIndicator.Next,
+        decoration = OudsListItemDecoration.Outlined,
+        leading = OudsListItemLeading.Content {
+            Column(
+                modifier = Modifier
+                    .size(56.dp)
+                    .background(color = OudsTheme.colorScheme.surface.status.info.muted, shape = RoundedCornerShape(8.dp)),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Info,
+                    contentDescription = "Duration",
+                    tint = OudsTheme.colorScheme.content.onStatus.info.muted
+                )
+                OudsLabelText(text = "3h", size = OudsLabelTextSize.Small, weight = OudsTextWeight.Strong)
+            }
+        },
+        trailing = OudsListItemTrailing.Content {
+            Column(horizontalAlignment = Alignment.End) {
+                Icon(imageVector = Icons.Outlined.Person, contentDescription = "People", modifier = Modifier.size(20.dp), tint = OudsTheme.colorScheme.content.default)
+                OudsLabelText(text = "8/15", size = OudsLabelTextSize.Small, weight = OudsTextWeight.Strong)
+            }
+        },
+        belowTextContent = {
+            Row(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)
+            ) {
+                OudsTag(label = "EN", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
+                OudsTag(label = "FR", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
+            }
+        },
+        bottomContent = {
+            OudsInlineAlert(
+                label = "Next departure in 30 minutes",
+                status = OudsInlineAlertStatus.Info
+            )
+        }
+    )
+}
+
+@Composable
+internal fun OudsStaticCardItemWithLabelContentSample() {
+    OudsCardItem(
+        labelContent = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
+            ) {
+                OudsLabelText(text = "Grand Hotel", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.threeExtraSmall)
+                ) {
+                    Icon(imageVector = Icons.Outlined.Star, contentDescription = null, modifier = Modifier.size(14.dp), tint = OudsTheme.colorScheme.content.default)
+                    OudsLabelText(text = "4.9", size = OudsLabelTextSize.Small, weight = OudsTextWeight.Strong)
+                }
+            }
+        },
+        description = "Historic 5-star hotel in city center",
+        decoration = OudsListItemDecoration.Background(divider = true),
+        leading = OudsListItemLeading.Image(
+            painter = CheckerboardPainter,
+            contentDescription = "Hotel image",
+            size = OudsListItemImageSize.Large,
+            ratio = OudsListItemImageRatio.Square
+        )
+    )
+}
+
+@Composable
+internal fun OudsNavigationCardItemWithLabelContentSample() {
+    OudsCardItem(
+        labelContent = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OudsLabelText(text = "Amsterdam", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
+                Column(horizontalAlignment = Alignment.End) {
+                    OudsLabelText(text = "from", size = OudsLabelTextSize.Small)
+                    OudsLabelText(text = "€89", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
+
+                }
+            }
+        },
+        onClick = { /* View flights */ },
+        indicator = OudsListItemIndicator.Next,
+        decoration = OudsListItemDecoration.Outlined,
+        description = "Direct flight • 1h 20min"
     )
 }
 
@@ -149,12 +330,42 @@ private fun PreviewOudsCardItemWithAllElementsSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsCardItemWithImageSample() = OudsPreview {
-    OudsCardItemWithImageSample()
+private fun PreviewOudsCardItemWithLeadingImageAndTrailingTagSample() = OudsPreview {
+    OudsCardItemWithLeadingImageAndTrailingTagSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsCardItemWithLeadingIconAndTrailingBadgeSample() = OudsPreview {
+    OudsCardItemWithLeadingIconAndTrailingBadgeSample()
 }
 
 @PreviewLightDark
 @Composable
 private fun PreviewOudsCardItemWithUntintedIconSample() = OudsPreview {
     OudsCardItemWithUntintedIconSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsStaticCardItemWithCustomContentsSample() = OudsPreview {
+    OudsStaticCardItemWithCustomContentsSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsNavigationCardItemWithCustomContentsSample() = OudsPreview {
+    OudsNavigationCardItemWithCustomContentsSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsStaticCardItemWithLabelContentSample() = OudsPreview {
+    OudsStaticCardItemWithLabelContentSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsNavigationCardItemWithLabelContentSample() = OudsPreview {
+    OudsNavigationCardItemWithLabelContentSample()
 }

@@ -150,7 +150,7 @@ class TopAppBarDemoState(
     val centerAlignedSwitchEnabled: Boolean
         get() = size == Size.Small
 
-    val lastActionIconOptionsEnabled: Boolean
+    val lastActionIconSettingsEnabled: Boolean
         get() = actions.contains(Action.Icon)
 
     val actionAvatarFilterChipsEnabled: Boolean
