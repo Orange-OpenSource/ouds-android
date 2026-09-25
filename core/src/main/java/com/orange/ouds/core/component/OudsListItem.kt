@@ -22,8 +22,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -38,7 +40,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -50,6 +54,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -307,6 +312,7 @@ internal fun OudsListItem(
                 } else {
                     leading?.let {
                         when (leading) {
+                            is OudsListItemLeadingTrailing.Content -> leading.PolymorphicContent()
                             is OudsListItemLeadingTrailing.Icon -> {
                                 leading.PolymorphicContent(
                                     extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
@@ -341,6 +347,7 @@ internal fun OudsListItem(
 
                 trailing?.let {
                     when (trailing) {
+                        is OudsListItemLeadingTrailing.Content -> trailing.PolymorphicContent()
                         is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
                             extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(
                                 state = state
@@ -376,6 +383,16 @@ internal fun OudsListItem(
             }
         }
     }
+}
+
+/**
+ * Scope for the content of a list item.
+ *
+ * @property state The current state of the list item.
+ */
+class OudsListItemScope {
+    var state: OudsListItemState by mutableStateOf(OudsListItemState.Enabled)
+        internal set
 }
 
 @Composable
@@ -669,11 +686,16 @@ sealed class OudsListItemDecoration(val divider: Boolean) {
     class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
 }
 
-internal enum class OudsListItemState {
+enum class OudsListItemState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 
 sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
+
+    interface Content : OudsListItemLeadingTrailing {
+        @ConsistentCopyVisibility
+        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
+    }
 
     interface Icon : OudsListItemLeadingTrailing {
         @ConsistentCopyVisibility
@@ -912,10 +934,38 @@ open class OudsListItemText internal constructor(
     }
 }
 
+open class OudsListItemContent internal constructor(
+    private val content: @Composable OudsListItemScope.() -> Unit
+) : OudsComponentContent<OudsListItemLeadingTrailing.Content.ExtraParameters>(OudsListItemLeadingTrailing.Content.ExtraParameters::class.java),
+    OudsListItemLeadingTrailing.Content {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        val scope = remember { OudsListItemScope() }
+        with(OudsTheme.components.listItem) {
+            Box(modifier = modifier.sizeIn(maxWidth = size.maxSizeLeadingTrailingSlot, maxHeight = size.maxSizeLeadingTrailingSlot)) {
+                with(scope) {
+                    state = extraParameters.state
+                    content()
+                }
+            }
+        }
+    }
+}
+
 /**
  * A leading content of an [OudsListItem].
  */
 sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
+
+    /**
+     * A custom content as a list item leading content.
+     * Use it for custom leading content that cannot be represented by other available leading types.
+     * Content provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.
+     *
+     * @param content Custom content to display.
+     */
+    class Content(content: @Composable OudsListItemScope.() -> Unit) : OudsListItemContent(content), OudsListItemLeading
 
     /**
      * An icon as a list item leading content.
@@ -1099,6 +1149,14 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
  * A trailing content of an [OudsListItem].
  */
 sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
+    /**
+     * A custom content as a list item trailing content.
+     * Use it for custom trailing content that cannot be represented by other available trailing types.
+     * Content provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.
+     *
+     * @param content Custom content to display.
+     */
+    class Content(content: @Composable OudsListItemScope.() -> Unit) : OudsListItemContent(content), OudsListItemTrailing
 
     /**
      * An icon as a list item trailing content.
@@ -1456,6 +1514,7 @@ internal val listItemPreviewParameterLeading: (Int) -> OudsListItemLeading? = { 
         0 -> OudsListItemLeading.Icon.Info()
         1 -> OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
         2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageRatio.Square, roundedCorner = true)
+        3 -> OudsListItemLeading.Content { PreviewCustomContent(state = state) }
         else -> null
     }
 }
@@ -1465,6 +1524,7 @@ internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = 
         0 -> OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         1 -> OudsListItemTrailing.Text(label = "Label", extraLabel = "Extra label")
         2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageRatio.Widescreen)
+        3 -> OudsListItemTrailing.Content { PreviewCustomContent(state = state) }
         else -> null
     }
 }
@@ -1477,6 +1537,24 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
     }
 ) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration).toTypedArray())
 
+@Composable
+private fun PreviewCustomContent(state: OudsListItemState) {
+    val enabled = state == OudsListItemState.Enabled
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else Color.Transparent)
+            .padding(all = OudsTheme.spaces.fixed.extraSmall)
+    ) {
+        Text(
+            text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            style = OudsTheme.typography.display.small,
+            color = if (enabled) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.content.disabled,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
 private fun <T, S> getListItemPreviewParameterValues(
     leading: (Int) -> T?,
     trailing: (Int) -> S?,
@@ -1488,7 +1566,7 @@ private fun <T, S> getListItemPreviewParameterValues(
     val description = "Description"
     val helperText = "Helper text"
 
-    return List(3) { index ->
+    return List(4) { index ->
         when (index) {
             0 -> OudsListItemPreviewParameter(
                 label = label,
@@ -1508,6 +1586,16 @@ private fun <T, S> getListItemPreviewParameterValues(
                 trailing = trailing(index),
                 decoration = decoration(index),
                 boldLabel = true
+            )
+            2 -> OudsListItemPreviewParameter(
+                label = label,
+                indicator = OudsListItemIndicator.Previous,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                leading = leading(index),
+                trailing = trailing(index),
+                decoration = decoration(index)
             )
             else -> OudsListItemPreviewParameter(
                 label = label,
