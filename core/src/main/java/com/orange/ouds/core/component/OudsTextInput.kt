@@ -1703,9 +1703,9 @@ internal fun getTextInputState(
     return getPreviewEnumEntry<OudsTextInputState>().orElse {
         when {
             skeleton != null -> OudsTextInputState.Skeleton
-            loader != null -> OudsTextInputState.Loading
             !enabled -> OudsTextInputState.Disabled
             readOnly -> OudsTextInputState.ReadOnly
+            loader != null -> OudsTextInputState.Loading
             interactionState == InteractionState.Hovered -> OudsTextInputState.Hovered
             interactionState in listOf(InteractionState.Focused, InteractionState.Pressed) -> OudsTextInputState.Focused
             else -> OudsTextInputState.Enabled

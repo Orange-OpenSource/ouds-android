@@ -301,9 +301,7 @@ internal fun OudsListItem(
             state = skeleton?.state,
             securityMargin = true
         ) { contentModifier ->
-            Column(
-                modifier = contentModifier.sizeIn(minWidth = this.size.minWidth)
-            ) {
+            Column(modifier = contentModifier.sizeIn(minWidth = this.size.minWidth)) {
                 Row(
                     modifier = clickableModifier
                         .fillMaxWidth()

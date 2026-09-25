@@ -26,6 +26,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -39,12 +40,14 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagAsset
 import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -157,6 +160,11 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
             value = label,
             onValueChange = { value -> label = value }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it },
+        )
     }
 }
 
@@ -164,7 +172,6 @@ private fun TagDemoBottomSheetContent(state: TagDemoState) {
 private fun TagDemoContent(state: TagDemoState) {
     with(state) {
         val content: @Composable (OudsTagSize, Boolean) -> Unit = { size, visible ->
-            val loader = if (hasLoader) OudsTagLoader(null) else null
             val painter = when (icon) {
                 TagDemoState.Icon.Tinted -> painterResource(id = LocalThemeDrawableResources.current.tipsAndTricks)
                 TagDemoState.Icon.Untinted -> rememberUntintedIconPainter()
@@ -210,7 +217,8 @@ private fun TagDemoContent(state: TagDemoState) {
                 size = size,
                 enabled = enabled,
                 roundedCorners = roundedCorners,
-                loader = loader,
+                loader = if (hasLoader) OudsTagLoader(null) else null,
+                skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
             )
         }
 
@@ -255,6 +263,7 @@ private fun Code.Builder.tagDemoCodeSnippet(state: TagDemoState, themeDrawableRe
                     typedArgument("progress", null)
                 }
             }
+            if (skeleton) skeletonArgument()
         }
     }
 }
