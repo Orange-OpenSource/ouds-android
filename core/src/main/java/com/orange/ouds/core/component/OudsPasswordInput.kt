@@ -395,7 +395,7 @@ private fun OudsPasswordInput(
             BasicSecureTextField(
                 modifier = Modifier.textInputSemantic(label),
                 state = state.textFieldState,
-                enabled = textInputEnabled(state = passwordInputState),
+                enabled = passwordInputState.areInteractionsEnabled,
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = passwordInputState),
                 cursorBrush = textInputCursorBrush(state = passwordInputState, error = error != null),

@@ -55,6 +55,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -286,7 +287,7 @@ internal fun OudsListItem(
         val clickableModifier = if (onClick != null) {
             Modifier.clickable(
                 onClick = onClick,
-                enabled = enabled,
+                enabled = state.areInteractionsEnabled,
                 interactionSource = interactionSource,
                 indication = interactionValuesIndication(backgroundColor, outlineBorderColor)
             )
@@ -297,7 +298,7 @@ internal fun OudsListItem(
         SkeletonLayout(
             modifier = modifier,
             componentState = state,
-            skeletonState = skeleton?.state,
+            state = skeleton?.state,
             securityMargin = true
         ) { contentModifier ->
             Column(
@@ -686,7 +687,7 @@ sealed class OudsListItemDecoration(val divider: Boolean) {
     class BackgroundOnInteraction(divider: Boolean) : OudsListItemDecoration(divider)
 }
 
-internal enum class OudsListItemState {
+internal enum class OudsListItemState : OudsComponentState {
     Enabled, Hovered, Pressed, Disabled, Focused, Skeleton;
 
     companion object {

@@ -58,6 +58,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -428,7 +429,7 @@ internal fun OudsButton(
         SkeletonLayout(
             modifier = modifier,
             componentState = state,
-            skeletonState = skeleton?.state,
+            state = skeleton?.state,
             securityMargin = false,
             shape = shape
         ) { contentModifier ->
@@ -450,7 +451,7 @@ internal fun OudsButton(
                         role = Role.Button
                     }
                     .clickable(
-                        enabled = state !in remember { listOf(OudsButtonState.Disabled, OudsButtonState.Loading) },
+                        enabled = state.areInteractionsEnabled,
                         interactionSource = interactionSource,
                         indication = interactionValuesIndication(contentColor, backgroundColor, borderColor, borderWidth),
                         onClick = onClick
@@ -987,7 +988,7 @@ data class OudsButtonLoader(val progress: Float?)
 
 internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
 
-internal enum class OudsButtonState {
+internal enum class OudsButtonState : OudsComponentState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused, Skeleton
 }
 

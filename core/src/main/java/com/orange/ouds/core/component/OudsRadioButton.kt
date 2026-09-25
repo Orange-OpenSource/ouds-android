@@ -127,7 +127,7 @@ fun OudsRadioButton(
             Modifier.selectable(
                 selected = selected,
                 onClick = onClick,
-                enabled = enabled && !readOnly,
+                enabled = state.areInteractionsEnabled,
                 interactionSource = interactionSource,
                 indication = interactionValuesIndication(backgroundColor),
                 role = Role.RadioButton,
@@ -137,7 +137,7 @@ fun OudsRadioButton(
         SkeletonLayout(
             modifier = modifier,
             componentState = state,
-            skeletonState = skeleton?.state,
+            state = skeleton?.state,
             securityMargin = false,
             shape = shape
         ) { contentModifier ->

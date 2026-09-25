@@ -21,18 +21,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
 
-
 @Composable
 fun rememberInputTagDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     enabled: Boolean = true,
-) = rememberSaveable(label, enabled, saver = InputTagDemoState.Saver) {
-    InputTagDemoState(label, enabled)
+    skeleton: Boolean = false
+) = rememberSaveable(label, enabled, skeleton, saver = InputTagDemoState.Saver) {
+    InputTagDemoState(label, enabled, skeleton)
 }
 
 class InputTagDemoState(
     label: String,
-    enabled: Boolean
+    enabled: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -42,14 +43,16 @@ class InputTagDemoState(
                 with(state) {
                     listOf(
                         label,
-                        enabled
+                        enabled,
+                        skeleton
                     )
                 }
             },
             restore = { list: List<Any?> ->
                 InputTagDemoState(
                     list[0] as String,
-                    list[1] as Boolean
+                    list[1] as Boolean,
+                    list[2] as Boolean
                 )
             }
         )
@@ -58,4 +61,6 @@ class InputTagDemoState(
     var label: String by mutableStateOf(label)
 
     var enabled: Boolean by mutableStateOf(enabled)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 }

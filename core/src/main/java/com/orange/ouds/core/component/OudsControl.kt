@@ -14,12 +14,13 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
-internal enum class OudsControlState {
+internal enum class OudsControlState : OudsComponentState {
     Enabled, Hovered, Focused, Pressed, ReadOnly, Disabled, Skeleton
 }
 
