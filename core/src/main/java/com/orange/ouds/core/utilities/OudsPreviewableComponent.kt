@@ -997,12 +997,13 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
         }
 
+        @InternalOudsApi
         object Skeleton : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsInlineAlertSkeleton(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled

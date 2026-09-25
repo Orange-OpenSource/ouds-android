@@ -106,7 +106,7 @@ fun OudsSwitch(
         Modifier.toggleable(
             value = checked,
             onValueChange = onCheckedChange,
-            enabled = enabled && !readOnly,
+            enabled = state.areInteractionsEnabled,
             role = Role.Switch,
             interactionSource = interactionSource,
             indication = null
@@ -119,7 +119,7 @@ fun OudsSwitch(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false,
         shape = shape
     ) { contentModifier ->

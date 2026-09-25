@@ -107,7 +107,7 @@ internal fun OudsBasicChip(
         SkeletonLayout(
             modifier = modifier,
             componentState = state,
-            skeletonState = skeleton?.state,
+            state = skeleton?.state,
             securityMargin = false,
             shape = shape
         ) { contentModifier ->
@@ -130,7 +130,7 @@ internal fun OudsBasicChip(
                         if (selectable) {
                             selectable(
                                 selected = selected,
-                                enabled = enabled,
+                                enabled = state.areInteractionsEnabled,
                                 interactionSource = interactionSource,
                                 indication = indication,
                                 onClick = onClick,
@@ -138,7 +138,7 @@ internal fun OudsBasicChip(
                             )
                         } else {
                             clickable(
-                                enabled = enabled,
+                                enabled = state.areInteractionsEnabled,
                                 interactionSource = interactionSource,
                                 indication = indication,
                                 onClick = onClick,

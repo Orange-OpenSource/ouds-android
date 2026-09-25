@@ -122,7 +122,7 @@ fun OudsRadioButtonItem(
         Modifier.selectable(
             selected = selected,
             onClick = onClick,
-            enabled = enabled && !readOnly,
+            enabled = state.areInteractionsEnabled,
             interactionSource = interactionSource,
             indication = interactionValuesIndication(backgroundColor),
             role = Role.RadioButton,

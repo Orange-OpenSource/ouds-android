@@ -39,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -55,6 +56,7 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 internal fun OudsDigitInput(
@@ -90,7 +92,7 @@ internal fun OudsDigitInput(
         LaunchedEffect(state, cursorBlinkEnabled) {
             if (state == OudsDigitInputState.Focused && cursorBlinkEnabled) {
                 while (true) {
-                    delay(500)
+                    delay(500.milliseconds)
                     cursorVisible = !cursorVisible
                 }
             }
@@ -226,7 +228,7 @@ internal const val OudsDigitInputPlaceholder = '-'
 
 internal const val OudsDigitInputCursor = '|'
 
-internal enum class OudsDigitInputState {
+internal enum class OudsDigitInputState : OudsComponentState {
     Enabled, Hovered, Focused, ReadOnly, Disabled
 }
 

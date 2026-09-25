@@ -48,6 +48,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -363,7 +364,7 @@ private fun OudsLink(
                 .clickable(
                     interactionSource = interactionSource,
                     indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
-                    enabled = state != OudsLinkState.Disabled,
+                    enabled = state.areInteractionsEnabled,
                     onClick = onClick
                 ),
             contentAlignment = Alignment.CenterStart
@@ -683,7 +684,7 @@ open class OudsLinkIcon private constructor(
         get() = extraParameters.tint
 }
 
-internal enum class OudsLinkState {
+internal enum class OudsLinkState : OudsComponentState {
     Enabled, Hovered, Pressed, Disabled, Focused
 }
 

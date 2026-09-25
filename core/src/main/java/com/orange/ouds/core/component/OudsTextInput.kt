@@ -79,6 +79,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
@@ -496,7 +497,7 @@ private fun OudsTextInput(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -509,7 +510,7 @@ private fun OudsTextInput(
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     state = textFieldState,
-                    enabled = textInputEnabled(state = state),
+                    enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
                     lineLimits = TextFieldLineLimits.SingleLine,
@@ -917,7 +918,7 @@ private fun OudsTextInput(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -931,7 +932,7 @@ private fun OudsTextInput(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
                     onValueChange = onValueChange,
-                    enabled = textInputEnabled(state = state),
+                    enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
                     singleLine = true,
@@ -1338,7 +1339,7 @@ private fun OudsTextInput(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -1352,7 +1353,7 @@ private fun OudsTextInput(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
                     onValueChange = onValueChange,
-                    enabled = textInputEnabled(state = state),
+                    enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
                     singleLine = true,
@@ -1832,10 +1833,6 @@ internal fun decorativeContentColor(state: OudsTextInputState) = decorativeConte
 @Composable
 internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.large.moderate.copy(color = contentColor(state))
 
-@Composable
-internal fun textInputEnabled(state: OudsTextInputState) =
-    state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
-
 internal val textInputBorderRadius: Dp
     @Composable
     get() = with(OudsTheme.componentsTokens.textInput) {
@@ -1846,7 +1843,7 @@ internal val textInputShape: Shape
     @Composable
     get() = RoundedCornerShape(textInputBorderRadius)
 
-internal enum class OudsTextInputState {
+internal enum class OudsTextInputState : OudsComponentState {
     Enabled, Hovered, Disabled, Focused, ReadOnly, Loading, Skeleton
 }
 

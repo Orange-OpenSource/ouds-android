@@ -535,7 +535,7 @@ private fun OudsTextArea(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -548,7 +548,7 @@ private fun OudsTextArea(
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     state = textFieldState,
-                    enabled = textInputEnabled(state = state),
+                    enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
                     lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = if (autoResize) maxLines else minLines),
@@ -1019,7 +1019,7 @@ private fun OudsTextArea(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -1033,7 +1033,7 @@ private fun OudsTextArea(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
                     onValueChange = onValueChange,
-                    enabled = textInputEnabled(state = state),
+                    enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
                     minLines = minLines,
@@ -1502,7 +1502,7 @@ private fun OudsTextArea(
     SkeletonLayout(
         modifier = modifier,
         componentState = state,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -1516,7 +1516,7 @@ private fun OudsTextArea(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
                     onValueChange = onValueChange,
-                    enabled = textInputEnabled(state = state),
+                    enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
                     minLines = minLines,
