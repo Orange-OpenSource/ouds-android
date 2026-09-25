@@ -54,6 +54,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the card item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemSample
@@ -76,6 +77,7 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -95,6 +97,7 @@ fun OudsCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
+        skeleton = skeleton,
         card = true,
         interactionSource = interactionSource
     )
@@ -125,6 +128,7 @@ fun OudsCardItem(
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the card item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemSample
@@ -149,6 +153,7 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -168,6 +173,7 @@ fun OudsCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
+        skeleton = skeleton,
         card = true,
         interactionSource = interactionSource
     )
@@ -197,19 +203,24 @@ internal fun PreviewOudsStaticCardItem(
     parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsCardItem(
-            label = label,
-            decoration = decoration,
-            overline = overline,
-            extraLabel = extraLabel,
-            description = description,
-            helperText = helperText,
-            verticalAlignment = verticalAlignment,
-            leading = leading,
-            trailing = trailing,
-            boldLabel = boldLabel,
-            enabled = enabled
-        )
+        PreviewEnumEntries<OudsListItemState>(
+            maxEnumEntriesInEachRow = 1,
+            filter = { it in OudsListItemState.StaticStates }
+        ) {
+            OudsCardItem(
+                label = label,
+                decoration = decoration,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                helperText = helperText,
+                verticalAlignment = verticalAlignment,
+                leading = leading,
+                trailing = trailing,
+                boldLabel = boldLabel,
+                enabled = enabled
+            )
+        }
     }
 }
 

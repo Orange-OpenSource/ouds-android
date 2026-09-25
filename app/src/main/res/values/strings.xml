@@ -125,6 +125,7 @@
     <string name="app_tokens_typography_lineHeight_tech" translatable="false">Line height: %s sp</string>
 
     <!-- Components -->
+    <string name="app_components_common_animated_tech" translatable="false">Animated</string>
     <string name="app_components_common_annotatedText_tech" translatable="false">Annotated text example</string>
     <string name="app_components_common_annotatedTextHelperText_tech" translatable="false">"Supports annotated text. Use switch below for example.</string>
     <string name="app_components_common_appearance_tech" translatable="false">Appearance</string>
@@ -154,6 +155,7 @@
     <string name="app_components_common_prefix_tech" translatable="false">Prefix</string>
     <string name="app_components_common_readOnly_tech" translatable="false">Read only</string>
     <string name="app_components_common_size_tech" translatable="false">Size</string>
+    <string name="app_components_common_skeleton_tech" translatable="false">Skeleton</string>
     <string name="app_components_common_smallSize_tech" translatable="false">Small</string>
     <string name="app_components_common_mediumSize_tech" translatable="false">Medium</string>
     <string name="app_components_common_largeSize_tech" translatable="false">Large</string>
@@ -346,7 +348,6 @@
     <string name="app_components_progressIndicator_linearProgressIndicator_tech" translatable="false">Linear progress indicator</string>
     <string name="app_components_progressIndicator_linearProgressIndicator_description_text">A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.</string>
     <string name="app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech" translatable="false">Stop indicator</string>
-    <string name="app_components_progressIndicator_animated_tech" translatable="false">Animated</string>
     <string name="app_components_progressIndicator_determinate_tech" translatable="false">Determinate</string>
     <string name="app_components_progressIndicator_indeterminate_tech" translatable="false">Indeterminate</string>
     <string name="app_components_progressIndicator_progress_tech" translatable="false">Progress</string>
@@ -364,6 +365,11 @@
     <string name="app_components_radioButton_radioButtonItem_tech" translatable="false">Radio button item</string>
     <string name="app_components_radioButton_radioButton_a11y">Radio button %s content description</string>
     <string name="app_components_radioButtonItem_annotatedErrorMessage_text"><![CDATA[Please select <b>one contact method</b> to proceed.]]></string>
+
+    <!-- Components: skeleton -->
+    <string name="app_components_skeleton_tech" translatable="false">Skeleton</string>
+    <string name="app_components_skeleton_description_text">A skeleton is a UI element that indicates when content is loading.</string>
+    <string name="app_components_skeleton_securityMargin_tech" translatable="false">Security margin</string>
 
     <!-- Components: switch -->
     <string name="app_components_switch_tech" translatable="false">Switch</string>

@@ -57,9 +57,36 @@ import com.orange.ouds.theme.OudsThemeContract
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextOnlySample
  */
+@Composable
+fun OudsFilterChip(
+    selected: Boolean,
+    onClick: () -> Unit,
+    label: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsFilterChip(
+        selected = selected,
+        onClick = onClick,
+        nullableLabel = label,
+        nullableIcon = null,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -72,8 +99,7 @@ fun OudsFilterChip(
     OudsFilterChip(
         selected = selected,
         onClick = onClick,
-        nullableLabel = label,
-        nullableIcon = null,
+        label = label,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -106,6 +132,7 @@ fun OudsFilterChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlySample
  *
@@ -118,13 +145,38 @@ fun OudsFilterChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     OudsFilterChip(
         selected = selected,
         onClick = onClick,
         nullableLabel = null,
         nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsFilterChip(
+    selected: Boolean,
+    onClick: () -> Unit,
+    icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsFilterChip(
+        selected = selected,
+        onClick = onClick,
+        icon = icon,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -158,6 +210,7 @@ fun OudsFilterChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconSample
  *
@@ -171,13 +224,40 @@ fun OudsFilterChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     OudsFilterChip(
         selected = selected,
         onClick = onClick,
         nullableLabel = label,
         nullableIcon = icon,
+        modifier = modifier,
+        enabled = enabled,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsFilterChip(
+    selected: Boolean,
+    onClick: () -> Unit,
+    label: String,
+    icon: OudsChipIcon,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsFilterChip(
+        selected = selected,
+        onClick = onClick,
+        label = label,
+        icon = icon,
         modifier = modifier,
         enabled = enabled,
         interactionSource = interactionSource
@@ -193,6 +273,7 @@ private fun OudsFilterChip(
     nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsBasicChip(
@@ -204,6 +285,7 @@ private fun OudsFilterChip(
         iconPosition = OudsChipIconPosition.End,
         modifier = modifier,
         enabled = enabled,
+        skeleton = skeleton,
         interactionSource = interactionSource
     )
 }

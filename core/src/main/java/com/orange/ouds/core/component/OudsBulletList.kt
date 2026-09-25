@@ -101,6 +101,7 @@ private const val MaxLevelCount = 3
  * @param type The visual type of the list (e.g., ordered, unordered, bare). See [OudsBulletListType].
  * @param textStyle The typography style for the list items. See [OudsBulletListTextStyle].
  * @param builder A lambda scope using the [OudsBulletListBuilder] to define the list items.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the list will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBulletListUnorderedSample
  * @sample com.orange.ouds.core.component.samples.OudsBulletListOrderedSample
@@ -112,6 +113,7 @@ fun OudsBulletList(
     modifier: Modifier = Modifier,
     type: OudsBulletListType = OudsBulletListDefaults.Type,
     textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
+    skeleton: OudsSkeleton? = null,
     builder: OudsBulletListBuilder.() -> Unit
 ) {
     val items = remember(builder) {
@@ -125,10 +127,30 @@ fun OudsBulletList(
                 currentType = type,
                 currentTextStyle = textStyle,
                 index = index,
-                parentNodes = emptyList()
+                parentNodes = emptyList(),
+                skeleton = skeleton
             )
         }
     }
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsBulletList(
+    modifier: Modifier = Modifier,
+    type: OudsBulletListType = OudsBulletListDefaults.Type,
+    textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
+    builder: OudsBulletListBuilder.() -> Unit
+) {
+    OudsBulletList(
+        modifier = modifier,
+        type = type,
+        textStyle = textStyle,
+        builder = builder
+    )
 }
 
 /**
@@ -207,6 +229,7 @@ private fun OudsBulletListItem(
     currentTextStyle: OudsBulletListTextStyle,
     index: Int,
     parentNodes: List<BulletListParentNode>,
+    skeleton: OudsSkeleton?,
     modifier: Modifier = Modifier,
 ) {
     with(OudsTheme.componentsTokens.bulletList) {
@@ -270,39 +293,45 @@ private fun OudsBulletListItem(
             }
         }
 
-        Row(
-            modifier = modifier
-                .height(IntrinsicSize.Min)
-                .padding(start = paddingStart)
-                .padding(vertical = verticalPadding)
-                .semantics(mergeDescendants = true) {
-                    contentDescription = itemContentDescription
-                },
-            horizontalArrangement = Arrangement.spacedBy(columnGap)
-        ) {
-            Bullet(
-                type = currentType,
-                textStyle = currentTextStyle,
-                index = index,
-                parentNodes = parentNodes
-            )
-            val textMaxWidth = when (currentTextStyle.fontSize) {
-                OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.body.large
-                OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.body.medium
-            }
-            val textModifier = Modifier
-                .fillMaxHeight()
-                .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
-                .widthIn(max = textMaxWidth)
-                .clearAndSetSemantics {}
-            val textStyle = currentTextStyle.toTextStyle()
-            val textColor = OudsTheme.colorScheme.content.default
-            if (item.annotatedLabel != null) {
-                val strongAndLinkStyle = currentTextStyle.toTextStyle(forceStrong = true)
-                val text = item.annotatedLabel.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle)
-                Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
-            } else if (item.label != null) {
-                Text(modifier = textModifier, text = item.label, style = textStyle, color = textColor)
+        SkeletonLayout(
+            modifier = modifier,
+            skeleton = skeleton,
+            securityMargin = true
+        ) { contentModifier ->
+            Row(
+                modifier = contentModifier
+                    .height(IntrinsicSize.Min)
+                    .padding(start = paddingStart)
+                    .padding(vertical = verticalPadding)
+                    .semantics(mergeDescendants = true) {
+                        contentDescription = itemContentDescription
+                    },
+                horizontalArrangement = Arrangement.spacedBy(columnGap)
+            ) {
+                Bullet(
+                    type = currentType,
+                    textStyle = currentTextStyle,
+                    index = index,
+                    parentNodes = parentNodes
+                )
+                val textMaxWidth = when (currentTextStyle.fontSize) {
+                    OudsBulletListFontSize.BodyLarge -> OudsTheme.sizes.maxWidth.body.large
+                    OudsBulletListFontSize.BodyMedium -> OudsTheme.sizes.maxWidth.body.medium
+                }
+                val textModifier = Modifier
+                    .fillMaxHeight()
+                    .wrapContentHeight() // Allows to center the text vertically when its height is smaller than the row height
+                    .widthIn(max = textMaxWidth)
+                    .clearAndSetSemantics {}
+                val textStyle = currentTextStyle.toTextStyle()
+                val textColor = OudsTheme.colorScheme.content.default
+                if (item.annotatedLabel != null) {
+                    val strongAndLinkStyle = currentTextStyle.toTextStyle(forceStrong = true)
+                    val text = item.annotatedLabel.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle)
+                    Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
+                } else if (item.label != null) {
+                    Text(modifier = textModifier, text = item.label, style = textStyle, color = textColor)
+                }
             }
         }
 
@@ -318,7 +347,8 @@ private fun OudsBulletListItem(
                         currentType = nextType,
                         currentTextStyle = nextTextStyle,
                         index = index,
-                        parentNodes = parentNodes + BulletListParentNode(currentType, index)
+                        parentNodes = parentNodes + BulletListParentNode(currentType, index),
+                        skeleton = skeleton
                     )
                 }
             } else {
@@ -617,52 +647,13 @@ private fun PreviewOudsBulletList(@PreviewParameter(OudsBulletListPreviewParamet
 
 @Composable
 internal fun PreviewOudsBulletList(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsBulletListPreviewParameter) {
-    val customBullet = rememberVectorPainter(Icons.Outlined.FavoriteBorder)
     OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
         with(parameter) {
-            val typeName = type.javaClass.simpleName
             OudsBulletList(
                 type = type,
-                textStyle = textStyle
-            ) {
-                item(label = "$typeName first item")
-                item(
-                    label = "$typeName second item with a non-bold, unordered sublist",
-                    subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Tick, brandColor = false),
-                    subListTextStyle = textStyle.copy(fontWeight = OudsBulletListFontWeight.Normal)
-                ) {
-                    item(label = "Unordered subitem")
-                    item(
-                        label = "Unordered subitem with an ordered sublist",
-                        subListType = OudsBulletListType.Ordered,
-                    ) {
-                        repeat(2) {
-                            item(label = "Ordered subitem")
-                        }
-                    }
-                }
-                item(
-                    label = "$typeName third item with a sublist that inherits from the parent type",
-                ) {
-                    item(label = "$typeName subitem")
-                    item(label = "$typeName subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {
-                        repeat(2) {
-                            item(label = "Unordered subitem")
-                        }
-                    }
-                }
-                item(
-                    label = "$typeName fourth item with an unordered sublist and free bullets",
-                    subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Icon(customBullet))
-                ) {
-                    item(label = "Unordered subitem")
-                    item(label = "Unordered subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {
-                        repeat(2) {
-                            item(label = "Unordered subitem")
-                        }
-                    }
-                }
-            }
+                textStyle = textStyle,
+                builder = previewBuilder(type, textStyle)
+            )
         }
     }
 }
@@ -716,6 +707,30 @@ internal fun PreviewOudsBulletListWithRichText(theme: OudsThemeContract, darkThe
     }
 }
 
+@Preview(name = "Light", heightDp = OudsPreviewableComponent.BulletList.Skeleton.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.BulletList.Skeleton.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsBulletListSkeleton() {
+    PreviewOudsBulletListSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsBulletListSkeleton(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsBulletList(
+        skeleton = OudsSkeleton(rememberOudsSkeletonState()),
+        builder = previewBuilder()
+    )
+}
+
 internal data class OudsBulletListPreviewParameter(
     val type: OudsBulletListType = OudsBulletListDefaults.Type,
     val textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle
@@ -763,3 +778,51 @@ private val arabicLetters = listOf(
     "و",
     "ي",
 )
+
+@Composable
+private fun previewBuilder(
+    type: OudsBulletListType = OudsBulletListDefaults.Type,
+    textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle
+): (OudsBulletListBuilder).() -> Unit {
+    val customBullet = rememberVectorPainter(Icons.Outlined.FavoriteBorder)
+    val typeName = type.javaClass.simpleName
+    return {
+        item(label = "$typeName first item")
+        item(
+            label = "$typeName second item with a non-bold, unordered sublist",
+            subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Tick, brandColor = false),
+            subListTextStyle = textStyle.copy(fontWeight = OudsBulletListFontWeight.Normal)
+        ) {
+            item(label = "Unordered subitem")
+            item(
+                label = "Unordered subitem with an ordered sublist",
+                subListType = OudsBulletListType.Ordered,
+            ) {
+                repeat(2) {
+                    item(label = "Ordered subitem")
+                }
+            }
+        }
+        item(
+            label = "$typeName third item with a sublist that inherits from the parent type",
+        ) {
+            item(label = "$typeName subitem")
+            item(label = "$typeName subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {
+                repeat(2) {
+                    item(label = "Unordered subitem")
+                }
+            }
+        }
+        item(
+            label = "$typeName fourth item with an unordered sublist and free bullets",
+            subListType = OudsBulletListType.Unordered(asset = OudsBulletListUnorderedAsset.Icon(customBullet))
+        ) {
+            item(label = "Unordered subitem")
+            item(label = "Unordered subitem with an unordered sublist", subListType = OudsBulletListType.Unordered()) {
+                repeat(2) {
+                    item(label = "Unordered subitem")
+                }
+            }
+        }
+    }
+}

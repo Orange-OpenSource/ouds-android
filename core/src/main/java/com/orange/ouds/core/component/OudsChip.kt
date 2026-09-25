@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
@@ -106,7 +107,7 @@ class OudsChipIcon private constructor(
  * ```
  */
 @RestrictedOudsApi
-enum class OudsChipState {
+enum class OudsChipState : OudsComponentState {
 
     /** The chip is enabled and can be interacted with. */
     Enabled,
@@ -121,7 +122,10 @@ enum class OudsChipState {
     Disabled,
 
     /** The chip is focused. */
-    Focused
+    Focused,
+
+    /** The chip is displayed as a skeleton. */
+    Skeleton
 }
 
 internal enum class OudsChipIconPosition {

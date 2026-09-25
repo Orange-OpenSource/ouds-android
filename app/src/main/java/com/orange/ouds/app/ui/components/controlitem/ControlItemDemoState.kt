@@ -31,7 +31,8 @@ open class ControlItemDemoState(
     label: String,
     description: String?,
     constrainedMaxWidth: Boolean,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -51,7 +52,8 @@ open class ControlItemDemoState(
                         label,
                         description,
                         constrainedMaxWidth,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             },
@@ -68,25 +70,38 @@ open class ControlItemDemoState(
                     list[8] as String,
                     list[9] as String?,
                     list[10] as Boolean,
-                    list[11] as Boolean
+                    list[11] as Boolean,
+                    list[12] as Boolean
                 )
             }
         )
     }
 
     var icon: Icon by mutableStateOf(icon)
+
     var constrainedMaxWidth: Boolean by mutableStateOf(constrainedMaxWidth)
+
     var edgeToEdge: Boolean by mutableStateOf(edgeToEdge)
+
     var divider: Boolean by mutableStateOf(divider)
+
     var reversed: Boolean by mutableStateOf(reversed)
+
     var enabled: Boolean by mutableStateOf(enabled)
+
     var readOnly: Boolean by mutableStateOf(readOnly)
+
     var error: Boolean by mutableStateOf(error)
+
     var errorMessage: String by mutableStateOf(errorMessage)
+
     var label: String by mutableStateOf(label)
+
     var description: String? by mutableStateOf(description)
 
     var annotatedText: Boolean by mutableStateOf(annotatedText)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val enabledSwitchEnabled: Boolean
         get() = !error
