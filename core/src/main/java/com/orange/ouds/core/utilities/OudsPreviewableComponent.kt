@@ -203,6 +203,7 @@ import com.orange.ouds.core.component.PreviewOudsSwitchItemWithLongDescription
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithRichText
 import com.orange.ouds.core.component.PreviewOudsSwitchItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsTag
+import com.orange.ouds.core.component.PreviewOudsTagSmall
 import com.orange.ouds.core.component.PreviewOudsTagWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsTextArea
 import com.orange.ouds.core.component.PreviewOudsTextAreaAutoResize
@@ -1905,11 +1906,30 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
+            const val PreviewWidthDp = 500
+
             override val parameters: List<Any> = OudsTagPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsTag(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsTagPreviewParameter
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object Small : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 430
+
+            override val parameters: List<Any> = OudsTagPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsTagSmall(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
                     parameter = parameter as OudsTagPreviewParameter

@@ -12,6 +12,8 @@
 
 package com.orange.ouds.core.component
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +29,7 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,15 +39,18 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
@@ -52,10 +58,12 @@ import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
-import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.LocalPreviewGridColumnEnumEntry
 import com.orange.ouds.core.utilities.OudsPreview
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewGrid
+import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.extensions.orElse
@@ -108,6 +116,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
  *   A disabled tag cannot have a loader. This will throw an [IllegalStateException].
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the tag will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagSample
  *
@@ -128,23 +137,26 @@ fun OudsTag(
     status: OudsTagStatus = OudsTagDefaults.Status,
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
-    loader: OudsTagLoader? = null
+    loader: OudsTagLoader? = null,
+    skeleton: OudsSkeleton? = null
 ) {
-    val hasLoader = loader != null
-    val hasAsset = status.asset != null || hasLoader
-    val isForbidden = !enabled && hasLoader
-    val stateDescription = if (hasLoader) stringResource(id = R.string.core_common_loading_a11y) else ""
-
+    val state = getTagState(enabled = enabled, loader = loader, skeleton = skeleton)
+    val hasAsset = status.asset != null || state == OudsTagState.Loading
+    val stateDescription = if (state == OudsTagState.Loading) stringResource(id = R.string.core_common_loading_a11y) else ""
     val tagShape = shape(roundedCorners = roundedCorners)
-    CheckedContent(
-        expression = !isForbidden,
-        exceptionMessage = { "A disabled OudsTag cannot have a loader. This is not allowed." }
-    ) {
+
+    SkeletonLayout(
+        modifier = modifier,
+        componentState = state,
+        state = skeleton?.state,
+        securityMargin = false,
+        shape = tagShape
+    ) { contentModifier ->
         Row(
-            modifier = modifier
+            modifier = contentModifier
                 .sizeIn(minWidth = minWidth(size), minHeight = minHeight(size))
                 .clip(shape = tagShape)
-                .background(backgroundColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled))
+                .background(backgroundColor(status = status, appearance = appearance, state = state))
                 .semantics(mergeDescendants = true) {
                     this.stateDescription = stateDescription
                 }
@@ -154,8 +166,8 @@ fun OudsTag(
         ) {
             if (hasAsset) {
                 Box {
-                    if (hasLoader) {
-                        ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader.progress, enabled = enabled)
+                    if (state == OudsTagState.Loading) {
+                        ProgressIndicator(status = status, appearance = appearance, size = size, progress = loader?.progress, state = state)
                     } else {
                         val isBulletAsset = status.asset is OudsTagAsset.Bullet
                         val assetPadding = if (isBulletAsset) bulletPadding(size = size) else iconPadding(size = size)
@@ -172,7 +184,7 @@ fun OudsTag(
                                 }
                                 .padding(all = assetPadding),
                             extraParameters = OudsTagAsset.ExtraParameters(
-                                tint = assetColor(status = status, appearance = appearance, enabled = enabled),
+                                tint = assetColor(status = status, appearance = appearance, state = state),
                                 status = status,
                                 appearance = appearance,
                                 enabled = enabled
@@ -183,9 +195,48 @@ fun OudsTag(
             }
             Text(
                 text = label,
-                color = contentColor(status = status, appearance = appearance, hasLoader = hasLoader, enabled = enabled),
+                color = contentColor(status = status, appearance = appearance, state = state),
                 style = textStyle(size)
             )
+        }
+    }
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsTag(
+    label: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
+    status: OudsTagStatus = OudsTagDefaults.Status,
+    roundedCorners: Boolean = true,
+    size: OudsTagSize = OudsTagDefaults.Size,
+    loader: OudsTagLoader? = null
+) {
+    OudsTag(
+        label = label,
+        modifier = modifier,
+        enabled = enabled,
+        appearance = appearance,
+        status = status,
+        roundedCorners = roundedCorners,
+        size = size,
+        loader = loader
+    )
+}
+
+@Composable
+private fun getTagState(enabled: Boolean, loader: OudsTagLoader?, skeleton: OudsSkeleton?): OudsTagState {
+    return getPreviewEnumEntry<OudsTagState>().orElse {
+        when {
+            skeleton != null -> OudsTagState.Skeleton
+            !enabled -> OudsTagState.Disabled
+            loader != null -> OudsTagState.Loading
+            else -> OudsTagState.Enabled
         }
     }
 }
@@ -246,35 +297,35 @@ private fun betweenAssetAndLabelSpace(size: OudsTagSize): Dp {
 }
 
 @Composable
-private fun backgroundColor(status: OudsTagStatus, appearance: OudsTagAppearance, hasLoader: Boolean, enabled: Boolean): Color {
-    return when {
-        !enabled -> OudsTheme.colorScheme.action.disabled
-        hasLoader -> OudsTheme.colorScheme.surface.secondary
-        else -> when (appearance) {
+private fun backgroundColor(status: OudsTagStatus, appearance: OudsTagAppearance, state: OudsTagState): Color {
+    return when (state) {
+        OudsTagState.Enabled -> when (appearance) {
             OudsTagAppearance.Emphasized -> status.color()
             OudsTagAppearance.Muted -> status.mutedColor()
         }
+        OudsTagState.Disabled -> OudsTheme.colorScheme.action.disabled
+        OudsTagState.Loading -> OudsTheme.colorScheme.surface.secondary
+        OudsTagState.Skeleton -> Color.Transparent
     }
 }
 
 @Composable
-private fun assetColor(status: OudsTagStatus, appearance: OudsTagAppearance, enabled: Boolean): Color {
+private fun assetColor(status: OudsTagStatus, appearance: OudsTagAppearance, state: OudsTagState): Color {
     return when (appearance) {
-        OudsTagAppearance.Emphasized -> contentColor(status = status, appearance = appearance, hasLoader = false, enabled = enabled)
-        OudsTagAppearance.Muted -> if (!enabled) {
-            OudsTheme.colorScheme.content.onAction.disabled
-        } else {
-            status.toAlertStatus(appearance, enabled).assetColor
+        OudsTagAppearance.Emphasized -> contentColor(status = status, appearance = appearance, state = state)
+        OudsTagAppearance.Muted -> when (state) {
+            OudsTagState.Enabled -> status.toAlertStatus(appearance, true).assetColor
+            OudsTagState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+            OudsTagState.Loading,
+            OudsTagState.Skeleton -> Color.Transparent
         }
     }
 }
 
 @Composable
-private fun contentColor(status: OudsTagStatus, appearance: OudsTagAppearance, hasLoader: Boolean, enabled: Boolean): Color {
-    return when {
-        hasLoader -> OudsTheme.colorScheme.content.default
-        !enabled -> OudsTheme.colorScheme.content.onAction.disabled
-        else -> with(OudsTheme.colorScheme.content) {
+private fun contentColor(status: OudsTagStatus, appearance: OudsTagAppearance, state: OudsTagState): Color {
+    return when (state) {
+        OudsTagState.Enabled -> with(OudsTheme.colorScheme.content) {
             when (appearance) {
                 OudsTagAppearance.Emphasized -> when (status) {
                     is OudsTagStatus.Neutral -> inverse
@@ -294,6 +345,9 @@ private fun contentColor(status: OudsTagStatus, appearance: OudsTagAppearance, h
                 }
             }
         }
+        OudsTagState.Disabled -> OudsTheme.colorScheme.content.onAction.disabled
+        OudsTagState.Loading -> OudsTheme.colorScheme.content.default
+        OudsTagState.Skeleton -> Color.Transparent
     }
 }
 
@@ -351,22 +405,22 @@ private fun loaderPadding(size: OudsTagSize): Dp {
 }
 
 @Composable
-private fun ProgressIndicator(status: OudsTagStatus, appearance: OudsTagAppearance, size: OudsTagSize, progress: Float?, enabled: Boolean) {
+private fun ProgressIndicator(status: OudsTagStatus, appearance: OudsTagAppearance, size: OudsTagSize, progress: Float?, state: OudsTagState) {
     val scale = LocalConfiguration.current.fontScale
     val modifier = Modifier
         .size(assetSize(size) * scale)
         .padding(all = loaderPadding(size = size))
         .semantics { hideFromAccessibility() }
-    val color = contentColor(status = status, appearance = appearance, hasLoader = true, enabled = enabled)
+    val color = contentColor(status = status, appearance = appearance, state = state)
     val strokeWidth = when (size) {
         OudsTagSize.Default -> 2.4.dp
         OudsTagSize.Small -> 2.dp
     } * scale
     val trackColor = Color.Transparent
     val strokeCap = StrokeCap.Butt
-    if (progress != null) {
+    if (progress != null || LocalInspectionMode.current) {
         CircularProgressIndicator(
-            progress = { progress },
+            progress = { progress.orElse { 0.75f } },
             modifier = modifier,
             color = color,
             strokeWidth = strokeWidth,
@@ -746,7 +800,17 @@ sealed class OudsTagStatus(val asset: OudsTagAsset? = null) {
     }
 }
 
-@OudsPreviewLightDark
+private enum class OudsTagState : OudsComponentState {
+    Enabled, Disabled, Loading, Skeleton
+}
+
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Tag.Default.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.Tag.Default.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsTag(@PreviewParameter(OudsTagPreviewParameterProvider::class) parameter: OudsTagPreviewParameter) {
@@ -754,15 +818,39 @@ private fun PreviewOudsTag(@PreviewParameter(OudsTagPreviewParameterProvider::cl
 }
 
 @Composable
-internal fun PreviewOudsTag(
+internal fun PreviewOudsTag(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsTagPreviewParameter) {
+    PreviewOudsTag(theme = theme, darkThemeEnabled = darkThemeEnabled, size = OudsTagSize.Default, parameter = parameter)
+}
+
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Tag.Small.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.Tag.Small.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTagSmall(@PreviewParameter(OudsTagPreviewParameterProvider::class) parameter: OudsTagPreviewParameter) {
+    PreviewOudsTagSmall(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+}
+
+@Composable
+internal fun PreviewOudsTagSmall(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: OudsTagPreviewParameter) {
+    PreviewOudsTag(theme = theme, darkThemeEnabled = darkThemeEnabled, size = OudsTagSize.Small, parameter = parameter)
+}
+
+@Composable
+private fun PreviewOudsTag(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
+    size: OudsTagSize,
     parameter: OudsTagPreviewParameter
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     val label = "Label"
     with(parameter) {
         PreviewGrid(
-            columns = OudsTagSize.entries.map { it.name },
+            columns = OudsTagState.entries.map { it.name },
             rows = listOf(
                 OudsTagStatus.Neutral::class,
                 OudsTagStatus.Accent::class,
@@ -772,34 +860,32 @@ internal fun PreviewOudsTag(
                 OudsTagStatus.Info::class
             ).map { it.simpleName.orEmpty() },
         ) { column, row ->
-            val size = enumValueOf<OudsTagSize>(column)
-            val asset = when {
-                bullet -> OudsTagAsset.Bullet
-                icon && row in listOf(
-                    OudsTagStatus.Neutral::class.simpleName,
-                    OudsTagStatus.Accent::class.simpleName
-                ) -> OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
-                icon -> OudsTagAsset.Icon.Default
-                else -> null
-            }
-            val status = when (row) {
-                OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
-                OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
-                OudsTagStatus.Positive::class.simpleName -> OudsTagStatus.Positive(asset)
-                OudsTagStatus.Warning::class.simpleName -> OudsTagStatus.Warning(asset)
-                OudsTagStatus.Negative::class.simpleName -> OudsTagStatus.Negative(asset)
-                OudsTagStatus.Info::class.simpleName -> OudsTagStatus.Info(asset)
-                else -> error("Unknown row $row.")
-            }
-            Box {
+            val state = enumValueOf<OudsTagState>(column)
+            CompositionLocalProvider(LocalPreviewGridColumnEnumEntry provides state) {
+                val asset = when {
+                    bullet -> OudsTagAsset.Bullet
+                    icon && row in listOf(
+                        OudsTagStatus.Neutral::class.simpleName,
+                        OudsTagStatus.Accent::class.simpleName
+                    ) -> OudsTagAsset.Icon(Icons.Outlined.FavoriteBorder)
+                    icon -> OudsTagAsset.Icon.Default
+                    else -> null
+                }
+                val status = when (row) {
+                    OudsTagStatus.Neutral::class.simpleName -> OudsTagStatus.Neutral(asset)
+                    OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
+                    OudsTagStatus.Positive::class.simpleName -> OudsTagStatus.Positive(asset)
+                    OudsTagStatus.Warning::class.simpleName -> OudsTagStatus.Warning(asset)
+                    OudsTagStatus.Negative::class.simpleName -> OudsTagStatus.Negative(asset)
+                    OudsTagStatus.Info::class.simpleName -> OudsTagStatus.Info(asset)
+                    else -> error("Unknown row $row.")
+                }
                 OudsTag(
                     label = label,
                     status = status,
                     appearance = appearance,
                     size = size,
-                    roundedCorners = roundedCorners,
-                    loader = loader,
-                    enabled = enabled
+                    roundedCorners = roundedCorners
                 )
             }
         }
@@ -829,13 +915,11 @@ internal fun PreviewOudsTagWithUntintedIcon(theme: OudsThemeContract) = OudsPrev
             OudsTagStatus.Accent::class.simpleName -> OudsTagStatus.Accent(asset)
             else -> error("Unknown row $row.")
         }
-        Box {
-            OudsTag(
-                label = "Label",
-                status = status,
-                size = size
-            )
-        }
+        OudsTag(
+            label = "Label",
+            status = status,
+            size = size
+        )
     }
 }
 
@@ -844,8 +928,6 @@ internal data class OudsTagPreviewParameter(
     val bullet: Boolean = false,
     val appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
     val roundedCorners: Boolean = true,
-    val loader: OudsTagLoader? = null,
-    val enabled: Boolean = true
 )
 
 internal class OudsTagPreviewParameterProvider : BasicPreviewParameterProvider<OudsTagPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -855,8 +937,5 @@ private val previewParameterValues: List<OudsTagPreviewParameter>
         OudsTagPreviewParameter(),
         OudsTagPreviewParameter(bullet = true, appearance = OudsTagAppearance.Muted),
         OudsTagPreviewParameter(icon = true, appearance = OudsTagAppearance.Muted),
-        OudsTagPreviewParameter(icon = true, roundedCorners = false),
-        OudsTagPreviewParameter(loader = OudsTagLoader(0.6f)),
-        OudsTagPreviewParameter(enabled = false, appearance = OudsTagAppearance.Muted),
+        OudsTagPreviewParameter(icon = true, roundedCorners = false)
     )
-
