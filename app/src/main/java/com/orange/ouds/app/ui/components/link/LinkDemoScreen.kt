@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -38,6 +39,8 @@ import com.orange.ouds.core.component.OudsLinkDensity
 import com.orange.ouds.core.component.OudsLinkIcon
 import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsLinkSize
+import com.orange.ouds.core.component.OudsSkeleton
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -102,12 +105,18 @@ private fun LinkDemoBottomSheetContent(state: LinkDemoState) {
             selectedChipIndex = LinkDemoState.Icon.entries.indexOf(icon),
             onSelectionChange = { index -> icon = LinkDemoState.Icon.entries[index] }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it },
+        )
     }
 }
 
 @Composable
 private fun LinkDemoContent(state: LinkDemoState) {
     with(state) {
+        val linkSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         when (layout) {
             LinkDemoState.Layout.TextOnly -> {
                 OudsLink(
@@ -115,7 +124,8 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     onClick = {},
                     enabled = enabled,
                     size = size,
-                    density = density
+                    density = density,
+                    skeleton = linkSkeleton
                 )
             }
             LinkDemoState.Layout.TextAndIcon -> {
@@ -129,7 +139,8 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     onClick = {},
                     enabled = enabled,
                     size = size,
-                    density = density
+                    density = density,
+                    skeleton = linkSkeleton
                 )
             }
             LinkDemoState.Layout.IndicatorPrevious,
@@ -146,7 +157,8 @@ private fun LinkDemoContent(state: LinkDemoState) {
                     onClick = {},
                     enabled = enabled,
                     size = size,
-                    density = density
+                    density = density,
+                    skeleton = linkSkeleton
                 )
             }
         }
@@ -180,6 +192,7 @@ private fun Code.Builder.linkDemoCodeSnippet(state: LinkDemoState, themeDrawable
                 enabledArgument(enabled)
                 typedArgument("size", size)
                 typedArgument("density", density)
+                if (skeleton) skeletonArgument()
             }
         }
     }

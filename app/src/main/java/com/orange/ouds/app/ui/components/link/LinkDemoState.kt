@@ -33,9 +33,10 @@ fun rememberLinkDemoState(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     density: OudsLinkDensity = OudsLinkDefaults.Density,
     layout: LinkDemoState.Layout = LinkDemoState.Layout.entries.first(),
-    icon: LinkDemoState.Icon = LinkDemoState.Icon.Tinted
-) = rememberSaveable(label, enabled, onColoredBox, size, density, layout, icon, saver = LinkDemoState.Saver) {
-    LinkDemoState(label, enabled, onColoredBox, size, density, layout, icon)
+    icon: LinkDemoState.Icon = LinkDemoState.Icon.Tinted,
+    skeleton: Boolean = false
+) = rememberSaveable(label, enabled, onColoredBox, size, density, layout, icon, skeleton, saver = LinkDemoState.Saver) {
+    LinkDemoState(label, enabled, onColoredBox, size, density, layout, icon, skeleton)
 }
 
 class LinkDemoState(
@@ -45,7 +46,8 @@ class LinkDemoState(
     size: OudsLinkSize,
     density: OudsLinkDensity,
     layout: Layout,
-    icon: Icon
+    icon: Icon,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -60,7 +62,8 @@ class LinkDemoState(
                         size,
                         density,
                         layout,
-                        icon
+                        icon,
+                        skeleton
                     )
                 }
             },
@@ -72,7 +75,8 @@ class LinkDemoState(
                     list[3] as OudsLinkSize,
                     list[4] as OudsLinkDensity,
                     list[5] as Layout,
-                    list[6] as Icon
+                    list[6] as Icon,
+                    list[7] as Boolean
                 )
             }
         )
@@ -91,6 +95,8 @@ class LinkDemoState(
     var layout: Layout by mutableStateOf(layout)
 
     var icon: Icon by mutableStateOf(icon)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val enabledIcons: List<Icon>
         get() = if (layout == Layout.TextAndIcon) Icon.entries else emptyList()
