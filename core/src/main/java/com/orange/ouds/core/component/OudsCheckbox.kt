@@ -217,7 +217,7 @@ fun OudsTriStateCheckbox(
                     indication = interactionValuesIndication(backgroundColor),
                     state = state,
                     onClick = onClick,
-                    enabled = enabled && !readOnly,
+                    enabled = checkboxState.areInteractionsEnabled,
                     role = Role.Checkbox
                 )
             } else {
@@ -227,7 +227,7 @@ fun OudsTriStateCheckbox(
         SkeletonLayout(
             modifier = modifier,
             componentState = checkboxState,
-            skeletonState = skeleton?.state,
+            state = skeleton?.state,
             securityMargin = false,
             shape = shape
         ) { contentModifier ->

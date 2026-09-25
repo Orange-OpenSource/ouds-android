@@ -246,7 +246,7 @@ fun OudsTriStateCheckboxItem(
             indication = interactionValuesIndication(backgroundColor),
             state = state,
             onClick = onClick,
-            enabled = enabled && !readOnly,
+            enabled = checkboxItemState.areInteractionsEnabled,
             role = Role.Checkbox
         )
     } else {

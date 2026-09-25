@@ -384,7 +384,7 @@ private fun OudsPasswordInput(
     SkeletonLayout(
         modifier = modifier,
         componentState = passwordInputState,
-        skeletonState = skeleton?.state,
+        state = skeleton?.state,
         securityMargin = false
     ) { contentModifier ->
         CheckedTextInput(
@@ -397,7 +397,7 @@ private fun OudsPasswordInput(
                 BasicSecureTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     state = state.textFieldState,
-                    enabled = textInputEnabled(state = passwordInputState),
+                    enabled = passwordInputState.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = passwordInputState),
                     cursorBrush = textInputCursorBrush(state = passwordInputState, error = error != null),

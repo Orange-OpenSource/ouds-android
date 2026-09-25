@@ -127,7 +127,7 @@ internal fun OudsControlItem(
         SkeletonLayout(
             modifier = modifier,
             componentState = state,
-            skeletonState = skeleton?.state,
+            state = skeleton?.state,
             securityMargin = true
         ) { skeletonContentModifier ->
             Column(modifier = skeletonContentModifier) {

@@ -116,7 +116,7 @@ fun OudsSwitchItem(
             value = checked,
             interactionSource = interactionSource,
             indication = interactionValuesIndication(backgroundColor),
-            enabled = enabled && !readOnly,
+            enabled = state.areInteractionsEnabled,
             role = Role.Switch,
             onValueChange = onCheckedChange
         )

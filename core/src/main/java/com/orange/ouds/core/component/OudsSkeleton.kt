@@ -21,7 +21,6 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -47,6 +46,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -168,15 +168,15 @@ internal fun SkeletonLayout(
 @Composable
 internal fun <T> SkeletonLayout(
     componentState: T,
-    skeletonState: OudsSkeletonState?,
+    state: OudsSkeletonState?,
     securityMargin: Boolean,
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
     content: @Composable (Modifier) -> Unit
-) where T : Enum<T> {
+) where T : Enum<T>, T : OudsComponentState {
     SkeletonLayout(
-        visible = componentState.name == "Skeleton",
-        state = skeletonState,
+        visible = componentState.name == OudsComponentState.Skeleton,
+        state = state,
         securityMargin = securityMargin,
         modifier = modifier,
         shape = shape,
@@ -195,7 +195,7 @@ private fun SkeletonLayout(
 ) {
     if (visible) {
         // Use SubcomposeLayout instead of a Box with onGloballyPositioned otherwise skeleton is not displayed in the previews
-        SubcomposeLayout(modifier) { constraints ->
+        SubcomposeLayout(modifier.clip(shape)) { constraints ->
             val contentPlaceables = subcompose("content") {
                 content(Modifier.alpha(0.0f))
             }.map { it.measure(constraints) }
@@ -211,10 +211,7 @@ private fun SkeletonLayout(
                 }
                 CompositionLocalProvider(LocalRippleConfiguration provides null) {
                     OudsSkeleton(
-                        modifier = Modifier
-                            .size(width.toDp(), height.toDp())
-                            .clip(shape)
-                            .clickable {},
+                        modifier = Modifier.size(width.toDp(), height.toDp()),
                         state = skeletonState,
                         securityMargin = securityMargin
                     )
