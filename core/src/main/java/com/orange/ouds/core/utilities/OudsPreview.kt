@@ -65,9 +65,9 @@ import kotlin.math.min
 internal val LocalPreviewRowFlowItem = staticCompositionLocalOf<String?> { null }
 internal val LocalPreviewGridRow = staticCompositionLocalOf<String?> { null }
 internal val LocalPreviewGridColumn = staticCompositionLocalOf<String?> { null }
-private val LocalPreviewRowFlowItemEnumEntry = staticCompositionLocalOf<Any?> { null }
-private val LocalPreviewGridRowEnumEntry = staticCompositionLocalOf<Any?> { null }
-private val LocalPreviewGridColumnEnumEntry = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewRowFlowItemEnumEntry = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewGridRowEnumEntry = staticCompositionLocalOf<Any?> { null }
+internal val LocalPreviewGridColumnEnumEntry = staticCompositionLocalOf<Any?> { null }
 
 /**
  * The device used in the OUDS preview environment.

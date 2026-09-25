@@ -573,14 +573,12 @@ private fun getButtonState(enabled: Boolean, loader: OudsButtonLoader?, skeleton
     return getPreviewEnumEntry<OudsButtonState>().orElse {
         when {
             skeleton != null -> OudsButtonState.Skeleton
+            !enabled -> OudsButtonState.Disabled
             loader != null -> OudsButtonState.Loading
-            else -> when {
-                !enabled -> OudsButtonState.Disabled
-                interactionState == InteractionState.Hovered -> OudsButtonState.Hovered
-                interactionState == InteractionState.Pressed -> OudsButtonState.Pressed
-                interactionState == InteractionState.Focused -> OudsButtonState.Focused
-                else -> OudsButtonState.Enabled
-            }
+            interactionState == InteractionState.Hovered -> OudsButtonState.Hovered
+            interactionState == InteractionState.Pressed -> OudsButtonState.Pressed
+            interactionState == InteractionState.Focused -> OudsButtonState.Focused
+            else -> OudsButtonState.Enabled
         }
     }
 }
