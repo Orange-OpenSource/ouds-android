@@ -64,6 +64,7 @@ internal fun OudsDigitInput(
     outlined: Boolean = false,
     error: Boolean = false,
     placeholder: Boolean = true,
+    hiddenDigit: Boolean = true,
     smallDeviceSpecificRules: Boolean = false
 ) {
     @Suppress("NAME_SHADOWING") val state = getPreviewEnumEntry<OudsDigitInputState>().orElse { state }
@@ -115,7 +116,8 @@ internal fun OudsDigitInput(
             horizontalArrangement = Arrangement.Center
         ) {
             val text = when {
-                digit?.isDigit() == true -> OudsPasswordInputTextObfuscationCharacter.toString()
+                digit?.isDigit() == true && hiddenDigit -> OudsPasswordInputTextObfuscationCharacter.toString()
+                digit?.isDigit() == true && !hiddenDigit -> digit.toString()
                 placeholder && state != OudsDigitInputState.Focused -> OudsDigitInputPlaceholder.toString()
                 else -> ""
             }
@@ -288,3 +290,21 @@ internal fun PreviewOudsDigitInputWithRoundedCorners(theme: OudsThemeContract, o
     }
 
 internal class OudsDigitInputWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+@Preview(name = "Light", device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsDigitInputWithVisibleDigit() =
+    PreviewOudsDigitInputWithVisibleDigit(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsDigitInputWithVisibleDigit(theme: OudsThemeContract) =
+    OudsPreview(theme = theme) {
+        PreviewEnumEntries<OudsDigitInputState> {
+            OudsDigitInput(
+                digit = '1',
+                onClick = {},
+                hiddenDigit = false
+            )
+        }
+    }
