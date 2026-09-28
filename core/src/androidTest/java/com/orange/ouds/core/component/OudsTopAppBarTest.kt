@@ -42,6 +42,7 @@ class OudsTopAppBarTest {
 
             setOudsContent {
                 OudsTopAppBar(
+                    background = OudsTopAppBarBackground.Opaque,
                     title = "Title",
                     navigationIcon = OudsTopAppBarNavigationIcon(
                         imageVector = Icons.Filled.Home,
@@ -69,6 +70,7 @@ class OudsTopAppBarTest {
 
             setOudsContent {
                 OudsTopAppBar(
+                    background = OudsTopAppBarBackground.Opaque,
                     title = "Title",
                     actions = listOf(
                         OudsTopAppBarAction.Icon(
@@ -110,6 +112,7 @@ class OudsTopAppBarTest {
         with(composeTestRule) {
             setOudsContent {
                 OudsTopAppBar(
+                    background = OudsTopAppBarBackground.Opaque,
                     title = "Title",
                     navigationIcon = OudsTopAppBarNavigationIcon.Back(
                         onClick = onClick
@@ -131,6 +134,7 @@ class OudsTopAppBarTest {
         with(composeTestRule) {
             setOudsContent {
                 OudsTopAppBar(
+                    background = OudsTopAppBarBackground.Opaque,
                     title = "Title",
                     actions = listOf(
                         OudsTopAppBarAction.Icon(
@@ -156,6 +160,7 @@ class OudsTopAppBarTest {
         with(composeTestRule) {
             setOudsContent {
                 OudsTopAppBar(
+                    background = OudsTopAppBarBackground.Opaque,
                     title = "Title",
                     actions = listOf(
                         OudsTopAppBarAction.Avatar(
