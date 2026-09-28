@@ -61,6 +61,40 @@ public final class com/orange/ouds/theme/wireframe/tokens/raw/WireframeColorRawT
 	public final fun getColorFunctionalGrayLight800-0d7_KjU ()J
 	public final fun getColorFunctionalGrayLight880-0d7_KjU ()J
 	public final fun getColorFunctionalGrayLight960-0d7_KjU ()J
+	public final fun getColorGoldTips100-0d7_KjU ()J
+	public final fun getColorGoldTips200-0d7_KjU ()J
+	public final fun getColorGoldTips300-0d7_KjU ()J
+	public final fun getColorGoldTips400-0d7_KjU ()J
+	public final fun getColorGoldTips50-0d7_KjU ()J
+	public final fun getColorGoldTips500-0d7_KjU ()J
+	public final fun getColorGoldTips600-0d7_KjU ()J
+	public final fun getColorGoldTips700-0d7_KjU ()J
+	public final fun getColorGoldTips800-0d7_KjU ()J
+	public final fun getColorGoldTips900-0d7_KjU ()J
+	public final fun getColorGoldTips950-0d7_KjU ()J
+	public final fun getColorLightIndigo100-0d7_KjU ()J
+	public final fun getColorLightIndigo1000-0d7_KjU ()J
+	public final fun getColorLightIndigo200-0d7_KjU ()J
+	public final fun getColorLightIndigo300-0d7_KjU ()J
+	public final fun getColorLightIndigo400-0d7_KjU ()J
+	public final fun getColorLightIndigo50-0d7_KjU ()J
+	public final fun getColorLightIndigo500-0d7_KjU ()J
+	public final fun getColorLightIndigo600-0d7_KjU ()J
+	public final fun getColorLightIndigo700-0d7_KjU ()J
+	public final fun getColorLightIndigo800-0d7_KjU ()J
+	public final fun getColorLightIndigo900-0d7_KjU ()J
+	public final fun getColorLightIndigo950-0d7_KjU ()J
+	public final fun getColorMountainMeadow100-0d7_KjU ()J
+	public final fun getColorMountainMeadow200-0d7_KjU ()J
+	public final fun getColorMountainMeadow300-0d7_KjU ()J
+	public final fun getColorMountainMeadow400-0d7_KjU ()J
+	public final fun getColorMountainMeadow50-0d7_KjU ()J
+	public final fun getColorMountainMeadow500-0d7_KjU ()J
+	public final fun getColorMountainMeadow600-0d7_KjU ()J
+	public final fun getColorMountainMeadow700-0d7_KjU ()J
+	public final fun getColorMountainMeadow800-0d7_KjU ()J
+	public final fun getColorMountainMeadow900-0d7_KjU ()J
+	public final fun getColorMountainMeadow950-0d7_KjU ()J
 	public final fun getColorOpacityBlack0-0d7_KjU ()J
 	public final fun getColorOpacityBlack120-0d7_KjU ()J
 	public final fun getColorOpacityBlack160-0d7_KjU ()J

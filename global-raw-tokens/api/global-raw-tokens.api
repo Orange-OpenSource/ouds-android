@@ -192,6 +192,7 @@ public final class com/orange/ouds/tokens/raw/OudsDimensionRawTokens {
 	public static final field Dimension7000 F
 	public static final field Dimension750 F
 	public static final field Dimension800 F
+	public static final field Dimension8000 F
 	public static final field Dimension850 F
 	public static final field Dimension900 F
 	public static final field Dimension9000 F
@@ -208,6 +209,7 @@ public final class com/orange/ouds/tokens/raw/OudsDimensionRawTokens {
 public final class com/orange/ouds/tokens/raw/OudsEffectRawTokens {
 	public static final field EffectBlur320 I
 	public static final field EffectBlur480 I
+	public static final field EffectBlur80 I
 	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsEffectRawTokens;
 }
 
@@ -311,9 +313,13 @@ public final class com/orange/ouds/tokens/raw/OudsGridRawTokens {
 	public static final field GridMargin700 I
 	public static final field GridMaxWidthCompact I
 	public static final field GridMaxWidthExtraCompact I
+	public static final field GridMaxWidthExtraLarge I
+	public static final field GridMaxWidthLarge I
 	public static final field GridMaxWidthMedium I
 	public static final field GridMinWidthCompact I
 	public static final field GridMinWidthExtraCompact I
+	public static final field GridMinWidthExtraLarge I
+	public static final field GridMinWidthLarge I
 	public static final field GridMinWidthMedium I
 	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsGridRawTokens;
 }
