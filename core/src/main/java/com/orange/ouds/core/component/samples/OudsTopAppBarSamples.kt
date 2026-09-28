@@ -23,6 +23,7 @@ import com.orange.ouds.core.component.OudsLargeTopAppBar
 import com.orange.ouds.core.component.OudsMediumTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
+import com.orange.ouds.core.component.OudsTopAppBarBackground
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -32,6 +33,7 @@ import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 internal fun OudsTopAppBarSample() {
     OudsTopAppBar(
         title = "Title",
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
@@ -45,6 +47,7 @@ internal fun OudsTopAppBarSample() {
 internal fun OudsCenterAlignedTopAppBarSample() {
     OudsCenterAlignedTopAppBar(
         title = "Title",
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
@@ -58,6 +61,7 @@ internal fun OudsCenterAlignedTopAppBarSample() {
 internal fun OudsMediumTopAppBarSample() {
     OudsMediumTopAppBar(
         title = "Title",
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
@@ -71,6 +75,7 @@ internal fun OudsMediumTopAppBarSample() {
 internal fun OudsLargeTopAppBarSample() {
     OudsLargeTopAppBar(
         title = "Title",
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(Icons.Outlined.FavoriteBorder, "") {},
@@ -84,6 +89,7 @@ internal fun OudsLargeTopAppBarSample() {
 internal fun OudsTopAppBarWithUntintedIconSample() {
     OudsTopAppBar(
         title = "Title",
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(
