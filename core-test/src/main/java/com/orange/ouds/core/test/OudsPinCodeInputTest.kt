@@ -61,4 +61,10 @@ internal class OudsPinCodeInputTest {
             internal fun data() = OudsPreviewableComponent.PinCodeInput.WithRichText.parameters
         }
     }
+
+    class WithVisibleValue : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.PinCodeInput.WithVisibleValue,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }
