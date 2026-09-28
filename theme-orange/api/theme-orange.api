@@ -41,10 +41,10 @@ public final class com/orange/ouds/theme/orange/OrangeDrawableResources$Componen
 	public fun getCheckbox ()Lcom/orange/ouds/theme/orange/OrangeDrawableResources$Component$Checkbox;
 	public synthetic fun getChip ()Lcom/orange/ouds/theme/OudsDrawableResources$Component$Chip;
 	public fun getChip ()Lcom/orange/ouds/theme/orange/OrangeDrawableResources$Component$Chip;
-	public synthetic fun getControlItem ()Lcom/orange/ouds/theme/OudsDrawableResources$Component$ControlItem;
-	public fun getControlItem ()Lcom/orange/ouds/theme/orange/OrangeDrawableResources$Component$ControlItem;
 	public synthetic fun getLink ()Lcom/orange/ouds/theme/OudsDrawableResources$Component$Link;
 	public fun getLink ()Lcom/orange/ouds/theme/orange/OrangeDrawableResources$Component$Link;
+	public synthetic fun getListItem ()Lcom/orange/ouds/theme/OudsDrawableResources$Component$ListItem;
+	public fun getListItem ()Lcom/orange/ouds/theme/orange/OrangeDrawableResources$Component$ListItem;
 	public synthetic fun getRadioButton ()Lcom/orange/ouds/theme/OudsDrawableResources$Component$RadioButton;
 	public fun getRadioButton ()Lcom/orange/ouds/theme/orange/OrangeDrawableResources$Component$RadioButton;
 	public synthetic fun getSwitch ()Lcom/orange/ouds/theme/OudsDrawableResources$Component$Switch;
@@ -103,17 +103,17 @@ public final class com/orange/ouds/theme/orange/OrangeDrawableResources$Componen
 	public fun getTick ()I
 }
 
-public final class com/orange/ouds/theme/orange/OrangeDrawableResources$Component$ControlItem : com/orange/ouds/theme/OudsDrawableResources$Component$ControlItem {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getNext ()I
-	public fun getPrevious ()I
-}
-
 public final class com/orange/ouds/theme/orange/OrangeDrawableResources$Component$Link : com/orange/ouds/theme/OudsDrawableResources$Component$Link {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getExternalLink ()I
+	public fun getNext ()I
+	public fun getPrevious ()I
+}
+
+public final class com/orange/ouds/theme/orange/OrangeDrawableResources$Component$ListItem : com/orange/ouds/theme/OudsDrawableResources$Component$ListItem {
+	public static final field $stable I
+	public fun <init> ()V
 	public fun getNext ()I
 	public fun getPrevious ()I
 }

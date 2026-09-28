@@ -64,6 +64,12 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsChipK
 	public final fun getLambda$711468243$core ()Lkotlin/jvm/functions/Function3;
 }
 
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsCircularProgressIndicatorKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsCircularProgressIndicatorKt;
+	public fun <init> ()V
+	public final fun getLambda$1740786097$core ()Lkotlin/jvm/functions/Function2;
+}
+
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsFilterChipKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsFilterChipKt;
 	public fun <init> ()V
@@ -96,7 +102,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsInput
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsLinearProgressIndicatorKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsLinearProgressIndicatorKt;
 	public fun <init> ()V
-	public final fun getLambda$-1773878899$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-37692687$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsLinkKt {
@@ -110,7 +116,9 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsLinkK
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsListItemKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsListItemKt;
 	public fun <init> ()V
+	public final fun getLambda$-1211787922$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-166788784$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1743612821$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$340508819$core ()Lkotlin/jvm/functions/Function3;
 }
 
@@ -200,6 +208,12 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsTextI
 	public final fun getLambda$1415689843$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$1643452817$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$2008088054$core ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsTopAppBarKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsTopAppBarKt;
+	public fun <init> ()V
+	public final fun getLambda$-1331939966$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public class com/orange/ouds/core/component/OudsAlertIcon : com/orange/ouds/core/component/content/OudsComponentIcon {
@@ -616,11 +630,26 @@ public final class com/orange/ouds/core/component/OudsChipState : java/lang/Enum
 	public static fun values ()[Lcom/orange/ouds/core/component/OudsChipState;
 }
 
+public class com/orange/ouds/core/component/OudsCircularProgressIndicatorHelperText : com/orange/ouds/core/component/content/OudsComponentContent {
+	public static final field $stable I
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getProgress ()Z
+}
+
+public final class com/orange/ouds/core/component/OudsCircularProgressIndicatorHelperText$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+	public static final field $stable I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/orange/ouds/core/component/OudsCircularProgressIndicatorKt {
 	public static final synthetic fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLandroidx/compose/runtime/Composer;II)V
-	public static final fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
+	public static final synthetic fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 	public static final synthetic fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLandroidx/compose/runtime/Composer;II)V
-	public static final fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
+	public static final synthetic fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCircularProgressIndicator-HYR8e34 (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Ljava/lang/String;FLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCircularProgressIndicator-au3_HiA (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Lcom/orange/ouds/core/component/OudsDeterminateCircularProgressIndicatorHelperText;FLandroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsColoredBoxColor : java/lang/Enum {
@@ -679,6 +708,20 @@ public final class com/orange/ouds/core/component/OudsControlItemIcon$ExtraParam
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/component/OudsDeterminateCircularProgressIndicatorHelperText : com/orange/ouds/core/component/OudsCircularProgressIndicatorHelperText {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (ZLjava/lang/String;)V
+	public synthetic fun <init> (ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/orange/ouds/core/component/OudsDeterminateLinearProgressIndicatorHelperText : com/orange/ouds/core/component/OudsLinearProgressIndicatorHelperText {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (ZLjava/lang/String;Landroidx/compose/ui/Alignment$Horizontal;Landroidx/compose/ui/Alignment$Horizontal;)V
+	public synthetic fun <init> (ZLjava/lang/String;Landroidx/compose/ui/Alignment$Horizontal;Landroidx/compose/ui/Alignment$Horizontal;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/orange/ouds/core/component/OudsDividerColor : java/lang/Enum {
@@ -800,6 +843,12 @@ public final class com/orange/ouds/core/component/OudsIconBadgeStatus$Warning : 
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/orange/ouds/core/component/OudsIndeterminateLinearProgressIndicatorHelperText : com/orange/ouds/core/component/OudsLinearProgressIndicatorHelperText {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Landroidx/compose/ui/Alignment$Horizontal;)V
+	public synthetic fun <init> (Ljava/lang/String;Landroidx/compose/ui/Alignment$Horizontal;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
 public final class com/orange/ouds/core/component/OudsInlineAlertDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsInlineAlertDefaults;
@@ -853,11 +902,28 @@ public final class com/orange/ouds/core/component/OudsInputTagKt {
 	public static final fun OudsInputTag (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 }
 
+public class com/orange/ouds/core/component/OudsLinearProgressIndicatorHelperText : com/orange/ouds/core/component/content/OudsComponentContent {
+	public static final field $stable I
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getLabelAlignment ()Landroidx/compose/ui/Alignment$Horizontal;
+	public final fun getProgress ()Z
+	public final fun getProgressAlignment ()Landroidx/compose/ui/Alignment$Horizontal;
+}
+
+public final class com/orange/ouds/core/component/OudsLinearProgressIndicatorHelperText$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+	public static final field $stable I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/orange/ouds/core/component/OudsLinearProgressIndicatorKt {
+	public static final fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsIndeterminateLinearProgressIndicatorHelperText;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 	public static final synthetic fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Lcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 	public static final synthetic fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Lcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsDeterminateLinearProgressIndicatorHelperText;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsLinkChevron : java/lang/Enum {
@@ -1343,6 +1409,7 @@ public final class com/orange/ouds/core/component/OudsPinCodeInputLength : java/
 public final class com/orange/ouds/core/component/OudsProgressIndicatorDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsProgressIndicatorDefaults;
+	public final fun getCircularSize-D9Ej5fM ()F
 	public final fun getGapSize ()Lcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;
 	public final fun getStatus ()Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;
 }
@@ -1741,10 +1808,16 @@ public final class com/orange/ouds/core/component/OudsTopAppBarAction$Icon : com
 	public static final field $stable I
 	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;Lkotlin/jvm/functions/Function0;)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;ZLkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;ZLkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;Lkotlin/jvm/functions/Function0;)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;ZLkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;ZLkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;Lkotlin/jvm/functions/Function0;)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;ZLkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTopAppBarActionBadge;ZLkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/orange/ouds/core/component/OudsTopAppBarActionBadge {
@@ -2121,6 +2194,8 @@ public final class com/orange/ouds/core/component/samples/ComposableSingletons$O
 	public static final field INSTANCE Lcom/orange/ouds/core/component/samples/ComposableSingletons$OudsCircularProgressIndicatorSamplesKt;
 	public fun <init> ()V
 	public final fun getLambda$-1362816230$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1386465514$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1030379035$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$367294293$core ()Lkotlin/jvm/functions/Function2;
 }
 
@@ -2179,8 +2254,12 @@ public final class com/orange/ouds/core/component/samples/ComposableSingletons$O
 public final class com/orange/ouds/core/component/samples/ComposableSingletons$OudsLinearProgressIndicatorSamplesKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/samples/ComposableSingletons$OudsLinearProgressIndicatorSamplesKt;
 	public fun <init> ()V
+	public final fun getLambda$-1877301286$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-641849524$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1206860103$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$1371424085$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$1717136924$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$2017480406$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$323445915$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/component/samples/ComposableSingletons$OudsLinkSamplesKt {
@@ -2365,11 +2444,7 @@ public final class com/orange/ouds/core/component/samples/ComposableSingletons$O
 	public final fun getLambda$-1592371027$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$-1650973214$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$1260261037$core ()Lkotlin/jvm/functions/Function2;
-}
-
-public final class com/orange/ouds/core/component/samples/OudsLinearProgressIndicatorSamplesKt {
-	public static final fun OudsLinearProgressIndicatorDeterminateSample (Landroidx/compose/runtime/Composer;I)V
-	public static final fun OudsLinearProgressIndicatorIndeterminateSample (Landroidx/compose/runtime/Composer;I)V
+	public final fun getLambda$1514882228$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/theme/OudsBorderStyle : java/lang/Enum {
@@ -2981,30 +3056,32 @@ public final class com/orange/ouds/core/theme/OudsColorScheme$Surface$Status$War
 public final class com/orange/ouds/core/theme/OudsComponents {
 	public static final field $stable I
 	public final fun component1 ()Lcom/orange/ouds/core/theme/OudsComponents$Alert;
-	public final fun component10 ()Lcom/orange/ouds/core/theme/OudsComponents$Divider;
-	public final fun component11 ()Lcom/orange/ouds/core/theme/OudsComponents$Icon;
-	public final fun component12 ()Lcom/orange/ouds/core/theme/OudsComponents$InputTag;
-	public final fun component13 ()Lcom/orange/ouds/core/theme/OudsComponents$Link;
-	public final fun component14 ()Lcom/orange/ouds/core/theme/OudsComponents$LinkMonochrome;
-	public final fun component15 ()Lcom/orange/ouds/core/theme/OudsComponents$ListItem;
-	public final fun component16 ()Lcom/orange/ouds/core/theme/OudsComponents$PinCodeInput;
-	public final fun component17 ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicator;
-	public final fun component18 ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicatorMonochrome;
-	public final fun component19 ()Lcom/orange/ouds/core/theme/OudsComponents$RadioButton;
-	public final fun component2 ()Lcom/orange/ouds/core/theme/OudsComponents$Badge;
-	public final fun component20 ()Lcom/orange/ouds/core/theme/OudsComponents$Switch;
-	public final fun component21 ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
-	public final fun component22 ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
-	public final fun component23 ()Lcom/orange/ouds/core/theme/OudsComponents$TextInput;
-	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsComponents$Bar;
-	public final fun component4 ()Lcom/orange/ouds/core/theme/OudsComponents$BulletList;
-	public final fun component5 ()Lcom/orange/ouds/core/theme/OudsComponents$Button;
-	public final fun component6 ()Lcom/orange/ouds/core/theme/OudsComponents$ButtonMonochrome;
-	public final fun component7 ()Lcom/orange/ouds/core/theme/OudsComponents$Checkbox;
-	public final fun component8 ()Lcom/orange/ouds/core/theme/OudsComponents$Chip;
-	public final fun component9 ()Lcom/orange/ouds/core/theme/OudsComponents$ControlItem;
+	public final fun component10 ()Lcom/orange/ouds/core/theme/OudsComponents$ControlItem;
+	public final fun component11 ()Lcom/orange/ouds/core/theme/OudsComponents$Divider;
+	public final fun component12 ()Lcom/orange/ouds/core/theme/OudsComponents$Icon;
+	public final fun component13 ()Lcom/orange/ouds/core/theme/OudsComponents$InputTag;
+	public final fun component14 ()Lcom/orange/ouds/core/theme/OudsComponents$Link;
+	public final fun component15 ()Lcom/orange/ouds/core/theme/OudsComponents$LinkMonochrome;
+	public final fun component16 ()Lcom/orange/ouds/core/theme/OudsComponents$ListItem;
+	public final fun component17 ()Lcom/orange/ouds/core/theme/OudsComponents$PinCodeInput;
+	public final fun component18 ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicator;
+	public final fun component19 ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicatorMonochrome;
+	public final fun component2 ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage;
+	public final fun component20 ()Lcom/orange/ouds/core/theme/OudsComponents$RadioButton;
+	public final fun component21 ()Lcom/orange/ouds/core/theme/OudsComponents$Switch;
+	public final fun component22 ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
+	public final fun component23 ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
+	public final fun component24 ()Lcom/orange/ouds/core/theme/OudsComponents$TextInput;
+	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsComponents$Badge;
+	public final fun component4 ()Lcom/orange/ouds/core/theme/OudsComponents$Bar;
+	public final fun component5 ()Lcom/orange/ouds/core/theme/OudsComponents$BulletList;
+	public final fun component6 ()Lcom/orange/ouds/core/theme/OudsComponents$Button;
+	public final fun component7 ()Lcom/orange/ouds/core/theme/OudsComponents$ButtonMonochrome;
+	public final fun component8 ()Lcom/orange/ouds/core/theme/OudsComponents$Checkbox;
+	public final fun component9 ()Lcom/orange/ouds/core/theme/OudsComponents$Chip;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlert ()Lcom/orange/ouds/core/theme/OudsComponents$Alert;
+	public final fun getAlertMessage ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage;
 	public final fun getBadge ()Lcom/orange/ouds/core/theme/OudsComponents$Badge;
 	public final fun getBar ()Lcom/orange/ouds/core/theme/OudsComponents$Bar;
 	public final fun getBulletList ()Lcom/orange/ouds/core/theme/OudsComponents$BulletList;
@@ -3072,9 +3149,13 @@ public final class com/orange/ouds/core/theme/OudsComponents$Alert$Size {
 	public final fun component2-D9Ej5fM ()F
 	public final fun component3-D9Ej5fM ()F
 	public final fun component4-D9Ej5fM ()F
+	public final fun component5-D9Ej5fM ()F
+	public final fun component6-D9Ej5fM ()F
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAsset-D9Ej5fM ()F
 	public final fun getIcon-D9Ej5fM ()F
 	public final fun getMinHeight-D9Ej5fM ()F
+	public final fun getMinHeightBottomAction-D9Ej5fM ()F
 	public final fun getMinHeightBottomActionPlacement-D9Ej5fM ()F
 	public final fun getMinWidth-D9Ej5fM ()F
 	public fun hashCode ()I
@@ -3097,6 +3178,35 @@ public final class com/orange/ouds/core/theme/OudsComponents$Alert$Space {
 	public final fun getPaddingInline-D9Ej5fM ()F
 	public final fun getRowGap-D9Ej5fM ()F
 	public final fun getRowGapAction-D9Ej5fM ()F
+	public final fun getRowGapBullet-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$AlertMessage {
+	public static final field $stable I
+	public final fun component1 ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage$Border;
+	public final fun component2 ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage$Space;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBorder ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage$Border;
+	public final fun getSpace ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage$Space;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$AlertMessage$Border {
+	public static final field $stable I
+	public final fun component1-D9Ej5fM ()F
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getWidth-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$AlertMessage$Space {
+	public static final field $stable I
+	public final fun component1-D9Ej5fM ()F
+	public fun equals (Ljava/lang/Object;)Z
 	public final fun getRowGapBullet-D9Ej5fM ()F
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -5411,7 +5521,9 @@ public final class com/orange/ouds/core/theme/OudsComponents$ProgressIndicator$S
 public final class com/orange/ouds/core/theme/OudsComponents$ProgressIndicator$Space {
 	public static final field $stable I
 	public final fun component1-D9Ej5fM ()F
+	public final fun component2-D9Ej5fM ()F
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColumnGap-D9Ej5fM ()F
 	public final fun getPaddingBlock-D9Ej5fM ()F
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -5958,7 +6070,9 @@ public final class com/orange/ouds/core/theme/OudsComponents$TextInput$Space$Row
 public final class com/orange/ouds/core/theme/OudsEffects {
 	public static final field $stable I
 	public final fun component1 ()I
+	public final fun component2 ()I
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBlurBackdrop ()I
 	public final fun getBlurDrag ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -6534,6 +6648,7 @@ public final class com/orange/ouds/core/theme/OudsSpaces$PaddingBlock {
 	public final fun component10-D9Ej5fM ()F
 	public final fun component11-D9Ej5fM ()F
 	public final fun component12-D9Ej5fM ()F
+	public final fun component13-D9Ej5fM ()F
 	public final fun component2-D9Ej5fM ()F
 	public final fun component3-D9Ej5fM ()F
 	public final fun component4-D9Ej5fM ()F
@@ -6545,6 +6660,7 @@ public final class com/orange/ouds/core/theme/OudsSpaces$PaddingBlock {
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getExtraLarge-D9Ej5fM ()F
 	public final fun getExtraSmall-D9Ej5fM ()F
+	public final fun getFiveExtraLarge-D9Ej5fM ()F
 	public final fun getFourExtraLarge-D9Ej5fM ()F
 	public final fun getFourExtraSmall-D9Ej5fM ()F
 	public final fun getLarge-D9Ej5fM ()F
@@ -6565,6 +6681,8 @@ public final class com/orange/ouds/core/theme/OudsSpaces$PaddingInline {
 	public final fun component10-D9Ej5fM ()F
 	public final fun component11-D9Ej5fM ()F
 	public final fun component12-D9Ej5fM ()F
+	public final fun component13-D9Ej5fM ()F
+	public final fun component14-D9Ej5fM ()F
 	public final fun component2-D9Ej5fM ()F
 	public final fun component3-D9Ej5fM ()F
 	public final fun component4-D9Ej5fM ()F
@@ -6576,11 +6694,13 @@ public final class com/orange/ouds/core/theme/OudsSpaces$PaddingInline {
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getExtraLarge-D9Ej5fM ()F
 	public final fun getExtraSmall-D9Ej5fM ()F
+	public final fun getFiveExtraLarge-D9Ej5fM ()F
 	public final fun getFourExtraLarge-D9Ej5fM ()F
 	public final fun getFourExtraSmall-D9Ej5fM ()F
 	public final fun getLarge-D9Ej5fM ()F
 	public final fun getMedium-D9Ej5fM ()F
 	public final fun getNone-D9Ej5fM ()F
+	public final fun getSixExtraLarge-D9Ej5fM ()F
 	public final fun getSmall-D9Ej5fM ()F
 	public final fun getThreeExtraLarge-D9Ej5fM ()F
 	public final fun getThreeExtraSmall-D9Ej5fM ()F
@@ -6934,6 +7054,8 @@ public final class com/orange/ouds/core/theme/WindowWidthSizeClass : java/lang/E
 	public static final field COMPACT Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
 	public static final field Companion Lcom/orange/ouds/core/theme/WindowWidthSizeClass$Companion;
 	public static final field EXTRA_COMPACT Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
+	public static final field EXTRA_LARGE Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
+	public static final field LARGE Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
 	public static final field MEDIUM Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
@@ -6941,6 +7063,7 @@ public final class com/orange/ouds/core/theme/WindowWidthSizeClass : java/lang/E
 }
 
 public final class com/orange/ouds/core/theme/WindowWidthSizeClass$Companion {
+	public final fun compute (FLandroidx/compose/runtime/Composer;I)Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
 	public final fun compute-0680j_4 (F)Lcom/orange/ouds/core/theme/WindowWidthSizeClass;
 }
 
@@ -7234,6 +7357,14 @@ public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$Circu
 	public fun isPreviewAvailable (ZZ)Z
 }
 
+public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$CircularProgressIndicator$WithHelperText : com/orange/ouds/core/utilities/OudsPreviewableComponent {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$CircularProgressIndicator$WithHelperText;
+	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
+	public fun getParameters ()Ljava/util/List;
+	public fun isPreviewAvailable (ZZ)Z
+}
+
 public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$ColoredBox : com/orange/ouds/core/utilities/OudsPreviewableComponent {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$ColoredBox;
@@ -7381,9 +7512,9 @@ public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$Linea
 	public fun isPreviewAvailable (ZZ)Z
 }
 
-public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$LinearProgressIndicator$WithLongHelperText : com/orange/ouds/core/utilities/OudsPreviewableComponent {
+public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$LinearProgressIndicator$WithHelperText : com/orange/ouds/core/utilities/OudsPreviewableComponent {
 	public static final field $stable I
-	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$LinearProgressIndicator$WithLongHelperText;
+	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$LinearProgressIndicator$WithHelperText;
 	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
 	public fun getParameters ()Ljava/util/List;
 	public fun isPreviewAvailable (ZZ)Z
@@ -7443,6 +7574,15 @@ public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$ListI
 public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$ListItem$Static : com/orange/ouds/core/utilities/OudsPreviewableComponent {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$ListItem$Static;
+	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
+	public fun getParameters ()Ljava/util/List;
+	public fun isPreviewAvailable (ZZ)Z
+}
+
+public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$ListItem$WithEdgeToEdgeDisabled : com/orange/ouds/core/utilities/OudsPreviewableComponent {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$ListItem$WithEdgeToEdgeDisabled;
+	public static final field PreviewHeightDp I
 	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
 	public fun getParameters ()Ljava/util/List;
 	public fun isPreviewAvailable (ZZ)Z
@@ -8012,6 +8152,14 @@ public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$TopAp
 public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$TopAppBar$Medium : com/orange/ouds/core/utilities/OudsPreviewableComponent {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$TopAppBar$Medium;
+	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
+	public fun getParameters ()Ljava/util/List;
+	public fun isPreviewAvailable (ZZ)Z
+}
+
+public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$TopAppBar$WithUntintedIcon : com/orange/ouds/core/utilities/OudsPreviewableComponent {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$TopAppBar$WithUntintedIcon;
 	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
 	public fun getParameters ()Ljava/util/List;
 	public fun isPreviewAvailable (ZZ)Z
