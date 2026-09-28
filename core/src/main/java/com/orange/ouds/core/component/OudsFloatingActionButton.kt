@@ -47,6 +47,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -543,7 +544,7 @@ enum class OudsFloatingActionButtonAppearance {
     Brand
 }
 
-internal enum class OudsFloatingActionButtonState {
+internal enum class OudsFloatingActionButtonState : OudsComponentState {
     Enabled, Hovered, Pressed, Focused
 }
 

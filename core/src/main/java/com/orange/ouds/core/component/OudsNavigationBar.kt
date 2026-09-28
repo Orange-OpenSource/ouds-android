@@ -65,6 +65,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
@@ -440,7 +441,7 @@ class OudsNavigationBarItemIcon private constructor(
  */
 data class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
 
-private enum class OudsNavigationBarItemState {
+private enum class OudsNavigationBarItemState : OudsComponentState {
     Enabled, Hovered, Pressed, Focused
 }
 

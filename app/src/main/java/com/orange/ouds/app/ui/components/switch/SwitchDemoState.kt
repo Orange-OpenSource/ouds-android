@@ -15,7 +15,7 @@ package com.orange.ouds.app.ui.components.switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 
@@ -23,40 +23,41 @@ import androidx.compose.runtime.setValue
 fun rememberSwitchDemoState(
     checked: Boolean = false,
     enabled: Boolean = true,
-    readOnly: Boolean = false
-) = rememberSaveable(checked, enabled, readOnly, saver = SwitchDemoState.Saver) {
-    SwitchDemoState(checked, enabled, readOnly)
+    readOnly: Boolean = false,
+    skeleton: Boolean = false
+) = rememberSaveable(checked, enabled, readOnly, skeleton, saver = SwitchDemoState.Saver) {
+    SwitchDemoState(checked, enabled, readOnly, skeleton)
 }
 
 class SwitchDemoState(
     checked: Boolean,
     enabled: Boolean,
-    readOnly: Boolean
+    readOnly: Boolean,
+    skeleton: Boolean
 ) {
 
     companion object {
 
-        val Saver = run {
-            val checkedKey = "checked"
-            val enabledKey = "enabled"
-            val readOnlyKey = "readOnly"
-            mapSaver(
-                save = { state ->
-                    mapOf(
-                        checkedKey to state.checked,
-                        enabledKey to state.enabled,
-                        readOnlyKey to state.readOnly
-                    )
-                },
-                restore = { map ->
-                    SwitchDemoState(
-                        map[checkedKey] as Boolean,
-                        map[enabledKey] as Boolean,
-                        map[readOnlyKey] as Boolean
+        val Saver = listSaver(
+            save = { state ->
+                with(state) {
+                    listOf(
+                        checked,
+                        enabled,
+                        readOnly,
+                        skeleton
                     )
                 }
-            )
-        }
+            },
+            restore = { list: List<Any?> ->
+                SwitchDemoState(
+                    list[0] as Boolean,
+                    list[1] as Boolean,
+                    list[2] as Boolean,
+                    list[3] as Boolean
+                )
+            }
+        )
     }
 
     var checked: Boolean by mutableStateOf(checked)
@@ -64,4 +65,6 @@ class SwitchDemoState(
     var enabled: Boolean by mutableStateOf(enabled)
 
     var readOnly: Boolean by mutableStateOf(readOnly)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 }

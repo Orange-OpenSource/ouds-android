@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -33,6 +34,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
 import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChip
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
+import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.nestedName
@@ -40,6 +42,8 @@ import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertIcon
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
+import com.orange.ouds.core.component.OudsSkeleton
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
@@ -114,6 +118,11 @@ private fun InlineAlertDemoBottomSheetContent(state: InlineAlertDemoState) {
             value = label,
             onValueChange = { value -> label = value }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -134,6 +143,7 @@ private fun InlineAlertDemoContent(state: InlineAlertDemoState) {
                 is OudsInlineAlertStatus.Positive -> OudsInlineAlertStatus.Positive
                 is OudsInlineAlertStatus.Warning -> OudsInlineAlertStatus.Warning
             },
+            skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         )
     }
 }
@@ -157,6 +167,7 @@ private fun Code.Builder.inlineAlertDemoCodeSnippet(state: InlineAlertDemoState,
                 }
             }
             labelArgument(label)
+            if (skeleton) skeletonArgument()
         }
     }
 }

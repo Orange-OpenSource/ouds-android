@@ -82,6 +82,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's switch. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the switch item will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithAnnotatedErrorMessageSample
@@ -102,19 +103,20 @@ fun OudsSwitchItem(
     readOnly: Boolean = false,
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
-    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
 
     val toggleableModifier = if (onCheckedChange != null) {
         Modifier.toggleable(
             value = checked,
             interactionSource = interactionSource,
             indication = interactionValuesIndication(backgroundColor),
-            enabled = enabled && !readOnly,
+            enabled = state.areInteractionsEnabled,
             role = Role.Switch,
             onValueChange = onCheckedChange
         )
@@ -145,6 +147,45 @@ fun OudsSwitchItem(
         modifier = modifier.semantics(mergeDescendants = true) {},
         contentModifier = toggleableModifier,
         constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsSwitchItem(
+    checked: Boolean,
+    label: String,
+    onCheckedChange: ((Boolean) -> Unit)?,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsSwitchItem(
+        checked = checked,
+        label = label,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier,
+        description = description,
+        icon = icon,
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource
     )
 }
 

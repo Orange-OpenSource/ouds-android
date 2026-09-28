@@ -76,6 +76,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
@@ -166,11 +167,70 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithUntintedLeadingIconSample
  */
+@Composable
+fun OudsTextInput(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextInput(
     textFieldState: TextFieldState,
@@ -211,7 +271,6 @@ fun OudsTextInput(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -282,11 +341,70 @@ fun OudsTextInput(
  * @param outputTransformation An optional [OutputTransformation] that transforms how the contents of the text field are presented.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextInput(
+    textFieldState: TextFieldState,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
+    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
+    inputTransformation: InputTransformation? = null,
+    outputTransformation: OutputTransformation? = null,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextInput(
+        textFieldState = textFieldState,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
+        onTextLayout = onTextLayout,
+        inputTransformation = inputTransformation,
+        outputTransformation = outputTransformation,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextInput(
     textFieldState: TextFieldState,
@@ -326,8 +444,7 @@ fun OudsTextInput(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -363,11 +480,12 @@ private fun OudsTextInput(
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
     val emptyText = textFieldState.text.isEmpty()
 
@@ -380,11 +498,12 @@ private fun OudsTextInput(
         helperText = helperText,
         annotatedHelperText = annotatedHelperText,
         helperLink = helperLink,
+        skeleton = skeleton,
         basicTextField = {
             BasicTextField(
                 modifier = Modifier.textInputSemantic(label),
                 state = textFieldState,
-                enabled = textInputEnabled(state = state),
+                enabled = state.areInteractionsEnabled,
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
                 lineLimits = TextFieldLineLimits.SingleLine,
@@ -471,11 +590,70 @@ private fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithUntintedLeadingIconSample
  */
+@Composable
+fun OudsTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextInput(
     value: String,
@@ -517,7 +695,6 @@ fun OudsTextInput(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -581,11 +758,69 @@ fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextInput(
     value: String,
@@ -626,8 +861,7 @@ fun OudsTextInput(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -662,11 +896,12 @@ private fun OudsTextInput(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
     val emptyText = value.isEmpty()
 
@@ -679,12 +914,13 @@ private fun OudsTextInput(
         helperText = helperText,
         annotatedHelperText = annotatedHelperText,
         helperLink = helperLink,
+        skeleton = skeleton,
         basicTextField = {
             BasicTextField(
                 modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                enabled = textInputEnabled(state = state),
+                enabled = state.areInteractionsEnabled,
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
                 singleLine = true,
@@ -770,10 +1006,69 @@ private fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
+@Composable
+fun OudsTextInput(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: String? = null,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = helperText,
+        annotatedHelperText = null,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextInput(
     value: TextFieldValue,
@@ -815,7 +1110,6 @@ fun OudsTextInput(
         outlined = outlined,
         error = error,
         helperText = helperText,
-        annotatedHelperText = null,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -879,11 +1173,70 @@ fun OudsTextInput(
  * @param visualTransformation The visual transformation filter for changing the visual representation of the input. By default, no visual transformation is applied.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this text input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text input will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedHelperTextSample
  */
+@Composable
+fun OudsTextInput(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    placeholder: String? = null,
+    leadingIcon: OudsTextInputLeadingIcon? = null,
+    trailingIconButton: OudsTextInputTrailingIconButton? = null,
+    prefix: String? = null,
+    suffix: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    loader: OudsTextInputLoader? = null,
+    outlined: Boolean = false,
+    error: OudsError? = null,
+    helperText: OudsAnnotatedHelperText,
+    helperLink: OudsTextInputHelperLink? = null,
+    constrainedMaxWidth: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsTextInput(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = label,
+        placeholder = placeholder,
+        leadingIcon = leadingIcon,
+        trailingIconButton = trailingIconButton,
+        prefix = prefix,
+        suffix = suffix,
+        enabled = enabled,
+        readOnly = readOnly,
+        loader = loader,
+        outlined = outlined,
+        error = error,
+        helperText = null,
+        annotatedHelperText = helperText,
+        helperLink = helperLink,
+        constrainedMaxWidth = constrainedMaxWidth,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        onTextLayout = onTextLayout,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsTextInput(
     value: TextFieldValue,
@@ -924,8 +1277,7 @@ fun OudsTextInput(
         loader = loader,
         outlined = outlined,
         error = error,
-        helperText = null,
-        annotatedHelperText = helperText,
+        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -960,11 +1312,12 @@ private fun OudsTextInput(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, interactionState = interactionState)
+    val state = getTextInputState(enabled = enabled, readOnly = readOnly, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
     val emptyText = value.text.isEmpty()
 
@@ -977,12 +1330,13 @@ private fun OudsTextInput(
         helperText = helperText,
         annotatedHelperText = annotatedHelperText,
         helperLink = helperLink,
+        skeleton = skeleton,
         basicTextField = {
             BasicTextField(
                 modifier = Modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
-                enabled = textInputEnabled(state = state),
+                enabled = state.areInteractionsEnabled,
                 readOnly = readOnly,
                 textStyle = textInputTextStyle(state = state),
                 singleLine = true,
@@ -1028,6 +1382,7 @@ internal fun OudsTextInput(
     helperText: String?,
     annotatedHelperText: OudsAnnotatedHelperText?,
     helperLink: OudsTextInputHelperLink?,
+    skeleton: OudsSkeleton?,
     basicTextField: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -1056,20 +1411,27 @@ internal fun OudsTextInput(
             }
         }
     ) {
-        Column(modifier = modifier) {
-            basicTextField()
+        SkeletonLayout(
+            modifier = modifier,
+            componentState = state,
+            state = skeleton?.state,
+            securityMargin = false
+        ) { contentModifier ->
+            Column(modifier = contentModifier) {
+                basicTextField()
 
-            // Helper text / Error description
-            OudsTextInputHelperTextErrorMessage(
-                modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
-                enabled = state != OudsTextInputState.Disabled,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText
-            )
+                // Helper text / Error description
+                OudsTextInputHelperTextErrorMessage(
+                    modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
+                    enabled = state != OudsTextInputState.Disabled,
+                    error = error,
+                    helperText = helperText,
+                    annotatedHelperText = annotatedHelperText
+                )
 
-            // Helper link
-            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
+                // Helper link
+                helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
+            }
         }
     }
 }
@@ -1295,18 +1657,22 @@ internal fun OudsTextInputHelperTextErrorMessage(
 }
 
 @Composable
-internal fun getTextInputState(enabled: Boolean, readOnly: Boolean, loader: OudsTextInputLoader?, interactionState: InteractionState): OudsTextInputState {
+internal fun getTextInputState(
+    enabled: Boolean,
+    readOnly: Boolean,
+    loader: OudsTextInputLoader?,
+    skeleton: OudsSkeleton?,
+    interactionState: InteractionState
+): OudsTextInputState {
     return getPreviewEnumEntry<OudsTextInputState>().orElse {
-        if (loader != null) {
-            OudsTextInputState.Loading
-        } else {
-            when {
-                !enabled -> OudsTextInputState.Disabled
-                readOnly -> OudsTextInputState.ReadOnly
-                interactionState == InteractionState.Hovered -> OudsTextInputState.Hovered
-                interactionState in listOf(InteractionState.Focused, InteractionState.Pressed) -> OudsTextInputState.Focused
-                else -> OudsTextInputState.Enabled
-            }
+        when {
+            skeleton != null -> OudsTextInputState.Skeleton
+            !enabled -> OudsTextInputState.Disabled
+            readOnly -> OudsTextInputState.ReadOnly
+            loader != null -> OudsTextInputState.Loading
+            interactionState == InteractionState.Hovered -> OudsTextInputState.Hovered
+            interactionState in listOf(InteractionState.Focused, InteractionState.Pressed) -> OudsTextInputState.Focused
+            else -> OudsTextInputState.Enabled
         }
     }
 }
@@ -1335,6 +1701,7 @@ internal fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error
             OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
             OudsTextInputState.ReadOnly -> Color.Transparent
             OudsTextInputState.Loading -> OudsTheme.colorScheme.action.support.loading
+            OudsTextInputState.Skeleton -> Color.Transparent
         }
     }
 }
@@ -1353,6 +1720,7 @@ private fun errorContentColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
     OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.pressed
     OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
+    OudsTextInputState.Skeleton -> Color.Transparent
 }
 
 @Composable
@@ -1361,6 +1729,7 @@ internal fun errorIconColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
     OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.focus
     OudsTextInputState.Disabled, OudsTextInputState.ReadOnly, OudsTextInputState.Loading -> Color.Unspecified // Not relevant, exception thrown at the beginning of OudsTextInput
+    OudsTextInputState.Skeleton -> Color.Transparent
 }
 
 @Composable
@@ -1383,8 +1752,8 @@ internal fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, sta
 @Composable
 internal fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
     val width = borderWidth(state)
-    return if (width != null) {
-        val color = borderColor(state = state, outlined = outlined, error = error)
+    val color = borderColor(state = state, outlined = outlined, error = error)
+    return if (width != null && color != null) {
         bottomBorder(width = width, color = color, cornerRadius = cornerRadius)
     } else {
         this
@@ -1392,7 +1761,7 @@ internal fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined:
 }
 
 @Composable
-internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
+internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color? {
     return if (error) {
         errorContentColor(state = state)
     } else {
@@ -1403,7 +1772,8 @@ internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Bo
                 OudsTextInputState.Focused -> colorBorderFocus.value
                 OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
                 OudsTextInputState.Loading -> colorBorderLoading.value
-                OudsTextInputState.ReadOnly -> if (outlined) Color.Unspecified else OudsTheme.colorScheme.border.muted
+                OudsTextInputState.ReadOnly -> if (outlined) null else OudsTheme.colorScheme.border.muted
+                OudsTextInputState.Skeleton -> null
             }
         }
     }
@@ -1427,10 +1797,6 @@ internal fun decorativeContentColor(state: OudsTextInputState) = decorativeConte
 @Composable
 internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typography.label.large.moderate.copy(color = contentColor(state))
 
-@Composable
-internal fun textInputEnabled(state: OudsTextInputState) =
-    state != OudsTextInputState.Disabled && state != OudsTextInputState.ReadOnly && state != OudsTextInputState.Loading
-
 internal val textInputBorderRadius: Dp
     @Composable
     get() = with(OudsTheme.componentsTokens.textInput) {
@@ -1441,8 +1807,8 @@ internal val textInputShape: Shape
     @Composable
     get() = RoundedCornerShape(textInputBorderRadius)
 
-internal enum class OudsTextInputState {
-    Enabled, Hovered, Disabled, Focused, ReadOnly, Loading
+internal enum class OudsTextInputState : OudsComponentState {
+    Enabled, Hovered, Disabled, Focused, ReadOnly, Loading, Skeleton
 }
 
 /**
@@ -1454,7 +1820,7 @@ internal enum class OudsTextInputState {
 data class OudsTextInputHelperLink(
     val text: String,
     val onClick: () -> Unit
-) : OudsComponentContent<OudsTextInputHelperLink.ExtraParameters>(OudsTextInputHelperLink.ExtraParameters::class.java) {
+) : OudsComponentContent<OudsTextInputHelperLink.ExtraParameters>(ExtraParameters::class.java) {
 
     @ConsistentCopyVisibility
     data class ExtraParameters internal constructor(

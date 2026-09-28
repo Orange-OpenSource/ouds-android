@@ -55,6 +55,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   A button with [OudsNavigationButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting interactions for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the button will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonTextAndIconSample
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonIconOnlySample
@@ -68,7 +69,8 @@ fun OudsNavigationButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     val drawableResources = LocalDrawableResources.current
     val iconResource = when (chevron) {
@@ -88,6 +90,34 @@ fun OudsNavigationButton(
         enabled = enabled,
         loader = loader,
         appearance = appearance.toButtonAppearance(),
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsNavigationButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
+    label: String? = null,
+    enabled: Boolean = true,
+    loader: OudsButtonLoader? = null,
+    appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsNavigationButton(
+        onClick = onClick,
+        modifier = modifier,
+        chevron = chevron,
+        label = label,
+        enabled = enabled,
+        loader = loader,
+        appearance = appearance,
         interactionSource = interactionSource
     )
 }

@@ -24,13 +24,29 @@ internal class OudsTagTest {
     class Default(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.Tag.Default,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Tag.Default.PreviewWidthDp
     ) {
 
         companion object {
             @JvmStatic
             @Parameterized.Parameters
             internal fun data() = OudsPreviewableComponent.Tag.Default.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class Small(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Tag.Small,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Tag.Small.PreviewWidthDp
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Tag.Small.parameters
         }
     }
 

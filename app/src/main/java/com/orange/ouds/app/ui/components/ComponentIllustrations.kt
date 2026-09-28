@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -67,6 +68,7 @@ import com.orange.ouds.core.component.OudsPasswordInput
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
 import com.orange.ouds.core.component.OudsRadioButton
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagStatus
@@ -275,6 +277,11 @@ fun RadioButtonIllustration() = ComponentIllustration {
             onClick = {}
         )
     }
+}
+
+@Composable
+fun SkeletonIllustration(modifier: Modifier = Modifier) = ComponentIllustration {
+    OudsSkeleton(modifier = Modifier.size(200.dp, 62.dp))
 }
 
 @Composable

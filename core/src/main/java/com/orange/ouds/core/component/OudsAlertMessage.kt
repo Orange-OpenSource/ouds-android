@@ -110,6 +110,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param bulletList An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
  *
@@ -125,7 +126,8 @@ fun OudsAlertMessage(
     description: String? = null,
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
-    bulletList: List<String>? = null
+    bulletList: List<String>? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     OudsAlertMessage(
         label = label,
@@ -136,7 +138,33 @@ fun OudsAlertMessage(
         onClose = onClose,
         actionLink = actionLink,
         bulletList = bulletList,
-        annotatedBulletList = null
+        annotatedBulletList = null,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsAlertMessage(
+    label: String,
+    modifier: Modifier = Modifier,
+    status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
+    description: String? = null,
+    onClose: (() -> Unit)? = null,
+    actionLink: OudsAlertMessageActionLink? = null,
+    bulletList: List<String>? = null
+) {
+    OudsAlertMessage(
+        label = label,
+        modifier = modifier,
+        status = status,
+        description = description,
+        onClose = onClose,
+        actionLink = actionLink,
+        bulletList = bulletList
     )
 }
 
@@ -175,9 +203,39 @@ fun OudsAlertMessage(
  * @param bulletList A list of annotated bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageWithAnnotatedTextSample
  */
+@Composable
+fun OudsAlertMessage(
+    label: String,
+    modifier: Modifier = Modifier,
+    status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
+    description: OudsAnnotatedAlertMessageDescription,
+    onClose: (() -> Unit)? = null,
+    actionLink: OudsAlertMessageActionLink? = null,
+    bulletList: List<OudsAnnotatedAlertMessageBulletListLabel>?,
+    skeleton: OudsSkeleton? = null
+) {
+    OudsAlertMessage(
+        label = label,
+        modifier = modifier,
+        status = status,
+        description = null,
+        annotatedDescription = description,
+        onClose = onClose,
+        actionLink = actionLink,
+        bulletList = null,
+        annotatedBulletList = bulletList,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
 @Composable
 fun OudsAlertMessage(
     label: String,
@@ -192,12 +250,10 @@ fun OudsAlertMessage(
         label = label,
         modifier = modifier,
         status = status,
-        description = null,
-        annotatedDescription = description,
+        description = description,
         onClose = onClose,
         actionLink = actionLink,
-        bulletList = null,
-        annotatedBulletList = bulletList
+        bulletList = bulletList
     )
 }
 
@@ -211,7 +267,8 @@ private fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null,
-    annotatedBulletList: List<OudsAnnotatedAlertMessageBulletListLabel>? = null
+    annotatedBulletList: List<OudsAnnotatedAlertMessageBulletListLabel>? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
@@ -219,82 +276,94 @@ private fun OudsAlertMessage(
         val shape = RoundedCornerShape(borderRadius.value)
         val hasCloseButton = onClose != null
         val hasActionLink = actionLink != null && actionLink.label.isNotBlank()
-        Row(
-            modifier = modifier
-                .widthIn(min = sizeMinWidth.dp)
-                .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) sizeMinHeightBottomAction.dp else sizeMinHeight.value)
-                .background(color = status.backgroundColor, shape = shape)
-                .clip(shape)
-                .run {
-                    OudsTheme.componentsTokens.alertMessage.borderWidth.value.takeUnlessHairline?.let {
-                        border(width = it, color = status.borderColor, shape = shape)
-                    } ?: this
-                }
-                .semantics(mergeDescendants = true) {}
-                .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
-            horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
-        ) {
-            status.icon?.Content(
-                modifier = Modifier
-                    .padding(top = spacePaddingBlock.value)
-                    .iconSize(sizeAsset.value * scale, status.icon.tinted),
-                extraParameters = OudsAlertIcon.ExtraParameters(
-                    tint = status.assetColor,
-                    status = status.value
-                )
-            )
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(vertical = spacePaddingBlock.value)
-            ) {
-                Column(verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
-                    Text(
-                        modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
-                        text = label,
-                        color = status.contentColor,
-                        style = OudsTheme.typography.label.large.moderate
-                    )
-                    val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
-                    val descriptionColor = status.contentColor
-                    val descriptionStyle = OudsTheme.typography.label.medium.default
-                    if (!annotatedDescription.isNullOrBlank()) {
-                        Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
-                    } else if (!description.isNullOrBlank()) {
-                        Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
+        SkeletonLayout(
+            modifier = modifier,
+            skeleton = skeleton,
+            securityMargin = false,
+            shape = shape
+        ) { contentModifier ->
+            Row(
+                modifier = contentModifier
+                    .widthIn(min = sizeMinWidth.dp)
+                    .heightIn(min = if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) sizeMinHeightBottomAction.dp else sizeMinHeight.value)
+                    .background(color = status.backgroundColor, shape = shape)
+                    .clip(shape)
+                    .run {
+                        OudsTheme.componentsTokens.alertMessage.borderWidth.value.takeUnlessHairline?.let {
+                            border(width = it, color = status.borderColor, shape = shape)
+                        } ?: this
                     }
-                    annotatedBulletList.orElse { bulletList }
-                        ?.filter { it.isNotBlank() }
-                        ?.takeIf { it.isNotEmpty() }
-                        ?.let { list ->
-                            Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.alertMessage.spaceRowGapBullet.value)) {
-                                list.forEach { label ->
-                                    OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
+                    .semantics(mergeDescendants = true) {}
+                    .padding(start = spacePaddingInline.value, end = if (hasCloseButton) 0.dp else spacePaddingInline.value),
+                horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
+            ) {
+                status.icon?.Content(
+                    modifier = Modifier
+                        .padding(top = spacePaddingBlock.value)
+                        .iconSize(sizeAsset.value * scale, status.icon.tinted),
+                    extraParameters = OudsAlertIcon.ExtraParameters(
+                        tint = status.assetColor,
+                        status = status.value
+                    )
+                )
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(vertical = spacePaddingBlock.value)
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(spaceRowGap.value)) {
+                        Text(
+                            modifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.large),
+                            text = label,
+                            color = status.contentColor,
+                            style = OudsTheme.typography.label.large.moderate
+                        )
+                        val descriptionModifier = Modifier.widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
+                        val descriptionColor = status.contentColor
+                        val descriptionStyle = OudsTheme.typography.label.medium.default
+                        if (!annotatedDescription.isNullOrBlank()) {
+                            Text(
+                                modifier = descriptionModifier,
+                                text = annotatedDescription.annotatedString(),
+                                color = descriptionColor,
+                                style = descriptionStyle
+                            )
+                        } else if (!description.isNullOrBlank()) {
+                            Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
+                        }
+                        annotatedBulletList.orElse { bulletList }
+                            ?.filter { it.isNotBlank() }
+                            ?.takeIf { it.isNotEmpty() }
+                            ?.let { list ->
+                                Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.alertMessage.spaceRowGapBullet.value)) {
+                                    list.forEach { label ->
+                                        OudsAlertMessageBulletListItem(label = label, color = status.contentColor)
+                                    }
                                 }
                             }
-                        }
-                }
-                if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
-                    @Suppress("DEPRECATION")
-                    actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
-                }
-            }
-
-            val hasTopEndActionLink = hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.TopEnd
-            if (hasCloseButton || hasTopEndActionLink) {
-                Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
-                    if (hasTopEndActionLink) {
-                        actionLink.Content()
                     }
-                    onClose?.let {
-                        OudsButton(
-                            icon = OudsButtonIcon(
-                                painter = painterResource(LocalDrawableResources.current.component.button.expurge),
-                                contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
-                            ),
-                            onClick = onClose,
-                            appearance = OudsButtonAppearance.Minimal
-                        )
+                    if (hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.Bottom) {
+                        @Suppress("DEPRECATION")
+                        actionLink.Content(modifier = Modifier.padding(top = spaceRowGapAction.value))
+                    }
+                }
+
+                val hasTopEndActionLink = hasActionLink && actionLink.position == OudsAlertMessageActionLinkPosition.TopEnd
+                if (hasCloseButton || hasTopEndActionLink) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(spaceColumnGapAction.value)) {
+                        if (hasTopEndActionLink) {
+                            actionLink.Content()
+                        }
+                        onClose?.let {
+                            OudsButton(
+                                icon = OudsButtonIcon(
+                                    painter = painterResource(LocalDrawableResources.current.component.button.expurge),
+                                    contentDescription = stringResource(R.string.core_alertMessage_close_a11y)
+                                ),
+                                onClick = onClose,
+                                appearance = OudsButtonAppearance.Minimal
+                            )
+                        }
                     }
                 }
             }
@@ -616,6 +685,25 @@ internal fun PreviewOudsAlertMessageWithUntintedIcon(theme: OudsThemeContract) =
             status = status
         )
     }
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsAlertMessageSkeleton() {
+    PreviewOudsAlertMessageSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsAlertMessageSkeleton(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsAlertMessage(
+        label = "Label",
+        status = OudsAlertMessageStatus.Negative,
+        skeleton = OudsSkeleton(rememberOudsSkeletonState())
+    )
 }
 
 internal data class OudsAlertMessagePreviewParameter(

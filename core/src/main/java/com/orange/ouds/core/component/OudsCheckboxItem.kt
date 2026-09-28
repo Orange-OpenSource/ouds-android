@@ -83,6 +83,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox item will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemSample
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithAnnotatedErrorMessageSample
@@ -103,7 +104,8 @@ fun OudsCheckboxItem(
     readOnly: Boolean = false,
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     OudsTriStateCheckboxItem(
         state = ToggleableState(checked),
@@ -111,6 +113,46 @@ fun OudsCheckboxItem(
         onClick = if (onCheckedChange != null) {
             { onCheckedChange(!checked) }
         } else null,
+        modifier = modifier,
+        description = description,
+        icon = icon,
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsCheckboxItem(
+    checked: Boolean,
+    label: String,
+    onCheckedChange: ((Boolean) -> Unit)?,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsCheckboxItem(
+        checked = checked,
+        label = label,
+        onCheckedChange = onCheckedChange,
         modifier = modifier,
         description = description,
         icon = icon,
@@ -169,6 +211,7 @@ fun OudsCheckboxItem(
  *   Defaults to `false`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for the item's checkbox. Note that
  *   if `null` is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox item will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemSample
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample
@@ -189,12 +232,13 @@ fun OudsTriStateCheckboxItem(
     readOnly: Boolean = false,
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val checkboxItemState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
-    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+    val checkboxItemState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
+    val backgroundColor = rememberControlItemBackgroundColor(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
 
     val toggleableModifier = if (onClick != null) {
         Modifier.triStateToggleable(
@@ -202,7 +246,7 @@ fun OudsTriStateCheckboxItem(
             indication = interactionValuesIndication(backgroundColor),
             state = state,
             onClick = onClick,
-            enabled = enabled && !readOnly,
+            enabled = checkboxItemState.areInteractionsEnabled,
             role = Role.Checkbox
         )
     } else {
@@ -237,7 +281,47 @@ fun OudsTriStateCheckboxItem(
         modifier = modifier.semantics(mergeDescendants = true) {},
         contentModifier = toggleableModifier,
         handleHighContrastMode = true,
-        constrainedMaxWidth = constrainedMaxWidth
+        constrainedMaxWidth = constrainedMaxWidth,
+        skeleton = skeleton
+    )
+}
+
+@Deprecated(
+    "Maintained for binary compatibility. Use overload with additional parameters.",
+    level = DeprecationLevel.HIDDEN
+)
+@Composable
+fun OudsTriStateCheckboxItem(
+    state: ToggleableState,
+    label: String,
+    onClick: (() -> Unit)?,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    icon: OudsControlItemIcon? = null,
+    edgeToEdge: Boolean = true,
+    divider: Boolean = false,
+    reversed: Boolean = false,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    error: OudsError? = null,
+    constrainedMaxWidth: Boolean = false,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsTriStateCheckboxItem(
+        state = state,
+        label = label,
+        onClick = onClick,
+        modifier = modifier,
+        description = description,
+        icon = icon,
+        edgeToEdge = edgeToEdge,
+        divider = divider,
+        reversed = reversed,
+        enabled = enabled,
+        readOnly = readOnly,
+        error = error,
+        constrainedMaxWidth = constrainedMaxWidth,
+        interactionSource = interactionSource
     )
 }
 
