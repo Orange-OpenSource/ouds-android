@@ -1,0 +1,349 @@
+public final class com/orange/ouds/tokens/raw/OudsBorderRawTokens {
+	public static final field BorderBase I
+	public static final field BorderRadius0 F
+	public static final field BorderRadius100 F
+	public static final field BorderRadius150 F
+	public static final field BorderRadius200 F
+	public static final field BorderRadius25 F
+	public static final field BorderRadius300 F
+	public static final field BorderRadius400 F
+	public static final field BorderRadius50 F
+	public static final field BorderRadius500 F
+	public static final field BorderRadius600 F
+	public static final field BorderRadius75 F
+	public static final field BorderRadius800 F
+	public static final field BorderRadius9999 F
+	public static final field BorderStyleDashed Ljava/lang/String;
+	public static final field BorderStyleDotted Ljava/lang/String;
+	public static final field BorderStyleNone Ljava/lang/String;
+	public static final field BorderStyleSolid Ljava/lang/String;
+	public static final field BorderWidth0 F
+	public static final field BorderWidth100 F
+	public static final field BorderWidth125 F
+	public static final field BorderWidth150 F
+	public static final field BorderWidth200 F
+	public static final field BorderWidth25 F
+	public static final field BorderWidth50 F
+	public static final field BorderWidth75 F
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsBorderRawTokens;
+}
+
+public final class com/orange/ouds/tokens/raw/OudsColorRawTokens {
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsColorRawTokens;
+	public final fun getColorFunctionalAmethyst400-0d7_KjU ()J
+	public final fun getColorFunctionalAmethyst600-0d7_KjU ()J
+	public final fun getColorFunctionalBlack-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue100-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue200-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue300-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue400-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue500-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue600-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue700-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue800-0d7_KjU ()J
+	public final fun getColorFunctionalDodgerBlue900-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark160-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark240-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark320-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark400-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark480-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark560-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark640-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark720-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark80-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark800-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark880-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark960-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight160-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight240-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight320-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight400-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight480-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight560-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight640-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight720-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight80-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight800-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight880-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight960-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite100-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite200-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite300-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite400-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite500-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite600-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite700-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite750-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite800-0d7_KjU ()J
+	public final fun getColorFunctionalMalachite900-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet100-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet200-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet300-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet400-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet500-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet600-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet700-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet800-0d7_KjU ()J
+	public final fun getColorFunctionalScarlet900-0d7_KjU ()J
+	public final fun getColorFunctionalSun100-0d7_KjU ()J
+	public final fun getColorFunctionalSun200-0d7_KjU ()J
+	public final fun getColorFunctionalSun300-0d7_KjU ()J
+	public final fun getColorFunctionalSun400-0d7_KjU ()J
+	public final fun getColorFunctionalSun500-0d7_KjU ()J
+	public final fun getColorFunctionalSun600-0d7_KjU ()J
+	public final fun getColorFunctionalSun700-0d7_KjU ()J
+	public final fun getColorFunctionalSun750-0d7_KjU ()J
+	public final fun getColorFunctionalSun800-0d7_KjU ()J
+	public final fun getColorFunctionalSun900-0d7_KjU ()J
+	public final fun getColorFunctionalWhite-0d7_KjU ()J
+	public final fun getColorOpacityBlack0-0d7_KjU ()J
+	public final fun getColorOpacityBlack120-0d7_KjU ()J
+	public final fun getColorOpacityBlack160-0d7_KjU ()J
+	public final fun getColorOpacityBlack200-0d7_KjU ()J
+	public final fun getColorOpacityBlack240-0d7_KjU ()J
+	public final fun getColorOpacityBlack280-0d7_KjU ()J
+	public final fun getColorOpacityBlack320-0d7_KjU ()J
+	public final fun getColorOpacityBlack360-0d7_KjU ()J
+	public final fun getColorOpacityBlack40-0d7_KjU ()J
+	public final fun getColorOpacityBlack400-0d7_KjU ()J
+	public final fun getColorOpacityBlack440-0d7_KjU ()J
+	public final fun getColorOpacityBlack480-0d7_KjU ()J
+	public final fun getColorOpacityBlack520-0d7_KjU ()J
+	public final fun getColorOpacityBlack560-0d7_KjU ()J
+	public final fun getColorOpacityBlack600-0d7_KjU ()J
+	public final fun getColorOpacityBlack640-0d7_KjU ()J
+	public final fun getColorOpacityBlack680-0d7_KjU ()J
+	public final fun getColorOpacityBlack720-0d7_KjU ()J
+	public final fun getColorOpacityBlack760-0d7_KjU ()J
+	public final fun getColorOpacityBlack80-0d7_KjU ()J
+	public final fun getColorOpacityBlack800-0d7_KjU ()J
+	public final fun getColorOpacityBlack840-0d7_KjU ()J
+	public final fun getColorOpacityBlack880-0d7_KjU ()J
+	public final fun getColorOpacityBlack920-0d7_KjU ()J
+	public final fun getColorOpacityBlack960-0d7_KjU ()J
+	public final fun getColorOpacityDodgerBlue520-0d7_KjU ()J
+	public final fun getColorOpacityDodgerBlue80-0d7_KjU ()J
+	public final fun getColorOpacityGrayDark880800-0d7_KjU ()J
+	public final fun getColorOpacityMalachite120-0d7_KjU ()J
+	public final fun getColorOpacityMalachite640-0d7_KjU ()J
+	public final fun getColorOpacityScarlet320-0d7_KjU ()J
+	public final fun getColorOpacityScarlet80-0d7_KjU ()J
+	public final fun getColorOpacitySun160-0d7_KjU ()J
+	public final fun getColorOpacitySun480-0d7_KjU ()J
+	public final fun getColorOpacityWhite0-0d7_KjU ()J
+	public final fun getColorOpacityWhite120-0d7_KjU ()J
+	public final fun getColorOpacityWhite160-0d7_KjU ()J
+	public final fun getColorOpacityWhite200-0d7_KjU ()J
+	public final fun getColorOpacityWhite240-0d7_KjU ()J
+	public final fun getColorOpacityWhite280-0d7_KjU ()J
+	public final fun getColorOpacityWhite320-0d7_KjU ()J
+	public final fun getColorOpacityWhite360-0d7_KjU ()J
+	public final fun getColorOpacityWhite40-0d7_KjU ()J
+	public final fun getColorOpacityWhite400-0d7_KjU ()J
+	public final fun getColorOpacityWhite440-0d7_KjU ()J
+	public final fun getColorOpacityWhite480-0d7_KjU ()J
+	public final fun getColorOpacityWhite520-0d7_KjU ()J
+	public final fun getColorOpacityWhite560-0d7_KjU ()J
+	public final fun getColorOpacityWhite600-0d7_KjU ()J
+	public final fun getColorOpacityWhite640-0d7_KjU ()J
+	public final fun getColorOpacityWhite680-0d7_KjU ()J
+	public final fun getColorOpacityWhite720-0d7_KjU ()J
+	public final fun getColorOpacityWhite760-0d7_KjU ()J
+	public final fun getColorOpacityWhite80-0d7_KjU ()J
+	public final fun getColorOpacityWhite800-0d7_KjU ()J
+	public final fun getColorOpacityWhite840-0d7_KjU ()J
+	public final fun getColorOpacityWhite880-0d7_KjU ()J
+	public final fun getColorOpacityWhite920-0d7_KjU ()J
+	public final fun getColorOpacityWhite960-0d7_KjU ()J
+}
+
+public final class com/orange/ouds/tokens/raw/OudsDimensionRawTokens {
+	public static final field Dimension0 F
+	public static final field Dimension100 F
+	public static final field Dimension1000 F
+	public static final field Dimension1050 F
+	public static final field Dimension1100 F
+	public static final field Dimension11000 F
+	public static final field Dimension1200 F
+	public static final field Dimension1250 F
+	public static final field Dimension1400 F
+	public static final field Dimension150 F
+	public static final field Dimension1600 F
+	public static final field Dimension1800 F
+	public static final field Dimension200 F
+	public static final field Dimension2000 F
+	public static final field Dimension2225 F
+	public static final field Dimension250 F
+	public static final field Dimension2500 F
+	public static final field Dimension300 F
+	public static final field Dimension3000 F
+	public static final field Dimension350 F
+	public static final field Dimension400 F
+	public static final field Dimension4000 F
+	public static final field Dimension450 F
+	public static final field Dimension50 F
+	public static final field Dimension500 F
+	public static final field Dimension5000 F
+	public static final field Dimension550 F
+	public static final field Dimension600 F
+	public static final field Dimension6000 F
+	public static final field Dimension650 F
+	public static final field Dimension700 F
+	public static final field Dimension7000 F
+	public static final field Dimension750 F
+	public static final field Dimension800 F
+	public static final field Dimension850 F
+	public static final field Dimension900 F
+	public static final field Dimension9000 F
+	public static final field Dimension950 F
+	public static final field DimensionBase I
+	public static final field DimensionOutOfSystem150 F
+	public static final field DimensionOutOfSystem25 F
+	public static final field DimensionOutOfSystem250 F
+	public static final field DimensionOutOfSystem50 F
+	public static final field DimensionOutOfSystem75 F
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsDimensionRawTokens;
+}
+
+public final class com/orange/ouds/tokens/raw/OudsEffectRawTokens {
+	public static final field EffectBlur320 I
+	public static final field EffectBlur480 I
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsEffectRawTokens;
+}
+
+public final class com/orange/ouds/tokens/raw/OudsElevationRawTokens {
+	public static final field Elevation0 F
+	public static final field Elevation1 F
+	public static final field Elevation2 F
+	public static final field Elevation3 F
+	public static final field Elevation4 F
+	public static final field Elevation5 F
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsElevationRawTokens;
+}
+
+public final class com/orange/ouds/tokens/raw/OudsFontRawTokens {
+	public static final field FontLetterSpacing1050 F
+	public static final field FontLetterSpacing1150 F
+	public static final field FontLetterSpacing1250 F
+	public static final field FontLetterSpacing1450 F
+	public static final field FontLetterSpacing150 F
+	public static final field FontLetterSpacing175 F
+	public static final field FontLetterSpacing1850 F
+	public static final field FontLetterSpacing200 F
+	public static final field FontLetterSpacing250 F
+	public static final field FontLetterSpacing300 F
+	public static final field FontLetterSpacing350 F
+	public static final field FontLetterSpacing450 F
+	public static final field FontLetterSpacing550 F
+	public static final field FontLetterSpacing650 F
+	public static final field FontLetterSpacing750 F
+	public static final field FontLetterSpacing850 F
+	public static final field FontLetterSpacing950 F
+	public static final field FontLineHeight1050 I
+	public static final field FontLineHeight1150 I
+	public static final field FontLineHeight1250 I
+	public static final field FontLineHeight1350 I
+	public static final field FontLineHeight1450 I
+	public static final field FontLineHeight1850 I
+	public static final field FontLineHeight2050 I
+	public static final field FontLineHeight250 I
+	public static final field FontLineHeight350 I
+	public static final field FontLineHeight450 I
+	public static final field FontLineHeight550 I
+	public static final field FontLineHeight650 I
+	public static final field FontLineHeight750 I
+	public static final field FontLineHeight850 I
+	public static final field FontLineHeight950 I
+	public static final field FontSize1050 I
+	public static final field FontSize1150 I
+	public static final field FontSize1250 I
+	public static final field FontSize1450 I
+	public static final field FontSize150 I
+	public static final field FontSize175 I
+	public static final field FontSize1850 I
+	public static final field FontSize200 I
+	public static final field FontSize250 I
+	public static final field FontSize300 I
+	public static final field FontSize350 I
+	public static final field FontSize450 I
+	public static final field FontSize550 I
+	public static final field FontSize650 I
+	public static final field FontSize750 I
+	public static final field FontSize850 I
+	public static final field FontSize950 I
+	public static final field FontWeight100 I
+	public static final field FontWeight200 I
+	public static final field FontWeight300 I
+	public static final field FontWeight400 I
+	public static final field FontWeight500 I
+	public static final field FontWeight600 I
+	public static final field FontWeight700 I
+	public static final field FontWeight800 I
+	public static final field FontWeight900 I
+	public static final field FontWeight950 I
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsFontRawTokens;
+}
+
+public final class com/orange/ouds/tokens/raw/OudsGridRawTokens {
+	public static final field GridColumnCount100 I
+	public static final field GridColumnCount1000 I
+	public static final field GridColumnCount1200 I
+	public static final field GridColumnCount200 I
+	public static final field GridColumnCount400 I
+	public static final field GridColumnCount600 I
+	public static final field GridColumnCount800 I
+	public static final field GridColumnGap10 D
+	public static final field GridColumnGap100 I
+	public static final field GridColumnGap200 I
+	public static final field GridColumnGap300 I
+	public static final field GridColumnGap400 I
+	public static final field GridColumnGap600 I
+	public static final field GridColumnGap800 I
+	public static final field GridMargin100 I
+	public static final field GridMargin1000 I
+	public static final field GridMargin1100 I
+	public static final field GridMargin1700 I
+	public static final field GridMargin2500 I
+	public static final field GridMargin300 I
+	public static final field GridMargin400 I
+	public static final field GridMargin500 I
+	public static final field GridMargin600 I
+	public static final field GridMargin700 I
+	public static final field GridMaxWidthCompact I
+	public static final field GridMaxWidthExtraCompact I
+	public static final field GridMaxWidthMedium I
+	public static final field GridMinWidthCompact I
+	public static final field GridMinWidthExtraCompact I
+	public static final field GridMinWidthMedium I
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsGridRawTokens;
+}
+
+public final class com/orange/ouds/tokens/raw/OudsOpacityRawTokens {
+	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsOpacityRawTokens;
+	public static final field Opacity0 F
+	public static final field Opacity1000 F
+	public static final field Opacity120 F
+	public static final field Opacity160 F
+	public static final field Opacity200 F
+	public static final field Opacity240 F
+	public static final field Opacity280 F
+	public static final field Opacity320 F
+	public static final field Opacity360 F
+	public static final field Opacity40 F
+	public static final field Opacity400 F
+	public static final field Opacity440 F
+	public static final field Opacity480 F
+	public static final field Opacity520 F
+	public static final field Opacity560 F
+	public static final field Opacity600 F
+	public static final field Opacity640 F
+	public static final field Opacity680 F
+	public static final field Opacity720 F
+	public static final field Opacity760 F
+	public static final field Opacity80 F
+	public static final field Opacity800 F
+	public static final field Opacity880 F
+	public static final field Opacity920 F
+	public static final field Opacity960 F
+}
+
