@@ -33,6 +33,7 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.painterResource
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
+import com.orange.ouds.core.component.OudsTopAppBarBackground
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 
 
@@ -65,7 +66,7 @@ private fun TopBar(
 ) {
     OudsTopAppBar(
         modifier = modifier.windowInsetsPadding(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal)),
-        translucent = Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2,
+        background = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque,
         title = title,
         navigationIcon = if (showNavigationIcon) OudsTopAppBarNavigationIcon.Back(onClick = upPress) else null,
         actions = actions.map { action ->
