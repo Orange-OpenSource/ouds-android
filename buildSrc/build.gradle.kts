@@ -26,6 +26,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.android.bcv.bridge)
     implementation(libs.android.gradle.plugin)
     implementation(libs.android.tools.sdk.common)
     implementation(libs.androidx.annotation)

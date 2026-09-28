@@ -1,10 +1,12 @@
 [versions]
 activityCompose = "1.13.0"
 annotation = "1.11.0"
-appcompat = "1.8.0"
+androidBcvBridge = "0.2.0"
 androidCompileSdk = "37"
 androidMinSdk = "23"
 androidTargetSdk = "37"
+appcompat = "1.8.0"
+binaryCompatibilityValidator = "0.18.2"
 browser = "1.10.0"
 composeBom = "2026.09.00"
 constraintlayoutCompose = "1.1.2"
@@ -37,6 +39,7 @@ sdkCommon = "32.4.1"
 zxing = "3.5.4"
 
 [libraries]
+android-bcv-bridge = { module = "io.github.tjokinen:android-bcv-bridge", version.ref = "androidBcvBridge" }
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 android-tools-sdk-common = { group = "com.android.tools", name = "sdk-common", version.ref = "sdkCommon" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -92,6 +95,7 @@ zxing-javase = { module = "com.google.zxing:javase", version.ref = "zxing" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.ref = "firebaseAppDistribution" }
