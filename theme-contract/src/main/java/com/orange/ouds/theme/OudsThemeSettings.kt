@@ -51,10 +51,18 @@ import kotlinx.parcelize.Parcelize
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
-data class OudsThemeSettings @JvmOverloads constructor(
+data class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructor(
     val roundedCornerButtons: Boolean? = null,
     val roundedCornerTextInputs: Boolean? = null,
-    val roundedCornerAlertMessages: Boolean? = null,
-    val roundedCornerProgressIndicators: Boolean? = null,
-    val roundedCornerCardItems: Boolean? = null
-) : Parcelable
+    @IntroducedAt("1.3.0") val roundedCornerAlertMessages: Boolean? = null,
+    @IntroducedAt("1.6.0") val roundedCornerProgressIndicators: Boolean? = null,
+    @IntroducedAt("2.0.0") val roundedCornerCardItems: Boolean? = null
+) : Parcelable {
+
+    // This constructor overload has been added to avoid binary compatibility issues following the replacement of @JvmOverloads with @IntroducedAt
+    @Deprecated(
+        "Maintained for binary compatibility. Use overload with additional parameters.",
+        level = DeprecationLevel.HIDDEN
+    )
+    constructor(roundedCornerButtons: Boolean?) : this(roundedCornerButtons, null, null, null, null)
+}
