@@ -62,9 +62,9 @@ private fun PinCodeInputDemoBottomSheetContent(state: PinCodeInputDemoState) {
             onCheckedChange = { outlined = it }
         )
         CustomizationSwitchItem(
-            label = stringResource(R.string.app_components_pinCodeInput_hiddenValue_tech),
-            checked = hiddenValue,
-            onCheckedChange = { hiddenValue = it }
+            label = stringResource(R.string.app_components_pinCodeInput_hiddenCharacters_tech),
+            checked = hiddenCharacters,
+            onCheckedChange = { hiddenCharacters = it }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_error_tech),
@@ -123,7 +123,7 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
                 outlined = outlined,
                 error = pinCodeInputError,
                 helperText = annotatedHelperText,
-                hiddenValue = hiddenValue,
+                hiddenCharacters = hiddenCharacters,
                 onKeyboardAction = onKeyboardAction
             )
         } else {
@@ -134,7 +134,7 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
                 outlined = outlined,
                 error = pinCodeInputError,
                 helperText = helperText,
-                hiddenValue = hiddenValue,
+                hiddenCharacters = hiddenCharacters,
                 onKeyboardAction = onKeyboardAction
             )
         }
@@ -152,7 +152,7 @@ private fun Code.Builder.pinCodeInputDemoCodeSnippet(state: PinCodeInputDemoStat
             if (outlined) typedArgument("outlined", outlined)
             if (error) errorArgument(errorMessage, annotatedText)
             helperTextArgument(helperText, annotatedText)
-            if (!hiddenValue) typedArgument("hiddenValue", hiddenValue)
+            if (!hiddenCharacters) typedArgument("hiddenCharacters", hiddenCharacters)
         }
     }
 
