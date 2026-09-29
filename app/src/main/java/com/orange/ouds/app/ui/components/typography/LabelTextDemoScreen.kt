@@ -13,7 +13,6 @@
 package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
@@ -28,7 +27,6 @@ import com.orange.ouds.core.component.common.text.buildOudsAnnotatedLabelText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -71,12 +69,13 @@ private fun LabelTextDemoContent(state: LabelTextDemoState) {
             with(OudsTheme.colorScheme.content) {
                 OudsLabelText(
                     text = buildOudsAnnotatedLabelText {
-                        append("Label with ")
-                        withColor(color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }) {
-                            append("colored text")
+                        append("Account ")
+                        withColor(color = status.positive) {
+                            withStrong {
+                                append("successfully")
+                            }
                         }
-                        append(" and ")
-                        withStrong { append("strong text") }
+                        append(" created.")
                     },
                     size = size,
                     weight = weight

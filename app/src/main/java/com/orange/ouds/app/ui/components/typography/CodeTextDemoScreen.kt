@@ -13,10 +13,8 @@
 package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
@@ -24,7 +22,6 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCodeText
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -47,16 +44,17 @@ private fun CodeTextDemoBottomSheetContent(state: TypographyDemoState) {
 private fun CodeTextDemoContent(state: TypographyDemoState) {
     with(state) {
         if (annotatedText) {
-            with(OudsTheme.colorScheme.content) {
-                val color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }
+            with(OudsTheme.colorScheme.content.status) {
                 OudsCodeText(
                     text = buildAnnotatedString {
-                        append("Code with ")
-                        withStyle(SpanStyle(color = color)) {
-                            append("colored text")
+                        withStyle(SpanStyle(color = info)) {
+                            append("val")
                         }
-                        append(" and ")
-                        withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+                        append(" state = ")
+                        withStyle(SpanStyle(color = positive)) {
+                            append("rememberState")
+                        }
+                        append("()")
                     }
                 )
             }
