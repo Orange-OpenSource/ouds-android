@@ -559,7 +559,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
             painter: Painter,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            @IntroducedAt("2.1") tinted: Boolean = true,
+            @IntroducedAt("2.1.0") tinted: Boolean = true,
             onClick: () -> Unit
         ) : this(painter as Any, contentDescription, badge, tinted, onClick)
 
@@ -579,7 +579,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
             imageVector: ImageVector,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            @IntroducedAt("2.1") tinted: Boolean = true,
+            @IntroducedAt("2.1.0") tinted: Boolean = true,
             onClick: () -> Unit
         ) : this(imageVector as Any, contentDescription, badge, tinted, onClick)
 
@@ -599,7 +599,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
             bitmap: ImageBitmap,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            @IntroducedAt("2.1") tinted: Boolean = true,
+            @IntroducedAt("2.1.0") tinted: Boolean = true,
             onClick: () -> Unit
         ) : this(bitmap as Any, contentDescription, badge, tinted, onClick)
     }

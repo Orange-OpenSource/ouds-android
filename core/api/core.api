@@ -1749,10 +1749,13 @@ public final class com/orange/ouds/core/component/OudsTextInputKt {
 
 public final class com/orange/ouds/core/component/OudsTextInputLeadingIcon : com/orange/ouds/core/component/content/OudsComponentIcon {
 	public static final field $stable I
+	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;)V
 	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Z)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;)V
 	public fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Z)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;)V
 	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Z)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getContentDescription ()Ljava/lang/String;
