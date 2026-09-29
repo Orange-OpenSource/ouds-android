@@ -69,11 +69,14 @@ public final class com/orange/ouds/theme/orange/OrangeHelveticaNeueLatin$Downloa
 
 public class com/orange/ouds/theme/orange/OrangeTheme : com/orange/ouds/theme/OudsThemeContract {
 	public static final field $stable I
-	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;)V
-	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;Z)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;Z)V
 	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZ)V
 	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (ZZ)V

@@ -138,15 +138,28 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
  * @param roundedCornerCardItems Whether card items have rounded corners.
  */
-open class OrangeCompactTheme @JvmOverloads constructor(
+open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) constructor(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = true,
-    private val roundedCornerAlertMessages: Boolean = false,
-    private val roundedCornerProgressIndicators: Boolean = false,
-    private val roundedCornerCardItems: Boolean = false
+    @IntroducedAt("1.3.0") private val roundedCornerAlertMessages: Boolean = false,
+    @IntroducedAt("1.6.0") private val roundedCornerProgressIndicators: Boolean = false,
+    @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false
 ) : OudsThemeContract {
 
+    // These constructor overloads have been added to avoid binary compatibility issues following the replacement of @JvmOverloads with @IntroducedAt
+    @Deprecated(
+        "Maintained for binary compatibility. Use overload with additional parameters.",
+        level = DeprecationLevel.HIDDEN
+    )
+    constructor(orangeFontFamily: OrangeFontFamily) : this(orangeFontFamily, false, false, false, false, false)
+
+    @Deprecated(
+        "Maintained for binary compatibility. Use overload with additional parameters.",
+        level = DeprecationLevel.HIDDEN
+    )
+    constructor(orangeFontFamily: OrangeFontFamily, roundedCornerButtons: Boolean) : this(orangeFontFamily, roundedCornerButtons, false, false, false, false)
+    
     override val name: String
         get() = ORANGE_COMPACT_THEME_NAME
 
