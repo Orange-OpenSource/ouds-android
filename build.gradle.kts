@@ -72,4 +72,5 @@ dokka {
 
 apiValidation {
     nonPublicMarkers.add("com.orange.ouds.foundation.InternalOudsApi")
+    ignoredPackages.add("com.orange.ouds.core.component.samples")
 }
