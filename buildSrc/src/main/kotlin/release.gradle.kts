@@ -32,6 +32,7 @@ plugins {
 tasks.register<DefaultTask>("updateVersion") {
     doLast {
         val version = checkNotNull(releaseVersion) { "releaseVersion should not be null." }
+        updateIntroducedAtAnnotations(version)
         updateGradleProperties(version)
         updateDependencies(version)
         updateVersionCode()
@@ -115,6 +116,46 @@ fun updateVersionCode() {
     File("app/build.gradle.kts").replace(versionCodeRegex) { matchResult ->
         val versionCode = matchResult.groupValues[2].toInt() + 1
         "${matchResult.groupValues[1]}$versionCode"
+    }
+}
+
+fun updateIntroducedAtAnnotations(version: String) {
+    val introducedAtRegex = "@IntroducedAt\\(\"([^\"]+)\"\\)".toRegex()
+    val unreleasedRegex = "@IntroducedAt\\(\"([^\"]+)-Unreleased\"\\)".toRegex()
+    val semanticVersionRegex = "^\\d+\\.\\d+\\.\\d+$".toRegex()
+    var invalidVersions = mutableListOf<String>()
+
+    val publishedSubprojectDirectories = rootProject.subprojects
+        .filter { it.isPublished }
+        .map { it.projectDir }
+
+    publishedSubprojectDirectories.forEach { directory ->
+        directory.walkTopDown()
+            .filter { it.isFile && it.extension == "kt" }
+            .forEach { file ->
+                // Replace -Unreleased annotations with actual version
+                file.replace(unreleasedRegex) { "@IntroducedAt(\"$version\")" }
+
+                // Validate all @IntroducedAt annotations after replacement
+                val content = file.readText()
+                introducedAtRegex.findAll(content).forEach { matchResult ->
+                    val versionString = matchResult.groupValues[1]
+                    if (!versionString.matches(semanticVersionRegex)) {
+                        val relativePath = file.relativeTo(rootProject.projectDir)
+                        val lineNumber = content.substring(0, matchResult.range.first).count { it == '\n' } + 1
+                        invalidVersions.add("$relativePath:$lineNumber - \"$versionString\"")
+                    }
+                }
+            }
+    }
+
+    if (invalidVersions.isNotEmpty()) {
+        val message = buildString {
+            appendLine("Invalid @IntroducedAt version format detected:")
+            invalidVersions.forEach { appendLine("  $it") }
+        }
+
+        throw GradleException(message)
     }
 }
 
