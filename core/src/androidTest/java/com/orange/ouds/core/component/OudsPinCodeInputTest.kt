@@ -359,7 +359,7 @@ internal class OudsPinCodeInputTest {
     }
 
     @Test
-    fun oudsPinCodeInput_hiddenValueFalse_displaysVisibleDigits() {
+    fun oudsPinCodeInput_hiddenCharactersFalse_displaysVisibleDigits() {
         with(composeTestRule) {
             var value by mutableStateOf("")
 
@@ -368,7 +368,7 @@ internal class OudsPinCodeInputTest {
                     value = value,
                     onValueChange = { value = it },
                     length = OudsPinCodeInputLength.Four,
-                    hiddenValue = false
+                    hiddenCharacters = false
                 )
             }
 
@@ -387,7 +387,7 @@ internal class OudsPinCodeInputTest {
     }
 
     @Test
-    fun oudsPinCodeInput_hiddenValueFalse_partialInput_displaysVisibleDigits() {
+    fun oudsPinCodeInput_hiddenCharactersFalse_partialInput_displaysVisibleDigits() {
         with(composeTestRule) {
             var value by mutableStateOf("")
 
@@ -396,7 +396,7 @@ internal class OudsPinCodeInputTest {
                     value = value,
                     onValueChange = { value = it },
                     length = OudsPinCodeInputLength.Six,
-                    hiddenValue = false
+                    hiddenCharacters = false
                 )
             }
 
@@ -414,7 +414,7 @@ internal class OudsPinCodeInputTest {
     }
 
     @Test
-    fun oudsPinCodeInput_hiddenValueTrue_displaysObfuscatedDigits() {
+    fun oudsPinCodeInput_hiddenCharactersTrue_displaysObfuscatedDigits() {
         with(composeTestRule) {
             var value by mutableStateOf("")
 
@@ -423,7 +423,7 @@ internal class OudsPinCodeInputTest {
                     value = value,
                     onValueChange = { value = it },
                     length = OudsPinCodeInputLength.Four,
-                    hiddenValue = true
+                    hiddenCharacters = true
                 )
             }
 

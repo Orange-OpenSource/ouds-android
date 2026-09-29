@@ -93,7 +93,7 @@ internal fun OudsPinCodeInputWithVisibleValueSample() {
         value = value,
         onValueChange = { value = it },
         length = OudsPinCodeInputLength.Four,
-        hiddenValue = false,
+        hiddenCharacters = false,
         helperText = "Enter the 4-digit code sent to your phone."
     )
 }

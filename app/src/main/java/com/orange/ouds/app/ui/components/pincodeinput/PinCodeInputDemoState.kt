@@ -31,10 +31,10 @@ fun rememberPinCodeInputDemoState(
     error: Boolean = false,
     errorMessage: String = stringResource(id = R.string.app_components_common_errorMessage_label),
     helperText: String = "",
-    hiddenValue: Boolean = true,
+    hiddenCharacters: Boolean = true,
     annotatedText: Boolean = false
-) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, hiddenValue, annotatedText, saver = PinCodeInputDemoState.Saver) {
-    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText, hiddenValue, annotatedText)
+) = rememberSaveable(value, length, outlined, error, errorMessage, helperText, hiddenCharacters, annotatedText, saver = PinCodeInputDemoState.Saver) {
+    PinCodeInputDemoState(value, length, outlined, error, errorMessage, helperText, hiddenCharacters, annotatedText)
 }
 
 class PinCodeInputDemoState(
@@ -44,7 +44,7 @@ class PinCodeInputDemoState(
     error: Boolean,
     errorMessage: String,
     helperText: String,
-    hiddenValue: Boolean,
+    hiddenCharacters: Boolean,
     annotatedText: Boolean
 ) {
 
@@ -59,7 +59,7 @@ class PinCodeInputDemoState(
                         error,
                         errorMessage,
                         helperText,
-                        hiddenValue,
+                        hiddenCharacters,
                         annotatedText
                     )
                 }
@@ -91,7 +91,7 @@ class PinCodeInputDemoState(
 
     var helperText: String by mutableStateOf(helperText)
 
-    var hiddenValue: Boolean by mutableStateOf(hiddenValue)
+    var hiddenCharacters: Boolean by mutableStateOf(hiddenCharacters)
 
     var annotatedText: Boolean by mutableStateOf(annotatedText)
 

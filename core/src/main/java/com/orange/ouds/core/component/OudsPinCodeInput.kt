@@ -116,8 +116,8 @@ import kotlinx.coroutines.launch
  *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this PIN code input. Note that if `null`
  *   is provided, interactions will still happen internally.
- * @param hiddenValue Controls whether the entered digits are hidden. When `true`, digits are replaced with dots (●) for privacy.
- *   When `false`, digits are displayed in plain text. Defaults to `true`.
+ * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
+ *   When `false`, characters are displayed in plain text. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
@@ -134,7 +134,7 @@ fun OudsPinCodeInput(
     helperText: String? = null,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    hiddenValue: Boolean = true
+    hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
@@ -145,7 +145,7 @@ fun OudsPinCodeInput(
         error = error,
         helperText = helperText,
         annotatedHelperText = null,
-        hiddenValue = hiddenValue,
+        hiddenCharacters = hiddenCharacters,
         onKeyboardAction = onKeyboardAction,
         interactionSource = interactionSource
     )
@@ -182,8 +182,8 @@ fun OudsPinCodeInput(
  *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this PIN code input. Note that if `null`
  *   is provided, interactions will still happen internally.
- * @param hiddenValue Controls whether the entered digits are hidden. When `true`, digits are replaced with dots (●) for privacy.
- *   When `false`, digits are displayed in plain text. Defaults to `true`.
+ * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
+ *   When `false`, characters are displayed in plain text. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleValueSample
@@ -201,7 +201,7 @@ fun OudsPinCodeInput(
     helperText: OudsAnnotatedHelperText,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    hiddenValue: Boolean = true
+    hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
@@ -212,7 +212,7 @@ fun OudsPinCodeInput(
         error = error,
         helperText = null,
         annotatedHelperText = helperText,
-        hiddenValue = hiddenValue,
+        hiddenCharacters = hiddenCharacters,
         onKeyboardAction = onKeyboardAction,
         interactionSource = interactionSource
     )
@@ -228,7 +228,7 @@ private fun OudsPinCodeInput(
     error: OudsError? = null,
     helperText: String? = null,
     annotatedHelperText: OudsAnnotatedHelperText? = null,
-    hiddenValue: Boolean = true,
+    hiddenCharacters: Boolean = true,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -289,7 +289,7 @@ private fun OudsPinCodeInput(
                             length = length,
                             outlined = outlined,
                             error = error,
-                            hiddenValue = hiddenValue,
+                            hiddenCharacters = hiddenCharacters,
                             onDigitClick = {
                                 focusRequester.requestFocus()
                                 // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
@@ -367,7 +367,7 @@ private fun OudsPinCodeInputDecorator(
     length: OudsPinCodeInputLength,
     outlined: Boolean,
     error: OudsError?,
-    hiddenValue: Boolean,
+    hiddenCharacters: Boolean,
     onDigitClick: (Int) -> Unit,
     maxWidth: Dp,
     interactionSource: MutableInteractionSource
@@ -400,7 +400,7 @@ private fun OudsPinCodeInputDecorator(
                 outlined = outlined,
                 error = error != null,
                 placeholder = error == null,
-                hiddenDigit = hiddenValue,
+                hiddenDigit = hiddenCharacters,
                 smallDeviceSpecificRules = smallDeviceSpecificRules
             )
         }
@@ -566,7 +566,7 @@ internal fun PreviewOudsPinCodeInputWithVisibleValue(theme: OudsThemeContract) =
             value = "12",
             onValueChange = {},
             length = OudsPinCodeInputLength.Four,
-            hiddenValue = false
+            hiddenCharacters = false
         )
     }
 
