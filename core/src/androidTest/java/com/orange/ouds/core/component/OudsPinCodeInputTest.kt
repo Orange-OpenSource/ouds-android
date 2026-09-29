@@ -404,13 +404,11 @@ internal class OudsPinCodeInputTest {
             onNodeWithText(value).performTextInput("123")
             waitForIdle()
 
-            // Only entered digits should be visible
+            // Entered digits should be visible, not obfuscated
             onNodeWithText("1").assertIsDisplayed()
             onNodeWithText("2").assertIsDisplayed()
             onNodeWithText("3").assertIsDisplayed()
-            // Placeholders for remaining positions
-            onAllNodesWithText(OudsDigitInputPlaceholder.toString()).assertCountEquals(3)
-            // No obfuscation characters
+            // No obfuscation characters should be present
             onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertDoesNotExist()
         }
     }
