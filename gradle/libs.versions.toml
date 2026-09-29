@@ -20,7 +20,7 @@ googleServices = "4.5.0"
 dataStorePreferences = "1.2.1"
 gradle = "9.4.1"
 grpc = "1.84.0"
-haze = "2.0.0"
+haze = "2.0.1"
 hilt = "2.60.1"
 hiltNavigationCompose = "1.4.0"
 javaPoet = "1.13.0"
@@ -73,6 +73,7 @@ grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc" }
 grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc" }
 grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-blur = { module = "dev.chrisbanes.haze:haze-blur", version.ref = "haze" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javaPoet" }

@@ -72,13 +72,14 @@ import com.orange.ouds.theme.OudsThemeContract
  * [OudsTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
@@ -147,13 +148,14 @@ fun OudsTopAppBar(
  * [OudsCenterAlignedTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsCenterAlignedTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsCenterAlignedTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsCenterAlignedTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
@@ -223,13 +225,14 @@ fun OudsCenterAlignedTopAppBar(
  * [OudsMediumTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsMediumTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsMediumTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsMediumTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
@@ -310,13 +313,14 @@ fun OudsMediumTopAppBar(
  * [OudsLargeTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsLargeTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsLargeTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsLargeTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
