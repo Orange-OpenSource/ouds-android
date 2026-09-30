@@ -85,7 +85,6 @@ class OudsChipIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-
     @OptIn(ExperimentalVersionOverloading::class)
     constructor(
         bitmap: ImageBitmap,
