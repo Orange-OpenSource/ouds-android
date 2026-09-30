@@ -23,95 +23,310 @@ import com.orange.ouds.foundation.RestrictedOudsApi
  */
 @InternalOudsApi
 sealed interface OudsSpaceKeyToken : OudsKeyToken {
+    @InternalOudsApi
     sealed interface ColumnGap : OudsSpaceKeyToken {
-        @RestrictedOudsApi data object ExtraLarge : ColumnGap
-        @RestrictedOudsApi data object ExtraSmall : ColumnGap
-        @RestrictedOudsApi data object Large : ColumnGap
-        @RestrictedOudsApi data object Medium : ColumnGap
-        @RestrictedOudsApi data object None : ColumnGap
-        @RestrictedOudsApi data object Small : ColumnGap
-        @RestrictedOudsApi data object ThreeExtraSmall : ColumnGap
-        @RestrictedOudsApi data object TwoExtraLarge : ColumnGap
-        @RestrictedOudsApi data object TwoExtraSmall : ColumnGap
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraLarge : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraSmall : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Large : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Medium : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object None : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Small : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraSmall : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraLarge : ColumnGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraSmall : ColumnGap
     }
+
+    @InternalOudsApi
     sealed interface Fixed : OudsSpaceKeyToken {
+        @InternalOudsApi
         data object ExtraLarge : Fixed
+
+        @InternalOudsApi
         data object ExtraSmall : Fixed
+
+        @InternalOudsApi
         data object FiveExtraLarge : Fixed
+
+        @InternalOudsApi
         data object FourExtraLarge : Fixed
+
+        @InternalOudsApi
         data object Large : Fixed
+
+        @InternalOudsApi
         data object Medium : Fixed
+
+        @InternalOudsApi
         data object None : Fixed
+
+        @InternalOudsApi
         data object Small : Fixed
+
+        @InternalOudsApi
         data object ThreeExtraLarge : Fixed
+
+        @InternalOudsApi
         data object ThreeExtraSmall : Fixed
+
+        @InternalOudsApi
         data object TwoExtraLarge : Fixed
+
+        @InternalOudsApi
         data object TwoExtraSmall : Fixed
     }
+
+    @InternalOudsApi
     sealed interface Inset : OudsSpaceKeyToken {
-        @RestrictedOudsApi data object ExtraLarge : Inset
-        @RestrictedOudsApi data object ExtraSmall : Inset
-        @RestrictedOudsApi data object FiveExtraSmall : Inset
-        @RestrictedOudsApi data object FourExtraSmall : Inset
-        @RestrictedOudsApi data object Large : Inset
-        @RestrictedOudsApi data object Medium : Inset
-        @RestrictedOudsApi data object None : Inset
-        @RestrictedOudsApi data object Small : Inset
-        @RestrictedOudsApi data object ThreeExtraLarge : Inset
-        @RestrictedOudsApi data object ThreeExtraSmall : Inset
-        @RestrictedOudsApi data object TwoExtraLarge : Inset
-        @RestrictedOudsApi data object TwoExtraSmall : Inset
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraLarge : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraSmall : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FiveExtraSmall : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FourExtraSmall : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Large : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Medium : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object None : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Small : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraLarge : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraSmall : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraLarge : Inset
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraSmall : Inset
     }
+
+    @InternalOudsApi
     sealed interface PaddingBlock : OudsSpaceKeyToken {
-        @RestrictedOudsApi data object ExtraLarge : PaddingBlock
-        @RestrictedOudsApi data object ExtraSmall : PaddingBlock
-        @RestrictedOudsApi data object FiveExtraLarge : PaddingBlock
-        @RestrictedOudsApi data object FourExtraLarge : PaddingBlock
-        @RestrictedOudsApi data object FourExtraSmall : PaddingBlock
-        @RestrictedOudsApi data object Large : PaddingBlock
-        @RestrictedOudsApi data object Medium : PaddingBlock
-        @RestrictedOudsApi data object None : PaddingBlock
-        @RestrictedOudsApi data object Small : PaddingBlock
-        @RestrictedOudsApi data object ThreeExtraLarge : PaddingBlock
-        @RestrictedOudsApi data object ThreeExtraSmall : PaddingBlock
-        @RestrictedOudsApi data object TwoExtraLarge : PaddingBlock
-        @RestrictedOudsApi data object TwoExtraSmall : PaddingBlock
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraLarge : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraSmall : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FiveExtraLarge : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FourExtraLarge : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FourExtraSmall : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Large : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Medium : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object None : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Small : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraLarge : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraSmall : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraLarge : PaddingBlock
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraSmall : PaddingBlock
     }
+
+    @InternalOudsApi
     sealed interface PaddingInline : OudsSpaceKeyToken {
-        @RestrictedOudsApi data object ExtraLarge : PaddingInline
-        @RestrictedOudsApi data object ExtraSmall : PaddingInline
-        @RestrictedOudsApi data object FiveExtraLarge : PaddingInline
-        @RestrictedOudsApi data object FourExtraLarge : PaddingInline
-        @RestrictedOudsApi data object FourExtraSmall : PaddingInline
-        @RestrictedOudsApi data object Large : PaddingInline
-        @RestrictedOudsApi data object Medium : PaddingInline
-        @RestrictedOudsApi data object None : PaddingInline
-        @RestrictedOudsApi data object SixExtraLarge : PaddingInline
-        @RestrictedOudsApi data object Small : PaddingInline
-        @RestrictedOudsApi data object ThreeExtraLarge : PaddingInline
-        @RestrictedOudsApi data object ThreeExtraSmall : PaddingInline
-        @RestrictedOudsApi data object TwoExtraLarge : PaddingInline
-        @RestrictedOudsApi data object TwoExtraSmall : PaddingInline
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraLarge : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraSmall : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FiveExtraLarge : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FourExtraLarge : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object FourExtraSmall : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Large : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Medium : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object None : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object SixExtraLarge : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Small : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraLarge : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraSmall : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraLarge : PaddingInline
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraSmall : PaddingInline
     }
+
+    @InternalOudsApi
     sealed interface RowGap : OudsSpaceKeyToken {
-        @RestrictedOudsApi data object ExtraSmall : RowGap
-        @RestrictedOudsApi data object Large : RowGap
-        @RestrictedOudsApi data object Medium : RowGap
-        @RestrictedOudsApi data object None : RowGap
-        @RestrictedOudsApi data object Small : RowGap
-        @RestrictedOudsApi data object ThreeExtraSmall : RowGap
-        @RestrictedOudsApi data object TwoExtraSmall : RowGap
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ExtraSmall : RowGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Large : RowGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Medium : RowGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object None : RowGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object Small : RowGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object ThreeExtraSmall : RowGap
+
+        @InternalOudsApi
+        @RestrictedOudsApi
+        data object TwoExtraSmall : RowGap
     }
+
+    @InternalOudsApi
     sealed interface Scaled : OudsSpaceKeyToken {
+        @InternalOudsApi
         data object ExtraLarge : Scaled
+
+        @InternalOudsApi
         data object ExtraSmall : Scaled
+
+        @InternalOudsApi
         data object Large : Scaled
+
+        @InternalOudsApi
         data object Medium : Scaled
+
+        @InternalOudsApi
         data object None : Scaled
+
+        @InternalOudsApi
         data object Small : Scaled
+
+        @InternalOudsApi
         data object ThreeExtraLarge : Scaled
+
+        @InternalOudsApi
         data object ThreeExtraSmall : Scaled
+
+        @InternalOudsApi
         data object TwoExtraLarge : Scaled
+
+        @InternalOudsApi
         data object TwoExtraSmall : Scaled
     }
 }

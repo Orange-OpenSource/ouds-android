@@ -22,111 +22,259 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsSizeKeyToken : OudsKeyToken {
+    @InternalOudsApi
     sealed interface Icon : OudsSizeKeyToken {
+        @InternalOudsApi
         sealed interface Decorative : Icon {
+            @InternalOudsApi
             data object ExtraLarge : Decorative
+
+            @InternalOudsApi
             data object ExtraSmall : Decorative
+
+            @InternalOudsApi
             data object FourExtraSmall : Decorative
+
+            @InternalOudsApi
             data object Large : Decorative
+
+            @InternalOudsApi
             data object Medium : Decorative
+
+            @InternalOudsApi
             data object Small : Decorative
+
+            @InternalOudsApi
             data object ThreeExtraSmall : Decorative
+
+            @InternalOudsApi
             data object TwoExtraLarge : Decorative
+
+            @InternalOudsApi
             data object TwoExtraSmall : Decorative
         }
+
+        @InternalOudsApi
         sealed interface WithBody : Icon {
+            @InternalOudsApi
             sealed interface Large : WithBody {
+                @InternalOudsApi
                 data object SizeLarge : Large
+
+                @InternalOudsApi
                 data object SizeMedium : Large
+
+                @InternalOudsApi
                 data object SizeSmall : Large
             }
+
+            @InternalOudsApi
             sealed interface Medium : WithBody {
+                @InternalOudsApi
                 data object SizeLarge : Medium
+
+                @InternalOudsApi
                 data object SizeMedium : Medium
+
+                @InternalOudsApi
                 data object SizeSmall : Medium
             }
+
+            @InternalOudsApi
             sealed interface Small : WithBody {
+                @InternalOudsApi
                 data object SizeLarge : Small
+
+                @InternalOudsApi
                 data object SizeMedium : Small
+
+                @InternalOudsApi
                 data object SizeSmall : Small
             }
         }
+
+        @InternalOudsApi
         sealed interface WithHeading : Icon {
+            @InternalOudsApi
             sealed interface ExtraLarge : WithHeading {
+                @InternalOudsApi
                 data object SizeLarge : ExtraLarge
+
+                @InternalOudsApi
                 data object SizeMedium : ExtraLarge
+
+                @InternalOudsApi
                 data object SizeSmall : ExtraLarge
             }
+
+            @InternalOudsApi
             sealed interface Large : WithHeading {
+                @InternalOudsApi
                 data object SizeLarge : Large
+
+                @InternalOudsApi
                 data object SizeMedium : Large
+
+                @InternalOudsApi
                 data object SizeSmall : Large
             }
+
+            @InternalOudsApi
             sealed interface Medium : WithHeading {
+                @InternalOudsApi
                 data object SizeLarge : Medium
+
+                @InternalOudsApi
                 data object SizeMedium : Medium
+
+                @InternalOudsApi
                 data object SizeSmall : Medium
             }
+
+            @InternalOudsApi
             sealed interface Small : WithHeading {
+                @InternalOudsApi
                 data object SizeLarge : Small
+
+                @InternalOudsApi
                 data object SizeMedium : Small
+
+                @InternalOudsApi
                 data object SizeSmall : Small
             }
         }
+
+        @InternalOudsApi
         sealed interface WithLabel : Icon {
+            @InternalOudsApi
             sealed interface ExtraLarge : WithLabel {
+                @InternalOudsApi
                 data object SizeExtraSmall : ExtraLarge
+
+                @InternalOudsApi
                 data object SizeLarge : ExtraLarge
+
+                @InternalOudsApi
                 data object SizeMedium : ExtraLarge
+
+                @InternalOudsApi
                 data object SizeSmall : ExtraLarge
             }
+
+            @InternalOudsApi
             sealed interface Large : WithLabel {
+                @InternalOudsApi
                 data object SizeExtraLarge : Large
+
+                @InternalOudsApi
                 data object SizeExtraSmall : Large
+
+                @InternalOudsApi
                 data object SizeLarge : Large
+
+                @InternalOudsApi
                 data object SizeMedium : Large
+
+                @InternalOudsApi
                 data object SizeSmall : Large
             }
+
+            @InternalOudsApi
             sealed interface Medium : WithLabel {
+                @InternalOudsApi
                 data object SizeExtraSmall : Medium
+
+                @InternalOudsApi
                 data object SizeLarge : Medium
+
+                @InternalOudsApi
                 data object SizeMedium : Medium
+
+                @InternalOudsApi
                 data object SizeSmall : Medium
             }
+
+            @InternalOudsApi
             sealed interface Small : WithLabel {
+                @InternalOudsApi
                 data object SizeExtraSmall : Small
+
+                @InternalOudsApi
                 data object SizeLarge : Small
+
+                @InternalOudsApi
                 data object SizeMedium : Small
+
+                @InternalOudsApi
                 data object SizeSmall : Small
             }
         }
     }
+
+    @InternalOudsApi
     sealed interface MaxWidth : OudsSizeKeyToken {
+        @InternalOudsApi
         sealed interface Body : MaxWidth {
+            @InternalOudsApi
             data object Large : Body
+
+            @InternalOudsApi
             data object Medium : Body
+
+            @InternalOudsApi
             data object Small : Body
         }
+
+        @InternalOudsApi
         sealed interface Display : MaxWidth {
+            @InternalOudsApi
             data object Large : Display
+
+            @InternalOudsApi
             data object Medium : Display
+
+            @InternalOudsApi
             data object Small : Display
         }
+
+        @InternalOudsApi
         sealed interface Heading : MaxWidth {
+            @InternalOudsApi
             data object ExtraLarge : Heading
+
+            @InternalOudsApi
             data object Large : Heading
+
+            @InternalOudsApi
             data object Medium : Heading
+
+            @InternalOudsApi
             data object Small : Heading
         }
+
+        @InternalOudsApi
         sealed interface Label : MaxWidth {
+            @InternalOudsApi
             data object ExtraLarge : Label
+
+            @InternalOudsApi
             data object Large : Label
+
+            @InternalOudsApi
             data object Medium : Label
+
+            @InternalOudsApi
             data object Small : Label
         }
     }
+
+    @InternalOudsApi
     data object MinInteractiveAreaDefault : OudsSizeKeyToken
+
+    @InternalOudsApi
     data object MinInteractiveAreaSmall : OudsSizeKeyToken
+
+    @InternalOudsApi
     data object MinInteractiveAreaSmallest : OudsSizeKeyToken
 }
 
