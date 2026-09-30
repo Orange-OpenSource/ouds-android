@@ -22,8 +22,12 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsEffectKeyToken : OudsKeyToken {
+    @InternalOudsApi
     sealed interface Blur : OudsEffectKeyToken {
+        @InternalOudsApi
         data object Backdrop : Blur
+
+        @InternalOudsApi
         data object Drag : Blur
     }
 }

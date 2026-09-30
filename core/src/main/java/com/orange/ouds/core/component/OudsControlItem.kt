@@ -207,8 +207,8 @@ class OudsControlItemIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(painter: Painter, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(painter as Any, tinted)
 
     /**
      * Creates an instance of [OudsControlItemIcon].
@@ -218,8 +218,8 @@ class OudsControlItemIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(imageVector: ImageVector, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(imageVector as Any, tinted)
 
     /**
      * Creates an instance of [OudsControlItemIcon].
@@ -229,8 +229,8 @@ class OudsControlItemIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(bitmap: ImageBitmap, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(bitmap as Any, tinted)
 
     override val tint: Color?
         @Composable

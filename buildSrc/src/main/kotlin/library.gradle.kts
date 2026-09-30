@@ -18,6 +18,7 @@ private val libs = the<LibrariesForLibs>() // https://github.com/gradle/gradle/i
 plugins {
     id("com.android.library")
     id("maven-central-publish")
+    id("io.github.tjokinen.android-bcv-bridge")
 }
 
 android {
