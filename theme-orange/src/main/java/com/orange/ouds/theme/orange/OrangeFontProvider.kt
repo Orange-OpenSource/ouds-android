@@ -40,7 +40,7 @@ class OrangeFontProvider : ContentProvider() {
         internal const val QUERY_SCRIPT_PARAMETER_VALUE_LATIN = "latin"
         internal const val QUERY_SCRIPT_PARAMETER_VALUE_ARABIC = "arabic"
 
-        private const val CDN_BASE_URL = "https://mastermedia.dam-broadcast.com"
+        private const val CDN_BASE_URL = "https://assets.orange.com"
     }
 
     private enum class Font(val filename: String, val cdnFilename: String, val fontWeight: FontWeight, val script: String) {
