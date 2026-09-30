@@ -22,13 +22,28 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsOpacityKeyToken : OudsKeyToken {
+    @InternalOudsApi
     data object Disabled : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Invisible : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Medium : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Opaque : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Strong : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Weak : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Weaker : OudsOpacityKeyToken
+
+    @InternalOudsApi
     data object Weakest : OudsOpacityKeyToken
 }
 
