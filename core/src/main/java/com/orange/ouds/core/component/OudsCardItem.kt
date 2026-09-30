@@ -44,7 +44,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Static Card Item
  *
- * > Design version: 0.1.0
+ * > Design version: 0.3.0
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
@@ -62,7 +62,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -117,7 +118,7 @@ fun OudsCardItem(
  *
  * > Design name: Navigation Card Item
  *
- * > Design version: 0.1.0
+ * > Design version: 0.3.0
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
@@ -137,7 +138,8 @@ fun OudsCardItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
