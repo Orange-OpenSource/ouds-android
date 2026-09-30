@@ -58,8 +58,9 @@ import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.orange.ORANGE_THEME_NAME
-import dev.chrisbanes.haze.HazeStyle
-import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.HazeInput
+import dev.chrisbanes.haze.blur.HazeBlurStyle
+import dev.chrisbanes.haze.blur.hazeBlur
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 
@@ -107,8 +108,12 @@ fun MainScreen(
         theme = mainState.themeState.currentTheme,
         darkThemeEnabled = isSystemInDarkTheme,
     ) {
-        val hazeState = rememberHazeState(blurEnabled = true)
-        val hazeStyle = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)
+        val blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp
+        val hazeState = rememberHazeState()
+        val hazeInput = HazeInput.Sources(hazeState)
+        val hazeBlurStyle = HazeBlurStyle {
+            blurRadius(blurRadius)
+        }
 
         CompositionLocalProvider(LocalThemeDrawableResources provides ThemeDrawableResources(mainState.themeState.currentTheme)) {
             Scaffold(
@@ -116,7 +121,7 @@ fun MainScreen(
                 topBar = {
                     val context = LocalContext.current
                     TopBar(
-                        modifier = Modifier.hazeEffect(state = hazeState, style = hazeStyle),
+                        modifier = Modifier.hazeBlur(input = hazeInput, style = hazeBlurStyle),
                         topBarState = mainState.topBarState,
                         upPress = mainState.navigationState::upPress,
                         onActionClick = { action ->
@@ -130,7 +135,7 @@ fun MainScreen(
                 },
                 bottomBar = {
                     BottomBar(
-                        modifier = Modifier.hazeEffect(state = hazeState, style = hazeStyle),
+                        modifier = Modifier.hazeBlur(input = hazeInput, style = hazeBlurStyle),
                         currentRoute = mainState.navigationState.currentRoute.orEmpty(),
                         navigateToRoute = { route ->
                             mainState.navigationState.navigateToBottomBarRoute(route)
