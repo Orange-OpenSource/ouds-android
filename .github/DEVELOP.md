@@ -26,11 +26,11 @@ You can generate reference snapshots of the components by launching the `recordP
 ./gradlew recordPaparazzi
 ```
 
-## API Versioning
+## API versioning
 
 OUDS Android follows [Semantic Versioning](https://semver.org/) and maintains binary compatibility within major versions. This section outlines the conventions and tools we use to track API changes.
 
-### Semantic Versioning
+### Semantic versioning
 
 OUDS Android uses semantic versioning (`MAJOR.MINOR.PATCH`):
 
@@ -44,11 +44,11 @@ Breaking changes should:
 - Provide context on why the change was necessary
 - Be grouped together in major version releases when possible
 
-### Binary Compatibility
+### Binary compatibility
 
-OUDS Android maintains both binary and source compatibility within major versions using the [Kotlin Binary Compatibility Validator](https://github.com/Kotlin/binary-compatibility-validator).
+OUDS Android maintains both binary and source compatibility within major versions.
 
-The validator tracks the public API surface of each published module by generating `.api` files that contain the binary signatures of all public declarations.
+The binary compatibility is enforced using the [Kotlin Binary Compatibility Validator](https://github.com/Kotlin/binary-compatibility-validator). The validator tracks the public API surface of each published module by generating `.api` files that contain the binary signatures of all public declarations.
 
 **Key tasks:**
 
@@ -63,7 +63,7 @@ The validator tracks the public API surface of each published module by generati
 
 When adding new parameters to existing constructors or methods, use `@IntroducedAt` with `@OptIn(ExperimentalVersionOverloading::class)` to maintain binary compatibility while tracking when the parameter was introduced.
 
-### @IntroducedAt Annotation
+### @IntroducedAt annotation
 
 Use the `@IntroducedAt` annotation to mark when new parameters were introduced.
 
@@ -82,7 +82,7 @@ constructor(
 
 During the release process, the `prepareRelease` task automatically converts all `@IntroducedAt("X.Y.Z-Unreleased")` annotations to the actual release version and validates that all annotations use valid semantic version format.
 
-### Release Process
+### Release process
 
 The `@IntroducedAt` annotations integrate with our release automation:
 
