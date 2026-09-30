@@ -89,7 +89,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO update description when available and add version and guideline link
+ * TODO update description when available and add guideline link
  *
  * Static list item displays non-clickable information in a structured format.
  * They are designed to be stacked within a list, with no spacing between the elements.
@@ -99,6 +99,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * These items are designed to be stacked within a list, with no spacing between the elements.
  *
  * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * > Design name: Static List Item
+ *
+ * > Design version: 0.3.0
  *
  * @param label The main label of the list item.
  * @param modifier [Modifier] applied to the layout of the list item.
@@ -119,7 +123,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticListItemSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -164,7 +169,7 @@ fun OudsListItem(
 }
 
 /**
- * TODO update description when available and add version and guideline link
+ * TODO update description when available and add guideline link
  *
  * Navigation list item allows users to navigate to another screen or perform an action.
  * They are designed to be stacked within a list, with no spacing between the elements.
@@ -176,6 +181,10 @@ fun OudsListItem(
  * These items are designed to be stacked within a list, with no spacing between the elements.
  *
  * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * > Design name: Navigation List Item
+ *
+ * > Design version: 0.3.0
  *
  * @param label The main label of the list item.
  * @param onClick Callback invoked when the list item is clicked.
@@ -198,7 +207,8 @@ fun OudsListItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -312,14 +322,19 @@ internal fun OudsListItem(
                 } else {
                     leading?.let {
                         when (leading) {
-                            is OudsListItemLeadingTrailing.Content -> leading.PolymorphicContent()
+                            is OudsListItemLeadingTrailing.Content -> leading.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
+                            )
                             is OudsListItemLeadingTrailing.Icon -> {
                                 leading.PolymorphicContent(
                                     extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
                                 )
                             }
                             is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
-                            is OudsListItemLeadingTrailing.Text -> {}
+                            is OudsListItemLeadingTrailing.Badge,
+                            is OudsListItemLeadingTrailing.Tag,
+                            is OudsListItemLeadingTrailing.Text -> {
+                            }
                         }
                     }
                 }
@@ -347,11 +362,18 @@ internal fun OudsListItem(
 
                 trailing?.let {
                     when (trailing) {
-                        is OudsListItemLeadingTrailing.Content -> trailing.PolymorphicContent()
+                        is OudsListItemLeadingTrailing.Badge -> trailing.PolymorphicContent(
+                            extraParameters = OudsListItemLeadingTrailing.Badge.ExtraParameters(state = state)
+                        )
+                        is OudsListItemLeadingTrailing.Content -> trailing.PolymorphicContent(
+                            extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
+                        )
                         is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
-                            extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(
-                                state = state
-                            )
+                            extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
+                        )
+                        is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
+                        is OudsListItemLeadingTrailing.Tag -> trailing.PolymorphicContent(
+                            extraParameters = OudsListItemLeadingTrailing.Tag.ExtraParameters(state = state)
                         )
                         is OudsListItemLeadingTrailing.Text -> {
                             trailing.PolymorphicContent(
@@ -362,7 +384,6 @@ internal fun OudsListItem(
                                 )
                             )
                         }
-                        is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
                     }
                 }
 
@@ -692,6 +713,11 @@ enum class OudsListItemState {
 
 sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
+    interface Badge : OudsListItemLeadingTrailing {
+        @ConsistentCopyVisibility
+        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
+    }
+
     interface Content : OudsListItemLeadingTrailing {
         @ConsistentCopyVisibility
         data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
@@ -704,6 +730,11 @@ sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
     interface Image : OudsListItemLeadingTrailing {
         val ratio: OudsListItemImageRatio
+    }
+
+    interface Tag : OudsListItemLeadingTrailing {
+        @ConsistentCopyVisibility
+        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
     interface Text : OudsListItemLeadingTrailing {
@@ -855,6 +886,46 @@ enum class OudsListItemTextStyle {
     LabelStrong
 }
 
+open class OudsListItemBadge internal constructor(
+    private val count: Int?,
+    private val status: OudsBadgeStatus,
+    private val size: OudsBadgeSize,
+    private val enabled: Boolean
+) : OudsComponentContent<OudsListItemLeadingTrailing.Badge.ExtraParameters>(OudsListItemLeadingTrailing.Badge.ExtraParameters::class.java),
+    OudsListItemLeadingTrailing.Badge {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        val isEnabled = extraParameters.state == OudsListItemState.Enabled && enabled
+        Box(modifier = modifier.sizeIn(minHeight = OudsTheme.components.listItem.size.asset.medium), contentAlignment = Alignment.Center) {
+            count?.let {
+                OudsBadge(count = it, status = status, size = size, enabled = isEnabled)
+            }.orElse {
+                OudsBadge(status = status, size = size, enabled = isEnabled)
+            }
+        }
+    }
+}
+
+open class OudsListItemContent internal constructor(
+    private val content: @Composable OudsListItemScope.() -> Unit
+) : OudsComponentContent<OudsListItemLeadingTrailing.Content.ExtraParameters>(OudsListItemLeadingTrailing.Content.ExtraParameters::class.java),
+    OudsListItemLeadingTrailing.Content {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        val scope = remember { OudsListItemScope() }
+        with(OudsTheme.components.listItem) {
+            Box(modifier = modifier.sizeIn(maxWidth = size.maxSizeLeadingTrailingSlot, maxHeight = size.maxSizeLeadingTrailingSlot)) {
+                with(scope) {
+                    state = extraParameters.state
+                    content()
+                }
+            }
+        }
+    }
+}
+
 open class OudsListItemIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
@@ -901,6 +972,33 @@ open class OudsListItemImage internal constructor(
     }
 }
 
+open class OudsListItemTag internal constructor(
+    private val label: String,
+    private val enabled: Boolean,
+    private val appearance: OudsTagAppearance,
+    private val status: OudsTagStatus,
+    private val roundedCorners: Boolean,
+    private val size: OudsTagSize,
+    private val loader: OudsTagLoader?
+) : OudsComponentContent<OudsListItemLeadingTrailing.Tag.ExtraParameters>(OudsListItemLeadingTrailing.Tag.ExtraParameters::class.java),
+    OudsListItemLeadingTrailing.Tag {
+
+    @Composable
+    override fun Content(modifier: Modifier) {
+        Box(modifier = modifier.sizeIn(minHeight = OudsTheme.components.listItem.size.asset.medium), contentAlignment = Alignment.Center) {
+            OudsTag(
+                label = label,
+                enabled = extraParameters.state == OudsListItemState.Enabled && enabled,
+                appearance = appearance,
+                status = status,
+                roundedCorners = roundedCorners,
+                size = size,
+                loader = loader
+            )
+        }
+    }
+}
+
 open class OudsListItemText internal constructor(
     private val label: String,
     private val style: OudsListItemTextStyle,
@@ -929,25 +1027,6 @@ open class OudsListItemText internal constructor(
                     style = OudsTheme.typography.label.medium.strong,
                     color = textColor
                 )
-            }
-        }
-    }
-}
-
-open class OudsListItemContent internal constructor(
-    private val content: @Composable OudsListItemScope.() -> Unit
-) : OudsComponentContent<OudsListItemLeadingTrailing.Content.ExtraParameters>(OudsListItemLeadingTrailing.Content.ExtraParameters::class.java),
-    OudsListItemLeadingTrailing.Content {
-
-    @Composable
-    override fun Content(modifier: Modifier) {
-        val scope = remember { OudsListItemScope() }
-        with(OudsTheme.components.listItem) {
-            Box(modifier = modifier.sizeIn(maxWidth = size.maxSizeLeadingTrailingSlot, maxHeight = size.maxSizeLeadingTrailingSlot)) {
-                with(scope) {
-                    state = extraParameters.state
-                    content()
-                }
             }
         }
     }
@@ -1149,6 +1228,27 @@ sealed interface OudsListItemLeading : OudsListItemLeadingTrailing {
  * A trailing content of an [OudsListItem].
  */
 sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
+
+    /**
+     * A badge as a list item trailing content.
+     * Use a Badge to communicate a compact status or notification associated with the item.
+     * A badge should contain secondary information and must not replace the primary label or description.
+     *
+     * @see [OudsBadge]
+     *
+     * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
+     *   Values greater than 99 are displayed as "+99". If `null`, no number will be displayed in the badge.
+     * @param status The status of this badge. The background color of the badge and the number color are based on this status.
+     * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
+     * @param enabled Controls the enabled appearance of the badge.
+     */
+    class Badge(
+        count: Int? = null,
+        status: OudsBadgeStatus = OudsBadgeDefaults.Status,
+        size: OudsBadgeSize = OudsBadgeDefaults.Size,
+        enabled: Boolean = true
+    ) : OudsListItemBadge(count = count, status = status, size = size, enabled = enabled), OudsListItemTrailing
+
     /**
      * A custom content as a list item trailing content.
      * Use it for custom trailing content that cannot be represented by other available trailing types.
@@ -1333,6 +1433,34 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
             roundedCorner: Boolean = false
         ) : this(bitmap, contentDescription, size.toAssetSize(), ratio, contentScale, roundedCorner)
     }
+
+    /**
+     * A tag as a list item trailing content.
+     * Use a Tag to communicate a category, attribute, classification or compact status associated with the item (static item) or with the
+     * navigation destination (navigation item).
+     *
+     * @see [OudsTag]
+     *
+     * @param label The label displayed in the tag.
+     * @param enabled Controls the enabled appearance of the tag.
+     * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines the tag's background
+     *   and content colors.
+     * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
+     * @param roundedCorners Controls the shape of the tag.
+     * @param size Size of the tag among [OudsTagSize] values.
+     * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
+     * tag is in progress.
+     * TODO add skeleton option when available
+     */
+    class Tag(
+        label: String,
+        enabled: Boolean = true,
+        appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
+        status: OudsTagStatus = OudsTagDefaults.Status,
+        roundedCorners: Boolean = true,
+        size: OudsTagSize = OudsTagDefaults.Size,
+        loader: OudsTagLoader? = null
+    ) : OudsListItemTag(label, enabled, appearance, status, roundedCorners, size, loader), OudsListItemTrailing
 
     /**
      * Text as a list item trailing content.
@@ -1525,6 +1653,8 @@ internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = 
         1 -> OudsListItemTrailing.Text(label = "Label", extraLabel = "Extra label")
         2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageRatio.Widescreen)
         3 -> OudsListItemTrailing.Content { PreviewCustomContent(state = state) }
+        4 -> OudsListItemTrailing.Badge(count = 100, status = OudsBadgeStatus.Negative, size = OudsBadgeSize.Large)
+        5 -> OudsListItemTrailing.Tag(label = "Almost used", status = OudsTagStatus.Warning(asset = null))
         else -> null
     }
 }
@@ -1566,7 +1696,7 @@ private fun <T, S> getListItemPreviewParameterValues(
     val description = "Description"
     val helperText = "Helper text"
 
-    return List(4) { index ->
+    return List(6) { index ->
         when (index) {
             0 -> OudsListItemPreviewParameter(
                 label = label,
@@ -1586,16 +1716,6 @@ private fun <T, S> getListItemPreviewParameterValues(
                 trailing = trailing(index),
                 decoration = decoration(index),
                 boldLabel = true
-            )
-            2 -> OudsListItemPreviewParameter(
-                label = label,
-                indicator = OudsListItemIndicator.Previous,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                leading = leading(index),
-                trailing = trailing(index),
-                decoration = decoration(index)
             )
             else -> OudsListItemPreviewParameter(
                 label = label,

@@ -15,6 +15,7 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Notifications
@@ -28,6 +29,8 @@ import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsSmallCardItem
 import com.orange.ouds.core.component.OudsSmallListItemLeading
 import com.orange.ouds.core.component.OudsSmallListItemTrailing
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -97,7 +100,7 @@ internal fun OudsSmallCardItemWithAllElementsSample() {
 }
 
 @Composable
-internal fun OudsSmallCardItemWithImageSample() {
+internal fun OudsSmallCardItemWithLeadingImageAndTrailingTagSample() {
     OudsSmallCardItem(
         label = "Special offer",
         description = "Limited time only",
@@ -106,7 +109,21 @@ internal fun OudsSmallCardItemWithImageSample() {
             contentDescription = "Offer image",
             ratio = OudsListItemImageRatio.Square
         ),
-        trailing = OudsSmallListItemTrailing.Text(label = "-50%", style = OudsListItemTextStyle.LabelStrong),
+        trailing = OudsSmallListItemTrailing.Tag(status = OudsTagStatus.Accent(), label = "-50%", size = OudsTagSize.Small),
+        decoration = OudsListItemDecoration.Outlined
+    )
+}
+
+@Composable
+internal fun OudsSmallCardItemWithLeadingIconAndTrailingBadgeSample() {
+    OudsSmallCardItem(
+        label = "Messages",
+        description = "Unread notifications",
+        leading = OudsSmallListItemLeading.Icon(
+            imageVector = Icons.Outlined.Email,
+            contentDescription = "Notifications icon"
+        ),
+        trailing = OudsSmallListItemTrailing.Badge(count = 5),
         decoration = OudsListItemDecoration.Outlined
     )
 }
@@ -146,8 +163,14 @@ private fun PreviewOudsSmallCardItemWithAllElementsSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsSmallCardItemWithImageSample() = OudsPreview {
-    OudsSmallCardItemWithImageSample()
+private fun PreviewOudsSmallCardItemWithLeadingImageAndTrailingTagSample() = OudsPreview {
+    OudsSmallCardItemWithLeadingImageAndTrailingTagSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSmallCardItemWithLeadingIconAndTrailingBadgeSample() = OudsPreview {
+    OudsSmallCardItemWithLeadingIconAndTrailingBadgeSample()
 }
 
 @PreviewLightDark
