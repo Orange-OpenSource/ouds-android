@@ -21,9 +21,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsTopAppBarBackground
 
 @Composable
 fun rememberTopAppBarDemoState(
+    background: OudsTopAppBarBackground = OudsTopAppBarBackground.Opaque,
     size: TopAppBarDemoState.Size = TopAppBarDemoState.Size.Small,
     centerAligned: Boolean = false,
     navigationIcon: TopAppBarDemoState.NavigationIcon = TopAppBarDemoState.NavigationIcon.None,
@@ -34,6 +36,7 @@ fun rememberTopAppBarDemoState(
     actionAvatar: TopAppBarDemoState.ActionAvatar = TopAppBarDemoState.ActionAvatar.Image,
     actionAvatarMonogram: Char = 'A'
 ) = rememberSaveable(
+    background,
     size,
     centerAligned,
     navigationIcon,
@@ -45,10 +48,22 @@ fun rememberTopAppBarDemoState(
     actionAvatarMonogram,
     saver = TopAppBarDemoState.Saver
 ) {
-    TopAppBarDemoState(size, centerAligned, navigationIcon, title, actionCount, lastActionIconBadge, lastActionIcon, actionAvatar, actionAvatarMonogram)
+    TopAppBarDemoState(
+        background,
+        size,
+        centerAligned,
+        navigationIcon,
+        title,
+        actionCount,
+        lastActionIconBadge,
+        lastActionIcon,
+        actionAvatar,
+        actionAvatarMonogram
+    )
 }
 
 class TopAppBarDemoState(
+    background: OudsTopAppBarBackground,
     size: Size,
     centerAligned: Boolean,
     navigationIcon: NavigationIcon,
@@ -69,6 +84,7 @@ class TopAppBarDemoState(
             save = { state ->
                 with(state) {
                     listOf(
+                        background,
                         size,
                         centerAligned,
                         navigationIcon,
@@ -83,19 +99,22 @@ class TopAppBarDemoState(
             },
             restore = { list ->
                 TopAppBarDemoState(
-                    list[0] as Size,
-                    list[1] as Boolean,
-                    list[2] as NavigationIcon,
-                    list[3] as String,
-                    list[4] as Int,
-                    list[5] as ActionIconBadge,
-                    list[6] as Icon,
-                    list[7] as ActionAvatar,
-                    list[8] as Char
+                    list[0] as OudsTopAppBarBackground,
+                    list[1] as Size,
+                    list[2] as Boolean,
+                    list[3] as NavigationIcon,
+                    list[4] as String,
+                    list[5] as Int,
+                    list[6] as ActionIconBadge,
+                    list[7] as Icon,
+                    list[8] as ActionAvatar,
+                    list[9] as Char
                 )
             }
         )
     }
+
+    var background: OudsTopAppBarBackground by mutableStateOf(background)
 
     private var _size: Size by mutableStateOf(size)
     var size: Size
