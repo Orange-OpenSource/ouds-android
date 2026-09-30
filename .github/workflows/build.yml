@@ -165,10 +165,32 @@ jobs:
           name: instrumented-tests
           path: core/build/reports/androidTests
 
+  binary-compatibility-validator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+      - name: Run binary compatibility validator
+        run: ./gradlew releaseApiCheck
+  
   maven-central-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [ build, lint, unit-tests, instrumented-tests ]
+    needs: [ build, lint, unit-tests, instrumented-tests, binary-compatibility-validator ]
     environment:
       name: maven-central-release
       url: https://mvnrepository.com/artifact/com.orange.ouds.android
@@ -211,7 +233,7 @@ jobs:
   github-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [ build, lint, unit-tests, instrumented-tests ]
+    needs: [ build, lint, unit-tests, instrumented-tests, binary-compatibility-validator ]
     environment:
       name: github-release
       url: https://github.com/Orange-OpenSource/ouds-android/releases
@@ -251,7 +273,7 @@ jobs:
   google-play-store-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [ build, lint, unit-tests, instrumented-tests ]
+    needs: [ build, lint, unit-tests, instrumented-tests, binary-compatibility-validator ]
     environment:
       name: google-play-store-release
       url: https://play.google.com/store/apps
