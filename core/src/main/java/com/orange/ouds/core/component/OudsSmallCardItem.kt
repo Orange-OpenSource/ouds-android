@@ -44,7 +44,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Static Card Item
  *
- * > Design version: 0.1.0
+ * > Design version: 0.3.0
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
@@ -60,7 +60,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -113,7 +114,7 @@ fun OudsSmallCardItem(
  *
  * > Design name: Navigation Card Item
  *
- * > Design version: 0.1.0
+ * > Design version: 0.3.0
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
@@ -131,7 +132,8 @@ fun OudsSmallCardItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
