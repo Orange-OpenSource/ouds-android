@@ -56,7 +56,7 @@ const val ORANGE_THEME_NAME = "Orange"
  * - [https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf](https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf)
  * - [https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf](https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf)
  *
- * The Helvetica Neue font family can be used the by copying the `ttf` files in the `res/font` directory of the project and by using an implementation of
+ * The Helvetica Neue font family can be used by copying the `ttf` files in the `res/font` directory of the project and by using an implementation of
  * [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled] or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed
  * as the [OrangeTheme.orangeFontFamily] parameter:
  *
