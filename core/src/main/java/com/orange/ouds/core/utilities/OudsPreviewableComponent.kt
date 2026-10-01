@@ -436,6 +436,8 @@ interface OudsPreviewableComponent {
 
         object MaxWidthReached : OudsPreviewableComponent {
 
+            const val PreviewWidthDp = 600
+
             override val parameters: List<Any> = emptyList()
 
             @Composable
@@ -1160,6 +1162,8 @@ interface OudsPreviewableComponent {
         }
 
         object MaxWidthReached : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 600
 
             override val parameters: List<Any> = emptyList()
 

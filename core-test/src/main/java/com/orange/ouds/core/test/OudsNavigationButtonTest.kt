@@ -48,6 +48,7 @@ internal class OudsNavigationButtonTest {
     class MaxWidthReached : OudsComponentSnapshotTest(
         OudsPreviewableComponent.NavigationButton.MaxWidthReached,
         parameter = null,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        widthDp = OudsPreviewableComponent.NavigationButton.MaxWidthReached.PreviewWidthDp
     )
 }

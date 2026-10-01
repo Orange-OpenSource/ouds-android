@@ -17,10 +17,13 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
@@ -243,7 +246,7 @@ internal fun PreviewOudsNavigationButtonOnTwoLines(theme: OudsThemeContract) = O
     )
 }
 
-@OudsPreview
+@Preview(widthDp = OudsPreviewableComponent.NavigationButton.MaxWidthReached.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationButtonMaxWidthReached() = PreviewOudsNavigationButtonMaxWidthReached(getPreviewTheme())
@@ -251,7 +254,7 @@ private fun PreviewOudsNavigationButtonMaxWidthReached() = PreviewOudsNavigation
 @Composable
 internal fun PreviewOudsNavigationButtonMaxWidthReached(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsNavigationButton(
-        label = "Navigation Button with a very very long label to reach max width",
+        label = "Navigation Button with a very very very long label to reach max width",
         chevron = OudsNavigationButtonChevron.Next,
         onClick = {},
     )

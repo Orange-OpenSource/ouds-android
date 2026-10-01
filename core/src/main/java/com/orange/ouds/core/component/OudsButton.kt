@@ -54,6 +54,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -70,7 +71,9 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
+import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -1026,7 +1029,7 @@ internal fun PreviewOudsButtonOnTwoLines(theme: OudsThemeContract) = OudsPreview
     )
 }
 
-@OudsPreview
+@Preview(widthDp = OudsPreviewableComponent.Button.MaxWidthReached.PreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsButtonMaxWidthReached() = PreviewOudsButtonMaxWidthReached(getPreviewTheme())
@@ -1034,7 +1037,7 @@ private fun PreviewOudsButtonMaxWidthReached() = PreviewOudsButtonMaxWidthReache
 @Composable
 internal fun PreviewOudsButtonMaxWidthReached(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsButton(
-        label = "Button with a very very long label to reach max width",
+        label = "Button with a very very very long label to reach max width",
         onClick = {},
     )
 }
