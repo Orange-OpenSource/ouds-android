@@ -291,7 +291,7 @@ internal fun PreviewOudsDigitInputWithRoundedCorners(theme: OudsThemeContract, o
 
 internal class OudsDigitInputWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
-@Preview(name = "Light", device = OudsPreviewDevice)
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInputWithVisibleDigit() =
