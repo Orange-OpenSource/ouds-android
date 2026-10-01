@@ -87,7 +87,7 @@ internal fun OudsPinCodeInputWithAnnotatedErrorMessageSample() {
 }
 
 @Composable
-internal fun OudsPinCodeInputWithVisibleValueSample() {
+internal fun OudsPinCodeInputWithVisibleCharactersSample() {
     var value by remember { mutableStateOf("1234") }
     OudsPinCodeInput(
         value = value,
@@ -124,6 +124,6 @@ private fun PreviewOudsPinCodeInputWithAnnotatedErrorMessageSample() = OudsPrevi
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsPinCodeInputWithVisibleValueSample() = OudsPreview {
-    OudsPinCodeInputWithVisibleValueSample()
+private fun PreviewOudsPinCodeInputWithVisibleCharactersSample() = OudsPreview {
+    OudsPinCodeInputWithVisibleCharactersSample()
 }

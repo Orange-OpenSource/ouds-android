@@ -123,7 +123,7 @@ import kotlinx.coroutines.launch
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
- * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleValueSample
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleCharactersSample
  */
 @OptIn(ExperimentalVersionOverloading::class)
 @Composable
@@ -189,7 +189,7 @@ fun OudsPinCodeInput(
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
- * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleValueSample
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleCharactersSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedHelperTextSample
  */
