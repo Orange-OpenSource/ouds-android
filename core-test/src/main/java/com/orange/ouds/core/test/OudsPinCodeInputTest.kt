@@ -54,17 +54,11 @@ internal class OudsPinCodeInputTest {
         parameter,
         OudsComponentTestSuite.theme
     ) {
-        
+
         companion object {
             @JvmStatic
             @Parameterized.Parameters
             internal fun data() = OudsPreviewableComponent.PinCodeInput.WithRichText.parameters
         }
     }
-
-    class WithVisibleValue : OudsComponentSnapshotTest(
-        OudsPreviewableComponent.PinCodeInput.WithVisibleValue,
-        parameter = null,
-        OudsComponentTestSuite.theme
-    )
 }

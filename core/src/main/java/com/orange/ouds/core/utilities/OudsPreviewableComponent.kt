@@ -161,7 +161,6 @@ import com.orange.ouds.core.component.PreviewOudsPasswordInputWithRichText
 import com.orange.ouds.core.component.PreviewOudsPinCodeInput
 import com.orange.ouds.core.component.PreviewOudsPinCodeInputWithRichText
 import com.orange.ouds.core.component.PreviewOudsPinCodeInputWithRoundedCorners
-import com.orange.ouds.core.component.PreviewOudsPinCodeInputWithVisibleValue
 import com.orange.ouds.core.component.PreviewOudsRadioButton
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItem
 import com.orange.ouds.core.component.PreviewOudsRadioButtonItemConstrainedMaxWidth
@@ -1223,18 +1222,6 @@ interface OudsPreviewableComponent {
                     error = parameter as Boolean
                 )
             }
-        }
-
-        object WithVisibleValue : OudsPreviewableComponent {
-
-            override val parameters: List<Any> = emptyList()
-
-            @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsPinCodeInputWithVisibleValue(theme = theme)
-            }
-
-            override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
     }
 

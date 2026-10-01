@@ -248,7 +248,8 @@ internal fun PreviewOudsDigitInput(
                 digit = digit,
                 onClick = {},
                 outlined = outlined,
-                error = error
+                error = error,
+                hiddenDigit = hiddenDigit
             )
         }
     }
@@ -257,7 +258,8 @@ internal fun PreviewOudsDigitInput(
 internal data class OudsDigitInputPreviewParameter(
     val digit: Char? = null,
     val outlined: Boolean = false,
-    val error: Boolean = false
+    val error: Boolean = false,
+    val hiddenDigit: Boolean = true
 )
 
 internal class OudsDigitInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsDigitInputPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -268,7 +270,7 @@ private val previewParameterValues: List<OudsDigitInputPreviewParameter>
             OudsDigitInputPreviewParameter(),
             OudsDigitInputPreviewParameter(digit = '1'),
             OudsDigitInputPreviewParameter(digit = '1', error = true)
-        ).flatMap { listOf(it, it.copy(outlined = true)) }
+        ).flatMap { listOf(it, it.copy(outlined = true), it.copy(hiddenDigit = false)) }
     }
 
 @Preview(name = "Light", device = OudsPreviewDevice)
@@ -290,21 +292,3 @@ internal fun PreviewOudsDigitInputWithRoundedCorners(theme: OudsThemeContract, o
     }
 
 internal class OudsDigitInputWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
-
-@OudsPreview
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsDigitInputWithVisibleDigit() =
-    PreviewOudsDigitInputWithVisibleDigit(theme = getPreviewTheme())
-
-@Composable
-internal fun PreviewOudsDigitInputWithVisibleDigit(theme: OudsThemeContract) =
-    OudsPreview(theme = theme) {
-        PreviewEnumEntries<OudsDigitInputState> {
-            OudsDigitInput(
-                digit = '1',
-                onClick = {},
-                hiddenDigit = false
-            )
-        }
-    }
