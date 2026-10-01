@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -233,7 +234,7 @@ internal enum class OudsDigitInputState {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInput(@PreviewParameter(OudsDigitInputPreviewParameterProvider::class) parameter: OudsDigitInputPreviewParameter) = OudsPreview {
-    PreviewOudsDigitInput(theme = getPreviewTheme(), darkThemeEnabled = false, parameter = parameter)
+    PreviewOudsDigitInput(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
