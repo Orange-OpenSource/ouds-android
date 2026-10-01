@@ -22,9 +22,16 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsGridKeyToken : OudsKeyToken {
+    @InternalOudsApi
     data object ColumnGap : OudsGridKeyToken
+
+    @InternalOudsApi
     data object Margin : OudsGridKeyToken
+
+    @InternalOudsApi
     data object MaxWidth : OudsGridKeyToken
+
+    @InternalOudsApi
     data object MinWidth : OudsGridKeyToken
 }
 

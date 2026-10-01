@@ -22,11 +22,22 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsElevationKeyToken : OudsKeyToken {
+    @InternalOudsApi
     data object Default : OudsElevationKeyToken
+
+    @InternalOudsApi
     data object Drag : OudsElevationKeyToken
+
+    @InternalOudsApi
     data object Emphasized : OudsElevationKeyToken
+
+    @InternalOudsApi
     data object None : OudsElevationKeyToken
+
+    @InternalOudsApi
     data object Raised : OudsElevationKeyToken
+
+    @InternalOudsApi
     data object Sticky : OudsElevationKeyToken
 }
 

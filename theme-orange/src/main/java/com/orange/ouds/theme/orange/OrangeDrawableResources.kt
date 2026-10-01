@@ -24,19 +24,23 @@ class OrangeDrawableResources : OudsDrawableResources {
     override val component = Component()
     override val functional = Functional()
 
+    @InternalOudsApi
     class Communication : OudsDrawableResources.Communication {
         override val accessibility = Accessibility()
         override val securityAndSafety = SecurityAndSafety()
 
+        @InternalOudsApi
         class Accessibility : OudsDrawableResources.Communication.Accessibility {
             override val vision = R.drawable.ic_orange_communication_accessibility_vision
         }
 
+        @InternalOudsApi
         class SecurityAndSafety : OudsDrawableResources.Communication.SecurityAndSafety {
             override val lockClosed = R.drawable.ic_orange_communication_security_and_safety_lock_closed
         }
     }
 
+    @InternalOudsApi
     class Component : OudsDrawableResources.Component {
         override val alert = Alert()
         override val badgeIcon = BadgeIcon()
@@ -50,6 +54,7 @@ class OrangeDrawableResources : OudsDrawableResources {
         override val switch = Switch()
         override val tag = Tag()
 
+        @InternalOudsApi
         class Alert : OudsDrawableResources.Component.Alert {
             override val importantFill = R.drawable.ic_orange_component_alert_important_fill
             override val infoFill = R.drawable.ic_orange_component_alert_info_fill
@@ -58,6 +63,7 @@ class OrangeDrawableResources : OudsDrawableResources {
             override val warningInternalShape = R.drawable.ic_orange_component_alert_warning_internal_shape
         }
 
+        @InternalOudsApi
         class BadgeIcon : OudsDrawableResources.Component.BadgeIcon {
             override val errorFill = R.drawable.ic_orange_component_badge_icon_error_fill
             override val infoFill = R.drawable.ic_orange_component_badge_icon_info_fill
@@ -66,6 +72,7 @@ class OrangeDrawableResources : OudsDrawableResources {
             override val warningInternalShape = R.drawable.ic_orange_component_badge_icon_warning_internal_shape
         }
 
+        @InternalOudsApi
         class BulletList : OudsDrawableResources.Component.BulletList {
             override val level0 = R.drawable.ic_orange_component_bullet_list_level0
             override val level1 = R.drawable.ic_orange_component_bullet_list_level1
@@ -73,65 +80,78 @@ class OrangeDrawableResources : OudsDrawableResources {
             override val tick = R.drawable.ic_orange_component_bullet_list_tick
         }
 
+        @InternalOudsApi
         class Button : OudsDrawableResources.Component.Button {
             override val expurge = R.drawable.ic_orange_component_button_expurge
             override val next = R.drawable.ic_orange_component_button_next
             override val previous = R.drawable.ic_orange_component_button_previous
         }
 
+        @InternalOudsApi
         class Checkbox : OudsDrawableResources.Component.Checkbox {
             override val selected = R.drawable.ic_orange_component_checkbox_selected
             override val undetermined = R.drawable.ic_orange_component_checkbox_undetermined
         }
 
+        @InternalOudsApi
         class Chip : OudsDrawableResources.Component.Chip {
             override val tick = R.drawable.ic_orange_component_chip_tick
         }
 
+        @InternalOudsApi
         class Link : OudsDrawableResources.Component.Link {
             override val externalLink = R.drawable.ic_orange_component_link_external_link
             override val next = R.drawable.ic_orange_component_link_next
             override val previous = R.drawable.ic_orange_component_link_previous
         }
 
+        @InternalOudsApi
         class ListItem : OudsDrawableResources.Component.ListItem {
             override val next = R.drawable.ic_orange_component_list_item_next
             override val previous = R.drawable.ic_orange_component_list_item_previous
         }
 
+        @InternalOudsApi
         class RadioButton : OudsDrawableResources.Component.RadioButton {
             override val selected = R.drawable.ic_orange_component_radio_button_selected
         }
 
+        @InternalOudsApi
         class Switch : OudsDrawableResources.Component.Switch {
             override val selected = R.drawable.ic_orange_component_switch_selected
         }
 
+        @InternalOudsApi
         class Tag : OudsDrawableResources.Component.Tag {
             override val close = R.drawable.ic_orange_component_tag_close
         }
     }
 
+    @InternalOudsApi
     class Functional : OudsDrawableResources.Functional {
         override val actions = Actions()
         override val navigation = Navigation()
         override val settingsAndTools = SettingsAndTools()
         override val socialAndEngagement = SocialAndEngagement()
 
+        @InternalOudsApi
         class Actions : OudsDrawableResources.Functional.Actions {
             override val deleteCrossRound = R.drawable.ic_orange_functional_actions_delete_cross_round
             override val externalLink = R.drawable.ic_orange_functional_actions_external_link
         }
 
+        @InternalOudsApi
         class Navigation : OudsDrawableResources.Functional.Navigation {
             override val formChevronLeft = R.drawable.ic_orange_functional_navigation_form_chevron_left
             override val menuGridUiRound = R.drawable.ic_orange_functional_navigation_menu_grid_ui_round
         }
 
+        @InternalOudsApi
         class SettingsAndTools : OudsDrawableResources.Functional.SettingsAndTools {
             override val accessibilityHide = R.drawable.ic_orange_functional_settings_and_tools_accessibility_hide
         }
 
+        @InternalOudsApi
         class SocialAndEngagement : OudsDrawableResources.Functional.SocialAndEngagement {
             override val heartRecommend = R.drawable.ic_orange_functional_social_and_engagement_heart_recommend
         }

@@ -22,26 +22,60 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsBorderKeyToken : OudsKeyToken {
+    @InternalOudsApi
     sealed interface Radius : OudsBorderKeyToken {
+        @InternalOudsApi
         data object Default : Radius
+
+        @InternalOudsApi
         data object Large : Radius
+
+        @InternalOudsApi
         data object Medium : Radius
+
+        @InternalOudsApi
         data object None : Radius
+
+        @InternalOudsApi
         data object Pill : Radius
+
+        @InternalOudsApi
         data object Small : Radius
     }
+
+    @InternalOudsApi
     sealed interface Style : OudsBorderKeyToken {
+        @InternalOudsApi
         data object Default : Style
+
+        @InternalOudsApi
         data object Drag : Style
     }
+
+    @InternalOudsApi
     sealed interface Width : OudsBorderKeyToken {
+        @InternalOudsApi
         data object Default : Width
+
+        @InternalOudsApi
         data object Focus : Width
+
+        @InternalOudsApi
         data object FocusInset : Width
+
+        @InternalOudsApi
         data object Medium : Width
+
+        @InternalOudsApi
         data object None : Width
+
+        @InternalOudsApi
         data object Thick : Width
+
+        @InternalOudsApi
         data object Thicker : Width
+
+        @InternalOudsApi
         data object Thin : Width
     }
 }
