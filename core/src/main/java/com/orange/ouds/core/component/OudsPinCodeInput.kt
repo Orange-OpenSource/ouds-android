@@ -123,6 +123,7 @@ import kotlinx.coroutines.launch
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleValueSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsPinCodeInput(
     value: String,
@@ -134,7 +135,7 @@ fun OudsPinCodeInput(
     helperText: String? = null,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    hiddenCharacters: Boolean = true
+    @IntroducedAt("2.2.0-Unreleased") hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
@@ -190,6 +191,7 @@ fun OudsPinCodeInput(
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsPinCodeInput(
     value: String,
@@ -201,7 +203,7 @@ fun OudsPinCodeInput(
     helperText: OudsAnnotatedHelperText,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    hiddenCharacters: Boolean = true
+    @IntroducedAt("2.2.0-Unreleased") hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
