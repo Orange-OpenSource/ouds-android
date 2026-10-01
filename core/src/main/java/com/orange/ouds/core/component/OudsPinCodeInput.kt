@@ -23,9 +23,11 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicSecureTextField
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
+import androidx.compose.foundation.text.input.TextFieldDecorator
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.forEachChangeReversed
@@ -116,10 +118,14 @@ import kotlinx.coroutines.launch
  *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this PIN code input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
+ *   When `false`, characters are displayed in plain text. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleCharactersSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsPinCodeInput(
     value: String,
@@ -130,7 +136,8 @@ fun OudsPinCodeInput(
     error: OudsError? = null,
     helperText: String? = null,
     onKeyboardAction: KeyboardActionHandler? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.2.0-Unreleased") hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
@@ -141,6 +148,7 @@ fun OudsPinCodeInput(
         error = error,
         helperText = helperText,
         annotatedHelperText = null,
+        hiddenCharacters = hiddenCharacters,
         onKeyboardAction = onKeyboardAction,
         interactionSource = interactionSource
     )
@@ -177,11 +185,15 @@ fun OudsPinCodeInput(
  *   [androidx.compose.ui.text.input.ImeAction.Next] would switch the focus to the next focusable item on the screen.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this PIN code input. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
+ *   When `false`, characters are displayed in plain text. Defaults to `true`.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
+ * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleCharactersSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsPinCodeInput(
     value: String,
@@ -192,7 +204,8 @@ fun OudsPinCodeInput(
     error: OudsError? = null,
     helperText: OudsAnnotatedHelperText,
     onKeyboardAction: KeyboardActionHandler? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.2.0-Unreleased") hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
@@ -203,6 +216,7 @@ fun OudsPinCodeInput(
         error = error,
         helperText = null,
         annotatedHelperText = helperText,
+        hiddenCharacters = hiddenCharacters,
         onKeyboardAction = onKeyboardAction,
         interactionSource = interactionSource
     )
@@ -218,6 +232,7 @@ private fun OudsPinCodeInput(
     error: OudsError? = null,
     helperText: String? = null,
     annotatedHelperText: OudsAnnotatedHelperText? = null,
+    hiddenCharacters: Boolean = true,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -258,36 +273,53 @@ private fun OudsPinCodeInput(
         ) {
             ConstraintLayout {
                 val (secureTextField, helperTextErrorMessage) = createRefs()
-                BasicSecureTextField(
-                    modifier = Modifier
-                        .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
-                        .constrainAs(secureTextField) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        }
-                        .focusRequester(focusRequester),
-                    state = textFieldState,
-                    keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
-                    onKeyboardAction = onKeyboardAction,
-                    inputTransformation = inputTransformation(length),
-                    interactionSource = interactionSource,
-                    decorator = {
-                        OudsPinCodeInputDecorator(
-                            textFieldState = textFieldState,
-                            length = length,
-                            outlined = outlined,
-                            error = error,
-                            onDigitClick = {
-                                focusRequester.requestFocus()
-                                // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
-                                keyboardController?.show()
-                            },
-                            maxWidth = this@BoxWithConstraints.maxWidth,
-                            interactionSource = interactionSource
-                        )
+                val textFieldModifier = Modifier
+                    .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+                    .constrainAs(secureTextField) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
                     }
-                )
+                    .focusRequester(focusRequester)
+                val keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
+                val inputTransformation = inputTransformation(length)
+                val decorator: TextFieldDecorator = {
+                    OudsPinCodeInputDecorator(
+                        textFieldState = textFieldState,
+                        length = length,
+                        outlined = outlined,
+                        error = error,
+                        hiddenCharacters = hiddenCharacters,
+                        onDigitClick = {
+                            focusRequester.requestFocus()
+                            // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
+                            keyboardController?.show()
+                        },
+                        maxWidth = this@BoxWithConstraints.maxWidth,
+                        interactionSource = interactionSource
+                    )
+                }
+                if (hiddenCharacters) {
+                    BasicSecureTextField(
+                        modifier = textFieldModifier,
+                        state = textFieldState,
+                        keyboardOptions = keyboardOptions,
+                        onKeyboardAction = onKeyboardAction,
+                        inputTransformation = inputTransformation,
+                        interactionSource = interactionSource,
+                        decorator = decorator
+                    )
+                } else {
+                    BasicTextField(
+                        modifier = textFieldModifier,
+                        state = textFieldState,
+                        keyboardOptions = keyboardOptions,
+                        onKeyboardAction = onKeyboardAction,
+                        inputTransformation = inputTransformation,
+                        interactionSource = interactionSource,
+                        decorator = decorator
+                    )
+                }
                 OudsTextInputHelperTextErrorMessage(
                     modifier = Modifier.constrainAs(helperTextErrorMessage) {
                         top.linkTo(secureTextField.bottom)
@@ -355,6 +387,7 @@ private fun OudsPinCodeInputDecorator(
     length: OudsPinCodeInputLength,
     outlined: Boolean,
     error: OudsError?,
+    hiddenCharacters: Boolean,
     onDigitClick: (Int) -> Unit,
     maxWidth: Dp,
     interactionSource: MutableInteractionSource
@@ -387,6 +420,7 @@ private fun OudsPinCodeInputDecorator(
                 outlined = outlined,
                 error = error != null,
                 placeholder = error == null,
+                hiddenDigit = hiddenCharacters,
                 smallDeviceSpecificRules = smallDeviceSpecificRules
             )
         }
@@ -491,7 +525,8 @@ internal fun PreviewOudsPinCodeInput(
             length = OudsPinCodeInputLength.Four,
             outlined = outlined,
             error = error,
-            helperText = helperText
+            helperText = helperText,
+            hiddenCharacters = hiddenCharacters
         )
     }
 }
@@ -542,7 +577,8 @@ internal data class OudsPinCodeInputPreviewParameter(
     val value: String,
     val outlined: Boolean = false,
     val error: OudsError? = null,
-    val helperText: String? = null
+    val helperText: String? = null,
+    val hiddenCharacters: Boolean = true
 )
 
 internal class OudsPinCodeInputPreviewParameterProvider :
@@ -557,5 +593,5 @@ private val previewParameterValues: List<OudsPinCodeInputPreviewParameter>
         return listOf(
             OudsPinCodeInputPreviewParameter(value = "12", helperText = "Enter the 4-digit code sent to your phone."),
             OudsPinCodeInputPreviewParameter(value = "12", error = OudsError("Verification failed. Check and enter the correct code."))
-        ).flatMap { listOf(it, it.copy(outlined = true)) }
+        ).flatMap { listOf(it, it.copy(outlined = true), it.copy(hiddenCharacters = false)) }
     }

@@ -54,7 +54,7 @@ internal class OudsPinCodeInputTest {
         parameter,
         OudsComponentTestSuite.theme
     ) {
-        
+
         companion object {
             @JvmStatic
             @Parameterized.Parameters
