@@ -507,7 +507,8 @@ internal fun PreviewOudsPinCodeInput(
             length = OudsPinCodeInputLength.Four,
             outlined = outlined,
             error = error,
-            helperText = helperText
+            helperText = helperText,
+            hiddenCharacters = hiddenCharacters
         )
     }
 }
@@ -554,29 +555,12 @@ internal fun PreviewOudsPinCodeInputWithRichText(
     )
 }
 
-@OudsPreview
-@Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsPinCodeInputWithVisibleValue() {
-    PreviewOudsPinCodeInputWithVisibleValue(theme = getPreviewTheme())
-}
-
-@Composable
-internal fun PreviewOudsPinCodeInputWithVisibleValue(theme: OudsThemeContract) =
-    OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
-        OudsPinCodeInput(
-            value = "12",
-            onValueChange = {},
-            length = OudsPinCodeInputLength.Four,
-            hiddenCharacters = false
-        )
-    }
-
 internal data class OudsPinCodeInputPreviewParameter(
     val value: String,
     val outlined: Boolean = false,
     val error: OudsError? = null,
-    val helperText: String? = null
+    val helperText: String? = null,
+    val hiddenCharacters: Boolean = true
 )
 
 internal class OudsPinCodeInputPreviewParameterProvider :
@@ -591,5 +575,5 @@ private val previewParameterValues: List<OudsPinCodeInputPreviewParameter>
         return listOf(
             OudsPinCodeInputPreviewParameter(value = "12", helperText = "Enter the 4-digit code sent to your phone."),
             OudsPinCodeInputPreviewParameter(value = "12", error = OudsError("Verification failed. Check and enter the correct code."))
-        ).flatMap { listOf(it, it.copy(outlined = true)) }
+        ).flatMap { listOf(it, it.copy(outlined = true), it.copy(hiddenCharacters = false)) }
     }
