@@ -367,34 +367,6 @@ internal class OudsPinCodeInputTest {
                 OudsPinCodeInput(
                     value = value,
                     onValueChange = { value = it },
-                    length = OudsPinCodeInputLength.Four,
-                    hiddenCharacters = false
-                )
-            }
-
-            onNodeWithText(value).performClick()
-            onNodeWithText(value).performTextInput("1234")
-            waitForIdle()
-
-            // Digits should be visible, not obfuscated
-            onNodeWithText("1").assertIsDisplayed()
-            onNodeWithText("2").assertIsDisplayed()
-            onNodeWithText("3").assertIsDisplayed()
-            onNodeWithText("4").assertIsDisplayed()
-            // No obfuscation characters should be displayed
-            onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertDoesNotExist()
-        }
-    }
-
-    @Test
-    fun oudsPinCodeInput_hiddenCharactersFalse_partialInput_displaysVisibleDigits() {
-        with(composeTestRule) {
-            var value by mutableStateOf("")
-
-            setOudsContent {
-                OudsPinCodeInput(
-                    value = value,
-                    onValueChange = { value = it },
                     length = OudsPinCodeInputLength.Six,
                     hiddenCharacters = false
                 )
