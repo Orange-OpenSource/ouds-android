@@ -23,9 +23,11 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicSecureTextField
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
+import androidx.compose.foundation.text.input.TextFieldDecorator
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.forEachChangeReversed
@@ -271,37 +273,53 @@ private fun OudsPinCodeInput(
         ) {
             ConstraintLayout {
                 val (secureTextField, helperTextErrorMessage) = createRefs()
-                BasicSecureTextField(
-                    modifier = Modifier
-                        .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
-                        .constrainAs(secureTextField) {
-                            top.linkTo(parent.top)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        }
-                        .focusRequester(focusRequester),
-                    state = textFieldState,
-                    keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number),
-                    onKeyboardAction = onKeyboardAction,
-                    inputTransformation = inputTransformation(length),
-                    interactionSource = interactionSource,
-                    decorator = {
-                        OudsPinCodeInputDecorator(
-                            textFieldState = textFieldState,
-                            length = length,
-                            outlined = outlined,
-                            error = error,
-                            hiddenCharacters = hiddenCharacters,
-                            onDigitClick = {
-                                focusRequester.requestFocus()
-                                // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
-                                keyboardController?.show()
-                            },
-                            maxWidth = this@BoxWithConstraints.maxWidth,
-                            interactionSource = interactionSource
-                        )
+                val textFieldModifier = Modifier
+                    .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+                    .constrainAs(secureTextField) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
                     }
-                )
+                    .focusRequester(focusRequester)
+                val keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
+                val inputTransformation = inputTransformation(length)
+                val decorator: TextFieldDecorator = {
+                    OudsPinCodeInputDecorator(
+                        textFieldState = textFieldState,
+                        length = length,
+                        outlined = outlined,
+                        error = error,
+                        hiddenCharacters = hiddenCharacters,
+                        onDigitClick = {
+                            focusRequester.requestFocus()
+                            // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
+                            keyboardController?.show()
+                        },
+                        maxWidth = this@BoxWithConstraints.maxWidth,
+                        interactionSource = interactionSource
+                    )
+                }
+                if (hiddenCharacters) {
+                    BasicSecureTextField(
+                        modifier = textFieldModifier,
+                        state = textFieldState,
+                        keyboardOptions = keyboardOptions,
+                        onKeyboardAction = onKeyboardAction,
+                        inputTransformation = inputTransformation,
+                        interactionSource = interactionSource,
+                        decorator = decorator
+                    )
+                } else {
+                    BasicTextField(
+                        modifier = textFieldModifier,
+                        state = textFieldState,
+                        keyboardOptions = keyboardOptions,
+                        onKeyboardAction = onKeyboardAction,
+                        inputTransformation = inputTransformation,
+                        interactionSource = interactionSource,
+                        decorator = decorator
+                    )
+                }
                 OudsTextInputHelperTextErrorMessage(
                     modifier = Modifier.constrainAs(helperTextErrorMessage) {
                         top.linkTo(secureTextField.bottom)
