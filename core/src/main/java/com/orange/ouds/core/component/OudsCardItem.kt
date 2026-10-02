@@ -88,7 +88,6 @@ fun OudsCardItem(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
-        size = OudsListItemSize.Small,
         label = label,
         onClick = null,
         modifier = modifier,
@@ -171,7 +170,6 @@ fun OudsCardItem(
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
-        size = OudsListItemSize.Small,
         label = label,
         onClick = onClick,
         modifier = modifier,
