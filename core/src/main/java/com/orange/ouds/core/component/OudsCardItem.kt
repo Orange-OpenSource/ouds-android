@@ -57,7 +57,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
- * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
@@ -83,12 +84,14 @@ fun OudsCardItem(
     trailing: OudsListItemTrailing? = null,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
         label = label,
+        labelContent = null,
         onClick = null,
         modifier = modifier,
         indicator = null,
@@ -101,6 +104,86 @@ fun OudsCardItem(
         decoration = decoration,
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
+        bottomContent = bottomContent,
+        enabled = enabled,
+        edgeToEdge = false,
+        card = true,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * TODO update description when available and add guideline link
+ *
+ * Static card item displays non-clickable information in a card format with visual emphasis.
+ *
+ * A static card item can be used to present read-only information in a contained format.
+ * Cards are ideal for displaying grouped content like product cards, destination highlights, or
+ * feature summaries. The card supports various decorations outlined, background with or without divider.
+ *
+ * This version of the static card item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
+ * content structure.
+ *
+ * > Design name: Static Card Item
+ *
+ * > Design version: 0.3.0
+ *
+ * @param labelContent Custom label content of the card item used for custom primary content such as: A product-specific text arrangement, a combination of
+ *   text elements not supported by the standard properties.
+ * @param modifier [Modifier] applied to the layout of the card item.
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [labelContent] and the [description].
+ * @param description Optional text displayed below the [labelContent] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the card item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
+ * @param helperText Optional helper text displayed below the card item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
+ *
+ * @sample TODO
+ */
+@ExperimentalOudsApi
+@Composable
+fun OudsCardItem(
+    labelContent: @Composable OudsListItemScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
+    decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
+    overline: String? = null,
+    extraLabel: String? = null,
+    description: String? = null,
+    leading: OudsListItemLeading? = null,
+    trailing: OudsListItemTrailing? = null,
+    helperText: String? = null,
+    boldLabel: Boolean = false,
+    belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsListItem(
+        label = null,
+        labelContent = labelContent,
+        onClick = null,
+        modifier = modifier,
+        indicator = null,
+        verticalAlignment = verticalAlignment,
+        overline = overline,
+        extraLabel = extraLabel,
+        description = description,
+        leading = leading,
+        trailing = trailing,
+        decoration = decoration,
+        helperText = helperText,
+        boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
         bottomContent = bottomContent,
         enabled = enabled,
         edgeToEdge = false,
@@ -137,7 +220,8 @@ fun OudsCardItem(
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
- * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
@@ -165,12 +249,14 @@ fun OudsCardItem(
     trailing: OudsListItemTrailing? = null,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
         label = label,
+        labelContent = null,
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
@@ -183,6 +269,93 @@ fun OudsCardItem(
         decoration = decoration,
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
+        bottomContent = bottomContent,
+        enabled = enabled,
+        edgeToEdge = false,
+        card = true,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * TODO update description when available and add guideline link
+ *
+ * Navigation card item allows users to navigate to another screen or perform an action in a card format.
+ *
+ * A navigation card item is clickable and presented in a card format with visual emphasis.
+ * It can be used for navigable product cards, destination selections, or feature highlights.
+ * The indicator type can be customized to show forward navigation, backward navigation, or
+ * external links. The card supports various decorations to adapt to different visual styles:
+ * outlined, background with or without divider.
+ *
+ * This version of the navigation card item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
+ * content structure.
+ *
+ * > Design name: Navigation Card Item
+ *
+ * > Design version: 0.3.0
+ *
+ * @param labelContent Custom label content of the card item used for custom primary content such as: A product-specific text arrangement, a combination of
+ *   text elements not supported by the standard properties. It must remain non-interactive. Do not place a link, button or control inside it because the
+ *   complete item already acts as one navigation link.
+ * @param modifier [Modifier] applied to the layout of the card item.
+ * @param onClick Callback invoked when the card item is clicked.
+ * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
+ * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [labelContent] and the [description].
+ * @param description Optional text displayed below the [labelContent] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the card item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
+ * @param helperText Optional helper text displayed below the card item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
+ *
+ * @sample TODO
+ */
+@ExperimentalOudsApi
+@Composable
+fun OudsCardItem(
+    labelContent: @Composable OudsListItemScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
+    decoration: OudsListItemDecoration = OudsCardItemDefaults.Decoration,
+    overline: String? = null,
+    extraLabel: String? = null,
+    description: String? = null,
+    leading: OudsListItemLeading? = null,
+    trailing: OudsListItemTrailing? = null,
+    helperText: String? = null,
+    boldLabel: Boolean = false,
+    belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsListItem(
+        label = null,
+        labelContent = labelContent,
+        onClick = onClick,
+        modifier = modifier,
+        indicator = indicator,
+        verticalAlignment = verticalAlignment,
+        overline = overline,
+        extraLabel = extraLabel,
+        description = description,
+        leading = leading,
+        trailing = trailing,
+        decoration = decoration,
+        helperText = helperText,
+        boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
         bottomContent = bottomContent,
         enabled = enabled,
         edgeToEdge = false,
@@ -215,9 +388,12 @@ internal fun PreviewOudsStaticCardItem(
     parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsCardItem(
-            label = label,
+        OudsListItem(
+            card = true,
+            onClick = null,
             decoration = decoration,
+            label = label,
+            labelContent = labelContent,
             overline = overline,
             extraLabel = extraLabel,
             description = description,
@@ -226,6 +402,7 @@ internal fun PreviewOudsStaticCardItem(
             leading = leading,
             trailing = trailing,
             boldLabel = boldLabel,
+            belowTextContent = belowTextContent,
             bottomContent = bottomContent,
             enabled = enabled
         )
@@ -274,11 +451,13 @@ internal fun PreviewOudsNavigationCardItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
-            OudsCardItem(
+            OudsListItem(
+                card = true,
                 onClick = {},
                 decoration = decoration,
-                indicator = indicator,
                 label = label,
+                labelContent = labelContent,
+                indicator = indicator,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
@@ -286,6 +465,7 @@ internal fun PreviewOudsNavigationCardItem(
                 verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
+                belowTextContent = belowTextContent,
                 bottomContent = bottomContent,
                 enabled = enabled
             )
