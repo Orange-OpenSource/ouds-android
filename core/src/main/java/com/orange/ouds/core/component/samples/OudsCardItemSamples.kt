@@ -15,6 +15,7 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Star
@@ -29,6 +30,8 @@ import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -100,7 +103,7 @@ internal fun OudsCardItemWithAllElementsSample() {
 }
 
 @Composable
-internal fun OudsCardItemWithImageSample() {
+internal fun OudsCardItemWithLeadingImageAndTrailingTagSample() {
     OudsCardItem(
         label = "Premium Suite",
         description = "Spacious room with panoramic view",
@@ -110,7 +113,21 @@ internal fun OudsCardItemWithImageSample() {
             size = OudsListItemImageSize.Large,
             ratio = OudsListItemImageRatio.Square
         ),
-        trailing = OudsListItemTrailing.Text(label = "€450/night", style = OudsListItemTextStyle.LabelStrong),
+        trailing = OudsListItemTrailing.Tag(status = OudsTagStatus.Positive(), label = "Available", size = OudsTagSize.Small),
+        decoration = OudsListItemDecoration.Outlined
+    )
+}
+
+@Composable
+internal fun OudsCardItemWithLeadingIconAndTrailingBadgeSample() {
+    OudsCardItem(
+        label = "Messages",
+        description = "Unread notifications",
+        leading = OudsListItemLeading.Icon(
+            imageVector = Icons.Outlined.Email,
+            contentDescription = "Location icon"
+        ),
+        trailing = OudsListItemTrailing.Badge(count = 5),
         decoration = OudsListItemDecoration.Outlined
     )
 }
@@ -149,8 +166,14 @@ private fun PreviewOudsCardItemWithAllElementsSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsCardItemWithImageSample() = OudsPreview {
-    OudsCardItemWithImageSample()
+private fun PreviewOudsCardItemWithLeadingImageAndTrailingTagSample() = OudsPreview {
+    OudsCardItemWithLeadingImageAndTrailingTagSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsCardItemWithLeadingIconAndTrailingBadgeSample() = OudsPreview {
+    OudsCardItemWithLeadingIconAndTrailingBadgeSample()
 }
 
 @PreviewLightDark

@@ -33,7 +33,7 @@ import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO update description when available and add version and guideline link
+ * TODO update description when available and add guideline link
  *
  * Static small card item displays non-clickable information in a compact card format.
  *
@@ -41,6 +41,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * emphasis of a card. It is ideal for displaying condensed, grouped content in a contained
  * format, such as compact feature cards, quick access tiles, or dense information grids.
  * Unlike the standard card item, it omits overline and extra label to maintain a smaller footprint.
+ *
+ * > Design name: Static Card Item
+ *
+ * > Design version: 0.3.0
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
@@ -56,7 +60,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -97,7 +102,7 @@ fun OudsSmallCardItem(
 }
 
 /**
- * TODO update description when available and add version and guideline link
+ * TODO update description when available and add guideline link
  *
  * Navigation small card item allows users to navigate to another screen or perform an action in a compact card format.
  *
@@ -106,6 +111,10 @@ fun OudsSmallCardItem(
  * quick action tiles, or dense interactive grids. The indicator type can be customized to show
  * forward navigation, backward navigation, or external links. Unlike the standard card item,
  * it omits overline and extra label to maintain a smaller footprint while remaining clickable.
+ *
+ * > Design name: Navigation Card Item
+ *
+ * > Design version: 0.3.0
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
@@ -123,7 +132,8 @@ fun OudsSmallCardItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallCardItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
 @ExperimentalOudsApi

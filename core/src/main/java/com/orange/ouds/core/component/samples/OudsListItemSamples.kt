@@ -27,6 +27,8 @@ import com.orange.ouds.core.component.OudsListItemIndicator
 import com.orange.ouds.core.component.OudsListItemLeading
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -102,7 +104,7 @@ internal fun OudsListItemWithAllElementsSample() {
 }
 
 @Composable
-internal fun OudsListItemWithImageSample() {
+internal fun OudsListItemWithLeadingImageAndTrailingTagSample() {
     OudsListItem(
         label = "Product name",
         description = "Product description with details",
@@ -112,7 +114,20 @@ internal fun OudsListItemWithImageSample() {
             size = OudsListItemImageSize.Large,
             ratio = OudsListItemImageRatio.Square
         ),
-        trailing = OudsListItemTrailing.Text(label = "€29.99", style = OudsListItemTextStyle.Label)
+        trailing = OudsListItemTrailing.Tag(status = OudsTagStatus.Positive(asset = null), label = "Available", size = OudsTagSize.Small)
+    )
+}
+
+@Composable
+internal fun OudsListItemWithLeadingIconAndTrailingBadgeSample() {
+    OudsListItem(
+        label = "Messages",
+        description = "Unread notifications",
+        leading = OudsListItemLeading.Icon(
+            imageVector = Icons.Outlined.Email,
+            contentDescription = "Messages icon"
+        ),
+        trailing = OudsListItemTrailing.Badge(count = 5)
     )
 }
 
@@ -149,8 +164,14 @@ private fun PreviewOudsListItemWithAllElementsSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsListItemWithImageSample() = OudsPreview {
-    OudsListItemWithImageSample()
+private fun PreviewOudsListItemWithLeadingImageAndTrailingTagSample() = OudsPreview {
+    OudsListItemWithLeadingImageAndTrailingTagSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsListItemWithLeadingIconAndTrailingBadgeSample() = OudsPreview {
+    OudsListItemWithLeadingIconAndTrailingBadgeSample()
 }
 
 @PreviewLightDark
