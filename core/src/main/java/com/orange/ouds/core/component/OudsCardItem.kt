@@ -57,6 +57,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
@@ -66,6 +68,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -80,6 +83,7 @@ fun OudsCardItem(
     trailing: OudsListItemTrailing? = null,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -98,6 +102,7 @@ fun OudsCardItem(
         decoration = decoration,
         helperText = helperText,
         boldLabel = boldLabel,
+        bottomContent = bottomContent,
         enabled = enabled,
         edgeToEdge = false,
         card = true,
@@ -133,6 +138,8 @@ fun OudsCardItem(
  * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the card item.
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
@@ -142,6 +149,7 @@ fun OudsCardItem(
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -158,6 +166,7 @@ fun OudsCardItem(
     trailing: OudsListItemTrailing? = null,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
@@ -176,6 +185,7 @@ fun OudsCardItem(
         decoration = decoration,
         helperText = helperText,
         boldLabel = boldLabel,
+        bottomContent = bottomContent,
         enabled = enabled,
         edgeToEdge = false,
         card = true,
@@ -218,6 +228,7 @@ internal fun PreviewOudsStaticCardItem(
             leading = leading,
             trailing = trailing,
             boldLabel = boldLabel,
+            bottomContent = bottomContent,
             enabled = enabled
         )
     }
@@ -277,6 +288,7 @@ internal fun PreviewOudsNavigationCardItem(
                 verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
+                bottomContent = bottomContent,
                 enabled = enabled
             )
         }

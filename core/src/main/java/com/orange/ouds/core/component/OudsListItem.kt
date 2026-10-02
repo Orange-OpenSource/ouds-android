@@ -54,7 +54,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -116,6 +115,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param background Controls whether the list item has a background color. Defaults to `false`.
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
@@ -127,6 +128,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(
@@ -142,6 +144,7 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -161,6 +164,7 @@ fun OudsListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
+        bottomContent = bottomContent,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
@@ -200,6 +204,8 @@ fun OudsListItem(
  * @param background Controls whether the list item has a background color. Defaults to `false`.
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
@@ -211,6 +217,7 @@ fun OudsListItem(
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(
@@ -228,6 +235,7 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
@@ -248,6 +256,7 @@ fun OudsListItem(
         helperText = helperText,
         boldLabel = boldLabel,
         enabled = enabled,
+        bottomContent = bottomContent,
         edgeToEdge = edgeToEdge,
         card = false,
         interactionSource = interactionSource
@@ -270,6 +279,7 @@ internal fun OudsListItem(
     decoration: OudsListItemDecoration,
     helperText: String?,
     boldLabel: Boolean,
+    bottomContent: @Composable (OudsListItemScope.() -> Unit)?,
     enabled: Boolean,
     edgeToEdge: Boolean,
     card: Boolean,
@@ -305,89 +315,106 @@ internal fun OudsListItem(
         Column(
             modifier = modifier.sizeIn(minWidth = this.size.minWidth)
         ) {
-            Row(
+            Column(
                 modifier = clickableModifier
                     .fillMaxWidth()
                     .heightIn(min = minHeight(size))
                     .background(color = backgroundColor.value, shape = shape)
                     .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
-                    .containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge)
                     .semantics(mergeDescendants = true) { },
-                horizontalArrangement = Arrangement.spacedBy(space.columnGap),
-                verticalAlignment = verticalAlignment(verticalAlignment)
             ) {
-                if (indicator == OudsListItemIndicator.Previous) {
-                    Indicator(drawableId = indicator.drawableId, state = state)
-                } else {
-                    leading?.let {
-                        when (leading) {
-                            is OudsListItemLeadingTrailing.Content -> leading.PolymorphicContent(
+                Row(
+                    modifier = Modifier.containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge),
+                    horizontalArrangement = Arrangement.spacedBy(space.columnGap),
+                    verticalAlignment = verticalAlignment(verticalAlignment)
+                ) {
+                    if (indicator == OudsListItemIndicator.Previous) {
+                        Indicator(drawableId = indicator.drawableId, state = state)
+                    } else {
+                        leading?.let {
+                            when (leading) {
+                                is OudsListItemLeadingTrailing.Content -> leading.PolymorphicContent(
+                                    extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
+                                )
+                                is OudsListItemLeadingTrailing.Icon -> {
+                                    leading.PolymorphicContent(
+                                        extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
+                                    )
+                                }
+                                is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
+                                is OudsListItemLeadingTrailing.Badge,
+                                is OudsListItemLeadingTrailing.Tag,
+                                is OudsListItemLeadingTrailing.Text -> {
+                                }
+                            }
+                        }
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(top = topTextContainerPadding(verticalAlignment = verticalAlignment, size = size))
+                    ) {
+                        if (!overline.isNullOrBlank()) {
+                            Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
+                        }
+                        Text(
+                            text = label,
+                            style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
+                            color = contentColor(state = state)
+                        )
+                        if (!extraLabel.isNullOrBlank()) {
+                            Text(text = extraLabel, style = OudsTheme.typography.label.medium.strong, color = contentColor(state = state))
+                        }
+                        if (!description.isNullOrBlank()) {
+                            Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
+                        }
+                    }
+
+                    trailing?.let {
+                        when (trailing) {
+                            is OudsListItemLeadingTrailing.Badge -> trailing.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.Badge.ExtraParameters(state = state)
+                            )
+                            is OudsListItemLeadingTrailing.Content -> trailing.PolymorphicContent(
                                 extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
                             )
-                            is OudsListItemLeadingTrailing.Icon -> {
-                                leading.PolymorphicContent(
-                                    extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
-                                )
-                            }
-                            is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
-                            is OudsListItemLeadingTrailing.Badge,
-                            is OudsListItemLeadingTrailing.Tag,
-                            is OudsListItemLeadingTrailing.Text -> {
-                            }
-                        }
-                    }
-                }
-
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(top = topTextContainerPadding(verticalAlignment = verticalAlignment, size = size))
-                ) {
-                    if (!overline.isNullOrBlank()) {
-                        Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
-                    }
-                    Text(
-                        text = label,
-                        style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
-                        color = contentColor(state = state)
-                    )
-                    if (!extraLabel.isNullOrBlank()) {
-                        Text(text = extraLabel, style = OudsTheme.typography.label.medium.strong, color = contentColor(state = state))
-                    }
-                    if (!description.isNullOrBlank()) {
-                        Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
-                    }
-                }
-
-                trailing?.let {
-                    when (trailing) {
-                        is OudsListItemLeadingTrailing.Badge -> trailing.PolymorphicContent(
-                            extraParameters = OudsListItemLeadingTrailing.Badge.ExtraParameters(state = state)
-                        )
-                        is OudsListItemLeadingTrailing.Content -> trailing.PolymorphicContent(
-                            extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
-                        )
-                        is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
-                            extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
-                        )
-                        is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
-                        is OudsListItemLeadingTrailing.Tag -> trailing.PolymorphicContent(
-                            extraParameters = OudsListItemLeadingTrailing.Tag.ExtraParameters(state = state)
-                        )
-                        is OudsListItemLeadingTrailing.Text -> {
-                            trailing.PolymorphicContent(
-                                extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
-                                    verticalAlignment = verticalAlignment,
-                                    size = size
-                                )
+                            is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
                             )
+                            is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
+                            is OudsListItemLeadingTrailing.Tag -> trailing.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.Tag.ExtraParameters(state = state)
+                            )
+                            is OudsListItemLeadingTrailing.Text -> {
+                                trailing.PolymorphicContent(
+                                    extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
+                                        verticalAlignment = verticalAlignment,
+                                        size = size
+                                    )
+                                )
+                            }
                         }
+                    }
+
+                    if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
+                        Indicator(drawableId = indicator.drawableId, state = state)
                     }
                 }
 
-                if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
-                    Indicator(drawableId = indicator.drawableId, state = state)
+                bottomContent?.let {
+                    val scope = remember { OudsListItemScope() }
+                    Box(
+                        modifier = Modifier
+                            .padding(horizontal = space.paddingInline)
+                            .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
+                    ) {
+                        with(scope) {
+                            this.state = state
+                            bottomContent()
+                        }
+                    }
                 }
             }
 
@@ -1509,6 +1536,7 @@ internal fun PreviewOudsStaticListItem(
             verticalAlignment = verticalAlignment,
             leading = leading,
             trailing = trailing,
+            bottomContent = bottomContent,
             divider = decoration.divider,
             background = decoration is OudsListItemDecoration.Background,
             boldLabel = boldLabel,
@@ -1549,6 +1577,8 @@ internal fun PreviewOudsNavigationListItem(
                 verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
+                boldLabel = boldLabel,
+                bottomContent = bottomContent,
                 divider = decoration.divider,
                 background = decoration is OudsListItemDecoration.Background,
                 enabled = enabled
@@ -1613,6 +1643,7 @@ internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing
     val decoration: OudsListItemDecoration = OudsListItemDecoration.BackgroundOnInteraction(divider = true),
     val helperText: String? = null,
     val boldLabel: Boolean = false,
+    val bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     val enabled: Boolean = true
 )
 
@@ -1626,7 +1657,7 @@ internal val listItemPreviewParameterLeading: (Int) -> OudsListItemLeading? = { 
         0 -> OudsListItemLeading.Icon.Info()
         1 -> OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
         2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageRatio.Square, roundedCorner = true)
-        3 -> OudsListItemLeading.Content { PreviewCustomContent(state = state) }
+        3 -> OudsListItemLeading.Content { PreviewCustomContent(state = state, modifier = Modifier.fillMaxSize()) }
         else -> null
     }
 }
@@ -1636,7 +1667,7 @@ internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = 
         0 -> OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         1 -> OudsListItemTrailing.Text(label = "Label", extraLabel = "Extra label")
         2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageRatio.Widescreen)
-        3 -> OudsListItemTrailing.Content { PreviewCustomContent(state = state) }
+        3 -> OudsListItemTrailing.Content { PreviewCustomContent(state = state, modifier = Modifier.fillMaxSize()) }
         4 -> OudsListItemTrailing.Badge(count = 100, status = OudsBadgeStatus.Negative, size = OudsBadgeSize.Large)
         5 -> OudsListItemTrailing.Tag(label = "Almost used", status = OudsTagStatus.Warning(asset = null))
         else -> null
@@ -1652,19 +1683,18 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
 ) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration).toTypedArray())
 
 @Composable
-private fun PreviewCustomContent(state: OudsListItemState) {
+private fun PreviewCustomContent(state: OudsListItemState, modifier: Modifier = Modifier) {
     val enabled = state == OudsListItemState.Enabled
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else Color.Transparent)
-            .padding(all = OudsTheme.spaces.fixed.extraSmall)
+        modifier = modifier
+            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
+            .padding(all = OudsTheme.spaces.fixed.extraSmall),
+        contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            style = OudsTheme.typography.display.small,
-            color = if (enabled) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.content.disabled,
-            textAlign = TextAlign.Center
+            text = "SLOT",
+            style = OudsTheme.typography.label.small.strong,
+            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled,
         )
     }
 }
@@ -1701,9 +1731,31 @@ private fun <T, S> getListItemPreviewParameterValues(
                 decoration = decoration(index),
                 boldLabel = true
             )
-            else -> OudsListItemPreviewParameter(
+            2 -> OudsListItemPreviewParameter(
+                label = label,
+                boldLabel = true,
+                indicator = OudsListItemIndicator.Previous,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                leading = leading(index),
+                trailing = trailing(index),
+                decoration = decoration(index)
+            )
+            3 -> OudsListItemPreviewParameter(
                 label = label,
                 indicator = OudsListItemIndicator.Previous,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                leading = leading(index),
+                trailing = trailing(index),
+                bottomContent = { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) },
+                decoration = decoration(index)
+            )
+            else -> OudsListItemPreviewParameter(
+                label = label,
+                indicator = OudsListItemIndicator.Next,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
