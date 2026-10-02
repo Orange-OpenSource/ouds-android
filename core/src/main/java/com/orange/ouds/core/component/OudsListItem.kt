@@ -125,6 +125,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsStaticListItemWithCustomContentsSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingImageAndTrailingTagSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingIconAndTrailingBadgeSample
@@ -217,7 +218,7 @@ fun OudsListItem(
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
- * //TODO samples
+ * @sample com.orange.ouds.core.component.samples.OudsStaticListItemWithLabelContentSample
  */
 @ExperimentalOudsApi
 @Composable
@@ -306,6 +307,7 @@ fun OudsListItem(
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemWithCustomContentsSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithAllElementsSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingImageAndTrailingTagSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithLeadingIconAndTrailingBadgeSample
@@ -404,7 +406,7 @@ fun OudsListItem(
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
  *
- * TODO samples
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationListItemWithLabelContentSample
  */
 @ExperimentalOudsApi
 @Composable

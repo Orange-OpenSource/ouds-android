@@ -64,6 +64,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemWithCustomContentsSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithAllElementsSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingImageAndTrailingTagSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingIconAndTrailingBadgeSample
@@ -147,7 +148,7 @@ fun OudsCardItem(
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
- * @sample TODO
+ * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemWithLabelContentSample
  */
 @ExperimentalOudsApi
 @Composable
@@ -227,6 +228,7 @@ fun OudsCardItem(
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemSample
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemWithCustomContentsSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithAllElementsSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingImageAndTrailingTagSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithLeadingIconAndTrailingBadgeSample
@@ -317,7 +319,7 @@ fun OudsCardItem(
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
- * @sample TODO
+ * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemWithLabelContentSample
  */
 @ExperimentalOudsApi
 @Composable
