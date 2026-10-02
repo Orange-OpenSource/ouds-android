@@ -24,6 +24,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -115,6 +116,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param background Controls whether the list item has a background color. Defaults to `false`.
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
@@ -144,6 +146,7 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
@@ -152,6 +155,7 @@ fun OudsListItem(
     OudsListItem(
         size = OudsListItemSize.Default,
         label = label,
+        labelContent = null,
         onClick = null,
         modifier = modifier,
         indicator = null,
@@ -164,6 +168,95 @@ fun OudsListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
+        bottomContent = bottomContent,
+        enabled = enabled,
+        edgeToEdge = edgeToEdge,
+        card = false,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * TODO update description when available and add guideline link
+ *
+ * Static list item displays non-clickable information in a structured format.
+ * They are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * A static list item can be used to present read-only information such as contact details,
+ * product specifications, or settings values.
+ * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * This version of the static list item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
+ * content structure.
+ *
+ * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * > Design name: Static List Item
+ *
+ * > Design version: 0.3.0
+ *
+ * @param labelContent Custom label content of the list item used for custom primary content such as: A product-specific text arrangement, a combination of
+ *   text elements not supported by the standard properties.
+ * @param modifier [Modifier] applied to the layout of the list item.
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [labelContent] and the [description].
+ * @param description Optional text displayed below the [labelContent] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the list item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the list item.
+ * @param divider Controls the display of a divider at the bottom of the list item. Defaults to `true`.
+ * @param background Controls whether the list item has a background color. Defaults to `false`.
+ * @param helperText Optional helper text displayed below the list item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
+ *
+ * //TODO samples
+ */
+@ExperimentalOudsApi
+@Composable
+fun OudsListItem(
+    labelContent: @Composable OudsListItemScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
+    overline: String? = null,
+    extraLabel: String? = null,
+    description: String? = null,
+    leading: OudsListItemLeading? = null,
+    trailing: OudsListItemTrailing? = null,
+    divider: Boolean = true,
+    background: Boolean = false,
+    helperText: String? = null,
+    boldLabel: Boolean = false,
+    belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    enabled: Boolean = true,
+    edgeToEdge: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsListItem(
+        size = OudsListItemSize.Default,
+        label = null,
+        labelContent = labelContent,
+        onClick = null,
+        modifier = modifier,
+        indicator = null,
+        verticalAlignment = verticalAlignment,
+        overline = overline,
+        extraLabel = extraLabel,
+        description = description,
+        leading = leading,
+        trailing = trailing,
+        decoration = listItemDecoration(background, divider),
+        helperText = helperText,
+        boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
         bottomContent = bottomContent,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
@@ -204,6 +297,7 @@ fun OudsListItem(
  * @param background Controls whether the list item has a background color. Defaults to `false`.
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
  * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
@@ -235,14 +329,15 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
-        size = OudsListItemSize.Default,
         label = label,
+        labelContent = null,
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
@@ -255,8 +350,103 @@ fun OudsListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
-        enabled = enabled,
+        belowTextContent = belowTextContent,
         bottomContent = bottomContent,
+        enabled = enabled,
+        edgeToEdge = edgeToEdge,
+        card = false,
+        interactionSource = interactionSource
+    )
+}
+
+/**
+ * TODO update description when available and add guideline link
+ *
+ * Navigation list item allows users to navigate to another screen or perform an action.
+ * They are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * A navigation list item is clickable and typically includes a navigation indicator.
+ * It can be used for menu items, settings options, or any interactive list that leads to
+ * another destination. The indicator type can be customized to show forward navigation,
+ * backward navigation, or external links.
+ * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * This version of the navigation list item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
+ * content structure.
+ *
+ * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * > Design name: Navigation List Item
+ *
+ * > Design version: 0.3.0
+ *
+ * @param labelContent Custom label content of the list item used for custom primary content such as: A product-specific text arrangement, a combination of
+ *   text elements not supported by the standard properties. It must remain non-interactive. Do not place a link, button or control inside it because the
+ *   complete item already acts as one navigation link.
+ * @param onClick Callback invoked when the list item is clicked.
+ * @param modifier [Modifier] applied to the layout of the list item.
+ * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
+ * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
+ * @param overline Optional text displayed above the label.
+ * @param extraLabel Optional strong accompanying label for the main label, displayed between the [labelContent] and the [description].
+ * @param description Optional text displayed below the [labelContent] and [extraLabel].
+ * @param leading Optional leading content such as an icon or image displayed at the start of the list item.
+ * @param trailing Optional trailing content such as an icon, image, or text displayed at the end of the list item.
+ * @param divider Controls the display of a divider at the bottom of the list item. Defaults to `true`.
+ * @param background Controls whether the list item has a background color. Defaults to `false`.
+ * @param helperText Optional helper text displayed below the list item.
+ * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
+ * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
+ *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
+ *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this list item.
+ *
+ * TODO samples
+ */
+@ExperimentalOudsApi
+@Composable
+fun OudsListItem(
+    labelContent: @Composable OudsListItemScope.() -> Unit,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
+    overline: String? = null,
+    extraLabel: String? = null,
+    description: String? = null,
+    leading: OudsListItemLeading? = null,
+    trailing: OudsListItemTrailing? = null,
+    divider: Boolean = true,
+    background: Boolean = false,
+    helperText: String? = null,
+    boldLabel: Boolean = false,
+    belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    enabled: Boolean = true,
+    edgeToEdge: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
+) {
+    OudsListItem(
+        label = null,
+        labelContent = labelContent,
+        onClick = onClick,
+        modifier = modifier,
+        indicator = indicator,
+        verticalAlignment = verticalAlignment,
+        overline = overline,
+        extraLabel = extraLabel,
+        description = description,
+        leading = leading,
+        trailing = trailing,
+        decoration = listItemDecoration(background, divider),
+        helperText = helperText,
+        boldLabel = boldLabel,
+        belowTextContent = belowTextContent,
+        bottomContent = bottomContent,
+        enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
         interactionSource = interactionSource
@@ -265,25 +455,27 @@ fun OudsListItem(
 
 @Composable
 internal fun OudsListItem(
-    size: OudsListItemSize,
-    label: String,
-    onClick: (() -> Unit)?,
-    modifier: Modifier,
-    indicator: OudsListItemIndicator?,
-    verticalAlignment: OudsListItemVerticalAlignment,
-    overline: String?,
-    extraLabel: String?,
-    description: String?,
-    leading: OudsListItemLeadingTrailing?,
-    trailing: OudsListItemLeadingTrailing?,
-    decoration: OudsListItemDecoration,
-    helperText: String?,
-    boldLabel: Boolean,
-    bottomContent: @Composable (OudsListItemScope.() -> Unit)?,
-    enabled: Boolean,
-    edgeToEdge: Boolean,
     card: Boolean,
-    interactionSource: MutableInteractionSource?
+    onClick: (() -> Unit)?,
+    decoration: OudsListItemDecoration,
+    label: String?,
+    labelContent: @Composable (OudsListItemScope.() -> Unit)?,
+    modifier: Modifier = Modifier,
+    size: OudsListItemSize = OudsListItemSize.Default,
+    indicator: OudsListItemIndicator? = null,
+    verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
+    overline: String? = null,
+    extraLabel: String? = null,
+    description: String? = null,
+    leading: OudsListItemLeadingTrailing? = null,
+    trailing: OudsListItemLeadingTrailing? = null,
+    helperText: String? = null,
+    boldLabel: Boolean = false,
+    belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    enabled: Boolean = true,
+    edgeToEdge: Boolean = true,
+    interactionSource: MutableInteractionSource? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -359,16 +551,28 @@ internal fun OudsListItem(
                         if (!overline.isNullOrBlank()) {
                             Text(text = overline, style = OudsTheme.typography.label.small.moderate, color = contentColor(state = state, muted = true))
                         }
-                        Text(
-                            text = label,
-                            style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
-                            color = contentColor(state = state)
-                        )
+                        label?.let {
+                            Text(
+                                text = label,
+                                style = if (boldLabel) OudsTheme.typography.label.large.strong else OudsTheme.typography.label.large.default,
+                                color = contentColor(state = state)
+                            )
+                        }
+                        labelContent?.let {
+                            CustomContentBox(state = state) {
+                                labelContent()
+                            }
+                        }
                         if (!extraLabel.isNullOrBlank()) {
                             Text(text = extraLabel, style = OudsTheme.typography.label.medium.strong, color = contentColor(state = state))
                         }
                         if (!description.isNullOrBlank()) {
                             Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
+                        }
+                        belowTextContent?.let {
+                            CustomContentBox(state = state) {
+                                belowTextContent()
+                            }
                         }
                     }
 
@@ -405,16 +609,15 @@ internal fun OudsListItem(
                 }
 
                 bottomContent?.let {
-                    val scope = remember { OudsListItemScope() }
-                    Box(
-                        modifier = Modifier
-                            .padding(horizontal = space.paddingInline)
-                            .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
+                    CustomContentBox(
+                        state = state,
+                        paddingValues = PaddingValues(
+                            start = space.paddingInline,
+                            end = space.paddingInline,
+                            bottom = space.paddingBlock.bottomSlotListItemContainer
+                        )
                     ) {
-                        with(scope) {
-                            this.state = state
-                            bottomContent()
-                        }
+                        bottomContent()
                     }
                 }
             }
@@ -441,6 +644,21 @@ internal fun OudsListItem(
 class OudsListItemScope {
     var state: OudsListItemState by mutableStateOf(OudsListItemState.Enabled)
         internal set
+}
+
+@Composable
+private fun CustomContentBox(
+    state: OudsListItemState,
+    paddingValues: PaddingValues = PaddingValues(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer),
+    content: @Composable OudsListItemScope.() -> Unit
+) {
+    val scope = remember { OudsListItemScope() }
+    Box(modifier = Modifier.padding(paddingValues = paddingValues)) {
+        with(scope) {
+            this.state = state
+            content()
+        }
+    }
 }
 
 @Composable
@@ -1543,7 +1761,11 @@ internal fun PreviewOudsStaticListItem(
             }
         ) {
             OudsListItem(
+                card = false,
+                onClick = null,
+                decoration = decoration,
                 label = label,
+                labelContent = labelContent,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
@@ -1551,9 +1773,8 @@ internal fun PreviewOudsStaticListItem(
                 verticalAlignment = verticalAlignment,
                 leading = leading,
                 trailing = trailing,
+                belowTextContent = belowTextContent,
                 bottomContent = bottomContent,
-                divider = decoration.divider,
-                background = decoration is OudsListItemDecoration.Background,
                 boldLabel = boldLabel,
                 enabled = enabled
             )
@@ -1583,9 +1804,12 @@ internal fun PreviewOudsNavigationListItem(
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1, edgeToEdge = true) {
             OudsListItem(
+                card = false,
                 onClick = {},
-                indicator = indicator,
+                decoration = decoration,
                 label = label,
+                labelContent = labelContent,
+                indicator = indicator,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
@@ -1594,9 +1818,8 @@ internal fun PreviewOudsNavigationListItem(
                 leading = leading,
                 trailing = trailing,
                 boldLabel = boldLabel,
+                belowTextContent = belowTextContent,
                 bottomContent = bottomContent,
-                divider = decoration.divider,
-                background = decoration is OudsListItemDecoration.Background,
                 enabled = enabled
             )
         }
@@ -1648,7 +1871,8 @@ internal fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme: OudsThem
 }
 
 internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing>(
-    val label: String,
+    val label: String? = null,
+    val labelContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     val indicator: OudsListItemIndicator = OudsListItemDefaults.Indicator,
     val verticalAlignment: OudsListItemVerticalAlignment = OudsListItemDefaults.VerticalAlignment,
     val overline: String? = null,
@@ -1659,6 +1883,7 @@ internal data class OudsListItemPreviewParameter<T : OudsListItemLeadingTrailing
     val decoration: OudsListItemDecoration = OudsListItemDecoration.BackgroundOnInteraction(divider = true),
     val helperText: String? = null,
     val boldLabel: Boolean = false,
+    val belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     val bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     val enabled: Boolean = true
 )
@@ -1695,8 +1920,9 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
     trailing: (Int) -> S?,
     decoration: (Int) -> OudsListItemDecoration = { index ->
         if (index == 1) OudsListItemDecoration.Background(divider = true) else OudsListItemDecoration.BackgroundOnInteraction(divider = true)
-    }
-) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration).toTypedArray())
+    },
+    size: OudsListItemSize = OudsListItemSize.Default
+) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration, size).toTypedArray())
 
 @Composable
 private fun PreviewCustomContent(state: OudsListItemState, modifier: Modifier = Modifier) {
@@ -1718,7 +1944,8 @@ private fun PreviewCustomContent(state: OudsListItemState, modifier: Modifier = 
 private fun <T, S> getListItemPreviewParameterValues(
     leading: (Int) -> T?,
     trailing: (Int) -> S?,
-    decoration: (Int) -> OudsListItemDecoration
+    decoration: (Int) -> OudsListItemDecoration,
+    size: OudsListItemSize
 ): List<OudsListItemPreviewParameter<T, S>> where T : OudsListItemLeadingTrailing, S : OudsListItemLeadingTrailing {
     val label = "Label"
     val overline = "Overline"
@@ -1759,13 +1986,23 @@ private fun <T, S> getListItemPreviewParameterValues(
                 decoration = decoration(index)
             )
             3 -> OudsListItemPreviewParameter(
-                label = label,
+                label = when (size) {
+                    OudsListItemSize.Default -> null
+                    OudsListItemSize.Small -> label
+                },
+                labelContent = when (size) {
+                    OudsListItemSize.Default -> {
+                        { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) }
+                    }
+                    OudsListItemSize.Small -> null
+                },
                 indicator = OudsListItemIndicator.Previous,
                 overline = overline,
                 extraLabel = extraLabel,
                 description = description,
                 leading = leading(index),
                 trailing = trailing(index),
+                belowTextContent = { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) },
                 bottomContent = { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) },
                 decoration = decoration(index)
             )
