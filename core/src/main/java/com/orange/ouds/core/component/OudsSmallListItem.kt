@@ -93,6 +93,7 @@ fun OudsSmallListItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
+        labelContent = null,
         onClick = null,
         modifier = modifier,
         indicator = null,
@@ -105,6 +106,7 @@ fun OudsSmallListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = null,
         bottomContent = null,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
@@ -176,6 +178,7 @@ fun OudsSmallListItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
+        labelContent = null,
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
@@ -188,6 +191,7 @@ fun OudsSmallListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = null,
         bottomContent = null,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
@@ -570,7 +574,7 @@ internal fun PreviewOudsStaticSmallListItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsSmallListItem(
-            label = label,
+            label = label.orEmpty(),
             description = description,
             helperText = helperText,
             leading = leading,
@@ -609,7 +613,7 @@ internal fun PreviewOudsNavigationSmallListItem(
             OudsSmallListItem(
                 onClick = {},
                 indicator = indicator,
-                label = label,
+                label = label.orEmpty(),
                 description = description,
                 helperText = helperText,
                 verticalAlignment = verticalAlignment,
@@ -626,7 +630,8 @@ internal fun PreviewOudsNavigationSmallListItem(
 
 internal class OudsSmallListItemPreviewParameterProvider : OudsBasicListItemPreviewParameterProvider<OudsSmallListItemLeading, OudsSmallListItemTrailing>(
     leading = smallListItemPreviewParameterLeading,
-    trailing = smallListItemPreviewParameterTrailing
+    trailing = smallListItemPreviewParameterTrailing,
+    size = OudsListItemSize.Small
 )
 
 internal val smallListItemPreviewParameterLeading: (Int) -> OudsSmallListItemLeading? = { index ->

@@ -82,6 +82,7 @@ fun OudsSmallCardItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
+        labelContent = null,
         onClick = null,
         modifier = modifier,
         indicator = null,
@@ -94,6 +95,7 @@ fun OudsSmallCardItem(
         decoration = decoration,
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = null,
         bottomContent = null,
         enabled = enabled,
         edgeToEdge = false,
@@ -157,6 +159,7 @@ fun OudsSmallCardItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
+        labelContent = null,
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
@@ -169,6 +172,7 @@ fun OudsSmallCardItem(
         decoration = decoration,
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = null,
         bottomContent = null,
         enabled = enabled,
         edgeToEdge = false,
@@ -192,7 +196,7 @@ internal fun PreviewOudsStaticSmallCardItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsSmallCardItem(
-            label = label,
+            label = label.orEmpty(),
             decoration = decoration,
             description = description,
             helperText = helperText,
@@ -249,7 +253,7 @@ internal fun PreviewOudsNavigationSmallCardItem(
                 onClick = {},
                 decoration = decoration,
                 indicator = indicator,
-                label = label,
+                label = label.orEmpty(),
                 description = description,
                 helperText = helperText,
                 verticalAlignment = verticalAlignment,
@@ -292,5 +296,6 @@ internal class OudsSmallCardItemPreviewParameterProvider : OudsBasicListItemPrev
             1 -> OudsCardItemDefaults.Decoration
             else -> OudsListItemDecoration.BackgroundOnInteraction(divider = false)
         }
-    }
+    },
+    size = OudsListItemSize.Small
 )
