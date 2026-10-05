@@ -270,8 +270,12 @@ private val previewParameterValues: List<OudsDigitInputPreviewParameter>
         return listOf(
             OudsDigitInputPreviewParameter(),
             OudsDigitInputPreviewParameter(digit = '1'),
-            OudsDigitInputPreviewParameter(digit = '1', error = true)
-        ).flatMap { listOf(it, it.copy(outlined = true), it.copy(hiddenDigit = false)) }
+            OudsDigitInputPreviewParameter(digit = '1', outlined = true),
+            OudsDigitInputPreviewParameter(digit = '1', hiddenDigit = false),
+            OudsDigitInputPreviewParameter(digit = '1', error = true),
+            OudsDigitInputPreviewParameter(digit = '1', error = true, outlined = true),
+            OudsDigitInputPreviewParameter(digit = '1', error = true, hiddenDigit = false)
+        )
     }
 
 @Preview(name = "Light", device = OudsPreviewDevice)
