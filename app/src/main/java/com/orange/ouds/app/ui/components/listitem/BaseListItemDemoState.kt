@@ -222,7 +222,7 @@ open class BaseListItemDemoState(
     }
 
     enum class Trailing {
-        None, Icon, Image, Text
+        None, Badge, Icon, Image, Tag, Text
     }
 
     enum class StatusIcon {
