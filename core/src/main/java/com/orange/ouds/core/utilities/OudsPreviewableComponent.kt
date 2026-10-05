@@ -1241,6 +1241,7 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
 
+        @InternalOudsApi
         object MaxWidthReached : OudsPreviewableComponent {
 
             const val PreviewWidthDp = 600

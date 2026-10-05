@@ -39,6 +39,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsBulle
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsButtonKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsButtonKt;
 	public fun <init> ()V
+	public final fun getLambda$-1234444562$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$-402691546$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-617629630$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$1034914205$core ()Lkotlin/jvm/functions/Function2;
@@ -135,6 +136,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsNavig
 	public fun <init> ()V
 	public final fun getLambda$-1682471878$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$162520821$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1772896366$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsPinCodeInputKt {
@@ -2832,10 +2834,12 @@ public final class com/orange/ouds/core/theme/OudsComponents$Alert$Space {
 	public final fun component5-D9Ej5fM ()F
 	public final fun component6-D9Ej5fM ()F
 	public final fun component7-D9Ej5fM ()F
+	public final fun component8-D9Ej5fM ()F
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getColumnGap-D9Ej5fM ()F
 	public final fun getColumnGapAction-D9Ej5fM ()F
 	public final fun getPaddingBlock-D9Ej5fM ()F
+	public final fun getPaddingBlockBottomContent-D9Ej5fM ()F
 	public final fun getPaddingInline-D9Ej5fM ()F
 	public final fun getRowGap-D9Ej5fM ()F
 	public final fun getRowGapAction-D9Ej5fM ()F
@@ -3546,6 +3550,7 @@ public final class com/orange/ouds/core/theme/OudsComponents$Button$Size {
 	public final fun component16-D9Ej5fM ()F
 	public final fun component17-D9Ej5fM ()F
 	public final fun component18-D9Ej5fM ()F
+	public final fun component19-D9Ej5fM ()F
 	public final fun component2-D9Ej5fM ()F
 	public final fun component3-D9Ej5fM ()F
 	public final fun component4-D9Ej5fM ()F
@@ -3565,6 +3570,7 @@ public final class com/orange/ouds/core/theme/OudsComponents$Button$Size {
 	public final fun getMaxHeightIconOnly-D9Ej5fM ()F
 	public final fun getMaxSizeIconOnlyDefault-D9Ej5fM ()F
 	public final fun getMaxSizeIconOnlySmall-D9Ej5fM ()F
+	public final fun getMaxWidth-D9Ej5fM ()F
 	public final fun getMinHeight-D9Ej5fM ()F
 	public final fun getMinHeightDefault-D9Ej5fM ()F
 	public final fun getMinHeightSmall-D9Ej5fM ()F
@@ -6058,8 +6064,10 @@ public final class com/orange/ouds/core/theme/OudsSizes$MaxWidth {
 	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Heading;
 	public final fun component4 ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Label;
 	public final fun component5 ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Type;
+	public final fun component6-D9Ej5fM ()F
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBody ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Body;
+	public final fun getBoxedText-D9Ej5fM ()F
 	public final fun getDisplay ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Display;
 	public final fun getHeading ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Heading;
 	public final fun getLabel ()Lcom/orange/ouds/core/theme/OudsSizes$MaxWidth$Label;
