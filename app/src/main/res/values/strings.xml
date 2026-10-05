@@ -335,6 +335,7 @@
     <string name="app_components_pinCodeInput_tech" translatable="false">PIN code input</string>
     <string name="app_components_pinCodeInput_description_text">PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a four, six or eight-digit personal identification number (PIN).</string>
     <string name="app_components_pinCodeInput_length_tech" translatable="false">Length</string>
+    <string name="app_components_pinCodeInput_hiddenCharacters_tech" translatable="false">Hidden characters</string>
     <string name="app_components_pinCodeInput_annotatedErrorMessage_text"><![CDATA[<b>Verification failed</b>. Check and enter the correct code.]]></string>
     <string name="app_components_pinCodeInput_annotatedHelperText_text"><![CDATA[Enter the <b>one-time code</b> sent to your device.]]></string>
 

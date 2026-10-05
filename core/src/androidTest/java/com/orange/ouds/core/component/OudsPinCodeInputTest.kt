@@ -357,4 +357,59 @@ internal class OudsPinCodeInputTest {
             onNodeWithText(OudsDigitInputPlaceholder.toString()).assertIsNotDisplayed()
         }
     }
+
+    @Test
+    fun oudsPinCodeInput_hiddenCharactersFalse_displaysVisibleDigits() {
+        with(composeTestRule) {
+            var value by mutableStateOf("")
+
+            setOudsContent {
+                OudsPinCodeInput(
+                    value = value,
+                    onValueChange = { value = it },
+                    length = OudsPinCodeInputLength.Six,
+                    hiddenCharacters = false
+                )
+            }
+
+            onNodeWithText(value).performClick()
+            onNodeWithText(value).performTextInput("123")
+            waitForIdle()
+
+            // Entered digits should be visible, not obfuscated
+            onNodeWithText("1").assertIsDisplayed()
+            onNodeWithText("2").assertIsDisplayed()
+            onNodeWithText("3").assertIsDisplayed()
+            // No obfuscation characters should be present
+            onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertDoesNotExist()
+        }
+    }
+
+    @Test
+    fun oudsPinCodeInput_hiddenCharactersTrue_displaysObfuscatedDigits() {
+        with(composeTestRule) {
+            var value by mutableStateOf("")
+
+            setOudsContent {
+                OudsPinCodeInput(
+                    value = value,
+                    onValueChange = { value = it },
+                    length = OudsPinCodeInputLength.Four,
+                    hiddenCharacters = true
+                )
+            }
+
+            onNodeWithText(value).performClick()
+            onNodeWithText(value).performTextInput("1234")
+            waitForIdle()
+
+            // All digits should be obfuscated (default behavior)
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
+            // Individual digits should not be visible
+            onNodeWithText("1").assertDoesNotExist()
+            onNodeWithText("2").assertDoesNotExist()
+            onNodeWithText("3").assertDoesNotExist()
+            onNodeWithText("4").assertDoesNotExist()
+        }
+    }
 }

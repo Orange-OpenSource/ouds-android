@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
@@ -64,6 +65,7 @@ internal fun OudsDigitInput(
     outlined: Boolean = false,
     error: Boolean = false,
     placeholder: Boolean = true,
+    hiddenDigit: Boolean = true,
     smallDeviceSpecificRules: Boolean = false
 ) {
     @Suppress("NAME_SHADOWING") val state = getPreviewEnumEntry<OudsDigitInputState>().orElse { state }
@@ -115,7 +117,8 @@ internal fun OudsDigitInput(
             horizontalArrangement = Arrangement.Center
         ) {
             val text = when {
-                digit?.isDigit() == true -> OudsPasswordInputTextObfuscationCharacter.toString()
+                digit?.isDigit() == true && hiddenDigit -> OudsPasswordInputTextObfuscationCharacter.toString()
+                digit?.isDigit() == true && !hiddenDigit -> digit.toString()
                 placeholder && state != OudsDigitInputState.Focused -> OudsDigitInputPlaceholder.toString()
                 else -> ""
             }
@@ -231,7 +234,7 @@ internal enum class OudsDigitInputState {
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInput(@PreviewParameter(OudsDigitInputPreviewParameterProvider::class) parameter: OudsDigitInputPreviewParameter) = OudsPreview {
-    PreviewOudsDigitInput(theme = getPreviewTheme(), darkThemeEnabled = false, parameter = parameter)
+    PreviewOudsDigitInput(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
 @Composable
@@ -246,7 +249,8 @@ internal fun PreviewOudsDigitInput(
                 digit = digit,
                 onClick = {},
                 outlined = outlined,
-                error = error
+                error = error,
+                hiddenDigit = hiddenDigit
             )
         }
     }
@@ -255,7 +259,8 @@ internal fun PreviewOudsDigitInput(
 internal data class OudsDigitInputPreviewParameter(
     val digit: Char? = null,
     val outlined: Boolean = false,
-    val error: Boolean = false
+    val error: Boolean = false,
+    val hiddenDigit: Boolean = true
 )
 
 internal class OudsDigitInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsDigitInputPreviewParameter>(*previewParameterValues.toTypedArray())
@@ -265,8 +270,12 @@ private val previewParameterValues: List<OudsDigitInputPreviewParameter>
         return listOf(
             OudsDigitInputPreviewParameter(),
             OudsDigitInputPreviewParameter(digit = '1'),
-            OudsDigitInputPreviewParameter(digit = '1', error = true)
-        ).flatMap { listOf(it, it.copy(outlined = true)) }
+            OudsDigitInputPreviewParameter(digit = '1', outlined = true),
+            OudsDigitInputPreviewParameter(digit = '1', hiddenDigit = false),
+            OudsDigitInputPreviewParameter(digit = '1', error = true),
+            OudsDigitInputPreviewParameter(digit = '1', error = true, outlined = true),
+            OudsDigitInputPreviewParameter(digit = '1', error = true, hiddenDigit = false)
+        )
     }
 
 @Preview(name = "Light", device = OudsPreviewDevice)
