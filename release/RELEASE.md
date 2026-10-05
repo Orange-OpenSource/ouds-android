@@ -20,6 +20,7 @@ This file lists all the steps to follow when releasing a new version of OUDS And
 
   This task finds the next semantic version based on conventional commits and performs the following changes to the project:
 
+    - Update `@IntroducedAt` annotations from `@IntroducedAt("A.B.C-Unreleased")` to `@IntroducedAt("X.Y.Z")`.
     - Update `version` project property in `gradle.properties`.
     - Update version of OUDS Android dependencies in various Markdown files.
     - Increment the app `versionCode` in associated `build.gradle.kts` file.

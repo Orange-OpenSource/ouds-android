@@ -317,12 +317,12 @@ data class OudsSizes internal constructor(
     @ConsistentCopyVisibility
     data class MaxWidth internal constructor(
         val body: Body,
-        val boxedText: Dp,
         val display: Display,
         val heading: Heading,
         val label: Label,
         @Deprecated("This token level will be removed in the next major version. Please use 'body', 'display', 'heading' or 'label' directly in the token hierarchy.")
-        val type: Type
+        val type: Type,
+        val boxedText: Dp
     ) {
         /**
          * Max widths for body text contexts.

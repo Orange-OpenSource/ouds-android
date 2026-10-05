@@ -1,0 +1,187 @@
+public abstract interface class com/orange/ouds/theme/orange/OrangeBundledFontFamily {
+	public abstract fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+}
+
+public abstract interface class com/orange/ouds/theme/orange/OrangeDownloadableFontFamily {
+}
+
+public final class com/orange/ouds/theme/orange/OrangeFontFamily {
+	public static final field $stable I
+	public static final field Companion Lcom/orange/ouds/theme/orange/OrangeFontFamily$Companion;
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueArabic;)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueLatin;)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueLatin;Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueArabic;)V
+	public final fun getArabic ()Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueArabic;
+	public final fun getLatin ()Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueLatin;
+}
+
+public final class com/orange/ouds/theme/orange/OrangeFontFamily$Companion {
+	public final fun preloadDownloadableFontFamilies (Landroid/content/Context;Ljava/util/List;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class com/orange/ouds/theme/orange/OrangeFontProvider : android/content/ContentProvider {
+	public static final field $stable I
+	public static final field AUTHORITY Ljava/lang/String;
+	public static final field Companion Lcom/orange/ouds/theme/orange/OrangeFontProvider$Companion;
+	public fun <init> ()V
+	public fun delete (Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I
+	public fun getType (Landroid/net/Uri;)Ljava/lang/String;
+	public fun insert (Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;
+	public fun onCreate ()Z
+	public fun openFile (Landroid/net/Uri;Ljava/lang/String;)Landroid/os/ParcelFileDescriptor;
+	public fun query (Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+	public fun query (Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/database/Cursor;
+	public fun update (Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+}
+
+public final class com/orange/ouds/theme/orange/OrangeFontProvider$Companion {
+}
+
+public abstract class com/orange/ouds/theme/orange/OrangeHelveticaNeueArabic {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/theme/orange/OrangeHelveticaNeueArabic$Bundled : com/orange/ouds/theme/orange/OrangeHelveticaNeueArabic, com/orange/ouds/theme/orange/OrangeBundledFontFamily {
+	public static final field $stable I
+	public fun <init> (III)V
+	public fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+}
+
+public final class com/orange/ouds/theme/orange/OrangeHelveticaNeueArabic$Downloadable : com/orange/ouds/theme/orange/OrangeHelveticaNeueArabic, com/orange/ouds/theme/orange/OrangeDownloadableFontFamily {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueArabic$Downloadable;
+}
+
+public abstract class com/orange/ouds/theme/orange/OrangeHelveticaNeueLatin {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/theme/orange/OrangeHelveticaNeueLatin$Bundled : com/orange/ouds/theme/orange/OrangeHelveticaNeueLatin, com/orange/ouds/theme/orange/OrangeBundledFontFamily {
+	public static final field $stable I
+	public fun <init> (III)V
+	public fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+}
+
+public final class com/orange/ouds/theme/orange/OrangeHelveticaNeueLatin$Downloadable : com/orange/ouds/theme/orange/OrangeHelveticaNeueLatin, com/orange/ouds/theme/orange/OrangeDownloadableFontFamily {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/theme/orange/OrangeHelveticaNeueLatin$Downloadable;
+}
+
+public class com/orange/ouds/theme/orange/OrangeTheme : com/orange/ouds/theme/OudsThemeContract {
+	public static final field $stable I
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;Z)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (ZZ)V
+	public synthetic fun <init> (ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
+	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
+	public fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
+	public fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
+	public fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;
+	public fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+	public fun getFontFamily (Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
+	public fun getFontTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsFontSemanticTokens;
+	public fun getGridTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsGridSemanticTokens;
+	public fun getMaterialColorTokens ()Lcom/orange/ouds/theme/tokens/material/OudsMaterialColorTokens;
+	public fun getName ()Ljava/lang/String;
+	public fun getOpacityTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsOpacitySemanticTokens;
+	public fun getSettings ()Lcom/orange/ouds/theme/OudsThemeSettings;
+	public fun getSizeTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSizeSemanticTokens;
+	public fun getSpaceTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSpaceSemanticTokens;
+}
+
+public final class com/orange/ouds/theme/orange/OrangeThemeKt {
+	public static final field ORANGE_THEME_NAME Ljava/lang/String;
+}
+
+public final class com/orange/ouds/theme/orange/tokens/raw/OrangeColorRawTokens {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/theme/orange/tokens/raw/OrangeColorRawTokens;
+	public final fun getColorDecorativeAmber100-0d7_KjU ()J
+	public final fun getColorDecorativeAmber200-0d7_KjU ()J
+	public final fun getColorDecorativeAmber300-0d7_KjU ()J
+	public final fun getColorDecorativeAmber400-0d7_KjU ()J
+	public final fun getColorDecorativeAmber500-0d7_KjU ()J
+	public final fun getColorDecorativeAmber600-0d7_KjU ()J
+	public final fun getColorDecorativeAmber700-0d7_KjU ()J
+	public final fun getColorDecorativeAmber800-0d7_KjU ()J
+	public final fun getColorDecorativeAmber900-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst100-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst200-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst300-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst400-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst500-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst600-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst700-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst800-0d7_KjU ()J
+	public final fun getColorDecorativeAmethyst900-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach100-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach200-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach300-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach400-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach500-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach600-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach700-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach800-0d7_KjU ()J
+	public final fun getColorDecorativeDeepPeach900-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald100-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald200-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald300-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald400-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald500-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald600-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald700-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald800-0d7_KjU ()J
+	public final fun getColorDecorativeEmerald900-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink100-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink200-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink300-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink400-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink500-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink600-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink700-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink800-0d7_KjU ()J
+	public final fun getColorDecorativeShockingPink900-0d7_KjU ()J
+	public final fun getColorDecorativeSky100-0d7_KjU ()J
+	public final fun getColorDecorativeSky200-0d7_KjU ()J
+	public final fun getColorDecorativeSky300-0d7_KjU ()J
+	public final fun getColorDecorativeSky400-0d7_KjU ()J
+	public final fun getColorDecorativeSky500-0d7_KjU ()J
+	public final fun getColorDecorativeSky600-0d7_KjU ()J
+	public final fun getColorDecorativeSky700-0d7_KjU ()J
+	public final fun getColorDecorativeSky800-0d7_KjU ()J
+	public final fun getColorDecorativeSky900-0d7_KjU ()J
+	public final fun getColorOpacityWarmGray400-0d7_KjU ()J
+	public final fun getColorOpacityWarmGray80-0d7_KjU ()J
+	public final fun getColorOrange100-0d7_KjU ()J
+	public final fun getColorOrange200-0d7_KjU ()J
+	public final fun getColorOrange300-0d7_KjU ()J
+	public final fun getColorOrange400-0d7_KjU ()J
+	public final fun getColorOrange50-0d7_KjU ()J
+	public final fun getColorOrange500-0d7_KjU ()J
+	public final fun getColorOrange550-0d7_KjU ()J
+	public final fun getColorOrange600-0d7_KjU ()J
+	public final fun getColorOrange700-0d7_KjU ()J
+	public final fun getColorOrange800-0d7_KjU ()J
+	public final fun getColorOrange900-0d7_KjU ()J
+	public final fun getColorWarmGray100-0d7_KjU ()J
+	public final fun getColorWarmGray1000-0d7_KjU ()J
+	public final fun getColorWarmGray200-0d7_KjU ()J
+	public final fun getColorWarmGray300-0d7_KjU ()J
+	public final fun getColorWarmGray400-0d7_KjU ()J
+	public final fun getColorWarmGray500-0d7_KjU ()J
+	public final fun getColorWarmGray600-0d7_KjU ()J
+	public final fun getColorWarmGray700-0d7_KjU ()J
+	public final fun getColorWarmGray800-0d7_KjU ()J
+	public final fun getColorWarmGray900-0d7_KjU ()J
+}
+

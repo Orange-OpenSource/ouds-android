@@ -57,8 +57,8 @@ class OudsChipIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(painter: Painter, contentDescription: String, tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(painter: Painter, contentDescription: String, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(painter as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsChipIcon].
@@ -69,8 +69,12 @@ class OudsChipIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(imageVector: ImageVector, contentDescription: String, tinted: Boolean = true) : this(imageVector as Any, contentDescription, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(
+        imageVector: ImageVector,
+        contentDescription: String,
+        @IntroducedAt("1.6.0") tinted: Boolean = true
+    ) : this(imageVector as Any, contentDescription, tinted)
 
     /**
      * Creates an instance of [OudsChipIcon].
@@ -81,8 +85,12 @@ class OudsChipIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(bitmap: ImageBitmap, contentDescription: String, tinted: Boolean = true) : this(bitmap as Any, contentDescription, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(
+        bitmap: ImageBitmap,
+        contentDescription: String,
+        @IntroducedAt("1.6.0") tinted: Boolean = true
+    ) : this(bitmap as Any, contentDescription, tinted)
 
     override val tint: Color?
         @Composable

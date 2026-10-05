@@ -1,0 +1,118 @@
+public abstract interface class com/orange/ouds/theme/OudsThemeContract {
+	public abstract fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
+	public abstract fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
+	public abstract fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public abstract fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
+	public abstract fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
+	public abstract fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;
+	public fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+	public fun getFontFamily (Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
+	public abstract fun getFontTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsFontSemanticTokens;
+	public abstract fun getGridTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsGridSemanticTokens;
+	public abstract fun getMaterialColorTokens ()Lcom/orange/ouds/theme/tokens/material/OudsMaterialColorTokens;
+	public abstract fun getName ()Ljava/lang/String;
+	public abstract fun getOpacityTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsOpacitySemanticTokens;
+	public abstract fun getSettings ()Lcom/orange/ouds/theme/OudsThemeSettings;
+	public abstract fun getSizeTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSizeSemanticTokens;
+	public abstract fun getSpaceTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSpaceSemanticTokens;
+}
+
+public final class com/orange/ouds/theme/OudsThemeContract$DefaultImpls {
+	public static fun getFontFamily (Lcom/orange/ouds/theme/OudsThemeContract;)Landroidx/compose/ui/text/font/FontFamily;
+	public static fun getFontFamily (Lcom/orange/ouds/theme/OudsThemeContract;Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
+}
+
+public final class com/orange/ouds/theme/OudsThemeSettings : android/os/Parcelable {
+	public static final field $stable I
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
+	public fun <init> ()V
+	public synthetic fun <init> (Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun component4 ()Ljava/lang/Boolean;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public static synthetic fun copy$default (Lcom/orange/ouds/theme/OudsThemeSettings;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public static synthetic fun copy$default (Lcom/orange/ouds/theme/OudsThemeSettings;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public static synthetic fun copy$default (Lcom/orange/ouds/theme/OudsThemeSettings;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public static synthetic fun copy$default (Lcom/orange/ouds/theme/OudsThemeSettings;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/orange/ouds/theme/OudsThemeSettings;
+	public final fun describeContents ()I
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRoundedCornerAlertMessages ()Ljava/lang/Boolean;
+	public final fun getRoundedCornerButtons ()Ljava/lang/Boolean;
+	public final fun getRoundedCornerCardItems ()Ljava/lang/Boolean;
+	public final fun getRoundedCornerProgressIndicators ()Ljava/lang/Boolean;
+	public final fun getRoundedCornerTextInputs ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public final fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public final class com/orange/ouds/theme/OudsVersion {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/theme/OudsVersion;
+}
+
+public final class com/orange/ouds/theme/OudsVersion$Component {
+	public static final field $stable I
+	public static final field AlertMessage Ljava/lang/String;
+	public static final field AppBar Ljava/lang/String;
+	public static final field Badge Ljava/lang/String;
+	public static final field BadgeCount Ljava/lang/String;
+	public static final field BadgeIcon Ljava/lang/String;
+	public static final field BottomSheet Ljava/lang/String;
+	public static final field BulletList Ljava/lang/String;
+	public static final field Button Ljava/lang/String;
+	public static final field Checkbox Ljava/lang/String;
+	public static final field CircularProgressIndicator Ljava/lang/String;
+	public static final field Divider Ljava/lang/String;
+	public static final field Fab Ljava/lang/String;
+	public static final field FilterChip Ljava/lang/String;
+	public static final field INSTANCE Lcom/orange/ouds/theme/OudsVersion$Component;
+	public static final field InlineAlert Ljava/lang/String;
+	public static final field InputTag Ljava/lang/String;
+	public static final field LinearProgressIndicator Ljava/lang/String;
+	public static final field Link Ljava/lang/String;
+	public static final field NavigationBar Ljava/lang/String;
+	public static final field NavigationButton Ljava/lang/String;
+	public static final field NavigationCardItem Ljava/lang/String;
+	public static final field NavigationListItem Ljava/lang/String;
+	public static final field PasswordInput Ljava/lang/String;
+	public static final field PinCodeInput Ljava/lang/String;
+	public static final field RadioButton Ljava/lang/String;
+	public static final field StaticCardItem Ljava/lang/String;
+	public static final field StaticListItem Ljava/lang/String;
+	public static final field SuggestionChip Ljava/lang/String;
+	public static final field Switch Ljava/lang/String;
+	public static final field Tag Ljava/lang/String;
+	public static final field TextArea Ljava/lang/String;
+	public static final field TextInput Ljava/lang/String;
+}
+
+public final class com/orange/ouds/theme/OudsVersion$Tokens {
+	public static final field $stable I
+	public static final field AndroidCore Ljava/lang/String;
+	public static final field AndroidSystem Ljava/lang/String;
+	public static final field INSTANCE Lcom/orange/ouds/theme/OudsVersion$Tokens;
+	public static final field OrangeBrand Ljava/lang/String;
+	public static final field OrangeCompactBrand Ljava/lang/String;
+	public static final field OrangeCore Ljava/lang/String;
+	public static final field OudsCore Ljava/lang/String;
+	public static final field SoshBrand Ljava/lang/String;
+	public static final field SoshCore Ljava/lang/String;
+	public static final field WireframeBrand Ljava/lang/String;
+	public static final field WireframeCore Ljava/lang/String;
+}
+

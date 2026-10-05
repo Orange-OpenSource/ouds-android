@@ -31,21 +31,25 @@ interface OudsDrawableResources {
     val component: Component
     val functional: Functional
 
+    @InternalOudsApi
     interface Communication {
         val accessibility: Accessibility
         val securityAndSafety: SecurityAndSafety
 
+        @InternalOudsApi
         interface Accessibility {
             @get:DrawableRes
             val vision: Int
         }
 
+        @InternalOudsApi
         interface SecurityAndSafety {
             @get:DrawableRes
             val lockClosed: Int
         }
     }
 
+    @InternalOudsApi
     interface Component {
         val alert: Alert
         val badgeIcon: BadgeIcon
@@ -59,6 +63,7 @@ interface OudsDrawableResources {
         val switch: Switch
         val tag: Tag
 
+        @InternalOudsApi
         interface Alert {
             @get:DrawableRes
             val importantFill: Int
@@ -76,6 +81,7 @@ interface OudsDrawableResources {
             val warningInternalShape: Int
         }
 
+        @InternalOudsApi
         interface BadgeIcon {
             @get:DrawableRes
             val errorFill: Int
@@ -93,6 +99,7 @@ interface OudsDrawableResources {
             val warningInternalShape: Int
         }
 
+        @InternalOudsApi
         interface BulletList {
             @get:DrawableRes
             val level0: Int
@@ -107,6 +114,7 @@ interface OudsDrawableResources {
             val tick: Int
         }
 
+        @InternalOudsApi
         interface Button {
             @get:DrawableRes
             val expurge: Int
@@ -118,6 +126,7 @@ interface OudsDrawableResources {
             val previous: Int
         }
 
+        @InternalOudsApi
         interface Checkbox {
             @get:DrawableRes
             val selected: Int
@@ -126,11 +135,13 @@ interface OudsDrawableResources {
             val undetermined: Int
         }
 
+        @InternalOudsApi
         interface Chip {
             @get:DrawableRes
             val tick: Int
         }
 
+        @InternalOudsApi
         interface Link {
             @get:DrawableRes
             val externalLink: Int
@@ -142,6 +153,7 @@ interface OudsDrawableResources {
             val previous: Int
         }
 
+        @InternalOudsApi
         interface ListItem {
             @get:DrawableRes
             val next: Int
@@ -150,28 +162,33 @@ interface OudsDrawableResources {
             val previous: Int
         }
 
+        @InternalOudsApi
         interface RadioButton {
             @get:DrawableRes
             val selected: Int
         }
 
+        @InternalOudsApi
         interface Switch {
             @get:DrawableRes
             val selected: Int
         }
 
+        @InternalOudsApi
         interface Tag {
             @get:DrawableRes
             val close: Int
         }
     }
 
+    @InternalOudsApi
     interface Functional {
         val actions: Actions
         val navigation: Navigation
         val settingsAndTools: SettingsAndTools
         val socialAndEngagement: SocialAndEngagement
 
+        @InternalOudsApi
         interface Actions {
             @get:DrawableRes
             val deleteCrossRound: Int
@@ -180,6 +197,7 @@ interface OudsDrawableResources {
             val externalLink: Int
         }
 
+        @InternalOudsApi
         interface Navigation {
             @get:DrawableRes
             val formChevronLeft: Int
@@ -188,11 +206,13 @@ interface OudsDrawableResources {
             val menuGridUiRound: Int
         }
 
+        @InternalOudsApi
         interface SettingsAndTools {
             @get:DrawableRes
             val accessibilityHide: Int
         }
 
+        @InternalOudsApi
         interface SocialAndEngagement {
             @get:DrawableRes
             val heartRecommend: Int
