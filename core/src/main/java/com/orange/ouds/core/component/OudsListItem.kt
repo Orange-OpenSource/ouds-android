@@ -507,19 +507,20 @@ internal fun OudsListItem(
         }
 
         Column(
-            modifier = modifier.sizeIn(minWidth = this.size.minWidth)
+            modifier = modifier.sizeIn(minHeight = minHeight(size), minWidth = this.size.minWidth)
         ) {
             Column(
                 modifier = clickableModifier
                     .fillMaxWidth()
-                    .heightIn(min = minHeight(size))
                     .background(color = backgroundColor.value, shape = shape)
                     .border(state = state, decoration = decoration, cornerRadius = borderRadius, outlineColor = outlineBorderColor.value)
                     .outerBorder(state = state, shape = shape)
                     .semantics(mergeDescendants = true) { },
             ) {
                 Row(
-                    modifier = Modifier.containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge),
+                    modifier = Modifier
+                        .heightIn(min = minHeight(size))
+                        .containerPadding(size = size, verticalAlignment = verticalAlignment, edgeToEdge = edgeToEdge),
                     horizontalArrangement = Arrangement.spacedBy(space.columnGap),
                     verticalAlignment = verticalAlignment(verticalAlignment)
                 ) {
