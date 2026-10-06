@@ -429,18 +429,15 @@ private fun OudsTextArea(
 
     val scrollState = rememberScrollState()
 
-    OudsTextInput(
-        modifier = modifier,
+    CheckedTextInput(
+        componentName = "OudsTextArea",
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        helperText = helperText,
-        annotatedHelperText = annotatedHelperText,
-        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = Modifier.textInputSemantic(label),
+                modifier = modifier.textInputSemantic(label),
                 state = textFieldState,
                 enabled = textInputEnabled(state = state),
                 readOnly = readOnly,
@@ -464,6 +461,8 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
+                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth,
                         scrollState = scrollState,
                     )
@@ -807,18 +806,15 @@ private fun OudsTextArea(
 
     val emptyText = value.isEmpty()
 
-    OudsTextInput(
-        modifier = modifier,
+    CheckedTextInput(
+        componentName = "OudsTextArea",
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        helperText = helperText,
-        annotatedHelperText = annotatedHelperText,
-        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = Modifier.textInputSemantic(label),
+                modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -843,6 +839,8 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
+                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth
                     )
                 }
@@ -1183,18 +1181,15 @@ private fun OudsTextArea(
 
     val emptyText = value.text.isEmpty()
 
-    OudsTextInput(
-        modifier = modifier,
+    CheckedTextInput(
+        componentName = "OudsTextArea",
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
         error = error,
-        helperText = helperText,
-        annotatedHelperText = annotatedHelperText,
-        helperLink = helperLink,
         basicTextField = {
             BasicTextField(
-                modifier = Modifier.textInputSemantic(label),
+                modifier = modifier.textInputSemantic(label),
                 value = value,
                 onValueChange = onValueChange,
                 enabled = textInputEnabled(state = state),
@@ -1219,6 +1214,8 @@ private fun OudsTextArea(
                         outlined = outlined,
                         error = error,
                         helperText = helperText,
+                        annotatedHelperText = annotatedHelperText,
+                        helperLink = helperLink,
                         constrainedMaxWidth = constrainedMaxWidth,
                     )
                 }
@@ -1257,6 +1254,8 @@ internal fun OudsTextAreaDecorator(
     outlined: Boolean,
     error: OudsError?,
     helperText: String?,
+    annotatedHelperText: OudsAnnotatedHelperText?,
+    helperLink: OudsTextInputHelperLink?,
     constrainedMaxWidth: Boolean,
     scrollState: ScrollState = rememberScrollState(),
 ) {
@@ -1348,6 +1347,15 @@ internal fun OudsTextAreaDecorator(
                     }
                 }
             }
+
+            OudsTextInputBottomContent(
+                modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
+                state = state,
+                error = error,
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText,
+                helperLink = helperLink
+            )
         }
     }
 }
