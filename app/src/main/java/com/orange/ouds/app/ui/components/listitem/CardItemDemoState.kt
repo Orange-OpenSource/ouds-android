@@ -41,6 +41,7 @@ fun rememberCardItemDemoState(
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
+    belowTextContent: Boolean = false,
     leading: BaseListItemDemoState.Leading = BaseListItemDemoState.Leading.None,
     leadingIconSize: OudsListItemIconSize = OudsListItemDefaults.IconSize,
     leadingIconTint: BaseListItemDemoState.IconTint = BaseListItemDemoState.IconTint.Tinted,
@@ -58,9 +59,11 @@ fun rememberCardItemDemoState(
     trailingTextLabel: String = stringResource(id = R.string.app_components_common_label_label),
     trailingTextExtraLabel: String? = null,
     trailingTextStyle: OudsListItemTextStyle = OudsListItemTextStyle.Label,
+    bottomContent: Boolean = false,
     divider: Boolean = true,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    labelContent: Boolean = false,
     enabled: Boolean = true
 ): CardItemDemoState {
     val state = rememberSaveable(
@@ -74,6 +77,7 @@ fun rememberCardItemDemoState(
         overline,
         extraLabel,
         description,
+        belowTextContent,
         leading,
         leadingIconSize,
         leadingIconTint,
@@ -91,9 +95,11 @@ fun rememberCardItemDemoState(
         trailingTextLabel,
         trailingTextExtraLabel,
         trailingTextStyle,
+        bottomContent,
         divider,
         helperText,
         boldLabel,
+        labelContent,
         enabled,
         saver = CardItemDemoState.Saver
     ) {
@@ -108,6 +114,7 @@ fun rememberCardItemDemoState(
             overline,
             extraLabel,
             description,
+            belowTextContent,
             leading,
             leadingIconSize,
             leadingIconTint,
@@ -125,9 +132,11 @@ fun rememberCardItemDemoState(
             trailingTextLabel,
             trailingTextExtraLabel,
             trailingTextStyle,
+            bottomContent,
             divider,
             helperText,
             boldLabel,
+            labelContent,
             enabled,
         )
     }
@@ -150,6 +159,7 @@ class CardItemDemoState(
     overline: String?,
     extraLabel: String?,
     description: String?,
+    belowTextContent: Boolean,
     leading: Leading,
     leadingIconSize: OudsListItemIconSize,
     leadingIconTint: IconTint,
@@ -167,9 +177,11 @@ class CardItemDemoState(
     trailingTextLabel: String,
     trailingTextExtraLabel: String?,
     trailingTextStyle: OudsListItemTextStyle,
+    bottomContent: Boolean,
     divider: Boolean,
     helperText: String?,
     boldLabel: Boolean,
+    labelContent: Boolean,
     enabled: Boolean,
 ) : BaseListItemDemoState(
     size,
@@ -181,6 +193,7 @@ class CardItemDemoState(
     overline,
     extraLabel,
     description,
+    belowTextContent,
     leading,
     leadingIconSize,
     leadingIconTint,
@@ -198,9 +211,11 @@ class CardItemDemoState(
     trailingTextLabel,
     trailingTextExtraLabel,
     trailingTextStyle,
+    bottomContent,
     divider,
     helperText,
     boldLabel,
+    labelContent,
     enabled
 ) {
     companion object {
@@ -228,6 +243,7 @@ class CardItemDemoState(
                         overline,
                         extraLabel,
                         description,
+                        belowTextContent,
                         leading,
                         leadingIconSize,
                         leadingIconTint,
@@ -245,9 +261,11 @@ class CardItemDemoState(
                         trailingTextLabel,
                         trailingTextExtraLabel,
                         trailingTextStyle,
+                        bottomContent,
                         divider,
                         helperText,
                         boldLabel,
+                        labelContent,
                         enabled
                     )
                 }
