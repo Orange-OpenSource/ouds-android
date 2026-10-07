@@ -14,6 +14,7 @@ package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -59,6 +60,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -1247,10 +1249,10 @@ private fun PreviewOudsTopAppBarBackgrounds() = PreviewOudsTopAppBarBackgrounds(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun PreviewOudsTopAppBarBackgrounds(theme: OudsThemeContract) = OudsPreview(theme = theme) {
-    Column(modifier = Modifier.background(OudsTheme.colorScheme.surface.status.warning.emphasized)) {
-        OudsTopAppBarBackground.entries.forEach { background ->
+    PreviewEnumEntries<OudsTopAppBarBackground>(maxEnumEntriesInEachRow = 1) { background ->
+        Box(modifier = Modifier.background(OudsTheme.colorScheme.surface.status.warning.emphasized)) {
             OudsTopAppBar(
-                title = background.name,
+                title = "Title",
                 background = background,
                 navigationIcon = OudsTopAppBarNavigationIcon.Back(onClick = {}),
                 actions = listOf(OudsTopAppBarAction.Icon(imageVector = Icons.Outlined.FavoriteBorder, contentDescription = "", onClick = {}))
