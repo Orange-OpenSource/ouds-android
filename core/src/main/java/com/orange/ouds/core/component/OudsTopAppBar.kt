@@ -226,7 +226,7 @@ fun OudsTopAppBar(
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @Deprecated(
-    message = "Use OudsTopAppBar with background parameter instead",
+    message = "Use OudsTopAppBar with background parameter instead.",
     replaceWith = ReplaceWith(
         "OudsTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
                 "navigationIcon = navigationIcon, actions = actions, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
@@ -393,7 +393,7 @@ fun OudsCenterAlignedTopAppBar(
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @Deprecated(
-    message = "Use OudsCenterAlignedTopAppBar with background parameter instead",
+    message = "Use OudsCenterAlignedTopAppBar with background parameter instead.",
     replaceWith = ReplaceWith(
         "OudsCenterAlignedTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
                 "navigationIcon = navigationIcon, actions = actions, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
@@ -582,7 +582,7 @@ fun OudsMediumTopAppBar(
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @Deprecated(
-    message = "Use OudsMediumTopAppBar with background parameter instead",
+    message = "Use OudsMediumTopAppBar with background parameter instead.",
     replaceWith = ReplaceWith(
         "OudsMediumTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
                 "navigationIcon = navigationIcon, actions = actions, collapsedHeight = collapsedHeight, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
@@ -773,7 +773,7 @@ fun OudsLargeTopAppBar(
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
 @Deprecated(
-    message = "Use OudsLargeTopAppBar with background parameter instead",
+    message = "Use OudsLargeTopAppBar with background parameter instead.",
     replaceWith = ReplaceWith(
         "OudsLargeTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
                 "navigationItem = navigationIcon, actions = actions, collapsedHeight = collapsedHeight, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
