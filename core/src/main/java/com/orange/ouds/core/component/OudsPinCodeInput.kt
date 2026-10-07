@@ -33,6 +33,7 @@ import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.forEachChangeReversed
 import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.toTextFieldBuffer
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.RichTooltip
@@ -85,6 +86,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import kotlinx.coroutines.launch
+import kotlin.math.max
 
 /**
  * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a
@@ -242,11 +244,21 @@ private fun OudsPinCodeInput(
         initialSelection = TextRange((value.length + 1).coerceIn(0, length.value))
     )
 
-    if (paddedValue != textFieldState.text) {
-        textFieldState.edit {
-            val cursorPosition = selection.end.coerceIn(0, length.value)
+    // Check what the new value would look like in the text field after the input transformation
+    val textFieldBuffer = textFieldState.toTextFieldBuffer()
+    with(inputTransformation(length)) {
+        textFieldBuffer.apply {
             delete(0, this.length)
             append(paddedValue)
+            transformInput()
+        }
+    }
+    val newValue = textFieldBuffer.asCharSequence().toString()
+    if (newValue != textFieldState.text) {
+        textFieldState.edit {
+            val cursorPosition = selection.end.coerceIn(0, newValue.length)
+            delete(0, this.length)
+            append(newValue)
             // Set the cursor to its position before the text replacement
             placeCursorBeforeCharAt(cursorPosition)
         }
@@ -334,7 +346,8 @@ private fun OudsPinCodeInputTooltipBox(textFieldState: TextFieldState, length: O
                                     if (clipData.itemCount > 0) {
                                         val text = clipData.getItemAt(0).text.toString()
                                         textFieldState.edit {
-                                            insert(selection.min, text)
+                                            delete(0, this.length)
+                                            append(text)
                                             with(inputTransformation(length)) {
                                                 transformInput()
                                             }
@@ -399,7 +412,21 @@ private fun OudsPinCodeInputDecorator(
                         digit = textFieldState.text.getOrNull(index),
                         onClick = {
                             onDigitClick(index)
-                            textFieldState.edit { placeCursorAfterCharAt(index) }
+                            textFieldState.edit {
+                                when (this.length) {
+                                    // Text field is empty and first digit is selected
+                                    // The PIN code value is an empty string to make autofill work properly
+                                    0 if index == 0 -> placeCursorBeforeCharAt(0)
+                                    // Text field is empty and a digit other than the first one is selected
+                                    // Fill the PIN code value with placeholder characters in case it was empty
+                                    0 -> {
+                                        append(OudsDigitInputPlaceholder.toString().repeat(length.value))
+                                        placeCursorAfterCharAt(index)
+                                    }
+                                    // Text field is not empty
+                                    else -> placeCursorAfterCharAt(index)
+                                }
+                            }
                         },
                         state = digitInputState,
                         outlined = outlined,
@@ -441,17 +468,22 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
             // Text is inserted with either keyboard inputs or pasting from the clipboard
             if (range.length > 0) {
                 val pasting = range.length > 1
-                val baseText = if (pasting) OudsDigitInputPlaceholder.toString().repeat(length.value) else originalText.toString()
+                val baseText = if (pasting) {
+                    OudsDigitInputPlaceholder.toString().repeat(length.value)
+                } else {
+                    // Pad end with placeholder chars in case the string was empty
+                    originalText.toString().padEnd(max(0, length.value - originalText.length), OudsDigitInputPlaceholder)
+                }
                 // Retrieve added text
-                val addedText = asCharSequence().substring(range).filter { it.isDigit() }
+                val addedText = asCharSequence().substring(range).filter { it.isDigit() || it == OudsDigitInputPlaceholder }
                 // Roll back to the original text or placeholders if pasting
                 delete(0, this.length)
                 insert(0, baseText)
                 // Replace the base text with the added text
                 // When pasting (i.e. range.length > 1), the base text is replaced from the start
-                val start = if (pasting) 0 else range.min - 1
+                val start = if (pasting) 0 else (range.min - 1).coerceIn(0, length.value)
                 val end = start + addedText.length
-                replace(start.coerceIn(0, length.value), end.coerceIn(0, length.value), addedText)
+                replace(start, end.coerceIn(0, length.value), addedText)
                 placeCursorAfterCharAt(end.coerceIn(0, length.value - 1))
             }
             // Text is deleted with the keyboard backspace key
@@ -468,6 +500,11 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
                     replace(range.start - 1, range.start, OudsDigitInputPlaceholder.toString())
                     placeCursorAfterCharAt(range.start - 1)
                 }
+            }
+            // PIN code contains only placeholder chars and first digit is focused
+            // In that case, set an empty string into the text field to make autofill work properly
+            if (asCharSequence().toString() == OudsDigitInputPlaceholder.toString().repeat(length.value) && originalSelection.end <= 1) {
+                delete(0, length.value)
             }
         }
     }
