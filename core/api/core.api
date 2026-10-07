@@ -120,7 +120,12 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsListI
 	public final fun getLambda$-1211787922$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-166788784$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$-1743612821$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1827891413$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-771530865$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-905389818$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1780285529$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$340508819$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$474395495$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsModalBottomSheetKt {
@@ -577,8 +582,12 @@ public final class com/orange/ouds/core/component/OudsCardItemDefaults {
 }
 
 public final class com/orange/ouds/core/component/OudsCardItemKt {
+	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsCheckboxItemKt {
@@ -998,6 +1007,14 @@ public final class com/orange/ouds/core/component/OudsLinkSize : java/lang/Enum 
 	public static fun values ()[Lcom/orange/ouds/core/component/OudsLinkSize;
 }
 
+public class com/orange/ouds/core/component/OudsListItemBadge : com/orange/ouds/core/component/content/OudsComponentContent, com/orange/ouds/core/component/OudsListItemLeadingTrailing$Badge {
+	public static final field $stable I
+}
+
+public class com/orange/ouds/core/component/OudsListItemContent : com/orange/ouds/core/component/content/OudsComponentContent, com/orange/ouds/core/component/OudsListItemLeadingTrailing$Content {
+	public static final field $stable I
+}
+
 public abstract class com/orange/ouds/core/component/OudsListItemDecoration {
 	public static final field $stable I
 	public synthetic fun <init> (ZLkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -1093,11 +1110,20 @@ public final class com/orange/ouds/core/component/OudsListItemIndicator$Previous
 }
 
 public final class com/orange/ouds/core/component/OudsListItemKt {
+	public static final fun OudsListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsListItem (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsListItem (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsListItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsListItem (Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZLkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 }
 
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeading : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
+}
+
+public final class com/orange/ouds/core/component/OudsListItemLeading$Content : com/orange/ouds/core/component/OudsListItemContent, com/orange/ouds/core/component/OudsListItemLeading {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function3;)V
 }
 
 public class com/orange/ouds/core/component/OudsListItemLeading$Icon : com/orange/ouds/core/component/OudsListItemIcon, com/orange/ouds/core/component/OudsListItemLeading {
@@ -1152,6 +1178,26 @@ public final class com/orange/ouds/core/component/OudsListItemLeading$Image : co
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing : com/orange/ouds/core/component/content/OudsPolymorphicComponentContent {
 }
 
+public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Badge : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
+}
+
+public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Badge$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+	public static final field $stable I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Content : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
+}
+
+public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Content$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+	public static final field $stable I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Icon : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
 }
 
@@ -1166,6 +1212,16 @@ public abstract interface class com/orange/ouds/core/component/OudsListItemLeadi
 	public abstract fun getRatio ()Lcom/orange/ouds/core/component/OudsListItemImageRatio;
 }
 
+public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Tag : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
+}
+
+public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Tag$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+	public static final field $stable I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Text : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
 }
 
@@ -1174,6 +1230,27 @@ public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Te
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/component/OudsListItemScope {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getState ()Lcom/orange/ouds/core/component/OudsListItemState;
+}
+
+public final class com/orange/ouds/core/component/OudsListItemState : java/lang/Enum {
+	public static final field Disabled Lcom/orange/ouds/core/component/OudsListItemState;
+	public static final field Enabled Lcom/orange/ouds/core/component/OudsListItemState;
+	public static final field Focused Lcom/orange/ouds/core/component/OudsListItemState;
+	public static final field Hovered Lcom/orange/ouds/core/component/OudsListItemState;
+	public static final field Pressed Lcom/orange/ouds/core/component/OudsListItemState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsListItemState;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsListItemState;
+}
+
+public class com/orange/ouds/core/component/OudsListItemTag : com/orange/ouds/core/component/content/OudsComponentContent, com/orange/ouds/core/component/OudsListItemLeadingTrailing$Tag {
+	public static final field $stable I
 }
 
 public class com/orange/ouds/core/component/OudsListItemText : com/orange/ouds/core/component/content/OudsComponentContent, com/orange/ouds/core/component/OudsListItemLeadingTrailing$Text {
@@ -1190,6 +1267,18 @@ public final class com/orange/ouds/core/component/OudsListItemTextStyle : java/l
 }
 
 public abstract interface class com/orange/ouds/core/component/OudsListItemTrailing : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
+}
+
+public final class com/orange/ouds/core/component/OudsListItemTrailing$Badge : com/orange/ouds/core/component/OudsListItemBadge, com/orange/ouds/core/component/OudsListItemTrailing {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Integer;Lcom/orange/ouds/core/component/OudsBadgeStatus;Lcom/orange/ouds/core/component/OudsBadgeSize;Z)V
+	public synthetic fun <init> (Ljava/lang/Integer;Lcom/orange/ouds/core/component/OudsBadgeStatus;Lcom/orange/ouds/core/component/OudsBadgeSize;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/orange/ouds/core/component/OudsListItemTrailing$Content : com/orange/ouds/core/component/OudsListItemContent, com/orange/ouds/core/component/OudsListItemTrailing {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function3;)V
 }
 
 public class com/orange/ouds/core/component/OudsListItemTrailing$Icon : com/orange/ouds/core/component/OudsListItemIcon, com/orange/ouds/core/component/OudsListItemTrailing {
@@ -1239,6 +1328,12 @@ public final class com/orange/ouds/core/component/OudsListItemTrailing$Image : c
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemImageSize;Lcom/orange/ouds/core/component/OudsListItemImageRatio;Landroidx/compose/ui/layout/ContentScale;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemImageSize;Lcom/orange/ouds/core/component/OudsListItemImageRatio;Landroidx/compose/ui/layout/ContentScale;Z)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemImageSize;Lcom/orange/ouds/core/component/OudsListItemImageRatio;Landroidx/compose/ui/layout/ContentScale;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/orange/ouds/core/component/OudsListItemTrailing$Tag : com/orange/ouds/core/component/OudsListItemTag, com/orange/ouds/core/component/OudsListItemTrailing {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/orange/ouds/core/component/OudsListItemTrailing$Text : com/orange/ouds/core/component/OudsListItemText, com/orange/ouds/core/component/OudsListItemTrailing {
@@ -1510,6 +1605,13 @@ public final class com/orange/ouds/core/component/OudsSmallListItemLeading$Image
 public abstract interface class com/orange/ouds/core/component/OudsSmallListItemTrailing : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
 }
 
+public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Badge : com/orange/ouds/core/component/OudsListItemBadge, com/orange/ouds/core/component/OudsSmallListItemTrailing {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Integer;Lcom/orange/ouds/core/component/OudsBadgeStatus;Lcom/orange/ouds/core/component/OudsBadgeSize;Z)V
+	public synthetic fun <init> (Ljava/lang/Integer;Lcom/orange/ouds/core/component/OudsBadgeStatus;Lcom/orange/ouds/core/component/OudsBadgeSize;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
 public class com/orange/ouds/core/component/OudsSmallListItemTrailing$Icon : com/orange/ouds/core/component/OudsListItemIcon, com/orange/ouds/core/component/OudsSmallListItemTrailing {
 	public static final field $stable I
 	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;Z)V
@@ -1549,6 +1651,12 @@ public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Imag
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemImageRatio;Landroidx/compose/ui/layout/ContentScale;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemImageRatio;Landroidx/compose/ui/layout/ContentScale;Z)V
 	public synthetic fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemImageRatio;Landroidx/compose/ui/layout/ContentScale;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Tag : com/orange/ouds/core/component/OudsListItemTag, com/orange/ouds/core/component/OudsSmallListItemTrailing {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Text : com/orange/ouds/core/component/OudsListItemText, com/orange/ouds/core/component/OudsSmallListItemTrailing {
