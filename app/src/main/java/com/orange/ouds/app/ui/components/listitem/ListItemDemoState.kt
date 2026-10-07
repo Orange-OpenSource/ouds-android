@@ -42,6 +42,7 @@ fun rememberListItemDemoState(
     overline: String? = null,
     extraLabel: String? = null,
     description: String? = null,
+    belowTextContent: Boolean = false,
     leading: BaseListItemDemoState.Leading = BaseListItemDemoState.Leading.None,
     leadingIconSize: OudsListItemIconSize = OudsListItemDefaults.IconSize,
     leadingIconTint: IconTint = IconTint.Tinted,
@@ -59,9 +60,11 @@ fun rememberListItemDemoState(
     trailingTextLabel: String = stringResource(id = R.string.app_components_common_label_label),
     trailingTextExtraLabel: String? = null,
     trailingTextStyle: OudsListItemTextStyle = OudsListItemTextStyle.Label,
+    bottomContent: Boolean = false,
     divider: Boolean = true,
     helperText: String? = null,
     boldLabel: Boolean = false,
+    labelContent: Boolean = false,
     enabled: Boolean = true
 ): ListItemDemoState {
     val state = rememberSaveable(
@@ -76,6 +79,7 @@ fun rememberListItemDemoState(
         overline,
         extraLabel,
         description,
+        belowTextContent,
         leading,
         leadingIconSize,
         leadingIconTint,
@@ -93,9 +97,11 @@ fun rememberListItemDemoState(
         trailingTextLabel,
         trailingTextExtraLabel,
         trailingTextStyle,
+        bottomContent,
         divider,
         helperText,
         boldLabel,
+        labelContent,
         enabled,
         saver = ListItemDemoState.Saver
     ) {
@@ -111,6 +117,7 @@ fun rememberListItemDemoState(
             overline,
             extraLabel,
             description,
+            belowTextContent,
             leading,
             leadingIconSize,
             leadingIconTint,
@@ -128,9 +135,11 @@ fun rememberListItemDemoState(
             trailingTextLabel,
             trailingTextExtraLabel,
             trailingTextStyle,
+            bottomContent,
             divider,
             helperText,
             boldLabel,
+            labelContent,
             enabled
         )
     }
@@ -154,6 +163,7 @@ class ListItemDemoState(
     overline: String?,
     extraLabel: String?,
     description: String?,
+    belowTextContent: Boolean,
     leading: Leading,
     leadingIconSize: OudsListItemIconSize,
     leadingIconTint: IconTint,
@@ -171,9 +181,11 @@ class ListItemDemoState(
     trailingTextLabel: String,
     trailingTextExtraLabel: String?,
     trailingTextStyle: OudsListItemTextStyle,
+    bottomContent: Boolean,
     divider: Boolean,
     helperText: String?,
     boldLabel: Boolean,
+    labelContent: Boolean,
     enabled: Boolean,
 ) : BaseListItemDemoState(
     size,
@@ -185,6 +197,7 @@ class ListItemDemoState(
     overline,
     extraLabel,
     description,
+    belowTextContent,
     leading,
     leadingIconSize,
     leadingIconTint,
@@ -202,9 +215,11 @@ class ListItemDemoState(
     trailingTextLabel,
     trailingTextExtraLabel,
     trailingTextStyle,
+    bottomContent,
     divider,
     helperText,
     boldLabel,
+    labelContent,
     enabled
 ) {
 
@@ -234,6 +249,7 @@ class ListItemDemoState(
                         overline,
                         extraLabel,
                         description,
+                        belowTextContent,
                         leading,
                         leadingIconSize,
                         leadingIconTint,
@@ -251,9 +267,11 @@ class ListItemDemoState(
                         trailingTextLabel,
                         trailingTextExtraLabel,
                         trailingTextStyle,
+                        bottomContent,
                         divider,
                         helperText,
                         boldLabel,
+                        labelContent,
                         enabled
                     )
                 }
