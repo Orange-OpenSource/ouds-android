@@ -24,7 +24,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -562,7 +561,10 @@ internal fun OudsListItem(
                             )
                         }
                         labelContent?.let {
-                            CustomContentBox(state = state) {
+                            CustomContentBox(
+                                state = state,
+                                modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
+                            ) {
                                 labelContent()
                             }
                         }
@@ -573,7 +575,10 @@ internal fun OudsListItem(
                             Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
                         }
                         belowTextContent?.let {
-                            CustomContentBox(state = state) {
+                            CustomContentBox(
+                                state = state,
+                                modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
+                            ) {
                                 belowTextContent()
                             }
                         }
@@ -614,11 +619,9 @@ internal fun OudsListItem(
                 bottomContent?.let {
                     CustomContentBox(
                         state = state,
-                        paddingValues = PaddingValues(
-                            start = space.paddingInline,
-                            end = space.paddingInline,
-                            bottom = space.paddingBlock.bottomSlotListItemContainer
-                        )
+                        modifier = Modifier
+                            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+                            .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
                     ) {
                         bottomContent()
                     }
@@ -652,11 +655,11 @@ class OudsListItemScope {
 @Composable
 private fun CustomContentBox(
     state: OudsListItemState,
-    paddingValues: PaddingValues = PaddingValues(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer),
+    modifier: Modifier = Modifier,
     content: @Composable OudsListItemScope.() -> Unit
 ) {
     val scope = remember { OudsListItemScope() }
-    Box(modifier = Modifier.padding(paddingValues = paddingValues)) {
+    Box(modifier = modifier) {
         with(scope) {
             this.state = state
             content()
