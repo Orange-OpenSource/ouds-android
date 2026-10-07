@@ -1854,7 +1854,7 @@ internal fun PreviewOudsNavigationListItemWithUntintedIcon(theme: OudsThemeContr
     }
 }
 
-@Preview(heightDp = OudsPreviewableComponent.ListItem.WithEdgeToEdgeDisabled.PreviewHeightDp, device = OudsPreviewDevice)
+@OudsPreview
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsNavigationListItemWithEdgeToEdgeDisabled() = PreviewOudsNavigationListItemWithEdgeToEdgeDisabled(theme = getPreviewTheme())
@@ -1936,7 +1936,7 @@ private fun PreviewCustomContent(state: OudsListItemState, modifier: Modifier = 
     Box(
         modifier = modifier
             .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
-            .padding(all = OudsTheme.spaces.fixed.extraSmall),
+            .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
         contentAlignment = Alignment.Center
     ) {
         Text(
