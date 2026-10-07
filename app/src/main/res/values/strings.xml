@@ -303,13 +303,21 @@
     <string name="app_components_listItem_roundedCornerImage_tech" translatable="false">Rounded corner image</string>
     <string name="app_components_listItem_background_tech" translatable="false">Background</string>
     <string name="app_components_listItem_boldLabel_tech" translatable="false">Bold label</string>
+    <string name="app_components_listItem_labelContent_tech" translatable="false">Label content</string>
     <string name="app_components_listItem_overline_tech" translatable="false">Overline</string>
+    <string name="app_components_listItem_belowTextContent_tech" translatable="false">Below text content</string>
     <string name="app_components_listItem_icon_a11y">Icon content description</string>
     <string name="app_components_listItem_image_a11y">Image content description</string>
     <string name="app_components_listItem_trailingText_tech" translatable="false">Text</string>
     <string name="app_components_listItem_trailingTextLabel_tech" translatable="false">Text label</string>
     <string name="app_components_listItem_trailingTextStyle_tech" translatable="false">Text style</string>
     <string name="app_components_listItem_trailingTextExtraLabel_tech" translatable="false">Text extra label</string>
+    <string name="app_components_listItem_bottomContent_tech" translatable="false">Bottom content</string>
+    <string name="app_components_listItem_content_tech" translatable="false">Content</string>
+    <string name="app_components_listItem_specificComponentExampleAlertLabel_label">%1$s example</string>
+    <string name="app_components_listItem_componentExampleAlertLabel_label">Component example</string>
+    <string name="app_components_listItem_componentExampleAlertDescription_text">Please see the specific component settings for full configuration options.</string>
+    <string name="app_components_listItem_contentExempleAlertDescription_text">Use Content for custom content that cannot be represented by another existing element.\nContent provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_tech" translatable="false">Navigation bar</string>

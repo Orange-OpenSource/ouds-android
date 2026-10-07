@@ -15,7 +15,11 @@ package com.orange.ouds.app.ui.components.listitem
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.material3.PrimaryScrollableTabRow
@@ -23,6 +27,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -49,6 +54,7 @@ import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsListItemContent
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIcon
 import com.orange.ouds.core.component.OudsListItemIconSize
@@ -56,6 +62,8 @@ import com.orange.ouds.core.component.OudsListItemImage
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
 import com.orange.ouds.core.component.OudsListItemLeading
+import com.orange.ouds.core.component.OudsListItemScope
+import com.orange.ouds.core.component.OudsListItemState
 import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsListItemVerticalAlignment
@@ -132,10 +140,11 @@ fun baseListItemGeneralCustomization(index: Int, content: @Composable () -> Unit
 @Composable
 fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomizations: List<BaseListItemGeneralCustomization> = listOf()) {
     val customizations: MutableList<@Composable () -> Unit> = mutableListOf(
-        { BaseListItemClickableCustomization(state = state) },
-        { BaseListItemIndicatorCustomization(state = state) },
-        { BaseListItemVerticalAlignmentCustomization(state = state) },
-        { BaseListItemEnabledCustomization(state = state) },
+        { GeneralClickableCustomization(state = state) },
+        { GeneralIndicatorCustomization(state = state) },
+        { GeneralVerticalAlignmentCustomization(state = state) },
+        { GeneralEnabledCustomization(state = state) },
+        { GeneralBottomContentCustomization(state = state) }
     )
     extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -144,7 +153,7 @@ fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomi
 }
 
 @Composable
-private fun BaseListItemClickableCustomization(state: BaseListItemDemoState) {
+private fun GeneralClickableCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_listItem_clickable_tech),
@@ -155,7 +164,7 @@ private fun BaseListItemClickableCustomization(state: BaseListItemDemoState) {
 }
 
 @Composable
-private fun BaseListItemIndicatorCustomization(state: BaseListItemDemoState) {
+private fun GeneralIndicatorCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -168,7 +177,7 @@ private fun BaseListItemIndicatorCustomization(state: BaseListItemDemoState) {
 }
 
 @Composable
-private fun BaseListItemVerticalAlignmentCustomization(state: BaseListItemDemoState) {
+private fun GeneralVerticalAlignmentCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationFilterChips(
             applyTopPadding = true,
@@ -181,12 +190,23 @@ private fun BaseListItemVerticalAlignmentCustomization(state: BaseListItemDemoSt
 }
 
 @Composable
-private fun BaseListItemEnabledCustomization(state: BaseListItemDemoState) {
+private fun GeneralEnabledCustomization(state: BaseListItemDemoState) {
     with(state) {
         CustomizationSwitchItem(
             label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
+        )
+    }
+}
+
+@Composable
+private fun GeneralBottomContentCustomization(state: BaseListItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_listItem_bottomContent_tech),
+            checked = bottomContent,
+            onCheckedChange = { bottomContent = it },
         )
     }
 }
@@ -198,14 +218,14 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             CustomizationFilterChips(
                 applyTopPadding = true,
                 label = null,
-                chipLabels = BaseListItemDemoState.Leading.entries.map { it.name.toSentenceCase() },
+                chipLabels = BaseListItemDemoState.Leading.entries.filter { it.availableForSizes.contains(state.size) }.map { it.name.toSentenceCase() },
                 selectedChipIndex = BaseListItemDemoState.Leading.entries.indexOf(leading),
                 onSelectionChange = { index ->
                     leading = BaseListItemDemoState.Leading.entries[index]
                 }
             )
             AnimatedVisibility(
-                visible = leading == BaseListItemDemoState.Leading.Icon,
+                visible = leadingIconSettingsVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
@@ -213,11 +233,19 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             }
 
             AnimatedVisibility(
-                visible = leading == BaseListItemDemoState.Leading.Image,
+                visible = leadingImageSettingsVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
                 LeadingImageConfiguration(state = state)
+            }
+
+            AnimatedVisibility(
+                visible = leadingContentSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                LeadingTrailingContentAlertMessage()
             }
         }
     }
@@ -230,13 +258,22 @@ fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_label_tech),
             value = label,
-            onValueChange = { value -> label = value }
+            onValueChange = { value -> label = value },
+            enabled = labelOptionsEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_listItem_boldLabel_tech),
             checked = boldLabel,
             onCheckedChange = { boldLabel = it },
+            enabled = labelOptionsEnabled
         )
+        if (state.size == BaseListItemDemoState.Size.Default) {
+            CustomizationSwitchItem(
+                label = stringResource(R.string.app_components_listItem_labelContent_tech),
+                checked = labelContent,
+                onCheckedChange = { labelContent = it },
+            )
+        }
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_description_tech),
@@ -257,6 +294,13 @@ fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
                 onValueChange = { value -> extraLabel = value }
             )
         }
+        if (state.size == BaseListItemDemoState.Size.Default) {
+            CustomizationSwitchItem(
+                label = stringResource(R.string.app_components_listItem_belowTextContent_tech),
+                checked = belowTextContent,
+                onCheckedChange = { belowTextContent = it }
+            )
+        }
         CustomizationTextInput(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_common_helperText_tech),
@@ -273,7 +317,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             CustomizationFilterChips(
                 applyTopPadding = true,
                 label = null,
-                chipLabels = BaseListItemDemoState.Trailing.entries.map { it.name.toSentenceCase() },
+                chipLabels = BaseListItemDemoState.Trailing.entries.filter { it.availableForSizes.contains(state.size) }.map { it.name.toSentenceCase() },
                 selectedChipIndex = BaseListItemDemoState.Trailing.entries.indexOf(trailing),
                 onSelectionChange = { index ->
                     trailing = BaseListItemDemoState.Trailing.entries[index]
@@ -281,7 +325,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             )
 
             AnimatedVisibility(
-                visible = trailing in listOf(BaseListItemDemoState.Trailing.Badge, BaseListItemDemoState.Trailing.Tag),
+                visible = trailingComponentExampleAlertVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
@@ -295,7 +339,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             }
 
             AnimatedVisibility(
-                visible = trailing == BaseListItemDemoState.Trailing.Icon,
+                visible = trailingIconSettingsVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
@@ -303,7 +347,7 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             }
 
             AnimatedVisibility(
-                visible = trailing == BaseListItemDemoState.Trailing.Image,
+                visible = trailingImageSettingsVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
@@ -311,14 +355,35 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             }
 
             AnimatedVisibility(
-                visible = trailing == BaseListItemDemoState.Trailing.Text,
+                visible = trailingTextSettingsVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
                 TrailingTextConfiguration(state = state)
             }
+
+            AnimatedVisibility(
+                visible = trailingContentSettingsVisible,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                LeadingTrailingContentAlertMessage()
+            }
         }
     }
+}
+
+@Composable
+private fun LeadingTrailingContentAlertMessage() {
+    OudsAlertMessage(
+        modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
+        status = OudsAlertMessageStatus.Info,
+        label = stringResource(
+            R.string.app_components_listItem_specificComponentExampleAlertLabel_label,
+            stringResource(R.string.app_components_listItem_content_tech)
+        ),
+        description = stringResource(R.string.app_components_listItem_contentExempleAlertDescription_text)
+    )
 }
 
 @Composable
@@ -332,7 +397,6 @@ private fun LeadingIconConfiguration(state: BaseListItemDemoState) {
                     chips = OudsListItemIconSize.entries.map {
                         CustomizationFilterChip(
                             label = it.name.toSentenceCase(),
-                            enabled = leadingIconOptionsEnabled
                         )
                     },
                     selectedChipIndex = OudsListItemIconSize.entries.indexOf(leadingIconSize),
@@ -345,7 +409,6 @@ private fun LeadingIconConfiguration(state: BaseListItemDemoState) {
                 chips = BaseListItemDemoState.StatusIcon.entries.map {
                     CustomizationFilterChip(
                         label = it.name.toSentenceCase(),
-                        enabled = leadingIconOptionsEnabled
                     )
                 },
                 selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(leadingStatusIcon),
@@ -357,7 +420,6 @@ private fun LeadingIconConfiguration(state: BaseListItemDemoState) {
                 chips = BaseListItemDemoState.IconTint.entries.map {
                     CustomizationFilterChip(
                         it.name.toSentenceCase(),
-                        enabled = leadingIconOptionsEnabled
                     )
                 },
                 selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(leadingIconTint),
@@ -378,7 +440,6 @@ private fun LeadingImageConfiguration(state: BaseListItemDemoState) {
                     chips = OudsListItemImageSize.entries.map {
                         CustomizationFilterChip(
                             label = it.name.toSentenceCase(),
-                            enabled = leadingImageOptionsEnabled
                         )
                     },
                     selectedChipIndex = OudsListItemImageSize.entries.indexOf(leadingImageSize),
@@ -391,7 +452,6 @@ private fun LeadingImageConfiguration(state: BaseListItemDemoState) {
                 chips = OudsListItemImageRatio.entries.map {
                     CustomizationFilterChip(
                         label = it.name.toSentenceCase(),
-                        enabled = leadingImageOptionsEnabled
                     )
                 },
                 selectedChipIndex = OudsListItemImageRatio.entries.indexOf(leadingImageRatio),
@@ -401,7 +461,6 @@ private fun LeadingImageConfiguration(state: BaseListItemDemoState) {
                 label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
                 checked = leadingImageRoundedCorners,
                 onCheckedChange = { leadingImageRoundedCorners = it },
-                enabled = leadingImageOptionsEnabled
             )
         }
     }
@@ -412,8 +471,9 @@ private fun TrailingBadgeOrTagConfiguration(componentName: String?) {
     OudsAlertMessage(
         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
         status = OudsAlertMessageStatus.Info,
-        label = componentName?.let { "$it exemple" }.orElse { "Component example" },
-        description = "Please see the specific component settings for full configuration options."
+        label = componentName?.let { stringResource(R.string.app_components_listItem_specificComponentExampleAlertLabel_label, it) }
+            .orElse { stringResource(R.string.app_components_listItem_componentExampleAlertLabel_label) },
+        description = stringResource(R.string.app_components_listItem_componentExampleAlertDescription_text)
     )
 }
 
@@ -562,13 +622,14 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
             roundedCorner = leadingImageRoundedCorners,
             contentScale = ContentScale.Crop
         )
+        BaseListItemDemoState.Leading.Content -> OudsListItemLeading.Content { CustomContent(state = this.state, modifier = Modifier.fillMaxSize()) }
     }
 }
 
 @Composable
 fun baseSmallListItemDemoLeading(state: BaseListItemDemoState): OudsSmallListItemLeading? = with(state) {
     when (leading) {
-        BaseListItemDemoState.Leading.None -> null
+        BaseListItemDemoState.Leading.None, BaseListItemDemoState.Leading.Content -> null
         BaseListItemDemoState.Leading.Icon -> {
             when (leadingStatusIcon) {
                 BaseListItemDemoState.StatusIcon.None -> OudsSmallListItemLeading.Icon(
@@ -642,13 +703,14 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
                 )
             }
         }
+        BaseListItemDemoState.Trailing.Content -> OudsListItemTrailing.Content { CustomContent(state = this.state, modifier = Modifier.fillMaxSize()) }
     }
 }
 
 @Composable
 fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListItemTrailing? = with(state) {
     when (trailing) {
-        BaseListItemDemoState.Trailing.None -> null
+        BaseListItemDemoState.Trailing.None, BaseListItemDemoState.Trailing.Content -> null
         BaseListItemDemoState.Trailing.Badge ->
             OudsSmallListItemTrailing.Badge(
                 count = TrailingBadgeExampleCount,
@@ -690,6 +752,31 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
     }
 }
 
+fun getContentOrNull(contentActivated: Boolean): @Composable (OudsListItemScope.() -> Unit)? = if (contentActivated) {
+    { CustomContent(state = this.state, modifier = Modifier.fillMaxWidth()) }
+} else {
+    null
+}
+
+val baseLabelContent: @Composable OudsListItemScope.() -> Unit = { CustomContent(state = this.state, modifier = Modifier.fillMaxWidth()) }
+
+@Composable
+fun CustomContent(state: OudsListItemState, modifier: Modifier = Modifier) {
+    val enabled = state == OudsListItemState.Enabled
+    Box(
+        modifier = modifier
+            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
+            .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = stringResource(R.string.app_components_listItem_content_tech),
+            style = OudsTheme.typography.label.small.strong,
+            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled,
+        )
+    }
+}
+
 fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, themeDrawableResources: ThemeDrawableResources) {
     with(state) {
         if (clickable) {
@@ -701,7 +788,13 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
             }
         }
 
-        labelArgument(label)
+        if (labelContent) {
+            lambdaArgument("labelContent") {
+                comment("Custom label content")
+            }
+        } else {
+            labelArgument(label)
+        }
 
         if (verticalAlignment != OudsListItemDefaults.VerticalAlignment) {
             typedArgument("verticalAlignment", verticalAlignment)
@@ -745,6 +838,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 )
             }
             BaseListItemDemoState.Leading.None -> {}
+            BaseListItemDemoState.Leading.Content -> addContentCodeSnippet<OudsListItemLeading.Content>(argumentName = leadingParameterName)
         }
 
         when (trailing) {
@@ -816,11 +910,23 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 }
             }
             BaseListItemDemoState.Trailing.None -> {}
+            BaseListItemDemoState.Trailing.Content -> addContentCodeSnippet<OudsListItemTrailing.Content>(argumentName = trailingParameterName)
         }
 
         if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
         if (boldLabel) typedArgument("boldLabel", boldLabel)
         if (!enabled) enabledArgument(enabled)
+    }
+}
+
+private inline fun <reified ContentType : OudsListItemContent> FunctionCall.Builder.addContentCodeSnippet(
+    argumentName: String
+) {
+    constructorCallArgument<ContentType>(argumentName) {
+        trailingLambda = true
+        lambdaArgument("content") {
+            comment("Custom content")
+        }
     }
 }
 

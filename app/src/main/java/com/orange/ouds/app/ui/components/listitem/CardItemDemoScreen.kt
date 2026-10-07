@@ -80,21 +80,43 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
         if (clickable) {
             when (size) {
                 BaseListItemDemoState.Size.Default ->
-                    OudsCardItem(
-                        onClick = {},
-                        indicator = indicator.toOudsListItemIndicator(),
-                        label = label,
-                        verticalAlignment = verticalAlignment,
-                        overline = overline,
-                        extraLabel = extraLabel,
-                        description = description,
-                        leading = baseListItemDemoLeading(state = state),
-                        trailing = baseListItemDemoTrailing(state = state),
-                        decoration = decoration.toOudsListItemDecoration(divider = divider),
-                        helperText = helperText,
-                        boldLabel = boldLabel,
-                        enabled = enabled,
-                    )
+                    if (labelContent) {
+                        OudsCardItem(
+                            onClick = {},
+                            indicator = indicator.toOudsListItemIndicator(),
+                            labelContent = baseLabelContent,
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            belowTextContent = getContentOrNull(belowTextContent),
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            bottomContent = getContentOrNull(bottomContent),
+                            decoration = decoration.toOudsListItemDecoration(divider = divider),
+                            helperText = helperText,
+                            boldLabel = boldLabel,
+                            enabled = enabled,
+                        )
+                    } else {
+                        OudsCardItem(
+                            onClick = {},
+                            indicator = indicator.toOudsListItemIndicator(),
+                            label = label,
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            belowTextContent = getContentOrNull(belowTextContent),
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            bottomContent = getContentOrNull(bottomContent),
+                            decoration = decoration.toOudsListItemDecoration(divider = divider),
+                            helperText = helperText,
+                            boldLabel = boldLabel,
+                            enabled = enabled,
+                        )
+                    }
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallCardItem(
                         onClick = {},
@@ -113,19 +135,39 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
         } else {
             when (size) {
                 BaseListItemDemoState.Size.Default ->
-                    OudsCardItem(
-                        label = label,
-                        verticalAlignment = verticalAlignment,
-                        overline = overline,
-                        extraLabel = extraLabel,
-                        description = description,
-                        leading = baseListItemDemoLeading(state = state),
-                        trailing = baseListItemDemoTrailing(state = state),
-                        decoration = decoration.toOudsListItemDecoration(divider = divider),
-                        helperText = helperText,
-                        boldLabel = boldLabel,
-                        enabled = enabled,
-                    )
+                    if (labelContent) {
+                        OudsCardItem(
+                            labelContent = baseLabelContent,
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            belowTextContent = getContentOrNull(belowTextContent),
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            bottomContent = getContentOrNull(bottomContent),
+                            decoration = decoration.toOudsListItemDecoration(divider = divider),
+                            helperText = helperText,
+                            boldLabel = boldLabel,
+                            enabled = enabled,
+                        )
+                    } else {
+                        OudsCardItem(
+                            label = label,
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            belowTextContent = getContentOrNull(belowTextContent),
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            bottomContent = getContentOrNull(bottomContent),
+                            decoration = decoration.toOudsListItemDecoration(divider = divider),
+                            helperText = helperText,
+                            boldLabel = boldLabel,
+                            enabled = enabled,
+                        )
+                    }
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallCardItem(
                         label = label,
