@@ -56,7 +56,7 @@ internal fun ListItemGeneralCustomizationContent(state: ListItemDemoState) {
             },
             baseListItemGeneralCustomization(4) {
                 CustomizationSwitchItem(
-                    label = stringResource(R.string.app_components_listItem_background_tech),
+                    label = stringResource(R.string.app_components_common_background_tech),
                     checked = background,
                     onCheckedChange = { background = it },
                 )

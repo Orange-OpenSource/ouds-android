@@ -82,4 +82,10 @@ internal class OudsTopAppBarTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class Backgrounds : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.TopAppBar.Backgrounds,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

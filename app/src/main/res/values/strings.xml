@@ -128,6 +128,7 @@
     <string name="app_components_common_annotatedText_tech" translatable="false">Annotated text example</string>
     <string name="app_components_common_annotatedTextHelperText_tech" translatable="false">"Supports annotated text. Use switch below for example.</string>
     <string name="app_components_common_appearance_tech" translatable="false">Appearance</string>
+    <string name="app_components_common_background_tech" translatable="false">Background</string>
     <string name="app_components_common_color_tech" translatable="false">Color</string>
     <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
     <string name="app_components_common_description_tech" translatable="false">Description</string>
@@ -301,7 +302,6 @@
     <string name="app_components_listItem_imageSize_tech" translatable="false">Image size</string>
     <string name="app_components_listItem_imageRatio_tech" translatable="false">Image ratio</string>
     <string name="app_components_listItem_roundedCornerImage_tech" translatable="false">Rounded corner image</string>
-    <string name="app_components_listItem_background_tech" translatable="false">Background</string>
     <string name="app_components_listItem_boldLabel_tech" translatable="false">Bold label</string>
     <string name="app_components_listItem_overline_tech" translatable="false">Overline</string>
     <string name="app_components_listItem_icon_a11y">Icon content description</string>

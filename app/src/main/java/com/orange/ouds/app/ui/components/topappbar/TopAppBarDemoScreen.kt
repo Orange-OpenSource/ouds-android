@@ -45,9 +45,11 @@ import com.orange.ouds.core.component.OudsMediumTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
 import com.orange.ouds.core.component.OudsTopAppBarActionBadge
+import com.orange.ouds.core.component.OudsTopAppBarBackground
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
+import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -73,6 +75,13 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
             chipLabels = TopAppBarDemoState.Size.entries.map { stringResource(it.labelRes) },
             selectedChipIndex = TopAppBarDemoState.Size.entries.indexOf(size),
             onSelectionChange = { index -> size = TopAppBarDemoState.Size.entries[index] }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = false,
+            label = stringResource(R.string.app_components_common_background_tech),
+            chipLabels = OudsTopAppBarBackground.entries.map { it.name.toSentenceCase() },
+            selectedChipIndex = OudsTopAppBarBackground.entries.indexOf(background),
+            onSelectionChange = { index -> background = OudsTopAppBarBackground.entries[index] }
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_topAppBar_centerAligned_tech),
@@ -198,12 +207,14 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
             TopAppBarDemoState.Size.Small -> {
                 if (centerAligned) {
                     OudsCenterAlignedTopAppBar(
+                        background = background,
                         title = title,
                         navigationIcon = navigationIcon,
                         actions = topAppBarActions
                     )
                 } else {
                     OudsTopAppBar(
+                        background = background,
                         title = title,
                         navigationIcon = navigationIcon,
                         actions = topAppBarActions
@@ -212,6 +223,7 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
             }
             TopAppBarDemoState.Size.Medium -> {
                 OudsMediumTopAppBar(
+                    background = background,
                     title = title,
                     navigationIcon = navigationIcon,
                     actions = topAppBarActions
@@ -219,6 +231,7 @@ private fun TopAppBarDemoContent(state: TopAppBarDemoState) {
             }
             TopAppBarDemoState.Size.Large -> {
                 OudsLargeTopAppBar(
+                    background = background,
                     title = title,
                     navigationIcon = navigationIcon,
                     actions = topAppBarActions
@@ -245,6 +258,7 @@ private fun Code.Builder.topAppBarDemoCodeSnippet(state: TopAppBarDemoState, the
             TopAppBarDemoState.Size.Large -> "OudsLargeTopAppBar"
         }
         functionCall(functionName) {
+            typedArgument("background", background)
             typedArgument("title", title)
             val navigationIconClass = when (navigationIcon) {
                 TopAppBarDemoState.NavigationIcon.None -> null
