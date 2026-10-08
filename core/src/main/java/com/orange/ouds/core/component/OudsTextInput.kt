@@ -110,6 +110,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 
+private const val ComponentName = "OudsTextInput"
+
 /**
  * Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
  * to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
@@ -375,7 +377,7 @@ private fun OudsTextInput(
     val emptyText = textFieldState.text.isEmpty()
 
     CheckedTextInput(
-        componentName = "OudsTextInput",
+        componentName = ComponentName,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -673,7 +675,7 @@ private fun OudsTextInput(
     val emptyText = value.isEmpty()
 
     CheckedTextInput(
-        componentName = "OudsTextInput",
+        componentName = ComponentName,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -970,7 +972,7 @@ private fun OudsTextInput(
     val emptyText = value.text.isEmpty()
 
     CheckedTextInput(
-        componentName = "OudsTextInput",
+        componentName = ComponentName,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,

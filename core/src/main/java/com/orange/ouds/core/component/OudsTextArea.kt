@@ -85,6 +85,8 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 
+private const val ComponentName = "OudsTextArea"
+
 /**
  * Text area is a UI element that allows to type, edit, or select longer blocks of textual data, such as comments, messages or descriptions; by expanding
  * vertically and offering more space to input text. Text area includes features like a visible label, placeholder text, character limits and resize behavior;
@@ -430,7 +432,7 @@ private fun OudsTextArea(
     val scrollState = rememberScrollState()
 
     CheckedTextInput(
-        componentName = "OudsTextArea",
+        componentName = ComponentName,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -807,7 +809,7 @@ private fun OudsTextArea(
     val emptyText = value.isEmpty()
 
     CheckedTextInput(
-        componentName = "OudsTextArea",
+        componentName = ComponentName,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
@@ -1182,7 +1184,7 @@ private fun OudsTextArea(
     val emptyText = value.text.isEmpty()
 
     CheckedTextInput(
-        componentName = "OudsTextArea",
+        componentName = ComponentName,
         state = state,
         emptyText = emptyText,
         readOnly = readOnly,
