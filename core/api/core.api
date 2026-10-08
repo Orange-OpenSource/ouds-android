@@ -6764,11 +6764,3 @@ public final class com/orange/ouds/core/utilities/OudsPreviewKt {
 public abstract interface annotation class com/orange/ouds/core/utilities/OudsPreviewLightDark : java/lang/annotation/Annotation {
 }
 
-public final class com/orange/ouds/core/utilities/OudsPreviewableComponent$TopAppBar$Backgrounds : com/orange/ouds/core/utilities/OudsPreviewableComponent {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/orange/ouds/core/utilities/OudsPreviewableComponent$TopAppBar$Backgrounds;
-	public fun Preview (Lcom/orange/ouds/theme/OudsThemeContract;ZZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
-	public fun getParameters ()Ljava/util/List;
-	public fun isPreviewAvailable (ZZ)Z
-}
-

@@ -2073,6 +2073,7 @@ interface OudsPreviewableComponent {
             override fun isPreviewAvailable(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = !darkThemeEnabled && !highContrastModeEnabled
         }
 
+        @InternalOudsApi
         object Backgrounds : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
