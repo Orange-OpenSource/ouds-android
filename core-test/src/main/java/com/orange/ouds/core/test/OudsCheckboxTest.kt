@@ -13,20 +13,40 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsCheckboxTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.Checkbox,
-    parameter,
-    OudsComponentTestSuite.theme,
-    OudsPreviewableComponent.Checkbox.PreviewWidthDp
-) {
+@RunWith(Enclosed::class)
+internal class OudsCheckboxTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.Checkbox.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Checkbox.Default,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Checkbox.Default.PreviewWidthDp
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Checkbox.Default.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class HighContrastModeEnabled(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.Checkbox.HighContrastModeEnabled,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.Checkbox.HighContrastModeEnabled.PreviewWidthDp
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.Checkbox.HighContrastModeEnabled.parameters
+        }
     }
 }
