@@ -112,6 +112,7 @@ enum class OudsTopAppBarBackground {
  * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
  * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
  * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
  * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
@@ -279,6 +280,7 @@ fun OudsTopAppBar(
  * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
  * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
  * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
  * - Use `hazeBlur` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
@@ -447,6 +449,7 @@ fun OudsCenterAlignedTopAppBar(
  * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
  * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
  * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
  * - Use `hazeBlur` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
@@ -638,6 +641,7 @@ fun OudsMediumTopAppBar(
  * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
  * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
  * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
  * - Use `hazeBlur` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
