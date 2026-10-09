@@ -10,14 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
-@file:OptIn(RestrictedOudsApi::class)
-
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
-import com.orange.ouds.foundation.RestrictedOudsApi
 
 internal object DefaultAnimationSpec {
     internal const val DurationMillis = 150
