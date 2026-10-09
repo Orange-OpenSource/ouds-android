@@ -33,6 +33,7 @@ import androidx.compose.foundation.text.input.delete
 import androidx.compose.foundation.text.input.forEachChangeReversed
 import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.toTextFieldBuffer
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.RichTooltip
@@ -63,7 +64,6 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.substring
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
@@ -86,6 +86,7 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import kotlinx.coroutines.launch
+import kotlin.math.max
 
 /**
  * PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a
@@ -243,11 +244,21 @@ private fun OudsPinCodeInput(
         initialSelection = TextRange((value.length + 1).coerceIn(0, length.value))
     )
 
-    if (paddedValue != textFieldState.text) {
-        textFieldState.edit {
-            val cursorPosition = selection.end.coerceIn(0, length.value)
+    // Check what the new value would look like in the text field after the input transformation
+    val textFieldBuffer = textFieldState.toTextFieldBuffer()
+    with(inputTransformation(length)) {
+        textFieldBuffer.apply {
             delete(0, this.length)
             append(paddedValue)
+            transformInput()
+        }
+    }
+    val newValue = textFieldBuffer.asCharSequence().toString()
+    if (newValue != textFieldState.text) {
+        textFieldState.edit {
+            val cursorPosition = selection.end.coerceIn(0, newValue.length)
+            delete(0, this.length)
+            append(newValue)
             // Set the cursor to its position before the text replacement
             placeCursorBeforeCharAt(cursorPosition)
         }
@@ -267,73 +278,48 @@ private fun OudsPinCodeInput(
         textFieldState = textFieldState,
         length = length
     ) {
-        BoxWithConstraints(
-            modifier = modifier,
-            contentAlignment = Alignment.Center
-        ) {
-            ConstraintLayout {
-                val (secureTextField, helperTextErrorMessage) = createRefs()
-                val textFieldModifier = Modifier
-                    .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
-                    .constrainAs(secureTextField) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    }
-                    .focusRequester(focusRequester)
-                val keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
-                val inputTransformation = inputTransformation(length)
-                val decorator: TextFieldDecorator = {
-                    OudsPinCodeInputDecorator(
-                        textFieldState = textFieldState,
-                        length = length,
-                        outlined = outlined,
-                        error = error,
-                        hiddenCharacters = hiddenCharacters,
-                        onDigitClick = {
-                            focusRequester.requestFocus()
-                            // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
-                            keyboardController?.show()
-                        },
-                        maxWidth = this@BoxWithConstraints.maxWidth,
-                        interactionSource = interactionSource
-                    )
-                }
-                if (hiddenCharacters) {
-                    BasicSecureTextField(
-                        modifier = textFieldModifier,
-                        state = textFieldState,
-                        keyboardOptions = keyboardOptions,
-                        onKeyboardAction = onKeyboardAction,
-                        inputTransformation = inputTransformation,
-                        interactionSource = interactionSource,
-                        decorator = decorator
-                    )
-                } else {
-                    BasicTextField(
-                        modifier = textFieldModifier,
-                        state = textFieldState,
-                        keyboardOptions = keyboardOptions,
-                        onKeyboardAction = onKeyboardAction,
-                        inputTransformation = inputTransformation,
-                        interactionSource = interactionSource,
-                        decorator = decorator
-                    )
-                }
-                OudsTextInputHelperTextErrorMessage(
-                    modifier = Modifier.constrainAs(helperTextErrorMessage) {
-                        top.linkTo(secureTextField.bottom)
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(secureTextField.start)
-                        end.linkTo(secureTextField.end)
-                        width = Dimension.fillToConstraints
-                    },
-                    enabled = true,
-                    error = error,
-                    helperText = helperText,
-                    annotatedHelperText = annotatedHelperText
-                )
-            }
+        val textFieldModifier = modifier
+            .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+            .focusRequester(focusRequester)
+        val keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
+        val inputTransformation = inputTransformation(length)
+        val decorator: TextFieldDecorator = {
+            OudsPinCodeInputDecorator(
+                textFieldState = textFieldState,
+                length = length,
+                outlined = outlined,
+                error = error,
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText,
+                hiddenCharacters = hiddenCharacters,
+                onDigitClick = {
+                    focusRequester.requestFocus()
+                    // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
+                    keyboardController?.show()
+                },
+                interactionSource = interactionSource
+            )
+        }
+        if (hiddenCharacters) {
+            BasicSecureTextField(
+                modifier = textFieldModifier,
+                state = textFieldState,
+                keyboardOptions = keyboardOptions,
+                onKeyboardAction = onKeyboardAction,
+                inputTransformation = inputTransformation,
+                interactionSource = interactionSource,
+                decorator = decorator
+            )
+        } else {
+            BasicTextField(
+                modifier = textFieldModifier,
+                state = textFieldState,
+                keyboardOptions = keyboardOptions,
+                onKeyboardAction = onKeyboardAction,
+                inputTransformation = inputTransformation,
+                interactionSource = interactionSource,
+                decorator = decorator
+            )
         }
     }
 }
@@ -360,7 +346,8 @@ private fun OudsPinCodeInputTooltipBox(textFieldState: TextFieldState, length: O
                                     if (clipData.itemCount > 0) {
                                         val text = clipData.getItemAt(0).text.toString()
                                         textFieldState.edit {
-                                            insert(selection.min, text)
+                                            delete(0, this.length)
+                                            append(text)
                                             with(inputTransformation(length)) {
                                                 transformInput()
                                             }
@@ -387,41 +374,83 @@ private fun OudsPinCodeInputDecorator(
     length: OudsPinCodeInputLength,
     outlined: Boolean,
     error: OudsError?,
+    helperText: String?,
+    annotatedHelperText: OudsAnnotatedHelperText?,
     hiddenCharacters: Boolean,
     onDigitClick: (Int) -> Unit,
-    maxWidth: Dp,
     interactionSource: MutableInteractionSource
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
     val smallDeviceSpecificRules = smallDeviceSpecificRules(length)
-    val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
-    val totalHorizontalSpace = horizontalSpace * (length.value - 1)
-    val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
-    Row(horizontalArrangement = Arrangement.spacedBy(horizontalSpace)) {
-        val isNonErrorPreview = LocalInspectionMode.current && error == null
-        val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
-        repeat(length.value) { index ->
-            val digitInputState = when {
-                (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
-                interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-                else -> OudsDigitInputState.Enabled
-            }
-            OudsDigitInput(
-                modifier = Modifier
-                    .width(digitWidth)
-                    .semantics { hideFromAccessibility() },
-                digit = textFieldState.text.getOrNull(index),
-                onClick = {
-                    onDigitClick(index)
-                    textFieldState.edit { placeCursorAfterCharAt(index) }
+    BoxWithConstraints(contentAlignment = Alignment.Center) {
+        val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
+        val totalHorizontalSpace = horizontalSpace * (length.value - 1)
+        val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
+        ConstraintLayout {
+            val (row, helperTextErrorMessage) = createRefs()
+            Row(
+                modifier = Modifier.constrainAs(row) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
                 },
-                state = digitInputState,
-                outlined = outlined,
-                error = error != null,
-                placeholder = error == null,
-                hiddenDigit = hiddenCharacters,
-                smallDeviceSpecificRules = smallDeviceSpecificRules
+                horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
+            ) {
+                val isNonErrorPreview = LocalInspectionMode.current && error == null
+                val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
+                repeat(length.value) { index ->
+                    val digitInputState = when {
+                        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+                        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+                        else -> OudsDigitInputState.Enabled
+                    }
+                    OudsDigitInput(
+                        modifier = Modifier
+                            .width(digitWidth)
+                            .semantics { hideFromAccessibility() },
+                        digit = textFieldState.text.getOrNull(index),
+                        onClick = {
+                            onDigitClick(index)
+                            textFieldState.edit {
+                                when (this.length) {
+                                    // Text field is empty and first digit is selected
+                                    // The PIN code value is an empty string to make autofill work properly
+                                    0 if index == 0 -> placeCursorBeforeCharAt(0)
+                                    // Text field is empty and a digit other than the first one is selected
+                                    // Fill the PIN code value with placeholder characters in case it was empty
+                                    0 -> {
+                                        append(OudsDigitInputPlaceholder.toString().repeat(length.value))
+                                        placeCursorAfterCharAt(index)
+                                    }
+                                    // Text field is not empty
+                                    else -> placeCursorAfterCharAt(index)
+                                }
+                            }
+                        },
+                        state = digitInputState,
+                        outlined = outlined,
+                        error = error != null,
+                        placeholder = error == null,
+                        hiddenDigit = hiddenCharacters,
+                        smallDeviceSpecificRules = smallDeviceSpecificRules
+                    )
+                }
+            }
+
+            OudsTextInputBottomContent(
+                modifier = Modifier.constrainAs(helperTextErrorMessage) {
+                    top.linkTo(row.bottom)
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(row.start)
+                    end.linkTo(row.end)
+                    width = Dimension.fillToConstraints
+                },
+                state = OudsTextInputState.Enabled,
+                error = error,
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText,
+                helperLink = null
             )
         }
     }
@@ -439,17 +468,22 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
             // Text is inserted with either keyboard inputs or pasting from the clipboard
             if (range.length > 0) {
                 val pasting = range.length > 1
-                val baseText = if (pasting) OudsDigitInputPlaceholder.toString().repeat(length.value) else originalText.toString()
+                val baseText = if (pasting) {
+                    OudsDigitInputPlaceholder.toString().repeat(length.value)
+                } else {
+                    // Pad end with placeholder chars in case the string was empty
+                    originalText.toString().padEnd(max(0, length.value - originalText.length), OudsDigitInputPlaceholder)
+                }
                 // Retrieve added text
-                val addedText = asCharSequence().substring(range).filter { it.isDigit() }
+                val addedText = asCharSequence().substring(range).filter { it.isDigit() || it == OudsDigitInputPlaceholder }
                 // Roll back to the original text or placeholders if pasting
                 delete(0, this.length)
                 insert(0, baseText)
                 // Replace the base text with the added text
                 // When pasting (i.e. range.length > 1), the base text is replaced from the start
-                val start = if (pasting) 0 else range.min - 1
+                val start = if (pasting) 0 else (range.min - 1).coerceIn(0, length.value)
                 val end = start + addedText.length
-                replace(start.coerceIn(0, length.value), end.coerceIn(0, length.value), addedText)
+                replace(start, end.coerceIn(0, length.value), addedText)
                 placeCursorAfterCharAt(end.coerceIn(0, length.value - 1))
             }
             // Text is deleted with the keyboard backspace key
@@ -466,6 +500,11 @@ private fun inputTransformation(length: OudsPinCodeInputLength): InputTransforma
                     replace(range.start - 1, range.start, OudsDigitInputPlaceholder.toString())
                     placeCursorAfterCharAt(range.start - 1)
                 }
+            }
+            // PIN code contains only placeholder chars and first digit is focused
+            // In that case, set an empty string into the text field to make autofill work properly
+            if (asCharSequence().toString() == OudsDigitInputPlaceholder.toString().repeat(length.value) && originalSelection.end <= 1) {
+                delete(0, length.value)
             }
         }
     }
