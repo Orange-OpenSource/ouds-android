@@ -287,7 +287,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
                     // In order to reach the a11y AAA level, when high contrast mode is enabled, the selected checkbox must use `color.content.default` token
                     if (LocalHighContrastModeEnabled.current) OudsTheme.colorScheme.content.default else this.selected
                 } else {
-                    enabled
+                    OudsTheme.colorScheme.border.emphasized
                 }
                 OudsControlState.Disabled -> disabled
                 OudsControlState.ReadOnly -> readOnly.secondary
