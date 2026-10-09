@@ -65,6 +65,12 @@ sealed class TokenProperty<T>(
         categoryClass = TokenCategory.Color::class
     )
 
+    data object ColorAi : TokenProperty<TokenCategory.Color>(
+        nameRes = R.string.app_tokens_color_ai_tech,
+        tokens = getTokens<OudsColorScheme.Ai>(),
+        categoryClass = TokenCategory.Color::class
+    )
+
     data object ColorAlways : TokenProperty<TokenCategory.Color>(
         nameRes = R.string.app_tokens_color_always_tech,
         tokens = getTokens<OudsColorScheme.Always>(),

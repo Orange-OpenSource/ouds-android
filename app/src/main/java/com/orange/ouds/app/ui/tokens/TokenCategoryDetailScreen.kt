@@ -227,7 +227,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     is TokenProperty.BorderWidth -> BorderIllustration(width = token.value() as Dp)
     is TokenProperty.BorderRadius -> BorderIllustration(shape = RoundedCornerShape(token.value() as Dp))
     is TokenProperty.BorderStyle -> BorderIllustration(style = token.value() as OudsBorderStyle)
-    is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
+    is TokenProperty.ColorAction, TokenProperty.ColorAi, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
     TokenProperty.ColorOpacity, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> ColorIllustration(color = token.value() as Color)
     is TokenProperty.Opacity -> OpacityIllustration(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustration(elevation = token.value() as Dp)

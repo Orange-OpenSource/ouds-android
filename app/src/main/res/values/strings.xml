@@ -63,6 +63,7 @@
     <string name="app_tokens_color_tech" translatable="false">Color</string>
     <string name="app_tokens_color_description_text">Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described here are the ones you should use when building a mobile app.</string>
     <string name="app_tokens_color_action_tech" translatable="false">Action</string>
+    <string name="app_tokens_color_ai_tech" translatable="false">AI</string>
     <string name="app_tokens_color_always_tech" translatable="false">Always</string>
     <string name="app_tokens_color_background_tech" translatable="false">Background</string>
     <string name="app_tokens_color_border_tech" translatable="false">Border</string>
