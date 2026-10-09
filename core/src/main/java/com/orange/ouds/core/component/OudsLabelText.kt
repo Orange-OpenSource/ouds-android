@@ -211,7 +211,7 @@ enum class OudsLabelTextSize {
      */
     Small;
 
-    val maxWidth: Dp
+    internal val maxWidth: Dp
         @Composable
         get() = with(OudsTheme.sizes.maxWidth.label) {
             when (this@OudsLabelTextSize) {
