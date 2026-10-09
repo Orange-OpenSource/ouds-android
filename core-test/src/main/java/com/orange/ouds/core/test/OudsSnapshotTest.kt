@@ -20,6 +20,7 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 import org.junit.Assume
 import org.junit.Before
@@ -28,6 +29,7 @@ import org.junit.Test
 import org.junit.rules.TestName
 import kotlin.math.max
 
+@InternalOudsApi
 abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1, heightDp: Int = -1) {
 
     @Suppress("KotlinConstantConditions")
@@ -86,10 +88,6 @@ abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1,
     @get:Rule
     var name = TestName()
 
-    /**
-     * Allows to ignore the execution of specified snapshots tests.
-     * By default, snapshots are not ignored.
-     */
     open fun ignoreSnapshot(darkThemeEnabled: Boolean) = false
 
     @Composable
