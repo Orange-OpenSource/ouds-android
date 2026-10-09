@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AccessibilityAnnouncementLaunchedEffect
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCheckboxItem
@@ -65,6 +66,10 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
+                val error = checkboxItemError(state = this, isLastItem = isLastItem)
+                if (isLastItem) {
+                    AccessibilityAnnouncementLaunchedEffect(error)
+                }
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -84,7 +89,7 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = checkboxItemError(state = this, isLastItem = isLastItem),
+                    error = error,
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
@@ -98,6 +103,10 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
                 val isLastItem = index == CheckboxIdentifier.entries.lastIndex
+                val error = checkboxItemError(state = this, isLastItem = isLastItem)
+                if (isLastItem) {
+                    AccessibilityAnnouncementLaunchedEffect(error)
+                }
                 OudsTriStateCheckboxItem(
                     state = when (identifier) {
                         CheckboxIdentifier.First -> toggleableStateValues.first
@@ -119,7 +128,7 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = checkboxItemError(state = this, isLastItem = isLastItem),
+                    error = error,
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
