@@ -138,7 +138,7 @@ fun OudsPinCodeInput(
     helperText: String? = null,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.2.0-Unreleased") hiddenCharacters: Boolean = true
+    @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,
@@ -206,7 +206,7 @@ fun OudsPinCodeInput(
     helperText: OudsAnnotatedHelperText,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.2.0-Unreleased") hiddenCharacters: Boolean = true
+    @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true
 ) {
     OudsPinCodeInput(
         value = value,

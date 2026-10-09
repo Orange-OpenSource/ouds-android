@@ -5,6 +5,39 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0](https://github.com/Orange-OpenSource/ouds-android/compare/2.1.0...2.2.0) (2026-10-09)
+
+### Features
+
+- **top-app-bar** update API to allow a fully transparent background ([#1596](https://github.com/Orange-OpenSource/ouds-android/issues/1596))
+- **pin-code-input** update API to allow to display full value instead of bullets ([#1597](https://github.com/Orange-OpenSource/ouds-android/issues/1597))
+- **button** **navigation-button** update button and navigation button components to version 3.4.0 ([#1582](https://github.com/Orange-OpenSource/ouds-android/issues/1582))
+- **alert-message** update alert message component to version 1.2.0 ([#1584](https://github.com/Orange-OpenSource/ouds-android/issues/1584))
+- **linear-progress-indicator** **circular-progress-indicator** update circular progress indicator to 1.2.0 and linear progress indicator to 1.1.0  ([#1543](https://github.com/Orange-OpenSource/ouds-android/issues/1543))
+
+### Bug Fixes
+
+- **text-input** **password-input** **text-area** **pin-code-input** modifier is not applied to the inner text field ([#1625](https://github.com/Orange-OpenSource/ouds-android/issues/1625))
+- **checkbox** **checkbox-item** border color of unselected checkbox in enabled state is wrong ([#1630](https://github.com/Orange-OpenSource/ouds-android/issues/1630))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.54.0 ([#1626](https://github.com/Orange-OpenSource/ouds-android/issues/1626))
+- **deps** update paparazzi to v2.0.0-alpha05.1 ([#1620](https://github.com/Orange-OpenSource/ouds-android/issues/1620))
+- Fix binary compatibility issue with version 2.1 and add binary compatibility validator plugin ([#1598](https://github.com/Orange-OpenSource/ouds-android/issues/1598))
+- **deps** update dependency com.google.auth:google-auth-library-oauth2-http to v1.53.0 ([#1612](https://github.com/Orange-OpenSource/ouds-android/issues/1612))
+- **deps** update dependency androidx.annotation:annotation to v1.11.0 ([#1609](https://github.com/Orange-OpenSource/ouds-android/issues/1609))
+- **deps** update dependency androidx.core:core to v1.19.1 ([#1608](https://github.com/Orange-OpenSource/ouds-android/issues/1608))
+- **deps** update dependency org.mockito:mockito-android to v5.24.0 ([#1606](https://github.com/Orange-OpenSource/ouds-android/issues/1606))
+- **deps** update dependency org.mockito.kotlin:mockito-kotlin to v6.4.0 ([#1607](https://github.com/Orange-OpenSource/ouds-android/issues/1607))
+- **deps** update dependency dev.chrisbanes.haze:haze to v2.0.1 ([#1600](https://github.com/Orange-OpenSource/ouds-android/issues/1600))
+- **list-item** **card-item** apply disabled color on trailing text when item is disabled ([#1586](https://github.com/Orange-OpenSource/ouds-android/issues/1586))
+- **deps** update gradle to v9.4.1 ([#1594](https://github.com/Orange-OpenSource/ouds-android/issues/1594))
+- **deps** update dependency com.android.tools:sdk-common to v32.4.1 ([#1593](https://github.com/Orange-OpenSource/ouds-android/issues/1593))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-lib to v3.4.0 ([#1588](https://github.com/Orange-OpenSource/ouds-android/issues/1588))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.4.0 ([#1587](https://github.com/Orange-OpenSource/ouds-android/issues/1587))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-lib to v3.2.0 ([#1581](https://github.com/Orange-OpenSource/ouds-android/issues/1581))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.3.0 ([#1577](https://github.com/Orange-OpenSource/ouds-android/issues/1577))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-lib to v3 ([#1573](https://github.com/Orange-OpenSource/ouds-android/issues/1573))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.2.0 ([#1574](https://github.com/Orange-OpenSource/ouds-android/issues/1574))
+
 ## [2.1.0](https://github.com/Orange-OpenSource/ouds-android/compare/2.0.0...2.1.0) (2026-09-14)
 
 ### Features
