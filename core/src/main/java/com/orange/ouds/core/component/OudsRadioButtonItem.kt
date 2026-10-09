@@ -93,6 +93,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsRadioButtonItem(
     selected: Boolean,
@@ -111,7 +112,7 @@ fun OudsRadioButtonItem(
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -160,49 +161,6 @@ fun OudsRadioButtonItem(
         constrainedMaxWidth = constrainedMaxWidth,
         handleHighContrastMode = true,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsRadioButtonItem(
-    selected: Boolean,
-    label: String,
-    onClick: (() -> Unit)?,
-    modifier: Modifier = Modifier,
-    extraLabel: String? = null,
-    description: String? = null,
-    icon: OudsControlItemIcon? = null,
-    edgeToEdge: Boolean = true,
-    divider: Boolean = false,
-    outlined: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsRadioButtonItem(
-        selected = selected,
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        extraLabel = extraLabel,
-        description = description,
-        icon = icon,
-        edgeToEdge = edgeToEdge,
-        divider = divider,
-        outlined = outlined,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        interactionSource = interactionSource
     )
 }
 

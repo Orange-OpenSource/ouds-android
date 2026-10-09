@@ -82,6 +82,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsInputTagSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsInputTag(
     label: String,
@@ -89,7 +90,7 @@ fun OudsInputTag(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     val tagTokens = OudsTheme.componentsTokens.tag
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -172,27 +173,6 @@ fun OudsInputTag(
             }
         }
     }
-}
-
-@Composable
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-fun OudsInputTag(
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsInputTag(
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
-    )
 }
 
 @Composable

@@ -92,6 +92,7 @@ public final class com/orange/ouds/theme/OudsVersion$Component {
 	public static final field PasswordInput Ljava/lang/String;
 	public static final field PinCodeInput Ljava/lang/String;
 	public static final field RadioButton Ljava/lang/String;
+	public static final field Skeleton Ljava/lang/String;
 	public static final field StaticCardItem Ljava/lang/String;
 	public static final field StaticListItem Ljava/lang/String;
 	public static final field SuggestionChip Ljava/lang/String;

@@ -120,6 +120,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageNonFunctionalWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsAlertMessage(
     label: String,
@@ -129,7 +130,7 @@ fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsAlertMessage(
         label = label,
@@ -142,31 +143,6 @@ fun OudsAlertMessage(
         bulletList = bulletList,
         annotatedBulletList = null,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsAlertMessage(
-    label: String,
-    modifier: Modifier = Modifier,
-    status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
-    description: String? = null,
-    onClose: (() -> Unit)? = null,
-    actionLink: OudsAlertMessageActionLink? = null,
-    bulletList: List<String>? = null
-) {
-    OudsAlertMessage(
-        label = label,
-        modifier = modifier,
-        status = status,
-        description = description,
-        onClose = onClose,
-        actionLink = actionLink,
-        bulletList = bulletList
     )
 }
 
@@ -209,6 +185,7 @@ fun OudsAlertMessage(
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageWithAnnotatedTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsAlertMessage(
     label: String,
@@ -218,7 +195,7 @@ fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<OudsAnnotatedAlertMessageBulletListLabel>?,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsAlertMessage(
         label = label,
@@ -231,31 +208,6 @@ fun OudsAlertMessage(
         bulletList = null,
         annotatedBulletList = bulletList,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsAlertMessage(
-    label: String,
-    modifier: Modifier = Modifier,
-    status: OudsAlertMessageStatus = OudsAlertMessageDefaults.Status,
-    description: OudsAnnotatedAlertMessageDescription,
-    onClose: (() -> Unit)? = null,
-    actionLink: OudsAlertMessageActionLink? = null,
-    bulletList: List<OudsAnnotatedAlertMessageBulletListLabel>?
-) {
-    OudsAlertMessage(
-        label = label,
-        modifier = modifier,
-        status = status,
-        description = description,
-        onClose = onClose,
-        actionLink = actionLink,
-        bulletList = bulletList
     )
 }
 

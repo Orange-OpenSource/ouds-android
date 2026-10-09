@@ -105,6 +105,7 @@ import com.orange.ouds.theme.OudsThemeSettings
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputErrorSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsPasswordInput(
     state: OudsPasswordInputState,
@@ -125,7 +126,7 @@ fun OudsPasswordInput(
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsPasswordInput(
         state = state,
@@ -148,53 +149,6 @@ fun OudsPasswordInput(
         onTextLayout = onTextLayout,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsPasswordInput(
-    state: OudsPasswordInputState,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    lockIcon: Boolean = false,
-    prefix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: String? = null,
-    constrainedMaxWidth: Boolean = false,
-    inputTransformation: InputTransformation? = null,
-    keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
-    onKeyboardAction: KeyboardActionHandler? = null,
-    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsPasswordInput(
-        state = state,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        lockIcon = lockIcon,
-        prefix = prefix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        constrainedMaxWidth = constrainedMaxWidth,
-        inputTransformation = inputTransformation,
-        keyboardOptions = keyboardOptions,
-        onKeyboardAction = onKeyboardAction,
-        onTextLayout = onTextLayout,
-        interactionSource = interactionSource
     )
 }
 
@@ -253,6 +207,7 @@ fun OudsPasswordInput(
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsPasswordInputWithAnnotatedHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsPasswordInput(
     state: OudsPasswordInputState,
@@ -273,7 +228,7 @@ fun OudsPasswordInput(
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsPasswordInput(
         state = state,
@@ -296,53 +251,6 @@ fun OudsPasswordInput(
         onTextLayout = onTextLayout,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsPasswordInput(
-    state: OudsPasswordInputState,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    lockIcon: Boolean = false,
-    prefix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: OudsAnnotatedHelperText,
-    constrainedMaxWidth: Boolean = false,
-    inputTransformation: InputTransformation? = null,
-    keyboardOptions: KeyboardOptions = OudsPasswordInputDefaults.KeyboardOptions,
-    onKeyboardAction: KeyboardActionHandler? = null,
-    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsPasswordInput(
-        state = state,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        lockIcon = lockIcon,
-        prefix = prefix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        constrainedMaxWidth = constrainedMaxWidth,
-        inputTransformation = inputTransformation,
-        keyboardOptions = keyboardOptions,
-        onKeyboardAction = onKeyboardAction,
-        onTextLayout = onTextLayout,
-        interactionSource = interactionSource
     )
 }
 

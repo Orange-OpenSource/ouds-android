@@ -88,6 +88,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Suppress("DEPRECATION")
 @Composable
 fun OudsRadioButton(
@@ -98,7 +99,7 @@ fun OudsRadioButton(
     readOnly: Boolean = false,
     error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
@@ -163,31 +164,6 @@ fun OudsRadioButton(
             }
         }
     }
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsRadioButton(
-    selected: Boolean,
-    onClick: (() -> Unit)?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsRadioButton(
-        selected = selected,
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        interactionSource = interactionSource
-    )
 }
 
 @Composable

@@ -88,6 +88,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsSwitchItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSwitchItem(
     checked: Boolean,
@@ -104,7 +105,7 @@ fun OudsSwitchItem(
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -147,45 +148,6 @@ fun OudsSwitchItem(
         modifier = modifier.semantics(mergeDescendants = true) {},
         contentModifier = toggleableModifier,
         constrainedMaxWidth = constrainedMaxWidth
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsSwitchItem(
-    checked: Boolean,
-    label: String,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    modifier: Modifier = Modifier,
-    description: String? = null,
-    icon: OudsControlItemIcon? = null,
-    edgeToEdge: Boolean = true,
-    divider: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsSwitchItem(
-        checked = checked,
-        label = label,
-        onCheckedChange = onCheckedChange,
-        modifier = modifier,
-        description = description,
-        icon = icon,
-        edgeToEdge = edgeToEdge,
-        divider = divider,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        interactionSource = interactionSource
     )
 }
 

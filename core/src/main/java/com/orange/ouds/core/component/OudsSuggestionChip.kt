@@ -61,6 +61,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
@@ -68,7 +69,7 @@ fun OudsSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -78,27 +79,6 @@ fun OudsSuggestionChip(
         enabled = enabled,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsSuggestionChip(
-    onClick: () -> Unit,
-    label: String,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsSuggestionChip(
-        onClick = onClick,
-        label = label,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
     )
 }
 
@@ -133,6 +113,7 @@ fun OudsSuggestionChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlyWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
@@ -140,7 +121,7 @@ fun OudsSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -150,27 +131,6 @@ fun OudsSuggestionChip(
         enabled = enabled,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsSuggestionChip(
-    onClick: () -> Unit,
-    icon: OudsChipIcon,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsSuggestionChip(
-        onClick = onClick,
-        icon = icon,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
     )
 }
 
@@ -206,6 +166,7 @@ fun OudsSuggestionChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
@@ -214,7 +175,7 @@ fun OudsSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -224,29 +185,6 @@ fun OudsSuggestionChip(
         enabled = enabled,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsSuggestionChip(
-    onClick: () -> Unit,
-    label: String,
-    icon: OudsChipIcon,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsSuggestionChip(
-        onClick = onClick,
-        label = label,
-        icon = icon,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
     )
 }
 
@@ -276,6 +214,7 @@ fun OudsSuggestionChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 @RestrictedOudsApi
 @ExperimentalOudsApi
@@ -284,8 +223,8 @@ fun OudsBasicSuggestionChip(
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -326,6 +265,7 @@ fun OudsBasicSuggestionChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipIconOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 @RestrictedOudsApi
 @ExperimentalOudsApi
@@ -334,8 +274,8 @@ fun OudsBasicSuggestionChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -377,6 +317,7 @@ fun OudsBasicSuggestionChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextAndIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 @RestrictedOudsApi
 @ExperimentalOudsApi
@@ -386,8 +327,8 @@ fun OudsBasicSuggestionChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(

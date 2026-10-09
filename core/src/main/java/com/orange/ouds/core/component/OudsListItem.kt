@@ -119,6 +119,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(
@@ -136,8 +137,8 @@ fun OudsListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    skeleton: OudsSkeleton? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Default,
@@ -201,6 +202,7 @@ fun OudsListItem(
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsListItem(
@@ -220,8 +222,8 @@ fun OudsListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    skeleton: OudsSkeleton? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased")skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Default,

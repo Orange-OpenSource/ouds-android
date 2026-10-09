@@ -127,6 +127,7 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextOnlyOnColoredBackgroundSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsButton(
     label: String,
@@ -136,7 +137,7 @@ fun OudsButton(
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsButton(
         nullableIcon = null,
@@ -148,31 +149,6 @@ fun OudsButton(
         appearance = appearance,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsButton(
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
-    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsButton(
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        loader = loader,
-        appearance = appearance,
-        interactionSource = interactionSource
     )
 }
 
@@ -217,6 +193,7 @@ fun OudsButton(
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonIconOnlyWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsButton(
     icon: OudsButtonIcon,
@@ -226,7 +203,7 @@ fun OudsButton(
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsButton(
         nullableIcon = icon,
@@ -238,31 +215,6 @@ fun OudsButton(
         appearance = appearance,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsButton(
-    icon: OudsButtonIcon,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
-    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsButton(
-        icon = icon,
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        loader = loader,
-        appearance = appearance,
-        interactionSource = interactionSource
     )
 }
 
@@ -309,6 +261,7 @@ fun OudsButton(
  *
  * @sample com.orange.ouds.core.component.samples.OudsButtonTextAndIconWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsButton(
     icon: OudsButtonIcon,
@@ -319,7 +272,7 @@ fun OudsButton(
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsButton(
         nullableIcon = icon,
@@ -331,33 +284,6 @@ fun OudsButton(
         appearance = appearance,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsButton(
-    icon: OudsButtonIcon,
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
-    appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsButton(
-        icon = icon,
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        loader = loader,
-        appearance = appearance,
-        interactionSource = interactionSource
     )
 }
 

@@ -93,6 +93,7 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsLink(
     label: String,
@@ -100,8 +101,8 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
-    density: OudsLinkDensity = OudsLinkDefaults.Density,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.0.0") density: OudsLinkDensity = OudsLinkDefaults.Density,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsLink(
         label = label,
@@ -113,50 +114,6 @@ fun OudsLink(
         enabled = enabled,
         density = density,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLink(
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true,
-    density: OudsLinkDensity = OudsLinkDefaults.Density
-) {
-    OudsLink(
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        size = size,
-        enabled = enabled,
-        density = density
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLink(
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true
-) {
-    OudsLink(
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        size = size,
-        enabled = enabled
     )
 }
 
@@ -187,6 +144,7 @@ fun OudsLink(
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsLink(
     label: String,
@@ -195,8 +153,8 @@ fun OudsLink(
     modifier: Modifier = Modifier,
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
-    density: OudsLinkDensity = OudsLinkDefaults.Density,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.0.0") density: OudsLinkDensity = OudsLinkDefaults.Density,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsLink(
         label = label,
@@ -208,54 +166,6 @@ fun OudsLink(
         enabled = enabled,
         density = density,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLink(
-    label: String,
-    icon: OudsLinkIcon,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true,
-    density: OudsLinkDensity = OudsLinkDefaults.Density
-) {
-    OudsLink(
-        label = label,
-        icon = icon,
-        onClick = onClick,
-        modifier = modifier,
-        size = size,
-        enabled = enabled,
-        density = density
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLink(
-    label: String,
-    icon: OudsLinkIcon,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true
-) {
-    OudsLink(
-        label = label,
-        icon = icon,
-        onClick = onClick,
-        modifier = modifier,
-        size = size,
-        enabled = enabled
     )
 }
 
@@ -286,6 +196,7 @@ fun OudsLink(
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsLink(
     label: String,
@@ -295,7 +206,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     density: OudsLinkDensity = OudsLinkDefaults.Density,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsLink(
         label = label,
@@ -307,31 +218,6 @@ fun OudsLink(
         enabled = enabled,
         density = density,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLink(
-    label: String,
-    indicator: OudsLinkIndicator,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    size: OudsLinkSize = OudsLinkDefaults.Size,
-    enabled: Boolean = true,
-    density: OudsLinkDensity = OudsLinkDefaults.Density
-) {
-    OudsLink(
-        label = label,
-        indicator = indicator,
-        onClick = onClick,
-        modifier = modifier,
-        size = size,
-        enabled = enabled,
-        density = density
     )
 }
 

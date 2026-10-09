@@ -128,6 +128,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTag(
     label: String,
@@ -138,7 +139,7 @@ fun OudsTag(
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
     loader: OudsTagLoader? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     val state = getTagState(enabled = enabled, loader = loader, skeleton = skeleton)
     val hasAsset = status.asset != null || state == OudsTagState.Loading
@@ -200,33 +201,6 @@ fun OudsTag(
             )
         }
     }
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTag(
-    label: String,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
-    status: OudsTagStatus = OudsTagDefaults.Status,
-    roundedCorners: Boolean = true,
-    size: OudsTagSize = OudsTagDefaults.Size,
-    loader: OudsTagLoader? = null
-) {
-    OudsTag(
-        label = label,
-        modifier = modifier,
-        enabled = enabled,
-        appearance = appearance,
-        status = status,
-        roundedCorners = roundedCorners,
-        size = size,
-        loader = loader
-    )
 }
 
 @Composable

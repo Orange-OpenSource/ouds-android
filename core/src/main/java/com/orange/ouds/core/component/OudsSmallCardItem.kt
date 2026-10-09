@@ -60,6 +60,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallCardItem(
@@ -73,8 +74,8 @@ fun OudsSmallCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -130,6 +131,7 @@ fun OudsSmallCardItem(
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallCardItem(
@@ -145,8 +147,8 @@ fun OudsSmallCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,

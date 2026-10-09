@@ -108,12 +108,13 @@ private const val MaxLevelCount = 3
  * @sample com.orange.ouds.core.component.samples.OudsBulletListBareSample
  * @sample com.orange.ouds.core.component.samples.OudsBulletListWithAnnotatedLabelsSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsBulletList(
     modifier: Modifier = Modifier,
     type: OudsBulletListType = OudsBulletListDefaults.Type,
     textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
-    skeleton: OudsSkeleton? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     builder: OudsBulletListBuilder.() -> Unit
 ) {
     val items = remember(builder) {
@@ -132,25 +133,6 @@ fun OudsBulletList(
             )
         }
     }
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsBulletList(
-    modifier: Modifier = Modifier,
-    type: OudsBulletListType = OudsBulletListDefaults.Type,
-    textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
-    builder: OudsBulletListBuilder.() -> Unit
-) {
-    OudsBulletList(
-        modifier = modifier,
-        type = type,
-        textStyle = textStyle,
-        builder = builder
-    )
 }
 
 /**
