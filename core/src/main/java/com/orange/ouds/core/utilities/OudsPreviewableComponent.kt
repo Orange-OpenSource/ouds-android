@@ -347,7 +347,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsBodyText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -360,7 +360,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsBodyTextWithAnnotatedText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -800,7 +800,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsCodeText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -813,7 +813,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsCodeTextWithAnnotatedText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -845,7 +845,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsDisplayText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -858,7 +858,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsDisplayTextWithAnnotatedText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -1037,7 +1037,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsHeadingText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -1050,7 +1050,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsHeadingTextWithAnnotatedText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -1113,7 +1113,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsLabelText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
@@ -1126,7 +1126,7 @@ interface OudsPreviewableComponent {
             override val parameters: List<Any> = emptyList()
 
             @Composable
-            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean, parameter: Any?) {
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsLabelTextWithAnnotatedText(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled
