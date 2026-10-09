@@ -40,7 +40,7 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
     val state = rememberCheckboxItemDemoState()
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
-        bottomSheetContent = { ControlItemCustomizations(state = state) },
+        bottomSheetContent = { CheckboxItemDemoBottomSheetContent(state = state) },
         codeSnippet = { checkboxItemDemoCodeSnippet(state = state, indeterminate = indeterminate, themeDrawableResources = themeDrawableResources) },
         demoContent = {
             if (indeterminate) {
@@ -52,6 +52,11 @@ fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.Checkbox
     )
+}
+
+@Composable
+private fun CheckboxItemDemoBottomSheetContent(state: CheckboxItemDemoState) {
+    ControlItemCustomizations(state = state)
 }
 
 @Composable

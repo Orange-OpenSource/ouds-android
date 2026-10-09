@@ -119,7 +119,7 @@ fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomi
         { BaseListItemVerticalAlignmentCustomization(state = state) },
         { BaseListItemEnabledCustomization(state = state) },
     )
-    extraCustomizations.forEach { (index, content) ->
+    extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
     }
     customizations.forEach { it() }

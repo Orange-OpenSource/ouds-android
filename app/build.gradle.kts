@@ -38,7 +38,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
-        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 15
+        versionCode = project.findTypedProperty<String>("versionCode")?.toInt() ?: 16
         versionName = version.toString()
         versionNameSuffix = project.findTypedProperty<String>("versionNameSuffix")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -136,6 +136,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
     implementation(libs.haze)
+    implementation(libs.haze.blur)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     ksp(libs.kotlin.metadata.jvm)

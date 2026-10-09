@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -76,6 +78,7 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -346,6 +349,7 @@ internal fun OudsListItem(
                         is OudsListItemLeadingTrailing.Text -> {
                             trailing.PolymorphicContent(
                                 extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
+                                    state = state,
                                     verticalAlignment = verticalAlignment,
                                     size = size
                                 )
@@ -682,7 +686,11 @@ sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
     interface Text : OudsListItemLeadingTrailing {
         @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val verticalAlignment: OudsListItemVerticalAlignment, internal val size: OudsListItemSize) :
+        data class ExtraParameters internal constructor(
+            internal val state: OudsListItemState,
+            internal val verticalAlignment: OudsListItemVerticalAlignment,
+            internal val size: OudsListItemSize
+        ) :
             OudsComponentContent.ExtraParameters()
     }
 }
@@ -880,6 +888,7 @@ open class OudsListItemText internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
+        val textColor = contentColor(state = extraParameters.state, muted = style == OudsListItemTextStyle.LabelMuted)
         Column(modifier = modifier, horizontalAlignment = Alignment.End) {
             Text(
                 modifier = modifier.padding(
@@ -890,13 +899,13 @@ open class OudsListItemText internal constructor(
                     OudsListItemTextStyle.Label, OudsListItemTextStyle.LabelMuted -> OudsTheme.typography.label.large.default
                     OudsListItemTextStyle.LabelStrong -> OudsTheme.typography.label.large.strong
                 },
-                color = if (style == OudsListItemTextStyle.LabelMuted) OudsTheme.colorScheme.content.muted else OudsTheme.colorScheme.content.default
+                color = textColor
             )
             extraLabel?.let {
                 Text(
                     text = extraLabel,
                     style = OudsTheme.typography.label.medium.strong,
-                    color = OudsTheme.colorScheme.content.default
+                    color = textColor
                 )
             }
         }
@@ -1311,20 +1320,30 @@ internal fun PreviewOudsStaticListItem(
     parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsListItem(
-            label = label,
-            overline = overline,
-            extraLabel = extraLabel,
-            description = description,
-            helperText = helperText,
-            verticalAlignment = verticalAlignment,
-            leading = leading,
-            trailing = trailing,
-            divider = decoration.divider,
-            background = decoration is OudsListItemDecoration.Background,
-            boldLabel = boldLabel,
-            enabled = enabled
-        )
+        PreviewEnumEntries<OudsListItemState>(
+            maxEnumEntriesInEachRow = 1,
+            filter = {
+                it in listOf(
+                    OudsListItemState.Enabled,
+                    OudsListItemState.Disabled
+                )
+            }
+        ) {
+            OudsListItem(
+                label = label,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                helperText = helperText,
+                verticalAlignment = verticalAlignment,
+                leading = leading,
+                trailing = trailing,
+                divider = decoration.divider,
+                background = decoration is OudsListItemDecoration.Background,
+                boldLabel = boldLabel,
+                enabled = enabled
+            )
+        }
     }
 }
 

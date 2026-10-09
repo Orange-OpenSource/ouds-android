@@ -86,6 +86,18 @@ internal fun OudsPinCodeInputWithAnnotatedErrorMessageSample() {
     )
 }
 
+@Composable
+internal fun OudsPinCodeInputWithVisibleCharactersSample() {
+    var value by remember { mutableStateOf("1234") }
+    OudsPinCodeInput(
+        value = value,
+        onValueChange = { value = it },
+        length = OudsPinCodeInputLength.Four,
+        hiddenCharacters = false,
+        helperText = "Enter the 4-digit code sent to your phone."
+    )
+}
+
 @PreviewLightDark
 @Composable
 private fun PreviewOudsPinCodeInputSample() = OudsPreview {
@@ -108,4 +120,10 @@ private fun PreviewOudsPinCodeInputWithAnnotatedHelperTextSample() = OudsPreview
 @Composable
 private fun PreviewOudsPinCodeInputWithAnnotatedErrorMessageSample() = OudsPreview {
     OudsPinCodeInputWithAnnotatedErrorMessageSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsPinCodeInputWithVisibleCharactersSample() = OudsPreview {
+    OudsPinCodeInputWithVisibleCharactersSample()
 }

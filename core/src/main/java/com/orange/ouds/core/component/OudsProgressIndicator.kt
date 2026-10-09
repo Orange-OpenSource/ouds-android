@@ -13,11 +13,16 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
+import kotlin.math.round
 
 /**
  * The status of an [OudsCircularProgressIndicator] or an [OudsLinearProgressIndicator].
@@ -122,6 +127,11 @@ object OudsProgressIndicatorDefaults {
      * The default gap size.
      */
     val GapSize = OudsProgressIndicatorGapSize.Default
+
+    /**
+     * The default size for the circular progress indicator.
+     */
+    val CircularSize = 48.dp
 }
 
 @Composable
@@ -140,4 +150,10 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
             else -> Color.Transparent
         }
     }
+}
+
+@Composable
+internal fun progressIndicatorHelperTextProgress(progress: () -> Float): String {
+    val progressValue = remember(progress()) { round(progress() * 100).toInt() }
+    return stringResource(R.string.core_progressIndicator_helperTextProgress_label, progressValue)
 }

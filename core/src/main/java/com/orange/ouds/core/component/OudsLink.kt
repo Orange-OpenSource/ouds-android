@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.clickable
@@ -60,6 +62,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -697,8 +700,8 @@ open class OudsLinkIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(painter: Painter, tinted: Boolean = true) : this(painter as Any, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(painter: Painter, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(painter as Any, tinted)
 
     /**
      * Creates an instance of [OudsLinkIcon].
@@ -708,8 +711,8 @@ open class OudsLinkIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(imageVector: ImageVector, tinted: Boolean = true) : this(imageVector as Any, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(imageVector: ImageVector, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(imageVector as Any, tinted)
 
     /**
      * Creates an instance of [OudsLinkIcon].
@@ -719,8 +722,8 @@ open class OudsLinkIcon private constructor(
      *   When set to `false`, the icon is displayed with its original colors (e.g., for multi-color icons).
      *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
      */
-    @JvmOverloads
-    constructor(bitmap: ImageBitmap, tinted: Boolean = true) : this(bitmap as Any, tinted)
+    @OptIn(ExperimentalVersionOverloading::class)
+    constructor(bitmap: ImageBitmap, @IntroducedAt("1.6.0") tinted: Boolean = true) : this(bitmap as Any, tinted)
 
     override val tint: Color?
         @Composable

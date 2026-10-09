@@ -57,6 +57,7 @@ sealed class TokenCategory<T>(
         R.string.app_tokens_color_description_text,
         listOf(
             TokenProperty.ColorAction,
+            TokenProperty.ColorAi,
             TokenProperty.ColorAlways,
             TokenProperty.ColorBackground,
             TokenProperty.ColorBorder,

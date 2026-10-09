@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.ksp) apply false
     id(libs.plugins.dokka.get().pluginId) // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    id(libs.plugins.binary.compatibility.validator.get().pluginId)
     id("release")
     id("netlify")
     id("check-notice")
@@ -67,4 +68,9 @@ dokka {
         includes.from("docs/index.md")
         outputDirectory.set(projectDir.resolve("docs/dokka"))
     }
+}
+
+apiValidation {
+    nonPublicMarkers.add("com.orange.ouds.foundation.InternalOudsApi")
+    ignoredPackages.add("com.orange.ouds.core.component.samples")
 }

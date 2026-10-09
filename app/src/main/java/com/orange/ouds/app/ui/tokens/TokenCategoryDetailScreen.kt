@@ -227,7 +227,7 @@ private fun TokenIllustration(tokenProperty: TokenProperty<*>, token: Token<*>) 
     is TokenProperty.BorderWidth -> BorderIllustration(width = token.value() as Dp)
     is TokenProperty.BorderRadius -> BorderIllustration(shape = RoundedCornerShape(token.value() as Dp))
     is TokenProperty.BorderStyle -> BorderIllustration(style = token.value() as OudsBorderStyle)
-    is TokenProperty.ColorAction, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
+    is TokenProperty.ColorAction, TokenProperty.ColorAi, TokenProperty.ColorAlways, TokenProperty.ColorBackground, TokenProperty.ColorBorder, TokenProperty.ColorContent,
     TokenProperty.ColorOpacity, TokenProperty.ColorOverlay, TokenProperty.ColorSurface -> ColorIllustration(color = token.value() as Color)
     is TokenProperty.Opacity -> OpacityIllustration(opacity = token.value() as Float)
     is TokenProperty.Elevation -> ElevationIllustration(elevation = token.value() as Dp)
@@ -288,7 +288,7 @@ private fun CodeColumn(codeExample: String, modifier: Modifier = Modifier) {
                         stateDescription = linkStateDescription
                     },
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.paddingInline.small)
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)
             ) {
                 Text(
                     text = stringResource(R.string.app_tokens_common_viewCodeExample_label),

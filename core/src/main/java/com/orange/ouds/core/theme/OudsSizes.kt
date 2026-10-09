@@ -307,6 +307,7 @@ data class OudsSizes internal constructor(
      * Maximum width constraints used to control line length and layout density.
      *
      * @property body Max widths for body text contexts.
+     * @property boxedText Max width for text when it is in a boxed container.
      * @property display Max widths for display text contexts.
      * @property heading Max widths for heading text contexts.
      * @property label Max widths for label text contexts.
@@ -320,7 +321,8 @@ data class OudsSizes internal constructor(
         val heading: Heading,
         val label: Label,
         @Deprecated("This token level will be removed in the next major version. Please use 'body', 'display', 'heading' or 'label' directly in the token hierarchy.")
-        val type: Type
+        val type: Type,
+        val boxedText: Dp
     ) {
         /**
          * Max widths for body text contexts.
@@ -549,6 +551,7 @@ internal fun OudsSizeSemanticTokens.getSizes(windowWidthSizeClass: WindowWidthSi
                 medium = getTokenValue(maxWidthBodyMediumMobile, maxWidthBodyMediumTablet).dp,
                 large = getTokenValue(maxWidthBodyLargeMobile, maxWidthBodyLargeTablet).dp,
             ),
+            boxedText = getTokenValue(maxWidthBoxedTextMobile, maxWidthBoxedTextTablet).dp,
             display = OudsSizes.MaxWidth.Display(
                 small = getTokenValue(maxWidthDisplaySmallMobile, maxWidthDisplaySmallTablet).dp,
                 medium = getTokenValue(maxWidthDisplayMediumMobile, maxWidthDisplayMediumTablet).dp,
@@ -684,6 +687,7 @@ private fun OudsSizes.fromToken(token: OudsSizeKeyToken.MaxWidth): Dp {
             OudsSizeKeyToken.MaxWidth.Body.Small -> body.small
             OudsSizeKeyToken.MaxWidth.Body.Medium -> body.medium
             OudsSizeKeyToken.MaxWidth.Body.Large -> body.large
+            OudsSizeKeyToken.MaxWidth.BoxedText -> boxedText
             OudsSizeKeyToken.MaxWidth.Display.Small -> display.small
             OudsSizeKeyToken.MaxWidth.Display.Medium -> display.medium
             OudsSizeKeyToken.MaxWidth.Display.Large -> display.large

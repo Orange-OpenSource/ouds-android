@@ -1,0 +1,159 @@
+public final class com/orange/ouds/theme/sosh/SoshTheme : com/orange/ouds/theme/OudsThemeContract {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
+	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
+	public fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
+	public fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
+	public fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;
+	public fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+	public fun getFontFamily (Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
+	public fun getFontTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsFontSemanticTokens;
+	public fun getGridTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsGridSemanticTokens;
+	public fun getMaterialColorTokens ()Lcom/orange/ouds/theme/tokens/material/OudsMaterialColorTokens;
+	public fun getName ()Ljava/lang/String;
+	public fun getOpacityTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsOpacitySemanticTokens;
+	public fun getSettings ()Lcom/orange/ouds/theme/OudsThemeSettings;
+	public fun getSizeTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSizeSemanticTokens;
+	public fun getSpaceTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSpaceSemanticTokens;
+}
+
+public final class com/orange/ouds/theme/sosh/SoshThemeKt {
+	public static final field SOSH_THEME_NAME Ljava/lang/String;
+}
+
+public final class com/orange/ouds/theme/sosh/tokens/raw/SoshColorRawTokens {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/theme/sosh/tokens/raw/SoshColorRawTokens;
+	public final fun getColorFunctionalGrayDark160-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark240-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark320-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark400-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark480-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark560-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark640-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark720-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark80-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark800-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark880-0d7_KjU ()J
+	public final fun getColorFunctionalGrayDark960-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight160-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight240-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight320-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight400-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight480-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight560-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight640-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight720-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight80-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight800-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight880-0d7_KjU ()J
+	public final fun getColorFunctionalGrayLight960-0d7_KjU ()J
+	public final fun getColorLochmaraDark160-0d7_KjU ()J
+	public final fun getColorLochmaraDark240-0d7_KjU ()J
+	public final fun getColorLochmaraDark320-0d7_KjU ()J
+	public final fun getColorLochmaraDark400-0d7_KjU ()J
+	public final fun getColorLochmaraDark480-0d7_KjU ()J
+	public final fun getColorLochmaraDark560-0d7_KjU ()J
+	public final fun getColorLochmaraDark640-0d7_KjU ()J
+	public final fun getColorLochmaraDark720-0d7_KjU ()J
+	public final fun getColorLochmaraDark80-0d7_KjU ()J
+	public final fun getColorLochmaraDark800-0d7_KjU ()J
+	public final fun getColorLochmaraDark880-0d7_KjU ()J
+	public final fun getColorLochmaraDark960-0d7_KjU ()J
+	public final fun getColorLochmaraLight160-0d7_KjU ()J
+	public final fun getColorLochmaraLight240-0d7_KjU ()J
+	public final fun getColorLochmaraLight320-0d7_KjU ()J
+	public final fun getColorLochmaraLight400-0d7_KjU ()J
+	public final fun getColorLochmaraLight480-0d7_KjU ()J
+	public final fun getColorLochmaraLight560-0d7_KjU ()J
+	public final fun getColorLochmaraLight640-0d7_KjU ()J
+	public final fun getColorLochmaraLight720-0d7_KjU ()J
+	public final fun getColorLochmaraLight80-0d7_KjU ()J
+	public final fun getColorLochmaraLight800-0d7_KjU ()J
+	public final fun getColorLochmaraLight880-0d7_KjU ()J
+	public final fun getColorLochmaraLight960-0d7_KjU ()J
+	public final fun getColorOpacityBlack0-0d7_KjU ()J
+	public final fun getColorOpacityBlack120-0d7_KjU ()J
+	public final fun getColorOpacityBlack160-0d7_KjU ()J
+	public final fun getColorOpacityBlack200-0d7_KjU ()J
+	public final fun getColorOpacityBlack240-0d7_KjU ()J
+	public final fun getColorOpacityBlack280-0d7_KjU ()J
+	public final fun getColorOpacityBlack320-0d7_KjU ()J
+	public final fun getColorOpacityBlack360-0d7_KjU ()J
+	public final fun getColorOpacityBlack40-0d7_KjU ()J
+	public final fun getColorOpacityBlack400-0d7_KjU ()J
+	public final fun getColorOpacityBlack440-0d7_KjU ()J
+	public final fun getColorOpacityBlack480-0d7_KjU ()J
+	public final fun getColorOpacityBlack520-0d7_KjU ()J
+	public final fun getColorOpacityBlack560-0d7_KjU ()J
+	public final fun getColorOpacityBlack600-0d7_KjU ()J
+	public final fun getColorOpacityBlack640-0d7_KjU ()J
+	public final fun getColorOpacityBlack680-0d7_KjU ()J
+	public final fun getColorOpacityBlack720-0d7_KjU ()J
+	public final fun getColorOpacityBlack760-0d7_KjU ()J
+	public final fun getColorOpacityBlack80-0d7_KjU ()J
+	public final fun getColorOpacityBlack800-0d7_KjU ()J
+	public final fun getColorOpacityBlack840-0d7_KjU ()J
+	public final fun getColorOpacityBlack880-0d7_KjU ()J
+	public final fun getColorOpacityBlack920-0d7_KjU ()J
+	public final fun getColorOpacityBlack960-0d7_KjU ()J
+	public final fun getColorOpacityLochmaraDark880520-0d7_KjU ()J
+	public final fun getColorOpacityLochmaraDark960800-0d7_KjU ()J
+	public final fun getColorOpacityLochmaraLight80080-0d7_KjU ()J
+	public final fun getColorOpacityRaspberry100-0d7_KjU ()J
+	public final fun getColorOpacityRaspberry640-0d7_KjU ()J
+	public final fun getColorOpacityTurbo160-0d7_KjU ()J
+	public final fun getColorOpacityTurbo480-0d7_KjU ()J
+	public final fun getColorOpacityWhite0-0d7_KjU ()J
+	public final fun getColorOpacityWhite120-0d7_KjU ()J
+	public final fun getColorOpacityWhite160-0d7_KjU ()J
+	public final fun getColorOpacityWhite200-0d7_KjU ()J
+	public final fun getColorOpacityWhite240-0d7_KjU ()J
+	public final fun getColorOpacityWhite280-0d7_KjU ()J
+	public final fun getColorOpacityWhite320-0d7_KjU ()J
+	public final fun getColorOpacityWhite360-0d7_KjU ()J
+	public final fun getColorOpacityWhite40-0d7_KjU ()J
+	public final fun getColorOpacityWhite400-0d7_KjU ()J
+	public final fun getColorOpacityWhite440-0d7_KjU ()J
+	public final fun getColorOpacityWhite480-0d7_KjU ()J
+	public final fun getColorOpacityWhite520-0d7_KjU ()J
+	public final fun getColorOpacityWhite560-0d7_KjU ()J
+	public final fun getColorOpacityWhite600-0d7_KjU ()J
+	public final fun getColorOpacityWhite640-0d7_KjU ()J
+	public final fun getColorOpacityWhite680-0d7_KjU ()J
+	public final fun getColorOpacityWhite720-0d7_KjU ()J
+	public final fun getColorOpacityWhite760-0d7_KjU ()J
+	public final fun getColorOpacityWhite80-0d7_KjU ()J
+	public final fun getColorOpacityWhite800-0d7_KjU ()J
+	public final fun getColorOpacityWhite840-0d7_KjU ()J
+	public final fun getColorOpacityWhite880-0d7_KjU ()J
+	public final fun getColorOpacityWhite920-0d7_KjU ()J
+	public final fun getColorOpacityWhite960-0d7_KjU ()J
+	public final fun getColorRaspberry100-0d7_KjU ()J
+	public final fun getColorRaspberry200-0d7_KjU ()J
+	public final fun getColorRaspberry300-0d7_KjU ()J
+	public final fun getColorRaspberry400-0d7_KjU ()J
+	public final fun getColorRaspberry50-0d7_KjU ()J
+	public final fun getColorRaspberry500-0d7_KjU ()J
+	public final fun getColorRaspberry600-0d7_KjU ()J
+	public final fun getColorRaspberry700-0d7_KjU ()J
+	public final fun getColorRaspberry800-0d7_KjU ()J
+	public final fun getColorRaspberry900-0d7_KjU ()J
+	public final fun getColorRaspberry950-0d7_KjU ()J
+	public final fun getColorTurbo100-0d7_KjU ()J
+	public final fun getColorTurbo1000-0d7_KjU ()J
+	public final fun getColorTurbo200-0d7_KjU ()J
+	public final fun getColorTurbo300-0d7_KjU ()J
+	public final fun getColorTurbo400-0d7_KjU ()J
+	public final fun getColorTurbo50-0d7_KjU ()J
+	public final fun getColorTurbo500-0d7_KjU ()J
+	public final fun getColorTurbo600-0d7_KjU ()J
+	public final fun getColorTurbo700-0d7_KjU ()J
+	public final fun getColorTurbo750-0d7_KjU ()J
+	public final fun getColorTurbo800-0d7_KjU ()J
+	public final fun getColorTurbo900-0d7_KjU ()J
+	public final fun getColorTurbo950-0d7_KjU ()J
+}
+

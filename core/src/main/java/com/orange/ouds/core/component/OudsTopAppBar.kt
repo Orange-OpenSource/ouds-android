@@ -12,7 +12,9 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -58,10 +60,127 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
+
+/**
+ * Background for an [OudsTopAppBar] or any other top app bar variant.
+ */
+enum class OudsTopAppBarBackground {
+    /**
+     * Opaque background using bar component tokens.
+     */
+    Opaque,
+
+    /**
+     * Translucent background which must be used to achieve the **recommended** blur effect as specified in OUDS design.
+     * Use this option with the [Haze](https://chrisbanes.github.io/haze/latest/) library.
+     * See [OudsTopAppBar] documentation for detailed setup instructions.
+     */
+    Translucent,
+
+    /**
+     * Fully transparent background.
+     * 
+     * Content scrolls behind the top app bar without any background or blur effect.
+     * Ensure sufficient contrast between the top app bar content (title, icons) and the
+     * scrolling content behind for accessibility.
+     */
+    Transparent
+}
+
+/**
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
+ *
+ * This small top app bar has slots for a title, navigation icon, and actions.
+ *
+ * ### Background Styles
+ *
+ * [OudsTopAppBar] supports three background styles via the [background] parameter:
+ *
+ * - **Translucent** ([OudsTopAppBarBackground.Translucent], **recommended**): Semi-transparent background with blur effect, as specified in OUDS design guidelines
+ * - **Transparent** ([OudsTopAppBarBackground.Transparent]): Fully transparent background with no blur
+ * - **Opaque** ([OudsTopAppBarBackground.Opaque]): Solid background with full opacity for standard use cases
+ *
+ * #### Using Translucent Background with Blur (Recommended)
+ *
+ * To implement the **translucent blurred top app bar** as recommended by OUDS design guidelines, use [OudsTopAppBarBackground.Translucent]
+ * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
+ * 1. Add Haze and Haze Blur dependencies
+ * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
+ * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
+ * that will have the height of [OudsTopAppBar].
+ *
+ * #### Using Transparent Background
+ *
+ * When using [OudsTopAppBarBackground.Transparent], ensure sufficient contrast between the top app bar content
+ * and the scrolling content behind for accessibility.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
+ *
+ * > Design version: 1.0.0
+ *
+ * @param title The title to be displayed in the top app bar.
+ * @param modifier The [Modifier] to be applied to this top app bar.
+ * @param background The background of the top app bar among [OudsTopAppBarBackground].
+ * @param navigationIcon The navigation icon displayed at the start of the top app bar.
+ * @param actions The actions displayed at the end of the top app bar. These can be
+ *   instances of [OudsTopAppBarAction.Icon] or [OudsTopAppBarAction.Avatar].
+ *   The default layout here is a [Row], so actions will be placed horizontally.
+ *   The maximum recommended number of actions is three. Please use a dropdown menu if you need more than three actions.
+ * @param expandedHeight This app bar's height. When a specified [scrollBehavior] causes the app bar
+ *   to collapse or expand, this value will represent the maximum height that the bar will be
+ *   allowed to expand. This value must be specified and finite, otherwise it will be ignored and
+ *   replaced with [TopAppBarDefaults.TopAppBarExpandedHeight].
+ * @param windowInsets A window insets that app bar will respect.
+ * @param scrollBehavior A [TopAppBarScrollBehavior] which holds various offset values that will be
+ *   applied by this top app bar to set up its height and colors. A scroll behavior is designed to
+ *   work in conjunction with a scrolled content to change the top app bar appearance as the content
+ *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OudsTopAppBar(
+    title: String,
+    background: OudsTopAppBarBackground,
+    modifier: Modifier = Modifier,
+    navigationIcon: OudsTopAppBarNavigationIcon? = null,
+    actions: List<OudsTopAppBarAction> = emptyList(),
+    expandedHeight: Dp = TopAppBarDefaults.TopAppBarExpandedHeight,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
+    scrollBehavior: TopAppBarScrollBehavior? = null
+) {
+    TopAppBar(
+        title = {
+            Title(
+                title = title,
+                topAppBarSize = OudsTopAppBarSize.Small,
+                centerAligned = false
+            )
+        },
+        modifier = modifier.bottomBorder(background),
+        navigationIcon = { navigationIcon?.Content() },
+        actions = { actions.forEach { it.PolymorphicContent() } },
+        expandedHeight = expandedHeight,
+        windowInsets = windowInsets,
+        colors = colors(background = background),
+        scrollBehavior = scrollBehavior
+    )
+}
 
 /**
  * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
@@ -72,13 +191,14 @@ import com.orange.ouds.theme.OudsThemeContract
  * [OudsTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
@@ -108,6 +228,14 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
+@Deprecated(
+    message = "Use OudsTopAppBar with background parameter instead.",
+    replaceWith = ReplaceWith(
+        "OudsTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
+                "navigationIcon = navigationIcon, actions = actions, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
+        "com.orange.ouds.core.component.OudsTopAppBarBackground"
+    )
+)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OudsTopAppBar(
@@ -120,20 +248,14 @@ fun OudsTopAppBar(
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    TopAppBar(
-        title = {
-            Title(
-                title = title,
-                topAppBarSize = OudsTopAppBarSize.Small,
-                centerAligned = false
-            )
-        },
-        modifier = modifier.bottomBorder(),
-        navigationIcon = { navigationIcon?.Content() },
-        actions = { actions.forEach { it.PolymorphicContent() } },
+    OudsTopAppBar(
+        title = title,
+        modifier = modifier,
+        background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque,
+        navigationIcon = navigationIcon,
+        actions = actions,
         expandedHeight = expandedHeight,
         windowInsets = windowInsets,
-        colors = colors(translucent = translucent),
         scrollBehavior = scrollBehavior
     )
 }
@@ -144,13 +266,104 @@ fun OudsTopAppBar(
  *
  * This small top app bar has slots for a title that is horizontally aligned to the center, navigation icon, and actions.
  *
+ * ### Background Styles
+ *
+ * [OudsCenterAlignedTopAppBar] supports three background styles via the [background] parameter:
+ *
+ * - **Translucent** ([OudsTopAppBarBackground.Translucent], **recommended**): Semi-transparent background with blur effect, as specified in OUDS design guidelines
+ * - **Transparent** ([OudsTopAppBarBackground.Transparent]): Fully transparent background with no blur
+ * - **Opaque** ([OudsTopAppBarBackground.Opaque]): Solid background with full opacity for standard use cases
+ *
+ * #### Using Translucent Background with Blur (Recommended)
+ *
+ * To implement the **translucent blurred top app bar** as recommended by OUDS design guidelines, use [OudsTopAppBarBackground.Translucent]
+ * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
+ * 1. Add Haze and Haze Blur dependencies
+ * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
+ * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsCenterAlignedTopAppBar].
+ *
+ * #### Using Transparent Background
+ *
+ * When using [OudsTopAppBarBackground.Transparent], ensure sufficient contrast between the top app bar content
+ * and the scrolling content behind for accessibility.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
+ *
+ * > Design version: 1.0.0
+ *
+ * @param title The title to be displayed in the top app bar.
+ * @param modifier The [Modifier] to be applied to this top app bar.
+ * @param background The background of the top app bar among [OudsTopAppBarBackground].
+ * @param navigationIcon The navigation icon displayed at the start of the top app bar.
+ * @param actions The actions displayed at the end of the top app bar. These can be
+ *   instances of [OudsTopAppBarAction.Icon] or [OudsTopAppBarAction.Avatar].
+ *   The default layout here is a [Row], so actions will be placed horizontally.
+ *   The maximum recommended number of actions is three. Please use a dropdown menu if you need more than three actions.
+ * @param expandedHeight This app bar's height. When a specified [scrollBehavior] causes the app bar
+ *   to collapse or expand, this value will represent the maximum height that the bar will be
+ *   allowed to expand. This value must be specified and finite, otherwise it will be ignored and
+ *   replaced with [TopAppBarDefaults.TopAppBarExpandedHeight].
+ * @param windowInsets A window insets that app bar will respect.
+ * @param scrollBehavior A [TopAppBarScrollBehavior] which holds various offset values that will be
+ *   applied by this top app bar to set up its height and colors. A scroll behavior is designed to
+ *   work in conjunction with a scrolled content to change the top app bar appearance as the content
+ *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsCenterAlignedTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OudsCenterAlignedTopAppBar(
+    title: String,
+    background: OudsTopAppBarBackground,
+    modifier: Modifier = Modifier,
+    navigationIcon: OudsTopAppBarNavigationIcon? = null,
+    actions: List<OudsTopAppBarAction> = emptyList(),
+    expandedHeight: Dp = TopAppBarDefaults.TopAppBarExpandedHeight,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
+    scrollBehavior: TopAppBarScrollBehavior? = null
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Title(
+                title = title,
+                topAppBarSize = OudsTopAppBarSize.Small,
+                centerAligned = true
+            )
+        },
+        modifier = modifier.bottomBorder(background),
+        navigationIcon = { navigationIcon?.Content() },
+        actions = { actions.forEach { it.PolymorphicContent() } },
+        expandedHeight = expandedHeight,
+        windowInsets = windowInsets,
+        colors = colors(background = background),
+        scrollBehavior = scrollBehavior
+    )
+}
+
+/**
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
+ *
+ * This small top app bar has slots for a title, navigation icon, and actions.
+ *
  * [OudsCenterAlignedTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsCenterAlignedTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsCenterAlignedTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
  * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
  * that will have the height of [OudsCenterAlignedTopAppBar].
@@ -183,6 +396,14 @@ fun OudsTopAppBar(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
+@Deprecated(
+    message = "Use OudsCenterAlignedTopAppBar with background parameter instead.",
+    replaceWith = ReplaceWith(
+        "OudsCenterAlignedTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
+                "navigationIcon = navigationIcon, actions = actions, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
+        "com.orange.ouds.core.component.OudsTopAppBarBackground"
+    )
+)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OudsCenterAlignedTopAppBar(
@@ -195,20 +416,116 @@ fun OudsCenterAlignedTopAppBar(
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    CenterAlignedTopAppBar(
+    OudsCenterAlignedTopAppBar(
+        title = title,
+        modifier = modifier,
+        background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        expandedHeight = expandedHeight,
+        windowInsets = windowInsets,
+        scrollBehavior = scrollBehavior
+    )
+}
+
+/**
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
+ *
+ * This medium top app bar has slots for a title, navigation icon, and actions. In its default expanded
+ * state, the title is displayed in a second row under the navigation and actions.
+ *
+ * ### Background Styles
+ *
+ * [OudsMediumTopAppBar] supports three background styles via the [background] parameter:
+ *
+ * - **Translucent** ([OudsTopAppBarBackground.Translucent], **recommended**): Semi-transparent background with blur effect, as specified in OUDS design guidelines
+ * - **Transparent** ([OudsTopAppBarBackground.Transparent]): Fully transparent background with no blur
+ * - **Opaque** ([OudsTopAppBarBackground.Opaque]): Solid background with full opacity for standard use cases
+ *
+ * #### Using Translucent Background with Blur (Recommended)
+ *
+ * To implement the **translucent blurred top app bar** as recommended by OUDS design guidelines, use [OudsTopAppBarBackground.Translucent]
+ * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
+ * 1. Add Haze and Haze Blur dependencies
+ * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
+ * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
+ * that will have the height of [OudsMediumTopAppBar].
+ *
+ * #### Using Transparent Background
+ *
+ * When using [OudsTopAppBarBackground.Transparent], ensure sufficient contrast between the top app bar content
+ * and the scrolling content behind for accessibility.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
+ *
+ * > Design version: 1.0.0
+ *
+ * @param title The title to be displayed in the top app bar. This title will be used in the app
+ *   bar's expanded and collapsed states, although in its collapsed state it will be composed with a
+ *   smaller sized [TextStyle].
+ * @param modifier The [Modifier] to be applied to this top app bar.
+ * @param background The background of the top app bar among [OudsTopAppBarBackground].
+ * @param navigationIcon The navigation icon displayed at the start of the top app bar.
+ * @param actions The actions displayed at the end of the top app bar. These can be
+ *   instances of [OudsTopAppBarAction.Icon] or [OudsTopAppBarAction.Avatar].
+ *   The default layout here is a [Row], so actions will be placed horizontally.
+ *   The maximum recommended number of actions is three. Please use a dropdown menu if you need more than three actions.
+ * @param collapsedHeight This app bar height when collapsed by a provided [scrollBehavior]. This
+ *   value must be specified and finite, otherwise it will be ignored and replaced with
+ *   [TopAppBarDefaults.MediumAppBarCollapsedHeight].
+ * @param expandedHeight This app bar's maximum height. When a specified [scrollBehavior] causes the
+ *   app bar to collapse or expand, this value will represent the maximum height that the app-bar
+ *   will be allowed to expand. The expanded height is expected to be greater or equal to the
+ *   [collapsedHeight], and the function will throw an [IllegalArgumentException] otherwise. Also,
+ *   this value must be specified and finite, otherwise it will be ignored and replaced with
+ *   [TopAppBarDefaults.MediumAppBarExpandedHeight].
+ * @param windowInsets A window insets that app bar will respect.
+ * @param scrollBehavior A [TopAppBarScrollBehavior] which holds various offset values that will be
+ *   applied by this top app bar to set up its height and colors. A scroll behavior is designed to
+ *   work in conjunction with a scrolled content to change the top app bar appearance as the content
+ *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
+ * @throws IllegalArgumentException if the provided [expandedHeight] is smaller than the
+ *   [collapsedHeight]
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsMediumTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OudsMediumTopAppBar(
+    title: String,
+    background: OudsTopAppBarBackground,
+    modifier: Modifier = Modifier,
+    navigationIcon: OudsTopAppBarNavigationIcon? = null,
+    actions: List<OudsTopAppBarAction> = emptyList(),
+    collapsedHeight: Dp = TopAppBarDefaults.MediumAppBarCollapsedHeight,
+    expandedHeight: Dp = TopAppBarDefaults.MediumAppBarExpandedHeight,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
+    scrollBehavior: TopAppBarScrollBehavior? = null
+) {
+    MediumTopAppBar(
         title = {
             Title(
                 title = title,
-                topAppBarSize = OudsTopAppBarSize.Small,
-                centerAligned = true
+                topAppBarSize = OudsTopAppBarSize.Medium,
+                centerAligned = false
             )
         },
-        modifier = modifier.bottomBorder(),
+        modifier = modifier.bottomBorder(background),
         navigationIcon = { navigationIcon?.Content() },
         actions = { actions.forEach { it.PolymorphicContent() } },
+        collapsedHeight = collapsedHeight,
         expandedHeight = expandedHeight,
         windowInsets = windowInsets,
-        colors = colors(translucent = translucent),
+        colors = colors(background = background),
         scrollBehavior = scrollBehavior
     )
 }
@@ -223,13 +540,14 @@ fun OudsCenterAlignedTopAppBar(
  * [OudsMediumTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsMediumTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsMediumTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsMediumTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsMediumTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
@@ -268,6 +586,14 @@ fun OudsCenterAlignedTopAppBar(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
+@Deprecated(
+    message = "Use OudsMediumTopAppBar with background parameter instead.",
+    replaceWith = ReplaceWith(
+        "OudsMediumTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
+                "navigationIcon = navigationIcon, actions = actions, collapsedHeight = collapsedHeight, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
+        "com.orange.ouds.core.component.OudsTopAppBarBackground"
+    )
+)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OudsMediumTopAppBar(
@@ -281,21 +607,117 @@ fun OudsMediumTopAppBar(
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    MediumTopAppBar(
+    OudsMediumTopAppBar(
+        title = title,
+        modifier = modifier,
+        background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        collapsedHeight = collapsedHeight,
+        expandedHeight = expandedHeight,
+        windowInsets = windowInsets,
+        scrollBehavior = scrollBehavior
+    )
+}
+
+/**
+ * App bar (aka Top app bar on Material 2) is a top-aligned component that displays the screen title and provides access to key actions and navigation
+ * elements. It may include an Up button, action icons, overflow menus, search, or tabs. It provides context and controls relevant to the current view.
+ *
+ * This LargeTopAppBar has slots for a title, navigation icon, and actions. In its default expanded
+ * state, the title is displayed in a second row under the navigation and actions.
+ *
+ * ### Background Styles
+ *
+ * [OudsLargeTopAppBar] supports three background styles via the [background] parameter:
+ *
+ * - **Translucent** ([OudsTopAppBarBackground.Translucent], **recommended**): Semi-transparent background with blur effect, as specified in OUDS design guidelines
+ * - **Transparent** ([OudsTopAppBarBackground.Transparent]): Fully transparent background with no blur
+ * - **Opaque** ([OudsTopAppBarBackground.Opaque]): Solid background with full opacity for standard use cases
+ *
+ * #### Using Translucent Background with Blur (Recommended)
+ *
+ * To implement the **translucent blurred top app bar** as recommended by OUDS design guidelines, use [OudsTopAppBarBackground.Translucent]
+ * and integrate the [Haze](https://chrisbanes.github.io/haze/latest/) library:
+ * 1. Add Haze and Haze Blur dependencies
+ * 2. Follow Haze basic usage instructions:
+ * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
+ * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
+ * that will have the height of [OudsLargeTopAppBar].
+ *
+ * #### Using Transparent Background
+ *
+ * When using [OudsTopAppBarBackground.Transparent], ensure sufficient contrast between the top app bar content
+ * and the scrolling content behind for accessibility.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
+ *
+ * > Design name: App Bar
+ *
+ * > Design version: 1.0.0
+ *
+ * @param title The title to be displayed in the top app bar. This title will be used in the app
+ *   bar's expanded and collapsed states, although in its collapsed state it will be composed with a
+ *   smaller sized [TextStyle].
+ * @param modifier The [Modifier] to be applied to this top app bar.
+ * @param background The background of the top app bar among [OudsTopAppBarBackground].
+ * @param navigationIcon The navigation icon displayed at the start of the top app bar.
+ * @param actions The actions displayed at the end of the top app bar. These can be
+ *   instances of [OudsTopAppBarAction.Icon] or [OudsTopAppBarAction.Avatar].
+ *   The default layout here is a [Row], so actions will be placed horizontally.
+ *   The maximum recommended number of actions is three. Please use a dropdown menu if you need more than three actions.
+ * @param collapsedHeight This app bar height when collapsed by a provided [scrollBehavior]. This
+ *   value must be specified and finite, otherwise it will be ignored and replaced with
+ *   [TopAppBarDefaults.LargeAppBarCollapsedHeight].
+ * @param expandedHeight This app bar's maximum height. When a specified [scrollBehavior] causes the
+ *   app bar to collapse or expand, this value will represent the maximum height that the app-bar
+ *   will be allowed to expand. The expanded height is expected to be greater or equal to the
+ *   [collapsedHeight], and the function will throw an [IllegalArgumentException] otherwise. Also,
+ *   this value must be specified and finite, otherwise it will be ignored and replaced with
+ *   [TopAppBarDefaults.LargeAppBarExpandedHeight].
+ * @param windowInsets A window insets that app bar will respect.
+ * @param scrollBehavior A [TopAppBarScrollBehavior] which holds various offset values that will be
+ *   applied by this top app bar to set up its height and colors. A scroll behavior is designed to
+ *   work in conjunction with a scrolled content to change the top app bar appearance as the content
+ *   scrolls. See [TopAppBarScrollBehavior.nestedScrollConnection].
+ * @throws IllegalArgumentException if the provided [expandedHeight] is smaller than the
+ *   [collapsedHeight]
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsLargeTopAppBarSample
+ *
+ * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OudsLargeTopAppBar(
+    title: String,
+    background: OudsTopAppBarBackground,
+    modifier: Modifier = Modifier,
+    navigationIcon: OudsTopAppBarNavigationIcon? = null,
+    actions: List<OudsTopAppBarAction> = emptyList(),
+    collapsedHeight: Dp = TopAppBarDefaults.LargeAppBarCollapsedHeight,
+    expandedHeight: Dp = TopAppBarDefaults.LargeAppBarExpandedHeight,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
+    scrollBehavior: TopAppBarScrollBehavior? = null
+) {
+    LargeTopAppBar(
         title = {
             Title(
                 title = title,
-                topAppBarSize = OudsTopAppBarSize.Medium,
+                topAppBarSize = OudsTopAppBarSize.Large,
                 centerAligned = false
             )
         },
-        modifier = modifier.bottomBorder(),
+        modifier = modifier.bottomBorder(background),
         navigationIcon = { navigationIcon?.Content() },
         actions = { actions.forEach { it.PolymorphicContent() } },
         collapsedHeight = collapsedHeight,
         expandedHeight = expandedHeight,
         windowInsets = windowInsets,
-        colors = colors(translucent = translucent),
+        colors = colors(background = background),
         scrollBehavior = scrollBehavior
     )
 }
@@ -310,13 +732,14 @@ fun OudsMediumTopAppBar(
  * [OudsLargeTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsLargeTopAppBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsLargeTopAppBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsLargeTopAppBar].
+ * 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsLargeTopAppBar].
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
  *
@@ -355,6 +778,14 @@ fun OudsMediumTopAppBar(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTopAppBarWithUntintedIconSample
  */
+@Deprecated(
+    message = "Use OudsLargeTopAppBar with background parameter instead.",
+    replaceWith = ReplaceWith(
+        "OudsLargeTopAppBar(title = title, modifier = modifier, background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque, " +
+                "navigationItem = navigationIcon, actions = actions, collapsedHeight = collapsedHeight, expandedHeight = expandedHeight, windowInsets = windowInsets, scrollBehavior = scrollBehavior)",
+        "com.orange.ouds.core.component.OudsTopAppBarBackground"
+    )
+)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OudsLargeTopAppBar(
@@ -368,21 +799,15 @@ fun OudsLargeTopAppBar(
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     scrollBehavior: TopAppBarScrollBehavior? = null
 ) {
-    LargeTopAppBar(
-        title = {
-            Title(
-                title = title,
-                topAppBarSize = OudsTopAppBarSize.Large,
-                centerAligned = false
-            )
-        },
-        modifier = modifier.bottomBorder(),
-        navigationIcon = { navigationIcon?.Content() },
-        actions = { actions.forEach { it.PolymorphicContent() } },
+    OudsLargeTopAppBar(
+        title = title,
+        modifier = modifier,
+        background = if (translucent) OudsTopAppBarBackground.Translucent else OudsTopAppBarBackground.Opaque,
+        navigationIcon = navigationIcon,
+        actions = actions,
         collapsedHeight = collapsedHeight,
         expandedHeight = expandedHeight,
         windowInsets = windowInsets,
-        colors = colors(translucent = translucent),
         scrollBehavior = scrollBehavior
     )
 }
@@ -402,9 +827,11 @@ private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned
 }
 
 @Composable
-private fun colors(translucent: Boolean): TopAppBarColors {
-    val backgroundColor = with(OudsTheme.componentsTokens.bar) {
-        if (translucent) colorBgTranslucent.value else colorBgOpaque.value
+private fun colors(background: OudsTopAppBarBackground): TopAppBarColors {
+    val backgroundColor = when (background) {
+        OudsTopAppBarBackground.Opaque -> OudsTheme.componentsTokens.bar.colorBgOpaque.value
+        OudsTopAppBarBackground.Translucent -> OudsTheme.componentsTokens.bar.colorBgTranslucent.value
+        OudsTopAppBarBackground.Transparent -> Color.Transparent
     }
     return TopAppBarDefaults.topAppBarColors(
         containerColor = backgroundColor,
@@ -413,17 +840,21 @@ private fun colors(translucent: Boolean): TopAppBarColors {
 }
 
 @Composable
-private fun Modifier.bottomBorder(): Modifier {
-    val color = OudsTheme.colorScheme.border.minimal
-    return drawWithContent {
-        drawContent()
-        val width = 1.dp.toPx()
-        drawLine(
-            color = color,
-            start = Offset(x = 0f, y = size.height - width / 2f),
-            end = Offset(x = size.width, y = size.height - width / 2f),
-            strokeWidth = width
-        )
+private fun Modifier.bottomBorder(background: OudsTopAppBarBackground): Modifier {
+    return if (background != OudsTopAppBarBackground.Transparent) {
+        val color = OudsTheme.colorScheme.border.minimal
+        drawWithContent {
+            drawContent()
+            val width = 1.dp.toPx()
+            drawLine(
+                color = color,
+                start = Offset(x = 0f, y = size.height - width / 2f),
+                end = Offset(x = size.width, y = size.height - width / 2f),
+                strokeWidth = width
+            )
+        }
+    } else {
+        this
     }
 }
 
@@ -550,12 +981,12 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          * @param onClick Callback invoked when the icon is clicked.
          */
-        @JvmOverloads
+        @OptIn(ExperimentalVersionOverloading::class)
         constructor(
             painter: Painter,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            tinted: Boolean = true,
+            @IntroducedAt("2.1.0") tinted: Boolean = true,
             onClick: () -> Unit
         ) : this(painter as Any, contentDescription, badge, tinted, onClick)
 
@@ -570,12 +1001,12 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          * @param onClick Callback invoked when the icon is clicked.
          */
-        @JvmOverloads
+        @OptIn(ExperimentalVersionOverloading::class)
         constructor(
             imageVector: ImageVector,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            tinted: Boolean = true,
+            @IntroducedAt("2.1.0") tinted: Boolean = true,
             onClick: () -> Unit
         ) : this(imageVector as Any, contentDescription, badge, tinted, onClick)
 
@@ -590,12 +1021,12 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
          *   Note that untinted icons must ensure sufficient contrast with the background for accessibility reasons.
          * @param onClick Callback invoked when the icon is clicked.
          */
-        @JvmOverloads
+        @OptIn(ExperimentalVersionOverloading::class)
         constructor(
             bitmap: ImageBitmap,
             contentDescription: String,
             badge: OudsTopAppBarActionBadge? = null,
-            tinted: Boolean = true,
+            @IntroducedAt("2.1.0") tinted: Boolean = true,
             onClick: () -> Unit
         ) : this(bitmap as Any, contentDescription, badge, tinted, onClick)
     }
@@ -719,6 +1150,7 @@ internal fun PreviewOudsTopAppBar(
     with(parameter) {
         OudsTopAppBar(
             title = title,
+            background = OudsTopAppBarBackground.Opaque,
             navigationIcon = navigationIcon,
             actions = actions
         )
@@ -742,6 +1174,7 @@ internal fun PreviewOudsCenterAlignedTopAppBar(
     with(parameter) {
         OudsCenterAlignedTopAppBar(
             title = title,
+            background = OudsTopAppBarBackground.Opaque,
             navigationIcon = navigationIcon,
             actions = actions
         )
@@ -765,6 +1198,7 @@ internal fun PreviewOudsMediumTopAppBar(
     with(parameter) {
         OudsMediumTopAppBar(
             title = title,
+            background = OudsTopAppBarBackground.Opaque,
             navigationIcon = navigationIcon,
             actions = actions
         )
@@ -788,6 +1222,7 @@ internal fun PreviewOudsLargeTopAppBar(
     with(parameter) {
         OudsLargeTopAppBar(
             title = title,
+            background = OudsTopAppBarBackground.Opaque,
             navigationIcon = navigationIcon,
             actions = actions
         )
@@ -804,9 +1239,30 @@ private fun PreviewOudsTopAppBarWithUntintedIcon() = PreviewOudsTopAppBarWithUnt
 internal fun PreviewOudsTopAppBarWithUntintedIcon(theme: OudsThemeContract) = OudsPreview(theme = theme) {
     OudsTopAppBar(
         title = "Title",
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back(onClick = {}),
         actions = listOf(OudsTopAppBarAction.Icon(painter = rememberRainbowHeartPainter(), contentDescription = "", tinted = false, onClick = {}))
     )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsTopAppBarBackgrounds() = PreviewOudsTopAppBarBackgrounds(getPreviewTheme())
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun PreviewOudsTopAppBarBackgrounds(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsTopAppBarBackground>(maxEnumEntriesInEachRow = 1) { background ->
+        Box(modifier = Modifier.background(OudsTheme.colorScheme.surface.status.warning.emphasized)) {
+            OudsTopAppBar(
+                title = "Title",
+                background = background,
+                navigationIcon = OudsTopAppBarNavigationIcon.Back(onClick = {}),
+                actions = listOf(OudsTopAppBarAction.Icon(imageVector = Icons.Outlined.FavoriteBorder, contentDescription = "", onClick = {}))
+            )
+        }
+    }
 }
 
 internal data class OudsTopAppBarPreviewParameter(

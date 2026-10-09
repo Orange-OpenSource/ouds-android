@@ -74,6 +74,7 @@ import com.orange.ouds.core.component.OudsTextArea
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTopAppBar
 import com.orange.ouds.core.component.OudsTopAppBarAction
+import com.orange.ouds.core.component.OudsTopAppBarBackground
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.component.rememberOudsPasswordInputState
 import com.orange.ouds.core.theme.isOudsInDarkTheme
@@ -322,6 +323,7 @@ fun TopAppBarIllustration() = ComponentIllustration {
     OudsTopAppBar(
         modifier = Modifier.padding(horizontal = 12.dp),
         title = stringResource(id = R.string.app_components_common_label_label),
+        background = OudsTopAppBarBackground.Opaque,
         navigationIcon = OudsTopAppBarNavigationIcon.Back {},
         actions = listOf(
             OudsTopAppBarAction.Icon(

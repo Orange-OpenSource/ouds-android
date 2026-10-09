@@ -1,26 +1,28 @@
 [versions]
 activityCompose = "1.13.0"
-annotation = "1.10.0"
-appcompat = "1.8.0"
+annotation = "1.11.0"
+androidBcvBridge = "0.2.0"
 androidCompileSdk = "37"
 androidMinSdk = "23"
 androidTargetSdk = "37"
+appcompat = "1.8.0"
+binaryCompatibilityValidator = "0.18.2"
 browser = "1.10.0"
 composeBom = "2026.09.00"
 constraintlayoutCompose = "1.1.2"
-core = "1.19.0"
+core = "1.19.1"
 dokka = "2.2.0"
 firebaseAppDistribution = "5.3.0"
 firebaseBom = "34.19.0"
 firebaseCrashlytics = "3.0.8"
-gitChangelogGradlePlugin = "3.1.2"
-gitChangelogLib = "2.6.3"
-googleAuthLibraryOauth2Http = "1.52.0"
+gitChangelogGradlePlugin = "3.4.0"
+gitChangelogLib = "3.4.0"
+googleAuthLibraryOauth2Http = "1.54.0"
 googleServices = "4.5.0"
 dataStorePreferences = "1.2.1"
-gradle = "9.4.0"
+gradle = "9.4.1"
 grpc = "1.84.0"
-haze = "1.7.3"
+haze = "2.0.1"
 hilt = "2.60.1"
 hiltNavigationCompose = "1.4.0"
 javaPoet = "1.13.0"
@@ -28,15 +30,16 @@ json = "20250517"
 kotlin = "2.4.20"
 ksp = "2.3.12"
 material = "1.14.0"
-mockitoAndroid = "5.23.0"
-mockitoKotlin = "6.3.0"
+mockitoAndroid = "5.24.0"
+mockitoKotlin = "6.4.0"
 mustacheJava = "0.9.14"
 navigationCompose = "2.9.8"
-paparazzi = "2.0.0-alpha05"
-sdkCommon = "32.4.0"
+paparazzi = "2.0.0-alpha05.1"
+sdkCommon = "32.4.1"
 zxing = "3.5.4"
 
 [libraries]
+android-bcv-bridge = { module = "io.github.tjokinen:android-bcv-bridge", version.ref = "androidBcvBridge" }
 android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle" }
 android-tools-sdk-common = { group = "com.android.tools", name = "sdk-common", version.ref = "sdkCommon" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -73,6 +76,7 @@ grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc" }
 grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc" }
 grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-blur = { module = "dev.chrisbanes.haze:haze-blur", version.ref = "haze" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javaPoet" }
@@ -91,6 +95,7 @@ zxing-javase = { module = "com.google.zxing:javase", version.ref = "zxing" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.ref = "firebaseAppDistribution" }

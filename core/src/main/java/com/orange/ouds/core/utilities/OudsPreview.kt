@@ -171,16 +171,19 @@ internal fun PreviewFlowRow(
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             repeat(min(maxItemsInEachRow, filteredItems.count())) { columnIndex ->
                 val columnItems = chunkedItems.mapNotNull { it.getOrNull(columnIndex) }
-                Column {
-                    columnItems.forEachIndexed { rowIndex, item ->
-                        DimensionTitle(
-                            modifier = Modifier
-                                .padding(top = if (rowIndex == 0) 0.dp else PreviewPaddingDefault, bottom = 8.dp)
-                                .padding(horizontal = if (edgeToEdge) PreviewPaddingDefault else 0.dp),
-                            title = itemName(item)
-                        )
-                        CompositionLocalProvider(LocalPreviewRowFlowItem provides item) {
-                            content(item)
+                Column(verticalArrangement = Arrangement.spacedBy(PreviewPaddingDefault)) {
+                    columnItems.forEach { item ->
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            val title = itemName(item)
+                            if (title.isNotBlank()) {
+                                DimensionTitle(
+                                    modifier = Modifier.padding(horizontal = if (edgeToEdge) PreviewPaddingDefault else 0.dp),
+                                    title = title
+                                )
+                            }
+                            CompositionLocalProvider(LocalPreviewRowFlowItem provides item) {
+                                content(item)
+                            }
                         }
                     }
                 }

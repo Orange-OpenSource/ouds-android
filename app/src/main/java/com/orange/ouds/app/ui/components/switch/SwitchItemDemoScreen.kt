@@ -36,12 +36,17 @@ fun SwitchItemDemoScreen() {
     val state = rememberSwitchItemDemoState()
     val themeDrawableResources = LocalThemeDrawableResources.current
     DemoScreen(
-        bottomSheetContent = { ControlItemCustomizations(state = state) },
+        bottomSheetContent = { SwitchItemBottomDemoSheetContent(state = state) },
         codeSnippet = { switchItemDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { SwitchItemDemoContent(state = state) },
         demoContentPaddingValues = PaddingValues(horizontal = OudsTheme.spaces.fixed.none),
         version = OudsVersion.Component.Switch
     )
+}
+
+@Composable
+private fun SwitchItemBottomDemoSheetContent(state: SwitchItemDemoState) {
+    ControlItemCustomizations(state = state)
 }
 
 @Composable

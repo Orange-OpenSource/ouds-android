@@ -197,19 +197,29 @@ internal fun PreviewOudsStaticCardItem(
     parameter: OudsListItemPreviewParameter<OudsListItemLeading, OudsListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsCardItem(
-            label = label,
-            decoration = decoration,
-            overline = overline,
-            extraLabel = extraLabel,
-            description = description,
-            helperText = helperText,
-            verticalAlignment = verticalAlignment,
-            leading = leading,
-            trailing = trailing,
-            boldLabel = boldLabel,
-            enabled = enabled
-        )
+        PreviewEnumEntries<OudsListItemState>(
+            maxEnumEntriesInEachRow = 1,
+            filter = {
+                it in listOf(
+                    OudsListItemState.Enabled,
+                    OudsListItemState.Disabled
+                )
+            }
+        ) {
+            OudsCardItem(
+                label = label,
+                decoration = decoration,
+                overline = overline,
+                extraLabel = extraLabel,
+                description = description,
+                helperText = helperText,
+                verticalAlignment = verticalAlignment,
+                leading = leading,
+                trailing = trailing,
+                boldLabel = boldLabel,
+                enabled = enabled
+            )
+        }
     }
 }
 

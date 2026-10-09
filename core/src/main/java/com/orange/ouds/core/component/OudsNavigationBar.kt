@@ -106,13 +106,14 @@ val OudsNavigationBarHeight = 64.dp
  * [OudsNavigationBar] default appearance is opaque but, if you need a **translucent blurred navigation bar** as specified on OUDS design
  * side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsNavigationBar] with
  * [translucent] parameter set to true and follow these steps:
- * 1. Add Haze dependency
+ * 1. Add Haze and Haze Blur dependencies
  * 2. Follow Haze basic usage instructions:
  * - Define Haze state in the screen containing the navigation bar: `val hazeState = rememberHazeState()`
- * - Use `hazeEffect` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp)),`
+ * - Define a variable to store the OUDS blur radius value: `val oudsBlurRadius = OudsTheme.components.bar.effect.backgroundBlur.dp`
+ * - Use `hazeBlur` Modifier on [OudsNavigationBar] providing OUDS blur radius: `Modifier.hazeBlur(input = HazeInput.Sources(hazeState), style = HazeBlurStyle { blurRadius = oudsBlurRadius }),`
  * - Apply `hazeSource` Modifier on the content that scrolls behind the navigation bar: `Modifier.hazeSource(state = hazeState)`
- * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding
- * that will have the height of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
+ * 3. As your screen content needs to scroll behind the navigation bar, you'll probably need to add an additional bottom padding that will have the height
+ * of [OudsNavigationBar]. For this, please use [OudsNavigationBarHeight] constant.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
  *
@@ -137,7 +138,7 @@ fun OudsNavigationBar(
     val windowWidthSizeClass = if (LocalInspectionMode.current) {
         LocalWindowWidthSizeClass.current
     } else {
-        WindowWidthSizeClass.compute(currentWindowWidth())
+        WindowWidthSizeClass.compute(dpWidth = currentWindowWidth().value)
     }
 
     with(OudsTheme.componentsTokens.bar) {
@@ -224,7 +225,7 @@ data class OudsNavigationBarItem(
         val windowWidthSizeClass = if (LocalInspectionMode.current) {
             LocalWindowWidthSizeClass.current
         } else {
-            WindowWidthSizeClass.compute(currentWindowWidth())
+            WindowWidthSizeClass.compute(dpWidth = currentWindowWidth().value)
         }
         val iconPosition = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
 

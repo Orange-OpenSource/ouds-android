@@ -54,11 +54,19 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  *
  * This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
  *
- * The Helvetica Neue font files for the Orange Compact theme are available at
- * [https://brand.orange.com/en/brand-basics/typography](https://brand.orange.com/en/brand-basics/typography) and can be used by copying the `ttf` files
- * in the `res/font` directory of the project and by using an implementation of [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled]
- * or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed as the [OrangeCompactTheme.orangeFontFamily] parameter:
+ * The Helvetica Neue font files for the Orange Compact theme can be downloaded at the following links for their Latin version:
+ * - [https://assets.orange.com/pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf](https://assets.orange.com/pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf)
+ * - [https://assets.orange.com/pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf](https://assets.orange.com/pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf)
+ * - [https://assets.orange.com/pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf](https://assets.orange.com/pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf)
+ * Their Arabic version can be downloaded at the following links:
+ * - [https://assets.orange.com/pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf](https://assets.orange.com/pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf)
+ * - [https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf](https://assets.orange.com/pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf)
+ * - [https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf](https://assets.orange.com/pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf)
  *
+ * The Helvetica Neue font family can be used by copying the `ttf` files in the `res/font` directory of the project and by using an implementation of
+ * [OrangeBundledFontFamily] ([OrangeHelveticaNeueLatin.Bundled] or [OrangeHelveticaNeueArabic.Bundled]) when creating the [OrangeFontFamily] instance passed
+ * as the [OrangeCompactTheme.orangeFontFamily] parameter:
+ * 
  * ```
  * OrangeCompactTheme(
  *     orangeFontFamily = OrangeFontFamily(
@@ -130,15 +138,28 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
  * @param roundedCornerCardItems Whether card items have rounded corners.
  */
-open class OrangeCompactTheme @JvmOverloads constructor(
+open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) constructor(
     private val orangeFontFamily: OrangeFontFamily,
     private val roundedCornerButtons: Boolean = false,
     private val roundedCornerTextInputs: Boolean = true,
-    private val roundedCornerAlertMessages: Boolean = false,
-    private val roundedCornerProgressIndicators: Boolean = false,
-    private val roundedCornerCardItems: Boolean = false
+    @IntroducedAt("1.3.0") private val roundedCornerAlertMessages: Boolean = false,
+    @IntroducedAt("1.6.0") private val roundedCornerProgressIndicators: Boolean = false,
+    @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false
 ) : OudsThemeContract {
 
+    // These constructor overloads have been added to avoid binary compatibility issues following the replacement of @JvmOverloads with @IntroducedAt
+    @Deprecated(
+        "Maintained for binary compatibility. Use overload with additional parameters.",
+        level = DeprecationLevel.HIDDEN
+    )
+    constructor(orangeFontFamily: OrangeFontFamily) : this(orangeFontFamily, false, false, false, false, false)
+
+    @Deprecated(
+        "Maintained for binary compatibility. Use overload with additional parameters.",
+        level = DeprecationLevel.HIDDEN
+    )
+    constructor(orangeFontFamily: OrangeFontFamily, roundedCornerButtons: Boolean) : this(orangeFontFamily, roundedCornerButtons, false, false, false, false)
+    
     override val name: String
         get() = ORANGE_COMPACT_THEME_NAME
 
@@ -151,7 +172,13 @@ open class OrangeCompactTheme @JvmOverloads constructor(
     }
 
     override val settings: OudsThemeSettings
-        get() = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators, roundedCornerCardItems)
+        get() = OudsThemeSettings(
+            roundedCornerButtons,
+            roundedCornerTextInputs,
+            roundedCornerAlertMessages,
+            roundedCornerProgressIndicators,
+            roundedCornerCardItems
+        )
 
     override val colorTokens: OudsColorSemanticTokens
         get() = OrangeCompactColorSemanticTokens()

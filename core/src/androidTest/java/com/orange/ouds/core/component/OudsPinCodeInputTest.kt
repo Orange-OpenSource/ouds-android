@@ -16,9 +16,11 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalCursorBlinkEnabled
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsFocused
@@ -27,6 +29,7 @@ import androidx.compose.ui.test.hasTextExactly
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -46,6 +49,27 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_valueChange_succeeds() {
         with(composeTestRule) {
             var value by mutableStateOf("")
+            val testTag = "OudsPinCodeInput"
+
+            setOudsContent {
+                OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
+                    value = value,
+                    onValueChange = { value = it }
+                )
+            }
+
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("123456")
+            waitForIdle()
+            Assert.assertEquals("123456", value)
+        }
+    }
+
+    @Test
+    fun oudsPinCodeInput_valueEmpty_succeeds() {
+        with(composeTestRule) {
+            var value by mutableStateOf("")
 
             setOudsContent {
                 OudsPinCodeInput(
@@ -54,10 +78,15 @@ internal class OudsPinCodeInputTest {
                 )
             }
 
-            onNodeWithText(value).performClick()
-            onNodeWithText(value).performTextInput("123456")
+            val placeholderNodes = onAllNodesWithText(OudsDigitInputPlaceholder.toString())
+            placeholderNodes[2].performClick()
             waitForIdle()
-            Assert.assertEquals("123456", value)
+            Assert.assertEquals("------", value)
+            // Value is set to an empty string when the PIN code input contains only placeholders and first digit is selected
+            // in order to make autofill work properly
+            placeholderNodes[0].performClick()
+            waitForIdle()
+            Assert.assertEquals("", value)
         }
     }
 
@@ -110,29 +139,31 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_sequentialInput_succeeds() {
         with(composeTestRule) {
             var pinCode by mutableStateOf("")
+            val testTag = "OudsPinCodeInput"
 
             setOudsContent {
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = pinCode,
                     onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four
                 )
             }
 
-            onNodeWithText(pinCode).performClick()
-            onNodeWithText(pinCode).performTextInput("1")
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("1")
             waitForIdle()
             Assert.assertEquals("1---", pinCode)
 
-            onNodeWithText(pinCode).performTextInput("2")
+            onNodeWithTag(testTag).performTextInput("2")
             waitForIdle()
             Assert.assertEquals("12--", pinCode)
 
-            onNodeWithText(pinCode).performTextInput("3")
+            onNodeWithTag(testTag).performTextInput("3")
             waitForIdle()
             Assert.assertEquals("123-", pinCode)
 
-            onNodeWithText(pinCode).performTextInput("4")
+            onNodeWithTag(testTag).performTextInput("4")
             waitForIdle()
             Assert.assertEquals("1234", pinCode)
             onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
@@ -143,17 +174,19 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_maxLengthReached_replacesLastDigit() {
         with(composeTestRule) {
             var pinCode by mutableStateOf("1234")
+            val testTag = "OudsPinCodeInput"
 
             setOudsContent {
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = pinCode,
                     onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four
                 )
             }
 
-            onNodeWithText(pinCode).performClick()
-            onNodeWithText(pinCode).performTextInput("5")
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("5")
             waitForIdle()
             Assert.assertEquals("1235", pinCode)
             onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
@@ -165,18 +198,20 @@ internal class OudsPinCodeInputTest {
         with(composeTestRule) {
             var value by mutableStateOf("")
             var focusManager: FocusManager? = null
+            val testTag = "OudsPinCodeInput"
 
             setOudsContent {
                 focusManager = LocalFocusManager.current
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = value,
                     onValueChange = { value = it },
                     length = OudsPinCodeInputLength.Four
                 )
             }
 
-            onNodeWithText(value).performClick()
-            onNodeWithText(value).performTextInput("abc")
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("abc")
             runOnIdle {
                 focusManager?.clearFocus()
             }
@@ -189,18 +224,20 @@ internal class OudsPinCodeInputTest {
         with(composeTestRule) {
             var pinCode by mutableStateOf("")
             var focusManager: FocusManager? = null
+            val testTag = "OudsPinCodeInput"
 
             setOudsContent {
                 focusManager = LocalFocusManager.current
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = pinCode,
                     onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four
                 )
             }
 
-            onNodeWithText(pinCode).performClick()
-            onNodeWithText(pinCode).performTextInput("12")
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("12")
             runOnIdle {
                 focusManager?.clearFocus()
             }
@@ -214,17 +251,19 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_replaceValue_succeeds() {
         with(composeTestRule) {
             var pinCode by mutableStateOf("1234")
+            val testTag = "OudsPinCodeInput"
 
             setOudsContent {
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = pinCode,
                     onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four
                 )
             }
 
-            onNodeWithText(pinCode).performClick()
-            onNodeWithText(pinCode).performTextReplacement("567890")
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextReplacement("567890")
             waitForIdle()
             Assert.assertEquals("5678", pinCode)
             onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
@@ -236,18 +275,20 @@ internal class OudsPinCodeInputTest {
         with(composeTestRule) {
             var pinCode by mutableStateOf("1234")
             var focusManager: FocusManager? = null
+            val testTag = "OudsPinCodeInput"
 
             setOudsContent {
                 focusManager = LocalFocusManager.current
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = pinCode,
                     onValueChange = { pinCode = it },
                     length = OudsPinCodeInputLength.Four
                 )
             }
 
-            onNodeWithText(pinCode).performClick()
-            onNodeWithText(pinCode).performTextReplacement("")
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextReplacement("")
             runOnIdle {
                 focusManager?.clearFocus()
             }
@@ -260,8 +301,10 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_emptyDigitClick_succeeds() {
         with(composeTestRule) {
             var value by mutableStateOf("12")
+            val testTag = "OudsPinCodeInput"
             setOudsContent {
                 OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
                     value = value,
                     onValueChange = { value = it },
                     length = OudsPinCodeInputLength.Four
@@ -271,7 +314,7 @@ internal class OudsPinCodeInputTest {
             val placeholderNodes = onAllNodesWithText(OudsDigitInputPlaceholder.toString())
             placeholderNodes[0].performClick()
             waitForIdle()
-            onNodeWithText(value).assertIsFocused()
+            onNodeWithTag(testTag).assertIsFocused()
             onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(2)
             onNodeWithText(OudsDigitInputCursor.toString()).assertIsDisplayed()
             onAllNodesWithText(OudsDigitInputPlaceholder.toString()).assertCountEquals(1)
@@ -282,9 +325,11 @@ internal class OudsPinCodeInputTest {
     fun oudsPinCodeInput_obfuscatedDigitClick_succeeds() {
         with(composeTestRule) {
             var value by mutableStateOf("12")
+            val testTag = "OudsPinCodeInput"
             setOudsContent {
                 CompositionLocalProvider(LocalCursorBlinkEnabled provides false) {
                     OudsPinCodeInput(
+                        modifier = Modifier.testTag(testTag),
                         value = value,
                         onValueChange = { value = it },
                         length = OudsPinCodeInputLength.Four
@@ -295,7 +340,7 @@ internal class OudsPinCodeInputTest {
             val obfuscationCharacterNodes = onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString())
             obfuscationCharacterNodes[0].performClick()
             waitForIdle()
-            onNodeWithText(value).assertIsFocused()
+            onNodeWithTag(testTag).assertIsFocused()
             onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(2)
             onNode(hasTextExactly(OudsPasswordInputTextObfuscationCharacter.toString(), OudsDigitInputCursor.toString())).assertIsDisplayed()
             onAllNodesWithText(OudsDigitInputPlaceholder.toString()).assertCountEquals(2)
@@ -355,6 +400,65 @@ internal class OudsPinCodeInputTest {
             // Even with error, digits should be obfuscated
             onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(2)
             onNodeWithText(OudsDigitInputPlaceholder.toString()).assertIsNotDisplayed()
+        }
+    }
+
+    @Test
+    fun oudsPinCodeInput_hiddenCharactersFalse_displaysVisibleDigits() {
+        with(composeTestRule) {
+            var value by mutableStateOf("")
+            val testTag = "OudsPinCodeInput"
+
+            setOudsContent {
+                OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
+                    value = value,
+                    onValueChange = { value = it },
+                    length = OudsPinCodeInputLength.Six,
+                    hiddenCharacters = false
+                )
+            }
+
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("123")
+            waitForIdle()
+
+            // Entered digits should be visible, not obfuscated
+            onNodeWithText("1").assertIsDisplayed()
+            onNodeWithText("2").assertIsDisplayed()
+            onNodeWithText("3").assertIsDisplayed()
+            // No obfuscation characters should be present
+            onNodeWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertDoesNotExist()
+        }
+    }
+
+    @Test
+    fun oudsPinCodeInput_hiddenCharactersTrue_displaysObfuscatedDigits() {
+        with(composeTestRule) {
+            var value by mutableStateOf("")
+            val testTag = "OudsPinCodeInput"
+
+            setOudsContent {
+                OudsPinCodeInput(
+                    modifier = Modifier.testTag(testTag),
+                    value = value,
+                    onValueChange = { value = it },
+                    length = OudsPinCodeInputLength.Four,
+                    hiddenCharacters = true
+                )
+            }
+
+            onNodeWithTag(testTag).performClick()
+            onNodeWithTag(testTag).performTextInput("1234")
+            waitForIdle()
+
+            // All digits should be obfuscated (default behavior)
+            onAllNodesWithText(OudsPasswordInputTextObfuscationCharacter.toString()).assertCountEquals(4)
+            // Individual digits should not be visible
+            onNodeWithText("1").assertDoesNotExist()
+            onNodeWithText("2").assertDoesNotExist()
+            onNodeWithText("3").assertDoesNotExist()
+            onNodeWithText("4").assertDoesNotExist()
         }
     }
 }

@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component.samples
 
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +32,7 @@ import com.orange.ouds.core.component.OudsSuggestionChip
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 
 @Composable
 internal fun OudsSuggestionChipTextOnlySample() {
