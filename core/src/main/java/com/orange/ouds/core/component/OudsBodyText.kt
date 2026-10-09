@@ -205,7 +205,7 @@ enum class OudsBodyTextSize {
      */
     Small;
 
-    val maxWidth: Dp
+    internal val maxWidth: Dp
         @Composable
         get() = with(OudsTheme.sizes.maxWidth.body) {
             when (this@OudsBodyTextSize) {

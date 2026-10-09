@@ -210,7 +210,7 @@ enum class OudsDisplayTextSize {
             }
         }
 
-    val maxWidth: Dp
+    internal val maxWidth: Dp
         @Composable
         get() = with(OudsTheme.sizes.maxWidth.display) {
             when (this@OudsDisplayTextSize) {
