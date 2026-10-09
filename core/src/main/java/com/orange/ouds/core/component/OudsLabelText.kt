@@ -18,13 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.Paragraph
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
 import com.orange.ouds.core.component.common.text.OudsAnnotatedLabelText
 import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedLabelText
@@ -57,8 +55,6 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param color Color of the label text.
  * @param textAlign Alignment of the text within the lines of the paragraph. See
  *   [TextStyle.textAlign].
- * @param lineHeight Line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
- *   [TextStyle.lineHeight].
  * @param overflow How visual overflow should be handled.
  * @param softWrap Whether the text should break at soft line breaks. If false, the glyphs in the
  *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
@@ -83,7 +79,6 @@ fun OudsLabelText(
     weight: OudsTextWeight = OudsLabelTextDefaults.Weight,
     color: Color = OudsLabelTextDefaults.Color,
     textAlign: TextAlign? = null,
-    lineHeight: TextUnit = TextUnit.Unspecified,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
@@ -96,7 +91,6 @@ fun OudsLabelText(
         color = color,
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,
-        lineHeight = lineHeight,
         overflow = overflow,
         softWrap = softWrap,
         maxLines = maxLines,
@@ -124,8 +118,6 @@ fun OudsLabelText(
  * @param color Color of the label text.
  * @param textAlign Alignment of the text within the lines of the paragraph. See
  *   [TextStyle.textAlign].
- * @param lineHeight Line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
- *   [TextStyle.lineHeight].
  * @param overflow How visual overflow should be handled.
  * @param softWrap Whether the text should break at soft line breaks. If false, the glyphs in the
  *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
@@ -150,7 +142,6 @@ fun OudsLabelText(
     weight: OudsTextWeight = OudsLabelTextDefaults.Weight,
     color: Color = OudsLabelTextDefaults.Color,
     textAlign: TextAlign? = null,
-    lineHeight: TextUnit = TextUnit.Unspecified,
     overflow: TextOverflow = TextOverflow.Clip,
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
@@ -164,7 +155,6 @@ fun OudsLabelText(
         color = color,
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,
-        lineHeight = lineHeight,
         overflow = overflow,
         softWrap = softWrap,
         maxLines = maxLines,
