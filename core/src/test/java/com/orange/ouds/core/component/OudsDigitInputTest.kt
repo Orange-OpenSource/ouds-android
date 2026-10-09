@@ -33,7 +33,7 @@ internal class OudsDigitInputTest {
         }
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean) {
             PreviewOudsDigitInput(
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled,
@@ -52,13 +52,13 @@ internal class OudsDigitInputTest {
         }
 
         @Composable
-        override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+        override fun Snapshot(darkThemeEnabled: Boolean) {
             PreviewOudsDigitInputWithRoundedCorners(
                 theme = theme,
                 outlined = parameter
             )
         }
 
-        override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = darkThemeEnabled || highContrastModeEnabled
+        override fun ignoreSnapshot(darkThemeEnabled: Boolean) = darkThemeEnabled
     }
 }

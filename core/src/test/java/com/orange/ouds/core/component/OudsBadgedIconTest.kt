@@ -29,7 +29,7 @@ internal class OudsBadgedIconTest(val parameter: OudsBadgedIconPreviewParameter)
     }
 
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean) {
         PreviewOudsBadgedIcon(
             theme = theme,
             darkThemeEnabled = darkThemeEnabled,

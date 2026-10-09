@@ -29,7 +29,7 @@ internal class OudsAvatarTest(val isMonogram: Boolean) : OudsSnapshotTest(theme 
     }
 
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean) {
         PreviewOudsAvatar(
             theme = theme,
             darkThemeEnabled = darkThemeEnabled,

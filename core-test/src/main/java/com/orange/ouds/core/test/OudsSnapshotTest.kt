@@ -20,6 +20,7 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 import org.junit.Assume
 import org.junit.Before
@@ -28,6 +29,7 @@ import org.junit.Test
 import org.junit.rules.TestName
 import kotlin.math.max
 
+@InternalOudsApi
 abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1, heightDp: Int = -1) {
 
     @Suppress("KotlinConstantConditions")
@@ -86,20 +88,15 @@ abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1,
     @get:Rule
     var name = TestName()
 
-    /**
-     * Allows to ignore the execution of specified snapshots tests.
-     * By default, high contrast mode snapshots are ignored.
-     */
-    open fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) = highContrastModeEnabled
+    open fun ignoreSnapshot(darkThemeEnabled: Boolean) = false
 
     @Composable
-    abstract fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean)
+    abstract fun Snapshot(darkThemeEnabled: Boolean)
 
     @Before
     fun setUp() {
-        val isDarkThemeSnapshotTest = name.methodName.contains("DarkTheme")
-        val isHighContrastModeSnapshotTest = name.methodName.contains("HighContrast")
-        val ignoreTest = ignoreSnapshot(isDarkThemeSnapshotTest, isHighContrastModeSnapshotTest)
+        val isDarkThemeSnapshotTest = name.methodName.startsWith(::takeDarkThemeSnapshot.name)
+        val ignoreTest = ignoreSnapshot(isDarkThemeSnapshotTest)
         Assume.assumeTrue(!ignoreTest)
     }
 
@@ -107,18 +104,12 @@ abstract class OudsSnapshotTest(val theme: OudsThemeContract, widthDp: Int = -1,
     fun takeLightThemeSnapshot() = takeSnapshot(darkThemeEnabled = false)
 
     @Test
-    fun takeLightThemeHighContrastSnapshot() = takeSnapshot(darkThemeEnabled = false, highContrastModeEnabled = true)
-
-    @Test
     fun takeDarkThemeSnapshot() = takeSnapshot(darkThemeEnabled = true)
 
-    @Test
-    fun takeDarkThemeHighContrastSnapshot() = takeSnapshot(darkThemeEnabled = true, highContrastModeEnabled = true)
-
-    private fun takeSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean = false) {
+    private fun takeSnapshot(darkThemeEnabled: Boolean) {
         paparazzi.snapshot {
             CompositionLocalProvider(value = LocalInspectionMode provides true) {
-                Snapshot(darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled)
+                Snapshot(darkThemeEnabled = darkThemeEnabled)
             }
         }
     }

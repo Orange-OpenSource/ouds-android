@@ -246,11 +246,11 @@ private fun backgroundColor(state: OudsControlState): Color {
     }
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.RadioButton.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.RadioButton.Default.PreviewWidthDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = OudsPreviewableComponent.RadioButton.PreviewWidthDp,
+    widthDp = OudsPreviewableComponent.RadioButton.Default.PreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -259,30 +259,12 @@ private fun PreviewOudsRadioButton(@PreviewParameter(OudsRadioButtonPreviewParam
     PreviewOudsRadioButton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.RadioButton.PreviewWidthDp, device = OudsPreviewDevice)
-@Preview(
-    name = "Dark",
-    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = OudsPreviewableComponent.RadioButton.PreviewWidthDp,
-    device = OudsPreviewDevice
-)
-@Composable
-internal fun PreviewOudsRadioButtonHighContrastModeEnabled() {
-    PreviewOudsRadioButton(
-        theme = getPreviewTheme(),
-        darkThemeEnabled = isSystemInDarkTheme(),
-        parameter = OudsRadioButtonPreviewParameter(selected = true),
-        highContrastModeEnabled = true
-    )
-}
-
 @Composable
 internal fun PreviewOudsRadioButton(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsRadioButtonPreviewParameter,
-    highContrastModeEnabled: Boolean = false
-) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
+    parameter: OudsRadioButtonPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsControlState> {
             OudsRadioButton(
@@ -291,6 +273,32 @@ internal fun PreviewOudsRadioButton(
                 error = error
             )
         }
+    }
+}
+
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.RadioButton.HighContrastModeEnabled.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.RadioButton.HighContrastModeEnabled.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsRadioButtonHighContrastModeEnabled() {
+    PreviewOudsRadioButtonHighContrastModeEnabled(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsRadioButtonHighContrastModeEnabled(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    PreviewEnumEntries<OudsControlState> {
+        OudsRadioButton(
+            selected = true,
+            onClick = {}
+        )
     }
 }
 

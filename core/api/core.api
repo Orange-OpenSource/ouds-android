@@ -156,6 +156,13 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsRadio
 	public final fun getLambda$50536871$core ()Lkotlin/jvm/functions/Function2;
 }
 
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsRadioButtonKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsRadioButtonKt;
+	public fun <init> ()V
+	public final fun getLambda$-441623310$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-528584349$core ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsSmallButtonKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsSmallButtonKt;
 	public fun <init> ()V
