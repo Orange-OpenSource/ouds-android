@@ -159,6 +159,10 @@
     <string name="app_components_listItem_description_text">List item عبارة عن صف أفقي يُستخدم لعرض وحدة معلوماتية ضمن قائمة. وتُرتَّب عناصر القائمة بشكل عمودي لتنظيم المحتوى المترابط وتسهيل المسح البصري السريع والتفاعل؛ حيث يمكن أن يشتمل كل عنصر على مكونات -مثل التسمية والنص التوضيحي والأيقونات والصور- وذلك حسب السياق.</string>
     <string name="app_components_listItem_icon_a11y">وصف الأيقونة</string>
     <string name="app_components_listItem_image_a11y">وصف الصورة</string>
+    <string name="app_components_listItem_specificComponentExampleAlertLabel_label">مثال %1$s</string>
+    <string name="app_components_listItem_componentExampleAlertLabel_label">مثال على مكوّن</string>
+    <string name="app_components_listItem_componentExampleAlertDescription_text">يرجى الاطلاع على إعدادات المكون المحددة للحصول على خيارات التكوين الكاملة.</string>
+    <string name="app_components_listItem_contentExempleAlertDescription_text">استخدم عنصر "Content" للمحتوى المخصص الذي لا يمكن تمثيله بواسطة أي عنصر آخر موجود؛ إذ يوفر هذا العنصر مرونةً لتلبية متطلبات محددة للمنتج، ولكن ينبغي استخدامه كاستثناء وليس كحلٍ افتراضي.</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_description_text">Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.</string>

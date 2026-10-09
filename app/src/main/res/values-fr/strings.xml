@@ -157,6 +157,10 @@
     <string name="app_components_listItem_description_text">Un List item (ou élément de liste) est un élément construit horizontalement et utilisé pour afficher une entité d\'information au sein d\'une liste. Ces éléments sont empilés verticalement pour organiser les contenus associés et faciliter une lecture rapide ainsi que l\'interaction. Chaque élément peut contenir, selon le contexte, des composants tels qu\'une étiquette, un texte d\'accompagnement, des icônes ou des images.</string>
     <string name="app_components_listItem_icon_a11y">Description de l\'icône</string>
     <string name="app_components_listItem_image_a11y">Description de l\'image</string>
+    <string name="app_components_listItem_specificComponentExampleAlertLabel_label">Exemple de %1$s</string>
+    <string name="app_components_listItem_componentExampleAlertLabel_label">Example de composant</string>
+    <string name="app_components_listItem_componentExampleAlertDescription_text">Veuillez consulter les paramètres spécifiques du composant pour connaître toutes les options de configuration.</string>
+    <string name="app_components_listItem_contentExempleAlertDescription_text">Utilisez "Content" pour du contenu personnalisé ne pouvant être représenté par aucun autre élément existant.\nCet élément offre de la flexibilité pour répondre à des besoins spécifiques liés aux produits, mais il doit être utilisé à titre d\'exception plutôt que comme solution par défaut.</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_description_text">Une Navigation bar (ou barre de navigation) permet d\'accéder aux principales destinations d\'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.</string>

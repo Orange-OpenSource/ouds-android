@@ -58,7 +58,6 @@ internal class OudsListItemTest {
     class WithEdgeToEdgeDisabled : OudsComponentSnapshotTest(
         OudsPreviewableComponent.ListItem.WithEdgeToEdgeDisabled,
         parameter = null,
-        OudsComponentTestSuite.theme,
-        heightDp = OudsPreviewableComponent.ListItem.WithEdgeToEdgeDisabled.PreviewHeightDp
+        OudsComponentTestSuite.theme
     )
 }

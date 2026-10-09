@@ -487,7 +487,7 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 880
+            const val PreviewHeightDp = 1080
 
             override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
 
@@ -1053,7 +1053,7 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
-            const val PreviewHeightDp = 1000
+            const val PreviewHeightDp = 1180
 
             override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
 
@@ -1098,7 +1098,6 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object WithEdgeToEdgeDisabled : OudsPreviewableComponent {
-            const val PreviewHeightDp = 720
 
             override val parameters: List<Any> = emptyList()
 
