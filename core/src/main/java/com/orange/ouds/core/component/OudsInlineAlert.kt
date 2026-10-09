@@ -66,12 +66,13 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsInlineAlert(
     label: String,
     modifier: Modifier = Modifier,
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale
@@ -100,23 +101,6 @@ fun OudsInlineAlert(
             }
         }
     }
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsInlineAlert(
-    label: String,
-    modifier: Modifier = Modifier,
-    status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status
-) {
-    OudsInlineAlert(
-        label = label,
-        modifier = modifier,
-        status = status
-    )
 }
 
 /**

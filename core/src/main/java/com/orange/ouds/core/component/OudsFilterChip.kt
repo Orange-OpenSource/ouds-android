@@ -61,6 +61,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -69,7 +70,7 @@ fun OudsFilterChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsFilterChip(
         selected = selected,
@@ -80,29 +81,6 @@ fun OudsFilterChip(
         enabled = enabled,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsFilterChip(
-    selected: Boolean,
-    onClick: () -> Unit,
-    label: String,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsFilterChip(
-        selected = selected,
-        onClick = onClick,
-        label = label,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
     )
 }
 
@@ -138,6 +116,7 @@ fun OudsFilterChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlyWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -146,7 +125,7 @@ fun OudsFilterChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsFilterChip(
         selected = selected,
@@ -157,29 +136,6 @@ fun OudsFilterChip(
         enabled = enabled,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsFilterChip(
-    selected: Boolean,
-    onClick: () -> Unit,
-    icon: OudsChipIcon,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsFilterChip(
-        selected = selected,
-        onClick = onClick,
-        icon = icon,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
     )
 }
 
@@ -216,6 +172,7 @@ fun OudsFilterChip(
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -225,7 +182,7 @@ fun OudsFilterChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsFilterChip(
         selected = selected,
@@ -236,31 +193,6 @@ fun OudsFilterChip(
         enabled = enabled,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsFilterChip(
-    selected: Boolean,
-    onClick: () -> Unit,
-    label: String,
-    icon: OudsChipIcon,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsFilterChip(
-        selected = selected,
-        onClick = onClick,
-        label = label,
-        icon = icon,
-        modifier = modifier,
-        enabled = enabled,
-        interactionSource = interactionSource
     )
 }
 

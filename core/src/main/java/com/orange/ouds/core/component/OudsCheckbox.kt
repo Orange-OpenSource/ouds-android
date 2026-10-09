@@ -91,6 +91,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsCheckbox(
     checked: Boolean,
@@ -100,7 +101,7 @@ fun OudsCheckbox(
     readOnly: Boolean = false,
     error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTriStateCheckbox(
         state = ToggleableState(checked),
@@ -113,31 +114,6 @@ fun OudsCheckbox(
         error = error,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsCheckbox(
-    checked: Boolean,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsCheckbox(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        interactionSource = interactionSource
     )
 }
 
@@ -175,6 +151,7 @@ fun OudsCheckbox(
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Suppress("DEPRECATION")
 @Composable
 fun OudsTriStateCheckbox(
@@ -185,7 +162,7 @@ fun OudsTriStateCheckbox(
     readOnly: Boolean = false,
     error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
@@ -253,31 +230,6 @@ fun OudsTriStateCheckbox(
             }
         }
     }
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTriStateCheckbox(
-    state: ToggleableState,
-    onClick: (() -> Unit)?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTriStateCheckbox(
-        state = state,
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        interactionSource = interactionSource
-    )
 }
 
 @Suppress("DEPRECATION")

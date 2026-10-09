@@ -62,6 +62,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -77,7 +78,7 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -136,6 +137,7 @@ fun OudsCardItem(
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -153,7 +155,7 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(

@@ -178,6 +178,7 @@ private const val ComponentName = "OudsTextInput"
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedErrorSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithUntintedLeadingIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTextInput(
     textFieldState: TextFieldState,
@@ -202,7 +203,7 @@ fun OudsTextInput(
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTextInput(
         textFieldState = textFieldState,
@@ -229,61 +230,6 @@ fun OudsTextInput(
         outputTransformation = outputTransformation,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTextInput(
-    textFieldState: TextFieldState,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    leadingIcon: OudsTextInputLeadingIcon? = null,
-    trailingIconButton: OudsTextInputTrailingIconButton? = null,
-    prefix: String? = null,
-    suffix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: String? = null,
-    helperLink: OudsTextInputHelperLink? = null,
-    constrainedMaxWidth: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    onKeyboardAction: KeyboardActionHandler? = null,
-    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
-    inputTransformation: InputTransformation? = null,
-    outputTransformation: OutputTransformation? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTextInput(
-        textFieldState = textFieldState,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        helperLink = helperLink,
-        constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = keyboardOptions,
-        onKeyboardAction = onKeyboardAction,
-        onTextLayout = onTextLayout,
-        inputTransformation = inputTransformation,
-        outputTransformation = outputTransformation,
-        interactionSource = interactionSource
     )
 }
 
@@ -352,6 +298,7 @@ fun OudsTextInput(
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputStateBasedWithAnnotatedHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTextInput(
     textFieldState: TextFieldState,
@@ -376,7 +323,7 @@ fun OudsTextInput(
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTextInput(
         textFieldState = textFieldState,
@@ -403,61 +350,6 @@ fun OudsTextInput(
         outputTransformation = outputTransformation,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTextInput(
-    textFieldState: TextFieldState,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    leadingIcon: OudsTextInputLeadingIcon? = null,
-    trailingIconButton: OudsTextInputTrailingIconButton? = null,
-    prefix: String? = null,
-    suffix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: OudsAnnotatedHelperText,
-    helperLink: OudsTextInputHelperLink? = null,
-    constrainedMaxWidth: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    onKeyboardAction: KeyboardActionHandler? = null,
-    onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
-    inputTransformation: InputTransformation? = null,
-    outputTransformation: OutputTransformation? = null,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTextInput(
-        textFieldState = textFieldState,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        helperLink = helperLink,
-        constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = keyboardOptions,
-        onKeyboardAction = onKeyboardAction,
-        onTextLayout = onTextLayout,
-        inputTransformation = inputTransformation,
-        outputTransformation = outputTransformation,
-        interactionSource = interactionSource
     )
 }
 
@@ -606,6 +498,7 @@ private fun OudsTextInput(
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithUntintedLeadingIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTextInput(
     value: String,
@@ -630,7 +523,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTextInput(
         value = value,
@@ -657,61 +550,6 @@ fun OudsTextInput(
         visualTransformation = visualTransformation,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTextInput(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    leadingIcon: OudsTextInputLeadingIcon? = null,
-    trailingIconButton: OudsTextInputTrailingIconButton? = null,
-    prefix: String? = null,
-    suffix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: String? = null,
-    helperLink: OudsTextInputHelperLink? = null,
-    constrainedMaxWidth: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTextInput(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        helperLink = helperLink,
-        constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        onTextLayout = onTextLayout,
-        visualTransformation = visualTransformation,
-        interactionSource = interactionSource
     )
 }
 
@@ -774,6 +612,7 @@ fun OudsTextInput(
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTextInput(
     value: String,
@@ -798,7 +637,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTextInput(
         value = value,
@@ -817,61 +656,6 @@ fun OudsTextInput(
         error = error,
         helperText = null,
         annotatedHelperText = helperText,
-        helperLink = helperLink,
-        constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        onTextLayout = onTextLayout,
-        visualTransformation = visualTransformation,
-        interactionSource = interactionSource
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTextInput(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    leadingIcon: OudsTextInputLeadingIcon? = null,
-    trailingIconButton: OudsTextInputTrailingIconButton? = null,
-    prefix: String? = null,
-    suffix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: OudsAnnotatedHelperText,
-    helperLink: OudsTextInputHelperLink? = null,
-    constrainedMaxWidth: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTextInput(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
         helperLink = helperLink,
         constrainedMaxWidth = constrainedMaxWidth,
         keyboardOptions = keyboardOptions,
@@ -1026,6 +810,7 @@ private fun OudsTextInput(
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedErrorSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTextInput(
     value: TextFieldValue,
@@ -1050,7 +835,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTextInput(
         value = value,
@@ -1077,61 +862,6 @@ fun OudsTextInput(
         visualTransformation = visualTransformation,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTextInput(
-    value: TextFieldValue,
-    onValueChange: (TextFieldValue) -> Unit,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    leadingIcon: OudsTextInputLeadingIcon? = null,
-    trailingIconButton: OudsTextInputTrailingIconButton? = null,
-    prefix: String? = null,
-    suffix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: String? = null,
-    helperLink: OudsTextInputHelperLink? = null,
-    constrainedMaxWidth: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTextInput(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        helperLink = helperLink,
-        constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        onTextLayout = onTextLayout,
-        visualTransformation = visualTransformation,
-        interactionSource = interactionSource
     )
 }
 
@@ -1194,6 +924,7 @@ fun OudsTextInput(
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTextInputValueBasedWithAnnotatedHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTextInput(
     value: TextFieldValue,
@@ -1218,7 +949,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTextInput(
         value = value,
@@ -1245,61 +976,6 @@ fun OudsTextInput(
         visualTransformation = visualTransformation,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTextInput(
-    value: TextFieldValue,
-    onValueChange: (TextFieldValue) -> Unit,
-    modifier: Modifier = Modifier,
-    label: String? = null,
-    placeholder: String? = null,
-    leadingIcon: OudsTextInputLeadingIcon? = null,
-    trailingIconButton: OudsTextInputTrailingIconButton? = null,
-    prefix: String? = null,
-    suffix: String? = null,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    loader: OudsTextInputLoader? = null,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: OudsAnnotatedHelperText,
-    helperLink: OudsTextInputHelperLink? = null,
-    constrainedMaxWidth: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTextInput(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = label,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIconButton = trailingIconButton,
-        prefix = prefix,
-        suffix = suffix,
-        enabled = enabled,
-        readOnly = readOnly,
-        loader = loader,
-        outlined = outlined,
-        error = error,
-        helperText = helperText,
-        helperLink = helperLink,
-        constrainedMaxWidth = constrainedMaxWidth,
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
-        onTextLayout = onTextLayout,
-        visualTransformation = visualTransformation,
-        interactionSource = interactionSource
     )
 }
 

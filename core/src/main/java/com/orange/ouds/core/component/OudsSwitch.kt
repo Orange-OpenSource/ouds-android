@@ -87,6 +87,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsSwitchSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSwitch(
     checked: Boolean,
@@ -95,7 +96,7 @@ fun OudsSwitch(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     val switchTokens = OudsTheme.componentsTokens.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
@@ -137,29 +138,6 @@ fun OudsSwitch(
             )
         }
     }
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsSwitch(
-    checked: Boolean,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsSwitch(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
-        modifier = modifier,
-        enabled = enabled,
-        readOnly = readOnly,
-        interactionSource = interactionSource
-    )
 }
 
 @Composable

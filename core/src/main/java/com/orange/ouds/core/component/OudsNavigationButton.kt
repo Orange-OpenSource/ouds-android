@@ -63,6 +63,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonTextAndIconSample
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonIconOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsNavigationButton(
     onClick: () -> Unit,
@@ -73,7 +74,7 @@ fun OudsNavigationButton(
     loader: OudsButtonLoader? = null,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased")skeleton: OudsSkeleton? = null
 ) {
     val drawableResources = LocalDrawableResources.current
     val iconResource = when (chevron) {
@@ -95,33 +96,6 @@ fun OudsNavigationButton(
         appearance = appearance.toButtonAppearance(),
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsNavigationButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    chevron: OudsNavigationButtonChevron = OudsNavigationButtonDefaults.Chevron,
-    label: String? = null,
-    enabled: Boolean = true,
-    loader: OudsButtonLoader? = null,
-    appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsNavigationButton(
-        onClick = onClick,
-        modifier = modifier,
-        chevron = chevron,
-        label = label,
-        enabled = enabled,
-        loader = loader,
-        appearance = appearance,
-        interactionSource = interactionSource
     )
 }
 

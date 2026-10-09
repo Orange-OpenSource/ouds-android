@@ -89,6 +89,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsCheckboxItem(
     checked: Boolean,
@@ -105,7 +106,7 @@ fun OudsCheckboxItem(
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTriStateCheckboxItem(
         state = ToggleableState(checked),
@@ -125,45 +126,6 @@ fun OudsCheckboxItem(
         constrainedMaxWidth = constrainedMaxWidth,
         interactionSource = interactionSource,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsCheckboxItem(
-    checked: Boolean,
-    label: String,
-    onCheckedChange: ((Boolean) -> Unit)?,
-    modifier: Modifier = Modifier,
-    description: String? = null,
-    icon: OudsControlItemIcon? = null,
-    edgeToEdge: Boolean = true,
-    divider: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsCheckboxItem(
-        checked = checked,
-        label = label,
-        onCheckedChange = onCheckedChange,
-        modifier = modifier,
-        description = description,
-        icon = icon,
-        edgeToEdge = edgeToEdge,
-        divider = divider,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        interactionSource = interactionSource
     )
 }
 
@@ -217,6 +179,7 @@ fun OudsCheckboxItem(
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithAnnotatedErrorMessageSample
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsTriStateCheckboxItem(
     state: ToggleableState,
@@ -233,7 +196,7 @@ fun OudsTriStateCheckboxItem(
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -283,45 +246,6 @@ fun OudsTriStateCheckboxItem(
         handleHighContrastMode = true,
         constrainedMaxWidth = constrainedMaxWidth,
         skeleton = skeleton
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsTriStateCheckboxItem(
-    state: ToggleableState,
-    label: String,
-    onClick: (() -> Unit)?,
-    modifier: Modifier = Modifier,
-    description: String? = null,
-    icon: OudsControlItemIcon? = null,
-    edgeToEdge: Boolean = true,
-    divider: Boolean = false,
-    reversed: Boolean = false,
-    enabled: Boolean = true,
-    readOnly: Boolean = false,
-    error: OudsError? = null,
-    constrainedMaxWidth: Boolean = false,
-    interactionSource: MutableInteractionSource? = null
-) {
-    OudsTriStateCheckboxItem(
-        state = state,
-        label = label,
-        onClick = onClick,
-        modifier = modifier,
-        description = description,
-        icon = icon,
-        edgeToEdge = edgeToEdge,
-        divider = divider,
-        reversed = reversed,
-        enabled = enabled,
-        readOnly = readOnly,
-        error = error,
-        constrainedMaxWidth = constrainedMaxWidth,
-        interactionSource = interactionSource
     )
 }
 
