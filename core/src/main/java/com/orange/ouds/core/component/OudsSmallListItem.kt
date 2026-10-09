@@ -61,6 +61,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param enabled Controls the enabled state of the small list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the small list item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
@@ -68,6 +69,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(
@@ -83,7 +85,8 @@ fun OudsSmallListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -102,6 +105,7 @@ fun OudsSmallListItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
+        skeleton = skeleton,
         card = false,
         interactionSource = interactionSource
     )
@@ -136,6 +140,7 @@ fun OudsSmallListItem(
  * @param enabled Controls the enabled state of the small list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the small list item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
@@ -143,6 +148,7 @@ fun OudsSmallListItem(
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(
@@ -160,7 +166,8 @@ fun OudsSmallListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -179,6 +186,7 @@ fun OudsSmallListItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
+        skeleton = skeleton,
         card = false,
         interactionSource = interactionSource
     )
@@ -509,19 +517,24 @@ internal fun PreviewOudsStaticSmallListItem(
     parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsSmallListItem(
-            label = label,
-            description = description,
-            helperText = helperText,
-            leading = leading,
-            trailing = trailing,
-            divider = decoration.divider,
-            background = decoration is OudsListItemDecoration.Background,
-            verticalAlignment = verticalAlignment,
-            boldLabel = boldLabel,
-            enabled = enabled,
-            edgeToEdge = false
-        )
+        PreviewEnumEntries<OudsListItemState>(
+            maxEnumEntriesInEachRow = 1,
+            filter = { it in OudsListItemState.StaticStates }
+        ) {
+            OudsSmallListItem(
+                label = label,
+                description = description,
+                helperText = helperText,
+                leading = leading,
+                trailing = trailing,
+                divider = decoration.divider,
+                background = decoration is OudsListItemDecoration.Background,
+                verticalAlignment = verticalAlignment,
+                boldLabel = boldLabel,
+                enabled = enabled,
+                edgeToEdge = false
+            )
+        }
     }
 }
 

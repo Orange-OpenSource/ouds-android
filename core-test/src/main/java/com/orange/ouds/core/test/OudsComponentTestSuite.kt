@@ -48,6 +48,7 @@ import org.junit.runners.Suite
     OudsSmallCardItemTest::class,
     OudsSmallListItemTest::class,
     OudsSuggestionChipTest::class,
+    OudsSkeletonTest::class,
     OudsSwitchItemTest::class,
     OudsSwitchTest::class,
     OudsTagTest::class,

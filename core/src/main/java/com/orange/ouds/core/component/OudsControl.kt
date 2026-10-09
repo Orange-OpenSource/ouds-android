@@ -14,31 +14,27 @@ package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.core.component.OudsControlState.Disabled
-import com.orange.ouds.core.component.OudsControlState.Enabled
-import com.orange.ouds.core.component.OudsControlState.Focused
-import com.orange.ouds.core.component.OudsControlState.Hovered
-import com.orange.ouds.core.component.OudsControlState.Pressed
-import com.orange.ouds.core.component.OudsControlState.ReadOnly
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.extensions.orElse
 
-internal enum class OudsControlState {
-    Enabled, Hovered, Focused, Pressed, ReadOnly, Disabled
+internal enum class OudsControlState : OudsComponentState {
+    Enabled, Hovered, Focused, Pressed, ReadOnly, Disabled, Skeleton
 }
 
 @Composable
-internal fun getControlState(enabled: Boolean, readOnly: Boolean, interactionState: InteractionState): OudsControlState {
+internal fun getControlState(enabled: Boolean, readOnly: Boolean, skeleton: OudsSkeleton?, interactionState: InteractionState): OudsControlState {
     return getPreviewEnumEntry<OudsControlState>().orElse {
         when {
-            !enabled -> Disabled
-            readOnly -> ReadOnly
-            interactionState == InteractionState.Hovered -> Hovered
-            interactionState == InteractionState.Pressed -> Pressed
-            interactionState == InteractionState.Focused -> Focused
-            else -> Enabled
+            skeleton != null -> OudsControlState.Skeleton
+            !enabled -> OudsControlState.Disabled
+            readOnly -> OudsControlState.ReadOnly
+            interactionState == InteractionState.Hovered -> OudsControlState.Hovered
+            interactionState == InteractionState.Pressed -> OudsControlState.Pressed
+            interactionState == InteractionState.Focused -> OudsControlState.Focused
+            else -> OudsControlState.Enabled
         }
     }
 }
@@ -46,10 +42,11 @@ internal fun getControlState(enabled: Boolean, readOnly: Boolean, interactionSta
 @Composable
 internal fun errorColor(state: OudsControlState): Color = with(OudsTheme.colorScheme.action.negative) {
     when (state) {
-        Enabled -> enabled
-        Disabled, ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
-        Hovered -> hover
-        Pressed -> pressed
-        Focused -> focus
+        OudsControlState.Enabled -> enabled
+        OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+        OudsControlState.Hovered -> hover
+        OudsControlState.Pressed -> pressed
+        OudsControlState.Focused -> focus
+        OudsControlState.Skeleton -> Color.Transparent
     }
 }

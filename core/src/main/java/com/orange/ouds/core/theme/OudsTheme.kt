@@ -28,7 +28,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
-import com.orange.ouds.core.extensions.isHighContrastModeEnabled
+import com.orange.ouds.core.utilities.isHighContrastModeEnabled
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources

@@ -54,6 +54,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the card item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemSample
@@ -61,6 +62,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -76,6 +78,7 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -95,6 +98,7 @@ fun OudsCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
+        skeleton = skeleton,
         card = true,
         interactionSource = interactionSource
     )
@@ -125,6 +129,7 @@ fun OudsCardItem(
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the card item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemSample
@@ -132,6 +137,7 @@ fun OudsCardItem(
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -149,6 +155,7 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null
 ) {
     OudsListItem(
@@ -168,6 +175,7 @@ fun OudsCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
+        skeleton = skeleton,
         card = true,
         interactionSource = interactionSource
     )
@@ -199,12 +207,7 @@ internal fun PreviewOudsStaticCardItem(
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(
             maxEnumEntriesInEachRow = 1,
-            filter = {
-                it in listOf(
-                    OudsListItemState.Enabled,
-                    OudsListItemState.Disabled
-                )
-            }
+            filter = { it in OudsListItemState.StaticStates }
         ) {
             OudsCardItem(
                 label = label,

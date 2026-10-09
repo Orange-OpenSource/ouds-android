@@ -9,6 +9,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsAlert
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsAlertMessageKt;
 	public fun <init> ()V
 	public final fun getLambda$-550268297$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-905209991$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$130744629$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$1688383440$core ()Lkotlin/jvm/functions/Function2;
 }
@@ -33,6 +34,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsBotto
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsBulletListKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsBulletListKt;
 	public fun <init> ()V
+	public final fun getLambda$1824646415$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$425097741$core ()Lkotlin/jvm/functions/Function2;
 }
 
@@ -90,6 +92,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsInlin
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsInlineAlertKt;
 	public fun <init> ()V
 	public final fun getLambda$1447335234$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$532386937$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$900463591$core ()Lkotlin/jvm/functions/Function3;
 }
 
@@ -175,13 +178,16 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsSmall
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsSuggestionChipKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsSuggestionChipKt;
 	public fun <init> ()V
+	public final fun getLambda$-1049537249$0$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1049537249$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-1331036122$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-1738202977$0$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-1738202977$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-1878763836$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-2017593444$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-2016423672$0$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-2016423672$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-2101786170$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-47932891$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-670870277$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$694985957$0$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$694985957$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsSwitchItemKt {
@@ -288,7 +294,9 @@ public final class com/orange/ouds/core/component/OudsAlertMessageDefaults {
 
 public final class com/orange/ouds/core/component/OudsAlertMessageKt {
 	public static final fun OudsAlertMessage (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsAlertMessageStatus;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedAlertMessageDescription;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsAlertMessageActionLink;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsAlertMessage (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsAlertMessageStatus;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedAlertMessageDescription;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsAlertMessageActionLink;Ljava/util/List;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsAlertMessage (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsAlertMessageStatus;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsAlertMessageActionLink;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsAlertMessage (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsAlertMessageStatus;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsAlertMessageActionLink;Ljava/util/List;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public abstract class com/orange/ouds/core/component/OudsAlertMessageStatus {
@@ -444,6 +452,7 @@ public final class com/orange/ouds/core/component/OudsBulletListFontWeight : jav
 }
 
 public final class com/orange/ouds/core/component/OudsBulletListKt {
+	public static final fun OudsBulletList (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsBulletListType;Lcom/orange/ouds/core/component/OudsBulletListTextStyle;Lcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsBulletList (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsBulletListType;Lcom/orange/ouds/core/component/OudsBulletListTextStyle;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 }
 
@@ -563,8 +572,11 @@ public final class com/orange/ouds/core/component/OudsButtonIcon$ExtraParameters
 
 public final class com/orange/ouds/core/component/OudsButtonKt {
 	public static final fun OudsButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsButtonLoader {
@@ -587,17 +599,23 @@ public final class com/orange/ouds/core/component/OudsCardItemDefaults {
 
 public final class com/orange/ouds/core/component/OudsCardItemKt {
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsCheckboxItemKt {
 	public static final fun OudsCheckboxItem (ZLjava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCheckboxItem (ZLjava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTriStateCheckboxItem (Landroidx/compose/ui/state/ToggleableState;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTriStateCheckboxItem (Landroidx/compose/ui/state/ToggleableState;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsCheckboxKt {
 	public static final fun OudsCheckbox (ZLkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;ZZLcom/orange/ouds/core/component/common/OudsError;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCheckbox (ZLkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;ZZLcom/orange/ouds/core/component/common/OudsError;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsTriStateCheckbox (Landroidx/compose/ui/state/ToggleableState;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZZLcom/orange/ouds/core/component/common/OudsError;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsTriStateCheckbox (Landroidx/compose/ui/state/ToggleableState;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZZLcom/orange/ouds/core/component/common/OudsError;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsChipIcon : com/orange/ouds/core/component/content/OudsComponentIcon {
@@ -630,12 +648,14 @@ public final class com/orange/ouds/core/component/OudsChipScope {
 	public final fun getState ()Lcom/orange/ouds/core/component/OudsChipState;
 }
 
-public final class com/orange/ouds/core/component/OudsChipState : java/lang/Enum {
+public final class com/orange/ouds/core/component/OudsChipState : java/lang/Enum, com/orange/ouds/core/component/common/OudsComponentState {
 	public static final field Disabled Lcom/orange/ouds/core/component/OudsChipState;
 	public static final field Enabled Lcom/orange/ouds/core/component/OudsChipState;
 	public static final field Focused Lcom/orange/ouds/core/component/OudsChipState;
 	public static final field Hovered Lcom/orange/ouds/core/component/OudsChipState;
 	public static final field Pressed Lcom/orange/ouds/core/component/OudsChipState;
+	public static final field Skeleton Lcom/orange/ouds/core/component/OudsChipState;
+	public fun getAreInteractionsEnabled ()Z
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsChipState;
 	public static fun values ()[Lcom/orange/ouds/core/component/OudsChipState;
@@ -764,8 +784,11 @@ public final class com/orange/ouds/core/component/OudsDividerKt {
 
 public final class com/orange/ouds/core/component/OudsFilterChipKt {
 	public static final fun OudsFilterChip (ZLkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsFilterChip (ZLkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsFilterChip (ZLkotlin/jvm/functions/Function0;Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsFilterChip (ZLkotlin/jvm/functions/Function0;Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsFilterChip (ZLkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsFilterChip (ZLkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsFloatingActionButtonAppearance : java/lang/Enum {
@@ -868,6 +891,7 @@ public final class com/orange/ouds/core/component/OudsInlineAlertDefaults {
 
 public final class com/orange/ouds/core/component/OudsInlineAlertKt {
 	public static final fun OudsInlineAlert (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsInlineAlertStatus;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsInlineAlert (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsInlineAlertStatus;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public abstract class com/orange/ouds/core/component/OudsInlineAlertStatus {
@@ -911,6 +935,7 @@ public final class com/orange/ouds/core/component/OudsInlineAlertStatus$Warning 
 public final class com/orange/ouds/core/component/OudsInputTagKt {
 	public static final fun OudsInputChip (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsInputTag (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsInputTag (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public class com/orange/ouds/core/component/OudsLinearProgressIndicatorHelperText : com/orange/ouds/core/component/content/OudsComponentContent {
@@ -992,11 +1017,14 @@ public final class com/orange/ouds/core/component/OudsLinkIndicator : java/lang/
 
 public final class com/orange/ouds/core/component/OudsLinkKt {
 	public static final fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkChevron;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLandroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLandroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLcom/orange/ouds/core/component/OudsLinkDensity;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLcom/orange/ouds/core/component/OudsLinkDensity;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkIndicator;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLcom/orange/ouds/core/component/OudsLinkDensity;Landroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsLink (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLink (Ljava/lang/String;Lcom/orange/ouds/core/component/OudsLinkIndicator;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLcom/orange/ouds/core/component/OudsLinkDensity;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLink (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLandroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLink (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLcom/orange/ouds/core/component/OudsLinkDensity;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLink (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLinkSize;ZLcom/orange/ouds/core/component/OudsLinkDensity;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsLinkSize : java/lang/Enum {
@@ -1103,7 +1131,9 @@ public final class com/orange/ouds/core/component/OudsListItemIndicator$Previous
 
 public final class com/orange/ouds/core/component/OudsListItemKt {
 	public static final fun OudsListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsListItem (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsListItem (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeading : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
@@ -1353,6 +1383,7 @@ public final class com/orange/ouds/core/component/OudsNavigationButtonDefaults {
 
 public final class com/orange/ouds/core/component/OudsNavigationButtonKt {
 	public static final fun OudsNavigationButton (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsNavigationButtonChevron;Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsNavigationButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsNavigationButton (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsNavigationButtonChevron;Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsNavigationButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsPasswordInputDefaults {
@@ -1364,7 +1395,9 @@ public final class com/orange/ouds/core/component/OudsPasswordInputDefaults {
 
 public final class com/orange/ouds/core/component/OudsPasswordInputKt {
 	public static final fun OudsPasswordInput (Lcom/orange/ouds/core/component/OudsPasswordInputState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;ZLandroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsPasswordInput (Lcom/orange/ouds/core/component/OudsPasswordInputState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;ZLandroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsPasswordInput (Lcom/orange/ouds/core/component/OudsPasswordInputState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;ZLandroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsPasswordInput (Lcom/orange/ouds/core/component/OudsPasswordInputState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;ZLandroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsSecureTextField (Lcom/orange/ouds/core/component/OudsPasswordInputState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;ZLandroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 }
 
@@ -1450,26 +1483,65 @@ public final class com/orange/ouds/core/component/OudsProgressIndicatorStatus : 
 
 public final class com/orange/ouds/core/component/OudsRadioButtonItemKt {
 	public static final fun OudsRadioButtonItem (ZLjava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsRadioButtonItem (ZLjava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsRadioButtonKt {
 	public static final fun OudsRadioButton (ZLkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZZLcom/orange/ouds/core/component/common/OudsError;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsRadioButton (ZLkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZZLcom/orange/ouds/core/component/common/OudsError;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsSkeleton {
+	public static final field $stable I
+	public fun <init> (Lcom/orange/ouds/core/component/OudsSkeletonState;)V
+	public final fun getState ()Lcom/orange/ouds/core/component/OudsSkeletonState;
+}
+
+public final class com/orange/ouds/core/component/OudsSkeletonKt {
+	public static final fun OudsSkeleton (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsSkeletonState;ZLandroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsSkeletonState {
+	public static final field $stable I
+	public static final field Companion Lcom/orange/ouds/core/component/OudsSkeletonState$Companion;
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun isAnimationRunning ()Z
+	public final fun startAnimation ()V
+	public final fun stopAnimation ()V
+}
+
+public final class com/orange/ouds/core/component/OudsSkeletonState$Companion {
+	public final fun getAnimationDuration ()I
+	public final fun getSaver ()Landroidx/compose/runtime/saveable/Saver;
+}
+
+public final class com/orange/ouds/core/component/OudsSkeletonStateKt {
+	public static final fun rememberOudsSkeletonState (ZLandroidx/compose/runtime/Composer;II)Lcom/orange/ouds/core/component/OudsSkeletonState;
 }
 
 public final class com/orange/ouds/core/component/OudsSmallButtonKt {
 	public static final fun OudsSmallButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSmallButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsSmallButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSmallButton (Lcom/orange/ouds/core/component/OudsButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsSmallButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSmallButton (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsButtonLoader;Lcom/orange/ouds/core/component/OudsButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsSmallCardItemKt {
 	public static final fun OudsSmallCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsSmallCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsSmallCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsSmallCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsSmallListItemKt {
 	public static final fun OudsSmallListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsSmallListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsSmallListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsSmallListItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsSmallListItemLeading;Lcom/orange/ouds/core/component/OudsSmallListItemTrailing;ZZLjava/lang/String;ZZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public abstract interface class com/orange/ouds/core/component/OudsSmallListItemLeading : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
@@ -1566,20 +1638,28 @@ public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Text
 }
 
 public final class com/orange/ouds/core/component/OudsSuggestionChipKt {
+	public static final fun OudsBasicSuggestionChip (Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsBasicSuggestionChip (Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsBasicSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsBasicSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsBasicSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsBasicSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsSuggestionChip (Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSuggestionChip (Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSuggestionChip (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsChipIcon;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsSwitchItemKt {
 	public static final fun OudsSwitchItem (ZLjava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsSwitchItem (ZLjava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsControlItemIcon;ZZZZZLcom/orange/ouds/core/component/common/OudsError;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsSwitchKt {
 	public static final fun OudsSwitch (ZLkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSwitch (ZLkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsTagAppearance : java/lang/Enum {
@@ -1639,6 +1719,7 @@ public final class com/orange/ouds/core/component/OudsTagDefaults {
 
 public final class com/orange/ouds/core/component/OudsTagKt {
 	public static final fun OudsTag (Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsTag (Ljava/lang/String;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/orange/ouds/core/component/OudsTagLoader {
@@ -1713,18 +1794,24 @@ public final class com/orange/ouds/core/component/OudsTagStatus$Warning : com/or
 }
 
 public final class com/orange/ouds/core/component/OudsTextAreaKt {
-	public static final synthetic fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;III)V
-	public static final synthetic fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;III)V
-	public static final synthetic fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;III)V
-	public static final synthetic fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;III)V
-	public static final synthetic fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;III)V
-	public static final synthetic fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;III)V
+	public static final fun OudsTextArea (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsTextInputHelperLink : com/orange/ouds/core/component/content/OudsComponentContent {
@@ -1753,11 +1840,17 @@ public final class com/orange/ouds/core/component/OudsTextInputKt {
 	public static final fun OudsTextField (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextField (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextInput (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
+	public static final fun OudsTextInput (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextInput (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
+	public static final fun OudsTextInput (Landroidx/compose/foundation/text/input/TextFieldState;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextInput (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
+	public static final fun OudsTextInput (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextInput (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
+	public static final fun OudsTextInput (Landroidx/compose/ui/text/input/TextFieldValue;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
+	public static final fun OudsTextInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
 	public static final fun OudsTextInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;IIII)V
+	public static final fun OudsTextInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputLeadingIcon;Lcom/orange/ouds/core/component/OudsTextInputTrailingIconButton;Ljava/lang/String;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/KeyboardActions;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/input/VisualTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
 }
 
 public final class com/orange/ouds/core/component/OudsTextInputLeadingIcon : com/orange/ouds/core/component/content/OudsComponentIcon {
@@ -2755,10 +2848,11 @@ public final class com/orange/ouds/core/theme/OudsComponents {
 	public final fun component19 ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicatorMonochrome;
 	public final fun component2 ()Lcom/orange/ouds/core/theme/OudsComponents$AlertMessage;
 	public final fun component20 ()Lcom/orange/ouds/core/theme/OudsComponents$RadioButton;
-	public final fun component21 ()Lcom/orange/ouds/core/theme/OudsComponents$Switch;
-	public final fun component22 ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
-	public final fun component23 ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
-	public final fun component24 ()Lcom/orange/ouds/core/theme/OudsComponents$TextInput;
+	public final fun component21 ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton;
+	public final fun component22 ()Lcom/orange/ouds/core/theme/OudsComponents$Switch;
+	public final fun component23 ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
+	public final fun component24 ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
+	public final fun component25 ()Lcom/orange/ouds/core/theme/OudsComponents$TextInput;
 	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsComponents$Badge;
 	public final fun component4 ()Lcom/orange/ouds/core/theme/OudsComponents$Bar;
 	public final fun component5 ()Lcom/orange/ouds/core/theme/OudsComponents$BulletList;
@@ -2787,6 +2881,7 @@ public final class com/orange/ouds/core/theme/OudsComponents {
 	public final fun getProgressIndicator ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicator;
 	public final fun getProgressIndicatorMonochrome ()Lcom/orange/ouds/core/theme/OudsComponents$ProgressIndicatorMonochrome;
 	public final fun getRadioButton ()Lcom/orange/ouds/core/theme/OudsComponents$RadioButton;
+	public final fun getSkeleton ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton;
 	public final fun getSwitch ()Lcom/orange/ouds/core/theme/OudsComponents$Switch;
 	public final fun getTag ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
 	public final fun getTextArea ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
@@ -5303,6 +5398,37 @@ public final class com/orange/ouds/core/theme/OudsComponents$RadioButton$Size {
 	public final fun getMaxHeight-D9Ej5fM ()F
 	public final fun getMinHeight-D9Ej5fM ()F
 	public final fun getMinWidth-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Skeleton {
+	public static final field $stable I
+	public final fun component1 ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColor ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Skeleton$Color {
+	public static final field $stable I
+	public final fun component1-0d7_KjU ()J
+	public final fun component2 ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color$Gradient;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBackground-0d7_KjU ()J
+	public final fun getGradient ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color$Gradient;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Skeleton$Color$Gradient {
+	public static final field $stable I
+	public final fun component1-0d7_KjU ()J
+	public final fun component2-0d7_KjU ()J
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMiddle-0d7_KjU ()J
+	public final fun getStartEnd-0d7_KjU ()J
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }

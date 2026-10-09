@@ -79,7 +79,8 @@ internal fun OudsControlItem(
     contentModifier: Modifier = Modifier,
     extraLabel: String? = null,
     constrainedMaxWidth: Boolean = false,
-    handleHighContrastMode: Boolean = false
+    handleHighContrastMode: Boolean = false,
+    skeleton: OudsSkeleton? = null
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
@@ -123,59 +124,66 @@ internal fun OudsControlItem(
         val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) indicator else itemIcon
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
-        Column(modifier = modifier) {
-            val shape = RoundedCornerShape(listItemTokens.borderRadiusDefault.value)
-            Box(
-                modifier = Modifier
-                    .height(IntrinsicSize.Min)
-                    .heightIn(min = listItemTokens.sizeMinHeightDefault.dp)
-                    .widthIn(min = listItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) listItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
-                    .background(color = backgroundColor, shape = shape)
-                    .then(contentModifier)
-                    .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                Row(
-                    modifier = Modifier.padding(
-                        vertical = listItemTokens.spacePaddingBlockDefault.value,
-                        horizontal = contentHorizontalPadding(edgeToEdge)
-                    ),
-                    horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
+        SkeletonLayout(
+            modifier = modifier,
+            componentState = state,
+            state = skeleton?.state,
+            securityMargin = true
+        ) { skeletonContentModifier ->
+            Column(modifier = skeletonContentModifier) {
+                val shape = RoundedCornerShape(listItemTokens.borderRadiusDefault.value)
+                Box(
+                    modifier = Modifier
+                        .height(IntrinsicSize.Min)
+                        .heightIn(min = listItemTokens.sizeMinHeightDefault.dp)
+                        .widthIn(min = listItemTokens.sizeMinWidth.dp, max = if (constrainedMaxWidth) listItemTokens.sizeMaxWidth.dp else Dp.Unspecified)
+                        .background(color = backgroundColor, shape = shape)
+                        .then(contentModifier)
+                        .outerBorder(state = state, shape = shape, handleHighContrastMode = handleHighContrastMode),
+                    contentAlignment = Alignment.BottomCenter
                 ) {
-                    leadingElement?.let { LeadingTrailingBox(leadingElement) }
-                    Column(
-                        modifier = Modifier
-                            .weight(1f)
-                            .align(Alignment.CenterVertically),
-                        verticalArrangement = Arrangement.spacedBy(listItemTokens.spaceRowGap.value)
+                    Row(
+                        modifier = Modifier.padding(
+                            vertical = listItemTokens.spacePaddingBlockDefault.value,
+                            horizontal = contentHorizontalPadding(edgeToEdge)
+                        ),
+                        horizontalArrangement = Arrangement.spacedBy(listItemTokens.spaceColumnGap.value)
                     ) {
-                        Text(text = label, style = OudsTheme.typography.label.large.default, color = labelColor(state = state, error = error))
-                        if (!extraLabel.isNullOrBlank()) {
-                            Text(
-                                text = extraLabel,
-                                style = OudsTheme.typography.label.medium.strong,
-                                color = extraLabelColor(state = state)
-                            )
+                        leadingElement?.let { LeadingTrailingBox(leadingElement) }
+                        Column(
+                            modifier = Modifier
+                                .weight(1f)
+                                .align(Alignment.CenterVertically),
+                            verticalArrangement = Arrangement.spacedBy(listItemTokens.spaceRowGap.value)
+                        ) {
+                            Text(text = label, style = OudsTheme.typography.label.large.default, color = labelColor(state = state, error = error))
+                            if (!extraLabel.isNullOrBlank()) {
+                                Text(
+                                    text = extraLabel,
+                                    style = OudsTheme.typography.label.medium.strong,
+                                    color = extraLabelColor(state = state)
+                                )
+                            }
+                            if (!description.isNullOrBlank()) {
+                                Text(
+                                    text = description,
+                                    style = OudsTheme.typography.label.medium.default,
+                                    color = descriptionColor(state = state)
+                                )
+                            }
                         }
-                        if (!description.isNullOrBlank()) {
-                            Text(
-                                text = description,
-                                style = OudsTheme.typography.label.medium.default,
-                                color = descriptionColor(state = state)
-                            )
-                        }
+                        trailingElement?.let { LeadingTrailingBox(trailingElement) }
                     }
-                    trailingElement?.let { LeadingTrailingBox(trailingElement) }
+                    if (divider) {
+                        OudsHorizontalDivider(
+                            modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
+                            color = dividerColor(state = state, error = error)
+                        )
+                    }
                 }
-                if (divider) {
-                    OudsHorizontalDivider(
-                        modifier = if (edgeToEdge) Modifier.padding(horizontal = OudsTheme.grids.margin) else Modifier,
-                        color = dividerColor(state = state, error = error)
-                    )
+                if (error != null && error.message.isNotBlank()) {
+                    ErrorMessageText(error = error, edgeToEdge = edgeToEdge)
                 }
-            }
-            if (error != null && error.message.isNotBlank()) {
-                ErrorMessageText(error = error, edgeToEdge = edgeToEdge)
             }
         }
     }
@@ -246,9 +254,10 @@ class OudsControlItemIcon private constructor(
 internal fun rememberControlItemBackgroundColor(
     enabled: Boolean,
     readOnly: Boolean,
+    skeleton: OudsSkeleton?,
     interactionState: InteractionState
 ) = rememberInteractionColor(interactionState = interactionState) { controlItemInteractionState ->
-    val state = getControlState(enabled = enabled, readOnly = readOnly, interactionState = controlItemInteractionState)
+    val state = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = controlItemInteractionState)
     backgroundColor(state = state)
 }
 
@@ -309,7 +318,10 @@ private fun ErrorIcon(state: OudsControlState, modifier: Modifier = Modifier) {
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.listItem) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
+            OudsControlState.Enabled,
+            OudsControlState.Disabled,
+            OudsControlState.ReadOnly,
+            OudsControlState.Skeleton -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
             OudsControlState.Pressed -> colorBgPressed.value
             OudsControlState.Focused -> colorBgFocus.value

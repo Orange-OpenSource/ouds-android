@@ -52,6 +52,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the small card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the small card item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallCardItemSample
@@ -59,6 +60,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallCardItem(
@@ -72,7 +74,8 @@ fun OudsSmallCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -91,6 +94,7 @@ fun OudsSmallCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
+        skeleton = skeleton,
         card = true,
         interactionSource = interactionSource
     )
@@ -119,6 +123,7 @@ fun OudsSmallCardItem(
  * @param helperText Optional helper text displayed below the small card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the small card item will appear once fully loaded.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallCardItemSample
@@ -126,6 +131,7 @@ fun OudsSmallCardItem(
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallCardItem(
@@ -141,7 +147,8 @@ fun OudsSmallCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -160,6 +167,7 @@ fun OudsSmallCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
+        skeleton = skeleton,
         card = true,
         interactionSource = interactionSource
     )
@@ -179,15 +187,20 @@ internal fun PreviewOudsStaticSmallCardItem(
     parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsSmallCardItem(
-            label = label,
-            decoration = decoration,
-            description = description,
-            helperText = helperText,
-            leading = leading,
-            trailing = trailing,
-            enabled = enabled
-        )
+        PreviewEnumEntries<OudsListItemState>(
+            maxEnumEntriesInEachRow = 1,
+            filter = { it in OudsListItemState.StaticStates }
+        ) {
+            OudsSmallCardItem(
+                label = label,
+                decoration = decoration,
+                description = description,
+                helperText = helperText,
+                leading = leading,
+                trailing = trailing,
+                enabled = enabled
+            )
+        }
     }
 }
 

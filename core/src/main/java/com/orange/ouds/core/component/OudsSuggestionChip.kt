@@ -57,16 +57,19 @@ import com.orange.ouds.theme.OudsThemeContract
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -74,7 +77,8 @@ fun OudsSuggestionChip(
         nullableIcon = null,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -103,18 +107,21 @@ fun OudsSuggestionChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlySample
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipIconOnlyWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -122,7 +129,8 @@ fun OudsSuggestionChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -152,11 +160,13 @@ fun OudsSuggestionChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsSuggestionChipTextAndIconWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSuggestionChip(
     onClick: () -> Unit,
@@ -164,7 +174,8 @@ fun OudsSuggestionChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -172,7 +183,8 @@ fun OudsSuggestionChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -197,10 +209,12 @@ fun OudsSuggestionChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  * @param content The custom content of this chip.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 @RestrictedOudsApi
 @ExperimentalOudsApi
@@ -210,6 +224,7 @@ fun OudsBasicSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -218,6 +233,7 @@ fun OudsBasicSuggestionChip(
         nullableIcon = null,
         modifier = modifier,
         enabled = enabled,
+        skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
     )
@@ -244,10 +260,12 @@ fun OudsBasicSuggestionChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  * @param content The custom content of this chip.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipIconOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 @RestrictedOudsApi
 @ExperimentalOudsApi
@@ -257,6 +275,7 @@ fun OudsBasicSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -265,6 +284,7 @@ fun OudsBasicSuggestionChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
+        skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
     )
@@ -292,10 +312,12 @@ fun OudsBasicSuggestionChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the chip will appear once fully loaded.
  * @param content The custom content of this chip.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBasicSuggestionChipTextAndIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 @RestrictedOudsApi
 @ExperimentalOudsApi
@@ -306,6 +328,7 @@ fun OudsBasicSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -314,6 +337,7 @@ fun OudsBasicSuggestionChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
+        skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
     )
@@ -330,6 +354,7 @@ private fun OudsBasicSuggestionChip(
     nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    skeleton: OudsSkeleton? = null,
     interactionSource: MutableInteractionSource? = null,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
@@ -342,6 +367,7 @@ private fun OudsBasicSuggestionChip(
         iconPosition = OudsChipIconPosition.Start,
         modifier = modifier,
         enabled = enabled,
+        skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
     )

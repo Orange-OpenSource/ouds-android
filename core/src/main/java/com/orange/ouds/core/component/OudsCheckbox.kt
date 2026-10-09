@@ -87,9 +87,11 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsCheckbox(
     checked: Boolean,
@@ -98,7 +100,8 @@ fun OudsCheckbox(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     OudsTriStateCheckbox(
         state = ToggleableState(checked),
@@ -109,7 +112,8 @@ fun OudsCheckbox(
         enabled = enabled,
         readOnly = readOnly,
         error = error,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -143,9 +147,11 @@ fun OudsCheckbox(
  * @param error Optional [OudsError] to indicate that the checkbox should appear in an error state, `null` otherwise.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this checkbox. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the checkbox will appear once fully loaded.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTriStateCheckboxSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Suppress("DEPRECATION")
 @Composable
 fun OudsTriStateCheckbox(
@@ -155,7 +161,8 @@ fun OudsTriStateCheckbox(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     error: OudsError? = null,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
@@ -174,9 +181,9 @@ fun OudsTriStateCheckbox(
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val checkboxTokens = OudsTheme.componentsTokens.checkbox
-        val checkboxState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = interactionState)
+        val checkboxState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { checkboxInteractionState ->
-            val controlState = getControlState(enabled = enabled, readOnly = readOnly, interactionState = checkboxInteractionState)
+            val controlState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = checkboxInteractionState)
             backgroundColor(state = controlState)
         }
 
@@ -187,32 +194,40 @@ fun OudsTriStateCheckbox(
                     indication = interactionValuesIndication(backgroundColor),
                     state = state,
                     onClick = onClick,
-                    enabled = enabled && !readOnly,
+                    enabled = checkboxState.areInteractionsEnabled,
                     role = Role.Checkbox
                 )
             } else {
                 Modifier
             }
 
-        Box(
-            modifier = modifier
-                .then(toggleableModifier)
-                .widthIn(checkboxTokens.sizeMinWidth.value)
-                .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
-                .background(color = backgroundColor.value, shape = shape)
-                .outerBorder(state = checkboxState, shape = shape, handleHighContrastMode = true)
-                .run {
-                    error?.message?.let { description ->
-                        semantics {
-                            error(description)
+        SkeletonLayout(
+            modifier = modifier,
+            componentState = checkboxState,
+            state = skeleton?.state,
+            securityMargin = false,
+            shape = shape
+        ) { contentModifier ->
+            Box(
+                modifier = contentModifier
+                    .then(toggleableModifier)
+                    .widthIn(checkboxTokens.sizeMinWidth.value)
+                    .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
+                    .background(color = backgroundColor.value, shape = shape)
+                    .outerBorder(state = checkboxState, shape = shape, handleHighContrastMode = true)
+                    .run {
+                        error?.message?.let { description ->
+                            semantics {
+                                error(description)
+                            }
+                        }.orElse {
+                            this
                         }
-                    }.orElse {
-                        this
-                    }
-                },
-            contentAlignment = Alignment.Center,
-        ) {
-            OudsCheckboxIndicator(state = checkboxState, value = state, error = error != null)
+                    },
+                contentAlignment = Alignment.Center,
+            ) {
+                OudsCheckboxIndicator(state = checkboxState, value = state, error = error != null)
+            }
         }
     }
 }
@@ -272,8 +287,9 @@ private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp
             OudsControlState.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
             OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
             OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
-        }.value
-    }.takeUnlessHairline
+            OudsControlState.Skeleton -> null
+        }?.value
+    }?.takeUnlessHairline
 }
 
 @Composable
@@ -294,6 +310,7 @@ private fun indicatorColor(state: OudsControlState, selected: Boolean, error: Bo
                 OudsControlState.Hovered -> hover
                 OudsControlState.Pressed -> pressed
                 OudsControlState.Focused -> focus
+                OudsControlState.Skeleton -> Color.Transparent
             }
         }
     }
@@ -313,7 +330,10 @@ private fun checkColor(state: OudsControlState, error: Boolean): Color {
 private fun backgroundColor(state: OudsControlState): Color {
     return with(OudsTheme.componentsTokens.listItem) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Transparent
+            OudsControlState.Enabled,
+            OudsControlState.Disabled,
+            OudsControlState.ReadOnly,
+            OudsControlState.Skeleton -> Color.Transparent
             OudsControlState.Hovered -> colorBgHover.value
             OudsControlState.Pressed -> colorBgPressed.value
             OudsControlState.Focused -> colorBgFocus.value

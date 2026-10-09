@@ -21,6 +21,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.core.component.OudsColoredBoxColor
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
@@ -87,8 +88,13 @@ fun FunctionCall.Builder.contentDescriptionArgument(@StringRes resId: Int, varar
 fun FunctionCall.Builder.contentDescriptionArgument(@PluralsRes resId: Int, count: Int, vararg formatArgs: Any) =
     pluralStringResourceArgument(Argument.ContentDescription, resId, count, *formatArgs)
 
-
 fun FunctionCall.Builder.enabledArgument(value: Boolean) = typedArgument(Argument.Enabled, value)
+
+fun FunctionCall.Builder.skeletonArgument() {
+    constructorCallArgument<OudsSkeleton>(Argument.Skeleton) {
+        rawArgument(Argument.State, "rememberOudsSkeletonState()")
+    }
+}
 
 fun FunctionCall.Builder.tintedArgument(value: Boolean) = typedArgument(Argument.Tinted, value)
 
@@ -104,7 +110,7 @@ fun FunctionCall.Builder.errorArgument(message: String, annotatedMessage: Boolea
 
 fun FunctionCall.Builder.errorArgument(@StringRes messageResId: Int) {
     constructorCallArgument<OudsError>(Argument.Error) {
-        stringResourceArgument("message", messageResId)
+        stringResourceArgument(Argument.Message, messageResId)
     }
 }
 
@@ -138,5 +144,7 @@ private object Argument {
     const val OnClick = "onClick"
     const val Painter = "painter"
     const val ReadOnly = "readOnly"
+    const val Skeleton = "skeleton"
+    const val State = "state"
     const val Tinted = "tinted"
 }
