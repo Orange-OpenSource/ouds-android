@@ -27,6 +27,7 @@ enum class Component {
     Button,
     Checkbox,
     CircularProgressIndicator,
+    Code,
     Display,
     Divider,
     Fab,
@@ -62,6 +63,7 @@ enum class Component {
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
                 Component.CircularProgressIndicator -> CircularProgressIndicator
+                Component.Code -> Code
                 Component.Display -> Display
                 Component.Divider -> Divider
                 Component.Fab -> Fab
@@ -105,6 +107,7 @@ enum class Component {
             Button -> listOf("OudsButton")
             Checkbox -> listOf("OudsCheckbox", "OudsCheckboxItem")
             CircularProgressIndicator -> listOf("OudsCircularProgressIndicator")
+            Code -> listOf("OudsCodeText")
             Display -> listOf("OudsDisplayText")
             Divider -> listOf("OudsDivider")
             Fab -> listOf("OudsFloatingActionButton")
