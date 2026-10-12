@@ -118,7 +118,7 @@ fun OudsHeadingText(
  *
  * > Design version: 1.1.0
  *
- * @param text [OudsAnnotatedHeadingText] to be displayed.
+ * @param text [OudsAnnotatedHeadingText] to be displayed. Note: Use rich text in compliance with guidelines and accessibility criteria.
  * @param modifier [Modifier] applied to the heading text.
  * @param size Size of the heading text.
  * @param color Color of the heading text.
