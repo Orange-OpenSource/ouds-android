@@ -38,7 +38,7 @@ internal fun OudsDisplayTextWithAnnotatedTextSample() {
     OudsDisplayText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
         text = buildOudsAnnotatedDisplayText {
-            append("Label with ")
+            append("Display with ")
             withColor(color = highlightColor) { append("highlighted text") }
         },
         size = OudsDisplayTextSize.Small
