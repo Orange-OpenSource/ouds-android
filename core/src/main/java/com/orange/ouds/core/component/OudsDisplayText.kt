@@ -200,7 +200,7 @@ enum class OudsDisplayTextSize {
      */
     Small;
 
-    val textStyle: TextStyle
+    internal val textStyle: TextStyle
         @Composable
         get() = with(OudsTheme.typography.display) {
             when (this@OudsDisplayTextSize) {

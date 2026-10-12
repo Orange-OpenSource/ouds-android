@@ -279,28 +279,29 @@ sealed interface OudsHeadingTextSize {
      */
     object Small : OudsHeadingTextSize
 
-    val textStyle: TextStyle
-        @Composable
-        get() = with(OudsTheme.typography.heading) {
-            when (this@OudsHeadingTextSize) {
-                is ExtraLarge -> extraLarge
-                is Large -> large
-                is Medium -> medium
-                is Small -> small
-            }
-        }
-
-    val maxWidth: Dp
-        @Composable
-        get() = with(OudsTheme.sizes.maxWidth.heading) {
-            when (this@OudsHeadingTextSize) {
-                is ExtraLarge -> extraLarge
-                is Large -> large
-                is Medium -> medium
-                is Small -> small
-            }
-        }
 }
+
+internal val OudsHeadingTextSize.textStyle: TextStyle
+    @Composable
+    get() = with(OudsTheme.typography.heading) {
+        when (this@textStyle) {
+            is OudsHeadingTextSize.ExtraLarge -> extraLarge
+            is OudsHeadingTextSize.Large -> large
+            is OudsHeadingTextSize.Medium -> medium
+            is OudsHeadingTextSize.Small -> small
+        }
+    }
+
+internal val OudsHeadingTextSize.maxWidth: Dp
+    @Composable
+    get() = with(OudsTheme.sizes.maxWidth.heading) {
+        when (this@maxWidth) {
+            is OudsHeadingTextSize.ExtraLarge -> extraLarge
+            is OudsHeadingTextSize.Large -> large
+            is OudsHeadingTextSize.Medium -> medium
+            is OudsHeadingTextSize.Small -> small
+        }
+    }
 
 @OudsPreviewLightDark
 @Composable
