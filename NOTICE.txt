@@ -123,7 +123,6 @@ theme-orange/src/main/res/drawable/ic_orange_component_button_previous.xml
 theme-orange/src/main/res/drawable/ic_orange_component_checkbox_selected.xml
 theme-orange/src/main/res/drawable/ic_orange_component_checkbox_undetermined.xml
 theme-orange/src/main/res/drawable/ic_orange_component_chip_tick.xml
-theme-orange/src/main/res/drawable/ic_orange_component_heading_text_marker.xml
 theme-orange/src/main/res/drawable/ic_orange_component_link_external_link.xml
 theme-orange/src/main/res/drawable/ic_orange_component_link_next.xml
 theme-orange/src/main/res/drawable/ic_orange_component_link_previous.xml
@@ -138,6 +137,7 @@ theme-orange/src/main/res/drawable/ic_orange_functional_navigation_form_chevron_
 theme-orange/src/main/res/drawable/ic_orange_functional_navigation_menu_grid_ui_round.xml
 theme-orange/src/main/res/drawable/ic_orange_functional_settings_and_tools_accessibility_hide.xml
 theme-orange/src/main/res/drawable/ic_orange_functional_social_and_engagement_heart_recommend.xml
+theme-orange/src/main/res/drawable/ic_orange_other_heading_text_marker.xml
 theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level0.xml
 theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level1.xml
 theme-orange/src/main/res/drawable-ldrtl/ic_orange_component_bullet_list_level2.xml
@@ -206,7 +206,6 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_component_button_previous.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_checkbox_selected.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_checkbox_undetermined.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_chip_tick.xml
-theme-wireframe/src/main/res/drawable/ic_wireframe_component_heading_text_marker.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_external_link.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_next.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_component_link_previous.xml
@@ -221,6 +220,7 @@ theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_form_ch
 theme-wireframe/src/main/res/drawable/ic_wireframe_functional_navigation_menu_grid_ui_round.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_functional_settings_and_tools_accessibility_hide.xml
 theme-wireframe/src/main/res/drawable/ic_wireframe_functional_social_and_engagement_heart_recommend.xml
+theme-wireframe/src/main/res/drawable/ic_wireframe_other_heading_text_marker.xml
 
 End of the parts list under Orange SA Copyright
 
