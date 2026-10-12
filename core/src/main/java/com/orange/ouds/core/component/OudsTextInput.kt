@@ -1261,7 +1261,7 @@ internal fun OudsTextInputDecorator(
                         } else {
                             trailingIconButton?.Content(
                                 extraParameters = OudsTextInputTrailingIconButton.ExtraParameters(
-                                    enabled = state !in listOf(OudsTextInputState.Disabled, OudsTextInputState.ReadOnly)
+                                    enabled = state.areInteractionsEnabled
                                 )
                             )
                         }
