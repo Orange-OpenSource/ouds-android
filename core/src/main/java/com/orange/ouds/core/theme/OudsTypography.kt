@@ -326,8 +326,7 @@ data class OudsTypography internal constructor(
      *
      * @property medium Medium code text style.
      */
-    @ConsistentCopyVisibility
-    data class Code internal constructor(
+    class Code internal constructor(
         val medium: TextStyle
     )
 }
