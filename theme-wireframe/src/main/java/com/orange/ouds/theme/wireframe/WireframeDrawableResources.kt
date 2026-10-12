@@ -134,6 +134,6 @@ internal class WireframeDrawableResources : OudsDrawableResources {
     }
 
     class Other : OudsDrawableResources.Other {
-        override val headingTextMarker = R.drawable.ic_wireframe_component_heading_text_marker
+        override val headingTextMarker = R.drawable.ic_wireframe_other_heading_text_marker
     }
 }

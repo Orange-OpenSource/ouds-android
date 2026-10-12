@@ -159,6 +159,6 @@ class OrangeDrawableResources : OudsDrawableResources {
     }
 
     class Other : OudsDrawableResources.Other {
-        override val headingTextMarker = R.drawable.ic_orange_component_heading_text_marker
+        override val headingTextMarker = R.drawable.ic_orange_other_heading_text_marker
     }
 }
