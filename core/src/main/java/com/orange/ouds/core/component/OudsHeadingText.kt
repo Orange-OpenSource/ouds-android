@@ -232,7 +232,7 @@ object OudsHeadingTextDefaults {
     /**
      * Default size of an [OudsHeadingText].
      */
-    val Size = OudsHeadingTextSize.Large()
+    val Size = OudsHeadingTextSize.ExtraLarge
 
     /**
      * Default color of an [OudsHeadingText].
