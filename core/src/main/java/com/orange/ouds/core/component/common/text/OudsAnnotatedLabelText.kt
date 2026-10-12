@@ -52,7 +52,7 @@ class OudsAnnotatedLabelText internal constructor(annotatedString: AnnotatedStri
         }
 
         /**
-         * Creates a builder initialized with an existing annotated display text.
+         * Creates a builder initialized with an existing annotated label text.
          *
          * @param text The initial annotated text to copy.
          */
@@ -97,7 +97,7 @@ class OudsAnnotatedLabelText internal constructor(annotatedString: AnnotatedStri
  * ```
  *
  * @param builder Lambda with receiver for building the annotated string.
- * @return The constructed annotated display text.
+ * @return The constructed annotated label text.
  */
 inline fun buildOudsAnnotatedLabelText(builder: (OudsAnnotatedLabelText.Builder).() -> Unit): OudsAnnotatedLabelText {
     return buildOudsAnnotatedString<OudsAnnotatedLabelText, OudsAnnotatedLabelText.Builder>(builder)
