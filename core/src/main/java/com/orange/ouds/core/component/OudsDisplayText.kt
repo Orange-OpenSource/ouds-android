@@ -108,7 +108,7 @@ fun OudsDisplayText(
  *
  * > Design version: 1.0.0
  *
- * @param text [OudsAnnotatedDisplayText] to be displayed.
+ * @param text [OudsAnnotatedDisplayText] to be displayed. Note: Use rich text in compliance with guidelines and accessibility criteria.
  * @param modifier [Modifier] applied to the display text.
  * @param size Size of the display text.
  * @param color Color of the display text.
