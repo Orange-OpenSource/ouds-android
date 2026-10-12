@@ -216,7 +216,7 @@ private fun OudsHeadingText(
                     Icon(
                         painter = painterResource(id = resId),
                         contentDescription = null,
-                        tint = colorContentMarker
+                        tint = this.color.content.marker
                     )
                 }
             }
