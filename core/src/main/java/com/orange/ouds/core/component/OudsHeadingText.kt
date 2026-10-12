@@ -183,7 +183,7 @@ private fun OudsHeadingText(
     onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
     Column(modifier = modifier.widthIn(max = size.maxWidth)) {
-        if (!annotatedText.isNullOrBlank()) {
+        if (annotatedText != null) {
             Text(
                 text = annotatedText.annotatedString(),
                 color = color,
