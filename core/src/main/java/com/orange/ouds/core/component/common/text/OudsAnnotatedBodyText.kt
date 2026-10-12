@@ -52,7 +52,7 @@ class OudsAnnotatedBodyText internal constructor(annotatedString: AnnotatedStrin
         }
 
         /**
-         * Creates a builder initialized with an existing annotated display text.
+         * Creates a builder initialized with an existing annotated body text.
          *
          * @param text The initial annotated text to copy.
          */
@@ -97,7 +97,7 @@ class OudsAnnotatedBodyText internal constructor(annotatedString: AnnotatedStrin
  * ```
  *
  * @param builder Lambda with receiver for building the annotated string.
- * @return The constructed annotated display text.
+ * @return The constructed annotated body text.
  */
 inline fun buildOudsAnnotatedBodyText(builder: (OudsAnnotatedBodyText.Builder).() -> Unit): OudsAnnotatedBodyText {
     return buildOudsAnnotatedString<OudsAnnotatedBodyText, OudsAnnotatedBodyText.Builder>(builder)
