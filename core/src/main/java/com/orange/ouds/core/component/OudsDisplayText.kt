@@ -13,8 +13,6 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +30,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
-import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -233,10 +230,8 @@ internal fun PreviewOudsDisplayText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    Column(verticalArrangement = Arrangement.spacedBy(PreviewPaddingDefault)) {
-        OudsDisplayTextSize.entries.forEach { size ->
-            OudsDisplayText("Display", size = size)
-        }
+    PreviewEnumEntries<OudsDisplayTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
+        OudsDisplayText("Display", size = textSize)
     }
 }
 
