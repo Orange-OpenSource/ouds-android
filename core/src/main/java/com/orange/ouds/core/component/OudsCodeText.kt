@@ -17,15 +17,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
+import com.orange.ouds.core.component.common.text.OudsAnnotatedCodeText
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedCodeText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -126,7 +128,7 @@ fun OudsCodeText(
  */
 @Composable
 fun OudsCodeText(
-    text: AnnotatedString,
+    text: OudsAnnotatedCodeText,
     modifier: Modifier = Modifier,
     color: Color = OudsCodeTextDefaults.Color,
     textAlign: TextAlign? = null,
@@ -136,9 +138,10 @@ fun OudsCodeText(
     minLines: Int = 1,
     onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
+    val strongAndLinkStyle = codeTextStyle.copy(fontWeight = FontWeight.Bold)
     Text(
         modifier = modifier,
-        text = text,
+        text = text.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle),
         color = color,
         style = codeTextStyle,
         textAlign = textAlign,
@@ -195,11 +198,14 @@ internal fun PreviewOudsCodeTextWithAnnotatedText(
     darkThemeEnabled: Boolean,
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     OudsCodeText(
-        text = buildAnnotatedString {
+        text = buildOudsAnnotatedCodeText {
             append("Code with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
+            withColor(color = OudsTheme.colorScheme.content.brandPrimary) { append("colored text") }
+            append(", ")
+            withStrong { append("bold text") }
             append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+            withLink(link = OudsLinkAnnotation.Url("https://example.com")) { append("link") }
+            append(".")
         }
     )
 }
