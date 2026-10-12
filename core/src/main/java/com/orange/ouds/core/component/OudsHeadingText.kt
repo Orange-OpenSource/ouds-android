@@ -361,7 +361,7 @@ internal fun PreviewOudsHeadingTextWithAnnotatedText(
 
 private fun textSizeFor(className: String) = when (className) {
     OudsHeadingTextSize.ExtraLarge::class.simpleName -> OudsHeadingTextSize.ExtraLarge
-    OudsHeadingTextSize.Large::class.simpleName -> OudsHeadingTextSize.Large(marker = false)
+    OudsHeadingTextSize.Large::class.simpleName -> OudsHeadingTextSize.Large(marker = true)
     OudsHeadingTextSize.Medium::class.simpleName -> OudsHeadingTextSize.Medium
     OudsHeadingTextSize.Small::class.simpleName -> OudsHeadingTextSize.Small
     else -> error("Unknown text size $className.")
