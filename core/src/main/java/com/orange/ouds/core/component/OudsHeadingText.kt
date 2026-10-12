@@ -15,7 +15,6 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
@@ -36,7 +35,6 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewFlowRow
-import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
@@ -315,15 +313,16 @@ internal fun PreviewOudsHeadingText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    Column(verticalArrangement = Arrangement.spacedBy(PreviewPaddingDefault)) {
-        listOf(
-            OudsHeadingTextSize.ExtraLarge,
-            OudsHeadingTextSize.Large(),
-            OudsHeadingTextSize.Medium,
-            OudsHeadingTextSize.Small
-        ).forEach { size ->
-            OudsHeadingText("Heading", size = size)
-        }
+    PreviewFlowRow(
+        items = listOf(
+            OudsHeadingTextSize.ExtraLarge::class,
+            OudsHeadingTextSize.Large::class,
+            OudsHeadingTextSize.Medium::class,
+            OudsHeadingTextSize.Small::class
+        ).map { it.simpleName.orEmpty() },
+        maxItemsInEachRow = 1
+    ) { className ->
+        OudsHeadingText("Heading", size = textSizeFor(className))
     }
 }
 
@@ -349,20 +348,21 @@ internal fun PreviewOudsHeadingTextWithAnnotatedText(
             OudsHeadingTextSize.Small::class
         ).map { it.simpleName.orEmpty() },
         maxItemsInEachRow = 1
-    ) {
-        val textSize = when (it) {
-            OudsHeadingTextSize.ExtraLarge::class.simpleName -> OudsHeadingTextSize.ExtraLarge
-            OudsHeadingTextSize.Large::class.simpleName -> OudsHeadingTextSize.Large(marker = false)
-            OudsHeadingTextSize.Medium::class.simpleName -> OudsHeadingTextSize.Medium
-            OudsHeadingTextSize.Small::class.simpleName -> OudsHeadingTextSize.Small
-            else -> error("Unknown text size $it.")
-        }
+    ) { className ->
         OudsHeadingText(
             text = buildOudsAnnotatedHeadingText {
                 append("Heading with ")
                 withColor(highlightColor) { append("highlighted text") }
             },
-            size = textSize
+            size = textSizeFor(className)
         )
     }
+}
+
+private fun textSizeFor(className: String) = when (className) {
+    OudsHeadingTextSize.ExtraLarge::class.simpleName -> OudsHeadingTextSize.ExtraLarge
+    OudsHeadingTextSize.Large::class.simpleName -> OudsHeadingTextSize.Large(marker = false)
+    OudsHeadingTextSize.Medium::class.simpleName -> OudsHeadingTextSize.Medium
+    OudsHeadingTextSize.Small::class.simpleName -> OudsHeadingTextSize.Small
+    else -> error("Unknown text size $className.")
 }
