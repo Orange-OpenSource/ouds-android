@@ -146,6 +146,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsPinCo
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsPinCodeInputKt;
 	public fun <init> ()V
 	public final fun getLambda$-1157008917$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1780158399$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsRadioButtonItemKt {
@@ -1438,8 +1439,10 @@ public final class com/orange/ouds/core/component/OudsPinCodeInputDefaults {
 public final class com/orange/ouds/core/component/OudsPinCodeInputKt {
 	public static final fun OudsPinCodeInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsPinCodeInputLength;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsPinCodeInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsPinCodeInputLength;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsPinCodeInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsPinCodeInputLength;ZLcom/orange/ouds/core/component/common/OudsError;Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsPinCodeInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsPinCodeInputLength;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsPinCodeInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsPinCodeInputLength;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsPinCodeInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsPinCodeInputLength;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsPinCodeInputLength : java/lang/Enum {
