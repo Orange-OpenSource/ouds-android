@@ -34,7 +34,7 @@ internal fun OudsCodeTextSample() {
 }
 
 @Composable
-internal fun OudsCodeWithAnnotatedTextSample() {
+internal fun OudsCodeTextWithAnnotatedTextSample() {
     OudsCodeText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
         text = buildOudsAnnotatedCodeText {
@@ -57,6 +57,6 @@ private fun PreviewOudsCodeTextSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsCodeWithAnnotatedTextSample() = OudsPreview {
-    OudsCodeWithAnnotatedTextSample()
+private fun PreviewOudsCodeTextWithAnnotatedTextSample() = OudsPreview {
+    OudsCodeTextWithAnnotatedTextSample()
 }

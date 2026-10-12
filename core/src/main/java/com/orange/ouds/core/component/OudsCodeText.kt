@@ -124,7 +124,7 @@ fun OudsCodeText(
  *   text, baselines and other details. The callback can be used to add additional decoration or
  *   functionality to the text. For example, to draw selection around the text.
  *
- * @sample com.orange.ouds.core.component.samples.OudsCodeWithAnnotatedTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsCodeTextWithAnnotatedTextSample
  */
 @Composable
 fun OudsCodeText(
