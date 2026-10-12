@@ -132,7 +132,7 @@ fun OudsLabelText(
  *   text, baselines and other details. The callback can be used to add additional decoration or
  *   functionality to the text. For example, to draw selection around the text.
  *
- * @sample com.orange.ouds.core.component.samples.OudsLabelWithAnnotatedTextSample
+ * @sample com.orange.ouds.core.component.samples.OudsLabelTextWithAnnotatedTextSample
  */
 @Composable
 fun OudsLabelText(

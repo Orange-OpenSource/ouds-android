@@ -38,7 +38,7 @@ internal fun OudsLabelTextSample() {
 }
 
 @Composable
-internal fun OudsLabelWithAnnotatedTextSample() {
+internal fun OudsLabelTextWithAnnotatedTextSample() {
     val highlightColor = OudsTheme.colorScheme.content.brandPrimary
     OudsLabelText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
@@ -62,7 +62,7 @@ private fun PreviewOudsLabelTextSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsLabelWithAnnotatedTextSample() = OudsPreview {
-    OudsLabelWithAnnotatedTextSample()
+private fun PreviewOudsLabelTextWithAnnotatedTextSample() = OudsPreview {
+    OudsLabelTextWithAnnotatedTextSample()
 }
 

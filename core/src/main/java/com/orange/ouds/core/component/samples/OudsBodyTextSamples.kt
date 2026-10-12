@@ -38,7 +38,7 @@ internal fun OudsBodyTextSample() {
 }
 
 @Composable
-internal fun OudsBodyWithAnnotatedTextSample() {
+internal fun OudsBodyTextWithAnnotatedTextSample() {
     val highlightColor = OudsTheme.colorScheme.content.brandPrimary
     OudsBodyText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
@@ -62,6 +62,6 @@ private fun PreviewOudsBodyTextSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsBodyWithAnnotatedTextSample() = OudsPreview {
-    OudsBodyWithAnnotatedTextSample()
+private fun PreviewOudsBodyTextWithAnnotatedTextSample() = OudsPreview {
+    OudsBodyTextWithAnnotatedTextSample()
 }
