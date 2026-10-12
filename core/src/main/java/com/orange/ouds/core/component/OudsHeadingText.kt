@@ -88,7 +88,7 @@ fun OudsHeadingText(
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
+    onTextLayout: ((TextLayoutResult) -> Unit)? = null,
 ) {
     OudsHeadingText(
         text = text,
@@ -151,7 +151,7 @@ fun OudsHeadingText(
     softWrap: Boolean = true,
     maxLines: Int = Int.MAX_VALUE,
     minLines: Int = 1,
-    onTextLayout: ((TextLayoutResult) -> Unit)? = null,
+    onTextLayout: (TextLayoutResult) -> Unit = {}
 ) {
     OudsHeadingText(
         text = null,
