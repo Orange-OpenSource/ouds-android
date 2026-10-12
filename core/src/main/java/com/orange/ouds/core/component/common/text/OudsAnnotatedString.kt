@@ -63,17 +63,13 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         linkStyle: TextStyle = OudsTheme.typography.label.medium.strong
     ): AnnotatedString {
         val linkStyles = getTextLinkStyles(linkStyle)
-
-        // First, collect color annotations to apply them as SpanStyles
-        val colorRanges = _annotatedString.getStringAnnotations(ColorAnnotationTag, 0, _annotatedString.length).map { range ->
-            val color = Color(range.item.toInt())
-            AnnotatedString.Range(SpanStyle(color = color), range.start, range.end)
-        }
-
-        // Then process other annotations
-        val processedAnnotations = _annotatedString.mapAnnotations { range ->
+        return _annotatedString.mapAnnotations { range ->
             when (val annotation = range.item) {
-                is StringAnnotation if (annotation.value == StrongAnnotation) -> {
+                is StringAnnotation if range.tag == ColorAnnotationTag -> {
+                    val color = Color(annotation.value.toInt())
+                    with(range) { AnnotatedString.Range(SpanStyle(color = color), start, end) }
+                }
+                is StringAnnotation if annotation.value == StrongAnnotation -> {
                     with(range) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end) }
                 }
                 is LinkAnnotation -> {
@@ -85,17 +81,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                     with(range) { AnnotatedString.Range(linkAnnotation, start, end) }
                 }
                 else -> range
-            }
-        }
-
-        return if (colorRanges.isEmpty()) {
-            processedAnnotations
-        } else {
-            androidx.compose.ui.text.buildAnnotatedString {
-                append(processedAnnotations)
-                colorRanges.forEach { range ->
-                    addStyle(range.item, range.start, range.end)
-                }
             }
         }
     }
