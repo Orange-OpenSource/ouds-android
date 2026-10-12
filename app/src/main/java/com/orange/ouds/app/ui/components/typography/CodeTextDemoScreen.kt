@@ -13,14 +13,13 @@
 package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCodeText
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedCodeText
+import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.theme.OudsVersion
 
@@ -46,12 +45,12 @@ private fun CodeTextDemoContent(state: TypographyDemoState) {
         if (annotatedText) {
             with(OudsTheme.colorScheme.content.status) {
                 OudsCodeText(
-                    text = buildAnnotatedString {
-                        withStyle(SpanStyle(color = info)) {
+                    text = buildOudsAnnotatedCodeText {
+                        withColor(color = info) {
                             append("val")
                         }
                         append(" state = ")
-                        withStyle(SpanStyle(color = positive)) {
+                        withColor(color = positive) {
                             append("rememberState")
                         }
                         append("()")

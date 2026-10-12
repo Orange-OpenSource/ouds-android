@@ -15,12 +15,13 @@ package com.orange.ouds.core.component.samples
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.core.component.OudsCodeText
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedCodeText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 
@@ -36,11 +37,14 @@ internal fun OudsCodeTextSample() {
 internal fun OudsCodeWithAnnotatedTextSample() {
     OudsCodeText(
         modifier = Modifier.padding(OudsTheme.spaces.fixed.small),
-        text = buildAnnotatedString {
+        text = buildOudsAnnotatedCodeText {
             append("Code with ")
-            withStyle(SpanStyle(color = OudsTheme.colorScheme.content.brandPrimary)) { append("colored text") }
+            withColor(color = OudsTheme.colorScheme.content.brandPrimary) { append("colored text") }
+            append(", ")
+            withStrong { append("bold text") }
             append(" and ")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("bold text") }
+            withLink(link = OudsLinkAnnotation.Url("https://example.com")) { append("link") }
+            append(".")
         }
     )
 }
