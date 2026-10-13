@@ -15,6 +15,7 @@ package com.orange.ouds.app.ui.components.typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.orange.ouds.app.R
+import com.orange.ouds.app.ui.components.annotatedStringArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -37,15 +38,12 @@ fun TypographyDemoBottomSheetContent(state: TypographyDemoState) {
     }
 }
 
-fun FunctionCall.Builder.typographyArguments(state: TypographyDemoState, annotatedTextFunctionName: String) = with(state) {
-    if (annotatedText) {
-        functionCallArgument("text", annotatedTextFunctionName) {
-            trailingLambda = true
-            lambdaArgument("builder") {
-                comment("Build annotated text")
-            }
+inline fun <reified T> FunctionCall.Builder.typographyArguments(state: TypographyDemoState) {
+    return with(state) {
+        if (annotatedText) {
+            annotatedStringArgument<T>("text")
+        } else {
+            typedArgument("text", text)
         }
-    } else {
-        typedArgument("text", text)
     }
 }

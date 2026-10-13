@@ -18,6 +18,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCodeText
+import com.orange.ouds.core.component.common.text.OudsAnnotatedCodeText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedCodeText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
@@ -64,10 +65,8 @@ private fun CodeTextDemoContent(state: TypographyDemoState) {
 }
 
 private fun Code.Builder.codeTextDemoCodeSnippet(state: TypographyDemoState) {
-    with(state) {
-        functionCall("OudsCodeText") {
-            typographyArguments(state = state, annotatedTextFunctionName = "buildAnnotatedString")
-        }
+    functionCall("OudsCodeText") {
+        typographyArguments<OudsAnnotatedCodeText>(state = state)
     }
 }
 

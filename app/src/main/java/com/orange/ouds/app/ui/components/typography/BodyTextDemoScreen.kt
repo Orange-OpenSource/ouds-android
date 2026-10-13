@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.component.common.text.OudsAnnotatedBodyText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBodyText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.component.common.text.withStrong
@@ -94,7 +95,7 @@ private fun BodyTextDemoContent(state: BodyTextDemoState) {
 private fun Code.Builder.bodyTextDemoCodeSnippet(state: BodyTextDemoState) {
     with(state) {
         functionCall("OudsBodyText") {
-            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedBodyText")
+            typographyArguments<OudsAnnotatedBodyText>(state = state)
             typedArgument("size", size)
             typedArgument("weight", weight)
         }
