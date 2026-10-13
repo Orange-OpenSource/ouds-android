@@ -83,6 +83,7 @@ private fun HeadingTextDemoBottomSheetContent(state: HeadingTextDemoState) {
 @Composable
 private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
     with(state) {
+        val textSize = size.toOudsHeadingTextSize(marker = headingLargeMarker)
         if (annotatedText) {
             with(OudsTheme.colorScheme.content) {
                 val highlightColor = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }.toArgb().toHexString().substring(2)
@@ -95,13 +96,13 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
                     text = buildOudsAnnotatedHeadingText {
                         appendHtml(annotatedTextHtml)
                     },
-                    size = size.toOudsHeadingTextSize(marker = headingLargeMarker)
+                    size = textSize
                 )
             }
         } else {
             OudsHeadingText(
                 text = text,
-                size = size.toOudsHeadingTextSize(marker = headingLargeMarker)
+                size = textSize
             )
         }
     }
