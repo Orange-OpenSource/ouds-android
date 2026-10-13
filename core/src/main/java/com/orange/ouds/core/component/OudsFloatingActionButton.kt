@@ -280,7 +280,7 @@ fun OudsExtendedFloatingActionButton(
             elevation = elevation,
             interactionSource = interactionSource
         ) {
-            Text(label = label)
+            FloatingActionButtonText(label = label)
         }
     }
 }
@@ -332,7 +332,7 @@ fun OudsExtendedFloatingActionButton(
         interactionSource = interactionSource
     ) { state, indication, containerColor, contentColor, elevation ->
         ExtendedFloatingActionButton(
-            text = { Text(label = label) },
+            text = { FloatingActionButtonText(label = label) },
             icon = { Icon(icon = icon, label = label) },
             onClick = onClick,
             modifier = modifier
@@ -398,7 +398,7 @@ private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, larg
 }
 
 @Composable
-private fun Text(label: String) {
+private fun FloatingActionButtonText(label: String) {
     Text(text = label, style = OudsTheme.typography.label.large.strong)
 }
 
