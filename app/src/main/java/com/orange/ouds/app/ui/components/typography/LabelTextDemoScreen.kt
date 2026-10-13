@@ -78,7 +78,7 @@ private fun LabelTextDemoContent(state: LabelTextDemoState) {
             )
         } else {
             OudsLabelText(
-                text = text.ifBlank { stringResource(id = R.string.app_components_common_label_label) },
+                text = text,
                 size = size,
                 weight = weight
             )
