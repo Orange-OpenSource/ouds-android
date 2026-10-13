@@ -16,10 +16,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -29,7 +31,6 @@ import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsHeadingText
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
-import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
@@ -84,12 +85,15 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
     with(state) {
         if (annotatedText) {
             with(OudsTheme.colorScheme.content) {
+                val highlightColor = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }.toArgb().toHexString().substring(2)
+                val annotatedTextHtml = stringResource(
+                    R.string.app_components_typography_headingAndDisplayText_annotatedText_text,
+                    stringResource(R.string.app_components_typography_headingText_tech),
+                    highlightColor
+                )
                 OudsHeadingText(
                     text = buildOudsAnnotatedHeadingText {
-                        append("Heading with ")
-                        withColor(color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }) {
-                            append("colored text")
-                        }
+                        appendHtml(annotatedTextHtml)
                     },
                     size = size.toOudsHeadingTextSize(marker = headingLargeMarker)
                 )

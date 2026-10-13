@@ -14,10 +14,12 @@ package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -25,7 +27,6 @@ import com.orange.ouds.core.component.OudsDisplayText
 import com.orange.ouds.core.component.OudsDisplayTextSize
 import com.orange.ouds.core.component.common.text.OudsAnnotatedDisplayText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
-import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
@@ -61,12 +62,15 @@ private fun DisplayTextDemoContent(state: DisplayTextDemoState) {
     with(state) {
         if (annotatedText) {
             with(OudsTheme.colorScheme.content) {
+                val highlightColor = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }.toArgb().toHexString().substring(2)
+                val annotatedTextHtml = stringResource(
+                    R.string.app_components_typography_headingAndDisplayText_annotatedText_text,
+                    stringResource(R.string.app_components_typography_displayText_tech),
+                    highlightColor
+                )
                 OudsDisplayText(
                     text = buildOudsAnnotatedDisplayText {
-                        append("Display with ")
-                        withColor(color = brandSecondary.takeIf { it != Color.Unspecified }.orElse { brandPrimary }) {
-                            append("colored text")
-                        }
+                        appendHtml(annotatedTextHtml)
                     },
                     size = size
                 )

@@ -13,10 +13,12 @@
 package com.orange.ouds.app.ui.components.typography
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
@@ -25,8 +27,6 @@ import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.component.common.text.OudsAnnotatedLabelText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedLabelText
-import com.orange.ouds.core.component.common.text.withColor
-import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
@@ -68,15 +68,11 @@ private fun LabelTextDemoContent(state: LabelTextDemoState) {
     with(state) {
         if (annotatedText) {
             with(OudsTheme.colorScheme.content) {
+                val highlightColor = status.positive.toArgb().toHexString().substring(2)
+                val annotatedTextHtml = stringResource(R.string.app_components_typography_bodyAndLabelText_annotatedText_text, highlightColor)
                 OudsLabelText(
                     text = buildOudsAnnotatedLabelText {
-                        append("Account ")
-                        withColor(color = status.positive) {
-                            withStrong {
-                                append("successfully")
-                            }
-                        }
-                        append(" created.")
+                        appendHtml(annotatedTextHtml)
                     },
                     size = size,
                     weight = weight
