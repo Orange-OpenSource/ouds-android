@@ -67,17 +67,15 @@ private fun LabelTextDemoBottomSheetContent(state: LabelTextDemoState) {
 private fun LabelTextDemoContent(state: LabelTextDemoState) {
     with(state) {
         if (annotatedText) {
-            with(OudsTheme.colorScheme.content) {
-                val highlightColor = status.positive.toArgb().toHexString().substring(2)
-                val annotatedTextHtml = stringResource(R.string.app_components_typography_bodyAndLabelText_annotatedText_text, highlightColor)
-                OudsLabelText(
-                    text = buildOudsAnnotatedLabelText {
-                        appendHtml(annotatedTextHtml)
-                    },
-                    size = size,
-                    weight = weight
-                )
-            }
+            val highlightColor = OudsTheme.colorScheme.content.status.positive.toArgb().toHexString().substring(2)
+            val annotatedTextHtml = stringResource(R.string.app_components_typography_bodyAndLabelText_annotatedText_text, highlightColor)
+            OudsLabelText(
+                text = buildOudsAnnotatedLabelText {
+                    appendHtml(annotatedTextHtml)
+                },
+                size = size,
+                weight = weight
+            )
         } else {
             OudsLabelText(
                 text = text.ifBlank { stringResource(id = R.string.app_components_common_label_label) },

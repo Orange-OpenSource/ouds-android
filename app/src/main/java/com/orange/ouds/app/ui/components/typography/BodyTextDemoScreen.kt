@@ -67,17 +67,15 @@ private fun BodyTextDemoBottomSheetContent(state: BodyTextDemoState) {
 private fun BodyTextDemoContent(state: BodyTextDemoState) {
     with(state) {
         if (annotatedText) {
-            with(OudsTheme.colorScheme.content) {
-                val highlightColor = status.positive.toArgb().toHexString().substring(2)
-                val annotatedTextHtml = stringResource(R.string.app_components_typography_bodyAndLabelText_annotatedText_text, highlightColor)
-                OudsBodyText(
-                    text = buildOudsAnnotatedBodyText {
-                        appendHtml(annotatedTextHtml)
-                    },
-                    size = size,
-                    weight = weight
-                )
-            }
+            val highlightColor = OudsTheme.colorScheme.content.status.positive.toArgb().toHexString().substring(2)
+            val annotatedTextHtml = stringResource(R.string.app_components_typography_bodyAndLabelText_annotatedText_text, highlightColor)
+            OudsBodyText(
+                text = buildOudsAnnotatedBodyText {
+                    appendHtml(annotatedTextHtml)
+                },
+                size = size,
+                weight = weight
+            )
         } else {
             OudsBodyText(
                 text = text,
