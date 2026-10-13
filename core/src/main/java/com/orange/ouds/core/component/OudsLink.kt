@@ -56,6 +56,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -89,7 +90,8 @@ import com.orange.ouds.theme.tokens.components.OudsLinkMonoTokens
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  * @param density Density of the link. See [OudsLinkDensity] for available densities.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the link will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkSample
  */
@@ -102,7 +104,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     @IntroducedAt("2.0.0") density: OudsLinkDensity = OudsLinkDefaults.Density,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsLink(
         label = label,
@@ -138,7 +140,8 @@ fun OudsLink(
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  * @param density Density of the link. See [OudsLinkDensity] for available densities.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the link will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIconSample
  *
@@ -154,7 +157,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     @IntroducedAt("2.0.0") density: OudsLinkDensity = OudsLinkDefaults.Density,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsLink(
         label = label,
@@ -192,7 +195,8 @@ fun OudsLink(
  * @param size Size of the link. See [OudsLinkSize] for available sizes.
  * @param enabled Controls the enabled state of the link. When `false`, the link will not be clickable.
  * @param density Density of the link. See [OudsLinkDensity] for available densities.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the link will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsLinkWithIndicatorSample
  */
@@ -206,7 +210,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     density: OudsLinkDensity = OudsLinkDefaults.Density,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsLink(
         label = label,
@@ -280,7 +284,7 @@ private fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     density: OudsLinkDensity = OudsLinkDefaults.Density,
-    skeleton: OudsSkeleton? = null
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     with(OudsTheme.components.link) {
         val interactionSource = remember { MutableInteractionSource() }

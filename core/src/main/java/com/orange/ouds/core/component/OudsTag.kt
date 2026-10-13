@@ -56,6 +56,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LocalPreviewGridColumnEnumEntry
@@ -116,7 +117,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
  *   A disabled tag cannot have a loader. This will throw an [IllegalStateException].
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the tag will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagSample
  *
@@ -139,7 +141,7 @@ fun OudsTag(
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
     loader: OudsTagLoader? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val state = getTagState(enabled = enabled, loader = loader, skeleton = skeleton)
     val hasAsset = status.asset != null || state == OudsTagState.Loading

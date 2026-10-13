@@ -68,6 +68,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -101,7 +102,8 @@ private const val MaxLevelCount = 3
  * @param type The visual type of the list (e.g., ordered, unordered, bare). See [OudsBulletListType].
  * @param textStyle The typography style for the list items. See [OudsBulletListTextStyle].
  * @param builder A lambda scope using the [OudsBulletListBuilder] to define the list items.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the list will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBulletListUnorderedSample
  * @sample com.orange.ouds.core.component.samples.OudsBulletListOrderedSample
@@ -114,7 +116,7 @@ fun OudsBulletList(
     modifier: Modifier = Modifier,
     type: OudsBulletListType = OudsBulletListDefaults.Type,
     textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
     builder: OudsBulletListBuilder.() -> Unit
 ) {
     val items = remember(builder) {

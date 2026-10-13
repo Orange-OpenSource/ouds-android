@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.orange.ouds.core.component.common.OudsComponentState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -62,6 +63,31 @@ import com.orange.ouds.theme.OudsThemeContract
  * temporarily replacing content with gray areas or animations that simulate the visual structure of the forthcoming
  * content.
  *
+ * This is the atomic skeleton component that renders a standalone skeleton rectangle.
+ * For applying skeleton state to OUDS components, there are several ways to display skeletons:
+ *
+ * **Atomic skeleton (this component)** - Standalone skeleton rectangle:
+ * ```
+ * OudsSkeleton(modifier = Modifier.size(200.dp, 62.dp))
+ * ```
+ *
+ * **Component skeleton parameter** - Individual component skeletons:
+ * ```
+ * OudsButton(
+ *     label = "Click me",
+ *     onClick = {},
+ *     skeleton = OudsSkeleton(rememberOudsSkeletonState())
+ * )
+ * ```
+ *
+ * **Skeleton provider** - Convenient for displaying multiple skeletons:
+ * ```
+ * OudsSkeletonProvider(skeleton = OudsSkeleton(rememberOudsSkeletonState())) {
+ *     OudsButton(label = "Click me", onClick = {})
+ *     OudsTag(label = "Tag")
+ * }
+ * ```
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-skeleton)
  *
  * > Design name: Skeleton
@@ -75,6 +101,9 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsSkeletonSample
  * @sample com.orange.ouds.core.component.samples.OudsSkeletonWithTimedAnimationSample
+ *
+ * @see OudsSkeleton The skeleton class used with component parameters
+ * @see OudsSkeletonProvider Provider for applying skeletons to all child components
  */
 @Composable
 fun OudsSkeleton(
@@ -136,16 +165,89 @@ fun OudsSkeleton(
 }
 
 /**
- * A skeleton parameter used with components to improve the perceived loading time by providing a visual cue
+ * A skeleton parameter used with OUDS components to improve the perceived loading time by providing a visual cue
  * of where the component will appear once fully loaded.
  *
- * This is typically passed to component parameters like [OudsButton]'s `skeleton` parameter to display
- * a skeleton state instead of the actual component content during data loading.
+ * This class is passed to component `skeleton` parameters to display a skeleton state instead of the actual
+ * component content during data loading.
+ *
+ * There are several ways to display skeletons:
+ *
+ * **Atomic skeleton component** - Standalone skeleton rectangle:
+ * ```
+ * OudsSkeleton(modifier = Modifier.size(200.dp, 62.dp))
+ * ```
+ *
+ * **Component skeleton parameter (this approach)** - Individual component skeletons:
+ * ```
+ * OudsButton(
+ *     label = "Click me",
+ *     onClick = {},
+ *     skeleton = OudsSkeleton(rememberOudsSkeletonState())
+ * )
+ * ```
+ *
+ * **Skeleton provider** - Convenient for displaying multiple skeletons:
+ * ```
+ * OudsSkeletonProvider(skeleton = OudsSkeleton(rememberOudsSkeletonState())) {
+ *     OudsButton(label = "Click me", onClick = {})
+ *     OudsTag(label = "Tag")
+ * }
+ * ```
  *
  * @param state The [OudsSkeletonState] that controls the skeleton's animation behavior.
  *   Use [rememberOudsSkeletonState] to create and remember the state in a composable.
+ *
+ * @see OudsSkeletonProvider Provider for applying skeletons to all child components
+ * @see rememberOudsSkeletonState Factory function to create and remember skeleton state
  */
 class OudsSkeleton(val state: OudsSkeletonState)
+
+/**
+ * Provides an [OudsSkeleton] to all OUDS components within the [content] hierarchy.
+ *
+ * This approach is convenient for displaying multiple skeletons, as it avoids passing the `skeleton` 
+ * parameter to each component individually. Components within this provider automatically use the 
+ * provided skeleton unless explicitly overridden with their own `skeleton` parameter.
+ *
+ * There are several ways to display skeletons:
+ *
+ * **Atomic skeleton component** - Standalone skeleton rectangle:
+ * ```
+ * OudsSkeleton(modifier = Modifier.size(200.dp, 62.dp))
+ * ```
+ *
+ * **Component skeleton parameter** - Individual component skeletons:
+ * ```
+ * OudsButton(
+ *     label = "Click me",
+ *     onClick = {},
+ *     skeleton = OudsSkeleton(rememberOudsSkeletonState())
+ * )
+ * ```
+ *
+ * **Skeleton provider (this approach)** - Convenient for displaying multiple skeletons:
+ * ```
+ * OudsSkeletonProvider(skeleton = OudsSkeleton(rememberOudsSkeletonState())) {
+ *     OudsButton(label = "Click me", onClick = {})
+ *     OudsTag(label = "Tag")
+ *     // All OUDS components automatically become skeletons
+ * }
+ * ```
+ *
+ * @param skeleton The skeleton state to provide to child components, or null to disable skeletons.
+ * @param content The composable content hierarchy that will have access to the skeleton state.
+ *
+ * @see OudsSkeleton The skeleton class used with this provider
+ * @see LocalSkeleton The composition local used internally to provide skeleton state
+ */
+@Composable
+fun OudsSkeletonProvider(skeleton: OudsSkeleton?, content: @Composable () -> Unit) {
+    CompositionLocalProvider(
+        value = LocalSkeleton provides skeleton,
+        content = content
+    )
+}
 
 @Composable
 internal fun SkeletonLayout(

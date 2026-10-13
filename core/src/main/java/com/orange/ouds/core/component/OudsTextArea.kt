@@ -69,6 +69,7 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -144,7 +145,8 @@ private const val ComponentName = "OudsTextArea"
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedErrorSample
@@ -171,7 +173,7 @@ fun OudsTextArea(
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         textFieldState = textFieldState,
@@ -255,7 +257,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedWithAnnotatedErrorMessageSample
@@ -283,7 +286,7 @@ fun OudsTextArea(
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         textFieldState = textFieldState,
@@ -332,7 +335,7 @@ private fun OudsTextArea(
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
     autoResize: Boolean = true,
-    skeleton: OudsSkeleton? = null
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -445,7 +448,8 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
@@ -472,7 +476,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -551,7 +555,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
@@ -579,7 +584,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -628,7 +633,7 @@ private fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     autoResize: Boolean = true,
-    skeleton: OudsSkeleton? = null
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
@@ -738,7 +743,8 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedErrorSample
@@ -765,7 +771,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -844,7 +850,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the text area will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedWithAnnotatedErrorMessageSample
@@ -872,7 +879,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -921,7 +928,7 @@ private fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     autoResize: Boolean = true,
-    skeleton: OudsSkeleton? = null
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()

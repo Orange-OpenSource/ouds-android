@@ -72,6 +72,7 @@ import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
@@ -121,7 +122,8 @@ import kotlin.math.max
  *   is provided, interactions will still happen internally.
  * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the PIN code input will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
@@ -140,7 +142,7 @@ fun OudsPinCodeInput(
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsPinCodeInput(
         value = value,
@@ -191,7 +193,8 @@ fun OudsPinCodeInput(
  *   is provided, interactions will still happen internally.
  * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the PIN code input will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * 
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleCharactersSample
@@ -211,7 +214,7 @@ fun OudsPinCodeInput(
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsPinCodeInput(
         value = value,

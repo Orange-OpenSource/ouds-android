@@ -62,6 +62,7 @@ import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalDrawableResources
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -112,7 +113,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param bulletList An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
  *
@@ -130,7 +132,7 @@ fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsAlertMessage(
         label = label,
@@ -181,7 +183,8 @@ fun OudsAlertMessage(
  * @param bulletList A list of annotated bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the alert message will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageWithAnnotatedTextSample
  */
@@ -195,7 +198,7 @@ fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<OudsAnnotatedAlertMessageBulletListLabel>?,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsAlertMessage(
         label = label,
@@ -222,7 +225,7 @@ private fun OudsAlertMessage(
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null,
     annotatedBulletList: List<OudsAnnotatedAlertMessageBulletListLabel>? = null,
-    skeleton: OudsSkeleton? = null
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     with(OudsTheme.components.alert) {
         val scale = LocalConfiguration.current.fontScale

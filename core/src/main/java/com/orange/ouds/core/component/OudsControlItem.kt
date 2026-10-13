@@ -48,6 +48,7 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
@@ -80,7 +81,7 @@ internal fun OudsControlItem(
     extraLabel: String? = null,
     constrainedMaxWidth: Boolean = false,
     handleHighContrastMode: Boolean = false,
-    skeleton: OudsSkeleton? = null
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly

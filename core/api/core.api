@@ -1502,6 +1502,7 @@ public final class com/orange/ouds/core/component/OudsSkeleton {
 
 public final class com/orange/ouds/core/component/OudsSkeletonKt {
 	public static final fun OudsSkeleton (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsSkeletonState;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsSkeletonProvider (Lcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 }
 
 public final class com/orange/ouds/core/component/OudsSkeletonState {
@@ -6609,6 +6610,7 @@ public final class com/orange/ouds/core/theme/OudsTheme$Tweak : java/lang/Enum {
 public final class com/orange/ouds/core/theme/OudsThemeKt {
 	public static final fun OudsTheme (Lcom/orange/ouds/theme/OudsThemeContract;ZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsThemeTweak (Lcom/orange/ouds/core/theme/OudsTheme$Tweak;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun getLocalSkeleton ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 	public static final fun isOudsInDarkTheme (Landroidx/compose/runtime/Composer;I)Z
 }
 

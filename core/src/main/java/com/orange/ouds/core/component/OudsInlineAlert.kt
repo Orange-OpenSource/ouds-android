@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
@@ -58,7 +59,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *   [OudsInlineAlertStatus.Warning], [OudsInlineAlertStatus.Negative], [OudsInlineAlertStatus.Info].
  *   These alerts follow strict semantic conventions for icon, color, and tone — ensuring clear, accessible communication across all digital products.
  *   Each type has a dedicated, standardized icon that expresses its meaning clearly.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the inline alert will appear once fully loaded.
+ * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalStatusSample
  *
@@ -72,7 +74,7 @@ fun OudsInlineAlert(
     label: String,
     modifier: Modifier = Modifier,
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = null
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale

@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.utilities.isHighContrastModeEnabled
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
@@ -62,6 +63,7 @@ internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResou
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
+val LocalSkeleton = staticCompositionLocalOf<OudsSkeleton?> { null }
 
 /**
  * Object that stores tokens values for the current theme.
