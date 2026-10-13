@@ -2,6 +2,51 @@
 
 This guide helps you migrate between major versions of OUDS Android.
 
+## Migrating to 3.0.0
+
+### Breaking changes
+
+#### OudsChipState: New Skeleton enum value
+
+A new `Skeleton` value has been added to the `OudsChipState` enum.
+
+**Impact:** Applications with exhaustive `when` expressions on `OudsChipState` will fail to compile and may crash at runtime if upgraded without recompiling.
+
+**Before (v2.x):**
+```kotlin
+OudsBasicSuggestionChip(...) {
+    when (state) {
+        OudsChipState.Enabled -> Icon1()
+        OudsChipState.Hovered -> Icon2()
+        OudsChipState.Pressed -> Icon3()
+        OudsChipState.Disabled -> Icon4()
+        OudsChipState.Focused -> Icon5()
+    }
+}
+```
+
+**After (v3.0):**
+```kotlin
+OudsBasicSuggestionChip(...) {
+    when (state) {
+        OudsChipState.Enabled -> Icon1()
+        OudsChipState.Hovered -> Icon2()
+        OudsChipState.Pressed -> Icon3()
+        OudsChipState.Disabled -> Icon4()
+        OudsChipState.Focused -> Icon5()
+        OudsChipState.Skeleton -> Icon6()  // Add this branch
+    }
+}
+```
+
+##### Migration steps
+
+1. **Search your codebase** for exhaustive `when` expressions on `OudsChipState`
+2. **Add the `OudsChipState.Skeleton` branch** or add an `else` branch
+3. **Recompile your application** after upgrading
+
+---
+
 ## Migrating to 2.0.0
 
 ### Breaking changes
@@ -101,5 +146,6 @@ OudsLinearProgressIndicator(status = OudsProgressIndicatorStatus.Accent)
 
 ## Version history
 
+- **3.0.0** - OudsChipState Skeleton enum value addition
 - **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress indicator default status change
 - **1.x.x** - Previous stable releases
