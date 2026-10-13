@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsDisplayText
 import com.orange.ouds.core.component.OudsDisplayTextSize
+import com.orange.ouds.core.component.common.text.OudsAnnotatedDisplayText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
@@ -80,11 +81,9 @@ private fun DisplayTextDemoContent(state: DisplayTextDemoState) {
 }
 
 private fun Code.Builder.displayTextDemoCodeSnippet(state: DisplayTextDemoState) {
-    with(state) {
-        functionCall("OudsDisplayText") {
-            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedDisplayText")
-            typedArgument("size", size)
-        }
+    functionCall("OudsDisplayText") {
+        typographyArguments<OudsAnnotatedDisplayText>(state = state)
+        typedArgument("size", state.size)
     }
 }
 

@@ -27,6 +27,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
@@ -105,7 +106,7 @@ private fun HeadingTextDemoContent(state: HeadingTextDemoState) {
 private fun Code.Builder.headingTextDemoCodeSnippet(state: HeadingTextDemoState) {
     with(state) {
         functionCall("OudsHeadingText") {
-            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedHeadingText")
+            typographyArguments<OudsAnnotatedHeadingText>(state = state)
 
             if (size == HeadingTextDemoState.Size.Large) {
                 functionCallArgument("size", "OudsHeadingTextSize.Large") {

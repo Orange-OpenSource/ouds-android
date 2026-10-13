@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsLabelText
 import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.component.common.text.OudsAnnotatedLabelText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedLabelText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.component.common.text.withStrong
@@ -94,7 +95,7 @@ private fun LabelTextDemoContent(state: LabelTextDemoState) {
 private fun Code.Builder.labelTextDemoCodeSnippet(state: LabelTextDemoState) {
     with(state) {
         functionCall("OudsLabelText") {
-            typographyArguments(state = state, annotatedTextFunctionName = "buildOudsAnnotatedLabelText")
+            typographyArguments<OudsAnnotatedLabelText>(state = state)
             typedArgument("size", size)
             typedArgument("weight", weight)
         }
