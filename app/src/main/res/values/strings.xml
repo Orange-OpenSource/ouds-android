@@ -426,9 +426,11 @@
     <string name="app_components_typography_tech" translatable="false">Typography</string>
     <string name="app_components_typography_description_text">Typography components provide a comprehensive system of text styles for creating clear hierarchies and readable interfaces.</string>
     <string name="app_components_typography_bodyText_tech" translatable="false">Body text</string>
+    <string name="app_components_typography_bodyAndLabelText_annotatedText_text"><![CDATA[Account <font color="#%s"><b>successfully</b></font> created.]]></string>
     <string name="app_components_typography_codeText_tech" translatable="false">Code text</string>
     <string name="app_components_typography_labelText_tech" translatable="false">Label text</string>
     <string name="app_components_typography_headingText_tech" translatable="false">Heading text</string>
+    <string name="app_components_typography_headingAndDisplayText_annotatedText_text"><![CDATA[%1$s with <font color="#%2$s">color</font>]]></string>
     <string name="app_components_typography_displayText_tech" translatable="false">Display text</string>
     <string name="app_components_typography_common_size_tech" translatable="false">Size</string>
     <string name="app_components_typography_common_weight_tech" translatable="false">Weight</string>
