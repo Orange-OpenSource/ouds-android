@@ -342,6 +342,7 @@ interface OudsPreviewableComponent {
     @InternalOudsApi
     object BodyText {
 
+        @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -355,6 +356,7 @@ interface OudsPreviewableComponent {
             }
         }
 
+        @InternalOudsApi
         object WithAnnotatedText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -795,6 +797,7 @@ interface OudsPreviewableComponent {
     @InternalOudsApi
     object CodeText {
 
+        @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -808,6 +811,7 @@ interface OudsPreviewableComponent {
             }
         }
 
+        @InternalOudsApi
         object WithAnnotatedText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -840,6 +844,7 @@ interface OudsPreviewableComponent {
     @InternalOudsApi
     object DisplayText {
 
+        @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -853,6 +858,7 @@ interface OudsPreviewableComponent {
             }
         }
 
+        @InternalOudsApi
         object WithAnnotatedText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -1032,6 +1038,7 @@ interface OudsPreviewableComponent {
     @InternalOudsApi
     object HeadingText {
 
+        @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -1045,6 +1052,7 @@ interface OudsPreviewableComponent {
             }
         }
 
+        @InternalOudsApi
         object WithAnnotatedText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -1108,6 +1116,7 @@ interface OudsPreviewableComponent {
     @InternalOudsApi
     object LabelText {
 
+        @InternalOudsApi
         object Default : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()
@@ -1121,6 +1130,7 @@ interface OudsPreviewableComponent {
             }
         }
 
+        @InternalOudsApi
         object WithAnnotatedText : OudsPreviewableComponent {
 
             override val parameters: List<Any> = emptyList()

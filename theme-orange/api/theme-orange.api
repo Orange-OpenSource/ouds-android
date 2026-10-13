@@ -5,6 +5,12 @@ public abstract interface class com/orange/ouds/theme/orange/OrangeBundledFontFa
 public abstract interface class com/orange/ouds/theme/orange/OrangeDownloadableFontFamily {
 }
 
+public final class com/orange/ouds/theme/orange/OrangeDrawableResources$Other : com/orange/ouds/theme/OudsDrawableResources$Other {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getHeadingTextMarker ()Ljava/lang/Integer;
+}
+
 public final class com/orange/ouds/theme/orange/OrangeFontFamily {
 	public static final field $stable I
 	public static final field Companion Lcom/orange/ouds/theme/orange/OrangeFontFamily$Companion;

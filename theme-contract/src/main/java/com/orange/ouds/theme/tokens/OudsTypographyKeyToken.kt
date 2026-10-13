@@ -116,7 +116,9 @@ sealed interface OudsTypographyKeyToken : OudsKeyToken {
         }
     }
 
+    @InternalOudsApi
     sealed interface Code : OudsTypographyKeyToken {
+        @InternalOudsApi
         data object Medium : Code
     }
 }

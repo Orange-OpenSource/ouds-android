@@ -1,3 +1,7 @@
+public abstract interface class com/orange/ouds/theme/OudsDrawableResources$Other {
+	public abstract fun getHeadingTextMarker ()Ljava/lang/Integer;
+}
+
 public abstract interface class com/orange/ouds/theme/OudsThemeContract {
 	public abstract fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public abstract fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
@@ -72,17 +76,22 @@ public final class com/orange/ouds/theme/OudsVersion$Component {
 	public static final field Badge Ljava/lang/String;
 	public static final field BadgeCount Ljava/lang/String;
 	public static final field BadgeIcon Ljava/lang/String;
+	public static final field Body Ljava/lang/String;
 	public static final field BottomSheet Ljava/lang/String;
 	public static final field BulletList Ljava/lang/String;
 	public static final field Button Ljava/lang/String;
 	public static final field Checkbox Ljava/lang/String;
 	public static final field CircularProgressIndicator Ljava/lang/String;
+	public static final field Code Ljava/lang/String;
+	public static final field Display Ljava/lang/String;
 	public static final field Divider Ljava/lang/String;
 	public static final field Fab Ljava/lang/String;
 	public static final field FilterChip Ljava/lang/String;
+	public static final field Heading Ljava/lang/String;
 	public static final field INSTANCE Lcom/orange/ouds/theme/OudsVersion$Component;
 	public static final field InlineAlert Ljava/lang/String;
 	public static final field InputTag Ljava/lang/String;
+	public static final field Label Ljava/lang/String;
 	public static final field LinearProgressIndicator Ljava/lang/String;
 	public static final field Link Ljava/lang/String;
 	public static final field NavigationBar Ljava/lang/String;
