@@ -29,6 +29,7 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsBodyTextSize
 import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
 import com.orange.ouds.core.theme.OudsTheme
@@ -114,7 +115,7 @@ private fun Code.Builder.headingTextDemoCodeSnippet(state: HeadingTextDemoState)
             typographyArguments<OudsAnnotatedHeadingText>(state = state)
 
             if (size == HeadingTextDemoState.Size.Large) {
-                functionCallArgument("size", "OudsHeadingTextSize.Large") {
+                constructorCallArgument<OudsHeadingTextSize.Large>("size") {
                     isMultiline = false
                     if (!headingLargeMarker) typedArgument("marker", headingLargeMarker)
                 }
