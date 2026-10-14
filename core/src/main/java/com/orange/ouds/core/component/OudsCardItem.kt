@@ -58,8 +58,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
@@ -132,6 +134,7 @@ fun OudsCardItem(
  *
  * @param labelContent Custom label content of the card item used for custom primary content such as: A product-specific text arrangement, a combination of
  *   text elements not supported by the standard properties.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param modifier [Modifier] applied to the layout of the card item.
  * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param decoration The decoration style of the card. Defaults to [OudsListItemDecoration.Background] (with divider).
@@ -143,8 +146,10 @@ fun OudsCardItem(
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
@@ -222,8 +227,10 @@ fun OudsCardItem(
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
@@ -301,6 +308,7 @@ fun OudsCardItem(
  * @param labelContent Custom label content of the card item used for custom primary content such as: A product-specific text arrangement, a combination of
  *   text elements not supported by the standard properties. It must remain non-interactive. Do not place a link, button or control inside it because the
  *   complete item already acts as one navigation link.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param modifier [Modifier] applied to the layout of the card item.
  * @param onClick Callback invoked when the card item is clicked.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
@@ -314,8 +322,10 @@ fun OudsCardItem(
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the card item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
