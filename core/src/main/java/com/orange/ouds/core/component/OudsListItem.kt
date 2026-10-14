@@ -71,7 +71,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -116,8 +115,10 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
@@ -198,6 +199,7 @@ fun OudsListItem(
  *
  * @param labelContent Custom label content of the list item used for custom primary content such as: A product-specific text arrangement, a combination of
  *   text elements not supported by the standard properties.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param modifier [Modifier] applied to the layout of the list item.
  * @param verticalAlignment Controls the vertical alignment of the content. Defaults to [OudsListItemVerticalAlignment.CenterVertically].
  * @param overline Optional text displayed above the label.
@@ -210,8 +212,10 @@ fun OudsListItem(
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
@@ -298,8 +302,10 @@ fun OudsListItem(
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
@@ -384,6 +390,7 @@ fun OudsListItem(
  * @param labelContent Custom label content of the list item used for custom primary content such as: A product-specific text arrangement, a combination of
  *   text elements not supported by the standard properties. It must remain non-interactive. Do not place a link, button or control inside it because the
  *   complete item already acts as one navigation link.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param onClick Callback invoked when the list item is clicked.
  * @param modifier [Modifier] applied to the layout of the list item.
  * @param indicator The navigation indicator to display. Defaults to [OudsListItemIndicator.Next].
@@ -398,8 +405,10 @@ fun OudsListItem(
  * @param helperText Optional helper text displayed below the list item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
  *   Use it when the information cannot be clearly represented by the standard [description] or [helperText] parameters.
+ *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param enabled Controls the enabled state of the list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
@@ -561,10 +570,7 @@ internal fun OudsListItem(
                             )
                         }
                         labelContent?.let {
-                            CustomContentBox(
-                                state = state,
-                                modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
-                            ) {
+                            CustomContentBox(state = state) {
                                 labelContent()
                             }
                         }
@@ -575,10 +581,7 @@ internal fun OudsListItem(
                             Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
                         }
                         belowTextContent?.let {
-                            CustomContentBox(
-                                state = state,
-                                modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
-                            ) {
+                            CustomContentBox(state = state) {
                                 belowTextContent()
                             }
                         }
@@ -619,9 +622,7 @@ internal fun OudsListItem(
                 bottomContent?.let {
                     CustomContentBox(
                         state = state,
-                        modifier = Modifier
-                            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-                            .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
+                        modifier = Modifier.padding(horizontal = if (edgeToEdge) OudsTheme.grids.margin else 0.dp)
                     ) {
                         bottomContent()
                     }
@@ -710,12 +711,8 @@ private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment:
                     bottom = space.paddingBlock.default
                 )
             }
-        }.padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+        }.padding(horizontal = if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.components.listItem.space.paddingInline)
     }
-
-@Composable
-private fun contentHorizontalPadding(edgeToEdge: Boolean) =
-    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.listItem.spacePaddingInline.value
 
 @Composable
 private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDecoration?) = with(OudsTheme.colorScheme.action.support) {
@@ -1998,7 +1995,14 @@ private fun <T, S> getListItemPreviewParameterValues(
                 },
                 labelContent = when (size) {
                     OudsListItemSize.Default -> {
-                        { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) }
+                        {
+                            PreviewCustomContent(
+                                state = state,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
+                            )
+                        }
                     }
                     OudsListItemSize.Small -> null
                 },
@@ -2008,8 +2012,24 @@ private fun <T, S> getListItemPreviewParameterValues(
                 description = description,
                 leading = leading(index),
                 trailing = trailing(index),
-                belowTextContent = { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) },
-                bottomContent = { PreviewCustomContent(state = state, modifier = Modifier.fillMaxWidth()) },
+                belowTextContent = {
+                    PreviewCustomContent(
+                        state = state,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
+                    )
+                },
+                bottomContent = {
+                    with(OudsTheme.components.listItem) {
+                        PreviewCustomContent(
+                            state = state,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
+                        )
+                    }
+                },
                 decoration = decoration(index)
             )
             else -> OudsListItemPreviewParameter(
