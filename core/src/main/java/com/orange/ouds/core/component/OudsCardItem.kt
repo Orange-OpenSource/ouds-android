@@ -34,13 +34,17 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Static card item displays non-clickable information in a card format with visual emphasis.
  *
  * A static card item can be used to present read-only information in a contained format.
  * Cards are ideal for displaying grouped content like product cards, destination highlights, or
  * feature summaries. The card supports various decorations outlined, background with or without divider.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-static-card-item)
+ *
+ * > Design name: Static Card Item
+ *
+ * > Design version: 0.1.0
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.
@@ -101,8 +105,6 @@ fun OudsCardItem(
 }
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Navigation card item allows users to navigate to another screen or perform an action in a card format.
  *
  * A navigation card item is clickable and presented in a card format with visual emphasis.
@@ -110,6 +112,12 @@ fun OudsCardItem(
  * The indicator type can be customized to show forward navigation, backward navigation, or
  * external links. The card supports various decorations to adapt to different visual styles:
  * outlined, background with or without divider.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-card-item)
+ *
+ * > Design name: Navigation Card Item
+ *
+ * > Design version: 0.1.0
  *
  * @param label The main label of the card item.
  * @param modifier [Modifier] applied to the layout of the card item.

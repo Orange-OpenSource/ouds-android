@@ -33,14 +33,18 @@ import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Static small card item displays non-clickable information in a compact card format.
  *
  * A static small card item combines the compact size of a small list item with the visual
  * emphasis of a card. It is ideal for displaying condensed, grouped content in a contained
  * format, such as compact feature cards, quick access tiles, or dense information grids.
  * Unlike the standard card item, it omits overline and extra label to maintain a smaller footprint.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-static-card-item)
+ *
+ * > Design name: Static Card Item
+ *
+ * > Design version: 0.1.0
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.
@@ -97,8 +101,6 @@ fun OudsSmallCardItem(
 }
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Navigation small card item allows users to navigate to another screen or perform an action in a compact card format.
  *
  * A navigation small card item combines the compact size of a small list item with the visual
@@ -106,6 +108,12 @@ fun OudsSmallCardItem(
  * quick action tiles, or dense interactive grids. The indicator type can be customized to show
  * forward navigation, backward navigation, or external links. Unlike the standard card item,
  * it omits overline and extra label to maintain a smaller footprint while remaining clickable.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-card-item)
+ *
+ * > Design name: Navigation Card Item
+ *
+ * > Design version: 0.1.0
  *
  * @param label The main label of the small card item.
  * @param modifier [Modifier] applied to the layout of the small card item.

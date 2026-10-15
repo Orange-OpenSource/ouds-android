@@ -54,7 +54,6 @@ import com.orange.ouds.theme.OudsThemeContract
 import kotlin.enums.enumEntries
 import kotlin.math.PI
 
-// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -63,6 +62,8 @@ import kotlin.math.PI
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
  *
  * > Design name: Circular Progress Indicator
  *
@@ -106,7 +107,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -115,6 +115,8 @@ fun OudsCircularProgressIndicator(
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
  *
  * > Design name: Circular Progress Indicator
  *
@@ -154,7 +156,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -163,6 +164,8 @@ fun OudsCircularProgressIndicator(
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
  *
  * > Design name: Circular Progress Indicator
  *
@@ -199,7 +202,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -208,6 +210,8 @@ fun OudsCircularProgressIndicator(
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
  *
  * > Design name: Circular Progress Indicator
  *
@@ -248,7 +252,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -257,6 +260,8 @@ fun OudsCircularProgressIndicator(
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
  *
  * > Design name: Circular Progress Indicator
  *
@@ -292,7 +297,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
  *
@@ -301,6 +305,8 @@ fun OudsCircularProgressIndicator(
  * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
  * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
  * then this scale is applied to all dimensions to maintain consistent proportions.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-circular-progress-indicator)
  *
  * > Design name: Circular Progress Indicator
  *
