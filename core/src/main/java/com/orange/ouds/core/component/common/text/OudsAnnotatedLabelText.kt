@@ -18,7 +18,7 @@ import androidx.compose.ui.text.AnnotatedString
 /**
  * An annotated string for [com.orange.ouds.core.component.OudsLabelText] text in OUDS components.
  *
- * This class supports both colored text, strong (bold/emphasized) text and clickable links to create rich, interactive label texts.
+ * This class supports colored text, strong (bold/emphasized) text, strikethrough text and clickable links to create rich, interactive label texts.
  *
  * Use [buildOudsAnnotatedLabelText] to create instances:
  * ```
@@ -27,6 +27,10 @@ import androidx.compose.ui.text.AnnotatedString
  *     text = buildOudsAnnotatedLabelText {
  *         withStrong {
  *             withColor(color = highlightColor) { append("Important update") }
+ *         }
+ *         append(", ")
+ *         withStrikethrough {
+ *             append("old information")
  *         }
  *         append(", see details ")
  *         withLink(link = OudsLinkAnnotation.Url("https://example.com/details")) { append("here") }
@@ -40,7 +44,7 @@ class OudsAnnotatedLabelText internal constructor(annotatedString: AnnotatedStri
 
     class Builder(capacity: Int = 16) :
         OudsAnnotatedString.Builder<OudsAnnotatedLabelText>(capacity, OudsAnnotatedLabelText::class.java),
-        StrongBuilder, LinkBuilder, ColorBuilder {
+        StrongBuilder, LinkBuilder, ColorBuilder, StrikethroughBuilder {
 
         /**
          * Creates a builder initialized with plain text.
@@ -78,6 +82,9 @@ class OudsAnnotatedLabelText internal constructor(annotatedString: AnnotatedStri
 
         override fun addColor(color: Color, start: Int, end: Int) = addColorImpl(color, start, end)
         override fun pushColor(color: Color): Int = pushColorImpl(color)
+
+        override fun addStrikethrough(start: Int, end: Int) = addStrikethroughImpl(start, end)
+        override fun pushStrikethrough(): Int = pushStrikethroughImpl()
     }
 }
 
@@ -89,6 +96,10 @@ class OudsAnnotatedLabelText internal constructor(annotatedString: AnnotatedStri
  * buildOudsAnnotatedLabelText {
  *     withStrong {
  *         withColor(color = highlightColor) { append("Important update") }
+ *     }
+ *     append(", ")
+ *     withStrikethrough {
+ *         append("old information")
  *     }
  *     append(", see details ")
  *     withLink(link = OudsLinkAnnotation.Url("https://example.com/details")) { append("here") }

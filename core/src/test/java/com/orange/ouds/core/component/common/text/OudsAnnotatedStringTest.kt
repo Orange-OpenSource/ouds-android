@@ -961,6 +961,103 @@ class OudsAnnotatedStringTest {
     }
 
     //endregion
+
+    //region OudsAnnotatedString.StrikethroughBuilder tests
+
+    @Test
+    fun oudsAnnotatedStringStrikethroughBuilder_withStrikethrough_addsStrikethroughAnnotation() {
+        val annotatedString = buildTestAnnotatedString {
+            append("Normal ")
+            withStrikethrough {
+                append("strikethrough")
+            }
+            append(" text")
+        }
+
+        assertEquals("Normal strikethrough text", annotatedString.text)
+        // Verify strikethrough annotation is present
+        val strikethroughAnnotations = annotatedString.getStrikethroughAnnotations()
+        assertEquals(1, strikethroughAnnotations.size)
+        assertEquals(7, strikethroughAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(20, strikethroughAnnotations[0].end) // "Normal strikethrough" has 20 characters
+    }
+
+    @Test
+    fun oudsAnnotatedStringStrikethroughBuilder_addStrikethrough_addsStrikethroughAnnotationToRange() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Normal strikethrough text")
+        builder.addStrikethrough(7, 20) // "strikethrough"
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Normal strikethrough text", annotatedString.text)
+        // Verify strikethrough annotation is present at the specified range
+        val strikethroughAnnotations = annotatedString.getStrikethroughAnnotations()
+        assertEquals(1, strikethroughAnnotations.size)
+        assertEquals(7, strikethroughAnnotations[0].start)
+        assertEquals(20, strikethroughAnnotations[0].end)
+    }
+
+    @Test
+    fun oudsAnnotatedStringStrikethroughBuilder_pushStrikethroughAndPop_addsStrikethroughAnnotation() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Normal ")
+        builder.pushStrikethrough()
+        builder.append("strikethrough")
+        builder.pop()
+        builder.append(" text")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Normal strikethrough text", annotatedString.text)
+        // Verify strikethrough annotation is present
+        val strikethroughAnnotations = annotatedString.getStrikethroughAnnotations()
+        assertEquals(1, strikethroughAnnotations.size)
+        assertEquals(7, strikethroughAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(20, strikethroughAnnotations[0].end) // "Normal strikethrough" has 20 characters
+    }
+
+    @Test
+    fun oudsAnnotatedStringStrikethroughBuilder_pushStrikethroughWithIndexAndPop_addsStrikethroughAnnotation() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Normal ")
+        val index = builder.pushStrikethrough()
+        builder.append("strikethrough")
+        builder.pop(index)
+        builder.append(" text")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Normal strikethrough text", annotatedString.text)
+        // Verify strikethrough annotation is present
+        val strikethroughAnnotations = annotatedString.getStrikethroughAnnotations()
+        assertEquals(1, strikethroughAnnotations.size)
+        assertEquals(7, strikethroughAnnotations[0].start) // "Normal " has 7 characters
+        assertEquals(20, strikethroughAnnotations[0].end) // "Normal strikethrough" has 20 characters
+    }
+
+    @Test
+    fun oudsAnnotatedStringStrikethroughBuilder_nestedPushStrikethroughAndPop_worksCorrectly() {
+        val builder = TestAnnotatedString.Builder()
+        builder.append("Start ")
+        builder.pushStrikethrough()
+        builder.append("outer ")
+        builder.pushStrikethrough()
+        builder.append("inner")
+        builder.pop()
+        builder.append(" outer")
+        builder.pop()
+        builder.append(" end")
+        val annotatedString = builder.toAnnotatedString()
+
+        assertEquals("Start outer inner outer end", annotatedString.text)
+        // Verify nested strikethrough annotations are present
+        val strikethroughAnnotations = annotatedString.getStrikethroughAnnotations()
+        assertEquals(2, strikethroughAnnotations.size)
+        assertEquals(6, strikethroughAnnotations[0].start) // "Start " has 6 characters, outer starts
+        assertEquals(23, strikethroughAnnotations[0].end) // "Start outer inner outer" has 23 characters
+        assertEquals(12, strikethroughAnnotations[1].start) // "Start outer " has 12 characters, inner starts
+        assertEquals(17, strikethroughAnnotations[1].end) // "Start outer inner" has 17 characters
+    }
+
+    //endregion
 }
 
 private class TestAnnotatedString(private val annotatedString: AnnotatedString) : OudsAnnotatedString<TestAnnotatedString>(annotatedString) {
@@ -973,10 +1070,12 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
 
     fun getStrongAnnotations(): List<AnnotatedString.Range<String>> = getStringAnnotations().filter { it.item == StrongAnnotation }
 
+    fun getStrikethroughAnnotations(): List<AnnotatedString.Range<String>> = getStringAnnotations().filter { it.item == StrikethroughAnnotation }
+
     fun getColorAnnotations(): List<AnnotatedString.Range<String>> = with(annotatedString) { getStringAnnotations(ColorAnnotationTag, 0, length) }
 
     class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<TestAnnotatedString>(capacity, TestAnnotatedString::class.java), StrongBuilder,
-        LinkBuilder, ColorBuilder {
+        LinkBuilder, ColorBuilder, StrikethroughBuilder {
 
         constructor(text: String) : this() {
             append(text)
@@ -999,6 +1098,10 @@ private class TestAnnotatedString(private val annotatedString: AnnotatedString) 
         override fun addColor(color: Color, start: Int, end: Int) = addColorImpl(color, start, end)
 
         override fun pushColor(color: Color): Int = pushColorImpl(color)
+
+        override fun addStrikethrough(start: Int, end: Int) = addStrikethroughImpl(start, end)
+
+        override fun pushStrikethrough(): Int = pushStrikethroughImpl()
     }
 }
 
