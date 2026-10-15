@@ -49,6 +49,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     internal companion object {
 
         const val StrongAnnotation = "OudsAnnotatedString.StrongAnnotation"
+        const val StrikethroughAnnotation = "OudsAnnotatedString.StrikethroughAnnotation"
         const val ColorAnnotationTag = "ColorAnnotation"
     }
 
@@ -71,6 +72,9 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                 }
                 is StringAnnotation if annotation.value == StrongAnnotation -> {
                     with(range) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end) }
+                }
+                is StringAnnotation if annotation.value == StrikethroughAnnotation -> {
+                    with(range) { AnnotatedString.Range(SpanStyle(textDecoration = TextDecoration.LineThrough), start, end) }
                 }
                 is LinkAnnotation -> {
                     val linkAnnotation = when (annotation) {
@@ -287,6 +291,10 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
             builder.addStrongAnnotation(start, end)
         }
 
+        protected fun addStrikethroughImpl(start: Int, end: Int) {
+            builder.addStrikethroughAnnotation(start, end)
+        }
+
         protected fun addLinkImpl(url: OudsLinkAnnotation.Url, start: Int, end: Int) {
             builder.addLink(url.linkAnnotation, start, end)
         }
@@ -301,6 +309,8 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
         protected fun pushStrongImpl(): Int = builder.pushStringAnnotation("", StrongAnnotation)
 
+        protected fun pushStrikethroughImpl(): Int = builder.pushStringAnnotation("", StrikethroughAnnotation)
+
         protected fun pushLinkImpl(link: OudsLinkAnnotation): Int = builder.pushLink(link.linkAnnotation)
 
         protected fun pushColorImpl(color: Color): Int = builder.pushColorAnnotation(color)
@@ -310,6 +320,8 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         fun pop(index: Int): Unit = builder.pop(index)
 
         private fun AnnotatedString.Builder.addStrongAnnotation(start: Int, end: Int) = addStringAnnotation("", StrongAnnotation, start, end)
+
+        private fun AnnotatedString.Builder.addStrikethroughAnnotation(start: Int, end: Int) = addStringAnnotation("", StrikethroughAnnotation, start, end)
 
         private fun AnnotatedString.Builder.addColorAnnotation(color: Color, start: Int, end: Int) {
             addStringAnnotation(ColorAnnotationTag, color.toArgb().toString(), start, end)
@@ -349,6 +361,14 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                 getStringAnnotations(0, length).filter { it.item == StrongAnnotation }
                     .forEach { range ->
                         with(range) { builder.addStrongAnnotation(start, end) }
+                    }
+            }
+
+            if (this@Builder is StrikethroughBuilder) {
+                // Strikethrough annotations
+                getStringAnnotations(0, length).filter { it.item == StrikethroughAnnotation }
+                    .forEach { range ->
+                        with(range) { builder.addStrikethroughAnnotation(start, end) }
                     }
             }
 
@@ -480,6 +500,33 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     }
 
     /**
+     * Interface for builders that support strikethrough text annotations.
+     *
+     * Implementations can add strikethrough formatting either by specifying ranges with [addStrikethrough],
+     * or by using the push/pop pattern with [pushStrikethrough] and [pop]. For most use cases,
+     * prefer using the [withStrikethrough] DSL helper.
+     */
+    interface StrikethroughBuilder : BaseBuilder {
+
+        /**
+         * Adds strikethrough formatting to a specific range of text.
+         *
+         * @param start The inclusive starting offset of the range.
+         * @param end The exclusive end offset of the range.
+         */
+        fun addStrikethrough(start: Int, end: Int)
+
+        /**
+         * Applies strikethrough style to any appended text until a corresponding [pop] is called.
+         *
+         * For most use cases, prefer using the [withStrikethrough] DSL helper which automatically manages the stack.
+         *
+         * @return The index of the pushed annotation, to be used with [pop] when done.
+         */
+        fun pushStrikethrough(): Int
+    }
+
+    /**
      * Interface for builders that support colored text annotations.
      *
      * Implementations can add colors either by specifying ranges with [addColor],
@@ -590,6 +637,37 @@ inline fun <R : Any> OudsAnnotatedString.LinkBuilder.withLink(link: OudsLinkAnno
  */
 inline fun <R : Any> OudsAnnotatedString.ColorBuilder.withColor(color: Color, block: OudsAnnotatedString.ColorBuilder.() -> R): R {
     val index = pushColor(color)
+    return try {
+        block(this)
+    } finally {
+        pop(index)
+    }
+}
+
+/**
+ * DSL helper for applying strikethrough formatting to a block of text.
+ *
+ * This is the recommended way to add strikethrough formatting as it automatically manages
+ * the annotation stack.
+ *
+ * Example:
+ * ```
+ * buildOudsAnnotatedBodyText {
+ *     append("Original price: ")
+ *     withStrikethrough {
+ *         append("$100")
+ *     }
+ *     append(" Now: $80")
+ * }
+ * ```
+ *
+ * @param block The lambda that appends the text to be formatted with strikethrough.
+ * @return The result of the block.
+ */
+inline fun <R : Any> OudsAnnotatedString.StrikethroughBuilder.withStrikethrough(
+    block: OudsAnnotatedString.StrikethroughBuilder.() -> R
+): R {
+    val index = pushStrikethrough()
     return try {
         block(this)
     } finally {

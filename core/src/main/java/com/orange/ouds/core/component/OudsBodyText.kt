@@ -28,6 +28,7 @@ import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBodyText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.component.common.text.withLink
+import com.orange.ouds.core.component.common.text.withStrikethrough
 import com.orange.ouds.core.component.common.text.withStrong
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -273,6 +274,10 @@ internal fun PreviewOudsBodyTextWithAnnotatedText(
                 append("Body with ")
                 withStrong {
                     withColor(color = highlightColor) { append("highlighted text") }
+                }
+                append(", ")
+                withStrikethrough {
+                    append("old information")
                 }
                 append(" and ")
                 withLink(link = OudsLinkAnnotation.Url("https://example.com")) { append("link") }
