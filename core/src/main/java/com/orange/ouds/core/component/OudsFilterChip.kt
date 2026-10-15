@@ -209,8 +209,8 @@ private fun OudsFilterChip(
     nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsBasicChip(
         selectable = true,
@@ -221,8 +221,8 @@ private fun OudsFilterChip(
         iconPosition = OudsChipIconPosition.End,
         modifier = modifier,
         enabled = enabled,
-        skeleton = skeleton,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 

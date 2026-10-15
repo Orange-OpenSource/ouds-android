@@ -80,8 +80,8 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -100,9 +100,9 @@ fun OudsCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
-        skeleton = skeleton,
         card = true,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -158,8 +158,8 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -178,9 +178,9 @@ fun OudsCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
-        skeleton = skeleton,
         card = true,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 

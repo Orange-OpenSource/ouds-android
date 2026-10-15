@@ -27,7 +27,6 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -102,8 +101,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsSkeletonSample
  * @sample com.orange.ouds.core.component.samples.OudsSkeletonWithTimedAnimationSample
  *
- * @see OudsSkeleton The skeleton class used with component parameters
- * @see OudsSkeletonProvider Provider for applying skeletons to all child components
+ * @see OudsSkeleton The skeleton class used with component parameters.
+ * @see OudsSkeletonProvider Provider for applying skeletons to all child components.
  */
 @Composable
 fun OudsSkeleton(
@@ -198,8 +197,8 @@ fun OudsSkeleton(
  * @param state The [OudsSkeletonState] that controls the skeleton's animation behavior.
  *   Use [rememberOudsSkeletonState] to create and remember the state in a composable.
  *
- * @see OudsSkeletonProvider Provider for applying skeletons to all child components
- * @see rememberOudsSkeletonState Factory function to create and remember skeleton state
+ * @see OudsSkeletonProvider Provider for applying skeletons to all child components.
+ * @see rememberOudsSkeletonState Factory function to create and remember skeleton state.
  */
 class OudsSkeleton(val state: OudsSkeletonState)
 
@@ -238,8 +237,8 @@ class OudsSkeleton(val state: OudsSkeletonState)
  * @param skeleton The skeleton state to provide to child components, or null to disable skeletons.
  * @param content The composable content hierarchy that will have access to the skeleton state.
  *
- * @see OudsSkeleton The skeleton class used with this provider
- * @see LocalSkeleton The composition local used internally to provide skeleton state
+ * @see OudsSkeleton The skeleton class used with this provider.
+ * @see LocalSkeleton The composition local used to provide skeleton to child components.
  */
 @Composable
 fun OudsSkeletonProvider(skeleton: OudsSkeleton?, content: @Composable () -> Unit) {
@@ -311,13 +310,11 @@ private fun SkeletonLayout(
                 } else {
                     state.orElse { rememberOudsSkeletonState() }
                 }
-                CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                    OudsSkeleton(
-                        modifier = Modifier.size(width.toDp(), height.toDp()),
-                        state = skeletonState,
-                        securityMargin = securityMargin
-                    )
-                }
+                OudsSkeleton(
+                    modifier = Modifier.size(width.toDp(), height.toDp()),
+                    state = skeletonState,
+                    securityMargin = securityMargin
+                )
             }.map { it.measure(constraints) }
 
             layout(width, height) {

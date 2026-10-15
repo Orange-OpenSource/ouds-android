@@ -186,8 +186,8 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsSugge
 	public final fun getLambda$-2016423672$0$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-2016423672$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-2101786170$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-670870277$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$694985957$0$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$694985957$1$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$694985957$core ()Lkotlin/jvm/functions/Function3;
 }
 
@@ -600,9 +600,9 @@ public final class com/orange/ouds/core/component/OudsCardItemDefaults {
 
 public final class com/orange/ouds/core/component/OudsCardItemKt {
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
-	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
-	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/orange/ouds/core/component/OudsCheckboxItemKt {

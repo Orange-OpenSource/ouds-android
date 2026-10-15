@@ -186,8 +186,8 @@ private fun outlineBorderColor(state: OudsControlState, selected: Boolean, error
                 OudsControlState.Enabled -> if (selected) enabled else null
                 OudsControlState.Hovered -> hover
                 OudsControlState.Pressed -> pressed
-                OudsControlState.Focused -> null
                 OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of each control item
+                OudsControlState.Focused,
                 OudsControlState.Skeleton -> null
             }
         }
@@ -197,8 +197,8 @@ private fun outlineBorderColor(state: OudsControlState, selected: Boolean, error
                 OudsControlState.Enabled -> if (selected) this.selected else null
                 OudsControlState.Hovered -> hover
                 OudsControlState.Pressed -> pressed
-                OudsControlState.Focused -> null
                 OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) disabled else null
+                OudsControlState.Focused,
                 OudsControlState.Skeleton -> null
             }
         }

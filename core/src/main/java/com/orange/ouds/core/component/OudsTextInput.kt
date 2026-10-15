@@ -389,19 +389,19 @@ private fun OudsTextInput(
 
     val emptyText = textFieldState.text.isEmpty()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = ComponentName,
-            state = state,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = ComponentName,
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = state,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     state = textFieldState,
@@ -438,8 +438,8 @@ private fun OudsTextInput(
                     }
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 /**
@@ -667,7 +667,8 @@ fun OudsTextInput(
         keyboardActions = keyboardActions,
         onTextLayout = onTextLayout,
         visualTransformation = visualTransformation,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -704,19 +705,19 @@ private fun OudsTextInput(
 
     val emptyText = value.isEmpty()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = ComponentName,
-            state = state,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = ComponentName,
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = state,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
@@ -753,8 +754,8 @@ private fun OudsTextInput(
                     }
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 /**
@@ -1019,19 +1020,19 @@ private fun OudsTextInput(
 
     val emptyText = value.text.isEmpty()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = ComponentName,
-            state = state,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = ComponentName,
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = state,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
@@ -1068,8 +1069,8 @@ private fun OudsTextInput(
                     }
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 internal fun Modifier.textInputSemantic(label: String?): Modifier = this.semantics {
@@ -1418,8 +1419,8 @@ internal fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error
             OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.support.hover
             OudsTextInputState.Focused -> OudsTheme.colorScheme.action.support.pressed
             OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.support.disabled
-            OudsTextInputState.ReadOnly -> Color.Transparent
             OudsTextInputState.Loading -> OudsTheme.colorScheme.action.support.loading
+            OudsTextInputState.ReadOnly,
             OudsTextInputState.Skeleton -> Color.Transparent
         }
     }

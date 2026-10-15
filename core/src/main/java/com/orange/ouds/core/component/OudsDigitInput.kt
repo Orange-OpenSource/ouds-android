@@ -246,13 +246,13 @@ internal enum class OudsDigitInputState : OudsComponentState {
     Enabled, Hovered, Focused, ReadOnly, Disabled, Skeleton
 }
 
-internal const val PreviewWidthDp = 410
+internal const val OudsDigitInputPreviewWidthDp = 410
 
-@Preview(name = "Light", widthDp = PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Light", widthDp = OudsDigitInputPreviewWidthDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = PreviewWidthDp,
+    widthDp = OudsDigitInputPreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -302,7 +302,7 @@ private val previewParameterValues: List<OudsDigitInputPreviewParameter>
         )
     }
 
-@Preview(name = "Light", widthDp = PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Light", widthDp = OudsDigitInputPreviewWidthDp, device = OudsPreviewDevice)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsDigitInputWithRoundedCorners(@PreviewParameter(OudsDigitInputWithRoundedCornersPreviewParameterProvider::class) outlined: Boolean) =

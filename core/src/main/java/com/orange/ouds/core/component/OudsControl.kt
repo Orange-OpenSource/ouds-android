@@ -43,7 +43,7 @@ internal fun getControlState(enabled: Boolean, readOnly: Boolean, skeleton: Ouds
 internal fun errorColor(state: OudsControlState): Color = with(OudsTheme.colorScheme.action.negative) {
     when (state) {
         OudsControlState.Enabled -> enabled
-        OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox
+        OudsControlState.Disabled, OudsControlState.ReadOnly -> Color.Unspecified // Not allowed, exception thrown at the beginning of OudsCheckbox and OudsRadioButton
         OudsControlState.Hovered -> hover
         OudsControlState.Pressed -> pressed
         OudsControlState.Focused -> focus

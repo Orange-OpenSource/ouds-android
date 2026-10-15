@@ -345,19 +345,19 @@ private fun OudsTextArea(
 
     val scrollState = rememberScrollState()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = ComponentName,
-            state = state,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = ComponentName,
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = state,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     state = textFieldState,
@@ -392,8 +392,8 @@ private fun OudsTextArea(
                     scrollState = scrollState
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 /**
@@ -641,19 +641,19 @@ private fun OudsTextArea(
 
     val emptyText = value.isEmpty()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = ComponentName,
-            state = state,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = ComponentName,
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = state,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
@@ -687,8 +687,8 @@ private fun OudsTextArea(
                     }
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 /**
@@ -936,19 +936,19 @@ private fun OudsTextArea(
 
     val emptyText = value.text.isEmpty()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = ComponentName,
-            state = state,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = ComponentName,
+        state = state,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = state,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     value = value,
@@ -982,8 +982,8 @@ private fun OudsTextArea(
                     }
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 /**

@@ -107,9 +107,9 @@ fun OudsSmallListItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
-        skeleton = skeleton,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -189,9 +189,9 @@ fun OudsSmallListItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
-        skeleton = skeleton,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 

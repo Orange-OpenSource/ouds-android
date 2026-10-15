@@ -400,8 +400,8 @@ private fun OudsPinCodeInputDecorator(
         val totalHorizontalSpace = horizontalSpace * (length.value - 1)
         val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
         ConstraintLayout {
-            val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
             val isNonErrorPreview = LocalInspectionMode.current && error == null
+            val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
             val digitInputStates = (0..<length.value).map { index ->
                 when {
                     skeleton != null -> OudsDigitInputState.Skeleton

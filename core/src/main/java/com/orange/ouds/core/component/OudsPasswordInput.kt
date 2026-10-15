@@ -292,19 +292,19 @@ private fun OudsPasswordInput(
 
     val emptyText = state.text.isEmpty()
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = passwordInputState,
-        state = skeleton?.state,
-        securityMargin = false
-    ) { contentModifier ->
-        CheckedTextInput(
-            componentName = "OudsPasswordInput",
-            state = passwordInputState,
-            emptyText = emptyText,
-            readOnly = readOnly,
-            error = error,
-            basicTextField = {
+    CheckedTextInput(
+        componentName = "OudsPasswordInput",
+        state = passwordInputState,
+        emptyText = emptyText,
+        readOnly = readOnly,
+        error = error,
+        basicTextField = {
+            SkeletonLayout(
+                modifier = modifier,
+                componentState = passwordInputState,
+                state = skeleton?.state,
+                securityMargin = false
+            ) { contentModifier ->
                 BasicSecureTextField(
                     modifier = contentModifier.textInputSemantic(label),
                     state = state.textFieldState,
@@ -349,8 +349,8 @@ private fun OudsPasswordInput(
                     textObfuscationCharacter = OudsPasswordInputTextObfuscationCharacter
                 )
             }
-        )
-    }
+        }
+    )
 }
 
 

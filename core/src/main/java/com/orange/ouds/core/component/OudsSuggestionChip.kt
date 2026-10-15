@@ -238,8 +238,8 @@ fun OudsBasicSuggestionChip(
         nullableIcon = null,
         modifier = modifier,
         enabled = enabled,
-        skeleton = skeleton,
         interactionSource = interactionSource,
+        skeleton = skeleton,
         content = content
     )
 }
@@ -290,8 +290,8 @@ fun OudsBasicSuggestionChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
-        skeleton = skeleton,
         interactionSource = interactionSource,
+        skeleton = skeleton,
         content = content
     )
 }
@@ -344,8 +344,8 @@ fun OudsBasicSuggestionChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
-        skeleton = skeleton,
         interactionSource = interactionSource,
+        skeleton = skeleton,
         content = content
     )
 }
@@ -361,8 +361,8 @@ private fun OudsBasicSuggestionChip(
     nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
     interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicChip(
@@ -374,8 +374,8 @@ private fun OudsBasicSuggestionChip(
         iconPosition = OudsChipIconPosition.Start,
         modifier = modifier,
         enabled = enabled,
-        skeleton = skeleton,
         interactionSource = interactionSource,
+        skeleton = skeleton,
         content = content
     )
 }

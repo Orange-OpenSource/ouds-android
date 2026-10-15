@@ -96,9 +96,9 @@ fun OudsSmallCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
-        skeleton = skeleton,
         card = true,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -170,9 +170,9 @@ fun OudsSmallCardItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = false,
-        skeleton = skeleton,
         card = true,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 

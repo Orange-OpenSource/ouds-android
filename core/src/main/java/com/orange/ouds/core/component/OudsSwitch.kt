@@ -232,9 +232,9 @@ private fun checkColor(state: OudsControlState, checked: Boolean): Color? {
             OudsControlState.Hovered,
             OudsControlState.Focused -> OudsTheme.componentsTokens.switch.colorCheck.value
             OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.primary
-            OudsControlState.Pressed,
-            OudsControlState.Skeleton -> null
+            OudsControlState.Pressed -> null
             OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
+            OudsControlState.Skeleton -> Color.Transparent
         }
     } else {
         null

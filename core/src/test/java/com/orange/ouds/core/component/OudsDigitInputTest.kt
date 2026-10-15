@@ -26,7 +26,7 @@ internal class OudsDigitInputTest {
     @RunWith(Parameterized::class)
     class Default(val parameter: OudsDigitInputPreviewParameter) : OudsSnapshotTest(
         OrangeTheme(getPreviewOrangeFontFamily()),
-        PreviewWidthDp
+        OudsDigitInputPreviewWidthDp
     ) {
         companion object {
             @JvmStatic
@@ -47,7 +47,7 @@ internal class OudsDigitInputTest {
     @RunWith(Parameterized::class)
     class WithRoundedCorners(val parameter: Boolean) : OudsSnapshotTest(
         OrangeTheme(getPreviewOrangeFontFamily()),
-        PreviewWidthDp
+        OudsDigitInputPreviewWidthDp
     ) {
 
         companion object {

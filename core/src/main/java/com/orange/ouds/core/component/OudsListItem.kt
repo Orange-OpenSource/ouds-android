@@ -159,9 +159,9 @@ fun OudsListItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
-        skeleton = skeleton,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -245,9 +245,9 @@ fun OudsListItem(
         boldLabel = boldLabel,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
-        skeleton = skeleton,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -269,9 +269,9 @@ internal fun OudsListItem(
     boldLabel: Boolean,
     enabled: Boolean,
     edgeToEdge: Boolean,
-    skeleton: OudsSkeleton?,
     card: Boolean,
-    interactionSource: MutableInteractionSource?
+    interactionSource: MutableInteractionSource?,
+    skeleton: OudsSkeleton?
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()

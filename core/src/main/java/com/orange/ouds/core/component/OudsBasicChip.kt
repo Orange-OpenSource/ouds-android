@@ -64,8 +64,8 @@ internal fun OudsBasicChip(
     iconPosition: OudsChipIconPosition,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
     interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsChipScope.() -> Unit = { DefaultChipContent(iconPosition) }
 ) {
     @Suppress("NAME_SHADOWING") val selected = selectable && selected
@@ -232,13 +232,13 @@ private fun borderWidth(state: OudsChipState, selected: Boolean): Dp? {
 private fun borderColor(state: OudsChipState, selected: Boolean): Color? {
     return with(OudsTheme.componentsTokens.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBorderSelectedEnabled.value else colorBorderUnselectedEnabled.value
-            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus.value else colorBorderUnselectedFocus.value
-            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover.value else colorBorderUnselectedHover.value
-            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed.value else colorBorderUnselectedPressed.value
-            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled.value else colorBorderUnselectedDisabled.value
+            OudsChipState.Enabled -> if (selected) colorBorderSelectedEnabled else colorBorderUnselectedEnabled
+            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus else colorBorderUnselectedFocus
+            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover else colorBorderUnselectedHover
+            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed else colorBorderUnselectedPressed
+            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled else colorBorderUnselectedDisabled
             OudsChipState.Skeleton -> null
-        }
+        }?.value
     }
 }
 
