@@ -71,6 +71,7 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
+import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -622,7 +623,9 @@ internal fun OudsListItem(
                 bottomContent?.let {
                     CustomContentBox(
                         state = state,
-                        modifier = Modifier.padding(horizontal = if (edgeToEdge) OudsTheme.grids.margin else 0.dp)
+                        modifier = Modifier
+                            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+                            .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
                     ) {
                         bottomContent()
                     }
@@ -711,8 +714,12 @@ private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment:
                     bottom = space.paddingBlock.default
                 )
             }
-        }.padding(horizontal = if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.components.listItem.space.paddingInline)
+        }.padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
     }
+
+@Composable
+private fun contentHorizontalPadding(edgeToEdge: Boolean) =
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.listItem.spacePaddingInline.value
 
 @Composable
 private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDecoration?) = with(OudsTheme.colorScheme.action.support) {
