@@ -2115,7 +2115,7 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyT
 	public static final field $stable I
 }
 
-public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun <init> (I)V
@@ -2126,9 +2126,11 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyT
 	public fun addColor-ek8zF_U (JII)V
 	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
 	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
+	public fun addStrikethrough (II)V
 	public fun addStrong (II)V
 	public fun pushColor-8_81llA (J)I
 	public fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+	public fun pushStrikethrough ()I
 	public fun pushStrong ()I
 }
 
@@ -2268,7 +2270,7 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabel
 	public static final field $stable I
 }
 
-public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabelText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabelText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun <init> (I)V
@@ -2279,9 +2281,11 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabel
 	public fun addColor-ek8zF_U (JII)V
 	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
 	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
+	public fun addStrikethrough (II)V
 	public fun addStrong (II)V
 	public fun pushColor-8_81llA (J)I
 	public fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+	public fun pushStrikethrough ()I
 	public fun pushStrong ()I
 }
 
@@ -2292,6 +2296,7 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabel
 public class com/orange/ouds/core/component/common/text/OudsAnnotatedString : java/lang/CharSequence {
 	public static final field $stable I
 	public static final field ColorAnnotationTag Ljava/lang/String;
+	public static final field StrikethroughAnnotation Ljava/lang/String;
 	public static final field StrongAnnotation Ljava/lang/String;
 	public final fun capitalize (Landroidx/compose/ui/text/intl/LocaleList;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
 	public static synthetic fun capitalize$default (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;Landroidx/compose/ui/text/intl/LocaleList;ILjava/lang/Object;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
@@ -2323,6 +2328,7 @@ public class com/orange/ouds/core/component/common/text/OudsAnnotatedString$Buil
 	protected final fun addColorImpl-ek8zF_U (JII)V
 	protected final fun addLinkImpl (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
 	protected final fun addLinkImpl (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
+	protected final fun addStrikethroughImpl (II)V
 	protected final fun addStrongImpl (II)V
 	public fun append (C)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder;
 	public synthetic fun append (C)Ljava/lang/Appendable;
@@ -2335,6 +2341,7 @@ public class com/orange/ouds/core/component/common/text/OudsAnnotatedString$Buil
 	public final fun pop (I)V
 	protected final fun pushColorImpl-8_81llA (J)I
 	protected final fun pushLinkImpl (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+	protected final fun pushStrikethroughImpl ()I
 	protected final fun pushStrongImpl ()I
 	public fun toAnnotatedString ()Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
 }
@@ -2350,6 +2357,11 @@ public abstract interface class com/orange/ouds/core/component/common/text/OudsA
 	public abstract fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
 }
 
+public abstract interface class com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$BaseBuilder {
+	public abstract fun addStrikethrough (II)V
+	public abstract fun pushStrikethrough ()I
+}
+
 public abstract interface class com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$BaseBuilder {
 	public abstract fun addStrong (II)V
 	public abstract fun pushStrong ()I
@@ -2359,6 +2371,7 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedStrin
 	public static final fun buildOudsAnnotatedString (Ljava/lang/Class;Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
 	public static final fun withColor-bw27NRU (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder;JLkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun withLink (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder;Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun withStrikethrough (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun withStrong (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
