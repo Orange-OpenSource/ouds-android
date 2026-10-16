@@ -2001,8 +2001,7 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Typography internal constructor(
+    class Typography internal constructor(
         val color: Color,
         val headingLargeMarker: Boolean,
         val space: Space
@@ -2016,12 +2015,10 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val paddingBlock: PaddingBlock,
         ) {
-            @ConsistentCopyVisibility
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 @Deprecated("This token is no longer used in OUDS.")
                 val bottomHeadingLargeMarker: Dp,
                 @Deprecated("This token is no longer used in OUDS.")
