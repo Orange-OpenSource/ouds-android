@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -40,6 +41,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputHelperLink
 import com.orange.ouds.core.component.OudsTextInputLeadingIcon
@@ -48,6 +50,7 @@ import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -166,6 +169,11 @@ private fun TextInputDemoBottomSheetContent(state: TextInputDemoState) {
             checked = annotatedText,
             onCheckedChange = { annotatedText = it }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -206,6 +214,7 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
         }
         val textInputHelperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = {}) else null
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        val textInputSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         if (annotatedText) {
             val helperTextHtml = stringResource(R.string.app_components_textInput_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
@@ -227,7 +236,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
                 helperText = annotatedHelperText,
                 helperLink = textInputHelperLink,
                 constrainedMaxWidth = constrainedMaxWidth,
-                onKeyboardAction = onKeyboardAction
+                onKeyboardAction = onKeyboardAction,
+                skeleton = textInputSkeleton
             )
         } else {
             OudsTextInput(
@@ -246,7 +256,8 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
                 helperText = helperText,
                 helperLink = textInputHelperLink,
                 constrainedMaxWidth = constrainedMaxWidth,
-                onKeyboardAction = onKeyboardAction
+                onKeyboardAction = onKeyboardAction,
+                skeleton = textInputSkeleton
             )
         }
     }
@@ -298,6 +309,7 @@ private fun Code.Builder.textInputDemoCodeSnippet(state: TextInputDemoState, the
             lambdaArgument("onKeyboardAction") {
                 functionCall("focusManager.clearFocus")
             }
+            if (skeleton) skeletonArgument()
         }
     }
 }

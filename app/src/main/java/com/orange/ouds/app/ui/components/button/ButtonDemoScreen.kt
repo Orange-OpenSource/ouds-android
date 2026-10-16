@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -37,7 +38,9 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallButton
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
@@ -111,6 +114,11 @@ private fun ButtonDemoBottomSheetContent(state: ButtonDemoState) {
             onValueChange = { value -> label = value },
             enabled = labelTextInputEnabled
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -128,6 +136,7 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
             tinted = icon == ButtonDemoState.Icon.Tinted
         )
         val loader = if (hasLoader) OudsButtonLoader(null) else null
+        val buttonSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
 
         when (size) {
             ButtonDemoState.Size.Default -> when (layout) {
@@ -136,7 +145,8 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.TextAndIcon -> OudsButton(
                     icon = buttonIcon,
@@ -144,14 +154,16 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.IconOnly -> OudsButton(
                     icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = buttonSkeleton
                 )
             }
             ButtonDemoState.Size.Small -> when (layout) {
@@ -160,7 +172,8 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.TextAndIcon -> OudsSmallButton(
                     icon = buttonIcon,
@@ -168,14 +181,16 @@ private fun ButtonDemoContent(state: ButtonDemoState) {
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = buttonSkeleton
                 )
                 ButtonDemoState.Layout.IconOnly -> OudsSmallButton(
                     icon = buttonIcon,
                     onClick = {},
                     enabled = enabled,
                     loader = loader,
-                    appearance = appearance
+                    appearance = appearance,
+                    skeleton = buttonSkeleton
                 )
             }
         }
@@ -209,6 +224,7 @@ private fun Code.Builder.buttonDemoCodeSnippet(state: ButtonDemoState, themeDraw
                     }
                 }
                 typedArgument("appearance", appearance)
+                if (skeleton) skeletonArgument()
             }
         }
     }

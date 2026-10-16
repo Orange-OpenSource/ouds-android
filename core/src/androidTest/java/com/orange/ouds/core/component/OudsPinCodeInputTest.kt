@@ -461,4 +461,23 @@ internal class OudsPinCodeInputTest {
             onNodeWithText("4").assertDoesNotExist()
         }
     }
+
+    @Test
+    fun oudsPinCodeInput_skeleton_helperTextNotDisplayed() {
+        with(composeTestRule) {
+            var value by mutableStateOf("")
+            val helperText = "Enter the 4-digit code sent to your phone."
+
+            setOudsContent {
+                OudsPinCodeInput(
+                    value = value,
+                    onValueChange = { value = it },
+                    helperText = helperText,
+                    skeleton = OudsSkeleton(rememberOudsSkeletonState())
+                )
+            }
+
+            onNodeWithContentDescription(helperText).assertIsNotDisplayed()
+        }
+    }
 }

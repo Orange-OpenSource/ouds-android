@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.components.painterArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -118,6 +119,7 @@ fun BaseListItemGeneralCustomizations(state: BaseListItemDemoState, extraCustomi
         { BaseListItemIndicatorCustomization(state = state) },
         { BaseListItemVerticalAlignmentCustomization(state = state) },
         { BaseListItemEnabledCustomization(state = state) },
+        { BaseListItemSkeletonCustomization(state = state) }
     )
     extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -169,6 +171,17 @@ private fun BaseListItemEnabledCustomization(state: BaseListItemDemoState) {
             label = stringResource(R.string.app_common_enabled_tech),
             checked = enabled,
             onCheckedChange = { enabled = it },
+        )
+    }
+}
+
+@Composable
+private fun BaseListItemSkeletonCustomization(state: BaseListItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it },
         )
     }
 }
@@ -584,6 +597,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
         if (!helperText.isNullOrBlank()) typedArgument("helperText", helperText)
         if (boldLabel) typedArgument("boldLabel", boldLabel)
         if (!enabled) enabledArgument(enabled)
+        if (skeleton) skeletonArgument()
     }
 }
 

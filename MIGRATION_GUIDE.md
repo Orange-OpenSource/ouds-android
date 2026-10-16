@@ -2,6 +2,81 @@
 
 This guide helps you migrate between major versions of OUDS Android.
 
+## Migrating to 3.0.0
+
+### Breaking changes
+
+#### Minimum Android SDK version updated to API 24
+
+**Impact:** Applications targeting Android 6.0 (API 23) will no longer be able to use OUDS Android 3.0.0 and above.
+
+**Before (v2.x):**
+```kotlin
+android {
+    defaultConfig {
+        minSdk = 23
+    }
+}
+```
+
+**After (v3.0):**
+```kotlin
+android {
+    defaultConfig {
+        minSdk = 24
+    }
+}
+```
+
+> Recommendation: Use a version catalog (`gradle/libs.versions.toml`) to centralize SDK version management across your project modules.
+
+##### Migration steps
+
+1. Update your app's `minSdk` to at least 24 in your build configuration
+2. Ensure your app no longer needs to support Android 6.0 (Marshmallow)
+3. Verify compatibility with your target user base
+
+#### OudsChipState: New Skeleton enum value
+
+A new `Skeleton` value has been added to the `OudsChipState` enum.
+
+**Impact:** Applications with exhaustive `when` expressions on `OudsChipState` will fail to compile and may crash at runtime if upgraded without recompiling.
+
+**Before (v2.x):**
+```kotlin
+OudsBasicSuggestionChip(...) {
+    when (state) {
+        OudsChipState.Enabled -> Icon1()
+        OudsChipState.Hovered -> Icon2()
+        OudsChipState.Pressed -> Icon3()
+        OudsChipState.Disabled -> Icon4()
+        OudsChipState.Focused -> Icon5()
+    }
+}
+```
+
+**After (v3.0):**
+```kotlin
+OudsBasicSuggestionChip(...) {
+    when (state) {
+        OudsChipState.Enabled -> Icon1()
+        OudsChipState.Hovered -> Icon2()
+        OudsChipState.Pressed -> Icon3()
+        OudsChipState.Disabled -> Icon4()
+        OudsChipState.Focused -> Icon5()
+        OudsChipState.Skeleton -> Icon6()  // Add this branch
+    }
+}
+```
+
+##### Migration steps
+
+1. **Search your codebase** for exhaustive `when` expressions on `OudsChipState`
+2. **Add the `OudsChipState.Skeleton` branch** or add an `else` branch
+3. **Recompile your application** after upgrading
+
+---
+
 ## Migrating to 2.0.0
 
 ### Breaking changes
@@ -101,5 +176,6 @@ OudsLinearProgressIndicator(status = OudsProgressIndicatorStatus.Accent)
 
 ## Version history
 
+- **3.0.0** - Minimum Android SDK updated to API 24, OudsChipState Skeleton enum value addition
 - **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress indicator default status change
 - **1.x.x** - Previous stable releases

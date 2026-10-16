@@ -61,7 +61,8 @@ fun rememberCardItemDemoState(
     divider: Boolean = true,
     helperText: String? = null,
     boldLabel: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    skeleton: Boolean = false
 ): CardItemDemoState {
     val state = rememberSaveable(
         decoration,
@@ -95,6 +96,7 @@ fun rememberCardItemDemoState(
         helperText,
         boldLabel,
         enabled,
+        skeleton,
         saver = CardItemDemoState.Saver
     ) {
         CardItemDemoState(
@@ -129,6 +131,7 @@ fun rememberCardItemDemoState(
             helperText,
             boldLabel,
             enabled,
+            skeleton
         )
     }
 
@@ -171,6 +174,7 @@ class CardItemDemoState(
     helperText: String?,
     boldLabel: Boolean,
     enabled: Boolean,
+    skeleton: Boolean,
 ) : BaseListItemDemoState(
     size,
     selectedTabIndex,
@@ -201,7 +205,8 @@ class CardItemDemoState(
     divider,
     helperText,
     boldLabel,
-    enabled
+    enabled,
+    skeleton
 ) {
     companion object {
 
@@ -248,7 +253,8 @@ class CardItemDemoState(
                         divider,
                         helperText,
                         boldLabel,
-                        enabled
+                        enabled,
+                        skeleton
                     )
                 }
             }
