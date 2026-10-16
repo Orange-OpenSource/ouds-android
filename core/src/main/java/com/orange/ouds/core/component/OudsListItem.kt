@@ -84,14 +84,18 @@ import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Static list item displays non-clickable information in a structured format.
  * They are designed to be stacked within a list, with no spacing between the elements.
  *
  * A static list item can be used to present read-only information such as contact details,
  * product specifications, or settings values.
  * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-static-list-item)
+ *
+ * > Design name: Static List Item
+ *
+ * > Design version: 0.1.0
  *
  * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *
@@ -159,8 +163,6 @@ fun OudsListItem(
 }
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Navigation list item allows users to navigate to another screen or perform an action.
  * They are designed to be stacked within a list, with no spacing between the elements.
  *
@@ -171,6 +173,12 @@ fun OudsListItem(
  * These items are designed to be stacked within a list, with no spacing between the elements.
  *
  * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
+ *
+ * > Design name: Navigation List Item
+ *
+ * > Design version: 0.1.0
  *
  * @param label The main label of the list item.
  * @param onClick Callback invoked when the list item is clicked.
