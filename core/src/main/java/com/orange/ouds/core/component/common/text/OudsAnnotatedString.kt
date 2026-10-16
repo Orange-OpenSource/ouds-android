@@ -348,7 +348,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
             if (this@Builder is StrongBuilder) {
                 // Text style annotations which font weight is greater than or equal to FontWeight.Bold are converted to strong annotations
-                // whereas others are filtered out
                 spanStyles.forEach { range ->
                     range.item.fontWeight?.let { fontWeight ->
                         if (fontWeight >= FontWeight.Bold) {
@@ -365,6 +364,13 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
             }
 
             if (this@Builder is StrikethroughBuilder) {
+                // Text style annotations with TextDecoration.LineThrough decoration are converted to strikethrough annotations
+                spanStyles.forEach { range ->
+                    if (range.item.textDecoration == TextDecoration.LineThrough) {
+                        with(range) { builder.addStrikethroughAnnotation(start, end) }
+                    }
+                }
+
                 // Strikethrough annotations
                 getStringAnnotations(0, length).filter { it.item == StrikethroughAnnotation }
                     .forEach { range ->
