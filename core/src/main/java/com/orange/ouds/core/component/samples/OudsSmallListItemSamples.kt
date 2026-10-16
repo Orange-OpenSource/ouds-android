@@ -14,6 +14,7 @@ package com.orange.ouds.core.component.samples
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Settings
@@ -26,6 +27,8 @@ import com.orange.ouds.core.component.OudsListItemTextStyle
 import com.orange.ouds.core.component.OudsSmallListItem
 import com.orange.ouds.core.component.OudsSmallListItemLeading
 import com.orange.ouds.core.component.OudsSmallListItemTrailing
+import com.orange.ouds.core.component.OudsTagSize
+import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
@@ -99,16 +102,29 @@ internal fun OudsSmallListItemWithAllElementsSample() {
 }
 
 @Composable
-internal fun OudsSmallListItemWithImageSample() {
+internal fun OudsSmallListItemWithLeadingImageAndTrailingTagSample() {
     OudsSmallListItem(
-        label = "Compact view",
-        description = "Quick access to content",
+        label = "Product name",
+        description = "Product description",
         leading = OudsSmallListItemLeading.Image(
             painter = CheckerboardPainter,
-            contentDescription = "Content image",
+            contentDescription = "Product image",
             ratio = OudsListItemImageRatio.Square
         ),
-        trailing = OudsSmallListItemTrailing.Text(label = "New", style = OudsListItemTextStyle.LabelStrong)
+        trailing = OudsSmallListItemTrailing.Tag(status = OudsTagStatus.Info(asset = null), label = "New", size = OudsTagSize.Small)
+    )
+}
+
+@Composable
+internal fun OudsSmallListItemWithLeadingIconAndTrailingBadgeSample() {
+    OudsSmallListItem(
+        label = "Messages",
+        description = "Unread notifications",
+        leading = OudsSmallListItemLeading.Icon(
+            imageVector = Icons.Outlined.Email,
+            contentDescription = "Notifications icon"
+        ),
+        trailing = OudsSmallListItemTrailing.Badge(count = 5)
     )
 }
 
@@ -145,8 +161,14 @@ private fun PreviewOudsSmallListItemWithAllElementsSample() = OudsPreview {
 
 @PreviewLightDark
 @Composable
-private fun PreviewOudsSmallListItemWithImageSample() = OudsPreview {
-    OudsSmallListItemWithImageSample()
+private fun PreviewOudsSmallListItemWithLeadingImageAndTrailingTagSample() = OudsPreview {
+    OudsSmallListItemWithLeadingImageAndTrailingTagSample()
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewOudsSmallListItemWithLeadingIconAndTrailingBadgeSample() = OudsPreview {
+    OudsSmallListItemWithLeadingIconAndTrailingBadgeSample()
 }
 
 @PreviewLightDark

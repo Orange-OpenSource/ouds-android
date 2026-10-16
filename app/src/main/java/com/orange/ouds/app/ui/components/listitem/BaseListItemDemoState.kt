@@ -36,6 +36,7 @@ open class BaseListItemDemoState(
     overline: String?,
     extraLabel: String?,
     description: String?,
+    belowTextContent: Boolean,
     leading: Leading,
     leadingIconSize: OudsListItemIconSize,
     leadingIconTint: IconTint,
@@ -53,9 +54,11 @@ open class BaseListItemDemoState(
     trailingTextLabel: String,
     trailingTextExtraLabel: String?,
     trailingTextStyle: OudsListItemTextStyle,
+    bottomContent: Boolean,
     divider: Boolean,
     helperText: String?,
     boldLabel: Boolean,
+    labelContent: Boolean,
     enabled: Boolean,
 ) {
 
@@ -74,6 +77,7 @@ open class BaseListItemDemoState(
                         overline,
                         extraLabel,
                         description,
+                        belowTextContent,
                         leading,
                         leadingIconSize,
                         leadingIconTint,
@@ -91,9 +95,11 @@ open class BaseListItemDemoState(
                         trailingTextLabel,
                         trailingTextExtraLabel,
                         trailingTextStyle,
+                        bottomContent,
                         divider,
                         helperText,
                         boldLabel,
+                        labelContent,
                         enabled
                     )
                 }
@@ -109,27 +115,30 @@ open class BaseListItemDemoState(
                     list[6] as String?,
                     list[7] as String?,
                     list[8] as String?,
-                    list[9] as Leading,
-                    list[10] as OudsListItemIconSize,
-                    list[11] as IconTint,
-                    list[12] as StatusIcon,
-                    list[13] as OudsListItemImageSize,
-                    list[14] as OudsListItemImageRatio,
-                    list[15] as Boolean,
-                    list[16] as Trailing,
-                    list[17] as OudsListItemIconSize,
-                    list[18] as IconTint,
-                    list[19] as StatusIcon,
-                    list[20] as OudsListItemImageSize,
-                    list[21] as OudsListItemImageRatio,
-                    list[22] as Boolean,
-                    list[23] as String,
-                    list[24] as String?,
-                    list[25] as OudsListItemTextStyle,
-                    list[26] as Boolean,
-                    list[27] as String?,
+                    list[9] as Boolean,
+                    list[10] as Leading,
+                    list[11] as OudsListItemIconSize,
+                    list[12] as IconTint,
+                    list[13] as StatusIcon,
+                    list[14] as OudsListItemImageSize,
+                    list[15] as OudsListItemImageRatio,
+                    list[16] as Boolean,
+                    list[17] as Trailing,
+                    list[18] as OudsListItemIconSize,
+                    list[19] as IconTint,
+                    list[20] as StatusIcon,
+                    list[21] as OudsListItemImageSize,
+                    list[22] as OudsListItemImageRatio,
+                    list[23] as Boolean,
+                    list[24] as String,
+                    list[25] as String?,
+                    list[26] as OudsListItemTextStyle,
+                    list[27] as Boolean,
                     list[28] as Boolean,
-                    list[29] as Boolean,
+                    list[29] as String?,
+                    list[30] as Boolean,
+                    list[31] as Boolean,
+                    list[32] as Boolean
                 )
             }
         )
@@ -141,63 +150,87 @@ open class BaseListItemDemoState(
     var selectedTabIndex: Int by mutableIntStateOf(selectedTabIndex)
     val tabs = CustomizationTab.entries
 
-    var boldLabel: Boolean by mutableStateOf(boldLabel)
+    //// General configuration
 
     var clickable: Boolean by mutableStateOf(clickable)
-
-    var description: String? by mutableStateOf(description)
-
-    var divider: Boolean by mutableStateOf(divider)
-
-    var enabled: Boolean by mutableStateOf(enabled)
-
-    var extraLabel: String? by mutableStateOf(extraLabel)
-
-    var helperText: String? by mutableStateOf(helperText)
 
     var indicator: Indicator by mutableStateOf(indicator)
     val indicatorEnabled: Boolean
         get() = clickable
 
-    var label: String by mutableStateOf(label)
+    var verticalAlignment: OudsListItemVerticalAlignment by mutableStateOf(verticalAlignment)
+
+    var divider: Boolean by mutableStateOf(divider)
+
+    var enabled: Boolean by mutableStateOf(enabled)
+
+    var bottomContent: Boolean by mutableStateOf(bottomContent)
+
+    //// Leading configuration
 
     var leading: Leading by mutableStateOf(leading)
 
     var leadingIconSize: OudsListItemIconSize by mutableStateOf(leadingIconSize)
     var leadingIconTint: IconTint by mutableStateOf(leadingIconTint)
     var leadingStatusIcon: StatusIcon by mutableStateOf(leadingStatusIcon)
-    val leadingIconOptionsEnabled: Boolean
+    val leadingIconSettingsVisible: Boolean
         get() = leading == Leading.Icon
 
     var leadingImageSize: OudsListItemImageSize by mutableStateOf(leadingImageSize)
     var leadingImageRatio: OudsListItemImageRatio by mutableStateOf(leadingImageRatio)
     var leadingImageRoundedCorners: Boolean by mutableStateOf(leadingImageRoundedCorners)
-    val leadingImageOptionsEnabled: Boolean
+    val leadingImageSettingsVisible: Boolean
         get() = leading == Leading.Image
 
+    val leadingContentSettingsVisible: Boolean
+        get() = leading == Leading.Content
+
+    //// Texts configuration
+
+    var label: String by mutableStateOf(label)
+    var boldLabel: Boolean by mutableStateOf(boldLabel)
+    var labelContent: Boolean by mutableStateOf(labelContent)
+    val labelOptionsEnabled: Boolean
+        get() = !labelContent
+
+    var description: String? by mutableStateOf(description)
+
     var overline: String? by mutableStateOf(overline)
+
+    var extraLabel: String? by mutableStateOf(extraLabel)
+
+    var belowTextContent: Boolean by mutableStateOf(belowTextContent)
+
+    var helperText: String? by mutableStateOf(helperText)
+
+    //// Trailing configuration
 
     var trailing: Trailing by mutableStateOf(trailing)
 
     var trailingIconSize: OudsListItemIconSize by mutableStateOf(trailingIconSize)
     var trailingIconTint: IconTint by mutableStateOf(trailingIconTint)
     var trailingStatusIcon: StatusIcon by mutableStateOf(trailingStatusIcon)
-    val trailingIconOptionsEnabled: Boolean
+    val trailingIconSettingsVisible: Boolean
         get() = trailing == Trailing.Icon
 
     var trailingImageSize: OudsListItemImageSize by mutableStateOf(trailingImageSize)
     var trailingImageRatio: OudsListItemImageRatio by mutableStateOf(trailingImageRatio)
     var trailingImageRoundedCorners: Boolean by mutableStateOf(trailingImageRoundedCorners)
-    val trailingImageOptionsEnabled: Boolean
+    val trailingImageSettingsVisible: Boolean
         get() = trailing == Trailing.Image
 
     var trailingTextLabel: String by mutableStateOf(trailingTextLabel)
     var trailingTextExtraLabel: String? by mutableStateOf(trailingTextExtraLabel)
     var trailingTextStyle: OudsListItemTextStyle by mutableStateOf(trailingTextStyle)
-    val trailingTextOptionsEnabled: Boolean
+    val trailingTextSettingsVisible: Boolean
         get() = trailing == Trailing.Text
 
-    var verticalAlignment: OudsListItemVerticalAlignment by mutableStateOf(verticalAlignment)
+    val trailingComponentExampleAlertVisible: Boolean
+        get() = trailing in listOf(Trailing.Badge, Trailing.Tag)
+
+    val trailingContentSettingsVisible: Boolean
+        get() = trailing == Trailing.Content
+
 
     enum class CustomizationTab {
         General, Leading, Texts, Trailing
@@ -217,12 +250,12 @@ open class BaseListItemDemoState(
         }
     }
 
-    enum class Leading {
-        None, Icon, Image
+    enum class Leading(val availableForSizes: List<Size> = listOf(Size.Default, Size.Small)) {
+        None, Icon, Image, Content(listOf(Size.Default))
     }
 
-    enum class Trailing {
-        None, Icon, Image, Text
+    enum class Trailing(val availableForSizes: List<Size> = listOf(Size.Default, Size.Small)) {
+        None, Badge, Icon, Image, Tag, Text, Content(listOf(Size.Default))
     }
 
     enum class StatusIcon {
