@@ -432,6 +432,7 @@ private fun OudsLink(
                 val inlineTrailingIconId = "trailingIcon"
                 val text = buildAnnotatedString {
                     append(label)
+                    append("\u2060") // 'word joiner' character
                     appendInlineContent(inlineTrailingIconId, "[$inlineTrailingIconId]")
                 }
                 val inlineTrailingIcon = mapOf(
