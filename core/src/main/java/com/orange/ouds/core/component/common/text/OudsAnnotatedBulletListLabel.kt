@@ -107,6 +107,6 @@ class OudsAnnotatedBulletListLabel internal constructor(annotatedString: Annotat
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated bullet list label.
  */
-fun buildOudsAnnotatedBulletListLabel(builder: (OudsAnnotatedBulletListLabel.Builder).() -> Unit): OudsAnnotatedBulletListLabel {
+inline fun buildOudsAnnotatedBulletListLabel(builder: (OudsAnnotatedBulletListLabel.Builder).() -> Unit): OudsAnnotatedBulletListLabel {
     return buildOudsAnnotatedString<OudsAnnotatedBulletListLabel, OudsAnnotatedBulletListLabel.Builder>(builder)
 }

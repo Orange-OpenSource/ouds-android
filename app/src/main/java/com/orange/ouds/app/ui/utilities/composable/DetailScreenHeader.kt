@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,6 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.priorityClickable
+import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.theme.OudsTheme
 
 @Composable
@@ -61,12 +61,7 @@ fun DetailScreenDescription(
     description: String,
     modifier: Modifier = Modifier
 ) {
-    Text(
-        modifier = modifier,
-        text = description,
-        color = OudsTheme.colorScheme.content.default,
-        style = OudsTheme.typography.body.large.default
-    )
+    OudsBodyText(modifier = modifier, text = description)
 }
 
 @PreviewLightDark

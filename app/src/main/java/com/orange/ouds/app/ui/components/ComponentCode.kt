@@ -24,7 +24,6 @@ import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
-import com.orange.ouds.core.component.common.text.OudsAnnotatedString
 
 fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() -> Unit) {
     if (onColoredBox) {
@@ -38,7 +37,7 @@ fun Code.Builder.coloredBoxCall(onColoredBox: Boolean, content: Code.Builder.() 
     }
 }
 
-internal inline fun <reified T> FunctionCall.Builder.annotatedStringArgument(name: String?) where T : OudsAnnotatedString<T> {
+inline fun <reified T> FunctionCall.Builder.annotatedStringArgument(name: String?) {
     val functionName = "build${T::class.simpleName}"
     functionCallArgument(name, functionName) {
         trailingLambda = true

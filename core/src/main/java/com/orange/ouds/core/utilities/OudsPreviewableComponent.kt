@@ -103,6 +103,8 @@ import com.orange.ouds.core.component.PreviewOudsAlertMessageWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsBadge
 import com.orange.ouds.core.component.PreviewOudsBadgeWithIcon
 import com.orange.ouds.core.component.PreviewOudsBadgeWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsBodyText
+import com.orange.ouds.core.component.PreviewOudsBodyTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsBottomSheetScaffold
 import com.orange.ouds.core.component.PreviewOudsBulletList
 import com.orange.ouds.core.component.PreviewOudsBulletListRtl
@@ -126,7 +128,11 @@ import com.orange.ouds.core.component.PreviewOudsCheckboxItemWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicator
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorSized
 import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorWithHelperText
+import com.orange.ouds.core.component.PreviewOudsCodeText
+import com.orange.ouds.core.component.PreviewOudsCodeTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsColoredBox
+import com.orange.ouds.core.component.PreviewOudsDisplayText
+import com.orange.ouds.core.component.PreviewOudsDisplayTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsDivider
 import com.orange.ouds.core.component.PreviewOudsExtendedFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFilterChip
@@ -134,9 +140,13 @@ import com.orange.ouds.core.component.PreviewOudsFilterChipOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsFilterChipWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsFloatingActionButtonWithUntintedIcon
+import com.orange.ouds.core.component.PreviewOudsHeadingText
+import com.orange.ouds.core.component.PreviewOudsHeadingTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsInlineAlert
 import com.orange.ouds.core.component.PreviewOudsInlineAlertWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsInputTag
+import com.orange.ouds.core.component.PreviewOudsLabelText
+import com.orange.ouds.core.component.PreviewOudsLabelTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsLargeFloatingActionButton
 import com.orange.ouds.core.component.PreviewOudsLargeTopAppBar
 import com.orange.ouds.core.component.PreviewOudsLinearProgressIndicator
@@ -326,6 +336,38 @@ interface OudsPreviewableComponent {
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+    }
+
+    @InternalOudsApi
+    object BodyText {
+
+        @InternalOudsApi
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBodyText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBodyTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
@@ -753,6 +795,38 @@ interface OudsPreviewableComponent {
     }
 
     @InternalOudsApi
+    object CodeText {
+
+        @InternalOudsApi
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCodeText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCodeTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+    }
+
+    @InternalOudsApi
     object ColoredBox : OudsPreviewableComponent {
 
         override val parameters: List<Any> = OudsColoredBoxPreviewParameterProvider().values.toList()
@@ -764,6 +838,38 @@ interface OudsPreviewableComponent {
                 darkThemeEnabled = darkThemeEnabled,
                 color = parameter as OudsColoredBoxColor
             )
+        }
+    }
+
+    @InternalOudsApi
+    object DisplayText {
+
+        @InternalOudsApi
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsDisplayText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsDisplayTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
@@ -930,6 +1036,38 @@ interface OudsPreviewableComponent {
     }
 
     @InternalOudsApi
+    object HeadingText {
+
+        @InternalOudsApi
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsHeadingText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsHeadingTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+    }
+
+    @InternalOudsApi
     object InlineAlert {
 
         @InternalOudsApi
@@ -972,6 +1110,38 @@ interface OudsPreviewableComponent {
                 theme = theme,
                 darkThemeEnabled = darkThemeEnabled
             )
+        }
+    }
+
+    @InternalOudsApi
+    object LabelText {
+
+        @InternalOudsApi
+        object Default : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLabelText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedText : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLabelTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled
+                )
+            }
         }
     }
 
@@ -1882,7 +2052,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object WithRoundedCorners : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 900
+            const val PreviewHeightDp = 960
 
             override val parameters: List<Any> = emptyList()
 
