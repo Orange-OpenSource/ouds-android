@@ -1748,19 +1748,16 @@ data class OudsComponents internal constructor(
         )
     }
 
-    @ConsistentCopyVisibility
-    data class Skeleton internal constructor(
+    class Skeleton internal constructor(
         val color: Color
     ) {
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: androidx.compose.ui.graphics.Color,
             val gradient: Gradient
         ) {
 
-            @ConsistentCopyVisibility
-            data class Gradient internal constructor(
+            class Gradient internal constructor(
                 val startEnd: androidx.compose.ui.graphics.Color,
                 val middle: androidx.compose.ui.graphics.Color
             )

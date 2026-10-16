@@ -5408,33 +5408,19 @@ public final class com/orange/ouds/core/theme/OudsComponents$RadioButton$Size {
 
 public final class com/orange/ouds/core/theme/OudsComponents$Skeleton {
 	public static final field $stable I
-	public final fun component1 ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color;
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getColor ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$Skeleton$Color {
 	public static final field $stable I
-	public final fun component1-0d7_KjU ()J
-	public final fun component2 ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color$Gradient;
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBackground-0d7_KjU ()J
 	public final fun getGradient ()Lcom/orange/ouds/core/theme/OudsComponents$Skeleton$Color$Gradient;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$Skeleton$Color$Gradient {
 	public static final field $stable I
-	public final fun component1-0d7_KjU ()J
-	public final fun component2-0d7_KjU ()J
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getMiddle-0d7_KjU ()J
 	public final fun getStartEnd-0d7_KjU ()J
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$Switch {
