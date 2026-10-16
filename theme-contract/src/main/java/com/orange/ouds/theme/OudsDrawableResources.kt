@@ -223,6 +223,7 @@ interface OudsDrawableResources {
     /**
      * Note: Resources in [Other] interface are not coming from the OUDS icon kit.
      */
+    @InternalOudsApi
     interface Other {
         @get:DrawableRes
         val headingTextMarker: Int?
