@@ -2165,7 +2165,7 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeT
 	public static final field $stable I
 }
 
-public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun <init> (I)V
@@ -2174,12 +2174,7 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeT
 	public fun <init> (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedCodeText;)V
 	public fun <init> (Ljava/lang/String;)V
 	public fun addColor-ek8zF_U (JII)V
-	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
-	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
-	public fun addStrong (II)V
 	public fun pushColor-8_81llA (J)I
-	public fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
-	public fun pushStrong ()I
 }
 
 public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeTextKt {

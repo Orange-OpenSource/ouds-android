@@ -18,7 +18,7 @@ import androidx.compose.ui.text.AnnotatedString
 /**
  * An annotated string for [com.orange.ouds.core.component.OudsCodeText] text in OUDS components.
  *
- * This class supports both colored text, strong (bold/emphasized) text and clickable links to create rich, interactive code texts.
+ * This class supports colored text for syntax highlighting in code texts.
  *
  * Use [buildOudsAnnotatedCodeText] to create instances:
  * ```
@@ -26,10 +26,7 @@ import androidx.compose.ui.text.AnnotatedString
  * OudsCodeText(
  *     text = buildOudsAnnotatedCodeText {
  *         withColor(color = info) { append("val") }
- *         withStrong {
- *              append(" state")
- *         }
- *         append(" = ")
+ *         append(" state = ")
  *         withColor(color = positive) { append("rememberState") }
  *         append("()")
  *     }
@@ -39,9 +36,7 @@ import androidx.compose.ui.text.AnnotatedString
 class OudsAnnotatedCodeText internal constructor(annotatedString: AnnotatedString) :
     OudsAnnotatedString<OudsAnnotatedCodeText>(annotatedString) {
 
-    class Builder(capacity: Int = 16) :
-        OudsAnnotatedString.Builder<OudsAnnotatedCodeText>(capacity, OudsAnnotatedCodeText::class.java),
-        StrongBuilder, LinkBuilder, ColorBuilder {
+    class Builder(capacity: Int = 16) : OudsAnnotatedString.Builder<OudsAnnotatedCodeText>(capacity, OudsAnnotatedCodeText::class.java), ColorBuilder {
 
         /**
          * Creates a builder initialized with plain text.
@@ -70,13 +65,6 @@ class OudsAnnotatedCodeText internal constructor(annotatedString: AnnotatedStrin
             append(text)
         }
 
-        override fun addStrong(start: Int, end: Int) = addStrongImpl(start, end)
-        override fun pushStrong(): Int = pushStrongImpl()
-
-        override fun addLink(url: OudsLinkAnnotation.Url, start: Int, end: Int) = addLinkImpl(url, start, end)
-        override fun addLink(clickable: OudsLinkAnnotation.Clickable, start: Int, end: Int) = addLinkImpl(clickable, start, end)
-        override fun pushLink(link: OudsLinkAnnotation): Int = pushLinkImpl(link)
-
         override fun addColor(color: Color, start: Int, end: Int) = addColorImpl(color, start, end)
         override fun pushColor(color: Color): Int = pushColorImpl(color)
     }
@@ -89,10 +77,7 @@ class OudsAnnotatedCodeText internal constructor(annotatedString: AnnotatedStrin
  * ```
  * buildOudsAnnotatedCodeText {
  *      withColor(color = info) { append("val") }
- *      withStrong {
- *          append(" state")
- *      }
- *      append(" = ")
+ *      append(" state = ")
  *      withColor(color = positive) { append("rememberState") }
  *      append("()")
  * }
