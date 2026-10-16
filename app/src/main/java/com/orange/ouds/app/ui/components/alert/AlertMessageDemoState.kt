@@ -37,7 +37,8 @@ fun rememberAlertMessageDemoState(
     actionLink: String? = null,
     actionLinkPosition: OudsAlertMessageActionLinkPosition = OudsAlertMessageDefaults.ActionLinkPosition,
     bulletList: List<String> = List(MaxBulletCount) { "" },
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     status,
     icon,
@@ -48,9 +49,10 @@ fun rememberAlertMessageDemoState(
     actionLinkPosition,
     bulletList,
     annotatedText,
+    skeleton,
     saver = AlertMessageDemoState.Saver
 ) {
-    AlertMessageDemoState(status, icon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, annotatedText)
+    AlertMessageDemoState(status, icon, hasCloseButton, label, description, actionLink, actionLinkPosition, bulletList, annotatedText, skeleton)
 }
 
 class AlertMessageDemoState(
@@ -62,7 +64,8 @@ class AlertMessageDemoState(
     actionLink: String?,
     actionLinkPosition: OudsAlertMessageActionLinkPosition,
     bulletList: List<String>,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) {
 
     @Suppress("UNCHECKED_CAST")
@@ -88,7 +91,8 @@ class AlertMessageDemoState(
                         actionLink,
                         actionLinkPosition,
                         bulletList,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             },
@@ -105,7 +109,8 @@ class AlertMessageDemoState(
                     list[5] as String?,
                     list[6] as OudsAlertMessageActionLinkPosition,
                     list[7] as List<String>,
-                    list[8] as Boolean
+                    list[8] as Boolean,
+                    list[9] as Boolean
                 )
             }
         )
@@ -137,6 +142,8 @@ class AlertMessageDemoState(
         get() = !actionLink.isNullOrEmpty()
     
     var bulletList: List<String> by mutableStateOf(bulletList)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     val descriptionTextInputEnabled: Boolean
         get() = !annotatedText

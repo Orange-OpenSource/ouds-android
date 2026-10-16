@@ -106,33 +106,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
-/**
- * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
- *
- * This version of the circular progress indicator is **determinate**. Use the other signature for an indeterminate progress.
- *
- * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
- * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
- * then this scale is applied to all dimensions to maintain consistent proportions.
- *
- * > Design name: Circular Progress Indicator
- *
- * > Design version: 1.2.0
- *
- * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
- *   into the range.
- * @param modifier The [Modifier] to be applied to this circular progress indicator.
- * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
- * @param track Whether the track is displayed or not.
- *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
- *   easier to read (for determinate variant).
- *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
- *   appearance is needed.
- * @param gapSize The size of the gap between the progress indicator and the track.
- *
- * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
@@ -154,32 +127,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
-/**
- * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
- *
- * This version of the circular progress indicator is **determinate**. Use the other signature for an indeterminate progress.
- *
- * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
- * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
- * then this scale is applied to all dimensions to maintain consistent proportions.
- *
- * > Design name: Circular Progress Indicator
- *
- * > Design version: 1.2.0
- *
- * @param progress The progress of this indicator, where 0.0 represents no progress and 1.0 represents full progress. Values outside of this range are coerced
- *   into the range.
- * @param modifier The [Modifier] to be applied to this circular progress indicator.
- * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
- * @param track Whether the track is displayed or not.
- *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
- *   easier to read (for determinate variant).
- *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
- *   appearance is needed.
- *
- * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
@@ -248,31 +195,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
-/**
- * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
- *
- * This version of the circular progress indicator is **indeterminate**. Use the other signature for a determinate progress.
- *
- * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
- * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
- * then this scale is applied to all dimensions to maintain consistent proportions.
- *
- * > Design name: Circular Progress Indicator
- *
- * > Design version: 1.2.0
- *
- * @param modifier The [Modifier] to be applied to this circular progress indicator.
- * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
- * @param track Whether the track is displayed or not.
- *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
- *   easier to read (for determinate variant).
- *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
- *   appearance is needed.
- * @param gapSize The size of the gap between the progress indicator and the track.
- *
- * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN
@@ -292,30 +214,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
-/**
- * A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
- *
- * This version of the circular progress indicator is **indeterminate**. Use the other signature for a determinate progress.
- *
- * The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
- * (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
- * then this scale is applied to all dimensions to maintain consistent proportions.
- *
- * > Design name: Circular Progress Indicator
- *
- * > Design version: 1.2.0
- *
- * @param modifier The [Modifier] to be applied to this circular progress indicator.
- * @param status The status of the progress indicator. Its color is based on this status. See [OudsProgressIndicatorStatus] for allowed values.
- * @param track Whether the track is displayed or not.
- *   Use `true` when the indicator is shown on its own and needs a clear structure. The track helps define the full range of progress and makes the value
- *   easier to read (for determinate variant).
- *   Use `false` when the indicator is embedded inside another component (e.g. button, tag, toast). Also use it when a more minimal and lightweight
- *   appearance is needed.
- *
- * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
- */
 @Deprecated(
     "Maintained for binary compatibility. Use overload with additional parameters.",
     level = DeprecationLevel.HIDDEN

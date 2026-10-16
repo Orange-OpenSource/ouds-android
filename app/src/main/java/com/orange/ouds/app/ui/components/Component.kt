@@ -42,6 +42,7 @@ import com.orange.ouds.app.ui.components.progressindicator.CircularProgressIndic
 import com.orange.ouds.app.ui.components.progressindicator.LinearProgressIndicatorDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoScreen
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonItemDemoScreen
+import com.orange.ouds.app.ui.components.skeleton.SkeletonDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchDemoScreen
 import com.orange.ouds.app.ui.components.switch.SwitchItemDemoScreen
 import com.orange.ouds.app.ui.components.tag.InputTagDemoScreen
@@ -187,6 +188,13 @@ sealed class Component(
         listOf(Variant.RadioButton, Variant.RadioButtonItem)
     )
 
+    data object Skeleton : Component(
+        R.string.app_components_skeleton_tech,
+        R.string.app_components_skeleton_description_text,
+        { SkeletonIllustration() },
+        demoScreen = { SkeletonDemoScreen() }
+    )
+    
     data object Switch : Component(
         R.string.app_components_switch_tech,
         R.string.app_components_switch_description_text,

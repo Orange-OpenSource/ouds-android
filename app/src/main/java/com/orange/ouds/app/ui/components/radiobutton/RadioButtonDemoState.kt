@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.orange.ouds.app.ui.components.radiobutton.RadioButtonDemoState.Companion.Values
@@ -26,44 +26,45 @@ fun rememberRadioButtonDemoState(
     selectedValue: Int = Values.first(),
     enabled: Boolean = true,
     readOnly: Boolean = false,
-    error: Boolean = false
-) = rememberSaveable(selectedValue, enabled, readOnly, error, saver = RadioButtonDemoState.Saver) {
-    RadioButtonDemoState(selectedValue, enabled, readOnly, error)
+    error: Boolean = false,
+    skeleton: Boolean = false
+) = rememberSaveable(selectedValue, enabled, readOnly, error, skeleton, saver = RadioButtonDemoState.Saver) {
+    RadioButtonDemoState(selectedValue, enabled, readOnly, error, skeleton)
 }
 
 class RadioButtonDemoState(
     selectedValue: Int,
     enabled: Boolean,
     readOnly: Boolean,
-    error: Boolean
+    error: Boolean,
+    skeleton: Boolean
 ) {
     companion object {
+
         val Values = listOf(1, 2)
 
-        val Saver = run {
-            val selectedValueKey = "selectedValue"
-            val enabledKey = "enabled"
-            val readOnlyKey = "readOnly"
-            val errorKey = "error"
-            mapSaver(
-                save = { state ->
-                    mapOf(
-                        selectedValueKey to state.selectedValue,
-                        enabledKey to state.enabled,
-                        readOnlyKey to state.readOnly,
-                        errorKey to state.error,
-                    )
-                },
-                restore = { map ->
-                    RadioButtonDemoState(
-                        map[selectedValueKey] as Int,
-                        map[enabledKey] as Boolean,
-                        map[readOnlyKey] as Boolean,
-                        map[errorKey] as Boolean
+        val Saver = listSaver(
+            save = { state ->
+                with(state) {
+                    listOf(
+                        selectedValue,
+                        enabled,
+                        readOnly,
+                        error,
+                        skeleton
                     )
                 }
-            )
-        }
+            },
+            restore = { list: List<Any?> ->
+                RadioButtonDemoState(
+                    list[0] as Int,
+                    list[1] as Boolean,
+                    list[2] as Boolean,
+                    list[3] as Boolean,
+                    list[4] as Boolean
+                )
+            }
+        )
     }
 
     var selectedValue: Int by mutableIntStateOf(selectedValue)
@@ -74,6 +75,8 @@ class RadioButtonDemoState(
 
     var error: Boolean by mutableStateOf(error)
 
+    var skeleton: Boolean by mutableStateOf(skeleton)
+
     val enabledSwitchEnabled: Boolean
         get() = !error
 
@@ -82,5 +85,4 @@ class RadioButtonDemoState(
 
     val errorSwitchEnabled: Boolean
         get() = enabled && !readOnly
-
 }

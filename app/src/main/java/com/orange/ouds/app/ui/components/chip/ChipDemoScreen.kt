@@ -24,6 +24,7 @@ import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -63,6 +64,11 @@ fun ChipDemoBottomSheetContent(state: ChipDemoState) {
             chips = ChipDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), it in enabledIcons) },
             selectedChipIndex = ChipDemoState.Icon.entries.indexOf(icon),
             onSelectionChange = { index -> icon = ChipDemoState.Icon.entries[index] }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
         )
     }
 }
@@ -105,4 +111,5 @@ fun FunctionCall.Builder.chipArguments(state: ChipDemoState, themeDrawableResour
         labelArgument("$label${separator}1")
     }
     enabledArgument(enabled)
+    if (skeleton) skeletonArgument()
 }

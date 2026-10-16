@@ -39,4 +39,10 @@ internal class OudsInlineAlertTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class Skeleton : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.InlineAlert.Skeleton,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

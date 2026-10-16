@@ -30,10 +30,14 @@ import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
-internal fun <T : Enum<T>> Modifier.outerBorder(state: T, shape: Shape = RectangleShape, handleHighContrastMode: Boolean = false): Modifier {
+internal fun <T> Modifier.outerBorder(
+    state: T,
+    shape: Shape = RectangleShape,
+    handleHighContrastMode: Boolean = false
+): Modifier where T : Enum<T>, T : OudsComponentState {
     // To be able to distinguish the enabled and the hover states when high contrast mode is activated,
     // the hover state must display the focus border in this case
-    return if (state.name == "Focused" || (state.name == "Hovered" && handleHighContrastMode && LocalHighContrastModeEnabled.current)) {
+    return if (state.name == OudsComponentState.Focused || (state.name == OudsComponentState.Hovered && handleHighContrastMode && LocalHighContrastModeEnabled.current)) {
         OudsTheme.borders.width.focus.takeUnlessHairline?.let { width ->
             outerBorder(
                 width = width,
