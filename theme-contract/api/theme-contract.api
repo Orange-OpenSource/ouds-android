@@ -1,7 +1,3 @@
-public abstract interface class com/orange/ouds/theme/OudsDrawableResources$Other {
-	public abstract fun getHeadingTextMarker ()Ljava/lang/Integer;
-}
-
 public abstract interface class com/orange/ouds/theme/OudsThemeContract {
 	public abstract fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public abstract fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
