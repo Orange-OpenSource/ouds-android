@@ -6062,15 +6062,9 @@ public final class com/orange/ouds/core/theme/OudsComponents$TextInput$Space$Row
 
 public final class com/orange/ouds/core/theme/OudsComponents$Typography {
 	public static final field $stable I
-	public final fun component1 ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Color;
-	public final fun component2 ()Z
-	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Space;
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getColor ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Color;
 	public final fun getHeadingLargeMarker ()Z
 	public final fun getSpace ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Space;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$Typography$Color {
@@ -6085,22 +6079,13 @@ public final class com/orange/ouds/core/theme/OudsComponents$Typography$Color$Co
 
 public final class com/orange/ouds/core/theme/OudsComponents$Typography$Space {
 	public static final field $stable I
-	public final fun component1 ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Space$PaddingBlock;
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getPaddingBlock ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Space$PaddingBlock;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$Typography$Space$PaddingBlock {
 	public static final field $stable I
-	public final fun component1-D9Ej5fM ()F
-	public final fun component2-D9Ej5fM ()F
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBottomHeadingLargeMarker-D9Ej5fM ()F
 	public final fun getTopHeadingLargeMarker-D9Ej5fM ()F
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/theme/OudsEffects {
