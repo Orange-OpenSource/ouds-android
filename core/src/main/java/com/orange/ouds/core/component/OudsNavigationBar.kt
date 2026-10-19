@@ -228,56 +228,55 @@ data class OudsNavigationBarItem(
             WindowWidthSizeClass.compute(dpWidth = currentWindowWidth().value)
         }
         val iconPosition = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) NavigationItemIconPosition.Top else NavigationItemIconPosition.Start
+        val selectedContentColor = contentColor(state = state, selected = true)
+        val unselectedContentColor = contentColor(state = state, selected = false)
 
-        with(OudsTheme.componentsTokens.bar) {
-            val selectedContentColor = contentColor(state = state, selected = true)
-            val unselectedContentColor = contentColor(state = state, selected = false)
-
-            CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                ShortNavigationBarItem(
-                    modifier = modifier
-                        .fillMaxHeight()
-                        .indicator(state = state, selected = selected, iconPosition = iconPosition)
-                        .semantics {
-                            contentDescription = badge?.contentDescription.orEmpty()
-                        }
-                        .componentContentTestTag(),
-                    selected = selected,
-                    onClick = onClick,
-                    icon = {
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            ShortNavigationBarItem(
+                modifier = modifier
+                    .fillMaxHeight()
+                    .indicator(state = state, selected = selected, iconPosition = iconPosition)
+                    .semantics(mergeDescendants = true) {
                         if (badge != null) {
-                            OudsBadgedIcon(
-                                modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
-                                badgeCount = badge.count,
-                                badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
-                            ) {
-                                icon.Content()
-                            }
-                        } else {
+                            contentDescription = badge.contentDescription
+                        }
+                    }
+                    .componentContentTestTag(),
+                selected = selected,
+                onClick = onClick,
+                icon = {
+                    if (badge != null) {
+                        OudsBadgedIcon(
+                            modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
+                            badgeCount = badge.count,
+                            badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                        ) {
                             icon.Content()
                         }
-                    },
-                    iconPosition = iconPosition,
-                    label = label?.let {
-                        {
-                            Text(
-                                text = it,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                style = OudsTheme.typography.label.small.moderate
-                            )
-                        }
-                    },
-                    colors = ShortNavigationBarItemDefaults.colors(
-                        selectedIconColor = selectedContentColor,
-                        selectedTextColor = selectedContentColor,
-                        selectedIndicatorColor = materialIndicatorColor(state = state, selected = selected),
-                        unselectedIconColor = unselectedContentColor,
-                        unselectedTextColor = unselectedContentColor,
-                    ),
-                    interactionSource = interactionSource
-                )
-            }
+                    } else {
+                        icon.Content()
+                    }
+                },
+                iconPosition = iconPosition,
+                label = label?.let {
+                    {
+                        Text(
+                            text = it,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = OudsTheme.typography.label.small.moderate
+                        )
+                    }
+                },
+                colors = ShortNavigationBarItemDefaults.colors(
+                    selectedIconColor = selectedContentColor,
+                    selectedTextColor = selectedContentColor,
+                    selectedIndicatorColor = materialIndicatorColor(state = state, selected = selected),
+                    unselectedIconColor = unselectedContentColor,
+                    unselectedTextColor = unselectedContentColor,
+                ),
+                interactionSource = interactionSource
+            )
         }
     }
 }
