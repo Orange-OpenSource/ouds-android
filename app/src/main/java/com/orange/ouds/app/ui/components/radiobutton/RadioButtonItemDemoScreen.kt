@@ -30,6 +30,7 @@ import com.orange.ouds.app.ui.components.onClickArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
+import com.orange.ouds.app.ui.utilities.composable.AccessibilityAnnouncementLaunchedEffect
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -85,8 +86,18 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                 Modifier.padding(horizontal = OudsTheme.grids.margin)
             }.selectableGroup()
         ) {
+
+
             RadioButtonItemDemoState.Values.forEachIndexed { index, radioButtonValue ->
                 val isLastItem = index == RadioButtonItemDemoState.Values.lastIndex
+                val error = controlItemError(
+                    state = this@with,
+                    isLastItem = isLastItem,
+                    errorMessageHtmlResId = R.string.app_components_radioButtonItem_annotatedErrorMessage_text
+                )
+                if (isLastItem) {
+                    AccessibilityAnnouncementLaunchedEffect(error)
+                }
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
@@ -100,11 +111,7 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                     reversed = reversed,
                     enabled = enabled,
                     readOnly = readOnly,
-                    error = controlItemError(
-                        state = this@with,
-                        isLastItem = isLastItem,
-                        errorMessageHtmlResId = R.string.app_components_radioButtonItem_annotatedErrorMessage_text
-                    ),
+                    error = error,
                     constrainedMaxWidth = constrainedMaxWidth
                 )
             }
