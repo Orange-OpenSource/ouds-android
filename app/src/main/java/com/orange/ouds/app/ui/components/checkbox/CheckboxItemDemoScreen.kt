@@ -65,11 +65,8 @@ private fun CheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
-                val isLastItem = index == CheckboxIdentifier.entries.lastIndex
-                val error = checkboxItemError(state = this, isLastItem = isLastItem)
-                if (isLastItem) {
-                    AccessibilityAnnouncementLaunchedEffect(error)
-                }
+                val error = checkboxItemError(state = this, isLastItem = index == CheckboxIdentifier.entries.lastIndex)
+                AccessibilityAnnouncementLaunchedEffect(error)
                 OudsCheckboxItem(
                     checked = when (identifier) {
                         CheckboxIdentifier.First -> checkedValues.first
@@ -102,11 +99,8 @@ private fun IndeterminateCheckboxItemDemoContent(state: CheckboxItemDemoState) {
     with(state) {
         CheckboxItemDemoColumn(edgeToEdge = edgeToEdge) {
             CheckboxIdentifier.entries.forEachIndexed { index, identifier ->
-                val isLastItem = index == CheckboxIdentifier.entries.lastIndex
-                val error = checkboxItemError(state = this, isLastItem = isLastItem)
-                if (isLastItem) {
-                    AccessibilityAnnouncementLaunchedEffect(error)
-                }
+                val error = checkboxItemError(state = this, isLastItem = index == CheckboxIdentifier.entries.lastIndex)
+                AccessibilityAnnouncementLaunchedEffect(error)
                 OudsTriStateCheckboxItem(
                     state = when (identifier) {
                         CheckboxIdentifier.First -> toggleableStateValues.first

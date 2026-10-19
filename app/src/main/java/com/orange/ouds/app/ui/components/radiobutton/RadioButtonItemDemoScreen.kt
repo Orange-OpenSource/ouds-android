@@ -86,18 +86,13 @@ private fun RadioButtonItemDemoContent(state: RadioButtonItemDemoState) {
                 Modifier.padding(horizontal = OudsTheme.grids.margin)
             }.selectableGroup()
         ) {
-
-
             RadioButtonItemDemoState.Values.forEachIndexed { index, radioButtonValue ->
-                val isLastItem = index == RadioButtonItemDemoState.Values.lastIndex
                 val error = controlItemError(
                     state = this@with,
-                    isLastItem = isLastItem,
+                    isLastItem = index == RadioButtonItemDemoState.Values.lastIndex,
                     errorMessageHtmlResId = R.string.app_components_radioButtonItem_annotatedErrorMessage_text
                 )
-                if (isLastItem) {
-                    AccessibilityAnnouncementLaunchedEffect(error)
-                }
+                AccessibilityAnnouncementLaunchedEffect(error)
                 OudsRadioButtonItem(
                     selected = radioButtonValue == selectedValue,
                     onClick = { selectedValue = radioButtonValue },
