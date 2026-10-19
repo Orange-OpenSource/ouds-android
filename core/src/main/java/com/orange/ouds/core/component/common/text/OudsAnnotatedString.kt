@@ -32,7 +32,6 @@ import androidx.compose.ui.text.toUpperCase
 import com.orange.ouds.core.component.OudsLinkState
 import com.orange.ouds.core.component.linkContentColor
 import com.orange.ouds.core.theme.LocalColorMode
-import com.orange.ouds.core.theme.OudsTheme
 
 /**
  * Base class for annotated strings with rich text formatting support in OUDS components.
@@ -47,7 +46,6 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
         where T : OudsAnnotatedString<T> {
 
     internal companion object {
-
         const val StrongAnnotation = "OudsAnnotatedString.StrongAnnotation"
         const val StrikethroughAnnotation = "OudsAnnotatedString.StrikethroughAnnotation"
         const val ColorAnnotationTag = "ColorAnnotation"
@@ -60,10 +58,9 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
     // If it is accessed elsewhere in the hierarchy, the light / dark mode or the OudsColorMode might be different
     @Composable
     internal fun annotatedString(
-        strongStyle: TextStyle = OudsTheme.typography.label.medium.strong,
-        linkStyle: TextStyle = OudsTheme.typography.label.medium.strong
+        linkAndStrongTextStyle: TextStyle
     ): AnnotatedString {
-        val linkStyles = getTextLinkStyles(linkStyle)
+        val linkStyles = getTextLinkStyles(linkAndStrongTextStyle)
         return _annotatedString.mapAnnotations { range ->
             when (val annotation = range.item) {
                 is StringAnnotation if range.tag == ColorAnnotationTag -> {
@@ -71,7 +68,7 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                     with(range) { AnnotatedString.Range(SpanStyle(color = color), start, end) }
                 }
                 is StringAnnotation if annotation.value == StrongAnnotation -> {
-                    with(range) { AnnotatedString.Range(strongStyle.toSpanStyle(), start, end) }
+                    with(range) { AnnotatedString.Range(linkAndStrongTextStyle.toSpanStyle(), start, end) }
                 }
                 is StringAnnotation if annotation.value == StrikethroughAnnotation -> {
                     with(range) { AnnotatedString.Range(SpanStyle(textDecoration = TextDecoration.LineThrough), start, end) }

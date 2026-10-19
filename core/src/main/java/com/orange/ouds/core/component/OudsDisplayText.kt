@@ -145,7 +145,7 @@ fun OudsDisplayText(
 ) {
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
-        text = text.annotatedString(),
+        text = text.annotatedString(linkAndStrongTextStyle = size.textStyle),
         color = color,
         style = size.textStyle,
         textAlign = textAlign,

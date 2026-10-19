@@ -149,10 +149,10 @@ fun OudsBodyText(
     minLines: Int = 1,
     onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
-    val strongAndLinkStyle = textStyle(size = size, weight = weight, forceStrong = true)
+    val linkAndStrongTextStyle = textStyle(size = size, weight = weight, forceStrong = true)
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
-        text = text.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle),
+        text = text.annotatedString(linkAndStrongTextStyle = linkAndStrongTextStyle),
         color = color,
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,

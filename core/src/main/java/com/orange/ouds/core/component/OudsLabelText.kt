@@ -149,10 +149,10 @@ fun OudsLabelText(
     minLines: Int = 1,
     onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
-    val strongAndLinkStyle = textStyle(size = size, weight = weight, forceStrong = true)
+    val linkAndStrongTextStyle = textStyle(size = size, weight = OudsTextWeight.Strong)
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
-        text = text.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle),
+        text = text.annotatedString(linkAndStrongTextStyle = linkAndStrongTextStyle),
         color = color,
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,
@@ -225,27 +225,27 @@ enum class OudsLabelTextSize {
 }
 
 @Composable
-private fun textStyle(size: OudsLabelTextSize, weight: OudsTextWeight, forceStrong: Boolean = false): TextStyle = with(OudsTheme.typography.label) {
+private fun textStyle(size: OudsLabelTextSize, weight: OudsTextWeight): TextStyle = with(OudsTheme.typography.label) {
     when (size) {
         OudsLabelTextSize.ExtraLarge -> when (weight) {
-            OudsTextWeight.Default if !forceStrong -> extraLarge.default
-            OudsTextWeight.Moderate if !forceStrong -> extraLarge.moderate
-            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> extraLarge.strong
+            OudsTextWeight.Default -> extraLarge.default
+            OudsTextWeight.Moderate -> extraLarge.moderate
+            OudsTextWeight.Strong -> extraLarge.strong
         }
         OudsLabelTextSize.Large -> when (weight) {
-            OudsTextWeight.Default if !forceStrong -> large.default
-            OudsTextWeight.Moderate if !forceStrong -> large.moderate
-            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> large.strong
+            OudsTextWeight.Default -> large.default
+            OudsTextWeight.Moderate -> large.moderate
+            OudsTextWeight.Strong -> large.strong
         }
         OudsLabelTextSize.Medium -> when (weight) {
-            OudsTextWeight.Default if !forceStrong -> medium.default
-            OudsTextWeight.Moderate if !forceStrong -> medium.moderate
-            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> medium.strong
+            OudsTextWeight.Default -> medium.default
+            OudsTextWeight.Moderate -> medium.moderate
+            OudsTextWeight.Strong -> medium.strong
         }
         OudsLabelTextSize.Small -> when (weight) {
-            OudsTextWeight.Default if !forceStrong -> small.default
-            OudsTextWeight.Moderate if !forceStrong -> small.moderate
-            OudsTextWeight.Strong, OudsTextWeight.Default, OudsTextWeight.Moderate -> small.strong
+            OudsTextWeight.Default -> small.default
+            OudsTextWeight.Moderate -> small.moderate
+            OudsTextWeight.Strong -> small.strong
         }
     }
 }

@@ -135,10 +135,10 @@ fun OudsCodeText(
     minLines: Int = 1,
     onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
-    val strongAndLinkStyle = codeTextStyle.copy(fontWeight = FontWeight.Bold)
+    val linkAndStrongTextStyle = codeTextStyle.copy(fontWeight = FontWeight.Bold)
     Text(
         modifier = modifier,
-        text = text.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle),
+        text = text.annotatedString(linkAndStrongTextStyle = linkAndStrongTextStyle),
         color = color,
         style = codeTextStyle,
         textAlign = textAlign,

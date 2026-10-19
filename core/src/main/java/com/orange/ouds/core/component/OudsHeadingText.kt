@@ -185,7 +185,7 @@ private fun OudsHeadingText(
     Column(modifier = modifier.widthIn(max = size.maxWidth)) {
         if (annotatedText != null) {
             Text(
-                text = annotatedText.annotatedString(),
+                text = annotatedText.annotatedString(linkAndStrongTextStyle = size.textStyle),
                 color = color,
                 style = size.textStyle,
                 textAlign = textAlign,
