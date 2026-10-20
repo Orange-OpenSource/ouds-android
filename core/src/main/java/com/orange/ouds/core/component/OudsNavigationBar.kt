@@ -239,6 +239,7 @@ data class OudsNavigationBarItem(
                     .indicator(state = state, selected = selected, iconPosition = iconPosition)
                     .semantics(mergeDescendants = true) {
                         if (badge != null) {
+                            // contentDescription does not work because the item is clickable and TalkBack does not take content descriptions of children into account on user click
                             text = AnnotatedString(badge.contentDescription)
                         }
                     }
