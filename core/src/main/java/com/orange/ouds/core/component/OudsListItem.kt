@@ -1169,13 +1169,12 @@ open class OudsListItemContent internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        val scope = remember { OudsListItemScope() }
         with(OudsTheme.components.listItem) {
-            Box(modifier = modifier.sizeIn(maxWidth = size.maxSizeLeadingTrailingSlot, maxHeight = size.maxSizeLeadingTrailingSlot)) {
-                with(scope) {
-                    state = extraParameters.state
-                    content()
-                }
+            CustomContent(
+                state = extraParameters.state,
+                modifier = modifier.sizeIn(maxWidth = size.maxSizeLeadingTrailingSlot, maxHeight = size.maxSizeLeadingTrailingSlot)
+            ) {
+                content()
             }
         }
     }
