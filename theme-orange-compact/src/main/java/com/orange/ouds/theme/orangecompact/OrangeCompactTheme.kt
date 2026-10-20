@@ -159,13 +159,9 @@ open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) cons
         level = DeprecationLevel.HIDDEN
     )
     constructor(orangeFontFamily: OrangeFontFamily, roundedCornerButtons: Boolean) : this(orangeFontFamily, roundedCornerButtons, false, false, false, false)
-    
+
     override val name: String
         get() = ORANGE_COMPACT_THEME_NAME
-
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = getFontFamily(Locale.getDefault())
 
     override fun getFontFamily(locale: Locale): FontFamily {
         return orangeFontFamily.getFontFamily(locale)

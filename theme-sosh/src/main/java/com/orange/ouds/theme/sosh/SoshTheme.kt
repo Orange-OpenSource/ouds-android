@@ -40,6 +40,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
+import java.util.Locale
 
 const val SOSH_THEME_NAME = "Sosh"
 
@@ -54,15 +55,15 @@ class SoshTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings()
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = FontFamily(
+    override fun getFontFamily(locale: Locale): FontFamily {
+        return FontFamily(
             Font(R.font.sosh_black, weight = FontWeight.Black),
             Font(R.font.sosh_medium, weight = FontWeight.Medium),
             Font(R.font.sosh_bold, weight = FontWeight.Bold),
             Font(R.font.sosh_regular, weight = FontWeight.Normal),
             Font(R.font.sosh_thin, weight = FontWeight.Thin)
         )
+    }
 
     override val colorTokens: OudsColorSemanticTokens
         get() = SoshColorSemanticTokens()
