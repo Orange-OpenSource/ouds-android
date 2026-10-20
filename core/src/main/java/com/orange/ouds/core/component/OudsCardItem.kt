@@ -117,8 +117,6 @@ fun OudsCardItem(
 }
 
 /**
- * TODO update description when available and add guideline link
- *
  * Static card item displays non-clickable information in a card format with visual emphasis.
  *
  * A static card item can be used to present read-only information in a contained format.
@@ -128,6 +126,8 @@ fun OudsCardItem(
  * This version of the static card item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
  * content structure.
  *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-static-card-item)
+ * 
  * > Design name: Static Card Item
  *
  * > Design version: 0.3.0
@@ -288,8 +288,6 @@ fun OudsCardItem(
 }
 
 /**
- * TODO update description when available and add guideline link
- *
  * Navigation card item allows users to navigate to another screen or perform an action in a card format.
  *
  * A navigation card item is clickable and presented in a card format with visual emphasis.
@@ -301,6 +299,8 @@ fun OudsCardItem(
  * This version of the navigation card item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
  * content structure.
  *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-card-item)
+ * 
  * > Design name: Navigation Card Item
  *
  * > Design version: 0.3.0

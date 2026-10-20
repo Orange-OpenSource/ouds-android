@@ -180,8 +180,6 @@ fun OudsListItem(
 }
 
 /**
- * TODO update description when available and add guideline link
- *
  * Static list item displays non-clickable information in a structured format.
  * They are designed to be stacked within a list, with no spacing between the elements.
  *
@@ -192,11 +190,13 @@ fun OudsListItem(
  * This version of the static list item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
  * content structure.
  *
- * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-static-list-item)
  *
  * > Design name: Static List Item
  *
  * > Design version: 0.3.0
+ * 
+ * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *
  * @param labelContent Custom label content of the list item used for custom primary content such as: A product-specific text arrangement, a combination of
  *   text elements not supported by the standard properties.
@@ -368,8 +368,6 @@ fun OudsListItem(
 }
 
 /**
- * TODO update description when available and add guideline link
- *
  * Navigation list item allows users to navigate to another screen or perform an action.
  * They are designed to be stacked within a list, with no spacing between the elements.
  *
@@ -382,11 +380,13 @@ fun OudsListItem(
  * This version of the navigation list item allows to use a custom content in place of the label. Use it when the standard label cannot support the required
  * content structure.
  *
- * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
  *
  * > Design name: Navigation List Item
  *
  * > Design version: 0.3.0
+ * 
+ * @see [OudsCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *
  * @param labelContent Custom label content of the list item used for custom primary content such as: A product-specific text arrangement, a combination of
  *   text elements not supported by the standard properties. It must remain non-interactive. Do not place a link, button or control inside it because the
