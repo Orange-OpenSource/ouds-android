@@ -402,15 +402,15 @@ private fun OudsPinCodeInputDecorator(
         val totalHorizontalSpace = horizontalSpace * (length.value - 1)
         val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
         ConstraintLayout {
-            val isNonErrorPreview = LocalInspectionMode.current && error == null
-            val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
             val digitInputStates = (0..<length.value).map { index ->
-                when {
-                    skeleton != null -> OudsDigitInputState.Skeleton
-                    (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
-                    interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-                    else -> OudsDigitInputState.Enabled
-                }
+                getDigitInputState(
+                    textFieldState = textFieldState,
+                    length = length,
+                    error = error,
+                    interactionState = interactionState,
+                    skeleton = skeleton,
+                    index = index
+                )
             }
             val (row, helperTextErrorMessage) = createRefs()
             Row(
@@ -473,6 +473,25 @@ private fun OudsPinCodeInputDecorator(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun getDigitInputState(
+    textFieldState: TextFieldState,
+    length: OudsPinCodeInputLength,
+    error: OudsError?,
+    interactionState: InteractionState,
+    skeleton: OudsSkeleton?,
+    index: Int,
+): OudsDigitInputState {
+    val isNonErrorPreview = LocalInspectionMode.current && error == null
+    val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
+    return when {
+        skeleton != null -> OudsDigitInputState.Skeleton
+        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+        else -> OudsDigitInputState.Enabled
     }
 }
 
