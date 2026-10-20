@@ -117,7 +117,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
  * tag is in progress.
  *   A disabled tag cannot have a loader. This will throw an [IllegalStateException].
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTagSample

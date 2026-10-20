@@ -234,7 +234,7 @@ class OudsSkeleton(val state: OudsSkeletonState)
  * }
  * ```
  *
- * @param skeleton The skeleton state to provide to child components, or null to disable skeletons.
+ * @param skeleton The skeleton parameter to provide to child components, or null to disable skeletons.
  * @param content The composable content hierarchy that will have access to the skeleton state.
  *
  * @see OudsSkeleton The skeleton class used with this provider.

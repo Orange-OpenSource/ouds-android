@@ -102,7 +102,8 @@ private const val MaxLevelCount = 3
  * @param type The visual type of the list (e.g., ordered, unordered, bare). See [OudsBulletListType].
  * @param textStyle The typography style for the list items. See [OudsBulletListTextStyle].
  * @param builder A lambda scope using the [OudsBulletListBuilder] to define the list items.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsBulletListUnorderedSample
