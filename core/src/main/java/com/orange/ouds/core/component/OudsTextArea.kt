@@ -145,7 +145,8 @@ private const val ComponentName = "OudsTextArea"
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
@@ -257,7 +258,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaStateBasedSample
@@ -448,7 +450,8 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
@@ -555,7 +558,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
@@ -743,7 +747,8 @@ private fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample
@@ -850,7 +855,8 @@ fun OudsTextArea(
  *   is provided, interactions will still happen internally.
  * @param autoResize Controls the height behavior of the text area. When `true`, the text area expands vertically to accommodate content up to its maximum height.
  *   When `false`, the height is fixed and will not expand as text is entered. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsTextAreaValueBasedSample

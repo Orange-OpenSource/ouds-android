@@ -59,7 +59,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *   [OudsInlineAlertStatus.Warning], [OudsInlineAlertStatus.Negative], [OudsInlineAlertStatus.Info].
  *   These alerts follow strict semantic conventions for icon, color, and tone — ensuring clear, accessible communication across all digital products.
  *   Each type has a dedicated, standardized icon that expresses its meaning clearly.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsInlineAlertNonFunctionalStatusSample

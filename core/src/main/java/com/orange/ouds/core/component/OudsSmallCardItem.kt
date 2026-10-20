@@ -57,7 +57,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the small card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
  *
@@ -133,7 +134,8 @@ fun OudsSmallCardItem(
  * @param helperText Optional helper text displayed below the small card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the small card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small card item.
  *
