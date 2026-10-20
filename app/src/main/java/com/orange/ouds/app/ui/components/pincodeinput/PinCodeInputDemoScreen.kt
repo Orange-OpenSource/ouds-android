@@ -22,6 +22,7 @@ import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.helperTextArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.appendHtml
+import com.orange.ouds.app.ui.utilities.composable.AccessibilityAnnouncementLaunchedEffect
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
@@ -110,6 +111,9 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
             error -> OudsError(errorMessage)
             else -> null
         }
+
+        AccessibilityAnnouncementLaunchedEffect(pinCodeInputError)
+
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
             val helperTextHtml = stringResource(R.string.app_components_pinCodeInput_annotatedHelperText_text)

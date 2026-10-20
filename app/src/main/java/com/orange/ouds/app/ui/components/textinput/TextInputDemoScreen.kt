@@ -34,6 +34,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.appendHtml
+import com.orange.ouds.app.ui.utilities.composable.AccessibilityAnnouncementLaunchedEffect
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -204,6 +205,9 @@ private fun TextInputDemoContent(state: TextInputDemoState) {
             error -> OudsError(errorMessage)
             else -> null
         }
+
+        AccessibilityAnnouncementLaunchedEffect(textInputError)
+
         val textInputHelperLink = if (helperLink.isNotEmpty()) OudsTextInputHelperLink(text = helperLink, onClick = {}) else null
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
