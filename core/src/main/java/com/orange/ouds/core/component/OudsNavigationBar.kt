@@ -59,8 +59,9 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -238,7 +239,7 @@ data class OudsNavigationBarItem(
                     .indicator(state = state, selected = selected, iconPosition = iconPosition)
                     .semantics(mergeDescendants = true) {
                         if (badge != null) {
-                            contentDescription = badge.contentDescription
+                            text = AnnotatedString(badge.contentDescription)
                         }
                     }
                     .componentContentTestTag(),
