@@ -28,6 +28,6 @@ internal interface OudsComponentState {
     val areInteractionsEnabled: Boolean
         get() {
             val name = (this as? Enum<*>)?.name
-            return name != Disabled && name != Loading && name != ReadOnly && name != Skeleton
+            return name !in listOf(Disabled, Loading, ReadOnly, Skeleton)
         }
 }
