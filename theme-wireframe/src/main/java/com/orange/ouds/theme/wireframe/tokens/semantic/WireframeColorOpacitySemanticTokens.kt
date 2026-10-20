@@ -16,10 +16,13 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import androidx.compose.ui.graphics.takeOrElse
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 
-internal data class WireframeColorOpacitySemanticTokens(
+@InternalOudsApi
+class WireframeColorOpacitySemanticTokens(
     override val opacityLowerDark: Color = WireframeColorRawTokens.ColorOpacityWhite80,
     override val opacityLowerLight: Color = WireframeColorRawTokens.ColorOpacityBlack80,
     override val opacityLowestDark: Color = WireframeColorRawTokens.ColorOpacityWhite40,
@@ -28,4 +31,25 @@ internal data class WireframeColorOpacitySemanticTokens(
     override val opacityTransparentInverseDark: Color = WireframeColorRawTokens.ColorOpacityBlack0,
     override val opacityTransparentInverseLight: Color = WireframeColorRawTokens.ColorOpacityWhite0,
     override val opacityTransparentLight: Color = WireframeColorRawTokens.ColorOpacityBlack0
-) : OudsColorOpacitySemanticTokens
+) : OudsColorOpacitySemanticTokens {
+
+    fun copy(
+        opacityLowerDark: Color = this.opacityLowerDark,
+        opacityLowerLight: Color = this.opacityLowerLight,
+        opacityLowestDark: Color = this.opacityLowestDark,
+        opacityLowestLight: Color = this.opacityLowestLight,
+        opacityTransparentDark: Color = this.opacityTransparentDark,
+        opacityTransparentInverseDark: Color = this.opacityTransparentInverseDark,
+        opacityTransparentInverseLight: Color = this.opacityTransparentInverseLight,
+        opacityTransparentLight: Color = this.opacityTransparentLight
+    ) = WireframeColorOpacitySemanticTokens(
+        opacityLowerDark.takeOrElse { this.opacityLowerDark },
+        opacityLowerLight.takeOrElse { this.opacityLowerLight },
+        opacityLowestDark.takeOrElse { this.opacityLowestDark },
+        opacityLowestLight.takeOrElse { this.opacityLowestLight },
+        opacityTransparentDark.takeOrElse { this.opacityTransparentDark },
+        opacityTransparentInverseDark.takeOrElse { this.opacityTransparentInverseDark },
+        opacityTransparentInverseLight.takeOrElse { this.opacityTransparentInverseLight },
+        opacityTransparentLight.takeOrElse { this.opacityTransparentLight }
+    )
+}

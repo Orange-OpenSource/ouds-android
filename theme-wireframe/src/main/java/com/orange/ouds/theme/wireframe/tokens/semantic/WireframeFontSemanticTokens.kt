@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
 import com.orange.ouds.tokens.raw.OudsFontRawTokens
 
-internal data class WireframeFontSemanticTokens(
+@InternalOudsApi
+data class WireframeFontSemanticTokens(
     override val letterSpacingBodyLargeMobile: Float = OudsFontRawTokens.FontLetterSpacing250,
     override val letterSpacingBodyLargeTablet: Float = OudsFontRawTokens.FontLetterSpacing250,
     override val letterSpacingBodyMediumMobile: Float = OudsFontRawTokens.FontLetterSpacing200,

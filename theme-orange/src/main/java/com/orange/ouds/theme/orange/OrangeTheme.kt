@@ -171,10 +171,6 @@ open class OrangeTheme @OptIn(ExperimentalVersionOverloading::class) constructor
     override val name: String
         get() = ORANGE_THEME_NAME
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = getFontFamily(Locale.getDefault())
-
     override fun getFontFamily(locale: Locale): FontFamily {
         return orangeFontFamily.getFontFamily(locale)
     }

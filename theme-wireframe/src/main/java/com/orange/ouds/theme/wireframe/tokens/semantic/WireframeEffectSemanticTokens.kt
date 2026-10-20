@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
-internal data class WireframeEffectSemanticTokens(
+@InternalOudsApi
+data class WireframeEffectSemanticTokens(
     override val blurBackdrop: Int = OudsEffectRawTokens.EffectBlur80,
     override val blurDrag: Int = OudsEffectRawTokens.EffectBlur480
 ) : OudsEffectSemanticTokens

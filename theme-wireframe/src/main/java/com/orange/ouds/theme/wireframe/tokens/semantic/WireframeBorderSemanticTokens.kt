@@ -15,10 +15,12 @@
 
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.tokens.raw.OudsBorderRawTokens
 
-internal data class WireframeBorderSemanticTokens(
+@InternalOudsApi
+data class WireframeBorderSemanticTokens(
     override val radiusDefault: Float = OudsBorderRawTokens.BorderRadius150,
     override val radiusLarge: Float = OudsBorderRawTokens.BorderRadius300,
     override val radiusMedium: Float = OudsBorderRawTokens.BorderRadius200,

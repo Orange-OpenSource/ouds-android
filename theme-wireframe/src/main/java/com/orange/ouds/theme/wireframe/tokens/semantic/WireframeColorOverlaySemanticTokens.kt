@@ -16,11 +16,14 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import androidx.compose.ui.graphics.takeOrElse
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeColorOverlaySemanticTokens(
+@InternalOudsApi
+class WireframeColorOverlaySemanticTokens(
     override val overlayBackdropDark: Color = WireframeColorRawTokens.ColorOpacityBlack680,
     override val overlayBackdropLight: Color = WireframeColorRawTokens.ColorOpacityBlack680,
     override val overlayDragDark: Color = WireframeColorRawTokens.ColorOpacityWhite80,
@@ -33,4 +36,33 @@ internal data class WireframeColorOverlaySemanticTokens(
     override val overlayModalSheetLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
     override val overlayTooltipDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark560,
     override val overlayTooltipLight: Color = WireframeColorRawTokens.ColorFunctionalGrayDark720
-) : OudsColorOverlaySemanticTokens
+) : OudsColorOverlaySemanticTokens {
+
+    fun copy(
+        overlayBackdropDark: Color = this.overlayBackdropDark,
+        overlayBackdropLight: Color = this.overlayBackdropLight,
+        overlayDragDark: Color = this.overlayDragDark,
+        overlayDragLight: Color = this.overlayDragLight,
+        overlayDropdownDark: Color = this.overlayDropdownDark,
+        overlayDropdownLight: Color = this.overlayDropdownLight,
+        overlayFloatingDark: Color = this.overlayFloatingDark,
+        overlayFloatingLight: Color = this.overlayFloatingLight,
+        overlayModalSheetDark: Color = this.overlayModalSheetDark,
+        overlayModalSheetLight: Color = this.overlayModalSheetLight,
+        overlayTooltipDark: Color = this.overlayTooltipDark,
+        overlayTooltipLight: Color = this.overlayTooltipLight
+    ) = WireframeColorOverlaySemanticTokens(
+        overlayBackdropDark.takeOrElse { this.overlayBackdropDark },
+        overlayBackdropLight.takeOrElse { this.overlayBackdropLight },
+        overlayDragDark.takeOrElse { this.overlayDragDark },
+        overlayDragLight.takeOrElse { this.overlayDragLight },
+        overlayDropdownDark.takeOrElse { this.overlayDropdownDark },
+        overlayDropdownLight.takeOrElse { this.overlayDropdownLight },
+        overlayFloatingDark.takeOrElse { this.overlayFloatingDark },
+        overlayFloatingLight.takeOrElse { this.overlayFloatingLight },
+        overlayModalSheetDark.takeOrElse { this.overlayModalSheetDark },
+        overlayModalSheetLight.takeOrElse { this.overlayModalSheetLight },
+        overlayTooltipDark.takeOrElse { this.overlayTooltipDark },
+        overlayTooltipLight.takeOrElse { this.overlayTooltipLight }
+    )
+}

@@ -16,11 +16,14 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import androidx.compose.ui.graphics.takeOrElse
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeColorBgSemanticTokens(
+@InternalOudsApi
+class WireframeColorBgSemanticTokens(
     override val bgInverseHighDark: Color = WireframeColorRawTokens.ColorFunctionalGrayLight160,
     override val bgInverseHighLight: Color = WireframeColorRawTokens.ColorFunctionalGrayDark800,
     override val bgInverseLowDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark720,
@@ -31,4 +34,29 @@ internal data class WireframeColorBgSemanticTokens(
     override val bgSecondaryLight: Color = WireframeColorRawTokens.ColorFunctionalGrayLight80,
     override val bgTertiaryDark: Color = WireframeColorRawTokens.ColorRustyRed1000,
     override val bgTertiaryLight: Color = WireframeColorRawTokens.ColorRustyRed50
-) : OudsColorBgSemanticTokens
+) : OudsColorBgSemanticTokens {
+
+    fun copy(
+        bgInverseHighDark: Color = this.bgInverseHighDark,
+        bgInverseHighLight: Color = this.bgInverseHighLight,
+        bgInverseLowDark: Color = this.bgInverseLowDark,
+        bgInverseLowLight: Color = this.bgInverseLowLight,
+        bgPrimaryDark: Color = this.bgPrimaryDark,
+        bgPrimaryLight: Color = this.bgPrimaryLight,
+        bgSecondaryDark: Color = this.bgSecondaryDark,
+        bgSecondaryLight: Color = this.bgSecondaryLight,
+        bgTertiaryDark: Color = this.bgTertiaryDark,
+        bgTertiaryLight: Color = this.bgTertiaryLight
+    ) = WireframeColorBgSemanticTokens(
+        bgInverseHighDark.takeOrElse { this.bgInverseHighDark },
+        bgInverseHighLight.takeOrElse { this.bgInverseHighLight },
+        bgInverseLowDark.takeOrElse { this.bgInverseLowDark },
+        bgInverseLowLight.takeOrElse { this.bgInverseLowLight },
+        bgPrimaryDark.takeOrElse { this.bgPrimaryDark },
+        bgPrimaryLight.takeOrElse { this.bgPrimaryLight },
+        bgSecondaryDark.takeOrElse { this.bgSecondaryDark },
+        bgSecondaryLight.takeOrElse { this.bgSecondaryLight },
+        bgTertiaryDark.takeOrElse { this.bgTertiaryDark },
+        bgTertiaryLight.takeOrElse { this.bgTertiaryLight }
+    )
+}

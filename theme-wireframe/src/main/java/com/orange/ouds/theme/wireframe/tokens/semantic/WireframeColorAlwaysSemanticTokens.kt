@@ -16,13 +16,29 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import androidx.compose.ui.graphics.takeOrElse
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeColorAlwaysSemanticTokens(
+@InternalOudsApi
+class WireframeColorAlwaysSemanticTokens(
     override val alwaysBlack: Color = WireframeColorRawTokens.ColorFunctionalGrayDark960,
     override val alwaysOnBlack: Color = WireframeColorRawTokens.ColorFunctionalGrayLight160,
     override val alwaysOnWhite: Color = WireframeColorRawTokens.ColorFunctionalGrayDark960,
     override val alwaysWhite: Color = OudsColorRawTokens.ColorFunctionalWhite
-) : OudsColorAlwaysSemanticTokens
+) : OudsColorAlwaysSemanticTokens {
+
+    fun copy(
+        alwaysBlack: Color = this.alwaysBlack,
+        alwaysOnBlack: Color = this.alwaysOnBlack,
+        alwaysOnWhite: Color = this.alwaysOnWhite,
+        alwaysWhite: Color = this.alwaysWhite
+    ) = WireframeColorAlwaysSemanticTokens(
+        alwaysBlack.takeOrElse { this.alwaysBlack },
+        alwaysOnBlack.takeOrElse { this.alwaysOnBlack },
+        alwaysOnWhite.takeOrElse { this.alwaysOnWhite },
+        alwaysWhite.takeOrElse { this.alwaysWhite }
+    )
+}
