@@ -92,7 +92,7 @@ fun OudsSmallListItem(
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -178,7 +178,7 @@ fun OudsSmallListItem(
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,

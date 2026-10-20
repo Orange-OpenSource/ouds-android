@@ -74,7 +74,7 @@ fun OudsInlineAlert(
     label: String,
     modifier: Modifier = Modifier,
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     with(OudsTheme.componentsTokens.alert) {
         val scale = LocalConfiguration.current.fontScale

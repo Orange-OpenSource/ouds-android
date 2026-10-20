@@ -141,7 +141,7 @@ fun OudsTag(
     roundedCorners: Boolean = true,
     size: OudsTagSize = OudsTagDefaults.Size,
     loader: OudsTagLoader? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val state = getTagState(enabled = enabled, loader = loader, skeleton = skeleton)
     val hasAsset = status.asset != null || state == OudsTagState.Loading
