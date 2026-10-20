@@ -24,7 +24,7 @@ import com.orange.ouds.core.component.rememberOudsSkeletonState
 @Composable
 fun rememberSkeletonDemoState(
     skeletonState: OudsSkeletonState = rememberOudsSkeletonState(),
-    securityMargin: Boolean = false
+    securityMargin: Boolean = true
 ) = rememberSaveable(skeletonState, securityMargin, saver = SkeletonDemoState.Saver) {
     SkeletonDemoState(skeletonState, securityMargin)
 }
