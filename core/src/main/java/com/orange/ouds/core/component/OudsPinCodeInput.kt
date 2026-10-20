@@ -122,7 +122,8 @@ import kotlin.math.max
  *   is provided, interactions will still happen internally.
  * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
@@ -193,7 +194,8 @@ fun OudsPinCodeInput(
  *   is provided, interactions will still happen internally.
  * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * 
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample

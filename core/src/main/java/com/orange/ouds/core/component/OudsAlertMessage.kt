@@ -113,7 +113,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param bulletList An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageSample
@@ -183,7 +184,8 @@ fun OudsAlertMessage(
  * @param bulletList A list of annotated bullet points to be displayed in the alert message following the label or the optional [description].
  *   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
  *   as a clear phrase or fragment — avoid long sentences or complex structures.
- * @param skeleton An optional skeleton that improves the perceived loading time by providing a visual cue of where the component will appear once fully loaded.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsAlertMessageWithAnnotatedTextSample
