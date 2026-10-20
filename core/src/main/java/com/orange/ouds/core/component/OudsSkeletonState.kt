@@ -46,11 +46,11 @@ class OudsSkeletonState(initialIsAnimationRunning: Boolean = true) {
 
     companion object {
 
-        internal val ShimmerAnimationDuration = 800
+        internal const val ShimmerAnimationDuration = 800
 
-        internal val ShimmerPauseDuration = 450
+        internal const val ShimmerPauseDuration = 450
 
-        val AnimationDuration = ShimmerAnimationDuration + ShimmerPauseDuration
+        const val AnimationDuration = ShimmerAnimationDuration + ShimmerPauseDuration
 
         /**
          * Saves and restores an [OudsSkeletonState] for [rememberSaveable].
