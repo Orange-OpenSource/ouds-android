@@ -148,11 +148,11 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
-    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
-    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null
 ) {
     OudsListItem(
         size = OudsListItemSize.Default,
@@ -337,11 +337,11 @@ fun OudsListItem(
     background: Boolean = false,
     helperText: String? = null,
     boldLabel: Boolean = false,
-    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
-    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("2.3-Unreleased") belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
+    @IntroducedAt("2.3-Unreleased") bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null
 ) {
     OudsListItem(
         label = label,
