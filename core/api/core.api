@@ -20,6 +20,14 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsBadge
 	public final fun getLambda$-487930633$core ()Lkotlin/jvm/functions/Function4;
 }
 
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsBodyTextKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsBodyTextKt;
+	public fun <init> ()V
+	public final fun getLambda$-1183400077$core ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$377382078$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$845723971$core ()Lkotlin/jvm/functions/Function2;
+}
+
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsBottomSheetScaffoldKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsBottomSheetScaffoldKt;
 	public fun <init> ()V
@@ -71,6 +79,21 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsCircu
 	public final fun getLambda$1740786097$core ()Lkotlin/jvm/functions/Function2;
 }
 
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsCodeTextKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsCodeTextKt;
+	public fun <init> ()V
+	public final fun getLambda$-955342104$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$583893603$core ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsDisplayTextKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsDisplayTextKt;
+	public fun <init> ()V
+	public final fun getLambda$-1622525409$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1695546547$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1856398284$core ()Lkotlin/jvm/functions/Function2;
+}
+
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsFilterChipKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsFilterChipKt;
 	public fun <init> ()V
@@ -86,6 +109,14 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsFloat
 	public final fun getLambda$2077021354$core ()Lkotlin/jvm/functions/Function3;
 }
 
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsHeadingTextKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsHeadingTextKt;
+	public fun <init> ()V
+	public final fun getLambda$-1826216079$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-375741901$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$416238540$core ()Lkotlin/jvm/functions/Function2;
+}
+
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsInlineAlertKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsInlineAlertKt;
 	public fun <init> ()V
@@ -98,6 +129,14 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsInput
 	public fun <init> ()V
 	public final fun getLambda$-1811989986$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$943369468$core ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsLabelTextKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsLabelTextKt;
+	public fun <init> ()V
+	public final fun getLambda$-1130422009$core ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$-600623921$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$591124684$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsLinearProgressIndicatorKt {
@@ -405,6 +444,28 @@ public final class com/orange/ouds/core/component/OudsBadgeStatus : java/lang/En
 	public static fun values ()[Lcom/orange/ouds/core/component/OudsBadgeStatus;
 }
 
+public final class com/orange/ouds/core/component/OudsBodyTextDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsBodyTextDefaults;
+	public final fun getColor (Landroidx/compose/runtime/Composer;I)J
+	public final fun getSize ()Lcom/orange/ouds/core/component/OudsBodyTextSize;
+	public final fun getWeight ()Lcom/orange/ouds/core/component/OudsTextWeight;
+}
+
+public final class com/orange/ouds/core/component/OudsBodyTextKt {
+	public static final fun OudsBodyText-2G_PK0M (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedBodyText;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsBodyTextSize;Lcom/orange/ouds/core/component/OudsTextWeight;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsBodyText-2G_PK0M (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsBodyTextSize;Lcom/orange/ouds/core/component/OudsTextWeight;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/orange/ouds/core/component/OudsBodyTextSize : java/lang/Enum {
+	public static final field Large Lcom/orange/ouds/core/component/OudsBodyTextSize;
+	public static final field Medium Lcom/orange/ouds/core/component/OudsBodyTextSize;
+	public static final field Small Lcom/orange/ouds/core/component/OudsBodyTextSize;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsBodyTextSize;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsBodyTextSize;
+}
+
 public final class com/orange/ouds/core/component/OudsBottomSheetScaffoldKt {
 	public static final fun OudsBottomSheetScaffold-U47N-ZM (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Landroidx/compose/material3/BottomSheetScaffoldState;FZZLkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;JLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
@@ -663,6 +724,17 @@ public final class com/orange/ouds/core/component/OudsCircularProgressIndicatorK
 	public static final fun OudsCircularProgressIndicator-au3_HiA (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Lcom/orange/ouds/core/component/OudsDeterminateCircularProgressIndicatorHelperText;FLandroidx/compose/runtime/Composer;II)V
 }
 
+public final class com/orange/ouds/core/component/OudsCodeTextDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsCodeTextDefaults;
+	public final fun getColor (Landroidx/compose/runtime/Composer;I)J
+}
+
+public final class com/orange/ouds/core/component/OudsCodeTextKt {
+	public static final fun OudsCodeText-YX4PUG8 (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedCodeText;Landroidx/compose/ui/Modifier;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCodeText-YX4PUG8 (Ljava/lang/String;Landroidx/compose/ui/Modifier;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
 public final class com/orange/ouds/core/component/OudsColoredBoxColor : java/lang/Enum {
 	public static final field BackgroundInverseHigh Lcom/orange/ouds/core/component/OudsColoredBoxColor;
 	public static final field BackgroundInverseLow Lcom/orange/ouds/core/component/OudsColoredBoxColor;
@@ -735,6 +807,27 @@ public final class com/orange/ouds/core/component/OudsDeterminateLinearProgressI
 	public synthetic fun <init> (ZLjava/lang/String;Landroidx/compose/ui/Alignment$Horizontal;Landroidx/compose/ui/Alignment$Horizontal;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
+public final class com/orange/ouds/core/component/OudsDisplayTextDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsDisplayTextDefaults;
+	public final fun getColor (Landroidx/compose/runtime/Composer;I)J
+	public final fun getSize ()Lcom/orange/ouds/core/component/OudsDisplayTextSize;
+}
+
+public final class com/orange/ouds/core/component/OudsDisplayTextKt {
+	public static final fun OudsDisplayText-OH0dnr4 (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedDisplayText;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsDisplayTextSize;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsDisplayText-OH0dnr4 (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsDisplayTextSize;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsDisplayTextSize : java/lang/Enum {
+	public static final field Large Lcom/orange/ouds/core/component/OudsDisplayTextSize;
+	public static final field Medium Lcom/orange/ouds/core/component/OudsDisplayTextSize;
+	public static final field Small Lcom/orange/ouds/core/component/OudsDisplayTextSize;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsDisplayTextSize;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsDisplayTextSize;
+}
+
 public final class com/orange/ouds/core/component/OudsDividerColor : java/lang/Enum {
 	public static final field AlwaysBlack Lcom/orange/ouds/core/component/OudsDividerColor;
 	public static final field AlwaysOnBlack Lcom/orange/ouds/core/component/OudsDividerColor;
@@ -803,6 +896,44 @@ public final class com/orange/ouds/core/component/OudsFloatingActionButtonKt {
 	public static final fun OudsFloatingActionButton (Lcom/orange/ouds/core/component/OudsFloatingActionButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Shape;Lcom/orange/ouds/core/component/OudsFloatingActionButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLargeFloatingActionButton (Lcom/orange/ouds/core/component/OudsFloatingActionButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Shape;Lcom/orange/ouds/core/component/OudsFloatingActionButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsSmallFloatingActionButton (Lcom/orange/ouds/core/component/OudsFloatingActionButtonIcon;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Shape;Lcom/orange/ouds/core/component/OudsFloatingActionButtonAppearance;Landroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsHeadingTextDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsHeadingTextDefaults;
+	public final fun getColor (Landroidx/compose/runtime/Composer;I)J
+	public final fun getSize ()Lcom/orange/ouds/core/component/OudsHeadingTextSize$ExtraLarge;
+}
+
+public final class com/orange/ouds/core/component/OudsHeadingTextKt {
+	public static final fun OudsHeadingText-OH0dnr4 (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHeadingText;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsHeadingTextSize;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsHeadingText-OH0dnr4 (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsHeadingTextSize;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
+public abstract interface class com/orange/ouds/core/component/OudsHeadingTextSize {
+}
+
+public final class com/orange/ouds/core/component/OudsHeadingTextSize$ExtraLarge : com/orange/ouds/core/component/OudsHeadingTextSize {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsHeadingTextSize$ExtraLarge;
+}
+
+public final class com/orange/ouds/core/component/OudsHeadingTextSize$Large : com/orange/ouds/core/component/OudsHeadingTextSize {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getMarker ()Z
+}
+
+public final class com/orange/ouds/core/component/OudsHeadingTextSize$Medium : com/orange/ouds/core/component/OudsHeadingTextSize {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsHeadingTextSize$Medium;
+}
+
+public final class com/orange/ouds/core/component/OudsHeadingTextSize$Small : com/orange/ouds/core/component/OudsHeadingTextSize {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsHeadingTextSize$Small;
 }
 
 public abstract class com/orange/ouds/core/component/OudsIconBadgeStatus {
@@ -911,6 +1042,29 @@ public final class com/orange/ouds/core/component/OudsInlineAlertStatus$Warning 
 public final class com/orange/ouds/core/component/OudsInputTagKt {
 	public static final fun OudsInputChip (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsInputTag (Ljava/lang/String;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsLabelTextDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsLabelTextDefaults;
+	public final fun getColor (Landroidx/compose/runtime/Composer;I)J
+	public final fun getSize ()Lcom/orange/ouds/core/component/OudsLabelTextSize;
+	public final fun getWeight ()Lcom/orange/ouds/core/component/OudsTextWeight;
+}
+
+public final class com/orange/ouds/core/component/OudsLabelTextKt {
+	public static final fun OudsLabelText-2G_PK0M (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedLabelText;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLabelTextSize;Lcom/orange/ouds/core/component/OudsTextWeight;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+	public static final fun OudsLabelText-2G_PK0M (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsLabelTextSize;Lcom/orange/ouds/core/component/OudsTextWeight;JLandroidx/compose/ui/text/style/TextAlign;IZIILkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/orange/ouds/core/component/OudsLabelTextSize : java/lang/Enum {
+	public static final field ExtraLarge Lcom/orange/ouds/core/component/OudsLabelTextSize;
+	public static final field Large Lcom/orange/ouds/core/component/OudsLabelTextSize;
+	public static final field Medium Lcom/orange/ouds/core/component/OudsLabelTextSize;
+	public static final field Small Lcom/orange/ouds/core/component/OudsLabelTextSize;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsLabelTextSize;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsLabelTextSize;
 }
 
 public class com/orange/ouds/core/component/OudsLinearProgressIndicatorHelperText : com/orange/ouds/core/component/content/OudsComponentContent {
@@ -1809,6 +1963,15 @@ public final class com/orange/ouds/core/component/OudsTextInputTrailingIconButto
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/orange/ouds/core/component/OudsTextWeight : java/lang/Enum {
+	public static final field Default Lcom/orange/ouds/core/component/OudsTextWeight;
+	public static final field Moderate Lcom/orange/ouds/core/component/OudsTextWeight;
+	public static final field Strong Lcom/orange/ouds/core/component/OudsTextWeight;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsTextWeight;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsTextWeight;
+}
+
 public abstract interface class com/orange/ouds/core/component/OudsTopAppBarAction : com/orange/ouds/core/component/content/OudsPolymorphicComponentContent {
 }
 
@@ -1948,6 +2111,33 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedAlert
 	public static final fun buildOudsAnnotatedAlertMessageDescription (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedAlertMessageDescription;
 }
 
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyText : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/text/AnnotatedString;)V
+	public fun <init> (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedBodyText;)V
+	public fun <init> (Ljava/lang/String;)V
+	public fun addColor-ek8zF_U (JII)V
+	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
+	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
+	public fun addStrikethrough (II)V
+	public fun addStrong (II)V
+	public fun pushColor-8_81llA (J)I
+	public fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+	public fun pushStrikethrough ()I
+	public fun pushStrong ()I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBodyTextKt {
+	public static final fun buildOudsAnnotatedBodyText (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedBodyText;
+}
+
 public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBulletListLabel : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
 	public static final field $stable I
 }
@@ -1971,6 +2161,46 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedBulle
 	public static final fun buildOudsAnnotatedBulletListLabel (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedBulletListLabel;
 }
 
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeText : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/text/AnnotatedString;)V
+	public fun <init> (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedCodeText;)V
+	public fun <init> (Ljava/lang/String;)V
+	public fun addColor-ek8zF_U (JII)V
+	public fun pushColor-8_81llA (J)I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedCodeTextKt {
+	public static final fun buildOudsAnnotatedCodeText (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedCodeText;
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedDisplayText : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedDisplayText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/text/AnnotatedString;)V
+	public fun <init> (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedDisplayText;)V
+	public fun <init> (Ljava/lang/String;)V
+	public fun addColor-ek8zF_U (JII)V
+	public fun pushColor-8_81llA (J)I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedDisplayTextKt {
+	public static final fun buildOudsAnnotatedDisplayText (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedDisplayText;
+}
+
 public final class com/orange/ouds/core/component/common/text/OudsAnnotatedErrorMessage : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
 	public static final field $stable I
 }
@@ -1989,6 +2219,26 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedError
 
 public final class com/orange/ouds/core/component/common/text/OudsAnnotatedErrorMessageKt {
 	public static final fun buildOudsAnnotatedErrorMessage (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedErrorMessage;
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedHeadingText : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedHeadingText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/text/AnnotatedString;)V
+	public fun <init> (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHeadingText;)V
+	public fun <init> (Ljava/lang/String;)V
+	public fun addColor-ek8zF_U (JII)V
+	public fun pushColor-8_81llA (J)I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedHeadingTextKt {
+	public static final fun buildOudsAnnotatedHeadingText (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHeadingText;
 }
 
 public final class com/orange/ouds/core/component/common/text/OudsAnnotatedHelperText : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
@@ -2011,8 +2261,37 @@ public final class com/orange/ouds/core/component/common/text/OudsAnnotatedHelpe
 	public static final fun buildOudsAnnotatedHelperText (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedHelperText;
 }
 
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabelText : com/orange/ouds/core/component/common/text/OudsAnnotatedString {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabelText$Builder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder, com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/text/AnnotatedString;)V
+	public fun <init> (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedLabelText;)V
+	public fun <init> (Ljava/lang/String;)V
+	public fun addColor-ek8zF_U (JII)V
+	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
+	public fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
+	public fun addStrikethrough (II)V
+	public fun addStrong (II)V
+	public fun pushColor-8_81llA (J)I
+	public fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+	public fun pushStrikethrough ()I
+	public fun pushStrong ()I
+}
+
+public final class com/orange/ouds/core/component/common/text/OudsAnnotatedLabelTextKt {
+	public static final fun buildOudsAnnotatedLabelText (Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedLabelText;
+}
+
 public class com/orange/ouds/core/component/common/text/OudsAnnotatedString : java/lang/CharSequence {
 	public static final field $stable I
+	public static final field ColorAnnotationTag Ljava/lang/String;
+	public static final field StrikethroughAnnotation Ljava/lang/String;
 	public static final field StrongAnnotation Ljava/lang/String;
 	public final fun capitalize (Landroidx/compose/ui/text/intl/LocaleList;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
 	public static synthetic fun capitalize$default (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;Landroidx/compose/ui/text/intl/LocaleList;ILjava/lang/Object;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
@@ -2041,8 +2320,10 @@ public abstract interface class com/orange/ouds/core/component/common/text/OudsA
 
 public class com/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder : java/lang/Appendable {
 	public static final field $stable I
+	protected final fun addColorImpl-ek8zF_U (JII)V
 	protected final fun addLinkImpl (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
 	protected final fun addLinkImpl (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
+	protected final fun addStrikethroughImpl (II)V
 	protected final fun addStrongImpl (II)V
 	public fun append (C)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$Builder;
 	public synthetic fun append (C)Ljava/lang/Appendable;
@@ -2053,15 +2334,27 @@ public class com/orange/ouds/core/component/common/text/OudsAnnotatedString$Buil
 	public final fun append (Ljava/lang/String;)V
 	public final fun pop ()V
 	public final fun pop (I)V
+	protected final fun pushColorImpl-8_81llA (J)I
 	protected final fun pushLinkImpl (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+	protected final fun pushStrikethroughImpl ()I
 	protected final fun pushStrongImpl ()I
 	public fun toAnnotatedString ()Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
+}
+
+public abstract interface class com/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$BaseBuilder {
+	public abstract fun addColor-ek8zF_U (JII)V
+	public abstract fun pushColor-8_81llA (J)I
 }
 
 public abstract interface class com/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$BaseBuilder {
 	public abstract fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Clickable;II)V
 	public abstract fun addLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation$Url;II)V
 	public abstract fun pushLink (Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;)I
+}
+
+public abstract interface class com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$BaseBuilder {
+	public abstract fun addStrikethrough (II)V
+	public abstract fun pushStrikethrough ()I
 }
 
 public abstract interface class com/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder : com/orange/ouds/core/component/common/text/OudsAnnotatedString$BaseBuilder {
@@ -2071,7 +2364,9 @@ public abstract interface class com/orange/ouds/core/component/common/text/OudsA
 
 public final class com/orange/ouds/core/component/common/text/OudsAnnotatedStringKt {
 	public static final fun buildOudsAnnotatedString (Ljava/lang/Class;Lkotlin/jvm/functions/Function1;)Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString;
+	public static final fun withColor-bw27NRU (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$ColorBuilder;JLkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun withLink (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$LinkBuilder;Lcom/orange/ouds/core/component/common/text/OudsLinkAnnotation;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun withStrikethrough (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$StrikethroughBuilder;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 	public static final fun withStrong (Lcom/orange/ouds/core/component/common/text/OudsAnnotatedString$StrongBuilder;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
@@ -2759,6 +3054,7 @@ public final class com/orange/ouds/core/theme/OudsComponents {
 	public final fun component22 ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
 	public final fun component23 ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
 	public final fun component24 ()Lcom/orange/ouds/core/theme/OudsComponents$TextInput;
+	public final fun component25 ()Lcom/orange/ouds/core/theme/OudsComponents$Typography;
 	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsComponents$Badge;
 	public final fun component4 ()Lcom/orange/ouds/core/theme/OudsComponents$Bar;
 	public final fun component5 ()Lcom/orange/ouds/core/theme/OudsComponents$BulletList;
@@ -2791,6 +3087,7 @@ public final class com/orange/ouds/core/theme/OudsComponents {
 	public final fun getTag ()Lcom/orange/ouds/core/theme/OudsComponents$Tag;
 	public final fun getTextArea ()Lcom/orange/ouds/core/theme/OudsComponents$TextArea;
 	public final fun getTextInput ()Lcom/orange/ouds/core/theme/OudsComponents$TextInput;
+	public final fun getTypography ()Lcom/orange/ouds/core/theme/OudsComponents$Typography;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -5758,6 +6055,34 @@ public final class com/orange/ouds/core/theme/OudsComponents$TextInput$Space$Row
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/orange/ouds/core/theme/OudsComponents$Typography {
+	public static final field $stable I
+	public final fun getColor ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Color;
+	public final fun getHeadingLargeMarker ()Z
+	public final fun getSpace ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Space;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Typography$Color {
+	public static final field $stable I
+	public final fun getContent ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Color$Content;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Typography$Color$Content {
+	public static final field $stable I
+	public final fun getMarker-0d7_KjU ()J
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Typography$Space {
+	public static final field $stable I
+	public final fun getPaddingBlock ()Lcom/orange/ouds/core/theme/OudsComponents$Typography$Space$PaddingBlock;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Typography$Space$PaddingBlock {
+	public static final field $stable I
+	public final fun getBottomHeadingLargeMarker-D9Ej5fM ()F
+	public final fun getTopHeadingLargeMarker-D9Ej5fM ()F
+}
+
 public final class com/orange/ouds/core/theme/OudsEffects {
 	public static final field $stable I
 	public final fun component1 ()I
@@ -6490,8 +6815,10 @@ public final class com/orange/ouds/core/theme/OudsTypography {
 	public final fun component3 ()Lcom/orange/ouds/core/theme/OudsTypography$Heading;
 	public final fun component4 ()Lcom/orange/ouds/core/theme/OudsTypography$Body;
 	public final fun component5 ()Lcom/orange/ouds/core/theme/OudsTypography$Label;
+	public final fun component6 ()Lcom/orange/ouds/core/theme/OudsTypography$Code;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBody ()Lcom/orange/ouds/core/theme/OudsTypography$Body;
+	public final fun getCode ()Lcom/orange/ouds/core/theme/OudsTypography$Code;
 	public final fun getDisplay ()Lcom/orange/ouds/core/theme/OudsTypography$Display;
 	public final fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
 	public final fun getHeading ()Lcom/orange/ouds/core/theme/OudsTypography$Heading;
@@ -6595,6 +6922,11 @@ public final class com/orange/ouds/core/theme/OudsTypography$Body$Strong {
 	public final fun getSmall ()Landroidx/compose/ui/text/TextStyle;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/theme/OudsTypography$Code {
+	public static final field $stable I
+	public final fun getMedium ()Landroidx/compose/ui/text/TextStyle;
 }
 
 public final class com/orange/ouds/core/theme/OudsTypography$Display {

@@ -110,6 +110,6 @@ class OudsAnnotatedAlertMessageBulletListLabel internal constructor(annotatedStr
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated alert message bullet list label.
  */
-fun buildOudsAnnotatedAlertMessageBulletListLabel(builder: (OudsAnnotatedAlertMessageBulletListLabel.Builder).() -> Unit): OudsAnnotatedAlertMessageBulletListLabel {
+inline fun buildOudsAnnotatedAlertMessageBulletListLabel(builder: (OudsAnnotatedAlertMessageBulletListLabel.Builder).() -> Unit): OudsAnnotatedAlertMessageBulletListLabel {
     return buildOudsAnnotatedString<OudsAnnotatedAlertMessageBulletListLabel, OudsAnnotatedAlertMessageBulletListLabel.Builder>(builder)
 }

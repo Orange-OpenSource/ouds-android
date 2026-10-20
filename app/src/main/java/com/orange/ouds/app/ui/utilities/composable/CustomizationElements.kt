@@ -50,14 +50,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsFilterChip
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsSwitchItem
 import com.orange.ouds.core.component.OudsTextInput
 import com.orange.ouds.core.component.OudsTextInputTrailingIconButton
 import com.orange.ouds.core.theme.OudsTheme
-
-private val labelTextStyle: TextStyle
-    @Composable
-    get() = OudsTheme.typography.label.large.default
 
 private val valueLabelTextStyle: TextStyle
     @Composable
@@ -298,10 +296,10 @@ data class CustomizationFilterChip(val label: String, val enabled: Boolean = tru
 
 @Composable
 private fun CustomizationText(label: String, enabled: Boolean = true) {
-    Text(
+    OudsLabelText(
         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
         text = label,
-        style = labelTextStyle,
+        size = OudsLabelTextSize.Large,
         color = if (enabled) OudsTheme.colorScheme.content.default else OudsTheme.colorScheme.content.disabled
     )
 }

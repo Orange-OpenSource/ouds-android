@@ -149,6 +149,8 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.theme.OudsTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -910,9 +912,9 @@ private fun TextFieldsSample(enabled: Boolean = true, isError: Boolean = false) 
 
 @Composable
 private fun SectionColumn(title: String, horizontalPadding: Boolean = true, verticalSpacing: Boolean = true, content: @Composable () -> Unit) {
-    Text(
+    OudsHeadingText(
         text = title,
-        style = OudsTheme.typography.heading.medium,
+        size = OudsHeadingTextSize.Medium,
         modifier = Modifier
             .padding(bottom = OudsTheme.spaces.fixed.small, top = OudsTheme.spaces.fixed.extraLarge)
             .padding(horizontal = OudsTheme.grids.margin)

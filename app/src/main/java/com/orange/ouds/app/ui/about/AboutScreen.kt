@@ -26,17 +26,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ListItem
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withLink
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.BuildConfig
 import com.orange.ouds.app.R
@@ -45,7 +39,16 @@ import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.listItemHorizontalPadding
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsBodyText
+import com.orange.ouds.core.component.OudsBodyTextSize
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.OudsNavigationBarHeight
+import com.orange.ouds.core.component.OudsTextWeight
+import com.orange.ouds.core.component.common.text.OudsLinkAnnotation
+import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBodyText
+import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.component.common.text.withLink
 import com.orange.ouds.core.theme.OudsTheme
 
 private val oudsAboutMenuItems = listOf(
@@ -96,23 +99,23 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                     modifier = Modifier.listItemHorizontalPadding(),
                     headlineContent = {
                         Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.small)) {
-                            Text(text = stringResource(id = R.string.app_about_name_label), style = OudsTheme.typography.heading.extraLarge)
-                            Text(text = version, style = OudsTheme.typography.body.large.default)
+                            OudsHeadingText(text = stringResource(id = R.string.app_about_name_label), size = OudsHeadingTextSize.ExtraLarge)
+                            OudsBodyText(text = version)
                             if (issueNumbers != null) {
-                                val issues = buildAnnotatedString {
+                                val issues = buildOudsAnnotatedBodyText {
                                     append(pluralStringResource(R.plurals.app_about_issues_tech, issueNumbers.count()))
                                     issueNumbers.forEachIndexed { index, issueNumber ->
                                         if (index >= 1) {
                                             append(" ")
                                         }
-                                        withLink(LinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/issues/$issueNumber")) {
-                                            withStyle(SpanStyle(OudsTheme.colorScheme.content.brandPrimary)) {
+                                        withLink(OudsLinkAnnotation.Url("https://github.com/Orange-OpenSource/ouds-android/issues/$issueNumber")) {
+                                            withColor(OudsTheme.colorScheme.content.brandPrimary) {
                                                 append(stringResource(R.string.app_about_issueNumber_label, issueNumber))
                                             }
                                         }
                                     }
                                 }
-                                Text(text = issues, style = OudsTheme.typography.body.medium.default)
+                                OudsBodyText(text = issues, size = OudsBodyTextSize.Medium)
                             }
                         }
                     }
@@ -129,7 +132,7 @@ fun AboutScreen(onMenuItemClick: (id: Int) -> Unit) {
                             }
                         }
                         .listItemHorizontalPadding(),
-                    headlineContent = { Text(text = stringResource(id = item.labelRes), style = OudsTheme.typography.body.large.strong) }
+                    headlineContent = { OudsBodyText(text = stringResource(id = item.labelRes), weight = OudsTextWeight.Strong) }
                 )
             }
         }
