@@ -108,7 +108,7 @@ fun OudsCheckboxItem(
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTriStateCheckboxItem(
         state = ToggleableState(checked),
@@ -199,7 +199,7 @@ fun OudsTriStateCheckboxItem(
     error: OudsError? = null,
     constrainedMaxWidth: Boolean = false,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()

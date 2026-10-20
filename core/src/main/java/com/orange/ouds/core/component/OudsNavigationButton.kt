@@ -78,7 +78,7 @@ fun OudsNavigationButton(
     loader: OudsButtonLoader? = null,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val drawableResources = LocalDrawableResources.current
     val iconResource: Int

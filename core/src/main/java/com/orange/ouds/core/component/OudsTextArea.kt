@@ -173,7 +173,7 @@ fun OudsTextArea(
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         textFieldState = textFieldState,
@@ -286,7 +286,7 @@ fun OudsTextArea(
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         textFieldState = textFieldState,
@@ -476,7 +476,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -584,7 +584,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -771,7 +771,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,
@@ -879,7 +879,7 @@ fun OudsTextArea(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("1.6.0") autoResize: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextArea(
         value = value,

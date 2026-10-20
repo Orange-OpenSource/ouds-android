@@ -116,7 +116,7 @@ fun OudsBulletList(
     modifier: Modifier = Modifier,
     type: OudsBulletListType = OudsBulletListDefaults.Type,
     textStyle: OudsBulletListTextStyle = OudsBulletListDefaults.TextStyle,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
     builder: OudsBulletListBuilder.() -> Unit
 ) {
     val items = remember(builder) {
