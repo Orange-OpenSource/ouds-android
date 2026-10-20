@@ -71,7 +71,7 @@ fun OudsSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -124,7 +124,7 @@ fun OudsSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -179,7 +179,7 @@ fun OudsSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsBasicSuggestionChip(
         onClick = onClick,
@@ -229,7 +229,7 @@ fun OudsBasicSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -281,7 +281,7 @@ fun OudsBasicSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(
@@ -335,7 +335,7 @@ fun OudsBasicSuggestionChip(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsChipScope.() -> Unit = { DefaultSuggestionChipContent() }
 ) {
     OudsBasicSuggestionChip(

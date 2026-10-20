@@ -205,7 +205,7 @@ fun OudsTextInput(
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextInput(
         textFieldState = textFieldState,
@@ -326,7 +326,7 @@ fun OudsTextInput(
     inputTransformation: InputTransformation? = null,
     outputTransformation: OutputTransformation? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextInput(
         textFieldState = textFieldState,
@@ -527,7 +527,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextInput(
         value = value,
@@ -642,7 +642,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextInput(
         value = value,
@@ -842,7 +842,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextInput(
         value = value,
@@ -957,7 +957,7 @@ fun OudsTextInput(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     visualTransformation: VisualTransformation = VisualTransformation.None,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsTextInput(
         value = value,

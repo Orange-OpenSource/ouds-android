@@ -104,7 +104,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     @IntroducedAt("2.0.0") density: OudsLinkDensity = OudsLinkDefaults.Density,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsLink(
         label = label,
@@ -157,7 +157,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     @IntroducedAt("2.0.0") density: OudsLinkDensity = OudsLinkDefaults.Density,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsLink(
         label = label,
@@ -210,7 +210,7 @@ fun OudsLink(
     size: OudsLinkSize = OudsLinkDefaults.Size,
     enabled: Boolean = true,
     density: OudsLinkDensity = OudsLinkDefaults.Density,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsLink(
         label = label,

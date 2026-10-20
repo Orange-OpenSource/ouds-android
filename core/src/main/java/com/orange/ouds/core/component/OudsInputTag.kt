@@ -92,7 +92,7 @@ fun OudsInputTag(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val tagTokens = OudsTheme.componentsTokens.tag
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }

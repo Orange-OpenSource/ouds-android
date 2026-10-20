@@ -132,7 +132,7 @@ fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<String>? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsAlertMessage(
         label = label,
@@ -198,7 +198,7 @@ fun OudsAlertMessage(
     onClose: (() -> Unit)? = null,
     actionLink: OudsAlertMessageActionLink? = null,
     bulletList: List<OudsAnnotatedAlertMessageBulletListLabel>?,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsAlertMessage(
         label = label,

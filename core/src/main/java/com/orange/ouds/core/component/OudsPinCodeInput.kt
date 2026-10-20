@@ -142,7 +142,7 @@ fun OudsPinCodeInput(
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsPinCodeInput(
         value = value,
@@ -214,7 +214,7 @@ fun OudsPinCodeInput(
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsPinCodeInput(
         value = value,

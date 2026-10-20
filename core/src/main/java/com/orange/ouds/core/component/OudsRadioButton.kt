@@ -101,7 +101,7 @@ fun OudsRadioButton(
     readOnly: Boolean = false,
     error: OudsError? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.3.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
