@@ -571,7 +571,7 @@ internal fun OudsListItem(
                             )
                         }
                         labelContent?.let {
-                            CustomContentBox(state = state) {
+                            CustomContent(state = state) {
                                 labelContent()
                             }
                         }
@@ -582,7 +582,7 @@ internal fun OudsListItem(
                             Text(text = description, style = OudsTheme.typography.label.medium.default, color = contentColor(state = state, muted = true))
                         }
                         belowTextContent?.let {
-                            CustomContentBox(state = state) {
+                            CustomContent(state = state) {
                                 belowTextContent()
                             }
                         }
@@ -621,7 +621,7 @@ internal fun OudsListItem(
                 }
 
                 bottomContent?.let {
-                    CustomContentBox(
+                    CustomContent(
                         state = state,
                         modifier = Modifier
                             .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
@@ -657,7 +657,7 @@ class OudsListItemScope {
 }
 
 @Composable
-private fun CustomContentBox(
+private fun CustomContent(
     state: OudsListItemState,
     modifier: Modifier = Modifier,
     content: @Composable OudsListItemScope.() -> Unit
