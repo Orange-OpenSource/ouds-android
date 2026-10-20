@@ -82,7 +82,7 @@ interface OudsThemeContract {
         ReplaceWith("getFontFamily(Locale.getDefault())")
     )
     val fontFamily: FontFamily
-        get() = FontFamily.Default
+        get() = getFontFamily(Locale.getDefault())
 
     /**
      * The font family used in the theme.
@@ -92,8 +92,7 @@ interface OudsThemeContract {
      *
      * @param locale The locale to use for the font family.
      */
-    @Suppress("DEPRECATION")
-    fun getFontFamily(locale: Locale): FontFamily = fontFamily
+    fun getFontFamily(locale: Locale): FontFamily = FontFamily.Default
 
     /**
      * The collection of typography semantic tokens (font sizes, weights, line heights) used in the theme.

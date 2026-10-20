@@ -41,13 +41,14 @@ import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeGridSemanticToke
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeOpacitySemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeSizeSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeSpaceSemanticTokens
+import java.util.Locale
 
 const val WIREFRAME_THEME_NAME = "Wireframe"
 
 /**
  * The Wireframe theme.
  */
-class WireframeTheme : OudsThemeContract {
+open class WireframeTheme : OudsThemeContract {
 
     override val name: String
         get() = WIREFRAME_THEME_NAME
@@ -55,9 +56,8 @@ class WireframeTheme : OudsThemeContract {
     override val settings: OudsThemeSettings
         get() = OudsThemeSettings()
 
-    @Suppress("OVERRIDE_DEPRECATION")
-    override val fontFamily: FontFamily
-        get() = FontFamily(
+    override fun getFontFamily(locale: Locale): FontFamily {
+        return FontFamily(
             Font(R.font.shantellsans_extrabold, weight = FontWeight.ExtraBold),
             Font(R.font.shantellsans_extrabolditalic, weight = FontWeight.ExtraBold, style = FontStyle.Italic),
             Font(R.font.shantellsans_bold, weight = FontWeight.Bold),
@@ -71,6 +71,7 @@ class WireframeTheme : OudsThemeContract {
             Font(R.font.shantellsans_light, weight = FontWeight.Light),
             Font(R.font.shantellsans_lightitalic, weight = FontWeight.Light, style = FontStyle.Italic)
         )
+    }
 
     override val colorTokens: OudsColorSemanticTokens
         get() = WireframeColorSemanticTokens()
