@@ -18,7 +18,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
@@ -588,7 +588,7 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
             roundedCorner = leadingImageRoundedCorners,
             contentScale = ContentScale.Crop
         )
-        BaseListItemDemoState.Leading.Content -> OudsListItemLeading.Content { CustomContent(modifier = Modifier.fillMaxSize()) }
+        BaseListItemDemoState.Leading.Content -> OudsListItemLeading.Content { getBaseListItemContent(modifier = Modifier.fillMaxHeight()).invoke(this) }
     }
 }
 
@@ -667,7 +667,7 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
                 )
             }
         }
-        BaseListItemDemoState.Trailing.Content -> OudsListItemTrailing.Content { CustomContent(modifier = Modifier.fillMaxSize()) }
+        BaseListItemDemoState.Trailing.Content -> OudsListItemTrailing.Content { getBaseListItemContent(modifier = Modifier.fillMaxHeight()).invoke(this) }
     }
 }
 
@@ -714,19 +714,14 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
     }
 }
 
-fun getContentOrNull(contentActivated: Boolean): @Composable (OudsListItemScope.() -> Unit)? = if (contentActivated) {
-    { CustomContent(modifier = Modifier.fillMaxWidth()) }
-} else {
-    null
-}
+fun getBaseListItemContentOrNull(contentActivated: Boolean): @Composable (OudsListItemScope.() -> Unit)? =
+    if (contentActivated) getBaseListItemContent() else null
 
-val BaseLabelContent: @Composable OudsListItemScope.() -> Unit = { CustomContent(modifier = Modifier.fillMaxWidth()) }
-
-@Composable
-private fun OudsListItemScope.CustomContent(modifier: Modifier = Modifier) {
+fun getBaseListItemContent(modifier: Modifier = Modifier): @Composable (OudsListItemScope.() -> Unit) = {
     val enabled = state == OudsListItemState.Enabled
     Box(
         modifier = modifier
+            .fillMaxWidth()
             .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
             .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
         contentAlignment = Alignment.Center

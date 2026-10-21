@@ -83,7 +83,7 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsListItem(
-                            labelContent = BaseLabelContent,
+                            labelContent = getBaseListItemContent(),
                             modifier = modifier,
                             onClick = {},
                             indicator = indicator.toOudsListItemIndicator(),
@@ -98,8 +98,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                             helperText = helperText,
                             enabled = enabled,
                             edgeToEdge = edgeToEdge,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent),
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent),
                         )
                     } else {
                         OudsListItem(
@@ -119,8 +119,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                             boldLabel = boldLabel,
                             enabled = enabled,
                             edgeToEdge = edgeToEdge,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     }
                 BaseListItemDemoState.Size.Small ->
@@ -146,7 +146,7 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsListItem(
-                            labelContent = BaseLabelContent,
+                            labelContent = getBaseListItemContent(),
                             modifier = modifier,
                             verticalAlignment = verticalAlignment,
                             overline = overline,
@@ -159,8 +159,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                             helperText = helperText,
                             enabled = enabled,
                             edgeToEdge = edgeToEdge,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     } else {
                         OudsListItem(
@@ -178,8 +178,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                             boldLabel = boldLabel,
                             enabled = enabled,
                             edgeToEdge = edgeToEdge,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     }
                 BaseListItemDemoState.Size.Small ->

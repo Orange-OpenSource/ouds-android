@@ -82,7 +82,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsCardItem(
-                            labelContent = BaseLabelContent,
+                            labelContent = getBaseListItemContent(),
                             onClick = {},
                             indicator = indicator.toOudsListItemIndicator(),
                             verticalAlignment = verticalAlignment,
@@ -94,8 +94,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                             trailing = baseListItemDemoTrailing(state = state),
                             helperText = helperText,
                             enabled = enabled,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     } else {
                         OudsCardItem(
@@ -112,8 +112,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                             helperText = helperText,
                             boldLabel = boldLabel,
                             enabled = enabled,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     }
                 BaseListItemDemoState.Size.Small ->
@@ -136,7 +136,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsCardItem(
-                            labelContent = BaseLabelContent,
+                            labelContent = getBaseListItemContent(),
                             verticalAlignment = verticalAlignment,
                             decoration = decoration.toOudsListItemDecoration(divider = divider),
                             overline = overline,
@@ -146,8 +146,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                             trailing = baseListItemDemoTrailing(state = state),
                             helperText = helperText,
                             enabled = enabled,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     } else {
                         OudsCardItem(
@@ -162,8 +162,8 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                             helperText = helperText,
                             boldLabel = boldLabel,
                             enabled = enabled,
-                            belowTextContent = getContentOrNull(belowTextContent),
-                            bottomContent = getContentOrNull(bottomContent)
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
                         )
                     }
                 BaseListItemDemoState.Size.Small ->
