@@ -160,7 +160,6 @@
     <string name="app_components_listItem_icon_a11y">وصف الأيقونة</string>
     <string name="app_components_listItem_image_a11y">وصف الصورة</string>
     <string name="app_components_listItem_settingsAlertMessageLabel_label">مثال %1$s</string>
-    <string name="app_components_listItem_component_label">عنصر</string>
     <string name="app_components_listItem_componentSettingsAlertMessageDescription_text">يرجى الاطلاع على إعدادات المكون المحددة للحصول على خيارات التكوين الكاملة.</string>
     <string name="app_components_listItem_contentSettingsAlertMessageDescription_text">استخدم عنصر "Content" للمحتوى المخصص الذي لا يمكن تمثيله بواسطة أي عنصر آخر موجود؛ إذ يوفر هذا العنصر مرونةً لتلبية متطلبات محددة للمنتج، ولكن ينبغي استخدامه كاستثناء وليس كحلٍ افتراضي.</string>
 

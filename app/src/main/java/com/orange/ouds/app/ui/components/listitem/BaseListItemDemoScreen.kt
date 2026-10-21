@@ -76,7 +76,6 @@ import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.launch
 
@@ -385,7 +384,7 @@ private sealed class ConfigurableElement {
 
 @Composable
 private fun SettingsAlertMessage(configurableElement: ConfigurableElement) {
-    val elementName: String
+    val elementName: String?
     val message: String
     when (configurableElement) {
         ConfigurableElement.Content -> {
@@ -393,14 +392,14 @@ private fun SettingsAlertMessage(configurableElement: ConfigurableElement) {
             message = stringResource(R.string.app_components_listItem_contentSettingsAlertMessageDescription_text)
         }
         is ConfigurableElement.Component -> {
-            elementName = configurableElement.name.orElse { stringResource(R.string.app_components_listItem_component_label) }
+            elementName = configurableElement.name
             message = stringResource(R.string.app_components_listItem_componentSettingsAlertMessageDescription_text)
         }
     }
     OudsAlertMessage(
         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
         status = OudsAlertMessageStatus.Info,
-        label = stringResource(R.string.app_components_listItem_settingsAlertMessageLabel_label, elementName),
+        label = elementName?.let { stringResource(R.string.app_components_listItem_settingsAlertMessageLabel_label, elementName) }.orEmpty(),
         description = message
     )
 }
