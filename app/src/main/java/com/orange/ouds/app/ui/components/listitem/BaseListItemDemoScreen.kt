@@ -248,7 +248,7 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                LeadingTrailingContentAlertMessage()
+                ExampleAlertMessage(exampleType = ExampleType.Content)
             }
         }
     }
@@ -332,12 +332,14 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                TrailingBadgeOrTagConfiguration(
-                    componentName = when (trailing) {
-                        BaseListItemDemoState.Trailing.Badge -> "OudsBadge"
-                        BaseListItemDemoState.Trailing.Tag -> "OudsTag"
-                        else -> null
-                    }
+                ExampleAlertMessage(
+                    exampleType = ExampleType.Component(
+                        name = when (trailing) {
+                            BaseListItemDemoState.Trailing.Badge -> "OudsBadge"
+                            BaseListItemDemoState.Trailing.Tag -> "OudsTag"
+                            else -> null
+                        }
+                    )
                 )
             }
 
@@ -370,22 +372,36 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                LeadingTrailingContentAlertMessage()
+                ExampleAlertMessage(exampleType = ExampleType.Content)
             }
         }
     }
 }
 
+private sealed class ExampleType {
+    object Content : ExampleType()
+    class Component(val name: String?) : ExampleType()
+}
+
 @Composable
-private fun LeadingTrailingContentAlertMessage() {
+private fun ExampleAlertMessage(exampleType: ExampleType) {
+    val exampleName: String
+    val description: String
+    when (exampleType) {
+        ExampleType.Content -> {
+            exampleName = stringResource(R.string.app_components_listItem_content_tech)
+            description = stringResource(R.string.app_components_listItem_contentExempleAlertMessageDescription_text)
+        }
+        is ExampleType.Component -> {
+            exampleName = exampleType.name.orElse { stringResource(R.string.app_components_listItem_component_label) }
+            description = stringResource(R.string.app_components_listItem_componentExampleAlertMessageDescription_text)
+        }
+    }
     OudsAlertMessage(
         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
         status = OudsAlertMessageStatus.Info,
-        label = stringResource(
-            R.string.app_components_listItem_specificComponentExampleAlertLabel_label,
-            stringResource(R.string.app_components_listItem_content_tech)
-        ),
-        description = stringResource(R.string.app_components_listItem_contentExempleAlertDescription_text)
+        label = stringResource(R.string.app_components_listItem_exampleAlertMessageLabel_label, exampleName),
+        description = description
     )
 }
 
@@ -467,17 +483,6 @@ private fun LeadingImageConfiguration(state: BaseListItemDemoState) {
             )
         }
     }
-}
-
-@Composable
-private fun TrailingBadgeOrTagConfiguration(componentName: String?) {
-    OudsAlertMessage(
-        modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
-        status = OudsAlertMessageStatus.Info,
-        label = componentName?.let { stringResource(R.string.app_components_listItem_specificComponentExampleAlertLabel_label, it) }
-            .orElse { stringResource(R.string.app_components_listItem_componentExampleAlertLabel_label) },
-        description = stringResource(R.string.app_components_listItem_componentExampleAlertDescription_text)
-    )
 }
 
 @Composable
