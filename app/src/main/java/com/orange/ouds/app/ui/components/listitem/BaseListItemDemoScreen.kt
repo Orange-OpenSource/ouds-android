@@ -262,13 +262,13 @@ fun BaseListItemTextsCustomizationContent(state: BaseListItemDemoState) {
             label = stringResource(R.string.app_components_common_label_tech),
             value = label,
             onValueChange = { value -> label = value },
-            enabled = labelOptionsEnabled
+            enabled = labelSettingsEnabled
         )
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_listItem_boldLabel_tech),
             checked = boldLabel,
             onCheckedChange = { boldLabel = it },
-            enabled = labelOptionsEnabled
+            enabled = labelSettingsEnabled
         )
         if (state.size == BaseListItemDemoState.Size.Default) {
             CustomizationSwitchItem(

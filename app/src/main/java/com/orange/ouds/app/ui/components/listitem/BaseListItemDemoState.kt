@@ -190,7 +190,7 @@ open class BaseListItemDemoState(
     var label: String by mutableStateOf(label)
     var boldLabel: Boolean by mutableStateOf(boldLabel)
     var labelContent: Boolean by mutableStateOf(labelContent)
-    val labelOptionsEnabled: Boolean
+    val labelSettingsEnabled: Boolean
         get() = !labelContent
 
     var description: String? by mutableStateOf(description)

@@ -113,14 +113,14 @@ private fun TopAppBarDemoBottomSheetContent(state: TopAppBarDemoState) {
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_lastActionIconBadge_tech),
-            chips = TopAppBarDemoState.ActionIconBadge.entries.map { CustomizationFilterChip(it.name, lastActionIconOptionsEnabled) },
+            chips = TopAppBarDemoState.ActionIconBadge.entries.map { CustomizationFilterChip(it.name, lastActionIconSettingsEnabled) },
             selectedChipIndex = TopAppBarDemoState.ActionIconBadge.entries.indexOf(lastActionIconBadge),
             onSelectionChange = { index -> lastActionIconBadge = TopAppBarDemoState.ActionIconBadge.entries[index] },
         )
         CustomizationFilterChips(
             applyTopPadding = true,
             label = stringResource(R.string.app_components_topAppBar_lastActionIcon_tech),
-            chips = TopAppBarDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), lastActionIconOptionsEnabled) },
+            chips = TopAppBarDemoState.Icon.entries.map { CustomizationFilterChip(stringResource(it.labelRes), lastActionIconSettingsEnabled) },
             selectedChipIndex = TopAppBarDemoState.Icon.entries.indexOf(lastActionIcon),
             onSelectionChange = { index -> lastActionIcon = TopAppBarDemoState.Icon.entries[index] }
         )
