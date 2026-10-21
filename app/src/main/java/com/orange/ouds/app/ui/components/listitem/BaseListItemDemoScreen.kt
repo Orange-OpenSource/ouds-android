@@ -78,6 +78,7 @@ import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import kotlinx.coroutines.launch
+import kotlin.reflect.KMutableProperty0
 
 private const val TrailingBadgeExampleCount = 7
 private val trailingBadgeExampleStatus = OudsBadgeStatus.Negative
@@ -405,152 +406,110 @@ private fun SettingsAlertMessage(configurableElement: ConfigurableElement) {
 }
 
 @Composable
-private fun LeadingIconConfiguration(state: BaseListItemDemoState) {
-    with(state) {
-        Column {
-            if (size == BaseListItemDemoState.Size.Default) {
-                CustomizationFilterChips(
-                    applyTopPadding = true,
-                    label = stringResource(R.string.app_components_listItem_iconSize_tech),
-                    chips = OudsListItemIconSize.entries.map {
-                        CustomizationFilterChip(
-                            label = it.name.toSentenceCase(),
-                        )
-                    },
-                    selectedChipIndex = OudsListItemIconSize.entries.indexOf(leadingIconSize),
-                    onSelectionChange = { index -> leadingIconSize = OudsListItemIconSize.entries[index] }
-                )
-            }
+private fun LeadingTrailingIconConfiguration(
+    size: BaseListItemDemoState.Size,
+    iconSize: KMutableProperty0<OudsListItemIconSize>,
+    statusIcon: KMutableProperty0<BaseListItemDemoState.StatusIcon>,
+    iconTint: KMutableProperty0<BaseListItemDemoState.IconTint>
+) {
+    Column {
+        if (size == BaseListItemDemoState.Size.Default) {
             CustomizationFilterChips(
                 applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_statusIcon_tech),
-                chips = BaseListItemDemoState.StatusIcon.entries.map {
+                label = stringResource(R.string.app_components_listItem_iconSize_tech),
+                chips = OudsListItemIconSize.entries.map {
+                    CustomizationFilterChip(label = it.name.toSentenceCase())
+                },
+                selectedChipIndex = OudsListItemIconSize.entries.indexOf(iconSize.get()),
+                onSelectionChange = { index -> iconSize.set(OudsListItemIconSize.entries[index]) }
+            )
+        }
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_statusIcon_tech),
+            chips = BaseListItemDemoState.StatusIcon.entries.map {
+                CustomizationFilterChip(label = it.name.toSentenceCase())
+            },
+            selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(statusIcon.get()),
+            onSelectionChange = { index -> statusIcon.set(BaseListItemDemoState.StatusIcon.entries[index]) }
+        )
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_iconTint_tech),
+            chips = BaseListItemDemoState.IconTint.entries.map {
+                CustomizationFilterChip(it.name.toSentenceCase())
+            },
+            selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(iconTint.get()),
+            onSelectionChange = { index -> iconTint.set(BaseListItemDemoState.IconTint.entries[index]) }
+        )
+    }
+}
+
+@Composable
+private fun LeadingTrailingImageConfiguration(
+    size: BaseListItemDemoState.Size,
+    imageSize: KMutableProperty0<OudsListItemImageSize>,
+    imageRatio: KMutableProperty0<OudsListItemImageRatio>,
+    imageRoundedCorners: KMutableProperty0<Boolean>,
+) {
+    Column {
+        if (size == BaseListItemDemoState.Size.Default) {
+            CustomizationFilterChips(
+                applyTopPadding = true,
+                label = stringResource(R.string.app_components_listItem_imageSize_tech),
+                chips = OudsListItemImageSize.entries.map {
                     CustomizationFilterChip(
                         label = it.name.toSentenceCase(),
                     )
                 },
-                selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(leadingStatusIcon),
-                onSelectionChange = { index -> leadingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
-            )
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_iconTint_tech),
-                chips = BaseListItemDemoState.IconTint.entries.map {
-                    CustomizationFilterChip(
-                        it.name.toSentenceCase(),
-                    )
-                },
-                selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(leadingIconTint),
-                onSelectionChange = { index -> leadingIconTint = BaseListItemDemoState.IconTint.entries[index] }
+                selectedChipIndex = OudsListItemImageSize.entries.indexOf(imageSize.get()),
+                onSelectionChange = { index -> imageSize.set(OudsListItemImageSize.entries[index]) }
             )
         }
+        CustomizationFilterChips(
+            applyTopPadding = true,
+            label = stringResource(R.string.app_components_listItem_imageRatio_tech),
+            chips = OudsListItemImageRatio.entries.map {
+                CustomizationFilterChip(
+                    label = it.name.toSentenceCase(),
+                )
+            },
+            selectedChipIndex = OudsListItemImageRatio.entries.indexOf(imageRatio.get()),
+            onSelectionChange = { index -> imageRatio.set(OudsListItemImageRatio.entries[index]) }
+        )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
+            checked = imageRoundedCorners.get(),
+            onCheckedChange = { imageRoundedCorners.set(it) },
+        )
+    }
+}
+
+@Composable
+private fun LeadingIconConfiguration(state: BaseListItemDemoState) {
+    with(state) {
+        LeadingTrailingIconConfiguration(size, ::leadingIconSize, ::leadingStatusIcon, ::leadingIconTint)
     }
 }
 
 @Composable
 private fun LeadingImageConfiguration(state: BaseListItemDemoState) {
     with(state) {
-        Column {
-            if (size == BaseListItemDemoState.Size.Default) {
-                CustomizationFilterChips(
-                    applyTopPadding = true,
-                    label = stringResource(R.string.app_components_listItem_imageSize_tech),
-                    chips = OudsListItemImageSize.entries.map {
-                        CustomizationFilterChip(
-                            label = it.name.toSentenceCase(),
-                        )
-                    },
-                    selectedChipIndex = OudsListItemImageSize.entries.indexOf(leadingImageSize),
-                    onSelectionChange = { index -> leadingImageSize = OudsListItemImageSize.entries[index] }
-                )
-            }
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_imageRatio_tech),
-                chips = OudsListItemImageRatio.entries.map {
-                    CustomizationFilterChip(
-                        label = it.name.toSentenceCase(),
-                    )
-                },
-                selectedChipIndex = OudsListItemImageRatio.entries.indexOf(leadingImageRatio),
-                onSelectionChange = { index -> leadingImageRatio = OudsListItemImageRatio.entries[index] }
-            )
-            CustomizationSwitchItem(
-                label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
-                checked = leadingImageRoundedCorners,
-                onCheckedChange = { leadingImageRoundedCorners = it },
-            )
-        }
+        LeadingTrailingImageConfiguration(size, ::leadingImageSize, ::leadingImageRatio, ::leadingImageRoundedCorners)
     }
 }
 
 @Composable
 private fun TrailingIconConfiguration(state: BaseListItemDemoState) {
     with(state) {
-        Column {
-            if (size == BaseListItemDemoState.Size.Default) {
-                CustomizationFilterChips(
-                    applyTopPadding = true,
-                    label = stringResource(R.string.app_components_listItem_iconSize_tech),
-                    chips = OudsListItemIconSize.entries.map {
-                        CustomizationFilterChip(label = it.name.toSentenceCase())
-                    },
-                    selectedChipIndex = OudsListItemIconSize.entries.indexOf(trailingIconSize),
-                    onSelectionChange = { index -> trailingIconSize = OudsListItemIconSize.entries[index] }
-                )
-            }
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_statusIcon_tech),
-                chips = BaseListItemDemoState.StatusIcon.entries.map {
-                    CustomizationFilterChip(label = it.name.toSentenceCase())
-                },
-                selectedChipIndex = BaseListItemDemoState.StatusIcon.entries.indexOf(trailingStatusIcon),
-                onSelectionChange = { index -> trailingStatusIcon = BaseListItemDemoState.StatusIcon.entries[index] }
-            )
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_iconTint_tech),
-                chips = BaseListItemDemoState.IconTint.entries.map {
-                    CustomizationFilterChip(it.name.toSentenceCase())
-                },
-                selectedChipIndex = BaseListItemDemoState.IconTint.entries.indexOf(trailingIconTint),
-                onSelectionChange = { index -> trailingIconTint = BaseListItemDemoState.IconTint.entries[index] }
-            )
-        }
+        LeadingTrailingIconConfiguration(size, ::trailingIconSize, ::trailingStatusIcon, ::trailingIconTint)
     }
 }
 
 @Composable
 private fun TrailingImageConfiguration(state: BaseListItemDemoState) {
     with(state) {
-        Column {
-            if (size == BaseListItemDemoState.Size.Default) {
-                CustomizationFilterChips(
-                    applyTopPadding = true,
-                    label = stringResource(R.string.app_components_listItem_imageSize_tech),
-                    chips = OudsListItemImageSize.entries.map {
-                        CustomizationFilterChip(label = it.name.toSentenceCase())
-                    },
-                    selectedChipIndex = OudsListItemImageSize.entries.indexOf(trailingImageSize),
-                    onSelectionChange = { index -> trailingImageSize = OudsListItemImageSize.entries[index] }
-                )
-            }
-            CustomizationFilterChips(
-                applyTopPadding = true,
-                label = stringResource(R.string.app_components_listItem_imageRatio_tech),
-                chips = OudsListItemImageRatio.entries.map {
-                    CustomizationFilterChip(label = it.name.toSentenceCase())
-                },
-                selectedChipIndex = OudsListItemImageRatio.entries.indexOf(trailingImageRatio),
-                onSelectionChange = { index -> trailingImageRatio = OudsListItemImageRatio.entries[index] }
-            )
-            CustomizationSwitchItem(
-                label = stringResource(R.string.app_components_listItem_roundedCornerImage_tech),
-                checked = trailingImageRoundedCorners,
-                onCheckedChange = { trailingImageRoundedCorners = it },
-            )
-        }
+        LeadingTrailingImageConfiguration(size, ::trailingImageSize, ::trailingImageRatio, ::trailingImageRoundedCorners)
     }
 }
 
