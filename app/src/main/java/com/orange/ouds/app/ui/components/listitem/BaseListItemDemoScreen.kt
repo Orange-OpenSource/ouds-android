@@ -624,8 +624,7 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
         BaseListItemDemoState.Trailing.None -> null
         BaseListItemDemoState.Trailing.Badge -> OudsListItemTrailing.Badge(
             count = TrailingBadgeExampleCount,
-            status = TrailingBadgeExampleStatus,
-            enabled = enabled
+            status = TrailingBadgeExampleStatus
         )
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
@@ -653,8 +652,7 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
             label = stringResource(R.string.app_components_common_label_tech),
             appearance = OudsTagAppearance.Muted,
             size = OudsTagSize.Small,
-            status = OudsTagStatus.Positive(),
-            enabled = enabled
+            status = OudsTagStatus.Positive()
         )
         BaseListItemDemoState.Trailing.Text -> {
             if (trailingTextStyle == OudsListItemTextStyle.Label && !trailingTextExtraLabel.isNullOrBlank()) {
@@ -680,8 +678,7 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
         BaseListItemDemoState.Trailing.Badge ->
             OudsSmallListItemTrailing.Badge(
                 count = TrailingBadgeExampleCount,
-                status = TrailingBadgeExampleStatus,
-                enabled = enabled
+                status = TrailingBadgeExampleStatus
             )
         BaseListItemDemoState.Trailing.Icon -> {
             when (trailingStatusIcon) {
@@ -707,8 +704,7 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
             OudsSmallListItemTrailing.Tag(
                 label = stringResource(R.string.app_components_common_label_label),
                 size = TrailingTagExampleSize,
-                status = TrailingTagExampleStatus,
-                enabled = enabled
+                status = TrailingTagExampleStatus
             )
         BaseListItemDemoState.Trailing.Text ->
             OudsSmallListItemTrailing.Text(
@@ -813,7 +809,6 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 val init: Builder.() -> Unit = {
                     typedArgument("count", TrailingBadgeExampleCount)
                     typedArgument("status", TrailingBadgeExampleStatus)
-                    if (!enabled) enabledArgument(enabled)
                 }
                 when (size) {
                     BaseListItemDemoState.Size.Default -> constructorCallArgument<OudsListItemTrailing.Badge>(trailingParameterName, init)
@@ -855,7 +850,6 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                     labelArgument(R.string.app_components_common_label_label)
                     typedArgument("size", TrailingTagExampleSize)
                     typedArgument("status", TrailingTagExampleStatus)
-                    if (!enabled) enabledArgument(enabled)
                 }
                 when (size) {
                     BaseListItemDemoState.Size.Default -> constructorCallArgument<OudsListItemTrailing.Tag>(trailingParameterName, init)
