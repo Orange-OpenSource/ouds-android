@@ -369,16 +369,16 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
      *
      * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
      *   Values greater than 99 are displayed as "+99". If `null`, no number will be displayed in the badge.
+     * @param enabled Controls the enabled appearance of the badge.
      * @param status The status of this badge. The background color of the badge and the number color are based on this status.
      * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
-     * @param enabled Controls the enabled appearance of the badge.
      */
     class Badge(
         count: Int? = null,
+        enabled: Boolean = true,
         status: OudsBadgeStatus = OudsBadgeDefaults.Status,
-        size: OudsBadgeSize = OudsBadgeDefaults.Size,
-        enabled: Boolean = true
-    ) : OudsListItemBadge(count = count, status = status, size = size, enabled = enabled), OudsSmallListItemTrailing
+        size: OudsBadgeSize = OudsBadgeDefaults.Size
+    ) : OudsListItemBadge(count = count, enabled = enabled, status = status, size = size), OudsSmallListItemTrailing
 
     /**
      * An icon as a small list item trailing content.

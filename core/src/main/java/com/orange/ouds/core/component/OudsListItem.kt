@@ -1143,9 +1143,9 @@ enum class OudsListItemTextStyle {
 
 open class OudsListItemBadge internal constructor(
     private val count: Int?,
+    private val enabled: Boolean,
     private val status: OudsBadgeStatus,
-    private val size: OudsBadgeSize,
-    private val enabled: Boolean
+    private val size: OudsBadgeSize
 ) : OudsComponentContent<OudsListItemLeadingTrailing.Badge.ExtraParameters>(OudsListItemLeadingTrailing.Badge.ExtraParameters::class.java),
     OudsListItemLeadingTrailing.Badge {
 
@@ -1154,9 +1154,9 @@ open class OudsListItemBadge internal constructor(
         val isEnabled = extraParameters.state == OudsListItemState.Enabled && enabled
         Box(modifier = modifier.sizeIn(minHeight = OudsTheme.components.listItem.size.asset.medium), contentAlignment = Alignment.Center) {
             count?.let {
-                OudsBadge(count = it, status = status, size = size, enabled = isEnabled)
+                OudsBadge(count = it, enabled = isEnabled, status = status, size = size)
             }.orElse {
-                OudsBadge(status = status, size = size, enabled = isEnabled)
+                OudsBadge(enabled = isEnabled, status = status, size = size)
             }
         }
     }
@@ -1492,16 +1492,16 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
      *
      * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
      *   Values greater than 99 are displayed as "+99". If `null`, no number will be displayed in the badge.
+     * @param enabled Controls the enabled appearance of the badge.
      * @param status The status of this badge. The background color of the badge and the number color are based on this status.
      * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
-     * @param enabled Controls the enabled appearance of the badge.
      */
     class Badge(
         count: Int? = null,
+        enabled: Boolean = true,
         status: OudsBadgeStatus = OudsBadgeDefaults.Status,
-        size: OudsBadgeSize = OudsBadgeDefaults.Size,
-        enabled: Boolean = true
-    ) : OudsListItemBadge(count = count, status = status, size = size, enabled = enabled), OudsListItemTrailing
+        size: OudsBadgeSize = OudsBadgeDefaults.Size
+    ) : OudsListItemBadge(count = count, enabled = enabled, status = status, size = size), OudsListItemTrailing
 
     /**
      * A custom content as a list item trailing content.
