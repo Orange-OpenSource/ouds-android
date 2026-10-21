@@ -30,6 +30,7 @@ import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -403,24 +404,38 @@ internal fun PreviewOudsStaticCardItem(
                 )
             }
         ) {
-            OudsListItem(
-                card = true,
-                onClick = null,
-                decoration = decoration,
-                label = label,
-                labelContent = labelContent,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                helperText = helperText,
-                verticalAlignment = verticalAlignment,
-                leading = leading,
-                trailing = trailing,
-                boldLabel = boldLabel,
-                belowTextContent = belowTextContent,
-                bottomContent = bottomContent,
-                enabled = enabled
-            )
+            labelContent?.let {
+                OudsCardItem(
+                    labelContent = labelContent,
+                    verticalAlignment = verticalAlignment,
+                    decoration = decoration,
+                    overline = overline,
+                    extraLabel = extraLabel,
+                    description = description,
+                    leading = leading,
+                    trailing = trailing,
+                    helperText = helperText,
+                    belowTextContent = belowTextContent,
+                    bottomContent = bottomContent,
+                    enabled = enabled
+                )
+            }.orElse {
+                OudsCardItem(
+                    label = label.orEmpty(),
+                    verticalAlignment = verticalAlignment,
+                    decoration = decoration,
+                    overline = overline,
+                    extraLabel = extraLabel,
+                    description = description,
+                    leading = leading,
+                    trailing = trailing,
+                    helperText = helperText,
+                    boldLabel = boldLabel,
+                    belowTextContent = belowTextContent,
+                    bottomContent = bottomContent,
+                    enabled = enabled
+                )
+            }
         }
     }
 }
@@ -467,24 +482,42 @@ internal fun PreviewOudsNavigationCardItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(maxEnumEntriesInEachRow = 1) {
-            OudsListItem(
-                card = true,
-                onClick = {},
-                decoration = decoration,
-                label = label,
-                labelContent = labelContent,
-                indicator = indicator,
-                overline = overline,
-                extraLabel = extraLabel,
-                description = description,
-                helperText = helperText,
-                verticalAlignment = verticalAlignment,
-                leading = leading,
-                trailing = trailing,
-                belowTextContent = belowTextContent,
-                bottomContent = bottomContent,
-                enabled = enabled
-            )
+            labelContent?.let {
+                OudsCardItem(
+                    labelContent = labelContent,
+                    verticalAlignment = verticalAlignment,
+                    onClick = {},
+                    indicator = indicator,
+                    decoration = decoration,
+                    overline = overline,
+                    extraLabel = extraLabel,
+                    description = description,
+                    leading = leading,
+                    trailing = trailing,
+                    helperText = helperText,
+                    belowTextContent = belowTextContent,
+                    bottomContent = bottomContent,
+                    enabled = enabled
+                )
+            }.orElse {
+                OudsCardItem(
+                    label = label.orEmpty(),
+                    verticalAlignment = verticalAlignment,
+                    onClick = {},
+                    indicator = indicator,
+                    decoration = decoration,
+                    overline = overline,
+                    extraLabel = extraLabel,
+                    description = description,
+                    leading = leading,
+                    trailing = trailing,
+                    helperText = helperText,
+                    boldLabel = boldLabel,
+                    belowTextContent = belowTextContent,
+                    bottomContent = bottomContent,
+                    enabled = enabled
+                )
+            }
         }
     }
 }
