@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorSurfaceSemanticTokens
 
+/**
+ * White Label surface color semantic tokens.
+ *
+ * Inherits from Wireframe surface color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorSurfaceSemanticTokens(
+ *     surfacePrimaryLight = Color(0xFFF5F5F5),
+ *     surfacePrimaryDark = Color(0xFF1E1E1E)
+ * )
+ * ```
+ */
 class WhiteLabelColorSurfaceSemanticTokens(
     surfaceBrandPrimaryDark: Color = Color.Unspecified,
     surfaceBrandPrimaryLight: Color = Color.Unspecified,

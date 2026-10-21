@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorBorderSemanticTokens
 
+/**
+ * White Label border color semantic tokens.
+ *
+ * Inherits from Wireframe border color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorBorderSemanticTokens(
+ *     borderDefaultLight = Color(0xFFE0E0E0),
+ *     borderDefaultDark = Color(0xFF424242)
+ * )
+ * ```
+ */
 class WhiteLabelColorBorderSemanticTokens(
     borderBrandPrimaryDark: Color = Color.Unspecified,
     borderBrandPrimaryLight: Color = Color.Unspecified,

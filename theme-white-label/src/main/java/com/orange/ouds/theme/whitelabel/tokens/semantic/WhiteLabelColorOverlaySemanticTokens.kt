@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorOverlaySemanticTokens
 
+/**
+ * White Label overlay color semantic tokens.
+ *
+ * Inherits from Wireframe overlay color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorOverlaySemanticTokens(
+ *     overlayBackdropLight = Color(0x80000000),
+ *     overlayBackdropDark = Color(0x80000000)
+ * )
+ * ```
+ */
 class WhiteLabelColorOverlaySemanticTokens(
     overlayBackdropDark: Color = Color.Unspecified,
     overlayBackdropLight: Color = Color.Unspecified,

@@ -26,6 +26,20 @@ import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorModeSemanticTokens
 
+/**
+ * White Label color semantic tokens.
+ *
+ * Inherits from Wireframe color semantic tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorSemanticTokens(
+ *     actionColorTokens = WhiteLabelColorActionSemanticTokens(
+ *         actionEnabledLight = Color(0xFF007AFF)
+ *     )
+ * )
+ * ```
+ */
 class WhiteLabelColorSemanticTokens(
     override val actionColorTokens: OudsColorActionSemanticTokens = WhiteLabelColorActionSemanticTokens(),
     override val aiColorTokens: OudsColorAiSemanticTokens = WhiteLabelColorAiSemanticTokens(),
