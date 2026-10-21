@@ -1919,7 +1919,7 @@ internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = 
         2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageRatio.Widescreen)
         3 -> OudsListItemTrailing.Content { PreviewCustomContent(state = state, modifier = Modifier.fillMaxSize()) }
         4 -> OudsListItemTrailing.Badge(count = 100, status = OudsBadgeStatus.Negative, size = OudsBadgeSize.Large)
-        5 -> OudsListItemTrailing.Tag(label = "Almost used", status = OudsTagStatus.Warning(asset = null))
+        5 -> OudsListItemTrailing.Tag(label = "Almost used", status = OudsTagStatus.Warning())
         else -> null
     }
 }

@@ -131,7 +131,7 @@ internal fun OudsListItemWithLeadingImageAndTrailingTagSample() {
             size = OudsListItemImageSize.Large,
             ratio = OudsListItemImageRatio.Square
         ),
-        trailing = OudsListItemTrailing.Tag(status = OudsTagStatus.Positive(asset = null), label = "Available", size = OudsTagSize.Small)
+        trailing = OudsListItemTrailing.Tag(status = OudsTagStatus.Positive(), label = "Available", size = OudsTagSize.Small)
     )
 }
 
