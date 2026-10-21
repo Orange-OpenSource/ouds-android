@@ -211,7 +211,6 @@ fun OudsListItem(
  * @param divider Controls the display of a divider at the bottom of the list item. Defaults to `true`.
  * @param background Controls whether the list item has a background color. Defaults to `false`.
  * @param helperText Optional helper text displayed below the list item.
- * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
  *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
@@ -238,7 +237,6 @@ fun OudsListItem(
     divider: Boolean = true,
     background: Boolean = false,
     helperText: String? = null,
-    boldLabel: Boolean = false,
     belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
@@ -260,7 +258,6 @@ fun OudsListItem(
         trailing = trailing,
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
-        boldLabel = boldLabel,
         belowTextContent = belowTextContent,
         bottomContent = bottomContent,
         enabled = enabled,
@@ -404,7 +401,6 @@ fun OudsListItem(
  * @param divider Controls the display of a divider at the bottom of the list item. Defaults to `true`.
  * @param background Controls whether the list item has a background color. Defaults to `false`.
  * @param helperText Optional helper text displayed below the list item.
- * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param belowTextContent Optional custom content displayed below the last text of the text container, between [leading] and [trailing].
  *   Note that no default padding is applied; you must provide your own padding if needed.
  * @param bottomContent Optional custom content displayed at the bottom of the list item across the entire width, below the main row content.
@@ -433,7 +429,6 @@ fun OudsListItem(
     divider: Boolean = true,
     background: Boolean = false,
     helperText: String? = null,
-    boldLabel: Boolean = false,
     belowTextContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     bottomContent: @Composable (OudsListItemScope.() -> Unit)? = null,
     enabled: Boolean = true,
@@ -454,7 +449,6 @@ fun OudsListItem(
         trailing = trailing,
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
-        boldLabel = boldLabel,
         belowTextContent = belowTextContent,
         bottomContent = bottomContent,
         enabled = enabled,
