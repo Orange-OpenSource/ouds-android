@@ -718,7 +718,7 @@ fun getBaseListItemContentOrNull(contentActivated: Boolean): @Composable (OudsLi
     if (contentActivated) getBaseListItemContent() else null
 
 fun getBaseListItemContent(modifier: Modifier = Modifier): @Composable (OudsListItemScope.() -> Unit) = {
-    val enabled = state == OudsListItemState.Enabled
+    val enabled = state != OudsListItemState.Disabled
     Box(
         modifier = modifier
             .fillMaxWidth()
