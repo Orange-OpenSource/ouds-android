@@ -81,9 +81,9 @@ import kotlinx.coroutines.launch
 import kotlin.reflect.KMutableProperty0
 
 private const val TrailingBadgeExampleCount = 7
-private val trailingBadgeExampleStatus = OudsBadgeStatus.Negative
-private val trailingTagExampleSize = OudsTagSize.Small
-private val trailingTagExampleStatus = OudsTagStatus.Positive()
+private val TrailingBadgeExampleStatus = OudsBadgeStatus.Negative
+private val TrailingTagExampleSize = OudsTagSize.Small
+private val TrailingTagExampleStatus = OudsTagStatus.Positive()
 
 @Composable
 fun BaseListItemDemoBottomSheetTabs(state: BaseListItemDemoState) {
@@ -624,7 +624,7 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
         BaseListItemDemoState.Trailing.None -> null
         BaseListItemDemoState.Trailing.Badge -> OudsListItemTrailing.Badge(
             count = TrailingBadgeExampleCount,
-            status = trailingBadgeExampleStatus,
+            status = TrailingBadgeExampleStatus,
             enabled = enabled
         )
         BaseListItemDemoState.Trailing.Icon -> {
@@ -680,7 +680,7 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
         BaseListItemDemoState.Trailing.Badge ->
             OudsSmallListItemTrailing.Badge(
                 count = TrailingBadgeExampleCount,
-                status = trailingBadgeExampleStatus,
+                status = TrailingBadgeExampleStatus,
                 enabled = enabled
             )
         BaseListItemDemoState.Trailing.Icon -> {
@@ -706,8 +706,8 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
         BaseListItemDemoState.Trailing.Tag ->
             OudsSmallListItemTrailing.Tag(
                 label = stringResource(R.string.app_components_common_label_label),
-                size = trailingTagExampleSize,
-                status = trailingTagExampleStatus,
+                size = TrailingTagExampleSize,
+                status = TrailingTagExampleStatus,
                 enabled = enabled
             )
         BaseListItemDemoState.Trailing.Text ->
@@ -724,7 +724,7 @@ fun getContentOrNull(contentActivated: Boolean): @Composable (OudsListItemScope.
     null
 }
 
-val baseLabelContent: @Composable OudsListItemScope.() -> Unit = { CustomContent(modifier = Modifier.fillMaxWidth()) }
+val BaseLabelContent: @Composable OudsListItemScope.() -> Unit = { CustomContent(modifier = Modifier.fillMaxWidth()) }
 
 @Composable
 private fun OudsListItemScope.CustomContent(modifier: Modifier = Modifier) {
@@ -812,7 +812,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
             BaseListItemDemoState.Trailing.Badge -> {
                 val init: Builder.() -> Unit = {
                     typedArgument("count", TrailingBadgeExampleCount)
-                    typedArgument("status", trailingBadgeExampleStatus)
+                    typedArgument("status", TrailingBadgeExampleStatus)
                     if (!enabled) enabledArgument(enabled)
                 }
                 when (size) {
@@ -853,8 +853,8 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
             BaseListItemDemoState.Trailing.Tag -> {
                 val init: Builder.() -> Unit = {
                     labelArgument(R.string.app_components_common_label_label)
-                    typedArgument("size", trailingTagExampleSize)
-                    typedArgument("status", trailingTagExampleStatus)
+                    typedArgument("size", TrailingTagExampleSize)
+                    typedArgument("status", TrailingTagExampleStatus)
                     if (!enabled) enabledArgument(enabled)
                 }
                 when (size) {

@@ -83,7 +83,7 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsListItem(
-                            labelContent = baseLabelContent,
+                            labelContent = BaseLabelContent,
                             modifier = modifier,
                             onClick = {},
                             indicator = indicator.toOudsListItemIndicator(),
@@ -146,7 +146,7 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsListItem(
-                            labelContent = baseLabelContent,
+                            labelContent = BaseLabelContent,
                             modifier = modifier,
                             verticalAlignment = verticalAlignment,
                             overline = overline,

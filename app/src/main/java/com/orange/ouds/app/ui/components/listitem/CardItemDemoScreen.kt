@@ -82,7 +82,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsCardItem(
-                            labelContent = baseLabelContent,
+                            labelContent = BaseLabelContent,
                             onClick = {},
                             indicator = indicator.toOudsListItemIndicator(),
                             verticalAlignment = verticalAlignment,
@@ -136,7 +136,7 @@ private fun CardItemDemoContent(state: CardItemDemoState) {
                 BaseListItemDemoState.Size.Default ->
                     if (labelContent) {
                         OudsCardItem(
-                            labelContent = baseLabelContent,
+                            labelContent = BaseLabelContent,
                             verticalAlignment = verticalAlignment,
                             decoration = decoration.toOudsListItemDecoration(divider = divider),
                             overline = overline,
