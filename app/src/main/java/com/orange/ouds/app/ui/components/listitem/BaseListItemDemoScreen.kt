@@ -622,7 +622,7 @@ fun baseListItemDemoLeading(state: BaseListItemDemoState): OudsListItemLeading? 
             roundedCorner = leadingImageRoundedCorners,
             contentScale = ContentScale.Crop
         )
-        BaseListItemDemoState.Leading.Content -> OudsListItemLeading.Content { CustomContent(state = this.state, modifier = Modifier.fillMaxSize()) }
+        BaseListItemDemoState.Leading.Content -> OudsListItemLeading.Content { CustomContent(modifier = Modifier.fillMaxSize()) }
     }
 }
 
@@ -703,7 +703,7 @@ fun baseListItemDemoTrailing(state: BaseListItemDemoState): OudsListItemTrailing
                 )
             }
         }
-        BaseListItemDemoState.Trailing.Content -> OudsListItemTrailing.Content { CustomContent(state = this.state, modifier = Modifier.fillMaxSize()) }
+        BaseListItemDemoState.Trailing.Content -> OudsListItemTrailing.Content { CustomContent(modifier = Modifier.fillMaxSize()) }
     }
 }
 
@@ -753,15 +753,15 @@ fun baseSmallListItemDemoTrailing(state: BaseListItemDemoState): OudsSmallListIt
 }
 
 fun getContentOrNull(contentActivated: Boolean): @Composable (OudsListItemScope.() -> Unit)? = if (contentActivated) {
-    { CustomContent(state = this.state, modifier = Modifier.fillMaxWidth()) }
+    { CustomContent(modifier = Modifier.fillMaxWidth()) }
 } else {
     null
 }
 
-val baseLabelContent: @Composable OudsListItemScope.() -> Unit = { CustomContent(state = this.state, modifier = Modifier.fillMaxWidth()) }
+val baseLabelContent: @Composable OudsListItemScope.() -> Unit = { CustomContent(modifier = Modifier.fillMaxWidth()) }
 
 @Composable
-fun CustomContent(state: OudsListItemState, modifier: Modifier = Modifier) {
+private fun OudsListItemScope.CustomContent(modifier: Modifier = Modifier) {
     val enabled = state == OudsListItemState.Enabled
     Box(
         modifier = modifier

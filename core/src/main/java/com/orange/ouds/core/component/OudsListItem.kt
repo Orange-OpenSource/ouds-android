@@ -25,7 +25,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -1907,7 +1907,7 @@ internal val listItemPreviewParameterLeading: (Int) -> OudsListItemLeading? = { 
         0 -> OudsListItemLeading.Icon.Info()
         1 -> OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
         2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageRatio.Square, roundedCorner = true)
-        3 -> OudsListItemLeading.Content { PreviewCustomContent(state = state, modifier = Modifier.fillMaxSize()) }
+        3 -> OudsListItemLeading.Content { PreviewCustomContent(modifier = Modifier.fillMaxHeight()) }
         else -> null
     }
 }
@@ -1917,7 +1917,7 @@ internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = 
         0 -> OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         1 -> OudsListItemTrailing.Text(label = "Label", extraLabel = "Extra label")
         2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageRatio.Widescreen)
-        3 -> OudsListItemTrailing.Content { PreviewCustomContent(state = state, modifier = Modifier.fillMaxSize()) }
+        3 -> OudsListItemTrailing.Content { PreviewCustomContent(modifier = Modifier.fillMaxHeight()) }
         4 -> OudsListItemTrailing.Badge(count = 100, status = OudsBadgeStatus.Negative, size = OudsBadgeSize.Large)
         5 -> OudsListItemTrailing.Tag(label = "Almost used", status = OudsTagStatus.Warning())
         else -> null
@@ -1934,10 +1934,11 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
 ) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration, size).toTypedArray())
 
 @Composable
-private fun PreviewCustomContent(state: OudsListItemState, modifier: Modifier = Modifier) {
+private fun OudsListItemScope.PreviewCustomContent(modifier: Modifier = Modifier) {
     val enabled = state == OudsListItemState.Enabled
     Box(
         modifier = modifier
+            .fillMaxWidth()
             .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
             .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
         contentAlignment = Alignment.Center
@@ -2002,12 +2003,7 @@ private fun <T, S> getListItemPreviewParameterValues(
                 labelContent = when (size) {
                     OudsListItemSize.Default -> {
                         {
-                            PreviewCustomContent(
-                                state = state,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
-                            )
+                            PreviewCustomContent(modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer))
                         }
                     }
                     OudsListItemSize.Small -> null
@@ -2019,21 +2015,11 @@ private fun <T, S> getListItemPreviewParameterValues(
                 leading = leading(index),
                 trailing = trailing(index),
                 belowTextContent = {
-                    PreviewCustomContent(
-                        state = state,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer)
-                    )
+                    PreviewCustomContent(modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer))
                 },
                 bottomContent = {
                     with(OudsTheme.components.listItem) {
-                        PreviewCustomContent(
-                            state = state,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = space.paddingBlock.bottomSlotListItemContainer)
-                        )
+                        PreviewCustomContent(modifier = Modifier.padding(bottom = space.paddingBlock.bottomSlotListItemContainer))
                     }
                 },
                 decoration = decoration(index)
