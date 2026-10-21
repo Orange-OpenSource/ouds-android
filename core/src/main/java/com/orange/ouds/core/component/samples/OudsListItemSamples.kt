@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -190,7 +191,10 @@ internal fun OudsStaticListItemWithCustomContentsSample() {
             )
         },
         belowTextContent = {
-            Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)) {
+            Row(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)
+            ) {
                 OudsTag(label = "Admin", status = OudsTagStatus.Positive(), size = OudsTagSize.Small)
                 OudsTag(label = "Active", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
             }
@@ -226,7 +230,10 @@ internal fun OudsNavigationListItemWithCustomContentsSample() {
             OudsLabelText(text = "2.5 km", size = OudsLabelTextSize.Medium, weight = OudsTextWeight.Strong)
         },
         belowTextContent = {
-            Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)) {
+            Row(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)
+            ) {
                 OudsTag(label = "WiFi", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
                 OudsTag(label = "Parking", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
             }
@@ -246,6 +253,7 @@ internal fun OudsStaticListItemWithLabelContentSample() {
     OudsListItem(
         labelContent = {
             Row(
+                modifier = Modifier.padding(vertical = OudsTheme.spaces.fixed.twoExtraSmall),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
             ) {

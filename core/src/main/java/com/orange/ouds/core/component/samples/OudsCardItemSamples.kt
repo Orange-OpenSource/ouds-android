@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -189,7 +190,10 @@ internal fun OudsStaticCardItemWithCustomContentsSample() {
             OudsLabelText(text = "€299", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
         },
         belowTextContent = {
-            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Row(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 OudsTag(label = "Pool", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
                 OudsTag(label = "WiFi", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
             }
@@ -236,7 +240,10 @@ internal fun OudsNavigationCardItemWithCustomContentsSample() {
             }
         },
         belowTextContent = {
-            Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)) {
+            Row(
+                modifier = Modifier.padding(top = OudsTheme.spaces.fixed.twoExtraSmall),
+                horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)
+            ) {
                 OudsTag(label = "EN", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
                 OudsTag(label = "FR", status = OudsTagStatus.Info(), size = OudsTagSize.Small)
             }
