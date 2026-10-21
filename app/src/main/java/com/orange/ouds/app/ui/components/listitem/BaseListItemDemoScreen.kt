@@ -221,7 +221,12 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
             CustomizationFilterChips(
                 applyTopPadding = true,
                 label = null,
-                chipLabels = BaseListItemDemoState.Leading.entries.filter { it.availableForSizes.contains(state.size) }.map { it.name.toSentenceCase() },
+                chips = BaseListItemDemoState.Leading.entries.map {
+                    CustomizationFilterChip(
+                        label = it.name.toSentenceCase(),
+                        enabled = it in enabledLeadings
+                    )
+                },
                 selectedChipIndex = BaseListItemDemoState.Leading.entries.indexOf(leading),
                 onSelectionChange = { index ->
                     leading = BaseListItemDemoState.Leading.entries[index]
@@ -320,7 +325,12 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             CustomizationFilterChips(
                 applyTopPadding = true,
                 label = null,
-                chipLabels = BaseListItemDemoState.Trailing.entries.filter { it.availableForSizes.contains(state.size) }.map { it.name.toSentenceCase() },
+                chips = BaseListItemDemoState.Trailing.entries.map {
+                    CustomizationFilterChip(
+                        label = it.name.toSentenceCase(),
+                        enabled = it in enabledTrailings
+                    )
+                },
                 selectedChipIndex = BaseListItemDemoState.Trailing.entries.indexOf(trailing),
                 onSelectionChange = { index ->
                     trailing = BaseListItemDemoState.Trailing.entries[index]

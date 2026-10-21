@@ -185,6 +185,12 @@ open class BaseListItemDemoState(
     val leadingContentSettingsVisible: Boolean
         get() = leading == Leading.Content
 
+    val enabledLeadings: List<Leading>
+        get() = when (size) {
+            Size.Small -> listOf(Leading.None, Leading.Icon, Leading.Image)
+            Size.Default -> listOf(Leading.None, Leading.Icon, Leading.Image, Leading.Content)
+        }
+
     //// Texts configuration
 
     var label: String by mutableStateOf(label)
@@ -231,6 +237,11 @@ open class BaseListItemDemoState(
     val trailingContentSettingsVisible: Boolean
         get() = trailing == Trailing.Content
 
+    val enabledTrailings: List<Trailing>
+        get() = when (size) {
+            Size.Small -> listOf(Trailing.None, Trailing.Badge, Trailing.Icon, Trailing.Image, Trailing.Tag, Trailing.Text)
+            Size.Default -> listOf(Trailing.None, Trailing.Badge, Trailing.Icon, Trailing.Image, Trailing.Tag, Trailing.Text, Trailing.Content)
+        }
 
     enum class CustomizationTab {
         General, Leading, Texts, Trailing
@@ -250,12 +261,12 @@ open class BaseListItemDemoState(
         }
     }
 
-    enum class Leading(val availableForSizes: List<Size> = listOf(Size.Default, Size.Small)) {
-        None, Icon, Image, Content(listOf(Size.Default))
+    enum class Leading {
+        None, Icon, Image, Content
     }
 
-    enum class Trailing(val availableForSizes: List<Size> = listOf(Size.Default, Size.Small)) {
-        None, Badge, Icon, Image, Tag, Text, Content(listOf(Size.Default))
+    enum class Trailing {
+        None, Badge, Icon, Image, Tag, Text, Content
     }
 
     enum class StatusIcon {
