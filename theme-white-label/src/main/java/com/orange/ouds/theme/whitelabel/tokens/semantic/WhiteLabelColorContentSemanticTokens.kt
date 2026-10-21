@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorContentSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorContentSemanticTokens
 
+/**
+ * White Label content color semantic tokens.
+ *
+ * Inherits from Wireframe content color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorContentSemanticTokens(
+ *     contentDefaultLight = Color.Black,
+ *     contentDefaultDark = Color.White
+ * )
+ * ```
+ */
 class WhiteLabelColorContentSemanticTokens(
     contentBrandPrimaryDark: Color = Color.Unspecified,
     contentBrandPrimaryLight: Color = Color.Unspecified,

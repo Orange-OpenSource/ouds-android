@@ -22,6 +22,66 @@ import java.util.Locale
 
 const val WHITE_LABEL_THEME_NAME = "White Label"
 
+/**
+ * The White Label theme.
+ *
+ * This theme extends [WireframeTheme] to provide a customizable foundation for white-labeling applications.
+ * Unlike the Wireframe theme which uses the Shantell Sans font, the White Label theme uses the default font family,
+ * making it ideal for applications that need a neutral starting point with custom branding.
+ *
+ * The White Label theme can be customized in several ways:
+ * - **Font family**: Provide a custom [WhiteLabelFontFamily] implementation.
+ * - **Color semantic tokens**: Pass custom [WhiteLabelColorSemanticTokens] to override semantic color values.
+ * - **Material color tokens**: Pass custom [WhiteLabelMaterialColorTokens] to override Material color mappings.
+ *
+ * ## Default Usage
+ *
+ * By default, the White Label theme uses WireframeTheme appearance with the default font family:
+ *
+ * ```
+ * OudsTheme(theme = WhiteLabelTheme()) {
+ *     // Your composables here
+ * }
+ * ```
+ *
+ * ## Custom Font Family
+ *
+ * Override the font family to use your brand's typography:
+ *
+ * ```
+ * val customFontFamily = WhiteLabelFontFamily { locale ->
+ *     FontFamily(
+ *         Font(R.font.my_brand_regular, FontWeight.Normal),
+ *         Font(R.font.my_brand_bold, FontWeight.Bold)
+ *     )
+ * }
+ *
+ * OudsTheme(theme = WhiteLabelTheme(whiteLabelFontFamily = customFontFamily)) {
+ *     // Your composables here
+ * }
+ * ```
+ *
+ * ## Custom Colors
+ *
+ * Override specific color tokens to match your brand:
+ *
+ * ```
+ * val customColorTokens = WhiteLabelColorSemanticTokens(
+ *     actionColorTokens = WhiteLabelColorActionSemanticTokens(
+ *         actionEnabledLight = Color(0xFF007AFF),
+ *         actionEnabledDark = Color(0xFF0A84FF)
+ *     )
+ * )
+ *
+ * OudsTheme(theme = WhiteLabelTheme(colorTokens = customColorTokens)) {
+ *     // Your composables here
+ * }
+ * ```
+ *
+ * @param whiteLabelFontFamily The font family to use. Defaults to [WhiteLabelFontFamily.Default] which uses the default font family.
+ * @param colorTokens The semantic color tokens. Defaults to [WhiteLabelColorSemanticTokens] which inherits from Wireframe colors.
+ * @param materialColorTokens The Material color tokens. Defaults to [WhiteLabelMaterialColorTokens] which inherits from Wireframe Material colors.
+ */
 class WhiteLabelTheme(
     private val whiteLabelFontFamily: WhiteLabelFontFamily = WhiteLabelFontFamily.Default,
     colorTokens: WhiteLabelColorSemanticTokens = WhiteLabelColorSemanticTokens(),

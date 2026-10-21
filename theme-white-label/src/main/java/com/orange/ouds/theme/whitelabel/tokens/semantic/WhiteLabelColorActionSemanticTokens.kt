@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorActionSemanticTokens
 
+/**
+ * White Label action color semantic tokens.
+ *
+ * Inherits from Wireframe action color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorActionSemanticTokens(
+ *     actionEnabledLight = Color(0xFF007AFF),
+ *     actionEnabledDark = Color(0xFF0A84FF)
+ * )
+ * ```
+ */
 class WhiteLabelColorActionSemanticTokens(
     actionDisabledDark: Color = Color.Unspecified,
     actionDisabledLight: Color = Color.Unspecified,
