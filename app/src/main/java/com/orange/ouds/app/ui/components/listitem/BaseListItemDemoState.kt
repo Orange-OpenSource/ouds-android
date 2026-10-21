@@ -225,7 +225,7 @@ open class BaseListItemDemoState(
     val trailingTextSettingsVisible: Boolean
         get() = trailing == Trailing.Text
 
-    val trailingComponentExampleAlertVisible: Boolean
+    val trailingComponentSettingsAlertVisible: Boolean
         get() = trailing in listOf(Trailing.Badge, Trailing.Tag)
 
     val trailingContentSettingsVisible: Boolean

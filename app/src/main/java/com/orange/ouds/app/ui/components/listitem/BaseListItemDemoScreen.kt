@@ -248,7 +248,7 @@ fun BaseListItemLeadingCustomizationContent(state: BaseListItemDemoState) {
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                ExampleAlertMessage(exampleType = ExampleType.Content)
+                SettingsAlertMessage(configurableElement = ConfigurableElement.Content)
             }
         }
     }
@@ -328,12 +328,12 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
             )
 
             AnimatedVisibility(
-                visible = trailingComponentExampleAlertVisible,
+                visible = trailingComponentSettingsAlertVisible,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                ExampleAlertMessage(
-                    exampleType = ExampleType.Component(
+                SettingsAlertMessage(
+                    configurableElement = ConfigurableElement.Component(
                         name = when (trailing) {
                             BaseListItemDemoState.Trailing.Badge -> "OudsBadge"
                             BaseListItemDemoState.Trailing.Tag -> "OudsTag"
@@ -372,36 +372,36 @@ fun BaseListItemTrailingCustomizationContent(state: BaseListItemDemoState) {
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {
-                ExampleAlertMessage(exampleType = ExampleType.Content)
+                SettingsAlertMessage(configurableElement = ConfigurableElement.Content)
             }
         }
     }
 }
 
-private sealed class ExampleType {
-    object Content : ExampleType()
-    class Component(val name: String?) : ExampleType()
+private sealed class ConfigurableElement {
+    object Content : ConfigurableElement()
+    class Component(val name: String?) : ConfigurableElement()
 }
 
 @Composable
-private fun ExampleAlertMessage(exampleType: ExampleType) {
-    val exampleName: String
-    val description: String
-    when (exampleType) {
-        ExampleType.Content -> {
-            exampleName = stringResource(R.string.app_components_listItem_content_tech)
-            description = stringResource(R.string.app_components_listItem_contentExempleAlertMessageDescription_text)
+private fun SettingsAlertMessage(configurableElement: ConfigurableElement) {
+    val elementName: String
+    val message: String
+    when (configurableElement) {
+        ConfigurableElement.Content -> {
+            elementName = stringResource(R.string.app_components_listItem_content_tech)
+            message = stringResource(R.string.app_components_listItem_contentSettingsAlertMessageDescription_text)
         }
-        is ExampleType.Component -> {
-            exampleName = exampleType.name.orElse { stringResource(R.string.app_components_listItem_component_label) }
-            description = stringResource(R.string.app_components_listItem_componentExampleAlertMessageDescription_text)
+        is ConfigurableElement.Component -> {
+            elementName = configurableElement.name.orElse { stringResource(R.string.app_components_listItem_component_label) }
+            message = stringResource(R.string.app_components_listItem_componentSettingsAlertMessageDescription_text)
         }
     }
     OudsAlertMessage(
         modifier = Modifier.padding(horizontal = OudsTheme.grids.margin, vertical = OudsTheme.spaces.fixed.small),
         status = OudsAlertMessageStatus.Info,
-        label = stringResource(R.string.app_components_listItem_exampleAlertMessageLabel_label, exampleName),
-        description = description
+        label = stringResource(R.string.app_components_listItem_settingsAlertMessageLabel_label, elementName),
+        description = message
     )
 }
 

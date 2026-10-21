@@ -316,9 +316,9 @@
     <string name="app_components_listItem_bottomContent_tech" translatable="false">Bottom content</string>
     <string name="app_components_listItem_content_tech" translatable="false">Content</string>
     <string name="app_components_listItem_component_label">Component</string>
-    <string name="app_components_listItem_exampleAlertMessageLabel_label">%1$s example</string>
-    <string name="app_components_listItem_componentExampleAlertMessageDescription_text">Please see the specific component settings for full configuration options.</string>
-    <string name="app_components_listItem_contentExempleAlertMessageDescription_text">Use Content for custom content that cannot be represented by another existing element.\nContent provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.</string>
+    <string name="app_components_listItem_settingsAlertMessageLabel_label">%1$s example</string>
+    <string name="app_components_listItem_componentSettingsAlertMessageDescription_text">Please see the specific component settings for full configuration options.</string>
+    <string name="app_components_listItem_contentSettingsAlertMessageDescription_text">Use Content for custom content that cannot be represented by another existing element.\nContent provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.</string>
 
     <!-- Components: navigation bar -->
     <string name="app_components_navigationBar_tech" translatable="false">Navigation bar</string>
