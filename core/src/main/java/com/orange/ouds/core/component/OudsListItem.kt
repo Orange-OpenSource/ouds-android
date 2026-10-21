@@ -1145,7 +1145,7 @@ open class OudsListItemBadge internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        val isEnabled = extraParameters.state == OudsListItemState.Enabled && enabled
+        val isEnabled = extraParameters.state != OudsListItemState.Disabled && enabled
         Box(modifier = modifier.sizeIn(minHeight = OudsTheme.components.listItem.size.asset.medium), contentAlignment = Alignment.Center) {
             count?.let {
                 OudsBadge(count = it, enabled = isEnabled, status = status, size = size)
@@ -1236,7 +1236,7 @@ open class OudsListItemTag internal constructor(
         Box(modifier = modifier.sizeIn(minHeight = OudsTheme.components.listItem.size.asset.medium), contentAlignment = Alignment.Center) {
             OudsTag(
                 label = label,
-                enabled = extraParameters.state == OudsListItemState.Enabled && enabled,
+                enabled = extraParameters.state != OudsListItemState.Disabled && enabled,
                 appearance = appearance,
                 status = status,
                 roundedCorners = roundedCorners,
