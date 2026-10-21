@@ -1929,7 +1929,7 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
 
 @Composable
 private fun OudsListItemScope.PreviewCustomContent(modifier: Modifier = Modifier) {
-    val enabled = state == OudsListItemState.Enabled
+    val enabled = state != OudsListItemState.Disabled
     Box(
         modifier = modifier
             .fillMaxWidth()
