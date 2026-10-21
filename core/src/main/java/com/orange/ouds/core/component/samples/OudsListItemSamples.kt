@@ -29,12 +29,13 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsListItem
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
@@ -45,6 +46,7 @@ import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
@@ -194,11 +196,7 @@ internal fun OudsStaticListItemWithCustomContentsSample() {
             }
         },
         bottomContent = {
-            Text(
-                text = "Last login: 2 hours ago",
-                style = OudsTheme.typography.label.small.default,
-                color = OudsTheme.colorScheme.content.muted
-            )
+            OudsLabelText(text = "Last login: 2 hours ago", size = OudsLabelTextSize.Small, color = OudsTheme.colorScheme.content.muted)
         }
     )
 }
@@ -225,7 +223,7 @@ internal fun OudsNavigationListItemWithCustomContentsSample() {
             }
         },
         trailing = OudsListItemTrailing.Content {
-            Text(text = "2.5 km", style = OudsTheme.typography.label.medium.strong)
+            OudsLabelText(text = "2.5 km", size = OudsLabelTextSize.Medium, weight = OudsTextWeight.Strong)
         },
         belowTextContent = {
             Row(horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.twoExtraSmall)) {
@@ -234,9 +232,9 @@ internal fun OudsNavigationListItemWithCustomContentsSample() {
             }
         },
         bottomContent = {
-            Text(
+            OudsLabelText(
                 text = "Open Mon-Fri: 9:00 - 18:00",
-                style = OudsTheme.typography.label.small.default,
+                size = OudsLabelTextSize.Small,
                 color = OudsTheme.colorScheme.content.muted
             )
         }
@@ -251,7 +249,7 @@ internal fun OudsStaticListItemWithLabelContentSample() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
             ) {
-                Text(text = "Premium Account", style = OudsTheme.typography.label.large.strong, color = OudsTheme.colorScheme.content.default)
+                OudsLabelText(text = "Premium Account", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
                 OudsTag(label = "VIP", status = OudsTagStatus.Warning(), size = OudsTagSize.Small)
             }
         },
@@ -268,10 +266,11 @@ internal fun OudsNavigationListItemWithLabelContentSample() {
     OudsListItem(
         labelContent = {
             Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.threeExtraSmall)) {
-                Text(text = "Special Offer", style = OudsTheme.typography.label.large.strong, color = OudsTheme.colorScheme.content.default)
-                Text(
+                OudsLabelText(text = "Special Offer", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
+                OudsLabelText(
                     text = "Save 30% this month",
-                    style = OudsTheme.typography.label.medium.strong,
+                    size = OudsLabelTextSize.Medium,
+                    weight = OudsTextWeight.Strong,
                     color = OudsTheme.colorScheme.content.status.positive
                 )
             }

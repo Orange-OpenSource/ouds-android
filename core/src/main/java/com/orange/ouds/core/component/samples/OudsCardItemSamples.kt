@@ -27,7 +27,6 @@ import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.OudsCardItem
 import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsListItemDecoration
 import com.orange.ouds.core.component.OudsListItemImageRatio
 import com.orange.ouds.core.component.OudsListItemImageSize
@@ -46,6 +47,7 @@ import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
@@ -163,7 +165,6 @@ internal fun OudsCardItemWithUntintedIconSample() {
 
 @Composable
 internal fun OudsStaticCardItemWithCustomContentsSample() {
-    val contentColor = OudsTheme.colorScheme.content.default
     OudsCardItem(
         label = "Hotel Paradise",
         description = "Luxury beachfront resort",
@@ -181,11 +182,11 @@ internal fun OudsStaticCardItemWithCustomContentsSample() {
                     contentDescription = "Rating",
                     tint = OudsTheme.colorScheme.content.onStatus.warning.muted
                 )
-                Text(text = "4.8", style = OudsTheme.typography.label.medium.strong, color = contentColor)
+                OudsLabelText(text = "4.8", size = OudsLabelTextSize.Medium, weight = OudsTextWeight.Strong)
             }
         },
         trailing = OudsListItemTrailing.Content {
-            Text(text = "€299", style = OudsTheme.typography.label.large.strong, color = contentColor)
+            OudsLabelText(text = "€299", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
         },
         belowTextContent = {
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -194,9 +195,10 @@ internal fun OudsStaticCardItemWithCustomContentsSample() {
             }
         },
         bottomContent = {
-            Text(
+            OudsLabelText(
                 text = "Only 2 rooms available",
-                style = OudsTheme.typography.label.small.strong,
+                size = OudsLabelTextSize.Small,
+                weight = OudsTextWeight.Strong,
                 color = OudsTheme.colorScheme.content.status.warning
             )
         }
@@ -205,7 +207,6 @@ internal fun OudsStaticCardItemWithCustomContentsSample() {
 
 @Composable
 internal fun OudsNavigationCardItemWithCustomContentsSample() {
-    val contentColor = OudsTheme.colorScheme.content.default
     OudsCardItem(
         label = "City Tour Package",
         description = "Guided tour with transport",
@@ -225,13 +226,13 @@ internal fun OudsNavigationCardItemWithCustomContentsSample() {
                     contentDescription = "Duration",
                     tint = OudsTheme.colorScheme.content.onStatus.info.muted
                 )
-                Text(text = "3h", style = OudsTheme.typography.label.small.strong, color = contentColor)
+                OudsLabelText(text = "3h", size = OudsLabelTextSize.Small, weight = OudsTextWeight.Strong)
             }
         },
         trailing = OudsListItemTrailing.Content {
             Column(horizontalAlignment = Alignment.End) {
-                Icon(imageVector = Icons.Outlined.Person, contentDescription = "People", modifier = Modifier.size(20.dp), tint = contentColor)
-                Text(text = "8/15", style = OudsTheme.typography.label.small.strong, color = contentColor)
+                Icon(imageVector = Icons.Outlined.Person, contentDescription = "People", modifier = Modifier.size(20.dp), tint = OudsTheme.colorScheme.content.default)
+                OudsLabelText(text = "8/15", size = OudsLabelTextSize.Small, weight = OudsTextWeight.Strong)
             }
         },
         belowTextContent = {
@@ -251,20 +252,19 @@ internal fun OudsNavigationCardItemWithCustomContentsSample() {
 
 @Composable
 internal fun OudsStaticCardItemWithLabelContentSample() {
-    val contentColor = OudsTheme.colorScheme.content.default
     OudsCardItem(
         labelContent = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.extraSmall)
             ) {
-                Text(text = "Grand Hotel", style = OudsTheme.typography.label.large.strong, color = contentColor)
+                OudsLabelText(text = "Grand Hotel", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.threeExtraSmall)
                 ) {
-                    Icon(imageVector = Icons.Outlined.Star, contentDescription = null, modifier = Modifier.size(14.dp), tint = contentColor)
-                    Text(text = "4.9", style = OudsTheme.typography.label.small.strong, color = contentColor)
+                    Icon(imageVector = Icons.Outlined.Star, contentDescription = null, modifier = Modifier.size(14.dp), tint = OudsTheme.colorScheme.content.default)
+                    OudsLabelText(text = "4.9", size = OudsLabelTextSize.Small, weight = OudsTextWeight.Strong)
                 }
             }
         },
@@ -281,7 +281,6 @@ internal fun OudsStaticCardItemWithLabelContentSample() {
 
 @Composable
 internal fun OudsNavigationCardItemWithLabelContentSample() {
-    val contentColor = OudsTheme.colorScheme.content.default
     OudsCardItem(
         labelContent = {
             Row(
@@ -289,10 +288,11 @@ internal fun OudsNavigationCardItemWithLabelContentSample() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Amsterdam", style = OudsTheme.typography.label.large.strong, color = contentColor)
+                OudsLabelText(text = "Amsterdam", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
                 Column(horizontalAlignment = Alignment.End) {
-                    Text(text = "from", style = OudsTheme.typography.label.small.default, color = contentColor)
-                    Text(text = "€89", style = OudsTheme.typography.label.large.strong, color = contentColor)
+                    OudsLabelText(text = "from", size = OudsLabelTextSize.Small)
+                    OudsLabelText(text = "€89", size = OudsLabelTextSize.Large, weight = OudsTextWeight.Strong)
+
                 }
             }
         },

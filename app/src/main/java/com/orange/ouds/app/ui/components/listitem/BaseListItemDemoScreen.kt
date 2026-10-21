@@ -54,6 +54,8 @@ import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageStatus
 import com.orange.ouds.core.component.OudsBadgeStatus
+import com.orange.ouds.core.component.OudsLabelText
+import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsListItemContent
 import com.orange.ouds.core.component.OudsListItemDefaults
 import com.orange.ouds.core.component.OudsListItemIcon
@@ -72,6 +74,7 @@ import com.orange.ouds.core.component.OudsSmallListItemTrailing
 import com.orange.ouds.core.component.OudsTagAppearance
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
+import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
@@ -769,10 +772,11 @@ private fun OudsListItemScope.CustomContent(modifier: Modifier = Modifier) {
             .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
         contentAlignment = Alignment.Center
     ) {
-        Text(
+        OudsLabelText(
             text = stringResource(R.string.app_components_listItem_content_tech),
-            style = OudsTheme.typography.label.small.strong,
-            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled,
+            size = OudsLabelTextSize.Small,
+            weight = OudsTextWeight.Strong,
+            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled
         )
     }
 }
