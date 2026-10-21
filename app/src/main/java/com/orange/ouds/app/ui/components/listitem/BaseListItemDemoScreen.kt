@@ -849,7 +849,7 @@ fun FunctionCall.Builder.baseListItemArguments(state: BaseListItemDemoState, the
                 val init: Builder.() -> Unit = {
                     labelArgument(R.string.app_components_common_label_label)
                     typedArgument("size", TrailingTagExampleSize)
-                    typedArgument("status", TrailingTagExampleStatus)
+                    functionCallArgument("status", TrailingTagExampleStatus::class.java.nestedName)
                 }
                 when (size) {
                     BaseListItemDemoState.Size.Default -> constructorCallArgument<OudsListItemTrailing.Tag>(trailingParameterName, init)
