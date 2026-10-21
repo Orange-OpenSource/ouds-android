@@ -43,6 +43,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -817,6 +818,7 @@ private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned
     Column(horizontalAlignment = if (centerAligned) Alignment.CenterHorizontally else Alignment.Start) {
         val maxLines = if (topAppBarSize == OudsTopAppBarSize.Small) 1 else Int.MAX_VALUE
         Text(
+            modifier = Modifier.semantics { heading() },
             text = title,
             maxLines = maxLines,
             overflow = TextOverflow.Ellipsis,
