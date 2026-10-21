@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.wireframe.tokens.material.WireframeMaterialColorTokens
 
+/**
+ * White Label Material color tokens.
+ *
+ * Inherits from Wireframe Material color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelMaterialColorTokens(
+ *     primaryLight = Color(0xFF007AFF),
+ *     primaryDark = Color(0xFF0A84FF)
+ * )
+ * ```
+ */
 class WhiteLabelMaterialColorTokens(
     backgroundDark: Color = Color.Unspecified,
     backgroundLight: Color = Color.Unspecified,

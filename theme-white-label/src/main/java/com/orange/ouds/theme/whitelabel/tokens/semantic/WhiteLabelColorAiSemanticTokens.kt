@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorAiSemanticTokens
 
+/**
+ * White Label AI color semantic tokens.
+ *
+ * Inherits from Wireframe AI color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorAiSemanticTokens(
+ *     aiPrimaryLight = Color(0xFF6200EE),
+ *     aiPrimaryDark = Color(0xFFBB86FC)
+ * )
+ * ```
+ */
 class WhiteLabelColorAiSemanticTokens(
     aiPrimaryDark: Color = Color.Unspecified,
     aiPrimaryLight: Color = Color.Unspecified,

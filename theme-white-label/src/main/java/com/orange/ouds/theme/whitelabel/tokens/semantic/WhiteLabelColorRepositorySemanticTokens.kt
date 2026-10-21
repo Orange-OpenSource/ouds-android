@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorRepositorySemanticTokens
 
+/**
+ * White Label repository color semantic tokens.
+ *
+ * Inherits from Wireframe repository color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorRepositorySemanticTokens(
+ *     repositoryPrimaryMedium = Color(0xFF1976D2),
+ *     repositoryNegativeHigh = Color(0xFFD32F2F)
+ * )
+ * ```
+ */
 class WhiteLabelColorRepositorySemanticTokens(
     repositoryAccentHigh: Color = Color.Unspecified,
     repositoryAccentHigher: Color = Color.Unspecified,

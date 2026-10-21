@@ -15,12 +15,57 @@ package com.orange.ouds.theme.whitelabel
 import androidx.compose.ui.text.font.FontFamily
 import java.util.Locale
 
+/**
+ * A functional interface for providing font families to the White Label theme.
+ *
+ * This interface allows customization of the font family used by [WhiteLabelTheme],
+ * with locale-aware font selection support.
+ *
+ * ## Default Implementation
+ *
+ * The [Default] companion object provides a default implementation that returns [FontFamily.Default]:
+ *
+ * ```
+ * WhiteLabelTheme(whiteLabelFontFamily = WhiteLabelFontFamily.Default)
+ * ```
+ *
+ * ## Custom Implementation
+ *
+ * Create a custom implementation to use your own fonts:
+ *
+ * ```
+ * val customFontFamily = WhiteLabelFontFamily { locale ->
+ *     if (locale.language == "ar") {
+ *         FontFamily(
+ *             Font(R.font.my_arabic_regular, FontWeight.Normal),
+ *             Font(R.font.my_arabic_bold, FontWeight.Bold)
+ *         )
+ *     } else {
+ *         FontFamily(
+ *             Font(R.font.my_latin_regular, FontWeight.Normal),
+ *             Font(R.font.my_latin_bold, FontWeight.Bold)
+ *         )
+ *     }
+ * }
+ *
+ * WhiteLabelTheme(whiteLabelFontFamily = customFontFamily)
+ * ```
+ */
 fun interface WhiteLabelFontFamily {
 
     companion object {
 
+        /**
+         * Default font family implementation that returns [FontFamily.Default].
+         */
         val Default = WhiteLabelFontFamily { FontFamily.Default }
     }
 
+    /**
+     * Returns the font family to use for the given locale.
+     *
+     * @param locale The current locale.
+     * @return The font family to use.
+     */
     fun getFontFamily(locale: Locale): FontFamily
 }

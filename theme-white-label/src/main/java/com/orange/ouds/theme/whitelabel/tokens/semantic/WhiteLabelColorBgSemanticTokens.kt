@@ -16,6 +16,19 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorBgSemanticTokens
 
+/**
+ * White Label background color semantic tokens.
+ *
+ * Inherits from Wireframe background color tokens with customizable overrides.
+ * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ *
+ * ```
+ * WhiteLabelColorBgSemanticTokens(
+ *     bgPrimaryLight = Color.White,
+ *     bgPrimaryDark = Color(0xFF121212)
+ * )
+ * ```
+ */
 class WhiteLabelColorBgSemanticTokens(
     bgInverseHighDark: Color = Color.Unspecified,
     bgInverseHighLight: Color = Color.Unspecified,
