@@ -81,24 +81,48 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
         if (clickable) {
             when (size) {
                 BaseListItemDemoState.Size.Default ->
-                    OudsListItem(
-                        modifier = modifier,
-                        onClick = {},
-                        indicator = indicator.toOudsListItemIndicator(),
-                        label = label,
-                        verticalAlignment = verticalAlignment,
-                        overline = overline,
-                        extraLabel = extraLabel,
-                        description = description,
-                        leading = baseListItemDemoLeading(state = state),
-                        trailing = baseListItemDemoTrailing(state = state),
-                        divider = divider,
-                        background = background,
-                        helperText = helperText,
-                        boldLabel = boldLabel,
-                        enabled = enabled,
-                        edgeToEdge = edgeToEdge
-                    )
+                    if (labelContent) {
+                        OudsListItem(
+                            labelContent = getBaseListItemContent(),
+                            modifier = modifier,
+                            onClick = {},
+                            indicator = indicator.toOudsListItemIndicator(),
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            divider = divider,
+                            background = background,
+                            helperText = helperText,
+                            enabled = enabled,
+                            edgeToEdge = edgeToEdge,
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent),
+                        )
+                    } else {
+                        OudsListItem(
+                            label = label,
+                            modifier = modifier,
+                            onClick = {},
+                            indicator = indicator.toOudsListItemIndicator(),
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            divider = divider,
+                            background = background,
+                            helperText = helperText,
+                            boldLabel = boldLabel,
+                            enabled = enabled,
+                            edgeToEdge = edgeToEdge,
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
+                        )
+                    }
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallListItem(
                         modifier = modifier,
@@ -120,22 +144,44 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
         } else {
             when (size) {
                 BaseListItemDemoState.Size.Default ->
-                    OudsListItem(
-                        modifier = modifier,
-                        label = label,
-                        verticalAlignment = verticalAlignment,
-                        overline = overline,
-                        extraLabel = extraLabel,
-                        description = description,
-                        leading = baseListItemDemoLeading(state = state),
-                        trailing = baseListItemDemoTrailing(state = state),
-                        divider = divider,
-                        background = background,
-                        helperText = helperText,
-                        boldLabel = boldLabel,
-                        enabled = enabled,
-                        edgeToEdge = edgeToEdge
-                    )
+                    if (labelContent) {
+                        OudsListItem(
+                            labelContent = getBaseListItemContent(),
+                            modifier = modifier,
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            divider = divider,
+                            background = background,
+                            helperText = helperText,
+                            enabled = enabled,
+                            edgeToEdge = edgeToEdge,
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
+                        )
+                    } else {
+                        OudsListItem(
+                            label = label,
+                            modifier = modifier,
+                            verticalAlignment = verticalAlignment,
+                            overline = overline,
+                            extraLabel = extraLabel,
+                            description = description,
+                            leading = baseListItemDemoLeading(state = state),
+                            trailing = baseListItemDemoTrailing(state = state),
+                            divider = divider,
+                            background = background,
+                            helperText = helperText,
+                            boldLabel = boldLabel,
+                            enabled = enabled,
+                            edgeToEdge = edgeToEdge,
+                            belowTextContent = getBaseListItemContentOrNull(belowTextContent),
+                            bottomContent = getBaseListItemContentOrNull(bottomContent)
+                        )
+                    }
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallListItem(
                         modifier = modifier,

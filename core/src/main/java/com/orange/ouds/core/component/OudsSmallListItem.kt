@@ -48,7 +48,7 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * > Design name: Static List Item
  *
- * > Design version: 0.1.0
+ * > Design version: 0.3.0
  *
  * @see [OudsSmallCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *
@@ -69,7 +69,8 @@ import com.orange.ouds.theme.OudsThemeContract
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -92,6 +93,7 @@ fun OudsSmallListItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
+        labelContent = null,
         onClick = null,
         modifier = modifier,
         indicator = null,
@@ -104,6 +106,8 @@ fun OudsSmallListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = null,
+        bottomContent = null,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
@@ -125,7 +129,7 @@ fun OudsSmallListItem(
  *
  * > Design name: Navigation List Item
  *
- * > Design version: 0.1.0
+ * > Design version: 0.3.0
  *
  * @see [OudsSmallCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *
@@ -148,7 +152,8 @@ fun OudsSmallListItem(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithAllElementsSample
- * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithLeadingImageAndTrailingTagSample
+ * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithLeadingIconAndTrailingBadgeSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
 @ExperimentalOudsApi
@@ -173,6 +178,7 @@ fun OudsSmallListItem(
     OudsListItem(
         size = OudsListItemSize.Small,
         label = label,
+        labelContent = null,
         onClick = onClick,
         modifier = modifier,
         indicator = indicator,
@@ -185,6 +191,8 @@ fun OudsSmallListItem(
         decoration = listItemDecoration(background, divider),
         helperText = helperText,
         boldLabel = boldLabel,
+        belowTextContent = null,
+        bottomContent = null,
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
@@ -353,6 +361,26 @@ sealed interface OudsSmallListItemLeading : OudsListItemLeadingTrailing {
 sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
 
     /**
+     * A badge as a small list item trailing content.
+     * Use a Badge to communicate a compact status or notification associated with the item.
+     * A badge should contain secondary information and must not replace the primary label or description.
+     *
+     * @see [OudsBadge]
+     *
+     * @param count The number displayed in the badge. Minimum and maximum values are 0 and 99 respectively.
+     *   Values greater than 99 are displayed as "+99". If `null`, no number will be displayed in the badge.
+     * @param enabled Controls the enabled appearance of the badge.
+     * @param status The status of this badge. The background color of the badge and the number color are based on this status.
+     * @param size The size of this badge. The number is not displayed when size is [OudsBadgeSize.ExtraSmall] or [OudsBadgeSize.Small].
+     */
+    class Badge(
+        count: Int? = null,
+        enabled: Boolean = true,
+        status: OudsBadgeStatus = OudsBadgeDefaults.Status,
+        size: OudsBadgeSize = OudsBadgeDefaults.Size
+    ) : OudsListItemBadge(count = count, enabled = enabled, status = status, size = size), OudsSmallListItemTrailing
+
+    /**
      * An icon as a small list item trailing content.
      */
     open class Icon internal constructor(
@@ -495,6 +523,34 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
     }
 
     /**
+     * A tag as a small list item trailing content.
+     * Use a Tag to communicate a category, attribute, classification or compact status associated with the item (static item) or with the
+     * navigation destination (navigation item).
+     *
+     * @see [OudsTag]
+     *
+     * @param label The label displayed in the tag.
+     * @param enabled Controls the enabled appearance of the tag.
+     * @param appearance Appearance of the tag among [OudsTagAppearance] values. Combined with the [status] of the tag, the appearance determines the tag's background
+     *   and content colors.
+     * @param status The status of the tag. Its background color and its content color are based on this status combined with the [appearance] of the tag.
+     * @param roundedCorners Controls the shape of the tag.
+     * @param size Size of the tag among [OudsTagSize] values.
+     * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
+     * tag is in progress.
+     * TODO add skeleton option when available
+     */
+    class Tag(
+        label: String,
+        enabled: Boolean = true,
+        appearance: OudsTagAppearance = OudsTagDefaults.Appearance,
+        status: OudsTagStatus = OudsTagDefaults.Status,
+        roundedCorners: Boolean = true,
+        size: OudsTagSize = OudsTagDefaults.Size,
+        loader: OudsTagLoader? = null
+    ) : OudsListItemTag(label, enabled, appearance, status, roundedCorners, size, loader), OudsSmallListItemTrailing
+
+    /**
      * Label as a small list item trailing content.
      */
     class Text(
@@ -518,7 +574,7 @@ internal fun PreviewOudsStaticSmallListItem(
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         OudsSmallListItem(
-            label = label,
+            label = label.orEmpty(),
             description = description,
             helperText = helperText,
             leading = leading,
@@ -557,7 +613,7 @@ internal fun PreviewOudsNavigationSmallListItem(
             OudsSmallListItem(
                 onClick = {},
                 indicator = indicator,
-                label = label,
+                label = label.orEmpty(),
                 description = description,
                 helperText = helperText,
                 verticalAlignment = verticalAlignment,
@@ -574,7 +630,8 @@ internal fun PreviewOudsNavigationSmallListItem(
 
 internal class OudsSmallListItemPreviewParameterProvider : OudsBasicListItemPreviewParameterProvider<OudsSmallListItemLeading, OudsSmallListItemTrailing>(
     leading = smallListItemPreviewParameterLeading,
-    trailing = smallListItemPreviewParameterTrailing
+    trailing = smallListItemPreviewParameterTrailing,
+    size = OudsListItemSize.Small
 )
 
 internal val smallListItemPreviewParameterLeading: (Int) -> OudsSmallListItemLeading? = { index ->
@@ -591,6 +648,8 @@ internal val smallListItemPreviewParameterTrailing: (Int) -> OudsSmallListItemTr
         0 -> OudsSmallListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         1 -> OudsSmallListItemTrailing.Text(label = "Label", style = OudsListItemTextStyle.LabelStrong)
         2 -> OudsSmallListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageRatio.Square)
+        3 -> OudsSmallListItemTrailing.Badge(count = 2, status = OudsBadgeStatus.Negative, size = OudsBadgeSize.Medium)
+        4 -> OudsSmallListItemTrailing.Tag(label = "Active", size = OudsTagSize.Small, status = OudsTagStatus.Positive(asset = OudsTagAsset.Bullet))
         else -> null
     }
 }
