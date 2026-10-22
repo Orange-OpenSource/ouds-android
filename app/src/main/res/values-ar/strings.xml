@@ -29,6 +29,7 @@
 
     <!-- Change theme dialog -->
     <string name="app_themeDialog_label">تغيير السمة</string>
+    <string name="app_themeDialog_whiteLabelExample_label">%s مثال</string>
 
     <!-- Change theme settings dialog -->
     <string name="app_themeSettingsDialog_apply_label">تطبيق</string>
