@@ -30,7 +30,7 @@ import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorModeSemanti
  * White Label color semantic tokens.
  *
  * Inherits from Wireframe color semantic tokens with customizable overrides.
- * Parameters left as [Color.Unspecified] will use the default Wireframe values.
+ * Parameters left as [androidx.compose.ui.graphics.Color.Unspecified] will use the default Wireframe values.
  *
  * ```
  * WhiteLabelColorSemanticTokens(
