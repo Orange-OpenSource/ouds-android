@@ -23,7 +23,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class WireframeButtonTokens(
+internal class WireframeButtonTokens(
     override val borderRadiusAiIconOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,

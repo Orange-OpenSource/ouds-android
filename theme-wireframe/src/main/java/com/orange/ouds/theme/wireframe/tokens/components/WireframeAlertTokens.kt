@@ -21,7 +21,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsAlertTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class WireframeAlertTokens(
+internal class WireframeAlertTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Large,
     override val sizeAsset: OudsSizeKeyToken.Icon = OudsSizeKeyToken.Icon.WithLabel.Large.SizeSmall,

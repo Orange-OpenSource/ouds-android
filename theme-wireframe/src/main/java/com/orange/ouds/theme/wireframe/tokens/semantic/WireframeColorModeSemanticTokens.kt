@@ -19,7 +19,7 @@ import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorModeSemanticTokens
 
 @InternalOudsApi
-data class WireframeColorModeSemanticTokens(
+class WireframeColorModeSemanticTokens(
     override val navigationBarDark: String = "dark",
     override val navigationBarLight: String = "dark",
     override val onBgInverseHighDark: String = "light",

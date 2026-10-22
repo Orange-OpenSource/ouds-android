@@ -7,7 +7,7 @@ The **OUDS Theme White Label** module provides a customizable theme implementati
 While the `core` module provides the mechanisms to *access* the theme, and `theme-contract` defines *what* a theme is, **theme-white-label** defines **a customizable theme for white-label applications**.
 
 - **White Label Use:** This theme is specifically designed for applications that need to apply custom branding while keeping a clean, neutral base. Unlike the Wireframe theme which uses the Shantell Sans font, White Label uses the default font family by default.
-- **Customization:** It allows customization of font family, color semantic tokens, and Material color tokens through constructor parameters.
+- **Customization:** It allows customization of font family, color semantic tokens, border properties (such as border radius), and Material color tokens through constructor parameters.
 - **Implementation:** It extends `WireframeTheme` and allows overriding specific visual aspects without creating an entirely new theme from scratch.
 
 ## Usage
@@ -89,6 +89,18 @@ OudsTheme(theme = WhiteLabelTheme(colorTokens = customColorTokens)) {
 }
 ```
 
+#### Custom border radius
+
+```kotlin
+val customBorderTokens = WhiteLabelBorderSemanticTokens(
+    radiusDefault = 8.dp.value
+)
+
+OudsTheme(theme = WhiteLabelTheme(borderTokens = customBorderTokens)) {
+    // Use OUDS Android or Material components here with custom border radius
+}
+```
+
 ## Relationship with other modules
 
 Module | Role | Analogy |
@@ -115,7 +127,7 @@ This module extends the Wireframe theme and implements the design specifications
 
 # Package com.orange.ouds.theme.whitelabel
 
-This package contains the core `WhiteLabelTheme` and `WhiteLabelFontFamily` classes, which extend the Wireframe theme with customization capabilities for fonts and colors.
+This package contains the core `WhiteLabelTheme` and `WhiteLabelFontFamily` classes, which extend the Wireframe theme with customization capabilities for fonts, colors, and border properties.
 
 # Package com.orange.ouds.theme.whitelabel.tokens.material
 
@@ -123,4 +135,6 @@ This package provides customizable Material color tokens (`WhiteLabelMaterialCol
 
 # Package com.orange.ouds.theme.whitelabel.tokens.semantic
 
-This package provides customizable semantic color tokens (e.g., `WhiteLabelColorSemanticTokens`, `WhiteLabelColorActionSemanticTokens`, `WhiteLabelColorBgSemanticTokens`) that inherit from Wireframe tokens with the ability to override specific color values for custom branding. All parameters default to `Color.Unspecified`, which falls back to Wireframe values.
+This package provides customizable semantic tokens that inherit from Wireframe tokens with the ability to override specific values for custom branding:
+- **Color tokens** (e.g., `WhiteLabelColorSemanticTokens`, `WhiteLabelColorActionSemanticTokens`, `WhiteLabelColorBgSemanticTokens`) - All color parameters default to `Color.Unspecified`, which falls back to Wireframe values.
+- **Border tokens** (`WhiteLabelBorderSemanticTokens`) - Allows customization of border properties such as `radiusDefault` for controlling border radius across components.

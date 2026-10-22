@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 
-internal data class WireframeAlertMessageTokens(
+internal class WireframeAlertMessageTokens(
     override val borderWidth: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Thin,
     override val spaceRowGapBullet: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None
 ) : OudsAlertMessageTokens
