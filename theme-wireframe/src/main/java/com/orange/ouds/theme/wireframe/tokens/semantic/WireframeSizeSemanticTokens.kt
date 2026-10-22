@@ -15,12 +15,10 @@
 
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
-import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsSizeSemanticTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-@InternalOudsApi
-data class WireframeSizeSemanticTokens(
+internal class WireframeSizeSemanticTokens(
     override val iconDecorative2xlarge: Float = OudsDimensionRawTokens.Dimension900,
     override val iconDecorative2xsmall: Float = OudsDimensionRawTokens.Dimension200,
     override val iconDecorative3xsmall: Float = OudsDimensionRawTokens.Dimension150,

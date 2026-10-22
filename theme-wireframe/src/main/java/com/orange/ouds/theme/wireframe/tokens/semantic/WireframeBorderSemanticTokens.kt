@@ -20,7 +20,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.tokens.raw.OudsBorderRawTokens
 
 @InternalOudsApi
-data class WireframeBorderSemanticTokens(
+class WireframeBorderSemanticTokens(
     override val radiusDefault: Float = OudsBorderRawTokens.BorderRadius150,
     override val radiusLarge: Float = OudsBorderRawTokens.BorderRadius300,
     override val radiusMedium: Float = OudsBorderRawTokens.BorderRadius200,
@@ -37,4 +37,41 @@ data class WireframeBorderSemanticTokens(
     override val widthThick: Float = OudsBorderRawTokens.BorderWidth100,
     override val widthThicker: Float = OudsBorderRawTokens.BorderWidth150,
     override val widthThin: Float = OudsBorderRawTokens.BorderWidth25
-) : OudsBorderSemanticTokens
+) : OudsBorderSemanticTokens {
+
+    fun copy(
+        radiusDefault: Float = this.radiusDefault,
+        radiusLarge: Float = this.radiusLarge,
+        radiusMedium: Float = this.radiusMedium,
+        radiusNone: Float = this.radiusNone,
+        radiusPill: Float = this.radiusPill,
+        radiusSmall: Float = this.radiusSmall,
+        styleDefault: String = this.styleDefault,
+        styleDrag: String = this.styleDrag,
+        widthDefault: Float = this.widthDefault,
+        widthFocus: Float = this.widthFocus,
+        widthFocusInset: Float = this.widthFocusInset,
+        widthMedium: Float = this.widthMedium,
+        widthNone: Float = this.widthNone,
+        widthThick: Float = this.widthThick,
+        widthThicker: Float = this.widthThicker,
+        widthThin: Float = this.widthThin
+    ) = WireframeBorderSemanticTokens(
+        radiusDefault,
+        radiusLarge,
+        radiusMedium,
+        radiusNone,
+        radiusPill,
+        radiusSmall,
+        styleDefault,
+        styleDrag,
+        widthDefault,
+        widthFocus,
+        widthFocusInset,
+        widthMedium,
+        widthNone,
+        widthThick,
+        widthThicker,
+        widthThin
+    )
+}

@@ -10,8 +10,9 @@ public final class com/orange/ouds/theme/whitelabel/WhiteLabelFontFamily$Compani
 public final class com/orange/ouds/theme/whitelabel/WhiteLabelTheme : com/orange/ouds/theme/wireframe/WireframeTheme {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun <init> (Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;)V
-	public synthetic fun <init> (Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens;)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
 	public fun getFontFamily (Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
 	public fun getMaterialColorTokens ()Lcom/orange/ouds/theme/tokens/material/OudsMaterialColorTokens;
@@ -123,6 +124,29 @@ public final class com/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMa
 	public fun getTertiaryFixedDimLight-0d7_KjU ()J
 	public fun getTertiaryFixedLight-0d7_KjU ()J
 	public fun getTertiaryLight-0d7_KjU ()J
+}
+
+public final class com/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens : com/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (F)V
+	public synthetic fun <init> (FILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getRadiusDefault ()F
+	public fun getRadiusLarge ()F
+	public fun getRadiusMedium ()F
+	public fun getRadiusNone ()F
+	public fun getRadiusPill ()F
+	public fun getRadiusSmall ()F
+	public fun getStyleDefault ()Ljava/lang/String;
+	public fun getStyleDrag ()Ljava/lang/String;
+	public fun getWidthDefault ()F
+	public fun getWidthFocus ()F
+	public fun getWidthFocusInset ()F
+	public fun getWidthMedium ()F
+	public fun getWidthNone ()F
+	public fun getWidthThick ()F
+	public fun getWidthThicker ()F
+	public fun getWidthThin ()F
 }
 
 public final class com/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorActionSemanticTokens : com/orange/ouds/theme/tokens/semantic/OudsColorActionSemanticTokens {
