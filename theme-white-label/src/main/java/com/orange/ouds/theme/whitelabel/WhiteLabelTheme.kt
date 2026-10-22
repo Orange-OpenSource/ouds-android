@@ -32,6 +32,7 @@ const val WHITE_LABEL_THEME_NAME = "White Label"
  * making it ideal for applications that need a neutral starting point with custom branding.
  *
  * The White Label theme can be customized in several ways:
+ * - **Identifier**: Provide a unique identifier to distinguish between multiple White Label theme instances.
  * - **Font family**: Provide a custom [WhiteLabelFontFamily] implementation.
  * - **Color semantic tokens**: Pass custom [WhiteLabelColorSemanticTokens] to override semantic color values.
  * - **Border semantic tokens**: Pass custom [WhiteLabelBorderSemanticTokens] to override border properties like radius.
@@ -95,12 +96,14 @@ const val WHITE_LABEL_THEME_NAME = "White Label"
  * }
  * ```
  *
+ * @param identifier An optional identifier to distinguish between multiple White Label theme instances. Useful for logging, analytics, and conditional logic. Defaults to null.
  * @param whiteLabelFontFamily The font family to use. Defaults to [WhiteLabelFontFamily.Default] which uses the default font family.
  * @param colorTokens The semantic color tokens. Defaults to [WhiteLabelColorSemanticTokens] which inherits from Wireframe colors.
  * @param materialColorTokens The Material color tokens. Defaults to [WhiteLabelMaterialColorTokens] which inherits from Wireframe Material colors.
  * @param borderTokens The border semantic tokens. Defaults to [WhiteLabelBorderSemanticTokens] which inherits from Wireframe border properties.
  */
 class WhiteLabelTheme(
+    val identifier: String? = null,
     private val whiteLabelFontFamily: WhiteLabelFontFamily = WhiteLabelFontFamily.Default,
     colorTokens: WhiteLabelColorSemanticTokens = WhiteLabelColorSemanticTokens(),
     materialColorTokens: WhiteLabelMaterialColorTokens = WhiteLabelMaterialColorTokens(),
