@@ -10,11 +10,12 @@ public final class com/orange/ouds/theme/whitelabel/WhiteLabelFontFamily$Compani
 public final class com/orange/ouds/theme/whitelabel/WhiteLabelTheme : com/orange/ouds/theme/wireframe/WireframeTheme {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun <init> (Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens;)V
-	public synthetic fun <init> (Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/orange/ouds/theme/whitelabel/WhiteLabelFontFamily;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelColorSemanticTokens;Lcom/orange/ouds/theme/whitelabel/tokens/material/WhiteLabelMaterialColorTokens;Lcom/orange/ouds/theme/whitelabel/tokens/semantic/WhiteLabelBorderSemanticTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
 	public fun getFontFamily (Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
+	public final fun getIdentifier ()Ljava/lang/String;
 	public fun getMaterialColorTokens ()Lcom/orange/ouds/theme/tokens/material/OudsMaterialColorTokens;
 	public fun getName ()Ljava/lang/String;
 }
