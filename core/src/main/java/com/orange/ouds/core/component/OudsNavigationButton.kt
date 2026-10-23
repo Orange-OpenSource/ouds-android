@@ -17,8 +17,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.R
 import com.orange.ouds.core.theme.LocalDrawableResources
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -74,15 +76,23 @@ fun OudsNavigationButton(
     interactionSource: MutableInteractionSource? = null
 ) {
     val drawableResources = LocalDrawableResources.current
-    val iconResource = when (chevron) {
-        OudsNavigationButtonChevron.Next -> drawableResources.component.button.next
-        OudsNavigationButtonChevron.Previous -> drawableResources.component.button.previous
+    val iconResource: Int
+    val contentDescriptionResource: Int
+    when (chevron) {
+        OudsNavigationButtonChevron.Next -> {
+            iconResource = drawableResources.component.button.next
+            contentDescriptionResource = R.string.core_navigationButton_next_a11y
+        }
+        OudsNavigationButtonChevron.Previous -> {
+            iconResource = drawableResources.component.button.previous
+            contentDescriptionResource = R.string.core_navigationButton_previous_a11y
+        }
     }
 
     OudsButton(
         nullableIcon = OudsButtonIcon(
             painter = painterResource(iconResource),
-            contentDescription = "" // Not necessary because a label is present
+            contentDescription = if (label == null) stringResource(contentDescriptionResource) else ""
         ),
         nullableLabel = label,
         onClick = onClick,
