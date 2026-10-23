@@ -18,7 +18,7 @@ package com.orange.ouds.theme.wireframe.tokens.components
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
 
-internal data class WireframeAccordionTokens(
+internal class WireframeAccordionTokens(
     override val spacePaddingBlockBottomExpandContainerDefault: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge,
     override val spacePaddingBlockBottomExpandContainerSmall: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge,
     override val spacePaddingBlockTopExpandContainer: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall

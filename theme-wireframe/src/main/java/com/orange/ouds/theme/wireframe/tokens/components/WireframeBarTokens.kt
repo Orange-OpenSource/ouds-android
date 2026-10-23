@@ -25,7 +25,7 @@ import com.orange.ouds.tokens.raw.OudsColorRawTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
-internal data class WireframeBarTokens(
+internal class WireframeBarTokens(
     override val borderRadiusCurrentIndicatorCustomBottom: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Pill,
     override val borderRadiusCurrentIndicatorCustomTop: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val colorBgOpaque: OudsColorKeyToken = OudsColorKeyToken.Background.Secondary,

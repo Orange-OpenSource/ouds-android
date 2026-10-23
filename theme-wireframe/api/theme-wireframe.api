@@ -1,4 +1,4 @@
-public final class com/orange/ouds/theme/wireframe/WireframeTheme : com/orange/ouds/theme/OudsThemeContract {
+public class com/orange/ouds/theme/wireframe/WireframeTheme : com/orange/ouds/theme/OudsThemeContract {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;

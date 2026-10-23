@@ -39,7 +39,7 @@ import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
-internal data class WireframeComponentsTokens(
+internal class WireframeComponentsTokens(
     override val accordion: OudsAccordionTokens = WireframeAccordionTokens(),
     override val alert: OudsAlertTokens = WireframeAlertTokens(),
     override val alertMessage: OudsAlertMessageTokens = WireframeAlertMessageTokens(),

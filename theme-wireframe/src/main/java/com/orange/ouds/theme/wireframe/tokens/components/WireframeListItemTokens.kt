@@ -25,7 +25,7 @@ import com.orange.ouds.theme.tokens.components.OudsListItemTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 import com.orange.ouds.tokens.raw.OudsFontRawTokens
 
-internal data class WireframeListItemTokens(
+internal class WireframeListItemTokens(
     override val borderRadiusCurrentIndicator: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
     @Deprecated("") override val borderRadiusItemOnly: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,

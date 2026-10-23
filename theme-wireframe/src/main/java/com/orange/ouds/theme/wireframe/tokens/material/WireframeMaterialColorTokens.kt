@@ -16,11 +16,13 @@
 package com.orange.ouds.theme.wireframe.tokens.material
 
 import androidx.compose.ui.graphics.Color
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeMaterialColorTokens(
+@InternalOudsApi
+class WireframeMaterialColorTokens(
     override val backgroundDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark880,
     override val backgroundLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
     override val errorContainerDark: Color = Color.Unspecified,
