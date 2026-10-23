@@ -13,21 +13,22 @@
 package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
-import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeBorderSemanticTokens
-import com.orange.ouds.tokens.raw.OudsBorderRawTokens
 
-/**
- * White Label border semantic tokens.
- *
- * Inherits from Wireframe border tokens with customizable overrides.
- * Parameters left with their default values will use the default Wireframe values.
- *
- * ```
- * WhiteLabelBorderSemanticTokens(
- *     radiusDefault = 8.dp.value
- * )
- * ```
- */
-class WhiteLabelBorderSemanticTokens(
-    radiusDefault: Float = OudsBorderRawTokens.BorderRadius150
-) : OudsBorderSemanticTokens by WireframeBorderSemanticTokens().copy(radiusDefault = radiusDefault)
+internal class WhiteLabelBorderSemanticTokens(
+    override val radiusDefault: Float,
+    override val radiusLarge: Float,
+    override val radiusMedium: Float,
+    override val radiusNone: Float,
+    override val radiusPill: Float,
+    override val radiusSmall: Float,
+    override val styleDefault: String,
+    override val styleDrag: String,
+    override val widthDefault: Float,
+    override val widthFocus: Float,
+    override val widthFocusInset: Float,
+    override val widthMedium: Float,
+    override val widthNone: Float,
+    override val widthThick: Float,
+    override val widthThicker: Float,
+    override val widthThin: Float
+) : OudsBorderSemanticTokens

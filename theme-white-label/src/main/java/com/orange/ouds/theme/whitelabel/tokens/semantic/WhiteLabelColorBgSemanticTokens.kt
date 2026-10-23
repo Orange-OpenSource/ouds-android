@@ -14,41 +14,16 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
-import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorBgSemanticTokens
 
-/**
- * White Label background color semantic tokens.
- *
- * Inherits from Wireframe background color tokens with customizable overrides.
- * Parameters left as [Color.Unspecified] will use the default Wireframe values.
- *
- * ```
- * WhiteLabelColorBgSemanticTokens(
- *     bgPrimaryLight = Color.White,
- *     bgPrimaryDark = Color(0xFF121212)
- * )
- * ```
- */
-class WhiteLabelColorBgSemanticTokens(
-    bgInverseHighDark: Color = Color.Unspecified,
-    bgInverseHighLight: Color = Color.Unspecified,
-    bgInverseLowDark: Color = Color.Unspecified,
-    bgInverseLowLight: Color = Color.Unspecified,
-    bgPrimaryDark: Color = Color.Unspecified,
-    bgPrimaryLight: Color = Color.Unspecified,
-    bgSecondaryDark: Color = Color.Unspecified,
-    bgSecondaryLight: Color = Color.Unspecified,
-    bgTertiaryDark: Color = Color.Unspecified,
-    bgTertiaryLight: Color = Color.Unspecified
-) : OudsColorBgSemanticTokens by WireframeColorBgSemanticTokens().copy(
-    bgInverseHighDark = bgInverseHighDark,
-    bgInverseHighLight = bgInverseHighLight,
-    bgInverseLowDark = bgInverseLowDark,
-    bgInverseLowLight = bgInverseLowLight,
-    bgPrimaryDark = bgPrimaryDark,
-    bgPrimaryLight = bgPrimaryLight,
-    bgSecondaryDark = bgSecondaryDark,
-    bgSecondaryLight = bgSecondaryLight,
-    bgTertiaryDark = bgTertiaryDark,
-    bgTertiaryLight = bgTertiaryLight
-)
+internal class WhiteLabelColorBgSemanticTokens(
+    override val bgInverseHighDark: Color,
+    override val bgInverseHighLight: Color,
+    override val bgInverseLowDark: Color,
+    override val bgInverseLowLight: Color,
+    override val bgPrimaryDark: Color,
+    override val bgPrimaryLight: Color,
+    override val bgSecondaryDark: Color,
+    override val bgSecondaryLight: Color,
+    override val bgTertiaryDark: Color,
+    override val bgTertiaryLight: Color
+) : OudsColorBgSemanticTokens

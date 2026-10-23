@@ -34,9 +34,9 @@ const val WHITE_LABEL_THEME_NAME = "White Label"
  * The White Label theme can be customized in several ways:
  * - **Identifier**: Provide a unique identifier to distinguish between multiple White Label theme instances.
  * - **Font family**: Provide a custom [WhiteLabelFontFamily] implementation.
- * - **Color semantic tokens**: Pass custom [WhiteLabelColorSemanticTokens] to override semantic color values.
- * - **Border semantic tokens**: Pass custom [WhiteLabelBorderSemanticTokens] to override border properties like radius.
- * - **Material color tokens**: Pass custom [WhiteLabelMaterialColorTokens] to override Material color mappings.
+ * - **Color scheme**: Pass a custom [WhiteLabelColorScheme] to override semantic color values.
+ * - **Material color scheme**: Pass a custom [WhiteLabelMaterialColorScheme] to override Material 3 color mappings.
+ * - **Borders**: Pass a custom [WhiteLabelBorders] to override border properties like radius.
  *
  * ## Default Usage
  *
@@ -48,66 +48,59 @@ const val WHITE_LABEL_THEME_NAME = "White Label"
  * }
  * ```
  *
- * ## Custom Font Family
- *
- * Override the font family to use your brand's typography:
+ * ## Customization Example
  *
  * ```
- * val customFontFamily = WhiteLabelFontFamily { locale ->
+ * val customColorScheme = WhiteLabelColorScheme(
+ *     action = WhiteLabelColorScheme.Action(
+ *         enabled = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784))
+ *     ),
+ *     content = WhiteLabelColorScheme.Content(
+ *         brandPrimary = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784))
+ *     )
+ * )
+ *
+ * val customMaterialColors = WhiteLabelMaterialColorScheme(
+ *     primary = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784)),
+ *     onPrimary = OudsLightDarkColor(Color.White, Color.Black)
+ * )
+ *
+ * val customBorders = WhiteLabelBorders(
+ *     radius = WhiteLabelBorders.Radius(default = 12.0.dp)
+ * )
+ *
+ * val customFont = WhiteLabelFontFamily { locale ->
  *     FontFamily(
- *         Font(R.font.my_brand_regular, FontWeight.Normal),
- *         Font(R.font.my_brand_bold, FontWeight.Bold)
+ *         Font(R.font.brand_regular, FontWeight.Normal),
+ *         Font(R.font.brand_bold, FontWeight.Bold)
  *     )
  * }
  *
- * OudsTheme(theme = WhiteLabelTheme(whiteLabelFontFamily = customFontFamily)) {
- *     // Your composables here
- * }
- * ```
- *
- * ## Custom Colors
- *
- * Override specific color tokens to match your brand:
- *
- * ```
- * val customColorTokens = WhiteLabelColorSemanticTokens(
- *     actionColorTokens = WhiteLabelColorActionSemanticTokens(
- *         actionEnabledLight = Color(0xFF007AFF),
- *         actionEnabledDark = Color(0xFF0A84FF)
+ * OudsTheme(
+ *     theme = WhiteLabelTheme(
+ *         identifier = "MyBrand",
+ *         colorScheme = customColorScheme,
+ *         materialColorScheme = customMaterialColors,
+ *         borders = customBorders,
+ *         whiteLabelFontFamily = customFont
  *     )
- * )
- *
- * OudsTheme(theme = WhiteLabelTheme(colorTokens = customColorTokens)) {
- *     // Your composables here
- * }
- * ```
- *
- * ## Custom Border Radius
- *
- * Override the default border radius:
- *
- * ```
- * val customBorderTokens = WhiteLabelBorderSemanticTokens(
- *     radiusDefault = 8.dp.value // Custom default border radius
- * )
- *
- * OudsTheme(theme = WhiteLabelTheme(borderTokens = customBorderTokens)) {
- *     // Your composables here
+ * ) {
+ *     // Your fully branded app
  * }
  * ```
  *
  * @param identifier An optional identifier to distinguish between multiple White Label theme instances. Useful for logging, analytics, and conditional logic. Defaults to null.
  * @param whiteLabelFontFamily The font family to use. Defaults to [WhiteLabelFontFamily.Default] which uses the default font family.
- * @param colorTokens The semantic color tokens. Defaults to [WhiteLabelColorSemanticTokens] which inherits from Wireframe colors.
- * @param materialColorTokens The Material color tokens. Defaults to [WhiteLabelMaterialColorTokens] which inherits from Wireframe Material colors.
- * @param borderTokens The border semantic tokens. Defaults to [WhiteLabelBorderSemanticTokens] which inherits from Wireframe border properties.
+ * @param colorScheme The color scheme to use. Defaults to [WhiteLabelColorScheme] which inherits from Wireframe colors.
+ * @param materialColorScheme The Material 3 color scheme. Defaults to [WhiteLabelMaterialColorScheme] which inherits from Wireframe Material colors.
+ * @param borders The border properties. Defaults to [WhiteLabelBorders] which inherits from Wireframe border properties.
  */
 class WhiteLabelTheme(
     val identifier: String? = null,
     private val whiteLabelFontFamily: WhiteLabelFontFamily = WhiteLabelFontFamily.Default,
-    colorTokens: WhiteLabelColorSemanticTokens = WhiteLabelColorSemanticTokens(),
-    materialColorTokens: WhiteLabelMaterialColorTokens = WhiteLabelMaterialColorTokens(),
-    borderTokens: WhiteLabelBorderSemanticTokens = WhiteLabelBorderSemanticTokens()
+    colorScheme: WhiteLabelColorScheme = WhiteLabelColorScheme(),
+    materialColorScheme: WhiteLabelMaterialColorScheme = WhiteLabelMaterialColorScheme(),
+    borders: WhiteLabelBorders = WhiteLabelBorders()
 ) : WireframeTheme() {
 
     override val name: String
@@ -117,9 +110,9 @@ class WhiteLabelTheme(
         return whiteLabelFontFamily.getFontFamily(locale)
     }
 
-    override val colorTokens: OudsColorSemanticTokens = colorTokens
+    override val colorTokens: OudsColorSemanticTokens = colorScheme.colorSemanticTokens
 
-    override val materialColorTokens: OudsMaterialColorTokens = materialColorTokens
+    override val materialColorTokens: OudsMaterialColorTokens = materialColorScheme.materialColorTokens
 
-    override val borderTokens: OudsBorderSemanticTokens = borderTokens
+    override val borderTokens: OudsBorderSemanticTokens = borders.borderSemanticTokens
 }

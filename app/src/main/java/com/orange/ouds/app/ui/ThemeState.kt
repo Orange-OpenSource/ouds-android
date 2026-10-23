@@ -20,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -32,17 +33,12 @@ import com.orange.ouds.theme.orangecompact.ORANGE_COMPACT_THEME_NAME
 import com.orange.ouds.theme.orangecompact.OrangeCompactTheme
 import com.orange.ouds.theme.sosh.SOSH_THEME_NAME
 import com.orange.ouds.theme.sosh.SoshTheme
+import com.orange.ouds.theme.tokens.components.OudsLightDarkColor
 import com.orange.ouds.theme.whitelabel.WHITE_LABEL_THEME_NAME
-import com.orange.ouds.theme.whitelabel.WhiteLabelFontFamily
+import com.orange.ouds.theme.whitelabel.WhiteLabelBorders
+import com.orange.ouds.theme.whitelabel.WhiteLabelColorScheme
+import com.orange.ouds.theme.whitelabel.WhiteLabelMaterialColorScheme
 import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
-import com.orange.ouds.theme.whitelabel.tokens.material.WhiteLabelMaterialColorTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelBorderSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorActionSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorBorderSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorContentSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorRepositorySemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorSemanticTokens
-import com.orange.ouds.theme.whitelabel.tokens.semantic.WhiteLabelColorSurfaceSemanticTokens
 import com.orange.ouds.theme.wireframe.WIREFRAME_THEME_NAME
 import com.orange.ouds.theme.wireframe.WireframeTheme
 
@@ -185,116 +181,103 @@ private object WhiteLabelThemeExampleColors {
     val Black = Color(0xFF121212)
 }
 
-private val WhiteLabelThemeExample: WhiteLabelTheme
-    get() = WhiteLabelTheme(
-        whiteLabelFontFamily = WhiteLabelFontFamily {
-            FontFamily.Cursive
-        },
-        borderTokens = WhiteLabelBorderSemanticTokens(
-            radiusDefault = 3.0f
-        ),
-        colorTokens = WhiteLabelColorSemanticTokens(
-            actionColorTokens = WhiteLabelColorActionSemanticTokens(
-                actionEnabledLight = WhiteLabelThemeExampleColors.Green900,
-                actionEnabledDark = WhiteLabelThemeExampleColors.Green300,
-                actionPressedLight = WhiteLabelThemeExampleColors.Green950,
-                actionPressedDark = WhiteLabelThemeExampleColors.Green200,
-                actionFocusLight = WhiteLabelThemeExampleColors.Green950,
-                actionFocusDark = WhiteLabelThemeExampleColors.Green200,
-                actionHighlightedLight = WhiteLabelThemeExampleColors.Green800,
-                actionHighlightedDark = WhiteLabelThemeExampleColors.Green400,
-                actionHoverLight = WhiteLabelThemeExampleColors.Green800,
-                actionHoverDark = WhiteLabelThemeExampleColors.Green400,
-                actionLoadingLight = WhiteLabelThemeExampleColors.Green700,
-                actionLoadingDark = WhiteLabelThemeExampleColors.Green500,
-                actionReadOnlyPrimaryLight = WhiteLabelThemeExampleColors.Green700,
-                actionReadOnlyPrimaryDark = WhiteLabelThemeExampleColors.Green400,
-                actionSelectedLight = WhiteLabelThemeExampleColors.Green900,
-                actionSelectedDark = WhiteLabelThemeExampleColors.Green300,
-                actionSupportHoverLight = WhiteLabelThemeExampleColors.Green800,
-                actionSupportHoverDark = WhiteLabelThemeExampleColors.Green400,
-                actionSupportFocusLight = WhiteLabelThemeExampleColors.Green950,
-                actionSupportFocusDark = WhiteLabelThemeExampleColors.Green200,
-                actionSupportLoadingLight = WhiteLabelThemeExampleColors.Green700,
-                actionSupportLoadingDark = WhiteLabelThemeExampleColors.Green500
-            ),
-            borderColorTokens = WhiteLabelColorBorderSemanticTokens(
-                borderBrandPrimaryLight = WhiteLabelThemeExampleColors.Green900,
-                borderBrandPrimaryDark = WhiteLabelThemeExampleColors.Green300,
-                borderBrandSecondaryLight = WhiteLabelThemeExampleColors.Green900,
-                borderBrandSecondaryDark = WhiteLabelThemeExampleColors.Green800,
-                borderFocusLight = WhiteLabelThemeExampleColors.Green950,
-                borderFocusDark = WhiteLabelThemeExampleColors.Green200,
-                borderStatusInfoLight = WhiteLabelThemeExampleColors.Teal700,
-                borderStatusInfoDark = WhiteLabelThemeExampleColors.Teal300
-            ),
-            contentColorTokens = WhiteLabelColorContentSemanticTokens(
-                contentBrandPrimaryLight = WhiteLabelThemeExampleColors.Green900,
-                contentBrandPrimaryDark = WhiteLabelThemeExampleColors.Green300,
-                contentBrandSecondaryLight = WhiteLabelThemeExampleColors.Green900,
-                contentBrandSecondaryDark = WhiteLabelThemeExampleColors.Green800,
-                contentOnBrandPrimaryLight = WhiteLabelThemeExampleColors.White,
-                contentOnBrandPrimaryDark = WhiteLabelThemeExampleColors.Black,
-                contentOnBrandSecondaryLight = WhiteLabelThemeExampleColors.White,
-                contentOnBrandSecondaryDark = WhiteLabelThemeExampleColors.White,
-                contentStatusInfoLight = WhiteLabelThemeExampleColors.Teal700,
-                contentStatusInfoDark = WhiteLabelThemeExampleColors.Teal300,
-                contentStatusInverseInfoLight = WhiteLabelThemeExampleColors.Teal300,
-                contentStatusInverseInfoDark = WhiteLabelThemeExampleColors.Teal700
-            ),
-            repositoryColorTokens = WhiteLabelColorRepositorySemanticTokens(
-                repositoryOpacityPrimaryLowest = WhiteLabelThemeExampleColors.GreenOpacity80,
-                repositoryOpacityPrimaryLower = WhiteLabelThemeExampleColors.GreenOpacity200,
-                repositoryOpacityPrimaryLow = WhiteLabelThemeExampleColors.GreenOpacity360,
-                repositoryOpacityPrimaryMedium = WhiteLabelThemeExampleColors.GreenOpacity400,
-                repositoryOpacityPrimaryHigh = WhiteLabelThemeExampleColors.GreenOpacity480,
-                repositoryOpacityPrimaryHigher = WhiteLabelThemeExampleColors.GreenOpacity560,
-                repositoryOpacityPrimaryHighest = WhiteLabelThemeExampleColors.GreenOpacity640,
-                repositoryPrimaryLowest = WhiteLabelThemeExampleColors.Green100,
-                repositoryPrimaryLower = WhiteLabelThemeExampleColors.Green200,
-                repositoryPrimaryLow = WhiteLabelThemeExampleColors.Green300,
-                repositoryPrimaryMedium = WhiteLabelThemeExampleColors.Green500,
-                repositoryPrimaryHigh = WhiteLabelThemeExampleColors.Green700,
-                repositoryPrimaryHigher = WhiteLabelThemeExampleColors.Green800,
-                repositoryPrimaryHighest = WhiteLabelThemeExampleColors.Green900
-            ),
-            surfaceColorTokens = WhiteLabelColorSurfaceSemanticTokens(
-                surfaceBrandPrimaryLight = WhiteLabelThemeExampleColors.Green900,
-                surfaceBrandPrimaryDark = WhiteLabelThemeExampleColors.Green300,
-                surfaceBrandSecondaryLight = WhiteLabelThemeExampleColors.Green900,
-                surfaceBrandSecondaryDark = WhiteLabelThemeExampleColors.Green800,
-                surfaceStatusInfoEmphasizedLight = WhiteLabelThemeExampleColors.Teal700,
-                surfaceStatusInfoEmphasizedDark = WhiteLabelThemeExampleColors.Teal300,
-                surfaceStatusInfoMutedLight = WhiteLabelThemeExampleColors.Teal100,
-                surfaceStatusInfoMutedDark = WhiteLabelThemeExampleColors.Teal800
+private val WhiteLabelThemeExample = with(WhiteLabelThemeExampleColors) {
+    WhiteLabelTheme(
+        whiteLabelFontFamily = { FontFamily.Cursive },
+        borders = WhiteLabelBorders(
+            radius = WhiteLabelBorders.Radius(
+                default = 3.0.dp
             )
         ),
-        materialColorTokens = WhiteLabelMaterialColorTokens(
-            primaryLight = WhiteLabelThemeExampleColors.Green900,
-            primaryDark = WhiteLabelThemeExampleColors.Green300,
-            primaryContainerLight = WhiteLabelThemeExampleColors.Green100,
-            primaryContainerDark = WhiteLabelThemeExampleColors.Green800,
-            onPrimaryLight = WhiteLabelThemeExampleColors.White,
-            onPrimaryDark = WhiteLabelThemeExampleColors.Black,
-            onPrimaryContainerLight = WhiteLabelThemeExampleColors.Green950,
-            onPrimaryContainerDark = WhiteLabelThemeExampleColors.Green100,
-            secondaryLight = WhiteLabelThemeExampleColors.Green800,
-            secondaryDark = WhiteLabelThemeExampleColors.Green400,
-            secondaryContainerLight = WhiteLabelThemeExampleColors.Green200,
-            secondaryContainerDark = WhiteLabelThemeExampleColors.Green900,
-            onSecondaryLight = WhiteLabelThemeExampleColors.White,
-            onSecondaryDark = WhiteLabelThemeExampleColors.Black,
-            onSecondaryContainerLight = WhiteLabelThemeExampleColors.Green950,
-            onSecondaryContainerDark = WhiteLabelThemeExampleColors.Green200,
-            tertiaryLight = WhiteLabelThemeExampleColors.Teal700,
-            tertiaryDark = WhiteLabelThemeExampleColors.Teal300,
-            tertiaryContainerLight = WhiteLabelThemeExampleColors.Teal100,
-            tertiaryContainerDark = WhiteLabelThemeExampleColors.Teal800,
-            onTertiaryLight = WhiteLabelThemeExampleColors.White,
-            onTertiaryDark = WhiteLabelThemeExampleColors.Black,
-            onTertiaryContainerLight = WhiteLabelThemeExampleColors.Teal900,
-            onTertiaryContainerDark = WhiteLabelThemeExampleColors.Teal100,
-            surfaceTintLight = WhiteLabelThemeExampleColors.Green900,
-            surfaceTintDark = WhiteLabelThemeExampleColors.Green300
+        colorScheme = WhiteLabelColorScheme(
+            action = WhiteLabelColorScheme.Action(
+                enabled = OudsLightDarkColor(Green900, Green300),
+                pressed = OudsLightDarkColor(Green950, Green200),
+                focus = OudsLightDarkColor(Green950, Green200),
+                highlighted = OudsLightDarkColor(Green800, Green400),
+                hover = OudsLightDarkColor(Green800, Green400),
+                loading = OudsLightDarkColor(Green700, Green500),
+                readOnly = WhiteLabelColorScheme.Action.ReadOnly(
+                    primary = OudsLightDarkColor(Green700, Green400),
+                ),
+                selected = OudsLightDarkColor(Green900, Green300),
+                support = WhiteLabelColorScheme.Action.Support(
+                    focus = OudsLightDarkColor(Green950, Green200),
+                    hover = OudsLightDarkColor(Green800, Green400),
+                    loading = OudsLightDarkColor(Green700, Green500)
+                )
+            ),
+            border = WhiteLabelColorScheme.Border(
+                brandPrimary = OudsLightDarkColor(Green900, Green300),
+                brandSecondary = OudsLightDarkColor(Green900, Green800),
+                focus = OudsLightDarkColor(Green950, Green200),
+                status = WhiteLabelColorScheme.Border.Status(
+                    info = OudsLightDarkColor(Teal700, Teal300),
+                )
+            ),
+            content = WhiteLabelColorScheme.Content(
+                brandPrimary = OudsLightDarkColor(Green900, Green300),
+                brandSecondary = OudsLightDarkColor(Green900, Green800),
+                onBrand = WhiteLabelColorScheme.Content.OnBrand(
+                    primary = OudsLightDarkColor(White, Black),
+                    secondary = OudsLightDarkColor(White, White)
+                ),
+                status = WhiteLabelColorScheme.Content.Status(
+                    info = OudsLightDarkColor(Teal700, Teal300),
+                    inverse = WhiteLabelColorScheme.Content.Status.Inverse(
+                        info = OudsLightDarkColor(Teal300, Teal700)
+                    )
+                )
+            ),
+            repository = WhiteLabelColorScheme.Repository(
+                opacity = WhiteLabelColorScheme.Repository.Opacity(
+                    primary = WhiteLabelColorScheme.Repository.Opacity.Primary(
+                        lowest = GreenOpacity80,
+                        lower = GreenOpacity200,
+                        low = GreenOpacity360,
+                        medium = GreenOpacity400,
+                        high = GreenOpacity480,
+                        higher = GreenOpacity560,
+                        highest = GreenOpacity640
+                    )
+                ),
+                primary = WhiteLabelColorScheme.Repository.Primary(
+                    lowest = Green100,
+                    lower = Green200,
+                    low = Green300,
+                    medium = Green500,
+                    high = Green700,
+                    higher = Green800,
+                    highest = Green900
+                )
+            ),
+            surface = WhiteLabelColorScheme.Surface(
+                brand = WhiteLabelColorScheme.Surface.Brand(
+                    primary = OudsLightDarkColor(Green900, Green300),
+                    secondary = OudsLightDarkColor(Green900, Green800)
+                ),
+                status = WhiteLabelColorScheme.Surface.Status(
+                    info = WhiteLabelColorScheme.Surface.Status.Info(
+                        emphasized = OudsLightDarkColor(Teal700, Teal300),
+                        muted = OudsLightDarkColor(Teal100, Teal800)
+                    )
+                )
+            )
+        ),
+        materialColorScheme = WhiteLabelMaterialColorScheme(
+            primary = OudsLightDarkColor(Green900, Green300),
+            primaryContainer = OudsLightDarkColor(Green100, Green800),
+            onPrimary = OudsLightDarkColor(White, Black),
+            onPrimaryContainer = OudsLightDarkColor(Green950, Green100),
+            secondary = OudsLightDarkColor(Green800, Green400),
+            secondaryContainer = OudsLightDarkColor(Green200, Green900),
+            onSecondary = OudsLightDarkColor(White, Black),
+            onSecondaryContainer = OudsLightDarkColor(Green950, Green200),
+            tertiary = OudsLightDarkColor(Teal700, Teal300),
+            tertiaryContainer = OudsLightDarkColor(Teal100, Teal800),
+            onTertiary = OudsLightDarkColor(White, Black),
+            onTertiaryContainer = OudsLightDarkColor(Teal900, Teal100),
+            surfaceTint = OudsLightDarkColor(Green900, Green300)
         )
     )
+}
