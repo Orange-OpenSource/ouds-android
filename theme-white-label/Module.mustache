@@ -7,7 +7,7 @@ The **OUDS Theme White Label** module provides a customizable theme implementati
 While the `core` module provides the mechanisms to *access* the theme, and `theme-contract` defines *what* a theme is, **theme-white-label** defines **a customizable theme for white-label applications**.
 
 - **White Label Use:** This theme is specifically designed for applications that need to apply custom branding while keeping a clean, neutral base. Unlike the Wireframe theme which uses the Shantell Sans font, White Label uses the default font family by default.
-- **Customization:** It allows customization of font family, color semantic tokens, border properties (such as border radius), and Material color tokens through constructor parameters.
+- **Customization:** It allows customization of font family through `WhiteLabelFontFamily`, colors through `WhiteLabelColorScheme`, border properties through `WhiteLabelBorders`, and Material 3 colors through `WhiteLabelMaterialColorScheme`.
 - **Implementation:** It extends `WireframeTheme` and allows overriding specific visual aspects without creating an entirely new theme from scratch.
 
 ## Usage
@@ -59,45 +59,49 @@ OudsTheme(theme = WhiteLabelTheme()) {
 }
 ```
 
-#### Custom font family
+#### Customization Example
 
 ```kotlin
-val customFontFamily = WhiteLabelFontFamily { locale ->
+val brandColorScheme = WhiteLabelColorScheme(
+    action = WhiteLabelColorScheme.Action(
+        enabled = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784))
+    ),
+    content = WhiteLabelColorScheme.Content(
+        brandPrimary = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784))
+    ),
+    surface = WhiteLabelColorScheme.Surface(
+        brand = WhiteLabelColorScheme.Surface.Brand(
+            primary = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784))
+        )
+    )
+)
+
+val brandMaterialColors = WhiteLabelMaterialColorScheme(
+    primary = OudsLightDarkColor(Color(0xFF1B5E20), Color(0xFF81C784)),
+    onPrimary = OudsLightDarkColor(Color.White, Color.Black)
+)
+
+val brandBorders = WhiteLabelBorders(
+    radius = WhiteLabelBorders.Radius(default = 12.0.dp)
+)
+
+val brandFont = WhiteLabelFontFamily { locale ->
     FontFamily(
-        Font(R.font.my_brand_regular, FontWeight.Normal),
-        Font(R.font.my_brand_bold, FontWeight.Bold)
+        Font(R.font.brand_regular, FontWeight.Normal),
+        Font(R.font.brand_bold, FontWeight.Bold)
     )
 }
 
-OudsTheme(theme = WhiteLabelTheme(whiteLabelFontFamily = customFontFamily)) {
-    // Use OUDS Android or Material components here with custom fonts
-}
-```
-
-#### Custom colors
-
-```kotlin
-val customColorTokens = WhiteLabelColorSemanticTokens(
-    actionColorTokens = WhiteLabelColorActionSemanticTokens(
-        actionEnabledLight = Color(0xFF007AFF),
-        actionEnabledDark = Color(0xFF0A84FF)
+OudsTheme(
+    theme = WhiteLabelTheme(
+        identifier = "MyBrand",
+        colorScheme = brandColorScheme,
+        materialColorScheme = brandMaterialColors,
+        borders = brandBorders,
+        whiteLabelFontFamily = brandFont
     )
-)
-
-OudsTheme(theme = WhiteLabelTheme(colorTokens = customColorTokens)) {
-    // Use OUDS Android or Material components here with custom colors
-}
-```
-
-#### Custom border radius
-
-```kotlin
-val customBorderTokens = WhiteLabelBorderSemanticTokens(
-    radiusDefault = 8.dp.value
-)
-
-OudsTheme(theme = WhiteLabelTheme(borderTokens = customBorderTokens)) {
-    // Use OUDS Android or Material components here with custom border radius
+) {
+    // Your fully branded app
 }
 ```
 
@@ -127,14 +131,23 @@ This module extends the Wireframe theme and implements the design specifications
 
 # Package com.orange.ouds.theme.whitelabel
 
-This package contains the core `WhiteLabelTheme` and `WhiteLabelFontFamily` classes, which extend the Wireframe theme with customization capabilities for fonts, colors, and border properties.
+This package contains the user-facing customization classes:
+- `WhiteLabelTheme` - The main theme class that extends WireframeTheme
+- `WhiteLabelFontFamily` - Functional interface for customizing fonts
+- `WhiteLabelColorScheme` - Customizable color scheme with fallback to Wireframe colors
+- `WhiteLabelMaterialColorScheme` - Customizable Material 3 color scheme
+- `WhiteLabelBorders` - Customizable border properties (radius, width, style)
 
 # Package com.orange.ouds.theme.whitelabel.tokens.material
 
-This package provides customizable Material color tokens (`WhiteLabelMaterialColorTokens`) that inherit from Wireframe with the ability to override specific values for custom branding.
+This package provides internal Material color token implementations (`WhiteLabelMaterialColorTokens`) generated from `WhiteLabelMaterialColorScheme` with fallback to Wireframe values.
+
+This class is an internal implementation detail. Users should interact with `WhiteLabelMaterialColorScheme` in the `com.orange.ouds.theme.whitelabel` package instead.
 
 # Package com.orange.ouds.theme.whitelabel.tokens.semantic
 
-This package provides customizable semantic tokens that inherit from Wireframe tokens with the ability to override specific values for custom branding:
-- **Color tokens** (e.g., `WhiteLabelColorSemanticTokens`, `WhiteLabelColorActionSemanticTokens`, `WhiteLabelColorBgSemanticTokens`) - All color parameters default to `Color.Unspecified`, which falls back to Wireframe values.
-- **Border tokens** (`WhiteLabelBorderSemanticTokens`) - Allows customization of border properties such as `radiusDefault` for controlling border radius across components.
+This package provides internal semantic token implementations that bridge the user-facing customization classes to the OUDS token system:
+- **Color tokens** (e.g., `WhiteLabelColorSemanticTokens`, `WhiteLabelColorActionSemanticTokens`) - Generated from `WhiteLabelColorScheme` with fallback to Wireframe values
+- **Border tokens** (`WhiteLabelBorderSemanticTokens`) - Generated from `WhiteLabelBorders` with fallback to Wireframe values
+
+These classes are internal implementation details. Users should interact with the user-facing classes in the `com.orange.ouds.theme.whitelabel` package instead.

@@ -23,6 +23,7 @@ private val moduleDocumentationDirectories = listOf(
     "theme-orange",
     "theme-orange-compact",
     "theme-sosh",
+    "theme-white-label",
     "theme-wireframe"
 )
 
