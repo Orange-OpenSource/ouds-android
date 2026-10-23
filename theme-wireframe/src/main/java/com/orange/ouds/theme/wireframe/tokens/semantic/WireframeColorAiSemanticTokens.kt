@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
@@ -31,25 +30,4 @@ class WireframeColorAiSemanticTokens(
     override val aiSecondaryLight: Color = WireframeColorRawTokens.ColorRoyalBlue600,
     override val aiTertiaryDark: Color = WireframeColorRawTokens.ColorRoyalBlue600,
     override val aiTertiaryLight: Color = WireframeColorRawTokens.ColorRoyalBlue300
-) : OudsColorAiSemanticTokens {
-
-    fun copy(
-        aiPrimaryDark: Color = this.aiPrimaryDark,
-        aiPrimaryLight: Color = this.aiPrimaryLight,
-        aiQuaternaryDark: Color = this.aiQuaternaryDark,
-        aiQuaternaryLight: Color = this.aiQuaternaryLight,
-        aiSecondaryDark: Color = this.aiSecondaryDark,
-        aiSecondaryLight: Color = this.aiSecondaryLight,
-        aiTertiaryDark: Color = this.aiTertiaryDark,
-        aiTertiaryLight: Color = this.aiTertiaryLight
-    ) = WireframeColorAiSemanticTokens(
-        aiPrimaryDark.takeOrElse { this.aiPrimaryDark },
-        aiPrimaryLight.takeOrElse { this.aiPrimaryLight },
-        aiQuaternaryDark.takeOrElse { this.aiQuaternaryDark },
-        aiQuaternaryLight.takeOrElse { this.aiQuaternaryLight },
-        aiSecondaryDark.takeOrElse { this.aiSecondaryDark },
-        aiSecondaryLight.takeOrElse { this.aiSecondaryLight },
-        aiTertiaryDark.takeOrElse { this.aiTertiaryDark },
-        aiTertiaryLight.takeOrElse { this.aiTertiaryLight }
-    )
-}
+) : OudsColorAiSemanticTokens

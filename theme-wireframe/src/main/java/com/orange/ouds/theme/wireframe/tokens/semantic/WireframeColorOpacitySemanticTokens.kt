@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorOpacitySemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
@@ -31,25 +30,4 @@ class WireframeColorOpacitySemanticTokens(
     override val opacityTransparentInverseDark: Color = WireframeColorRawTokens.ColorOpacityBlack0,
     override val opacityTransparentInverseLight: Color = WireframeColorRawTokens.ColorOpacityWhite0,
     override val opacityTransparentLight: Color = WireframeColorRawTokens.ColorOpacityBlack0
-) : OudsColorOpacitySemanticTokens {
-
-    fun copy(
-        opacityLowerDark: Color = this.opacityLowerDark,
-        opacityLowerLight: Color = this.opacityLowerLight,
-        opacityLowestDark: Color = this.opacityLowestDark,
-        opacityLowestLight: Color = this.opacityLowestLight,
-        opacityTransparentDark: Color = this.opacityTransparentDark,
-        opacityTransparentInverseDark: Color = this.opacityTransparentInverseDark,
-        opacityTransparentInverseLight: Color = this.opacityTransparentInverseLight,
-        opacityTransparentLight: Color = this.opacityTransparentLight
-    ) = WireframeColorOpacitySemanticTokens(
-        opacityLowerDark.takeOrElse { this.opacityLowerDark },
-        opacityLowerLight.takeOrElse { this.opacityLowerLight },
-        opacityLowestDark.takeOrElse { this.opacityLowestDark },
-        opacityLowestLight.takeOrElse { this.opacityLowestLight },
-        opacityTransparentDark.takeOrElse { this.opacityTransparentDark },
-        opacityTransparentInverseDark.takeOrElse { this.opacityTransparentInverseDark },
-        opacityTransparentInverseLight.takeOrElse { this.opacityTransparentInverseLight },
-        opacityTransparentLight.takeOrElse { this.opacityTransparentLight }
-    )
-}
+) : OudsColorOpacitySemanticTokens

@@ -26,7 +26,9 @@ import java.util.Locale
  * The [Default] companion object provides a default implementation that returns [FontFamily.Default]:
  *
  * ```
- * WhiteLabelTheme(whiteLabelFontFamily = WhiteLabelFontFamily.Default)
+ * OudsTheme(theme = WhiteLabelTheme(whiteLabelFontFamily = WhiteLabelFontFamily.Default)) {
+ *     // Your composables
+ * }
  * ```
  *
  * ## Custom Implementation
@@ -48,7 +50,9 @@ import java.util.Locale
  *     }
  * }
  *
- * WhiteLabelTheme(whiteLabelFontFamily = customFontFamily)
+ * OudsTheme(theme = WhiteLabelTheme(whiteLabelFontFamily = customFontFamily)) {
+ *     // Your composables
+ * }
  * ```
  */
 fun interface WhiteLabelFontFamily {

@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorSurfaceSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
@@ -60,81 +59,4 @@ class WireframeColorSurfaceSemanticTokens(
     override val surfaceStatusWarningMutedLight: Color = OudsColorRawTokens.ColorOpacitySun160,
     override val surfaceTertiaryDark: Color = WireframeColorRawTokens.ColorOpacityRustyRed680,
     override val surfaceTertiaryLight: Color = WireframeColorRawTokens.ColorOpacityRustyRed80
-) : OudsColorSurfaceSemanticTokens {
-
-    fun copy(
-        surfaceBrandPrimaryDark: Color = this.surfaceBrandPrimaryDark,
-        surfaceBrandPrimaryLight: Color = this.surfaceBrandPrimaryLight,
-        surfaceBrandSecondaryDark: Color = this.surfaceBrandSecondaryDark,
-        surfaceBrandSecondaryLight: Color = this.surfaceBrandSecondaryLight,
-        surfaceBrandTertiaryDark: Color = this.surfaceBrandTertiaryDark,
-        surfaceBrandTertiaryLight: Color = this.surfaceBrandTertiaryLight,
-        surfaceInverseHighDark: Color = this.surfaceInverseHighDark,
-        surfaceInverseHighLight: Color = this.surfaceInverseHighLight,
-        surfaceInverseLowDark: Color = this.surfaceInverseLowDark,
-        surfaceInverseLowLight: Color = this.surfaceInverseLowLight,
-        surfacePrimaryDark: Color = this.surfacePrimaryDark,
-        surfacePrimaryLight: Color = this.surfacePrimaryLight,
-        surfaceSecondaryDark: Color = this.surfaceSecondaryDark,
-        surfaceSecondaryLight: Color = this.surfaceSecondaryLight,
-        surfaceStatusAccentEmphasizedDark: Color = this.surfaceStatusAccentEmphasizedDark,
-        surfaceStatusAccentEmphasizedLight: Color = this.surfaceStatusAccentEmphasizedLight,
-        surfaceStatusAccentMutedDark: Color = this.surfaceStatusAccentMutedDark,
-        surfaceStatusAccentMutedLight: Color = this.surfaceStatusAccentMutedLight,
-        surfaceStatusInfoEmphasizedDark: Color = this.surfaceStatusInfoEmphasizedDark,
-        surfaceStatusInfoEmphasizedLight: Color = this.surfaceStatusInfoEmphasizedLight,
-        surfaceStatusInfoMutedDark: Color = this.surfaceStatusInfoMutedDark,
-        surfaceStatusInfoMutedLight: Color = this.surfaceStatusInfoMutedLight,
-        surfaceStatusNegativeEmphasizedDark: Color = this.surfaceStatusNegativeEmphasizedDark,
-        surfaceStatusNegativeEmphasizedLight: Color = this.surfaceStatusNegativeEmphasizedLight,
-        surfaceStatusNegativeMutedDark: Color = this.surfaceStatusNegativeMutedDark,
-        surfaceStatusNegativeMutedLight: Color = this.surfaceStatusNegativeMutedLight,
-        surfaceStatusPositiveEmphasizedDark: Color = this.surfaceStatusPositiveEmphasizedDark,
-        surfaceStatusPositiveEmphasizedLight: Color = this.surfaceStatusPositiveEmphasizedLight,
-        surfaceStatusPositiveMutedDark: Color = this.surfaceStatusPositiveMutedDark,
-        surfaceStatusPositiveMutedLight: Color = this.surfaceStatusPositiveMutedLight,
-        surfaceStatusWarningEmphasizedDark: Color = this.surfaceStatusWarningEmphasizedDark,
-        surfaceStatusWarningEmphasizedLight: Color = this.surfaceStatusWarningEmphasizedLight,
-        surfaceStatusWarningMutedDark: Color = this.surfaceStatusWarningMutedDark,
-        surfaceStatusWarningMutedLight: Color = this.surfaceStatusWarningMutedLight,
-        surfaceTertiaryDark: Color = this.surfaceTertiaryDark,
-        surfaceTertiaryLight: Color = this.surfaceTertiaryLight
-    ) = WireframeColorSurfaceSemanticTokens(
-        surfaceBrandPrimaryDark.takeOrElse { this.surfaceBrandPrimaryDark },
-        surfaceBrandPrimaryLight.takeOrElse { this.surfaceBrandPrimaryLight },
-        surfaceBrandSecondaryDark.takeOrElse { this.surfaceBrandSecondaryDark },
-        surfaceBrandSecondaryLight.takeOrElse { this.surfaceBrandSecondaryLight },
-        surfaceBrandTertiaryDark.takeOrElse { this.surfaceBrandTertiaryDark },
-        surfaceBrandTertiaryLight.takeOrElse { this.surfaceBrandTertiaryLight },
-        surfaceInverseHighDark.takeOrElse { this.surfaceInverseHighDark },
-        surfaceInverseHighLight.takeOrElse { this.surfaceInverseHighLight },
-        surfaceInverseLowDark.takeOrElse { this.surfaceInverseLowDark },
-        surfaceInverseLowLight.takeOrElse { this.surfaceInverseLowLight },
-        surfacePrimaryDark.takeOrElse { this.surfacePrimaryDark },
-        surfacePrimaryLight.takeOrElse { this.surfacePrimaryLight },
-        surfaceSecondaryDark.takeOrElse { this.surfaceSecondaryDark },
-        surfaceSecondaryLight.takeOrElse { this.surfaceSecondaryLight },
-        surfaceStatusAccentEmphasizedDark.takeOrElse { this.surfaceStatusAccentEmphasizedDark },
-        surfaceStatusAccentEmphasizedLight.takeOrElse { this.surfaceStatusAccentEmphasizedLight },
-        surfaceStatusAccentMutedDark.takeOrElse { this.surfaceStatusAccentMutedDark },
-        surfaceStatusAccentMutedLight.takeOrElse { this.surfaceStatusAccentMutedLight },
-        surfaceStatusInfoEmphasizedDark.takeOrElse { this.surfaceStatusInfoEmphasizedDark },
-        surfaceStatusInfoEmphasizedLight.takeOrElse { this.surfaceStatusInfoEmphasizedLight },
-        surfaceStatusInfoMutedDark.takeOrElse { this.surfaceStatusInfoMutedDark },
-        surfaceStatusInfoMutedLight.takeOrElse { this.surfaceStatusInfoMutedLight },
-        surfaceStatusNegativeEmphasizedDark.takeOrElse { this.surfaceStatusNegativeEmphasizedDark },
-        surfaceStatusNegativeEmphasizedLight.takeOrElse { this.surfaceStatusNegativeEmphasizedLight },
-        surfaceStatusNegativeMutedDark.takeOrElse { this.surfaceStatusNegativeMutedDark },
-        surfaceStatusNegativeMutedLight.takeOrElse { this.surfaceStatusNegativeMutedLight },
-        surfaceStatusPositiveEmphasizedDark.takeOrElse { this.surfaceStatusPositiveEmphasizedDark },
-        surfaceStatusPositiveEmphasizedLight.takeOrElse { this.surfaceStatusPositiveEmphasizedLight },
-        surfaceStatusPositiveMutedDark.takeOrElse { this.surfaceStatusPositiveMutedDark },
-        surfaceStatusPositiveMutedLight.takeOrElse { this.surfaceStatusPositiveMutedLight },
-        surfaceStatusWarningEmphasizedDark.takeOrElse { this.surfaceStatusWarningEmphasizedDark },
-        surfaceStatusWarningEmphasizedLight.takeOrElse { this.surfaceStatusWarningEmphasizedLight },
-        surfaceStatusWarningMutedDark.takeOrElse { this.surfaceStatusWarningMutedDark },
-        surfaceStatusWarningMutedLight.takeOrElse { this.surfaceStatusWarningMutedLight },
-        surfaceTertiaryDark.takeOrElse { this.surfaceTertiaryDark },
-        surfaceTertiaryLight.takeOrElse { this.surfaceTertiaryLight }
-    )
-}
+) : OudsColorSurfaceSemanticTokens

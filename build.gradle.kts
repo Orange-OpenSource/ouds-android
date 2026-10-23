@@ -38,6 +38,7 @@ dependencies {
     dokka(project(":theme-orange"))
     dokka(project(":theme-orange-compact"))
     dokka(project(":theme-sosh"))
+    dokka(project(":theme-white-label"))
     dokka(project(":theme-wireframe"))
 }
 

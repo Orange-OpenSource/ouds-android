@@ -14,29 +14,10 @@ package com.orange.ouds.theme.whitelabel.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
-import com.orange.ouds.theme.wireframe.tokens.semantic.WireframeColorAlwaysSemanticTokens
 
-/**
- * White Label always color semantic tokens.
- *
- * Inherits from Wireframe always color tokens with customizable overrides.
- * Parameters left as [Color.Unspecified] will use the default Wireframe values.
- *
- * ```
- * WhiteLabelColorAlwaysSemanticTokens(
- *     alwaysBlack = Color.Black,
- *     alwaysWhite = Color.White
- * )
- * ```
- */
-class WhiteLabelColorAlwaysSemanticTokens(
-    alwaysBlack: Color = Color.Unspecified,
-    alwaysOnBlack: Color = Color.Unspecified,
-    alwaysOnWhite: Color = Color.Unspecified,
-    alwaysWhite: Color = Color.Unspecified
-) : OudsColorAlwaysSemanticTokens by WireframeColorAlwaysSemanticTokens().copy(
-    alwaysBlack = alwaysBlack,
-    alwaysOnBlack = alwaysOnBlack,
-    alwaysOnWhite = alwaysOnWhite,
-    alwaysWhite = alwaysWhite
-)
+internal class WhiteLabelColorAlwaysSemanticTokens(
+    override val alwaysBlack: Color,
+    override val alwaysOnBlack: Color,
+    override val alwaysOnWhite: Color,
+    override val alwaysWhite: Color,
+) : OudsColorAlwaysSemanticTokens

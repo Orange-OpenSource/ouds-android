@@ -37,41 +37,4 @@ class WireframeBorderSemanticTokens(
     override val widthThick: Float = OudsBorderRawTokens.BorderWidth100,
     override val widthThicker: Float = OudsBorderRawTokens.BorderWidth150,
     override val widthThin: Float = OudsBorderRawTokens.BorderWidth25
-) : OudsBorderSemanticTokens {
-
-    fun copy(
-        radiusDefault: Float = this.radiusDefault,
-        radiusLarge: Float = this.radiusLarge,
-        radiusMedium: Float = this.radiusMedium,
-        radiusNone: Float = this.radiusNone,
-        radiusPill: Float = this.radiusPill,
-        radiusSmall: Float = this.radiusSmall,
-        styleDefault: String = this.styleDefault,
-        styleDrag: String = this.styleDrag,
-        widthDefault: Float = this.widthDefault,
-        widthFocus: Float = this.widthFocus,
-        widthFocusInset: Float = this.widthFocusInset,
-        widthMedium: Float = this.widthMedium,
-        widthNone: Float = this.widthNone,
-        widthThick: Float = this.widthThick,
-        widthThicker: Float = this.widthThicker,
-        widthThin: Float = this.widthThin
-    ) = WireframeBorderSemanticTokens(
-        radiusDefault,
-        radiusLarge,
-        radiusMedium,
-        radiusNone,
-        radiusPill,
-        radiusSmall,
-        styleDefault,
-        styleDrag,
-        widthDefault,
-        widthFocus,
-        widthFocusInset,
-        widthMedium,
-        widthNone,
-        widthThick,
-        widthThicker,
-        widthThin
-    )
-}
+) : OudsBorderSemanticTokens

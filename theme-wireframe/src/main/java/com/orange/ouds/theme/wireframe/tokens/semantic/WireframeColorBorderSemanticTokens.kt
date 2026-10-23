@@ -16,7 +16,6 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorBorderSemanticTokens
 import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
@@ -58,77 +57,4 @@ class WireframeColorBorderSemanticTokens(
     override val borderStatusPositiveLight: Color = OudsColorRawTokens.ColorFunctionalMalachite750,
     override val borderStatusWarningDark: Color = OudsColorRawTokens.ColorFunctionalSun300,
     override val borderStatusWarningLight: Color = OudsColorRawTokens.ColorFunctionalSun500
-) : OudsColorBorderSemanticTokens {
-
-    fun copy(
-        borderBrandPrimaryDark: Color = this.borderBrandPrimaryDark,
-        borderBrandPrimaryLight: Color = this.borderBrandPrimaryLight,
-        borderBrandSecondaryDark: Color = this.borderBrandSecondaryDark,
-        borderBrandSecondaryLight: Color = this.borderBrandSecondaryLight,
-        borderBrandTertiaryDark: Color = this.borderBrandTertiaryDark,
-        borderBrandTertiaryLight: Color = this.borderBrandTertiaryLight,
-        borderDefaultDark: Color = this.borderDefaultDark,
-        borderDefaultLight: Color = this.borderDefaultLight,
-        borderEmphasizedDark: Color = this.borderEmphasizedDark,
-        borderEmphasizedLight: Color = this.borderEmphasizedLight,
-        borderFocusDark: Color = this.borderFocusDark,
-        borderFocusInsetDark: Color = this.borderFocusInsetDark,
-        borderFocusInsetLight: Color = this.borderFocusInsetLight,
-        borderFocusLight: Color = this.borderFocusLight,
-        borderMinimalDark: Color = this.borderMinimalDark,
-        borderMinimalLight: Color = this.borderMinimalLight,
-        borderMutedDark: Color = this.borderMutedDark,
-        borderMutedLight: Color = this.borderMutedLight,
-        borderOnBrandPrimaryDark: Color = this.borderOnBrandPrimaryDark,
-        borderOnBrandPrimaryLight: Color = this.borderOnBrandPrimaryLight,
-        borderOnBrandSecondaryDark: Color = this.borderOnBrandSecondaryDark,
-        borderOnBrandSecondaryLight: Color = this.borderOnBrandSecondaryLight,
-        borderOnBrandTertiaryDark: Color = this.borderOnBrandTertiaryDark,
-        borderOnBrandTertiaryLight: Color = this.borderOnBrandTertiaryLight,
-        borderStatusAccentDark: Color = this.borderStatusAccentDark,
-        borderStatusAccentLight: Color = this.borderStatusAccentLight,
-        borderStatusInfoDark: Color = this.borderStatusInfoDark,
-        borderStatusInfoLight: Color = this.borderStatusInfoLight,
-        borderStatusNegativeDark: Color = this.borderStatusNegativeDark,
-        borderStatusNegativeLight: Color = this.borderStatusNegativeLight,
-        borderStatusPositiveDark: Color = this.borderStatusPositiveDark,
-        borderStatusPositiveLight: Color = this.borderStatusPositiveLight,
-        borderStatusWarningDark: Color = this.borderStatusWarningDark,
-        borderStatusWarningLight: Color = this.borderStatusWarningLight
-    ) = WireframeColorBorderSemanticTokens(
-        borderBrandPrimaryDark.takeOrElse { this.borderBrandPrimaryDark },
-        borderBrandPrimaryLight.takeOrElse { this.borderBrandPrimaryLight },
-        borderBrandSecondaryDark.takeOrElse { this.borderBrandSecondaryDark },
-        borderBrandSecondaryLight.takeOrElse { this.borderBrandSecondaryLight },
-        borderBrandTertiaryDark.takeOrElse { this.borderBrandTertiaryDark },
-        borderBrandTertiaryLight.takeOrElse { this.borderBrandTertiaryLight },
-        borderDefaultDark.takeOrElse { this.borderDefaultDark },
-        borderDefaultLight.takeOrElse { this.borderDefaultLight },
-        borderEmphasizedDark.takeOrElse { this.borderEmphasizedDark },
-        borderEmphasizedLight.takeOrElse { this.borderEmphasizedLight },
-        borderFocusDark.takeOrElse { this.borderFocusDark },
-        borderFocusInsetDark.takeOrElse { this.borderFocusInsetDark },
-        borderFocusInsetLight.takeOrElse { this.borderFocusInsetLight },
-        borderFocusLight.takeOrElse { this.borderFocusLight },
-        borderMinimalDark.takeOrElse { this.borderMinimalDark },
-        borderMinimalLight.takeOrElse { this.borderMinimalLight },
-        borderMutedDark.takeOrElse { this.borderMutedDark },
-        borderMutedLight.takeOrElse { this.borderMutedLight },
-        borderOnBrandPrimaryDark.takeOrElse { this.borderOnBrandPrimaryDark },
-        borderOnBrandPrimaryLight.takeOrElse { this.borderOnBrandPrimaryLight },
-        borderOnBrandSecondaryDark.takeOrElse { this.borderOnBrandSecondaryDark },
-        borderOnBrandSecondaryLight.takeOrElse { this.borderOnBrandSecondaryLight },
-        borderOnBrandTertiaryDark.takeOrElse { this.borderOnBrandTertiaryDark },
-        borderOnBrandTertiaryLight.takeOrElse { this.borderOnBrandTertiaryLight },
-        borderStatusAccentDark.takeOrElse { this.borderStatusAccentDark },
-        borderStatusAccentLight.takeOrElse { this.borderStatusAccentLight },
-        borderStatusInfoDark.takeOrElse { this.borderStatusInfoDark },
-        borderStatusInfoLight.takeOrElse { this.borderStatusInfoLight },
-        borderStatusNegativeDark.takeOrElse { this.borderStatusNegativeDark },
-        borderStatusNegativeLight.takeOrElse { this.borderStatusNegativeLight },
-        borderStatusPositiveDark.takeOrElse { this.borderStatusPositiveDark },
-        borderStatusPositiveLight.takeOrElse { this.borderStatusPositiveLight },
-        borderStatusWarningDark.takeOrElse { this.borderStatusWarningDark },
-        borderStatusWarningLight.takeOrElse { this.borderStatusWarningLight }
-    )
-}
+) : OudsColorBorderSemanticTokens
