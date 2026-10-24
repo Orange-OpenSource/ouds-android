@@ -103,9 +103,10 @@ internal fun OudsControlItem(
         val itemIcon: (@Composable () -> Unit)? = if (error != null) {
             {
                 ErrorIcon(
-                    state = state, modifier = if (error.message.isBlank()) {
-                        Modifier.semantics { error(" ") } // Allows Talkback to vocalize there is an error on this item even if error message is blank
-                    } else Modifier
+                    state = state,
+                    modifier = Modifier.semantics {
+                        error(error.message.ifBlank { " " }) // Allows Talkback to vocalize there is an error on this item even if error message is blank
+                    }
                 )
             }
         } else {
@@ -123,7 +124,7 @@ internal fun OudsControlItem(
         val leadingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) indicator else itemIcon
         val trailingElement: (@Composable () -> Unit)? = if (indicatorPosition == OudsControlItemIndicatorPosition.Start) itemIcon else indicator
 
-        Column(modifier = modifier) {
+        Column(modifier = modifier.semantics(mergeDescendants = true) {}) {
             val shape = RoundedCornerShape(listItemTokens.borderRadiusDefault.value)
             Box(
                 modifier = Modifier
@@ -276,9 +277,7 @@ private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
             .fillMaxWidth()
             .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
             .padding(top = spacePaddingBlockTopHelperText.value)
-            .clearAndSetSemantics {
-                error(error.message)
-            }
+            .clearAndSetSemantics {}
         val style = OudsTheme.typography.label.medium.default
         val color = OudsTheme.colorScheme.content.status.negative
         if (error.annotatedMessage != null) {

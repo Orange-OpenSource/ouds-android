@@ -26,7 +26,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -234,7 +233,7 @@ fun OudsTriStateCheckboxItem(
             ToggleableState.Indeterminate -> "Indeterminate"
         },
         backgroundColor = backgroundColor.value,
-        modifier = modifier.semantics(mergeDescendants = true) {},
+        modifier = modifier,
         contentModifier = toggleableModifier,
         handleHighContrastMode = true,
         constrainedMaxWidth = constrainedMaxWidth
