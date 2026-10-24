@@ -23,6 +23,7 @@ import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.FunctionCall
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -32,8 +33,10 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
 import com.orange.ouds.core.component.OudsControlItemIcon
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 
 data class ControlItemCustomization(val index: Int, val content: @Composable () -> Unit)
 
@@ -53,7 +56,8 @@ fun ControlItemCustomizations(state: ControlItemDemoState, extraCustomizations: 
         { ControlItemLabelCustomization(state = state) },
         { ControlItemDescriptionCustomization(state = state) },
         { ControlItemConstrainedMaxWidthCustomization(state = state) },
-        { ControlItemAnnotatedTextCustomization(state = state) }
+        { ControlItemAnnotatedTextCustomization(state = state) },
+        { ControlItemSkeletonCustomization(state = state) }
     )
     extraCustomizations.sortedBy { it.index }.forEach { (index, content) ->
         customizations.add(minOf(index, customizations.count()), content)
@@ -171,6 +175,17 @@ fun ControlItemAnnotatedTextCustomization(state: ControlItemDemoState) {
 }
 
 @Composable
+fun ControlItemSkeletonCustomization(state: ControlItemDemoState) {
+    with(state) {
+        CustomizationSwitchItem(
+            label = stringResource(id = R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
+    }
+}
+
+@Composable
 private fun ControlItemLabelCustomization(state: ControlItemDemoState) {
     with(state) {
         CustomizationTextInput(
@@ -231,6 +246,11 @@ fun controlItemError(state: ControlItemDemoState, isLastItem: Boolean, @StringRe
     }
 }
 
+@Composable
+fun controlItemSkeleton(state: ControlItemDemoState): OudsSkeleton? {
+    return if (state.skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
+}
+
 fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, themeDrawableResources: ThemeDrawableResources, hasErrorMessage: Boolean = false) =
     with(state) {
         labelArgument(label)
@@ -245,4 +265,5 @@ fun FunctionCall.Builder.controlItemArguments(state: ControlItemDemoState, theme
         if (readOnly) readOnlyArgument(readOnly)
         if (error) errorArgument(if (hasErrorMessage) errorMessage else "", hasErrorMessage && annotatedText)
         if (constrainedMaxWidth) constrainedMaxWidthArgument(constrainedMaxWidth)
+        if (skeleton) skeletonArgument()
     }

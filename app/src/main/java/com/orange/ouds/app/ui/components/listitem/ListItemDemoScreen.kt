@@ -24,7 +24,9 @@ import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsListItem
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallListItem
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsVersion
@@ -78,6 +80,7 @@ internal fun ListItemGeneralCustomizationContent(state: ListItemDemoState) {
 private fun ListItemDemoContent(state: ListItemDemoState) {
     with(state) {
         val modifier = if (edgeToEdge) Modifier else Modifier.padding(horizontal = OudsTheme.grids.margin)
+        val listItemSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         if (clickable) {
             when (size) {
                 BaseListItemDemoState.Size.Default ->
@@ -97,7 +100,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
-                        edgeToEdge = edgeToEdge
+                        edgeToEdge = edgeToEdge,
+                        skeleton = listItemSkeleton
                     )
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallListItem(
@@ -114,7 +118,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
-                        edgeToEdge = edgeToEdge
+                        edgeToEdge = edgeToEdge,
+                        skeleton = listItemSkeleton
                     )
             }
         } else {
@@ -134,7 +139,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
-                        edgeToEdge = edgeToEdge
+                        edgeToEdge = edgeToEdge,
+                        skeleton = listItemSkeleton
                     )
                 BaseListItemDemoState.Size.Small ->
                     OudsSmallListItem(
@@ -149,7 +155,8 @@ private fun ListItemDemoContent(state: ListItemDemoState) {
                         helperText = helperText,
                         boldLabel = boldLabel,
                         enabled = enabled,
-                        edgeToEdge = edgeToEdge
+                        edgeToEdge = edgeToEdge,
+                        skeleton = listItemSkeleton
                     )
             }
 

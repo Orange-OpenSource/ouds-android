@@ -28,7 +28,9 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
-import com.orange.ouds.core.extensions.isHighContrastModeEnabled
+import com.orange.ouds.core.component.OudsSkeleton
+import com.orange.ouds.core.component.OudsSkeletonProvider
+import com.orange.ouds.core.utilities.isHighContrastModeEnabled
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsDrawableResources
@@ -62,6 +64,25 @@ internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResou
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
+
+/**
+ * Composition local that provides the current [OudsSkeleton] state to the composable hierarchy.
+ *
+ * This is used internally by OUDS components to automatically display skeleton states when wrapped in [OudsSkeletonProvider].
+ * Most developers should use [OudsSkeletonProvider] instead of accessing this composition local directly.
+ *
+ * **Direct access** may be useful for custom components that need to integrate with the OUDS skeleton system:
+ * ```
+ * @Composable
+ * fun CustomComponent(skeleton: OudsSkeleton? = LocalSkeleton.current) {
+ *     // Component implementation
+ * }
+ * ```
+ *
+ * @see OudsSkeleton The skeleton class that controls animation and state.
+ * @see OudsSkeletonProvider The recommended way to provide skeleton state to child components.
+ */
+val LocalSkeleton = staticCompositionLocalOf<OudsSkeleton?> { null }
 
 /**
  * Object that stores tokens values for the current theme.

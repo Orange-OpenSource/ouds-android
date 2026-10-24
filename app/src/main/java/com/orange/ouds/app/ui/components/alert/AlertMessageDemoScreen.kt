@@ -26,6 +26,7 @@ import com.orange.ouds.app.ui.components.annotatedStringArgument
 import com.orange.ouds.app.ui.components.iconArgument
 import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.onClickArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -45,10 +46,12 @@ import com.orange.ouds.core.component.OudsAlertMessage
 import com.orange.ouds.core.component.OudsAlertMessageActionLink
 import com.orange.ouds.core.component.OudsAlertMessageActionLinkPosition
 import com.orange.ouds.core.component.OudsAlertMessageStatus
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescription
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
@@ -167,6 +170,11 @@ private fun AlertMessageDemoBottomSheetContent(state: AlertMessageDemoState) {
             checked = annotatedText,
             onCheckedChange = { annotatedText = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -194,6 +202,7 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
         val alertMessageActionLink = actionLink?.let { actionLinkLabel ->
             OudsAlertMessageActionLink(label = actionLinkLabel, onClick = {}, position = actionLinkPosition)
         }
+        val alertMessageSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         if (annotatedText) {
             val annotatedDescriptionHtml = stringResource(R.string.app_components_alert_alertMessage_annotatedDescription_text)
             val annotatedDescription = buildOudsAnnotatedAlertMessageDescription {
@@ -219,7 +228,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
                 status = alertMessageStatus,
                 onClose = onClose,
                 actionLink = alertMessageActionLink,
-                bulletList = annotatedBulletList
+                bulletList = annotatedBulletList,
+                skeleton = alertMessageSkeleton
             )
         } else {
             OudsAlertMessage(
@@ -228,7 +238,8 @@ private fun AlertMessageDemoContent(state: AlertMessageDemoState) {
                 status = alertMessageStatus,
                 onClose = onClose,
                 actionLink = alertMessageActionLink,
-                bulletList = bulletList
+                bulletList = bulletList,
+                skeleton = alertMessageSkeleton
             )
         }
     }
@@ -289,6 +300,7 @@ private fun Code.Builder.alertMessageDemoCodeSnippet(state: AlertMessageDemoStat
                     }
                 }
             }
+            if (skeleton) skeletonArgument()
         }
     }
 }

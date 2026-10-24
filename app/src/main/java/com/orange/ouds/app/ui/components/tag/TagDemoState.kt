@@ -37,9 +37,10 @@ fun rememberTagDemoState(
     status: OudsTagStatus = OudsTagDefaults.Status,
     hasLoader: Boolean = false,
     enabled: Boolean = true,
-    icon: TagDemoState.Icon = TagDemoState.Icon.Tinted
-) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, icon, saver = TagDemoState.Saver) {
-    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, icon)
+    icon: TagDemoState.Icon = TagDemoState.Icon.Tinted,
+    skeleton: Boolean = false
+) = rememberSaveable(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, icon, skeleton, saver = TagDemoState.Saver) {
+    TagDemoState(label, appearance, layout, roundedCorners, size, status, hasLoader, enabled, icon, skeleton)
 }
 
 class TagDemoState(
@@ -51,7 +52,8 @@ class TagDemoState(
     status: OudsTagStatus,
     hasLoader: Boolean,
     enabled: Boolean,
-    icon: Icon
+    icon: Icon,
+    skeleton: Boolean
 ) {
 
     companion object {
@@ -75,7 +77,8 @@ class TagDemoState(
                         status::class.java.name,
                         hasLoader,
                         enabled,
-                        icon
+                        icon,
+                        skeleton
                     )
                 }
             },
@@ -92,7 +95,8 @@ class TagDemoState(
                     status,
                     list[6] as Boolean,
                     list[7] as Boolean,
-                    list[8] as Icon
+                    list[8] as Icon,
+                    list[9] as Boolean
                 )
             }
         )
@@ -107,6 +111,8 @@ class TagDemoState(
     var roundedCorners: Boolean by mutableStateOf(roundedCorners)
 
     var size: OudsTagSize by mutableStateOf(size)
+
+    var skeleton: Boolean by mutableStateOf(skeleton)
 
     private var _status: OudsTagStatus by mutableStateOf(status)
     var status: OudsTagStatus

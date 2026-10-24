@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -58,6 +59,9 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the card item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticCardItemSample
@@ -65,6 +69,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -80,7 +85,8 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -100,7 +106,8 @@ fun OudsCardItem(
         enabled = enabled,
         edgeToEdge = false,
         card = true,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -133,6 +140,9 @@ fun OudsCardItem(
  * @param helperText Optional helper text displayed below the card item.
  * @param boldLabel Controls whether the label text is displayed in bold. Defaults to `false`.
  * @param enabled Controls the enabled state of the card item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this card item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationCardItemSample
@@ -140,6 +150,7 @@ fun OudsCardItem(
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsCardItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsCardItem(
@@ -157,7 +168,8 @@ fun OudsCardItem(
     helperText: String? = null,
     boldLabel: Boolean = false,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -177,7 +189,8 @@ fun OudsCardItem(
         enabled = enabled,
         edgeToEdge = false,
         card = true,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -207,12 +220,7 @@ internal fun PreviewOudsStaticCardItem(
     with(parameter) {
         PreviewEnumEntries<OudsListItemState>(
             maxEnumEntriesInEachRow = 1,
-            filter = {
-                it in listOf(
-                    OudsListItemState.Enabled,
-                    OudsListItemState.Disabled
-                )
-            }
+            filter = { it in OudsListItemState.StaticStates }
         ) {
             OudsCardItem(
                 label = label,

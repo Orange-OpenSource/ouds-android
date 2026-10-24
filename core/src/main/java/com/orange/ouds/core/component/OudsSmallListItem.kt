@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -65,6 +66,9 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param enabled Controls the enabled state of the small list item. When `false`, the content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsStaticSmallListItemSample
@@ -72,6 +76,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(
@@ -87,7 +92,8 @@ fun OudsSmallListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -107,7 +113,8 @@ fun OudsSmallListItem(
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -144,6 +151,9 @@ fun OudsSmallListItem(
  * @param enabled Controls the enabled state of the small list item. When `false`, the item is not clickable and content is displayed in a disabled state. Defaults to `true`.
  * @param edgeToEdge Controls the horizontal layout of the item. When `true`, the item is designed to span the full width of the screen or container. When `false`,
  *   it is adapted for use within constrained layouts or containers with their own padding. Defaults to `true`.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting interactions for this small list item.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationSmallListItemSample
@@ -151,6 +161,7 @@ fun OudsSmallListItem(
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithImageSample
  * @sample com.orange.ouds.core.component.samples.OudsSmallListItemWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @ExperimentalOudsApi
 @Composable
 fun OudsSmallListItem(
@@ -168,7 +179,8 @@ fun OudsSmallListItem(
     boldLabel: Boolean = false,
     enabled: Boolean = true,
     edgeToEdge: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsListItem(
         size = OudsListItemSize.Small,
@@ -188,7 +200,8 @@ fun OudsSmallListItem(
         enabled = enabled,
         edgeToEdge = edgeToEdge,
         card = false,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -517,19 +530,24 @@ internal fun PreviewOudsStaticSmallListItem(
     parameter: OudsListItemPreviewParameter<OudsSmallListItemLeading, OudsSmallListItemTrailing>
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
-        OudsSmallListItem(
-            label = label,
-            description = description,
-            helperText = helperText,
-            leading = leading,
-            trailing = trailing,
-            divider = decoration.divider,
-            background = decoration is OudsListItemDecoration.Background,
-            verticalAlignment = verticalAlignment,
-            boldLabel = boldLabel,
-            enabled = enabled,
-            edgeToEdge = false
-        )
+        PreviewEnumEntries<OudsListItemState>(
+            maxEnumEntriesInEachRow = 1,
+            filter = { it in OudsListItemState.StaticStates }
+        ) {
+            OudsSmallListItem(
+                label = label,
+                description = description,
+                helperText = helperText,
+                leading = leading,
+                trailing = trailing,
+                divider = decoration.divider,
+                background = decoration is OudsListItemDecoration.Background,
+                verticalAlignment = verticalAlignment,
+                boldLabel = boldLabel,
+                enabled = enabled,
+                edgeToEdge = false
+            )
+        }
     }
 }
 
