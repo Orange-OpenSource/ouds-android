@@ -22,6 +22,7 @@ import com.orange.ouds.app.ui.components.controlitem.ControlItemCustomizations
 import com.orange.ouds.app.ui.components.controlitem.controlItemArguments
 import com.orange.ouds.app.ui.components.controlitem.controlItemError
 import com.orange.ouds.app.ui.components.controlitem.controlItemIcon
+import com.orange.ouds.app.ui.components.controlitem.controlItemSkeleton
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.LocalThemeDrawableResources
 import com.orange.ouds.app.ui.utilities.ThemeDrawableResources
@@ -69,7 +70,8 @@ private fun SwitchItemDemoContent(state: SwitchItemDemoState) {
                 isLastItem = true,
                 errorMessageHtmlResId = R.string.app_components_switchItem_annotatedErrorMessage_text
             ),
-            constrainedMaxWidth = constrainedMaxWidth
+            constrainedMaxWidth = constrainedMaxWidth,
+            skeleton = controlItemSkeleton(this)
         )
     }
 }

@@ -214,7 +214,16 @@ internal fun PreviewOudsAvatar(
     darkThemeEnabled: Boolean,
     isMonogram: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsButtonState>(filter = { it !in listOf(OudsButtonState.Loading, OudsButtonState.Disabled) }) {
+    PreviewEnumEntries<OudsButtonState>(
+        filter = {
+            it in listOf(
+                OudsButtonState.Enabled,
+                OudsButtonState.Hovered,
+                OudsButtonState.Pressed,
+                OudsButtonState.Focused
+            )
+        }
+    ) {
         if (isMonogram) {
             OudsAvatar(
                 monogram = 'A',

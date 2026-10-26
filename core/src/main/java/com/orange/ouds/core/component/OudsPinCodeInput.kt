@@ -72,6 +72,7 @@ import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.currentWindowWidth
 import com.orange.ouds.core.theme.value
@@ -121,6 +122,9 @@ import kotlin.math.max
  *   is provided, interactions will still happen internally.
  * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputErrorSample
@@ -138,7 +142,8 @@ fun OudsPinCodeInput(
     helperText: String? = null,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true
+    @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsPinCodeInput(
         value = value,
@@ -151,7 +156,8 @@ fun OudsPinCodeInput(
         annotatedHelperText = null,
         hiddenCharacters = hiddenCharacters,
         onKeyboardAction = onKeyboardAction,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -188,7 +194,10 @@ fun OudsPinCodeInput(
  *   is provided, interactions will still happen internally.
  * @param hiddenCharacters Controls whether the entered characters are hidden. When `true`, characters are replaced with dots (●) for privacy.
  *   When `false`, characters are displayed in plain text. Defaults to `true`.
- *
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * 
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithVisibleCharactersSample
  * @sample com.orange.ouds.core.component.samples.OudsPinCodeInputWithAnnotatedErrorMessageSample
@@ -206,7 +215,8 @@ fun OudsPinCodeInput(
     helperText: OudsAnnotatedHelperText,
     onKeyboardAction: KeyboardActionHandler? = null,
     interactionSource: MutableInteractionSource? = null,
-    @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true
+    @IntroducedAt("2.2.0") hiddenCharacters: Boolean = true,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsPinCodeInput(
         value = value,
@@ -219,7 +229,8 @@ fun OudsPinCodeInput(
         annotatedHelperText = helperText,
         hiddenCharacters = hiddenCharacters,
         onKeyboardAction = onKeyboardAction,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -227,15 +238,16 @@ fun OudsPinCodeInput(
 private fun OudsPinCodeInput(
     value: String,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    length: OudsPinCodeInputLength = OudsPinCodeInputDefaults.Length,
-    outlined: Boolean = false,
-    error: OudsError? = null,
-    helperText: String? = null,
-    annotatedHelperText: OudsAnnotatedHelperText? = null,
-    hiddenCharacters: Boolean = true,
-    onKeyboardAction: KeyboardActionHandler? = null,
-    interactionSource: MutableInteractionSource? = null
+    length: OudsPinCodeInputLength,
+    outlined: Boolean,
+    error: OudsError?,
+    helperText: String?,
+    annotatedHelperText: OudsAnnotatedHelperText?,
+    hiddenCharacters: Boolean,
+    onKeyboardAction: KeyboardActionHandler?,
+    interactionSource: MutableInteractionSource?,
+    skeleton: OudsSkeleton?,
+    modifier: Modifier = Modifier
 ) {
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val paddedValue = value.take(length.value).padEnd(length.value, OudsDigitInputPlaceholder)
@@ -297,7 +309,8 @@ private fun OudsPinCodeInput(
                     // If keyboard is dismissed using the Android back key, the keyboard won't reappear when digit is clicked
                     keyboardController?.show()
                 },
-                interactionSource = interactionSource
+                interactionSource = interactionSource,
+                skeleton = skeleton
             )
         }
         if (hiddenCharacters) {
@@ -378,7 +391,8 @@ private fun OudsPinCodeInputDecorator(
     annotatedHelperText: OudsAnnotatedHelperText?,
     hiddenCharacters: Boolean,
     onDigitClick: (Int) -> Unit,
-    interactionSource: MutableInteractionSource
+    interactionSource: MutableInteractionSource,
+    skeleton: OudsSkeleton?
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
     val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
@@ -388,6 +402,16 @@ private fun OudsPinCodeInputDecorator(
         val totalHorizontalSpace = horizontalSpace * (length.value - 1)
         val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
         ConstraintLayout {
+            val digitInputStates = (0..<length.value).map { index ->
+                getDigitInputState(
+                    textFieldState = textFieldState,
+                    length = length,
+                    error = error,
+                    interactionState = interactionState,
+                    skeleton = skeleton,
+                    index = index
+                )
+            }
             val (row, helperTextErrorMessage) = createRefs()
             Row(
                 modifier = Modifier.constrainAs(row) {
@@ -397,14 +421,7 @@ private fun OudsPinCodeInputDecorator(
                 },
                 horizontalArrangement = Arrangement.spacedBy(horizontalSpace)
             ) {
-                val isNonErrorPreview = LocalInspectionMode.current && error == null
-                val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
-                repeat(length.value) { index ->
-                    val digitInputState = when {
-                        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
-                        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
-                        else -> OudsDigitInputState.Enabled
-                    }
+                digitInputStates.forEachIndexed { index, state ->
                     OudsDigitInput(
                         modifier = Modifier
                             .width(digitWidth)
@@ -428,31 +445,53 @@ private fun OudsPinCodeInputDecorator(
                                 }
                             }
                         },
-                        state = digitInputState,
+                        state = state,
                         outlined = outlined,
                         error = error != null,
                         placeholder = error == null,
                         hiddenDigit = hiddenCharacters,
-                        smallDeviceSpecificRules = smallDeviceSpecificRules
+                        smallDeviceSpecificRules = smallDeviceSpecificRules,
+                        skeleton = skeleton
                     )
                 }
             }
 
-            OudsTextInputBottomContent(
-                modifier = Modifier.constrainAs(helperTextErrorMessage) {
-                    top.linkTo(row.bottom)
-                    bottom.linkTo(parent.bottom)
-                    start.linkTo(row.start)
-                    end.linkTo(row.end)
-                    width = Dimension.fillToConstraints
-                },
-                state = OudsTextInputState.Enabled,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText,
-                helperLink = null
-            )
+            if (digitInputStates.all { it != OudsDigitInputState.Skeleton }) {
+                OudsTextInputBottomContent(
+                    modifier = Modifier.constrainAs(helperTextErrorMessage) {
+                        top.linkTo(row.bottom)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(row.start)
+                        end.linkTo(row.end)
+                        width = Dimension.fillToConstraints
+                    },
+                    state = OudsTextInputState.Enabled,
+                    error = error,
+                    helperText = helperText,
+                    annotatedHelperText = annotatedHelperText,
+                    helperLink = null
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun getDigitInputState(
+    textFieldState: TextFieldState,
+    length: OudsPinCodeInputLength,
+    error: OudsError?,
+    interactionState: InteractionState,
+    skeleton: OudsSkeleton?,
+    index: Int,
+): OudsDigitInputState {
+    val isNonErrorPreview = LocalInspectionMode.current && error == null
+    val focusedDigitIndex = (textFieldState.selection.end - 1).coerceIn(0, length.value - 1)
+    return when {
+        skeleton != null -> OudsDigitInputState.Skeleton
+        (isNonErrorPreview || interactionState == InteractionState.Focused) && index == focusedDigitIndex -> OudsDigitInputState.Focused
+        interactionState == InteractionState.Hovered -> OudsDigitInputState.Hovered
+        else -> OudsDigitInputState.Enabled
     }
 }
 
@@ -609,6 +648,26 @@ internal fun PreviewOudsPinCodeInputWithRichText(
         length = OudsPinCodeInputLength.Four,
         error = if (error) OudsError(buildPreviewAnnotatedErrorMessage()) else null,
         helperText = buildPreviewAnnotatedHelperText(),
+    )
+}
+
+@OudsPreviewLightDark
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsPinCodeInputSkeleton() {
+    PreviewOudsPinCodeInputSkeleton(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
+}
+
+@Composable
+internal fun PreviewOudsPinCodeInputSkeleton(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme, darkThemeEnabled = darkThemeEnabled) {
+    OudsPinCodeInput(
+        value = "12",
+        onValueChange = {},
+        length = OudsPinCodeInputLength.Four,
+        skeleton = OudsSkeleton(rememberOudsSkeletonState())
     )
 }
 

@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -57,9 +58,13 @@ import com.orange.ouds.theme.OudsThemeContract
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -67,7 +72,8 @@ fun OudsFilterChip(
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsFilterChip(
         selected = selected,
@@ -76,7 +82,8 @@ fun OudsFilterChip(
         nullableIcon = null,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -106,11 +113,15 @@ fun OudsFilterChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlySample
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipIconOnlyWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -118,7 +129,8 @@ fun OudsFilterChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsFilterChip(
         selected = selected,
@@ -127,7 +139,8 @@ fun OudsFilterChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -158,11 +171,15 @@ fun OudsFilterChip(
  *   emitting [Interaction]s for this chip. You can use this to change the chip's appearance or
  *   preview the chip in different states. Note that if `null` is provided, interactions will still
  *   happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconSample
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilterChipTextAndIconWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsFilterChip(
     selected: Boolean,
@@ -171,7 +188,8 @@ fun OudsFilterChip(
     icon: OudsChipIcon,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsFilterChip(
         selected = selected,
@@ -180,7 +198,8 @@ fun OudsFilterChip(
         nullableIcon = icon,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -193,7 +212,8 @@ private fun OudsFilterChip(
     nullableIcon: OudsChipIcon?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsBasicChip(
         selectable = true,
@@ -204,7 +224,8 @@ private fun OudsFilterChip(
         iconPosition = OudsChipIconPosition.End,
         modifier = modifier,
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 

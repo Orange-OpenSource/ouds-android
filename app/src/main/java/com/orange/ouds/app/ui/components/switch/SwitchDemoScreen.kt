@@ -21,11 +21,14 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.enabledArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSwitch
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.theme.OudsVersion
 
 @Composable
@@ -52,6 +55,11 @@ private fun SwitchDemoBottomSheetContent(state: SwitchDemoState) {
             checked = readOnly,
             onCheckedChange = { readOnly = it },
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -66,7 +74,8 @@ private fun SwitchDemoContent(state: SwitchDemoState) {
             checked = checked,
             onCheckedChange = { checked = it },
             enabled = enabled,
-            readOnly = readOnly
+            readOnly = readOnly,
+            skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         )
     }
 }
@@ -80,6 +89,7 @@ private fun Code.Builder.switchDemoCodeSnippet(state: SwitchDemoState) {
             }
             enabledArgument(enabled)
             readOnlyArgument(readOnly)
+            if (skeleton) skeletonArgument()
         }
     }
 }

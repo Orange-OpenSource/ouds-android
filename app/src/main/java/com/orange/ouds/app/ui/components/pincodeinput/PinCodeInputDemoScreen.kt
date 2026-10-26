@@ -20,6 +20,7 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.errorArgument
 import com.orange.ouds.app.ui.components.helperTextArgument
+import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.appendHtml
 import com.orange.ouds.app.ui.utilities.composable.AccessibilityAnnouncementLaunchedEffect
@@ -29,9 +30,11 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsPinCodeInput
 import com.orange.ouds.core.component.OudsPinCodeInputLength
+import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
+import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
@@ -93,6 +96,11 @@ private fun PinCodeInputDemoBottomSheetContent(state: PinCodeInputDemoState) {
             checked = annotatedText,
             onCheckedChange = { annotatedText = it }
         )
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_common_skeleton_tech),
+            checked = skeleton,
+            onCheckedChange = { skeleton = it }
+        )
     }
 }
 
@@ -115,6 +123,7 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
         AccessibilityAnnouncementLaunchedEffect(pinCodeInputError)
 
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
+        val pinCodeInputSkeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         if (annotatedText) {
             val helperTextHtml = stringResource(R.string.app_components_pinCodeInput_annotatedHelperText_text)
             val annotatedHelperText = buildOudsAnnotatedHelperText {
@@ -128,7 +137,8 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
                 error = pinCodeInputError,
                 helperText = annotatedHelperText,
                 hiddenCharacters = hiddenCharacters,
-                onKeyboardAction = onKeyboardAction
+                onKeyboardAction = onKeyboardAction,
+                skeleton = pinCodeInputSkeleton
             )
         } else {
             OudsPinCodeInput(
@@ -139,7 +149,8 @@ private fun PinCodeInputDemoContent(state: PinCodeInputDemoState) {
                 error = pinCodeInputError,
                 helperText = helperText,
                 hiddenCharacters = hiddenCharacters,
-                onKeyboardAction = onKeyboardAction
+                onKeyboardAction = onKeyboardAction,
+                skeleton = pinCodeInputSkeleton
             )
         }
     }
@@ -157,7 +168,7 @@ private fun Code.Builder.pinCodeInputDemoCodeSnippet(state: PinCodeInputDemoStat
             if (error) errorArgument(errorMessage, annotatedText)
             helperTextArgument(helperText, annotatedText)
             if (!hiddenCharacters) typedArgument("hiddenCharacters", hiddenCharacters)
+            if (skeleton) skeletonArgument()
         }
     }
-
 }

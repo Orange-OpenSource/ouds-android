@@ -36,7 +36,8 @@ fun rememberSwitchItemDemoState(
     label: String = stringResource(id = R.string.app_components_common_label_label),
     description: String? = null,
     constrainedMaxWidth: Boolean = false,
-    annotatedText: Boolean = false
+    annotatedText: Boolean = false,
+    skeleton: Boolean = false
 ) = rememberSaveable(
     checked,
     icon,
@@ -51,6 +52,7 @@ fun rememberSwitchItemDemoState(
     description,
     constrainedMaxWidth,
     annotatedText,
+    skeleton,
     saver = SwitchItemDemoState.Saver
 ) {
     SwitchItemDemoState(
@@ -66,7 +68,8 @@ fun rememberSwitchItemDemoState(
         label,
         description,
         constrainedMaxWidth,
-        annotatedText
+        annotatedText,
+        skeleton
     )
 }
 
@@ -83,7 +86,8 @@ class SwitchItemDemoState(
     label: String,
     description: String?,
     constrainedMaxWidth: Boolean,
-    annotatedText: Boolean
+    annotatedText: Boolean,
+    skeleton: Boolean
 ) : ControlItemDemoState(
     icon,
     edgeToEdge,
@@ -96,7 +100,8 @@ class SwitchItemDemoState(
     label,
     description,
     constrainedMaxWidth,
-    annotatedText
+    annotatedText,
+    skeleton
 ) {
 
     companion object {
@@ -124,7 +129,8 @@ class SwitchItemDemoState(
                         label,
                         description,
                         constrainedMaxWidth,
-                        annotatedText
+                        annotatedText,
+                        skeleton
                     )
                 }
             }

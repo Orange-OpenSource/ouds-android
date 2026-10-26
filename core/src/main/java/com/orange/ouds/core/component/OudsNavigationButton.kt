@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.R
 import com.orange.ouds.core.theme.LocalDrawableResources
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -60,10 +61,14 @@ import com.orange.ouds.theme.OudsThemeContract
  *   A button with [OudsNavigationButtonAppearance.Brand] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting interactions for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonTextAndIconSample
  * @sample com.orange.ouds.core.component.samples.OudsNavigationButtonIconOnlySample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsNavigationButton(
     onClick: () -> Unit,
@@ -73,7 +78,8 @@ fun OudsNavigationButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsNavigationButtonAppearance = OudsNavigationButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     val drawableResources = LocalDrawableResources.current
     val iconResource: Int
@@ -101,7 +107,8 @@ fun OudsNavigationButton(
         enabled = enabled,
         loader = loader,
         appearance = appearance.toButtonAppearance(),
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 

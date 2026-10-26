@@ -26,7 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.filter
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsColorMode
@@ -36,6 +35,7 @@ import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -252,7 +252,7 @@ internal fun PreviewOudsColoredBox(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
     color: OudsColoredBoxColor
-) = OudsPreview(theme = theme, modifier = Modifier.padding(16.dp), darkThemeEnabled = darkThemeEnabled) {
+) = OudsPreview(theme = theme, modifier = Modifier.padding(PreviewPaddingDefault), darkThemeEnabled = darkThemeEnabled) {
     OudsColoredBox(color = color) {
         Column(
             modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium),

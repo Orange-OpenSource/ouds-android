@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
@@ -66,11 +67,15 @@ import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlySample
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextOnlyOnColoredBackgroundSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSmallButton(
     label: String,
@@ -79,7 +84,8 @@ fun OudsSmallButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsButton(
         nullableIcon = null,
@@ -90,7 +96,8 @@ fun OudsSmallButton(
         loader = loader,
         appearance = appearance,
         size = OudsButtonSize.Small,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -130,6 +137,9 @@ fun OudsSmallButton(
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonIconOnlySample
  *
@@ -137,6 +147,7 @@ fun OudsSmallButton(
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonIconOnlyWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSmallButton(
     icon: OudsButtonIcon,
@@ -145,7 +156,8 @@ fun OudsSmallButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsButton(
         nullableIcon = icon,
@@ -156,7 +168,8 @@ fun OudsSmallButton(
         loader = loader,
         appearance = appearance,
         size = OudsButtonSize.Small,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
@@ -198,6 +211,9 @@ fun OudsSmallButton(
  *   A button with [OudsButtonAppearance.Negative] is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this button. Note that if `null`
  *   is provided, interactions will still happen internally.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextAndIconSample
  *
@@ -205,6 +221,7 @@ fun OudsSmallButton(
  *
  * @sample com.orange.ouds.core.component.samples.OudsSmallButtonTextAndIconWithUntintedIconSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsSmallButton(
     icon: OudsButtonIcon,
@@ -214,7 +231,8 @@ fun OudsSmallButton(
     enabled: Boolean = true,
     loader: OudsButtonLoader? = null,
     appearance: OudsButtonAppearance = OudsButtonDefaults.Appearance,
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
+    @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
     OudsButton(
         nullableIcon = icon,
@@ -225,7 +243,8 @@ fun OudsSmallButton(
         loader = loader,
         appearance = appearance,
         size = OudsButtonSize.Small,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
+        skeleton = skeleton
     )
 }
 
