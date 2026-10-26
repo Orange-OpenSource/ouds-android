@@ -5,6 +5,25 @@ All notable changes done in OUDS Android library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0](https://github.com/Orange-OpenSource/ouds-android/compare/2.2.0...2.3.0) (2026-10-23)
+
+### Features
+
+- create OudsBodyText, OudsLabelText, OudsHeadingText, OudsDisplayText and OudsCodeText components ([#1515](https://github.com/Orange-OpenSource/ouds-android/issues/1515))
+
+### Bug Fixes
+
+- **top-app-bar** add heading semantic on top app bar title ([#1668](https://github.com/Orange-OpenSource/ouds-android/issues/1668))
+- **navigation-button** TalkBack doesn&#x27;t reach the icon-only button ([#1669](https://github.com/Orange-OpenSource/ouds-android/issues/1669))
+- **deps** update grpc-java monorepo to v1.85.0 ([#1667](https://github.com/Orange-OpenSource/ouds-android/issues/1667))
+- **navigation-bar** TalkBack doesn&#x27;t vocalize navigation bar item name when selected ([#1660](https://github.com/Orange-OpenSource/ouds-android/issues/1660))
+- **link** prevent next chevron or external link icon to be alone on a line ([#1644](https://github.com/Orange-OpenSource/ouds-android/issues/1644))
+- **deps** update grpc-java monorepo to v1.84.2 ([#1654](https://github.com/Orange-OpenSource/ouds-android/issues/1654))
+- **deps** update kotlin monorepo to v2.4.21 ([#1649](https://github.com/Orange-OpenSource/ouds-android/issues/1649))
+- **deps** update grpc-java monorepo to v1.84.1 ([#1646](https://github.com/Orange-OpenSource/ouds-android/issues/1646))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-gradle-plugin to v3.4.2 ([#1638](https://github.com/Orange-OpenSource/ouds-android/issues/1638))
+- **deps** update dependency se.bjurr.gitchangelog:git-changelog-lib to v5 ([#1637](https://github.com/Orange-OpenSource/ouds-android/issues/1637))
+
 ## [2.2.0](https://github.com/Orange-OpenSource/ouds-android/compare/2.1.0...2.2.0) (2026-10-09)
 
 ### Features
