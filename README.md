@@ -1,6 +1,6 @@
 # OUDS Android
 
-[![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
+[![minSdkVersion](https://img.shields.io/badge/minSdkVersion-24-yellowgreen?logo=android&logoColor=white)](https://apilevels.com)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Orange-OpenSource/ouds-android/badge)](https://scorecard.dev/viewer/?uri=github.com/Orange-OpenSource/ouds-android)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12397/badge)](https://www.bestpractices.dev/projects/12397)
 ![Gitleaks](https://img.shields.io/badge/protected%20by-gitleaks-blue)
