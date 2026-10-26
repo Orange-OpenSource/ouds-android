@@ -45,6 +45,16 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 - [OudsInlineAlert](dialog-components.md#inlinealert) — Compact inline alert
 - [OudsModalBottomSheet](dialog-components.md#modalbottomsheet) — Modal bottom sheet
 
+### Foundation Components
+
+[→ See full documentation](foundation-components.md)
+
+- [OudsBodyText](foundation-components.md#bodytext) — Paragraphs, descriptions, and everyday text content
+- [OudsCodeText](foundation-components.md#codetext) — Code snippets and technical content
+- [OudsDisplayText](foundation-components.md#displaytext) — Large, high-impact titles
+- [OudsHeadingText](foundation-components.md#headingtext) — Section headings and titles
+- [OudsLabelText](foundation-components.md#labeltext) — UI controls and interface labels
+
 ### Indicator Components
 
 [→ See full documentation](indicator-components.md)
