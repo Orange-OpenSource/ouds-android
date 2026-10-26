@@ -25,16 +25,15 @@ internal abstract class OudsComponentSnapshotTest(
 ) : OudsSnapshotTest(theme, widthDp, heightDp) {
 
     @Composable
-    override fun Snapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean) {
+    override fun Snapshot(darkThemeEnabled: Boolean) {
         previewableComponent.Preview(
             theme = theme,
             darkThemeEnabled = darkThemeEnabled,
-            highContrastModeEnabled = highContrastModeEnabled,
             parameter = parameter
         )
     }
 
-    override fun ignoreSnapshot(darkThemeEnabled: Boolean, highContrastModeEnabled: Boolean): Boolean {
-        return !previewableComponent.isPreviewAvailable(darkThemeEnabled, highContrastModeEnabled)
+    override fun ignoreSnapshot(darkThemeEnabled: Boolean): Boolean {
+        return !previewableComponent.isPreviewAvailable(darkThemeEnabled)
     }
 }

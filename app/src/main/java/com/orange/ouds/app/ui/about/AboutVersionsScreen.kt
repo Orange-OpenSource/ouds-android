@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,6 +26,8 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.Screen
 import com.orange.ouds.app.ui.utilities.consumeTopBarsTopWindowInsets
 import com.orange.ouds.app.ui.utilities.topBarsTopPadding
+import com.orange.ouds.core.component.OudsHeadingText
+import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.OudsListItem
 import com.orange.ouds.core.component.OudsListItemTrailing
 import com.orange.ouds.core.theme.OudsTheme
@@ -77,12 +78,12 @@ fun AboutVersionsScreen() {
 
 @Composable
 private fun VersionsSectionTitle(@StringRes titleRes: Int, modifier: Modifier = Modifier) {
-    Text(
+    OudsHeadingText(
         modifier = modifier
             .padding(horizontal = OudsTheme.grids.margin)
             .padding(top = OudsTheme.spaces.fixed.medium, bottom = OudsTheme.spaces.fixed.small),
         text = stringResource(id = titleRes),
-        style = OudsTheme.typography.heading.medium
+        size = OudsHeadingTextSize.Medium
     )
 }
 

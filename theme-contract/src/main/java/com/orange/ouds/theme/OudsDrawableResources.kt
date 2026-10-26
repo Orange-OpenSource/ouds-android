@@ -30,6 +30,7 @@ interface OudsDrawableResources {
     val communication: Communication
     val component: Component
     val functional: Functional
+    val other: Other
 
     @InternalOudsApi
     interface Communication {
@@ -217,5 +218,14 @@ interface OudsDrawableResources {
             @get:DrawableRes
             val heartRecommend: Int
         }
+    }
+
+    /**
+     * Note: Resources in [Other] interface are not coming from the OUDS icon kit.
+     */
+    @InternalOudsApi
+    interface Other {
+        @get:DrawableRes
+        val headingTextMarker: Int?
     }
 }

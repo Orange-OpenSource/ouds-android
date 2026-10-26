@@ -321,11 +321,11 @@ private fun backgroundColor(state: OudsControlState): Color {
     }
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.Default.PreviewWidthDp, device = OudsPreviewDevice)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp,
+    widthDp = OudsPreviewableComponent.Checkbox.Default.PreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -334,39 +334,47 @@ private fun PreviewOudsCheckbox(@PreviewParameter(OudsCheckboxPreviewParameterPr
     PreviewOudsCheckbox(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
 }
 
-@Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp, device = OudsPreviewDevice)
-@Preview(
-    name = "Dark",
-    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = OudsPreviewableComponent.Checkbox.PreviewWidthDp,
-    device = OudsPreviewDevice
-)
-@Composable
-internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxHighContrastModePreviewParameterProvider::class) parameter: ToggleableState) {
-    PreviewOudsCheckbox(
-        theme = getPreviewTheme(),
-        darkThemeEnabled = isSystemInDarkTheme(),
-        parameter = OudsCheckboxPreviewParameter(toggleableState = parameter),
-        highContrastModeEnabled = true
-    )
-}
-
 @Composable
 internal fun PreviewOudsCheckbox(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsCheckboxPreviewParameter,
-    highContrastModeEnabled: Boolean = false
-) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = highContrastModeEnabled) {
+    parameter: OudsCheckboxPreviewParameter
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
     with(parameter) {
         PreviewEnumEntries<OudsControlState> {
             OudsTriStateCheckbox(
                 state = toggleableState,
                 onClick = null,
-                interactionSource = remember { MutableInteractionSource() },
                 error = error
             )
         }
+    }
+}
+
+@Preview(name = "Light", widthDp = OudsPreviewableComponent.Checkbox.HighContrastModeEnabled.PreviewWidthDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = OudsPreviewableComponent.Checkbox.HighContrastModeEnabled.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsCheckboxHighContrastModeEnabled(@PreviewParameter(OudsCheckboxHighContrastModePreviewParameterProvider::class) toggleableState: ToggleableState) {
+    PreviewOudsCheckboxHighContrastModeEnabled(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), toggleableState = toggleableState)
+}
+
+@Composable
+internal fun PreviewOudsCheckboxHighContrastModeEnabled(
+    theme: OudsThemeContract,
+    darkThemeEnabled: Boolean,
+    toggleableState: ToggleableState
+) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled, highContrastModeEnabled = true) {
+    PreviewEnumEntries<OudsControlState> {
+        OudsTriStateCheckbox(
+            state = toggleableState,
+            onClick = null
+        )
     }
 }
 

@@ -28,6 +28,7 @@ import com.orange.ouds.app.ui.components.labelArgument
 import com.orange.ouds.app.ui.components.readOnlyArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.appendHtml
+import com.orange.ouds.app.ui.utilities.composable.AccessibilityAnnouncementLaunchedEffect
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
@@ -163,6 +164,9 @@ private fun PasswordInputDemoContent(state: PasswordInputDemoState) {
             error -> OudsError(errorMessage)
             else -> null
         }
+
+        AccessibilityAnnouncementLaunchedEffect(passwordInputError)
+
         val onKeyboardAction: KeyboardActionHandler = { focusManager.clearFocus() }
         if (annotatedText) {
             val helperTextHtml = stringResource(R.string.app_components_passwordInput_annotatedHelperText_text)

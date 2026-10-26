@@ -10,20 +10,3 @@ public final class com/orange/ouds/core/test/OudsComponentTestSuite$Companion {
 	public final fun setTheme (Lcom/orange/ouds/theme/OudsThemeContract;)V
 }
 
-public abstract class com/orange/ouds/core/test/OudsSnapshotTest {
-	public static final field $stable I
-	public fun <init> (Lcom/orange/ouds/theme/OudsThemeContract;II)V
-	public synthetic fun <init> (Lcom/orange/ouds/theme/OudsThemeContract;IIILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public abstract fun Snapshot (ZZLandroidx/compose/runtime/Composer;I)V
-	public final fun getName ()Lorg/junit/rules/TestName;
-	public final fun getPaparazzi ()Lapp/cash/paparazzi/Paparazzi;
-	public final fun getTheme ()Lcom/orange/ouds/theme/OudsThemeContract;
-	public fun ignoreSnapshot (ZZ)Z
-	public final fun setName (Lorg/junit/rules/TestName;)V
-	public final fun setUp ()V
-	public final fun takeDarkThemeHighContrastSnapshot ()V
-	public final fun takeDarkThemeSnapshot ()V
-	public final fun takeLightThemeHighContrastSnapshot ()V
-	public final fun takeLightThemeSnapshot ()V
-}
-

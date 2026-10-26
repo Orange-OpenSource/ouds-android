@@ -115,4 +115,10 @@ sealed interface OudsTypographyKeyToken : OudsKeyToken {
             data object Strong : Small
         }
     }
+
+    @InternalOudsApi
+    sealed interface Code : OudsTypographyKeyToken {
+        @InternalOudsApi
+        data object Medium : Code
+    }
 }

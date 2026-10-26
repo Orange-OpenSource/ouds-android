@@ -15,6 +15,88 @@ This document provides context and guidelines for AI agents assisting with the *
 - **Documentation**: https://android.unified-design-system.orange.com/
 - **Distribution**: Maven Central
 
+## ⚠️ CRITICAL: Mandatory Skill Usage Protocol
+
+**AI agents MUST systematically load the appropriate skill(s) BEFORE starting ANY task related to OUDS Android.**
+This is **NOT optional**. Skills contain essential project-specific context, conventions, patterns, and up-to-date information that are critical for maintaining
+code quality and consistency.
+
+### When to Load Skills
+
+#### 🔧 `using-ouds-android` - REQUIRED for ALL coding tasks
+
+**Load this skill FIRST when:**
+
+- Writing any Kotlin/Compose code using OUDS components
+- Creating new components (`OudsButton`, `OudsTextInput`, etc.)
+- Modifying existing component APIs or implementations
+- Setting up OUDS library dependencies
+- Configuring themes (`OudsTheme`, `OrangeTheme`, etc.)
+- Accessing design tokens (`OudsTheme.colorScheme`, `OudsTheme.spaces`, etc.)
+- Debugging or fixing OUDS-related issues
+- Creating examples, samples, or demo screens
+- Writing tests for OUDS components
+- Migrating from Material 3 to OUDS
+- **ANY code modification or creation task in this repository**
+
+#### 📚 `understanding-ouds-android-vocabulary` - REQUIRED for conceptual questions
+
+**Load this skill FIRST when:**
+
+- User asks to explain, define, or clarify OUDS terminology
+- Questions about tokens (raw, semantic, component)
+- Questions about Tokenator, OudsThemeContract, OudsTheme
+- "What is X?", "How does X work?", "Why do we use X?"
+- Understanding relationships between architecture elements
+- User seems confused about OUDS concepts
+- User uses incorrect terminology that needs clarification
+- **ANY conceptual or architectural question**
+
+### Enforcement
+
+**ZERO exceptions.** Even if you think you know the answer or pattern:
+
+1. **Always load the appropriate skill(s) first**
+2. **Read the skill content thoroughly**
+3. **Follow the patterns and conventions specified in the skill**
+4. **Only then proceed with implementation**
+   Skills are kept up-to-date with the latest project conventions, and bypassing them may result in:
+
+- ❌ Outdated patterns or deprecated APIs being used
+- ❌ Inconsistent code style
+- ❌ Missing critical context or requirements
+- ❌ Breaking changes that could have been avoided
+
+### Skill Loading Workflow
+
+User Request → Load Appropriate Skill(s) → Review Skill Content → Execute Task
+
+**Example (CORRECT):**
+User: "Add an hiddenCharacters parameter to OudsPinCodeInput"
+Agent:
+
+1. ✅ Load using-ouds-android skill
+2. ✅ Review component API patterns from skill
+3. ✅ Check for similar existing parameters
+4. ✅ Follow documented conventions for parameter naming and defaults
+5. ✅ Implement according to skill guidelines
+
+**Counter-example (FORBIDDEN):**
+User: "Add an hiddenCharacters parameter to OudsPinCodeInput"
+Agent:
+❌ Directly starts coding without loading skill
+❌ Risks missing project-specific conventions
+❌ May use inconsistent naming or wrong defaults
+
+**Multiple skills example:**
+User: "What's the difference between semantic and component tokens, and how do I use them in OudsButton?"
+Agent:
+
+1. ✅ Load understanding-ouds-android-vocabulary skill (for terminology)
+2. ✅ Load using-ouds-android skill (for code usage)
+3. ✅ Review both skills to provide complete answer
+4. ✅ Respond with accurate terminology AND practical code examples
+
 ## Project Structure
 
 The project is organized into the following modules:

@@ -53,12 +53,13 @@ import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
-// TODO Update description and add design guideline link when available
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
  *
  * > Design name: Linear Progress Indicator
  *
@@ -103,12 +104,13 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
  *
  * > Design name: Linear Progress Indicator
  *
@@ -152,12 +154,13 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
  *
  * > Design name: Linear Progress Indicator
  *
@@ -202,12 +205,13 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
  *
  * > Design name: Linear Progress Indicator
  *
@@ -249,12 +253,13 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
  *
  * > Design name: Linear Progress Indicator
  *
@@ -295,12 +300,13 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-// TODO Update description and add design guideline link when available
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
  *
  * This version of the linear progress indicator is **indeterminate**. Use the other signature for a determinate progress.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-linear-progress-indicator)
  *
  * > Design name: Linear Progress Indicator
  *

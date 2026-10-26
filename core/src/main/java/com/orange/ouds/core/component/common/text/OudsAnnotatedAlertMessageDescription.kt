@@ -111,6 +111,6 @@ class OudsAnnotatedAlertMessageDescription internal constructor(annotatedString:
  * @param builder Lambda with receiver for building the annotated string.
  * @return The constructed annotated alert message description.
  */
-fun buildOudsAnnotatedAlertMessageDescription(builder: (OudsAnnotatedAlertMessageDescription.Builder).() -> Unit): OudsAnnotatedAlertMessageDescription {
+inline fun buildOudsAnnotatedAlertMessageDescription(builder: (OudsAnnotatedAlertMessageDescription.Builder).() -> Unit): OudsAnnotatedAlertMessageDescription {
     return buildOudsAnnotatedString<OudsAnnotatedAlertMessageDescription, OudsAnnotatedAlertMessageDescription.Builder>(builder)
 }

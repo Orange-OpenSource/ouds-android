@@ -13,20 +13,32 @@
 package com.orange.ouds.core.test
 
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@RunWith(Parameterized::class)
-internal class OudsRadioButtonTest(parameter: Any) : OudsComponentSnapshotTest(
-    OudsPreviewableComponent.RadioButton,
-    parameter,
-    OudsComponentTestSuite.theme,
-    OudsPreviewableComponent.RadioButton.PreviewWidthDp
-) {
+@RunWith(Enclosed::class)
+internal class OudsRadioButtonTest {
 
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        internal fun data() = OudsPreviewableComponent.RadioButton.parameters
+    @RunWith(Parameterized::class)
+    class Default(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButton.Default,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.RadioButton.Default.PreviewWidthDp
+    ) {
+
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.RadioButton.Default.parameters
+        }
     }
+
+    class HighContrastModeEnabled : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.RadioButton.HighContrastModeEnabled,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.RadioButton.HighContrastModeEnabled.PreviewWidthDp
+    )
 }

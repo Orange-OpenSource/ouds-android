@@ -298,8 +298,8 @@ private fun OudsBulletListItem(
             val textStyle = currentTextStyle.toTextStyle()
             val textColor = OudsTheme.colorScheme.content.default
             if (item.annotatedLabel != null) {
-                val strongAndLinkStyle = currentTextStyle.toTextStyle(forceStrong = true)
-                val text = item.annotatedLabel.annotatedString(strongStyle = strongAndLinkStyle, linkStyle = strongAndLinkStyle)
+                val linkAndStrongTextStyle = currentTextStyle.toTextStyle(forceStrong = true)
+                val text = item.annotatedLabel.annotatedString(linkAndStrongTextStyle = linkAndStrongTextStyle)
                 Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
             } else if (item.label != null) {
                 Text(modifier = textModifier, text = item.label, style = textStyle, color = textColor)

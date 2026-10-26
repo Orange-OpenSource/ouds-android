@@ -26,6 +26,7 @@ interface OudsFontSemanticTokens {
     val letterSpacingBodyMediumTablet: Float
     val letterSpacingBodySmallMobile: Float
     val letterSpacingBodySmallTablet: Float
+    val letterSpacingCodeMedium: Float
     val letterSpacingDisplayLargeMobile: Float
     val letterSpacingDisplayLargeTablet: Float
     val letterSpacingDisplayMediumMobile: Float
@@ -50,6 +51,7 @@ interface OudsFontSemanticTokens {
     val lineHeightBodyMediumTablet: Int
     val lineHeightBodySmallMobile: Int
     val lineHeightBodySmallTablet: Int
+    val lineHeightCodeMedium: Int
     val lineHeightDisplayLargeMobile: Int
     val lineHeightDisplayLargeTablet: Int
     val lineHeightDisplayMediumMobile: Int
@@ -74,6 +76,7 @@ interface OudsFontSemanticTokens {
     val sizeBodyMediumTablet: Int
     val sizeBodySmallMobile: Int
     val sizeBodySmallTablet: Int
+    val sizeCodeMedium: Int
     val sizeDisplayLargeMobile: Int
     val sizeDisplayLargeTablet: Int
     val sizeDisplayMediumMobile: Int
@@ -95,6 +98,7 @@ interface OudsFontSemanticTokens {
     val weightBodyDefault: Int
     val weightBodyModerate: Int
     val weightBodyStrong: Int
+    val weightCode: Int
     val weightDisplay: Int
     val weightHeading: Int
     val weightLabelDefault: Int

@@ -37,14 +37,18 @@ import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.theme.OudsThemeContract
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Static small list item displays non-clickable information in a compact format.
  *
  * A static small list item provides a condensed way to present read-only information.
  * It is ideal for compact lists, quick settings displays, or dense information layouts.
  * Unlike the standard list item, it omits overline and extra label to maintain a smaller footprint.
  * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-static-list-item)
+ *
+ * > Design name: Static List Item
+ *
+ * > Design version: 0.1.0
  *
  * @see [OudsSmallCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *
@@ -108,8 +112,6 @@ fun OudsSmallListItem(
 }
 
 /**
- * TODO update description when available and add version and guideline link
- *
  * Navigation small list item allows users to navigate to another screen or perform an action in a compact format.
  *
  * A navigation small list item is clickable and provides a condensed way to navigate.
@@ -118,6 +120,12 @@ fun OudsSmallListItem(
  * external links. Unlike the standard list item, it omits overline and extra label to maintain
  * a smaller footprint while remaining interactive.
  * These items are designed to be stacked within a list, with no spacing between the elements.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-navigation-list-item)
+ *
+ * > Design name: Navigation List Item
+ *
+ * > Design version: 0.1.0
  *
  * @see [OudsSmallCardItem] If you need spaced items displayed in a card format (with background or outlined).
  *

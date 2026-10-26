@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
+import com.orange.ouds.core.component.OudsBodyText
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.theme.OudsTheme
 
@@ -33,7 +34,7 @@ fun BottomSheetDemoContent(dragHandle: Boolean, buttonLabel: String, onButtonCli
             .verticalScroll(scrollState)
             .padding(top = if (dragHandle) 0.dp else OudsTheme.spaces.fixed.medium)
     ) {
-        Text(
+        OudsBodyText(
             modifier = Modifier.padding(horizontal = OudsTheme.grids.margin),
             text = stringResource(R.string.app_components_bottomSheet_sheetContent_text)
         )

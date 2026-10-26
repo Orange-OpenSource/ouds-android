@@ -238,7 +238,11 @@ private fun OudsAlertMessage(
             horizontalArrangement = Arrangement.spacedBy(space.columnGap)
         ) {
             status.icon?.let { icon ->
-                Box(modifier = Modifier.fillMaxHeight().padding(vertical = space.paddingBlock)) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .padding(vertical = space.paddingBlock)
+                ) {
                     icon.Content(
                         modifier = Modifier.iconSize(size.asset * scale, status.icon.tinted),
                         extraParameters = OudsAlertIcon.ExtraParameters(
@@ -266,7 +270,12 @@ private fun OudsAlertMessage(
                     val descriptionColor = status.contentColor
                     val descriptionStyle = OudsTheme.typography.label.medium.default
                     if (!annotatedDescription.isNullOrBlank()) {
-                        Text(modifier = descriptionModifier, text = annotatedDescription.annotatedString(), color = descriptionColor, style = descriptionStyle)
+                        Text(
+                            modifier = descriptionModifier,
+                            text = annotatedDescription.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                            color = descriptionColor,
+                            style = descriptionStyle
+                        )
                     } else if (!description.isNullOrBlank()) {
                         Text(modifier = descriptionModifier, text = description, color = descriptionColor, style = descriptionStyle)
                     }
@@ -510,7 +519,12 @@ private fun OudsAlertMessageBulletListItem(label: CharSequence, color: Color) {
             .widthIn(max = OudsTheme.sizes.maxWidth.label.medium)
         val style = OudsTheme.typography.label.medium.default
         when (label) {
-            is OudsAnnotatedString<*> -> Text(modifier = modifier, text = label.annotatedString(), color = color, style = style)
+            is OudsAnnotatedString<*> -> Text(
+                modifier = modifier,
+                text = label.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                color = color,
+                style = style
+            )
             is String -> Text(modifier = modifier, text = label, color = color, style = style)
         }
     }

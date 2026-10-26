@@ -282,7 +282,12 @@ private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
         val style = OudsTheme.typography.label.medium.default
         val color = OudsTheme.colorScheme.content.status.negative
         if (error.annotatedMessage != null) {
-            Text(modifier = modifier, text = error.annotatedMessage.annotatedString(), style = style, color = color)
+            Text(
+                modifier = modifier,
+                text = error.annotatedMessage.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                style = style,
+                color = color
+            )
         } else {
             Text(modifier = modifier, text = error.message, style = style, color = color)
         }
