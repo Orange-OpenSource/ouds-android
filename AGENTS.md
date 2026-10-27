@@ -8,7 +8,7 @@ This document provides context and guidelines for AI agents assisting with the *
 
 - **Language**: Kotlin
 - **UI Framework**: Jetpack Compose
-- **Minimum SDK**: API 23 (Android 6.0)
+- **Minimum SDK**: API 24 (Android 7.0)
 - **Build System**: Gradle (Kotlin DSL)
 - **License**: MIT
 - **Repository**: https://github.com/Orange-OpenSource/ouds-android
