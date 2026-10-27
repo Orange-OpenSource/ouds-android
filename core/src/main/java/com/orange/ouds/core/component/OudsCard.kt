@@ -49,6 +49,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.visible
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -64,8 +65,6 @@ import com.orange.ouds.core.utilities.mapSettings
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
-
-// TODO state disabled on components inside
 
 /**
  * A Content Container Card groups related information within a single surface. The card itself is not interactive, but it can contain independently
@@ -222,9 +221,11 @@ internal fun OudsCard(
                 Box(
                     modifier = Modifier.visible(state != OudsCardState.Loading)
                 ) {
-                    with(scope) {
-                        this.state = state
-                        content()
+                    CompositionLocalProvider(LocalParentEnabled provides enabled) {
+                        with(scope) {
+                            this.state = state
+                            content()
+                        }
                     }
                 }
                 if (stateOverlayColor.value != null || state == OudsCardState.Loading) {
