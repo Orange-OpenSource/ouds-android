@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.bottomBorder
+import com.orange.ouds.core.extensions.visible
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -138,7 +139,7 @@ internal fun OudsDigitInput(
                 Text(text = text, style = textStyle, color = textColor)
                 if (state == OudsDigitInputState.Focused) {
                     Text(
-                        modifier = Modifier.alpha(if (cursorVisible) 1.0f else 0.0f),
+                        modifier = Modifier.visible(cursorVisible),
                         text = OudsDigitInputCursor.toString(),
                         style = textStyle,
                         color = cursorColor(error = error)

@@ -39,7 +39,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -49,6 +48,7 @@ import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.extensions.visible
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -220,9 +220,7 @@ internal fun OudsCard(
                 contentAlignment = Alignment.TopStart
             ) {
                 Box(
-                    modifier = Modifier.graphicsLayer {
-                        alpha = if (state == OudsCardState.Loading) 0f else 1f
-                    }
+                    modifier = Modifier.visible(state != OudsCardState.Loading)
                 ) {
                     with(scope) {
                         this.state = state

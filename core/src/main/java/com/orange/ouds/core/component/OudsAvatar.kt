@@ -41,6 +41,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.extensions.visible
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
@@ -149,7 +150,7 @@ internal fun OudsAvatar(
         contentAlignment = Alignment.Center
     ) {
         OudsButton(
-            modifier = Modifier.alpha(if (onClick != null) 1f else 0f), // If onClick is null, draw the button with alpha 0 anyway to get a consistent size for the avatar
+            modifier = Modifier.visible(onClick != null), // If onClick is null, draw the button with alpha 0 anyway to get a consistent size for the avatar
             icon = OudsButtonIcon(ColorPainter(Color.Transparent), ""), // Use transparent painter to scale the button with the font
             onClick = { onClick?.invoke() },
             appearance = OudsButtonAppearance.Minimal,
