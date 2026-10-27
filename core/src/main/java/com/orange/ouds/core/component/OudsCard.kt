@@ -30,6 +30,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -306,11 +307,20 @@ class OudsCardScope {
 data class OudsCardLoader(val progress: Float?)
 
 @Composable
-private fun cardElevation(style: OudsCardStyle) = with(OudsTheme.elevations) {
-    when (style) {
-        is OudsCardStyle.Filled -> CardDefaults.cardElevation(defaultElevation = none.value.dp)
-        is OudsCardStyle.Elevated -> CardDefaults.elevatedCardElevation(defaultElevation = raised.value.dp)
-        OudsCardStyle.Outlined -> CardDefaults.outlinedCardElevation(defaultElevation = none.value.dp)
+private fun cardElevation(style: OudsCardStyle): CardElevation {
+    with(OudsTheme.elevations) {
+        val elevation = when (style) {
+            is OudsCardStyle.Filled, OudsCardStyle.Outlined -> none.value.dp
+            is OudsCardStyle.Elevated -> raised.value.dp
+        }
+        return CardDefaults.cardElevation(
+            defaultElevation = elevation,
+            pressedElevation = elevation,
+            focusedElevation = elevation,
+            hoveredElevation = elevation,
+            draggedElevation = elevation,
+            disabledElevation = elevation
+        )
     }
 }
 
