@@ -1529,8 +1529,8 @@ public final class com/orange/ouds/core/component/OudsListItemTrailing$Image : c
 
 public final class com/orange/ouds/core/component/OudsListItemTrailing$Tag : com/orange/ouds/core/component/OudsListItemTag, com/orange/ouds/core/component/OudsListItemTrailing {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;)V
-	public synthetic fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;Lcom/orange/ouds/core/component/OudsSkeleton;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;Lcom/orange/ouds/core/component/OudsSkeleton;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/orange/ouds/core/component/OudsListItemTrailing$Text : com/orange/ouds/core/component/OudsListItemText, com/orange/ouds/core/component/OudsListItemTrailing {
@@ -1897,8 +1897,8 @@ public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Imag
 
 public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Tag : com/orange/ouds/core/component/OudsListItemTag, com/orange/ouds/core/component/OudsSmallListItemTrailing {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;)V
-	public synthetic fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;Lcom/orange/ouds/core/component/OudsSkeleton;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLcom/orange/ouds/core/component/OudsTagAppearance;Lcom/orange/ouds/core/component/OudsTagStatus;ZLcom/orange/ouds/core/component/OudsTagSize;Lcom/orange/ouds/core/component/OudsTagLoader;Lcom/orange/ouds/core/component/OudsSkeleton;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/orange/ouds/core/component/OudsSmallListItemTrailing$Text : com/orange/ouds/core/component/OudsListItemText, com/orange/ouds/core/component/OudsSmallListItemTrailing {
