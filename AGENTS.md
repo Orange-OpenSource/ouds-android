@@ -15,6 +15,18 @@ This document provides context and guidelines for AI agents assisting with the *
 - **Documentation**: https://android.unified-design-system.orange.com/
 - **Distribution**: Maven Central
 
+## ⚠️ CRITICAL: Code and Documentation Language
+
+**All code and documentation MUST be in English**, regardless of conversation language with AI agents.
+
+- ✅ **English:** Code, KDoc, comments, variable names, commit messages, documentation
+- ✅ **French:** Conversations with AI agents only
+- ❌ **Never French:** KDoc, code comments, committed files
+
+**Rationale:** International open-source project requiring English for global accessibility.
+
+**AI agents:** Verify existing documentation language. When in doubt, use English.
+
 ## ⚠️ CRITICAL: Mandatory Skill Usage Protocol
 
 **AI agents MUST systematically load the appropriate skill(s) BEFORE starting ANY task related to OUDS Android.**
