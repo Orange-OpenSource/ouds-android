@@ -12,6 +12,11 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.orange.ouds.core.theme.LocalParentEnabled
+import com.orange.ouds.core.theme.OudsTheme
+
 /**
  * Represents the weight of an [OudsBodyText] or an [OudsLabelText].
  */
@@ -34,3 +39,13 @@ enum class OudsTextWeight {
      */
     Strong
 }
+
+/**
+ * Computes the effective text color based on the parent's enabled state.
+ * Returns disabled color if [LocalParentEnabled] is false, otherwise returns the provided initial color.
+ *
+ * @param color The initial color to use.
+ * @return The effective color to use.
+ */
+@Composable
+internal fun textColorOrDisabled(color: Color) = if (!LocalParentEnabled.current) OudsTheme.colorScheme.content.disabled else color
