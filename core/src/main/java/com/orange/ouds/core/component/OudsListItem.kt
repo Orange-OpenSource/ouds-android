@@ -1263,7 +1263,8 @@ open class OudsListItemTag internal constructor(
     private val status: OudsTagStatus,
     private val roundedCorners: Boolean,
     private val size: OudsTagSize,
-    private val loader: OudsTagLoader?
+    private val loader: OudsTagLoader?,
+    private val skeleton: OudsSkeleton?
 ) : OudsComponentContent<OudsListItemLeadingTrailing.Tag.ExtraParameters>(OudsListItemLeadingTrailing.Tag.ExtraParameters::class.java),
     OudsListItemLeadingTrailing.Tag {
 
@@ -1277,7 +1278,8 @@ open class OudsListItemTag internal constructor(
                 status = status,
                 roundedCorners = roundedCorners,
                 size = size,
-                loader = loader
+                loader = loader,
+                skeleton = skeleton
             )
         }
     }
@@ -1734,7 +1736,9 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
      * @param size Size of the tag among [OudsTagSize] values.
      * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
      * tag is in progress.
-     * TODO add skeleton option when available
+     * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+     *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+     *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
      */
     class Tag(
         label: String,
@@ -1743,8 +1747,9 @@ sealed interface OudsListItemTrailing : OudsListItemLeadingTrailing {
         status: OudsTagStatus = OudsTagDefaults.Status,
         roundedCorners: Boolean = true,
         size: OudsTagSize = OudsTagDefaults.Size,
-        loader: OudsTagLoader? = null
-    ) : OudsListItemTag(label, enabled, appearance, status, roundedCorners, size, loader), OudsListItemTrailing
+        loader: OudsTagLoader? = null,
+        skeleton: OudsSkeleton? = null
+    ) : OudsListItemTag(label, enabled, appearance, status, roundedCorners, size, loader, skeleton), OudsListItemTrailing
 
     /**
      * Text as a list item trailing content.
@@ -2055,9 +2060,7 @@ private fun <T, S> getListItemPreviewParameterValues(
                     PreviewCustomContent(modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer))
                 },
                 bottomContent = {
-                    with(OudsTheme.components.listItem) {
-                        PreviewCustomContent(modifier = Modifier.padding(bottom = space.paddingBlock.bottomSlotListItemContainer))
-                    }
+                    PreviewCustomContent(modifier = Modifier.padding(bottom = OudsTheme.components.listItem.space.paddingBlock.bottomSlotListItemContainer))
                 },
                 decoration = decoration(index)
             )
