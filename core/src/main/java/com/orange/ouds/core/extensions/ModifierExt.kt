@@ -15,6 +15,7 @@ package com.orange.ouds.core.extensions
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.Dp
 
 internal fun Modifier.filter(predicate: (Modifier.Element) -> Boolean): Modifier {
@@ -24,3 +25,11 @@ internal fun Modifier.filter(predicate: (Modifier.Element) -> Boolean): Modifier
 }
 
 internal fun Modifier.iconSize(size: Dp, tinted: Boolean): Modifier = if (tinted) this.size(size) else height(size)
+
+/**
+ * Makes a composable visible or invisible by setting its alpha value.
+ *
+ * @param visible Whether the composable should be visible.
+ * @return A [Modifier] with alpha 1f if [visible] is true, 0f otherwise.
+ */
+internal fun Modifier.visible(visible: Boolean): Modifier = this.alpha(if (visible) 1f else 0f)
