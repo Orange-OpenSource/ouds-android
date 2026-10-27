@@ -390,6 +390,23 @@ interface OudsPreviewableComponent {
                 )
             }
         }
+
+        @InternalOudsApi
+        object WithAnnotatedTextAndDisabledParent : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsBodyTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parentEnabled = false
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
     }
 
     @InternalOudsApi
@@ -865,6 +882,23 @@ interface OudsPreviewableComponent {
                 )
             }
         }
+
+        @InternalOudsApi
+        object WithAnnotatedTextAndDisabledParent : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCodeTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parentEnabled = false
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
     }
 
     @InternalOudsApi
@@ -911,6 +945,23 @@ interface OudsPreviewableComponent {
                     darkThemeEnabled = darkThemeEnabled
                 )
             }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedTextAndDisabledParent : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsDisplayTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parentEnabled = false
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
         }
     }
 
@@ -1106,6 +1157,23 @@ interface OudsPreviewableComponent {
                 )
             }
         }
+
+        @InternalOudsApi
+        object WithAnnotatedTextAndDisabledParent : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsHeadingTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parentEnabled = false
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
     }
 
     @InternalOudsApi
@@ -1197,6 +1265,23 @@ interface OudsPreviewableComponent {
                     darkThemeEnabled = darkThemeEnabled
                 )
             }
+        }
+
+        @InternalOudsApi
+        object WithAnnotatedTextAndDisabledParent : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsLabelTextWithAnnotatedText(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parentEnabled = false
+                )
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
         }
     }
 

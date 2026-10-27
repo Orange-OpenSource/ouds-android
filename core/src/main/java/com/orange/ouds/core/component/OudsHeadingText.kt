@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -186,7 +188,7 @@ private fun OudsHeadingText(
         if (annotatedText != null) {
             Text(
                 text = annotatedText.annotatedString(linkAndStrongTextStyle = size.textStyle),
-                color = color,
+                color = textColorOrDisabled(color = color),
                 style = size.textStyle,
                 textAlign = textAlign,
                 overflow = overflow,
@@ -198,7 +200,7 @@ private fun OudsHeadingText(
         } else {
             Text(
                 text = text.orEmpty(),
-                color = color,
+                color = textColorOrDisabled(color = color),
                 style = size.textStyle,
                 textAlign = textAlign,
                 overflow = overflow,
@@ -216,7 +218,7 @@ private fun OudsHeadingText(
                     Icon(
                         painter = painterResource(id = resId),
                         contentDescription = null,
-                        tint = this.color.content.marker
+                        tint = if (!LocalParentEnabled.current) OudsTheme.colorScheme.content.disabled else this.color.content.marker
                     )
                 }
             }
@@ -333,29 +335,37 @@ private fun PreviewOudsHeadingTextWithAnnotatedText() {
     PreviewOudsHeadingTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
+@OudsPreview
+@Composable
+private fun PreviewOudsHeadingTextWithAnnotatedTextAndDisabledParent() {
+    PreviewOudsHeadingTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parentEnabled = false)
+}
+
 @Composable
 internal fun PreviewOudsHeadingTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
+    parentEnabled: Boolean = true
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
-
-    PreviewFlowRow(
-        items = listOf(
-            OudsHeadingTextSize.ExtraLarge::class,
-            OudsHeadingTextSize.Large::class,
-            OudsHeadingTextSize.Medium::class,
-            OudsHeadingTextSize.Small::class
-        ).map { it.simpleName.orEmpty() },
-        maxItemsInEachRow = 1
-    ) { className ->
-        OudsHeadingText(
-            text = buildOudsAnnotatedHeadingText {
-                append("Heading with ")
-                withColor(highlightColor) { append("highlighted text") }
-            },
-            size = textSizeFor(className)
-        )
+    CompositionLocalProvider(LocalParentEnabled provides parentEnabled) {
+        val highlightColor = OudsTheme.colorScheme.content.brandPrimary
+        PreviewFlowRow(
+            items = listOf(
+                OudsHeadingTextSize.ExtraLarge::class,
+                OudsHeadingTextSize.Large::class,
+                OudsHeadingTextSize.Medium::class,
+                OudsHeadingTextSize.Small::class
+            ).map { it.simpleName.orEmpty() },
+            maxItemsInEachRow = 1
+        ) { className ->
+            OudsHeadingText(
+                text = buildOudsAnnotatedHeadingText {
+                    append("Heading with ")
+                    withColor(highlightColor) { append("highlighted text") }
+                },
+                size = textSizeFor(className)
+            )
+        }
     }
 }
 
