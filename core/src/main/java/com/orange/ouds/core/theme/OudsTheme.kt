@@ -64,6 +64,7 @@ internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResou
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
+internal val LocalParentEnabled = staticCompositionLocalOf { true }
 
 /**
  * Composition local that provides the current [OudsSkeleton] state to the composable hierarchy.
