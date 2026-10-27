@@ -24,7 +24,8 @@ internal class OudsCardItemTest {
     class Static(parameter: Any) : OudsComponentSnapshotTest(
         OudsPreviewableComponent.CardItem.Static,
         parameter,
-        OudsComponentTestSuite.theme
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.CardItem.Static.PreviewHeightDp
     ) {
 
         companion object {

@@ -571,7 +571,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 1050
+            const val PreviewHeightDp = 1510
 
             override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
 
@@ -598,11 +598,14 @@ interface OudsPreviewableComponent {
                 )
             }
 
-            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = darkThemeEnabled
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
         }
 
         @InternalOudsApi
         object Static : OudsPreviewableComponent {
+            
+            const val PreviewHeightDp = 760
+            
             override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
 
             @Composable
@@ -1296,7 +1299,7 @@ interface OudsPreviewableComponent {
         @InternalOudsApi
         object Navigation : OudsPreviewableComponent {
 
-            const val PreviewHeightDp = 1100
+            const val PreviewHeightDp = 1510
 
             override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
 
@@ -1313,6 +1316,9 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Static : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 760
+
             override val parameters: List<Any> = OudsListItemPreviewParameterProvider().values.toList()
 
             @Composable
@@ -1845,7 +1851,7 @@ interface OudsPreviewableComponent {
                 )
             }
 
-            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = darkThemeEnabled
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
         }
 
         @InternalOudsApi
@@ -2143,7 +2149,7 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object WithRoundedCorners : OudsPreviewableComponent {
-            
+
             const val PreviewHeightDp = 1110
 
             override val parameters: List<Any> = emptyList()
