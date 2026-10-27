@@ -17,6 +17,28 @@ All user-visible strings must use `stringResource(R.string.*)` — never hardcod
 
 ---
 
+## Common Patterns
+
+### Edge-to-edge layout
+
+The `edgeToEdge` parameter controls how list items manage their horizontal padding:
+
+- **`edgeToEdge=true` (default):** Use for items displayed directly on the screen
+  - List items in a scrollable screen
+  - Menu items in a navigation drawer  
+  - Settings items in a full-screen layout
+  - The component uses grid margins for horizontal spacing
+  
+- **`edgeToEdge=false`:** Use for items inside constrained containers  
+  - List items inside `OudsCard`
+  - Items inside dialogs or bottom sheets
+  - Items in custom containers with their own padding
+  - The component applies its own internal horizontal padding
+
+**Rule of thumb:** If the parent container already manages spacing/padding, use `edgeToEdge=false`.
+
+---
+
 ## Link
 
 **Indicators:** `OudsLinkIndicator` — `Next`, `Back`, `External`
@@ -134,6 +156,7 @@ OudsCardItem(
 
 **Note:** `@ExperimentalOudsApi` — API may evolve  
 **Use case:** Stacked items with no spacing (unlike CardItem which has spacing)  
+**Edge-to-edge behavior:** Use `edgeToEdge=false` when the list item is inside a constrained container that already manages its own padding (e.g., `OudsCard`, dialogs). Use `edgeToEdge=true` (default) for items displayed directly in the screen layout.  
 **Indicators:** `OudsListItemIndicator.Next`, `OudsListItemIndicator.Previous`, `OudsListItemIndicator.External`
 
 ```kotlin
@@ -211,6 +234,24 @@ OudsListItem(
         tinted = false
     )
 )
+
+// Inside a Card or constrained container
+OudsCard(
+    style = OudsCardStyle.Filled()
+) {
+    Column(modifier = Modifier.padding(OudsTheme.spaces.fixed.medium)) {
+        OudsListItem(
+            label = "Check device compatibility",
+            onClick = { },
+            edgeToEdge = false  // Card manages padding
+        )
+        OudsListItem(
+            label = "Learn how it works",
+            onClick = { },
+            edgeToEdge = false  // Card manages padding
+        )
+    }
+}
 ```
 
 ---
@@ -289,6 +330,7 @@ OudsSmallCardItem(
 **Note:** `@ExperimentalOudsApi` — API may evolve  
 **Compact variant** of ListItem (omits overline and extraLabel)  
 **Use case:** Stacked items with no spacing  
+**Edge-to-edge behavior:** Use `edgeToEdge=false` when the list item is inside a constrained container that already manages its own padding. Use `edgeToEdge=true` (default) for items displayed directly in the screen layout.  
 **Indicators:** `OudsListItemIndicator.Next`, `OudsListItemIndicator.Previous`, `OudsListItemIndicator.External`
 
 ```kotlin
