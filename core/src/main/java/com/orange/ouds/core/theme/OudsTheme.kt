@@ -66,6 +66,7 @@ internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { 
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
 internal val LocalDeprecatedTokens = staticCompositionLocalOf<OudsDeprecatedTokens> { missingCompositionLocalError("LocalDeprecatedTokens") }
+internal val LocalParentEnabled = staticCompositionLocalOf { true }
 
 /**
  * Composition local that provides the current [OudsSkeleton] state to the composable hierarchy.
