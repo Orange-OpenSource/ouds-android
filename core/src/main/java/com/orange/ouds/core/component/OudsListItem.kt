@@ -556,23 +556,13 @@ internal fun OudsListItem(
                         if (indicator == OudsListItemIndicator.Previous) {
                             Indicator(drawableId = indicator.drawableId, state = state)
                         } else {
-                            leading?.let {
-                                when (leading) {
-                                    is OudsListItemLeadingTrailing.Content -> leading.PolymorphicContent(
-                                        extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
-                                    )
-                                    is OudsListItemLeadingTrailing.Icon -> {
-                                        leading.PolymorphicContent(
-                                            extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
-                                        )
-                                    }
-                                    is OudsListItemLeadingTrailing.Image -> leading.PolymorphicContent()
-                                    is OudsListItemLeadingTrailing.Badge,
-                                    is OudsListItemLeadingTrailing.Tag,
-                                    is OudsListItemLeadingTrailing.Text -> {
-                                    }
-                                }
-                            }
+                            leading?.PolymorphicContent(
+                                extraParameters = OudsListItemLeadingTrailing.ExtraParameters(
+                                    state = state,
+                                    verticalAlignment = verticalAlignment,
+                                    size = size
+                                )
+                            )
                         }
 
                         Column(
@@ -608,32 +598,13 @@ internal fun OudsListItem(
                             }
                         }
 
-                        trailing?.let {
-                            when (trailing) {
-                                is OudsListItemLeadingTrailing.Badge -> trailing.PolymorphicContent(
-                                    extraParameters = OudsListItemLeadingTrailing.Badge.ExtraParameters(state = state)
-                                )
-                                is OudsListItemLeadingTrailing.Content -> trailing.PolymorphicContent(
-                                    extraParameters = OudsListItemLeadingTrailing.Content.ExtraParameters(state = state)
-                                )
-                                is OudsListItemLeadingTrailing.Icon -> trailing.PolymorphicContent(
-                                    extraParameters = OudsListItemLeadingTrailing.Icon.ExtraParameters(state = state)
-                                )
-                                is OudsListItemLeadingTrailing.Image -> trailing.PolymorphicContent()
-                                is OudsListItemLeadingTrailing.Tag -> trailing.PolymorphicContent(
-                                    extraParameters = OudsListItemLeadingTrailing.Tag.ExtraParameters(state = state)
-                                )
-                                is OudsListItemLeadingTrailing.Text -> {
-                                    trailing.PolymorphicContent(
-                                        extraParameters = OudsListItemLeadingTrailing.Text.ExtraParameters(
-                                            state = state,
-                                            verticalAlignment = verticalAlignment,
-                                            size = size
-                                        )
-                                    )
-                                }
-                            }
-                        }
+                        trailing?.PolymorphicContent(
+                            extraParameters = OudsListItemLeadingTrailing.ExtraParameters(
+                                state = state,
+                                verticalAlignment = verticalAlignment,
+                                size = size
+                            )
+                        )
 
                         if (indicator != null && indicator in listOf(OudsListItemIndicator.Next, OudsListItemIndicator.External)) {
                             Indicator(drawableId = indicator.drawableId, state = state)
@@ -998,39 +969,25 @@ enum class OudsListItemState : OudsComponentState {
 
 sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
-    interface Badge : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
-    }
+    interface Badge : OudsListItemLeadingTrailing
 
-    interface Content : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
-    }
+    interface Content : OudsListItemLeadingTrailing
 
-    interface Icon : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
-    }
+    interface Icon : OudsListItemLeadingTrailing
 
     interface Image : OudsListItemLeadingTrailing {
         val ratio: OudsListItemImageRatio
     }
 
-    interface Tag : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
-    }
+    interface Tag : OudsListItemLeadingTrailing
 
-    interface Text : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(
-            internal val state: OudsListItemState,
-            internal val verticalAlignment: OudsListItemVerticalAlignment,
-            internal val size: OudsListItemSize
-        ) :
-            OudsComponentContent.ExtraParameters()
-    }
+    interface Text : OudsListItemLeadingTrailing
+
+    class ExtraParameters internal constructor(
+        internal val state: OudsListItemState,
+        internal val verticalAlignment: OudsListItemVerticalAlignment,
+        internal val size: OudsListItemSize
+    ) : OudsComponentContent.ExtraParameters()
 }
 
 internal enum class OudsListItemAssetSize {
@@ -1176,7 +1133,7 @@ open class OudsListItemBadge internal constructor(
     private val enabled: Boolean,
     private val status: OudsBadgeStatus,
     private val size: OudsBadgeSize
-) : OudsComponentContent<OudsListItemLeadingTrailing.Badge.ExtraParameters>(OudsListItemLeadingTrailing.Badge.ExtraParameters::class.java),
+) : OudsComponentContent<OudsListItemLeadingTrailing.ExtraParameters>(OudsListItemLeadingTrailing.ExtraParameters::class.java),
     OudsListItemLeadingTrailing.Badge {
 
     @Composable
@@ -1194,7 +1151,7 @@ open class OudsListItemBadge internal constructor(
 
 open class OudsListItemContent internal constructor(
     private val content: @Composable OudsListItemScope.() -> Unit
-) : OudsComponentContent<OudsListItemLeadingTrailing.Content.ExtraParameters>(OudsListItemLeadingTrailing.Content.ExtraParameters::class.java),
+) : OudsComponentContent<OudsListItemLeadingTrailing.ExtraParameters>(OudsListItemLeadingTrailing.ExtraParameters::class.java),
     OudsListItemLeadingTrailing.Content {
 
     @Composable
@@ -1216,8 +1173,8 @@ open class OudsListItemIcon internal constructor(
     override val tinted: Boolean,
     internal val size: OudsListItemAssetSize,
     internal val status: OudsListItemIconStatus?
-) : OudsComponentIcon<OudsListItemLeadingTrailing.Icon.ExtraParameters, OudsListItemIcon>(
-    OudsListItemLeadingTrailing.Icon.ExtraParameters::class.java,
+) : OudsComponentIcon<OudsListItemLeadingTrailing.ExtraParameters, OudsListItemIcon>(
+    OudsListItemLeadingTrailing.ExtraParameters::class.java,
     graphicsObjectProvider,
     contentDescriptionProvider
 ), OudsListItemLeadingTrailing.Icon {
@@ -1264,7 +1221,7 @@ open class OudsListItemTag internal constructor(
     private val roundedCorners: Boolean,
     private val size: OudsTagSize,
     private val loader: OudsTagLoader?
-) : OudsComponentContent<OudsListItemLeadingTrailing.Tag.ExtraParameters>(OudsListItemLeadingTrailing.Tag.ExtraParameters::class.java),
+) : OudsComponentContent<OudsListItemLeadingTrailing.ExtraParameters>(OudsListItemLeadingTrailing.ExtraParameters::class.java),
     OudsListItemLeadingTrailing.Tag {
 
     @Composable
@@ -1287,7 +1244,7 @@ open class OudsListItemText internal constructor(
     private val label: String,
     private val style: OudsListItemTextStyle,
     private val extraLabel: String?
-) : OudsComponentContent<OudsListItemLeadingTrailing.Text.ExtraParameters>(OudsListItemLeadingTrailing.Text.ExtraParameters::class.java),
+) : OudsComponentContent<OudsListItemLeadingTrailing.ExtraParameters>(OudsListItemLeadingTrailing.ExtraParameters::class.java),
     OudsListItemLeadingTrailing.Text {
 
     @Composable
