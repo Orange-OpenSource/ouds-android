@@ -16,6 +16,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
@@ -30,6 +31,7 @@ import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.component.common.text.withLink
 import com.orange.ouds.core.component.common.text.withStrikethrough
 import com.orange.ouds.core.component.common.text.withStrong
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -89,7 +91,7 @@ fun OudsBodyText(
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text,
-        color = color,
+        color = textColorOrDisabled(color = color),
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,
         overflow = overflow,
@@ -153,7 +155,7 @@ fun OudsBodyText(
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text.annotatedString(linkAndStrongTextStyle = linkAndStrongTextStyle),
-        color = color,
+        color = textColorOrDisabled(color = color),
         style = textStyle(size = size, weight = weight),
         textAlign = textAlign,
         overflow = overflow,
@@ -262,27 +264,36 @@ private fun PreviewOudsBodyTextWithAnnotatedText() {
     PreviewOudsBodyTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
+@OudsPreview
+@Composable
+private fun PreviewOudsBodyTextWithAnnotatedTextAndDisabledParent() {
+    PreviewOudsBodyTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parentEnabled = false)
+}
+
 @Composable
 internal fun PreviewOudsBodyTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
+    parentEnabled: Boolean = true
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
-    PreviewEnumEntries<OudsBodyTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
-        OudsBodyText(
-            text = buildOudsAnnotatedBodyText {
-                append("Body with ")
-                withStrong {
-                    withColor(color = highlightColor) { append("highlighted text") }
-                }
-                append(", ")
-                withStrikethrough {
-                    append("old information")
-                }
-                append(" and ")
-                withLink(link = OudsLinkAnnotation.Url("https://example.com")) { append("link") }
-            },
-            size = textSize
-        )
+    CompositionLocalProvider(LocalParentEnabled provides parentEnabled) {
+        val highlightColor = OudsTheme.colorScheme.content.brandPrimary
+        PreviewEnumEntries<OudsBodyTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
+            OudsBodyText(
+                text = buildOudsAnnotatedBodyText {
+                    append("Body with ")
+                    withStrong {
+                        withColor(color = highlightColor) { append("highlighted text") }
+                    }
+                    append(", ")
+                    withStrikethrough {
+                        append("old information")
+                    }
+                    append(" and ")
+                    withLink(link = OudsLinkAnnotation.Url("https://example.com")) { append("link") }
+                },
+                size = textSize
+            )
+        }
     }
 }
