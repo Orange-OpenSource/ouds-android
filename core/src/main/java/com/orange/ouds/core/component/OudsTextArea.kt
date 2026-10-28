@@ -22,6 +22,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -1036,7 +1037,7 @@ internal fun OudsTextAreaDecorator(
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(modifier = Modifier.sizeIn(minWidth = sizeMinWidth.dp)) {
-            val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
+            val isSmallLabel = value.isNotEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
@@ -1117,7 +1118,7 @@ internal fun OudsTextAreaDecorator(
             }
 
             OudsTextInputBottomContent(
-                modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
+                paddingValues = PaddingValues(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
                 state = state,
                 error = error,
                 helperText = helperText,
