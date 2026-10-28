@@ -25,12 +25,20 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -60,6 +68,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -1171,8 +1180,10 @@ internal fun OudsTextInputDecorator(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value, Alignment.CenterVertically),
                 ) {
+                    val isSmallLabel = value.isNotEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
+
                     // Small label on top
-                    if (!label.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
+                    if (!label.isNullOrBlank() && isSmallLabel) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -1190,7 +1201,7 @@ internal fun OudsTextInputDecorator(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
                     ) {
-                        if (!prefix.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
+                        if (!prefix.isNullOrBlank() && isSmallLabel) {
                             PrefixSuffixText(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
@@ -1223,7 +1234,7 @@ internal fun OudsTextInputDecorator(
                             }
                             innerTextField()
                         }
-                        if (!suffix.isNullOrBlank() && (!value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused)) {
+                        if (!suffix.isNullOrBlank() && isSmallLabel) {
                             PrefixSuffixText(
                                 modifier = Modifier.semantics {
                                     if (value.isEmpty()) hideFromAccessibility()
@@ -1284,7 +1295,7 @@ internal fun OudsTextInputDecorator(
             }
 
             OudsTextInputBottomContent(
-                modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
+                paddingValues = PaddingValues(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
                 state = state,
                 error = error,
                 helperText = helperText,
@@ -1319,6 +1330,8 @@ internal fun OudsTextInputCircularProgressIndicator(loader: OudsTextInputLoader?
     }
 }
 
+// Prefer using the paddingValues parameter instead of the modifier to apply padding
+// Otherwise a click on the padding area will trigger a focus on the basic text field
 @Composable
 internal fun OudsTextInputBottomContent(
     state: OudsTextInputState,
@@ -1326,25 +1339,55 @@ internal fun OudsTextInputBottomContent(
     helperText: String?,
     annotatedHelperText: OudsAnnotatedHelperText?,
     helperLink: OudsTextInputHelperLink?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    paddingValues: PaddingValues = PaddingValues.Zero
 ) {
+    val layoutDirection = LocalLayoutDirection.current
     CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        Column(
-            modifier = modifier.clickable {} // Intercept interactions on the basic text field
-        ) {
-            // Helper text / Error description
-            OudsTextInputHelperTextErrorMessage(
-                enabled = state != OudsTextInputState.Disabled,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText
+        // The clickable modifier should be applied to the root composable in order to intercept interactions on the basic text field
+        // However adding the clickable modifier to the root composable breaks the vocalization of the OudsTextInputHelperTextErrorMessage composable
+        // This is fixed by applying the clickable modifier to the OudsTextInputHelperTextErrorMessage composable after semantics are set
+        // This is why we add spacers with the clickable modifier to mimic padding and intercept interactions on the basic text field at the same time
+        Row(modifier = modifier.height(IntrinsicSize.Min)) {
+            val spacerModifier = Modifier
+                .semantics { hideFromAccessibility() }
+                .clickable {}
+            Spacer(
+                modifier = spacerModifier
+                    .width(paddingValues.calculateStartPadding(layoutDirection))
+                    .fillMaxHeight()
             )
+            Column(modifier = Modifier.weight(1.0f)) {
+                Spacer(
+                    modifier = spacerModifier
+                        .height(paddingValues.calculateTopPadding())
+                        .fillMaxWidth()
+                )
 
-            // Helper link
-            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
+                // Helper text / Error description
+                OudsTextInputHelperTextErrorMessage(
+                    enabled = state != OudsTextInputState.Disabled,
+                    error = error,
+                    helperText = helperText,
+                    annotatedHelperText = annotatedHelperText
+                )
+
+                // Helper link
+                helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
+
+                Spacer(
+                    modifier = spacerModifier
+                        .height(paddingValues.calculateBottomPadding())
+                        .fillMaxWidth()
+                )
+            }
+            Spacer(
+                modifier = spacerModifier
+                    .width(paddingValues.calculateEndPadding(layoutDirection))
+                    .fillMaxHeight()
+            )
         }
     }
-
 }
 
 @Composable
@@ -1369,6 +1412,7 @@ private fun OudsTextInputHelperTextErrorMessage(
                         contentDescription = helperText.orEmpty()
                     }
                 }
+                .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
             val textStyle = OudsTheme.typography.label.medium.default
             val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
             val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
