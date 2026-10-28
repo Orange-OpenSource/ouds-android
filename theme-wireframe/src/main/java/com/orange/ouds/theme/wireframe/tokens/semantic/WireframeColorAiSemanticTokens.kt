@@ -16,10 +16,12 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 
-internal data class WireframeColorAiSemanticTokens(
+@InternalOudsApi
+class WireframeColorAiSemanticTokens(
     override val aiPrimaryDark: Color = WireframeColorRawTokens.ColorRoyalBlue600,
     override val aiPrimaryLight: Color = WireframeColorRawTokens.ColorRoyalBlue300,
     override val aiQuaternaryDark: Color = WireframeColorRawTokens.ColorRoyalBlue300,

@@ -16,11 +16,13 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorBgSemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeColorBgSemanticTokens(
+@InternalOudsApi
+class WireframeColorBgSemanticTokens(
     override val bgInverseHighDark: Color = WireframeColorRawTokens.ColorFunctionalGrayLight160,
     override val bgInverseHighLight: Color = WireframeColorRawTokens.ColorFunctionalGrayDark800,
     override val bgInverseLowDark: Color = WireframeColorRawTokens.ColorFunctionalGrayDark720,
