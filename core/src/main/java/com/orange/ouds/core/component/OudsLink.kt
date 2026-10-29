@@ -42,12 +42,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.component.content.OudsComponentContent
@@ -344,7 +346,8 @@ private fun OudsLink(
                         interactionSource = interactionSource,
                         indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
                         enabled = state.areInteractionsEnabled,
-                        onClick = onClick
+                        onClick = onClick,
+                        onClickLabel = stringResource(R.string.core_link_onClickLabel_a11y)
                     ),
                 contentAlignment = Alignment.CenterStart
             ) {
