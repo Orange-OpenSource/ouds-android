@@ -27,6 +27,8 @@
 
     <string name="core_inputTag_remove_a11y">Supprimer</string>
 
+    <string name="core_link_onClickLabel_a11y">Ouvrir le lien</string>
+
     <string name="core_navigationButton_next_a11y">Suivant</string>
     <string name="core_navigationButton_previous_a11y">Précédent</string>
 
