@@ -28,10 +28,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,6 +53,7 @@ import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.DisabledClickableDecorations
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -286,11 +285,11 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 @Composable
 private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
     with(OudsTheme.componentsTokens.listItem) {
-        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+        DisabledClickableDecorations {
             val modifier = Modifier
-                .fillMaxWidth()
                 .clearAndSetSemantics {}
                 .clickable {}
+                .fillMaxWidth()
                 .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
                 .padding(top = spacePaddingBlockTopHelperText.value)
             val style = OudsTheme.typography.label.medium.default
