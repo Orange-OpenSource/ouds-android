@@ -53,10 +53,8 @@ import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -103,6 +101,7 @@ import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.DisabledClickableDecorations
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -1343,50 +1342,57 @@ internal fun OudsTextInputBottomContent(
     paddingValues: PaddingValues = PaddingValues.Zero
 ) {
     val layoutDirection = LocalLayoutDirection.current
-    CompositionLocalProvider(LocalRippleConfiguration provides null) {
-        // The clickable modifier should be applied to the root composable in order to intercept interactions on the basic text field
-        // However adding the clickable modifier to the root composable breaks the vocalization of the OudsTextInputHelperTextErrorMessage composable
-        // This is fixed by applying the clickable modifier to the OudsTextInputHelperTextErrorMessage composable after semantics are set
-        // This is why we add spacers with the clickable modifier to mimic padding and intercept interactions on the basic text field at the same time
-        Row(modifier = modifier.height(IntrinsicSize.Min)) {
-            val spacerModifier = Modifier
-                .semantics { hideFromAccessibility() }
-                .clickable {}
-            Spacer(
-                modifier = spacerModifier
-                    .width(paddingValues.calculateStartPadding(layoutDirection))
-                    .fillMaxHeight()
+    // The clickable modifier should be applied to the root composable in order to intercept interactions on the basic text field
+    // However adding the clickable modifier to the root composable breaks the vocalization of the OudsTextInputHelperTextErrorMessage composable
+    // This is fixed by applying the clickable modifier to the OudsTextInputHelperTextErrorMessage composable after semantics are set
+    // This is why we add spacers with the clickable modifier to mimic padding and intercept interactions on the basic text field at the same time
+    Row(modifier = modifier.height(IntrinsicSize.Min)) {
+        OudsTextInputBottomContentSpacer(
+            modifier = Modifier
+                .width(paddingValues.calculateStartPadding(layoutDirection))
+                .fillMaxHeight()
+        )
+        Column(modifier = Modifier.weight(1.0f)) {
+            OudsTextInputBottomContentSpacer(
+                modifier = Modifier
+                    .height(paddingValues.calculateTopPadding())
+                    .fillMaxWidth()
             )
-            Column(modifier = Modifier.weight(1.0f)) {
-                Spacer(
-                    modifier = spacerModifier
-                        .height(paddingValues.calculateTopPadding())
-                        .fillMaxWidth()
-                )
 
-                // Helper text / Error description
-                OudsTextInputHelperTextErrorMessage(
-                    enabled = state != OudsTextInputState.Disabled,
-                    error = error,
-                    helperText = helperText,
-                    annotatedHelperText = annotatedHelperText
-                )
+            // Helper text / Error description
+            OudsTextInputHelperTextErrorMessage(
+                enabled = state != OudsTextInputState.Disabled,
+                error = error,
+                helperText = helperText,
+                annotatedHelperText = annotatedHelperText
+            )
 
-                // Helper link
-                helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
+            // Helper link
+            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
 
-                Spacer(
-                    modifier = spacerModifier
-                        .height(paddingValues.calculateBottomPadding())
-                        .fillMaxWidth()
-                )
-            }
-            Spacer(
-                modifier = spacerModifier
-                    .width(paddingValues.calculateEndPadding(layoutDirection))
-                    .fillMaxHeight()
+            OudsTextInputBottomContentSpacer(
+                modifier = Modifier
+                    .height(paddingValues.calculateBottomPadding())
+                    .fillMaxWidth()
             )
         }
+        OudsTextInputBottomContentSpacer(
+            modifier = Modifier
+                .width(paddingValues.calculateEndPadding(layoutDirection))
+                .fillMaxHeight()
+        )
+    }
+}
+
+@Composable
+private fun OudsTextInputBottomContentSpacer(modifier: Modifier = Modifier) {
+    DisabledClickableDecorations {
+        Spacer(
+            modifier = Modifier
+                .semantics { hideFromAccessibility() }
+                .clickable {}
+                .then(modifier)
+        )
     }
 }
 
@@ -1399,28 +1405,35 @@ private fun OudsTextInputHelperTextErrorMessage(
     modifier: Modifier = Modifier
 ) {
     with(OudsTheme.componentsTokens.textInput) {
-        val hasError = error != null
-        val isHelperTextNullOrBlank = annotatedHelperText?.text.orElse { helperText }.isNullOrBlank()
-        if ((!hasError && !isHelperTextNullOrBlank) || (hasError && error.message.isNotBlank())) {
-            val textModifier = modifier
-                .fillMaxWidth()
-                .padding(top = spacePaddingBlockTopHelperText.value)
-                .clearAndSetSemantics {
-                    if (hasError) {
-                        error(error.message)
-                    } else {
-                        contentDescription = helperText.orEmpty()
+        DisabledClickableDecorations {
+            val hasError = error != null
+            val isHelperTextNullOrBlank = annotatedHelperText?.text.orElse { helperText }.isNullOrBlank()
+            if ((!hasError && !isHelperTextNullOrBlank) || (hasError && error.message.isNotBlank())) {
+                val textModifier = modifier
+                    .clearAndSetSemantics {
+                        if (hasError) {
+                            error(error.message)
+                        } else {
+                            contentDescription = helperText.orEmpty()
+                        }
                     }
+                    .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
+                    .fillMaxWidth()
+                    .padding(top = spacePaddingBlockTopHelperText.value)
+                val textStyle = OudsTheme.typography.label.medium.default
+                val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
+                val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
+                val text = if (hasError) error.message else helperText
+                if (annotatedText != null) {
+                    Text(
+                        modifier = textModifier,
+                        text = annotatedText.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                        style = textStyle,
+                        color = textColor
+                    )
+                } else if (text != null) {
+                    Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
                 }
-                .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
-            val textStyle = OudsTheme.typography.label.medium.default
-            val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
-            val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
-            val text = if (hasError) error.message else helperText
-            if (annotatedText != null) {
-                Text(modifier = textModifier, text = annotatedText.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong), style = textStyle, color = textColor)
-            } else if (text != null) {
-                Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
             }
         }
     }
