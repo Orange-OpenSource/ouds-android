@@ -25,20 +25,12 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -66,7 +58,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -1300,12 +1291,12 @@ internal fun OudsTextInputDecorator(
             }
 
             OudsTextInputBottomContent(
-                paddingValues = PaddingValues(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
                 state = state,
                 error = error,
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
-                helperLink = helperLink
+                helperLink = helperLink,
+                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value
             )
         }
     }
@@ -1335,7 +1326,7 @@ internal fun OudsTextInputCircularProgressIndicator(loader: OudsTextInputLoader?
     }
 }
 
-// Prefer using the paddingValues parameter instead of the modifier to apply padding
+// Prefer using the horizontalPadding parameter instead of the modifier to apply horizontal padding
 // Otherwise a click on the padding area will trigger a focus on the basic text field
 @Composable
 internal fun OudsTextInputBottomContent(
@@ -1345,60 +1336,37 @@ internal fun OudsTextInputBottomContent(
     annotatedHelperText: OudsAnnotatedHelperText?,
     helperLink: OudsTextInputHelperLink?,
     modifier: Modifier = Modifier,
-    paddingValues: PaddingValues = PaddingValues.Zero
+    horizontalPadding: Dp = 0.dp
 ) {
-    val layoutDirection = LocalLayoutDirection.current
     // The clickable modifier should be applied to the root composable in order to intercept interactions on the basic text field
     // However adding the clickable modifier to the root composable breaks the vocalization of the OudsTextInputHelperTextErrorMessage composable
     // This is fixed by applying the clickable modifier to the OudsTextInputHelperTextErrorMessage composable after semantics are set
-    // This is why we add spacers with the clickable modifier to mimic padding and intercept interactions on the basic text field at the same time
-    Row(modifier = modifier.height(IntrinsicSize.Min)) {
-        OudsTextInputBottomContentSpacer(
-            modifier = Modifier
-                .width(paddingValues.calculateStartPadding(layoutDirection))
-                .fillMaxHeight()
+    // This is why we use horizontalPadding to configure the padding directly on the helper text / error and the helper link
+    Column(modifier = modifier) {
+        // Helper text / Error description
+        OudsTextInputHelperTextErrorMessage(
+            modifier = Modifier.padding(horizontal = horizontalPadding),
+            enabled = state != OudsTextInputState.Disabled,
+            error = error,
+            helperText = helperText,
+            annotatedHelperText = annotatedHelperText
         )
-        Column(modifier = Modifier.weight(1.0f)) {
-            OudsTextInputBottomContentSpacer(
-                modifier = Modifier
-                    .height(paddingValues.calculateTopPadding())
-                    .fillMaxWidth()
-            )
 
-            // Helper text / Error description
-            OudsTextInputHelperTextErrorMessage(
-                enabled = state != OudsTextInputState.Disabled,
-                error = error,
-                helperText = helperText,
-                annotatedHelperText = annotatedHelperText
-            )
-
-            // Helper link
-            helperLink?.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
-
-            OudsTextInputBottomContentSpacer(
-                modifier = Modifier
-                    .height(paddingValues.calculateBottomPadding())
-                    .fillMaxWidth()
-            )
+        // Helper link
+        if (helperLink != null) {
+            DisabledClickableDecorations {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {}
+                        .padding(horizontal = horizontalPadding)
+                ) {
+                    EnabledClickableDecorations {
+                        helperLink.Content(extraParameters = OudsTextInputHelperLink.ExtraParameters(state = state))
+                    }
+                }
+            }
         }
-        OudsTextInputBottomContentSpacer(
-            modifier = Modifier
-                .width(paddingValues.calculateEndPadding(layoutDirection))
-                .fillMaxHeight()
-        )
-    }
-}
-
-@Composable
-private fun OudsTextInputBottomContentSpacer(modifier: Modifier = Modifier) {
-    DisabledClickableDecorations {
-        Spacer(
-            modifier = Modifier
-                .semantics { hideFromAccessibility() }
-                .clickable {}
-                .then(modifier)
-        )
     }
 }
 
@@ -1415,7 +1383,7 @@ private fun OudsTextInputHelperTextErrorMessage(
             val hasError = error != null
             val isHelperTextNullOrBlank = annotatedHelperText?.text.orElse { helperText }.isNullOrBlank()
             if ((!hasError && !isHelperTextNullOrBlank) || (hasError && error.message.isNotBlank())) {
-                val textModifier = modifier
+                val textModifier = Modifier
                     .clearAndSetSemantics {
                         if (hasError) {
                             error(error.message)
@@ -1425,6 +1393,7 @@ private fun OudsTextInputHelperTextErrorMessage(
                     }
                     .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
                     .fillMaxWidth()
+                    .then(modifier)
                     .padding(top = spacePaddingBlockTopHelperText.value)
                 val textStyle = OudsTheme.typography.label.medium.default
                 val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
