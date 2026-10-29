@@ -1154,12 +1154,18 @@ internal fun OudsTextInputDecorator(
         val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
-        Column {
+        Column(
+            modifier = Modifier.sizeIn(
+                minWidth = sizeMinWidth.dp,
+                maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified,
+                minHeight = sizeMinHeight.dp
+            )
+        ) {
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
-                    .sizeIn(minWidth = sizeMinWidth.dp, maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified, minHeight = sizeMinHeight.dp)
+                    .sizeIn(minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
@@ -1857,6 +1863,8 @@ internal fun PreviewOudsTextInputConstrainedMaxWidth(
         textFieldState = rememberTextFieldState(),
         label = "Label",
         placeholder = "Placeholder",
+        helperText = "Helper text",
+        helperLink = OudsTextInputHelperLink("Helper link") {},
         constrainedMaxWidth = constrainedMaxWidth
     )
 }
