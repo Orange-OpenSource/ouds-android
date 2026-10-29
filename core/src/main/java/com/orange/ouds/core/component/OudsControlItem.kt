@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,8 +28,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -283,22 +286,25 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 @Composable
 private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
     with(OudsTheme.componentsTokens.listItem) {
-        val modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-            .padding(top = spacePaddingBlockTopHelperText.value)
-            .clearAndSetSemantics {}
-        val style = OudsTheme.typography.label.medium.default
-        val color = OudsTheme.colorScheme.content.status.negative
-        if (error.annotatedMessage != null) {
-            Text(
-                modifier = modifier,
-                text = error.annotatedMessage.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
-                style = style,
-                color = color
-            )
-        } else {
-            Text(modifier = modifier, text = error.message, style = style, color = color)
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            val modifier = Modifier
+                .fillMaxWidth()
+                .clearAndSetSemantics {}
+                .clickable {}
+                .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+                .padding(top = spacePaddingBlockTopHelperText.value)
+            val style = OudsTheme.typography.label.medium.default
+            val color = OudsTheme.colorScheme.content.status.negative
+            if (error.annotatedMessage != null) {
+                Text(
+                    modifier = modifier,
+                    text = error.annotatedMessage.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                    style = style,
+                    color = color
+                )
+            } else {
+                Text(modifier = modifier, text = error.message, style = style, color = color)
+            }
         }
     }
 }

@@ -158,8 +158,8 @@ fun OudsRadioButtonItem(
         checkedContentComponentName = "OudsRadioButtonItem",
         checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
         backgroundColor = backgroundColor.value,
-        modifier = modifier,
-        contentModifier = selectableModifier.border(outlined = outlined, selected = selected, error = error, state = state),
+        modifier = modifier.then(selectableModifier),
+        contentModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
         constrainedMaxWidth = constrainedMaxWidth,
         handleHighContrastMode = true,
         skeleton = skeleton

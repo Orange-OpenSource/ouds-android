@@ -245,8 +245,7 @@ fun OudsTriStateCheckboxItem(
             ToggleableState.Indeterminate -> "Indeterminate"
         },
         backgroundColor = backgroundColor.value,
-        modifier = modifier,
-        contentModifier = toggleableModifier,
+        modifier = modifier.then(toggleableModifier),
         handleHighContrastMode = true,
         constrainedMaxWidth = constrainedMaxWidth,
         skeleton = skeleton
