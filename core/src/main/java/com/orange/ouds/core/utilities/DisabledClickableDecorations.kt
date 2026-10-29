@@ -13,6 +13,7 @@
 package com.orange.ouds.core.utilities
 
 import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.material3.RippleConfiguration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalViewConfiguration
@@ -39,7 +40,7 @@ import androidx.compose.ui.unit.DpSize
  * Example:
  * ```
  * Box(modifier = Modifier.clickable { /* Parent action */ }) {
- *     WithoutClickableDecorations {
+ *     DisabledClickableDecorations {
  *         Box(
  *             modifier = Modifier
  *                 .size(20.dp)
@@ -53,13 +54,28 @@ import androidx.compose.ui.unit.DpSize
  * ```
  */
 @Composable
-internal fun DisabledClickableDecorations(content: @Composable () -> Unit) {
-    val viewConfiguration = object : ViewConfiguration by LocalViewConfiguration.current {
+internal fun DisabledClickableDecorations(content: @Composable DisabledClickableDecorationsScope.() -> Unit) {
+    val originalViewConfiguration = LocalViewConfiguration.current
+    val viewConfiguration = object : ViewConfiguration by originalViewConfiguration {
         override val minimumTouchTargetSize: DpSize = DpSize.Zero
     }
+    val originalRippleConfiguration = LocalRippleConfiguration.current
     CompositionLocalProvider(
         LocalViewConfiguration provides viewConfiguration,
         LocalRippleConfiguration provides null,
-        content = content
-    )
+    ) {
+        DisabledClickableDecorationsScope(originalViewConfiguration, originalRippleConfiguration).content()
+    }
+}
+
+internal class DisabledClickableDecorationsScope(val viewConfiguration: ViewConfiguration, val rippleConfiguration: RippleConfiguration?) {
+
+    @Composable
+    fun EnabledClickableDecorations(content: @Composable () -> Unit) {
+        CompositionLocalProvider(
+            LocalViewConfiguration provides viewConfiguration,
+            LocalRippleConfiguration provides rippleConfiguration,
+            content = content
+        )
+    }
 }

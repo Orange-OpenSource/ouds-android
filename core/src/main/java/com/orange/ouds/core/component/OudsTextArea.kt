@@ -22,7 +22,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -1116,12 +1115,12 @@ internal fun OudsTextAreaDecorator(
             }
 
             OudsTextInputBottomContent(
-                paddingValues = PaddingValues(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
                 state = state,
                 error = error,
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
-                helperLink = helperLink
+                helperLink = helperLink,
+                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value
             )
         }
     }
