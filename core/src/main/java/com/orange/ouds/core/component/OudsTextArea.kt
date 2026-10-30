@@ -359,8 +359,23 @@ private fun OudsTextArea(
                 state = skeleton?.state,
                 securityMargin = false
             ) { contentModifier ->
+                val value = textFieldState.text.toString()
+                val visibleContent = getVisibleTextInputContent(
+                    value,
+                    label,
+                    placeholder,
+                    null,
+                    null,
+                    null,
+                    null,
+                    error,
+                    helperText,
+                    annotatedHelperText,
+                    helperLink,
+                    state
+                )
                 BasicTextField(
-                    modifier = contentModifier.textInputSemantic(label),
+                    modifier = contentModifier.textInputSemantics(value, label, placeholder, null, null, visibleContent),
                     state = textFieldState,
                     enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
@@ -657,8 +672,22 @@ private fun OudsTextArea(
                 state = skeleton?.state,
                 securityMargin = false
             ) { contentModifier ->
+                val visibleContent = getVisibleTextInputContent(
+                    value,
+                    label,
+                    placeholder,
+                    null,
+                    null,
+                    null,
+                    null,
+                    error,
+                    helperText,
+                    annotatedHelperText,
+                    helperLink,
+                    state
+                )
                 BasicTextField(
-                    modifier = contentModifier.textInputSemantic(label),
+                    modifier = contentModifier.textInputSemantics(value, label, placeholder, null, null, visibleContent),
                     value = value,
                     onValueChange = onValueChange,
                     enabled = state.areInteractionsEnabled,
@@ -954,8 +983,22 @@ private fun OudsTextArea(
                 state = skeleton?.state,
                 securityMargin = false
             ) { contentModifier ->
+                val visibleContent = getVisibleTextInputContent(
+                    value.text,
+                    label,
+                    placeholder,
+                    null,
+                    null,
+                    null,
+                    null,
+                    error,
+                    helperText,
+                    annotatedHelperText,
+                    helperLink,
+                    state
+                )
                 BasicTextField(
-                    modifier = contentModifier.textInputSemantic(label),
+                    modifier = contentModifier.textInputSemantics(value.text, label, placeholder, null, null, visibleContent),
                     value = value,
                     onValueChange = onValueChange,
                     enabled = state.areInteractionsEnabled,
@@ -1026,6 +1069,8 @@ internal fun OudsTextAreaDecorator(
     constrainedMaxWidth: Boolean,
     scrollState: ScrollState = rememberScrollState(),
 ) {
+    val visibleContent =
+        getVisibleTextInputContent(value, label, placeholder, null, null, null, null, error, helperText, annotatedHelperText, helperLink, state)
     val hasError = error != null
     val textInputTokens = OudsTheme.componentsTokens.textInput
     val textAreaTokens = OudsTheme.componentsTokens.textArea
@@ -1035,7 +1080,7 @@ internal fun OudsTextAreaDecorator(
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(modifier = Modifier.widthIn(min = sizeMinWidth.dp, max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)) {
-            val isSmallLabel = value.isNotEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
+            val isSmallLabel = visibleContent.contains(OudsTextInputContent.SmallLabel)
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
@@ -1053,12 +1098,12 @@ internal fun OudsTextAreaDecorator(
                     verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
                 ) {
                     // Label
-                    if (!label.isNullOrBlank()) {
+                    if (visibleContent.contains(OudsTextInputContent.Label) || visibleContent.contains(OudsTextInputContent.SmallLabel)) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .semantics { hideFromAccessibility() },
-                            text = label,
+                            text = label.orEmpty(),
                             style = if (isSmallLabel) OudsTheme.typography.label.small.default else OudsTheme.typography.label.large.default,
                             color = labelColor(state = state, error = hasError)
                         )
@@ -1066,16 +1111,14 @@ internal fun OudsTextAreaDecorator(
 
                     // Placeholder or value
                     Box(modifier = Modifier.fillMaxWidth()) {
-                        if (value.isEmpty()) {
-                            if (!placeholder.isNullOrBlank()) {
-                                Text(
-                                    modifier = if (!helperText.isNullOrBlank()) Modifier.semantics { hideFromAccessibility() } else Modifier,
-                                    text = placeholder,
-                                    style = OudsTheme.typography.label.large.default,
-                                    color = decorativeContentColor(state = state),
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            }
+                        if (visibleContent.contains(OudsTextInputContent.Placeholder)) {
+                            Text(
+                                modifier = Modifier.semantics { hideFromAccessibility() },
+                                text = placeholder.orEmpty(),
+                                style = OudsTheme.typography.label.large.default,
+                                color = decorativeContentColor(state = state),
+                                overflow = TextOverflow.Ellipsis
+                            )
                         }
                         innerTextField()
                     }
@@ -1097,18 +1140,18 @@ internal fun OudsTextAreaDecorator(
                     val buttonTokens = OudsTheme.componentsTokens.button
 
                     // Error icon
-                    if (hasError) {
+                    if (visibleContent.contains(OudsTextInputContent.ErrorIcon)) {
                         val fontScale = LocalConfiguration.current.fontScale
                         Icon(
                             modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
                             painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                            contentDescription = if (error.message.isBlank()) stringResource(R.string.core_common_error_a11y) else null,
+                            contentDescription = if (error?.message.orEmpty().isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
                         )
                     }
 
                     // Loader
-                    if (state == OudsTextInputState.Loading) {
+                    if (visibleContent.contains(OudsTextInputContent.Loader)) {
                         OudsTextInputCircularProgressIndicator(loader)
                     }
                 }
@@ -1120,7 +1163,8 @@ internal fun OudsTextAreaDecorator(
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
                 helperLink = helperLink,
-                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value
+                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value,
+                visibleContent = visibleContent
             )
         }
     }

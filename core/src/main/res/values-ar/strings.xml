@@ -34,6 +34,7 @@
     <string name="core_navigationButton_next_a11y">التالي</string>
     <string name="core_navigationButton_previous_a11y">السابق</string>
 
+    <string name="core_passwordInput_value_a11y">%1$d حرفًا</string>
     <string name="core_passwordInput_hidePassword_a11y">إخفاء كلمة المرو</string>
     <string name="core_passwordInput_showPassword_a11y">عرض كلمة المرور</string>
 
