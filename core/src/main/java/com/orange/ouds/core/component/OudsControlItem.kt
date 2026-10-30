@@ -13,6 +13,7 @@
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,6 +53,7 @@ import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
+import com.orange.ouds.core.utilities.DisabledClickableDecorations
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
@@ -105,9 +107,10 @@ internal fun OudsControlItem(
         val itemIcon: (@Composable () -> Unit)? = if (error != null) {
             {
                 ErrorIcon(
-                    state = state, modifier = if (error.message.isBlank()) {
-                        Modifier.semantics { error(" ") } // Allows Talkback to vocalize there is an error on this item even if error message is blank
-                    } else Modifier
+                    state = state,
+                    modifier = Modifier.semantics {
+                        error(error.message.ifBlank { " " }) // Allows Talkback to vocalize there is an error on this item even if error message is blank
+                    }
                 )
             }
         } else {
@@ -131,7 +134,7 @@ internal fun OudsControlItem(
             state = skeleton?.state,
             securityMargin = true
         ) { skeletonContentModifier ->
-            Column(modifier = skeletonContentModifier) {
+            Column(modifier = skeletonContentModifier.semantics(mergeDescendants = true) {}) {
                 val shape = RoundedCornerShape(listItemTokens.borderRadiusDefault.value)
                 Box(
                     modifier = Modifier
@@ -282,24 +285,25 @@ private fun LeadingTrailingBox(content: @Composable () -> Unit) {
 @Composable
 private fun ErrorMessageText(error: OudsError, edgeToEdge: Boolean) {
     with(OudsTheme.componentsTokens.listItem) {
-        val modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
-            .padding(top = spacePaddingBlockTopHelperText.value)
-            .clearAndSetSemantics {
-                error(error.message)
+        DisabledClickableDecorations {
+            val modifier = Modifier
+                .clearAndSetSemantics {}
+                .clickable {}
+                .fillMaxWidth()
+                .padding(horizontal = contentHorizontalPadding(edgeToEdge = edgeToEdge))
+                .padding(top = spacePaddingBlockTopHelperText.value)
+            val style = OudsTheme.typography.label.medium.default
+            val color = OudsTheme.colorScheme.content.status.negative
+            if (error.annotatedMessage != null) {
+                Text(
+                    modifier = modifier,
+                    text = error.annotatedMessage.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                    style = style,
+                    color = color
+                )
+            } else {
+                Text(modifier = modifier, text = error.message, style = style, color = color)
             }
-        val style = OudsTheme.typography.label.medium.default
-        val color = OudsTheme.colorScheme.content.status.negative
-        if (error.annotatedMessage != null) {
-            Text(
-                modifier = modifier,
-                text = error.annotatedMessage.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
-                style = style,
-                color = color
-            )
-        } else {
-            Text(modifier = modifier, text = error.message, style = style, color = color)
         }
     }
 }

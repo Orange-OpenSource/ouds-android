@@ -19,7 +19,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -81,7 +80,6 @@ import com.orange.ouds.core.theme.OudsTypography
 import com.orange.ouds.foundation.extensions.asOrNull
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TokenCategoryDetailScreen(tokenCategory: TokenCategory<*>, onSubcategoryClick: (Long) -> Unit) {
     Screen {

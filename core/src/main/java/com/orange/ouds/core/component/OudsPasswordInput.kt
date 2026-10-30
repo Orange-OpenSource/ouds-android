@@ -307,8 +307,34 @@ private fun OudsPasswordInput(
                 state = skeleton?.state,
                 securityMargin = false
             ) { contentModifier ->
+                val leadingIcon = if (lockIcon) textInputLockIcon() else null
+                val trailingIconButton = trailingIconButton(isPasswordHidden = state.textObfuscationMode != TextObfuscationMode.Visible) {
+                    with(state) {
+                        textObfuscationMode = if (textObfuscationMode == TextObfuscationMode.Visible) {
+                            lastNonVisibleTextObfuscationMode
+                        } else {
+                            TextObfuscationMode.Visible
+                        }
+                    }
+                }
+                val value = state.text.toString()
+                val visibleContent = getVisibleTextInputContent(
+                    value,
+                    label,
+                    placeholder,
+                    leadingIcon,
+                    trailingIconButton,
+                    prefix,
+                    null,
+                    error,
+                    helperText,
+                    annotatedHelperText,
+                    null,
+                    passwordInputState
+                )
+                val semanticsValue = stringResource(R.string.core_passwordInput_value_a11y, value.count())
                 BasicSecureTextField(
-                    modifier = contentModifier.textInputSemantic(label),
+                    modifier = contentModifier.textInputSemantics(semanticsValue, label, placeholder, prefix, null, visibleContent),
                     state = state.textFieldState,
                     enabled = passwordInputState.areInteractionsEnabled,
                     readOnly = readOnly,
@@ -323,20 +349,12 @@ private fun OudsPasswordInput(
                     decorator = { innerTextField ->
                         OudsTextInputDecorator(
                             innerTextField = innerTextField,
-                            value = state.text.toString(),
+                            value = value,
                             state = passwordInputState,
                             label = label,
                             placeholder = placeholder,
-                            leadingIcon = if (lockIcon) textInputLockIcon() else null,
-                            trailingIconButton = trailingIconButton(isPasswordHidden = state.textObfuscationMode != TextObfuscationMode.Visible) {
-                                with(state) {
-                                    textObfuscationMode = if (textObfuscationMode == TextObfuscationMode.Visible) {
-                                        lastNonVisibleTextObfuscationMode
-                                    } else {
-                                        TextObfuscationMode.Visible
-                                    }
-                                }
-                            },
+                            leadingIcon = leadingIcon,
+                            trailingIconButton = trailingIconButton,
                             prefix = prefix,
                             suffix = null,
                             loader = loader,
@@ -354,7 +372,6 @@ private fun OudsPasswordInput(
         }
     )
 }
-
 
 internal const val OudsPasswordInputTextObfuscationCharacter = '\u25cf'
 

@@ -337,7 +337,7 @@ private fun OudsPinCodeInput(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OudsPinCodeInputTooltipBox(textFieldState: TextFieldState, length: OudsPinCodeInputLength, content: @Composable () -> Unit) {
     val tooltipState = rememberTooltipState(isPersistent = true)
@@ -457,6 +457,20 @@ private fun OudsPinCodeInputDecorator(
             }
 
             if (digitInputStates.all { it != OudsDigitInputState.Skeleton }) {
+                val visibleContent = getVisibleTextInputContent(
+                    textFieldState.text.toString(),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    error,
+                    helperText,
+                    annotatedHelperText,
+                    null,
+                    OudsTextInputState.Enabled
+                )
                 OudsTextInputBottomContent(
                     modifier = Modifier.constrainAs(helperTextErrorMessage) {
                         top.linkTo(row.bottom)
@@ -469,7 +483,8 @@ private fun OudsPinCodeInputDecorator(
                     error = error,
                     helperText = helperText,
                     annotatedHelperText = annotatedHelperText,
-                    helperLink = null
+                    helperLink = null,
+                    visibleContent = visibleContent
                 )
             }
         }
