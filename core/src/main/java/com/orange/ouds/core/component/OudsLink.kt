@@ -43,6 +43,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
@@ -397,6 +399,9 @@ private fun OudsLink(
                     )
 
                     BasicText(
+                        modifier = Modifier.semantics {
+                            contentDescription = label
+                        },
                         text = text,
                         inlineContent = inlineTrailingIcon,
                         color = ColorProducer { contentColor.value },
