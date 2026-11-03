@@ -25,8 +25,10 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSkeleton
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun SkeletonDemoScreen() {
     val state = rememberSkeletonDemoState()

@@ -27,9 +27,11 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsDeterminateLinearProgressIndicatorHelperText
 import com.orange.ouds.core.component.OudsIndeterminateLinearProgressIndicatorHelperText
 import com.orange.ouds.core.component.OudsLinearProgressIndicator
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun LinearProgressIndicatorDemoScreen() {
     val state = rememberLinearProgressIndicatorDemoState()

@@ -28,9 +28,11 @@ import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.component.common.text.OudsAnnotatedBodyText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBodyText
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun BodyTextDemoScreen() {
     val state = rememberBodyTextDemoState()

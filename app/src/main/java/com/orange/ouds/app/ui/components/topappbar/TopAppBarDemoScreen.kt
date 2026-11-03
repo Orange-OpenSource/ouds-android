@@ -48,10 +48,12 @@ import com.orange.ouds.core.component.OudsTopAppBarActionBadge
 import com.orange.ouds.core.component.OudsTopAppBarBackground
 import com.orange.ouds.core.component.OudsTopAppBarNavigationIcon
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun TopAppBarDemoScreen() {
     val state = rememberTopAppBarDemoState()

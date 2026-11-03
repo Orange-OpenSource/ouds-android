@@ -21,8 +21,10 @@ import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCircularProgressIndicator
 import com.orange.ouds.core.component.OudsDeterminateCircularProgressIndicatorHelperText
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun CircularProgressIndicatorDemoScreen() {
     val state = rememberCircularProgressIndicatorDemoState()

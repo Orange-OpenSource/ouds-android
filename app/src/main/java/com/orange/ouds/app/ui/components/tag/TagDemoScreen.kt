@@ -48,11 +48,13 @@ import com.orange.ouds.core.component.OudsTagLoader
 import com.orange.ouds.core.component.OudsTagSize
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun TagDemoScreen() {
     val state = rememberTagDemoState()
