@@ -4,9 +4,16 @@ This guide helps you migrate between major versions of OUDS Android.
 
 ## Migrating to 3.0.0
 
+**Breaking changes in this version:**
+1. [Minimum Android SDK version updated to API 24](#1-minimum-android-sdk-version-updated-to-api-24)
+2. [OudsChipState: New Skeleton enum value](#2-oudschipstate-new-skeleton-enum-value)
+3. [Public classes no longer use `data` modifier](#3-public-classes-no-longer-use-data-modifier)
+4. [Space token properties marked as restricted API](#4-space-token-properties-marked-as-restricted-api)
+5. [`OudsVersion` marked as internal API](#5-oudsversion-marked-as-internal-api)
+
 ### Breaking changes
 
-#### Minimum Android SDK version updated to API 24
+#### 1. Minimum Android SDK version updated to API 24
 
 **Impact:** Applications targeting Android 6.0 (API 23) will no longer be able to use OUDS Android 3.0.0 and above.
 
@@ -36,7 +43,9 @@ android {
 2. Ensure your app no longer needs to support Android 6.0 (Marshmallow)
 3. Verify compatibility with your target user base
 
-#### OudsChipState: New Skeleton enum value
+---
+
+#### 2. OudsChipState: New Skeleton enum value
 
 A new `Skeleton` value has been added to the `OudsChipState` enum.
 
@@ -75,7 +84,9 @@ OudsBasicSuggestionChip(...) {
 2. **Add the `OudsChipState.Skeleton` branch** or add an `else` branch
 3. **Recompile your application** after upgrading
 
-#### Public classes no longer use `data` modifier
+---
+
+#### 3. Public classes no longer use `data` modifier
 
 To maintain binary compatibility in future releases, the `data` modifier has been removed from public API classes. This change allows OUDS Android to safely add new properties to these classes in minor or patch releases without breaking binary compatibility for existing compiled applications. When `data` classes add new properties, new `componentN()` methods are generated, which breaks binary compatibility. By removing the `data` modifier in this major release, future updates can extend these classes without causing breaking changes.
 
@@ -156,7 +167,9 @@ val dark = colorToken.dark
 3. **Remove destructuring declarations** (e.g., `val (a, b) = instance`) and use direct property access instead
 4. **Recompile your application** after upgrading
 
-#### Space token properties marked as restricted API
+---
+
+#### 4. Space token properties marked as restricted API
 
 Space token properties (except `fixed` and `scaled`) are now marked with `@RestrictedOudsApi`. Only `OudsTheme.spaces.fixed` and `OudsTheme.spaces.scaled` should be used for spacing in applications. Other space tokens are restricted to specific internal use cases.
 
@@ -179,7 +192,9 @@ Space token properties (except `fixed` and `scaled`) are now marked with `@Restr
 3. **If direct access to restricted tokens is necessary**, opt-in by adding `@OptIn(RestrictedOudsApi::class)` at the call site or file level
 4. **Recompile your application** after upgrading
 
-#### `OudsVersion` marked as internal API
+---
+
+#### 5. `OudsVersion` marked as internal API
 
 `OudsVersion` contains automatically generated version information that can change without notice. This API is not intended for application use and has been marked with `@InternalOudsApi` to indicate it should not be relied upon.
 
@@ -200,9 +215,14 @@ Space token properties (except `fixed` and `scaled`) are now marked with `@Restr
 
 ## Migrating to 2.0.0
 
+**Breaking changes in this version:**
+1. [Space inset token reorganization](#1-space-inset-token-reorganization)
+2. [Link component: paddingBlock structure change](#2-link-component-paddingblock-structure-change)
+3. [Progress indicator: default status changed to Neutral](#3-progress-indicator-default-status-changed-to-neutral)
+
 ### Breaking changes
 
-#### Space inset token reorganization
+#### 1. Space inset token reorganization
 
 The space inset token scale has been reorganized to align with the latest Orange Unified Design System specifications. A new larger `small` token has been introduced, and all smaller tokens have shifted down by one size level.
 
@@ -245,7 +265,9 @@ Modifier.padding(OudsTheme.spaces.inset.small)
 4. **Test visually** to ensure layouts appear as expected
 5. **Consider using the new `small`** where a slightly larger spacing would improve your design
 
-#### Link component: paddingBlock structure change
+---
+
+#### 2. Link component: paddingBlock structure change
 
 The `OudsComponents.Link.Space.paddingBlock` property has changed from a single `Dp` value to a structured object.
 
@@ -267,11 +289,13 @@ val padding = OudsTheme.components.link.space.paddingBlock.default // Dp
 2. **Choose the appropriate property** based on your use case
 3. **Update references** to access the specific property
 
-#### Progress Indicator: default status changed to Neutral
+---
+
+#### 3. Progress indicator: default status changed to Neutral
 
 The default `status` parameter for `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` has been changed from `Accent` to `Neutral`.
 
-**Impact:** Progress Indicators without an explicit `status` parameter will now display using neutral colors instead of accent colors.
+**Impact:** Progress indicators without an explicit `status` parameter will now display using neutral colors instead of accent colors.
 
 **Before (v1.x):**
 ```kotlin
@@ -289,14 +313,25 @@ OudsLinearProgressIndicator(status = OudsProgressIndicatorStatus.Accent)
 
 ##### Migration steps
 
-1. **Review all Progress Indicator usages** in your codebase
+1. **Review all progress indicator usages** in your codebase
 2. **For brand-related operations**, explicitly set `status = OudsProgressIndicatorStatus.Accent`
-3. **Test visually** to ensure Progress Indicators match your intended design
+3. **Test visually** to ensure progress indicators match your intended design
 
 ---
 
 ## Version history
 
-- **3.0.0** - Minimum Android SDK updated to API 24, OudsChipState Skeleton enum value addition, Public classes no longer use data modifier, Space token properties marked as restricted API, OudsVersion marked as internal API
-- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress indicator default status change
-- **1.x.x** - Previous stable releases
+### 3.0.0
+- Minimum Android SDK updated to API 24
+- OudsChipState Skeleton enum value addition
+- Public classes no longer use data modifier
+- Space token properties marked as restricted API
+- OudsVersion marked as internal API
+
+### 2.0.0
+- Space inset token reorganization
+- Link component paddingBlock structure change
+- Progress indicator default status changed to Neutral
+
+### 1.x.x
+- Previous stable releases
