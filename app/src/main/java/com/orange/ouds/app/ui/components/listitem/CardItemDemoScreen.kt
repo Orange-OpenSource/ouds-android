@@ -29,9 +29,11 @@ import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallCardItem
 import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun CardItemDemoScreen(size: BaseListItemDemoState.Size) {
     val state = rememberCardItemDemoState(size = size)

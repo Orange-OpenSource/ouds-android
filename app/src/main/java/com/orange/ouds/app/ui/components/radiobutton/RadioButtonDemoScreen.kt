@@ -36,8 +36,10 @@ import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun RadioButtonDemoScreen() {
     val state = rememberRadioButtonDemoState()

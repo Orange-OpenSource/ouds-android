@@ -24,7 +24,7 @@ import com.orange.ouds.foundation.InternalOudsApi
  * @suppress
  */
 @InternalOudsApi
-data class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: OudsColorKeyToken) : OudsColorKeyToken {
+class OudsLightDarkColorKeyToken(val light: OudsColorKeyToken, val dark: OudsColorKeyToken) : OudsColorKeyToken {
 
     init {
         if (light is OudsLightDarkColorKeyToken || dark is OudsLightDarkColorKeyToken) {

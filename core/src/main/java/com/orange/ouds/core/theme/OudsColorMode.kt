@@ -20,8 +20,7 @@ package com.orange.ouds.core.theme
  * @property monochrome Indicates if the monochrome variant of components should be used.
  *   When `true`, OUDS Android components are displayed using their monochrome variant, if it exists.
  */
-@ConsistentCopyVisibility
-internal data class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val monochrome: Boolean, private val identifier: String? = null) {
+internal class OudsColorMode private constructor(val tweak: OudsTheme.Tweak, val monochrome: Boolean, private val identifier: String? = null) {
 
     /**
      * Creates an instance of [OudsColorMode].

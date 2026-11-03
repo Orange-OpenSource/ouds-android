@@ -14,7 +14,12 @@
 
 package com.orange.ouds.theme
 
+import com.orange.ouds.foundation.InternalOudsApi
+
+@InternalOudsApi
 object OudsVersion {
+
+    @InternalOudsApi
     object Component {
         const val AlertMessage = "1.2.0"
         const val AppBar = "1.0.0"
@@ -55,6 +60,7 @@ object OudsVersion {
         const val TextInput = "1.4.1"
     }
 
+    @InternalOudsApi
     object Tokens {
         const val OudsCore = "1.11.0"
         const val AndroidCore = "1.0.0"

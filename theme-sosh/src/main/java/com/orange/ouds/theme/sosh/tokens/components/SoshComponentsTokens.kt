@@ -40,7 +40,7 @@ import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
-internal data class SoshComponentsTokens(
+internal class SoshComponentsTokens(
     override val accordion: OudsAccordionTokens = SoshAccordionTokens(),
     override val alert: OudsAlertTokens = SoshAlertTokens(),
     override val alertMessage: OudsAlertMessageTokens = SoshAlertMessageTokens(),

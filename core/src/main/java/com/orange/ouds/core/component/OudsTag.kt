@@ -542,8 +542,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
         }
     }
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color,
         internal val status: OudsTagStatus,
         internal val appearance: OudsTagAppearance,
@@ -558,7 +557,7 @@ sealed interface OudsTagAsset : OudsPolymorphicComponentContent {
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsTagLoader(val progress: Float?)
+class OudsTagLoader(val progress: Float?)
 
 /**
  * Represents the size of an OUDS tag.

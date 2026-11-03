@@ -28,9 +28,11 @@ import com.orange.ouds.core.component.OudsTextWeight
 import com.orange.ouds.core.component.common.text.OudsAnnotatedLabelText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedLabelText
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun LabelTextDemoScreen() {
     val state = rememberLabelTextDemoState()

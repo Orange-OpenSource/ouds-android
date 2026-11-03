@@ -37,8 +37,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
  * @property columnGap Spacing used for gaps between columns in a grid or layout.
  * @property rowGap Spacing used for gaps between rows in a grid or layout.
  */
-@ConsistentCopyVisibility
-data class OudsSpaces internal constructor(
+class OudsSpaces internal constructor(
     val fixed: Fixed,
     val scaled: Scaled,
     val paddingInline: PaddingInline,
@@ -64,8 +63,7 @@ data class OudsSpaces internal constructor(
      * @property fourExtraLarge 4xl space.
      * @property fiveExtraLarge 5xl space.
      */
-    @ConsistentCopyVisibility
-    data class Fixed internal constructor(
+    class Fixed internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -95,8 +93,7 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl scaled space.
      * @property threeExtraLarge 3xl scaled space.
      */
-    @ConsistentCopyVisibility
-    data class Scaled internal constructor(
+    class Scaled internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -127,22 +124,21 @@ data class OudsSpaces internal constructor(
      * @property fiveExtraLarge 5xl padding.
      * @property sixExtraLarge 6xl padding.
      */
-    @ConsistentCopyVisibility
-    data class PaddingInline internal constructor(
-        val none: Dp,
-        val fourExtraSmall: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
-        val threeExtraLarge: Dp,
-        val fourExtraLarge: Dp,
-        val fiveExtraLarge: Dp,
-        val sixExtraLarge: Dp
+    class PaddingInline internal constructor(
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val fourExtraSmall: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
+        @RestrictedOudsApi val fourExtraLarge: Dp,
+        @RestrictedOudsApi val fiveExtraLarge: Dp,
+        @RestrictedOudsApi val sixExtraLarge: Dp
     )
 
 
@@ -163,21 +159,20 @@ data class OudsSpaces internal constructor(
      * @property fourExtraLarge 4xl padding.
      * @property fiveExtraLarge 5xl padding.
      */
-    @ConsistentCopyVisibility
-    data class PaddingBlock internal constructor(
-        val none: Dp,
-        val fourExtraSmall: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
-        val threeExtraLarge: Dp,
-        val fourExtraLarge: Dp,
-        val fiveExtraLarge: Dp,
+    class PaddingBlock internal constructor(
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val fourExtraSmall: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
+        @RestrictedOudsApi val fourExtraLarge: Dp,
+        @RestrictedOudsApi val fiveExtraLarge: Dp,
     )
 
     /**
@@ -196,20 +191,19 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl inset.
      * @property threeExtraLarge 3xl inset.
      */
-    @ConsistentCopyVisibility
-    data class Inset internal constructor(
-        val none: Dp,
-        val fiveExtraSmall: Dp,
-        val fourExtraSmall: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
-        val threeExtraLarge: Dp,
+    class Inset internal constructor(
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val fiveExtraSmall: Dp,
+        @RestrictedOudsApi val fourExtraSmall: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
     )
 
     /**
@@ -225,17 +219,16 @@ data class OudsSpaces internal constructor(
      * @property extraLarge Extra large gap.
      * @property twoExtraLarge 2xl gap.
      */
-    @ConsistentCopyVisibility
-    data class ColumnGap internal constructor(
-        val none: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
+    class ColumnGap internal constructor(
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
     )
 
     /**
@@ -249,15 +242,14 @@ data class OudsSpaces internal constructor(
      * @property medium Medium gap.
      * @property large Large gap.
      */
-    @ConsistentCopyVisibility
-    data class RowGap internal constructor(
-        val none: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
+    class RowGap internal constructor(
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
     )
 }
 

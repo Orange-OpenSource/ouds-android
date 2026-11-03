@@ -20,7 +20,7 @@ import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAlwaysSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class SoshColorAlwaysSemanticTokens(
+internal class SoshColorAlwaysSemanticTokens(
     override val alwaysBlack: Color = OudsColorRawTokens.ColorFunctionalBlack,
     override val alwaysOnBlack: Color = SoshColorRawTokens.ColorFunctionalGrayLight160,
     override val alwaysOnWhite: Color = OudsColorRawTokens.ColorFunctionalBlack,

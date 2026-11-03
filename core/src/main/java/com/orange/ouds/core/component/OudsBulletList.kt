@@ -277,7 +277,7 @@ private fun OudsBulletListItem(
                 )
             }
         }
-        
+
         SkeletonLayout(
             modifier = modifier,
             skeleton = skeleton,
@@ -345,7 +345,7 @@ private fun OudsBulletListItem(
     }
 }
 
-internal data class BulletListItem(
+internal class BulletListItem(
     val label: String?,
     val annotatedLabel: OudsAnnotatedBulletListLabel?,
     val subListType: OudsBulletListType?,
@@ -353,7 +353,7 @@ internal data class BulletListItem(
     val subListItems: List<BulletListItem> = emptyList()
 )
 
-private data class BulletListParentNode(
+private class BulletListParentNode(
     val type: OudsBulletListType,
     val index: Int
 )
@@ -538,8 +538,7 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
             get() = extraParameters.tint
     }
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color,
         internal val parentTypes: List<OudsBulletListType>
     ) : OudsComponentContent.ExtraParameters()
@@ -552,7 +551,7 @@ sealed interface OudsBulletListUnorderedAsset : OudsPolymorphicComponentContent 
  * @property fontWeight The font weight of the list.
  * @constructor Creates an instance of [OudsBulletListTextStyle].
  */
-data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fontWeight: OudsBulletListFontWeight) {
+class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fontWeight: OudsBulletListFontWeight) {
 
     @Composable
     internal fun toTextStyle(forceStrong: Boolean = false): TextStyle {
@@ -569,6 +568,11 @@ data class OudsBulletListTextStyle(val fontSize: OudsBulletListFontSize, val fon
             }
         }
     }
+
+    fun copy(
+        fontSize: OudsBulletListFontSize = this.fontSize,
+        fontWeight: OudsBulletListFontWeight = this.fontWeight
+    ) = OudsBulletListTextStyle(fontSize, fontWeight)
 }
 
 /**

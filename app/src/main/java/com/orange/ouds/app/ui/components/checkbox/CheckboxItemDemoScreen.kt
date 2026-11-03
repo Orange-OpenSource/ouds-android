@@ -35,8 +35,10 @@ import com.orange.ouds.core.component.OudsCheckboxItem
 import com.orange.ouds.core.component.OudsTriStateCheckboxItem
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun CheckboxItemDemoScreen(indeterminate: Boolean = false) {
     val state = rememberCheckboxItemDemoState()

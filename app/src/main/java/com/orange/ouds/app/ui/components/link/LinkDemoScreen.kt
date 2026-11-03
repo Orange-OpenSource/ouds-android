@@ -41,8 +41,10 @@ import com.orange.ouds.core.component.OudsLinkIndicator
 import com.orange.ouds.core.component.OudsLinkSize
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun LinkDemoScreen() {
     val state = rememberLinkDemoState()

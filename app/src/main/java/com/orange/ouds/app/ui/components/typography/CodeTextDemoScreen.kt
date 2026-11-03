@@ -22,8 +22,10 @@ import com.orange.ouds.core.component.common.text.OudsAnnotatedCodeText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedCodeText
 import com.orange.ouds.core.component.common.text.withColor
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun CodeTextDemoScreen() {
     val state = rememberCodeTextDemoState()

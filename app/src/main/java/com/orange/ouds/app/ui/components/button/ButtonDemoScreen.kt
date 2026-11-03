@@ -42,8 +42,10 @@ import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallButton
 import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun ButtonDemoScreen() {
     val state = rememberButtonDemoState()

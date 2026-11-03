@@ -29,8 +29,10 @@ import com.orange.ouds.core.component.OudsSmallListItem
 import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun ListItemDemoScreen(size: BaseListItemDemoState.Size) {
     val state = rememberListItemDemoState(size = size)
