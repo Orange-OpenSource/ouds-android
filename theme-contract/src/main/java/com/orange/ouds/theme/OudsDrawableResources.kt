@@ -20,7 +20,7 @@ import com.orange.ouds.foundation.InternalOudsApi
  * @suppress
  */
 @InternalOudsApi
-const val OudsIconsPackVersion = "2.3"
+const val OudsIconsPackVersion = "2.4"
 
 /**
  * @suppress
