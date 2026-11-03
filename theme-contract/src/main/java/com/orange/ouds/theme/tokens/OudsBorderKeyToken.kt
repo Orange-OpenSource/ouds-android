@@ -22,8 +22,10 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsBorderKeyToken : OudsKeyToken {
+
     @InternalOudsApi
     sealed interface Radius : OudsBorderKeyToken {
+
         @InternalOudsApi
         data object Default : Radius
 
@@ -45,6 +47,7 @@ sealed interface OudsBorderKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Style : OudsBorderKeyToken {
+
         @InternalOudsApi
         data object Default : Style
 
@@ -54,6 +57,7 @@ sealed interface OudsBorderKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Width : OudsBorderKeyToken {
+
         @InternalOudsApi
         data object Default : Width
 
