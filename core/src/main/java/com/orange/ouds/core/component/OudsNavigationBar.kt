@@ -205,7 +205,7 @@ fun OudsNavigationBar(
  *
  * @sample com.orange.ouds.core.component.samples.OudsNavigationBarSample
  */
-data class OudsNavigationBarItem(
+class OudsNavigationBarItem(
     val selected: Boolean,
     val onClick: () -> Unit,
     val icon: OudsNavigationBarItemIcon,
@@ -214,8 +214,7 @@ data class OudsNavigationBarItem(
     val interactionSource: MutableInteractionSource? = null
 ) : OudsComponentContent<OudsNavigationBarItem.ExtraParameters>(ExtraParameters::class.java) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val rowScope: RowScope
     ) : OudsComponentContent.ExtraParameters()
 
@@ -441,7 +440,7 @@ class OudsNavigationBarItemIcon private constructor(
  * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
  * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
  */
-data class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
+class OudsNavigationBarItemBadge(val contentDescription: String, val count: Int? = null)
 
 private enum class OudsNavigationBarItemState : OudsComponentState {
     Enabled, Hovered, Pressed, Focused

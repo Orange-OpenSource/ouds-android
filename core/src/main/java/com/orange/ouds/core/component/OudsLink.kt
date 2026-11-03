@@ -625,8 +625,7 @@ open class OudsLinkIcon private constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsLinkIcon.ExtraParameters, OudsLinkIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color
     ) : OudsComponentContent.ExtraParameters()
 

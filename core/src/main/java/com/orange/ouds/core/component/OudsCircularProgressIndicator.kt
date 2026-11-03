@@ -320,8 +320,7 @@ open class OudsCircularProgressIndicatorHelperText internal constructor(
     val label: String?
 ) : OudsComponentContent<OudsCircularProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val progress: (() -> Float)?
     ) : OudsComponentContent.ExtraParameters()
 

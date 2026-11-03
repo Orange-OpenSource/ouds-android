@@ -35,8 +35,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsElevationSemanticTokens
  * @property raised A slight elevation to detach an element from the surface.
  * @property sticky The elevation used for sticky elements.
  */
-@ConsistentCopyVisibility
-data class OudsElevations internal constructor(
+class OudsElevations internal constructor(
     val none: Dp,
     val default: Dp,
     val drag: Dp,

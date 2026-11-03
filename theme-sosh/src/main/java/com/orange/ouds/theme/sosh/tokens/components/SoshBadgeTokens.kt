@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsBadgeTokens
 import com.orange.ouds.tokens.raw.OudsDimensionRawTokens
 
-internal data class SoshBadgeTokens(
+internal class SoshBadgeTokens(
     override val sizeLarge: Float = OudsDimensionRawTokens.Dimension250,
     override val sizeMedium: Float = OudsDimensionRawTokens.Dimension200,
     override val sizeSmall: Float = OudsDimensionRawTokens.Dimension150,

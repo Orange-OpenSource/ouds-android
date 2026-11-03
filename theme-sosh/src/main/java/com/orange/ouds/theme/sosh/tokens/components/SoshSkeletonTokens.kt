@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.components
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsSkeletonTokens
 
-internal data class SoshSkeletonTokens(
+internal class SoshSkeletonTokens(
     override val colorBg: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lowest,
     override val colorGradientMiddle: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lower,
     override val colorGradientStartEnd: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent

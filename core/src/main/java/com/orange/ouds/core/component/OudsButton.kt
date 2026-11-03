@@ -831,8 +831,7 @@ class OudsButtonIcon private constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsButtonIcon.ExtraParameters, OudsButtonIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color
     ) : OudsComponentContent.ExtraParameters()
 
@@ -926,9 +925,9 @@ enum class OudsButtonAppearance {
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsButtonLoader(val progress: Float?)
+class OudsButtonLoader(val progress: Float?)
 
-internal data class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
+internal class OudsButtonIconBadge(val contentDescription: String, val borderColor: Color, val count: Int? = null)
 
 internal enum class OudsButtonState : OudsComponentState {
     Enabled, Hovered, Pressed, Loading, Disabled, Focused, Skeleton

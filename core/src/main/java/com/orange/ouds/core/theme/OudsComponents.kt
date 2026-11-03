@@ -48,9 +48,8 @@ import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
-@ConsistentCopyVisibility
 @RestrictedOudsApi
-data class OudsComponents internal constructor(
+class OudsComponents internal constructor(
     val alert: Alert,
     val alertMessage: AlertMessage,
     val badge: Badge,
@@ -80,15 +79,13 @@ data class OudsComponents internal constructor(
     val typography: Typography
 ) {
 
-    @ConsistentCopyVisibility
-    data class Alert internal constructor(
+    class Alert internal constructor(
         val border: Border,
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Radius,
             @Deprecated(
                 "Please use alertMessage.border.width instead.",
@@ -97,15 +94,13 @@ data class OudsComponents internal constructor(
             val width: Dp
         ) {
 
-            @ConsistentCopyVisibility
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 val default: Dp,
                 val rounded: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val asset: Dp,
             @Deprecated(
                 "Please use asset instead.",
@@ -122,8 +117,7 @@ data class OudsComponents internal constructor(
             val minWidth: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: Dp,
             val columnGapAction: Dp,
             val paddingBlock: Dp,
@@ -140,53 +134,45 @@ data class OudsComponents internal constructor(
         )
     }
 
-    @ConsistentCopyVisibility
-    data class AlertMessage internal constructor(
+    class AlertMessage internal constructor(
         val border: Border,
         val space: Space
     ) {
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val width: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val rowGapBullet: Dp
         )
     }
 
-    @ConsistentCopyVisibility
-    data class Badge internal constructor(
+    class Badge internal constructor(
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val extraSmall: Dp,
             val small: Dp,
             val medium: Dp,
             val large: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val insetExtraSmall: Dp,
             val insetSmall: Dp,
             val insetMediumLarge: Dp,
             val paddingInline: PaddingInline
         ) {
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 val medium: Dp,
                 val large: Dp
             )
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Bar internal constructor(
+    class Bar internal constructor(
         val border: Border,
         val color: Color,
         val effect: Effect,
@@ -199,59 +185,50 @@ data class OudsComponents internal constructor(
         val blurRadius: Int
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Radius
         ) {
 
-            @ConsistentCopyVisibility
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 val currentIndicatorCustom: CurrentIndicatorCustom
             ) {
 
-                @ConsistentCopyVisibility
-                data class CurrentIndicatorCustom internal constructor(
+                class CurrentIndicatorCustom internal constructor(
                     val bottom: Dp,
                     val top: Dp
                 )
             }
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: Background,
             val border: Border,
             val content: Content,
             val currentIndicator: CurrentIndicator
         ) {
 
-            @ConsistentCopyVisibility
-            data class Background internal constructor(
+            class Background internal constructor(
                 val opaque: androidx.compose.ui.graphics.Color,
                 val translucent: androidx.compose.ui.graphics.Color
             )
 
-            @ConsistentCopyVisibility
-            data class Border internal constructor(
+            class Border internal constructor(
                 val badge: androidx.compose.ui.graphics.Color
             )
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val selected: Selected,
                 val unselected: Unselected
             ) {
 
-                @ConsistentCopyVisibility
-                data class Selected internal constructor(
+                class Selected internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Unselected internal constructor(
+                class Unselected internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
@@ -259,20 +236,17 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class CurrentIndicator internal constructor(
+            class CurrentIndicator internal constructor(
                 val android: Android,
                 val custom: Custom
             ) {
 
-                @ConsistentCopyVisibility
-                data class Android internal constructor(
+                class Android internal constructor(
                     val selected: Selected,
                     val unselected: Unselected
                 ) {
 
-                    @ConsistentCopyVisibility
-                    data class Selected internal constructor(
+                    class Selected internal constructor(
                         val disabled: androidx.compose.ui.graphics.Color,
                         val enabled: androidx.compose.ui.graphics.Color,
                         val focus: androidx.compose.ui.graphics.Color,
@@ -280,8 +254,7 @@ data class OudsComponents internal constructor(
                         val pressed: androidx.compose.ui.graphics.Color
                     )
 
-                    @ConsistentCopyVisibility
-                    data class Unselected internal constructor(
+                    class Unselected internal constructor(
                         val disabled: androidx.compose.ui.graphics.Color,
                         val focus: androidx.compose.ui.graphics.Color,
                         val hover: androidx.compose.ui.graphics.Color,
@@ -289,13 +262,11 @@ data class OudsComponents internal constructor(
                     )
                 }
 
-                @ConsistentCopyVisibility
-                data class Custom internal constructor(
+                class Custom internal constructor(
                     val selected: Selected
                 ) {
 
-                    @ConsistentCopyVisibility
-                    data class Selected internal constructor(
+                    class Selected internal constructor(
                         val enabled: androidx.compose.ui.graphics.Color,
                         val focus: androidx.compose.ui.graphics.Color,
                         val hover: androidx.compose.ui.graphics.Color,
@@ -305,34 +276,28 @@ data class OudsComponents internal constructor(
             }
         }
 
-        @ConsistentCopyVisibility
-        data class Effect internal constructor(
+        class Effect internal constructor(
             val backgroundBlur: Int
         )
 
-        @ConsistentCopyVisibility
-        data class Opacity internal constructor(
+        class Opacity internal constructor(
             val currentIndicatorCustom: Float
         )
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val height: Height,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Height internal constructor(
+            class Height internal constructor(
                 val currentIndicatorCustom: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val currentIndicatorCustom: CurrentIndicatorCustom
             ) {
 
-                @ConsistentCopyVisibility
-                data class CurrentIndicatorCustom internal constructor(
+                class CurrentIndicatorCustom internal constructor(
                     val bottom: Dp,
                     val top: Dp
                 )
@@ -340,32 +305,27 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class BulletList internal constructor(
+    class BulletList internal constructor(
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: ColumnGap,
             val paddingBlock: PaddingBlock,
             val paddingInline: PaddingInline
         ) {
 
-            @ConsistentCopyVisibility
-            data class ColumnGap internal constructor(
+            class ColumnGap internal constructor(
                 val bodyLarge: Dp,
                 val bodyMedium: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 val bodyLarge: Dp,
                 val bodyMedium: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 val level0: Dp,
                 val level1: Dp,
                 val level2: Dp
@@ -373,30 +333,26 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Button internal constructor(
+    class Button internal constructor(
         val border: Border,
         val color: Color,
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Radius,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 val aiIconOnly: Dp,
                 val default: Dp,
                 val rounded: Dp,
                 val social: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val ai: Dp,
                 val aiInteraction: Dp,
                 val default: Dp,
@@ -405,23 +361,20 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: Background,
             val border: Border,
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Background internal constructor(
+            class Background internal constructor(
                 val brand: Brand,
                 val default: Default,
                 val minimal: Minimal,
                 val ai: Ai
             ) {
 
-                @ConsistentCopyVisibility
-                data class Brand internal constructor(
+                class Brand internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -429,8 +382,7 @@ data class OudsComponents internal constructor(
                     val focus: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Default internal constructor(
+                class Default internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -439,15 +391,13 @@ data class OudsComponents internal constructor(
                     val focus: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Minimal internal constructor(
+                class Minimal internal constructor(
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Ai internal constructor(
+                class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -457,14 +407,12 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Border internal constructor(
+            class Border internal constructor(
                 val default: Default,
                 val ai: Ai
             ) {
 
-                @ConsistentCopyVisibility
-                data class Default internal constructor(
+                class Default internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -473,8 +421,7 @@ data class OudsComponents internal constructor(
                     val focus: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Ai internal constructor(
+                class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -484,16 +431,14 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val brand: Brand,
                 val default: Default,
                 val minimal: Minimal,
                 val ai: Ai
             ) {
 
-                @ConsistentCopyVisibility
-                data class Brand internal constructor(
+                class Brand internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -501,18 +446,7 @@ data class OudsComponents internal constructor(
                     val focus: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Default internal constructor(
-                    val enabled: androidx.compose.ui.graphics.Color,
-                    val hover: androidx.compose.ui.graphics.Color,
-                    val pressed: androidx.compose.ui.graphics.Color,
-                    val loading: androidx.compose.ui.graphics.Color,
-                    val disabled: androidx.compose.ui.graphics.Color,
-                    val focus: androidx.compose.ui.graphics.Color
-                )
-
-                @ConsistentCopyVisibility
-                data class Minimal internal constructor(
+                class Default internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -521,8 +455,16 @@ data class OudsComponents internal constructor(
                     val focus: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Ai internal constructor(
+                class Minimal internal constructor(
+                    val enabled: androidx.compose.ui.graphics.Color,
+                    val hover: androidx.compose.ui.graphics.Color,
+                    val pressed: androidx.compose.ui.graphics.Color,
+                    val loading: androidx.compose.ui.graphics.Color,
+                    val disabled: androidx.compose.ui.graphics.Color,
+                    val focus: androidx.compose.ui.graphics.Color
+                )
+
+                class Ai internal constructor(
                     val enabled: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color,
@@ -533,8 +475,7 @@ data class OudsComponents internal constructor(
             }
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             @Deprecated("Please use iconDefault instead.", ReplaceWith("OudsTheme.components.button.size.iconDefault"))
             val icon: Dp,
             val iconDefault: Dp,
@@ -562,8 +503,7 @@ data class OudsComponents internal constructor(
             val progressIndicatorSmall: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: ColumnGap,
             @Deprecated("Please use inset.iconOnlyDefault instead.", ReplaceWith("OudsTheme.components.button.space.inset.iconOnlyDefault"))
             val insetIconOnly: Dp,
@@ -575,8 +515,7 @@ data class OudsComponents internal constructor(
             val paddingInline: PaddingInline
         ) {
 
-            @ConsistentCopyVisibility
-            data class ColumnGap internal constructor(
+            class ColumnGap internal constructor(
                 @Deprecated("Please use chevronDefault instead.", ReplaceWith("OudsTheme.components.button.space.columnGap.chevronDefault"))
                 val chevron: Dp,
                 val chevronDefault: Dp,
@@ -591,16 +530,14 @@ data class OudsComponents internal constructor(
                 val iconChevronSmall: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Inset internal constructor(
+            class Inset internal constructor(
                 val iconOnlyDefault: Dp,
                 val iconOnlySmall: Dp,
                 val progressIndicatorOnlyDefault: Dp,
                 val progressIndicatorOnlySmall: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 @Deprecated("Please use chevronEndDefault instead.", ReplaceWith("OudsTheme.components.button.space.paddingInline.chevronEndDefault"))
                 val chevronEnd: Dp,
                 val chevronEndDefault: Dp,
@@ -629,27 +566,23 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class ButtonMonochrome internal constructor(
+    class ButtonMonochrome internal constructor(
         val color: Color
     ) {
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: Background,
             val border: Border,
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Background internal constructor(
+            class Background internal constructor(
                 val default: Default,
                 val minimal: Minimal,
                 val strong: Strong
             ) {
 
-                @ConsistentCopyVisibility
-                data class Default internal constructor(
+                class Default internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -658,15 +591,13 @@ data class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Minimal internal constructor(
+                class Minimal internal constructor(
                     val focus: androidx.compose.ui.graphics.Color,
                     val hover: androidx.compose.ui.graphics.Color,
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Strong internal constructor(
+                class Strong internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -676,13 +607,11 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Border internal constructor(
+            class Border internal constructor(
                 val default: Default
             ) {
 
-                @ConsistentCopyVisibility
-                data class Default internal constructor(
+                class Default internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -692,15 +621,13 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val default: Default,
                 val minimal: Minimal,
                 val strong: Strong
             ) {
 
-                @ConsistentCopyVisibility
-                data class Default internal constructor(
+                class Default internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -709,8 +636,7 @@ data class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Minimal internal constructor(
+                class Minimal internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -719,8 +645,7 @@ data class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Strong internal constructor(
+                class Strong internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -732,20 +657,17 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Checkbox internal constructor(
+    class Checkbox internal constructor(
         val border: Border,
         val size: Size
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Dp,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val selected: Dp,
                 val selectedFocus: Dp,
                 val selectedHover: Dp,
@@ -757,8 +679,7 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             @Deprecated("This token is no longer used in OUDS.")
             val indicator: Dp,
             val maxHeight: Dp,
@@ -767,8 +688,7 @@ data class OudsComponents internal constructor(
         )
     }
 
-    @ConsistentCopyVisibility
-    data class Chip internal constructor(
+    class Chip internal constructor(
         val badge: Badge,
         val border: Border,
         val color: Color,
@@ -776,47 +696,40 @@ data class OudsComponents internal constructor(
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Badge internal constructor(
+        class Badge internal constructor(
             val color: Color
         ) {
 
-            @ConsistentCopyVisibility
-            data class Color internal constructor(
+            class Color internal constructor(
                 val background: androidx.compose.ui.graphics.Color,
                 val content: androidx.compose.ui.graphics.Color
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Dp,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val selected: Dp,
                 val unselected: Dp,
                 val unselectedInteraction: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: Background,
             val border: Border,
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Background internal constructor(
+            class Background internal constructor(
                 val selected: Selected,
                 val unselected: Unselected
             ) {
 
-                @ConsistentCopyVisibility
-                data class Selected internal constructor(
+                class Selected internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -824,8 +737,7 @@ data class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Unselected internal constructor(
+                class Unselected internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -834,14 +746,12 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Border internal constructor(
+            class Border internal constructor(
                 val selected: Selected,
                 val unselected: Unselected
             ) {
 
-                @ConsistentCopyVisibility
-                data class Selected internal constructor(
+                class Selected internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -849,8 +759,7 @@ data class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Unselected internal constructor(
+                class Unselected internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -859,14 +768,12 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val selected: Selected,
                 val unselected: Unselected
             ) {
 
-                @ConsistentCopyVisibility
-                data class Selected internal constructor(
+                class Selected internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -875,8 +782,7 @@ data class OudsComponents internal constructor(
                     val tickEnabled: androidx.compose.ui.graphics.Color
                 )
 
-                @ConsistentCopyVisibility
-                data class Unselected internal constructor(
+                class Unselected internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -886,30 +792,26 @@ data class OudsComponents internal constructor(
             }
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val icon: Dp,
             val minHeight: Dp,
             val minHeightInteractiveArea: Dp,
             val minWidth: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: ColumnGap,
             val paddingBlock: Dp,
             val paddingBlockIconOnly: Dp,
             val paddingInline: PaddingInline
         ) {
 
-            @ConsistentCopyVisibility
-            data class ColumnGap internal constructor(
+            class ColumnGap internal constructor(
                 val badgeChevron: Dp,
                 val icon: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 val badgeStart: Dp,
                 val chevronEnd: Dp,
                 val icon: Dp,
@@ -918,9 +820,8 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
     @Deprecated("Please use OudsComponents.ListItem instead.")
-    data class ControlItem internal constructor(
+    class ControlItem internal constructor(
         @Deprecated("Please use components.listItem.border instead.", ReplaceWith("OudsTheme.components.listItem.border"))
         val border: Border,
         @Deprecated("Please use components.listItem.color instead.", ReplaceWith("OudsTheme.components.listItem.color"))
@@ -935,18 +836,16 @@ data class OudsComponents internal constructor(
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
         @Deprecated("Please use OudsComponents.ListItem.Border instead.")
-        data class Border internal constructor(
+        class Border internal constructor(
             @Deprecated("Please use components.listItem.border.radius instead.", ReplaceWith("OudsTheme.components.listItem.border.radius"))
             val radius: Radius,
             @Deprecated("Please use components.listItem.border.width instead.", ReplaceWith("OudsTheme.components.listItem.border.width"))
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Border.Radius instead.")
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 @Deprecated(
                     "Please use components.listItem.border.radius.currentIndicator instead.",
                     ReplaceWith("OudsTheme.components.listItem.border.radius.currentIndicator")
@@ -974,9 +873,8 @@ data class OudsComponents internal constructor(
                 val rounded: Dp
             )
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Border.Width instead.")
-            data class Width internal constructor(
+            class Width internal constructor(
                 @Deprecated(
                     "Please use components.listItem.border.width.currentPage instead.",
                     ReplaceWith("OudsTheme.components.listItem.border.width.currentPage")
@@ -990,9 +888,8 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
         @Deprecated("Please use OudsComponents.ListItem.Color instead.")
-        data class Color internal constructor(
+        class Color internal constructor(
             @Deprecated(
                 "Please use components.listItem.color.background.badge.safetyArea instead.",
                 ReplaceWith("OudsTheme.components.listItem.color.background.badge.safetyArea")
@@ -1010,9 +907,8 @@ data class OudsComponents internal constructor(
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Color.Background instead.")
-            data class Background internal constructor(
+            class Background internal constructor(
 
                 @Deprecated(
                     "Please use components.listItem.color.background.current instead.",
@@ -1021,9 +917,8 @@ data class OudsComponents internal constructor(
                 val current: Current
             ) {
 
-                @ConsistentCopyVisibility
                 @Deprecated("Please use OudsComponents.ListItem.Color.Background.Current instead.")
-                data class Current internal constructor(
+                class Current internal constructor(
                     @Deprecated(
                         "Please use components.listItem.color.background.current.disabled instead.",
                         ReplaceWith("OudsTheme.components.listItem.color.background.current.disabled")
@@ -1052,9 +947,8 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Color.Content instead.")
-            data class Content internal constructor(
+            class Content internal constructor(
                 @Deprecated(
                     "Please use components.listItem.color.content.current instead.",
                     ReplaceWith("OudsTheme.components.listItem.color.content.current")
@@ -1062,9 +956,8 @@ data class OudsComponents internal constructor(
                 val current: Current
             ) {
 
-                @ConsistentCopyVisibility
                 @Deprecated("Please use OudsComponents.ListItem.Color.Content.Current instead.")
-                data class Current internal constructor(
+                class Current internal constructor(
                     @Deprecated(
                         "Please use components.listItem.color.content.current.disabled instead.",
                         ReplaceWith("OudsTheme.components.listItem.color.content.current.disabled")
@@ -1094,9 +987,8 @@ data class OudsComponents internal constructor(
             }
         }
 
-        @ConsistentCopyVisibility
         @Deprecated("Please use OudsComponents.ListItem.Font instead.")
-        data class Font internal constructor(
+        class Font internal constructor(
             @Deprecated(
                 "Please use components.listItem.font.letterSpacing instead.",
                 ReplaceWith("OudsTheme.components.listItem.font.letterSpacing")
@@ -1114,9 +1006,8 @@ data class OudsComponents internal constructor(
             val size: Size
         ) {
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Font.LetterSpacing instead.")
-            data class LetterSpacing internal constructor(
+            class LetterSpacing internal constructor(
                 @Deprecated(
                     "Please use components.listItem.font.letterSpacing.avatarInitialExtraLarge instead.",
                     ReplaceWith("OudsTheme.components.listItem.font.letterSpacing.avatarInitialExtraLarge")
@@ -1124,9 +1015,8 @@ data class OudsComponents internal constructor(
                 val avatarInitialExtraLarge: Dp
             )
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Font.LineHeight instead.")
-            data class LineHeight internal constructor(
+            class LineHeight internal constructor(
                 @Deprecated(
                     "Please use components.listItem.font.lineHeight.avatarInitialExtraLarge instead.",
                     ReplaceWith("OudsTheme.components.listItem.font.lineHeight.avatarInitialExtraLarge")
@@ -1134,9 +1024,8 @@ data class OudsComponents internal constructor(
                 val avatarInitialExtraLarge: Dp
             )
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Font.Size instead.")
-            data class Size internal constructor(
+            class Size internal constructor(
                 @Deprecated(
                     "Please use components.listItem.font.size.avatarInitialExtraLarge instead.",
                     ReplaceWith("OudsTheme.components.listItem.font.size.avatarInitialExtraLarge")
@@ -1145,9 +1034,8 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
         @Deprecated("Please use OudsComponents.ListItem.Opacity instead.")
-        data class Opacity internal constructor(
+        class Opacity internal constructor(
             @Deprecated(
                 "Please use components.listItem.opacity.currentDivider instead.",
                 ReplaceWith("OudsTheme.components.listItem.opacity.currentDivider")
@@ -1160,9 +1048,8 @@ data class OudsComponents internal constructor(
             val currentIndicator: Float
         )
 
-        @ConsistentCopyVisibility
         @Deprecated("Please use OudsComponents.ListItem.Size instead.")
-        data class Size internal constructor(
+        class Size internal constructor(
             @Deprecated("Please use components.listItem.size.asset instead.", ReplaceWith("OudsTheme.components.listItem.size.asset"))
             val asset: Asset,
             @Deprecated("Please use components.listItem.size.controlIndicator instead.", ReplaceWith("OudsTheme.components.listItem.size.controlIndicator"))
@@ -1181,9 +1068,8 @@ data class OudsComponents internal constructor(
             val minWidth: Dp
         ) {
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Size.Asset instead.")
-            data class Asset internal constructor(
+            class Asset internal constructor(
                 @Deprecated("Please use components.listItem.size.asset.large instead.", ReplaceWith("OudsTheme.components.listItem.size.asset.large"))
                 val large: Dp,
                 @Deprecated("Please use components.listItem.size.asset.medium instead.", ReplaceWith("OudsTheme.components.listItem.size.asset.medium"))
@@ -1194,16 +1080,14 @@ data class OudsComponents internal constructor(
                 val extraLarge: Dp
             )
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Size.Flag instead.")
-            data class Flag internal constructor(
+            class Flag internal constructor(
                 @Deprecated("Please use components.listItem.size.flag.height instead.", ReplaceWith("OudsTheme.components.listItem.size.flag.height"))
                 val height: Dp
             )
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Size.CurrentIndicator instead.")
-            data class CurrentIndicator internal constructor(
+            class CurrentIndicator internal constructor(
                 @Deprecated(
                     "Please use components.listItem.size.currentIndicator.width instead.",
                     ReplaceWith("OudsTheme.components.listItem.size.currentIndicator.width")
@@ -1212,9 +1096,8 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
         @Deprecated("Please use OudsComponents.ListItem.Space instead.")
-        data class Space internal constructor(
+        class Space internal constructor(
             @Deprecated("Please use components.listItem.space.columnGap instead.", ReplaceWith("OudsTheme.components.listItem.space.columnGap"))
             val columnGap: Dp,
             @Deprecated("Please use components.listItem.space.paddingBlock instead.", ReplaceWith("OudsTheme.components.listItem.space.paddingBlock"))
@@ -1225,9 +1108,8 @@ data class OudsComponents internal constructor(
             val rowGap: Dp
         ) {
 
-            @ConsistentCopyVisibility
             @Deprecated("Please use OudsComponents.ListItem.Space.PaddingBlock instead.")
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 @Deprecated(
                     "Please use components.listItem.space.paddingBlock.slotTextContainer instead.",
                     ReplaceWith("OudsTheme.components.listItem.space.paddingBlock.slotTextContainer")
@@ -1276,46 +1158,38 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Divider internal constructor(
+    class Divider internal constructor(
         val border: Border
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val width: Dp
         )
     }
 
-    @ConsistentCopyVisibility
-    data class Icon internal constructor(
+    class Icon internal constructor(
         val color: Color
     ) {
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val status: Status
             ) {
 
-                @ConsistentCopyVisibility
-                data class Status internal constructor(
+                class Status internal constructor(
                     val warning: Warning
                 ) {
 
-                    @ConsistentCopyVisibility
-                    data class Warning internal constructor(
+                    class Warning internal constructor(
                         val externalShape: androidx.compose.ui.graphics.Color,
                         val internalShape: androidx.compose.ui.graphics.Color,
                         val inverse: Inverse
                     ) {
 
-                        @ConsistentCopyVisibility
-                        data class Inverse internal constructor(
+                        class Inverse internal constructor(
                             val externalShape: androidx.compose.ui.graphics.Color,
                             val internalShape: androidx.compose.ui.graphics.Color
                         )
@@ -1325,49 +1199,42 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class InputTag internal constructor(
+    class InputTag internal constructor(
         val border: Border,
         val color: Color
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val default: Dp,
                 val defaultInteraction: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: Background,
             val border: Border,
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Background internal constructor(
+            class Background internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
                 val focus: androidx.compose.ui.graphics.Color,
                 val hover: androidx.compose.ui.graphics.Color,
                 val pressed: androidx.compose.ui.graphics.Color
             )
 
-            @ConsistentCopyVisibility
-            data class Border internal constructor(
+            class Border internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
                 val focus: androidx.compose.ui.graphics.Color,
                 val hover: androidx.compose.ui.graphics.Color,
                 val pressed: androidx.compose.ui.graphics.Color
             )
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
                 val focus: androidx.compose.ui.graphics.Color,
                 val hover: androidx.compose.ui.graphics.Color,
@@ -1376,21 +1243,18 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Link internal constructor(
+    class Link internal constructor(
         val color: Color,
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val chevron: Chevron,
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Chevron internal constructor(
+            class Chevron internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
                 @Deprecated("Please use color.content.focus instead.", ReplaceWith("OudsTheme.components.link.color.content.focus"))
                 val focus: androidx.compose.ui.graphics.Color,
@@ -1400,8 +1264,7 @@ data class OudsComponents internal constructor(
                 val pressed: androidx.compose.ui.graphics.Color
             )
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
                 val focus: androidx.compose.ui.graphics.Color,
                 val hover: androidx.compose.ui.graphics.Color,
@@ -1409,8 +1272,7 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val iconDefault: Dp,
             val iconSmall: Dp,
             val minHeightCompactDensity: Dp,
@@ -1423,23 +1285,20 @@ data class OudsComponents internal constructor(
             val minWidthSmall: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: ColumnGap,
             val paddingBlock: PaddingBlock,
             val paddingInline: Dp
         ) {
 
-            @ConsistentCopyVisibility
-            data class ColumnGap internal constructor(
+            class ColumnGap internal constructor(
                 val chevronDefault: Dp,
                 val chevronSmall: Dp,
                 val iconDefault: Dp,
                 val iconSmall: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 val default: Dp,
                 val small: Dp,
                 val compactDensityDefault: Dp,
@@ -1448,18 +1307,15 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class LinkMonochrome internal constructor(
+    class LinkMonochrome internal constructor(
         val color: Color
     ) {
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val disabled: androidx.compose.ui.graphics.Color,
                 val enabled: androidx.compose.ui.graphics.Color,
                 val focus: androidx.compose.ui.graphics.Color,
@@ -1469,8 +1325,7 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class ListItem internal constructor(
+    class ListItem internal constructor(
         val border: Border,
         val color: Color,
         val font: Font,
@@ -1479,14 +1334,12 @@ data class OudsComponents internal constructor(
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Radius,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 val currentIndicator: Dp,
                 val default: Dp,
                 @Deprecated("This token is no longer used in OUDS.") val itemOnly: Dp,
@@ -1495,32 +1348,27 @@ data class OudsComponents internal constructor(
                 val rounded: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val currentPage: Dp,
                 val default: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val background: Background,
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Background internal constructor(
+            class Background internal constructor(
                 val badge: Badge,
                 val current: Current
             ) {
 
-                @ConsistentCopyVisibility
-                data class Badge internal constructor(
+                class Badge internal constructor(
                     val safetyArea: androidx.compose.ui.graphics.Color,
                 )
 
-                @ConsistentCopyVisibility
-                data class Current internal constructor(
+                class Current internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -1529,13 +1377,11 @@ data class OudsComponents internal constructor(
                 )
             }
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val current: Current
             ) {
 
-                @ConsistentCopyVisibility
-                data class Current internal constructor(
+                class Current internal constructor(
                     val disabled: androidx.compose.ui.graphics.Color,
                     val enabled: androidx.compose.ui.graphics.Color,
                     val focus: androidx.compose.ui.graphics.Color,
@@ -1545,37 +1391,31 @@ data class OudsComponents internal constructor(
             }
         }
 
-        @ConsistentCopyVisibility
-        data class Font internal constructor(
+        class Font internal constructor(
             val letterSpacing: LetterSpacing,
             val lineHeight: LineHeight,
             val size: Size
         ) {
 
-            @ConsistentCopyVisibility
-            data class LetterSpacing internal constructor(
+            class LetterSpacing internal constructor(
                 val avatarInitialExtraLarge: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class LineHeight internal constructor(
+            class LineHeight internal constructor(
                 val avatarInitialExtraLarge: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Size internal constructor(
+            class Size internal constructor(
                 val avatarInitialExtraLarge: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Opacity internal constructor(
+        class Opacity internal constructor(
             val currentDivider: Float,
             val currentIndicator: Float
         )
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val asset: Asset,
             val controlIndicator: Dp,
             val currentIndicator: CurrentIndicator,
@@ -1590,27 +1430,23 @@ data class OudsComponents internal constructor(
             val minWidth: Dp
         ) {
 
-            @ConsistentCopyVisibility
-            data class Asset internal constructor(
+            class Asset internal constructor(
                 val large: Dp,
                 val medium: Dp,
                 val small: Dp,
                 val extraLarge: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Flag internal constructor(
+            class Flag internal constructor(
                 val height: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class CurrentIndicator internal constructor(
+            class CurrentIndicator internal constructor(
                 val width: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: Dp,
             val paddingBlock: PaddingBlock,
             val paddingInline: Dp,
@@ -1618,8 +1454,7 @@ data class OudsComponents internal constructor(
             val rowGap: Dp
         ) {
 
-            @ConsistentCopyVisibility
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 val bottomSlotListItemContainer: Dp,
                 val default: Dp,
                 val small: Dp,
@@ -1628,8 +1463,7 @@ data class OudsComponents internal constructor(
                 val topHelperText: Dp
             ) {
 
-                @ConsistentCopyVisibility
-                data class TopAlignment internal constructor(
+                class TopAlignment internal constructor(
                     val topCounterweightDefault: Dp,
                     val topCounterweightSmall: Dp,
                     val topTextContainerDefault: Dp,
@@ -1639,98 +1473,82 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class PinCodeInput internal constructor(
+    class PinCodeInput internal constructor(
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val maxWidth: Dp,
             val minWidth: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGapDigitInput: Dp
         )
     }
 
-    @ConsistentCopyVisibility
-    data class ProgressIndicator internal constructor(
+    class ProgressIndicator internal constructor(
         val border: Border,
         val color: Color,
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Radius
         ) {
 
-            @ConsistentCopyVisibility
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 val default: Dp,
                 val rounded: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val track: androidx.compose.ui.graphics.Color
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val linearIndicatorHeight: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: Dp,
             val paddingBlock: Dp
         )
     }
 
-    @ConsistentCopyVisibility
-    data class ProgressIndicatorMonochrome internal constructor(
+    class ProgressIndicatorMonochrome internal constructor(
         val color: Color
     ) {
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val content: Content
         ) {
 
-            @ConsistentCopyVisibility
-            data class Content internal constructor(
+            class Content internal constructor(
                 val indicator: androidx.compose.ui.graphics.Color,
                 val track: androidx.compose.ui.graphics.Color
             )
         }
     }
 
-    @ConsistentCopyVisibility
-    data class RadioButton internal constructor(
+    class RadioButton internal constructor(
         val border: Border,
         val size: Size
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Dp,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val selected: Dp,
                 val selectedFocus: Dp,
                 val selectedHover: Dp,
@@ -1742,8 +1560,7 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val maxHeight: Dp,
             val minHeight: Dp,
             val minWidth: Dp
@@ -1766,8 +1583,7 @@ data class OudsComponents internal constructor(
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Switch internal constructor(
+    class Switch internal constructor(
         val border: Border,
         val color: Color,
         val opacity: Opacity,
@@ -1775,22 +1591,19 @@ data class OudsComponents internal constructor(
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radiusCursor: Dp,
             val radiusTrack: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val check: androidx.compose.ui.graphics.Color,
             val checkInteraction: androidx.compose.ui.graphics.Color,
             val cursor: androidx.compose.ui.graphics.Color,
             val track: Track
         ) {
 
-            @ConsistentCopyVisibility
-            data class Track internal constructor(
+            class Track internal constructor(
                 val selected: androidx.compose.ui.graphics.Color,
                 val selectedInteraction: androidx.compose.ui.graphics.Color,
                 val unselected: androidx.compose.ui.graphics.Color,
@@ -1798,13 +1611,11 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Opacity internal constructor(
+        class Opacity internal constructor(
             val check: Float
         )
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val height: Height,
             val maxHeight: Dp,
             val minHeight: Dp,
@@ -1813,15 +1624,13 @@ data class OudsComponents internal constructor(
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Height internal constructor(
+            class Height internal constructor(
                 val cursorSelected: Dp,
                 val cursorUnselected: Dp,
                 val track: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val cursorSelected: Dp,
                 val cursorUnselected: Dp,
                 val cursorSelectedPressed: Dp,
@@ -1830,33 +1639,28 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val paddingInline: PaddingInline
         ) {
 
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 val selected: Dp,
                 val unselected: Dp
             )
         }
     }
 
-    @ConsistentCopyVisibility
-    data class Tag internal constructor(
+    class Tag internal constructor(
         val border: Border,
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val assetDefault: Dp,
             val assetSmall: Dp,
             val minHeightDefault: Dp,
@@ -1866,30 +1670,26 @@ data class OudsComponents internal constructor(
             val minHeightInteractiveArea: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val paddingInline: PaddingInline,
             val paddingBlock: PaddingBlock,
             val inset: Inset,
             val columnGap: ColumnGap
         ) {
 
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 val small: Dp,
                 val default: Dp,
                 val assetSmall: Dp,
                 val assetDefault: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 val small: Dp,
                 val default: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Inset internal constructor(
+            class Inset internal constructor(
                 val iconSmall: Dp,
                 val bulletSmall: Dp,
                 val loaderSmall: Dp,
@@ -1898,30 +1698,26 @@ data class OudsComponents internal constructor(
                 val loaderDefault: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class ColumnGap internal constructor(
+            class ColumnGap internal constructor(
                 val small: Dp,
                 val default: Dp
             )
         }
     }
 
-    @ConsistentCopyVisibility
-    data class TextArea internal constructor(
+    class TextArea internal constructor(
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val maxHeightInput: Dp,
             val maxHeightAssetsContainer: Dp,
             val maxWidth: Dp,
             val minHeightInput: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val paddingBlock: Dp,
             val paddingBlockTopEmpty: Dp,
             val paddingBlockTrailingContainer: Dp,
@@ -1929,40 +1725,34 @@ data class OudsComponents internal constructor(
         )
     }
 
-    @ConsistentCopyVisibility
-    data class TextInput internal constructor(
+    class TextInput internal constructor(
         val border: Border,
         val color: Color,
         val size: Size,
         val space: Space
     ) {
 
-        @ConsistentCopyVisibility
-        data class Border internal constructor(
+        class Border internal constructor(
             val radius: Radius,
             val width: Width
         ) {
 
-            @ConsistentCopyVisibility
-            data class Radius internal constructor(
+            class Radius internal constructor(
                 val default: Dp,
                 val rounded: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class Width internal constructor(
+            class Width internal constructor(
                 val default: Dp,
                 val focus: Dp
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Color internal constructor(
+        class Color internal constructor(
             val border: Border
         ) {
 
-            @ConsistentCopyVisibility
-            data class Border internal constructor(
+            class Border internal constructor(
                 val enabled: androidx.compose.ui.graphics.Color,
                 val focus: androidx.compose.ui.graphics.Color,
                 val hover: androidx.compose.ui.graphics.Color,
@@ -1970,8 +1760,7 @@ data class OudsComponents internal constructor(
             )
         }
 
-        @ConsistentCopyVisibility
-        data class Size internal constructor(
+        class Size internal constructor(
             val countrySelectorFlagHeight: Dp,
             val labelMaxHeight: Dp,
             val leadingIcon: Dp,
@@ -1981,16 +1770,14 @@ data class OudsComponents internal constructor(
             val verticalDividerHeight: Dp
         )
 
-        @ConsistentCopyVisibility
-        data class Space internal constructor(
+        class Space internal constructor(
             val columnGap: ColumnGap,
             val paddingBlock: PaddingBlock,
             val paddingInline: PaddingInline,
             val rowGap: RowGap
         ) {
 
-            @ConsistentCopyVisibility
-            data class ColumnGap internal constructor(
+            class ColumnGap internal constructor(
                 val default: Dp,
                 val inlineText: Dp,
                 val labelAsterisk: Dp,
@@ -1998,22 +1785,19 @@ data class OudsComponents internal constructor(
                 val trailingErrorAction: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingBlock internal constructor(
+            class PaddingBlock internal constructor(
                 val default: Dp,
                 val topHelperText: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class PaddingInline internal constructor(
+            class PaddingInline internal constructor(
                 val countrySelectorEnd: Dp,
                 val countrySelectorStart: Dp,
                 val default: Dp,
                 val trailingAction: Dp
             )
 
-            @ConsistentCopyVisibility
-            data class RowGap internal constructor(
+            class RowGap internal constructor(
                 val labelInput: Dp
             )
         }

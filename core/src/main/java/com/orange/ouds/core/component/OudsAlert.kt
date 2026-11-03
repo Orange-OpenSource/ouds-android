@@ -185,8 +185,7 @@ open class OudsAlertIcon private constructor(
         @Composable
         get() = extraParameters.tint
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color,
         internal val status: OudsAlertStatus
     ) : OudsComponentContent.ExtraParameters()

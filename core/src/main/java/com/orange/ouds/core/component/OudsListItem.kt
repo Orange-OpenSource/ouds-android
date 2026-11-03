@@ -999,18 +999,15 @@ enum class OudsListItemState : OudsComponentState {
 sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
 
     interface Badge : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
+        class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
     interface Content : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
+        class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
     interface Icon : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
+        class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
     interface Image : OudsListItemLeadingTrailing {
@@ -1018,13 +1015,11 @@ sealed interface OudsListItemLeadingTrailing : OudsPolymorphicComponentContent {
     }
 
     interface Tag : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
+        class ExtraParameters internal constructor(internal val state: OudsListItemState) : OudsComponentContent.ExtraParameters()
     }
 
     interface Text : OudsListItemLeadingTrailing {
-        @ConsistentCopyVisibility
-        data class ExtraParameters internal constructor(
+        class ExtraParameters internal constructor(
             internal val state: OudsListItemState,
             internal val verticalAlignment: OudsListItemVerticalAlignment,
             internal val size: OudsListItemSize

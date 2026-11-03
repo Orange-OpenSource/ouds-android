@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsAlertMessageTokens
 
-internal data class SoshAlertMessageTokens(
+internal class SoshAlertMessageTokens(
     override val borderWidth: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.None,
     override val spaceRowGapBullet: OudsSpaceKeyToken.RowGap = OudsSpaceKeyToken.RowGap.None
 ) : OudsAlertMessageTokens
