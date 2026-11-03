@@ -156,6 +156,46 @@ val dark = colorToken.dark
 3. **Remove destructuring declarations** (e.g., `val (a, b) = instance`) and use direct property access instead
 4. **Recompile your application** after upgrading
 
+#### Space token properties marked as restricted API
+
+Space token properties (except `fixed` and `scaled`) are now marked with `@RestrictedOudsApi`. Only `OudsTheme.spaces.fixed` and `OudsTheme.spaces.scaled` should be used for spacing in applications. Other space tokens are restricted to specific internal use cases.
+
+**Impact:** Applications accessing restricted space token properties will fail to compile unless they opt-in.
+
+**Affected properties:**
+
+- All properties in `OudsSpaces.PaddingInline`
+- All properties in `OudsSpaces.PaddingBlock`
+- All properties in `OudsSpaces.Inset`
+- All properties in `OudsSpaces.ColumnGap`
+- All properties in `OudsSpaces.RowGap`
+
+> **Note:** `OudsTheme.spaces.fixed` and `OudsTheme.spaces.scaled` remain unrestricted and should be used instead.
+
+##### Migration steps
+
+1. **Search your codebase** for usage of `OudsTheme.spaces.paddingInline`, `OudsTheme.spaces.paddingBlock`, `OudsTheme.spaces.inset`, `OudsTheme.spaces.columnGap`, or `OudsTheme.spaces.rowGap`
+2. **Replace with `OudsTheme.spaces.fixed` or `OudsTheme.spaces.scaled`** which provide the standard spacing values
+3. **If direct access to restricted tokens is necessary**, opt-in by adding `@OptIn(RestrictedOudsApi::class)` at the call site or file level
+4. **Recompile your application** after upgrading
+
+#### `OudsVersion` marked as internal API
+
+`OudsVersion` contains automatically generated version information that can change without notice. This API is not intended for application use and has been marked with `@InternalOudsApi` to indicate it should not be relied upon.
+
+**Impact:** Applications accessing `OudsVersion` will fail to compile unless they opt-in.
+
+**Affected API:**
+
+- `OudsVersion`
+
+##### Migration steps
+
+1. **Search your codebase** for usage of `OudsVersion`
+2. **Remove dependency on `OudsVersion`** as it contains automatically generated information that can change without notice
+3. **Do not use this API** - it is not intended for application use
+4. **Recompile your application** after upgrading
+
 ---
 
 ## Migrating to 2.0.0
@@ -257,6 +297,6 @@ OudsLinearProgressIndicator(status = OudsProgressIndicatorStatus.Accent)
 
 ## Version history
 
-- **3.0.0** - Minimum Android SDK updated to API 24, OudsChipState Skeleton enum value addition, public classes no longer use data modifier
-- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress Indicator default status change
+- **3.0.0** - Minimum Android SDK updated to API 24, OudsChipState Skeleton enum value addition, Public classes no longer use data modifier, Space token properties marked as restricted API, OudsVersion marked as internal API
+- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress indicator default status change
 - **1.x.x** - Previous stable releases
