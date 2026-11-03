@@ -23,8 +23,10 @@ import com.orange.ouds.foundation.RestrictedOudsApi
  */
 @InternalOudsApi
 sealed interface OudsSpaceKeyToken : OudsKeyToken {
+
     @InternalOudsApi
     sealed interface ColumnGap : OudsSpaceKeyToken {
+
         @InternalOudsApi
         @RestrictedOudsApi
         data object ExtraLarge : ColumnGap
@@ -64,6 +66,7 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Fixed : OudsSpaceKeyToken {
+
         @InternalOudsApi
         data object ExtraLarge : Fixed
 
@@ -103,6 +106,7 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Inset : OudsSpaceKeyToken {
+
         @InternalOudsApi
         @RestrictedOudsApi
         data object ExtraLarge : Inset
@@ -154,6 +158,7 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface PaddingBlock : OudsSpaceKeyToken {
+
         @InternalOudsApi
         @RestrictedOudsApi
         data object ExtraLarge : PaddingBlock
@@ -209,6 +214,7 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface PaddingInline : OudsSpaceKeyToken {
+
         @InternalOudsApi
         @RestrictedOudsApi
         data object ExtraLarge : PaddingInline
@@ -268,6 +274,7 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface RowGap : OudsSpaceKeyToken {
+
         @InternalOudsApi
         @RestrictedOudsApi
         data object ExtraSmall : RowGap
@@ -299,6 +306,7 @@ sealed interface OudsSpaceKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Scaled : OudsSpaceKeyToken {
+
         @InternalOudsApi
         data object ExtraLarge : Scaled
 

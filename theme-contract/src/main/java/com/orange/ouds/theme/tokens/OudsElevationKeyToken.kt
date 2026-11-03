@@ -22,6 +22,7 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsElevationKeyToken : OudsKeyToken {
+
     @InternalOudsApi
     data object Default : OudsElevationKeyToken
 
