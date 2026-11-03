@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.components
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsAccordionTokens
 
-internal data class SoshAccordionTokens(
+internal class SoshAccordionTokens(
     override val spacePaddingBlockBottomExpandContainerDefault: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge,
     override val spacePaddingBlockBottomExpandContainerSmall: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge,
     override val spacePaddingBlockTopExpandContainer: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.ExtraSmall

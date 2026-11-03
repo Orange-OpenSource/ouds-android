@@ -20,7 +20,7 @@ import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorActionSemanticTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class SoshColorActionSemanticTokens(
+internal class SoshColorActionSemanticTokens(
     override val actionDisabledDark: Color = SoshColorRawTokens.ColorOpacityWhite200,
     override val actionDisabledLight: Color = SoshColorRawTokens.ColorOpacityBlack200,
     override val actionEnabledDark: Color = SoshColorRawTokens.ColorLochmaraLight640,

@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 
-internal data class SoshButtonMonoTokens(
+internal class SoshButtonMonoTokens(
     override val colorBgDefaultDisabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
     override val colorBgDefaultEnabled: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent,
     override val colorBgDefaultFocus: OudsColorKeyToken = OudsLightDarkColorKeyToken(OudsColorKeyToken.Repository.Opacity.Black.Higher, OudsColorKeyToken.Repository.Opacity.White.Higher),

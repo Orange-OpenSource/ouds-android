@@ -373,8 +373,7 @@ open class OudsLinearProgressIndicatorHelperText internal constructor(
     val labelAlignment: Alignment.Horizontal
 ) : OudsComponentContent<OudsLinearProgressIndicatorHelperText.ExtraParameters>(ExtraParameters::class.java) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val progress: (() -> Float)?
     ) : OudsComponentContent.ExtraParameters()
 

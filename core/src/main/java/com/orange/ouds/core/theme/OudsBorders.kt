@@ -50,8 +50,7 @@ import java.util.Locale
  * @property radius Collection of border radius values.
  * @property style Collection of border styles (solid, dashed, etc.).
  */
-@ConsistentCopyVisibility
-data class OudsBorders internal constructor(
+class OudsBorders internal constructor(
     val width: Width,
     val radius: Radius,
     val style: Style
@@ -68,8 +67,7 @@ data class OudsBorders internal constructor(
      * @property focus The border width used to indicate focus states.
      * @property focusInset The width of the inner border (inset) used in focus states to create a double-border effect.
      */
-    @ConsistentCopyVisibility
-    data class Width internal constructor(
+    class Width internal constructor(
         val none: Dp,
         val default: Dp,
         val thin: Dp,
@@ -90,8 +88,7 @@ data class OudsBorders internal constructor(
      * @property large A large radius for significantly rounded corners.
      * @property pill A fully rounded radius.
      */
-    @ConsistentCopyVisibility
-    data class Radius internal constructor(
+    class Radius internal constructor(
         val none: Dp,
         val default: Dp,
         val small: Dp,
@@ -106,8 +103,7 @@ data class OudsBorders internal constructor(
      * @property default The standard border style (usually solid).
      * @property drag The specific border style used when an element is being dragged (often dashed).
      */
-    @ConsistentCopyVisibility
-    data class Style internal constructor(
+    class Style internal constructor(
         val default: OudsBorderStyle,
         val drag: OudsBorderStyle
     )

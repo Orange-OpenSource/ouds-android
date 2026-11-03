@@ -37,8 +37,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsSpaceSemanticTokens
  * @property columnGap Spacing used for gaps between columns in a grid or layout.
  * @property rowGap Spacing used for gaps between rows in a grid or layout.
  */
-@ConsistentCopyVisibility
-data class OudsSpaces internal constructor(
+class OudsSpaces internal constructor(
     val fixed: Fixed,
     val scaled: Scaled,
     val paddingInline: PaddingInline,
@@ -64,8 +63,7 @@ data class OudsSpaces internal constructor(
      * @property fourExtraLarge 4xl space.
      * @property fiveExtraLarge 5xl space.
      */
-    @ConsistentCopyVisibility
-    data class Fixed internal constructor(
+    class Fixed internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -95,8 +93,7 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl scaled space.
      * @property threeExtraLarge 3xl scaled space.
      */
-    @ConsistentCopyVisibility
-    data class Scaled internal constructor(
+    class Scaled internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -127,8 +124,7 @@ data class OudsSpaces internal constructor(
      * @property fiveExtraLarge 5xl padding.
      * @property sixExtraLarge 6xl padding.
      */
-    @ConsistentCopyVisibility
-    data class PaddingInline internal constructor(
+    class PaddingInline internal constructor(
         val none: Dp,
         val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
@@ -163,8 +159,7 @@ data class OudsSpaces internal constructor(
      * @property fourExtraLarge 4xl padding.
      * @property fiveExtraLarge 5xl padding.
      */
-    @ConsistentCopyVisibility
-    data class PaddingBlock internal constructor(
+    class PaddingBlock internal constructor(
         val none: Dp,
         val fourExtraSmall: Dp,
         val threeExtraSmall: Dp,
@@ -196,8 +191,7 @@ data class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl inset.
      * @property threeExtraLarge 3xl inset.
      */
-    @ConsistentCopyVisibility
-    data class Inset internal constructor(
+    class Inset internal constructor(
         val none: Dp,
         val fiveExtraSmall: Dp,
         val fourExtraSmall: Dp,
@@ -225,8 +219,7 @@ data class OudsSpaces internal constructor(
      * @property extraLarge Extra large gap.
      * @property twoExtraLarge 2xl gap.
      */
-    @ConsistentCopyVisibility
-    data class ColumnGap internal constructor(
+    class ColumnGap internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,
@@ -249,8 +242,7 @@ data class OudsSpaces internal constructor(
      * @property medium Medium gap.
      * @property large Large gap.
      */
-    @ConsistentCopyVisibility
-    data class RowGap internal constructor(
+    class RowGap internal constructor(
         val none: Dp,
         val threeExtraSmall: Dp,
         val twoExtraSmall: Dp,

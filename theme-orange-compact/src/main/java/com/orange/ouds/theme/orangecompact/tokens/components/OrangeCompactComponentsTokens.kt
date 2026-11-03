@@ -40,7 +40,7 @@ import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
-internal data class OrangeCompactComponentsTokens(
+internal class OrangeCompactComponentsTokens(
     override val accordion: OudsAccordionTokens = OrangeCompactAccordionTokens(),
     override val alert: OudsAlertTokens = OrangeCompactAlertTokens(),
     override val alertMessage: OudsAlertMessageTokens = OrangeCompactAlertMessageTokens(),

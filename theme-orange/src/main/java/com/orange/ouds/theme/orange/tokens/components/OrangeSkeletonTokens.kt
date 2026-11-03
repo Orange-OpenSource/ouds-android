@@ -18,7 +18,7 @@ package com.orange.ouds.theme.orange.tokens.components
 import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsSkeletonTokens
 
-internal data class OrangeSkeletonTokens(
+internal class OrangeSkeletonTokens(
     override val colorBg: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lowest,
     override val colorGradientMiddle: OudsColorKeyToken = OudsColorKeyToken.Opacity.Lower,
     override val colorGradientStartEnd: OudsColorKeyToken = OudsColorKeyToken.Opacity.Transparent

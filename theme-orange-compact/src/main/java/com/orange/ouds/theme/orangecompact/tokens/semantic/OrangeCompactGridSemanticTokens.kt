@@ -18,7 +18,7 @@ package com.orange.ouds.theme.orangecompact.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 import com.orange.ouds.tokens.raw.OudsGridRawTokens
 
-internal data class OrangeCompactGridSemanticTokens(
+internal class OrangeCompactGridSemanticTokens(
     override val compactColumnGap: Int = OudsGridRawTokens.GridColumnGap200,
     override val compactMargin: Int = OudsGridRawTokens.GridMargin100,
     override val compactMaxWidth: Int = OudsGridRawTokens.GridMaxWidthCompact,
