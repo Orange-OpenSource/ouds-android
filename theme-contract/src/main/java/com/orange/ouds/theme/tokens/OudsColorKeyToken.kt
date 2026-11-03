@@ -22,8 +22,10 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsColorKeyToken : OudsKeyToken {
+
     @InternalOudsApi
     sealed interface Action : OudsColorKeyToken {
+
         @InternalOudsApi
         data object Disabled : Action
 
@@ -44,6 +46,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Negative : Action {
+
             @InternalOudsApi
             data object Enabled : Negative
 
@@ -74,6 +77,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Support : Action {
+
             @InternalOudsApi
             data object Disabled : Support
 
@@ -99,6 +103,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Ai : OudsColorKeyToken {
+
         @InternalOudsApi
         data object Primary : Ai
 
@@ -114,6 +119,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Always : OudsColorKeyToken {
+
         @InternalOudsApi
         data object Black : Always
 
@@ -129,6 +135,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Background : OudsColorKeyToken {
+
         @InternalOudsApi
         data object InverseHigh : Background
 
@@ -147,6 +154,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Border : OudsColorKeyToken {
+
         @InternalOudsApi
         data object BrandPrimary : Border
 
@@ -176,6 +184,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface OnBrand : Border {
+
             @InternalOudsApi
             data object Primary : OnBrand
 
@@ -188,6 +197,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Status : Border {
+
             @InternalOudsApi
             data object Accent : Status
 
@@ -207,6 +217,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Content : OudsColorKeyToken {
+
         @InternalOudsApi
         data object BrandPrimary : Content
 
@@ -230,6 +241,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface OnAction : Content {
+
             @InternalOudsApi
             data object Disabled : OnAction
 
@@ -257,6 +269,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface OnBrand : Content {
+
             @InternalOudsApi
             data object Primary : OnBrand
 
@@ -269,8 +282,10 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface OnStatus : Content {
+
             @InternalOudsApi
             sealed interface Accent : OnStatus {
+
                 @InternalOudsApi
                 data object Emphasized : Accent
 
@@ -280,6 +295,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Info : OnStatus {
+
                 @InternalOudsApi
                 data object Emphasized : Info
 
@@ -289,6 +305,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Negative : OnStatus {
+
                 @InternalOudsApi
                 data object Emphasized : Negative
 
@@ -298,6 +315,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Positive : OnStatus {
+
                 @InternalOudsApi
                 data object Emphasized : Positive
 
@@ -307,6 +325,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Warning : OnStatus {
+
                 @InternalOudsApi
                 data object Emphasized : Warning
 
@@ -317,6 +336,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Status : Content {
+
             @InternalOudsApi
             data object Accent : Status
 
@@ -325,6 +345,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Inverse : Status {
+
                 @InternalOudsApi
                 data object Info : Inverse
 
@@ -351,6 +372,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Opacity : OudsColorKeyToken {
+
         @InternalOudsApi
         data object Lower : Opacity
 
@@ -366,6 +388,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Overlay : OudsColorKeyToken {
+
         @InternalOudsApi
         data object Backdrop : Overlay
 
@@ -387,8 +410,10 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Repository : OudsColorKeyToken {
+
         @InternalOudsApi
         sealed interface Accent : Repository {
+
             @InternalOudsApi
             data object High : Accent
 
@@ -413,6 +438,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Info : Repository {
+
             @InternalOudsApi
             data object High : Info
 
@@ -437,6 +463,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Negative : Repository {
+
             @InternalOudsApi
             data object High : Negative
 
@@ -461,8 +488,10 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Neutral : Repository {
+
             @InternalOudsApi
             sealed interface Emphasized : Neutral {
+
                 @InternalOudsApi
                 data object Black : Emphasized
 
@@ -490,6 +519,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Muted : Neutral {
+
                 @InternalOudsApi
                 data object High : Muted
 
@@ -518,8 +548,10 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Opacity : Repository {
+
             @InternalOudsApi
             sealed interface Accent : Opacity {
+
                 @InternalOudsApi
                 data object Low : Accent
 
@@ -529,6 +561,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Black : Opacity {
+
                 @InternalOudsApi
                 data object High : Black
 
@@ -562,6 +595,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Info : Opacity {
+
                 @InternalOudsApi
                 data object Low : Info
 
@@ -571,6 +605,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Negative : Opacity {
+
                 @InternalOudsApi
                 data object Low : Negative
 
@@ -580,6 +615,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Positive : Opacity {
+
                 @InternalOudsApi
                 data object Low : Positive
 
@@ -589,6 +625,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Primary : Opacity {
+
                 @InternalOudsApi
                 data object High : Primary
 
@@ -616,6 +653,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Warning : Opacity {
+
                 @InternalOudsApi
                 data object Low : Warning
 
@@ -625,6 +663,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface White : Opacity {
+
                 @InternalOudsApi
                 data object High : White
 
@@ -656,6 +695,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Positive : Repository {
+
             @InternalOudsApi
             data object High : Positive
 
@@ -680,6 +720,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Primary : Repository {
+
             @InternalOudsApi
             data object High : Primary
 
@@ -704,6 +745,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Secondary : Repository {
+
             @InternalOudsApi
             data object High : Secondary
 
@@ -731,6 +773,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Tertiary : Repository {
+
             @InternalOudsApi
             data object High : Tertiary
 
@@ -755,6 +798,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Warning : Repository {
+
             @InternalOudsApi
             data object High : Warning
 
@@ -780,8 +824,10 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface Surface : OudsColorKeyToken {
+
         @InternalOudsApi
         sealed interface Brand : Surface {
+
             @InternalOudsApi
             data object Primary : Brand
 
@@ -806,8 +852,10 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Status : Surface {
+
             @InternalOudsApi
             sealed interface Accent : Status {
+
                 @InternalOudsApi
                 data object Emphasized : Accent
 
@@ -817,6 +865,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Info : Status {
+
                 @InternalOudsApi
                 data object Emphasized : Info
 
@@ -826,6 +875,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Negative : Status {
+
                 @InternalOudsApi
                 data object Emphasized : Negative
 
@@ -835,6 +885,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Positive : Status {
+
                 @InternalOudsApi
                 data object Emphasized : Positive
 
@@ -844,6 +895,7 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Warning : Status {
+
                 @InternalOudsApi
                 data object Emphasized : Warning
 
@@ -855,5 +907,8 @@ sealed interface OudsColorKeyToken : OudsKeyToken {
         @InternalOudsApi
         data object Tertiary : Surface
     }
+
+    @InternalOudsApi
+    data object Unspecified : OudsColorKeyToken
 }
 

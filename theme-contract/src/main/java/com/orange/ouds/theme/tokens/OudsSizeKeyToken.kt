@@ -22,10 +22,13 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsSizeKeyToken : OudsKeyToken {
+
     @InternalOudsApi
     sealed interface Icon : OudsSizeKeyToken {
+
         @InternalOudsApi
         sealed interface Decorative : Icon {
+
             @InternalOudsApi
             data object ExtraLarge : Decorative
 
@@ -56,8 +59,10 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface WithBody : Icon {
+
             @InternalOudsApi
             sealed interface Large : WithBody {
+
                 @InternalOudsApi
                 data object SizeLarge : Large
 
@@ -70,6 +75,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Medium : WithBody {
+
                 @InternalOudsApi
                 data object SizeLarge : Medium
 
@@ -82,6 +88,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Small : WithBody {
+
                 @InternalOudsApi
                 data object SizeLarge : Small
 
@@ -95,8 +102,10 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface WithHeading : Icon {
+
             @InternalOudsApi
             sealed interface ExtraLarge : WithHeading {
+
                 @InternalOudsApi
                 data object SizeLarge : ExtraLarge
 
@@ -109,6 +118,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Large : WithHeading {
+
                 @InternalOudsApi
                 data object SizeLarge : Large
 
@@ -121,6 +131,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Medium : WithHeading {
+
                 @InternalOudsApi
                 data object SizeLarge : Medium
 
@@ -133,6 +144,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Small : WithHeading {
+
                 @InternalOudsApi
                 data object SizeLarge : Small
 
@@ -146,8 +158,10 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface WithLabel : Icon {
+
             @InternalOudsApi
             sealed interface ExtraLarge : WithLabel {
+
                 @InternalOudsApi
                 data object SizeExtraSmall : ExtraLarge
 
@@ -163,6 +177,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Large : WithLabel {
+
                 @InternalOudsApi
                 data object SizeExtraLarge : Large
 
@@ -181,6 +196,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Medium : WithLabel {
+
                 @InternalOudsApi
                 data object SizeExtraSmall : Medium
 
@@ -196,6 +212,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
             @InternalOudsApi
             sealed interface Small : WithLabel {
+
                 @InternalOudsApi
                 data object SizeExtraSmall : Small
 
@@ -213,8 +230,10 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
     @InternalOudsApi
     sealed interface MaxWidth : OudsSizeKeyToken {
+
         @InternalOudsApi
         sealed interface Body : MaxWidth {
+
             @InternalOudsApi
             data object Large : Body
 
@@ -230,6 +249,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Display : MaxWidth {
+
             @InternalOudsApi
             data object Large : Display
 
@@ -242,6 +262,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Heading : MaxWidth {
+
             @InternalOudsApi
             data object ExtraLarge : Heading
 
@@ -257,6 +278,7 @@ sealed interface OudsSizeKeyToken : OudsKeyToken {
 
         @InternalOudsApi
         sealed interface Label : MaxWidth {
+
             @InternalOudsApi
             data object ExtraLarge : Label
 
