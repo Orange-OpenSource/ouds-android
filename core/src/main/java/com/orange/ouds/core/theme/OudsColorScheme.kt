@@ -1930,4 +1930,5 @@ val OudsColorKeyToken.value: Color
         is OudsColorKeyToken.Repository -> OudsTheme.colorScheme.fromToken(this)
         is OudsColorKeyToken.Surface -> OudsTheme.colorScheme.fromToken(this)
         is OudsLightDarkColorKeyToken -> if (isOudsInDarkTheme()) dark.value else light.value
+        OudsColorKeyToken.Unspecified -> Color.Unspecified
     }
