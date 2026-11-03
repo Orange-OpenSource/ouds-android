@@ -44,11 +44,13 @@ import com.orange.ouds.core.component.OudsInlineAlert
 import com.orange.ouds.core.component.OudsInlineAlertStatus
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun InlineAlertDemoScreen() {
     val state = rememberInlineAlertDemoState()

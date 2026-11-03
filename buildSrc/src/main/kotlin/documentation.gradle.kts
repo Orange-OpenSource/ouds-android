@@ -10,7 +10,10 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(InternalOudsApi::class)
+
 import com.github.mustachejava.DefaultMustacheFactory
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.gradle.Component
 import com.orange.ouds.theme.OudsVersion
 import java.io.FileOutputStream

@@ -52,11 +52,13 @@ import com.orange.ouds.core.component.common.text.OudsAnnotatedAlertMessageDescr
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageBulletListLabel
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedAlertMessageDescription
 import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun AlertMessageDemoScreen() {
     val state = rememberAlertMessageDemoState()

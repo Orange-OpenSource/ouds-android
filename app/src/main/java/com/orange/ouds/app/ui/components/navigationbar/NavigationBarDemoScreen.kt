@@ -41,8 +41,10 @@ import com.orange.ouds.core.component.OudsNavigationBarItem
 import com.orange.ouds.core.component.OudsNavigationBarItemBadge
 import com.orange.ouds.core.component.OudsNavigationBarItemIcon
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun NavigationBarDemoScreen() {
     val state = rememberNavigationBarDemoState()

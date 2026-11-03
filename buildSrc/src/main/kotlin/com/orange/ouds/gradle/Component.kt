@@ -10,8 +10,11 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(InternalOudsApi::class)
+
 package com.orange.ouds.gradle
 
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 import org.gradle.api.Project
 

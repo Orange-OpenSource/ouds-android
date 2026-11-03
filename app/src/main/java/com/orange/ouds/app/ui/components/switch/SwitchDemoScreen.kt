@@ -29,8 +29,10 @@ import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSwitch
 import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun SwitchDemoScreen() {
     val state = rememberSwitchDemoState()

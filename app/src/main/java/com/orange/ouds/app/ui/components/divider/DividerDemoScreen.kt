@@ -33,9 +33,11 @@ import com.orange.ouds.core.component.OudsDividerColor
 import com.orange.ouds.core.component.OudsHorizontalDivider
 import com.orange.ouds.core.component.OudsVerticalDivider
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun DividerDemoScreen(vertical: Boolean = false) {
     val state = rememberDividerDemoState()

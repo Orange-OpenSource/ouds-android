@@ -33,12 +33,14 @@ import com.orange.ouds.core.component.OudsHeadingTextSize
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHeadingText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHeadingText
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun HeadingTextDemoScreen() {
     val state = rememberHeadingTextDemoState()
