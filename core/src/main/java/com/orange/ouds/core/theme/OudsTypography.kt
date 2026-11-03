@@ -37,8 +37,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsFontSemanticTokens
  * @property label Styles for smaller utility text (e.g., captions, labels).
  * @property code Styles dedicated to technical content such as code snippets, commands, system values, and identifiers.
  */
-@ConsistentCopyVisibility
-data class OudsTypography internal constructor(
+class OudsTypography internal constructor(
     val fontFamily: FontFamily,
     val display: Display,
     val heading: Heading,
@@ -53,8 +52,7 @@ data class OudsTypography internal constructor(
      * @property medium Medium display text style.
      * @property small Small display text style.
      */
-    @ConsistentCopyVisibility
-    data class Display internal constructor(
+    class Display internal constructor(
         val large: TextStyle,
         val medium: TextStyle,
         val small: TextStyle
@@ -68,8 +66,7 @@ data class OudsTypography internal constructor(
      * @property medium Medium heading style.
      * @property small Small heading style.
      */
-    @ConsistentCopyVisibility
-    data class Heading internal constructor(
+    class Heading internal constructor(
         val extraLarge: TextStyle,
         val large: TextStyle,
         val medium: TextStyle,
@@ -87,8 +84,7 @@ data class OudsTypography internal constructor(
      * @property strong Strong font weight styles (Bold). **Deprecated:** Use size-first accessors instead (e.g., `body.large.strong`).
      */
     @Suppress("DEPRECATION")
-    @ConsistentCopyVisibility
-    data class Body internal constructor(
+    class Body internal constructor(
         val large: Large,
         val medium: Medium,
         val small: Small,
@@ -106,8 +102,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class Large internal constructor(
+        class Large internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -120,8 +115,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class Medium internal constructor(
+        class Medium internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -134,8 +128,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class Small internal constructor(
+        class Small internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -149,8 +142,7 @@ data class OudsTypography internal constructor(
          * @property small Small body text.
          */
         @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.default' instead of 'body.default.large'.")
-        @ConsistentCopyVisibility
-        data class Default internal constructor(
+        class Default internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
@@ -164,8 +156,7 @@ data class OudsTypography internal constructor(
          * @property small Small moderate body text.
          */
         @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.moderate' instead of 'body.moderate.large'.")
-        @ConsistentCopyVisibility
-        data class Moderate internal constructor(
+        class Moderate internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
@@ -179,8 +170,7 @@ data class OudsTypography internal constructor(
          * @property small Small strong body text.
          */
         @Deprecated(message = "Use size-first accessors instead. For example, use 'body.large.strong' instead of 'body.strong.large'.")
-        @ConsistentCopyVisibility
-        data class Strong internal constructor(
+        class Strong internal constructor(
             val large: TextStyle,
             val medium: TextStyle,
             val small: TextStyle
@@ -200,8 +190,7 @@ data class OudsTypography internal constructor(
      * @property strong Strong font weight styles (Bold). **Deprecated:** Use size-first accessors instead (e.g., `label.large.strong`).
      */
     @Suppress("DEPRECATION")
-    @ConsistentCopyVisibility
-    data class Label internal constructor(
+    class Label internal constructor(
         val extraLarge: ExtraLarge,
         val large: Large,
         val medium: Medium,
@@ -220,8 +209,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class ExtraLarge internal constructor(
+        class ExtraLarge internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -234,8 +222,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class Large internal constructor(
+        class Large internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -248,8 +235,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class Medium internal constructor(
+        class Medium internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -262,8 +248,7 @@ data class OudsTypography internal constructor(
          * @property moderate Moderate font weight (Medium).
          * @property strong Strong font weight (Bold).
          */
-        @ConsistentCopyVisibility
-        data class Small internal constructor(
+        class Small internal constructor(
             val default: TextStyle,
             val moderate: TextStyle,
             val strong: TextStyle
@@ -278,8 +263,7 @@ data class OudsTypography internal constructor(
          * @property small Small label text.
          */
         @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.default' instead of 'label.default.large'.")
-        @ConsistentCopyVisibility
-        data class Default internal constructor(
+        class Default internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
@@ -295,8 +279,7 @@ data class OudsTypography internal constructor(
          * @property small Small moderate label text.
          */
         @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.moderate' instead of 'label.moderate.large'.")
-        @ConsistentCopyVisibility
-        data class Moderate internal constructor(
+        class Moderate internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,
@@ -312,8 +295,7 @@ data class OudsTypography internal constructor(
          * @property small Small strong label text.
          */
         @Deprecated(message = "Use size-first accessors instead. For example, use 'label.large.strong' instead of 'label.strong.large'.")
-        @ConsistentCopyVisibility
-        data class Strong internal constructor(
+        class Strong internal constructor(
             val extraLarge: TextStyle,
             val large: TextStyle,
             val medium: TextStyle,

@@ -16,11 +16,11 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorRepositorySemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeColorRepositorySemanticTokens(
+internal class WireframeColorRepositorySemanticTokens(
     override val repositoryAccentHigh: Color = Color.Unspecified,
     override val repositoryAccentHigher: Color = WireframeColorRawTokens.ColorRustyRed900,
     override val repositoryAccentHighest: Color = WireframeColorRawTokens.ColorRustyRed1000,

@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
-internal data class OrangeCompactTypographyTokens(
+internal class OrangeCompactTypographyTokens(
     override val colorContentMarker: OudsColorKeyToken = OudsColorKeyToken.Content.BrandPrimary,
     override val headingLargeMarker: Boolean = true,
     @Deprecated("") override val spacePaddingBlockBottomHeadingLargeMarker: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.FourExtraSmall,

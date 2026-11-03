@@ -1374,7 +1374,12 @@ private fun OudsTextInputHelperTextErrorMessage(
             val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
             val text = if (hasError) error.message else helperText
             if (annotatedText != null) {
-                Text(modifier = textModifier, text = annotatedText.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong), style = textStyle, color = textColor)
+                Text(
+                    modifier = textModifier,
+                    text = annotatedText.annotatedString(linkAndStrongTextStyle = OudsTheme.typography.label.medium.strong),
+                    style = textStyle,
+                    color = textColor
+                )
             } else if (text != null) {
                 Text(modifier = textModifier, text = text, style = textStyle, color = textColor)
             }
@@ -1543,13 +1548,12 @@ internal enum class OudsTextInputState : OudsComponentState {
  * @param text The text to display in the link.
  * @param onClick Callback invoked when the link is clicked.
  */
-data class OudsTextInputHelperLink(
+class OudsTextInputHelperLink(
     val text: String,
     val onClick: () -> Unit
 ) : OudsComponentContent<OudsTextInputHelperLink.ExtraParameters>(ExtraParameters::class.java) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val state: OudsTextInputState
     ) : OudsComponentContent.ExtraParameters()
 
@@ -1574,7 +1578,7 @@ data class OudsTextInputHelperLink(
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsTextInputLoader(val progress: Float?)
+class OudsTextInputLoader(val progress: Float?)
 
 /**
  * A leading icon in an [OudsTextInput].
@@ -1586,8 +1590,7 @@ class OudsTextInputLeadingIcon private constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsTextInputLeadingIcon.ExtraParameters, OudsTextInputLeadingIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color
     ) : OudsComponentContent.ExtraParameters()
 
@@ -1655,8 +1658,7 @@ class OudsTextInputTrailingIconButton private constructor(
     onClick
 ) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val enabled: Boolean
     ) : OudsComponentContent.ExtraParameters()
 

@@ -18,7 +18,7 @@ package com.orange.ouds.theme.sosh.tokens.semantic
 import com.orange.ouds.theme.tokens.semantic.OudsEffectSemanticTokens
 import com.orange.ouds.tokens.raw.OudsEffectRawTokens
 
-internal data class SoshEffectSemanticTokens(
+internal class SoshEffectSemanticTokens(
     override val blurBackdrop: Int = OudsEffectRawTokens.EffectBlur80,
     override val blurDrag: Int = OudsEffectRawTokens.EffectBlur480
 ) : OudsEffectSemanticTokens
