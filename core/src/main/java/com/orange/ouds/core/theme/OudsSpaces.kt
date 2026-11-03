@@ -125,20 +125,20 @@ class OudsSpaces internal constructor(
      * @property sixExtraLarge 6xl padding.
      */
     class PaddingInline internal constructor(
-        val none: Dp,
-        val fourExtraSmall: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
-        val threeExtraLarge: Dp,
-        val fourExtraLarge: Dp,
-        val fiveExtraLarge: Dp,
-        val sixExtraLarge: Dp
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val fourExtraSmall: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
+        @RestrictedOudsApi val fourExtraLarge: Dp,
+        @RestrictedOudsApi val fiveExtraLarge: Dp,
+        @RestrictedOudsApi val sixExtraLarge: Dp
     )
 
 
@@ -160,19 +160,19 @@ class OudsSpaces internal constructor(
      * @property fiveExtraLarge 5xl padding.
      */
     class PaddingBlock internal constructor(
-        val none: Dp,
-        val fourExtraSmall: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
-        val threeExtraLarge: Dp,
-        val fourExtraLarge: Dp,
-        val fiveExtraLarge: Dp,
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val fourExtraSmall: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
+        @RestrictedOudsApi val fourExtraLarge: Dp,
+        @RestrictedOudsApi val fiveExtraLarge: Dp,
     )
 
     /**
@@ -192,18 +192,18 @@ class OudsSpaces internal constructor(
      * @property threeExtraLarge 3xl inset.
      */
     class Inset internal constructor(
-        val none: Dp,
-        val fiveExtraSmall: Dp,
-        val fourExtraSmall: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
-        val threeExtraLarge: Dp,
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val fiveExtraSmall: Dp,
+        @RestrictedOudsApi val fourExtraSmall: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
     )
 
     /**
@@ -220,15 +220,15 @@ class OudsSpaces internal constructor(
      * @property twoExtraLarge 2xl gap.
      */
     class ColumnGap internal constructor(
-        val none: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
-        val extraLarge: Dp,
-        val twoExtraLarge: Dp,
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
+        @RestrictedOudsApi val extraLarge: Dp,
+        @RestrictedOudsApi val twoExtraLarge: Dp,
     )
 
     /**
@@ -243,13 +243,13 @@ class OudsSpaces internal constructor(
      * @property large Large gap.
      */
     class RowGap internal constructor(
-        val none: Dp,
-        val threeExtraSmall: Dp,
-        val twoExtraSmall: Dp,
-        val extraSmall: Dp,
-        val small: Dp,
-        val medium: Dp,
-        val large: Dp,
+        @RestrictedOudsApi val none: Dp,
+        @RestrictedOudsApi val threeExtraSmall: Dp,
+        @RestrictedOudsApi val twoExtraSmall: Dp,
+        @RestrictedOudsApi val extraSmall: Dp,
+        @RestrictedOudsApi val small: Dp,
+        @RestrictedOudsApi val medium: Dp,
+        @RestrictedOudsApi val large: Dp,
     )
 }
 
