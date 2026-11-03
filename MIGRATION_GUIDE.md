@@ -75,6 +75,87 @@ OudsBasicSuggestionChip(...) {
 2. **Add the `OudsChipState.Skeleton` branch** or add an `else` branch
 3. **Recompile your application** after upgrading
 
+#### Public classes no longer use `data` modifier
+
+To maintain binary compatibility in future releases, the `data` modifier has been removed from public API classes. This change allows OUDS Android to safely add new properties to these classes in minor or patch releases without breaking binary compatibility for existing compiled applications. When `data` classes add new properties, new `componentN()` methods are generated, which breaks binary compatibility. By removing the `data` modifier in this major release, future updates can extend these classes without causing breaking changes.
+
+**Impact:** Auto-generated methods (`copy()`, `componentN()`, `toString()`, `equals()`, `hashCode()`) are no longer available on these classes.
+
+**Methods no longer available:**
+
+- ❌ `copy()` - Cannot create modified copies with named parameters
+- ❌ `componentN()` - Destructuring declarations no longer supported
+- ❌ `equals()` / `hashCode()` - Auto-generated implementations no longer available
+- ❌ `toString()` - Formatted string representation no longer available
+
+**Affected classes:**
+
+*Component configuration classes:*
+- `OudsAlertMessageActionLink`
+- `OudsBulletListTextStyle`
+- `OudsButtonLoader`
+- `OudsNavigationBarItem`
+- `OudsNavigationBarItemBadge`
+- `OudsTagLoader`
+- `OudsTextInputHelperLink`
+- `OudsTextInputLoader`
+- `OudsTopAppBarActionBadge`
+
+*Theme token containers (and all nested classes):*
+- `OudsBorders`
+- `OudsColorScheme`
+- `OudsComponents`
+- `OudsEffects`
+- `OudsElevations`
+- `OudsGrids`
+- `OudsOpacities`
+- `OudsSizes`
+- `OudsSpaces`
+- `OudsTypography`
+
+**Before (v2.x):**
+```kotlin
+// Creating and modifying with copy()
+val item = OudsNavigationBarItem(
+    selected = false,
+    onClick = { },
+    icon = icon,
+    label = "Home"
+)
+val updatedItem = item.copy(selected = true) // No longer works
+
+// Destructuring
+val (light, dark) = colorToken // No longer works
+```
+
+**After (v3.0):**
+```kotlin
+// Must create new instances instead of using copy()
+val item = OudsNavigationBarItem(
+    selected = false,
+    onClick = { },
+    icon = icon,
+    label = "Home"
+)
+val updatedItem = OudsNavigationBarItem(
+    selected = true,  // Updated value
+    onClick = item.onClick,
+    icon = item.icon,
+    label = item.label
+)
+
+// Access properties directly instead of destructuring
+val light = colorToken.light
+val dark = colorToken.dark
+```
+
+##### Migration steps
+
+1. **Search your codebase** for `.copy()` calls on OUDS classes
+2. **Replace with new constructor calls** passing all required parameters
+3. **Remove destructuring declarations** (e.g., `val (a, b) = instance`) and use direct property access instead
+4. **Recompile your application** after upgrading
+
 ---
 
 ## Migrating to 2.0.0
@@ -146,11 +227,11 @@ val padding = OudsTheme.components.link.space.paddingBlock.default // Dp
 2. **Choose the appropriate property** based on your use case
 3. **Update references** to access the specific property
 
-#### Progress indicator: default status changed to Neutral
+#### Progress Indicator: default status changed to Neutral
 
 The default `status` parameter for `OudsCircularProgressIndicator` and `OudsLinearProgressIndicator` has been changed from `Accent` to `Neutral`.
 
-**Impact:** Progress indicators without an explicit `status` parameter will now display using neutral colors instead of accent colors.
+**Impact:** Progress Indicators without an explicit `status` parameter will now display using neutral colors instead of accent colors.
 
 **Before (v1.x):**
 ```kotlin
@@ -168,14 +249,14 @@ OudsLinearProgressIndicator(status = OudsProgressIndicatorStatus.Accent)
 
 ##### Migration steps
 
-1. **Review all progress indicator usages** in your codebase
+1. **Review all Progress Indicator usages** in your codebase
 2. **For brand-related operations**, explicitly set `status = OudsProgressIndicatorStatus.Accent`
-3. **Test visually** to ensure progress indicators match your intended design
+3. **Test visually** to ensure Progress Indicators match your intended design
 
 ---
 
 ## Version history
 
-- **3.0.0** - Minimum Android SDK updated to API 24, OudsChipState Skeleton enum value addition
-- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress indicator default status change
+- **3.0.0** - Minimum Android SDK updated to API 24, OudsChipState Skeleton enum value addition, public classes no longer use data modifier
+- **2.0.0** - Space inset token reorganization, Link paddingBlock structure change, Progress Indicator default status change
 - **1.x.x** - Previous stable releases
