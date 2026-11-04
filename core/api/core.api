@@ -1371,31 +1371,14 @@ public abstract interface class com/orange/ouds/core/component/OudsListItemLeadi
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Badge : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
 }
 
-public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Badge$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
-	public static final field $stable I
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Content : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
 }
 
-public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Content$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
 	public static final field $stable I
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Icon : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
-}
-
-public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Icon$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
-	public static final field $stable I
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Image : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
@@ -1405,21 +1388,7 @@ public abstract interface class com/orange/ouds/core/component/OudsListItemLeadi
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Tag : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
 }
 
-public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Tag$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
-	public static final field $stable I
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
 public abstract interface class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Text : com/orange/ouds/core/component/OudsListItemLeadingTrailing {
-}
-
-public final class com/orange/ouds/core/component/OudsListItemLeadingTrailing$Text$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
-	public static final field $stable I
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/component/OudsListItemScope {
