@@ -122,3 +122,15 @@ public final class com/orange/ouds/theme/OudsVersion$Tokens {
 	public static final field WireframeCore Ljava/lang/String;
 }
 
+public final class com/orange/ouds/theme/tokens/components/OudsLightDarkColor {
+	public static final field $stable I
+	public static final field Companion Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor$Companion;
+	public synthetic fun <init> (JJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDark-0d7_KjU ()J
+	public final fun getLight-0d7_KjU ()J
+}
+
+public final class com/orange/ouds/theme/tokens/components/OudsLightDarkColor$Companion {
+	public final fun getUnspecified ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
+}
+

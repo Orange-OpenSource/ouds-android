@@ -16,11 +16,13 @@
 package com.orange.ouds.theme.wireframe.tokens.semantic
 
 import androidx.compose.ui.graphics.Color
-import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.semantic.OudsColorOverlaySemanticTokens
+import com.orange.ouds.theme.wireframe.tokens.raw.WireframeColorRawTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal data class WireframeColorOverlaySemanticTokens(
+@InternalOudsApi
+class WireframeColorOverlaySemanticTokens(
     override val overlayBackdropDark: Color = WireframeColorRawTokens.ColorOpacityBlack680,
     override val overlayBackdropLight: Color = WireframeColorRawTokens.ColorOpacityBlack680,
     override val overlayDragDark: Color = WireframeColorRawTokens.ColorOpacityWhite80,
