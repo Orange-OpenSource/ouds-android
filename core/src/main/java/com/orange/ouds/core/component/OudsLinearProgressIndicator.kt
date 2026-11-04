@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.LayoutDirection
@@ -307,13 +308,14 @@ private fun OudsLinearProgressIndicator(
     val scale = LocalConfiguration.current.fontScale
     with(OudsTheme.components.progressIndicator) {
         Column(
-            modifier = modifier,
+            modifier = modifier.progressIndicatorSemantics(nullableProgress, helperText?.label),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(space.paddingBlock)
         ) {
             val progressIndicatorModifier = Modifier
                 .height(size.linearIndicatorHeight * scale)
                 .fillMaxWidth()
+                .clearAndSetSemantics {}
             val color = progressIndicatorColor(status = status)
             val trackColor = progressIndicatorTrackColor(track = track)
             val gapSizeValue = when (gapSize) {
@@ -348,7 +350,9 @@ private fun OudsLinearProgressIndicator(
             }
 
             helperText?.Content(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clearAndSetSemantics {},
                 extraParameters = OudsLinearProgressIndicatorHelperText.ExtraParameters(nullableProgress)
             )
         }
