@@ -83,6 +83,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateSample
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorDeterminateWithHelperTextStringSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsLinearProgressIndicator(
     progress: () -> Float,
@@ -91,7 +92,7 @@ fun OudsLinearProgressIndicator(
     track: Boolean = true,
     stopIndicator: Boolean = false,
     helperText: String? = null,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
+    @IntroducedAt("2.0.0") gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
 ) {
     OudsLinearProgressIndicator(
         progress = progress,
@@ -154,29 +155,6 @@ fun OudsLinearProgressIndicator(
     )
 }
 
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLinearProgressIndicator(
-    progress: () -> Float,
-    modifier: Modifier = Modifier,
-    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    track: Boolean = true,
-    stopIndicator: Boolean = false,
-    helperText: String? = null
-) {
-    OudsLinearProgressIndicator(
-        progress = progress,
-        modifier = modifier,
-        status = status,
-        track = track,
-        stopIndicator = stopIndicator,
-        helperText = helperText
-    )
-}
-
 /**
  * A Linear Progress Indicator shows the progress of a task using a horizontal line. It can show a specific value (determinate) or just that something is in
  * progress (indeterminate). Best used inside layouts to show progress.
@@ -205,6 +183,7 @@ fun OudsLinearProgressIndicator(
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateSample
  * @sample com.orange.ouds.core.component.samples.OudsLinearProgressIndicatorIndeterminateWithHelperTextStringSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsLinearProgressIndicator(
     modifier: Modifier = Modifier,
@@ -212,7 +191,7 @@ fun OudsLinearProgressIndicator(
     track: Boolean = true,
     stopIndicator: Boolean = false,
     helperText: String? = null,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
+    @IntroducedAt("2.0.0") gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
 ) {
     OudsLinearProgressIndicator(
         nullableProgress = null,
@@ -269,27 +248,6 @@ fun OudsLinearProgressIndicator(
         stopIndicator = stopIndicator,
         helperText = helperText,
         gapSize = gapSize
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsLinearProgressIndicator(
-    modifier: Modifier = Modifier,
-    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    track: Boolean = true,
-    stopIndicator: Boolean = false,
-    helperText: String? = null
-) {
-    OudsLinearProgressIndicator(
-        modifier = modifier,
-        status = status,
-        track = track,
-        stopIndicator = stopIndicator,
-        helperText = helperText
     )
 }
 
