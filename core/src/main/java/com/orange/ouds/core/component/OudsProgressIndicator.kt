@@ -12,10 +12,15 @@
 
 package com.orange.ouds.core.component
 
+import androidx.compose.foundation.progressSemantics
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.extensions.value
@@ -156,4 +161,23 @@ internal fun progressIndicatorTrackColor(track: Boolean): Color {
 internal fun progressIndicatorHelperTextProgress(progress: () -> Float): String {
     val progressValue = remember(progress()) { round(progress() * 100).toInt() }
     return stringResource(R.string.core_progressIndicator_helperTextProgress_label, progressValue)
+}
+
+internal fun Modifier.progressIndicatorSemantics(progress: (() -> Float)?, helperTextLabel: String?): Modifier {
+    return run {
+        if (progress != null) {
+            progressSemantics(progress())
+        } else {
+            progressSemantics()
+        }
+    }.run {
+        if (helperTextLabel != null) {
+            semantics {
+                // Using text instead of contentDescription allows to read the helper text label before the progress indicator role
+                text = AnnotatedString(helperTextLabel)
+            }
+        } else {
+            this
+        }
+    }
 }

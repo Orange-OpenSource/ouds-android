@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.progressSemantics
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,9 +33,6 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.text
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -250,18 +246,7 @@ internal fun OudsCircularProgressIndicator(
 ) {
     with(OudsTheme.components.progressIndicator) {
         Column(
-            modifier = modifier
-                .semantics {
-                    // Using text instead of contentDescription allows to read the helper text label before the progress indicator role
-                    text = AnnotatedString(helperText?.label.orEmpty())
-                }
-                .run {
-                    if (nullableProgress != null) {
-                        progressSemantics(nullableProgress())
-                    } else {
-                        progressSemantics()
-                    }
-                },
+            modifier = modifier.progressIndicatorSemantics(nullableProgress, helperText?.label),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(space.paddingBlock, alignment = Alignment.CenterVertically)
         ) {
