@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.progressSemantics
@@ -23,10 +25,9 @@ import androidx.compose.ui.semantics.text
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.R
-import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.LocalColorMode
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
+import com.orange.ouds.foundation.RestrictedOudsApi
 import kotlin.math.round
 
 /**
@@ -142,16 +143,16 @@ object OudsProgressIndicatorDefaults {
 @Composable
 internal fun progressIndicatorColor(status: OudsProgressIndicatorStatus): Color {
     val monochrome = LocalColorMode.current?.monochrome == true
-    return if (monochrome) OudsTheme.componentsTokens.progressIndicatorMonochrome.colorContentIndicator.value else status.color()
+    return if (monochrome) OudsTheme.components.progressIndicatorMonochrome.color.content.indicator else status.color()
 }
 
 @Composable
 internal fun progressIndicatorTrackColor(track: Boolean): Color {
     val monochrome = LocalColorMode.current?.monochrome == true
-    return with(OudsTheme.componentsTokens) {
+    return with(OudsTheme.components) {
         when {
-            track && monochrome -> progressIndicatorMonochrome.colorContentTrack.value
-            track && !monochrome -> progressIndicator.colorContentTrack.value
+            track && monochrome -> progressIndicatorMonochrome.color.content.track
+            track && !monochrome -> progressIndicator.color.content.track
             else -> Color.Transparent
         }
     }
