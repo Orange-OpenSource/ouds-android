@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -233,7 +233,6 @@ fun OudsCircularProgressIndicator(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun OudsCircularProgressIndicator(
     nullableProgress: (() -> Float)?,
@@ -247,7 +246,7 @@ internal fun OudsCircularProgressIndicator(
 ) {
     with(OudsTheme.components.progressIndicator) {
         Column(
-            modifier = modifier,
+            modifier = modifier.progressIndicatorSemantics(nullableProgress, helperText?.label),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(space.paddingBlock, alignment = Alignment.CenterVertically)
         ) {
@@ -267,7 +266,9 @@ internal fun OudsCircularProgressIndicator(
                 val strokeCap = if (borderRadius > 0.dp) StrokeCap.Round else StrokeCap.Butt
                 val circularProgressIndicatorColor = color.orElse { progressIndicatorColor(status = status) }
                 val trackColor = progressIndicatorTrackColor(track = track)
-                val progressIndicatorModifier = Modifier.size(maxWidth, maxHeight)
+                val progressIndicatorModifier = Modifier
+                    .size(maxWidth, maxHeight)
+                    .clearAndSetSemantics {}
 
                 if (nullableProgress != null || LocalInspectionMode.current) {
                     CircularProgressIndicator(
@@ -291,7 +292,10 @@ internal fun OudsCircularProgressIndicator(
                 }
             }
 
-            helperText?.Content(extraParameters = OudsCircularProgressIndicatorHelperText.ExtraParameters(nullableProgress))
+            helperText?.Content(
+                modifier = Modifier.clearAndSetSemantics {},
+                extraParameters = OudsCircularProgressIndicatorHelperText.ExtraParameters(nullableProgress)
+            )
         }
     }
 }
