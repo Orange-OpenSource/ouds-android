@@ -49,7 +49,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
@@ -817,13 +819,17 @@ fun OudsLargeTopAppBar(
 private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned: Boolean) {
     Column(horizontalAlignment = if (centerAligned) Alignment.CenterHorizontally else Alignment.Start) {
         val maxLines = if (topAppBarSize == OudsTopAppBarSize.Small) 1 else Int.MAX_VALUE
+        val fontSize = if (topAppBarSize == OudsTopAppBarSize.Small) 18.sp else TextUnit.Unspecified
+        val lineHeight = if (topAppBarSize == OudsTopAppBarSize.Small) 22.sp else TextUnit.Unspecified
         Text(
             modifier = Modifier.semantics { heading() },
             text = title,
             maxLines = maxLines,
             overflow = TextOverflow.Ellipsis,
             color = OudsTheme.colorScheme.content.default,
-            fontFamily = OudsTheme.typography.fontFamily
+            fontFamily = OudsTheme.typography.fontFamily,
+            fontSize = fontSize,
+            lineHeight = lineHeight
         )
     }
 }
