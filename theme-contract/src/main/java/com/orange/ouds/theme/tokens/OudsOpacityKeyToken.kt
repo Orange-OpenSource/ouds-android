@@ -22,6 +22,7 @@ import com.orange.ouds.foundation.InternalOudsApi
  */
 @InternalOudsApi
 sealed interface OudsOpacityKeyToken : OudsKeyToken {
+
     @InternalOudsApi
     data object Disabled : OudsOpacityKeyToken
 

@@ -54,7 +54,6 @@ object OudsVersion {
         const val TextArea = "1.2.1"
         const val TextInput = "1.4.1"
     }
-
     object Tokens {
         const val OudsCore = "1.11.0"
         const val AndroidCore = "1.0.0"
