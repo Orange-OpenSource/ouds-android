@@ -551,7 +551,9 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
      * @param size Size of the tag among [OudsTagSize] values.
      * @param loader An optional loading spinner (or progress indicator) displayed before the [label]. Used to indicate that a process or action related to the
      * tag is in progress.
-     * TODO add skeleton option when available
+     * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+     *   structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+     *   Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
      */
     class Tag(
         label: String,
@@ -560,8 +562,9 @@ sealed interface OudsSmallListItemTrailing : OudsListItemLeadingTrailing {
         status: OudsTagStatus = OudsTagDefaults.Status,
         roundedCorners: Boolean = true,
         size: OudsTagSize = OudsTagDefaults.Size,
-        loader: OudsTagLoader? = null
-    ) : OudsListItemTag(label, enabled, appearance, status, roundedCorners, size, loader), OudsSmallListItemTrailing
+        loader: OudsTagLoader? = null,
+        skeleton: OudsSkeleton? = null
+    ) : OudsListItemTag(label, enabled, appearance, status, roundedCorners, size, loader, skeleton), OudsSmallListItemTrailing
 
     /**
      * Label as a small list item trailing content.
