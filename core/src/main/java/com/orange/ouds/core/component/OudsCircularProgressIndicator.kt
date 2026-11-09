@@ -86,15 +86,16 @@ import kotlin.math.PI
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateSample
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorDeterminateWithHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsCircularProgressIndicator(
     progress: () -> Float,
     modifier: Modifier = Modifier,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default,
-    helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null,
-    indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize
+    @IntroducedAt("2.0.0") gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default,
+    @IntroducedAt("2.2.0") helperText: OudsDeterminateCircularProgressIndicatorHelperText? = null,
+    @IntroducedAt("2.2.0") indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = progress,
@@ -104,46 +105,6 @@ fun OudsCircularProgressIndicator(
         gapSize = gapSize,
         helperText = helperText,
         indicatorSize = indicatorSize
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsCircularProgressIndicator(
-    progress: () -> Float,
-    modifier: Modifier = Modifier,
-    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    track: Boolean = true,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorGapSize.Default
-) {
-    OudsCircularProgressIndicator(
-        progress = progress,
-        modifier = modifier,
-        status = status,
-        track = track,
-        gapSize = gapSize
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsCircularProgressIndicator(
-    progress: () -> Float,
-    modifier: Modifier = Modifier,
-    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    track: Boolean = true
-) {
-    OudsCircularProgressIndicator(
-        progress = progress,
-        modifier = modifier,
-        status = status,
-        track = track
     )
 }
 
@@ -177,14 +138,15 @@ fun OudsCircularProgressIndicator(
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateSample
  * @sample com.orange.ouds.core.component.samples.OudsCircularProgressIndicatorIndeterminateWithHelperTextSample
  */
+@OptIn(ExperimentalVersionOverloading::class)
 @Composable
 fun OudsCircularProgressIndicator(
     modifier: Modifier = Modifier,
     status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
     track: Boolean = true,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
-    helperText: String? = null,
-    indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize
+    @IntroducedAt("2.0.0") gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize,
+    @IntroducedAt("2.2.0") helperText: String? = null,
+    @IntroducedAt("2.2.0") indicatorSize: Dp = OudsProgressIndicatorDefaults.CircularSize
 ) {
     OudsCircularProgressIndicator(
         nullableProgress = null,
@@ -194,42 +156,6 @@ fun OudsCircularProgressIndicator(
         gapSize = gapSize,
         helperText = OudsCircularProgressIndicatorHelperText(false, helperText),
         indicatorSize = indicatorSize
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsCircularProgressIndicator(
-    modifier: Modifier = Modifier,
-    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    track: Boolean = true,
-    gapSize: OudsProgressIndicatorGapSize = OudsProgressIndicatorDefaults.GapSize
-) {
-    OudsCircularProgressIndicator(
-        modifier = modifier,
-        status = status,
-        track = track,
-        gapSize = gapSize
-    )
-}
-
-@Deprecated(
-    "Maintained for binary compatibility. Use overload with additional parameters.",
-    level = DeprecationLevel.HIDDEN
-)
-@Composable
-fun OudsCircularProgressIndicator(
-    modifier: Modifier = Modifier,
-    status: OudsProgressIndicatorStatus = OudsProgressIndicatorDefaults.Status,
-    track: Boolean = true
-) {
-    OudsCircularProgressIndicator(
-        modifier = modifier,
-        status = status,
-        track = track
     )
 }
 

@@ -744,10 +744,10 @@ public final class com/orange/ouds/core/component/OudsCircularProgressIndicatorH
 }
 
 public final class com/orange/ouds/core/component/OudsCircularProgressIndicatorKt {
-	public static final synthetic fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLandroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLandroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCircularProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCircularProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsCircularProgressIndicator-HYR8e34 (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Ljava/lang/String;FLandroidx/compose/runtime/Composer;II)V
 	public static final fun OudsCircularProgressIndicator-au3_HiA (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Lcom/orange/ouds/core/component/OudsDeterminateCircularProgressIndicatorHelperText;FLandroidx/compose/runtime/Composer;II)V
 }
@@ -1117,9 +1117,9 @@ public final class com/orange/ouds/core/component/OudsLinearProgressIndicatorHel
 
 public final class com/orange/ouds/core/component/OudsLinearProgressIndicatorKt {
 	public static final fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsIndeterminateLinearProgressIndicatorHelperText;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLinearProgressIndicator (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Lcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
-	public static final synthetic fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLjava/lang/String;Lcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsLinearProgressIndicator (Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsDeterminateLinearProgressIndicatorHelperText;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsProgressIndicatorStatus;ZZLcom/orange/ouds/core/component/OudsProgressIndicatorGapSize;Landroidx/compose/runtime/Composer;II)V
 }
