@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
@@ -1035,13 +1034,12 @@ internal fun OudsTextAreaDecorator(
         val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
-        Column(modifier = Modifier.sizeIn(minWidth = sizeMinWidth.dp)) {
-            val isSmallLabel = !value.isEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
+        Column(modifier = Modifier.widthIn(min = sizeMinWidth.dp, max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)) {
+            val isSmallLabel = value.isNotEmpty() || !placeholder.isNullOrBlank() || state == OudsTextInputState.Focused
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
-                    .widthIn(max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)
                     .padding(top = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else textAreaTokens.spacePaddingBlockTopEmpty.value)
                     .padding(bottom = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else 0.dp)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
@@ -1117,12 +1115,12 @@ internal fun OudsTextAreaDecorator(
             }
 
             OudsTextInputBottomContent(
-                modifier = Modifier.padding(horizontal = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value),
                 state = state,
                 error = error,
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
-                helperLink = helperLink
+                helperLink = helperLink,
+                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value
             )
         }
     }
@@ -1224,6 +1222,8 @@ internal fun PreviewOudsTextAreaConstrainedMaxWidth(
         textFieldState = rememberTextFieldState(),
         label = "Label",
         placeholder = "Placeholder",
+        helperText = "Helper text",
+        helperLink = OudsTextInputHelperLink("Helper link") {},
         constrainedMaxWidth = constrainedMaxWidth
     )
 }

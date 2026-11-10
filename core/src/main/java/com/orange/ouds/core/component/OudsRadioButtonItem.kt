@@ -28,7 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
@@ -159,8 +158,8 @@ fun OudsRadioButtonItem(
         checkedContentComponentName = "OudsRadioButtonItem",
         checkedContentSelectionStatus = if (selected) "Selected" else "Unselected",
         backgroundColor = backgroundColor.value,
-        modifier = modifier.semantics(mergeDescendants = true) {},
-        contentModifier = selectableModifier.border(outlined = outlined, selected = selected, error = error, state = state),
+        modifier = modifier.then(selectableModifier),
+        contentModifier = Modifier.border(outlined = outlined, selected = selected, error = error, state = state),
         constrainedMaxWidth = constrainedMaxWidth,
         handleHighContrastMode = true,
         skeleton = skeleton
