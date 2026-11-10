@@ -10,7 +10,6 @@
  * Software description: Android library of reusable graphical components 
  */
 
-@file:Suppress("DEPRECATION")
 @file:OptIn(RestrictedOudsApi::class)
 
 package com.orange.ouds.core.theme
@@ -47,6 +46,8 @@ import com.orange.ouds.theme.tokens.components.OudsTagTokens
 import com.orange.ouds.theme.tokens.components.OudsTextAreaTokens
 import com.orange.ouds.theme.tokens.components.OudsTextInputTokens
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedComponentsTokens
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedIconsTokens
 
 @RestrictedOudsApi
 class OudsComponents internal constructor(
@@ -60,6 +61,7 @@ class OudsComponents internal constructor(
     val checkbox: Checkbox,
     val chip: Chip,
     @Deprecated("Please use listItem instead.", ReplaceWith("OudsTheme.components.listItem"))
+    @Suppress("DEPRECATION")
     val controlItem: ControlItem,
     val divider: Divider,
     val icon: Icon,
@@ -821,6 +823,7 @@ class OudsComponents internal constructor(
     }
 
     @Deprecated("Please use OudsComponents.ListItem instead.")
+    @Suppress("DEPRECATION")
     class ControlItem internal constructor(
         @Deprecated("Please use components.listItem.border instead.", ReplaceWith("OudsTheme.components.listItem.border"))
         val border: Border,
@@ -1186,11 +1189,16 @@ class OudsComponents internal constructor(
                     class Warning internal constructor(
                         val externalShape: androidx.compose.ui.graphics.Color,
                         val internalShape: androidx.compose.ui.graphics.Color,
+                        @Deprecated("These tokens are no longer used in OUDS.")
+                        @Suppress("DEPRECATION")
                         val inverse: Inverse
                     ) {
 
+                        @Deprecated("These tokens are no longer used in OUDS.")
                         class Inverse internal constructor(
+                            @Deprecated("This token is no longer used in OUDS.")
                             val externalShape: androidx.compose.ui.graphics.Color,
+                            @Deprecated("This token is no longer used in OUDS.")
                             val internalShape: androidx.compose.ui.graphics.Color
                         )
                     }
@@ -1360,11 +1368,15 @@ class OudsComponents internal constructor(
         ) {
 
             class Background internal constructor(
+                @Deprecated("These tokens are no longer used in OUDS.")
+                @Suppress("DEPRECATION")
                 val badge: Badge,
                 val current: Current
             ) {
 
+                @Deprecated("These tokens are no longer used in OUDS.")
                 class Badge internal constructor(
+                    @Deprecated("This token is no longer used in OUDS.")
                     val safetyArea: androidx.compose.ui.graphics.Color,
                 )
 
@@ -1419,6 +1431,8 @@ class OudsComponents internal constructor(
             val asset: Asset,
             val controlIndicator: Dp,
             val currentIndicator: CurrentIndicator,
+            @Deprecated("These tokens are no longer used in OUDS.")
+            @Suppress("DEPRECATION")
             val flag: Flag,
             @Deprecated("This token is no longer used in OUDS.") val icon: Dp,
             @Deprecated("This token is no longer used in OUDS.") val loader: Dp,
@@ -1437,7 +1451,9 @@ class OudsComponents internal constructor(
                 val extraLarge: Dp
             )
 
+            @Deprecated("These tokens are no longer used in OUDS.")
             class Flag internal constructor(
+                @Deprecated("This token is no longer used in OUDS.")
                 val height: Dp
             )
 
@@ -1479,8 +1495,12 @@ class OudsComponents internal constructor(
     ) {
 
         class Size internal constructor(
+            @Deprecated("Please use maxWidthDigitInput instead.", ReplaceWith("OudsTheme.components.pinCodeInput.size.maxWidthDigitInput"))
             val maxWidth: Dp,
-            val minWidth: Dp
+            val maxWidthDigitInput: Dp,
+            @Deprecated("Please use minWidthDigitInput instead.", ReplaceWith("OudsTheme.components.pinCodeInput.size.minWidthDigitInput"))
+            val minWidth: Dp,
+            val minWidthDigitInput: Dp
         )
 
         class Space internal constructor(
@@ -1787,6 +1807,8 @@ class OudsComponents internal constructor(
 
             class PaddingBlock internal constructor(
                 val default: Dp,
+                val helperText: Dp,
+                @Deprecated("Please use helperText instead.", ReplaceWith("OudsTheme.components.textInput.space.paddingBlock.helperText"))
                 val topHelperText: Dp
             )
 
@@ -1794,6 +1816,11 @@ class OudsComponents internal constructor(
                 val countrySelectorEnd: Dp,
                 val countrySelectorStart: Dp,
                 val default: Dp,
+                val leadingTrailingAction: Dp,
+                @Deprecated(
+                    "Please use leadingTrailingAction instead.",
+                    ReplaceWith("OudsTheme.components.textInput.space.paddingInline.leadingTrailingAction")
+                )
                 val trailingAction: Dp
             )
 
@@ -1831,7 +1858,7 @@ class OudsComponents internal constructor(
 }
 
 @Composable
-internal fun OudsComponentsTokens.getComponents(): OudsComponents {
+internal fun OudsComponentsTokens.getComponents(deprecated: OudsDeprecatedComponentsTokens): OudsComponents {
     return OudsComponents(
         alert = alert.getAlert(alertMessage),
         alertMessage = alertMessage.getAlertMessage(),
@@ -1844,7 +1871,7 @@ internal fun OudsComponentsTokens.getComponents(): OudsComponents {
         chip = chip.getChip(),
         controlItem = listItem.getControlItem(accordion),
         divider = divider.getDivider(),
-        icon = icon.getIcon(),
+        icon = icon.getIcon(deprecated.icon),
         inputTag = inputTag.getInputTag(),
         link = link.getLink(),
         linkMonochrome = linkMonochrome.getLinkMonochrome(),
@@ -1887,7 +1914,7 @@ private fun OudsAlertTokens.getAlert(alertMessageTokens: OudsAlertMessageTokens)
             columnGap = spaceColumnGap.value,
             columnGapAction = spaceColumnGapAction.value,
             rowGap = spaceRowGap.value,
-            rowGapAction = spaceRowGapAction.value,
+            rowGapAction = @Suppress("DEPRECATION") spaceRowGapAction.value,
             rowGapBullet = alertMessageTokens.spaceRowGapBullet.value
         )
     )
@@ -2279,7 +2306,7 @@ private fun OudsCheckboxTokens.getCheckbox(): OudsComponents.Checkbox {
             )
         ),
         size = OudsComponents.Checkbox.Size(
-            indicator = sizeIndicator.value,
+            indicator = @Suppress("DEPRECATION") sizeIndicator.value,
             maxHeight = sizeMaxHeight.value,
             minHeight = sizeMinHeight.value,
             minWidth = sizeMinWidth.value
@@ -2378,6 +2405,7 @@ private fun OudsChipTokens.getChip(): OudsComponents.Chip {
     )
 }
 
+@Suppress("DEPRECATION")
 @Composable
 private fun OudsListItemTokens.getControlItem(accordionTokens: OudsAccordionTokens): OudsComponents.ControlItem {
     return OudsComponents.ControlItem(
@@ -2395,7 +2423,7 @@ private fun OudsListItemTokens.getControlItem(accordionTokens: OudsAccordionToke
             )
         ),
         color = OudsComponents.ControlItem.Color(
-            badgeSafetyArea = colorBgBadgeSafetyArea.value,
+            badgeSafetyArea = colorBadgeSafetyArea.value,
             background = OudsComponents.ControlItem.Color.Background(
                 current = OudsComponents.ControlItem.Color.Background.Current(
                     disabled = colorBgCurrentDisabled.value,
@@ -2479,7 +2507,7 @@ private fun OudsDividerTokens.getDivider(): OudsComponents.Divider {
 }
 
 @Composable
-private fun OudsIconTokens.getIcon(): OudsComponents.Icon {
+private fun OudsIconTokens.getIcon(deprecated: OudsDeprecatedIconsTokens): OudsComponents.Icon {
     return OudsComponents.Icon(
         color = OudsComponents.Icon.Color(
             content = OudsComponents.Icon.Color.Content(
@@ -2487,10 +2515,12 @@ private fun OudsIconTokens.getIcon(): OudsComponents.Icon {
                     warning = OudsComponents.Icon.Color.Content.Status.Warning(
                         externalShape = colorContentStatusWarningExternalShape.value,
                         internalShape = colorContentStatusWarningInternalShape.value,
-                        inverse = OudsComponents.Icon.Color.Content.Status.Warning.Inverse(
-                            externalShape = colorContentStatusWarningInverseExternalShape.value,
-                            internalShape = colorContentStatusWarningInverseInternalShape.value
-                        )
+                        inverse = with(deprecated) {
+                            @Suppress("DEPRECATION") OudsComponents.Icon.Color.Content.Status.Warning.Inverse(
+                                externalShape = colorContentStatusWarningInverseExternalShape.value,
+                                internalShape = colorContentStatusWarningInverseInternalShape.value
+                            )
+                        }
                     )
                 )
             )
@@ -2536,9 +2566,9 @@ private fun OudsLinkTokens.getLink(): OudsComponents.Link {
         color = OudsComponents.Link.Color(
             chevron = OudsComponents.Link.Color.Chevron(
                 enabled = colorChevronEnabled.value,
-                focus = colorChevronFocus.value,
-                hover = colorChevronHover.value,
-                pressed = colorChevronPressed.value
+                focus = @Suppress("DEPRECATION") colorChevronFocus.value,
+                hover = @Suppress("DEPRECATION") colorChevronHover.value,
+                pressed = @Suppress("DEPRECATION") colorChevronPressed.value
             ),
             content = OudsComponents.Link.Color.Content(
                 enabled = colorContentEnabled.value,
@@ -2555,7 +2585,7 @@ private fun OudsLinkTokens.getLink(): OudsComponents.Link {
             minHeightSmall = sizeMinHeightSmall.value,
             minWidth = sizeMinWidth.dp,
             minWidthDefault = sizeMinWidth.dp,
-            minWidthSmall = sizeMinWidthSmall.value
+            minWidthSmall = @Suppress("DEPRECATION") sizeMinWidthSmall.value
         ),
         space = OudsComponents.Link.Space(
             columnGap = OudsComponents.Link.Space.ColumnGap(
@@ -2597,7 +2627,7 @@ private fun OudsListItemTokens.getListItem(): OudsComponents.ListItem {
             radius = OudsComponents.ListItem.Border.Radius(
                 currentIndicator = borderRadiusCurrentIndicator.value,
                 default = borderRadiusDefault.value,
-                itemOnly = borderRadiusItemOnly.value,
+                itemOnly = @Suppress("DEPRECATION") borderRadiusItemOnly.value,
                 media = borderRadiusMedia.value,
                 mediaRounded = borderRadiusMediaRounded.value,
                 rounded = borderRadiusRounded.value
@@ -2609,8 +2639,8 @@ private fun OudsListItemTokens.getListItem(): OudsComponents.ListItem {
         ),
         color = OudsComponents.ListItem.Color(
             background = OudsComponents.ListItem.Color.Background(
-                badge = OudsComponents.ListItem.Color.Background.Badge(
-                    safetyArea = colorBgBadgeSafetyArea.value
+                badge = @Suppress("DEPRECATION") OudsComponents.ListItem.Color.Background.Badge(
+                    safetyArea = colorBadgeSafetyArea.value
                 ),
                 current = OudsComponents.ListItem.Color.Background.Current(
                     disabled = colorBgCurrentDisabled.value,
@@ -2656,15 +2686,15 @@ private fun OudsListItemTokens.getListItem(): OudsComponents.ListItem {
             currentIndicator = OudsComponents.ListItem.Size.CurrentIndicator(
                 width = sizeCurrentIndicatorWidth.dp
             ),
-            icon = sizeIcon.value,
-            loader = sizeLoader.value,
-            maxHeightAssetsContainer = sizeMaxHeightAssetsContainer.dp,
+            icon = @Suppress("DEPRECATION") sizeIcon.value,
+            loader = @Suppress("DEPRECATION") sizeLoader.value,
+            maxHeightAssetsContainer = @Suppress("DEPRECATION") sizeMaxHeightAssetsContainer.dp,
             maxSizeLeadingTrailingSlot = sizeMaxSizeLeadingTrailingSlot.dp,
             maxWidth = sizeMaxWidth.dp,
             minHeightDefault = sizeMinHeightDefault.dp,
             minHeightSmall = sizeMinHeightSmall.value,
             minWidth = sizeMinWidth.dp,
-            flag = OudsComponents.ListItem.Size.Flag(
+            flag = @Suppress("DEPRECATION") OudsComponents.ListItem.Size.Flag(
                 height = sizeFlagHeight.value
             )
         ),
@@ -2684,7 +2714,7 @@ private fun OudsListItemTokens.getListItem(): OudsComponents.ListItem {
                 topHelperText = spacePaddingBlockTopHelperText.value
             ),
             paddingInline = spacePaddingInline.value,
-            paddingInlineErrorIcon = spacePaddingInlineErrorIcon.value,
+            paddingInlineErrorIcon = @Suppress("DEPRECATION") spacePaddingInlineErrorIcon.value,
             rowGap = spaceRowGap.value
         )
     )
@@ -2694,8 +2724,10 @@ private fun OudsListItemTokens.getListItem(): OudsComponents.ListItem {
 private fun OudsPinCodeInputTokens.getPinCodeInput(): OudsComponents.PinCodeInput {
     return OudsComponents.PinCodeInput(
         size = OudsComponents.PinCodeInput.Size(
-            maxWidth = sizeMaxWidth.dp,
-            minWidth = sizeMinWidth.dp
+            maxWidth = sizeMaxWidthDigitInput.dp,
+            maxWidthDigitInput = sizeMaxWidthDigitInput.dp,
+            minWidth = sizeMinWidthDigitInput.dp,
+            minWidthDigitInput = sizeMinWidthDigitInput.dp
         ),
         space = OudsComponents.PinCodeInput.Space(
             columnGapDigitInput = spaceColumnGapDigitInput.value
@@ -2924,13 +2956,15 @@ private fun OudsTextInputTokens.getTextInput(): OudsComponents.TextInput {
             ),
             paddingBlock = OudsComponents.TextInput.Space.PaddingBlock(
                 default = spacePaddingBlockDefault.value,
-                topHelperText = spacePaddingBlockTopHelperText.value
+                helperText = spacePaddingBlockHelperText.value,
+                topHelperText = spacePaddingBlockHelperText.value
             ),
             paddingInline = OudsComponents.TextInput.Space.PaddingInline(
                 countrySelectorEnd = spacePaddingInlineCountrySelectorEnd.value,
                 countrySelectorStart = spacePaddingInlineCountrySelectorStart.value,
                 default = spacePaddingInlineDefault.value,
-                trailingAction = spacePaddingInlineTrailingAction.value
+                leadingTrailingAction = spacePaddingInlineLeadingTrailingAction.value,
+                trailingAction = spacePaddingInlineLeadingTrailingAction.value
             ),
             rowGap = OudsComponents.TextInput.Space.RowGap(
                 labelInput = spaceRowGapLabelInput.value
@@ -2950,8 +2984,8 @@ private fun OudsTypographyTokens.getTypography(): OudsComponents.Typography {
         headingLargeMarker = headingLargeMarker,
         space = OudsComponents.Typography.Space(
             paddingBlock = OudsComponents.Typography.Space.PaddingBlock(
-                bottomHeadingLargeMarker = spacePaddingBlockBottomHeadingLargeMarker.value,
-                topHeadingLargeMarker = spacePaddingBlockTopHeadingLargeMarker.value
+                bottomHeadingLargeMarker = @Suppress("DEPRECATION") spacePaddingBlockBottomHeadingLargeMarker.value,
+                topHeadingLargeMarker = @Suppress("DEPRECATION") spacePaddingBlockTopHeadingLargeMarker.value
             )
         )
     )

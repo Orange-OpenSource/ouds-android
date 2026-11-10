@@ -218,6 +218,8 @@ class OudsSpaces internal constructor(
      * @property large Large gap.
      * @property extraLarge Extra large gap.
      * @property twoExtraLarge 2xl gap.
+     * @property threeExtraLarge 3xl gap.
+     * @property fourExtraLarge 4xl gap.
      */
     class ColumnGap internal constructor(
         @RestrictedOudsApi val none: Dp,
@@ -229,6 +231,8 @@ class OudsSpaces internal constructor(
         @RestrictedOudsApi val large: Dp,
         @RestrictedOudsApi val extraLarge: Dp,
         @RestrictedOudsApi val twoExtraLarge: Dp,
+        @RestrictedOudsApi val threeExtraLarge: Dp,
+        @RestrictedOudsApi val fourExtraLarge: Dp
     )
 
     /**
@@ -336,6 +340,8 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
             large = @OptIn(RestrictedOudsApi::class) columnGapLarge.dp,
             extraLarge = @OptIn(RestrictedOudsApi::class) columnGapXlarge.dp,
             twoExtraLarge = @OptIn(RestrictedOudsApi::class) columnGap2xlarge.dp,
+            threeExtraLarge = @OptIn(RestrictedOudsApi::class) columnGap3xlarge.dp,
+            fourExtraLarge = @OptIn(RestrictedOudsApi::class) columnGap4xlarge.dp
         ),
         rowGap = OudsSpaces.RowGap(
             none = @OptIn(RestrictedOudsApi::class) rowGapNone.dp,
@@ -351,125 +357,141 @@ internal fun OudsSpaceSemanticTokens.getSpaces(windowWidthSizeClass: WindowWidth
 
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Fixed): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.Fixed.None -> fixed.none
-        OudsSpaceKeyToken.Fixed.ThreeExtraSmall -> fixed.threeExtraSmall
-        OudsSpaceKeyToken.Fixed.TwoExtraSmall -> fixed.twoExtraSmall
-        OudsSpaceKeyToken.Fixed.ExtraSmall -> fixed.extraSmall
-        OudsSpaceKeyToken.Fixed.Small -> fixed.small
-        OudsSpaceKeyToken.Fixed.Medium -> fixed.medium
-        OudsSpaceKeyToken.Fixed.Large -> fixed.large
-        OudsSpaceKeyToken.Fixed.ExtraLarge -> fixed.extraLarge
-        OudsSpaceKeyToken.Fixed.TwoExtraLarge -> fixed.twoExtraLarge
-        OudsSpaceKeyToken.Fixed.ThreeExtraLarge -> fixed.threeExtraLarge
-        OudsSpaceKeyToken.Fixed.FourExtraLarge -> fixed.fourExtraLarge
-        OudsSpaceKeyToken.Fixed.FiveExtraLarge -> fixed.fiveExtraLarge
+    return with(fixed) {
+        when (token) {
+            OudsSpaceKeyToken.Fixed.None -> none
+            OudsSpaceKeyToken.Fixed.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.Fixed.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.Fixed.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.Fixed.Small -> small
+            OudsSpaceKeyToken.Fixed.Medium -> medium
+            OudsSpaceKeyToken.Fixed.Large -> large
+            OudsSpaceKeyToken.Fixed.ExtraLarge -> extraLarge
+            OudsSpaceKeyToken.Fixed.TwoExtraLarge -> twoExtraLarge
+            OudsSpaceKeyToken.Fixed.ThreeExtraLarge -> threeExtraLarge
+            OudsSpaceKeyToken.Fixed.FourExtraLarge -> fourExtraLarge
+            OudsSpaceKeyToken.Fixed.FiveExtraLarge -> fiveExtraLarge
+        }
     }
 }
 
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Scaled): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.Scaled.None -> scaled.none
-        OudsSpaceKeyToken.Scaled.ThreeExtraSmall -> scaled.threeExtraSmall
-        OudsSpaceKeyToken.Scaled.TwoExtraSmall -> scaled.twoExtraSmall
-        OudsSpaceKeyToken.Scaled.ExtraSmall -> scaled.extraSmall
-        OudsSpaceKeyToken.Scaled.Small -> scaled.small
-        OudsSpaceKeyToken.Scaled.Medium -> scaled.medium
-        OudsSpaceKeyToken.Scaled.Large -> scaled.large
-        OudsSpaceKeyToken.Scaled.ExtraLarge -> scaled.extraLarge
-        OudsSpaceKeyToken.Scaled.TwoExtraLarge -> scaled.twoExtraLarge
-        OudsSpaceKeyToken.Scaled.ThreeExtraLarge -> scaled.threeExtraLarge
+    return with(scaled) {
+        when (token) {
+            OudsSpaceKeyToken.Scaled.None -> none
+            OudsSpaceKeyToken.Scaled.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.Scaled.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.Scaled.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.Scaled.Small -> small
+            OudsSpaceKeyToken.Scaled.Medium -> medium
+            OudsSpaceKeyToken.Scaled.Large -> large
+            OudsSpaceKeyToken.Scaled.ExtraLarge -> extraLarge
+            OudsSpaceKeyToken.Scaled.TwoExtraLarge -> twoExtraLarge
+            OudsSpaceKeyToken.Scaled.ThreeExtraLarge -> threeExtraLarge
+        }
     }
 }
 
 @OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingInline): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.PaddingInline.None -> paddingInline.none
-        OudsSpaceKeyToken.PaddingInline.FourExtraSmall -> paddingInline.fourExtraSmall
-        OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall -> paddingInline.threeExtraSmall
-        OudsSpaceKeyToken.PaddingInline.TwoExtraSmall -> paddingInline.twoExtraSmall
-        OudsSpaceKeyToken.PaddingInline.ExtraSmall -> paddingInline.extraSmall
-        OudsSpaceKeyToken.PaddingInline.Small -> paddingInline.small
-        OudsSpaceKeyToken.PaddingInline.Medium -> paddingInline.medium
-        OudsSpaceKeyToken.PaddingInline.Large -> paddingInline.large
-        OudsSpaceKeyToken.PaddingInline.ExtraLarge -> paddingInline.extraLarge
-        OudsSpaceKeyToken.PaddingInline.TwoExtraLarge -> paddingInline.twoExtraLarge
-        OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge -> paddingInline.threeExtraLarge
-        OudsSpaceKeyToken.PaddingInline.FourExtraLarge -> paddingInline.fourExtraLarge
-        OudsSpaceKeyToken.PaddingInline.FiveExtraLarge -> paddingInline.fiveExtraLarge
-        OudsSpaceKeyToken.PaddingInline.SixExtraLarge -> paddingInline.sixExtraLarge
+    return with(paddingInline) {
+        when (token) {
+            OudsSpaceKeyToken.PaddingInline.None -> none
+            OudsSpaceKeyToken.PaddingInline.FourExtraSmall -> fourExtraSmall
+            OudsSpaceKeyToken.PaddingInline.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.PaddingInline.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.PaddingInline.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.PaddingInline.Small -> small
+            OudsSpaceKeyToken.PaddingInline.Medium -> medium
+            OudsSpaceKeyToken.PaddingInline.Large -> large
+            OudsSpaceKeyToken.PaddingInline.ExtraLarge -> extraLarge
+            OudsSpaceKeyToken.PaddingInline.TwoExtraLarge -> twoExtraLarge
+            OudsSpaceKeyToken.PaddingInline.ThreeExtraLarge -> threeExtraLarge
+            OudsSpaceKeyToken.PaddingInline.FourExtraLarge -> fourExtraLarge
+            OudsSpaceKeyToken.PaddingInline.FiveExtraLarge -> fiveExtraLarge
+            OudsSpaceKeyToken.PaddingInline.SixExtraLarge -> sixExtraLarge
+        }
     }
 }
 
 @OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.PaddingBlock): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.PaddingBlock.None -> paddingBlock.none
-        OudsSpaceKeyToken.PaddingBlock.FourExtraSmall -> paddingBlock.fourExtraSmall
-        OudsSpaceKeyToken.PaddingBlock.ThreeExtraSmall -> paddingBlock.threeExtraSmall
-        OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall -> paddingBlock.twoExtraSmall
-        OudsSpaceKeyToken.PaddingBlock.ExtraSmall -> paddingBlock.extraSmall
-        OudsSpaceKeyToken.PaddingBlock.Small -> paddingBlock.small
-        OudsSpaceKeyToken.PaddingBlock.Medium -> paddingBlock.medium
-        OudsSpaceKeyToken.PaddingBlock.Large -> paddingBlock.large
-        OudsSpaceKeyToken.PaddingBlock.ExtraLarge -> paddingBlock.extraLarge
-        OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge -> paddingBlock.twoExtraLarge
-        OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge -> paddingBlock.threeExtraLarge
-        OudsSpaceKeyToken.PaddingBlock.FourExtraLarge -> paddingBlock.fourExtraLarge
-        OudsSpaceKeyToken.PaddingBlock.FiveExtraLarge -> paddingBlock.fiveExtraLarge
+    return with(paddingBlock) {
+        when (token) {
+            OudsSpaceKeyToken.PaddingBlock.None -> none
+            OudsSpaceKeyToken.PaddingBlock.FourExtraSmall -> fourExtraSmall
+            OudsSpaceKeyToken.PaddingBlock.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.PaddingBlock.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.PaddingBlock.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.PaddingBlock.Small -> small
+            OudsSpaceKeyToken.PaddingBlock.Medium -> medium
+            OudsSpaceKeyToken.PaddingBlock.Large -> large
+            OudsSpaceKeyToken.PaddingBlock.ExtraLarge -> extraLarge
+            OudsSpaceKeyToken.PaddingBlock.TwoExtraLarge -> twoExtraLarge
+            OudsSpaceKeyToken.PaddingBlock.ThreeExtraLarge -> threeExtraLarge
+            OudsSpaceKeyToken.PaddingBlock.FourExtraLarge -> fourExtraLarge
+            OudsSpaceKeyToken.PaddingBlock.FiveExtraLarge -> fiveExtraLarge
+        }
     }
 }
 
 @OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.Inset): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.Inset.None -> inset.none
-        OudsSpaceKeyToken.Inset.FiveExtraSmall -> inset.fiveExtraSmall
-        OudsSpaceKeyToken.Inset.FourExtraSmall -> inset.fourExtraSmall
-        OudsSpaceKeyToken.Inset.ThreeExtraSmall -> inset.threeExtraSmall
-        OudsSpaceKeyToken.Inset.TwoExtraSmall -> inset.twoExtraSmall
-        OudsSpaceKeyToken.Inset.ExtraSmall -> inset.extraSmall
-        OudsSpaceKeyToken.Inset.Small -> inset.small
-        OudsSpaceKeyToken.Inset.Medium -> inset.medium
-        OudsSpaceKeyToken.Inset.Large -> inset.large
-        OudsSpaceKeyToken.Inset.ExtraLarge -> inset.extraLarge
-        OudsSpaceKeyToken.Inset.TwoExtraLarge -> inset.twoExtraLarge
-        OudsSpaceKeyToken.Inset.ThreeExtraLarge -> inset.threeExtraLarge
+    return with(inset) {
+        when (token) {
+            OudsSpaceKeyToken.Inset.None -> none
+            OudsSpaceKeyToken.Inset.FiveExtraSmall -> fiveExtraSmall
+            OudsSpaceKeyToken.Inset.FourExtraSmall -> fourExtraSmall
+            OudsSpaceKeyToken.Inset.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.Inset.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.Inset.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.Inset.Small -> small
+            OudsSpaceKeyToken.Inset.Medium -> medium
+            OudsSpaceKeyToken.Inset.Large -> large
+            OudsSpaceKeyToken.Inset.ExtraLarge -> extraLarge
+            OudsSpaceKeyToken.Inset.TwoExtraLarge -> twoExtraLarge
+            OudsSpaceKeyToken.Inset.ThreeExtraLarge -> threeExtraLarge
+        }
     }
 }
 
 @OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.ColumnGap): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.ColumnGap.None -> columnGap.none
-        OudsSpaceKeyToken.ColumnGap.ThreeExtraSmall -> columnGap.threeExtraSmall
-        OudsSpaceKeyToken.ColumnGap.TwoExtraSmall -> columnGap.twoExtraSmall
-        OudsSpaceKeyToken.ColumnGap.ExtraSmall -> columnGap.extraSmall
-        OudsSpaceKeyToken.ColumnGap.Small -> columnGap.small
-        OudsSpaceKeyToken.ColumnGap.Medium -> columnGap.medium
-        OudsSpaceKeyToken.ColumnGap.Large -> columnGap.large
-        OudsSpaceKeyToken.ColumnGap.ExtraLarge -> columnGap.extraLarge
-        OudsSpaceKeyToken.ColumnGap.TwoExtraLarge -> columnGap.twoExtraLarge
+    return with(columnGap) {
+        when (token) {
+            OudsSpaceKeyToken.ColumnGap.None -> none
+            OudsSpaceKeyToken.ColumnGap.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.ColumnGap.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.ColumnGap.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.ColumnGap.Small -> small
+            OudsSpaceKeyToken.ColumnGap.Medium -> medium
+            OudsSpaceKeyToken.ColumnGap.Large -> large
+            OudsSpaceKeyToken.ColumnGap.ExtraLarge -> extraLarge
+            OudsSpaceKeyToken.ColumnGap.TwoExtraLarge -> twoExtraLarge
+            OudsSpaceKeyToken.ColumnGap.ThreeExtraLarge -> threeExtraLarge
+            OudsSpaceKeyToken.ColumnGap.FourExtraLarge -> fourExtraLarge
+        }
     }
 }
 
 @OptIn(RestrictedOudsApi::class)
 @Stable
 private fun OudsSpaces.fromToken(token: OudsSpaceKeyToken.RowGap): Dp {
-    return when (token) {
-        OudsSpaceKeyToken.RowGap.None -> rowGap.none
-        OudsSpaceKeyToken.RowGap.ThreeExtraSmall -> rowGap.threeExtraSmall
-        OudsSpaceKeyToken.RowGap.TwoExtraSmall -> rowGap.twoExtraSmall
-        OudsSpaceKeyToken.RowGap.ExtraSmall -> rowGap.extraSmall
-        OudsSpaceKeyToken.RowGap.Small -> rowGap.small
-        OudsSpaceKeyToken.RowGap.Medium -> rowGap.medium
-        OudsSpaceKeyToken.RowGap.Large -> rowGap.large
+    return with(rowGap) {
+        when (token) {
+            OudsSpaceKeyToken.RowGap.None -> none
+            OudsSpaceKeyToken.RowGap.ThreeExtraSmall -> threeExtraSmall
+            OudsSpaceKeyToken.RowGap.TwoExtraSmall -> twoExtraSmall
+            OudsSpaceKeyToken.RowGap.ExtraSmall -> extraSmall
+            OudsSpaceKeyToken.RowGap.Small -> small
+            OudsSpaceKeyToken.RowGap.Medium -> medium
+            OudsSpaceKeyToken.RowGap.Large -> large
+        }
     }
 }
 

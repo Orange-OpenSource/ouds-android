@@ -1087,7 +1087,7 @@ internal fun OudsTextAreaDecorator(
                     .background(color = backgroundColor, shape = textInputShape)
                     .padding(top = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else textAreaTokens.spacePaddingBlockTopEmpty.value)
                     .padding(bottom = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else 0.dp)
-                    .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
+                    .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineLeadingTrailingAction.value)
                     .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
