@@ -104,7 +104,7 @@ import kotlin.math.max
  *
  * > Design name: PIN Code Input
  *
- * > Design version: 1.3.0
+ * > Design version: 1.4.0
  *
  * @param value The current PIN code value as a string of digits. The value is automatically truncated to the specified [length].
  * @param onValueChange Callback invoked when the PIN code value changes. The updated PIN code value comes as a parameter of the callback.
@@ -176,7 +176,7 @@ fun OudsPinCodeInput(
  *
  * > Design name: PIN Code Input
  *
- * > Design version: 1.3.0
+ * > Design version: 1.4.0
  *
  * @param value The current PIN code value as a string of digits. The value is automatically truncated to the specified [length].
  * @param onValueChange Callback invoked when the PIN code value changes. The updated PIN code value comes as a parameter of the callback.

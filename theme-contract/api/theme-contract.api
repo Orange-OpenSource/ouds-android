@@ -2,6 +2,7 @@ public abstract interface class com/orange/ouds/theme/OudsThemeContract {
 	public abstract fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public abstract fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
 	public abstract fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public fun getDeprecatedTokens ()Lcom/orange/ouds/theme/tokens/deprecated/OudsDeprecatedTokens;
 	public abstract fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
 	public abstract fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
 	public abstract fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;
@@ -18,6 +19,7 @@ public abstract interface class com/orange/ouds/theme/OudsThemeContract {
 }
 
 public final class com/orange/ouds/theme/OudsThemeContract$DefaultImpls {
+	public static fun getDeprecatedTokens (Lcom/orange/ouds/theme/OudsThemeContract;)Lcom/orange/ouds/theme/tokens/deprecated/OudsDeprecatedTokens;
 	public static fun getFontFamily (Lcom/orange/ouds/theme/OudsThemeContract;)Landroidx/compose/ui/text/font/FontFamily;
 	public static fun getFontFamily (Lcom/orange/ouds/theme/OudsThemeContract;Ljava/util/Locale;)Landroidx/compose/ui/text/font/FontFamily;
 }

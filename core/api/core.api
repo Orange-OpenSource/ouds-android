@@ -2771,6 +2771,7 @@ public final class com/orange/ouds/core/theme/OudsColorScheme$Overlay {
 	public final fun getFloating-0d7_KjU ()J
 	public final fun getModal-0d7_KjU ()J
 	public final fun getModalSheet-0d7_KjU ()J
+	public final fun getSticky-0d7_KjU ()J
 	public final fun getTooltip-0d7_KjU ()J
 }
 
@@ -4113,7 +4114,9 @@ public final class com/orange/ouds/core/theme/OudsComponents$PinCodeInput {
 public final class com/orange/ouds/core/theme/OudsComponents$PinCodeInput$Size {
 	public static final field $stable I
 	public final fun getMaxWidth-D9Ej5fM ()F
+	public final fun getMaxWidthDigitInput-D9Ej5fM ()F
 	public final fun getMinWidth-D9Ej5fM ()F
+	public final fun getMinWidthDigitInput-D9Ej5fM ()F
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$PinCodeInput$Space {
@@ -4451,6 +4454,7 @@ public final class com/orange/ouds/core/theme/OudsComponents$TextInput$Space$Col
 public final class com/orange/ouds/core/theme/OudsComponents$TextInput$Space$PaddingBlock {
 	public static final field $stable I
 	public final fun getDefault-D9Ej5fM ()F
+	public final fun getHelperText-D9Ej5fM ()F
 	public final fun getTopHelperText-D9Ej5fM ()F
 }
 
@@ -4459,6 +4463,7 @@ public final class com/orange/ouds/core/theme/OudsComponents$TextInput$Space$Pad
 	public final fun getCountrySelectorEnd-D9Ej5fM ()F
 	public final fun getCountrySelectorStart-D9Ej5fM ()F
 	public final fun getDefault-D9Ej5fM ()F
+	public final fun getLeadingTrailingAction-D9Ej5fM ()F
 	public final fun getTrailingAction-D9Ej5fM ()F
 }
 
@@ -4760,10 +4765,12 @@ public final class com/orange/ouds/core/theme/OudsSpaces$ColumnGap {
 	public static final field $stable I
 	public final fun getExtraLarge-D9Ej5fM ()F
 	public final fun getExtraSmall-D9Ej5fM ()F
+	public final fun getFourExtraLarge-D9Ej5fM ()F
 	public final fun getLarge-D9Ej5fM ()F
 	public final fun getMedium-D9Ej5fM ()F
 	public final fun getNone-D9Ej5fM ()F
 	public final fun getSmall-D9Ej5fM ()F
+	public final fun getThreeExtraLarge-D9Ej5fM ()F
 	public final fun getThreeExtraSmall-D9Ej5fM ()F
 	public final fun getTwoExtraLarge-D9Ej5fM ()F
 	public final fun getTwoExtraSmall-D9Ej5fM ()F
