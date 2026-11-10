@@ -40,7 +40,7 @@ fun LabelTextDemoScreen() {
         bottomSheetContent = { LabelTextDemoBottomSheetContent(state = state) },
         codeSnippet = { labelTextDemoCodeSnippet(state = state) },
         demoContent = { LabelTextDemoContent(state = state) },
-        version = OudsVersion.Component.Label
+        version = OudsVersion.Component.TypographyLabel
     )
 }
 

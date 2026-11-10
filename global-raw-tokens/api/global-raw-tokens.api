@@ -198,11 +198,13 @@ public final class com/orange/ouds/tokens/raw/OudsDimensionRawTokens {
 	public static final field Dimension9000 F
 	public static final field Dimension950 F
 	public static final field DimensionBase I
+	public static final field DimensionN50 F
 	public static final field DimensionOutOfSystem150 F
 	public static final field DimensionOutOfSystem25 F
 	public static final field DimensionOutOfSystem250 F
 	public static final field DimensionOutOfSystem50 F
 	public static final field DimensionOutOfSystem75 F
+	public static final field DimensionOutOfSystemN50 F
 	public static final field INSTANCE Lcom/orange/ouds/tokens/raw/OudsDimensionRawTokens;
 }
 

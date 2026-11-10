@@ -37,6 +37,7 @@ import com.orange.ouds.theme.OudsDrawableResources
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.deprecated.OudsDeprecatedTokens
 import com.orange.ouds.theme.tokens.semantic.OudsGridSemanticTokens
 
 private fun missingCompositionLocalError(compositionLocalName: String): Nothing =
@@ -64,6 +65,7 @@ internal val LocalDrawableResources = staticCompositionLocalOf<OudsDrawableResou
 internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { missingCompositionLocalError("LocalThemeSettings") }
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
+internal val LocalDeprecatedTokens = staticCompositionLocalOf<OudsDeprecatedTokens> { missingCompositionLocalError("LocalDeprecatedTokens") }
 
 /**
  * Composition local that provides the current [OudsSkeleton] state to the composable hierarchy.
@@ -175,6 +177,11 @@ object OudsTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsTokens.current
+    
+    internal val deprecatedTokens: OudsDeprecatedTokens
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDeprecatedTokens.current
 
     internal val drawableResources: OudsDrawableResources
         @Composable
@@ -206,7 +213,7 @@ fun OudsTheme(
     content: @Composable () -> Unit
 ) {
     with(theme) {
-        val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth().value, theme.gridTokens)
+        val windowWidthSizeClass = WindowWidthSizeClass.compute(currentWindowWidth().value, gridTokens)
         val context = LocalContext.current
         val applicationLocaleList = if (!LocalInspectionMode.current) {
             LocaleManagerCompat.getApplicationLocales(context)
@@ -219,8 +226,8 @@ fun OudsTheme(
 
         CompositionLocalProvider(
             LocalHighContrastModeEnabled provides context.isHighContrastModeEnabled(),
-            LocalLightColorScheme provides colorTokens.lightColorScheme,
-            LocalDarkColorScheme provides colorTokens.darkColorScheme,
+            LocalLightColorScheme provides colorTokens.getLightColorScheme(deprecatedTokens.semantic.color),
+            LocalDarkColorScheme provides colorTokens.getDarkColorScheme(deprecatedTokens.semantic.color),
             LocalMaterialLightColorScheme provides materialColorTokens.materialLightColorScheme,
             LocalMaterialDarkColorScheme provides materialColorTokens.materialDarkColorScheme,
             LocalBorders provides borderTokens.getBorders(),
@@ -235,7 +242,8 @@ fun OudsTheme(
             LocalComponentsTokens provides componentsTokens,
             LocalDrawableResources provides drawableResources,
             LocalThemeSettings provides settings,
-            LocalThemeName provides theme.name
+            LocalThemeName provides name,
+            LocalDeprecatedTokens provides deprecatedTokens
         ) {
             OudsColorSchemeContent(
                 darkThemeEnabled = darkThemeEnabled,
@@ -275,7 +283,9 @@ private fun OudsColorSchemeContent(darkThemeEnabled: Boolean, content: @Composab
         LocalColorScheme provides colorScheme
     ) {
         // Bind LocalComponents after the others because the getComponents method needs to access the other composition locals
-        val components = LocalComponentsTokens.current.getComponents()
+        val componentsTokens = LocalComponentsTokens.current
+        val deprecatedTokens = LocalDeprecatedTokens.current
+        val components = componentsTokens.getComponents(deprecatedTokens.components)
         CompositionLocalProvider(LocalComponents provides components) {
             MaterialTheme(
                 colorScheme = materialColorScheme,

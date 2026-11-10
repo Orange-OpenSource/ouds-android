@@ -24,6 +24,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
+import com.orange.ouds.theme.tokens.semantic.deprecated.OudsDeprecatedColorSemanticTokens
 
 /**
  * Holds all the colour-related properties defined in the OUDS theme.
@@ -390,6 +391,8 @@ class OudsColorScheme internal constructor(
         class Status internal constructor(
             val accent: Color,
             val info: Color,
+            @Deprecated("These tokens are no longer used in OUDS.")
+            @Suppress("DEPRECATION")
             val inverse: Inverse,
             val negative: Color,
             val positive: Color,
@@ -404,10 +407,15 @@ class OudsColorScheme internal constructor(
              * @property positive Inverse positive status content color.
              * @property warning Inverse warning status content color.
              */
+            @Deprecated("These tokens are no longer used in OUDS.")
             class Inverse internal constructor(
+                @Deprecated("This token is no longer used in OUDS.")
                 val info: Color,
+                @Deprecated("This token is no longer used in OUDS.")
                 val negative: Color,
+                @Deprecated("This token is no longer used in OUDS.")
                 val positive: Color,
+                @Deprecated("This token is no longer used in OUDS.")
                 val warning: Color
             )
         }
@@ -423,6 +431,7 @@ class OudsColorScheme internal constructor(
      */
     class Opacity internal constructor(
         val transparent: Color,
+        @Deprecated("This token is no longer used in OUDS.")
         val transparentInverse: Color,
         val lowest: Color,
         val lower: Color
@@ -437,16 +446,19 @@ class OudsColorScheme internal constructor(
      * @property floating Background color for floating elements.
      * @property modal Background color for modal dialogs.
      * @property modalSheet Background color for sheets.
+     * @property sticky Background color for sticky elements.
      * @property tooltip Background color for tooltips.
      */
     class Overlay internal constructor(
         val backdrop: Color,
         val dropdown: Color,
         val drag: Color,
+        @Deprecated("Please use sticky instead.", ReplaceWith("OudsTheme.colorScheme.overlay.sticky"))
         val floating: Color,
-        @Deprecated("Token renamed to 'modalSheet'", replaceWith = ReplaceWith("modalSheet"))
+        @Deprecated("Please use modalSheet instead.", ReplaceWith("OudsTheme.colorScheme.overlay.modalSheet"))
         val modal: Color,
         val modalSheet: Color,
+        val sticky: Color,
         val tooltip: Color
     )
 
@@ -616,7 +628,7 @@ class OudsColorScheme internal constructor(
 
         class Secondary(
             val high: Color,
-            @Deprecated("Replaced by 'higherHigh' and 'higherLow' tokens")
+            @Deprecated("Please use higherHigh or higherLow instead.")
             val higher: Color,
             val higherHigh: Color,
             val higherLow: Color,
@@ -826,8 +838,8 @@ class OudsColorScheme internal constructor(
     }
 }
 
-internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
-    get() = OudsColorScheme(
+internal fun OudsColorSemanticTokens.getLightColorScheme(deprecated: OudsDeprecatedColorSemanticTokens): OudsColorScheme {
+    return OudsColorScheme(
         action = with(actionColorTokens) {
             OudsColorScheme.Action(
                 disabled = actionDisabledLight,
@@ -952,12 +964,14 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 status = OudsColorScheme.Content.Status(
                     accent = contentStatusAccentLight,
                     info = contentStatusInfoLight,
-                    inverse = OudsColorScheme.Content.Status.Inverse(
-                        info = contentStatusInverseInfoLight,
-                        negative = contentStatusInverseNegativeLight,
-                        positive = contentStatusInversePositiveLight,
-                        warning = contentStatusInverseWarningLight,
-                    ),
+                    inverse = with(deprecated.content) {
+                        @Suppress("DEPRECATION") OudsColorScheme.Content.Status.Inverse(
+                            info = contentStatusInverseInfoLight,
+                            negative = contentStatusInverseNegativeLight,
+                            positive = contentStatusInversePositiveLight,
+                            warning = contentStatusInverseWarningLight,
+                        )
+                    },
                     negative = contentStatusNegativeLight,
                     positive = contentStatusPositiveLight,
                     warning = contentStatusWarningLight,
@@ -967,7 +981,7 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
         opacity = with(opacityColorTokens) {
             OudsColorScheme.Opacity(
                 transparent = opacityTransparentLight,
-                transparentInverse = opacityTransparentInverseLight,
+                transparentInverse = @Suppress("DEPRECATION") deprecated.opacity.opacityTransparentInverseLight,
                 lowest = opacityLowestLight,
                 lower = opacityLowerLight,
             )
@@ -977,9 +991,10 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
                 backdrop = overlayBackdropLight,
                 dropdown = overlayDropdownLight,
                 drag = overlayDragLight,
-                floating = overlayFloatingLight,
+                floating = overlayStickyLight,
                 modal = overlayModalSheetLight,
                 modalSheet = overlayModalSheetLight,
+                sticky = overlayStickyLight,
                 tooltip = overlayTooltipLight
             )
         },
@@ -1072,9 +1087,10 @@ internal val OudsColorSemanticTokens.lightColorScheme: OudsColorScheme
             )
         }
     )
+}
 
-internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
-    get() = OudsColorScheme(
+internal fun OudsColorSemanticTokens.getDarkColorScheme(deprecated: OudsDeprecatedColorSemanticTokens): OudsColorScheme {
+    return OudsColorScheme(
         action = with(actionColorTokens) {
             OudsColorScheme.Action(
                 disabled = actionDisabledDark,
@@ -1199,12 +1215,14 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 status = OudsColorScheme.Content.Status(
                     accent = contentStatusAccentDark,
                     info = contentStatusInfoDark,
-                    inverse = OudsColorScheme.Content.Status.Inverse(
-                        info = contentStatusInverseInfoDark,
-                        negative = contentStatusInverseNegativeDark,
-                        positive = contentStatusInversePositiveDark,
-                        warning = contentStatusInverseWarningDark,
-                    ),
+                    inverse = with(deprecated.content) {
+                        @Suppress("DEPRECATION") OudsColorScheme.Content.Status.Inverse(
+                            info = contentStatusInverseInfoDark,
+                            negative = contentStatusInverseNegativeDark,
+                            positive = contentStatusInversePositiveDark,
+                            warning = contentStatusInverseWarningDark,
+                        )
+                    },
                     negative = contentStatusNegativeDark,
                     positive = contentStatusPositiveDark,
                     warning = contentStatusWarningDark,
@@ -1214,7 +1232,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
         opacity = with(opacityColorTokens) {
             OudsColorScheme.Opacity(
                 transparent = opacityTransparentDark,
-                transparentInverse = opacityTransparentInverseDark,
+                transparentInverse = @Suppress("DEPRECATION") deprecated.opacity.opacityTransparentInverseDark,
                 lowest = opacityLowestDark,
                 lower = opacityLowerDark,
             )
@@ -1224,9 +1242,10 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
                 backdrop = overlayBackdropDark,
                 dropdown = overlayDropdownDark,
                 drag = overlayDragDark,
-                floating = overlayFloatingDark,
+                floating = overlayStickyDark,
                 modal = overlayModalSheetDark,
                 modalSheet = overlayModalSheetDark,
+                sticky = overlayStickyDark,
                 tooltip = overlayTooltipDark,
             )
         },
@@ -1320,6 +1339,7 @@ internal val OudsColorSemanticTokens.darkColorScheme: OudsColorScheme
             )
         }
     )
+}
 
 // Always colors are the same in Light & Dark modes
 private val OudsColorSemanticTokens.alwaysColorScheme: OudsColorScheme.Always
@@ -1616,10 +1636,6 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Content): Color {
             OudsColorKeyToken.Content.OnStatus.Accent.Muted -> onStatus.accent.muted
             OudsColorKeyToken.Content.Status.Accent -> status.accent
             OudsColorKeyToken.Content.Status.Info -> status.info
-            OudsColorKeyToken.Content.Status.Inverse.Info -> status.inverse.info
-            OudsColorKeyToken.Content.Status.Inverse.Negative -> status.inverse.negative
-            OudsColorKeyToken.Content.Status.Inverse.Positive -> status.inverse.positive
-            OudsColorKeyToken.Content.Status.Inverse.Warning -> status.inverse.warning
             OudsColorKeyToken.Content.Status.Negative -> status.negative
             OudsColorKeyToken.Content.Status.Positive -> status.positive
             OudsColorKeyToken.Content.Status.Warning -> status.warning
@@ -1778,7 +1794,6 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Opacity): Color {
             OudsColorKeyToken.Opacity.Lower -> lower
             OudsColorKeyToken.Opacity.Lowest -> lowest
             OudsColorKeyToken.Opacity.Transparent -> transparent
-            OudsColorKeyToken.Opacity.TransparentInverse -> transparentInverse
         }
     }
 }
@@ -1790,8 +1805,8 @@ private fun OudsColorScheme.fromToken(token: OudsColorKeyToken.Overlay): Color {
             OudsColorKeyToken.Overlay.Backdrop -> backdrop
             OudsColorKeyToken.Overlay.Drag -> drag
             OudsColorKeyToken.Overlay.Dropdown -> dropdown
-            OudsColorKeyToken.Overlay.Floating -> floating
             OudsColorKeyToken.Overlay.ModalSheet -> modalSheet
+            OudsColorKeyToken.Overlay.Sticky -> sticky
             OudsColorKeyToken.Overlay.Tooltip -> tooltip
         }
     }

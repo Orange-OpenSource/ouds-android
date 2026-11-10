@@ -14,6 +14,7 @@ package com.orange.ouds.theme
 
 import androidx.compose.ui.text.font.FontFamily
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.deprecated.OudsDeprecatedTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
@@ -134,4 +135,11 @@ interface OudsThemeContract {
      * Example: If your theme is "LoremIpsum", name resources like `ic_lorem_ipsum_checkbox_selected`, `ic_lorem_ipsum_chip_tick`, etc.
      */
     val drawableResources: OudsDrawableResources
+
+    /**
+     * The collection of deprecated tokens that are being phased out.
+     * For internal use only.
+     */
+    val deprecatedTokens: OudsDeprecatedTokens
+        get() = OudsDeprecatedTokens.Default
 }

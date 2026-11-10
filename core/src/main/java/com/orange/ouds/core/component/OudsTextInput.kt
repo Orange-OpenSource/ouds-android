@@ -1320,7 +1320,7 @@ internal fun OudsTextInputDecorator(
                     .padding(vertical = spacePaddingBlockDefault.value)
                     .padding(
                         start = spacePaddingInlineDefault.value,
-                        end = if (trailingIconButton != null || hasError || state == OudsTextInputState.Loading) spacePaddingInlineTrailingAction.value else spacePaddingInlineDefault.value
+                        end = if (trailingIconButton != null || hasError || state == OudsTextInputState.Loading) spacePaddingInlineLeadingTrailingAction.value else spacePaddingInlineDefault.value
                     ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
@@ -1557,7 +1557,7 @@ private fun OudsTextInputHelperTextErrorMessage(
                 .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
                 .fillMaxWidth()
                 .then(modifier)
-                .padding(top = spacePaddingBlockTopHelperText.value)
+                .padding(top = spacePaddingBlockHelperText.value)
             val textStyle = OudsTheme.typography.label.medium.default
             val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
             val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
