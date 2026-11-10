@@ -206,8 +206,7 @@ class OudsControlItemIcon private constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsControlItemIcon.ExtraParameters, OudsControlItemIcon>(ExtraParameters::class.java, graphicsObject, "") {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color
     ) : OudsComponentContent.ExtraParameters()
 

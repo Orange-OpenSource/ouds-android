@@ -19,7 +19,7 @@ import com.orange.ouds.theme.tokens.OudsColorKeyToken
 import com.orange.ouds.theme.tokens.OudsSpaceKeyToken
 import com.orange.ouds.theme.tokens.components.OudsTypographyTokens
 
-internal data class SoshTypographyTokens(
+internal class SoshTypographyTokens(
     override val colorContentMarker: OudsColorKeyToken = OudsColorKeyToken.Unspecified,
     override val headingLargeMarker: Boolean = false,
     @Deprecated("") override val spacePaddingBlockBottomHeadingLargeMarker: OudsSpaceKeyToken.PaddingBlock = OudsSpaceKeyToken.PaddingBlock.None,

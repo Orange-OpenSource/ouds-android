@@ -25,4 +25,4 @@ import com.orange.ouds.foundation.InternalOudsApi
  * @suppress
  */
 @InternalOudsApi
-data class OudsLightDarkColor(val light: Color, val dark: Color)
+class OudsLightDarkColor(val light: Color, val dark: Color)

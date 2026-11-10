@@ -401,8 +401,7 @@ open class OudsBadgeIcon internal constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsBadgeIcon.ExtraParameters, OudsBadgeIcon>(ExtraParameters::class.java, graphicsObjectProvider, { "" }) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val enabled: Boolean,
         internal val status: OudsIconBadgeStatus
     ) : OudsComponentContent.ExtraParameters()

@@ -18,6 +18,6 @@ package com.orange.ouds.theme.sosh.tokens.components
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
 import com.orange.ouds.theme.tokens.components.OudsDividerTokens
 
-internal data class SoshDividerTokens(
+internal class SoshDividerTokens(
     override val borderWidth: OudsBorderKeyToken.Width = OudsBorderKeyToken.Width.Thin
 ) : OudsDividerTokens

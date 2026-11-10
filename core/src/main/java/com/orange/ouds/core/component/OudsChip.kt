@@ -44,8 +44,7 @@ class OudsChipIcon private constructor(
     override val tinted: Boolean
 ) : OudsComponentIcon<OudsChipIcon.ExtraParameters, OudsChipIcon>(ExtraParameters::class.java, graphicsObject, contentDescription) {
 
-    @ConsistentCopyVisibility
-    data class ExtraParameters internal constructor(
+    class ExtraParameters internal constructor(
         internal val tint: Color
     ) : OudsComponentContent.ExtraParameters()
 

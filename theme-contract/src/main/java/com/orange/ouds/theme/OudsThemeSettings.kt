@@ -51,7 +51,7 @@ import kotlinx.parcelize.Parcelize
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
-data class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructor(
+class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructor(
     val roundedCornerButtons: Boolean? = null,
     val roundedCornerTextInputs: Boolean? = null,
     @IntroducedAt("1.3.0") val roundedCornerAlertMessages: Boolean? = null,
@@ -65,4 +65,12 @@ data class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) const
         level = DeprecationLevel.HIDDEN
     )
     constructor(roundedCornerButtons: Boolean?) : this(roundedCornerButtons, null, null, null, null)
+
+    fun copy(
+        roundedCornerButtons: Boolean? = this.roundedCornerButtons,
+        roundedCornerTextInputs: Boolean? = this.roundedCornerTextInputs,
+        roundedCornerAlertMessages: Boolean? = this.roundedCornerAlertMessages,
+        roundedCornerProgressIndicators: Boolean? = this.roundedCornerProgressIndicators,
+        roundedCornerCardItems: Boolean? = this.roundedCornerCardItems
+    ) = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators, roundedCornerCardItems)
 }

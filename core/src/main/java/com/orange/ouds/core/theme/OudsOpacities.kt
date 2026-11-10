@@ -37,8 +37,7 @@ import com.orange.ouds.theme.tokens.semantic.OudsOpacitySemanticTokens
  * @property strong A high opacity level, almost opaque.
  * @property opaque Fully opaque (1.0). The element is solid and blocks content behind it.
  */
-@ConsistentCopyVisibility
-data class OudsOpacities internal constructor(
+class OudsOpacities internal constructor(
     val disabled: Float,
     val invisible: Float,
     val weakest: Float,

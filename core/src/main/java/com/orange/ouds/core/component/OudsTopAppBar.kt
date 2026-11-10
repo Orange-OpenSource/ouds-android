@@ -1134,7 +1134,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
  * @property contentDescription Content description of the badge, needed for accessibility support (vocalized by Talkback).
  * @property count Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.Medium] size. Otherwise, it has an [OudsBadgeSize.ExtraSmall] size.
  */
-data class OudsTopAppBarActionBadge(val contentDescription: String, val count: Int? = null)
+class OudsTopAppBarActionBadge(val contentDescription: String, val count: Int? = null)
 
 private enum class OudsTopAppBarSize {
 

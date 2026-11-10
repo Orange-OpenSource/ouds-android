@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorAiSemanticTokens
 
-internal data class SoshColorAiSemanticTokens(
+internal class SoshColorAiSemanticTokens(
     override val aiPrimaryDark: Color = SoshColorRawTokens.ColorRaspberry300,
     override val aiPrimaryLight: Color = SoshColorRawTokens.ColorLochmaraDark240,
     override val aiQuaternaryDark: Color = SoshColorRawTokens.ColorLochmaraLight640,
