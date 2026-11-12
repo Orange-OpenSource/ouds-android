@@ -496,7 +496,17 @@ private val previewParameterValues: List<OudsCardPreviewParameter>
     )
 
 /**
- * TODO
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
+ * a raised appearance.
+ *
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
  */
 @Composable
 fun OudsElevatedCard(
@@ -515,7 +525,20 @@ fun OudsElevatedCard(
 }
 
 /**
- * TODO
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
+ * a raised appearance.
+ *
+ * @param onClick The action to perform when this card is clicked.
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
+ *    is provided, interactions will still happen internally.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
  */
 @Composable
 fun OudsElevatedCard(
@@ -538,7 +561,16 @@ fun OudsElevatedCard(
 }
 
 /**
- * TODO
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
+ *
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
  */
 @Composable
 fun OudsOutlinedCard(
@@ -557,7 +589,19 @@ fun OudsOutlinedCard(
 }
 
 /**
- * TODO
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
+ *
+ * @param onClick The action to perform when this card is clicked.
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
+ *    is provided, interactions will still happen internally.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
  */
 @Composable
 fun OudsOutlinedCard(
