@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -181,6 +182,7 @@ private object WhiteLabelThemeExampleColors {
     val Black = Color(0xFF121212)
 }
 
+@OptIn(InternalOudsApi::class)
 private val WhiteLabelThemeExample = with(WhiteLabelThemeExampleColors) {
     WhiteLabelTheme(
         whiteLabelFontFamily = { FontFamily.Cursive },
