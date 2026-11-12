@@ -1551,7 +1551,7 @@ private fun OudsTextInputHelperTextErrorMessage(
                     if (hasError) {
                         error(error.message)
                     } else {
-                        contentDescription = helperText.orEmpty()
+                        contentDescription = annotatedHelperText?.text.orElse { helperText }.orEmpty()
                     }
                 }
                 .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
