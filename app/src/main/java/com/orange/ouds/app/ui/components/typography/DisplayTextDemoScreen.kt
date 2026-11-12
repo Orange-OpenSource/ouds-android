@@ -28,10 +28,12 @@ import com.orange.ouds.core.component.OudsDisplayTextSize
 import com.orange.ouds.core.component.common.text.OudsAnnotatedDisplayText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.theme.OudsVersion
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun DisplayTextDemoScreen() {
     val state = rememberDisplayTextDemoState()

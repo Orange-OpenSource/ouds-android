@@ -37,6 +37,7 @@ import com.orange.ouds.theme.OudsIconsPackVersion
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.declaredMemberProperties
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun AboutVersionsScreen() {
     Screen {
@@ -69,7 +70,6 @@ fun AboutVersionsScreen() {
                 )
             }
             item {
-                @OptIn(InternalOudsApi::class)
                 Version(version = Version(name = stringResource(R.string.app_about_versions_iconsPack_label), value = OudsIconsPackVersion))
             }
         }

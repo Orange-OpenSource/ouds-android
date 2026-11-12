@@ -51,11 +51,13 @@ import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.common.text.OudsAnnotatedBulletListLabel
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedBulletListLabel
 import com.orange.ouds.core.component.rememberOudsSkeletonState
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.extensions.tryOrNull
 import com.orange.ouds.theme.OudsVersion
 import kotlin.reflect.full.createInstance
 
+@OptIn(InternalOudsApi::class)
 @Composable
 fun BulletListDemoScreen() {
     val state = rememberBulletListDemoState()
