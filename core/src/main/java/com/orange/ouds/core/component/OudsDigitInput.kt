@@ -85,11 +85,11 @@ internal fun OudsDigitInput(
     ) {
         val textInputTokens = OudsTheme.componentsTokens.textInput
         val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
-        val minWidth = if (smallDeviceSpecificRules) Dp.Unspecified else pinCodeInputTokens.sizeMinWidth.dp
+        val minWidth = if (smallDeviceSpecificRules) Dp.Unspecified else pinCodeInputTokens.sizeMinWidthDigitInput.dp
         SkeletonLayout(
             modifier = Modifier
                 .heightIn(min = textInputTokens.sizeMinHeight.dp)
-                .widthIn(min = minWidth, max = pinCodeInputTokens.sizeMaxWidth.dp)
+                .widthIn(min = minWidth, max = pinCodeInputTokens.sizeMaxWidthDigitInput.dp)
                 .then(modifier), // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
             componentState = state,
             securityMargin = false,

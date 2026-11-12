@@ -136,7 +136,7 @@ enum class OudsColoredBoxColor {
             return when (keyToken) {
                 OudsColorKeyToken.Overlay.Backdrop,
                 OudsColorKeyToken.Overlay.Drag,
-                OudsColorKeyToken.Overlay.Floating -> error("OudsColoredBox does not support this color.")
+                OudsColorKeyToken.Overlay.Sticky -> error("OudsColoredBox does not support this color.")
                 OudsColorKeyToken.Overlay.Dropdown -> OverlayDropdown
                 OudsColorKeyToken.Overlay.ModalSheet -> OverlayModal
                 OudsColorKeyToken.Overlay.Tooltip -> OverlayTooltip

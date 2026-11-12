@@ -20,7 +20,7 @@ import com.orange.ouds.theme.sosh.tokens.raw.SoshColorRawTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.tokens.raw.OudsColorRawTokens
 
-internal class SoshMaterialColorTokens(
+internal data class SoshMaterialColorTokens(
     override val backgroundDark: Color = SoshColorRawTokens.ColorFunctionalGrayDark880,
     override val backgroundLight: Color = OudsColorRawTokens.ColorFunctionalWhite,
     override val errorContainerDark: Color = Color.Unspecified,

@@ -1,0 +1,25 @@
+/*
+ * Software Name: OUDS Android
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Android library of reusable graphical components 
+ */
+
+package com.orange.ouds.theme.orange.tokens.deprecated
+
+import com.orange.ouds.theme.orange.tokens.components.deprecated.OrangeDeprecatedComponentsTokens
+import com.orange.ouds.theme.orange.tokens.semantic.deprecated.OrangeDeprecatedSemanticTokens
+import com.orange.ouds.theme.tokens.components.deprecated.OudsDeprecatedComponentsTokens
+import com.orange.ouds.theme.tokens.deprecated.OudsDeprecatedTokens
+import com.orange.ouds.theme.tokens.semantic.deprecated.OudsDeprecatedSemanticTokens
+
+internal class OrangeDeprecatedTokens : OudsDeprecatedTokens {
+
+    override val components: OudsDeprecatedComponentsTokens = OrangeDeprecatedComponentsTokens()
+    override val semantic: OudsDeprecatedSemanticTokens = OrangeDeprecatedSemanticTokens()
+}

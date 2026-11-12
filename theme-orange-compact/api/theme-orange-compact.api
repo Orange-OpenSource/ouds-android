@@ -5,6 +5,7 @@ public class com/orange/ouds/theme/orangebusinesstools/OrangeBusinessToolsTheme 
 	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
 	public fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public fun getDeprecatedTokens ()Lcom/orange/ouds/theme/tokens/deprecated/OudsDeprecatedTokens;
 	public fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
 	public fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
 	public fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;
@@ -39,6 +40,7 @@ public class com/orange/ouds/theme/orangecompact/OrangeCompactTheme : com/orange
 	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
 	public fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public fun getDeprecatedTokens ()Lcom/orange/ouds/theme/tokens/deprecated/OudsDeprecatedTokens;
 	public fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
 	public fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
 	public fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;

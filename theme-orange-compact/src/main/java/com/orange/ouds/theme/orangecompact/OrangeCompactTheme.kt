@@ -24,6 +24,7 @@ import com.orange.ouds.theme.orange.OrangeFontProvider
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueArabic
 import com.orange.ouds.theme.orange.OrangeHelveticaNeueLatin
 import com.orange.ouds.theme.orangecompact.tokens.components.OrangeCompactComponentsTokens
+import com.orange.ouds.theme.orangecompact.tokens.deprecated.OrangeCompactDeprecatedTokens
 import com.orange.ouds.theme.orangecompact.tokens.material.OrangeCompactMaterialColorTokens
 import com.orange.ouds.theme.orangecompact.tokens.semantic.OrangeCompactBorderSemanticTokens
 import com.orange.ouds.theme.orangecompact.tokens.semantic.OrangeCompactColorSemanticTokens
@@ -35,6 +36,7 @@ import com.orange.ouds.theme.orangecompact.tokens.semantic.OrangeCompactOpacityS
 import com.orange.ouds.theme.orangecompact.tokens.semantic.OrangeCompactSizeSemanticTokens
 import com.orange.ouds.theme.orangecompact.tokens.semantic.OrangeCompactSpaceSemanticTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
+import com.orange.ouds.theme.tokens.deprecated.OudsDeprecatedTokens
 import com.orange.ouds.theme.tokens.material.OudsMaterialColorTokens
 import com.orange.ouds.theme.tokens.semantic.OudsBorderSemanticTokens
 import com.orange.ouds.theme.tokens.semantic.OudsColorSemanticTokens
@@ -159,7 +161,7 @@ open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) cons
         level = DeprecationLevel.HIDDEN
     )
     constructor(orangeFontFamily: OrangeFontFamily, roundedCornerButtons: Boolean) : this(orangeFontFamily, roundedCornerButtons, false, false, false, false)
-    
+
     override val name: String
         get() = ORANGE_COMPACT_THEME_NAME
 
@@ -215,4 +217,7 @@ open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) cons
 
     override val drawableResources: OudsDrawableResources
         get() = OrangeDrawableResources()
+
+    override val deprecatedTokens: OudsDeprecatedTokens
+        get() = OrangeCompactDeprecatedTokens()
 }
