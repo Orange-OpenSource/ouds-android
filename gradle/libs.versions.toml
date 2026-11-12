@@ -35,7 +35,7 @@ mockitoKotlin = "6.4.0"
 mustacheJava = "0.9.14"
 navigationCompose = "2.9.8"
 paparazzi = "2.0.0-alpha05.1"
-sdkCommon = "32.5.0"
+sdkCommon = "32.5.1"
 zxing = "3.5.4"
 
 [libraries]
