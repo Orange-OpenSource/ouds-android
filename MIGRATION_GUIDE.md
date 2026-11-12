@@ -189,7 +189,7 @@ Space token properties (except `fixed` and `scaled`) are now marked with `@Restr
 
 1. **Search your codebase** for usage of `OudsTheme.spaces.paddingInline`, `OudsTheme.spaces.paddingBlock`, `OudsTheme.spaces.inset`, `OudsTheme.spaces.columnGap`, or `OudsTheme.spaces.rowGap`
 2. **Replace with `OudsTheme.spaces.fixed` or `OudsTheme.spaces.scaled`** which provide the standard spacing values
-3. **If direct access to restricted tokens is necessary**, opt-in by adding `@OptIn(RestrictedOudsApi::class)` at the call site or file level
+3. **If direct access to restricted tokens is necessary** —most commonly when creating custom components—, opt-in by adding `@OptIn(RestrictedOudsApi::class)` at the call site or file level
 4. **Recompile your application** after upgrading
 
 ---
