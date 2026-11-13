@@ -23,6 +23,7 @@ import androidx.compose.ui.window.Dialog
 import com.orange.ouds.app.R
 import com.orange.ouds.core.component.OudsRadioButtonItem
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.theme.whitelabel.WhiteLabelTheme
 
 @Composable
 fun ChangeThemeDialog(themeState: ThemeState, onThemeChange: (String) -> Unit, onDismissRequest: () -> Unit) {
@@ -46,9 +47,14 @@ private fun ChangeThemeDialogContent(themeState: ThemeState, onThemeChange: (Str
     ) {
         Column(modifier = Modifier.selectableGroup()) {
             themeState.themes.forEach { theme ->
+                val displayName = if (theme is WhiteLabelTheme) {
+                    stringResource(R.string.app_themeDialog_whiteLabelExample_label, theme.name)
+                } else {
+                    theme.name
+                }
                 OudsRadioButtonItem(
                     selected = theme.name == themeState.currentTheme.name,
-                    label = theme.name,
+                    label = displayName,
                     onClick = { onThemeChange(theme.name) },
                     divider = false
                 )
