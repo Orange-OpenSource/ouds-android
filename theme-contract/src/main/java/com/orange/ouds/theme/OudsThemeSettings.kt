@@ -48,6 +48,12 @@ import kotlinx.parcelize.Parcelize
  *   For standard or business-oriented journeys, keep the default corners.
  *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
  *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
+ * @property roundedCornerChatInputs  Indicates if rounded corners should be applied to every chat inputs.
+ *   Set to `false` for a square finish, or `true` for a finish with rounded corner.
+ *   To be favored in more emotional, immersive contexts or those tied to specific visual identities.
+ *   For standard or business-oriented journeys, keep the default corners.
+ *   This evolution addresses the need for flexibility in adapting the design to certain brand contexts.
+ *   Set to `null` if this setting has no effect on the associated theme (theme has always the same appearance managed by tokens).
  * @constructor Creates an instance of [OudsThemeSettings].
  */
 @Parcelize
@@ -56,7 +62,8 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
     val roundedCornerTextInputs: Boolean? = null,
     @IntroducedAt("1.3.0") val roundedCornerAlertMessages: Boolean? = null,
     @IntroducedAt("1.6.0") val roundedCornerProgressIndicators: Boolean? = null,
-    @IntroducedAt("2.0.0") val roundedCornerCardItems: Boolean? = null
+    @IntroducedAt("2.0.0") val roundedCornerCardItems: Boolean? = null,
+    @IntroducedAt("3.1.0-Unreleased") val roundedCornerChatInputs: Boolean? = null
 ) : Parcelable {
 
     // This constructor overload has been added to avoid binary compatibility issues following the replacement of @JvmOverloads with @IntroducedAt
@@ -71,6 +78,14 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
         roundedCornerTextInputs: Boolean? = this.roundedCornerTextInputs,
         roundedCornerAlertMessages: Boolean? = this.roundedCornerAlertMessages,
         roundedCornerProgressIndicators: Boolean? = this.roundedCornerProgressIndicators,
-        roundedCornerCardItems: Boolean? = this.roundedCornerCardItems
-    ) = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators, roundedCornerCardItems)
+        roundedCornerCardItems: Boolean? = this.roundedCornerCardItems,
+        roundedCornerChatInputs: Boolean? = this.roundedCornerChatInputs
+    ) = OudsThemeSettings(
+        roundedCornerButtons,
+        roundedCornerTextInputs,
+        roundedCornerAlertMessages,
+        roundedCornerProgressIndicators,
+        roundedCornerCardItems,
+        roundedCornerChatInputs
+    )
 }

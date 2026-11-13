@@ -130,6 +130,7 @@ const val ORANGE_THEME_NAME = "Orange"
  * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
  * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
  * @param roundedCornerCardItems Whether card items have rounded corners.
+ * @param roundedCornerChatInputs Whether chat inputs have rounded corners.
  */
 open class OrangeTheme @OptIn(ExperimentalVersionOverloading::class) constructor(
     private val orangeFontFamily: OrangeFontFamily,
@@ -137,7 +138,8 @@ open class OrangeTheme @OptIn(ExperimentalVersionOverloading::class) constructor
     private val roundedCornerTextInputs: Boolean = false,
     @IntroducedAt("1.3.0") private val roundedCornerAlertMessages: Boolean = false,
     @IntroducedAt("1.6.0") private val roundedCornerProgressIndicators: Boolean = false,
-    @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false
+    @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false,
+    @IntroducedAt("3.1.0-Unreleased") val roundedCornerChatInputs: Boolean = true
 ) : OudsThemeContract {
 
     /**
@@ -181,7 +183,8 @@ open class OrangeTheme @OptIn(ExperimentalVersionOverloading::class) constructor
             roundedCornerTextInputs,
             roundedCornerAlertMessages,
             roundedCornerProgressIndicators,
-            roundedCornerCardItems
+            roundedCornerCardItems,
+            roundedCornerChatInputs
         )
 
     override val colorTokens: OudsColorSemanticTokens
