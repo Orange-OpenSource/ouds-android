@@ -108,7 +108,3 @@ public final class com/orange/ouds/theme/OudsVersion$Tokens {
 	public static final field WireframeCore Ljava/lang/String;
 }
 
-public final class com/orange/ouds/theme/tokens/components/OudsLightDarkColor$Companion {
-	public final fun getUnspecified ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-}
-
