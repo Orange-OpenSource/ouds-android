@@ -32,6 +32,8 @@ import androidx.compose.ui.text.toUpperCase
 import com.orange.ouds.core.component.OudsLinkState
 import com.orange.ouds.core.component.linkContentColor
 import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.LocalParentEnabled
+import com.orange.ouds.core.theme.OudsTheme
 
 /**
  * Base class for annotated strings with rich text formatting support in OUDS components.
@@ -53,18 +55,20 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
 
     private val _annotatedString = annotatedString
 
-    // The link colors depend on the current light / dark mode as well as the current OudsColorMode
+    // The link colors depend on the current light / dark mode as well as the current OudsColorMode and the parent enabled state
     // Thus this function must be accessed at the call site of the Text composable it is displayed into
-    // If it is accessed elsewhere in the hierarchy, the light / dark mode or the OudsColorMode might be different
+    // If it is accessed elsewhere in the hierarchy, the light / dark mode, the OudsColorMode or the parent enabled state might be different
     @Composable
     internal fun annotatedString(
         linkAndStrongTextStyle: TextStyle
     ): AnnotatedString {
-        val linkStyles = getTextLinkStyles(linkAndStrongTextStyle)
+        val parentEnabled = LocalParentEnabled.current
+        val disabledColor = OudsTheme.colorScheme.content.disabled
+        val linkStyles = getTextLinkStyles(linkStyle = linkAndStrongTextStyle)
         return _annotatedString.mapAnnotations { range ->
             when (val annotation = range.item) {
                 is StringAnnotation if range.tag == ColorAnnotationTag -> {
-                    val color = Color(annotation.value.toInt())
+                    val color = if (parentEnabled) Color(annotation.value.toInt()) else disabledColor
                     with(range) { AnnotatedString.Range(SpanStyle(color = color), start, end) }
                 }
                 is StringAnnotation if annotation.value == StrongAnnotation -> {
@@ -74,10 +78,15 @@ open class OudsAnnotatedString<T> internal constructor(annotatedString: Annotate
                     with(range) { AnnotatedString.Range(SpanStyle(textDecoration = TextDecoration.LineThrough), start, end) }
                 }
                 is LinkAnnotation -> {
-                    val linkAnnotation = when (annotation) {
-                        is LinkAnnotation.Url -> annotation.copy(styles = linkStyles)
-                        is LinkAnnotation.Clickable -> annotation.copy(styles = linkStyles)
-                        else -> annotation
+                    val linkAnnotation = if (parentEnabled) {
+                        when(annotation) {
+                            is LinkAnnotation.Url -> annotation.copy(styles = linkStyles)
+                            is LinkAnnotation.Clickable -> annotation.copy(styles = linkStyles)
+                            else -> annotation
+                        }
+                    } else {
+                        // Link is disabled
+                        linkAndStrongTextStyle.copy(color = disabledColor, textDecoration = TextDecoration.Underline).toSpanStyle()
                     }
                     with(range) { AnnotatedString.Range(linkAnnotation, start, end) }
                 }

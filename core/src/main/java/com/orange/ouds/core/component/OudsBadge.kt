@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
@@ -226,6 +227,7 @@ private fun OudsBadge(
     withIconStatus: OudsIconBadgeStatus? = null,
     size: OudsBadgeSize = OudsBadgeDefaults.Size
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     val text = count?.let { if (it > OudsBadgeMaxCount) "+${OudsBadgeMaxCount}" else it.coerceAtLeast(0).toString() }
     // This outer box is necessary otherwise the user can change the size of the badge through the modifier
     Box(

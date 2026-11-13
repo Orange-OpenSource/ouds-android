@@ -16,6 +16,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.Dp
 import com.orange.ouds.core.component.common.text.OudsAnnotatedDisplayText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedDisplayText
 import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -84,7 +86,7 @@ fun OudsDisplayText(
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text,
-        color = color,
+        color = textColorOrDisabled(color = color),
         style = size.textStyle,
         textAlign = textAlign,
         overflow = overflow,
@@ -146,7 +148,7 @@ fun OudsDisplayText(
     Text(
         modifier = modifier.widthIn(max = size.maxWidth),
         text = text.annotatedString(linkAndStrongTextStyle = size.textStyle),
-        color = color,
+        color = textColorOrDisabled(color = color),
         style = size.textStyle,
         textAlign = textAlign,
         overflow = overflow,
@@ -228,11 +230,11 @@ private fun PreviewOudsDisplayText() {
 @Composable
 internal fun PreviewOudsDisplayText(
     theme: OudsThemeContract,
-    darkThemeEnabled: Boolean,
+    darkThemeEnabled: Boolean
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    PreviewEnumEntries<OudsDisplayTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
-        OudsDisplayText("Display", size = textSize)
-    }
+        PreviewEnumEntries<OudsDisplayTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
+            OudsDisplayText("Display", size = textSize)
+        }
 }
 
 @OudsPreviewLightDark
@@ -242,19 +244,28 @@ private fun PreviewOudsDisplayTextWithAnnotatedText() {
     PreviewOudsDisplayTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
+@OudsPreview
+@Composable
+private fun PreviewOudsDisplayTextWithAnnotatedTextAndDisabledParent() {
+    PreviewOudsDisplayTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parentEnabled = false)
+}
+
 @Composable
 internal fun PreviewOudsDisplayTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
+    parentEnabled: Boolean = true
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    val highlightColor = OudsTheme.colorScheme.content.brandPrimary
-    PreviewEnumEntries<OudsDisplayTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
-        OudsDisplayText(
-            text = buildOudsAnnotatedDisplayText {
-                append("Display with ")
-                withColor(color = highlightColor) { append("highlighted text") }
-            },
-            size = textSize
-        )
+    CompositionLocalProvider(LocalParentEnabled provides parentEnabled) {
+        val highlightColor = OudsTheme.colorScheme.content.brandPrimary
+        PreviewEnumEntries<OudsDisplayTextSize>(maxEnumEntriesInEachRow = 1) { textSize ->
+            OudsDisplayText(
+                text = buildOudsAnnotatedDisplayText {
+                    append("Display with ")
+                    withColor(color = highlightColor) { append("highlighted text") }
+                },
+                size = textSize
+            )
+        }
     }
 }

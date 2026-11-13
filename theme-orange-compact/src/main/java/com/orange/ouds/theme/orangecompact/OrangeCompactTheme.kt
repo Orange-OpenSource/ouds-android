@@ -137,6 +137,7 @@ const val ORANGE_COMPACT_THEME_NAME = "Orange Compact"
  * @param roundedCornerAlertMessages Whether alert messages have rounded corners.
  * @param roundedCornerProgressIndicators Whether progress indicators have rounded corners.
  * @param roundedCornerCardItems Whether card items have rounded corners.
+ * @param roundedCornerCards Whether cards have rounded corners.
  */
 open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) constructor(
     private val orangeFontFamily: OrangeFontFamily,
@@ -144,7 +145,8 @@ open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) cons
     private val roundedCornerTextInputs: Boolean = true,
     @IntroducedAt("1.3.0") private val roundedCornerAlertMessages: Boolean = false,
     @IntroducedAt("1.6.0") private val roundedCornerProgressIndicators: Boolean = false,
-    @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false
+    @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false,
+    @IntroducedAt("3.0.0") private val roundedCornerCards: Boolean = false
 ) : OudsThemeContract {
 
     // These constructor overloads have been added to avoid binary compatibility issues following the replacement of @JvmOverloads with @IntroducedAt
@@ -159,7 +161,7 @@ open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) cons
         level = DeprecationLevel.HIDDEN
     )
     constructor(orangeFontFamily: OrangeFontFamily, roundedCornerButtons: Boolean) : this(orangeFontFamily, roundedCornerButtons, false, false, false, false)
-    
+
     override val name: String
         get() = ORANGE_COMPACT_THEME_NAME
 
@@ -177,7 +179,8 @@ open class OrangeCompactTheme @OptIn(ExperimentalVersionOverloading::class) cons
             roundedCornerTextInputs,
             roundedCornerAlertMessages,
             roundedCornerProgressIndicators,
-            roundedCornerCardItems
+            roundedCornerCardItems,
+            roundedCornerCards
         )
 
     override val colorTokens: OudsColorSemanticTokens
