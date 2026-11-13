@@ -40,6 +40,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -56,6 +57,7 @@ import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
+import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
@@ -508,12 +510,17 @@ private fun getCardState(enabled: Boolean, loader: OudsCardLoader?, skeleton: Ou
     }
 }
 
-@Preview(name = "Light", heightDp = 700, widthDp = 1500, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Light",
+    heightDp = OudsPreviewableComponent.Card.ActionFilled.PreviewHeightDp,
+    widthDp = OudsPreviewableComponent.Card.ActionFilled.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 700,
-    widthDp = 1500, // TODO hard-coded value
+    heightDp = OudsPreviewableComponent.Card.ActionFilled.PreviewHeightDp,
+    widthDp = OudsPreviewableComponent.Card.ActionFilled.PreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -526,12 +533,17 @@ private fun PreviewOudsActionCardFilled(@PreviewParameter(OudsCardPreviewParamet
     )
 }
 
-@Preview(name = "Light", heightDp = 700, widthDp = 1500, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Light",
+    heightDp = OudsPreviewableComponent.Card.ActionOutlined.PreviewHeightDp,
+    widthDp = OudsPreviewableComponent.Card.ActionOutlined.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 700,
-    widthDp = 1500, // TODO hard-coded value
+    heightDp = OudsPreviewableComponent.Card.ActionOutlined.PreviewHeightDp,
+    widthDp = OudsPreviewableComponent.Card.ActionOutlined.PreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -544,12 +556,17 @@ private fun PreviewOudsActionCardOutlined(@PreviewParameter(OudsCardPreviewParam
     )
 }
 
-@Preview(name = "Light", heightDp = 700, widthDp = 1500, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Light",
+    heightDp = OudsPreviewableComponent.Card.ActionElevated.PreviewHeightDp,
+    widthDp = OudsPreviewableComponent.Card.ActionElevated.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 700,
-    widthDp = 1500, // TODO hard-coded value
+    heightDp = OudsPreviewableComponent.Card.ActionElevated.PreviewHeightDp,
+    widthDp = OudsPreviewableComponent.Card.ActionElevated.PreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -571,7 +588,7 @@ internal fun PreviewOudsActionCard(
     styleName: String?
 ) = with(parameter) {
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
-        val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
+        val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted.compositeOver(OudsTheme.colorScheme.surface.primary)
         val style = when (styleName) {
             OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(backgroundColor = backgroundColor, divider = true)
             OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
@@ -591,11 +608,15 @@ internal fun PreviewOudsActionCard(
     }
 }
 
-@Preview(name = "Light", widthDp = 1100, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Light",
+    widthDp = OudsPreviewableComponent.Card.Content.PreviewWidthDp,
+    device = OudsPreviewDevice
+)
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    widthDp = 1100, // TODO hard-coded value
+    widthDp = OudsPreviewableComponent.Card.Content.PreviewWidthDp,
     device = OudsPreviewDevice
 )
 @Composable
@@ -660,7 +681,7 @@ private val previewParameterValues: List<OudsCardPreviewParameter>
     )
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@Preview(heightDp = 1230, device = OudsPreviewDevice)
+@Preview(heightDp = OudsPreviewableComponent.Card.DisabledWithComponents.PreviewHeightDp, device = OudsPreviewDevice)
 @Composable
 private fun PreviewOudsCardDisabledWithComponents() {
     PreviewOudsCardDisabledWithComponents(theme = getPreviewTheme())

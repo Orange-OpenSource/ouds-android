@@ -24,6 +24,7 @@ import org.junit.runners.Suite
     OudsBottomSheetScaffoldTest::class,
     OudsBulletListTest::class,
     OudsButtonTest::class,
+    OudsCardTest::class,
     OudsCardItemTest::class,
     OudsCheckboxItemTest::class,
     OudsCheckboxTest::class,

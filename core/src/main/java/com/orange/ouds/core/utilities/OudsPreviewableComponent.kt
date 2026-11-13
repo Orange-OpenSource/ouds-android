@@ -26,6 +26,9 @@ import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemWithRoundedCornersParameterProvider
+import com.orange.ouds.core.component.OudsCardPreviewParameter
+import com.orange.ouds.core.component.OudsCardPreviewParameterProvider
+import com.orange.ouds.core.component.OudsCardStyle
 import com.orange.ouds.core.component.OudsCheckboxHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
@@ -120,6 +123,9 @@ import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
+import com.orange.ouds.core.component.PreviewOudsActionCard
+import com.orange.ouds.core.component.PreviewOudsCardDisabledWithComponents
+import com.orange.ouds.core.component.PreviewOudsContentCard
 import com.orange.ouds.core.component.PreviewOudsCheckbox
 import com.orange.ouds.core.component.PreviewOudsCheckboxHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItem
@@ -576,6 +582,99 @@ interface OudsPreviewableComponent {
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsButtonWithUntintedIcon(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+    }
+
+    @InternalOudsApi
+    object Card {
+
+        @InternalOudsApi
+        object ActionFilled : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 700
+            const val PreviewWidthDp = 1500
+
+            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsActionCard(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsCardPreviewParameter,
+                    styleName = OudsCardStyle.Filled::class.simpleName
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object ActionOutlined : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 700
+            const val PreviewWidthDp = 1500
+
+            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsActionCard(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsCardPreviewParameter,
+                    styleName = OudsCardStyle.Outlined::class.simpleName
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object ActionElevated : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 700
+            const val PreviewWidthDp = 1500
+
+            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsActionCard(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsCardPreviewParameter,
+                    styleName = OudsCardStyle.Elevated::class.simpleName
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object Content : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 1100
+
+            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsContentCard(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                    parameter = parameter as OudsCardPreviewParameter
+                )
+            }
+        }
+
+        @InternalOudsApi
+        object DisabledWithComponents : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1230
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsCardDisabledWithComponents(theme = theme)
             }
 
             override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
