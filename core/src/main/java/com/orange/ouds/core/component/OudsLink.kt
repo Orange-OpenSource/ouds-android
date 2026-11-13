@@ -61,6 +61,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
@@ -294,6 +295,7 @@ private fun OudsLink(
     density: OudsLinkDensity = OudsLinkDefaults.Density,
     skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     with(OudsTheme.components.link) {
         val interactionSource = remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()

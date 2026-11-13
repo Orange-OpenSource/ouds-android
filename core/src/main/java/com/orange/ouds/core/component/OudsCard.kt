@@ -23,10 +23,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
@@ -54,12 +54,11 @@ import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.utilities.LocalPreviewGridColumnEnumEntry
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
-import com.orange.ouds.core.utilities.OudsPreviewLightDark
+import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewFlowRow
-import com.orange.ouds.core.utilities.PreviewGrid
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
@@ -104,7 +103,9 @@ fun OudsCard(
 }
 
 /**
- * TODO definition
+ * An Action card is an interactive surface that groups related content around one primary action or navigation. The available card surface acts as the primary
+ * interaction target. When supported, the card may also contain independent secondary actions. Each action must remain accessible and behave independently.
+ * Unlike the Card component, the Action card always provides a primary interaction.
  *
  * > Design name: Action Container Card
  *
@@ -139,6 +140,134 @@ fun OudsCard(
         style = style,
         enabled = enabled,
         loader = loader,
+        skeleton = skeleton,
+        interactionSource = interactionSource,
+        content = content
+    )
+}
+
+/**
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
+ * a raised appearance.
+ *
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
+ */
+@Composable
+fun OudsElevatedCard(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    skeleton: OudsSkeleton? = LocalSkeleton.current,
+    content: @Composable OudsCardScope.() -> Unit = { },
+) {
+    OudsCard(
+        modifier = modifier,
+        style = OudsCardStyle.Elevated(),
+        enabled = enabled,
+        skeleton = skeleton,
+        content = content
+    )
+}
+
+/**
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
+ * a raised appearance.
+ *
+ * @param onClick The action to perform when this card is clicked.
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
+ *    is provided, interactions will still happen internally.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
+ */
+@Composable
+fun OudsElevatedCard(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    skeleton: OudsSkeleton? = LocalSkeleton.current,
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsCardScope.() -> Unit = { },
+) {
+    OudsCard(
+        onClick = onClick,
+        modifier = modifier,
+        style = OudsCardStyle.Elevated(),
+        enabled = enabled,
+        skeleton = skeleton,
+        interactionSource = interactionSource,
+        content = content
+    )
+}
+
+/**
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
+ *
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
+ */
+@Composable
+fun OudsOutlinedCard(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    skeleton: OudsSkeleton? = LocalSkeleton.current,
+    content: @Composable OudsCardScope.() -> Unit = { },
+) {
+    OudsCard(
+        modifier = modifier,
+        style = OudsCardStyle.Outlined,
+        enabled = enabled,
+        skeleton = skeleton,
+        content = content
+    )
+}
+
+/**
+ * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
+ *
+ * @param onClick The action to perform when this card is clicked.
+ * @param modifier The [Modifier] to be applied to this card.
+ * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
+ *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
+ *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
+ * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
+ *    is provided, interactions will still happen internally.
+ * @param content The content of the card.
+ *
+ * @see OudsCard
+ */
+@Composable
+fun OudsOutlinedCard(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    skeleton: OudsSkeleton? = LocalSkeleton.current,
+    interactionSource: MutableInteractionSource? = null,
+    content: @Composable OudsCardScope.() -> Unit = { },
+) {
+    OudsCard(
+        onClick = onClick,
+        modifier = modifier,
+        style = OudsCardStyle.Outlined,
+        enabled = enabled,
         skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
@@ -215,10 +344,7 @@ internal fun OudsCard(
                 BorderStroke(width = 1.dp, color = borderColor)
             }
         ) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.TopStart
-            ) {
+            Box {
                 Box(
                     modifier = Modifier.visible(state != OudsCardState.Loading)
                 ) {
@@ -360,8 +486,7 @@ private fun stateOverlayColor(style: OudsCardStyle, state: OudsCardState) = with
                 OudsCardState.Focused -> focus
                 OudsCardState.Pressed -> pressed
                 OudsCardState.Loading -> loading
-                OudsCardState.Disabled -> disabled
-                OudsCardState.Enabled, OudsCardState.Skeleton -> null
+                OudsCardState.Enabled, OudsCardState.Disabled, OudsCardState.Skeleton -> null
             }
         }
         OudsCardStyle.Outlined -> null
@@ -383,53 +508,96 @@ private fun getCardState(enabled: Boolean, loader: OudsCardLoader?, skeleton: Ou
     }
 }
 
-@Preview(name = "Light", heightDp = 1400, widthDp = 3000, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(name = "Light", heightDp = 700, widthDp = 1500, device = OudsPreviewDevice) // TODO hard-coded value
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
-    heightDp = 1400,
-    widthDp = 3000, // TODO hard-coded value
+    heightDp = 700,
+    widthDp = 1500, // TODO hard-coded value
     device = OudsPreviewDevice
 )
 @Composable
-@Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsActionCard(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
-    PreviewOudsActionCard(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsActionCardFilled(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
+    PreviewOudsActionCard(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter,
+        styleName = OudsCardStyle.Filled::class.simpleName
+    )
 }
+
+@Preview(name = "Light", heightDp = 700, widthDp = 1500, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = 700,
+    widthDp = 1500, // TODO hard-coded value
+    device = OudsPreviewDevice
+)
+@Composable
+private fun PreviewOudsActionCardOutlined(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
+    PreviewOudsActionCard(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter,
+        styleName = OudsCardStyle.Outlined::class.simpleName
+    )
+}
+
+@Preview(name = "Light", heightDp = 700, widthDp = 1500, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = 700,
+    widthDp = 1500, // TODO hard-coded value
+    device = OudsPreviewDevice
+)
+@Composable
+private fun PreviewOudsActionCardElevated(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
+    PreviewOudsActionCard(
+        theme = getPreviewTheme(),
+        darkThemeEnabled = isSystemInDarkTheme(),
+        parameter = parameter,
+        styleName = OudsCardStyle.Elevated::class.simpleName
+    )
+}
+
 
 @Composable
 internal fun PreviewOudsActionCard(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsCardPreviewParameter
+    parameter: OudsCardPreviewParameter,
+    styleName: String?
 ) = with(parameter) {
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
-        PreviewGrid(
-            columns = OudsCardState.entries.map { it.name },
-            rows = previewOudsCardRowNames,
-        ) { column, row ->
-            val state = enumValueOf<OudsCardState>(column)
-            val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
-            val style = when (row) {
-                OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(backgroundColor = backgroundColor, divider = true)
-                OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
-                OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated(backgroundColor = backgroundColor)
-                else -> error("Unknown row $row.")
-            }
-            CompositionLocalProvider(LocalPreviewGridColumnEnumEntry provides state) {
-                OudsCard(
-                    modifier = Modifier.width(360.dp),
-                    onClick = {},
-                    style = style,
-                ) {
-                    PreviewCardContent()
-                }
+        val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
+        val style = when (styleName) {
+            OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(backgroundColor = backgroundColor, divider = true)
+            OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
+            OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated(backgroundColor = backgroundColor)
+            else -> error("Unknown card style $styleName.")
+        }
+        PreviewEnumEntries<OudsCardState>(maxEnumEntriesInEachRow = 4) { state ->
+            OudsCard(
+                modifier = Modifier.width(360.dp),
+                onClick = {},
+                style = style,
+                enabled = state != OudsCardState.Disabled,
+            ) {
+                PreviewCardContent()
             }
         }
     }
 }
 
-@OudsPreviewLightDark
+@Preview(name = "Light", widthDp = 1100, device = OudsPreviewDevice) // TODO hard-coded value
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    widthDp = 1100, // TODO hard-coded value
+    device = OudsPreviewDevice
+)
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
 private fun PreviewOudsContentCard(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
@@ -446,7 +614,7 @@ internal fun PreviewOudsContentCard(
         val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
         PreviewFlowRow(
             items = previewOudsCardRowNames,
-            maxItemsInEachRow = 1
+            maxItemsInEachRow = 3
         ) { item ->
             val style = when (item) {
                 OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(backgroundColor = backgroundColor, divider = true)
@@ -469,10 +637,6 @@ private fun PreviewCardContent() {
     Column(modifier = Modifier.padding(all = OudsTheme.spaces.fixed.medium), verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)) {
         OudsHeadingText(text = "Before activating your eSIM")
         OudsBodyText(text = "Make sure your device is connected to Wi-Fi and compatible with eSIM. Once activation starts, it may take a few minutes to complete.")
-        Column {
-            OudsListItem(label = "Check device compatibility", onClick = {}, edgeToEdge = false)
-            OudsListItem(label = "Learn how eSIM activation works", onClick = {}, edgeToEdge = false)
-        }
         OudsButton(label = "Activate eSIM", appearance = OudsButtonAppearance.Strong, onClick = {})
     }
 }
@@ -495,130 +659,45 @@ private val previewParameterValues: List<OudsCardPreviewParameter>
         OudsCardPreviewParameter(roundedCorners = true),
     )
 
-/**
- * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
- * a raised appearance.
- *
- * @param modifier The [Modifier] to be applied to this card.
- * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
- * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
- *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
- *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param content The content of the card.
- *
- * @see OudsCard
- */
+@Suppress("PreviewShouldNotBeCalledRecursively")
+@Preview(heightDp = 1230, device = OudsPreviewDevice)
 @Composable
-fun OudsElevatedCard(
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
-    content: @Composable OudsCardScope.() -> Unit = { },
-) {
-    OudsCard(
-        modifier = modifier,
-        style = OudsCardStyle.Elevated(),
-        enabled = enabled,
-        skeleton = skeleton,
-        content = content
-    )
+private fun PreviewOudsCardDisabledWithComponents() {
+    PreviewOudsCardDisabledWithComponents(theme = getPreviewTheme())
 }
 
-/**
- * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
- * a raised appearance.
- *
- * @param onClick The action to perform when this card is clicked.
- * @param modifier The [Modifier] to be applied to this card.
- * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
- * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
- *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
- *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
- *    is provided, interactions will still happen internally.
- * @param content The content of the card.
- *
- * @see OudsCard
- */
 @Composable
-fun OudsElevatedCard(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
-    interactionSource: MutableInteractionSource? = null,
-    content: @Composable OudsCardScope.() -> Unit = { },
-) {
-    OudsCard(
-        onClick = onClick,
-        modifier = modifier,
-        style = OudsCardStyle.Elevated(),
-        enabled = enabled,
-        skeleton = skeleton,
-        interactionSource = interactionSource,
-        content = content
-    )
-}
-
-/**
- * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
- *
- * @param modifier The [Modifier] to be applied to this card.
- * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
- * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
- *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
- *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param content The content of the card.
- *
- * @see OudsCard
- */
-@Composable
-fun OudsOutlinedCard(
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
-    content: @Composable OudsCardScope.() -> Unit = { },
-) {
-    OudsCard(
-        modifier = modifier,
-        style = OudsCardStyle.Outlined,
-        enabled = enabled,
-        skeleton = skeleton,
-        content = content
-    )
-}
-
-/**
- * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
- *
- * @param onClick The action to perform when this card is clicked.
- * @param modifier The [Modifier] to be applied to this card.
- * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
- * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
- *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
- *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
- *    is provided, interactions will still happen internally.
- * @param content The content of the card.
- *
- * @see OudsCard
- */
-@Composable
-fun OudsOutlinedCard(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    skeleton: OudsSkeleton? = LocalSkeleton.current,
-    interactionSource: MutableInteractionSource? = null,
-    content: @Composable OudsCardScope.() -> Unit = { },
-) {
-    OudsCard(
-        onClick = onClick,
-        modifier = modifier,
-        style = OudsCardStyle.Outlined,
-        enabled = enabled,
-        skeleton = skeleton,
-        interactionSource = interactionSource,
-        content = content
-    )
+internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract) {
+    OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
+        OudsCard(
+            modifier = Modifier.width(360.dp),
+            enabled = false,
+            style = OudsCardStyle.Filled(
+                backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(OudsTheme.spaces.fixed.medium),
+                verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)
+            ) {
+                OudsHeadingText(text = "Disabled Card")
+                OudsBodyText(text = "All components below should appear disabled.")
+                OudsButton(label = "Button", onClick = {})
+                OudsCheckbox(checked = false, onCheckedChange = {})
+                OudsCheckboxItem(checked = true, label = "Checkbox Item", onCheckedChange = null)
+                OudsFilterChip(selected = true, label = "Filter Chip", onClick = {})
+                OudsInputTag(label = "Input Tag", onClick = {})
+                OudsLink(label = "Link", indicator = OudsLinkIndicator.Next, onClick = {})
+                OudsListItem(label = "List Item", onClick = {}, edgeToEdge = false)
+                OudsPasswordInput(state = rememberOudsPasswordInputState("password"), label = "Password Input")
+                OudsRadioButton(selected = false, onClick = {})
+                OudsRadioButtonItem(selected = true, label = "Radio Button Item", onClick = null)
+                OudsSwitch(checked = false, onCheckedChange = {})
+                OudsSwitchItem(checked = true, label = "Switch Item", onCheckedChange = null)
+                OudsTag(label = "Tag")
+                OudsTextArea(textFieldState = rememberTextFieldState("Text area content"), label = "Text Area")
+                OudsTextInput(textFieldState = rememberTextFieldState("Text input value"), label = "Text Input")
+            }
+        }
+    }
 }
