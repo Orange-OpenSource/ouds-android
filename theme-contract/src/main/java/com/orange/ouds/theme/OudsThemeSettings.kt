@@ -78,6 +78,14 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
         roundedCornerTextInputs: Boolean? = this.roundedCornerTextInputs,
         roundedCornerAlertMessages: Boolean? = this.roundedCornerAlertMessages,
         roundedCornerProgressIndicators: Boolean? = this.roundedCornerProgressIndicators,
-        roundedCornerCardItems: Boolean? = this.roundedCornerCardItems
-    ) = OudsThemeSettings(roundedCornerButtons, roundedCornerTextInputs, roundedCornerAlertMessages, roundedCornerProgressIndicators, roundedCornerCardItems)
+        roundedCornerCardItems: Boolean? = this.roundedCornerCardItems,
+        roundedCornerCards: Boolean? = this.roundedCornerCards
+    ) = OudsThemeSettings(
+        roundedCornerButtons,
+        roundedCornerTextInputs,
+        roundedCornerAlertMessages,
+        roundedCornerProgressIndicators,
+        roundedCornerCardItems,
+        roundedCornerCards
+    )
 }

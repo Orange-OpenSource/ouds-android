@@ -130,6 +130,13 @@
     <!-- Components: button -->
     <string name="app_components_button_description_text">Un Button (ou bouton) est un élément d\'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.</string>
 
+    <!-- Components: card -->
+    <string name="app_components_card_description_text">Une Card (ou carte) est un élément d\'interface qui s\'apparente à une surface et qui regroupe des informations connexes au sein d\'un même espace.</string>
+    <string name="app_components_card_card_description_text">Une Content card est un élément d\'interface graphique qui regroupe des informations connexes au sein d\'une surface unique, non interactive, pouvant elle-même contenir des éléments interactifs indépendants.</string>
+    <string name="app_components_card_actionCard_description_text">Une Action card est un élément d\'interface graphique qui regroupe des informations connexes au sein d\'une surface interactive et permet à l\'utilisateur d\'effectuer une action principale unique ou de naviguer vers une destination.</string>
+    <string name="app_components_card_contentExampleTagLabel_label">Nouveau</string>
+    <string name="app_components_card_contentExampleButtonLabel_label">Commander</string>
+
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_description_text">Une Checkbox (ou case à cocher) est un élément d\'interface utilisateur qui permet de sélectionner plusieurs options parmi un ensemble de choix non exclusifs.</string>
     <string name="app_components_checkbox_checkbox_a11y">Description du contenu de la Checkbox %s</string>

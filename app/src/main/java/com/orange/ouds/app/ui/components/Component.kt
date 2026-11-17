@@ -24,6 +24,8 @@ import com.orange.ouds.app.ui.components.bottomsheet.StandardBottomSheetDemoScre
 import com.orange.ouds.app.ui.components.bulletlist.BulletListDemoScreen
 import com.orange.ouds.app.ui.components.button.ButtonDemoScreen
 import com.orange.ouds.app.ui.components.button.NavigationButtonDemoScreen
+import com.orange.ouds.app.ui.components.card.ActionCardDemoScreen
+import com.orange.ouds.app.ui.components.card.CardDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxDemoScreen
 import com.orange.ouds.app.ui.components.checkbox.CheckboxItemDemoScreen
 import com.orange.ouds.app.ui.components.chip.FilterChipDemoScreen
@@ -107,6 +109,13 @@ sealed class Component(
         R.string.app_components_button_description_text,
         { ButtonIllustration() },
         listOf(Variant.Button, Variant.NavigationButton)
+    )
+
+    data object Card : Component(
+        R.string.app_components_card_tech,
+        R.string.app_components_card_description_text,
+        { CardIllustration() },
+        listOf(Variant.Card, Variant.ActionCard)
     )
 
     data object Checkbox : Component(
@@ -265,6 +274,10 @@ sealed class Variant(
     // Button
     data object Button : Variant(R.string.app_components_button_button_tech, { ButtonDemoScreen() })
     data object NavigationButton : Variant(R.string.app_components_button_navigationButton_tech, { NavigationButtonDemoScreen() })
+
+    // Card
+    data object Card : Variant(R.string.app_components_card_card_tech, { CardDemoScreen() })
+    data object ActionCard : Variant(R.string.app_components_card_actionCard_tech, { ActionCardDemoScreen() })
 
     // Checkbox
     data object Checkbox : Variant(R.string.app_components_checkbox_checkbox_tech, { CheckboxDemoScreen() })

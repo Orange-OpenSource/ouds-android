@@ -19,6 +19,7 @@ import com.orange.ouds.theme.OudsVersion
 import org.gradle.api.Project
 
 enum class Component {
+    ActionCard,
     AlertMessage,
     AppBar,
     Badge,
@@ -28,6 +29,7 @@ enum class Component {
     BottomSheet,
     BulletList,
     Button,
+    Card,
     Checkbox,
     CircularProgressIndicator,
     Code,
@@ -60,6 +62,7 @@ enum class Component {
     val version: String
         get() = with(OudsVersion.Component) {
             when (this@Component) {
+                Component.ActionCard -> ActionCard
                 Component.AlertMessage -> AlertMessage
                 Component.AppBar -> AppBar
                 Component.Badge -> Badge
@@ -69,6 +72,7 @@ enum class Component {
                 Component.BottomSheet -> BottomSheet
                 Component.BulletList -> BulletList
                 Component.Button -> Button
+                Component.Card -> Card
                 Component.Checkbox -> Checkbox
                 Component.CircularProgressIndicator -> CircularProgressIndicator
                 Component.Code -> TypographyCode
@@ -111,6 +115,7 @@ enum class Component {
 
     fun getSourceFilePaths(project: Project): List<String> {
         val filenames = when (this) {
+            ActionCard, Card -> listOf("OudsCard")
             AlertMessage -> listOf("OudsAlertMessage")
             AppBar -> listOf("OudsTopAppBar")
             Badge, BadgeCount, BadgeIcon -> listOf("OudsBadge")
