@@ -21,6 +21,7 @@ object OudsVersion {
 
     @InternalOudsApi
     object Component {
+        const val ActionCard = "1.0.0"
         const val AlertMessage = "1.2.0"
         const val AppBar = "1.0.0"
         const val Badge = "1.2.0"
@@ -30,6 +31,7 @@ object OudsVersion {
         const val BottomSheet = "0.0.0"
         const val BulletList = "1.1.0"
         const val Button = "3.4.0"
+        const val Card = "1.0.0"
         const val Checkbox = "2.4.0"
         const val CircularProgressIndicator = "1.2.0"
         const val Code = "1.0.0"

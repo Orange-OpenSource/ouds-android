@@ -40,7 +40,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
@@ -73,7 +72,9 @@ import com.orange.ouds.theme.OudsThemeContract
  * interactive elements, such as buttons and links. Its content is customizable through a slot, allowing designers to adapt the internal layout without
  * changing the behavior of the container.
  *
- * > Design name: Content Container Card
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-content-card)
+ *
+ * > Design name: Card
  *
  * > Design version: 1.0.0
  *
@@ -109,7 +110,9 @@ fun OudsCard(
  * interaction target. When supported, the card may also contain independent secondary actions. Each action must remain accessible and behave independently.
  * Unlike the Card component, the Action card always provides a primary interaction.
  *
- * > Design name: Action Container Card
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-action-card)
+ *
+ * > Design name: Action Card
  *
  * > Design version: 1.0.0
  *
@@ -295,11 +298,6 @@ internal fun OudsCard(
     val borderRadius = if (LocalThemeSettings.current.roundedCornerCards == true) 12.dp else 0.dp // TODO use tokens when available
     val shape = RoundedCornerShape(borderRadius)
 
-    val backgroundColor = when (style) {
-        is OudsCardStyle.Filled -> style.backgroundColor
-        is OudsCardStyle.Elevated -> style.backgroundColor
-        OudsCardStyle.Outlined -> Color.Transparent
-    }
     val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
         val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
         borderColor(style = style, state = cardState)
@@ -313,7 +311,7 @@ internal fun OudsCard(
         Modifier.clickable(
             enabled = state.areInteractionsEnabled,
             interactionSource = interactionSource,
-            indication = interactionValuesIndication(borderColor),
+            indication = interactionValuesIndication(borderColor, stateOverlayColor),
             onClick = nullableOnClick
         )
     } else {
@@ -336,9 +334,9 @@ internal fun OudsCard(
                 .outerBorder(state = state, shape = shape),
             shape = shape,
             colors = CardColors(
-                containerColor = backgroundColor,
+                containerColor = style.backgroundColor,
                 contentColor = Color.Unspecified,
-                disabledContainerColor = backgroundColor,
+                disabledContainerColor = style.backgroundColor,
                 disabledContentColor = Color.Unspecified
             ),
             elevation = cardElevation(style = style),
@@ -382,8 +380,6 @@ internal fun OudsCard(
 object OudsCardDefaults {
 
     val Style = OudsCardStyle.Filled()
-
-    val BackgroundColor = Color.Transparent
 }
 
 sealed class OudsCardStyle {
@@ -391,9 +387,9 @@ sealed class OudsCardStyle {
      * Filled cards use a background color to separate their content from the surrounding interface.
      *
      * @param divider Controls the display of a divider at the bottom of the card. Defaults to `false`.
-     * @param backgroundColor The background color of the card. Defaults to [OudsCardDefaults.BackgroundColor].
+     * @param background Controls the display of the predefined color background. Defaults to `true`.
      */
-    class Filled(val backgroundColor: Color = OudsCardDefaults.BackgroundColor, val divider: Boolean = false) : OudsCardStyle()
+    class Filled(val background: Boolean = true, val divider: Boolean = false) : OudsCardStyle()
 
     /**
      * Outlined cards define their boundaries with a border.
@@ -403,9 +399,17 @@ sealed class OudsCardStyle {
     /**
      * Elevated cards create separation through a shadow, giving the container a raised appearance.
      *
-     * @param backgroundColor The background color of the card. Defaults to [OudsCardDefaults.BackgroundColor].
+     * @param background Controls the display of the predefined color background. Defaults to `true`.
      */
-    class Elevated(val backgroundColor: Color = OudsCardDefaults.BackgroundColor) : OudsCardStyle()
+    class Elevated(val background: Boolean = true) : OudsCardStyle()
+
+    val backgroundColor: Color
+        @Composable
+        get() = when (this) {
+            is Filled -> if (background) OudsTheme.colorScheme.action.support.enabled else Color.Transparent
+            Outlined -> Color.Transparent
+            is Elevated -> if (background) OudsTheme.colorScheme.action.support.enabled else Color.Transparent
+        }
 }
 
 /**
@@ -588,11 +592,10 @@ internal fun PreviewOudsActionCard(
     styleName: String?
 ) = with(parameter) {
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
-        val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted.compositeOver(OudsTheme.colorScheme.surface.primary)
         val style = when (styleName) {
-            OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(backgroundColor = backgroundColor, divider = true)
+            OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(divider = true)
             OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
-            OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated(backgroundColor = backgroundColor)
+            OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated()
             else -> error("Unknown card style $styleName.")
         }
         PreviewEnumEntries<OudsCardState>(maxEnumEntriesInEachRow = 4) { state ->
@@ -632,15 +635,14 @@ internal fun PreviewOudsContentCard(
     parameter: OudsCardPreviewParameter
 ) = with(parameter) {
     OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
-        val backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
         PreviewFlowRow(
             items = previewOudsCardRowNames,
             maxItemsInEachRow = 3
         ) { item ->
             val style = when (item) {
-                OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(backgroundColor = backgroundColor, divider = true)
+                OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(divider = true)
                 OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
-                OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated(backgroundColor = backgroundColor)
+                OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated()
                 else -> error("Unknown item $item.")
             }
             OudsCard(
@@ -693,9 +695,7 @@ internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract) {
         OudsCard(
             modifier = Modifier.width(360.dp),
             enabled = false,
-            style = OudsCardStyle.Filled(
-                backgroundColor = OudsTheme.colorScheme.surface.status.accent.muted
-            )
+            style = OudsCardStyle.Filled()
         ) {
             Column(
                 modifier = Modifier.padding(OudsTheme.spaces.fixed.medium),
