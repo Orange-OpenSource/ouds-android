@@ -26,6 +26,8 @@ import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemWithRoundedCornersParameterProvider
+import com.orange.ouds.core.component.OudsChatInputAutoResizePreviewParameterProvider
+import com.orange.ouds.core.component.OudsChatInputConstrainedMaxWidthPreviewParameterProvider
 import com.orange.ouds.core.component.OudsChatInputPreviewParameter
 import com.orange.ouds.core.component.OudsChatInputPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxHighContrastModePreviewParameterProvider
@@ -123,6 +125,10 @@ import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsButtonWithUntintedIcon
 import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.PreviewOudsChatInput
+import com.orange.ouds.core.component.PreviewOudsChatInputAutoResize
+import com.orange.ouds.core.component.PreviewOudsChatInputConstrainedMaxWidth
+import com.orange.ouds.core.component.PreviewOudsChatInputWithUntintedBottomIconButton
+import com.orange.ouds.core.component.PreviewOudsChatInputWithoutRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsCheckbox
 import com.orange.ouds.core.component.PreviewOudsCheckboxHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItem
@@ -658,50 +664,50 @@ interface OudsPreviewableComponent {
             }
         }
 
-//        @InternalOudsApi
-//        object WithoutRoundedCorners : OudsPreviewableComponent {
-//
-//            const val PreviewHeightDp = 780
-//
-//            override val parameters: List<Any> = emptyList()
-//
-//            @Composable
-//            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
-//                PreviewOudsTextInputWithRoundedCorners(theme = theme)
-//            }
-//
-//            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
-//        }
-//
-//
-//        @InternalOudsApi
-//        object ConstrainedMaxWidth : OudsPreviewableComponent {
-//
-//            const val PreviewWidthDp = 600
-//
-//            override val parameters: List<Any> = OudsTextInputConstrainedMaxWidthPreviewParameterProvider().values.toList()
-//
-//            @Composable
-//            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
-//                PreviewOudsTextInputConstrainedMaxWidth(theme = theme, constrainedMaxWidth = parameter as Boolean)
-//            }
-//
-//            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
-//        }
-//
-//        @InternalOudsApi
-//        object AutoResize : OudsPreviewableComponent {
-//
-//            override val parameters: List<Any> = OudsTextAreaAutoResizePreviewParameterProvider().values.toList()
-//
-//            @Composable
-//            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
-//                PreviewOudsTextAreaAutoResize(theme = theme, autoResize = parameter as Boolean)
-//            }
-//
-//            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
-//        }
-//        
+        @InternalOudsApi
+        object WithoutRoundedCorners : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1250
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsChatInputWithoutRoundedCorners(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+
+        @InternalOudsApi
+        object ConstrainedMaxWidth : OudsPreviewableComponent {
+
+            const val PreviewWidthDp = 800
+
+            override val parameters: List<Any> = OudsChatInputConstrainedMaxWidthPreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsChatInputConstrainedMaxWidth(theme = theme, constrainedMaxWidth = parameter as Boolean)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+
+        @InternalOudsApi
+        object AutoResize : OudsPreviewableComponent {
+
+            override val parameters: List<Any> = OudsChatInputAutoResizePreviewParameterProvider().values.toList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsChatInputAutoResize(theme = theme, autoResize = parameter as Boolean)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
+
+        //        
 //        @InternalOudsApi
 //        object WithRichText : OudsPreviewableComponent {
 //
@@ -717,20 +723,20 @@ interface OudsPreviewableComponent {
 //            }
 //        }
 //
-//        @InternalOudsApi
-//        object WithUntintedLeadingIcon : OudsPreviewableComponent {
-//
-//            const val PreviewHeightDp = 780
-//
-//            override val parameters: List<Any> = emptyList()
-//
-//            @Composable
-//            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
-//                PreviewOudsTextInputWithUntintedLeadingIcon(theme = theme)
-//            }
-//
-//            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
-//        }
+        @InternalOudsApi
+        object WithUntintedBottomIconButton : OudsPreviewableComponent {
+
+            const val PreviewHeightDp = 1070
+
+            override val parameters: List<Any> = emptyList()
+
+            @Composable
+            override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
+                PreviewOudsChatInputWithUntintedBottomIconButton(theme = theme)
+            }
+
+            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
+        }
     }
 
     @InternalOudsApi

@@ -35,33 +35,40 @@ internal class OudsChatInputTest {
         }
     }
 
-//    class WithRoundedCorners : OudsComponentSnapshotTest(
-//        OudsPreviewableComponent.TextInput.WithRoundedCorners,
-//        parameter = null,
-//        OudsComponentTestSuite.theme,
-//        heightDp = OudsPreviewableComponent.TextInput.WithRoundedCorners.PreviewHeightDp
-//    )
-//
-//    class WithLongLabels : OudsComponentSnapshotTest(
-//        OudsPreviewableComponent.TextInput.WithLongLabels,
-//        parameter = null,
-//        OudsComponentTestSuite.theme
-//    )
-//
-//    @RunWith(Parameterized::class)
-//    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
-//        OudsPreviewableComponent.TextInput.ConstrainedMaxWidth,
-//        parameter,
-//        OudsComponentTestSuite.theme,
-//        OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.PreviewWidthDp
-//    ) {
-//        companion object {
-//            @JvmStatic
-//            @Parameterized.Parameters
-//            internal fun data() = OudsPreviewableComponent.TextInput.ConstrainedMaxWidth.parameters
-//        }
-//    }
-//
+    class WithoutRoundedCorners : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.ChatInput.WithoutRoundedCorners,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.ChatInput.WithoutRoundedCorners.PreviewHeightDp
+    )
+
+    @RunWith(Parameterized::class)
+    class ConstrainedMaxWidth(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.ChatInput.ConstrainedMaxWidth,
+        parameter,
+        OudsComponentTestSuite.theme,
+        OudsPreviewableComponent.ChatInput.ConstrainedMaxWidth.PreviewWidthDp
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.ChatInput.ConstrainedMaxWidth.parameters
+        }
+    }
+
+    @RunWith(Parameterized::class)
+    class AutoResize(parameter: Any) : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.ChatInput.AutoResize,
+        parameter,
+        OudsComponentTestSuite.theme
+    ) {
+        companion object {
+            @JvmStatic
+            @Parameterized.Parameters
+            internal fun data() = OudsPreviewableComponent.ChatInput.AutoResize.parameters
+        }
+    }
+
 //    @RunWith(Parameterized::class)
 //    class WithRichText(parameter: Any) : OudsComponentSnapshotTest(
 //        OudsPreviewableComponent.TextInput.WithRichText,
@@ -75,11 +82,11 @@ internal class OudsChatInputTest {
 //            internal fun data() = OudsPreviewableComponent.TextInput.WithRichText.parameters
 //        }
 //    }
-//
-//    class WithUntintedLeadingIcon : OudsComponentSnapshotTest(
-//        OudsPreviewableComponent.TextInput.WithUntintedLeadingIcon,
-//        parameter = null,
-//        OudsComponentTestSuite.theme,
-//        heightDp = OudsPreviewableComponent.TextInput.WithUntintedLeadingIcon.PreviewHeightDp
-//    )
+
+    class WithUntintedBottomIconButton : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.ChatInput.WithUntintedBottomIconButton,
+        parameter = null,
+        OudsComponentTestSuite.theme,
+        heightDp = OudsPreviewableComponent.ChatInput.WithUntintedBottomIconButton.PreviewHeightDp
+    )
 }

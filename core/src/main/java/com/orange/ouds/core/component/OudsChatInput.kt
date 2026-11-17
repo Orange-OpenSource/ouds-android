@@ -82,7 +82,10 @@ import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewCustomContent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
+import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -154,7 +157,7 @@ fun OudsChatInput(
                     state = textFieldState,
                     enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
-                    textStyle = textInputTextStyle(state = state),
+                    textStyle = textInputTextStyle(state = state),//decorativeContentColor(state = state)
                     lineLimits = TextFieldLineLimits.MultiLine(
                         minHeightInLines = ChatInputMinLines,
                         maxHeightInLines = if (autoResize) textAreaMaxLines else ChatInputMinLines
@@ -489,7 +492,6 @@ internal fun PreviewOudsChatInput(
     with(parameter) {
         PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) { state ->
             OudsChatInput(
-                //modifier = Modifier.width(300.dp),
                 textFieldState = rememberTextFieldState(value),
                 onSend = {},
                 label = label,
@@ -502,6 +504,112 @@ internal fun PreviewOudsChatInput(
                 helperLink = helperLink
             )
         }
+    }
+}
+
+@Preview(heightDp = OudsPreviewableComponent.ChatInput.WithoutRoundedCorners.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsChatInputWithoutRoundedCorners() = PreviewOudsChatInputWithoutRoundedCorners(theme = getPreviewTheme())
+
+@Composable
+internal fun PreviewOudsChatInputWithoutRoundedCorners(theme: OudsThemeContract) =
+    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerChatInputs = false) }) {
+        PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) {
+            OudsChatInput(
+                textFieldState = rememberTextFieldState(""),
+                onSend = {},
+                label = "Label"
+            )
+        }
+    }
+
+@Preview(widthDp = OudsPreviewableComponent.ChatInput.ConstrainedMaxWidth.PreviewWidthDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsChatInputConstrainedMaxWidth(@PreviewParameter(OudsChatInputConstrainedMaxWidthPreviewParameterProvider::class) constrainedMaxWidth: Boolean) {
+    PreviewOudsChatInputConstrainedMaxWidth(theme = getPreviewTheme(), constrainedMaxWidth = constrainedMaxWidth)
+}
+
+@Composable
+internal fun PreviewOudsChatInputConstrainedMaxWidth(
+    theme: OudsThemeContract,
+    constrainedMaxWidth: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
+    OudsChatInput(
+        textFieldState = rememberTextFieldState(),
+        onSend = {},
+        label = "Label",
+        placeholder = "Placeholder",
+        helperText = "Helper text",
+        helperLink = OudsTextInputHelperLink("Helper link") {},
+        constrainedMaxWidth = constrainedMaxWidth
+    )
+}
+
+@OudsPreview
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+private fun PreviewOudsChatInputAutoResize(@PreviewParameter(OudsChatInputAutoResizePreviewParameterProvider::class) autoResize: Boolean) =
+    PreviewOudsChatInputAutoResize(theme = getPreviewTheme(), autoResize = autoResize)
+
+@Composable
+internal fun PreviewOudsChatInputAutoResize(
+    theme: OudsThemeContract,
+    autoResize: Boolean
+) = OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
+    Column(verticalArrangement = Arrangement.spacedBy(OudsTheme.spaces.fixed.medium)) {
+        for (lineCount in listOf(3, 5, 15)) {
+            OudsChatInput(
+                textFieldState = rememberTextFieldState(List(lineCount) { "Line ${it + 1}" }.joinToString("\n")),
+                onSend = {},
+                label = "$lineCount lines",
+                loader = OudsTextInputLoader(progress = 0.75f),
+                autoResize = autoResize
+            )
+        }
+    }
+}
+
+//@OudsPreviewLightDark
+//@Composable
+//@Suppress("PreviewShouldNotBeCalledRecursively")
+//private fun PreviewOudsChatInputWithRichText(@PreviewParameter(OudsChatInputWithRichTextPreviewParameterProvider::class) error: Boolean) {
+//    PreviewOudsChatInputWithRichText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), error = error)
+//}
+//
+//@Composable
+//internal fun PreviewOudsChatInputWithRichText(
+//    theme: OudsThemeContract,
+//    darkThemeEnabled: Boolean,
+//    error: Boolean
+//) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
+//    OudsChatInput(
+//        textFieldState = rememberTextFieldState(),
+//        label = "Label",
+//        error = if (error) OudsError(buildPreviewAnnotatedErrorMessage()) else null,
+//        helperText = buildPreviewAnnotatedHelperText(),
+//    )
+//}
+
+@Preview(heightDp = OudsPreviewableComponent.ChatInput.WithUntintedBottomIconButton.PreviewHeightDp, device = OudsPreviewDevice)
+@Composable
+@Suppress("PreviewShouldNotBeCalledRecursively")
+internal fun PreviewOudsChatInputWithUntintedBottomIconButton() {
+    PreviewOudsChatInputWithUntintedBottomIconButton(theme = getPreviewTheme())
+}
+
+@Composable
+internal fun PreviewOudsChatInputWithUntintedBottomIconButton(theme: OudsThemeContract) = OudsPreview(theme = theme) {
+    PreviewEnumEntries<OudsTextInputState>(maxEnumEntriesInEachRow = 1) {
+        OudsChatInput(
+            textFieldState = rememberTextFieldState("Text"),
+            onSend = {},
+            label = "Label",
+            bottomIconButtons = listOf(
+                OudsChatInputBottomIconButton(rememberRainbowHeartPainter(), "", false) {}
+            )
+        )
     }
 }
 
@@ -518,6 +626,10 @@ internal data class OudsChatInputPreviewParameter(
 )
 
 internal class OudsChatInputPreviewParameterProvider : BasicPreviewParameterProvider<OudsChatInputPreviewParameter>(*previewParameterValues.toTypedArray())
+
+internal class OudsChatInputConstrainedMaxWidthPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
+
+internal class OudsChatInputAutoResizePreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 private val previewParameterValues: List<OudsChatInputPreviewParameter>
     get() {
