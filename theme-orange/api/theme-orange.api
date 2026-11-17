@@ -85,6 +85,8 @@ public class com/orange/ouds/theme/orange/OrangeTheme : com/orange/ouds/theme/Ou
 	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZ)V
 	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZZ)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/orange/OrangeFontFamily;ZZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (ZZ)V
 	public synthetic fun <init> (ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
@@ -100,6 +102,7 @@ public class com/orange/ouds/theme/orange/OrangeTheme : com/orange/ouds/theme/Ou
 	public fun getMaterialColorTokens ()Lcom/orange/ouds/theme/tokens/material/OudsMaterialColorTokens;
 	public fun getName ()Ljava/lang/String;
 	public fun getOpacityTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsOpacitySemanticTokens;
+	public final fun getRoundedCornerChatInputs ()Z
 	public fun getSettings ()Lcom/orange/ouds/theme/OudsThemeSettings;
 	public fun getSizeTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSizeSemanticTokens;
 	public fun getSpaceTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsSpaceSemanticTokens;

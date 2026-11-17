@@ -73,13 +73,14 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
     )
     constructor(roundedCornerButtons: Boolean?) : this(roundedCornerButtons, null, null, null, null)
 
+    @OptIn(ExperimentalVersionOverloading::class)
     fun copy(
         roundedCornerButtons: Boolean? = this.roundedCornerButtons,
         roundedCornerTextInputs: Boolean? = this.roundedCornerTextInputs,
         roundedCornerAlertMessages: Boolean? = this.roundedCornerAlertMessages,
         roundedCornerProgressIndicators: Boolean? = this.roundedCornerProgressIndicators,
         roundedCornerCardItems: Boolean? = this.roundedCornerCardItems,
-        roundedCornerChatInputs: Boolean? = this.roundedCornerChatInputs
+        @IntroducedAt("3.1.0-Unreleased") roundedCornerChatInputs: Boolean? = this.roundedCornerChatInputs
     ) = OudsThemeSettings(
         roundedCornerButtons,
         roundedCornerTextInputs,

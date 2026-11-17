@@ -56,6 +56,16 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsButto
 	public final fun getLambda$625886498$core ()Lkotlin/jvm/functions/Function2;
 }
 
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsChatInputKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsChatInputKt;
+	public fun <init> ()V
+	public final fun getLambda$-1176896053$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-282681153$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-607228242$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1736672134$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$36662972$core ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsCheckboxItemKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsCheckboxItemKt;
 	public fun <init> ()V
@@ -640,6 +650,44 @@ public final class com/orange/ouds/core/component/OudsCardItemKt {
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/orange/ouds/core/component/OudsChatInputBottomIconButton : com/orange/ouds/core/component/content/OudsComponentIcon {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;ZLkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/ImageBitmap;Ljava/lang/String;ZLkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;ZLkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;ZLkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;ZLkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/vector/ImageVector;Ljava/lang/String;ZLkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/orange/ouds/core/component/OudsChatInputBottomIconButton$ExtraParameters : com/orange/ouds/core/component/content/OudsComponentContent$ExtraParameters {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/OudsChatInputKt {
+	public static final fun OudsChatInput (Landroidx/compose/foundation/text/input/TextFieldState;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/functions/Function3;ZZLcom/orange/ouds/core/component/OudsTextInputLoader;ZLcom/orange/ouds/core/component/common/OudsError;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsTextInputHelperLink;ZLandroidx/compose/foundation/text/KeyboardOptions;Landroidx/compose/foundation/text/input/KeyboardActionHandler;Lkotlin/jvm/functions/Function2;Landroidx/compose/foundation/text/input/InputTransformation;Landroidx/compose/foundation/text/input/OutputTransformation;Landroidx/compose/foundation/interaction/MutableInteractionSource;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;IIII)V
+}
+
+public final class com/orange/ouds/core/component/OudsChatInputScope {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getState ()Lcom/orange/ouds/core/component/OudsChatInputState;
+}
+
+public final class com/orange/ouds/core/component/OudsChatInputState : java/lang/Enum, com/orange/ouds/core/component/common/OudsComponentState {
+	public static final field Disabled Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static final field Enabled Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static final field Focused Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static final field Hovered Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static final field Loading Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static final field ReadOnly Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static final field Skeleton Lcom/orange/ouds/core/component/OudsChatInputState;
+	public fun getAreInteractionsEnabled ()Z
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsChatInputState;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsChatInputState;
 }
 
 public final class com/orange/ouds/core/component/OudsCheckboxItemKt {
