@@ -78,6 +78,7 @@ import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
+import com.orange.ouds.core.utilities.PreviewCustomContent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
@@ -1171,7 +1172,7 @@ open class OudsListItemIcon internal constructor(
     graphicsObjectProvider: @Composable (OudsListItemIcon) -> Any,
     contentDescriptionProvider: @Composable (OudsListItemIcon) -> String,
     override val tinted: Boolean,
-    internal val size: OudsListItemAssetSize,
+    internal val assetSize: OudsListItemAssetSize,
     internal val status: OudsListItemIconStatus?
 ) : OudsComponentIcon<OudsListItemLeadingTrailing.ExtraParameters, OudsListItemIcon>(
     OudsListItemLeadingTrailing.ExtraParameters::class.java,
@@ -1188,7 +1189,7 @@ open class OudsListItemIcon internal constructor(
 
     @Composable
     override fun Content(modifier: Modifier) {
-        super.Content(modifier.size(size.value))
+        super.Content(modifier.size(assetSize.value))
     }
 }
 
@@ -1906,7 +1907,7 @@ internal val listItemPreviewParameterLeading: (Int) -> OudsListItemLeading? = { 
         0 -> OudsListItemLeading.Icon.Info()
         1 -> OudsListItemLeading.Icon(Icons.Outlined.FavoriteBorder, "")
         2 -> OudsListItemLeading.Image(CheckerboardPainter, "", OudsListItemImageSize.Medium, OudsListItemImageRatio.Square, roundedCorner = true)
-        3 -> OudsListItemLeading.Content { PreviewCustomContent(modifier = Modifier.fillMaxHeight()) }
+        3 -> OudsListItemLeading.Content { PreviewCustomContent(modifier = Modifier.fillMaxHeight(), state = state) }
         else -> null
     }
 }
@@ -1916,7 +1917,7 @@ internal val listItemPreviewParameterTrailing: (Int) -> OudsListItemTrailing? = 
         0 -> OudsListItemTrailing.Icon(Icons.Outlined.FavoriteBorder, "")
         1 -> OudsListItemTrailing.Text(label = "Label", extraLabel = "Extra label")
         2 -> OudsListItemTrailing.Image(CheckerboardPainter, "", OudsListItemImageSize.ExtraLarge, OudsListItemImageRatio.Widescreen)
-        3 -> OudsListItemTrailing.Content { PreviewCustomContent(modifier = Modifier.fillMaxHeight()) }
+        3 -> OudsListItemTrailing.Content { PreviewCustomContent(modifier = Modifier.fillMaxHeight(), state = state) }
         4 -> OudsListItemTrailing.Badge(count = 100, status = OudsBadgeStatus.Negative, size = OudsBadgeSize.Large)
         5 -> OudsListItemTrailing.Tag(label = "Almost used", status = OudsTagStatus.Warning())
         else -> null
@@ -1931,24 +1932,6 @@ internal open class OudsBasicListItemPreviewParameterProvider<T : OudsListItemLe
     },
     size: OudsListItemSize = OudsListItemSize.Default
 ) : BasicPreviewParameterProvider<OudsListItemPreviewParameter<T, S>>(*getListItemPreviewParameterValues(leading, trailing, decoration, size).toTypedArray())
-
-@Composable
-private fun OudsListItemScope.PreviewCustomContent(modifier: Modifier = Modifier) {
-    val enabled = state != OudsListItemState.Disabled
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
-            .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "SLOT",
-            style = OudsTheme.typography.label.small.strong,
-            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled,
-        )
-    }
-}
 
 private fun <T, S> getListItemPreviewParameterValues(
     leading: (Int) -> T?,
@@ -2002,7 +1985,10 @@ private fun <T, S> getListItemPreviewParameterValues(
                 labelContent = when (size) {
                     OudsListItemSize.Default -> {
                         {
-                            PreviewCustomContent(modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer))
+                            PreviewCustomContent(
+                                modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer),
+                                state = state
+                            )
                         }
                     }
                     OudsListItemSize.Small -> null
@@ -2014,10 +2000,16 @@ private fun <T, S> getListItemPreviewParameterValues(
                 leading = leading(index),
                 trailing = trailing(index),
                 belowTextContent = {
-                    PreviewCustomContent(modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer))
+                    PreviewCustomContent(
+                        modifier = Modifier.padding(vertical = OudsTheme.components.listItem.space.paddingBlock.slotTextContainer),
+                        state = state
+                    )
                 },
                 bottomContent = {
-                    PreviewCustomContent(modifier = Modifier.padding(bottom = OudsTheme.components.listItem.space.paddingBlock.bottomSlotListItemContainer))
+                    PreviewCustomContent(
+                        modifier = Modifier.padding(bottom = OudsTheme.components.listItem.space.paddingBlock.bottomSlotListItemContainer),
+                        state = state
+                    )
                 },
                 decoration = decoration(index)
             )
