@@ -20,6 +20,7 @@ import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsCardTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
@@ -49,6 +50,7 @@ internal class OrangeCompactComponentsTokens(
     override val bulletList: OudsBulletListTokens = OrangeCompactBulletListTokens(),
     override val button: OudsButtonTokens = OrangeCompactButtonTokens(),
     override val buttonMonochrome: OudsButtonMonoTokens = OrangeCompactButtonMonoTokens(),
+    override val card: OudsCardTokens = OrangeCompactCardTokens(),
     override val checkbox: OudsCheckboxTokens = OrangeCompactCheckboxTokens(),
     override val chip: OudsChipTokens = OrangeCompactChipTokens(),
     override val divider: OudsDividerTokens = OrangeCompactDividerTokens(),
