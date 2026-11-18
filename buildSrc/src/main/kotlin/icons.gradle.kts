@@ -90,6 +90,7 @@ abstract class ImportIconsTask : DefaultTask() {
             // Functional
             "functional/actions/delete-cross-round.svg",
             "functional/actions/external-link.svg",
+            "functional/actions/send.svg",
             "functional/navigation/form-chevron-left.svg",
             "functional/navigation/menu-grid-ui-round.svg",
             "functional/settings-and-tools/accessibility-hide.svg",
@@ -183,7 +184,7 @@ abstract class ImportIconsTask : DefaultTask() {
                     ?.filter { it.isDirectory && !it.name.startsWith("__") && !it.name.startsWith(".") }
                     ?.firstOrNull { it.name.matches(Regex("OUDS Icons V\\d+\\.\\d+.*")) }
                     ?: throw GradleException("Invalid zip structure: no 'OUDS Icons V*.*' directory found.")
-                
+
                 val versionRegex = Regex("OUDS Icons V([\\d\\.]+).*")
                 val iconsPackVersion = versionRegex.find(rootDir.name)?.groupValues?.get(1)
                     ?: throw GradleException("Could not extract version from directory name: ${rootDir.name}")
