@@ -153,7 +153,7 @@ fun CardIllustration() = ComponentIllustration {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         OudsCard(
             modifier = Modifier.width(cardWidth),
-            style = OudsCardStyle.Filled()
+            style = OudsCardStyle.Filled(background = false)
         ) {
             Box(modifier = Modifier.height(cardHeight))
         }
