@@ -24,6 +24,7 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonIconBadge
+import com.orange.ouds.core.component.OudsButtonSize
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -60,6 +61,9 @@ abstract class OudsComponentIcon<T, S> internal constructor(
         @Composable
         get() = null
 
+    internal open val size: OudsButtonSize
+        get() = OudsButtonSize.Default
+
     private val graphicsObject: Any
         @Composable
         @Suppress("UNCHECKED_CAST")
@@ -84,7 +88,8 @@ abstract class OudsComponentIcon<T, S> internal constructor(
                     onClick = onClick,
                     modifier = iconModifier,
                     enabled = enabled.orElse { true },
-                    iconOnlyBadge = badge
+                    iconOnlyBadge = badge,
+                    size = size
                 )
             }
         }.orElse {

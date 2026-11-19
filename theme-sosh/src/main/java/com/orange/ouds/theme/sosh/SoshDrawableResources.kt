@@ -117,6 +117,7 @@ internal class SoshDrawableResources : OudsDrawableResources {
         class Actions : OudsDrawableResources.Functional.Actions {
             override val deleteCrossRound = R.drawable.ic_sosh_functional_actions_delete_cross_round
             override val externalLink = R.drawable.ic_sosh_functional_actions_external_link
+            override val send = R.drawable.ic_sosh_functional_actions_send
         }
 
         class Navigation : OudsDrawableResources.Functional.Navigation {

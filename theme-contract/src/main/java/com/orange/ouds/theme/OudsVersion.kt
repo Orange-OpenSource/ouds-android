@@ -30,6 +30,7 @@ object OudsVersion {
         const val BottomSheet = "0.0.0"
         const val BulletList = "1.1.0"
         const val Button = "3.4.0"
+        const val ChatInput = "1.0.0"
         const val Checkbox = "2.4.0"
         const val CircularProgressIndicator = "1.2.0"
         const val Code = "1.0.0"

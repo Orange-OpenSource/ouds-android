@@ -25,6 +25,8 @@
         <item quantity="other">%1$d sous-éléments</item>
     </plurals>
 
+    <string name="core_chatInput_send_a11y">Envoyer</string>
+
     <string name="core_inputTag_remove_a11y">Supprimer</string>
 
     <string name="core_link_onClickLabel_a11y">Ouvrir le lien</string>

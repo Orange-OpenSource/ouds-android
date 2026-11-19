@@ -196,6 +196,9 @@ interface OudsDrawableResources {
 
             @get:DrawableRes
             val externalLink: Int
+
+            @get:DrawableRes
+            val send: Int
         }
 
         @InternalOudsApi

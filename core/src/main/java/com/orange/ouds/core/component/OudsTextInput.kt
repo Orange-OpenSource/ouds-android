@@ -1301,9 +1301,9 @@ internal fun OudsTextInputDecorator(
     )
     val hasError = error != null
     with(OudsTheme.componentsTokens.textInput) {
-        val borderWidth = borderWidth(state)
-        val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
-        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
+        val borderWidth = textInputBorderWidth(state)
+        val borderColor = textInputBorderColor(state = state, outlined = outlined, error = hasError)
+        val backgroundColor = textInputBackgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(
             modifier = Modifier.sizeIn(
@@ -1314,7 +1314,15 @@ internal fun OudsTextInputDecorator(
         ) {
             Row(
                 modifier = Modifier
-                    .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
+                    .textInputBorder(
+                        borderWidth = borderWidth,
+                        borderColor = borderColor,
+                        shape = textInputShape,
+                        cornerRadius = textInputBorderRadius,
+                        state = state,
+                        outlined = outlined,
+                        error = error
+                    )
                     .background(color = backgroundColor, shape = textInputShape)
                     .sizeIn(minHeight = sizeMinHeight.dp)
                     .padding(vertical = spacePaddingBlockDefault.value)
@@ -1424,12 +1432,7 @@ internal fun OudsTextInputDecorator(
                     ) {
                         // Error icon
                         if (visibleContent.contains(OudsTextInputContent.ErrorIcon)) {
-                            Icon(
-                                modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
-                                painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                                contentDescription = if (error?.message.orEmpty().isBlank()) stringResource(R.string.core_common_error_a11y) else null,
-                                tint = errorIconColor(state = state)
-                            )
+                            OudsTextInputErrorIcon(errorMessage = error?.message, state = state)
                         }
 
                         // Loader
@@ -1486,6 +1489,18 @@ internal fun OudsTextInputCircularProgressIndicator(loader: OudsTextInputLoader?
             track = track
         )
     }
+}
+
+@Composable
+internal fun OudsTextInputErrorIcon(errorMessage: String?, state: OudsTextInputState) {
+    val buttonTokens = OudsTheme.componentsTokens.button
+    val fontScale = LocalConfiguration.current.fontScale
+    Icon(
+        modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
+        painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
+        contentDescription = if (errorMessage.orEmpty().isBlank()) stringResource(R.string.core_common_error_a11y) else null,
+        tint = textInputErrorIconColor(state = state)
+    )
 }
 
 // Prefer using the horizontalPadding parameter instead of the modifier to apply horizontal padding
@@ -1598,7 +1613,7 @@ internal fun getTextInputState(
 }
 
 @Composable
-internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
+internal fun textInputBorderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
     val borderWidth = if (state == OudsTextInputState.Focused) borderWidthFocus else borderWidthDefault
     return@with borderWidth.value.takeUnlessHairline
 }
@@ -1609,7 +1624,7 @@ private fun PrefixSuffixText(text: String, state: OudsTextInputState, modifier: 
 }
 
 @Composable
-internal fun backgroundColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
+internal fun textInputBackgroundColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color {
     return when {
         error && outlined -> Color.Transparent
         error && !outlined -> OudsTheme.colorScheme.surface.status.negative.muted
@@ -1644,7 +1659,7 @@ private fun errorContentColor(state: OudsTextInputState) = when (state) {
 }
 
 @Composable
-internal fun errorIconColor(state: OudsTextInputState) = when (state) {
+internal fun textInputErrorIconColor(state: OudsTextInputState) = when (state) {
     OudsTextInputState.Enabled -> OudsTheme.colorScheme.action.negative.enabled
     OudsTextInputState.Hovered -> OudsTheme.colorScheme.action.negative.hover
     OudsTextInputState.Focused -> OudsTheme.colorScheme.action.negative.focus
@@ -1653,12 +1668,20 @@ internal fun errorIconColor(state: OudsTextInputState) = when (state) {
 }
 
 @Composable
-internal fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, state: OudsTextInputState, outlined: Boolean, error: OudsError?): Modifier {
+internal fun Modifier.textInputBorder(
+    borderWidth: Dp?,
+    borderColor: Color?,
+    shape: Shape,
+    cornerRadius: Dp,
+    state: OudsTextInputState,
+    outlined: Boolean,
+    error: OudsError?
+): Modifier {
     return if (borderWidth != null && borderColor != null) {
         if ((outlined && state != OudsTextInputState.ReadOnly) || (!outlined && state == OudsTextInputState.ReadOnly)) {
-            border(width = borderWidth, color = borderColor, shape = textInputShape)
+            border(width = borderWidth, color = borderColor, shape = shape)
         } else {
-            textInputBottomBorder(state = state, outlined = outlined, cornerRadius = textInputBorderRadius, error = error != null)
+            textInputBottomBorder(state = state, outlined = outlined, cornerRadius = cornerRadius, error = error != null)
         }
     } else {
         this
@@ -1671,8 +1694,8 @@ internal fun Modifier.textInputBorder(borderWidth: Dp?, borderColor: Color?, sta
  */
 @Composable
 internal fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined: Boolean, cornerRadius: Dp, error: Boolean): Modifier {
-    val width = borderWidth(state)
-    val color = borderColor(state = state, outlined = outlined, error = error)
+    val width = textInputBorderWidth(state)
+    val color = textInputBorderColor(state = state, outlined = outlined, error = error)
     return if (width != null && color != null) {
         bottomBorder(width = width, color = color, cornerRadius = cornerRadius)
     } else {
@@ -1681,7 +1704,7 @@ internal fun Modifier.textInputBottomBorder(state: OudsTextInputState, outlined:
 }
 
 @Composable
-internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color? {
+internal fun textInputBorderColor(state: OudsTextInputState, outlined: Boolean, error: Boolean): Color? {
     return if (error) {
         errorContentColor(state = state)
     } else {

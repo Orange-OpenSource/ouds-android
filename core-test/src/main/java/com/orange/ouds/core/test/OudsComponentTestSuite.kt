@@ -25,6 +25,7 @@ import org.junit.runners.Suite
     OudsBulletListTest::class,
     OudsButtonTest::class,
     OudsCardItemTest::class,
+    OudsChatInputTest::class,
     OudsCheckboxItemTest::class,
     OudsCheckboxTest::class,
     OudsCircularProgressIndicatorTest::class,

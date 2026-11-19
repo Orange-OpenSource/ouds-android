@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
@@ -37,7 +36,6 @@ import androidx.compose.foundation.text.input.OutputTransformation
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -48,9 +46,6 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextLayoutResult
@@ -64,7 +59,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.R
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
@@ -380,7 +374,10 @@ private fun OudsTextArea(
                     enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
-                    lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = minLines, maxHeightInLines = if (autoResize) maxLines else minLines),
+                    lineLimits = TextFieldLineLimits.MultiLine(
+                        minHeightInLines = textAreaMinLines,
+                        maxHeightInLines = if (autoResize) textAreaMaxLines else textAreaMinLines
+                    ),
                     cursorBrush = textInputCursorBrush(state = state, error = error != null),
                     keyboardOptions = keyboardOptions,
                     onKeyboardAction = onKeyboardAction,
@@ -693,8 +690,8 @@ private fun OudsTextArea(
                     enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
-                    minLines = minLines,
-                    maxLines = if (autoResize) maxLines else minLines,
+                    minLines = textAreaMinLines,
+                    maxLines = if (autoResize) textAreaMaxLines else textAreaMinLines,
                     cursorBrush = textInputCursorBrush(state = state, error = error != null),
                     keyboardOptions = keyboardOptions,
                     keyboardActions = keyboardActions,
@@ -1004,8 +1001,8 @@ private fun OudsTextArea(
                     enabled = state.areInteractionsEnabled,
                     readOnly = readOnly,
                     textStyle = textInputTextStyle(state = state),
-                    minLines = minLines,
-                    maxLines = if (autoResize) maxLines else minLines,
+                    minLines = textAreaMinLines,
+                    maxLines = if (autoResize) textAreaMaxLines else textAreaMinLines,
                     cursorBrush = textInputCursorBrush(state = state, error = error != null),
                     keyboardOptions = keyboardOptions,
                     keyboardActions = keyboardActions,
@@ -1039,7 +1036,7 @@ private fun OudsTextArea(
  * This value ensures that the text area is large enough to be recognized as a multi-line input while maintaining a consistent minimum height across different
  * font scales.
  */
-private val minLines: Int
+private val textAreaMinLines: Int
     @Composable
     get() = (OudsTheme.componentsTokens.textArea.sizeMinHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
@@ -1049,7 +1046,7 @@ private val minLines: Int
  * This value defines the maximum height the component can reach. If the input exceeds this limit, a vertical scrollbar is enabled (in state-based variants)
  * to allow navigation through the text.
  */
-private val maxLines: Int
+internal val textAreaMaxLines: Int
     @Composable
     get() = (OudsTheme.componentsTokens.textArea.sizeMaxHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
@@ -1075,20 +1072,28 @@ internal fun OudsTextAreaDecorator(
     val textInputTokens = OudsTheme.componentsTokens.textInput
     val textAreaTokens = OudsTheme.componentsTokens.textArea
     with(textInputTokens) {
-        val borderWidth = borderWidth(state)
-        val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
-        val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
+        val borderWidth = textInputBorderWidth(state = state)
+        val borderColor = textInputBorderColor(state = state, outlined = outlined, error = hasError)
+        val backgroundColor = textInputBackgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(modifier = Modifier.widthIn(min = sizeMinWidth.dp, max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)) {
             val isSmallLabel = visibleContent.contains(OudsTextInputContent.SmallLabel)
             Row(
                 modifier = Modifier
-                    .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
+                    .textInputBorder(
+                        borderWidth = borderWidth,
+                        borderColor = borderColor,
+                        shape = textInputShape,
+                        cornerRadius = textInputBorderRadius,
+                        state = state,
+                        outlined = outlined,
+                        error = error
+                    )
                     .background(color = backgroundColor, shape = textInputShape)
                     .padding(top = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else textAreaTokens.spacePaddingBlockTopEmpty.value)
                     .padding(bottom = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else 0.dp)
                     .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineTrailingAction.value)
-                    .verticalScrollBar(scrollState = scrollState),
+                    .textAreaVerticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
             ) {
@@ -1105,7 +1110,8 @@ internal fun OudsTextAreaDecorator(
                                 .semantics { hideFromAccessibility() },
                             text = label.orEmpty(),
                             style = if (isSmallLabel) OudsTheme.typography.label.small.default else OudsTheme.typography.label.large.default,
-                            color = labelColor(state = state, error = hasError)
+                            color = labelColor(state = state, error = hasError),
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
 
@@ -1137,17 +1143,9 @@ internal fun OudsTextAreaDecorator(
                             }
                         )
                 ) {
-                    val buttonTokens = OudsTheme.componentsTokens.button
-
                     // Error icon
                     if (visibleContent.contains(OudsTextInputContent.ErrorIcon)) {
-                        val fontScale = LocalConfiguration.current.fontScale
-                        Icon(
-                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
-                            painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
-                            contentDescription = if (error?.message.orEmpty().isBlank()) stringResource(R.string.core_common_error_a11y) else null,
-                            tint = errorIconColor(state = state)
-                        )
+                        OudsTextInputErrorIcon(errorMessage = error?.message, state = state)
                     }
 
                     // Loader
@@ -1163,7 +1161,7 @@ internal fun OudsTextAreaDecorator(
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
                 helperLink = helperLink,
-                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value,
+                horizontalPadding = spacePaddingInlineDefault.value,
                 visibleContent = visibleContent
             )
         }
@@ -1171,7 +1169,7 @@ internal fun OudsTextAreaDecorator(
 }
 
 @Composable
-private fun Modifier.verticalScrollBar(scrollState: ScrollState): Modifier {
+internal fun Modifier.textAreaVerticalScrollBar(scrollState: ScrollState): Modifier {
     val scrollBarColor = OudsTheme.colorScheme.action.disabled
     val scrollBarWidth = 4.dp
 

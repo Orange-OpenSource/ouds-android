@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -31,6 +32,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -48,6 +50,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedErrorMessage
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedHelperText
 import com.orange.ouds.core.component.common.text.withStrong
@@ -386,3 +389,21 @@ annotation class OudsPreviewLightDark
  */
 @Preview(device = OudsPreviewDevice)
 annotation class OudsPreview
+
+@Composable
+internal fun <T> PreviewCustomContent(state: T, modifier: Modifier = Modifier) where T : OudsComponentState, T : Enum<T> {
+    val enabled = state.name != OudsComponentState.Disabled
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(if (enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
+            .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "SLOT",
+            style = OudsTheme.typography.label.small.strong,
+            color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled,
+        )
+    }
+}
