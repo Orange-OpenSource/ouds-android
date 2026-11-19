@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -63,6 +65,7 @@ import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -295,80 +298,82 @@ internal fun OudsCard(
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = interactionState)
 
-    val borderRadius = if (LocalThemeSettings.current.roundedCornerCards == true) 12.dp else 0.dp // TODO use tokens when available
-    val shape = RoundedCornerShape(borderRadius)
+    with(OudsTheme.components.card) {
+        val borderRadius = if (LocalThemeSettings.current.roundedCornerCards == true) border.radius.rounded else border.radius.default
+        val shape = RoundedCornerShape(borderRadius)
 
-    val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
-        val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
-        borderColor(style = style, state = cardState)
-    }
-    val stateOverlayColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
-        val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
-        stateOverlayColor(style = style, state = cardState)
-    }
+        val borderColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
+            val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
+            borderColor(style = style, state = cardState)
+        }
+        val stateOverlayColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
+            val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
+            stateOverlayColor(style = style, state = cardState)
+        }
 
-    val clickableModifier = if (nullableOnClick != null) {
-        Modifier.clickable(
-            enabled = state.areInteractionsEnabled,
-            interactionSource = interactionSource,
-            indication = interactionValuesIndication(borderColor, stateOverlayColor),
-            onClick = nullableOnClick
-        )
-    } else {
-        Modifier
-    }
+        val clickableModifier = if (nullableOnClick != null) {
+            Modifier.clickable(
+                enabled = state.areInteractionsEnabled,
+                interactionSource = interactionSource,
+                indication = interactionValuesIndication(borderColor, stateOverlayColor),
+                onClick = nullableOnClick
+            )
+        } else {
+            Modifier
+        }
 
-    val scope = remember { OudsCardScope() }
+        val scope = remember { OudsCardScope() }
 
-    SkeletonLayout(
-        modifier = modifier,
-        componentState = state,
-        state = skeleton?.state,
-        securityMargin = false,
-        shape = shape
-    ) { contentModifier ->
-        Card(
-            modifier = contentModifier
-                .then(clickableModifier)
-                .cardDivider(style = style, borderRadius = borderRadius)
-                .outerBorder(state = state, shape = shape),
-            shape = shape,
-            colors = CardColors(
-                containerColor = style.backgroundColor,
-                contentColor = Color.Unspecified,
-                disabledContainerColor = style.backgroundColor,
-                disabledContentColor = Color.Unspecified
-            ),
-            elevation = cardElevation(style = style),
-            border = borderColor.value?.let { borderColor ->
-                BorderStroke(width = 1.dp, color = borderColor)
-            }
-        ) {
-            Box {
-                Box(
-                    modifier = Modifier.visible(state != OudsCardState.Loading)
-                ) {
-                    CompositionLocalProvider(LocalParentEnabled provides enabled) {
-                        with(scope) {
-                            this.state = state
-                            content()
+        SkeletonLayout(
+            modifier = modifier,
+            componentState = state,
+            state = skeleton?.state,
+            securityMargin = false,
+            shape = shape
+        ) { contentModifier ->
+            Card(
+                modifier = contentModifier
+                    .then(clickableModifier)
+                    .cardDivider(style = style, borderRadius = borderRadius)
+                    .outerBorder(state = state, shape = shape),
+                shape = shape,
+                colors = CardDefaults.cardColors(
+                    containerColor = style.backgroundColor,
+                    contentColor = Color.Unspecified,
+                    disabledContainerColor = style.backgroundColor,
+                    disabledContentColor = Color.Unspecified
+                ),
+                elevation = cardElevation(style = style),
+                border = borderColor.value?.let { borderColor ->
+                    BorderStroke(width = OudsTheme.borders.width.default, color = borderColor)
+                }
+            ) {
+                Box {
+                    Box(
+                        modifier = Modifier.visible(state != OudsCardState.Loading)
+                    ) {
+                        CompositionLocalProvider(LocalParentEnabled provides enabled) {
+                            with(scope) {
+                                this.state = state
+                                content()
+                            }
                         }
                     }
-                }
-                if (stateOverlayColor.value != null || state == OudsCardState.Loading) {
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize()
-                            .background(color = stateOverlayColor.value.orElse { Color.Transparent })
-                    ) {
-                        if (state == OudsCardState.Loading) {
-                            OudsCircularProgressIndicator(
-                                modifier = Modifier.align(Alignment.Center),
-                                status = OudsProgressIndicatorStatus.Accent,
-                                nullableProgress = loader?.progress?.let { { it } },
-                                track = false,
-                                indicatorSize = 40.dp
-                            )
+                    if (stateOverlayColor.value != null || state == OudsCardState.Loading) {
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .background(color = stateOverlayColor.value.orElse { Color.Transparent })
+                        ) {
+                            if (state == OudsCardState.Loading) {
+                                OudsCircularProgressIndicator(
+                                    modifier = Modifier.align(Alignment.Center),
+                                    status = OudsProgressIndicatorStatus.Accent,
+                                    nullableProgress = loader?.progress?.let { { it } },
+                                    track = false,
+                                    indicatorSize = 40.dp
+                                )
+                            }
                         }
                     }
                 }
