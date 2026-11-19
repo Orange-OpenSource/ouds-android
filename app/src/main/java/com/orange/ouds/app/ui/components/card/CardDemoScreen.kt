@@ -20,6 +20,9 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCard
+import com.orange.ouds.core.component.OudsCardStyle
+import com.orange.ouds.core.component.OudsElevatedCard
+import com.orange.ouds.core.component.OudsOutlinedCard
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.InternalOudsApi
@@ -41,13 +44,35 @@ fun CardDemoScreen() {
 @Composable
 private fun CardDemoContent(state: CardDemoState) {
     with(state) {
-        OudsCard(
-            modifier = Modifier.width(BaseCardDemoState.DemoCardWidth),
-            style = style.getOudsCardStyle(background, divider),
-            enabled = enabled,
-            skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
-        ) {
-            BaseCardContentExample(state = state)
+        val modifier = Modifier.width(BaseCardDemoState.DemoCardWidth)
+        val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
+        when (style) {
+            BaseCardDemoState.Style.Filled -> OudsCard(
+                modifier = modifier,
+                style = OudsCardStyle.Filled(
+                    background = background,
+                    divider = divider
+                ),
+                enabled = enabled,
+                skeleton = skeleton
+            ) {
+                BaseCardContentExample(state = state)
+            }
+            BaseCardDemoState.Style.Outlined -> OudsOutlinedCard(
+                modifier = modifier,
+                enabled = enabled,
+                skeleton = skeleton
+            ) {
+                BaseCardContentExample(state = state)
+            }
+            BaseCardDemoState.Style.Elevated -> OudsElevatedCard(
+                modifier = modifier,
+                background = background,
+                enabled = enabled,
+                skeleton = skeleton
+            ) {
+                BaseCardContentExample(state = state)
+            }
         }
     }
 }
