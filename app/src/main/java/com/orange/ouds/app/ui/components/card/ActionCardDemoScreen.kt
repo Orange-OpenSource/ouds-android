@@ -22,6 +22,9 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCard
 import com.orange.ouds.core.component.OudsCardLoader
+import com.orange.ouds.core.component.OudsCardStyle
+import com.orange.ouds.core.component.OudsElevatedCard
+import com.orange.ouds.core.component.OudsOutlinedCard
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.rememberOudsSkeletonState
 import com.orange.ouds.foundation.InternalOudsApi
@@ -44,7 +47,6 @@ fun ActionCardDemoScreen() {
 private fun ActionCardDemoBottomSheetContent(state: ActionCardDemoState) {
     with(state) {
         BaseCardDemoBottomSheetContent(state)
-
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_loader_tech),
             checked = hasLoader,
@@ -57,15 +59,38 @@ private fun ActionCardDemoBottomSheetContent(state: ActionCardDemoState) {
 @Composable
 private fun ActionCardDemoContent(state: ActionCardDemoState) {
     with(state) {
-        OudsCard(
-            onClick = {},
-            modifier = Modifier.width(BaseCardDemoState.DemoCardWidth),
-            style = style.getOudsCardStyle(background, divider),
-            enabled = enabled,
-            loader = if (hasLoader) OudsCardLoader(null) else null,
-            skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
-        ) {
-            BaseCardContentExample(state = state)
+        val modifier = Modifier.width(BaseCardDemoState.DemoCardWidth)
+        val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
+        when (style) {
+            BaseCardDemoState.Style.Filled -> OudsCard(
+                onClick = {},
+                modifier = modifier,
+                style = OudsCardStyle.Filled(
+                    background = background,
+                    divider = divider
+                ),
+                enabled = enabled,
+                skeleton = skeleton
+            ) {
+                BaseCardContentExample(state = state)
+            }
+            BaseCardDemoState.Style.Outlined -> OudsOutlinedCard(
+                onClick = {},
+                modifier = modifier,
+                enabled = enabled,
+                skeleton = skeleton
+            ) {
+                BaseCardContentExample(state = state)
+            }
+            BaseCardDemoState.Style.Elevated -> OudsElevatedCard(
+                onClick = {},
+                modifier = modifier,
+                background = background,
+                enabled = enabled,
+                skeleton = skeleton
+            ) {
+                BaseCardContentExample(state = state)
+            }
         }
     }
 }

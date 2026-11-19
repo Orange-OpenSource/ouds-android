@@ -88,17 +88,6 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
     }
 }
 
-fun BaseCardDemoState.Style.getOudsCardStyle(background: Boolean, divider: Boolean): OudsCardStyle = when (this) {
-    BaseCardDemoState.Style.Filled -> OudsCardStyle.Filled(
-        background = background,
-        divider = divider
-    )
-    BaseCardDemoState.Style.Outlined -> OudsCardStyle.Outlined
-    BaseCardDemoState.Style.Elevated -> OudsCardStyle.Elevated(
-        background = background,
-    )
-}
-
 @Composable
 fun BaseCardContentExample(state: BaseCardDemoState) {
     when (state.contentExample) {
@@ -151,7 +140,7 @@ fun Code.Builder.baseCardDemoCodeSnippet(state: BaseCardDemoState, cardArguments
     with(state) {
         functionCall("OudsCard") {
             trailingLambda = true
-            
+
             when (style) {
                 BaseCardDemoState.Style.Filled -> {
                     if (!background || divider) {
