@@ -225,10 +225,7 @@ private val WhiteLabelThemeExample = with(WhiteLabelThemeExampleColors) {
                     secondary = OudsLightDarkColor(White, White)
                 ),
                 status = WhiteLabelColorScheme.Content.Status(
-                    info = OudsLightDarkColor(Teal700, Teal300),
-                    inverse = WhiteLabelColorScheme.Content.Status.Inverse(
-                        info = OudsLightDarkColor(Teal300, Teal700)
-                    )
+                    info = OudsLightDarkColor(Teal700, Teal300)
                 )
             ),
             repository = WhiteLabelColorScheme.Repository(

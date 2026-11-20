@@ -261,21 +261,9 @@ public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Conten
 public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Content$Status {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Content$Status$Inverse;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;)V
-	public synthetic fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Content$Status$Inverse;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAccent ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-	public final fun getInfo ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-	public final fun getInverse ()Lcom/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Content$Status$Inverse;
-	public final fun getNegative ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-	public final fun getPositive ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-	public final fun getWarning ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-}
-
-public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Content$Status$Inverse {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;)V
-	public synthetic fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getInfo ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getNegative ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getPositive ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
@@ -285,12 +273,11 @@ public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Conten
 public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Opacity {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;)V
-	public synthetic fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;)V
+	public synthetic fun <init> (Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getLower ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getLowest ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getTransparent ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-	public final fun getTransparentInverse ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 }
 
 public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Overlay {
@@ -301,8 +288,8 @@ public final class com/orange/ouds/theme/whitelabel/WhiteLabelColorScheme$Overla
 	public final fun getBackdrop ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getDrag ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getDropdown ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
-	public final fun getFloating ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getModalSheet ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
+	public final fun getSticky ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 	public final fun getTooltip ()Lcom/orange/ouds/theme/tokens/components/OudsLightDarkColor;
 }
 

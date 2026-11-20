@@ -22,10 +22,10 @@ internal class WhiteLabelColorOverlaySemanticTokens(
     override val overlayDragLight: Color,
     override val overlayDropdownDark: Color,
     override val overlayDropdownLight: Color,
-    override val overlayFloatingDark: Color,
-    override val overlayFloatingLight: Color,
     override val overlayModalSheetDark: Color,
     override val overlayModalSheetLight: Color,
+    override val overlayStickyDark: Color,
+    override val overlayStickyLight: Color,
     override val overlayTooltipDark: Color,
     override val overlayTooltipLight: Color
 ) : OudsColorOverlaySemanticTokens

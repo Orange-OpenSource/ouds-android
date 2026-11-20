@@ -439,7 +439,6 @@ class WhiteLabelColorScheme(
          *
          * @param accent Accent status content color.
          * @param info Info status content color.
-         * @param inverse Inverse status content colors.
          * @param negative Negative/error status content color.
          * @param positive Positive/success status content color.
          * @param warning Warning status content color.
@@ -447,40 +446,21 @@ class WhiteLabelColorScheme(
         class Status(
             val accent: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
             val info: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
-            val inverse: Inverse = Inverse(),
             val negative: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
             val positive: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
             val warning: OudsLightDarkColor = OudsLightDarkColor.Unspecified
-        ) {
-
-            /**
-             * Inverse status content colors.
-             *
-             * @param info Inverse info status content color.
-             * @param negative Inverse negative status content color.
-             * @param positive Inverse positive status content color.
-             * @param warning Inverse warning status content color.
-             */
-            class Inverse(
-                val info: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
-                val negative: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
-                val positive: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
-                val warning: OudsLightDarkColor = OudsLightDarkColor.Unspecified
-            )
-        }
+        )
     }
 
     /**
      * Opacity and transparency colors for overlays and scrim effects.
      *
      * @param transparent Transparent color.
-     * @param transparentInverse Inverse transparent color.
      * @param lowest Lowest opacity level.
      * @param lower Lower opacity level.
      */
     class Opacity(
         val transparent: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
-        val transparentInverse: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
         val lowest: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
         val lower: OudsLightDarkColor = OudsLightDarkColor.Unspecified
     )
@@ -491,16 +471,16 @@ class WhiteLabelColorScheme(
      * @param backdrop Backdrop overlay color.
      * @param dropdown Dropdown overlay color.
      * @param drag Drag overlay color.
-     * @param floating Floating overlay color.
      * @param modalSheet Modal sheet overlay color.
+     * @param sticky Sticky overlay color.
      * @param tooltip Tooltip overlay color.
      */
     class Overlay(
         val backdrop: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
         val dropdown: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
         val drag: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
-        val floating: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
         val modalSheet: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
+        val sticky: OudsLightDarkColor = OudsLightDarkColor.Unspecified,
         val tooltip: OudsLightDarkColor = OudsLightDarkColor.Unspecified
     )
 
@@ -1233,14 +1213,6 @@ private val WhiteLabelColorScheme.Content.colorContentSemanticTokens: WhiteLabel
             contentStatusAccentLight = status.accent.light.takeOrElse { contentStatusAccentLight },
             contentStatusInfoDark = status.info.dark.takeOrElse { contentStatusInfoDark },
             contentStatusInfoLight = status.info.light.takeOrElse { contentStatusInfoLight },
-            contentStatusInverseInfoDark = status.inverse.info.dark.takeOrElse { contentStatusInverseInfoDark },
-            contentStatusInverseInfoLight = status.inverse.info.light.takeOrElse { contentStatusInverseInfoLight },
-            contentStatusInverseNegativeDark = status.inverse.negative.dark.takeOrElse { contentStatusInverseNegativeDark },
-            contentStatusInverseNegativeLight = status.inverse.negative.light.takeOrElse { contentStatusInverseNegativeLight },
-            contentStatusInversePositiveDark = status.inverse.positive.dark.takeOrElse { contentStatusInversePositiveDark },
-            contentStatusInversePositiveLight = status.inverse.positive.light.takeOrElse { contentStatusInversePositiveLight },
-            contentStatusInverseWarningDark = status.inverse.warning.dark.takeOrElse { contentStatusInverseWarningDark },
-            contentStatusInverseWarningLight = status.inverse.warning.light.takeOrElse { contentStatusInverseWarningLight },
             contentStatusNegativeDark = status.negative.dark.takeOrElse { contentStatusNegativeDark },
             contentStatusNegativeLight = status.negative.light.takeOrElse { contentStatusNegativeLight },
             contentStatusPositiveDark = status.positive.dark.takeOrElse { contentStatusPositiveDark },
@@ -1258,8 +1230,6 @@ private val WhiteLabelColorScheme.Opacity.colorOpacitySemanticTokens: WhiteLabel
             opacityLowestDark = lowest.dark.takeOrElse { opacityLowestDark },
             opacityLowestLight = lowest.light.takeOrElse { opacityLowestLight },
             opacityTransparentDark = transparent.dark.takeOrElse { opacityTransparentDark },
-            opacityTransparentInverseDark = transparentInverse.dark.takeOrElse { opacityTransparentInverseDark },
-            opacityTransparentInverseLight = transparentInverse.light.takeOrElse { opacityTransparentInverseLight },
             opacityTransparentLight = transparent.light.takeOrElse { opacityTransparentLight }
         )
     }
@@ -1273,10 +1243,10 @@ private val WhiteLabelColorScheme.Overlay.colorOverlaySemanticTokens: WhiteLabel
             overlayDragLight = drag.light.takeOrElse { overlayDragLight },
             overlayDropdownDark = dropdown.dark.takeOrElse { overlayDropdownDark },
             overlayDropdownLight = dropdown.light.takeOrElse { overlayDropdownLight },
-            overlayFloatingDark = floating.dark.takeOrElse { overlayFloatingDark },
-            overlayFloatingLight = floating.light.takeOrElse { overlayFloatingLight },
             overlayModalSheetDark = modalSheet.dark.takeOrElse { overlayModalSheetDark },
             overlayModalSheetLight = modalSheet.light.takeOrElse { overlayModalSheetLight },
+            overlayStickyDark = sticky.dark.takeOrElse { overlayStickyDark },
+            overlayStickyLight = sticky.light.takeOrElse { overlayStickyLight },
             overlayTooltipDark = tooltip.dark.takeOrElse { overlayTooltipDark },
             overlayTooltipLight = tooltip.light.takeOrElse { overlayTooltipLight }
         )
