@@ -45,6 +45,7 @@ import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -95,6 +96,7 @@ fun OudsInputTag(
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     val tagTokens = OudsTheme.componentsTokens.tag
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()

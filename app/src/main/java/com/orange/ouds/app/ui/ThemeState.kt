@@ -130,6 +130,7 @@ class ThemeState(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
+                        roundedCornerCards = roundedCornerCards.orElse { false },
                         roundedCornerCardItems = roundedCornerCardItems.orElse { false },
                         roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }
@@ -138,6 +139,7 @@ class ThemeState(
                         orangeFontFamily = OrangeFontFamily(OrangeHelveticaNeueLatin.Downloadable, OrangeHelveticaNeueArabic.Downloadable),
                         roundedCornerAlertMessages = roundedCornerAlertMessages.orElse { false },
                         roundedCornerButtons = roundedCornerButtons.orElse { false },
+                        roundedCornerCards = roundedCornerCards.orElse { false },
                         roundedCornerCardItems = roundedCornerCardItems.orElse { false },
                         roundedCornerProgressIndicators = roundedCornerProgressIndicators.orElse { false },
                         roundedCornerTextInputs = roundedCornerTextInputs.orElse { false }

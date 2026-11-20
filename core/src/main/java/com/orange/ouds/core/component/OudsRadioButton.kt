@@ -46,6 +46,7 @@ import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalHighContrastModeEnabled
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -104,6 +105,7 @@ fun OudsRadioButton(
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     val previewState = getPreviewEnumEntry<OudsControlState>()
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlState.Disabled

@@ -51,6 +51,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -101,6 +102,7 @@ fun OudsSwitch(
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     val switchTokens = OudsTheme.componentsTokens.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()

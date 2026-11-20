@@ -25,6 +25,7 @@ interface OudsComponentsTokens {
     val bulletList: OudsBulletListTokens
     val button: OudsButtonTokens
     val buttonMonochrome: OudsButtonMonoTokens
+    val card: OudsCardTokens
     val checkbox: OudsCheckboxTokens
     val chip: OudsChipTokens
     val divider: OudsDividerTokens

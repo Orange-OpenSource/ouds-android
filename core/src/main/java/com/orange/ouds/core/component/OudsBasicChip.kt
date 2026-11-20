@@ -45,6 +45,7 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
@@ -68,6 +69,7 @@ internal fun OudsBasicChip(
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsChipScope.() -> Unit = { DefaultChipContent(iconPosition) }
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     @Suppress("NAME_SHADOWING") val selected = selectable && selected
     val chipTokens = OudsTheme.componentsTokens.chip
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }

@@ -56,6 +56,7 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.iconSize
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.value
@@ -144,6 +145,7 @@ fun OudsTag(
     loader: OudsTagLoader? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     val state = getTagState(enabled = enabled, loader = loader, skeleton = skeleton)
     val hasAsset = status.asset != null || state == OudsTagState.Loading
     val stateDescription = if (state == OudsTagState.Loading) stringResource(id = R.string.core_common_loading_a11y) else ""

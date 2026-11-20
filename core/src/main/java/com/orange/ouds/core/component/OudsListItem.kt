@@ -69,6 +69,7 @@ import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -504,6 +505,7 @@ internal fun OudsListItem(
     interactionSource: MutableInteractionSource? = null,
     skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getListItemState(enabled = enabled, skeleton = skeleton, interactionState = interactionState)

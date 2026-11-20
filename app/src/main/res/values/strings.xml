@@ -40,6 +40,7 @@
     <string name="app_themeSettingsDialog_label">Change theme settings</string>
     <string name="app_themeSettingsDialog_roundedCornerAlertMessages_label">Rounded corner alert messages</string>
     <string name="app_themeSettingsDialog_roundedCornerButtons_label">Rounded corner buttons</string>
+    <string name="app_themeSettingsDialog_roundedCornerCards_label">Rounded corner cards</string>
     <string name="app_themeSettingsDialog_roundedCornerCardItems_label">Rounded corner card items</string>
     <string name="app_themeSettingsDialog_roundedCornerProgressIndicators_label">Rounded corner progress indicators</string>
     <string name="app_themeSettingsDialog_roundedCornerTextInputs_label">Rounded corner text inputs</string>
@@ -134,6 +135,7 @@
     <string name="app_components_common_background_tech" translatable="false">Background</string>
     <string name="app_components_common_color_tech" translatable="false">Color</string>
     <string name="app_components_common_constrainedMaxWidth_tech" translatable="false">Constrained max width</string>
+    <string name="app_components_common_content_tech" translatable="false">Content</string>
     <string name="app_components_common_description_tech" translatable="false">Description</string>
     <string name="app_components_common_divider_tech" translatable="false">Divider</string>
     <string name="app_components_common_edgeToEdge_tech" translatable="false">Edge to edge</string>
@@ -242,6 +244,21 @@
     <string name="app_components_button_navigationButton_tech" translatable="false">Navigation button</string>
     <string name="app_components_button_navigationButton_chevron_tech" translatable="false">Chevron</string>
 
+    <!-- Components: card -->
+    <string name="app_components_card_tech" translatable="false">Card</string>
+    <string name="app_components_card_description_text">Card is a surface-like UI element that groups related information within a single surface.</string>
+    <string name="app_components_card_card_tech" translatable="false">Card</string>
+    <string name="app_components_card_card_description_text">A content card is a surface-like UI element that groups related information within a single non-interactive surface that can include independently interactive elements.</string>
+    <string name="app_components_card_actionCard_tech" translatable="false">Action card</string>
+    <string name="app_components_card_actionCard_description_text">An action card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.</string>
+    <string name="app_components_card_style_tech" translatable="false">Style</string>
+    <string name="app_components_card_backgroundColor_tech" translatable="false">Background color</string>
+    <string name="app_components_card_contentExample_tech" translatable="false">Content example</string>
+    <string name="app_components_card_contentExampleTitle_tech" translatable="false">Samsung</string>
+    <string name="app_components_card_contentExampleSubtitle_tech" translatable="false">Galaxy S26 FE EE</string>
+    <string name="app_components_card_contentExampleTagLabel_label">New</string>
+    <string name="app_components_card_contentExampleButtonLabel_label">Order</string>
+
     <!-- Components: checkbox -->
     <string name="app_components_checkbox_tech" translatable="false">Checkbox</string>
     <string name="app_components_checkbox_description_text">Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices.</string>
@@ -317,7 +334,6 @@
     <string name="app_components_listItem_trailingTextStyle_tech" translatable="false">Text style</string>
     <string name="app_components_listItem_trailingTextExtraLabel_tech" translatable="false">Text extra label</string>
     <string name="app_components_listItem_bottomContent_tech" translatable="false">Bottom content</string>
-    <string name="app_components_listItem_content_tech" translatable="false">Content</string>
     <string name="app_components_listItem_settingsAlertMessageLabel_label">%1$s example</string>
     <string name="app_components_listItem_componentSettingsAlertMessageDescription_text">Please see the specific component settings for full configuration options.</string>
     <string name="app_components_listItem_contentSettingsAlertMessageDescription_text">Use Content for custom content that cannot be represented by another existing element.\nContent provides flexibility for specific product requirements, but it should be used as an exception rather than the default solution.</string>

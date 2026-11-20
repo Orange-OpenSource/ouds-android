@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.component.common.OudsError
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.utilities.LoremIpsumText
 import com.orange.ouds.core.utilities.OudsPreview
@@ -202,6 +203,7 @@ fun OudsTriStateCheckboxItem(
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val checkboxItemState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
