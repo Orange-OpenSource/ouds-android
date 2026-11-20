@@ -21,7 +21,5 @@ internal class WhiteLabelColorOpacitySemanticTokens(
     override val opacityLowestDark: Color,
     override val opacityLowestLight: Color,
     override val opacityTransparentDark: Color,
-    override val opacityTransparentInverseDark: Color,
-    override val opacityTransparentInverseLight: Color,
     override val opacityTransparentLight: Color,
 ) : OudsColorOpacitySemanticTokens

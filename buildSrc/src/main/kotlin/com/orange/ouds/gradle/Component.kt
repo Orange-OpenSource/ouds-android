@@ -65,21 +65,21 @@ enum class Component {
                 Component.Badge -> Badge
                 Component.BadgeCount -> BadgeCount
                 Component.BadgeIcon -> BadgeIcon
-                Component.Body -> Body
+                Component.Body -> TypographyBody
                 Component.BottomSheet -> BottomSheet
                 Component.BulletList -> BulletList
                 Component.Button -> Button
                 Component.Checkbox -> Checkbox
                 Component.CircularProgressIndicator -> CircularProgressIndicator
-                Component.Code -> Code
-                Component.Display -> Display
+                Component.Code -> TypographyCode
+                Component.Display -> TypographyDisplay
                 Component.Divider -> Divider
                 Component.Fab -> Fab
                 Component.FilterChip -> FilterChip
-                Component.Heading -> Heading
+                Component.Heading -> TypographyHeading
                 Component.InlineAlert -> InlineAlert
                 Component.InputTag -> InputTag
-                Component.Label -> Label
+                Component.Label -> TypographyLabel
                 Component.LinearProgressIndicator -> LinearProgressIndicator
                 Component.Link -> Link
                 Component.NavigationBar -> NavigationBar

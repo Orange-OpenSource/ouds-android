@@ -4,6 +4,7 @@ public final class com/orange/ouds/theme/sosh/SoshTheme : com/orange/ouds/theme/
 	public fun getBorderTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsBorderSemanticTokens;
 	public fun getColorTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsColorSemanticTokens;
 	public fun getComponentsTokens ()Lcom/orange/ouds/theme/tokens/components/OudsComponentsTokens;
+	public fun getDeprecatedTokens ()Lcom/orange/ouds/theme/tokens/deprecated/OudsDeprecatedTokens;
 	public fun getDrawableResources ()Lcom/orange/ouds/theme/OudsDrawableResources;
 	public fun getEffectTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsEffectSemanticTokens;
 	public fun getElevationTokens ()Lcom/orange/ouds/theme/tokens/semantic/OudsElevationSemanticTokens;

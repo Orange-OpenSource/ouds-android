@@ -41,7 +41,7 @@ fun DisplayTextDemoScreen() {
         bottomSheetContent = { DisplayTextDemoBottomSheetContent(state = state) },
         codeSnippet = { displayTextDemoCodeSnippet(state = state) },
         demoContent = { DisplayTextDemoContent(state = state) },
-        version = OudsVersion.Component.Display
+        version = OudsVersion.Component.TypographyDisplay
     )
 }
 
