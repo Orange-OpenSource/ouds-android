@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -53,7 +55,6 @@ import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -62,6 +63,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.extensions.toSentenceCase
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
@@ -386,7 +388,7 @@ private fun OudsFloatingActionButton(
 
 @Composable
 private fun Icon(icon: OudsFloatingActionButtonIcon, label: String? = null, large: Boolean = false) {
-    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.componentsTokens.button.sizeIconOnlyDefault.value
+    val iconSize = if (large) OudsTheme.sizes.icon.withLabel.large.sizeLarge else OudsTheme.components.button.size.iconOnlyDefault
     val iconScale = LocalConfiguration.current.fontScale
     icon.Content(
         modifier = Modifier
@@ -425,12 +427,12 @@ private fun contentColor(appearance: OudsFloatingActionButtonAppearance, state: 
                 OudsFloatingActionButtonState.Pressed -> pressed
             }
         }
-        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.componentsTokens.button) {
+        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.components.button) {
             when (state) {
-                OudsFloatingActionButtonState.Enabled -> colorContentBrandEnabled.value
-                OudsFloatingActionButtonState.Focused -> colorContentBrandFocus.value
-                OudsFloatingActionButtonState.Hovered -> colorContentBrandHover.value
-                OudsFloatingActionButtonState.Pressed -> colorContentBrandPressed.value
+                OudsFloatingActionButtonState.Enabled -> color.content.brand.enabled
+                OudsFloatingActionButtonState.Focused -> color.content.brand.focus
+                OudsFloatingActionButtonState.Hovered -> color.content.brand.hover
+                OudsFloatingActionButtonState.Pressed -> color.content.brand.pressed
             }
         }
     }
@@ -447,12 +449,12 @@ private fun containerColor(appearance: OudsFloatingActionButtonAppearance, state
                 OudsFloatingActionButtonState.Pressed -> pressed
             }
         }
-        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.componentsTokens.button) {
+        OudsFloatingActionButtonAppearance.Brand -> with(OudsTheme.components.button) {
             when (state) {
-                OudsFloatingActionButtonState.Enabled -> colorBgBrandEnabled.value
-                OudsFloatingActionButtonState.Focused -> colorBgBrandFocus.value
-                OudsFloatingActionButtonState.Hovered -> colorBgBrandHover.value
-                OudsFloatingActionButtonState.Pressed -> colorBgBrandPressed.value
+                OudsFloatingActionButtonState.Enabled -> color.background.brand.enabled
+                OudsFloatingActionButtonState.Focused -> color.background.brand.focus
+                OudsFloatingActionButtonState.Hovered -> color.background.brand.hover
+                OudsFloatingActionButtonState.Pressed -> color.background.brand.pressed
             }
         }
     }

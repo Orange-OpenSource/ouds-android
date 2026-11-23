@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -49,7 +51,6 @@ import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -58,6 +59,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -284,13 +286,13 @@ private fun OudsBadge(
 
 @Composable
 private fun size(size: OudsBadgeSize): Dp {
-    return with(OudsTheme.componentsTokens.badge) {
+    return with(OudsTheme.components.badge) {
         when (size) {
-            OudsBadgeSize.ExtraSmall -> sizeXsmall
-            OudsBadgeSize.Small -> sizeSmall
-            OudsBadgeSize.Medium -> sizeMedium
-            OudsBadgeSize.Large -> sizeLarge
-        }.dp
+            OudsBadgeSize.ExtraSmall -> this@with.size.extraSmall
+            OudsBadgeSize.Small -> this@with.size.small
+            OudsBadgeSize.Medium -> this@with.size.medium
+            OudsBadgeSize.Large -> this@with.size.large
+        }
     }
 }
 
@@ -354,13 +356,13 @@ private fun textStyle(size: OudsBadgeSize): TextStyle? {
 private fun contentPadding(size: OudsBadgeSize, count: Int?, withIconStatus: OudsIconBadgeStatus?, scale: Float): PaddingValues {
     val hasStatusWithCustomIcon = withIconStatus?.toBadgeStatus() in listOf(OudsBadgeStatus.Neutral, OudsBadgeStatus.Accent)
             && withIconStatus?.icon != null
-    return with(OudsTheme.componentsTokens.badge) {
+    return with(OudsTheme.components.badge) {
         when {
-            count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = spacePaddingInlineMedium.value * scale)
-            count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = spacePaddingInlineLarge.value * scale)
-            hasStatusWithCustomIcon && size == OudsBadgeSize.ExtraSmall -> PaddingValues(all = spaceInsetXsmall.dp * scale)
-            hasStatusWithCustomIcon && size == OudsBadgeSize.Small -> PaddingValues(all = spaceInsetSmall.dp * scale)
-            hasStatusWithCustomIcon && size in listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large) -> PaddingValues(all = spaceInsetMediumLarge.dp * scale)
+            count != null && size == OudsBadgeSize.Medium -> PaddingValues(horizontal = space.paddingInline.medium * scale)
+            count != null && size == OudsBadgeSize.Large -> PaddingValues(horizontal = space.paddingInline.large * scale)
+            hasStatusWithCustomIcon && size == OudsBadgeSize.ExtraSmall -> PaddingValues(all = space.insetExtraSmall * scale)
+            hasStatusWithCustomIcon && size == OudsBadgeSize.Small -> PaddingValues(all = space.insetSmall * scale)
+            hasStatusWithCustomIcon && size in listOf(OudsBadgeSize.Medium, OudsBadgeSize.Large) -> PaddingValues(all = space.insetMediumLarge * scale)
             else -> PaddingValues(all = 0.dp)
         }
     }
@@ -559,12 +561,12 @@ sealed class OudsIconBadgeStatus(val icon: OudsBadgeIcon) {
         OudsBadgeIcon(
             { icon ->
                 if (icon.enabled == true) {
-                    val iconTokens = OudsTheme.componentsTokens.icon
+                    val iconTokens = OudsTheme.components.icon
                     LayeredTintedPainter(
                         backPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningExternalShape),
-                        backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                        backPainterColor = iconTokens.color.content.status.warning.externalShape,
                         frontPainter = painterResource(id = OudsTheme.drawableResources.component.badgeIcon.warningInternalShape),
-                        frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                        frontPainterColor = iconTokens.color.content.status.warning.internalShape
                     )
                 } else {
                     painterResource(OudsTheme.drawableResources.component.badgeIcon.warningExternalShape)

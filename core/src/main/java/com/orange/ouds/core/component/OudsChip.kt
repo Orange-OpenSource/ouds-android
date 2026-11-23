@@ -30,7 +30,6 @@ import com.orange.ouds.core.component.common.OudsComponentState
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.foundation.ExperimentalOudsApi
 import com.orange.ouds.foundation.RestrictedOudsApi
 
@@ -184,7 +183,7 @@ class OudsChipScope {
 @Composable
 internal fun OudsChipScope.DefaultChipContent(iconPosition: OudsChipIconPosition) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(OudsTheme.componentsTokens.chip.spaceColumnGapIcon.value, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(OudsTheme.components.chip.space.columnGap.icon, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Tick()

@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -75,7 +77,6 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.currentWindowWidth
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
@@ -83,6 +84,7 @@ import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -291,7 +293,7 @@ private fun OudsPinCodeInput(
         length = length
     ) {
         val textFieldModifier = modifier
-            .heightIn(min = OudsTheme.componentsTokens.textInput.sizeMinHeight.dp)
+            .heightIn(min = OudsTheme.components.textInput.size.minHeight)
             .focusRequester(focusRequester)
         val keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, keyboardType = KeyboardType.Number)
         val inputTransformation = inputTransformation(length)
@@ -395,10 +397,10 @@ private fun OudsPinCodeInputDecorator(
     skeleton: OudsSkeleton?
 ) {
     val interactionState by interactionSource.collectInteractionStateAsState()
-    val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
+    val pinCodeInputTokens = OudsTheme.components.pinCodeInput
     val smallDeviceSpecificRules = smallDeviceSpecificRules(length)
     BoxWithConstraints(contentAlignment = Alignment.Center) {
-        val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.spaceColumnGapDigitInput.value
+        val horizontalSpace = if (smallDeviceSpecificRules) 6.dp else pinCodeInputTokens.space.columnGapDigitInput
         val totalHorizontalSpace = horizontalSpace * (length.value - 1)
         val digitWidth = (maxWidth - totalHorizontalSpace) / length.value
         ConstraintLayout {

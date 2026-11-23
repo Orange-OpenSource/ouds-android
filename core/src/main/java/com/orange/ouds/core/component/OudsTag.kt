@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -58,7 +60,6 @@ import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LocalPreviewGridColumnEnumEntry
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -67,6 +68,7 @@ import com.orange.ouds.core.utilities.PreviewGrid
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -219,39 +221,36 @@ private fun getTagState(enabled: Boolean, loader: OudsTagLoader?, skeleton: Ouds
 }
 
 @Composable
-private fun shape(roundedCorners: Boolean): RoundedCornerShape {
-    return with(OudsTheme.componentsTokens.tag) {
-        RoundedCornerShape(if (roundedCorners) borderRadius.value else OudsTheme.borders.radius.none)
-    }
-}
+private fun shape(roundedCorners: Boolean): RoundedCornerShape =
+    RoundedCornerShape(if (roundedCorners) OudsTheme.components.tag.border.radius else OudsTheme.borders.radius.none)
 
 @Composable
 private fun minWidth(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> sizeMinWidthDefault
-            OudsTagSize.Small -> sizeMinWidthSmall
-        }.dp
+            OudsTagSize.Default -> this@with.size.minWidthDefault
+            OudsTagSize.Small -> this@with.size.minWidthSmall
+        }
     }
 }
 
 @Composable
 private fun minHeight(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> sizeMinHeightDefault
-            OudsTagSize.Small -> sizeMinHeightSmall
-        }.dp
+            OudsTagSize.Default -> this@with.size.minHeightDefault
+            OudsTagSize.Small -> this@with.size.minHeightSmall
+        }
     }
 }
 
 @Composable
 private fun assetSize(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> sizeAssetDefault
-            OudsTagSize.Small -> sizeAssetSmall
-        }.value
+            OudsTagSize.Default -> this@with.size.assetDefault
+            OudsTagSize.Small -> this@with.size.assetSmall
+        }
     }
 }
 
@@ -265,11 +264,11 @@ private fun textStyle(size: OudsTagSize): TextStyle {
 
 @Composable
 private fun betweenAssetAndLabelSpace(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> spaceColumnGapDefault
-            OudsTagSize.Small -> spaceColumnGapSmall
-        }.value
+            OudsTagSize.Default -> space.columnGap.default
+            OudsTagSize.Small -> space.columnGap.small
+        }
     }
 }
 
@@ -333,17 +332,17 @@ private fun contentPadding(size: OudsTagSize, hasAsset: Boolean): PaddingValues 
     val verticalPadding: Dp
     val startPadding: Dp
     val endPadding: Dp
-    with(OudsTheme.componentsTokens.tag) {
+    with(OudsTheme.components.tag) {
         when (size) {
             OudsTagSize.Default -> {
-                verticalPadding = spacePaddingBlockDefault.value
-                startPadding = if (hasAsset) spacePaddingInlineAssetDefault.value else spacePaddingInlineDefault.value
-                endPadding = spacePaddingInlineDefault.value
+                verticalPadding = space.paddingBlock.default
+                startPadding = if (hasAsset) space.paddingInline.assetDefault else space.paddingInline.default
+                endPadding = space.paddingInline.default
             }
             OudsTagSize.Small -> {
-                verticalPadding = spacePaddingBlockSmall.value
-                startPadding = if (hasAsset) spacePaddingInlineAssetSmall.value else spacePaddingInlineSmall.value
-                endPadding = spacePaddingInlineSmall.value
+                verticalPadding = space.paddingBlock.small
+                startPadding = if (hasAsset) space.paddingInline.assetSmall else space.paddingInline.small
+                endPadding = space.paddingInline.small
             }
         }
     }
@@ -353,31 +352,31 @@ private fun contentPadding(size: OudsTagSize, hasAsset: Boolean): PaddingValues 
 
 @Composable
 private fun iconPadding(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> spaceInsetIconDefault
-            OudsTagSize.Small -> spaceInsetIconSmall
-        }.value
+            OudsTagSize.Default -> space.inset.iconDefault
+            OudsTagSize.Small -> space.inset.iconSmall
+        }
     }
 }
 
 @Composable
 private fun bulletPadding(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> spaceInsetBulletDefault.dp
-            OudsTagSize.Small -> spaceInsetBulletSmall.value
+            OudsTagSize.Default -> space.inset.bulletDefault
+            OudsTagSize.Small -> space.inset.bulletSmall
         }
     }
 }
 
 @Composable
 private fun loaderPadding(size: OudsTagSize): Dp {
-    return with(OudsTheme.componentsTokens.tag) {
+    return with(OudsTheme.components.tag) {
         when (size) {
-            OudsTagSize.Default -> spaceInsetProgressIndicatorDefault
-            OudsTagSize.Small -> spaceInsetProgressIndicatorSmall
-        }.value
+            OudsTagSize.Default -> space.inset.loaderDefault
+            OudsTagSize.Small -> space.inset.loaderSmall
+        }
     }
 }
 

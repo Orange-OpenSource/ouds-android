@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -70,12 +72,12 @@ import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -217,26 +219,26 @@ private fun OudsBulletListItem(
     skeleton: OudsSkeleton?,
     modifier: Modifier = Modifier,
 ) {
-    with(OudsTheme.componentsTokens.bulletList) {
+    with(OudsTheme.components.bulletList) {
         val columnGap: Dp
         val verticalPadding: Dp
         when (currentTextStyle.fontSize) {
             OudsBulletListFontSize.BodyLarge -> {
-                columnGap = spaceColumnGapBodyLarge.value
-                verticalPadding = spacePaddingBlockBodyLarge.value
+                columnGap = space.columnGap.bodyLarge
+                verticalPadding = space.paddingBlock.bodyLarge
             }
             OudsBulletListFontSize.BodyMedium -> {
-                columnGap = spaceColumnGapBodyMedium.value
-                verticalPadding = spacePaddingBlockBodyMedium.value
+                columnGap = space.columnGap.bodyMedium
+                verticalPadding = space.paddingBlock.bodyMedium
             }
         }
 
         val level = parentNodes.count()
         val paddingStart = when (level) {
-            0 -> spacePaddingInlineLevel0
-            1 -> spacePaddingInlineLevel1
-            else -> spacePaddingInlineLevel2
-        }.dp
+            0 -> space.paddingInline.level0
+            1 -> space.paddingInline.level1
+            else -> space.paddingInline.level2
+        }
 
         // Build a11y vocalization according to the current type
         // For unordered and bare lists, TalkBack reads: "label, level <level number>, <number of subitems> subitems"

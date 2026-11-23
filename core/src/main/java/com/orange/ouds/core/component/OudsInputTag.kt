@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
@@ -48,12 +50,12 @@ import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.ifNotNull
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.theme.OudsThemeContract
@@ -95,11 +97,11 @@ fun OudsInputTag(
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
-    val tagTokens = OudsTheme.componentsTokens.tag
+    val tagTokens = OudsTheme.components.tag
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = interactionState)
-    val shape = RoundedCornerShape(tagTokens.borderRadius.value)
+    val shape = RoundedCornerShape(tagTokens.border.radius)
 
     val backgroundColor = rememberInteractionColor(interactionState = interactionState) { inputTagInteractionState ->
         val inputTagState = getInputTagState(enabled = enabled, skeleton = skeleton, interactionState = inputTagInteractionState)
@@ -126,7 +128,7 @@ fun OudsInputTag(
 
     Box(
         modifier = modifier
-            .heightIn(min = tagTokens.sizeMinHeightInteractiveArea.value)
+            .heightIn(min = tagTokens.size.minHeightInteractiveArea)
             .clickable(
                 enabled = state.areInteractionsEnabled,
                 interactionSource = interactionSource,
@@ -146,8 +148,8 @@ fun OudsInputTag(
         ) { contentModifier ->
             Row(
                 modifier = contentModifier
-                    .widthIn(min = tagTokens.sizeMinWidthDefault.dp)
-                    .heightIn(min = tagTokens.sizeMinHeightDefault.dp)
+                    .widthIn(min = tagTokens.size.minWidthDefault)
+                    .heightIn(min = tagTokens.size.minHeightDefault)
                     .background(color = backgroundColor.value, shape = shape)
                     .run {
                         ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
@@ -157,9 +159,9 @@ fun OudsInputTag(
                         }
                     }
                     .outerBorder(state = state, shape = shape)
-                    .padding(vertical = tagTokens.spacePaddingBlockDefault.value)
-                    .padding(start = tagTokens.spacePaddingInlineDefault.value, end = tagTokens.spacePaddingInlineAssetDefault.value),
-                horizontalArrangement = Arrangement.spacedBy(tagTokens.spaceColumnGapDefault.value, Alignment.CenterHorizontally),
+                    .padding(vertical = tagTokens.space.paddingBlock.default)
+                    .padding(start = tagTokens.space.paddingInline.default, end = tagTokens.space.paddingInline.assetDefault),
+                horizontalArrangement = Arrangement.spacedBy(tagTokens.space.columnGap.default, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -168,7 +170,7 @@ fun OudsInputTag(
                     style = OudsTheme.typography.label.medium.moderate
                 )
                 Icon(
-                    modifier = Modifier.size(tagTokens.sizeAssetDefault.value * LocalConfiguration.current.fontScale),
+                    modifier = Modifier.size(tagTokens.size.assetDefault * LocalConfiguration.current.fontScale),
                     painter = painterResource(id = OudsTheme.drawableResources.component.tag.close),
                     contentDescription = null,
                     tint = contentColor.value
@@ -194,12 +196,12 @@ private fun getInputTagState(enabled: Boolean, skeleton: OudsSkeleton?, interact
 
 @Composable
 private fun backgroundColor(state: OudsInputTagState): Color {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
-            OudsInputTagState.Enabled -> colorBgEnabled.value
-            OudsInputTagState.Focused -> colorBgFocus.value
-            OudsInputTagState.Hovered -> colorBgHover.value
-            OudsInputTagState.Pressed -> colorBgPressed.value
+            OudsInputTagState.Enabled -> color.background.enabled
+            OudsInputTagState.Focused -> color.background.focus
+            OudsInputTagState.Hovered -> color.background.hover
+            OudsInputTagState.Pressed -> color.background.pressed
             OudsInputTagState.Disabled,
             OudsInputTagState.Skeleton -> Color.Transparent
         }
@@ -208,26 +210,26 @@ private fun backgroundColor(state: OudsInputTagState): Color {
 
 @Composable
 private fun borderWidth(state: OudsInputTagState): Dp? {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
             OudsInputTagState.Enabled,
-            OudsInputTagState.Disabled -> borderWidthDefault
+            OudsInputTagState.Disabled -> border.width.default
             OudsInputTagState.Hovered,
             OudsInputTagState.Pressed,
-            OudsInputTagState.Focused -> borderWidthDefaultInteraction
+            OudsInputTagState.Focused -> border.width.defaultInteraction
             OudsInputTagState.Skeleton -> null
         }
-    }?.value?.takeUnlessHairline
+    }?.takeUnlessHairline
 }
 
 @Composable
 private fun borderColor(state: OudsInputTagState): Color? {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
-            OudsInputTagState.Enabled -> colorBorderEnabled.value
-            OudsInputTagState.Focused -> colorBorderFocus.value
-            OudsInputTagState.Hovered -> colorBorderHover.value
-            OudsInputTagState.Pressed -> colorBorderPressed.value
+            OudsInputTagState.Enabled -> color.border.enabled
+            OudsInputTagState.Focused -> color.border.focus
+            OudsInputTagState.Hovered -> color.border.hover
+            OudsInputTagState.Pressed -> color.border.pressed
             OudsInputTagState.Disabled -> OudsTheme.colorScheme.action.disabled
             OudsInputTagState.Skeleton -> null
         }
@@ -236,12 +238,12 @@ private fun borderColor(state: OudsInputTagState): Color? {
 
 @Composable
 private fun contentColor(state: OudsInputTagState): Color {
-    return with(OudsTheme.componentsTokens.inputTag) {
+    return with(OudsTheme.components.inputTag) {
         when (state) {
-            OudsInputTagState.Enabled -> colorContentEnabled.value
-            OudsInputTagState.Focused -> colorContentFocus.value
-            OudsInputTagState.Hovered -> colorContentHover.value
-            OudsInputTagState.Pressed -> colorContentPressed.value
+            OudsInputTagState.Enabled -> color.content.enabled
+            OudsInputTagState.Focused -> color.content.focus
+            OudsInputTagState.Hovered -> color.content.hover
+            OudsInputTagState.Pressed -> color.content.pressed
             OudsInputTagState.Disabled -> OudsTheme.colorScheme.action.disabled
             OudsInputTagState.Skeleton -> Color.Transparent
         }

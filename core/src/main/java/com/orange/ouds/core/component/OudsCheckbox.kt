@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -58,6 +60,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -173,7 +176,7 @@ fun OudsTriStateCheckbox(
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlState.Disabled
     val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
-    val shape = RoundedCornerShape(OudsTheme.componentsTokens.listItem.borderRadiusItemOnly.value)
+    val shape = RoundedCornerShape(OudsTheme.components.listItem.border.radius.itemOnly)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
@@ -181,11 +184,11 @@ fun OudsTriStateCheckbox(
             "An OudsCheckbox or OudsTriStateCheckbox set to $parameter with error parameter activated is not allowed."
         },
         previewDashedBorderShape = shape,
-        previewDashedBorderPhase = OudsTheme.componentsTokens.listItem.borderRadiusItemOnly.value
+        previewDashedBorderPhase = OudsTheme.components.listItem.border.radius.itemOnly
     ) {
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
-        val checkboxTokens = OudsTheme.componentsTokens.checkbox
+        val checkboxTokens = OudsTheme.components.checkbox
         val checkboxState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
         val backgroundColor = rememberInteractionColor(interactionState = interactionState) { checkboxInteractionState ->
             val controlState = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = checkboxInteractionState)
@@ -216,8 +219,8 @@ fun OudsTriStateCheckbox(
             Box(
                 modifier = contentModifier
                     .then(toggleableModifier)
-                    .widthIn(checkboxTokens.sizeMinWidth.value)
-                    .heightIn(min = checkboxTokens.sizeMinHeight.value, max = checkboxTokens.sizeMaxHeight.value)
+                    .widthIn(checkboxTokens.size.minWidth)
+                    .heightIn(min = checkboxTokens.size.minHeight, max = checkboxTokens.size.maxHeight)
                     .background(color = backgroundColor.value, shape = shape)
                     .outerBorder(state = checkboxState, shape = shape, handleHighContrastMode = true)
                     .run {
@@ -244,13 +247,13 @@ internal fun OudsCheckboxIndicator(
     value: ToggleableState,
     error: Boolean
 ) {
-    val checkboxTokens = OudsTheme.componentsTokens.checkbox
+    val checkboxTokens = OudsTheme.components.checkbox
     val selected = value != ToggleableState.Off
-    val shape = RoundedCornerShape(checkboxTokens.borderRadius.value)
+    val shape = RoundedCornerShape(checkboxTokens.border.radius)
 
     Box(
         modifier = Modifier
-            .size(checkboxTokens.sizeIndicator.value)
+            .size(checkboxTokens.size.indicator)
             .clip(shape)
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
@@ -286,14 +289,14 @@ private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean,
 
 @Composable
 private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp? {
-    return with(OudsTheme.componentsTokens.checkbox) {
+    return with(OudsTheme.components.checkbox) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) borderWidthSelected else borderWidthUnselected
-            OudsControlState.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
-            OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
-            OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
+            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) border.width.selected else border.width.unselected
+            OudsControlState.Hovered -> if (selected) border.width.selectedHover else border.width.unselectedHover
+            OudsControlState.Pressed -> if (selected) border.width.selectedPressed else border.width.unselectedPressed
+            OudsControlState.Focused -> if (selected) border.width.selectedFocus else border.width.unselectedFocus
             OudsControlState.Skeleton -> null
-        }?.value
+        }
     }?.takeUnlessHairline
 }
 
@@ -333,7 +336,7 @@ private fun checkColor(state: OudsControlState, error: Boolean): Color {
 @Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
-    return with(OudsTheme.componentsTokens.listItem) {
+    return with(OudsTheme.componentsTokens.listItem) { // TODO Replace with `OudsTheme.components.listItem` tokens on Checkbox 1.5 upgrade
         when (state) {
             OudsControlState.Enabled,
             OudsControlState.Disabled,

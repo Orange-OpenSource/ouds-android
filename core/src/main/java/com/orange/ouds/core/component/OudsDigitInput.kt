@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -46,7 +48,6 @@ import com.orange.ouds.core.component.common.bottomBorder
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -54,6 +55,7 @@ import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -83,13 +85,13 @@ internal fun OudsDigitInput(
             "An OudsDigitInput set to $parameter with an error is not allowed."
         }
     ) {
-        val textInputTokens = OudsTheme.componentsTokens.textInput
-        val pinCodeInputTokens = OudsTheme.componentsTokens.pinCodeInput
-        val minWidth = if (smallDeviceSpecificRules) Dp.Unspecified else pinCodeInputTokens.sizeMinWidthDigitInput.dp
+        val textInputTokens = OudsTheme.components.textInput
+        val pinCodeInputTokens = OudsTheme.components.pinCodeInput
+        val minWidth = if (smallDeviceSpecificRules) Dp.Unspecified else pinCodeInputTokens.size.minWidthDigitInput
         SkeletonLayout(
             modifier = Modifier
-                .heightIn(min = textInputTokens.sizeMinHeight.dp)
-                .widthIn(min = minWidth, max = pinCodeInputTokens.sizeMaxWidthDigitInput.dp)
+                .heightIn(min = textInputTokens.size.minHeight)
+                .widthIn(min = minWidth, max = pinCodeInputTokens.size.maxWidthDigitInput)
                 .then(modifier), // Set the modifier after setting min height, min width and max width, otherwise they are not taken into account when setting the width
             componentState = state,
             securityMargin = false,
@@ -110,7 +112,7 @@ internal fun OudsDigitInput(
                     }
                 }
             }
-            val horizontalPadding = if (smallDeviceSpecificRules) 0.dp else textInputTokens.spacePaddingInlineDefault.value
+            val horizontalPadding = if (smallDeviceSpecificRules) 0.dp else textInputTokens.space.paddingInline.default
             Row(
                 modifier = contentModifier
                     .clickable(
@@ -122,7 +124,7 @@ internal fun OudsDigitInput(
                     .digitInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined)
                     .padding(
                         horizontal = horizontalPadding,
-                        vertical = textInputTokens.spacePaddingBlockDefault.value
+                        vertical = textInputTokens.space.paddingBlock.default
                     ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
@@ -190,11 +192,11 @@ private fun borderColor(state: OudsDigitInputState, outlined: Boolean, error: Bo
             }
         }
     } else {
-        val textInputTokens = OudsTheme.componentsTokens.textInput
+        val textInputTokens = OudsTheme.components.textInput
         when (state) {
-            OudsDigitInputState.Enabled -> textInputTokens.colorBorderEnabled.value
-            OudsDigitInputState.Hovered -> textInputTokens.colorBorderHover.value
-            OudsDigitInputState.Focused -> textInputTokens.colorBorderFocus.value
+            OudsDigitInputState.Enabled -> textInputTokens.color.border.enabled
+            OudsDigitInputState.Hovered -> textInputTokens.color.border.hover
+            OudsDigitInputState.Focused -> textInputTokens.color.border.focus
             OudsDigitInputState.ReadOnly -> if (outlined) null else OudsTheme.colorScheme.border.muted
             OudsDigitInputState.Disabled -> OudsTheme.colorScheme.action.disabled
             OudsDigitInputState.Skeleton -> null
@@ -204,16 +206,16 @@ private fun borderColor(state: OudsDigitInputState, outlined: Boolean, error: Bo
 
 @Composable
 private fun borderWidth(state: OudsDigitInputState, outlined: Boolean): Dp? {
-    return with(OudsTheme.componentsTokens.textInput) {
+    return with(OudsTheme.components.textInput) {
         when (state) {
             OudsDigitInputState.Enabled,
             OudsDigitInputState.Hovered,
-            OudsDigitInputState.Disabled -> borderWidthDefault
-            OudsDigitInputState.ReadOnly -> if (outlined) null else borderWidthDefault
-            OudsDigitInputState.Focused -> borderWidthFocus
+            OudsDigitInputState.Disabled -> border.width.default
+            OudsDigitInputState.ReadOnly -> if (outlined) null else border.width.default
+            OudsDigitInputState.Focused -> border.width.focus
             OudsDigitInputState.Skeleton -> null
         }
-    }?.value?.takeUnlessHairline
+    }?.takeUnlessHairline
 }
 
 @Composable

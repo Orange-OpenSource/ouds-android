@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -70,7 +72,6 @@ import com.orange.ouds.core.component.common.text.OudsAnnotatedHelperText
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -81,6 +82,7 @@ import com.orange.ouds.core.utilities.buildPreviewAnnotatedErrorMessage
 import com.orange.ouds.core.utilities.buildPreviewAnnotatedHelperText
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.mapSettings
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 import com.orange.ouds.theme.OudsThemeSettings
@@ -1041,7 +1043,7 @@ private fun OudsTextArea(
  */
 private val minLines: Int
     @Composable
-    get() = (OudsTheme.componentsTokens.textArea.sizeMinHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
+    get() = (OudsTheme.components.textArea.size.minHeightInput.value / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
 
 /**
@@ -1051,7 +1053,7 @@ private val minLines: Int
  */
 private val maxLines: Int
     @Composable
-    get() = (OudsTheme.componentsTokens.textArea.sizeMaxHeightInput / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
+    get() = (OudsTheme.components.textArea.size.maxHeightInput.value / textInputTextStyle(OudsTextInputState.Enabled).lineHeight.value).toInt()
 
 @Composable
 internal fun OudsTextAreaDecorator(
@@ -1072,30 +1074,30 @@ internal fun OudsTextAreaDecorator(
     val visibleContent =
         getVisibleTextInputContent(value, label, placeholder, null, null, null, null, error, helperText, annotatedHelperText, helperLink, state)
     val hasError = error != null
-    val textInputTokens = OudsTheme.componentsTokens.textInput
-    val textAreaTokens = OudsTheme.componentsTokens.textArea
+    val textInputTokens = OudsTheme.components.textInput
+    val textAreaTokens = OudsTheme.components.textArea
     with(textInputTokens) {
         val borderWidth = borderWidth(state)
         val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
-        Column(modifier = Modifier.widthIn(min = sizeMinWidth.dp, max = if (constrainedMaxWidth) textAreaTokens.sizeMaxWidth.dp else Dp.Unspecified)) {
+        Column(modifier = Modifier.widthIn(min = size.minWidth, max = if (constrainedMaxWidth) textAreaTokens.size.maxWidth else Dp.Unspecified)) {
             val isSmallLabel = visibleContent.contains(OudsTextInputContent.SmallLabel)
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
-                    .padding(top = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else textAreaTokens.spacePaddingBlockTopEmpty.value)
-                    .padding(bottom = if (isSmallLabel) textAreaTokens.spacePaddingBlock.value else 0.dp)
-                    .padding(start = spacePaddingInlineDefault.value, end = spacePaddingInlineLeadingTrailingAction.value)
+                    .padding(top = if (isSmallLabel) textAreaTokens.space.paddingBlock else textAreaTokens.space.paddingBlockTopEmpty)
+                    .padding(bottom = if (isSmallLabel) textAreaTokens.space.paddingBlock else 0.dp)
+                    .padding(start = space.paddingInline.default, end = space.paddingInline.leadingTrailingAction)
                     .verticalScrollBar(scrollState = scrollState),
                 verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
+                horizontalArrangement = Arrangement.spacedBy(space.columnGap.default)
             ) {
                 // Central content
                 Column(
                     modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value),
+                    verticalArrangement = Arrangement.spacedBy(space.rowGap.labelInput),
                 ) {
                     // Label
                     if (visibleContent.contains(OudsTextInputContent.Label) || isSmallLabel) {
@@ -1127,23 +1129,23 @@ internal fun OudsTextAreaDecorator(
                 // Trailing elements (error icon or loader)
                 Box(
                     modifier = Modifier
-                        .widthIn(min = OudsTheme.componentsTokens.button.sizeMinWidthDefault.value)
+                        .widthIn(min = OudsTheme.components.button.size.minWidthDefault)
                         .padding(
-                            horizontal = OudsTheme.componentsTokens.button.spaceInsetIconOnlyDefault.value,
+                            horizontal = OudsTheme.components.button.space.inset.iconOnlyDefault,
                             vertical = if (isSmallLabel) {
-                                textAreaTokens.spacePaddingBlockTrailingContainer.value
+                                textAreaTokens.space.paddingBlockTrailingContainer
                             } else {
-                                textAreaTokens.spacePaddingBlockEmptyTrailingContainer.value
+                                textAreaTokens.space.paddingBlockEmptyTrailingContainer
                             }
                         )
                 ) {
-                    val buttonTokens = OudsTheme.componentsTokens.button
+                    val buttonTokens = OudsTheme.components.button
 
                     // Error icon
                     if (visibleContent.contains(OudsTextInputContent.ErrorIcon)) {
                         val fontScale = LocalConfiguration.current.fontScale
                         Icon(
-                            modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
+                            modifier = Modifier.size(buttonTokens.size.iconOnlyDefault * fontScale),
                             painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
                             contentDescription = if (error?.message.orEmpty().isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                             tint = errorIconColor(state = state)
@@ -1163,7 +1165,7 @@ internal fun OudsTextAreaDecorator(
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
                 helperLink = helperLink,
-                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value,
+                horizontalPadding = OudsTheme.components.textInput.space.paddingInline.default,
                 visibleContent = visibleContent
             )
         }

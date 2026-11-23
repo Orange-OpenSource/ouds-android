@@ -48,7 +48,6 @@ import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.ifNotNull
@@ -69,12 +68,12 @@ internal fun OudsBasicChip(
     content: @Composable OudsChipScope.() -> Unit = { DefaultChipContent(iconPosition) }
 ) {
     @Suppress("NAME_SHADOWING") val selected = selectable && selected
-    val chipTokens = OudsTheme.componentsTokens.chip
+    val chipTokens = OudsTheme.components.chip
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getChipState(enabled = enabled, skeleton = skeleton, interactionState = interactionState)
     val iconScale = if (icon != null && label == null) LocalConfiguration.current.fontScale else 1.0f
-    val shape = RoundedCornerShape(chipTokens.borderRadius.value)
+    val shape = RoundedCornerShape(chipTokens.border.radius)
 
     val contentColor = rememberInteractionColor(interactionState = interactionState) { chipInteractionState ->
         val chipState = getChipState(enabled = enabled, skeleton = skeleton, interactionState = chipInteractionState)
@@ -102,7 +101,7 @@ internal fun OudsBasicChip(
     }
 
     Box(
-        modifier = Modifier.heightIn(min = chipTokens.sizeMinHeightInteractiveArea.value),
+        modifier = Modifier.heightIn(min = chipTokens.size.minHeightInteractiveArea),
         contentAlignment = Alignment.Center
     ) {
         SkeletonLayout(
@@ -115,8 +114,8 @@ internal fun OudsBasicChip(
             Box(
                 propagateMinConstraints = true,
                 modifier = contentModifier
-                    .widthIn(min = chipTokens.sizeMinWidth.dp)
-                    .heightIn(min = chipTokens.sizeMinHeight.dp)
+                    .widthIn(min = chipTokens.size.minWidth)
+                    .heightIn(min = chipTokens.size.minHeight)
                     .background(color = backgroundColor.value, shape = shape)
                     .run {
                         ifNotNull(borderWidth.value, borderColor.value) { borderWidth, borderColor ->
@@ -153,7 +152,7 @@ internal fun OudsBasicChip(
                     if (selected) {
                         tickColor.value?.let { tickColor ->
                             Icon(
-                                modifier = Modifier.size(chipTokens.sizeIcon.value * iconScale),
+                                modifier = Modifier.size(chipTokens.size.icon * iconScale),
                                 painter = painterResource(id = OudsTheme.drawableResources.component.chip.tick),
                                 tint = tickColor,
                                 contentDescription = null
@@ -174,7 +173,7 @@ internal fun OudsBasicChip(
                 val iconContent: @Composable (Modifier) -> Unit = { modifier ->
                     icon?.Content(
                         modifier = modifier
-                            .iconSize(chipTokens.sizeIcon.value * iconScale, tinted = icon.tinted)
+                            .iconSize(chipTokens.size.icon * iconScale, tinted = icon.tinted)
                             .semantics {
                                 contentDescription = if (label == null) icon.contentDescription else ""
                             },
@@ -212,45 +211,45 @@ private fun getChipState(interactionState: InteractionState, skeleton: OudsSkele
 
 @Composable
 private fun borderWidth(state: OudsChipState, selected: Boolean): Dp? {
-    return with(OudsTheme.componentsTokens.chip) {
+    return with(OudsTheme.components.chip) {
         if (selected) {
-            borderWidthSelected
+            border.width.selected
         } else {
             when (state) {
                 OudsChipState.Enabled,
-                OudsChipState.Disabled -> borderWidthUnselected
+                OudsChipState.Disabled -> border.width.unselected
                 OudsChipState.Hovered,
                 OudsChipState.Pressed,
-                OudsChipState.Focused -> borderWidthUnselectedInteraction
+                OudsChipState.Focused -> border.width.unselectedInteraction
                 OudsChipState.Skeleton -> null
             }
-        }?.value
+        }
     }?.takeUnlessHairline
 }
 
 @Composable
 private fun borderColor(state: OudsChipState, selected: Boolean): Color? {
-    return with(OudsTheme.componentsTokens.chip) {
+    return with(OudsTheme.components.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBorderSelectedEnabled else colorBorderUnselectedEnabled
-            OudsChipState.Focused -> if (selected) colorBorderSelectedFocus else colorBorderUnselectedFocus
-            OudsChipState.Hovered -> if (selected) colorBorderSelectedHover else colorBorderUnselectedHover
-            OudsChipState.Pressed -> if (selected) colorBorderSelectedPressed else colorBorderUnselectedPressed
-            OudsChipState.Disabled -> if (selected) colorBorderSelectedDisabled else colorBorderUnselectedDisabled
+            OudsChipState.Enabled -> if (selected) color.border.selected.enabled else color.border.unselected.enabled
+            OudsChipState.Focused -> if (selected) color.border.selected.focus else color.border.unselected.focus
+            OudsChipState.Hovered -> if (selected) color.border.selected.hover else color.border.unselected.hover
+            OudsChipState.Pressed -> if (selected) color.border.selected.pressed else color.border.unselected.pressed
+            OudsChipState.Disabled -> if (selected) color.border.selected.disabled else color.border.unselected.disabled
             OudsChipState.Skeleton -> null
-        }?.value
+        }
     }
 }
 
 @Composable
 private fun backgroundColor(state: OudsChipState, selected: Boolean): Color {
-    return with(OudsTheme.componentsTokens.chip) {
+    return with(OudsTheme.components.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorBgSelectedEnabled.value else colorBgUnselectedEnabled.value
-            OudsChipState.Focused -> if (selected) colorBgSelectedFocus.value else colorBgUnselectedFocus.value
-            OudsChipState.Hovered -> if (selected) colorBgSelectedHover.value else colorBgUnselectedHover.value
-            OudsChipState.Pressed -> if (selected) colorBgSelectedPressed.value else colorBgUnselectedPressed.value
-            OudsChipState.Disabled -> if (selected) colorBgSelectedDisabled.value else colorBgUnselectedDisabled.value
+            OudsChipState.Enabled -> if (selected) color.background.selected.enabled else color.background.unselected.enabled
+            OudsChipState.Focused -> if (selected) color.background.selected.focus else color.background.unselected.focus
+            OudsChipState.Hovered -> if (selected) color.background.selected.hover else color.background.unselected.hover
+            OudsChipState.Pressed -> if (selected) color.background.selected.pressed else color.background.unselected.pressed
+            OudsChipState.Disabled -> if (selected) color.background.selected.disabled else color.background.unselected.disabled
             OudsChipState.Skeleton -> Color.Transparent
         }
     }
@@ -258,13 +257,13 @@ private fun backgroundColor(state: OudsChipState, selected: Boolean): Color {
 
 @Composable
 private fun contentColor(state: OudsChipState, selected: Boolean): Color {
-    return with(OudsTheme.componentsTokens.chip) {
+    return with(OudsTheme.components.chip) {
         when (state) {
-            OudsChipState.Enabled -> if (selected) colorContentSelectedEnabled.value else colorContentUnselectedEnabled.value
-            OudsChipState.Focused -> if (selected) colorContentSelectedFocus.value else colorContentUnselectedFocus.value
-            OudsChipState.Hovered -> if (selected) colorContentSelectedHover.value else colorContentUnselectedHover.value
-            OudsChipState.Pressed -> if (selected) colorContentSelectedPressed.value else colorContentUnselectedPressed.value
-            OudsChipState.Disabled -> if (selected) colorContentSelectedDisabled.value else colorContentUnselectedDisabled.value
+            OudsChipState.Enabled -> if (selected) color.content.selected.enabled else color.content.unselected.enabled
+            OudsChipState.Focused -> if (selected) color.content.selected.focus else color.content.unselected.focus
+            OudsChipState.Hovered -> if (selected) color.content.selected.hover else color.content.unselected.hover
+            OudsChipState.Pressed -> if (selected) color.content.selected.pressed else color.content.unselected.pressed
+            OudsChipState.Disabled -> if (selected) color.content.selected.disabled else color.content.unselected.disabled
             OudsChipState.Skeleton -> Color.Transparent
         }
     }
@@ -272,14 +271,14 @@ private fun contentColor(state: OudsChipState, selected: Boolean): Color {
 
 @Composable
 private fun tickColor(state: OudsChipState, selected: Boolean): Color? {
-    return with(OudsTheme.componentsTokens.chip) {
+    return with(OudsTheme.components.chip) {
         if (selected) {
             when (state) {
-                OudsChipState.Enabled -> colorContentSelectedTickEnabled.value
-                OudsChipState.Focused -> colorContentSelectedFocus.value
-                OudsChipState.Hovered -> colorContentSelectedHover.value
-                OudsChipState.Pressed -> colorContentSelectedPressed.value
-                OudsChipState.Disabled -> colorContentSelectedDisabled.value
+                OudsChipState.Enabled -> color.content.selected.tickEnabled
+                OudsChipState.Focused -> color.content.selected.focus
+                OudsChipState.Hovered -> color.content.selected.hover
+                OudsChipState.Pressed -> color.content.selected.pressed
+                OudsChipState.Disabled -> color.content.selected.disabled
                 OudsChipState.Skeleton -> Color.Transparent // Do not return null otherwise the tick will not be composed and skeleton width will be wrong 
             }
         } else {
@@ -290,24 +289,24 @@ private fun tickColor(state: OudsChipState, selected: Boolean): Color? {
 
 @Composable
 private fun contentPadding(label: String?, icon: OudsChipIcon?, iconPosition: OudsChipIconPosition, selected: Boolean): PaddingValues {
-    return with(OudsTheme.componentsTokens.chip) {
+    return with(OudsTheme.components.chip) {
         // If chip layout starts with an icon or the tick then we use spacePaddingInlineIcon as the start padding, otherwise spacePaddingInlineIconNone
         val start = if (selected
             || (icon != null && iconPosition == OudsChipIconPosition.Start)
             || (icon != null && label == null)
         ) {
-            spacePaddingInlineIcon.value
+            space.paddingInline.icon
         } else {
-            spacePaddingInlineIconNone.value
+            space.paddingInline.iconNone
         }
         val end = if ((icon != null && iconPosition == OudsChipIconPosition.End)
             || (icon != null && label == null)
         ) {
-            spacePaddingInlineIcon.value
+            space.paddingInline.icon
         } else {
-            spacePaddingInlineIconNone.value
+            space.paddingInline.iconNone
         }
-        val vertical = if (label != null) spacePaddingBlock.value else spacePaddingBlockIconOnly.value
+        val vertical = if (label != null) space.paddingBlock else space.paddingBlockIconOnly
         PaddingValues(start = start, top = vertical, end = end, bottom = vertical)
     }
 }
