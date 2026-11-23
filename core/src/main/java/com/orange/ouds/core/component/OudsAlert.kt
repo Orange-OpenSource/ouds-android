@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.runtime.Composable
@@ -23,8 +25,8 @@ import com.orange.ouds.core.R
 import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.LayeredTintedPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 
 /**
@@ -69,12 +71,12 @@ internal sealed class OudsAlertStatus(
                 is Info -> painterResource(OudsTheme.drawableResources.component.alert.infoFill)
                 is Warning -> {
                     if (status.layeredTintedPainter) {
-                        val iconTokens = OudsTheme.componentsTokens.icon
+                        val iconTokens = OudsTheme.components.icon
                         LayeredTintedPainter(
                             backPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape),
-                            backPainterColor = iconTokens.colorContentStatusWarningExternalShape.value,
+                            backPainterColor = iconTokens.color.content.status.warning.externalShape,
                             frontPainter = painterResource(id = OudsTheme.drawableResources.component.alert.warningInternalShape),
-                            frontPainterColor = iconTokens.colorContentStatusWarningInternalShape.value
+                            frontPainterColor = iconTokens.color.content.status.warning.internalShape
                         )
                     } else {
                         painterResource(id = OudsTheme.drawableResources.component.alert.warningExternalShape)

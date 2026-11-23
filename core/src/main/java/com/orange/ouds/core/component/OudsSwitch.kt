@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.animation.core.AnimationSpec
@@ -53,11 +55,11 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -101,7 +103,7 @@ fun OudsSwitch(
     interactionSource: MutableInteractionSource? = null,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
-    val switchTokens = OudsTheme.componentsTokens.switch
+    val switchTokens = OudsTheme.components.switch
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
@@ -129,8 +131,8 @@ fun OudsSwitch(
     ) { contentModifier ->
         Box(
             modifier = contentModifier
-                .widthIn(min = switchTokens.sizeMinWidth.dp)
-                .heightIn(min = switchTokens.sizeMinHeight.dp, max = switchTokens.sizeMaxHeight.dp)
+                .widthIn(min = switchTokens.size.minWidth)
+                .heightIn(min = switchTokens.size.minHeight, max = switchTokens.size.maxHeight)
                 .then(toggleableModifier),
             contentAlignment = Alignment.Center,
         ) {
@@ -145,7 +147,7 @@ fun OudsSwitch(
 
 @Composable
 internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modifier: Modifier = Modifier) {
-    val switchTokens = OudsTheme.componentsTokens.switch
+    val switchTokens = OudsTheme.components.switch
 
     // The cursor animation is obtained by using a column and updating its horizontalAlignment parameter
     val horizontalAlignment by animateHorizontalAlignmentAsState(
@@ -154,10 +156,10 @@ internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modi
     )
     Column(
         modifier = modifier
-            .size(width = switchTokens.sizeWidthTrack.dp, height = switchTokens.sizeHeightTrack.dp)
+            .size(width = switchTokens.size.width.track, height = switchTokens.size.height.track)
             .clip(indicatorShape())
             .background(indicatorBackgroundColor(state = state, checked = checked))
-            .padding(start = switchTokens.spacePaddingInlineUnselected.value, end = switchTokens.spacePaddingInlineSelected.value),
+            .padding(start = switchTokens.space.paddingInline.unselected, end = switchTokens.space.paddingInline.selected),
         horizontalAlignment = horizontalAlignment,
         verticalArrangement = Arrangement.Center
     ) {
@@ -168,8 +170,8 @@ internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modi
         Box(
             modifier = Modifier
                 .size(cursorSize.width.dp, cursorSize.height.dp)
-                .shadow(OudsTheme.elevations.raised.value.dp, RoundedCornerShape(switchTokens.borderRadiusCursor.value))
-                .background(switchTokens.colorCursor.value),
+                .shadow(OudsTheme.elevations.raised.value.dp, RoundedCornerShape(switchTokens.border.radiusCursor))
+                .background(switchTokens.color.cursor),
             contentAlignment = Alignment.Center
         ) {
             val checkColor = checkColor(state = state, checked = checked)
@@ -182,7 +184,7 @@ internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modi
             if (checkColor != null) {
                 Icon(
                     modifier = Modifier
-                        .alpha(switchTokens.opacityCheck.value)
+                        .alpha(switchTokens.opacity.check)
                         .alpha(checkAlpha),
                     painter = painterResource(id = OudsTheme.drawableResources.component.switch.selected),
                     contentDescription = null,
@@ -194,17 +196,17 @@ internal fun OudsSwitchIndicator(state: OudsControlState, checked: Boolean, modi
 }
 
 @Composable
-private fun indicatorShape(): Shape = RoundedCornerShape(OudsTheme.componentsTokens.switch.borderRadiusTrack.value)
+private fun indicatorShape(): Shape = RoundedCornerShape(OudsTheme.components.switch.border.radiusTrack)
 
 @Composable
 private fun indicatorBackgroundColor(state: OudsControlState, checked: Boolean): Color {
-    return with(OudsTheme.componentsTokens.switch) {
+    return with(OudsTheme.components.switch) {
         when (state) {
-            OudsControlState.Enabled -> if (checked) colorTrackSelected.value else colorTrackUnselected.value
+            OudsControlState.Enabled -> if (checked) color.track.selected else color.track.unselected
             OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.secondary
             OudsControlState.Hovered,
             OudsControlState.Pressed,
-            OudsControlState.Focused -> if (checked) colorTrackSelectedInteraction.value else colorTrackUnselectedInteraction.value
+            OudsControlState.Focused -> if (checked) color.track.selectedInteraction else color.track.unselectedInteraction
             OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled
             OudsControlState.Skeleton -> Color.Transparent
         }
@@ -213,15 +215,15 @@ private fun indicatorBackgroundColor(state: OudsControlState, checked: Boolean):
 
 @Composable
 private fun cursorSize(state: OudsControlState, checked: Boolean): Size {
-    return with(OudsTheme.componentsTokens.switch) {
+    return with(OudsTheme.components.switch) {
         val width = when {
-            state == OudsControlState.Pressed && checked -> sizeWidthCursorSelectedPressed
-            state == OudsControlState.Pressed && !checked -> sizeWidthCursorUnselectedPressed
-            checked -> sizeWidthCursorSelected
-            else -> sizeWidthCursorUnselected
+            state == OudsControlState.Pressed && checked -> size.width.cursorSelectedPressed
+            state == OudsControlState.Pressed && !checked -> size.width.cursorUnselectedPressed
+            checked -> size.width.cursorSelected
+            else -> size.width.cursorUnselected
         }
-        val height = if (checked) sizeHeightCursorSelected else sizeHeightCursorUnselected
-        Size(width, height)
+        val height = if (checked) size.height.cursorSelected else size.height.cursorUnselected
+        Size(width.value, height.value)
     }
 }
 
@@ -231,7 +233,7 @@ private fun checkColor(state: OudsControlState, checked: Boolean): Color? {
         when (state) {
             OudsControlState.Enabled,
             OudsControlState.Hovered,
-            OudsControlState.Focused -> OudsTheme.componentsTokens.switch.colorCheck.value
+            OudsControlState.Focused -> OudsTheme.components.switch.color.check
             OudsControlState.ReadOnly -> OudsTheme.colorScheme.action.readOnly.primary
             OudsControlState.Pressed -> null
             OudsControlState.Disabled -> OudsTheme.colorScheme.action.disabled

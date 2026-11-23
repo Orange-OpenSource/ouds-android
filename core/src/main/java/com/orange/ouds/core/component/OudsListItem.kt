@@ -73,7 +73,6 @@ import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
@@ -712,7 +711,7 @@ private fun Modifier.containerPadding(size: OudsListItemSize, verticalAlignment:
 
 @Composable
 private fun contentHorizontalPadding(edgeToEdge: Boolean) =
-    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.componentsTokens.listItem.spacePaddingInline.value
+    if (edgeToEdge) OudsTheme.grids.margin else OudsTheme.components.listItem.space.paddingInline
 
 @Composable
 private fun backgroundColor(state: OudsListItemState, decoration: OudsListItemDecoration?) = with(OudsTheme.colorScheme.action.support) {

@@ -92,7 +92,6 @@ import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.takeUnlessHairline
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckedContent
 import com.orange.ouds.core.utilities.DisabledClickableDecorations
 import com.orange.ouds.core.utilities.OudsPreview
@@ -1300,43 +1299,43 @@ internal fun OudsTextInputDecorator(
         state
     )
     val hasError = error != null
-    with(OudsTheme.componentsTokens.textInput) {
+    with(OudsTheme.components.textInput) {
         val borderWidth = borderWidth(state)
         val borderColor = borderColor(state = state, outlined = outlined, error = hasError)
         val backgroundColor = backgroundColor(state = state, outlined = outlined, error = hasError)
 
         Column(
             modifier = Modifier.sizeIn(
-                minWidth = sizeMinWidth.dp,
-                maxWidth = if (constrainedMaxWidth) sizeMaxWidth.dp else Dp.Unspecified,
-                minHeight = sizeMinHeight.dp
+                minWidth = size.minWidth,
+                maxWidth = if (constrainedMaxWidth) size.maxWidth else Dp.Unspecified,
+                minHeight = size.minHeight
             )
         ) {
             Row(
                 modifier = Modifier
                     .textInputBorder(borderWidth = borderWidth, borderColor = borderColor, state = state, outlined = outlined, error = error)
                     .background(color = backgroundColor, shape = textInputShape)
-                    .sizeIn(minHeight = sizeMinHeight.dp)
-                    .padding(vertical = spacePaddingBlockDefault.value)
+                    .sizeIn(minHeight = size.minHeight)
+                    .padding(vertical = space.paddingBlock.default)
                     .padding(
-                        start = spacePaddingInlineDefault.value,
-                        end = if (trailingIconButton != null || hasError || state == OudsTextInputState.Loading) spacePaddingInlineLeadingTrailingAction.value else spacePaddingInlineDefault.value
+                        start = space.paddingInline.default,
+                        end = if (trailingIconButton != null || hasError || state == OudsTextInputState.Loading) space.paddingInline.leadingTrailingAction else space.paddingInline.default
                     ),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(spaceColumnGapDefault.value)
+                horizontalArrangement = Arrangement.spacedBy(space.columnGap.default)
             ) {
                 // Leading icon
                 if (visibleContent.contains(OudsTextInputContent.LeadingIcon)) {
                     leadingIcon?.Content(
                         extraParameters = OudsTextInputLeadingIcon.ExtraParameters(tint = decorativeContentColor(state = state)),
-                        modifier = Modifier.iconSize(sizeLeadingIcon.value, leadingIcon.tinted)
+                        modifier = Modifier.iconSize(size.leadingIcon, leadingIcon.tinted)
                     )
                 }
 
                 // Central content
                 Column(
                     modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(spaceRowGapLabelInput.value, Alignment.CenterVertically),
+                    verticalArrangement = Arrangement.spacedBy(space.rowGap.labelInput, Alignment.CenterVertically),
                 ) {
                     // Small label on top
                     if (visibleContent.contains(OudsTextInputContent.SmallLabel)) {
@@ -1355,7 +1354,7 @@ internal fun OudsTextInputDecorator(
                     // Prefix + Placeholder Label Value + Suffix
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapInlineText.value)
+                        horizontalArrangement = Arrangement.spacedBy(space.columnGap.inlineText)
                     ) {
                         if (visibleContent.contains(OudsTextInputContent.Prefix)) {
                             PrefixSuffixText(
@@ -1402,30 +1401,30 @@ internal fun OudsTextInputDecorator(
                     || visibleContent.contains(OudsTextInputContent.Loader)
                     || visibleContent.contains(OudsTextInputContent.TrailingIconButton)
                 ) {
-                    val buttonTokens = OudsTheme.componentsTokens.button
+                    val buttonTokens = OudsTheme.components.button
                     val fontScale = LocalConfiguration.current.fontScale
 
                     val trailingContainerModifier = when {
                         state == OudsTextInputState.Loading -> Modifier
-                            .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value, max = buttonTokens.sizeMaxSizeIconOnlyDefault.value * fontScale)
-                            .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
+                            .widthIn(min = buttonTokens.size.minWidthDefault)
+                            .heightIn(min = buttonTokens.size.minHeightDefault, max = buttonTokens.size.maxSizeIconOnlyDefault * fontScale)
+                            .padding(all = buttonTokens.space.inset.iconOnlyDefault)
                         hasError && trailingIconButton == null -> Modifier
-                            .widthIn(min = buttonTokens.sizeMinWidthDefault.value)
-                            .heightIn(min = buttonTokens.sizeMinHeightDefault.value)
-                            .padding(all = buttonTokens.spaceInsetIconOnlyDefault.value)
+                            .widthIn(min = buttonTokens.size.minWidthDefault)
+                            .heightIn(min = buttonTokens.size.minHeightDefault)
+                            .padding(all = buttonTokens.space.inset.iconOnlyDefault)
                         else -> Modifier
                     }
 
                     Row(
                         modifier = trailingContainerModifier,
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(spaceColumnGapTrailingErrorAction.value, Alignment.CenterHorizontally)
+                        horizontalArrangement = Arrangement.spacedBy(space.columnGap.trailingErrorAction, Alignment.CenterHorizontally)
                     ) {
                         // Error icon
                         if (visibleContent.contains(OudsTextInputContent.ErrorIcon)) {
                             Icon(
-                                modifier = Modifier.size(buttonTokens.sizeIconOnlyDefault.value * fontScale),
+                                modifier = Modifier.size(buttonTokens.size.iconOnlyDefault * fontScale),
                                 painter = painterResource(id = OudsTheme.drawableResources.component.alert.importantFill),
                                 contentDescription = if (error?.message.orEmpty().isBlank()) stringResource(R.string.core_common_error_a11y) else null,
                                 tint = errorIconColor(state = state)
@@ -1434,7 +1433,7 @@ internal fun OudsTextInputDecorator(
 
                         // Loader
                         if (visibleContent.contains(OudsTextInputContent.Loader)) {
-                            Box(modifier = Modifier.padding(buttonTokens.spaceInsetProgressIndicatorOnlyDefault.value)) {
+                            Box(modifier = Modifier.padding(buttonTokens.space.inset.progressIndicatorOnlyDefault)) {
                                 OudsTextInputCircularProgressIndicator(loader)
                             }
                         }
@@ -1457,7 +1456,7 @@ internal fun OudsTextInputDecorator(
                 helperText = helperText,
                 annotatedHelperText = annotatedHelperText,
                 helperLink = helperLink,
-                horizontalPadding = OudsTheme.componentsTokens.textInput.spacePaddingInlineDefault.value,
+                horizontalPadding = OudsTheme.components.textInput.space.paddingInline.default,
                 visibleContent = visibleContent
             )
         }
@@ -1543,7 +1542,7 @@ private fun OudsTextInputHelperTextErrorMessage(
     annotatedHelperText: OudsAnnotatedHelperText?,
     modifier: Modifier = Modifier
 ) {
-    with(OudsTheme.componentsTokens.textInput) {
+    with(OudsTheme.components.textInput) {
         DisabledClickableDecorations {
             val hasError = error != null
             val textModifier = Modifier
@@ -1557,7 +1556,7 @@ private fun OudsTextInputHelperTextErrorMessage(
                 .clickable {} // Keep clickable after semantics configuration otherwise semantics are not taken into account
                 .fillMaxWidth()
                 .then(modifier)
-                .padding(top = spacePaddingBlockHelperText.value)
+                .padding(top = space.paddingBlock.helperText)
             val textStyle = OudsTheme.typography.label.medium.default
             val textColor = if (hasError) OudsTheme.colorScheme.content.status.negative else decorativeContentColor(enabled = enabled)
             val annotatedText = if (hasError) error.annotatedMessage else annotatedHelperText
@@ -1598,9 +1597,9 @@ internal fun getTextInputState(
 }
 
 @Composable
-internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.componentsTokens.textInput) {
-    val borderWidth = if (state == OudsTextInputState.Focused) borderWidthFocus else borderWidthDefault
-    return@with borderWidth.value.takeUnlessHairline
+internal fun borderWidth(state: OudsTextInputState): Dp? = with(OudsTheme.components.textInput) {
+    val borderWidth = if (state == OudsTextInputState.Focused) border.width.focus else border.width.default
+    return@with borderWidth.takeUnlessHairline
 }
 
 @Composable
@@ -1685,13 +1684,13 @@ internal fun borderColor(state: OudsTextInputState, outlined: Boolean, error: Bo
     return if (error) {
         errorContentColor(state = state)
     } else {
-        with(OudsTheme.componentsTokens.textInput) {
+        with(OudsTheme.components.textInput) {
             when (state) {
-                OudsTextInputState.Enabled -> colorBorderEnabled.value
-                OudsTextInputState.Hovered -> colorBorderHover.value
-                OudsTextInputState.Focused -> colorBorderFocus.value
+                OudsTextInputState.Enabled -> color.border.enabled
+                OudsTextInputState.Hovered -> color.border.hover
+                OudsTextInputState.Focused -> color.border.focus
                 OudsTextInputState.Disabled -> OudsTheme.colorScheme.action.disabled
-                OudsTextInputState.Loading -> colorBorderLoading.value
+                OudsTextInputState.Loading -> color.border.loading
                 OudsTextInputState.ReadOnly -> if (outlined) null else OudsTheme.colorScheme.border.muted
                 OudsTextInputState.Skeleton -> null
             }
@@ -1719,9 +1718,9 @@ internal fun textInputTextStyle(state: OudsTextInputState) = OudsTheme.typograph
 
 internal val textInputBorderRadius: Dp
     @Composable
-    get() = with(OudsTheme.componentsTokens.textInput) {
-        if (LocalThemeSettings.current.roundedCornerTextInputs == true) borderRadiusRounded else borderRadiusDefault
-    }.value
+    get() = with(OudsTheme.components.textInput) {
+        if (LocalThemeSettings.current.roundedCornerTextInputs == true) border.radius.rounded else border.radius.default
+    }
 
 internal val textInputShape: Shape
     @Composable

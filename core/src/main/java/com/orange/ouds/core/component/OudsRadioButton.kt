@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -57,6 +59,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -108,7 +111,7 @@ fun OudsRadioButton(
     val isReadOnlyPreviewState = previewState == OudsControlState.ReadOnly
     val isDisabledPreviewState = previewState == OudsControlState.Disabled
     val isForbidden = error != null && (readOnly || !enabled || isReadOnlyPreviewState || isDisabledPreviewState)
-    val shape = RoundedCornerShape(OudsTheme.componentsTokens.listItem.borderRadiusItemOnly.value)
+    val shape = RoundedCornerShape(OudsTheme.components.listItem.border.radius.itemOnly)
     CheckedContent(
         expression = !isForbidden,
         exceptionMessage = {
@@ -116,9 +119,9 @@ fun OudsRadioButton(
             "An OudsRadioButton set to $parameter with error parameter activated is not allowed."
         },
         previewDashedBorderShape = shape,
-        previewDashedBorderPhase = OudsTheme.componentsTokens.listItem.borderRadiusItemOnly.value
+        previewDashedBorderPhase = OudsTheme.components.listItem.border.radius.itemOnly
     ) {
-        val radioButtonTokens = OudsTheme.componentsTokens.radioButton
+        val radioButtonTokens = OudsTheme.components.radioButton
         @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
         val interactionState by interactionSource.collectInteractionStateAsState()
         val state = getControlState(enabled = enabled, readOnly = readOnly, skeleton = skeleton, interactionState = interactionState)
@@ -147,8 +150,8 @@ fun OudsRadioButton(
         ) { contentModifier ->
             Box(
                 modifier = contentModifier
-                    .widthIn(radioButtonTokens.sizeMinWidth.value)
-                    .heightIn(min = radioButtonTokens.sizeMinHeight.value, max = radioButtonTokens.sizeMaxHeight.value)
+                    .widthIn(radioButtonTokens.size.minWidth)
+                    .heightIn(min = radioButtonTokens.size.minHeight, max = radioButtonTokens.size.maxHeight)
                     .background(color = backgroundColor.value, shape = shape)
                     .outerBorder(state = state, shape = shape, handleHighContrastMode = true)
                     .then(selectableModifier)
@@ -171,11 +174,11 @@ fun OudsRadioButton(
 
 @Composable
 internal fun OudsRadioButtonIndicator(state: OudsControlState, selected: Boolean, error: Boolean) {
-    val shape = RoundedCornerShape(OudsTheme.componentsTokens.radioButton.borderRadius.value)
+    val shape = RoundedCornerShape(OudsTheme.components.radioButton.border.radius)
 
     Box(
         modifier = Modifier
-            .size(OudsTheme.componentsTokens.listItem.sizeControlIndicator.value)
+            .size(OudsTheme.components.listItem.size.controlIndicator)
             .clip(shape)
             .indicatorBorder(state = state, selected = selected, error = error, shape = shape)
     ) {
@@ -205,14 +208,14 @@ private fun Modifier.indicatorBorder(state: OudsControlState, selected: Boolean,
 
 @Composable
 private fun indicatorBorderWidth(state: OudsControlState, selected: Boolean): Dp? {
-    return with(OudsTheme.componentsTokens.radioButton) {
+    return with(OudsTheme.components.radioButton) {
         when (state) {
-            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) borderWidthSelected else borderWidthUnselected
-            OudsControlState.Hovered -> if (selected) borderWidthSelectedHover else borderWidthUnselectedHover
-            OudsControlState.Pressed -> if (selected) borderWidthSelectedPressed else borderWidthUnselectedPressed
-            OudsControlState.Focused -> if (selected) borderWidthSelectedFocus else borderWidthUnselectedFocus
+            OudsControlState.Enabled, OudsControlState.Disabled, OudsControlState.ReadOnly -> if (selected) border.width.selected else border.width.unselected
+            OudsControlState.Hovered -> if (selected) border.width.selectedHover else border.width.unselectedHover
+            OudsControlState.Pressed -> if (selected) border.width.selectedPressed else border.width.unselectedPressed
+            OudsControlState.Focused -> if (selected) border.width.selectedFocus else border.width.unselectedFocus
             OudsControlState.Skeleton -> null
-        }?.value
+        }
     }?.takeUnlessHairline
 }
 
@@ -252,7 +255,7 @@ private fun selectionColor(state: OudsControlState, error: Boolean): Color {
 @Suppress("DEPRECATION")
 @Composable
 private fun backgroundColor(state: OudsControlState): Color {
-    return with(OudsTheme.componentsTokens.listItem) {
+    return with(OudsTheme.componentsTokens.listItem) { // TODO Replace with `OudsTheme.components.listItem` tokens on Radio Button 1.5 upgrade
         when (state) {
             OudsControlState.Enabled,
             OudsControlState.Disabled,

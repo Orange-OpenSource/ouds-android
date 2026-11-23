@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -28,12 +30,12 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewFlowRow
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -77,7 +79,7 @@ fun OudsInlineAlert(
     status: OudsInlineAlertStatus = OudsInlineAlertDefaults.Status,
     @IntroducedAt("3.0.0-Unreleased") skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
-    with(OudsTheme.componentsTokens.alert) {
+    with(OudsTheme.components.alert) {
         val scale = LocalConfiguration.current.fontScale
         SkeletonLayout(
             modifier = modifier,
@@ -86,10 +88,10 @@ fun OudsInlineAlert(
         ) { contentModifier ->
             Row(
                 modifier = contentModifier.semantics(mergeDescendants = true) {},
-                horizontalArrangement = Arrangement.spacedBy(spaceColumnGap.value)
+                horizontalArrangement = Arrangement.spacedBy(space.columnGap)
             ) {
                 status.icon.Content(
-                    modifier = Modifier.iconSize(sizeAsset.value * scale, status.icon.tinted),
+                    modifier = Modifier.iconSize(size.asset * scale, status.icon.tinted),
                     extraParameters = OudsAlertIcon.ExtraParameters(
                         tint = status.assetColor,
                         status = status.value

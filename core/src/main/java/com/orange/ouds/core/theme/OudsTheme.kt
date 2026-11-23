@@ -173,11 +173,12 @@ object OudsTheme {
         @ReadOnlyComposable
         get() = LocalComponents.current
 
+    // TODO Remove when Control Item upgraded to 1.5
     internal val componentsTokens: OudsComponentsTokens
         @Composable
         @ReadOnlyComposable
         get() = LocalComponentsTokens.current
-    
+
     internal val deprecatedTokens: OudsDeprecatedTokens
         @Composable
         @ReadOnlyComposable

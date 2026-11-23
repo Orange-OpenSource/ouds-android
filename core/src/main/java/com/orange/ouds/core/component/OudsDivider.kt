@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -24,11 +26,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewPaddingDefault
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.EnumPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -85,7 +87,7 @@ fun OudsVerticalDivider(
     modifier: Modifier = Modifier,
     color: OudsDividerColor = OudsDividerDefaults.Color
 ) {
-    VerticalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
+    VerticalDivider(modifier = modifier, color = color.value, thickness = OudsTheme.components.divider.border.width)
 }
 
 @Composable
@@ -93,7 +95,7 @@ internal fun OudsHorizontalDivider(
     color: Color,
     modifier: Modifier = Modifier,
 ) {
-    HorizontalDivider(modifier = modifier, color = color, thickness = OudsTheme.componentsTokens.divider.borderWidth.value)
+    HorizontalDivider(modifier = modifier, color = color, thickness = OudsTheme.components.divider.border.width)
 }
 
 /**

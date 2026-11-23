@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components 
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import androidx.compose.foundation.background
@@ -57,15 +59,14 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.component.content.OudsPolymorphicComponentContent
 import com.orange.ouds.core.component.content.PolymorphicContent
-import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.CheckerboardPainter
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
 
@@ -837,8 +838,8 @@ private fun Title(title: String, topAppBarSize: OudsTopAppBarSize, centerAligned
 @Composable
 private fun colors(background: OudsTopAppBarBackground): TopAppBarColors {
     val backgroundColor = when (background) {
-        OudsTopAppBarBackground.Opaque -> OudsTheme.componentsTokens.bar.colorBgOpaque.value
-        OudsTopAppBarBackground.Translucent -> OudsTheme.componentsTokens.bar.colorBgTranslucent.value
+        OudsTopAppBarBackground.Opaque -> OudsTheme.components.bar.color.background.opaque
+        OudsTopAppBarBackground.Translucent -> OudsTheme.components.bar.color.background.translucent
         OudsTopAppBarBackground.Transparent -> Color.Transparent
     }
     return TopAppBarDefaults.topAppBarColors(
@@ -974,7 +975,7 @@ sealed interface OudsTopAppBarAction : OudsPolymorphicComponentContent {
                 OudsButtonIconBadge(
                     contentDescription = badge.contentDescription,
                     count = badge.count,
-                    borderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                    borderColor = OudsTheme.components.bar.color.border.badge
                 )
             }
 

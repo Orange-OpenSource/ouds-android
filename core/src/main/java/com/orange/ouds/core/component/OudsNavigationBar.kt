@@ -10,6 +10,8 @@
  * Software description: Android library of reusable graphical components
  */
 
+@file:OptIn(RestrictedOudsApi::class)
+
 package com.orange.ouds.core.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -71,11 +73,9 @@ import com.orange.ouds.core.component.content.OudsComponentContent
 import com.orange.ouds.core.component.content.OudsComponentIcon
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
-import com.orange.ouds.core.extensions.value
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.WindowWidthSizeClass
 import com.orange.ouds.core.theme.currentWindowWidth
-import com.orange.ouds.core.theme.value
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -83,6 +83,7 @@ import com.orange.ouds.core.utilities.OudsPreviewableComponent
 import com.orange.ouds.core.utilities.PreviewEnumEntries
 import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
+import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
 import com.orange.ouds.theme.OudsThemeContract
@@ -143,11 +144,11 @@ fun OudsNavigationBar(
         WindowWidthSizeClass.compute(dpWidth = currentWindowWidth().value)
     }
 
-    with(OudsTheme.componentsTokens.bar) {
+    with(OudsTheme.components.bar) {
         ShortNavigationBar(
             modifier = modifier,
-            containerColor = if (translucent) colorBgTranslucent.value else colorBgOpaque.value,
-            contentColor = colorContentUnselectedEnabled.value,
+            containerColor = if (translucent) color.background.translucent else color.background.opaque,
+            contentColor = color.content.unselected.enabled,
             windowInsets = windowInsets,
             arrangement = if (windowWidthSizeClass != WindowWidthSizeClass.MEDIUM) ShortNavigationBarArrangement.EqualWeight else ShortNavigationBarArrangement.Centered,
             content = {
@@ -251,7 +252,7 @@ class OudsNavigationBarItem(
                         OudsBadgedIcon(
                             modifier = Modifier.size(OudsNavigationBarItemIcon.Size),
                             badgeCount = badge.count,
-                            badgeBorderColor = OudsTheme.componentsTokens.bar.colorBorderBadge.value
+                            badgeBorderColor = OudsTheme.components.bar.color.border.badge
                         ) {
                             icon.Content()
                         }
@@ -285,10 +286,10 @@ class OudsNavigationBarItem(
 
 @Composable
 private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Boolean, iconPosition: NavigationItemIconPosition): Modifier {
-    with(OudsTheme.componentsTokens.bar) {
+    with(OudsTheme.components.bar) {
         val indicatorColor = topIndicatorColor(state = state)
-        val indicatorBottomCornersRadius = borderRadiusCurrentIndicatorCustomTop.value
-        val opacityCurrentIndicatorCustomValue = opacityCurrentIndicatorCustom.value
+        val indicatorBottomCornersRadius = border.radius.currentIndicatorCustom.top
+        val opacityCurrentIndicatorCustomValue = opacity.currentIndicatorCustom
 
         val indicatorWidthScale by animateFloatAsState(
             targetValue = if (selected || state == OudsNavigationBarItemState.Hovered) 1.0f else 0.0f,
@@ -300,12 +301,12 @@ private fun Modifier.indicator(state: OudsNavigationBarItemState, selected: Bool
         } else {
             drawWithContent {
                 val indicatorAlphaColor = indicatorColor.copy(alpha = indicatorColor.alpha * opacityCurrentIndicatorCustomValue)
-                val indicatorHeight = sizeHeightCurrentIndicatorCustom.dp.toPx()
+                val indicatorHeight = this@with.size.height.currentIndicatorCustom.toPx()
                 val indicatorFullWidth: Float
                 val indicatorCenterX: Float
                 when (iconPosition) {
                     NavigationItemIconPosition.Top -> {
-                        indicatorFullWidth = sizeWidthCurrentIndicatorCustomTop.dp.toPx()
+                        indicatorFullWidth = this@with.size.width.currentIndicatorCustom.top.toPx()
                         indicatorCenterX = size.width / 2
                     }
                     else -> {
@@ -360,36 +361,36 @@ private fun getNavigationBarItemState(interactionState: InteractionState): OudsN
 
 @Composable
 private fun contentColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
-    return with(OudsTheme.componentsTokens.bar) {
+    return with(OudsTheme.components.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> if (selected) colorContentSelectedEnabled.value else colorContentUnselectedEnabled.value
-            OudsNavigationBarItemState.Hovered -> if (selected) colorContentSelectedHover.value else colorContentUnselectedHover.value
-            OudsNavigationBarItemState.Pressed -> if (selected) colorContentSelectedPressed.value else colorContentUnselectedPressed.value
-            OudsNavigationBarItemState.Focused -> if (selected) colorContentSelectedFocus.value else colorContentUnselectedFocus.value
+            OudsNavigationBarItemState.Enabled -> if (selected) color.content.selected.enabled else color.content.unselected.enabled
+            OudsNavigationBarItemState.Hovered -> if (selected) color.content.selected.hover else color.content.unselected.hover
+            OudsNavigationBarItemState.Pressed -> if (selected) color.content.selected.pressed else color.content.unselected.pressed
+            OudsNavigationBarItemState.Focused -> if (selected) color.content.selected.focus else color.content.unselected.focus
         }
     }
 }
 
 @Composable
 private fun materialIndicatorColor(state: OudsNavigationBarItemState, selected: Boolean): Color {
-    return with(OudsTheme.componentsTokens.bar) {
+    return with(OudsTheme.components.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> if (selected) colorCurrentIndicatorAndroidSelectedEnabled.value else OudsTheme.colorScheme.opacity.transparent
-            OudsNavigationBarItemState.Hovered -> if (selected) colorCurrentIndicatorAndroidSelectedHover.value else colorCurrentIndicatorAndroidUnselectedHover.value
-            OudsNavigationBarItemState.Pressed -> if (selected) colorCurrentIndicatorAndroidSelectedPressed.value else colorCurrentIndicatorAndroidUnselectedPressed.value
-            OudsNavigationBarItemState.Focused -> if (selected) colorCurrentIndicatorAndroidSelectedFocus.value else colorCurrentIndicatorAndroidUnselectedFocus.value
+            OudsNavigationBarItemState.Enabled -> if (selected) color.currentIndicator.android.selected.enabled else OudsTheme.colorScheme.opacity.transparent
+            OudsNavigationBarItemState.Hovered -> if (selected) color.currentIndicator.android.selected.hover else color.currentIndicator.android.unselected.hover
+            OudsNavigationBarItemState.Pressed -> if (selected) color.currentIndicator.android.selected.pressed else color.currentIndicator.android.unselected.pressed
+            OudsNavigationBarItemState.Focused -> if (selected) color.currentIndicator.android.selected.focus else color.currentIndicator.android.unselected.focus
         }
     }
 }
 
 @Composable
 private fun topIndicatorColor(state: OudsNavigationBarItemState): Color {
-    return with(OudsTheme.componentsTokens.bar) {
+    return with(OudsTheme.components.bar) {
         when (state) {
-            OudsNavigationBarItemState.Enabled -> colorCurrentIndicatorCustomSelectedEnabled.value
-            OudsNavigationBarItemState.Hovered -> colorCurrentIndicatorCustomSelectedHover.value
-            OudsNavigationBarItemState.Pressed -> colorCurrentIndicatorCustomSelectedPressed.value
-            OudsNavigationBarItemState.Focused -> colorCurrentIndicatorCustomSelectedFocus.value
+            OudsNavigationBarItemState.Enabled -> color.currentIndicator.custom.selected.enabled
+            OudsNavigationBarItemState.Hovered -> color.currentIndicator.custom.selected.hover
+            OudsNavigationBarItemState.Pressed -> color.currentIndicator.custom.selected.pressed
+            OudsNavigationBarItemState.Focused -> color.currentIndicator.custom.selected.focus
         }
     }
 }
@@ -582,7 +583,7 @@ internal fun PreviewOudsNavigationBarItem(
                 item.Content(
                     modifier = Modifier
                         .size(width = 80.dp, height = 64.dp)
-                        .background(OudsTheme.componentsTokens.bar.colorBgOpaque.value),
+                        .background(OudsTheme.components.bar.color.background.opaque),
                     extraParameters = OudsNavigationBarItem.ExtraParameters(this)
                 )
             }
