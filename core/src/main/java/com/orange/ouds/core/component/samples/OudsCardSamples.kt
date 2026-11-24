@@ -123,7 +123,7 @@ internal fun OudsFilledCardSample() {
 @Composable
 internal fun OudsElevatedCardSample() {
     OudsElevatedCard(
-        background = true
+        alternativeBackground = true
     ) {
         Column(
             modifier = Modifier.padding(OudsTheme.spaces.fixed.medium),

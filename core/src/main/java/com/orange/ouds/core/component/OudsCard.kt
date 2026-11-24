@@ -17,7 +17,6 @@ package com.orange.ouds.core.component
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.content.res.Configuration.UI_MODE_TYPE_NORMAL
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -52,10 +51,12 @@ import com.orange.ouds.core.component.common.outerBorder
 import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.visible
+import com.orange.ouds.core.theme.LocalElevatedCardOnBackground
 import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
@@ -164,7 +165,8 @@ fun OudsCard(
  * a raised appearance.
  *
  * @param modifier The [Modifier] to be applied to this card.
- * @param background Controls the display of the predefined color background. Defaults to `true`.
+ * @param alternativeBackground Controls the display of the alternative color background which provide a different visual appearance. Defaults to `false`.
+ * @param onBackground The background on which the card is displayed among [OudsElevatedCardOnBackground].
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
@@ -178,14 +180,15 @@ fun OudsCard(
 @Composable
 fun OudsElevatedCard(
     modifier: Modifier = Modifier,
-    background: Boolean = OudsCardDefaults.Background,
+    alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
+    onBackground: OudsElevatedCardOnBackground = OudsCardDefaults.ElevatedCardOnBackground,
     enabled: Boolean = true,
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsCardScope.() -> Unit = { },
 ) {
     OudsCard(
         modifier = modifier,
-        style = OudsCardStyle.Elevated(background = background),
+        style = OudsCardStyle.Elevated(alternativeBackground = alternativeBackground, onBackground = onBackground),
         enabled = enabled,
         skeleton = skeleton,
         content = content
@@ -198,7 +201,8 @@ fun OudsElevatedCard(
  *
  * @param onClick The action to perform when this card is clicked.
  * @param modifier The [Modifier] to be applied to this card.
- * @param background Controls the display of the predefined color background. Defaults to `true`.
+ * @param alternativeBackground Controls the display of the alternative color background. Defaults to `false`.
+ * @param onBackground The background on which the card is displayed among [OudsElevatedCardOnBackground].
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
@@ -215,7 +219,8 @@ fun OudsElevatedCard(
 fun OudsElevatedCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    background: Boolean = OudsCardDefaults.Background,
+    alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
+    onBackground: OudsElevatedCardOnBackground = OudsCardDefaults.ElevatedCardOnBackground,
     enabled: Boolean = true,
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     interactionSource: MutableInteractionSource? = null,
@@ -224,7 +229,7 @@ fun OudsElevatedCard(
     OudsCard(
         onClick = onClick,
         modifier = modifier,
-        style = OudsCardStyle.Elevated(background = background),
+        style = OudsCardStyle.Elevated(alternativeBackground = alternativeBackground, onBackground = onBackground),
         enabled = enabled,
         skeleton = skeleton,
         interactionSource = interactionSource,
@@ -323,16 +328,16 @@ internal fun OudsCard(
             val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
             borderColor(style = style, state = cardState)
         }
-        val stateOverlayColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
+        val backgroundColor = rememberNullableInteractionColor(interactionState = interactionState) { cardInteractionState ->
             val cardState = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = cardInteractionState)
-            stateOverlayColor(style = style, state = cardState)
+            backgroundColor(style = style, state = cardState)
         }
 
         val clickableModifier = if (nullableOnClick != null) {
             Modifier.clickable(
                 enabled = state.areInteractionsEnabled,
                 interactionSource = interactionSource,
-                indication = interactionValuesIndication(borderColor, stateOverlayColor),
+                indication = interactionValuesIndication(borderColor, backgroundColor),
                 onClick = nullableOnClick
             )
         } else {
@@ -355,10 +360,7 @@ internal fun OudsCard(
                     .outerBorder(state = state, shape = shape),
                 shape = shape,
                 colors = CardDefaults.cardColors(
-                    containerColor = style.backgroundColor,
-                    contentColor = Color.Unspecified,
-                    disabledContainerColor = style.backgroundColor,
-                    disabledContentColor = Color.Unspecified
+                    containerColor = backgroundColor.value.orElse { Color.Unspecified }
                 ),
                 elevation = cardElevation(style = style),
                 border = borderColor.value?.let { borderColor ->
@@ -376,21 +378,15 @@ internal fun OudsCard(
                             }
                         }
                     }
-                    if (stateOverlayColor.value != null || state == OudsCardState.Loading) {
-                        Box(
-                            modifier = Modifier
-                                .matchParentSize()
-                                .background(color = stateOverlayColor.value.orElse { Color.Transparent })
-                        ) {
-                            if (state == OudsCardState.Loading) {
-                                OudsCircularProgressIndicator(
-                                    modifier = Modifier.align(Alignment.Center),
-                                    status = OudsProgressIndicatorStatus.Accent,
-                                    nullableProgress = loader?.progress?.let { { it } },
-                                    track = false,
-                                    indicatorSize = 40.dp
-                                )
-                            }
+                    if (state == OudsCardState.Loading) {
+                        Box(modifier = Modifier.matchParentSize()) {
+                            OudsCircularProgressIndicator(
+                                modifier = Modifier.align(Alignment.Center),
+                                status = OudsProgressIndicatorStatus.Accent,
+                                nullableProgress = loader?.progress?.let { { it } },
+                                track = false,
+                                indicatorSize = 40.dp
+                            )
                         }
                     }
                 }
@@ -399,44 +395,62 @@ internal fun OudsCard(
     }
 }
 
+/**
+ * Default values for [OudsCard].
+ */
 object OudsCardDefaults {
+
+    val AlternativeBackground = false
 
     val Background = true
 
-    val OnBackground = OudsCardOnBackground.BackgroundPrimary
+    val ElevatedCardOnBackground = OudsElevatedCardOnBackground.BackgroundPrimary
 
     val Style = OudsCardStyle.Filled()
 }
 
 /**
- * The background color on which an [OudsCard] can be displayed.
+ * Represents the possible background colors on which an [OudsCard] can be displayed.
  */
-enum class OudsCardOnBackground {
-    BackgroundPrimary, BackgroundSecondary, BackgroundTertiary;
+enum class OudsElevatedCardOnBackground {
+    /**
+     * Color is automatically detected when the card is placed on an [OudsColoredBox], an [OudsModalBottomSheet] or an [OudsBottomSheetScaffold].
+     * Otherwise, the background primary color is used.
+     */
+    Default,
+    BackgroundPrimary,
+    BackgroundSecondary,
+    BackgroundTertiary,
+    BackgroundInverseLow,
+    BackgroundInverseHigh,
+    OverlayModalSheet;
 
     internal val color: Color
         @Composable
-        get() = with(OudsTheme.colorScheme.background) {
-            when (this@OudsCardOnBackground) {
-                BackgroundPrimary -> primary
-                BackgroundSecondary -> secondary
-                BackgroundTertiary -> tertiary
+        get() = with(OudsTheme.colorScheme) {
+            when (this@OudsElevatedCardOnBackground) {
+                BackgroundPrimary -> background.primary
+                BackgroundSecondary -> background.secondary
+                BackgroundTertiary -> background.tertiary
+                BackgroundInverseLow -> background.inverseLow
+                BackgroundInverseHigh -> background.inverseHigh
+                OverlayModalSheet -> overlay.modalSheet
+                Default -> LocalElevatedCardOnBackground.current?.color ?: background.primary
             }
         }
 }
 
 sealed class OudsCardStyle {
     /**
-     * Filled cards use a background color to separate their content from the surrounding interface.
+     * Filled cards use an additional background layer to visually separate their content from the surrounding interface. The card itself can remain
+     * transparent, allowing the underlying surface to show through.
      *
-     * @param divider Controls the display of a divider at the bottom of the card. Defaults to `false`.
      * @param background Controls the display of the predefined color background. Defaults to `true`.
-     * @param onBackground The background color on which the card is displayed.
+     * @param divider Controls the display of a divider at the bottom of the card. Defaults to `false`.
      */
     class Filled(
-        val divider: Boolean = false,
         val background: Boolean = OudsCardDefaults.Background,
-        val onBackground: OudsCardOnBackground = OudsCardDefaults.OnBackground
+        val divider: Boolean = false
     ) : OudsCardStyle()
 
     /**
@@ -447,24 +461,14 @@ sealed class OudsCardStyle {
     /**
      * Elevated cards create separation through a shadow, giving the container a raised appearance.
      *
-     * @param background Controls the display of the predefined color background. Defaults to `true`.
+     * @param alternativeBackground Controls the display of the alternative color background which provide a different visual appearance. Defaults to `false`.
      * @param onBackground The background color on which the card is displayed.
      */
     class Elevated(
-        val background: Boolean = OudsCardDefaults.Background,
-        val onBackground: OudsCardOnBackground = OudsCardOnBackground.BackgroundPrimary
+        val alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
+        val onBackground: OudsElevatedCardOnBackground = OudsElevatedCardOnBackground.BackgroundPrimary
     ) : OudsCardStyle()
 
-    val backgroundColor: Color
-        @Composable
-        get() =
-            with(OudsTheme.colorScheme) {
-                return when (val style = this@OudsCardStyle) {
-                    is Filled -> compositeBackgroundColor(background = style.background, onBackground = onBackground)
-                    is Elevated -> compositeBackgroundColor(background = style.background, onBackground = onBackground)
-                    Outlined -> Color.Transparent
-                }
-            }
 }
 
 /**
@@ -491,13 +495,7 @@ class OudsCardScope {
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-data class OudsCardLoader(val progress: Float?)
-
-@Composable
-private fun compositeBackgroundColor(background: Boolean, onBackground: OudsCardOnBackground) = with(OudsTheme.colorScheme) {
-    val baseColor = surface.primary.compositeOver(onBackground.color)
-    if (background) OudsTheme.colorScheme.action.support.enabled.compositeOver(baseColor) else baseColor
-}
+class OudsCardLoader(val progress: Float?)
 
 @Composable
 private fun cardElevation(style: OudsCardStyle): CardElevation {
@@ -545,18 +543,35 @@ private fun Modifier.cardDivider(style: OudsCardStyle, borderRadius: Dp): Modifi
 }
 
 @Composable
-private fun stateOverlayColor(style: OudsCardStyle, state: OudsCardState) = with(OudsTheme.colorScheme.action.support) {
+private fun backgroundColor(style: OudsCardStyle, state: OudsCardState) = with(OudsTheme.colorScheme.action.support) {
     when (style) {
+        OudsCardStyle.Outlined -> Color.Transparent
         is OudsCardStyle.Filled, is OudsCardStyle.Elevated -> {
             when (state) {
+                OudsCardState.Enabled -> {
+                    when (style) {
+                        is OudsCardStyle.Filled -> if (style.background) enabled else Color.Transparent
+                        is OudsCardStyle.Elevated -> if (style.alternativeBackground || isOudsInDarkTheme()) {
+                            enabled
+                        } else {
+                            OudsTheme.colorScheme.surface.primary
+                        }.compositeOver(style.onBackground.color)
+                    }
+                }
+                OudsCardState.Disabled -> {
+                    if (style is OudsCardStyle.Elevated && !isOudsInDarkTheme()) {
+                        OudsTheme.colorScheme.surface.primary
+                    } else {
+                        disabled
+                    }
+                }
                 OudsCardState.Hovered -> hover
                 OudsCardState.Focused -> focus
                 OudsCardState.Pressed -> pressed
                 OudsCardState.Loading -> loading
-                OudsCardState.Enabled, OudsCardState.Disabled, OudsCardState.Skeleton -> null
+                OudsCardState.Skeleton -> null
             }
         }
-        OudsCardStyle.Outlined -> null
     }
 }
 
