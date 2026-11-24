@@ -39,6 +39,7 @@ fun ActionCardDemoScreen() {
         bottomSheetContent = { ActionCardDemoBottomSheetContent(state = state) },
         codeSnippet = { actionCardDemoCodeSnippet(state = state) },
         demoContent = { ActionCardDemoContent(state = state) },
+        demoContentOnColor = state.demoContentOnColor,
         version = OudsVersion.Component.ActionCard
     )
 }
@@ -85,7 +86,8 @@ private fun ActionCardDemoContent(state: ActionCardDemoState) {
             BaseCardDemoState.Style.Elevated -> OudsElevatedCard(
                 onClick = {},
                 modifier = modifier,
-                background = background,
+                alternativeBackground = alternativeBackground,
+                onBackgroundColor = elevatedCardOnBackgroundColor,
                 enabled = enabled,
                 skeleton = skeleton
             ) {

@@ -15,11 +15,11 @@ package com.orange.ouds.app.ui.components.card
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -27,14 +27,17 @@ import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.skeletonArgument
 import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.FunctionCall
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenu
+import com.orange.ouds.app.ui.utilities.composable.CustomizationDropdownMenuItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationFilterChips
 import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
+import com.orange.ouds.core.component.OudsCardDefaults
 import com.orange.ouds.core.component.OudsCardStyle
+import com.orange.ouds.core.component.OudsElevatedCardOnBackgroundColor
 import com.orange.ouds.core.component.OudsHeadingText
 import com.orange.ouds.core.component.OudsLabelText
-import com.orange.ouds.core.component.OudsLabelTextSize
 import com.orange.ouds.core.component.OudsTag
 import com.orange.ouds.core.component.OudsTagStatus
 import com.orange.ouds.core.component.OudsTextWeight
@@ -56,14 +59,42 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
             label = stringResource(R.string.app_components_common_background_tech),
             checked = background,
             onCheckedChange = { background = it },
-            enabled = backgroundEnabled
+            enabled = filledCardSettingsEnabled
+        )
+
+        CustomizationSwitchItem(
+            label = stringResource(R.string.app_components_card_alternativeBackground_tech),
+            checked = alternativeBackground,
+            onCheckedChange = { alternativeBackground = it },
+            enabled = elevatedCardSettingsEnabled
+        )
+
+        val elevatedCardOnBackgroundColors = OudsElevatedCardOnBackgroundColor.entries
+        CustomizationDropdownMenu(
+            applyTopPadding = false,
+            label = stringResource(id = R.string.app_components_card_onBackgroundColor_tech),
+            items = elevatedCardOnBackgroundColors.map { color ->
+                CustomizationDropdownMenuItem(
+                    label = color.name.toSentenceCase(),
+                    leadingIcon = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(if (elevatedCardSettingsEnabled) color.value else OudsTheme.colorScheme.action.disabled)
+                        )
+                    },
+                    enabled = elevatedCardSettingsEnabled
+                )
+            },
+            selectedItemIndex = elevatedCardOnBackgroundColors.indexOf(elevatedCardOnBackgroundColor),
+            onSelectionChange = { elevatedCardOnBackgroundColor = elevatedCardOnBackgroundColors[it] }
         )
 
         CustomizationSwitchItem(
             label = stringResource(R.string.app_components_common_divider_tech),
             checked = divider,
             onCheckedChange = { divider = it },
-            enabled = dividerEnabled
+            enabled = filledCardSettingsEnabled
         )
 
         CustomizationFilterChips(
@@ -91,27 +122,12 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
 @Composable
 fun BaseCardContentExample(state: BaseCardDemoState) {
     when (state.contentExample) {
-        BaseCardDemoState.ContentExample.SimpleContent -> BaseCardSimpleContent(state = state)
-        BaseCardDemoState.ContentExample.UseCase -> BaseCardUseCaseContent()
-    }
-}
-
-@Composable
-private fun BaseCardSimpleContent(state: BaseCardDemoState) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .background(if (state.enabled) OudsTheme.colorScheme.surface.status.info.muted else OudsTheme.colorScheme.action.disabled)
-            .padding(all = OudsTheme.spaces.fixed.twoExtraSmall),
-        contentAlignment = Alignment.Center
-    ) {
-        OudsLabelText(
-            text = stringResource(R.string.app_components_common_content_tech),
-            size = OudsLabelTextSize.Small,
-            weight = OudsTextWeight.Strong,
-            color = if (state.enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled
+        BaseCardDemoState.ContentExample.Empty -> Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
         )
+        BaseCardDemoState.ContentExample.UseCase -> BaseCardUseCaseContent()
     }
 }
 
@@ -145,7 +161,7 @@ fun Code.Builder.baseCardDemoCodeSnippet(state: BaseCardDemoState, cardArguments
                 BaseCardDemoState.Style.Filled -> {
                     if (!background || divider) {
                         constructorCallArgument<OudsCardStyle.Filled>("style") {
-                            if (!background) {
+                            if (background != OudsCardDefaults.Background) {
                                 typedArgument("background", background)
                             }
                             if (divider) {
@@ -159,8 +175,11 @@ fun Code.Builder.baseCardDemoCodeSnippet(state: BaseCardDemoState, cardArguments
                 }
                 BaseCardDemoState.Style.Elevated -> {
                     constructorCallArgument<OudsCardStyle.Elevated>("style") {
-                        if (!background) {
-                            typedArgument("background", background)
+                        if (alternativeBackground != OudsCardDefaults.AlternativeBackground) {
+                            typedArgument("alternativeBackground", alternativeBackground)
+                        }
+                        if (elevatedCardOnBackgroundColor != OudsCardDefaults.ElevatedCardOnBackgroundColor) {
+                            typedArgument("elevatedCardOnBackgroundColor", elevatedCardOnBackgroundColor)
                         }
                     }
                 }

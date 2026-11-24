@@ -15,27 +15,33 @@ package com.orange.ouds.app.ui.components.card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
+import com.orange.ouds.core.component.OudsCardDefaults
+import com.orange.ouds.core.component.OudsElevatedCardOnBackgroundColor
 
 @Composable
 fun rememberCardDemoState(
     style: BaseCardDemoState.Style = BaseCardDemoState.Style.Filled,
-    background: Boolean = true,
+    background: Boolean = OudsCardDefaults.Background,
+    alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
+    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor,
     divider: Boolean = false,
-    contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.SimpleContent,
+    contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.Empty,
     enabled: Boolean = true,
     skeleton: Boolean = false
 ) = rememberSaveable(style, background, divider, contentExample, enabled, skeleton, saver = CardDemoState.Saver) {
-    CardDemoState(style, background, divider, contentExample, enabled, skeleton)
+    CardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, skeleton)
 }
 
 class CardDemoState(
     style: Style,
     background: Boolean,
+    alternativeBackground: Boolean,
+    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,
     skeleton: Boolean
-) : BaseCardDemoState(style, background, divider, contentExample, enabled, skeleton) {
+) : BaseCardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, skeleton) {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
@@ -51,6 +57,8 @@ class CardDemoState(
                     CardDemoState(
                         style,
                         background,
+                        alternativeBackground,
+                        elevatedCardOnBackgroundColor,
                         divider,
                         contentExample,
                         enabled,

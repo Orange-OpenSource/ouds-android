@@ -18,29 +18,46 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.orange.ouds.core.component.OudsCardDefaults
+import com.orange.ouds.core.component.OudsElevatedCardOnBackgroundColor
 
 @Composable
 fun rememberActionCardDemoState(
     style: BaseCardDemoState.Style = BaseCardDemoState.Style.Filled,
-    background: Boolean = true,
+    background: Boolean = OudsCardDefaults.Background,
+    alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
+    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor,
     divider: Boolean = false,
-    contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.SimpleContent,
+    contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.Empty,
     enabled: Boolean = true,
     hasLoader: Boolean = false,
     skeleton: Boolean = false
-) = rememberSaveable(style, background, divider, contentExample, enabled, hasLoader, skeleton, saver = ActionCardDemoState.Saver) {
-    ActionCardDemoState(style, background, divider, contentExample, enabled, hasLoader, skeleton)
+) = rememberSaveable(
+    style,
+    background,
+    alternativeBackground,
+    elevatedCardOnBackgroundColor,
+    divider,
+    contentExample,
+    enabled,
+    hasLoader,
+    skeleton,
+    saver = ActionCardDemoState.Saver
+) {
+    ActionCardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, hasLoader, skeleton)
 }
 
 class ActionCardDemoState(
     style: Style,
     background: Boolean,
+    alternativeBackground: Boolean,
+    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,
     hasLoader: Boolean,
     skeleton: Boolean
-) : BaseCardDemoState(style, background, divider, contentExample, enabled, skeleton) {
+) : BaseCardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, skeleton) {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
@@ -59,6 +76,8 @@ class ActionCardDemoState(
                     ActionCardDemoState(
                         style,
                         background,
+                        alternativeBackground,
+                        elevatedCardOnBackgroundColor,
                         divider,
                         contentExample,
                         enabled,

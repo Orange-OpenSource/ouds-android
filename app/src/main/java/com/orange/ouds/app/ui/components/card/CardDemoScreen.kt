@@ -37,6 +37,7 @@ fun CardDemoScreen() {
         bottomSheetContent = { BaseCardDemoBottomSheetContent(state = state) },
         codeSnippet = { cardDemoCodeSnippet(state = state) },
         demoContent = { CardDemoContent(state = state) },
+        demoContentOnColor = state.demoContentOnColor,
         version = OudsVersion.Component.Card
     )
 }
@@ -67,7 +68,8 @@ private fun CardDemoContent(state: CardDemoState) {
             }
             BaseCardDemoState.Style.Elevated -> OudsElevatedCard(
                 modifier = modifier,
-                background = background,
+                alternativeBackground = alternativeBackground,
+                onBackgroundColor = elevatedCardOnBackgroundColor,
                 enabled = enabled,
                 skeleton = skeleton
             ) {

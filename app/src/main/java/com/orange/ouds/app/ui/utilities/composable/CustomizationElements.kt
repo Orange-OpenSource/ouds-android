@@ -233,7 +233,7 @@ fun CustomizationDropdownMenu(
     selectedItemIndex: Int,
     onSelectionChange: (Int) -> Unit,
     applyTopPadding: Boolean,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     @Suppress("NAME_SHADOWING")
     val modifier = if (applyTopPadding) modifier.padding(top = elementTopPadding) else modifier

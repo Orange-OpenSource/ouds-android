@@ -252,7 +252,9 @@
     <string name="app_components_card_actionCard_tech" translatable="false">Action card</string>
     <string name="app_components_card_actionCard_description_text">An action card is a surface-like UI element that groups related information within an interactive surface and allows a user to perform a single primary action or navigate to a destination.</string>
     <string name="app_components_card_style_tech" translatable="false">Style</string>
+    <string name="app_components_card_alternativeBackground_tech" translatable="false">Alternative background</string>
     <string name="app_components_card_backgroundColor_tech" translatable="false">Background color</string>
+    <string name="app_components_card_onBackgroundColor_tech" translatable="false">On background color</string>
     <string name="app_components_card_contentExample_tech" translatable="false">Content example</string>
     <string name="app_components_card_contentExampleTitle_tech" translatable="false">Samsung</string>
     <string name="app_components_card_contentExampleSubtitle_tech" translatable="false">Galaxy S26 FE EE</string>
