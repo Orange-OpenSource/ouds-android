@@ -39,7 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import com.orange.ouds.core.theme.LocalElevatedCardOnBackground
+import com.orange.ouds.core.theme.LocalElevatedCardOnBackgroundColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -89,7 +89,7 @@ fun OudsBottomSheetScaffold(
 ) {
     BottomSheetScaffold(
         sheetContent = {
-            CompositionLocalProvider(LocalElevatedCardOnBackground provides OudsElevatedCardOnBackground.OverlayModalSheet) {
+            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsElevatedCardOnBackgroundColor.OverlayModalSheet) {
                 sheetContent()
             }
         },

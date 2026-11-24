@@ -33,7 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.orange.ouds.core.theme.LocalElevatedCardOnBackground
+import com.orange.ouds.core.theme.LocalElevatedCardOnBackgroundColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -94,7 +94,7 @@ fun OudsModalBottomSheet(
         contentWindowInsets = contentWindowInsets,
         properties = properties,
         content = {
-            CompositionLocalProvider(LocalElevatedCardOnBackground provides OudsElevatedCardOnBackground.OverlayModalSheet) {
+            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsElevatedCardOnBackgroundColor.OverlayModalSheet) {
                 content()
             }
         }

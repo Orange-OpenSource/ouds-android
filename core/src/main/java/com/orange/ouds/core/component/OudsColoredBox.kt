@@ -31,7 +31,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.filter
 import com.orange.ouds.core.theme.LocalColorMode
-import com.orange.ouds.core.theme.LocalElevatedCardOnBackground
+import com.orange.ouds.core.theme.LocalElevatedCardOnBackgroundColor
 import com.orange.ouds.core.theme.OudsColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
@@ -74,7 +74,7 @@ fun OudsColoredBox(
     ) {
         CompositionLocalProvider(
             LocalColorMode provides color.mode,
-            LocalElevatedCardOnBackground provides color.toElevatedCardOnBackground()
+            LocalElevatedCardOnBackgroundColor provides color.toElevatedCardOnBackgroundColor()
         ) {
             // Filter the background modifiers in order to force the background color
             // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
@@ -248,18 +248,18 @@ enum class OudsColoredBoxColor {
 }
 
 /**
- * Maps an [OudsColoredBoxColor] to its corresponding [OudsElevatedCardOnBackground].
- * Falls back to [OudsElevatedCardOnBackground.BackgroundPrimary] if no direct mapping exists.
+ * Maps an [OudsColoredBoxColor] to its corresponding [OudsElevatedCardOnBackgroundColor].
+ * Falls back to [OudsElevatedCardOnBackgroundColor.BackgroundPrimary] if no direct mapping exists.
  */
-internal fun OudsColoredBoxColor.toElevatedCardOnBackground(): OudsElevatedCardOnBackground {
+internal fun OudsColoredBoxColor.toElevatedCardOnBackgroundColor(): OudsElevatedCardOnBackgroundColor {
     return when (this) {
-        OudsColoredBoxColor.BackgroundPrimary -> OudsElevatedCardOnBackground.BackgroundPrimary
-        OudsColoredBoxColor.BackgroundSecondary -> OudsElevatedCardOnBackground.BackgroundSecondary
-        OudsColoredBoxColor.BackgroundTertiary -> OudsElevatedCardOnBackground.BackgroundTertiary
-        OudsColoredBoxColor.BackgroundInverseLow -> OudsElevatedCardOnBackground.BackgroundInverseLow
-        OudsColoredBoxColor.BackgroundInverseHigh -> OudsElevatedCardOnBackground.BackgroundInverseHigh
-        OudsColoredBoxColor.OverlayModal -> OudsElevatedCardOnBackground.OverlayModalSheet
-        else -> OudsElevatedCardOnBackground.BackgroundPrimary
+        OudsColoredBoxColor.BackgroundPrimary -> OudsElevatedCardOnBackgroundColor.BackgroundPrimary
+        OudsColoredBoxColor.BackgroundSecondary -> OudsElevatedCardOnBackgroundColor.BackgroundSecondary
+        OudsColoredBoxColor.BackgroundTertiary -> OudsElevatedCardOnBackgroundColor.BackgroundTertiary
+        OudsColoredBoxColor.BackgroundInverseLow -> OudsElevatedCardOnBackgroundColor.BackgroundInverseLow
+        OudsColoredBoxColor.BackgroundInverseHigh -> OudsElevatedCardOnBackgroundColor.BackgroundInverseHigh
+        OudsColoredBoxColor.OverlayModal -> OudsElevatedCardOnBackgroundColor.OverlayModalSheet
+        else -> OudsElevatedCardOnBackgroundColor.BackgroundPrimary
     }
 }
 
