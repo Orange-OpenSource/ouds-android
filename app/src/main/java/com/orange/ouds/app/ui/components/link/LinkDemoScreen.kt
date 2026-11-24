@@ -34,6 +34,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.app.ui.utilities.rememberUntintedIconPainter
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsLink
 import com.orange.ouds.core.component.OudsLinkDensity
 import com.orange.ouds.core.component.OudsLinkIcon
@@ -54,7 +55,7 @@ fun LinkDemoScreen() {
         bottomSheetContent = { LinkDemoBottomSheetContent(state = state) },
         codeSnippet = { linkDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { LinkDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox,
+        demoContentOnColor = if (state.onColoredBox) OudsColoredBoxColor.BrandPrimary else null,
         version = OudsVersion.Component.Link
     )
 }
