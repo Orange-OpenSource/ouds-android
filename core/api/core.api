@@ -25,8 +25,8 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsBodyT
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsBodyTextKt;
 	public fun <init> ()V
 	public final fun getLambda$-1183400077$core ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1890506407$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$377382078$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$845723971$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsBottomSheetScaffoldKt {
@@ -54,6 +54,23 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsButto
 	public final fun getLambda$-617629630$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$1034914205$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$625886498$core ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsCardKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsCardKt;
+	public fun <init> ()V
+	public final fun getLambda$-11407456$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1713679854$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1779761801$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-2100515174$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-2116500389$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-295535597$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1228618591$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1330603799$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1483731581$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$25050732$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$399254830$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$856086497$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsCheckboxItemKt {
@@ -85,14 +102,20 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsCodeT
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsCodeTextKt;
 	public fun <init> ()V
 	public final fun getLambda$-955342104$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$583893603$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1238410439$core ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/orange/ouds/core/component/ComposableSingletons$OudsColoredBoxKt {
+	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsColoredBoxKt;
+	public fun <init> ()V
+	public final fun getLambda$576939263$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/orange/ouds/core/component/ComposableSingletons$OudsDisplayTextKt {
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsDisplayTextKt;
 	public fun <init> ()V
+	public final fun getLambda$-1084625585$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$-1622525409$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$1695546547$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$1856398284$core ()Lkotlin/jvm/functions/Function2;
 }
 
@@ -115,7 +138,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsHeadi
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsHeadingTextKt;
 	public fun <init> ()V
 	public final fun getLambda$-1826216079$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-375741901$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$329634511$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$416238540$core ()Lkotlin/jvm/functions/Function2;
 }
 
@@ -138,7 +161,7 @@ public final class com/orange/ouds/core/component/ComposableSingletons$OudsLabel
 	public static final field INSTANCE Lcom/orange/ouds/core/component/ComposableSingletons$OudsLabelTextKt;
 	public fun <init> ()V
 	public final fun getLambda$-1130422009$core ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda$-600623921$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-875905429$core ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$591124684$core ()Lkotlin/jvm/functions/Function2;
 }
 
@@ -627,6 +650,15 @@ public final class com/orange/ouds/core/component/OudsButtonLoader {
 	public final fun getProgress ()Ljava/lang/Float;
 }
 
+public final class com/orange/ouds/core/component/OudsCardDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsCardDefaults;
+	public final fun getAlternativeBackground ()Z
+	public final fun getBackground ()Z
+	public final fun getElevatedCardOnBackgroundColor ()Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public final fun getStyle ()Lcom/orange/ouds/core/component/OudsCardStyle$Filled;
+}
+
 public final class com/orange/ouds/core/component/OudsCardItemDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsCardItemDefaults;
@@ -640,6 +672,68 @@ public final class com/orange/ouds/core/component/OudsCardItemKt {
 	public static final fun OudsCardItem (Ljava/lang/String;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
 	public static final fun OudsCardItem (Lkotlin/jvm/functions/Function3;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lcom/orange/ouds/core/component/OudsListItemIndicator;Lcom/orange/ouds/core/component/OudsListItemVerticalAlignment;Lcom/orange/ouds/core/component/OudsListItemDecoration;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/orange/ouds/core/component/OudsListItemLeading;Lcom/orange/ouds/core/component/OudsListItemTrailing;Ljava/lang/String;ZLandroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/orange/ouds/core/component/OudsCardKt {
+	public static final fun OudsCard (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsCardStyle;ZLcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsCard (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsCardStyle;ZLcom/orange/ouds/core/component/OudsCardLoader;Lcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsElevatedCard (Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;ZLcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsElevatedCard (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsOutlinedCard (Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsSkeleton;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OudsOutlinedCard (Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/orange/ouds/core/component/OudsSkeleton;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsCardLoader {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Float;)V
+	public final fun getProgress ()Ljava/lang/Float;
+}
+
+public final class com/orange/ouds/core/component/OudsCardScope {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun getState ()Lcom/orange/ouds/core/component/OudsCardState;
+}
+
+public final class com/orange/ouds/core/component/OudsCardState : java/lang/Enum, com/orange/ouds/core/component/common/OudsComponentState {
+	public static final field Disabled Lcom/orange/ouds/core/component/OudsCardState;
+	public static final field Enabled Lcom/orange/ouds/core/component/OudsCardState;
+	public static final field Focused Lcom/orange/ouds/core/component/OudsCardState;
+	public static final field Hovered Lcom/orange/ouds/core/component/OudsCardState;
+	public static final field Loading Lcom/orange/ouds/core/component/OudsCardState;
+	public static final field Pressed Lcom/orange/ouds/core/component/OudsCardState;
+	public static final field Skeleton Lcom/orange/ouds/core/component/OudsCardState;
+	public fun getAreInteractionsEnabled ()Z
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsCardState;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsCardState;
+}
+
+public abstract class com/orange/ouds/core/component/OudsCardStyle {
+	public static final field $stable I
+}
+
+public final class com/orange/ouds/core/component/OudsCardStyle$Elevated : com/orange/ouds/core/component/OudsCardStyle {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (ZLcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;)V
+	public synthetic fun <init> (ZLcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAlternativeBackground ()Z
+	public final fun getOnBackgroundColor ()Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+}
+
+public final class com/orange/ouds/core/component/OudsCardStyle$Filled : com/orange/ouds/core/component/OudsCardStyle {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (ZZ)V
+	public synthetic fun <init> (ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getBackground ()Z
+	public final fun getDivider ()Z
+}
+
+public final class com/orange/ouds/core/component/OudsCardStyle$Outlined : com/orange/ouds/core/component/OudsCardStyle {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsCardStyle$Outlined;
 }
 
 public final class com/orange/ouds/core/component/OudsCheckboxItemKt {
@@ -841,6 +935,20 @@ public final class com/orange/ouds/core/component/OudsDividerDefaults {
 public final class com/orange/ouds/core/component/OudsDividerKt {
 	public static final fun OudsHorizontalDivider (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsDividerColor;Landroidx/compose/runtime/Composer;II)V
 	public static final fun OudsVerticalDivider (Landroidx/compose/ui/Modifier;Lcom/orange/ouds/core/component/OudsDividerColor;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor : java/lang/Enum {
+	public static final field BackgroundInverseHigh Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static final field BackgroundInverseLow Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static final field BackgroundPrimary Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static final field BackgroundSecondary Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static final field BackgroundTertiary Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static final field Default Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static final field OverlayModalSheet Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue (Landroidx/compose/runtime/Composer;I)J
+	public static fun valueOf (Ljava/lang/String;)Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
+	public static fun values ()[Lcom/orange/ouds/core/component/OudsElevatedCardOnBackgroundColor;
 }
 
 public final class com/orange/ouds/core/component/OudsFilterChipKt {
@@ -2849,6 +2957,7 @@ public final class com/orange/ouds/core/theme/OudsComponents {
 	public final fun getBulletList ()Lcom/orange/ouds/core/theme/OudsComponents$BulletList;
 	public final fun getButton ()Lcom/orange/ouds/core/theme/OudsComponents$Button;
 	public final fun getButtonMonochrome ()Lcom/orange/ouds/core/theme/OudsComponents$ButtonMonochrome;
+	public final fun getCard ()Lcom/orange/ouds/core/theme/OudsComponents$Card;
 	public final fun getCheckbox ()Lcom/orange/ouds/core/theme/OudsComponents$Checkbox;
 	public final fun getChip ()Lcom/orange/ouds/core/theme/OudsComponents$Chip;
 	public final fun getControlItem ()Lcom/orange/ouds/core/theme/OudsComponents$ControlItem;
@@ -3455,6 +3564,34 @@ public final class com/orange/ouds/core/theme/OudsComponents$ButtonMonochrome$Co
 	public final fun getHover-0d7_KjU ()J
 	public final fun getLoading-0d7_KjU ()J
 	public final fun getPressed-0d7_KjU ()J
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Card {
+	public static final field $stable I
+	public final fun getBorder ()Lcom/orange/ouds/core/theme/OudsComponents$Card$Border;
+	public final fun getColor ()Lcom/orange/ouds/core/theme/OudsComponents$Card$Color;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Card$Border {
+	public static final field $stable I
+	public final fun getRadius ()Lcom/orange/ouds/core/theme/OudsComponents$Card$Border$Radius;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Card$Border$Radius {
+	public static final field $stable I
+	public final fun getDefault-D9Ej5fM ()F
+	public final fun getRounded-D9Ej5fM ()F
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Card$Color {
+	public static final field $stable I
+	public final fun getBackground ()Lcom/orange/ouds/core/theme/OudsComponents$Card$Color$Background;
+}
+
+public final class com/orange/ouds/core/theme/OudsComponents$Card$Color$Background {
+	public static final field $stable I
+	public final fun getElevatedDisabled-0d7_KjU ()J
+	public final fun getElevatedEnabled-0d7_KjU ()J
 }
 
 public final class com/orange/ouds/core/theme/OudsComponents$Checkbox {
