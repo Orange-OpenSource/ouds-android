@@ -75,6 +75,8 @@ import com.orange.ouds.theme.OudsThemeContract
  * interactive elements, such as buttons and links. Its content is customizable through a slot, allowing designers to adapt the internal layout without
  * changing the behavior of the container.
  *
+ * This version of the card is *non-clickable*. Use other overload for a clickable card.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-content-card)
  *
  * > Design name: Card
@@ -115,6 +117,8 @@ fun OudsCard(
  * An Action card is an interactive surface that groups related content around one primary action or navigation. The available card surface acts as the primary
  * interaction target. When supported, the card may also contain independent secondary actions. Each action must remain accessible and behave independently.
  * Unlike the Card component, the Action card always provides a primary interaction.
+ *
+ * This version of the card is *clickable*. Use other overload for a non-clickable card.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-action-card)
  *
@@ -163,6 +167,8 @@ fun OudsCard(
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
  * a raised appearance.
  *
+ * This version of the elevated card is *non-clickable*. Use other overload for a clickable elevated card.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-content-card)
  *
  * > Design name: Card
@@ -203,6 +209,8 @@ fun OudsElevatedCard(
 /**
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
  * a raised appearance.
+ *
+ * This version of the elevated card is *clickable*. Use other overload for a non-clickable elevated card.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-action-card)
  *
@@ -251,6 +259,8 @@ fun OudsElevatedCard(
 /**
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
  *
+ * This version of the outlined card is *non-clickable*. Use other overload for a clickable outlined card.
+ *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-content-card)
  *
  * > Design name: Card
@@ -286,6 +296,8 @@ fun OudsOutlinedCard(
 
 /**
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
+ *
+ * This version of the outlined card is *clickable*. Use other overload for a non-clickable outlined card.
  *
  * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-action-card)
  *
