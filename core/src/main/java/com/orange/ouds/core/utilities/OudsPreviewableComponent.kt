@@ -673,10 +673,11 @@ interface OudsPreviewableComponent {
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
-                PreviewOudsCardDisabledWithComponents(theme = theme)
+                PreviewOudsCardDisabledWithComponents(
+                    theme = theme,
+                    darkThemeEnabled = darkThemeEnabled,
+                )
             }
-
-            override fun isPreviewAvailable(darkThemeEnabled: Boolean) = !darkThemeEnabled
         }
     }
 

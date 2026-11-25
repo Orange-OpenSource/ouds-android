@@ -773,22 +773,28 @@ private val previewOudsCardRowNames = listOf(
     OudsCardStyle.Elevated::class,
 ).map { it.simpleName.orEmpty() }
 
-internal data class OudsCardPreviewParameter(
-    val roundedCorners: Boolean = false
-)
-
 internal class OudsCardWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
-@Preview(heightDp = OudsPreviewableComponent.Card.DisabledWithComponents.PreviewHeightDp, device = OudsPreviewDevice)
+@Preview(
+    name = "Light",
+    heightDp = OudsPreviewableComponent.Card.DisabledWithComponents.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
+@Preview(
+    name = "Dark",
+    uiMode = UI_MODE_NIGHT_YES or UI_MODE_TYPE_NORMAL,
+    heightDp = OudsPreviewableComponent.Card.DisabledWithComponents.PreviewHeightDp,
+    device = OudsPreviewDevice
+)
 @Composable
 private fun PreviewOudsCardDisabledWithComponents() {
-    PreviewOudsCardDisabledWithComponents(theme = getPreviewTheme())
+    PreviewOudsCardDisabledWithComponents(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
 @Composable
-internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract) {
-    OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme) {
+internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract, darkThemeEnabled: Boolean) {
+    OudsPreview(modifier = Modifier.padding(all = PreviewPaddingDefault), theme = theme, darkThemeEnabled = darkThemeEnabled) {
         OudsCard(
             modifier = Modifier.width(360.dp),
             enabled = false,
