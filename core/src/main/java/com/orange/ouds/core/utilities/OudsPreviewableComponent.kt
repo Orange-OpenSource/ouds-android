@@ -26,9 +26,8 @@ import com.orange.ouds.core.component.OudsButtonPreviewParameterProvider
 import com.orange.ouds.core.component.OudsButtonWithIconBadgePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardItemWithRoundedCornersParameterProvider
-import com.orange.ouds.core.component.OudsCardPreviewParameter
-import com.orange.ouds.core.component.OudsCardPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCardStyle
+import com.orange.ouds.core.component.OudsCardWithRoundedCornersPreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxHighContrastModePreviewParameterProvider
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameter
 import com.orange.ouds.core.component.OudsCheckboxItemHighContrastModePreviewParameterProvider
@@ -102,6 +101,7 @@ import com.orange.ouds.core.component.OudsTextInputPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTextInputWithRichTextPreviewParameterProvider
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameter
 import com.orange.ouds.core.component.OudsTopAppBarPreviewParameterProvider
+import com.orange.ouds.core.component.PreviewOudsActionCard
 import com.orange.ouds.core.component.PreviewOudsAlertMessage
 import com.orange.ouds.core.component.PreviewOudsAlertMessageSkeleton
 import com.orange.ouds.core.component.PreviewOudsAlertMessageWithRichText
@@ -122,10 +122,8 @@ import com.orange.ouds.core.component.PreviewOudsButtonOnTwoLines
 import com.orange.ouds.core.component.PreviewOudsButtonWithIconBadge
 import com.orange.ouds.core.component.PreviewOudsButtonWithRoundedCorners
 import com.orange.ouds.core.component.PreviewOudsButtonWithUntintedIcon
-import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
-import com.orange.ouds.core.component.PreviewOudsActionCard
 import com.orange.ouds.core.component.PreviewOudsCardDisabledWithComponents
-import com.orange.ouds.core.component.PreviewOudsContentCard
+import com.orange.ouds.core.component.PreviewOudsCenterAlignedTopAppBar
 import com.orange.ouds.core.component.PreviewOudsCheckbox
 import com.orange.ouds.core.component.PreviewOudsCheckboxHighContrastModeEnabled
 import com.orange.ouds.core.component.PreviewOudsCheckboxItem
@@ -141,6 +139,7 @@ import com.orange.ouds.core.component.PreviewOudsCircularProgressIndicatorWithHe
 import com.orange.ouds.core.component.PreviewOudsCodeText
 import com.orange.ouds.core.component.PreviewOudsCodeTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsColoredBox
+import com.orange.ouds.core.component.PreviewOudsContentCard
 import com.orange.ouds.core.component.PreviewOudsDisplayText
 import com.orange.ouds.core.component.PreviewOudsDisplayTextWithAnnotatedText
 import com.orange.ouds.core.component.PreviewOudsDivider
@@ -597,14 +596,14 @@ interface OudsPreviewableComponent {
             const val PreviewHeightDp = 700
             const val PreviewWidthDp = 1500
 
-            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsCardWithRoundedCornersPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsActionCard(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsCardPreviewParameter,
+                    roundedCorners = parameter as Boolean,
                     styleName = OudsCardStyle.Filled::class.simpleName
                 )
             }
@@ -616,14 +615,14 @@ interface OudsPreviewableComponent {
             const val PreviewHeightDp = 700
             const val PreviewWidthDp = 1500
 
-            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsCardWithRoundedCornersPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsActionCard(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsCardPreviewParameter,
+                    roundedCorners = parameter as Boolean,
                     styleName = OudsCardStyle.Outlined::class.simpleName
                 )
             }
@@ -635,14 +634,14 @@ interface OudsPreviewableComponent {
             const val PreviewHeightDp = 700
             const val PreviewWidthDp = 1500
 
-            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsCardWithRoundedCornersPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsActionCard(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsCardPreviewParameter,
+                    roundedCorners = parameter as Boolean,
                     styleName = OudsCardStyle.Elevated::class.simpleName
                 )
             }
@@ -653,14 +652,14 @@ interface OudsPreviewableComponent {
 
             const val PreviewWidthDp = 1100
 
-            override val parameters: List<Any> = OudsCardPreviewParameterProvider().values.toList()
+            override val parameters: List<Any> = OudsCardWithRoundedCornersPreviewParameterProvider().values.toList()
 
             @Composable
             override fun Preview(theme: OudsThemeContract, darkThemeEnabled: Boolean, parameter: Any?) {
                 PreviewOudsContentCard(
                     theme = theme,
                     darkThemeEnabled = darkThemeEnabled,
-                    parameter = parameter as OudsCardPreviewParameter
+                    roundedCorners = parameter as Boolean,
                 )
             }
         }
@@ -719,9 +718,9 @@ interface OudsPreviewableComponent {
 
         @InternalOudsApi
         object Static : OudsPreviewableComponent {
-            
+
             const val PreviewHeightDp = 760
-            
+
             override val parameters: List<Any> = OudsCardItemPreviewParameterProvider().values.toList()
 
             @Composable

@@ -623,11 +623,11 @@ private fun getCardState(enabled: Boolean, loader: OudsCardLoader?, skeleton: Ou
     device = OudsPreviewDevice
 )
 @Composable
-private fun PreviewOudsActionCardFilled(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
+private fun PreviewOudsActionCardFilled(@PreviewParameter(OudsCardWithRoundedCornersPreviewParameterProvider::class) roundedCorners: Boolean) {
     PreviewOudsActionCard(
         theme = getPreviewTheme(),
         darkThemeEnabled = isSystemInDarkTheme(),
-        parameter = parameter,
+        roundedCorners = roundedCorners,
         styleName = OudsCardStyle.Filled::class.simpleName
     )
 }
@@ -646,11 +646,11 @@ private fun PreviewOudsActionCardFilled(@PreviewParameter(OudsCardPreviewParamet
     device = OudsPreviewDevice
 )
 @Composable
-private fun PreviewOudsActionCardOutlined(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
+private fun PreviewOudsActionCardOutlined(@PreviewParameter(OudsCardWithRoundedCornersPreviewParameterProvider::class) roundedCorners: Boolean) {
     PreviewOudsActionCard(
         theme = getPreviewTheme(),
         darkThemeEnabled = isSystemInDarkTheme(),
-        parameter = parameter,
+        roundedCorners = roundedCorners,
         styleName = OudsCardStyle.Outlined::class.simpleName
     )
 }
@@ -669,11 +669,11 @@ private fun PreviewOudsActionCardOutlined(@PreviewParameter(OudsCardPreviewParam
     device = OudsPreviewDevice
 )
 @Composable
-private fun PreviewOudsActionCardElevated(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
+private fun PreviewOudsActionCardElevated(@PreviewParameter(OudsCardWithRoundedCornersPreviewParameterProvider::class) roundedCorners: Boolean) {
     PreviewOudsActionCard(
         theme = getPreviewTheme(),
         darkThemeEnabled = isSystemInDarkTheme(),
-        parameter = parameter,
+        roundedCorners = roundedCorners,
         styleName = OudsCardStyle.Elevated::class.simpleName
     )
 }
@@ -683,25 +683,23 @@ private fun PreviewOudsActionCardElevated(@PreviewParameter(OudsCardPreviewParam
 internal fun PreviewOudsActionCard(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsCardPreviewParameter,
+    roundedCorners: Boolean,
     styleName: String?
-) = with(parameter) {
-    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
-        val style = when (styleName) {
-            OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(divider = true)
-            OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
-            OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated()
-            else -> error("Unknown card style $styleName.")
-        }
-        PreviewEnumEntries<OudsCardState>(maxEnumEntriesInEachRow = 4) { state ->
-            OudsCard(
-                modifier = Modifier.width(360.dp),
-                onClick = {},
-                style = style,
-                enabled = state != OudsCardState.Disabled,
-            ) {
-                PreviewCardContent()
-            }
+) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
+    val style = when (styleName) {
+        OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(divider = true)
+        OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
+        OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated()
+        else -> error("Unknown card style $styleName.")
+    }
+    PreviewEnumEntries<OudsCardState>(maxEnumEntriesInEachRow = 4) { state ->
+        OudsCard(
+            modifier = Modifier.width(360.dp),
+            onClick = {},
+            style = style,
+            enabled = state != OudsCardState.Disabled,
+        ) {
+            PreviewCardContent()
         }
     }
 }
@@ -719,33 +717,31 @@ internal fun PreviewOudsActionCard(
 )
 @Composable
 @Suppress("PreviewShouldNotBeCalledRecursively")
-private fun PreviewOudsContentCard(@PreviewParameter(OudsCardPreviewParameterProvider::class) parameter: OudsCardPreviewParameter) {
-    PreviewOudsContentCard(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parameter = parameter)
+private fun PreviewOudsContentCard(@PreviewParameter(OudsCardWithRoundedCornersPreviewParameterProvider::class) roundedCorners: Boolean) {
+    PreviewOudsContentCard(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), roundedCorners = roundedCorners)
 }
 
 @Composable
 internal fun PreviewOudsContentCard(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
-    parameter: OudsCardPreviewParameter
-) = with(parameter) {
-    OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
-        PreviewFlowRow(
-            items = previewOudsCardRowNames,
-            maxItemsInEachRow = 3
-        ) { item ->
-            val style = when (item) {
-                OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(divider = true)
-                OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
-                OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated()
-                else -> error("Unknown item $item.")
-            }
-            OudsCard(
-                modifier = Modifier.width(360.dp),
-                style = style,
-            ) {
-                PreviewCardContent()
-            }
+    roundedCorners: Boolean
+) = OudsPreview(theme = theme.mapSettings { it.copy(roundedCornerCards = roundedCorners) }, darkThemeEnabled = darkThemeEnabled) {
+    PreviewFlowRow(
+        items = previewOudsCardRowNames,
+        maxItemsInEachRow = 3
+    ) { item ->
+        val style = when (item) {
+            OudsCardStyle.Filled::class.simpleName -> OudsCardStyle.Filled(divider = true)
+            OudsCardStyle.Outlined::class.simpleName -> OudsCardStyle.Outlined
+            OudsCardStyle.Elevated::class.simpleName -> OudsCardStyle.Elevated()
+            else -> error("Unknown item $item.")
+        }
+        OudsCard(
+            modifier = Modifier.width(360.dp),
+            style = style,
+        ) {
+            PreviewCardContent()
         }
     }
 }
@@ -769,13 +765,7 @@ internal data class OudsCardPreviewParameter(
     val roundedCorners: Boolean = false
 )
 
-internal class OudsCardPreviewParameterProvider : BasicPreviewParameterProvider<OudsCardPreviewParameter>(*previewParameterValues.toTypedArray())
-
-private val previewParameterValues: List<OudsCardPreviewParameter>
-    get() = listOf(
-        OudsCardPreviewParameter(),
-        OudsCardPreviewParameter(roundedCorners = true),
-    )
+internal class OudsCardWithRoundedCornersPreviewParameterProvider : BasicPreviewParameterProvider<Boolean>(false, true)
 
 @Suppress("PreviewShouldNotBeCalledRecursively")
 @Preview(heightDp = OudsPreviewableComponent.Card.DisabledWithComponents.PreviewHeightDp, device = OudsPreviewDevice)
