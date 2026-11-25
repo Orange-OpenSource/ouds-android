@@ -56,7 +56,6 @@ import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
-import com.orange.ouds.core.theme.isOudsInDarkTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewDevice
 import com.orange.ouds.core.utilities.OudsPreviewableComponent
@@ -466,7 +465,7 @@ sealed class OudsCardStyle {
      */
     class Elevated(
         val alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-        val onBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsElevatedCardOnBackgroundColor.BackgroundPrimary
+        val onBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor
     ) : OudsCardStyle()
 
 }
@@ -546,31 +545,27 @@ private fun Modifier.cardDivider(style: OudsCardStyle, borderRadius: Dp): Modifi
 private fun backgroundColor(style: OudsCardStyle, state: OudsCardState) = with(OudsTheme.colorScheme.action.support) {
     when (style) {
         OudsCardStyle.Outlined -> Color.Transparent
-        is OudsCardStyle.Filled, is OudsCardStyle.Elevated -> {
+        is OudsCardStyle.Filled -> {
             when (state) {
-                OudsCardState.Enabled -> {
-                    when (style) {
-                        is OudsCardStyle.Filled -> if (style.background) enabled else Color.Transparent
-                        is OudsCardStyle.Elevated -> if (style.alternativeBackground || isOudsInDarkTheme()) {
-                            enabled
-                        } else {
-                            OudsTheme.colorScheme.surface.primary
-                        }.compositeOver(style.onBackgroundColor.value)
-                    }
-                }
-                OudsCardState.Disabled -> {
-                    if (style is OudsCardStyle.Elevated && !isOudsInDarkTheme()) {
-                        OudsTheme.colorScheme.surface.primary
-                    } else {
-                        disabled
-                    }
-                }
+                OudsCardState.Enabled -> if (style.background) enabled else Color.Transparent
+                OudsCardState.Disabled -> disabled
                 OudsCardState.Hovered -> hover
                 OudsCardState.Focused -> focus
                 OudsCardState.Pressed -> pressed
                 OudsCardState.Loading -> loading
                 OudsCardState.Skeleton -> null
             }
+        }
+        is OudsCardStyle.Elevated -> {
+            when (state) {
+                OudsCardState.Enabled -> if (style.alternativeBackground) enabled else OudsTheme.components.card.color.background.elevatedEnabled
+                OudsCardState.Disabled -> if (style.alternativeBackground) disabled else OudsTheme.components.card.color.background.elevatedDisabled
+                OudsCardState.Hovered -> hover
+                OudsCardState.Focused -> focus
+                OudsCardState.Pressed -> pressed
+                OudsCardState.Loading -> loading
+                OudsCardState.Skeleton -> null
+            }?.compositeOver(style.onBackgroundColor.value) // Blend with an opaque color to avoid issues with elevated shadow being visible inside the card
         }
     }
 }

@@ -16,9 +16,19 @@
 package com.orange.ouds.theme.orange.tokens.components
 
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
+import com.orange.ouds.theme.tokens.OudsLightDarkColorKeyToken
 import com.orange.ouds.theme.tokens.components.OudsCardTokens
 
 internal data class OrangeCardTokens(
     override val borderRadiusDefault: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Default,
-    override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Large
+    override val borderRadiusRounded: OudsBorderKeyToken.Radius = OudsBorderKeyToken.Radius.Large,
+    override val colorBgElevatedEnabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Neutral.Muted.White,
+        OudsColorKeyToken.Repository.Opacity.White.Lowest
+    ),
+    override val colorBgElevatedDisabled: OudsColorKeyToken = OudsLightDarkColorKeyToken(
+        OudsColorKeyToken.Repository.Neutral.Muted.White,
+        OudsColorKeyToken.Repository.Opacity.White.Lowest
+    ),
 ) : OudsCardTokens

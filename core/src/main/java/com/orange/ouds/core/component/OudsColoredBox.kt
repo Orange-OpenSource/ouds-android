@@ -293,7 +293,11 @@ internal fun PreviewOudsColoredBox(
             )
             OudsCircularProgressIndicator()
             OudsLinearProgressIndicator()
-            OudsElevatedCard(modifier = Modifier.fillMaxWidth().height(40.dp)) {  }
+            OudsElevatedCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+            ) { }
         }
     }
 }

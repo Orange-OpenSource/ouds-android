@@ -17,10 +17,13 @@ package com.orange.ouds.theme.tokens.components
 
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.tokens.OudsBorderKeyToken
+import com.orange.ouds.theme.tokens.OudsColorKeyToken
 
 /** @suppress */
 @InternalOudsApi
 interface OudsCardTokens {
     val borderRadiusDefault: OudsBorderKeyToken.Radius
     val borderRadiusRounded: OudsBorderKeyToken.Radius
+    val colorBgElevatedEnabled: OudsColorKeyToken // Token added manually
+    val colorBgElevatedDisabled: OudsColorKeyToken // Token added manually
 }

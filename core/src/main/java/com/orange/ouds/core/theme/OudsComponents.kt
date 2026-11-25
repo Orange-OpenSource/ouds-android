@@ -662,7 +662,8 @@ class OudsComponents internal constructor(
     }
 
     class Card internal constructor(
-        val border: Border
+        val border: Border,
+        val color: Color
     ) {
         class Border internal constructor(
             val radius: Radius
@@ -670,6 +671,14 @@ class OudsComponents internal constructor(
             class Radius internal constructor(
                 val default: Dp,
                 val rounded: Dp
+            )
+        }
+        class Color internal constructor(
+            val background: Background
+        ) {
+            class Background internal constructor(
+                val elevatedDisabled: androidx.compose.ui.graphics.Color,
+                val elevatedEnabled: androidx.compose.ui.graphics.Color
             )
         }
     }
@@ -2312,6 +2321,12 @@ private fun OudsCardTokens.getCard(): OudsComponents.Card {
            radius = OudsComponents.Card.Border.Radius(
                default = borderRadiusDefault.value,
                rounded = borderRadiusRounded.value
+           )
+       ),
+       color = OudsComponents.Card.Color(
+           background = OudsComponents.Card.Color.Background(
+               elevatedDisabled = colorBgElevatedDisabled.value,
+               elevatedEnabled = colorBgElevatedEnabled.value
            )
        )
    )
