@@ -87,7 +87,7 @@ import com.orange.ouds.theme.OudsThemeContract
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param content The content of the [OudsCard].
+ * @param content The content displayed on the card.
  *
  * @sample com.orange.ouds.core.component.samples.OudsCardSample
  * @sample com.orange.ouds.core.component.samples.OudsFilledCardSample
@@ -132,7 +132,7 @@ fun OudsCard(
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
  *    is provided, interactions will still happen internally.
- * @param content The content of the [OudsCard].
+ * @param content The content displayed on the card.
  *
  * @sample com.orange.ouds.core.component.samples.OudsFilledActionCardSample
  */
@@ -176,7 +176,7 @@ fun OudsCard(
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param content The content of the card.
+ * @param content The content displayed on the card.
  *
  * @sample com.orange.ouds.core.component.samples.OudsElevatedCardSample
  *
@@ -220,7 +220,7 @@ fun OudsElevatedCard(
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
  *    is provided, interactions will still happen internally.
- * @param content The content of the card.
+ * @param content The content displayed on the card.
  *
  * @sample com.orange.ouds.core.component.samples.OudsElevatedActionCardSample
  *
@@ -262,7 +262,7 @@ fun OudsElevatedCard(
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
- * @param content The content of the card.
+ * @param content The content displayed on the card.
  *
  * @sample com.orange.ouds.core.component.samples.OudsOutlinedCardSample
  *
@@ -301,7 +301,7 @@ fun OudsOutlinedCard(
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
  * @param interactionSource An optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this card. Note that if `null`
  *    is provided, interactions will still happen internally.
- * @param content The content of the card.
+ * @param content The content displayed on the card.
  *
  * @sample com.orange.ouds.core.component.samples.OudsOutlinedActionCardSample
  *
