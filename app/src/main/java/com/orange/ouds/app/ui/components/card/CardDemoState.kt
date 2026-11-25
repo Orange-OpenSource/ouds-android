@@ -16,14 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.orange.ouds.core.component.OudsCardDefaults
-import com.orange.ouds.core.component.OudsElevatedCardOnBackgroundColor
+import com.orange.ouds.core.component.OudsCardOnBackgroundColor
 
 @Composable
 fun rememberCardDemoState(
     style: BaseCardDemoState.Style = BaseCardDemoState.Style.Filled,
     background: Boolean = OudsCardDefaults.Background,
     alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor,
+    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
     divider: Boolean = false,
     contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.Empty,
     enabled: Boolean = true,
@@ -36,7 +36,7 @@ class CardDemoState(
     style: Style,
     background: Boolean,
     alternativeBackground: Boolean,
-    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor,
+    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,

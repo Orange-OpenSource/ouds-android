@@ -94,7 +94,7 @@ fun OudsModalBottomSheet(
         contentWindowInsets = contentWindowInsets,
         properties = properties,
         content = {
-            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsElevatedCardOnBackgroundColor.OverlayModalSheet) {
+            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsCardOnBackgroundColor.OverlayModalSheet) {
                 content()
             }
         }

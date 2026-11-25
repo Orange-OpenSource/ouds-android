@@ -171,7 +171,7 @@ fun OudsCard(
  *
  * @param modifier The [Modifier] to be applied to this card.
  * @param alternativeBackground Controls the display of the alternative color background which provide a different visual appearance. Defaults to `false`.
- * @param onBackgroundColor The background color on which the card is displayed among [OudsElevatedCardOnBackgroundColor].
+ * @param onBackgroundColor The background color on which the elevated card is displayed among [OudsCardOnBackgroundColor].
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
@@ -186,7 +186,7 @@ fun OudsCard(
 fun OudsElevatedCard(
     modifier: Modifier = Modifier,
     alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-    onBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
     enabled: Boolean = true,
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     content: @Composable OudsCardScope.() -> Unit = { },
@@ -213,7 +213,7 @@ fun OudsElevatedCard(
  * @param onClick The action to perform when this card is clicked.
  * @param modifier The [Modifier] to be applied to this card.
  * @param alternativeBackground Controls the display of the alternative color background. Defaults to `false`.
- * @param onBackgroundColor The background color on which the card is displayed among [OudsElevatedCardOnBackgroundColor].
+ * @param onBackgroundColor The background color on which the elevated card is displayed among [OudsCardOnBackgroundColor].
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
@@ -231,7 +231,7 @@ fun OudsElevatedCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-    onBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
     enabled: Boolean = true,
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     interactionSource: MutableInteractionSource? = null,
@@ -427,7 +427,7 @@ object OudsCardDefaults {
 
     val Background = true
 
-    val ElevatedCardOnBackgroundColor = OudsElevatedCardOnBackgroundColor.Default
+    val OnBackgroundColor = OudsCardOnBackgroundColor.Default
 
     val Style = OudsCardStyle.Filled()
 }
@@ -435,7 +435,7 @@ object OudsCardDefaults {
 /**
  * Represents the possible background colors on which an [OudsCard] can be displayed.
  */
-enum class OudsElevatedCardOnBackgroundColor {
+enum class OudsCardOnBackgroundColor {
     /**
      * Color is automatically detected when the card is placed on an [OudsColoredBox], an [OudsModalBottomSheet] or an [OudsBottomSheetScaffold].
      * Otherwise, the background primary color is used.
@@ -451,7 +451,7 @@ enum class OudsElevatedCardOnBackgroundColor {
     val value: Color
         @Composable
         get() = with(OudsTheme.colorScheme) {
-            when (this@OudsElevatedCardOnBackgroundColor) {
+            when (this@OudsCardOnBackgroundColor) {
                 BackgroundPrimary -> background.primary
                 BackgroundSecondary -> background.secondary
                 BackgroundTertiary -> background.tertiary
@@ -489,7 +489,7 @@ sealed class OudsCardStyle {
      */
     class Elevated(
         val alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-        val onBackgroundColor: OudsElevatedCardOnBackgroundColor = OudsCardDefaults.ElevatedCardOnBackgroundColor
+        val onBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor
     ) : OudsCardStyle()
 
 }

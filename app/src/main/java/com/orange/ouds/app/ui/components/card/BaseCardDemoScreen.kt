@@ -35,8 +35,8 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsCardDefaults
+import com.orange.ouds.core.component.OudsCardOnBackgroundColor
 import com.orange.ouds.core.component.OudsCardStyle
-import com.orange.ouds.core.component.OudsElevatedCardOnBackgroundColor
 import com.orange.ouds.core.component.OudsHeadingText
 import com.orange.ouds.core.component.OudsLabelText
 import com.orange.ouds.core.component.OudsTag
@@ -70,7 +70,7 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
             enabled = elevatedCardSettingsEnabled
         )
 
-        val elevatedCardOnBackgroundColors = OudsElevatedCardOnBackgroundColor.entries
+        val elevatedCardOnBackgroundColors = OudsCardOnBackgroundColor.entries
         CustomizationDropdownMenu(
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_card_onBackgroundColor_tech),
@@ -181,7 +181,7 @@ fun Code.Builder.baseCardDemoCodeSnippet(state: BaseCardDemoState, cardArguments
                         if (alternativeBackground != OudsCardDefaults.AlternativeBackground) {
                             typedArgument("alternativeBackground", alternativeBackground)
                         }
-                        if (elevatedCardOnBackgroundColor != OudsCardDefaults.ElevatedCardOnBackgroundColor) {
+                        if (elevatedCardOnBackgroundColor != OudsCardDefaults.OnBackgroundColor) {
                             typedArgument("elevatedCardOnBackgroundColor", elevatedCardOnBackgroundColor)
                         }
                     }

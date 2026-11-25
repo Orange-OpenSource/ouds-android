@@ -17,14 +17,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.dp
+import com.orange.ouds.core.component.OudsCardOnBackgroundColor
 import com.orange.ouds.core.component.OudsColoredBoxColor
-import com.orange.ouds.core.component.OudsElevatedCardOnBackgroundColor
 
 open class BaseCardDemoState(
     style: Style,
     background: Boolean,
     alternativeBackground: Boolean,
-    elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor,
+    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,
@@ -55,7 +55,7 @@ open class BaseCardDemoState(
                     list[0] as Style,
                     list[1] as Boolean,
                     list[2] as Boolean,
-                    list[3] as OudsElevatedCardOnBackgroundColor,
+                    list[3] as OudsCardOnBackgroundColor,
                     list[4] as Boolean,
                     list[5] as ContentExample,
                     list[6] as Boolean,
@@ -71,7 +71,7 @@ open class BaseCardDemoState(
 
     var alternativeBackground: Boolean by mutableStateOf(alternativeBackground)
 
-    var elevatedCardOnBackgroundColor: OudsElevatedCardOnBackgroundColor by mutableStateOf(elevatedCardOnBackgroundColor)
+    var elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor by mutableStateOf(elevatedCardOnBackgroundColor)
 
     var divider: Boolean by mutableStateOf(divider)
 
@@ -99,12 +99,12 @@ open class BaseCardDemoState(
     }
 }
 
-fun OudsElevatedCardOnBackgroundColor.toOudsColoredBoxColor(): OudsColoredBoxColor? = when (this) {
-    OudsElevatedCardOnBackgroundColor.Default -> null
-    OudsElevatedCardOnBackgroundColor.BackgroundPrimary -> OudsColoredBoxColor.BackgroundPrimary
-    OudsElevatedCardOnBackgroundColor.BackgroundSecondary -> OudsColoredBoxColor.BackgroundSecondary
-    OudsElevatedCardOnBackgroundColor.BackgroundTertiary -> OudsColoredBoxColor.BackgroundTertiary
-    OudsElevatedCardOnBackgroundColor.BackgroundInverseLow -> OudsColoredBoxColor.BackgroundInverseLow
-    OudsElevatedCardOnBackgroundColor.BackgroundInverseHigh -> OudsColoredBoxColor.BackgroundInverseHigh
-    OudsElevatedCardOnBackgroundColor.OverlayModalSheet -> OudsColoredBoxColor.OverlayModal
+fun OudsCardOnBackgroundColor.toOudsColoredBoxColor(): OudsColoredBoxColor? = when (this) {
+    OudsCardOnBackgroundColor.Default -> null
+    OudsCardOnBackgroundColor.BackgroundPrimary -> OudsColoredBoxColor.BackgroundPrimary
+    OudsCardOnBackgroundColor.BackgroundSecondary -> OudsColoredBoxColor.BackgroundSecondary
+    OudsCardOnBackgroundColor.BackgroundTertiary -> OudsColoredBoxColor.BackgroundTertiary
+    OudsCardOnBackgroundColor.BackgroundInverseLow -> OudsColoredBoxColor.BackgroundInverseLow
+    OudsCardOnBackgroundColor.BackgroundInverseHigh -> OudsColoredBoxColor.BackgroundInverseHigh
+    OudsCardOnBackgroundColor.OverlayModalSheet -> OudsColoredBoxColor.OverlayModal
 }

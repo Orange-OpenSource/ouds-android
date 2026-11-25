@@ -74,7 +74,7 @@ fun OudsColoredBox(
     ) {
         CompositionLocalProvider(
             LocalColorMode provides color.mode,
-            LocalElevatedCardOnBackgroundColor provides color.toElevatedCardOnBackgroundColor()
+            LocalElevatedCardOnBackgroundColor provides color.toCardOnBackgroundColor()
         ) {
             // Filter the background modifiers in order to force the background color
             // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
@@ -248,18 +248,18 @@ enum class OudsColoredBoxColor {
 }
 
 /**
- * Maps an [OudsColoredBoxColor] to its corresponding [OudsElevatedCardOnBackgroundColor].
- * Falls back to [OudsElevatedCardOnBackgroundColor.BackgroundPrimary] if no direct mapping exists.
+ * Maps an [OudsColoredBoxColor] to its corresponding [OudsCardOnBackgroundColor].
+ * Falls back to [OudsCardOnBackgroundColor.BackgroundPrimary] if no direct mapping exists.
  */
-internal fun OudsColoredBoxColor.toElevatedCardOnBackgroundColor(): OudsElevatedCardOnBackgroundColor {
+internal fun OudsColoredBoxColor.toCardOnBackgroundColor(): OudsCardOnBackgroundColor {
     return when (this) {
-        OudsColoredBoxColor.BackgroundPrimary -> OudsElevatedCardOnBackgroundColor.BackgroundPrimary
-        OudsColoredBoxColor.BackgroundSecondary -> OudsElevatedCardOnBackgroundColor.BackgroundSecondary
-        OudsColoredBoxColor.BackgroundTertiary -> OudsElevatedCardOnBackgroundColor.BackgroundTertiary
-        OudsColoredBoxColor.BackgroundInverseLow -> OudsElevatedCardOnBackgroundColor.BackgroundInverseLow
-        OudsColoredBoxColor.BackgroundInverseHigh -> OudsElevatedCardOnBackgroundColor.BackgroundInverseHigh
-        OudsColoredBoxColor.OverlayModal -> OudsElevatedCardOnBackgroundColor.OverlayModalSheet
-        else -> OudsElevatedCardOnBackgroundColor.BackgroundPrimary
+        OudsColoredBoxColor.BackgroundPrimary -> OudsCardOnBackgroundColor.BackgroundPrimary
+        OudsColoredBoxColor.BackgroundSecondary -> OudsCardOnBackgroundColor.BackgroundSecondary
+        OudsColoredBoxColor.BackgroundTertiary -> OudsCardOnBackgroundColor.BackgroundTertiary
+        OudsColoredBoxColor.BackgroundInverseLow -> OudsCardOnBackgroundColor.BackgroundInverseLow
+        OudsColoredBoxColor.BackgroundInverseHigh -> OudsCardOnBackgroundColor.BackgroundInverseHigh
+        OudsColoredBoxColor.OverlayModal -> OudsCardOnBackgroundColor.OverlayModalSheet
+        else -> OudsCardOnBackgroundColor.BackgroundPrimary
     }
 }
 

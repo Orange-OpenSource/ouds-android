@@ -89,7 +89,7 @@ fun OudsBottomSheetScaffold(
 ) {
     BottomSheetScaffold(
         sheetContent = {
-            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsElevatedCardOnBackgroundColor.OverlayModalSheet) {
+            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsCardOnBackgroundColor.OverlayModalSheet) {
                 sheetContent()
             }
         },
