@@ -13,6 +13,7 @@
 package com.orange.ouds.app.ui.components.card
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -74,16 +75,18 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_card_onBackgroundColor_tech),
             items = elevatedCardOnBackgroundColors.map { color ->
+                val enabled = elevatedCardSettingsEnabled
                 CustomizationDropdownMenuItem(
                     label = color.name.toSentenceCase(),
                     leadingIcon = {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(if (elevatedCardSettingsEnabled) color.value else OudsTheme.colorScheme.action.disabled)
+                                .background(if (enabled) color.value else OudsTheme.colorScheme.action.disabled)
+                                .border(width = 1.dp, color = if (enabled) OudsTheme.colorScheme.content.default else OudsTheme.colorScheme.content.disabled)
                         )
                     },
-                    enabled = elevatedCardSettingsEnabled
+                    enabled = enabled
                 )
             },
             selectedItemIndex = elevatedCardOnBackgroundColors.indexOf(elevatedCardOnBackgroundColor),

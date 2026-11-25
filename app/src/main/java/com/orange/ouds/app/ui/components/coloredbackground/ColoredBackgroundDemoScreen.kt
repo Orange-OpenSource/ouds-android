@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components.coloredbackground
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.app.R
 import com.orange.ouds.app.ui.components.Component
 import com.orange.ouds.app.ui.components.labelArgument
@@ -70,6 +72,7 @@ private fun ColoredBackgroundDemoBottomSheetContent(state: ColoredBackgroundDemo
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(color.value)
+                                .border(width = 1.dp, color = OudsTheme.colorScheme.content.default)
                         )
                     }
                 )
