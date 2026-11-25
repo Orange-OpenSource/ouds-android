@@ -163,6 +163,12 @@ fun OudsCard(
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
  * a raised appearance.
  *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-content-card)
+ *
+ * > Design name: Card
+ *
+ * > Design version: 1.0.0
+ *
  * @param modifier The [Modifier] to be applied to this card.
  * @param alternativeBackground Controls the display of the alternative color background which provide a different visual appearance. Defaults to `false`.
  * @param onBackgroundColor The background color on which the card is displayed among [OudsElevatedCardOnBackgroundColor].
@@ -197,6 +203,12 @@ fun OudsElevatedCard(
 /**
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Elevated]. Elevated cards create separation through a shadow, giving the container
  * a raised appearance.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-action-card)
+ *
+ * > Design name: Action Card
+ *
+ * > Design version: 1.0.0
  *
  * @param onClick The action to perform when this card is clicked.
  * @param modifier The [Modifier] to be applied to this card.
@@ -239,6 +251,12 @@ fun OudsElevatedCard(
 /**
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
  *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-content-card)
+ *
+ * > Design name: Card
+ *
+ * > Design version: 1.0.0
+ *
  * @param modifier The [Modifier] to be applied to this card.
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
@@ -268,6 +286,12 @@ fun OudsOutlinedCard(
 
 /**
  * This is a convenience function for [OudsCard] with [OudsCardStyle.Outlined]. Outlined cards define their boundaries with a border.
+ *
+ * > Design guidelines: [unified-design-system.orange.com](https://r.orange.fr/r/S-ouds-doc-action-card)
+ *
+ * > Design name: Action Card
+ *
+ * > Design version: 1.0.0
  *
  * @param onClick The action to perform when this card is clicked.
  * @param modifier The [Modifier] to be applied to this card.
