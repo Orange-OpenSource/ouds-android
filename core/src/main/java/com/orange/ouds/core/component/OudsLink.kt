@@ -43,6 +43,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.Placeholder
@@ -349,7 +350,8 @@ private fun OudsLink(
                         indication = interactionValuesIndication(contentColor, chevronColor, isUnderlined),
                         enabled = state.areInteractionsEnabled,
                         onClick = onClick,
-                        onClickLabel = stringResource(R.string.core_link_onClickLabel_a11y)
+                        role = Role.Button,
+                        onClickLabel = stringResource(R.string.core_common_externalLinkOnClickLabel_a11y)
                     ),
                 contentAlignment = Alignment.CenterStart
             ) {

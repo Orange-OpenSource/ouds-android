@@ -1233,24 +1233,32 @@ public final class com/orange/ouds/core/component/OudsListItemImageSize : java/l
 
 public abstract interface class com/orange/ouds/core/component/OudsListItemIndicator {
 	public abstract fun getDrawableId (Landroidx/compose/runtime/Composer;I)I
+	public fun getOnClickLabel (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
+}
+
+public final class com/orange/ouds/core/component/OudsListItemIndicator$DefaultImpls {
+	public static fun getOnClickLabel (Lcom/orange/ouds/core/component/OudsListItemIndicator;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/component/OudsListItemIndicator$External : com/orange/ouds/core/component/OudsListItemIndicator {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsListItemIndicator$External;
 	public fun getDrawableId (Landroidx/compose/runtime/Composer;I)I
+	public fun getOnClickLabel (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/component/OudsListItemIndicator$Next : com/orange/ouds/core/component/OudsListItemIndicator {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsListItemIndicator$Next;
 	public fun getDrawableId (Landroidx/compose/runtime/Composer;I)I
+	public fun getOnClickLabel (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/component/OudsListItemIndicator$Previous : com/orange/ouds/core/component/OudsListItemIndicator {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/orange/ouds/core/component/OudsListItemIndicator$Previous;
 	public fun getDrawableId (Landroidx/compose/runtime/Composer;I)I
+	public fun getOnClickLabel (Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
 public final class com/orange/ouds/core/component/OudsListItemKt {

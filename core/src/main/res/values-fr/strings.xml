@@ -12,6 +12,7 @@
 
 <resources>
     <string name="core_common_error_a11y">Erreur</string>
+    <string name="core_common_externalLinkOnClickLabel_a11y">Ouvrir le lien</string>
     <string name="core_common_loading_a11y">Chargement</string>
     <string name="core_common_warning_a11y">Avertissement</string>
 
@@ -26,8 +27,6 @@
     </plurals>
 
     <string name="core_inputTag_remove_a11y">Supprimer</string>
-
-    <string name="core_link_onClickLabel_a11y">Ouvrir le lien</string>
 
     <string name="core_navigationButton_next_a11y">Suivant</string>
     <string name="core_navigationButton_previous_a11y">Précédent</string>
