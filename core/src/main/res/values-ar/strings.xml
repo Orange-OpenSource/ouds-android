@@ -12,6 +12,7 @@
 
 <resources>
     <string name="core_common_error_a11y">خطأ</string>
+    <string name="core_common_externalLinkOnClickLabel_a11y">فتح الرابط</string>
     <string name="core_common_loading_a11y">جاري التحميل</string>
     <string name="core_common_warning_a11y">تحذير</string>
 
@@ -31,8 +32,6 @@
 
     <string name="core_inputTag_remove_a11y">يزيل</string>
 
-    <string name="core_link_onClickLabel_a11y">فتح الرابط</string>
-    
     <string name="core_navigationButton_next_a11y">التالي</string>
     <string name="core_navigationButton_previous_a11y">السابق</string>
 

@@ -53,6 +53,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -523,6 +524,8 @@ internal fun OudsListItem(
             Modifier.clickable(
                 onClick = onClick,
                 enabled = state.areInteractionsEnabled,
+                role = Role.Button,
+                onClickLabel = indicator?.onClickLabel,
                 interactionSource = interactionSource,
                 indication = interactionValuesIndication(backgroundColor, outlineBorderColor)
             )
@@ -890,11 +893,23 @@ enum class OudsListItemVerticalAlignment {
 
 /**
  * Represents the navigation indicator of an [OudsListItem].
+ *
+ * The indicator not only provides a visual drawable but also determines the accessibility
+ * label announced by services like TalkBack when appropriate.
  */
 sealed interface OudsListItemIndicator {
 
     @get:Composable
     val drawableId: Int
+
+    /**
+     * Optional accessibility label describing the action when clicking a navigation list item.
+     * Used by TalkBack to announce what will happen when the item is activated.
+     * Returns `null` for standard navigation indicators.
+     */
+    @get:Composable
+    val onClickLabel: String?
+        get() = null
 
     /**
      * Used in a standard navigation context. This indicator is positioned at the end of the list item and is not customizable.
@@ -921,6 +936,10 @@ sealed interface OudsListItemIndicator {
         override val drawableId
             @Composable
             get() = OudsTheme.drawableResources.functional.actions.externalLink
+
+        override val onClickLabel
+            @Composable
+            get() = stringResource(R.string.core_common_externalLinkOnClickLabel_a11y)
     }
 }
 
