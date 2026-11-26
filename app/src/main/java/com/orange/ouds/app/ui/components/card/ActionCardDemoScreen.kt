@@ -61,6 +61,7 @@ private fun ActionCardDemoBottomSheetContent(state: ActionCardDemoState) {
 private fun ActionCardDemoContent(state: ActionCardDemoState) {
     with(state) {
         val modifier = Modifier.width(BaseCardDemoState.DemoCardWidth)
+        val loader = if (hasLoader) OudsCardLoader() else null
         val skeleton = if (skeleton) OudsSkeleton(rememberOudsSkeletonState()) else null
         when (style) {
             BaseCardDemoState.Style.Filled -> OudsCard(
@@ -71,6 +72,7 @@ private fun ActionCardDemoContent(state: ActionCardDemoState) {
                     divider = divider
                 ),
                 enabled = enabled,
+                loader = loader,
                 skeleton = skeleton
             ) {
                 BaseCardContentExample(state = state)
@@ -79,6 +81,7 @@ private fun ActionCardDemoContent(state: ActionCardDemoState) {
                 onClick = {},
                 modifier = modifier,
                 enabled = enabled,
+                loader = loader,
                 skeleton = skeleton
             ) {
                 BaseCardContentExample(state = state)
@@ -89,6 +92,7 @@ private fun ActionCardDemoContent(state: ActionCardDemoState) {
                 alternativeBackground = alternativeBackground,
                 onBackgroundColor = elevatedCardOnBackgroundColor,
                 enabled = enabled,
+                loader = loader,
                 skeleton = skeleton
             ) {
                 BaseCardContentExample(state = state)
@@ -101,9 +105,7 @@ private fun Code.Builder.actionCardDemoCodeSnippet(state: ActionCardDemoState) {
     with(state) {
         this@actionCardDemoCodeSnippet.baseCardDemoCodeSnippet(state = state) {
             if (hasLoader && !skeleton) {
-                constructorCallArgument<OudsCardLoader>("loader") {
-                    rawArgument(null, "null")
-                }
+                constructorCallArgument<OudsCardLoader>("loader")
             }
         }
     }

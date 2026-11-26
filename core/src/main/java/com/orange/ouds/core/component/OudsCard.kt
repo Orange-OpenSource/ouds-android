@@ -226,6 +226,7 @@ fun OudsElevatedCard(
  * @param alternativeBackground Controls the display of the alternative color background. Defaults to `false`.
  * @param onBackgroundColor The background color on which the elevated card is displayed among [OudsCardOnBackgroundColor].
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param loader An optional loading progress indicator displayed in place of the card's content to indicate an ongoing operation.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
@@ -244,6 +245,7 @@ fun OudsElevatedCard(
     alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
     onBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
     enabled: Boolean = true,
+    loader: OudsCardLoader? = null,
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     interactionSource: MutableInteractionSource? = null,
     content: @Composable OudsCardScope.() -> Unit = { },
@@ -253,6 +255,7 @@ fun OudsElevatedCard(
         modifier = modifier,
         style = OudsCardStyle.Elevated(alternativeBackground = alternativeBackground, onBackgroundColor = onBackgroundColor),
         enabled = enabled,
+        loader = loader,
         skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
@@ -311,6 +314,7 @@ fun OudsOutlinedCard(
  * @param onClick The action to perform when this card is clicked.
  * @param modifier The [Modifier] to be applied to this card.
  * @param enabled Controls the enabled state of the card. When `false`, the OUDS components inside will be in disabled state.
+ * @param loader An optional loading progress indicator displayed in place of the card's content to indicate an ongoing operation.
  * @param skeleton A placeholder state of the component used when the content is not yet available (while loading). The component shows the correct visual
  *    structure but with placeholder elements (grey or shimmering blocks) instead of actual content.
  *    Can be set directly or inherited from [OudsSkeletonProvider]. See [OudsSkeleton] class documentation for all approaches.
@@ -327,6 +331,7 @@ fun OudsOutlinedCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    loader: OudsCardLoader? = null,
     skeleton: OudsSkeleton? = LocalSkeleton.current,
     interactionSource: MutableInteractionSource? = null,
     content: @Composable OudsCardScope.() -> Unit = { },
@@ -336,6 +341,7 @@ fun OudsOutlinedCard(
         modifier = modifier,
         style = OudsCardStyle.Outlined,
         enabled = enabled,
+        loader = loader,
         skeleton = skeleton,
         interactionSource = interactionSource,
         content = content
@@ -534,7 +540,7 @@ class OudsCardScope {
  *   Values outside of this range are coerced into the range.
  *   Set this value to `null` to display a circular indeterminate progress indicator.
  */
-class OudsCardLoader(val progress: Float?)
+class OudsCardLoader(val progress: Float? = null)
 
 @Composable
 private fun cardElevation(style: OudsCardStyle): CardElevation {
@@ -811,7 +817,9 @@ internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract, dar
                 OudsHeadingText(text = "Disabled Card")
                 OudsBodyText(text = "All components below should appear disabled.")
                 OudsButton(label = "Button", onClick = {})
-                OudsCard(modifier = Modifier.fillMaxWidth().height(50.dp)) {
+                OudsCard(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)) {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { OudsBodyText(text = "Card content") }
                 }
                 OudsCheckbox(checked = false, onCheckedChange = {})
