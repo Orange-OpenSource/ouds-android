@@ -71,7 +71,7 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
         "Maintained for binary compatibility. Use overload with additional parameters.",
         level = DeprecationLevel.HIDDEN
     )
-    constructor(roundedCornerButtons: Boolean?) : this(roundedCornerButtons, null, null, null, null)
+    constructor(roundedCornerButtons: Boolean?) : this(roundedCornerButtons, null, null, null, null, null)
 
     fun copy(
         roundedCornerButtons: Boolean? = this.roundedCornerButtons,
