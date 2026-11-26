@@ -70,11 +70,11 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
             enabled = elevatedCardSettingsEnabled
         )
 
-        val elevatedCardOnBackgroundColors = OudsCardOnBackgroundColor.entries
+        val onBackgroundColors = OudsCardOnBackgroundColor.entries
         CustomizationDropdownMenu(
             applyTopPadding = false,
             label = stringResource(id = R.string.app_components_card_onBackgroundColor_tech),
-            items = elevatedCardOnBackgroundColors.map { color ->
+            items = onBackgroundColors.map { color ->
                 val enabled = elevatedCardSettingsEnabled
                 CustomizationDropdownMenuItem(
                     label = color.name.toSentenceCase(),
@@ -89,8 +89,8 @@ fun BaseCardDemoBottomSheetContent(state: BaseCardDemoState) {
                     enabled = enabled
                 )
             },
-            selectedItemIndex = elevatedCardOnBackgroundColors.indexOf(elevatedCardOnBackgroundColor),
-            onSelectionChange = { elevatedCardOnBackgroundColor = elevatedCardOnBackgroundColors[it] }
+            selectedItemIndex = onBackgroundColors.indexOf(onBackgroundColor),
+            onSelectionChange = { onBackgroundColor = onBackgroundColors[it] }
         )
 
         CustomizationSwitchItem(
@@ -181,8 +181,8 @@ fun Code.Builder.baseCardDemoCodeSnippet(state: BaseCardDemoState, cardArguments
                         if (alternativeBackground != OudsCardDefaults.AlternativeBackground) {
                             typedArgument("alternativeBackground", alternativeBackground)
                         }
-                        if (elevatedCardOnBackgroundColor != OudsCardDefaults.OnBackgroundColor) {
-                            typedArgument("elevatedCardOnBackgroundColor", elevatedCardOnBackgroundColor)
+                        if (onBackgroundColor != OudsCardDefaults.OnBackgroundColor) {
+                            typedArgument("onBackgroundColor", onBackgroundColor)
                         }
                     }
                 }

@@ -26,7 +26,7 @@ fun rememberActionCardDemoState(
     style: BaseCardDemoState.Style = BaseCardDemoState.Style.Filled,
     background: Boolean = OudsCardDefaults.Background,
     alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
     divider: Boolean = false,
     contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.Empty,
     enabled: Boolean = true,
@@ -36,7 +36,7 @@ fun rememberActionCardDemoState(
     style,
     background,
     alternativeBackground,
-    elevatedCardOnBackgroundColor,
+    onBackgroundColor,
     divider,
     contentExample,
     enabled,
@@ -44,20 +44,20 @@ fun rememberActionCardDemoState(
     skeleton,
     saver = ActionCardDemoState.Saver
 ) {
-    ActionCardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, hasLoader, skeleton)
+    ActionCardDemoState(style, background, alternativeBackground, onBackgroundColor, divider, contentExample, enabled, hasLoader, skeleton)
 }
 
 class ActionCardDemoState(
     style: Style,
     background: Boolean,
     alternativeBackground: Boolean,
-    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,
     hasLoader: Boolean,
     skeleton: Boolean
-) : BaseCardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, skeleton) {
+) : BaseCardDemoState(style, background, alternativeBackground, onBackgroundColor, divider, contentExample, enabled, skeleton) {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
@@ -77,7 +77,7 @@ class ActionCardDemoState(
                         style,
                         background,
                         alternativeBackground,
-                        elevatedCardOnBackgroundColor,
+                        this.onBackgroundColor,
                         divider,
                         contentExample,
                         enabled,

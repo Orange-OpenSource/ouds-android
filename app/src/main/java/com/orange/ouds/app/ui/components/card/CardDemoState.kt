@@ -23,25 +23,25 @@ fun rememberCardDemoState(
     style: BaseCardDemoState.Style = BaseCardDemoState.Style.Filled,
     background: Boolean = OudsCardDefaults.Background,
     alternativeBackground: Boolean = OudsCardDefaults.AlternativeBackground,
-    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor = OudsCardDefaults.OnBackgroundColor,
     divider: Boolean = false,
     contentExample: BaseCardDemoState.ContentExample = BaseCardDemoState.ContentExample.Empty,
     enabled: Boolean = true,
     skeleton: Boolean = false
 ) = rememberSaveable(style, background, divider, contentExample, enabled, skeleton, saver = CardDemoState.Saver) {
-    CardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, skeleton)
+    CardDemoState(style, background, alternativeBackground, onBackgroundColor, divider, contentExample, enabled, skeleton)
 }
 
 class CardDemoState(
     style: Style,
     background: Boolean,
     alternativeBackground: Boolean,
-    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,
     skeleton: Boolean
-) : BaseCardDemoState(style, background, alternativeBackground, elevatedCardOnBackgroundColor, divider, contentExample, enabled, skeleton) {
+) : BaseCardDemoState(style, background, alternativeBackground, onBackgroundColor, divider, contentExample, enabled, skeleton) {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
@@ -58,7 +58,7 @@ class CardDemoState(
                         style,
                         background,
                         alternativeBackground,
-                        elevatedCardOnBackgroundColor,
+                        this.onBackgroundColor,
                         divider,
                         contentExample,
                         enabled,

@@ -24,7 +24,7 @@ open class BaseCardDemoState(
     style: Style,
     background: Boolean,
     alternativeBackground: Boolean,
-    elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor,
+    onBackgroundColor: OudsCardOnBackgroundColor,
     divider: Boolean,
     contentExample: ContentExample,
     enabled: Boolean,
@@ -42,7 +42,7 @@ open class BaseCardDemoState(
                         style,
                         background,
                         alternativeBackground,
-                        elevatedCardOnBackgroundColor,
+                        this.onBackgroundColor,
                         divider,
                         contentExample,
                         enabled,
@@ -71,7 +71,7 @@ open class BaseCardDemoState(
 
     var alternativeBackground: Boolean by mutableStateOf(alternativeBackground)
 
-    var elevatedCardOnBackgroundColor: OudsCardOnBackgroundColor by mutableStateOf(elevatedCardOnBackgroundColor)
+    var onBackgroundColor: OudsCardOnBackgroundColor by mutableStateOf(onBackgroundColor)
 
     var divider: Boolean by mutableStateOf(divider)
 
@@ -82,7 +82,7 @@ open class BaseCardDemoState(
     var skeleton: Boolean by mutableStateOf(skeleton)
 
     val demoContentOnColor: OudsColoredBoxColor?
-        get() = if (style == Style.Elevated) elevatedCardOnBackgroundColor.toOudsColoredBoxColor() else null
+        get() = if (style == Style.Elevated) this@BaseCardDemoState.onBackgroundColor.toOudsColoredBoxColor() else null
 
     val elevatedCardSettingsEnabled: Boolean
         get() = style == Style.Elevated

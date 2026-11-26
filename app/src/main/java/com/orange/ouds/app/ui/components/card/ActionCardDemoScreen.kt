@@ -90,7 +90,7 @@ private fun ActionCardDemoContent(state: ActionCardDemoState) {
                 onClick = {},
                 modifier = modifier,
                 alternativeBackground = alternativeBackground,
-                onBackgroundColor = elevatedCardOnBackgroundColor,
+                onBackgroundColor = onBackgroundColor,
                 enabled = enabled,
                 loader = loader,
                 skeleton = skeleton

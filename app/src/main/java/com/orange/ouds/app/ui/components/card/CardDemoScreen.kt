@@ -69,7 +69,7 @@ private fun CardDemoContent(state: CardDemoState) {
             BaseCardDemoState.Style.Elevated -> OudsElevatedCard(
                 modifier = modifier,
                 alternativeBackground = alternativeBackground,
-                onBackgroundColor = elevatedCardOnBackgroundColor,
+                onBackgroundColor = onBackgroundColor,
                 enabled = enabled,
                 skeleton = skeleton
             ) {
