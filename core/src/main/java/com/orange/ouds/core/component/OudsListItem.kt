@@ -894,8 +894,7 @@ enum class OudsListItemVerticalAlignment {
 /**
  * Represents the navigation indicator of an [OudsListItem].
  *
- * The indicator not only provides a visual drawable but also determines the accessibility
- * label announced by services like TalkBack when appropriate.
+ * The indicator not only provides a drawable but also determines the accessibility label announced by services like TalkBack when appropriate.
  */
 sealed interface OudsListItemIndicator {
 
@@ -905,7 +904,7 @@ sealed interface OudsListItemIndicator {
     /**
      * Optional accessibility label describing the action when clicking a navigation list item.
      * Used by TalkBack to announce what will happen when the item is activated.
-     * Returns `null` for standard navigation indicators.
+     * Returns `null` for standard announcements.
      */
     @get:Composable
     val onClickLabel: String?
