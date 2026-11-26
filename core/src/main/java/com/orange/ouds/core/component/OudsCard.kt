@@ -817,10 +817,12 @@ internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract, dar
                 OudsHeadingText(text = "Disabled Card")
                 OudsBodyText(text = "All components below should appear disabled.")
                 OudsButton(label = "Button", onClick = {})
-                OudsCard(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { OudsBodyText(text = "Card content") }
+                OudsCard(
+                    modifier = Modifier.fillMaxWidth().height(50.dp)
+                ) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        OudsBodyText(text = "Card content")
+                    }
                 }
                 OudsCheckbox(checked = false, onCheckedChange = {})
                 OudsCheckboxItem(checked = true, label = "Checkbox Item", onCheckedChange = null)
