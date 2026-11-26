@@ -24,6 +24,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -351,6 +354,7 @@ internal fun OudsCard(
     interactionSource: MutableInteractionSource?,
     content: @Composable (OudsCardScope.() -> Unit)
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     @Suppress("NAME_SHADOWING") val interactionSource = interactionSource ?: remember { MutableInteractionSource() }
     val interactionState by interactionSource.collectInteractionStateAsState()
     val state = getCardState(enabled = enabled, loader = loader, skeleton = skeleton, interactionState = interactionState)
@@ -807,6 +811,9 @@ internal fun PreviewOudsCardDisabledWithComponents(theme: OudsThemeContract, dar
                 OudsHeadingText(text = "Disabled Card")
                 OudsBodyText(text = "All components below should appear disabled.")
                 OudsButton(label = "Button", onClick = {})
+                OudsCard(modifier = Modifier.fillMaxWidth().height(50.dp)) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { OudsBodyText(text = "Card content") }
+                }
                 OudsCheckbox(checked = false, onCheckedChange = {})
                 OudsCheckboxItem(checked = true, label = "Checkbox Item", onCheckedChange = null)
                 OudsFilterChip(selected = true, label = "Filter Chip", onClick = {})
