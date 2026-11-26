@@ -83,6 +83,7 @@ import com.orange.ouds.core.utilities.getPreviewEnumEntry
 import com.orange.ouds.core.utilities.getPreviewTheme
 import com.orange.ouds.core.utilities.rememberRainbowHeartPainter
 import com.orange.ouds.foundation.ExperimentalOudsApi
+import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.foundation.RestrictedOudsApi
 import com.orange.ouds.foundation.extensions.orElse
 import com.orange.ouds.foundation.utilities.BasicPreviewParameterProvider
@@ -906,6 +907,7 @@ sealed interface OudsListItemIndicator {
      * Used by TalkBack to announce what will happen when the item is activated.
      * Returns `null` for standard announcements.
      */
+    @InternalOudsApi
     @get:Composable
     val onClickLabel: String?
         get() = null
