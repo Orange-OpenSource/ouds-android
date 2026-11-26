@@ -190,8 +190,6 @@ fun Code.Builder.baseCardDemoCodeSnippet(state: BaseCardDemoState, cardArguments
 
             cardArguments()
 
-            rawArgument("onClick", "{}")
-
             if (!enabled) {
                 typedArgument("enabled", enabled)
             }

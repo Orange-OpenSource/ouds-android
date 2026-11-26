@@ -104,6 +104,7 @@ private fun ActionCardDemoContent(state: ActionCardDemoState) {
 private fun Code.Builder.actionCardDemoCodeSnippet(state: ActionCardDemoState) {
     with(state) {
         this@actionCardDemoCodeSnippet.baseCardDemoCodeSnippet(state = state) {
+            rawArgument("onClick", "{}")
             if (hasLoader && !skeleton) {
                 constructorCallArgument<OudsCardLoader>("loader")
             }
