@@ -141,7 +141,7 @@ open class OrangeTheme @OptIn(ExperimentalVersionOverloading::class) constructor
     @IntroducedAt("1.3.0") private val roundedCornerAlertMessages: Boolean = false,
     @IntroducedAt("1.6.0") private val roundedCornerProgressIndicators: Boolean = false,
     @IntroducedAt("2.0.0") private val roundedCornerCardItems: Boolean = false,
-    @IntroducedAt("3.0.0") private val roundedCornerCards: Boolean = false
+    @IntroducedAt("3.0.0-Unreleased") private val roundedCornerCards: Boolean = false
 ) : OudsThemeContract {
 
     /**

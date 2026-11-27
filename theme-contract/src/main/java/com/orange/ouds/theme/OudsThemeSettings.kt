@@ -63,7 +63,7 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
     @IntroducedAt("1.3.0") val roundedCornerAlertMessages: Boolean? = null,
     @IntroducedAt("1.6.0") val roundedCornerProgressIndicators: Boolean? = null,
     @IntroducedAt("2.0.0") val roundedCornerCardItems: Boolean? = null,
-    @IntroducedAt("3.0.0") val roundedCornerCards: Boolean? = null
+    @IntroducedAt("3.0.0-Unreleased") val roundedCornerCards: Boolean? = null
 ) : Parcelable {
 
     // This constructor overload has been added to avoid binary compatibility issues following the replacement of @JvmOverloads with @IntroducedAt
@@ -73,32 +73,14 @@ class OudsThemeSettings @OptIn(ExperimentalVersionOverloading::class) constructo
     )
     constructor(roundedCornerButtons: Boolean?) : this(roundedCornerButtons, null, null, null, null, null)
 
-    @Deprecated(
-        "Maintained for binary compatibility. Use overload with additional parameters.",
-        level = DeprecationLevel.HIDDEN
-    )
-    fun copy(
-        roundedCornerButtons: Boolean? = this.roundedCornerButtons,
-        roundedCornerTextInputs: Boolean? = this.roundedCornerTextInputs,
-        roundedCornerAlertMessages: Boolean? = this.roundedCornerAlertMessages,
-        roundedCornerProgressIndicators: Boolean? = this.roundedCornerProgressIndicators,
-        roundedCornerCardItems: Boolean? = this.roundedCornerCardItems
-    ) = OudsThemeSettings(
-        roundedCornerButtons,
-        roundedCornerTextInputs,
-        roundedCornerAlertMessages,
-        roundedCornerProgressIndicators,
-        roundedCornerCardItems,
-        this.roundedCornerCards
-    )
-    
+    @OptIn(ExperimentalVersionOverloading::class)
     fun copy(
         roundedCornerButtons: Boolean? = this.roundedCornerButtons,
         roundedCornerTextInputs: Boolean? = this.roundedCornerTextInputs,
         roundedCornerAlertMessages: Boolean? = this.roundedCornerAlertMessages,
         roundedCornerProgressIndicators: Boolean? = this.roundedCornerProgressIndicators,
         roundedCornerCardItems: Boolean? = this.roundedCornerCardItems,
-        roundedCornerCards: Boolean? = this.roundedCornerCards
+        @IntroducedAt("3.0.0-Unreleased") roundedCornerCards: Boolean? = this.roundedCornerCards
     ) = OudsThemeSettings(
         roundedCornerButtons,
         roundedCornerTextInputs,
