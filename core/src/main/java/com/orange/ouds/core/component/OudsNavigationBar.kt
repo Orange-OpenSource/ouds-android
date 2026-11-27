@@ -273,7 +273,8 @@ class OudsNavigationBarItem(
                 },
                 colors = ShortNavigationBarItemDefaults.colors(
                     selectedIconColor = selectedContentColor,
-                    selectedTextColor = selectedContentColor,
+                    selectedTextColorTopIconPosition = selectedContentColor,
+                    selectedTextColorStartIconPosition = selectedContentColor,
                     selectedIndicatorColor = materialIndicatorColor(state = state, selected = selected),
                     unselectedIconColor = unselectedContentColor,
                     unselectedTextColor = unselectedContentColor,
