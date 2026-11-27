@@ -24,6 +24,7 @@ import com.orange.ouds.core.component.OudsColoredBox
 import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
+import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
 fun LightDarkDemo(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
@@ -38,27 +39,27 @@ fun LightDarkDemo(modifier: Modifier = Modifier, content: @Composable () -> Unit
 }
 
 @Composable
-fun OnColoredBoxDemo(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-    ComponentDemoBox(modifier = modifier, colored = true) {
+fun OnColoredBoxDemo(modifier: Modifier = Modifier, color: OudsColoredBoxColor? = null, content: @Composable () -> Unit) {
+    ComponentDemoBox(modifier = modifier, color = color ?: OudsColoredBoxColor.BrandPrimary) {
         content()
     }
 }
 
 @Composable
-private fun ComponentDemoBox(modifier: Modifier = Modifier, colored: Boolean = false, content: @Composable BoxScope.() -> Unit) {
+private fun ComponentDemoBox(modifier: Modifier = Modifier, color: OudsColoredBoxColor? = null, content: @Composable BoxScope.() -> Unit) {
     @Suppress("NAME_SHADOWING")
     val modifier = modifier
         .padding(vertical = OudsTheme.spaces.fixed.medium)
         .fillMaxWidth()
     val contentAlignment = Alignment.Center
-    if (colored) {
+    color?.let {
         OudsColoredBox(
             modifier = modifier,
-            color = OudsColoredBoxColor.BrandPrimary,
+            color = color,
             contentAlignment = contentAlignment,
             content = content
         )
-    } else {
+    }.orElse {
         Box(
             modifier = Modifier
                 .background(OudsTheme.colorScheme.background.primary)

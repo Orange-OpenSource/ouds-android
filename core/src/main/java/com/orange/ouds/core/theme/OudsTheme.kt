@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.app.LocaleManagerCompat
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
+import com.orange.ouds.core.component.OudsCardOnBackgroundColor
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSkeletonProvider
 import com.orange.ouds.core.utilities.isHighContrastModeEnabled
@@ -66,6 +67,8 @@ internal val LocalThemeSettings = staticCompositionLocalOf<OudsThemeSettings> { 
 internal val LocalComponents = staticCompositionLocalOf<OudsComponents> { missingCompositionLocalError("LocalComponents") }
 internal val LocalThemeName = staticCompositionLocalOf<String> { missingCompositionLocalError("LocalThemeName") }
 internal val LocalDeprecatedTokens = staticCompositionLocalOf<OudsDeprecatedTokens> { missingCompositionLocalError("LocalDeprecatedTokens") }
+internal val LocalParentEnabled = staticCompositionLocalOf { true }
+internal val LocalElevatedCardOnBackgroundColor = staticCompositionLocalOf<OudsCardOnBackgroundColor?> { null }
 
 /**
  * Composition local that provides the current [OudsSkeleton] state to the composable hierarchy.

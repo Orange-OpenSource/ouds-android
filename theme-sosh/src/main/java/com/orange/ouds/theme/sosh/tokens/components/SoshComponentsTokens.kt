@@ -20,6 +20,7 @@ import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsCardTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
@@ -49,6 +50,7 @@ internal class SoshComponentsTokens(
     override val bulletList: OudsBulletListTokens = SoshBulletListTokens(),
     override val button: OudsButtonTokens = SoshButtonTokens(),
     override val buttonMonochrome: OudsButtonMonoTokens = SoshButtonMonoTokens(),
+    override val card: OudsCardTokens = SoshCardTokens(),
     override val checkbox: OudsCheckboxTokens = SoshCheckboxTokens(),
     override val chip: OudsChipTokens = SoshChipTokens(),
     override val divider: OudsDividerTokens = SoshDividerTokens(),

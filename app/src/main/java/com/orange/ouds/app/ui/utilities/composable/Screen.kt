@@ -24,7 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.orange.ouds.app.ui.utilities.Code
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.theme.OudsTheme
+import com.orange.ouds.foundation.extensions.orElse
 
 @Composable
 fun Screen(content: @Composable () -> Unit) {
@@ -43,7 +45,7 @@ fun DemoScreen(
     bottomSheetContent: @Composable ColumnScope.() -> Unit,
     codeSnippet: Code.Builder.() -> Unit,
     demoContent: @Composable () -> Unit,
-    demoContentOnColoredBox: Boolean = false,
+    demoContentOnColor: OudsColoredBoxColor? = null,
     demoContentPaddingValues: PaddingValues = PaddingValues(horizontal = OudsTheme.grids.margin),
     bottomSheetTabs: (@Composable () -> Unit)? = null,
     description: String? = null,
@@ -62,10 +64,10 @@ fun DemoScreen(
                 )
             }
             val demoContentModifier = Modifier.padding(paddingValues = demoContentPaddingValues)
-            if (!demoContentOnColoredBox) {
+            demoContentOnColor?.let {
+                OnColoredBoxDemo(modifier = demoContentModifier, color = demoContentOnColor, content = demoContent)
+            }.orElse {
                 LightDarkDemo(modifier = demoContentModifier, content = demoContent)
-            } else {
-                OnColoredBoxDemo(modifier = demoContentModifier, content = demoContent)
             }
             CodeSnippet(
                 modifier = Modifier

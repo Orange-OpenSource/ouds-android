@@ -38,6 +38,7 @@ import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
 import com.orange.ouds.core.component.OudsButtonIcon
 import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsSkeleton
 import com.orange.ouds.core.component.OudsSmallButton
 import com.orange.ouds.core.component.rememberOudsSkeletonState
@@ -55,7 +56,7 @@ fun ButtonDemoScreen() {
         bottomSheetContent = { ButtonDemoBottomSheetContent(state = state) },
         codeSnippet = { buttonDemoCodeSnippet(state = state, themeDrawableResources = themeDrawableResources) },
         demoContent = { ButtonDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox,
+        demoContentOnColor = if (state.onColoredBox) OudsColoredBoxColor.BrandPrimary else null,
         version = OudsVersion.Component.Button
     )
 }

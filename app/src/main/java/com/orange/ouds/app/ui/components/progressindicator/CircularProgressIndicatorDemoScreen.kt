@@ -20,6 +20,7 @@ import com.orange.ouds.app.ui.utilities.Code
 import com.orange.ouds.app.ui.utilities.composable.AppPreview
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsCircularProgressIndicator
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsDeterminateCircularProgressIndicatorHelperText
 import com.orange.ouds.foundation.InternalOudsApi
 import com.orange.ouds.theme.OudsVersion
@@ -33,7 +34,7 @@ fun CircularProgressIndicatorDemoScreen() {
         bottomSheetContent = { CircularProgressIndicatorDemoBottomSheetContent(state = state) },
         codeSnippet = { circularProgressIndicatorDemoCodeSnippet(state = state) },
         demoContent = { CircularProgressIndicatorDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox,
+        demoContentOnColor = if (state.onColoredBox) OudsColoredBoxColor.BrandPrimary else null,
         version = OudsVersion.Component.CircularProgressIndicator
     )
 }

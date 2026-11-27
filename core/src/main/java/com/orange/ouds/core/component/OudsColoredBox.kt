@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +28,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.orange.ouds.core.extensions.filter
 import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.LocalElevatedCardOnBackgroundColor
 import com.orange.ouds.core.theme.OudsColorMode
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.theme.OudsThemeTweak
@@ -68,7 +72,10 @@ fun OudsColoredBox(
         exceptionMessage = { "Current theme does not support an OudsColoredBox with color parameter set to ${color.name}." },
         previewMessage = { "${color.name} is not supported by current theme" }
     ) {
-        CompositionLocalProvider(value = LocalColorMode provides color.mode) {
+        CompositionLocalProvider(
+            LocalColorMode provides color.mode,
+            LocalElevatedCardOnBackgroundColor provides color.toCardOnBackgroundColor()
+        ) {
             // Filter the background modifiers in order to force the background color
             // We could theoretically apply the background color after the modifier but in practise a hairline is still visible
             val filteredModifier = modifier.filter { it::class.simpleName != "BackgroundElement" }
@@ -121,7 +128,7 @@ enum class OudsColoredBoxColor {
 
     private companion object {
 
-        // These methods are unused but they allows to be notified with a build error if background, overlay or surface key tokens are updated
+        // These methods are unused, but they allow to be notified with a build error if background, overlay or surface key tokens are updated
         fun fromKeyToken(keyToken: OudsColorKeyToken.Background): OudsColoredBoxColor {
             return when (keyToken) {
                 OudsColorKeyToken.Background.InverseHigh -> BackgroundInverseHigh
@@ -240,6 +247,22 @@ enum class OudsColoredBoxColor {
         }
 }
 
+/**
+ * Maps an [OudsColoredBoxColor] to its corresponding [OudsCardOnBackgroundColor].
+ * Falls back to [OudsCardOnBackgroundColor.BackgroundPrimary] if no direct mapping exists.
+ */
+internal fun OudsColoredBoxColor.toCardOnBackgroundColor(): OudsCardOnBackgroundColor {
+    return when (this) {
+        OudsColoredBoxColor.BackgroundPrimary -> OudsCardOnBackgroundColor.BackgroundPrimary
+        OudsColoredBoxColor.BackgroundSecondary -> OudsCardOnBackgroundColor.BackgroundSecondary
+        OudsColoredBoxColor.BackgroundTertiary -> OudsCardOnBackgroundColor.BackgroundTertiary
+        OudsColoredBoxColor.BackgroundInverseLow -> OudsCardOnBackgroundColor.BackgroundInverseLow
+        OudsColoredBoxColor.BackgroundInverseHigh -> OudsCardOnBackgroundColor.BackgroundInverseHigh
+        OudsColoredBoxColor.OverlayModal -> OudsCardOnBackgroundColor.OverlayModalSheet
+        else -> OudsCardOnBackgroundColor.BackgroundPrimary
+    }
+}
+
 @Suppress("PreviewShouldNotBeCalledRecursively")
 @OudsPreviewLightDark
 @Composable
@@ -270,6 +293,11 @@ internal fun PreviewOudsColoredBox(
             )
             OudsCircularProgressIndicator()
             OudsLinearProgressIndicator()
+            OudsElevatedCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+            ) { }
         }
     }
 }

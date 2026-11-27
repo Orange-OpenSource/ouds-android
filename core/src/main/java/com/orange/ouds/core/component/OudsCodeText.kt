@@ -15,6 +15,7 @@ package com.orange.ouds.core.component
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.orange.ouds.core.component.common.text.OudsAnnotatedCodeText
 import com.orange.ouds.core.component.common.text.buildOudsAnnotatedCodeText
 import com.orange.ouds.core.component.common.text.withColor
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -79,7 +81,7 @@ fun OudsCodeText(
     Text(
         modifier = modifier,
         text = text,
-        color = color,
+        color = textColorOrDisabled(color = color),
         style = codeTextStyle,
         textAlign = textAlign,
         overflow = overflow,
@@ -139,7 +141,7 @@ fun OudsCodeText(
     Text(
         modifier = modifier,
         text = text.annotatedString(linkAndStrongTextStyle = linkAndStrongTextStyle),
-        color = color,
+        color = textColorOrDisabled(color = color),
         style = codeTextStyle,
         textAlign = textAlign,
         overflow = overflow,
@@ -189,16 +191,25 @@ private fun PreviewOudsCodeTextWithAnnotatedText() {
     PreviewOudsCodeTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme())
 }
 
+@OudsPreview
+@Composable
+private fun PreviewOudsCodeTextWithAnnotatedTextAndDisabledParent() {
+    PreviewOudsCodeTextWithAnnotatedText(theme = getPreviewTheme(), darkThemeEnabled = isSystemInDarkTheme(), parentEnabled = false)
+}
+
 @Composable
 internal fun PreviewOudsCodeTextWithAnnotatedText(
     theme: OudsThemeContract,
     darkThemeEnabled: Boolean,
+    parentEnabled: Boolean = true
 ) = OudsPreview(theme = theme, darkThemeEnabled = darkThemeEnabled) {
-    OudsCodeText(
-        text = buildOudsAnnotatedCodeText {
-            append("Code with ")
-            withColor(color = OudsTheme.colorScheme.content.brandPrimary) { append("colored text") }
-            append(".")
-        }
-    )
+    CompositionLocalProvider(LocalParentEnabled provides parentEnabled) {
+        OudsCodeText(
+            text = buildOudsAnnotatedCodeText {
+                append("Code with ")
+                withColor(color = OudsTheme.colorScheme.content.brandPrimary) { append("colored text") }
+                append(".")
+            }
+        )
+    }
 }

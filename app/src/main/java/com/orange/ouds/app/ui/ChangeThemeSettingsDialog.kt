@@ -60,6 +60,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
                 checked = when (themeSetting) {
                     ThemeSetting.RoundedCornerAlertMessages -> themeSettings.roundedCornerAlertMessages.orElse { false }
                     ThemeSetting.RoundedCornerButtons -> themeSettings.roundedCornerButtons.orElse { false }
+                    ThemeSetting.RoundedCornerCards -> themeSettings.roundedCornerCards.orElse { false }
                     ThemeSetting.RoundedCornerCardItems -> themeSettings.roundedCornerCardItems.orElse { false }
                     ThemeSetting.RoundedCornerProgressIndicators -> themeSettings.roundedCornerProgressIndicators.orElse { false }
                     ThemeSetting.RoundedCornerTextInputs -> themeSettings.roundedCornerTextInputs.orElse { false }
@@ -69,6 +70,7 @@ private fun ChangeThemeSettingsDialogContent(themeState: ThemeState, onThemeSett
                     themeSettings = when (themeSetting) {
                         ThemeSetting.RoundedCornerAlertMessages -> themeSettings.copy(roundedCornerAlertMessages = checked)
                         ThemeSetting.RoundedCornerButtons -> themeSettings.copy(roundedCornerButtons = checked)
+                        ThemeSetting.RoundedCornerCards -> themeSettings.copy(roundedCornerCards = checked)
                         ThemeSetting.RoundedCornerCardItems -> themeSettings.copy(roundedCornerCardItems = checked)
                         ThemeSetting.RoundedCornerProgressIndicators -> themeSettings.copy(roundedCornerProgressIndicators = checked)
                         ThemeSetting.RoundedCornerTextInputs -> themeSettings.copy(roundedCornerTextInputs = checked)
@@ -104,6 +106,7 @@ private fun getSupportedThemeSettings(theme: OudsThemeContract): List<ThemeSetti
             when (themeSetting) {
                 ThemeSetting.RoundedCornerAlertMessages -> roundedCornerAlertMessages != null
                 ThemeSetting.RoundedCornerButtons -> roundedCornerButtons != null
+                ThemeSetting.RoundedCornerCards -> roundedCornerCards != null
                 ThemeSetting.RoundedCornerCardItems -> roundedCornerCardItems != null
                 ThemeSetting.RoundedCornerProgressIndicators -> roundedCornerProgressIndicators != null
                 ThemeSetting.RoundedCornerTextInputs -> roundedCornerTextInputs != null
@@ -121,13 +124,14 @@ object ChangeThemeSettingsDialog {
 
 private enum class ThemeSetting {
 
-    RoundedCornerAlertMessages, RoundedCornerButtons, RoundedCornerCardItems, RoundedCornerProgressIndicators, RoundedCornerTextInputs;
+    RoundedCornerAlertMessages, RoundedCornerButtons, RoundedCornerCards, RoundedCornerCardItems, RoundedCornerProgressIndicators, RoundedCornerTextInputs;
 
     val titleResId: Int
         @StringRes
         get() = when (this) {
             RoundedCornerAlertMessages -> R.string.app_themeSettingsDialog_roundedCornerAlertMessages_label
             RoundedCornerButtons -> R.string.app_themeSettingsDialog_roundedCornerButtons_label
+            RoundedCornerCards -> R.string.app_themeSettingsDialog_roundedCornerCards_label
             RoundedCornerCardItems -> R.string.app_themeSettingsDialog_roundedCornerCardItems_label
             RoundedCornerProgressIndicators -> R.string.app_themeSettingsDialog_roundedCornerProgressIndicators_label
             RoundedCornerTextInputs -> R.string.app_themeSettingsDialog_roundedCornerTextInputs_label

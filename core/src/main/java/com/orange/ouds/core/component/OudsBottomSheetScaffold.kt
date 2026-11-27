@@ -34,10 +34,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
+import com.orange.ouds.core.theme.LocalElevatedCardOnBackgroundColor
 import com.orange.ouds.core.theme.OudsTheme
 import com.orange.ouds.core.utilities.OudsPreview
 import com.orange.ouds.core.utilities.OudsPreviewLightDark
@@ -86,7 +88,11 @@ fun OudsBottomSheetScaffold(
     content: @Composable (PaddingValues) -> Unit,
 ) {
     BottomSheetScaffold(
-        sheetContent = sheetContent,
+        sheetContent = {
+            CompositionLocalProvider(LocalElevatedCardOnBackgroundColor provides OudsCardOnBackgroundColor.OverlayModalSheet) {
+                sheetContent()
+            }
+        },
         modifier = modifier,
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,

@@ -67,6 +67,7 @@ import com.orange.ouds.core.extensions.InteractionState
 import com.orange.ouds.core.extensions.collectInteractionStateAsState
 import com.orange.ouds.core.extensions.iconSize
 import com.orange.ouds.core.theme.LocalColorMode
+import com.orange.ouds.core.theme.LocalParentEnabled
 import com.orange.ouds.core.theme.LocalSkeleton
 import com.orange.ouds.core.theme.LocalThemeSettings
 import com.orange.ouds.core.theme.OudsTheme
@@ -310,6 +311,7 @@ internal fun OudsButton(
     interactionSource: MutableInteractionSource? = null,
     skeleton: OudsSkeleton? = LocalSkeleton.current
 ) {
+    val enabled = LocalParentEnabled.current && enabled
     val icon = nullableIcon
     val label = nullableLabel
     val forbiddenAppearancesOnColoredBox = remember { listOf(OudsButtonAppearance.Brand, OudsButtonAppearance.Negative) }

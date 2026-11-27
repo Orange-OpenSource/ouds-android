@@ -14,6 +14,7 @@ package com.orange.ouds.app.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -50,6 +51,8 @@ import com.orange.ouds.core.component.OudsBulletList
 import com.orange.ouds.core.component.OudsBulletListType
 import com.orange.ouds.core.component.OudsButton
 import com.orange.ouds.core.component.OudsButtonAppearance
+import com.orange.ouds.core.component.OudsCard
+import com.orange.ouds.core.component.OudsCardStyle
 import com.orange.ouds.core.component.OudsCheckbox
 import com.orange.ouds.core.component.OudsCircularProgressIndicator
 import com.orange.ouds.core.component.OudsColoredBox
@@ -140,6 +143,26 @@ fun ButtonIllustration() = ComponentIllustration {
             onClick = {},
             appearance = if (isOudsInDarkTheme()) OudsButtonAppearance.Strong else OudsButtonAppearance.Default
         )
+    }
+}
+
+@Composable
+fun CardIllustration() = ComponentIllustration {
+    val cardWidth = 200.dp
+    val cardHeight = 60.dp
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        OudsCard(
+            modifier = Modifier.width(cardWidth),
+            style = OudsCardStyle.Filled()
+        ) {
+            Box(modifier = Modifier.height(cardHeight))
+        }
+        OudsCard(
+            modifier = Modifier.width(cardWidth),
+            style = OudsCardStyle.Outlined
+        ) {
+            Box(modifier = Modifier.height(cardHeight))
+        }
     }
 }
 

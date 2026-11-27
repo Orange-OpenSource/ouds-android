@@ -30,4 +30,10 @@ internal class OudsCodeTextTest {
         parameter = null,
         OudsComponentTestSuite.theme
     )
+
+    class WithAnnotatedTextAndDisabledParent : OudsComponentSnapshotTest(
+        OudsPreviewableComponent.CodeText.WithAnnotatedTextAndDisabledParent,
+        parameter = null,
+        OudsComponentTestSuite.theme
+    )
 }

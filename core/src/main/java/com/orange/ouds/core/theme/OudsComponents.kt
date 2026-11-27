@@ -27,6 +27,7 @@ import com.orange.ouds.theme.tokens.components.OudsBarTokens
 import com.orange.ouds.theme.tokens.components.OudsBulletListTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonMonoTokens
 import com.orange.ouds.theme.tokens.components.OudsButtonTokens
+import com.orange.ouds.theme.tokens.components.OudsCardTokens
 import com.orange.ouds.theme.tokens.components.OudsCheckboxTokens
 import com.orange.ouds.theme.tokens.components.OudsChipTokens
 import com.orange.ouds.theme.tokens.components.OudsComponentsTokens
@@ -58,6 +59,7 @@ class OudsComponents internal constructor(
     val bulletList: BulletList,
     val button: Button,
     val buttonMonochrome: ButtonMonochrome,
+    val card: Card,
     val checkbox: Checkbox,
     val chip: Chip,
     @Deprecated("Please use listItem instead.", ReplaceWith("OudsTheme.components.listItem"))
@@ -656,6 +658,28 @@ class OudsComponents internal constructor(
                     val pressed: androidx.compose.ui.graphics.Color
                 )
             }
+        }
+    }
+
+    class Card internal constructor(
+        val border: Border,
+        val color: Color
+    ) {
+        class Border internal constructor(
+            val radius: Radius
+        ) {
+            class Radius internal constructor(
+                val default: Dp,
+                val rounded: Dp
+            )
+        }
+        class Color internal constructor(
+            val background: Background
+        ) {
+            class Background internal constructor(
+                val elevatedDisabled: androidx.compose.ui.graphics.Color,
+                val elevatedEnabled: androidx.compose.ui.graphics.Color
+            )
         }
     }
 
@@ -1867,6 +1891,7 @@ internal fun OudsComponentsTokens.getComponents(deprecated: OudsDeprecatedCompon
         bulletList = bulletList.getBulletList(),
         button = button.getButton(),
         buttonMonochrome = buttonMonochrome.getButtonMonochrome(),
+        card = card.getCard(),
         checkbox = checkbox.getCheckbox(),
         chip = chip.getChip(),
         controlItem = listItem.getControlItem(accordion),
@@ -2287,6 +2312,24 @@ private fun OudsButtonMonoTokens.getButtonMonochrome(): OudsComponents.ButtonMon
             )
         )
     )
+}
+
+@Composable
+private fun OudsCardTokens.getCard(): OudsComponents.Card {
+   return OudsComponents.Card(
+       border = OudsComponents.Card.Border(
+           radius = OudsComponents.Card.Border.Radius(
+               default = borderRadiusDefault.value,
+               rounded = borderRadiusRounded.value
+           )
+       ),
+       color = OudsComponents.Card.Color(
+           background = OudsComponents.Card.Color.Background(
+               elevatedDisabled = colorBgElevatedDisabled.value,
+               elevatedEnabled = colorBgElevatedEnabled.value
+           )
+       )
+   )
 }
 
 @Composable

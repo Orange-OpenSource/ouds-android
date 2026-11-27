@@ -412,7 +412,7 @@ private fun SettingsAlertMessage(configurableElement: ConfigurableElement) {
     val message: String
     when (configurableElement) {
         ConfigurableElement.Content -> {
-            elementName = stringResource(R.string.app_components_listItem_content_tech)
+            elementName = stringResource(R.string.app_components_common_content_tech)
             message = stringResource(R.string.app_components_listItem_contentSettingsAlertMessageDescription_text)
         }
         is ConfigurableElement.Component -> {
@@ -750,7 +750,7 @@ fun getBaseListItemContent(modifier: Modifier = Modifier): @Composable (OudsList
         contentAlignment = Alignment.Center
     ) {
         OudsLabelText(
-            text = stringResource(R.string.app_components_listItem_content_tech),
+            text = stringResource(R.string.app_components_common_content_tech),
             size = OudsLabelTextSize.Small,
             weight = OudsTextWeight.Strong,
             color = if (enabled) OudsTheme.colorScheme.content.onStatus.info.muted else OudsTheme.colorScheme.content.onAction.disabled

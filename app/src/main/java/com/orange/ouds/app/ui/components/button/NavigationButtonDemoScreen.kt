@@ -29,6 +29,7 @@ import com.orange.ouds.app.ui.utilities.composable.CustomizationSwitchItem
 import com.orange.ouds.app.ui.utilities.composable.CustomizationTextInput
 import com.orange.ouds.app.ui.utilities.composable.DemoScreen
 import com.orange.ouds.core.component.OudsButtonLoader
+import com.orange.ouds.core.component.OudsColoredBoxColor
 import com.orange.ouds.core.component.OudsNavigationButton
 import com.orange.ouds.core.component.OudsNavigationButtonAppearance
 import com.orange.ouds.core.component.OudsNavigationButtonChevron
@@ -47,7 +48,7 @@ fun NavigationButtonDemoScreen() {
         bottomSheetContent = { NavigationButtonDemoBottomSheetContent(state = state) },
         codeSnippet = { navigationButtonDemoCodeSnippet(state = state) },
         demoContent = { NavigationButtonDemoContent(state = state) },
-        demoContentOnColoredBox = state.onColoredBox,
+        demoContentOnColor = if (state.onColoredBox) OudsColoredBoxColor.BrandPrimary else null,
         version = OudsVersion.Component.NavigationButton
     )
 }
